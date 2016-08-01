@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="localContact"
+    version="1.0.0">
+    <name>toast</name>
+
+    <!-- android -->
+    <platform name="android">
+        <js-module src="www/android/localContact.js" name="localContact">
+            <runs/>
+            <clobbers target="cordova.plugins.localContact" />
+        </js-module>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="localContact">
+              <param name="android-package" value="com.tky.localContact.LocalContacts" />
+              <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/LocalContacts.java" target-dir="src/com/tky/localContact" />
+		    <source-file src="src/android/CharacterParser.java" target-dir="src/com/tky/localContact" />
+        <source-file src="src/android/Friend.java" target-dir="src/com/tky/localContact" />
+        <source-file src="src/android/PinyinComparator.java" target-dir="src/com/tky/localContact" />
+
+    </platform>
+</plugin>

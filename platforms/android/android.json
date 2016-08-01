@@ -1,0 +1,258 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"MqttChat\"><param name=\"android-package\" value=\"com.tky.mqtt.chat.MqttChat\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppPreferences\"><param name=\"android-package\" value=\"me.apla.cordova.AppPreferences\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"localContact\"><param name=\"android-package\" value=\"com.tky.localContact.LocalContacts\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PhonePlugin\"><param name=\"android-package\" value=\"com.tky.mqtt.phone.PhonePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SavaLocalPlugin\"><param name=\"android-package\" value=\"com.tky.saveLocal.SavaLocalPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SQLitePlugin\"><param name=\"android-package\" value=\"io.liteglue.SQLitePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GreenDaoPlugin\"><param name=\"android-package\" value=\"com.tky.mqtt.base.GreenDaoPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest/application": [
+                        {
+                            "xml": "<activity android:name=\"me.apla.cordova.AppPreferencesActivity\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "MqttChat": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-app-preferences": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "localContact": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "PhonePlugin": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "SavaLocalPlugin": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "GreenDaoPlugin": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        },
+        {
+            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "clobbers": [
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
+        },
+        {
+            "file": "plugins/MqttChat/www/mqtt_chat.js",
+            "id": "MqttChat.mqtt_chat",
+            "clobbers": [
+                "cordova.plugins.MqttChat"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-app-preferences/www/apppreferences.js",
+            "id": "cordova-plugin-app-preferences.apppreferences",
+            "clobbers": [
+                "plugins.appPreferences"
+            ]
+        },
+        {
+            "file": "plugins/localContact/www/android/localContact.js",
+            "id": "localContact.localContact",
+            "clobbers": [
+                "cordova.plugins.localContact"
+            ],
+            "runs": true
+        },
+        {
+            "file": "plugins/PhonePlugin/www/phoneplugin.js",
+            "id": "PhonePlugin.phoneplugin",
+            "clobbers": [
+                "cordova.plugins.PhonePlugin"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+            "id": "cordova-plugin-camera.Camera",
+            "clobbers": [
+                "Camera"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+            "id": "cordova-plugin-camera.CameraPopoverOptions",
+            "clobbers": [
+                "CameraPopoverOptions"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/Camera.js",
+            "id": "cordova-plugin-camera.camera",
+            "clobbers": [
+                "navigator.camera"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
+            "id": "cordova-plugin-camera.CameraPopoverHandle",
+            "clobbers": [
+                "CameraPopoverHandle"
+            ]
+        },
+        {
+            "file": "plugins/SavaLocalPlugin/www/SavaLocalPlugin.js",
+            "id": "SavaLocalPlugin.SavaLocalPlugin",
+            "clobbers": [
+                "cordova.plugins.SavaLocalPlugin"
+            ]
+        },
+        {
+            "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+            "id": "cordova-sqlite-storage.SQLitePlugin",
+            "clobbers": [
+                "SQLitePlugin"
+            ]
+        },
+        {
+            "file": "plugins/GreenDaoPlugin/www/green_dao_plugin.js",
+            "id": "GreenDaoPlugin.green_dao_plugin",
+            "clobbers": [
+                "cordova.plugins.GreenDaoPlugin"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-console": "1.0.3",
+        "cordova-plugin-device": "1.1.2",
+        "cordova-plugin-splashscreen": "3.2.2",
+        "cordova-plugin-statusbar": "2.1.3",
+        "cordova-plugin-whitelist": "1.2.2",
+        "ionic-plugin-keyboard": "2.2.0",
+        "MqttChat": "1.0.0",
+        "cordova-plugin-app-preferences": "0.7.7",
+        "localContact": "1.0.0",
+        "PhonePlugin": "1.0.0",
+        "cordova-plugin-compat": "1.0.0",
+        "cordova-plugin-camera": "2.2.0",
+        "SavaLocalPlugin": "1.0.0",
+        "cordova-sqlite-storage": "0.7.14",
+        "GreenDaoPlugin": "1.0.0"
+    }
+}

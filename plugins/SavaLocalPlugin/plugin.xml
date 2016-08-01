@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="SavaLocalPlugin" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>SavaLocalPlugin</name>
+    <js-module name="SavaLocalPlugin" src="www/SavaLocalPlugin.js">
+        <clobbers target="cordova.plugins.SavaLocalPlugin" />
+    </js-module>
+    <platform name="android">
+        <!--需要引入到config.xml的内容-->
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SavaLocalPlugin">
+                <!--name表示Service名称，JS接口中将调用-->
+                <param name="android-package" value="com.tky.saveLocal.SavaLocalPlugin" />
+                <!--App启动时加载插件-->
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <!--需要引入到AndroidManifest.xml中的内容,一般是开启一些权限-->
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <!--java文件路径-->
+        <source-file src="src/android/saveLocal/SavaLocalPlugin.java" target-dir="src/com/tky/saveLocal" />
+    </platform>
+</plugin>

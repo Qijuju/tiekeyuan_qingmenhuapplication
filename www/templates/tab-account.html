@@ -1,0 +1,34 @@
+<ion-view class="padding" view-title="我的">
+  <ion-nav-bar align-title="center" class="bar-stable">
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false">
+    <div>
+      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
+        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
+        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{name}}</div>
+        <P style="font-size: 18px;color: #ffffff">{{name}}</P>
+      </div>
+      <ul class="list">
+        <li class="item item-toggle item-button-right">
+          我的资料
+          <a class="button button-dark button-clear icon ion-ios-arrow-right"></a>
+        </li>
+        <li class="item item-toggle item-button-right">
+          设置
+          <a class="button button-dark button-clear icon ion-ios-arrow-right"></a>
+        </li>
+        <li class="item item-toggle item-button-right">
+          关于即时通
+          <a class="button button-dark button-clear icon ion-ios-arrow-right"></a>
+        </li>
+      </ul>
+
+      <div class="list padding">
+        <button class="button button-block button-positive" ng-click="showConfirm()">
+          <i class="icon ion-log-out"></i>&nbsp;退出当前账号
+
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

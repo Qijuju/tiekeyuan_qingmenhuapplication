@@ -1,0 +1,32 @@
+<ion-view cache-view="false">
+  <ion-content overflow-scroll="false">
+    <div class="list padding">
+      <div>
+        <img src="img/login4.jpg" width="100%" height="auto" style="align-content: center">
+      </div>
+      <label class="item item-input">
+        <i class="icon  ion-android-person positive positive"></i>
+        <input type="text" placeholder="请输入用户名" ng-model="name">
+
+      </label>
+
+      <label class="item item-input">
+        <i class="icon ion-ios-unlocked-outline positive"></i>
+        <input type="password" placeholder="请输入密码" ng-model="password">
+      </label>
+
+      <button class="button button-block button-positive" ng-click="login(name,password)">
+        <i class="icon ion-log-in"></i>&nbsp;登录
+      </button>
+    <div><input type="checkbox" style="margin-left: 10px">
+      记住密码
+      </div>
+
+
+      <div style="text-align: center;margin-top: 50px;font-size: 14px">
+        中国铁路总公司
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

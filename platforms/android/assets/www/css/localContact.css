@@ -1,0 +1,87 @@
+.citybox {
+  line-height: 2em;
+}
+
+.citybox .citybox-content ul{
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+}
+.citybox .citybox-content li p{
+  margin: 0;
+  padding-right: 15px;
+}
+.citybox li span{
+  display: block;
+}
+.citybox .citybox-content li span.label{
+  display: block;
+  color: #50C6D7;
+  text-align: left;
+  font-size: 14px;
+  padding:0 5px;
+  border-bottom: 2px solid #50C6D7;
+}
+.citybox .citybox-content li span.label strong{
+  font-weight:normal;
+}
+.citybox .citybox-content li span.group{
+  display: block;
+}
+.citybox .citybox-content li span a{
+  display: block;
+  color: #333;
+  padding-left: 14px;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #fff;
+  border-bottom: 1px solid #ebebeb;
+  text-decoration: none;
+  line-height: 40px;
+}
+.citybox .citybox-content li span a.activated{
+  background-color:#eee;
+}
+.citybox-shortcuts{
+  position: absolute;
+  top:94px;
+  right:0;
+  bottom:25px;
+  width: 30px;
+  font-size: 14px;
+
+  display: -webkit-box;
+  display: box;
+  -webkit-box-direction: normal;
+  -webkit-box-orient:vertical;
+  -webkit-flex-direction:inherit;
+  -moz-flex-direction: vertical;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.citybox-shortcuts a{
+  text-align: center;
+  color:black;
+
+  -webkit-box-flex: 1;
+  box-flex: 1;
+
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-pack:center;
+  -ms-justify-content:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  -webkit-box-align:center;
+  -ms-align-items:center;
+  -webkit-align-items:center;
+  align-items:center;
+}

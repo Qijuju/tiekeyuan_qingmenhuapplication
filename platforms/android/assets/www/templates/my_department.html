@@ -1,0 +1,39 @@
+<ion-header-bar align-title="center" class="bar-light">
+  <div class="buttons">
+    <button class="button  button-icon icon ion-ios-arrow-back" ui-sref="tab.contacts">
+      返回
+    </button>
+  </div>
+  <div class="h1 title">我的部门</div>
+</ion-header-bar>
+<ion-view >
+  <ion-content  overflow-scroll="false">
+    <div class=" item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="京沈客专">
+      </label>
+    </div>
+    <div class="div-a-style">
+      <a class="a-style" href="#/tab/contacts" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+      <a class="a-style" style="color: #9e9e9e">{{contactsInfo.deptname}}</a>
+    </div>
+
+    <div  class="item-style">
+      <ion-list >
+        <ion-item  class="item-avatar item-icon-right" ng-repeat="item in names"  href="#/third/{{item.deptid}}" ng-if="item.parentdeptid==contactId" >
+
+          <img ng-src="img/icon_org.png">
+          <h2>{{item.deptname}}</h2>
+          <p>指挥部</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+
+
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
