@@ -230,6 +230,30 @@ public class MqttChat extends CordovaPlugin {
         setResult("success", PluginResult.Status.OK, callbackContext);
     }
 
+    /**
+     * 获取用户信息
+     * @param args
+     * @param callbackContext
+     */
+    public void getUserInfo(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            setResult(getLoginInfo(), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("未登录或获取用户信息失败！", PluginResult.Status.OK, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取登录信息（JSONObject）
+     * @return
+     * @throws JSONException
+     */
+    public JSONObject getLoginInfo() throws JSONException {
+        String login_info = SPUtils.getString("login_info", "");
+        return new JSONObject(login_info);
+    }
+
     public boolean isConnect(Context context) {
         // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
         try {

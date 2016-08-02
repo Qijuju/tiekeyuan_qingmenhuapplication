@@ -1,6 +1,7 @@
 package com.tky.mqtt.plugin.thrift;
 
 import com.google.gson.Gson;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
@@ -79,6 +80,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if ("100".equals(result.getResultCode())) {
                                     Gson gson = new Gson();
                                     String json = gson.toJson(result, RSTlogin.class);
+                                    //保存登录信息
+                                    SPUtils.save("login_info", json);
                                     try {
                                         setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                                     } catch (JSONException e) {
