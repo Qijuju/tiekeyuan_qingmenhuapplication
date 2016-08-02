@@ -689,7 +689,7 @@ angular.module('starter.services', [])
     }
   }
 })
-  .factory('$api', function () {//系统接口
+  .factory('$api', function () {//系统接口。
     var api;
     return {
       init:function () {
