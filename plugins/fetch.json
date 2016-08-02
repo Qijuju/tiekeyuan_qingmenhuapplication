@@ -118,5 +118,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "ThriftApiClient": {
+        "source": {
+            "type": "local",
+            "path": "D:\\soft\\chatworkspace\\hebing\\hebing\\im\\plugins\\ThriftApiClient"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

@@ -19,6 +19,7 @@ public class MqttConnection {
 	private MqttAsyncClient mqttAsyncClient;
 	private Context context;
 	private boolean isReconnect = false;
+	private MqttReceiver receiver;
 
 	public void connect(Context context) throws MqttException {
 		this.context = context;
@@ -70,11 +71,12 @@ public class MqttConnection {
 								subscribe(key, value);
 							}
 //						}
-						MqttReceiver receiver = MqttReceiver.getInstance();
+						receiver = MqttReceiver.getInstance();
 						IntentFilter filter = new IntentFilter();
 						filter.addAction(ReceiverParams.SENDMESSAGE);
 						filter.addAction(ReceiverParams.RECONNECT_MQTT);
 						filter.addAction(ReceiverParams.CONNECTION_DOWN_MQTT);
+						filter.addAction(ReceiverParams.SUBSCRIBE);
 						context.registerReceiver(receiver, filter);
 						//发消息的回调
 						receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
@@ -123,12 +125,11 @@ public class MqttConnection {
 
 
 						//发布主题的广播
-						MqttReceiver topicReceiver = MqttReceiver.getInstance();
-						IntentFilter topicFilter = new IntentFilter();
-						topicFilter.addAction(ReceiverParams.SUBSCRIBE);
-						context.registerReceiver(topicReceiver, topicFilter);
+//						MqttReceiver topicReceiver = MqttReceiver.getInstance();
+//						IntentFilter topicFilter = new IntentFilter();
+
 						//发布主题的回调
-						topicReceiver.setOnTopicSubscribeListener(new MqttReceiver.OnTopicSubscribeListener() {
+						receiver.setOnTopicSubscribeListener(new MqttReceiver.OnTopicSubscribeListener() {
 							@Override
 							public void onTopicSubscribe(String topic, int qos) throws MqttException {
 								subscribe(topic, qos);
@@ -187,6 +188,9 @@ public class MqttConnection {
 	 * @throws MqttException
 	 */
 	public void closeConnection() throws MqttException {
+		if (receiver != null) {
+			context.unregisterReceiver(receiver);
+		}
 		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
 			mqttAsyncClient.disconnect();
 			if (mqttAsyncClient != null) {
