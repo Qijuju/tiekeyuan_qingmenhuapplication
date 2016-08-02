@@ -339,6 +339,9 @@ angular.module('starter.services', [])
       },
       save:function (key,value) {
         mqtt.save(key,value);
+      },
+      getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
+        mqtt.getUserInfo(success, error);
       }
 
 
