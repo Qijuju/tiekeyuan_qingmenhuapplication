@@ -688,7 +688,29 @@ angular.module('starter.services', [])
       });
     }
   }
-});
+})
+  .factory('$api', function () {//系统接口
+    var api;
+    return {
+      init:function () {
+        document.addEventListener('deviceready',function () {
+          api = cordova.require('ThriftApiClient.thrift_api_client');
+        });
+      },
+      login:function(username,password,imCode, success, error) {
+        api.login(username,password,imCode, success, error);
+      },
+      activeUser:function(userId,imCode, success, error) {
+        api.activeUser(userId,imCode, success, error);
+      },
+      getDatetime:function(userId, success, error) {
+        api.getDatetime(userId, success, error);
+      },
+      seachUsers:function(username,searchText,pageNum,pageCount, success, error) {
+        api.seachUsers(username,searchText,pageNum,pageCount, success, error);
+      }
+    };
+  });
 
 
 

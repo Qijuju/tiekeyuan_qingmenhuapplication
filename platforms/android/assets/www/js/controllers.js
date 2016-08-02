@@ -615,7 +615,7 @@ angular.module('im.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences) {
+  .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
     $scope.name="";
     $scope.password="";
     document.addEventListener('deviceready',function () {
@@ -657,12 +657,21 @@ angular.module('im.controllers', [])
      };*/
 
     $scope.login = function (name, password) {
+      if(name == '' || password == '') {
+        alert('用户名或密码不能为空！');
+        return;
+      }
       $scope.name=name;
       $scope.password=password;
       // alert(name);
       // alert(password);
       $ionicLoading.show({
         template: '登录中...'
+      });
+      $api.login($scope.name,$scope.password,'321', function (message) {
+        alert(message);
+      }, function (message) {
+        alert(message);
       });
       $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
         $scope.names = response;
