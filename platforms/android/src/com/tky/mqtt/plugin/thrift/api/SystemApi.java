@@ -8,6 +8,7 @@ import org.apache.thrift.transport.TNonblockingSocket;
 
 import java.io.IOException;
 
+import im.server.Department.IMDepartment;
 import im.server.System.IMSystem;
 
 /**
@@ -23,11 +24,24 @@ public class SystemApi {
      * @return
      * @throws IOException
      */
-    public static IMSystem.AsyncClient getClient() throws IOException {
+    public static IMSystem.AsyncClient getSystemClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 30000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    public static IMDepartment.AsyncClient getDeptClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6002, 30000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -41,7 +55,7 @@ public class SystemApi {
      * @throws TException
      */
     public static void login(String loginAccount, String password, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.Login_call> callback) throws IOException, TException {
-        IMSystem.AsyncClient asyncClient = getClient();
+        IMSystem.AsyncClient asyncClient = getSystemClient();
         asyncClient.Login(loginAccount, password, imCode, callback);
     }
 
@@ -54,7 +68,7 @@ public class SystemApi {
      * @throws TException
      */
     public static void activeUser(String userId, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call> callback) throws IOException, TException {
-        IMSystem.AsyncClient asyncClient = getClient();
+        IMSystem.AsyncClient asyncClient = getSystemClient();
         asyncClient.ActivateUser(userId, imCode, callback);
     }
 
@@ -66,7 +80,7 @@ public class SystemApi {
      * @throws TException
      */
     public static void getDatetime(String userId, AsyncMethodCallback<IMSystem.AsyncClient.GetDatetime_call> callback) throws IOException, TException {
-        IMSystem.AsyncClient asyncClient = getClient();
+        IMSystem.AsyncClient asyncClient = getSystemClient();
         asyncClient.GetDatetime(userId, callback);
     }
 
@@ -81,7 +95,47 @@ public class SystemApi {
      * @throws TException
      */
     public static void seachUsers(String userId, String searchText, int pageNum, int pageCount, AsyncMethodCallback<IMSystem.AsyncClient.UserSearch_call> callback) throws IOException, TException {
-        IMSystem.AsyncClient asyncClient = getClient();
+        IMSystem.AsyncClient asyncClient = getSystemClient();
         asyncClient.UserSearch(userId, searchText, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 获取子部门和人员列表
+     * @param ID 被激活用户的ID
+     * @param deptID 要获取的部门ID
+     * @param pageNum
+     * @param pageCount
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getChild(String ID, String deptID, int pageNum, int pageCount, AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call> callback) throws IOException, TException {
+        IMDepartment.AsyncClient asyncClient = getDeptClient();
+        asyncClient.GetChild(ID, deptID, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 获取部门信息
+     * @param ID 被激活用户的ID
+     * @param deptID 要获取的部门ID
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getDeparment(String ID, String deptID, AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call> callback) throws IOException, TException {
+        IMDepartment.AsyncClient asyncClient = getDeptClient();
+        asyncClient.GetDeparment(ID, deptID, callback);
+    }
+
+    /**
+     * 获取用户一级部门
+     * @param ID 被激活用户的ID
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getUserRoot(String ID, AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call> callback) throws IOException, TException {
+        IMDepartment.AsyncClient asyncClient = getDeptClient();
+        asyncClient.GetUserRoot(ID, callback);
     }
 }

@@ -668,8 +668,14 @@ angular.module('im.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name,$scope.password,'321', function (message) {
-        alert(message);
-        $scope.names = response;
+        //alert(message.toJSONString());
+        /*if (message.isActive === false) {
+          $api.activeUser(message.userID, '321', function (message) {
+          },function (message) {
+            alert(message);
+          });
+        }*/
+        $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
         $mqtt.getMqtt().save('name', $scope.name, function (message) {
@@ -684,46 +690,6 @@ angular.module('im.controllers', [])
         $ionicLoading.hide();
         $state.go('tab.message');
       });
-      // $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
-
-        // $scope.store();
-        /*$cordovaPreferences.store('name', $scope.name)
-          .success(function(value) {
-          })
-          .error(function(error) {
-          });*/
-        // $cordovaPreferences.store('name','sunlinsong');
-        /*$cordovaPreferences.store('name', $scope.name)
-         .success(function(value) {
-         })
-         .error(function(error) {
-         });*/
-        //连接MQTT
-
-
-        /*$scope.fetch = function() {
-         $cordovaPreferences.fetch('name')
-         .success(function(value) {
-         if(value != null && value != ''){
-         $mqtt.startMqttChat(value + ',zhuanjiazu');
-         }
-         })
-         .error(function(error) {
-         })
-         };*/
-        // $scope.fetch();
-        /*$cordovaPreferences.fetch('name')
-         .success(function(value) {
-         if(value != null && value != ''){
-         $mqtt.startMqttChat(value + ',zhuanjiazu');
-         }
-         })
-         .error(function(error) {
-         })*/
-
-      /*}).error(function (response) {
-
-      })*/
 
     };
   }])
