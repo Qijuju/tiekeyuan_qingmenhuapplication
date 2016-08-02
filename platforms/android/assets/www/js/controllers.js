@@ -31,7 +31,6 @@ angular.module('im.controllers', [])
 
 
 
-
     $greendao.loadAllData('TopContactsService',function (msg) {
 
       $scope.tops=msg;
