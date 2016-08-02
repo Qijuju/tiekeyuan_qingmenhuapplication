@@ -708,6 +708,15 @@ angular.module('starter.services', [])
       },
       seachUsers:function(username,searchText,pageNum,pageCount, success, error) {
         api.seachUsers(username,searchText,pageNum,pageCount, success, error);
+      },
+      getChild:function(ID,deptID,pageNum,pageCount, success, error) {
+        api.getChild(ID,deptID,pageNum,pageCount, success, error);
+      },
+      getDeparment:function(ID,deptID, success, error) {
+        api.getDeparment(ID,deptID, success, error);
+      },
+      getUserRoot:function(ID, success, error) {
+        api.getUserRoot(ID, success, error);
       }
     };
   });

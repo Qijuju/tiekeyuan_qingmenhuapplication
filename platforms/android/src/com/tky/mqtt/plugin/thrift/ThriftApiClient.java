@@ -18,6 +18,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import im.model.RST;
+import im.server.Department.IMDepartment;
+import im.server.Department.RSTgetChild;
+import im.server.Department.RSTgetDept;
+import im.server.Department.RSTgetRoot;
 import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
@@ -117,18 +121,14 @@ public class ThriftApiClient extends CordovaPlugin {
                 public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
                     try {
                         RST result = activateUser_call.getResult();
+
                         if (result == null) {
                             setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                         } else {
-                            String json = GsonUtils.toJson(result, RST.class);
-                            if ("100".equals(result.getResultCode())) {
-                                try {
-                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                            if (result.result) {
+                                setResult("success", PluginResult.Status.OK, callbackContext);
                             } else {
-                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                setResult("激活失败！", PluginResult.Status.OK, callbackContext);
                             }
                         }
                     } catch (TException e) {
@@ -201,7 +201,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
     public void seachUsers(final JSONArray args, final CallbackContext callbackContext) {
         try {
-            final String userId = args.getString(0);
+            String userId = args.getString(0);
             String searchText = args.getString(1);
             int pageNum = args.getInt(2);
             int pageCount = args.getInt(3);
@@ -214,6 +214,164 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             String json = GsonUtils.toJson(result, RSTsearch.class);
+                            if ("100".equals(result.getResultCode())) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+
+    ///////部门接口
+
+    /**
+     * 获取部门和人员
+     * @param args
+     * @param callbackContext
+     */
+    public void getChild(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String ID = args.getString(0);
+            String deptID = args.getString(1);
+            int pageNum = args.getInt(2);
+            int pageCount = args.getInt(3);
+            SystemApi.getChild(ID, deptID, pageNum, pageCount, new AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call>() {
+                @Override
+                public void onComplete(IMDepartment.AsyncClient.GetChild_call getChild_call) {
+                    try {
+                        RSTgetChild result = getChild_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RSTgetChild.class);
+                            if ("100".equals(result.getResultCode())) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取部门
+     * @param args
+     * @param callbackContext
+     */
+    public void getDeparment(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = args.getString(0);
+            String deptID = args.getString(1);
+
+            SystemApi.getDeparment(ID, deptID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
+                @Override
+                public void onComplete(IMDepartment.AsyncClient.GetDeparment_call getDeparment_call) {
+                    try {
+                        RSTgetDept result = getDeparment_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RSTgetDept.class);
+                            if ("100".equals(result.getResultCode())) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取用户一级部门
+     * @param args
+     * @param callbackContext
+     */
+    public void getUserRoot(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = args.getString(0);
+            SystemApi.getUserRoot(ID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
+                @Override
+                public void onComplete(IMDepartment.AsyncClient.GetUserRoot_call getUserRoot_call) {
+                    try {
+                        RSTgetRoot result = getUserRoot_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RSTgetRoot.class);
                             if ("100".equals(result.getResultCode())) {
                                 try {
                                     setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);

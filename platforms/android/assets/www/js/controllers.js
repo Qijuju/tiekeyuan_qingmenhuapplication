@@ -669,18 +669,33 @@ angular.module('im.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name,$scope.password,'321', function (message) {
+        //alert(message.toJSONString());
+        /*if (message.isActive === false) {
+          $api.activeUser(message.userID, '321', function (message) {
+          },function (message) {
+            alert(message);
+          });
+        }*/
         alert(message);
-      }, function (message) {
-        alert(message);
-      });
-      $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
-        $scope.names = response;
+        $scope.names = [];
         $ionicLoading.hide();
+        alert(message);
         //调用保存用户名方法
         $mqtt.getMqtt().save('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
+        alert(message);
+        $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
+        $state.go('tab.message');
+      }, function (message) {
+        //alert(message);
+        $scope.name = response;
+        $ionicLoading.hide();
+        $state.go('tab.message');
+      });
+      // $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
+
         // $scope.store();
         /*$cordovaPreferences.store('name', $scope.name)
           .success(function(value) {
@@ -715,13 +730,10 @@ angular.module('im.controllers', [])
          })
          .error(function(error) {
          })*/
-        $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
-        $state.go('tab.message');
-      }).error(function (response) {
-        $scope.name = response;
-        $ionicLoading.hide();
-        $state.go('tab.message');
-      })
+
+      /*}).error(function (response) {
+
+      })*/
 
     };
   }])
