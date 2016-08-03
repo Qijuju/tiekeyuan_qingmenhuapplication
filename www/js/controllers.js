@@ -800,7 +800,6 @@ angular.module('im.controllers', [])
             $mqtt.disconnect(function (message) {
               $state.go("login");
             },function (message) {
-
             });
           },function (message) {
             alert(message);

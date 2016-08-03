@@ -334,8 +334,8 @@ angular.module('starter.services', [])
         // })
         return msgs;
       },
-      disconnect:function () {
-        mqtt.disconnect();
+      disconnect:function (success, error) {
+        mqtt.disconnect(success, error);
       },
       save:function (key,value) {
         mqtt.save(key,value);
