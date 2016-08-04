@@ -723,6 +723,12 @@ angular.module('starter.services', [])
       },
       getUser:function(userID, success, error) {
         api.getUser(userID, success, error);
+      },
+      updatePwd:function(oldPWD, newPWD, confirmPWD, success, error) {
+        api.updatePwd(oldPWD, newPWD, confirmPWD, success, error);
+      },
+      updateUserInfo:function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
+        api.updateUserInfo(newUserInfoObj, success, error);
       }
     };
   });

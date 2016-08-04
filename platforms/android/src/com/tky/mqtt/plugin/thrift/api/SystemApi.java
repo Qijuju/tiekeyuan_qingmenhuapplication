@@ -7,6 +7,7 @@ import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.transport.TNonblockingSocket;
 
 import java.io.IOException;
+import java.util.Map;
 
 import im.server.Department.IMDepartment;
 import im.server.System.IMSystem;
@@ -164,6 +165,16 @@ public class SystemApi {
     public static void getUser(String ID, String userID, AsyncMethodCallback<IMUser.AsyncClient.GetUser_call> callback) throws IOException, TException {
         IMUser.AsyncClient userClient = getUserClient();
         userClient.GetUser(ID, userID, callback);
+    }
+
+    public static void updatePwd(String ID, String orgPWD, String newPWD, String confirmPWD, AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
+    }
+
+    public static void updateUserInfo(String ID, Map<String, String> updateInfo, AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserUpdate(ID, updateInfo, callback);
     }
 
 }
