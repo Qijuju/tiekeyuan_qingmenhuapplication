@@ -23,7 +23,7 @@ exports.getUserRoot = function(ID, success, error) {
   exec(success, error, "ThriftApiClient", "getUserRoot", [ID]);
 };
 exports.getUser = function(userID, success, error) {
-  exec(success, error, "ThriftApiClient", "getUser", [ID]);
+  exec(success, error, "ThriftApiClient", "getUser", [userID]);
 };
 
 });
