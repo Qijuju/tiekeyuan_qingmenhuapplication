@@ -5,6 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * 作者：SLS
  * 包名：com.tky.mqtt.paho.utils
@@ -38,4 +41,5 @@ public class NetUtils {
         }
         return false;
     }
+
 }

@@ -18,8 +18,8 @@
         <img src="img/max.png" width="80px" height="80px">
         <!--这个就是来了新消息, 头像上的小红数字-->
         <span class="rj-sm-red-icon" ng-show="lastCount > 0"><p>{{lastCount}}</p></span>
-        <h2>{{ recentMsgs[recentMsgs.length-1].id}}</h2>
-        <p> {{recentMsgs[recentMsgs.length-1].content}}</p>
+        <h2>{{ danliaomsg[danliaomsg.length-1]._id}}</h2>
+        <p> {{danliaomsg[danliaomsg.length-1].message}}</p>
         <span class="rj-push-right">6月8日</span>
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
@@ -29,8 +29,8 @@
         <img src="img/icon_org.png" width="80px" height="80px">
         <!--这个就是来了新消息, 头像上的小红数字-->
         <span class="rj-sm-red-icon" ng-show="lastGroupCount > 0"><p>{{lastGroupCount}}</p></span>
-        <h2>{{recentGroupMsgs[recentGroupMsgs.length-1].id}}</h2>
-        <p> {{recentGroupMsgs[recentGroupMsgs.length-1].content}}</p>
+        <h2>{{ qunliaomsg[qunliaomsg.length-1]._id}}</h2>
+        <p> {{qunliaomsg[qunliaomsg.length-1].message}}</p>
         <span class="rj-push-right">6月8日</span>
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           删 除
