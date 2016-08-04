@@ -135,6 +135,7 @@ angular.module('starter.services', [])
     var size;
     var count = 0;
     var groupCount=0;
+    var isLogin = false;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -342,6 +343,12 @@ angular.module('starter.services', [])
       },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);
+      },
+      setLogin:function (loginStatus) {
+        isLogin = loginStatus;
+      },
+      isLogin:function () {
+        return isLogin;
       }
 
 
