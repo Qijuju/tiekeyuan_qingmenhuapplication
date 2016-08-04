@@ -386,6 +386,9 @@ angular.module('starter.services', [])
 
   })
 
+
+
+
 .factory('localContact',function ($rootScope) {
 
   var contactPlugin
@@ -722,9 +725,19 @@ angular.module('starter.services', [])
         api.getUserRoot(ID, success, error);
       }
     };
-  });
+  })
 
+.factory('$searchdata',function ($api) {
 
+  var search = function(query,userid) {
+    $api.seachUsers(userid,query,1,10,function (msg) {
+     var personservice= msg.searchResult
+    },function (msg) {
+
+    })
+  }
+
+})
 
 
 

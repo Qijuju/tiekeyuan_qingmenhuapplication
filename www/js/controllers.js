@@ -812,7 +812,6 @@ angular.module('im.controllers', [])
       });
     };
   })
-
  /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
     $scope.name="";
     /!*$scope.fetch = function() {
@@ -854,7 +853,26 @@ angular.module('im.controllers', [])
 
 
 
-  .controller('LocalContactCtrl',function ($scope,localContact,$ionicActionSheet,$phonepluin) {
+  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
+
+  //  var searchdata1=document.getElementById("searchdata1").innerText;
+
+    // window.addEventListener("native.keyboardshow", function (e) {
+    //   $ionicBackdrop.retain();
+    //   document.getElementById("searchbutton").addEventListener('input',function(){
+    //
+    //     $state.go("search");
+    //   });
+    // });
+    //
+    // window.addEventListener("native.keyboardhide", function (e) {
+    //   $ionicBackdrop.release();
+    // });
+
+    $scope.goSearch= function () {
+      $state.go("search");
+    }
+
 
     localContact.getContact();
     $scope.$on('im.back',function (event) {
@@ -951,9 +969,210 @@ angular.module('im.controllers', [])
       });
 
     };
+  })
+  .controller('addNewPersonfirstCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+
+
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+
+
+    $scope.goGroupMessage = function () {
+      $state.go("messageGroup");
+    }
+
+  }])
+  .controller('addNewPersonsecondCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService){
+    $scope.secondlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length)*15+50;
+
+    var seconddiv=document.getElementById("secondscroll");
+    seconddiv.style.width=$scope.secondlength+"px";
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId);
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
+    $scope.backsecond = function (contactinfo) {
+      $state.go("second", {
+        "contactId": contactinfo.parentdeptid
+      });
+    }
+
+  }])
+  .controller('addNewPersonthirdCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+    $scope.namelength3=$scope.contactsInfo.deptname.length
+
+
+
+    $scope.backsecond = function (contactinfo) {
+      $state.go("second", {
+        "contactId": contactinfo.parentdeptid
+      });
+    }
+
+    $scope.thirdlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length+$scope.namelength3)*15+100;
+
+    var thirddiv=document.getElementById("thirdscroll");
+    thirddiv.style.width=$scope.thirdlength+"px";
+  }])
+  .controller('addNewPersonforthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+    $scope.contactId = $stateParams.contactId;
+
+
+    contactService.getContactThirdById($scope.contactId).then(function (response) {
+      $scope.thirdNames = response;
+
+    });
+
+
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+    $scope.namelength43=$scope.contactsInfo.deptname.length
+
+    $scope.parent = contactService.getParentById($scope.contactsInfo)
+    $scope.namelength44=$scope.parent.deptname.length
+
+    $scope.backToThird = function (contactinfo) {
+      $state.go("third", {
+        "contactId": contactinfo.parentdeptid
+      });
+    }
+
+
+    $scope.detailPerson = function (item) {
+      $state.go("person", {
+        obj: item
+      })
+    }
+
+    $scope.forthlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length+$scope.namelength43+ $scope.namelength44)*15+150;
+
+    var forthdiv=document.getElementById("forthscroll");
+    forthdiv.style.width=$scope.forthlength+"px";
+
+  }])
+  .controller('addNewPersonfifthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+
+
+    $scope.goSixth = function () {
+      $state.go("sixth");
+    }
+
+  }])
+  .controller('addNewPersonsixthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+
+
+    $scope.goSeventh = function () {
+      $state.go("seventh");
+    }
+  }])
+  .controller('localDetailsCtrl',function ($scope,$state) {
+
+
+  })
+.controller('searchCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService','$timeout' ,'$ionicBackdrop','$rootScope','$api','$mqtt',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$api,$mqtt) {
+
+  $scope.query = "";
+  $mqtt.getUserInfo(function (msg) {
+    $scope.id=msg.userID;
+
+  },function (msg) {
+    alert(msg);
   });
+  var search1111=ionic.debounce(function (query) {
+    $api.seachUsers($scope.id,query,1,10,function (msg) {
+      $scope.persons=msg.searchResult;
+      // window.location.reload();
+    },function (msg) {
+      alert(msg);
+    });
+  },500);
+  $scope.dosearch = function(query) {
+    search1111(query)
+
+  }
 
 
 
+
+
+
+  // var userid=$scope.id;
+  //
+  // var doSearch = ionic.debounce(function(query,userid) {
+  //   $searchdata.search(query, $scope.id).then(function(results){
+  //     $scope.results = results;
+  //   });
+  // }, 500);
+
+  $scope.$on('$ionicView.beforeEnter',function () {
+    search1111(query)
+  });
+  // $mqtt.getUserInfo(function (msg) {
+  //     $scope.id=msg.userID;
+  //   alert($scope.id);
+  // },function (msg) {
+  //
+  // });
+  // $mqtt.getUserInfo(function (msg) {
+  //   $scope.id=msg.userID;
+  //   alert($scope.id);
+  //
+  //   $scope.dosearch=function (query) {
+  //
+  //     alert(query);
+  //   }
+  //
+  //
+  //   // $api.seachUsers($scope.id,query,1,10,function (msg) {
+  //   //   alert(msg);
+  //   // },function (msg) {
+  //   //   alert(msg);
+  //   // });
+  // },function (msg) {
+  //   alert(msg);
+  // });
+
+
+}])
+
+
+.controller('searchDetailCtrl',function ($scope,$state,$stateParams) {
+
+    $scope.backSearch = function () {
+      $state.go("search");
+    }
+  $scope.UserID111 = $stateParams.UserID;
+  alert($scope.UserID111)
+})
 
 ;

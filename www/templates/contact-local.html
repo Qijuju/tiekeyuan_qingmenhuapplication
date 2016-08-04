@@ -9,13 +9,16 @@
   </ion-nav-bar>
 
 
-  <ion-content scrollbar-y="false" >
-    <div class=" item-input-inset">
+  <ion-content scrollbar-y="false">
+
+    <div class=" item-input-inset" id="searchbutton" ng-click="goSearch()">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="Search">
+        <input type="search" placeholder="Search" ng-model="query" id="searchdata1" >
       </label>
     </div>
+
+
     <ion-list  citybox-select  >
 
 

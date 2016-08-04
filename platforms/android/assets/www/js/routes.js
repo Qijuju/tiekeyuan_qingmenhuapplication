@@ -210,7 +210,57 @@ angular.module('im.routes', [])
           }
         }
       })
+      .state('local.detailas', {
+        url: '/localDetails',
+        cache: false,
+        templateUrl: 'templates/local-details.html',
+        controller: 'localDetailsCtrl',
+      })
 
+      .state('search', {
+        url: '/search',
+        templateUrl: 'templates/search.html',
+        controller: 'searchCtrl',
+        cache:true
+      })
+
+      .state('searchdetail', {
+        url: '/searchdetail/:UserID',
+        templateUrl: 'templates/searchDetail.html',
+        controller: 'searchDetailCtrl',
+
+      })
+
+      .state('addnewpersonfirst', {
+        url: '/addnewpersonfirst',
+        templateUrl: 'templates/addNewPerson-first.html',
+        controller: 'addNewPersonfirstCtrl'
+      })
+      .state('addnewpersonsecond', {
+        url: '/addnewpersonsecond/:contactId',
+        templateUrl: 'templates/addNewPerson-second.html',
+        controller: 'addNewPersonsecondCtrl'
+      })
+      .state('addnewpersonthird', {
+        url: '/addnewpersonthird/:contactId',
+        templateUrl: 'templates/addNewPerson-third.html',
+        controller: 'addNewPersonthirdCtrl'
+      })
+      .state('addnewpersonforth', {
+        url: '/addnewpersonforth/:contactId',
+        templateUrl: 'templates/addNewPerson-forth.html',
+        controller: 'addNewPersonforthCtrl'
+      })
+      .state('addnewpersonfifth', {
+        url: '/addnewpersonfifth/:contactId',
+        templateUrl: 'templates/addNewPerson-fifth.html',
+        controller: 'addNewPersonfifthCtrl'
+      })
+      .state('addnewpersonsixth', {
+        url: '/addnewpersonsixth/:contactId',
+        templateUrl: 'templates/addNewPerson-sixth.html',
+        controller: 'addNewPersonsixthCtrl'
+      })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 
