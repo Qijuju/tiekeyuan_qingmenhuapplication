@@ -108,26 +108,31 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second',
+        url: '/second/:contactId',
         templateUrl: 'templates/contact-second.html',
-        controller: 'ContactSecondCtrl'
+        controller: 'ContactSecondCtrl',
+        cache:false
+
       })
       .state('third', {
-        url: '/third/:contactId',
+        url: '/third/:contactId/:secondname',
         templateUrl: 'templates/contact-third.html',
         controller: 'ContactThirdCtrl',
+        cache:false
 
       })
       .state('forth', {
-        url: '/forth/:contactId',
+        url: '/forth/:contactId/:secondname/:thirdname',
         templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl'
+        controller: 'ContactForthCtrl',
+        cache:false
 
       })
       .state('fifth', {
-        url: '/fifth/:contactId',
+        url: '/fifth/:contactId/:secondname/:thirdname/:forthname',
         templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl'
+        controller: 'ContactFifthCtrl',
+        cache:false
 
       })
       .state('sixth', {
@@ -151,7 +156,7 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person',
+        url: '/person:type',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         params: {

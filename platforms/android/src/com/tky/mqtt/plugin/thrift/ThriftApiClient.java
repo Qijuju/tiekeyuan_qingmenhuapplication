@@ -273,7 +273,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             String json = GsonUtils.toJson(result, RSTgetChild.class);
-                            if ("100".equals(result.getResultCode())) {
+                            if (result.result) {
                                 try {
                                     setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                                 } catch (JSONException e) {
@@ -325,7 +325,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             String json = GsonUtils.toJson(result, RSTgetDept.class);
-                            if ("100".equals(result.getResultCode())) {
+                            if (result.result) {
                                 try {
                                     setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                                 } catch (JSONException e) {
@@ -375,7 +375,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             String json = GsonUtils.toJson(result, RSTgetRoot.class);
-                            if ("100".equals(result.getResultCode())) {
+                            if (result.result) {
                                 try {
                                     setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                                 } catch (JSONException e) {

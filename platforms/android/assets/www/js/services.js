@@ -339,6 +339,9 @@ angular.module('starter.services', [])
       },
       save:function (key,value) {
         mqtt.save(key,value);
+      },
+      getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
+        mqtt.getUserInfo(success, error);
       }
 
 
@@ -719,7 +722,237 @@ angular.module('starter.services', [])
         api.getUserRoot(ID, success, error);
       }
     };
-  });
+  })
+
+.factory('$contacts',function ($mqtt, $api,$rootScope) {
+
+  $mqtt.getUserInfo()
+  var userId;
+  var rootList=[];
+  var deptinfo;
+  var deptThirdInfo;
+  var deptForthInfo;
+  var deptFifhtInfo;
+
+  var firstname;
+  var secondname;
+  var thirdname;
+  var forthname;
+  var firstId;
+  var secondId;
+  var thirdId;
+  var forthId;
+
+
+
+
+  return{
+    //获取根目录的
+    rootDept:function () {
+
+      $mqtt.getUserInfo(function (msg) {
+        userId=msg.userID;
+
+        $api.getUserRoot(userId,function (msg) {
+          rootList=msg.deptList;
+          $rootScope.$broadcast('first.update');
+
+        },function (msg) {
+
+        });
+      },function (msg) {
+
+
+      });
+
+      return null;
+    },
+    getRootDept:function () {
+
+      return rootList;
+    },
+
+    //获取登录用户的id
+    getUserID:function () {
+      return userId;
+    },
+
+
+    //二级目录的数据 传入的id是一级目录的id
+    deptInfo:function (deptId) {
+
+      $api.getChild(userId,deptId,1,10,function (msg) {
+        deptinfo=msg;
+        //返回的一级目录的id ，也就是rootId
+        firstId=msg.deptID
+        $api.getDeparment(userId,deptId,function (msg) {
+          //拿到root部门的详细信息
+          firstname=msg.deptInfo
+          $rootScope.$broadcast('second.update');
+
+        },function (msg) {
+
+        });
+
+      },function (msg) {
+
+      });
+
+    },
+    getDeptInfo:function () {
+      return deptinfo;
+    },
+
+
+    //三级级目录的数据 传入的id是二级目录的id
+
+    deptThirdInfo:function (deptId) {
+
+      $api.getChild(userId,deptId,1,10,function (msg) {
+        deptThirdInfo=msg;
+        secondId=msg.deptID;
+        $api.getDeparment(userId,secondId,function (msg) {
+          secondname=msg.deptInfo
+          $rootScope.$broadcast('third.update');
+
+        },function (msg) {
+
+        });
+
+
+      },function (msg) {
+
+      });
+
+    },
+    getDeptThirdInfo:function () {
+      return deptThirdInfo;
+    },
+
+
+    //四级目录的数据 传入的id是三级目录的id
+
+    deptForthInfo:function (deptId) {
+
+      $api.getChild(userId,deptId,1,10,function (msg) {
+        deptForthInfo=msg;
+        thirdId=msg.deptID;
+        $api.getDeparment(userId,thirdId,function (msg) {
+          thirdname=msg.deptInfo
+          $rootScope.$broadcast('forth.update');
+
+        },function (msg) {
+
+        });
+
+
+      },function (msg) {
+
+      });
+
+    },
+    getDeptForthInfo:function () {
+      return deptForthInfo;
+    },
+
+    //五级目录的数据 传入的是四级目录的id
+
+    deptFifthInfo:function (deptId) {
+
+      $api.getChild(userId,deptId,1,10,function (msg) {
+        deptFifhtInfo=msg;
+        forthId=msg.deptID;
+        $api.getDeparment(userId,forthId,function (msg) {
+          forthname=msg.deptInfo
+          $rootScope.$broadcast('fifth.update');
+
+        },function (msg) {
+
+        });
+
+
+      },function (msg) {
+
+      });
+
+    },
+    getDeptFifthInfo:function () {
+      return deptFifhtInfo;
+    },
+
+
+
+
+    //.......................................................
+
+    getFirstDeptName:function () {
+      return firstname;
+    },
+
+
+
+    getSecondDeptName:function () {
+      return secondname;
+    },
+
+    getThirdDeptName:function () {
+      return thirdname;
+    },
+
+    getForthDeptName:function () {
+      return forthname;
+    },
+
+    getFirstID:function () {
+      return firstId;
+    },
+
+    getSecondID:function () {
+      return secondId;
+    },
+
+    getThirdID:function () {
+      return thirdId;
+    },
+
+    getForthID:function () {
+      return forthId;
+    },
+
+
+
+
+
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+
+
 
 
 
