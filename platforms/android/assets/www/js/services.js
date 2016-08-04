@@ -334,8 +334,8 @@ angular.module('starter.services', [])
         // })
         return msgs;
       },
-      disconnect:function () {
-        mqtt.disconnect();
+      disconnect:function (success, error) {
+        mqtt.disconnect(success, error);
       },
       save:function (key,value) {
         mqtt.save(key,value);
@@ -720,6 +720,9 @@ angular.module('starter.services', [])
       },
       getUserRoot:function(ID, success, error) {
         api.getUserRoot(ID, success, error);
+      },
+      getUser:function(userID, success, error) {
+        api.getUser(userID, success, error);
       }
     };
   })

@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Handler;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.View;
@@ -255,6 +256,15 @@ public class UIUtils {
 	public static boolean isMethodsCompat(int versionCode) {
 		int currentVersion = android.os.Build.VERSION.SDK_INT;
 		return currentVersion >= versionCode;
+	}
+
+	/**
+	 * 获取手机的设备码
+	 * @return
+	 */
+	public static String getDeviceId() {
+		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+		return TelephonyMgr.getDeviceId();
 	}
 
 }

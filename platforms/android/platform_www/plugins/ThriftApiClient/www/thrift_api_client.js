@@ -22,5 +22,14 @@ exports.getDeparment = function(ID,deptID, success, error) {
 exports.getUserRoot = function(ID, success, error) {
   exec(success, error, "ThriftApiClient", "getUserRoot", [ID]);
 };
+exports.getUser = function(userID, success, error) {
+  exec(success, error, "ThriftApiClient", "getUser", [userID]);
+};
+exports.updatePwd = function(oldPWD, newPWD, confirmPWD, success, error) {
+  exec(success, error, "ThriftApiClient", "updatePwd", [oldPWD, newPWD, confirmPWD]);
+};
+exports.updateUserInfo = function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
+  exec(success, error, "ThriftApiClient", "updateUserInfo", [newUserInfoObj]);
+};
 
 });

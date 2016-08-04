@@ -7,9 +7,11 @@ import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.transport.TNonblockingSocket;
 
 import java.io.IOException;
+import java.util.Map;
 
 import im.server.Department.IMDepartment;
 import im.server.System.IMSystem;
+import im.server.User.IMUser;
 
 /**
  * 作者：
@@ -42,6 +44,19 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6002, 30000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    public static IMUser.AsyncClient getUserClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6003, 30000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -138,4 +153,28 @@ public class SystemApi {
         IMDepartment.AsyncClient asyncClient = getDeptClient();
         asyncClient.GetUserRoot(ID, callback);
     }
+
+    /**
+     * 获取用户信息
+     * @param ID 用户ID
+     * @param userID 要查询用户的ID
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getUser(String ID, String userID, AsyncMethodCallback<IMUser.AsyncClient.GetUser_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.GetUser(ID, userID, callback);
+    }
+
+    public static void updatePwd(String ID, String orgPWD, String newPWD, String confirmPWD, AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
+    }
+
+    public static void updateUserInfo(String ID, Map<String, String> updateInfo, AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserUpdate(ID, updateInfo, callback);
+    }
+
 }

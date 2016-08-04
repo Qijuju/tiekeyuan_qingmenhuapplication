@@ -24,276 +24,131 @@ angular.module('im.controllers', [])
     }
   })
 
-  .controller('ContactsCtrl',  function ($scope, $http, $state,$stateParams,$greendao,$mqtt,$api,$contacts) {
-
-    $contacts.rootDept();
-    $scope.$on('first.update',function (event) {
-      $scope.$apply(function () {
-          $scope.depts=$contacts.getRootDept();
-      })
-
-    });
-  })
-
-  .controller('ContactSecondCtrl',  function ($scope, $http, $state, $stateParams, contactService,$contacts) {
-
-    $scope.contactId = $stateParams.contactId;//传过来的id；
-
-    //根据id获取子部门和人员信息
-    $contacts.deptInfo($scope.contactId);
-    $scope.$on('second.update',function (event) {
-      $scope.$apply(function () {
-        $scope.depts=$contacts.getDeptInfo().deptList;
-        $scope.deptcount=$contacts.getDeptInfo().deptCount;
-        $scope.users=$contacts.getDeptInfo().userList;
-        $scope.usercount=$contacts.getDeptInfo().userCount;
-        $scope.parentID=$contacts.getDeptInfo().deptID;
-        $scope.deptinfo=$contacts.getFirstDeptName().DeptName;
-
-      })
-
-    });
+  .controller('ContactsCtrl',  function ($scope, $http, $state,$stateParams,$greendao) {
+    alert("laile");
 
 
-    //在二级目录跳转到联系人界面
-    $scope.backFirst = function () {
-      $state.go("tab.contacts");
+
+
+
+
+    $greendao.loadAllData('TopContactsService',function (msg) {
+
+      $scope.tops=msg;
+      alert($scope.tops.length);
+    },function (err) {
+
+    })
+
+
+
+    $scope.goto = function () {
+      $state.go("second");
     }
-
-    //在二级目录跳转到三级目录
-    $scope.jumpThird=function (id,pname) {
-      $state.go("third",{
-        "contactId": id,
-        "secondname":pname
-      });
-    }
-
-
-    //在二级界面跳入详情界面
-    $scope.goSecondDetail=function (item,type) {
-      $state.go("person",{
-        "obj":item,
-        "type":type,
-      });
-    };
-
-
 
 
   })
 
+  .controller('ContactSecondCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams,$contacts) {
+    $scope.secondlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length)*15+50;
 
-    //点击当前点击部门的id
+    var seconddiv=document.getElementById("secondscroll");
+    seconddiv.style.width=$scope.secondlength+"px";
+
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
+
+    });
+
     $scope.contactId = $stateParams.contactId;
-    //一级的名字
-    $scope.pppid=$stateParams.secondname;
-    //根据id获取子部门和人员信息
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId);
 
-    //根据id获取子部门的数据
-    $contacts.deptThirdInfo($scope.contactId);
-    $scope.$on('third.update',function (event) {
-      $scope.$apply(function () {
-        $scope.depts=$contacts.getDeptThirdInfo().deptList;
-        $scope.deptcount=$contacts.getDeptThirdInfo().deptCount;
-        $scope.users=$contacts.getDeptThirdInfo().userList;
-        $scope.usercount=$contacts.getDeptThirdInfo().userCount;
-        $scope.parentID=$contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2=$contacts.getSecondDeptName().DeptName;
 
-        $scope.thirdlength=(document.getElementById('a1').innerText.length+$scope.pppid.length+$scope.deptinfo2.length)*15+80;
-        var thirddiv=document.getElementById("thirdscroll");
-        thirddiv.style.width=$scope.thirdlength+"px";
-      })
+
+  }])
+
+
+  .controller('ContactThirdCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
 
     });
 
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+    $scope.namelength3=$scope.contactsInfo.deptname.length
 
-    //在三级目录返回第二级
-    $scope.idddd=$contacts.getFirstID();
 
-    $scope.backSecond = function (sd) {
+
+    $scope.backsecond = function (contactinfo) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": contactinfo.parentdeptid
       });
     }
 
+    $scope.thirdlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length+$scope.namelength3)*15+100;
 
-    //在第二级目录跳转到第四级目录
-    $scope.jumpForth=function (id,sname,tname) {
-      $state.go("forth",{
-        "contactId": id,
-        "secondname":sname,
-        "thirdname":tname
-      });
-    }
+    var thirddiv=document.getElementById("thirdscroll");
+    thirddiv.style.width=$scope.thirdlength+"px";
 
+  }])
 
-    //在三级界面跳入详情界面
-    $scope.goThirdDetail=function (item,type) {
-      $state.go("person",{
-        "obj":item,
-        "type":type,
-      });
-    };
-
-
-
-
-  })
-
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams, contactService,$contacts) {
+  .controller('ContactForthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
 
 
     $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
-
-    //根据id获取子部门和人员信息
-    $contacts.deptForthInfo($scope.contactId);
-    $scope.$on('forth.update',function (event) {
-      $scope.$apply(function () {
-        $scope.depts=$contacts.getDeptForthInfo().deptList;
-        $scope.deptcount=$contacts.getDeptForthInfo().deptCount;
-        $scope.users=$contacts.getDeptForthInfo().userList;
-        $scope.usercount=$contacts.getDeptForthInfo().userCount;
-        $scope.parentID=$contacts.getDeptForthInfo().deptID;
-        $scope.deptinfo4=$contacts.getThirdDeptName().DeptName;
-
-        alert($scope.deptcount+"cishus")
-        alert( $scope.usercount)
 
 
-
-        $scope.forthlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+ $scope.deptinfo4.length)*15+120;
-
-        var forthdiv=document.getElementById("forthscroll");
-        forthdiv.style.width=$scope.forthlength+"px";
-
-      })
+    contactService.getContactThirdById($scope.contactId).then(function (response) {
+      $scope.thirdNames = response;
 
     });
 
 
-    //在四级目录需要返回三级目录  （ 三级目录进来需要两个参数 一个是 二级目录id一个是二级目录的名字 ）
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
+    $scope.namelength43=$scope.contactsInfo.deptname.length
 
-    $scope.idididi=$contacts.getSecondID();
-    $scope.firstid=$contacts.getFirstID();
+    $scope.parent = contactService.getParentById($scope.contactsInfo)
+    $scope.namelength44=$scope.parent.deptname.length
 
-
-    $scope.backThird=function (sd,named) {
-
+    $scope.backToThird = function (contactinfo) {
       $state.go("third", {
-        "contactId": sd,
-        "secondname":named
+        "contactId": contactinfo.parentdeptid
       });
-
-    };
-
-    // 在四级目录返回二级目录  （二级目录只需要一个id就行）
-    $scope.fromForthToSecond=function (sd) {
-      $state.go("second", {
-        "contactId": sd
-      });
-    };
-
-    //从四级目录跳入五级目录
-    $scope.jumpFifth=function (id,sname,tname,fname) {
-      $state.go("fifth",{
-        "contactId":id,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":fname,
-      });
-    };
+    }
 
 
-
-
-  })
-
-
-
-
-
-  .controller('ContactFifthCtrl', function ($scope, $http, $state, $stateParams,$contacts) {
-
-
-    $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
-    $scope.forthName=$stateParams.forthname;
-
-    //根据id获取子部门和人员信息
-    $contacts.deptFifthInfo($scope.contactId);
-    $scope.$on('fifth.update',function (event) {
-      $scope.$apply(function () {
-        $scope.depts=$contacts.getDeptFifthInfo().deptList;
-        $scope.deptcount=$contacts.getDeptFifthInfo().deptCount;
-        $scope.users=$contacts.getDeptFifthInfo().userList;
-        $scope.usercount=$contacts.getDeptFifthInfo().userCount;
-        $scope.parentID=$contacts.getDeptFifthInfo().deptID;
-        $scope.deptinfo5=$contacts.getForthDeptName().DeptName;
-
-        alert($scope.deptinfo5+"我是不是五级")
-
-
-        $scope.fifthlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+$scope.forthName.length +$scope.deptinfo5.length)*15+160;
-
-        var fifthdiv=document.getElementById("fifthscroll");
-        fifthdiv.style.width=$scope.fifthlength+"px";
-
+    $scope.detailPerson = function (item) {
+      $state.go("person", {
+        obj: item
       })
+    }
+
+    $scope.forthlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length+$scope.namelength43+ $scope.namelength44)*15+150;
+
+    var forthdiv=document.getElementById("forthscroll");
+    forthdiv.style.width=$scope.forthlength+"px";
+  }])
+
+
+  .controller('ContactFifthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+
+
+    contactService.getContacts().then(function (response) {
+      $scope.names = response;
 
     });
 
-
-    //返回二级部门 需要一个id；
-    $scope.firstid=$contacts.getFirstID();
-    $scope.secondid=$contacts.getSecondID();
-    $scope.thirdid=$contacts.getThirdID();
-
-    $scope.fromFifthToSecond=function (sd) {
-      $state.go("second", {
-        "contactId": sd
-      });
-
-    };
+    $scope.contactId = $stateParams.contactId;
+    $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
 
 
+    $scope.goSixth = function () {
+      $state.go("sixth");
+    }
 
-    //返回三级部门需要一个Id和一个名字；
-    $scope.fromFifthToThird=function (sd,sname) {
-      $state.go("third",{
-        "contactId": sd,
-        "secondname":sname,
-      });
-    };
-
-
-
-
-    //返回四级部门 需要一个id 和 两个名字
-    $scope.backForth=function (sd,sname,tname) {
-      $state.go("forth",{
-        "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
-      });
-    };
-
-
-
-
-
-  })
-
-
-
-
-
-
+  }])
 
   .controller('ContactSixthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
 
@@ -366,7 +221,7 @@ angular.module('im.controllers', [])
   }])
 
 
-  .controller('PersonCtrl', function ($scope, $http, contactService, $stateParams, $state, $phonepluin,$savaLocalPlugin) {
+  .controller('PersonCtrl', ['$scope', '$http', 'contactService', '$stateParams', '$state','$phonepluin','$savaLocalPlugin', function ($scope, $http, contactService, $stateParams, $state, $phonepluin,$savaLocalPlugin) {
 
     $scope.detailPerson = $stateParams.obj;
     if ($scope.detailPerson.name.length === 3) {
@@ -376,19 +231,11 @@ angular.module('im.controllers', [])
 
     }
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
+    $scope.backForth = function (contactId) {
+      $state.go("forth", {
+        "contactId": contactId
+      });
+    }
 
     //存本地
     $scope.insertPhone = function(name,phonenumber) {
@@ -405,7 +252,7 @@ angular.module('im.controllers', [])
       $phonepluin.sms(phonenumber);
     };
 
-  })
+  }])
 
 
   .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
@@ -829,13 +676,18 @@ angular.module('im.controllers', [])
             alert(message);
           });
         }*/
+        alert(message);
         $scope.names = [];
         $ionicLoading.hide();
+        $api.getUser('321', function(msg){
+        },function(msg){
+        })
         //调用保存用户名方法
         $mqtt.getMqtt().save('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
+        alert(message);
         $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
         $state.go('tab.message');
       }, function (message) {
@@ -844,6 +696,46 @@ angular.module('im.controllers', [])
         $ionicLoading.hide();
         $state.go('tab.message');
       });
+      // $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
+
+        // $scope.store();
+        /*$cordovaPreferences.store('name', $scope.name)
+          .success(function(value) {
+          })
+          .error(function(error) {
+          });*/
+        // $cordovaPreferences.store('name','sunlinsong');
+        /*$cordovaPreferences.store('name', $scope.name)
+         .success(function(value) {
+         })
+         .error(function(error) {
+         });*/
+        //连接MQTT
+
+
+        /*$scope.fetch = function() {
+         $cordovaPreferences.fetch('name')
+         .success(function(value) {
+         if(value != null && value != ''){
+         $mqtt.startMqttChat(value + ',zhuanjiazu');
+         }
+         })
+         .error(function(error) {
+         })
+         };*/
+        // $scope.fetch();
+        /*$cordovaPreferences.fetch('name')
+         .success(function(value) {
+         if(value != null && value != ''){
+         $mqtt.startMqttChat(value + ',zhuanjiazu');
+         }
+         })
+         .error(function(error) {
+         })*/
+
+      /*}).error(function (response) {
+
+      })*/
 
     };
   }])

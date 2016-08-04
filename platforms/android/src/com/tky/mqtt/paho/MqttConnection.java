@@ -190,6 +190,7 @@ public class MqttConnection {
 	public void closeConnection() throws MqttException {
 		if (receiver != null) {
 			context.unregisterReceiver(receiver);
+			receiver = null;
 		}
 		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
 			mqttAsyncClient.disconnect();

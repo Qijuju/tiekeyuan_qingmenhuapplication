@@ -17,6 +17,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import im.model.RST;
 import im.server.Department.IMDepartment;
@@ -27,6 +30,8 @@ import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
 import im.server.System.RSTsysTime;
+import im.server.User.IMUser;
+import im.server.User.RSTgetUser;
 
 /**
  * 作者：
@@ -406,6 +411,195 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
+    }
+
+    //****************用户接口****************//
+
+    /**
+     * 获取用户详细信息接口
+     * @param args
+     * @param callbackContext
+     */
+    public void getUser(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String login_info = SPUtils.getString("login_info", "");
+            JSONObject obj = new JSONObject(login_info);
+            String userID = args.getString(0);
+            SystemApi.getUser(obj.getString("userID"), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.GetUser_call getUser_call) {
+                    try {
+                        RSTgetUser result = getUser_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RSTgetUser.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改用户密码接口
+     * @param args
+     * @param callbackContext
+     */
+    public void updatePwd(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = getUserID();
+            String orgPWD = args.getString(0);;
+            String newPWD = args.getString(1);
+            String confirmPWD = args.getString(2);
+            SystemApi.updatePwd(ID, orgPWD, newPWD, confirmPWD, new AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.UserPwdUpdate_call userPwdUpdate_call) {
+                    try {
+                        RST result = userPwdUpdate_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RST.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改用户信息的接口
+     * @param args
+     * @param callbackContext
+     */
+    public void updateUserInfo(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = getUserID();
+            JSONObject obj = args.getJSONObject(0);
+            Map<String, String> updateInfo = jsonobj2Map(obj);
+            SystemApi.updateUserInfo(ID, updateInfo, new AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.UserUpdate_call userUpdate_call) {
+                    try {
+                        RST result = userUpdate_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RST.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 将JSONObject转成Map<String, String>集合
+     * @param obj
+     * @return
+     * @throws JSONException
+     */
+    public Map<String, String> jsonobj2Map(JSONObject obj) throws JSONException {
+        Map<String, String> map = new HashMap<String, String>();
+        for (Iterator<String> keys = obj.keys(); obj.keys().hasNext();) {
+            String key = keys.next();
+            String value = obj.getString(key);
+            map.put(key, value);
+        }
+        return map;
+    }
+
+    /**
+     * 获取当前登录的用户ID
+     * @return
+     */
+    public String getUserID() throws JSONException {
+        JSONObject userInfo = getUserInfo();
+        return userInfo.getString("userID");
+    }
+
+    public JSONObject getUserInfo() throws JSONException {
+        String login_info = SPUtils.getString("login_info", "");
+        return new JSONObject(login_info);
     }
 
     /**
