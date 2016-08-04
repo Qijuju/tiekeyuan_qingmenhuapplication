@@ -720,6 +720,9 @@ angular.module('starter.services', [])
       },
       getUserRoot:function(ID, success, error) {
         api.getUserRoot(ID, success, error);
+      },
+      getUser:function(userID, success, error) {
+        api.getUser(userID, success, error);
       }
     };
   });

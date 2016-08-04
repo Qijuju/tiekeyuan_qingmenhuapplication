@@ -678,6 +678,9 @@ angular.module('im.controllers', [])
         }*/
         $scope.names = [];
         $ionicLoading.hide();
+        $api.getUser('321', function(msg){
+        },function(msg){
+        })
         //调用保存用户名方法
         $mqtt.getMqtt().save('name', $scope.name, function (message) {
         },function (message) {
