@@ -11,7 +11,6 @@ import java.io.IOException;
 import im.server.Department.IMDepartment;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
-import im.server.file.IMFile;
 
 /**
  * 作者：
@@ -57,19 +56,6 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6003, 30000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
-        return asyncClient;
-    }
-
-    /**
-     * 获取一个AsyncClient对象（File）
-     * @return
-     * @throws IOException
-     */
-    public static IMFile.AsyncClient getFileClient() throws IOException {
-        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6004, 30000);
-        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-        IMFile.AsyncClient asyncClient = new IMFile.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -184,4 +170,14 @@ public class SystemApi {
         IMFile.AsyncClient fileClient = getFileClient();
         fileClient.GetHeadPic();
     }
+    public static void updatePwd(String ID, String orgPWD, String newPWD, String confirmPWD, AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
+    }
+
+    public static void updateUserInfo(String ID, Map<String, String> updateInfo, AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.UserUpdate(ID, updateInfo, callback);
+    }
+
 }
