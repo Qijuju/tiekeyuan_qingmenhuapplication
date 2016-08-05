@@ -342,7 +342,6 @@ angular.module('starter.services', [])
       },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);
-      }
       },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);
@@ -352,7 +351,7 @@ angular.module('starter.services', [])
       },
       isLogin:function () {
         return isLogin;
-
+      }
 
     };
   })
