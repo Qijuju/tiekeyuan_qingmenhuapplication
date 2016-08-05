@@ -211,6 +211,11 @@ angular.module('im.routes', [])
         }
       })
 
+      .state('historymessage',{
+        url:'/historymessage',
+        templateUrl: 'templates/historymessage.html',
+        controller: 'HistoryCtrl'
+      })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 
