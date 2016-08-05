@@ -606,19 +606,23 @@ angular.module('im.controllers', [])
   .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
     $scope.name="";
     $scope.password="";
+
     document.addEventListener('deviceready',function () {
       $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $mqtt.startMqttChat(message + ',zhuanjiazu');
-          $state.go('tab.message');
-          return;
-        }
-      },function (message) {
-        alert(message);
-      });
+      if(!$mqtt.isLogin()) {
+        $mqtt.getMqtt().getString('name', function (message) {
+          if (message != null && message != '') {
+            $mqtt.startMqttChat(message + ',zhuanjiazu');
+            $mqtt.setLogin(true);
+            $state.go('tab.message');
+            return;
+          }
+        }, function (message) {
+          alert(message);
+        });
+      }
       /*$cordovaPreferences.fetch('name')
         .success(function(value) {
           if(value != null && value != ''){
@@ -666,15 +670,13 @@ angular.module('im.controllers', [])
         }*/
         $scope.names = [];
         $ionicLoading.hide();
-        $api.getUser('321', function(msg){
-        },function(msg){
-        })
         //调用保存用户名方法
         $mqtt.getMqtt().save('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
         $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
+        $mqtt.setLogin(true);
         $state.go('tab.message');
       }, function (message) {
         //alert(message);
