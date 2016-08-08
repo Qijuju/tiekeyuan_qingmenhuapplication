@@ -221,14 +221,14 @@ angular.module('im.routes', [])
         url: '/search',
         templateUrl: 'templates/search.html',
         controller: 'searchCtrl',
-        cache:true
+        cache:false
       })
 
       .state('searchdetail', {
         url: '/searchdetail/:UserID',
         templateUrl: 'templates/searchDetail.html',
         controller: 'searchDetailCtrl',
-
+        cache: false
       })
 
       .state('addnewpersonfirst', {
@@ -260,6 +260,11 @@ angular.module('im.routes', [])
         url: '/addnewpersonsixth/:contactId',
         templateUrl: 'templates/addNewPerson-sixth.html',
         controller: 'addNewPersonsixthCtrl'
+      })
+      .state('searchlocal', {
+        url: '/searchlocal',
+        templateUrl: 'templates/searchLocal.html',
+        controller: 'searchLocalCtrl'
       })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

@@ -24,23 +24,21 @@ angular.module('im.controllers', [])
     }
   })
 
-  .controller('ContactsCtrl',  function ($scope, $http, $state,$stateParams,$greendao) {
-    alert("laile");
+  .controller('ContactsCtrl',  function ($scope, $http, $state,$stateParams,$greendao,$mqtt) {
 
 
-
-
-
-
-    $greendao.loadAllData('TopContactsService',function (msg) {
-
-      $scope.tops=msg;
-      alert($scope.tops.length);
-    },function (err) {
-
+    $mqtt.getUserInfo(function (msg) {
+        alert(msg.deptID)
+    },function (msg) {
+      alert(msg)
     })
 
 
+    $greendao.loadAllData('TopContactsService',function (msg) {
+      $scope.tops=msg;
+    },function (err) {
+
+    })
 
     $scope.goto = function () {
       $state.go("second");
@@ -187,7 +185,13 @@ angular.module('im.controllers', [])
   }])
 
 
-  .controller('MyDepartmentCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  .controller('MyDepartmentCtrl', function ($scope, $http, $state, $stateParams, contactService,$mqtt) {
+
+    $mqtt.getUserInfo(function (msg) {
+      alert(msg.deptID)
+    },function (msg) {
+      alert(msg)
+    })
 
     $scope.contactId = $stateParams.contactId;
 
@@ -218,7 +222,7 @@ angular.module('im.controllers', [])
       $state.go("forth");
     }
 
-  }])
+  })
 
 
   .controller('PersonCtrl', ['$scope', '$http', 'contactService', '$stateParams', '$state','$phonepluin','$savaLocalPlugin', function ($scope, $http, contactService, $stateParams, $state, $phonepluin,$savaLocalPlugin) {
@@ -564,7 +568,9 @@ angular.module('im.controllers', [])
       $state.go("messageDetail");
 
     };
-
+    $scope.goSearch= function () {
+      $state.go("search");
+    }
 
 
     // $mqtt.rececivGroupMsg("sy");
@@ -868,8 +874,8 @@ angular.module('im.controllers', [])
     //   $ionicBackdrop.release();
     // });
 
-    $scope.goSearch= function () {
-      $state.go("search");
+    $scope.goLocalSearch= function () {
+      $state.go("searchlocal");
     }
 
 
@@ -1044,7 +1050,6 @@ angular.module('im.controllers', [])
 
     $scope.parent = contactService.getParentById($scope.contactsInfo)
     $scope.namelength44=$scope.parent.deptname.length
-
     $scope.backToThird = function (contactinfo) {
       $state.go("third", {
         "contactId": contactinfo.parentdeptid
@@ -1098,7 +1103,7 @@ angular.module('im.controllers', [])
 
 
   })
-.controller('searchCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService','$timeout' ,'$ionicBackdrop','$rootScope','$api','$mqtt',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$api,$mqtt) {
+.controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222) {
 
   $scope.query = "";
   $mqtt.getUserInfo(function (msg) {
@@ -1107,71 +1112,175 @@ angular.module('im.controllers', [])
   },function (msg) {
     alert(msg);
   });
-  var search1111=ionic.debounce(function (query) {
-    $api.seachUsers($scope.id,query,1,10,function (msg) {
-      $scope.persons=msg.searchResult;
-      // window.location.reload();
-    },function (msg) {
-      alert(msg);
-    });
-  },500);
-  $scope.dosearch = function(query) {
-    search1111(query)
 
+  $scope.hasmore=true;
+  $scope.page =1;
+  $scope.count=30;
+  $scope.persons=[];
+  $scope.query1=""
+  $scope.dosearch = function(query) {
+    $scope.hasmore=true;
+    $scope.page =1;
+    $scope.persons=[];
+    $scope.query1 =query;
+    $search111.search1111($scope.id,$scope.page,$scope.count,query);
+    $scope.$on('persons.update',function (event) {
+      $scope.$apply(function () {
+        $scope.hasmore=true;
+        $scope.page =1;
+        $scope.persons=[];
+        $scope.query1 =query;
+        $scope.persons=$search111.getPersons().searchResult;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        if ($scope.persons.length>=30){
+          $scope.hasmore=true
+          $scope.page++
+        }else {
+          $scope.hasmore=false
+        }
+      })
+
+    });
   }
 
 
+  $scope.loadMore = function(){
+    if ($scope.page<2||!$scope.hasmore){
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      return;
+    }
+     // alert("id="+$scope.id+",page="+$scope.page+",count="+$scope.count+",query1="+$scope.query1)
+    $search222.search2222($scope.id,$scope.page,$scope.count,$scope.query1);
+    $scope.$on('persons2.update2',function (event) {
+      $scope.$apply(function () {
+        var person=$search222.getPersons2().searchResult;
+        // alert("person的length"+person.length)
+        for (var i = 0; i < person.length; i++) {
+          $scope.persons.push(person[i]);
+        }
+        if (person.length>=30){
+          $scope.hasmore=true
+          $scope.page++
+           $scope.$broadcast('scroll.infiniteScrollComplete');
+        }else if(person.length==0){
+          alert("没有更多数据")
+          $scope.hasmore=false
+           $scope.$broadcast('scroll.infiniteScrollComplete');
+        }else {
+          alert("没有更多数据")
+          $scope.hasmore=false
+           $scope.$broadcast('scroll.infiniteScrollComplete');
+        }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      })
+
+    });
+  };
 
 
 
-
-  // var userid=$scope.id;
-  //
-  // var doSearch = ionic.debounce(function(query,userid) {
-  //   $searchdata.search(query, $scope.id).then(function(results){
-  //     $scope.results = results;
-  //   });
-  // }, 500);
-
-  $scope.$on('$ionicView.beforeEnter',function () {
-    search1111(query)
-  });
-  // $mqtt.getUserInfo(function (msg) {
-  //     $scope.id=msg.userID;
-  //   alert($scope.id);
-  // },function (msg) {
-  //
-  // });
-  // $mqtt.getUserInfo(function (msg) {
-  //   $scope.id=msg.userID;
-  //   alert($scope.id);
-  //
-  //   $scope.dosearch=function (query) {
-  //
-  //     alert(query);
-  //   }
-  //
-  //
-  //   // $api.seachUsers($scope.id,query,1,10,function (msg) {
-  //   //   alert(msg);
-  //   // },function (msg) {
-  //   //   alert(msg);
-  //   // });
-  // },function (msg) {
-  //   alert(msg);
-  // });
+  $scope.jumpSearch=function (id) {
+    $state.go("searchdetail",{
+      "UserID":id
+    });
+  }
 
 
-}])
+})
 
 
-.controller('searchDetailCtrl',function ($scope,$state,$stateParams) {
+.controller('searchDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata) {
 
     $scope.backSearch = function () {
       $state.go("search");
     }
   $scope.UserID111 = $stateParams.UserID;
-  alert($scope.UserID111)
+  // //alert($scope.UserID111)
+  // $scope.personsdetail="";
+  //
+  // $api.getUser($scope.UserID111,function (msg) {
+  //   $scope.personsdetail=msg.user;
+  // },function (msg) {
+  //   alert(msg);
+  // });
+
+
+  $searchdata.personDetail($scope.UserID111);
+  $scope.$on('person.update',function (event) {
+    $scope.$apply(function () {
+        $scope.personsdetail=$searchdata.getPersonDetail().user;
+    })
+
+  });
+  // //头像里的后两位名字
+  // $scope.personsdetail = $stateParams.obj;
+  // if ($scope.personsdetail.UserName.length > 2) {
+  //   $scope.localsimpleName = $scope.personsdetail.UserName.substr(($scope.personsdetail.UserName.length-2), $scope.personsdetail.UserName.length);
+  // } else {
+  //   $scope.localsimpleName = $scope.personsdetail.UserName;
+  //
+  // }
+
+  //存本地
+  $scope.insertPhoneSearch = function(name,phonenumber) {
+    $savaLocalPlugin.insert(name,phonenumber);
+  };
+
+  //打电话
+  $scope.callSearch = function(phonenumber,name) {
+    $phonepluin.call(phonenumber,name);
+  };
+  //发短信
+  $scope.smsSearch = function(phonenumber) {
+    $phonepluin.sms(phonenumber);
+  };
 })
 
-;
+
+  .controller('searchLocalCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$searchlocal,$ionicActionSheet,$phonepluin) {
+
+    $scope.query = "";
+
+    $scope.dosearchlocal = function(query) {
+      $searchlocal.getlocalContact(query);
+      $scope.$on('localperson.update',function (event) {
+        $scope.$apply(function () {
+          $scope.localpersons=$searchlocal.getLocalContacts();
+          //alert($scope.localpersons)
+        })
+      });
+
+    }
+
+    // 点击按钮触发，或一些其他的触发条件
+    $scope.tanchuanglocal = function(phonenumber,name) {
+      //打电话
+      $scope.call = function(phonenumber,name) {
+        $phonepluin.call(phonenumber,name);
+      };
+      $scope.sms = function(phonenumber) {
+        $phonepluin.sms(phonenumber);
+      };
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          { text: '打电话' },
+          { text: '发短信'}
+        ],
+        titleText: name,
+        cancelText: '取消',
+        buttonClicked: function(index) {
+          if(index==0){
+            $scope.call(phonenumber);
+          }else {
+            $scope.sms(phonenumber);
+          }
+          return true;
+        }
+
+      });
+
+    };
+
+
+  })
