@@ -668,6 +668,10 @@ angular.module('im.controllers', [])
             alert(message);
           });
         }*/
+        // alert(message.toString());
+        $api.getVersion("", function (msg) {
+        },function (msg) {
+        });
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法

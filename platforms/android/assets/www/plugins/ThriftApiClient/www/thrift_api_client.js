@@ -31,5 +31,17 @@ exports.updatePwd = function(oldPWD, newPWD, confirmPWD, success, error) {
 exports.updateUserInfo = function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
   exec(success, error, "ThriftApiClient", "updateUserInfo", [newUserInfoObj]);
 };
+exports.getHeadPic = function(picUserID, picSize, success, error) {
+  exec(success, error, "ThriftApiClient", "getHeadPic", [picUserID, picSize]);
+};
+exports.setHeadPic = function(success, error) {
+  exec(success, error, "ThriftApiClient", "setHeadPic", []);
+};
+exports.getVersionInfo = function(success, error) {
+  exec(success, error, "ThriftApiClient", "getVersionInfo", []);
+};
+exports.getVersion = function(savePath, success, error) {
+  exec(success, error, "ThriftApiClient", "getVersion", [savePath]);
+};
 
 });

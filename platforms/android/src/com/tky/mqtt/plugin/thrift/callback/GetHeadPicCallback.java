@@ -1,10 +1,13 @@
 package com.tky.mqtt.plugin.thrift.callback;
 
 import com.tky.mqtt.paho.utils.FileUtils;
+import com.tky.mqtt.plugin.thrift.MqttPluginResult;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,6 +31,7 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
     @Override
     public void onComplete(IMFile.AsyncClient.GetHeadPic_call getHeadPic_call) {
         if (getHeadPic_call != null) {
+            FileOutputStream fos = null;
             try {
                 RSTgetPic result = getHeadPic_call.getResult();
                 if (result != null && result.result) {
@@ -42,18 +46,58 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
                         file.createNewFile();
                     }
                     byte[] fileByte = result.getFileByte();
-                    FileOutputStream fos = new FileOutputStream(file);
+                    fos = new FileOutputStream(file);
+                    fos.write(fileByte);
+                    setResult(fileName, PluginResult.Status.OK, callbackContext);
+                } else {
+                    setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
                 }
             } catch (TException e) {
+                setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
                 e.printStackTrace();
             } catch (IOException e) {
+                setResult("数据异常", PluginResult.Status.ERROR, callbackContext);
                 e.printStackTrace();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                        fos = null;
+                    } catch (IOException e) {
+                        setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
 
     @Override
     public void onError(Exception e) {
+        setResult("请求失败", PluginResult.Status.ERROR, callbackContext);
+    }
 
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(String result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
     }
 }

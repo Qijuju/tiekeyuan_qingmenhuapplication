@@ -743,6 +743,18 @@ angular.module('starter.services', [])
       },
       updateUserInfo:function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
         api.updateUserInfo(newUserInfoObj, success, error);
+      },
+      getHeadPic:function(picUserID, picSize, success, error) {
+        api.getHeadPic(picUserID, picSize, success, error);
+      },
+      setHeadPic:function(success, error) {
+        api.setHeadPic(success, error);
+      },
+      getVersionInfo:function(success, error) {
+        api.getVersionInfo(success, error);
+      },
+      getVersion:function(savePath, success, error) {
+        api.getVersion(savePath, success, error);
       }
     };
   });
