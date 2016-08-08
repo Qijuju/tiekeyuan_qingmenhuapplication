@@ -22,5 +22,8 @@ exports.getDeparment = function(ID,deptID, success, error) {
 exports.getUserRoot = function(ID, success, error) {
   exec(success, error, "ThriftApiClient", "getUserRoot", [ID]);
 };
+exports.getUser = function(userID, success, error) {
+  exec(success, error, "ThriftApiClient", "getUser", [userID]);
+};
 
 });
