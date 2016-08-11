@@ -769,6 +769,8 @@ angular.module('im.controllers', [])
   })
 
 
+
+
   .controller('MyDepartmentCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
 
     $scope.contactId = $stateParams.contactId;
@@ -790,8 +792,6 @@ angular.module('im.controllers', [])
       });
     }
 
-
-
     $scope.goForth = function () {
       $state.go("forth");
     }
@@ -799,7 +799,7 @@ angular.module('im.controllers', [])
   }])
 
 
-  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory) {
+.controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory) {
 
     $scope.userId = $stateParams.userId;
 
@@ -825,62 +825,41 @@ angular.module('im.controllers', [])
 
     };
 
+     //存本地
+     $scope.insertPhone = function(name,phonenumber) {
+       $savaLocalPlugin.insert(name,phonenumber);
+     };
 
-
-
-
-
-
-
-
-
-
-    // //存本地
-    // $scope.insertPhone = function(name,phonenumber) {
-    //   $savaLocalPlugin.insert(name,phonenumber);
-    // };
-    //
-    // //打电话
-    // $scope.call = function(phonenumber,name) {
-    //   alert(name)
-    //   $phonepluin.call(phonenumber,name);
-    // };
-    // //发短信
-    // $scope.sms = function(phonenumber) {
-    //   $phonepluin.sms(phonenumber);
-    // };
+     //打电话
+     $scope.call = function(phonenumber,name) {
+       alert(name)
+       $phonepluin.call(phonenumber,name);
+     };
+     //发短信
+     $scope.sms = function(phonenumber) {
+       $phonepluin.sms(phonenumber);
+     };
 
   })
 
 
   .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
-    // document.addEventListener('deviceready',function () {
-    //   messages.getMsgsBySingle(function (data) {
-    //     alert("调用single");
-    //     console.log(data);    //还没保存数据目前打印的是空数组
-    //     alert(data);
-    //     $scope.msgs = data;
-    //   });
-    // });
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   alert(data);
     // },function (err) {
     //   alert(err);
     // });
-    $greendao.queryData('MessagesService','where type =?','User',function (data) {
-      $scope.msgs=data;
+
+    $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','User',function (data) {
+      for(var i = 1; i <= data.length; i++) {
+          $mqtt.getDanliao().push(data[data.length-i]);
+      }
+      $scope.msgs=$mqtt.getDanliao();
     },function (err) {
       alert(err);
     });
 
-    // $greendao.loadAllData('MessagesService',function (data) {
-    //   // alert('success');
-    //   // alert(data);
-    //   $scope.msgs=data;
-    // },function (err) {
-    //   alert(err);
-    // });
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
@@ -891,8 +870,23 @@ angular.module('im.controllers', [])
 
     });
     $scope.doRefresh = function () {
-
-      $scope.$broadcast("scroll.refreshComplete")
+      $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,'+($mqtt.getDanliao().length+10),'User',function (data) {
+        if($scope.msgs.length <50){
+          for(var j=0;j<$mqtt.getDanliao().length;j++){
+            $mqtt.getDanliao().splice(j,$mqtt.getDanliao().length);//清除之前数组里存的数据
+          }
+          alert($mqtt.getDanliao().length+"come in222");
+          for(var i = 1; i <= data.length; i++) {
+            $mqtt.getDanliao().push(data[data.length-i]);
+          }
+          $scope.msgs=$mqtt.getDanliao();
+        }else if($scope.msgs.length == 50){
+          $scope.nomore="true";
+        }
+        $scope.$broadcast("scroll.refreshComplete");
+      },function (err) {
+        alert(err);
+      });
     }
 
     window.addEventListener("native.keyboardshow", function (e) {
@@ -916,29 +910,29 @@ angular.module('im.controllers', [])
       };
 
     }
-    $mqtt.arriveMsg("");
+    // $mqtt.arriveMsg("");
     $scope.$on('msgs.update',function (event) {
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
-        // $greendao.loadAllData('MessagesService',function (data) {
-        //   // alert(data+"update");
-        //   $scope.msgs=data;
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // },function (err) {
         //   alert(err);
         // });
-
-        // $scope.msgs=$mqtt.getAllMsg();
-        //alert($scope.msgs.length);
-        // $mqtt.getAllMsg($scope);
-
+        // $greendao.queryData('MessagesService','where type =? order by "when" desc ','User',function (data) {
+        //   alert(usermsgs.length+"eee");
+        //   for(var i=usermsgs.length;i<=data.length;i++){
+        //     alert(data.length-i +" fff ");
+        //     usermsgs.push(data[data.length-i]);
+        //   }
+        //   $scope.msgs=usermsgs;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
       })
 
     });
@@ -947,15 +941,10 @@ angular.module('im.controllers', [])
     $scope.$on('msgs.error',function (event) {
       //alert("发送失败");
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // $greendao.loadAllData('MessagesService',function (data) {
         //   //alert(data+"senderrlist");
         //   $scope.msgs=data;
@@ -998,34 +987,29 @@ angular.module('im.controllers', [])
     }
 
 
+    $scope.skipmessagebox=function () {
+      alert("正确进入聊天方法");
+      $state.go("historymessage");
+
+    };
+
   })
 
 
   .controller('MessageGroupCtrl',function ($scope,$state, $http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
-    // messages.getAllMsgs(function (data) {
-    //   console.log(data);    //还没保存数据目前打印的是空数组
-    //   alert(data);
-    //   $scope.groupMsgs = data;
-    // });
-    $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-      // alert("查询方法成功");
-      $scope.msgs=data;
+    $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','Group',function (data) {
+      for(var i = 1; i <= data.length; i++) {
+        $mqtt.getQunliao().push(data[data.length-i]);
+        $scope.groupmsgs=$mqtt.getQunliao();
+      }
     },function (err) {
       alert(err);
     });
-    // $greendao.loadAllData('MessagesService',function (data) {
-    //   // alert('success');
-    //   // alert(data);
-    //   $scope.msgs=data;
-    // },function (err) {
-    //   alert(err);
-    // });
-    // $scope.groupMsgs=$mqtt.getAllGroupMsg();
-
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 
+    //获取更多数据
     $scope.doRefresh = function () {
 
       $scope.$broadcast("scroll.refreshComplete")
@@ -1052,18 +1036,21 @@ angular.module('im.controllers', [])
       };
 
     }
-    $mqtt.rececivGroupMsg("cll");
+    $mqtt.arriveMsg("cll");
     $scope.$on('groupMsgs.update',function (event) {
-
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
+      //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+      //     $scope.msgs=data;
+      //     $timeout(function() {
+      //     viewScroll.scrollBottom();
+      //   }, 100);
+      // },function (err) {
+      //   alert(err);
+      // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -1083,14 +1070,19 @@ angular.module('im.controllers', [])
 
     $scope.$on('groupMsgs.error',function (event) {
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+
+        $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
+        // $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+        //   $scope.msgs=data;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -1141,27 +1133,28 @@ angular.module('im.controllers', [])
 
 
 
-  .controller('MessageCtrl', ['$scope', '$http', '$state','$mqtt', function ($scope, $http, $state) {
+  .controller('MessageCtrl', ['$scope', '$http', '$state','$mqtt', function ($scope, $http, $state,$mqtt) {
 
-    // $mqtt.arriveMsg("");
-    //
-    // $scope.$on('msgs.update',function (event) {
-    //
-    //   $scope.$apply(function () {
-    //     $scope.recentMsgs=$mqtt.getAllMsg();
-    //     $scope.lastCount=$mqtt.getMsgCount();
-    //     alert('放入单聊页面');
-    //   })
-    //
-    // });
+    $mqtt.arriveMsg("");
 
-    // $scope.goDetailMessage=function () {
-    //
-    //   // $mqtt.clearMsgCount();
-    //   // $scope.lastCount=$mqtt.getMsgCount();
-    //   $state.go("messageDetail");
-    //
-    // };
+    $scope.$on('msgs.update',function (event) {
+
+      $scope.$apply(function () {
+        $scope.danliaomsg=$mqtt.getDanliao();
+        $scope.qunliaomsg=$mqtt.getQunliao();
+        $scope.lastCount=$mqtt.getMsgCount();
+        $scope.lastGroupCount=$mqtt.getMsgGroupCount();
+      })
+
+    });
+
+    $scope.goDetailMessage=function () {
+
+      $mqtt.clearMsgCount();
+      $scope.lastCount=$mqtt.getMsgCount();
+      $state.go("messageDetail");
+
+    };
 
 
 
@@ -1179,9 +1172,8 @@ angular.module('im.controllers', [])
     // });
 
     $scope.goGroupMessage=function () {
-      // $mqtt.clearGroupMsgCount();
-      // $scope.lastGroupCount=$mqtt.getGroupMsgCount();
-
+      $mqtt.clearMsgGroupCount();
+      $scope.lastGroupCount=$mqtt.getMsgGroupCount();
       $state.go("messageGroup");
     }
 
@@ -1220,15 +1212,18 @@ angular.module('im.controllers', [])
       $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $mqtt.startMqttChat(message + ',zhuanjiazu');
-          $state.go('tab.message');
-          return;
-        }
-      },function (message) {
-        alert(message);
-      });
+      if(!$mqtt.isLogin()) {
+        $mqtt.getMqtt().getString('name', function (message) {
+          if (message != null && message != '') {
+            $mqtt.startMqttChat(message + ',zhuanjiazu');
+            $mqtt.setLogin(true);
+            $state.go('tab.message');
+            return;
+          }
+        }, function (message) {
+          alert(message);
+        });
+      }
       /*$cordovaPreferences.fetch('name')
         .success(function(value) {
           if(value != null && value != ''){
@@ -1274,6 +1269,10 @@ angular.module('im.controllers', [])
             alert(message);
           });
         }*/
+        // alert(message.toString());
+        $api.getVersion("", function (msg) {
+        },function (msg) {
+        });
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
@@ -1282,6 +1281,7 @@ angular.module('im.controllers', [])
           alert(message);
         });
         $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
+        $mqtt.setLogin(true);
         $state.go('tab.message');
       }, function (message) {
         //alert(message);
@@ -1448,7 +1448,11 @@ angular.module('im.controllers', [])
     }
   })
 
+  //历史消息controller
+  .controller('HistoryCtrl',function ($scope,$state) {
 
+    alert("come 正确的页面了");
+  })
 
 
   .controller('LocalContactCtrl',function ($scope,localContact,$ionicActionSheet,$phonepluin) {
