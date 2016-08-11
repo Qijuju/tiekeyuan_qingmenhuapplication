@@ -124,8 +124,36 @@ angular.module('starter.services', [])
   };
 })
 
-
-
+  .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var mainlist=new Array();
+    var savedata;
+    return{
+      getAll:function (isPersonSend) {
+        if(isPersonSend === 'true'){
+          var chatitem={};
+          chatitem.id=$stateParams.id;
+          chatitem.chatName=$stateParams.sessionid;
+          chatitem.imgSrc='';
+          chatitem.lastText=$stateParams.account;
+          chatitem.count='';
+          chatitem.isDelete='false';
+          chatitem.lastDate=new Date().getTime();
+          mainlist.push(chatitem);
+           $greendao.saveObj('ChatListService',chatitem,function (data) {
+           },function (err) {
+           });
+          $rootScope.$broadcast('chatarr.update');
+        }
+        return mainlist;
+      },
+      setData:function (data) {
+        savedata = data;
+      },
+      getData:function () {
+        return savedata;
+      }
+    }
+  })
 
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
@@ -171,7 +199,10 @@ angular.module('starter.services', [])
         messageDetail.platform='Windows';
         messageDetail.when='lll';
         messageDetail.isFailure='false';
-
+        messageDetail.singlecount='';
+        messageDetail.qunliaocount='';
+        messageDetail.isDelete='false';
+        messageDetail.imgSrc='';
         mqtt.sendMsg(topic, messageDetail, function (message) {
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -208,16 +239,23 @@ angular.module('starter.services', [])
           arriveMessage.platform=message.platform;
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
+          arriveMessage.isDelete=message.isDelete;
+          arriveMessage.imgSrc=message.imgSrc;
+          arriveMessage.singlecount='';
+          arriveMessage.qunliaocount='';
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
-            // alert(data+"shoudaole");
           },function (err) {
-            alert(err+"arrmistake");
           });
-          if (message.type==="User"){
-              count++;
+          if(message.type==="User"){
+            count++;
+            // $rootScope.unread=count;
+            // $rootScope.$broadcast('count.update');
+            // alert($rootScope.unread+"111");
             danliao.push(arriveMessage);
           }else {
-              groupCount++;
+            groupCount++;
+            // arriveMessage.singlecount='';
+            // arriveMessage.qunliaocount='';
             qunliao.push(arriveMessage);
           }
           $rootScope.$broadcast('msgs.update');
@@ -251,6 +289,7 @@ angular.module('starter.services', [])
       },
 
       clearMsgGroupCount:function () {
+        alert("clear");
         groupCount=0;
       },
 
@@ -373,16 +412,16 @@ angular.module('starter.services', [])
         greendao.saveObj(services,jsonObject, success, error);
       },
       saveDataLists:function (services,arraylist, success, error) {
-
+        greendao.saveDataLists(services,arraylist, success, error);
       },
       deleteAllData:function (services, success, error) {
         greendao.deleteAllData(services, success, error);
       },
       deleteDataByArg:function (services,str, success, error) {
-
+        greendao.deleteDataByArg(services,str, success, error);
       },
       deleteObj:function (services,jsonObject, success, error) {
-
+        greendao.deleteObj(services,jsonObject, success, error);
       },
       queryMessagelistByIsSingle:function (services,isSingle, success, error) {
 
@@ -696,30 +735,7 @@ angular.module('starter.services', [])
       });
     }
   }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
 
 ;

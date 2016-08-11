@@ -34,6 +34,10 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         public final static Property IsSingle = new Property(8, String.class, "isSingle", false, "IS_SINGLE");
         public final static Property IsFailure = new Property(9, String.class, "isFailure", false, "IS_FAILURE");
         public final static Property When = new Property(10, Long.class, "when", false, "WHEN");
+        public final static Property IsDelete = new Property(11, String.class, "isDelete", false, "IS_DELETE");
+        public final static Property ImgSrc = new Property(12, String.class, "imgSrc", false, "IMG_SRC");
+        public final static Property Singlecount = new Property(13, String.class, "singlecount", false, "SINGLECOUNT");
+        public final static Property Qunliaocount = new Property(14, String.class, "qunliaocount", false, "QUNLIAOCOUNT");
     };
 
 
@@ -59,7 +63,11 @@ public class MessagesDao extends AbstractDao<Messages, String> {
                 "'PLATFORM' TEXT," + // 7: platform
                 "'IS_SINGLE' TEXT," + // 8: isSingle
                 "'IS_FAILURE' TEXT," + // 9: isFailure
-                "'WHEN' INTEGER);"); // 10: when
+                "'WHEN' INTEGER," + // 10: when
+                "'IS_DELETE' TEXT," + // 11: isDelete
+                "'IMG_SRC' TEXT," + // 12: imgSrc
+                "'SINGLECOUNT' TEXT," + // 13: singlecount
+                "'QUNLIAOCOUNT' TEXT);"); // 14: qunliaocount
     }
 
     /** Drops the underlying database table. */
@@ -127,6 +135,26 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         if (when != null) {
             stmt.bindLong(11, when);
         }
+ 
+        String isDelete = entity.getIsDelete();
+        if (isDelete != null) {
+            stmt.bindString(12, isDelete);
+        }
+ 
+        String imgSrc = entity.getImgSrc();
+        if (imgSrc != null) {
+            stmt.bindString(13, imgSrc);
+        }
+ 
+        String singlecount = entity.getSinglecount();
+        if (singlecount != null) {
+            stmt.bindString(14, singlecount);
+        }
+ 
+        String qunliaocount = entity.getQunliaocount();
+        if (qunliaocount != null) {
+            stmt.bindString(15, qunliaocount);
+        }
     }
 
     /** @inheritdoc */
@@ -149,7 +177,11 @@ public class MessagesDao extends AbstractDao<Messages, String> {
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // platform
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // isSingle
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // isFailure
-            cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10) // when
+            cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10), // when
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // isDelete
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // imgSrc
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // singlecount
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // qunliaocount
         );
         return entity;
     }
@@ -168,6 +200,10 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         entity.setIsSingle(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setIsFailure(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setWhen(cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10));
+        entity.setIsDelete(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setImgSrc(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setSinglecount(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setQunliaocount(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
      }
     
     /** @inheritdoc */

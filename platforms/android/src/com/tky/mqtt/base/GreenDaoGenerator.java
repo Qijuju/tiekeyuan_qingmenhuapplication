@@ -21,7 +21,8 @@ public class GreenDaoGenerator {
         addMessages(schema);
         addParentSubDept(schema);
         addTopContacts(schema);
-        new DaoGenerator().generateAll(schema, "F:/im/platforms/android/src");//项目绝对路径
+        addChatLists(schema);
+        new DaoGenerator().generateAll(schema, "C:/Users/Administrator/webstormproject/im/platforms/android/src");//项目绝对路径
     }
 
 
@@ -41,17 +42,21 @@ public class GreenDaoGenerator {
     //聊天消息(单人聊天、群聊)
     private  static  void addMessages(Schema schema){
         Entity message=schema.addEntity("Messages");
-        message.addStringProperty("_id").primaryKey();
-        message.addStringProperty("account");
-        message.addStringProperty("sessionid");
-        message.addStringProperty("type");
-        message.addStringProperty("from");
-        message.addStringProperty("message");
-        message.addStringProperty("messagetype");
-        message.addStringProperty("platform");
-        message.addStringProperty("isSingle");
-        message.addStringProperty("isFailure");
-        message.addLongProperty("when");
+        message.addStringProperty("_id").primaryKey();//主键id
+        message.addStringProperty("account");//消息发出者所在公司id
+        message.addStringProperty("sessionid");//发送者id+接收者id、群组id
+        message.addStringProperty("type");//聊天类型：群聊、单聊、应用推送
+        message.addStringProperty("from");//消息发出者id
+        message.addStringProperty("message");//消息内容
+        message.addStringProperty("messagetype");//消息类型:普通、回执、抖动窗口
+        message.addStringProperty("platform");//客户端类型
+        message.addStringProperty("isSingle");//暂时无用
+        message.addStringProperty("isFailure");//消息发送成功与否
+        message.addLongProperty("when");//消息发送时间
+        message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
+        message.addStringProperty("imgSrc");//头像图片来源
+        message.addStringProperty("singlecount");//单聊未读消息数
+        message.addStringProperty("qunliaocount");//群聊未读消息数
     }
 
 
@@ -84,4 +89,17 @@ public class GreenDaoGenerator {
 
         ToMany parentToSubs = parentDept.addToMany(subDept, f_parentid);
     }
+
+    //聊天列表
+    private  static  void addChatLists(Schema schema){
+        Entity chatitem=schema.addEntity("ChatList");
+        chatitem.addStringProperty("id").primaryKey();//接收者id、群组id
+        chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
+        chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)
+        chatitem.addStringProperty("imgSrc");//聊天图片来源
+        chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
+        chatitem.addStringProperty("count");//群聊or单聊未读消息数
+        chatitem.addLongProperty("lastDate");//最后一条消息的时间
+    }
+
 }
