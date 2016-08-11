@@ -20,5 +20,8 @@ exports.getString = function(arg0, success, error) {//arg0：key
 exports.disconnect = function(success, error) {
     exec(success, error, "MqttChat", "disconnect", []);
 };
+exports.getUserInfo = function(success, error) {//获取用户信息
+    exec(success, error, "MqttChat", "getUserInfo", []);
+};
 
 });

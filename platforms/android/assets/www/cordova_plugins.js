@@ -106,6 +106,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.GreenDaoPlugin"
         ]
+    },
+    {
+        "file": "plugins/ThriftApiClient/www/thrift_api_client.js",
+        "id": "ThriftApiClient.thrift_api_client",
+        "clobbers": [
+            "cordova.plugins.ThriftApiClient"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -125,7 +132,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.2.0",
     "SavaLocalPlugin": "1.0.0",
     "cordova-sqlite-storage": "0.7.14",
-    "GreenDaoPlugin": "1.0.0"
+    "GreenDaoPlugin": "1.0.0",
+    "ThriftApiClient": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

@@ -8,8 +8,9 @@
 angular.module('starter', ['ionic', 'im.controllers', 'starter.services','im.routes','im.directives','monospaced.elastic','ngCordova'])
 
 
-  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory) {
+  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api) {
     $ionicPlatform.ready(function() {
+      $api.init();
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {

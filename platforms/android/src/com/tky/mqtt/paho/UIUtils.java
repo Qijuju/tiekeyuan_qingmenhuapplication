@@ -3,10 +3,13 @@ package com.tky.mqtt.paho;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Handler;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.View;
@@ -20,7 +23,7 @@ import java.io.File;
 public class UIUtils {
 	/**
 	 * 获取全局上下文
-	 * 
+	 *
 	 * @return
 	 */
 	public static Context getContext() {
@@ -29,7 +32,7 @@ public class UIUtils {
 
 	/**
 	 * 获取主线程
-	 * 
+	 *
 	 * @return
 	 */
 	public static Thread getMainThread() {
@@ -38,7 +41,7 @@ public class UIUtils {
 
 	/**
 	 * 获取主线程ID
-	 * 
+	 *
 	 * @return
 	 */
 	public static int getMainThreadId() {
@@ -54,7 +57,7 @@ public class UIUtils {
 
 	/**
 	 * 获取资源
-	 * 
+	 *
 	 * @return
 	 */
 	public static Resources getResources() {
@@ -63,7 +66,7 @@ public class UIUtils {
 
 	/**
 	 * 获取res/strings.xml中的字符串数据
-	 * 
+	 *
 	 * @param resId
 	 *            资源ID
 	 * @return
@@ -74,7 +77,7 @@ public class UIUtils {
 
 	/**
 	 * 获取res/strings.xml中的字符串数组数据
-	 * 
+	 *
 	 * @param resId
 	 * @return
 	 */
@@ -84,7 +87,7 @@ public class UIUtils {
 
 	/**
 	 * 获取res/dimens.xml中的尺寸大小数据
-	 * 
+	 *
 	 * @param resId
 	 * @return
 	 */
@@ -98,7 +101,7 @@ public class UIUtils {
 
 	/**
 	 * dip转px 1dp=1px 1dp=2px
-	 * 
+	 *
 	 * @param dip
 	 * @return
 	 */
@@ -110,7 +113,7 @@ public class UIUtils {
 
 	/**
 	 * px转dip
-	 * 
+	 *
 	 * @param px
 	 *            像素值
 	 * @return
@@ -122,7 +125,7 @@ public class UIUtils {
 
 	/**
 	 * 判断是否在主线程中执行
-	 * 
+	 *
 	 * @return
 	 */
 	public static boolean isRunInMainThread() {
@@ -131,7 +134,7 @@ public class UIUtils {
 
 	/**
 	 * 放到主线程中执行（如果在主线程中就直接运行，否则放到主线程中再执行）
-	 * 
+	 *
 	 * @param runnable
 	 */
 	public static void runInMainThread(Runnable runnable) {
@@ -146,7 +149,7 @@ public class UIUtils {
 
 	/**
 	 * java代码区设置颜色选择器的方法
-	 * 
+	 *
 	 * @param mTabTextColorResId
 	 * @return
 	 */
@@ -157,7 +160,7 @@ public class UIUtils {
 
 	/**
 	 * 布局转View
-	 * 
+	 *
 	 * @param layoutId
 	 *            布局文件资源ID
 	 * @return
@@ -168,7 +171,7 @@ public class UIUtils {
 
 	/**
 	 * 延迟一段时间执行一个方法
-	 * 
+	 *
 	 * @param runnable
 	 * @param delayTime
 	 *            延迟执行时间
@@ -179,7 +182,7 @@ public class UIUtils {
 
 	/**
 	 * 移除在当前任务中维护的任务
-	 * 
+	 *
 	 * @param runnable
 	 *            传递进来的任务
 	 */
@@ -189,7 +192,7 @@ public class UIUtils {
 
 	/**
 	 * 获取屏幕宽度
-	 * 
+	 *
 	 * @param activity
 	 * @return
 	 */
@@ -201,7 +204,7 @@ public class UIUtils {
 
 	/**
 	 * 获取屏幕高度
-	 * 
+	 *
 	 * @param activity
 	 * @return
 	 */
@@ -213,7 +216,7 @@ public class UIUtils {
 
 	/**
 	 * 获取状态栏高度
-	 * 
+	 *
 	 * @return 状态栏高度
 	 */
 	public static int getStatusBarHeight() {
@@ -228,7 +231,7 @@ public class UIUtils {
 
 	/**
 	 * 打开文件（各种类型）
-	 * 
+	 *
 	 * @param activity
 	 * @param filePath
 	 */
@@ -248,7 +251,7 @@ public class UIUtils {
 
 	/**
 	 * 判断当前版本是否兼容目标版本的方法
-	 * 
+	 *
 	 * @param versionCode
 	 * @return
 	 */
@@ -257,4 +260,29 @@ public class UIUtils {
 		return currentVersion >= versionCode;
 	}
 
+	/**
+	 * 获取手机的设备码
+	 * @return
+	 */
+	public static String getDeviceId() {
+		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+		return TelephonyMgr.getDeviceId();
+	}
+
+	/**
+	 * 获取版本名称（版本号）
+	 * @return
+	 */
+	public static String getVersion() {
+		PackageManager manager = UIUtils.getContext().getPackageManager();
+		try {
+			PackageInfo pi = manager.getPackageInfo(UIUtils.getContext().getPackageName(), 0);
+			if (pi != null) {
+				return pi.versionName;
+			}
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -736,6 +736,66 @@ angular.module('starter.services', [])
     }
   }
 })
-
+  .factory('$api', function () {//系统接口。
+    var api;
+    return {
+      init:function () {
+        document.addEventListener('deviceready',function () {
+          api = cordova.require('ThriftApiClient.thrift_api_client');
+        });
+      },
+      login:function(username,password,imCode, success, error) {
+        api.login(username,password,imCode, success, error);
+      },
+      activeUser:function(userId,imCode, success, error) {
+        api.activeUser(userId,imCode, success, error);
+      },
+      getDatetime:function(userId, success, error) {
+        api.getDatetime(userId, success, error);
+      },
+      seachUsers:function(username,searchText,pageNum,pageCount, success, error) {
+        api.seachUsers(username,searchText,pageNum,pageCount, success, error);
+      },
+      getChild:function(ID,deptID,pageNum,pageCount, success, error) {
+        api.getChild(ID,deptID,pageNum,pageCount, success, error);
+      },
+      getDeparment:function(ID,deptID, success, error) {
+        api.getDeparment(ID,deptID, success, error);
+      },
+      getUserRoot:function(ID, success, error) {
+        api.getUserRoot(ID, success, error);
+      },
+      getUser:function(userID, success, error) {
+        api.getUser(userID, success, error);
+      },
+      updatePwd:function(oldPWD, newPWD, confirmPWD, success, error) {
+        api.updatePwd(oldPWD, newPWD, confirmPWD, success, error);
+      },
+      updateUserInfo:function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
+        api.updateUserInfo(newUserInfoObj, success, error);
+      },
+      getHeadPic:function(picUserID, picSize, success, error) {
+        api.getHeadPic(picUserID, picSize, success, error);
+      },
+      setHeadPic:function(success, error) {
+        api.setHeadPic(success, error);
+      },
+      getVersionInfo:function(success, error) {
+        api.getVersionInfo(success, error);
+      },
+      getVersion:function(savePath, success, error) {
+        api.getVersion(savePath, success, error);
+      },
+      addAttention:function(membersArr, success, error) {
+        api.addAttention(membersArr, success, error);
+      },
+      removeAttention:function(membersArr, success, error) {
+        api.removeAttention(membersArr, success, error);
+      },
+      getAttention:function(success, error) {
+        api.getAttention(success, error);
+      }
+    };
+  })
 
 ;

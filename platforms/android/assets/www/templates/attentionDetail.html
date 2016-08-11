@@ -1,0 +1,81 @@
+<ion-view >
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAttention()">
+        返回
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+      <button  ng-if="personsdetail111.IsAttention" class="button button-icon icon ion-ios-star" ng-click="removeattention(personsdetail111.UserID)">
+      </button>
+      <button  ng-if="!personsdetail111.IsAttention" class="button button-icon icon ion-ios-star-outline" ng-click="addattentiondetail(personsdetail111.UserID)">
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content overflow-scroll="false">
+    <div>
+      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
+        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
+        <div class="center" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{personsdetail111.UserName}}</div>
+        <P style="font-size: 18px;color: #ffffff">{{personsdetail111.UserName}}</P>
+      </div>
+
+      <ul class="list">
+        <li class="item ">
+          <div   class="detail-top">
+            个人信息
+          </div>
+        </li>
+        <li class="item ">
+          <p>姓名</p>
+          <h2>{{personsdetail111.UserName}}</h2>
+        </li>
+        <li class="item">
+          <p>电话</p>
+          <h2>{{personsdetail111.Mobile}}</h2>
+        </li>
+        <li class="item item-button-right ">
+          <p>职位</p>
+          <h2>{{personsdetail111.Duty}}</h2>
+          <!--<a class="button  button-dark button-clear icon  ion-ios-arrow-forward"></a>-->
+        </li>
+        <li class="item">
+        <button  class="button button-full button-positive" ng-click="insertPhoneSearch(personsdetail111.UserName,personsdetail111.Mobile)">
+          保存至本地
+        </button>
+        </li>
+      </ul>
+    </div>
+
+  </ion-content>
+  <ion-footer-bar>
+    <div class="tabs tabs-stable tabs-icon-top">
+
+      <div class="tab-item ">
+        <i class="icon ion-chatbubble-working"></i>
+        创建聊天
+      </div>
+      <div class="tab-item has-badge" ng-click="callSearch(personsdetail111.Mobile)">
+        <i class="icon ion-ios-telephone" ></i>
+        打电话
+      </div>
+
+      <!--<div class="tab-item " ng-click="insertPhoneSearch(personsdetail111.UserName,personsdetail111.Mobile)" >-->
+        <!--<i class="icon ion-iphone"></i>-->
+        <!--存到手机-->
+      <!--</div>-->
+
+      <div class="tab-item " ng-click="smsSearch(personsdetail111.Mobile)">
+        <i class="icon ion-chatbox-working" ></i>
+        发短信
+      </div>
+
+
+    </div>
+  </ion-footer-bar>
+</ion-view>
+
+
+
