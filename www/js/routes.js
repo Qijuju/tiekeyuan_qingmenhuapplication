@@ -108,38 +108,45 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second',
+        url: '/second/:contactId',
         templateUrl: 'templates/contact-second.html',
-        controller: 'ContactSecondCtrl'
+        controller: 'ContactSecondCtrl',
+        cache:false
+
       })
       .state('third', {
-        url: '/third/:contactId',
+        url: '/third/:contactId/:secondname',
         templateUrl: 'templates/contact-third.html',
         controller: 'ContactThirdCtrl',
+        cache:false
 
       })
       .state('forth', {
-        url: '/forth/:contactId',
+        url: '/forth/:contactId/:secondname/:thirdname',
         templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl'
+        controller: 'ContactForthCtrl',
+        cache:false
 
       })
       .state('fifth', {
-        url: '/fifth/:contactId',
+        url: '/fifth/:contactId/:secondname/:thirdname/:forthname',
         templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl'
+        controller: 'ContactFifthCtrl',
+        cache:false
 
       })
       .state('sixth', {
-        url: '/sixth/:contactId',
+        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
         templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl'
+        controller: 'ContactSixthCtrl',
+        cache:false
 
       })
       .state('seventh', {
-        url: '/seventh/:contactId',
+        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
         templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl'
+        controller: 'ContactSeventhCtrl',
+        cache:false
 
       })
 
@@ -151,13 +158,10 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person',
+        url: '/person/:userId',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
-        params: {
-          obj: null
-        }
-
+        cache:false
       })
 
       .state('group', {
@@ -210,12 +214,6 @@ angular.module('im.routes', [])
           }
         }
       })
-      .state('local.detailas', {
-        url: '/localDetails',
-        cache: false,
-        templateUrl: 'templates/local-details.html',
-        controller: 'localDetailsCtrl',
-      })
 
       .state('search', {
         url: '/search',
@@ -266,6 +264,7 @@ angular.module('im.routes', [])
         templateUrl: 'templates/searchLocal.html',
         controller: 'searchLocalCtrl'
       })
+
       .state('attentionDetail', {
         url: '/attentionDetail/:UserIDatten',
         templateUrl: 'templates/attentionDetail.html',
