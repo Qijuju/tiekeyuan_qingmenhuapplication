@@ -3,6 +3,7 @@ package com.tky.mqtt.paho.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class GsonUtils {
@@ -34,6 +35,16 @@ public class GsonUtils {
 	 * @return
 	 */
 	public static <T> String toJson(T json, Class<T> clazz){
+		Gson gson = new Gson();
+		return gson.toJson(json, clazz);
+	}
+
+	/**
+	 * 实体转json字符串
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> String toJson(T json, Type clazz){
 		Gson gson = new Gson();
 		return gson.toJson(json, clazz);
 	}

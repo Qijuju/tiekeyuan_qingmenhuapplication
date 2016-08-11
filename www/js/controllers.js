@@ -28,7 +28,7 @@ angular.module('im.controllers', [])
 
 
     $mqtt.getUserInfo(function (msg) {
-        alert(msg.deptID)
+
     },function (msg) {
       alert(msg)
     })
@@ -260,33 +260,22 @@ angular.module('im.controllers', [])
 
 
   .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
-    // document.addEventListener('deviceready',function () {
-    //   messages.getMsgsBySingle(function (data) {
-    //     alert("调用single");
-    //     console.log(data);    //还没保存数据目前打印的是空数组
-    //     alert(data);
-    //     $scope.msgs = data;
-    //   });
-    // });
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   alert(data);
     // },function (err) {
     //   alert(err);
     // });
-    $greendao.queryData('MessagesService','where type =?','User',function (data) {
-      $scope.msgs=data;
+
+    $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','User',function (data) {
+      for(var i = 1; i <= data.length; i++) {
+          $mqtt.getDanliao().push(data[data.length-i]);
+      }
+      $scope.msgs=$mqtt.getDanliao();
     },function (err) {
       alert(err);
     });
 
-    // $greendao.loadAllData('MessagesService',function (data) {
-    //   // alert('success');
-    //   // alert(data);
-    //   $scope.msgs=data;
-    // },function (err) {
-    //   alert(err);
-    // });
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
@@ -297,8 +286,23 @@ angular.module('im.controllers', [])
 
     });
     $scope.doRefresh = function () {
-
-      $scope.$broadcast("scroll.refreshComplete")
+      $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,'+($mqtt.getDanliao().length+10),'User',function (data) {
+        if($scope.msgs.length <50){
+          for(var j=0;j<$mqtt.getDanliao().length;j++){
+            $mqtt.getDanliao().splice(j,$mqtt.getDanliao().length);//清除之前数组里存的数据
+          }
+          alert($mqtt.getDanliao().length+"come in222");
+          for(var i = 1; i <= data.length; i++) {
+            $mqtt.getDanliao().push(data[data.length-i]);
+          }
+          $scope.msgs=$mqtt.getDanliao();
+        }else if($scope.msgs.length == 50){
+          $scope.nomore="true";
+        }
+        $scope.$broadcast("scroll.refreshComplete");
+      },function (err) {
+        alert(err);
+      });
     }
 
     window.addEventListener("native.keyboardshow", function (e) {
@@ -322,29 +326,29 @@ angular.module('im.controllers', [])
       };
 
     }
-    $mqtt.arriveMsg("");
+    // $mqtt.arriveMsg("");
     $scope.$on('msgs.update',function (event) {
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
-        // $greendao.loadAllData('MessagesService',function (data) {
-        //   // alert(data+"update");
-        //   $scope.msgs=data;
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // },function (err) {
         //   alert(err);
         // });
-
-        // $scope.msgs=$mqtt.getAllMsg();
-        //alert($scope.msgs.length);
-        // $mqtt.getAllMsg($scope);
-
+        // $greendao.queryData('MessagesService','where type =? order by "when" desc ','User',function (data) {
+        //   alert(usermsgs.length+"eee");
+        //   for(var i=usermsgs.length;i<=data.length;i++){
+        //     alert(data.length-i +" fff ");
+        //     usermsgs.push(data[data.length-i]);
+        //   }
+        //   $scope.msgs=usermsgs;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
       })
 
     });
@@ -353,15 +357,10 @@ angular.module('im.controllers', [])
     $scope.$on('msgs.error',function (event) {
       //alert("发送失败");
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // $greendao.loadAllData('MessagesService',function (data) {
         //   //alert(data+"senderrlist");
         //   $scope.msgs=data;
@@ -404,34 +403,29 @@ angular.module('im.controllers', [])
     }
 
 
+    $scope.skipmessagebox=function () {
+      alert("正确进入聊天方法");
+      $state.go("historymessage");
+
+    };
+
   })
 
 
   .controller('MessageGroupCtrl',function ($scope,$state, $http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
-    // messages.getAllMsgs(function (data) {
-    //   console.log(data);    //还没保存数据目前打印的是空数组
-    //   alert(data);
-    //   $scope.groupMsgs = data;
-    // });
-    $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-      // alert("查询方法成功");
-      $scope.msgs=data;
+    $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','Group',function (data) {
+      for(var i = 1; i <= data.length; i++) {
+        $mqtt.getQunliao().push(data[data.length-i]);
+        $scope.groupmsgs=$mqtt.getQunliao();
+      }
     },function (err) {
       alert(err);
     });
-    // $greendao.loadAllData('MessagesService',function (data) {
-    //   // alert('success');
-    //   // alert(data);
-    //   $scope.msgs=data;
-    // },function (err) {
-    //   alert(err);
-    // });
-    // $scope.groupMsgs=$mqtt.getAllGroupMsg();
-
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 
+    //获取更多数据
     $scope.doRefresh = function () {
 
       $scope.$broadcast("scroll.refreshComplete")
@@ -458,18 +452,21 @@ angular.module('im.controllers', [])
       };
 
     }
-    $mqtt.rececivGroupMsg("cll");
+    $mqtt.arriveMsg("cll");
     $scope.$on('groupMsgs.update',function (event) {
-
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
+      //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+      //     $scope.msgs=data;
+      //     $timeout(function() {
+      //     viewScroll.scrollBottom();
+      //   }, 100);
+      // },function (err) {
+      //   alert(err);
+      // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -482,21 +479,25 @@ angular.module('im.controllers', [])
         // $scope.groupMsgs=$mqtt.getAllGroupMsg();
         // $mqtt.getAllGroupMsg($scope);
         // alert($scope.groupMsgs.length)
-        viewScroll.scrollBottom();
+        // viewScroll.scrollBottom();
       })
 
     });
 
     $scope.$on('groupMsgs.error',function (event) {
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
+        // $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+        //   $scope.msgs=data;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -508,7 +509,6 @@ angular.module('im.controllers', [])
         // });
         // $scope.groupMsgs=$mqtt.getAllGroupMsg();
         // $mqtt.getAllGroupMsg($scope);
-        viewScroll.scrollBottom();
       })
     });
 
@@ -547,24 +547,25 @@ angular.module('im.controllers', [])
 
 
 
-  .controller('MessageCtrl', ['$scope', '$http', '$state','$mqtt', function ($scope, $http, $state) {
+  .controller('MessageCtrl', ['$scope', '$http', '$state','$mqtt', function ($scope, $http, $state,$mqtt) {
 
-    // $mqtt.arriveMsg("");
-    //
-    // $scope.$on('msgs.update',function (event) {
-    //
-    //   $scope.$apply(function () {
-    //     $scope.recentMsgs=$mqtt.getAllMsg();
-    //     $scope.lastCount=$mqtt.getMsgCount();
-    //     alert('放入单聊页面');
-    //   })
-    //
-    // });
+    $mqtt.arriveMsg("");
+
+    $scope.$on('msgs.update',function (event) {
+
+      $scope.$apply(function () {
+        $scope.danliaomsg=$mqtt.getDanliao();
+        $scope.qunliaomsg=$mqtt.getQunliao();
+        $scope.lastCount=$mqtt.getMsgCount();
+        $scope.lastGroupCount=$mqtt.getMsgGroupCount();
+      })
+
+    });
 
     $scope.goDetailMessage=function () {
 
-      // $mqtt.clearMsgCount();
-      // $scope.lastCount=$mqtt.getMsgCount();
+      $mqtt.clearMsgCount();
+      $scope.lastCount=$mqtt.getMsgCount();
       $state.go("messageDetail");
 
     };
@@ -573,23 +574,10 @@ angular.module('im.controllers', [])
     }
 
 
-    // $mqtt.rececivGroupMsg("sy");
-    //
-    // $scope.$on('groupMsgs.update',function (event) {
-    //
-    //   $scope.$apply(function () {
-    //     $scope.recentGroupMsgs=$mqtt.getAllGroupMsg();
-    //     $scope.lastGroupCount=$mqtt.getGroupMsgCount();
-    //     alert('放入群组');
-    //
-    //   })
-    //
-    // });
 
     $scope.goGroupMessage=function () {
-      // $mqtt.clearGroupMsgCount();
-      // $scope.lastGroupCount=$mqtt.getGroupMsgCount();
-
+      $mqtt.clearMsgGroupCount();
+      $scope.lastGroupCount=$mqtt.getMsgGroupCount();
       $state.go("messageGroup");
     }
 
@@ -624,19 +612,23 @@ angular.module('im.controllers', [])
   .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
     $scope.name="";
     $scope.password="";
+
     document.addEventListener('deviceready',function () {
       $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $mqtt.startMqttChat(message + ',zhuanjiazu');
-          $state.go('tab.message');
-          return;
-        }
-      },function (message) {
-        alert(message);
-      });
+      if(!$mqtt.isLogin()) {
+        $mqtt.getMqtt().getString('name', function (message) {
+          if (message != null && message != '') {
+            $mqtt.startMqttChat(message + ',zhuanjiazu');
+            $mqtt.setLogin(true);
+            $state.go('tab.message');
+            return;
+          }
+        }, function (message) {
+          alert(message);
+        });
+      }
       /*$cordovaPreferences.fetch('name')
         .success(function(value) {
           if(value != null && value != ''){
@@ -682,6 +674,10 @@ angular.module('im.controllers', [])
             alert(message);
           });
         }*/
+        // alert(message.toString());
+        $api.getVersion("", function (msg) {
+        },function (msg) {
+        });
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
@@ -690,6 +686,7 @@ angular.module('im.controllers', [])
           alert(message);
         });
         $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
+        $mqtt.setLogin(true);
         $state.go('tab.message');
       }, function (message) {
         //alert(message);
@@ -720,6 +717,9 @@ angular.module('im.controllers', [])
      });*/
     $scope.addFriend1=function () {
       $state.go("myAttention1");
+    }
+    $scope.goHistoryMessage=function () {
+      $state.go("historyMessage");
     }
   })
 
@@ -855,7 +855,11 @@ angular.module('im.controllers', [])
     }
   })
 
+  //历史消息controller
+  .controller('HistoryCtrl',function ($scope,$state) {
 
+    alert("come 正确的页面了");
+  })
 
 
   .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
@@ -1103,7 +1107,7 @@ angular.module('im.controllers', [])
 
 
   })
-.controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222) {
+.controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji) {
 
   $scope.query = "";
   $mqtt.getUserInfo(function (msg) {
@@ -1112,10 +1116,10 @@ angular.module('im.controllers', [])
   },function (msg) {
     alert(msg);
   });
-
+  //搜索功能
   $scope.hasmore=true;
   $scope.page =1;
-  $scope.count=30;
+  $scope.count=15;
   $scope.persons=[];
   $scope.query1=""
   $scope.dosearch = function(query) {
@@ -1132,7 +1136,7 @@ angular.module('im.controllers', [])
         $scope.query1 =query;
         $scope.persons=$search111.getPersons().searchResult;
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        if ($scope.persons.length>=30){
+        if ($scope.persons.length>=15){
           $scope.hasmore=true
           $scope.page++
         }else {
@@ -1143,7 +1147,7 @@ angular.module('im.controllers', [])
     });
   }
 
-
+//上拉加载
   $scope.loadMore = function(){
     if ($scope.page<2||!$scope.hasmore){
       $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -1151,37 +1155,78 @@ angular.module('im.controllers', [])
     }
      // alert("id="+$scope.id+",page="+$scope.page+",count="+$scope.count+",query1="+$scope.query1)
     $search222.search2222($scope.id,$scope.page,$scope.count,$scope.query1);
-    $scope.$on('persons2.update2',function (event) {
-      $scope.$apply(function () {
-        var person=$search222.getPersons2().searchResult;
-        // alert("person的length"+person.length)
-        for (var i = 0; i < person.length; i++) {
-          $scope.persons.push(person[i]);
-        }
-        if (person.length>=30){
-          $scope.hasmore=true
-          $scope.page++
-           $scope.$broadcast('scroll.infiniteScrollComplete');
-        }else if(person.length==0){
-          alert("没有更多数据")
-          $scope.hasmore=false
-           $scope.$broadcast('scroll.infiniteScrollComplete');
-        }else {
-          alert("没有更多数据")
-          $scope.hasmore=false
-           $scope.$broadcast('scroll.infiniteScrollComplete');
-        }
+  };
+  $scope.$on('persons2.update2',function (event) {
+    $scope.$apply(function () {
+      if ($search222.getPersons2()===null){
+        alert("没有更多数据")
+        $scope.hasmore=false
         $scope.$broadcast('scroll.infiniteScrollComplete');
-      })
+      }else {
+        var person=$search222.getPersons2().searchResult;
+      }
 
-    });
+      for (var i = 0; i < person.length; i++) {
+        $scope.persons.push(person[i]);
+      }
+      if (person.length>=15){
+        $scope.hasmore=true
+        $scope.page++
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }else {
+        alert("没有更多数据")
+        $scope.hasmore=false
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    })
+  });
+
+  //点击头像弹窗
+  $scope.$on('person.dianji',function (event) {
+    $scope.$apply(function () {
+      $scope.phoneattention=$searchdatadianji.getPersonDetaildianji().user.Mobile;
+      $scope.nameattention=$searchdatadianji.getPersonDetaildianji().user.UserName;
+//打电话
+      $scope.call = function(phonenumber,name) {
+        $phonepluin.call(phonenumber,name);
+      };
+      //发短信
+      $scope.sms = function(phonenumber) {
+        $phonepluin.sms(phonenumber);
+      };
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          { text: '打电话' },
+          { text: '发短信'}
+        ],
+        titleText: $scope.nameattention,
+        cancelText: '取消',
+        buttonClicked: function(index) {
+          if(index==0){
+            $scope.call($scope.phoneattention,$scope.nameattention);
+          }else {
+            $scope.sms($scope.phoneattention);
+          }
+          return true;
+        }
+
+      });
+      // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+    })
+  });
+
+  $scope.tanchuangsearch = function(idsearch) {
+    //获取人员详细信息
+    $searchdatadianji.personDetaildianji(idsearch);
+
   };
 
-
-
+  //跳到详情界面
   $scope.jumpSearch=function (id) {
     $state.go("searchdetail",{
-      "UserID":id
+      "UserID":id,
     });
   }
 
@@ -1189,37 +1234,19 @@ angular.module('im.controllers', [])
 })
 
 
-.controller('searchDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata) {
+.controller('searchDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata,$api,$addattentionser) {
 
     $scope.backSearch = function () {
       $state.go("search");
     }
   $scope.UserID111 = $stateParams.UserID;
-  // //alert($scope.UserID111)
-  // $scope.personsdetail="";
-  //
-  // $api.getUser($scope.UserID111,function (msg) {
-  //   $scope.personsdetail=msg.user;
-  // },function (msg) {
-  //   alert(msg);
-  // });
-
 
   $searchdata.personDetail($scope.UserID111);
   $scope.$on('person.update',function (event) {
     $scope.$apply(function () {
         $scope.personsdetail=$searchdata.getPersonDetail().user;
     })
-
   });
-  // //头像里的后两位名字
-  // $scope.personsdetail = $stateParams.obj;
-  // if ($scope.personsdetail.UserName.length > 2) {
-  //   $scope.localsimpleName = $scope.personsdetail.UserName.substr(($scope.personsdetail.UserName.length-2), $scope.personsdetail.UserName.length);
-  // } else {
-  //   $scope.localsimpleName = $scope.personsdetail.UserName;
-  //
-  // }
 
   //存本地
   $scope.insertPhoneSearch = function(name,phonenumber) {
@@ -1234,6 +1261,34 @@ angular.module('im.controllers', [])
   $scope.smsSearch = function(phonenumber) {
     $phonepluin.sms(phonenumber);
   };
+
+
+  //取消关注
+  $scope.removeattention=function (id) {
+    var membersAerr=[];
+    membersAerr.push(id);
+    $addattentionser.removeAttention111(membersAerr);
+  }
+  $scope.$on('attention.delete',function (event) {
+    $scope.$apply(function () {
+      $scope.personsdetail.IsAttention=$addattentionser.getaddAttention111();
+      // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+    })
+  });
+
+  //添加关注
+  $scope.addattentiondetail = function(id) {
+    var membersAerr=[];
+    membersAerr.push(id);
+    $addattentionser.addAttention111(membersAerr);
+  };
+  $scope.$on('attention.add',function (event) {
+    $scope.$apply(function () {
+      $scope.personsdetail.IsAttention=$addattentionser.getaddAttention111();
+      // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+    })
+  });
+
 })
 
 
@@ -1282,5 +1337,195 @@ angular.module('im.controllers', [])
 
     };
 
+
+  })
+
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji) {
+
+      // $myattentionser.getAttentionList();
+      // $scope.$on('attention.update',function (event) {
+      //   $scope.$apply(function () {
+      //     $scope.contactsListatten=$myattentionser.getAttentionaaList();
+      //     //alert($scope.localpersons)
+      //   })
+      // });
+
+    $scope.jumpattenDetial=function (id) {
+      // $searchdatadianji.personDetaildianji(id);
+      $state.go("attentionDetail",{
+        "UserIDatten":id
+        // "youmeiyou":$scope.youmeiyou,
+      });
+
+    }
+
+    $scope.$on('person.update',function (event) {
+      $scope.$apply(function () {
+        $scope.phoneattention=$searchdata.getPersonDetail().user.Mobile;
+        $scope.nameattention=$searchdata.getPersonDetail().user.UserName;
+//打电话
+        $scope.call = function(phonenumber,name) {
+          $phonepluin.call(phonenumber,name);
+        };
+        //发短信
+        $scope.sms = function(phonenumber) {
+          $phonepluin.sms(phonenumber);
+        };
+        // 显示操作表
+        $ionicActionSheet.show({
+          buttons: [
+            { text: '打电话' },
+            { text: '发短信'}
+          ],
+           titleText: $scope.nameattention,
+          cancelText: '取消',
+          buttonClicked: function(index) {
+            if(index==0){
+              $scope.call($scope.phoneattention,$scope.nameattention);
+            }else {
+              $scope.sms($scope.phoneattention);
+            }
+            return true;
+          }
+
+        });
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
+    // 点击按钮触发，或一些其他的触发条件
+    $scope.tanchuangattention = function(id) {
+      //获取人员详细信息
+      $searchdata.personDetail(id);
+
+    };
+
+    // //取消关注
+    // $scope.removeattention=function (id) {
+    //   var deletemembersArr=[];
+    //   deletemembersArr.push(id);
+    //   $api.removeAttention(deletemembersArr, function (msg) {
+    //     alert("取消关注成功");
+    //   }, function (msg) {
+    //     alert("取消关注失败");
+    //   });
+    //
+    //   $myattentionser.getAttentionList();
+    //   $scope.$on('attention.update',function (event) {
+    //     $scope.$apply(function () {
+    //       $scope.contactsListatten=$myattentionser.getAttentionaaList();
+    //       //alert($scope.localpersons)
+    //     })
+    //   });
+    // }
+    // Setup the loader
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'silde-in-up',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
+    // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
+    $timeout(function () {
+      $ionicLoading.hide();
+      $myattentionser.getAttentionList();
+      $scope.$on('attention.update',function (event) {
+        $scope.$apply(function () {
+          $scope.contactsListatten=$myattentionser.getAttentionaaList();
+          //alert($scope.localpersons)
+        })
+      });
+    }, 2000);
+
+
+  })
+  .controller('attentionDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata,$api,$searchlocal,$addattentionser) {
+    //返回关注列表界面
+    $scope.backAttention = function () {
+      $state.go("myAttention");
+    }
+    //拿上一个页面传的参数
+    $scope.UserIDattention = $stateParams.UserIDatten;
+    // $scope.$on('$ionicView.loaded', function() {
+    //   $scope.youmeiyou = $stateParams.youmeiyou;
+    //   alert("111详情界面有没有啊"+$scope.youmeiyou);
+    // });
+    // $scope.youmeiyou = $stateParams.youmeiyou;
+    // alert("拿到的数据是这样的"+$scope.youmeiyou);
+
+
+    // $scope.$on('personyes.updateno',function (event) {
+    //   alert("走这了2");
+    //   $scope.$apply(function () {
+    //     alert("走这了3");
+    //     $scope.youmeiyou=$searchdata.getYoumeiyou();
+    //     alert($scope.youmeiyou+"到底");
+    //     // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+    //
+    //   })
+    // });
+
+
+    //获取人员详细信息
+    $searchdata.personDetail($scope.UserIDattention);
+    $scope.$on('person.update',function (event) {
+      $scope.$apply(function () {
+        $scope.personsdetail111=$searchdata.getPersonDetail().user;
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
+
+
+    // $scope.number=$searchdata.getPersonDetail().user.Mobile;
+    // alert($scope.number)
+
+    //存本地
+    $scope.insertPhoneSearch = function(name,phonenumber) {
+
+      $savaLocalPlugin.insert(name,phonenumber);
+    };
+
+    //打电话
+    $scope.callSearch = function(phonenumber,name) {
+      $phonepluin.call(phonenumber,name);
+    };
+    //发短信
+    $scope.smsSearch = function(phonenumber) {
+      $phonepluin.sms(phonenumber);
+    };
+
+
+    //取消关注
+    $scope.removeattention=function (id) {
+      var membersAerr=[];
+      membersAerr.push(id);
+      $addattentionser.removeAttention111(membersAerr);
+    }
+    $scope.$on('attention.delete',function (event) {
+      $scope.$apply(function () {
+        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
+
+    //添加关注
+    $scope.addattentiondetail = function(id) {
+      var membersAerr=[];
+      membersAerr.push(id);
+      $addattentionser.addAttention111(membersAerr);
+    };
+    $scope.$on('attention.add',function (event) {
+      $scope.$apply(function () {
+        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
+
+  })
+  .controller('historyMessageCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+    $scope.goSetting = function () {
+      $state.go("personalSetting");
+    }
 
   })

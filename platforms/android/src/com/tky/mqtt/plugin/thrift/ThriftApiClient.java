@@ -1,9 +1,13 @@
 package com.tky.mqtt.plugin.thrift;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
+import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -14,21 +18,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import im.model.RST;
+import im.model.User;
 import im.server.Department.IMDepartment;
 import im.server.Department.RSTgetChild;
 import im.server.Department.RSTgetDept;
 import im.server.Department.RSTgetRoot;
+import im.server.File.IMFile;
+import im.server.File.RSTversionInfo;
 import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
 import im.server.System.RSTsysTime;
 import im.server.User.IMUser;
 import im.server.User.RSTgetUser;
+import im.server.attention.IMAttention;
+import im.server.attention.RSTgetAttention;
 
 /**
  * 作者：
@@ -410,6 +425,13 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
+    //****************用户接口****************//
+
+    /**
+     * 获取用户详细信息接口
+     * @param args
+     * @param callbackContext
+     */
     public void getUser(final JSONArray args, final CallbackContext callbackContext){
         try {
             String login_info = SPUtils.getString("login_info", "");
@@ -458,6 +480,494 @@ public class ThriftApiClient extends CordovaPlugin {
     }
 
     /**
+     * 修改用户密码接口
+     * @param args
+     * @param callbackContext
+     */
+    public void updatePwd(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = getUserID();
+            String orgPWD = args.getString(0);;
+            String newPWD = args.getString(1);
+            String confirmPWD = args.getString(2);
+            SystemApi.updatePwd(ID, orgPWD, newPWD, confirmPWD, new AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.UserPwdUpdate_call userPwdUpdate_call) {
+                    try {
+                        RST result = userPwdUpdate_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RST.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改用户信息的接口
+     * @param args
+     * @param callbackContext
+     */
+    public void updateUserInfo(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String ID = getUserID();
+            JSONObject obj = args.getJSONObject(0);
+            Map<String, String> updateInfo = jsonobj2Map(obj);
+            SystemApi.updateUserInfo(ID, updateInfo, new AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.UserUpdate_call userUpdate_call) {
+                    try {
+                        RST result = userUpdate_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RST.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取头像
+     * @param args
+     * @param callbackContext
+     */
+    public void getHeadPic(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String picUserID = args.getString(0);//查询的是谁的图片
+            String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
+            SystemApi.getHeadPic(getUserID(), picUserID, picSize, new GetHeadPicCallback(callbackContext));
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 上传头像
+     * @param args
+     * @param callbackContext
+     */
+    public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
+            SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
+                    try {
+                        RST result = setHeadPic_call.getResult();
+                        if (result != null && result.result) {
+                            setResult("success", PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取版本信息
+     * @param args
+     * @param callbackContext
+     */
+    public void getVersionInfo(final JSONArray args, final CallbackContext callbackContext){
+
+        try {
+            SystemApi.getVersionInfo(getUserID(), new AsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.GetVersionInfo_call getVersionInfo_call) {
+                    try {
+                        RSTversionInfo result = getVersionInfo_call.getResult();
+                        if (result != null && result.result) {
+                            String info = result.getInfo();
+                            setResult("success", PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("网络异常！", PluginResult.Status.OK, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 下载APK（新版本）
+     * @param args
+     * @param callbackContext
+     */
+    public void getVersion(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            SystemApi.getVersionInfo(getUserID(), new AsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.GetVersionInfo_call getVersionInfo_call) {
+                    String savePath = null;
+                    try {
+                        RSTversionInfo result = getVersionInfo_call.getResult();
+                        if (result != null && result.result) {
+                            String info = "{" + result.getInfo() + "}";
+                            JSONObject obj = new JSONObject(info);
+                            String versionCode = obj.getString("versionCode");
+                            if (isNeedsUpgrade(UIUtils.getVersion(), versionCode)) {
+                                savePath = args.getString(0);
+                                savePath = FileUtils.getDownloadDir() + File.separator + "apk";
+                                boolean success = SystemApi.getVersion(savePath, "149435"/*getUserID()*/, versionCode);
+                                setResult("success", PluginResult.Status.OK, callbackContext);
+                            } else {
+                                setResult("已是最新版本，无需更新！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        } else {
+                            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加关注(列表)
+     * @param args
+     * @param callbackContext
+     */
+    public void addAttention(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            JSONArray membersArr = args.getJSONArray(0);
+            List<String> members = jsonArray2List(membersArr);
+            SystemApi.addAttention(getUserID(), members, new AsyncMethodCallback<IMAttention.AsyncClient.AddAttention_call>() {
+                @Override
+                public void onComplete(IMAttention.AsyncClient.AddAttention_call addAttention_call) {
+                    try {
+                        RST result = addAttention_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            if (result.result) {
+                                setResult("success", PluginResult.Status.OK, callbackContext);
+                            } else {
+                                setResult("添加失败！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 取消关注（列表）
+     * @param args
+     * @param callbackContext
+     */
+    public void removeAttention(final JSONArray args, final CallbackContext callbackContext){
+        JSONArray membersArr = null;
+        try {
+            membersArr = args.getJSONArray(0);
+            List<String> members = jsonArray2List(membersArr);
+            SystemApi.removeAttention(getUserID(), members, new AsyncMethodCallback<IMAttention.AsyncClient.RemoveAttention_call>() {
+                @Override
+                public void onComplete(IMAttention.AsyncClient.RemoveAttention_call removeAttention_call) {
+                    try {
+                        RST result = removeAttention_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            if (result.result) {
+                                setResult("success", PluginResult.Status.OK, callbackContext);
+                            } else {
+                                setResult("删除失败！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取关注列表
+     * @param args
+     * @param callbackContext
+     */
+    public void getAttention(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            SystemApi.getAttention(getUserID(), new AsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call>() {
+                @Override
+                public void onComplete(IMAttention.AsyncClient.GetAttention_call getAttention_call) {
+                    try {
+                        RSTgetAttention result = getAttention_call.getResult();
+                        if (result != null && result.result) {
+                            List<User> attentions = result.getAttentions();
+                            String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<User>>() {
+                            }.getType());
+                            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 是否需要升级，传入的新老版本都要以数字和小数点组合
+     * @param oldVersionName
+     * @param newVersionName
+     * @return
+     */
+    private boolean isNeedsUpgrade(String oldVersionName, String newVersionName){
+        String[] oldStr = oldVersionName.split("\\.");
+        String[] newStr = newVersionName.split("\\.");
+        boolean flag = false;
+        for (int i = 0; i < (newStr.length <= oldStr.length ? newStr.length : oldStr.length); i++) {
+            if (Integer.parseInt(newStr[i]) > Integer.parseInt(oldStr[i])) {
+                flag = true;
+                break;
+            } else if(Integer.parseInt(newStr[i]) < Integer.parseInt(oldStr[i])) {
+                flag = false;
+                break;
+            }
+        }
+        //如果新的版本的长度大于旧的版本长度的时候，判断后面的数字是否大于0,如果等于0，则不需要管了，如果大于0则需要更新
+        if (!flag && newStr.length > oldStr.length && newVersionName.substring(0, oldStr.length) != null
+                && newVersionName.substring(0, oldStr.length).equals(oldVersionName)) {
+            String leftVersion = newVersionName.substring(oldStr.length, newVersionName.length());
+            String[] leftVersionStr = leftVersion.split("\\.");
+            if (leftVersionStr.length > 0) {
+                for (int i = 0; i < leftVersionStr.length; i++) {
+                    if ("0".equals(leftVersionStr[i])) {
+                        continue;
+                    }else {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * 将JSONArray转成List<String>
+     * @param membersArr
+     * @return
+     * @throws JSONException
+     */
+    private List<String> jsonArray2List(JSONArray membersArr) throws JSONException {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < membersArr.length(); i++) {
+            list.add(membersArr.getString(i));
+        }
+        return list;
+    }
+
+    /**
+     * 将JSONObject转成Map<String, String>集合
+     * @param obj
+     * @return
+     * @throws JSONException
+     */
+    public Map<String, String> jsonobj2Map(JSONObject obj) throws JSONException {
+        Map<String, String> map = new HashMap<String, String>();
+        for (Iterator<String> keys = obj.keys(); obj.keys().hasNext();) {
+            String key = keys.next();
+            String value = obj.getString(key);
+            map.put(key, value);
+        }
+        return map;
+    }
+
+    /**
+     * 获取当前登录的用户ID
+     * @return
+     */
+    public String getUserID() throws JSONException {
+        JSONObject userInfo = getUserInfo();
+        return userInfo.getString("userID");
+    }
+
+    public JSONObject getUserInfo() throws JSONException {
+        String login_info = SPUtils.getString("login_info", "");
+        return new JSONObject(login_info);
+    }
+
+    /**
      * 设置返回信息
      * @param result 返回结果数据
      * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
@@ -476,6 +986,18 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    private void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);

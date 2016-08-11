@@ -130,6 +130,9 @@ angular.module('starter.services', [])
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
     var msgs=new Array();
+    var danliao=new Array();
+    var qunliao=new Array();
+
     var groupMsgs=new Array();
     var lastMsgs=new Array();
     var size;
@@ -170,24 +173,21 @@ angular.module('starter.services', [])
         messageDetail.isFailure='false';
 
         mqtt.sendMsg(topic, messageDetail, function (message) {
-          // msgs.push(messageDetail);
+          danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
-            // alert(data);
           },function (err) {
             alert(err+"sendmistake");
           });
-          // messages.addMsgs(messageDetail);
           $rootScope.$broadcast('msgs.update');
           return "成功";
         },function (message) {
           messageDetail.isFailure='true';
-          // msgs.push(messageDetail);
+          danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
             // alert(data);
           },function (err) {
             // alert(err+"msgerr");
           });
-          // messages.addMsgs(messageDetail);
           $rootScope.$broadcast('msgs.error');
           return "失败";
         });
@@ -196,6 +196,7 @@ angular.module('starter.services', [])
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
+
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.account=message.account;
@@ -207,13 +208,18 @@ angular.module('starter.services', [])
           arriveMessage.platform=message.platform;
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
-          // msgs.push(arriveMessage);
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
-            // alert(data+"aaaaa");
+            // alert(data+"shoudaole");
           },function (err) {
             alert(err+"arrmistake");
           });
-          count++;
+          if (message.type==="User"){
+            count++;
+            danliao.push(arriveMessage);
+          }else {
+            groupCount++;
+            qunliao.push(arriveMessage);
+          }
           $rootScope.$broadcast('msgs.update');
 
           return size;
@@ -225,12 +231,27 @@ angular.module('starter.services', [])
         return "nihao";
       },
 
+      getDanliao:function () {
+        return danliao;
+      },
+      getQunliao:function () {
+        return qunliao;
+      },
+
       getMsgCount:function () {
         return count;
       },
 
       clearMsgCount:function () {
         count=0;
+      },
+
+      getMsgGroupCount:function () {
+        return groupCount;
+      },
+
+      clearMsgGroupCount:function () {
+        groupCount=0;
       },
 
 
@@ -246,102 +267,95 @@ angular.module('starter.services', [])
         messageReal.platform='Windows';
         messageReal.when='lll';
         messageReal.isFailure='false';
-        // messageReal.topic=topic;
-        // messageReal.content=content;
-        // messageReal.id=id;
-        // messageReal.isFromMe=true;
-        // messageReal.isSingle=false;
         mqtt.sendMsg(topic, messageReal, function (message) {
-          // msgs.push(messageReal);
+          qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // alert("群组消息保存成功");
           },function (err) {
             alert("群组消息保存失败");
           });
-          // messages.addMsgs(messageReal);
           $rootScope.$broadcast('groupMsgs.update');
           return "成功";
         },function (message) {
           messageReal.isFailure=true;
-          groupMsgs.push(messageReal);
+          qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // alert(data);
           },function (err) {
             // alert(err+"msgerr");
           });
-          // messages.addMsgs(messageReal);
           $rootScope.$broadcast('groupMsgs.error');
           return "失败";
         });
         return "啥也不是";
       },
 
-      rececivGroupMsg:function (topic) {
-
-        mqtt.getChats(topic,function (message) {
-          if(!(message.id===topic)){
-
-            var messageGroup={};
-            messageGroup._id=message._id;
-            messageGroup.account=message.account;
-            messageGroup.sessionid=message.sessionid;
-            messageGroup.type=message.type;
-            messageGroup.from=message.from;
-            messageGroup.message=message.message;
-            messageGroup.messagetype=message.messagetype;
-            messageGroup.platform=message.platform;
-            messageGroup.when=message.when;
-            messageGroup.isFailure='false';
-            // msgs.push(messageGroup);
-            $greendao.saveObj('MessagesService',messageGroup,function (data) {
-              // alert("群组接收消息保存成功");
-            },function (err) {
-              alert("群组接收消息保存失败");
-            });
-            // messages.addMsgs(messageGroup);
-            groupCount++;
-            $rootScope.$broadcast('groupMsgs.update');
-            return size;
-          }
-        },function (message) {
-          return 0;
-        });
-
-        return "nihao";
-      },
-
-      getMsgGroupCount:function () {
-        return groupCount;
-      },
-
-      clearMsgGroupCount:function () {
-        groupCount=0;
-      },
+      // rececivGroupMsg:function (topic) {
+      //
+      //   mqtt.getChats(topic,function (message) {
+      //     if(!(message.id===topic)){
+      //
+      //       var messageGroup={};
+      //       messageGroup._id=message._id;
+      //       messageGroup.account=message.account;
+      //       messageGroup.sessionid=message.sessionid;
+      //       messageGroup.type=message.type;
+      //       messageGroup.from=message.from;
+      //       messageGroup.message=message.message;
+      //       messageGroup.messagetype=message.messagetype;
+      //       messageGroup.platform=message.platform;
+      //       messageGroup.when=message.when;
+      //       messageGroup.isFailure='false';
+      //       // msgs.push(messageGroup);
+      //       $greendao.saveObj('MessagesService',messageGroup,function (data) {
+      //         // alert("群组接收消息保存成功");
+      //       },function (err) {
+      //         alert("群组接收消息保存失败");
+      //       });
+      //       // messages.addMsgs(messageGroup);
+      //       groupCount++;
+      //       $rootScope.$broadcast('groupMsgs.update');
+      //       return size;
+      //     }
+      //   },function (message) {
+      //     return 0;
+      //   });
+      //
+      //   return "nihao";
+      // },
 
 
 
 
-      getAllMsg:function () {
-        // messages.getMsgsBySingle(function (data) {
-        //   $scope.msgs=data;
-        // })
-        return msgs;
-      },
 
-      getAllGroupMsg:function () {
-        // messages.getMsgsBySingle(function (data) {
-        //   $scope.groupMsgs=data;
-        // })
-        return msgs;
-      },
-      disconnect:function (success, error) {
-        mqtt.disconnect(success, error);
+
+      // getAllMsg:function () {
+      //   // messages.getMsgsBySingle(function (data) {
+      //   //   $scope.msgs=data;
+      //   // })
+      //   return msgs;
+      // },
+      //
+      // getAllGroupMsg:function () {
+      //   // messages.getMsgsBySingle(function (data) {
+      //   //   $scope.groupMsgs=data;
+      //   // })
+      //   return msgs;
+      // },
+      disconnect:function () {
+        mqtt.disconnect();
       },
       save:function (key,value) {
         mqtt.save(key,value);
       },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);
+      },
+      setLogin:function (loginStatus) {
+        isLogin = loginStatus;
+      },
+      isLogin:function () {
+        return isLogin;
       }
 
 
@@ -726,13 +740,45 @@ angular.module('starter.services', [])
       },
       getUser:function(userID, success, error) {
         api.getUser(userID, success, error);
+      },
+      updatePwd:function(oldPWD, newPWD, confirmPWD, success, error) {
+        api.updatePwd(oldPWD, newPWD, confirmPWD, success, error);
+      },
+      updateUserInfo:function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
+        api.updateUserInfo(newUserInfoObj, success, error);
+      },
+      getHeadPic:function(picUserID, picSize, success, error) {
+        api.getHeadPic(picUserID, picSize, success, error);
+      },
+      setHeadPic:function(success, error) {
+        api.setHeadPic(success, error);
+      },
+      getVersionInfo:function(success, error) {
+        api.getVersionInfo(success, error);
+      },
+      getVersion:function(savePath, success, error) {
+        api.getVersion(savePath, success, error);
+      },
+      addAttention:function(membersArr, success, error) {
+        api.addAttention(membersArr, success, error);
+      },
+      removeAttention:function(membersArr, success, error) {
+        api.removeAttention(membersArr, success, error);
+      },
+      getAttention:function(success, error) {
+        api.getAttention(success, error);
       }
     };
   })
 
 .factory('$searchdata',function ($api,$rootScope) {
-
+  var youmeiyou;
   var persondetail;
+  var contactPlugin;
+  document.addEventListener('deviceready',function () {
+    contactPlugin=cordova.require('localContact.localContact');
+
+  });
 
   return{
     personDetail:function (userID) {
@@ -744,13 +790,45 @@ angular.module('starter.services', [])
 
       });
     },
-
     getPersonDetail:function () {
       return persondetail;
+    },
+
+    getyesorno:function (number) {
+      contactPlugin.getLocalContactsInfosBynumber(number,function (message) {
+        youmeiyou= message;
+      //  alert("真实请求的是这个"+youmeiyou)
+        $rootScope.$broadcast('personyes.updateno');
+      },function (message) {
+
+      });
+    },
+    getYoumeiyou:function () {
+      return youmeiyou;
     }
   }
 
 })
+  .factory('$searchdatadianji',function ($api,$rootScope) {
+    var persondetaildianji;
+
+    return{
+      personDetaildianji:function (userID) {
+        $api.getUser(userID,function (msg) {
+          persondetaildianji=msg;
+          $rootScope.$broadcast('person.dianji');
+
+        },function (msg) {
+
+        });
+      },
+      getPersonDetaildianji:function () {
+        return persondetaildianji;
+      },
+
+    }
+
+  })
 
   .factory('$search111',function ($api,$rootScope) {
 
@@ -772,7 +850,7 @@ angular.module('starter.services', [])
     }
 
   })
-  
+
   .factory('$search222',function ($api,$rootScope) {
 
     var persons2;
@@ -780,10 +858,13 @@ angular.module('starter.services', [])
       search2222:function (userid,page,count,query) {
         $api.seachUsers(userid,query,page,count,function (msg) {
           persons2=msg;
+          if (msg.searchCount==0){
+            persons2=null;
+          }
           $rootScope.$broadcast('persons2.update2');
-
         },function (msg) {
-          alert(msg);
+          persons2=null;
+          $rootScope.$broadcast('persons2.update2');
         });
       },
 
@@ -813,17 +894,63 @@ angular.module('starter.services', [])
       },
       getLocalContacts:function () {
         return localpersons;
-      },
-    }
+      }
+
+    };
+
 
 
   })
 
 
 
+  .factory('$myattentionser',function ($api,$rootScope) {
+    var attentionList;
+    return{
+      getAttentionList:function () {
+        $api.getAttention(function (msg) {
+          attentionList=msg;
+          $rootScope.$broadcast('attention.update');
+        },function (msg) {
+          alert(msg);
+        });
+      },
 
+      getAttentionaaList:function () {
+        return attentionList;
+      }
+    }
 
+  })
 
+  .factory('$addattentionser',function ($api,$rootScope) {
+    var addwancheng;
+    return{
+      addAttention111:function (membersAerr) {
+        $api.addAttention(membersAerr,function (msg) {
+          addwancheng=true;
+          $rootScope.$broadcast('attention.add');
+        },function (msg) {
+          alert("添加关注失败")
+          $rootScope.$broadcast('attention.add');
+        });
+      },
+      removeAttention111:function (membersAerr) {
+        $api.removeAttention(membersAerr,function (msg) {
+          addwancheng=false;
+          $rootScope.$broadcast('attention.delete');
+        },function (msg) {
+          alert("取消关注失败")
+          $rootScope.$broadcast('attention.delete');
+        });
+      },
+
+      getaddAttention111:function () {
+        return addwancheng;
+      }
+    }
+
+  })
 
 
 

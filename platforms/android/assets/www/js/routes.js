@@ -69,8 +69,8 @@ angular.module('im.routes', [])
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
-
-
+        controller: 'myattentionaaaSelectCtrl',
+        cache: false
       })
 
 
@@ -228,7 +228,7 @@ angular.module('im.routes', [])
         url: '/searchdetail/:UserID',
         templateUrl: 'templates/searchDetail.html',
         controller: 'searchDetailCtrl',
-        cache: false
+        cache:false
       })
 
       .state('addnewpersonfirst', {
@@ -265,6 +265,19 @@ angular.module('im.routes', [])
         url: '/searchlocal',
         templateUrl: 'templates/searchLocal.html',
         controller: 'searchLocalCtrl'
+      })
+      .state('attentionDetail', {
+        url: '/attentionDetail/:UserIDatten',
+        templateUrl: 'templates/attentionDetail.html',
+        controller: 'attentionDetailCtrl',
+        cache:false
+      })
+
+      .state('historyMessage', {
+        url: '/historyMessage',
+        templateUrl: 'templates/historymessage.html',
+        controller: 'historyMessageCtrl',
+        cache:false
       })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

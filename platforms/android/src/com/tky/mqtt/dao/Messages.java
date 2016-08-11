@@ -4,6 +4,8 @@ package com.tky.mqtt.dao;
 
 import com.tky.mqtt.base.BaseDao;
 
+import java.util.Comparator;
+
 /**
  * Entity mapped to table MESSAGES.
  */
@@ -20,6 +22,8 @@ public class Messages extends BaseDao{
     private String isSingle;
     private String isFailure;
     private Long when;
+
+
 
     public Messages() {
     }
@@ -129,5 +133,6 @@ public class Messages extends BaseDao{
     public void setWhen(Long when) {
         this.when = when;
     }
+
 
 }
