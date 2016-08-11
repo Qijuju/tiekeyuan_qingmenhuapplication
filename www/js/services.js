@@ -742,16 +742,46 @@ angular.module('starter.services', [])
   var deptThirdInfo;
   var deptForthInfo;
   var deptFifhtInfo;
+  var deptSixthInfo;
+  var deptSeventhInfo;
+
+  var moreDeptThirdInfo;
 
   var firstname;
   var secondname;
   var thirdname;
   var forthname;
+  var fifthname;
+  var sixthname;
+
   var firstId;
   var secondId;
   var thirdId;
   var forthId;
+  var fifthId;
+  var sixthId;
+  var persondetail;
 
+  var secondCount=1;
+  var thirdCount=1;
+  var forthCount=1;
+  var fifthCount=1;
+  var sixthCount=1;
+  var seventhCount=1;
+
+  var count1;
+  var count2;
+  var count3;
+  var count4;
+  var count5;
+  var count6;
+  var count7;
+  var count8;
+  var count9;
+  var count10;
+
+  var count11;
+  var count12;
 
 
 
@@ -789,9 +819,12 @@ angular.module('starter.services', [])
 
     //二级目录的数据 传入的id是一级目录的id
     deptInfo:function (deptId) {
+      $api.getChild(userId,deptId,secondCount,10,function (msg) {
 
-      $api.getChild(userId,deptId,1,10,function (msg) {
         deptinfo=msg;
+
+        count1=msg.deptCount;
+        count2=msg.userCount;
         //返回的一级目录的id ，也就是rootId
         firstId=msg.deptID
         $api.getDeparment(userId,deptId,function (msg) {
@@ -799,11 +832,16 @@ angular.module('starter.services', [])
           firstname=msg.deptInfo
           $rootScope.$broadcast('second.update');
 
+          secondCount++;
+
         },function (msg) {
 
         });
 
       },function (msg) {
+        count1=0;
+        count2=0;
+        $rootScope.$broadcast('second.update');
 
       });
 
@@ -813,17 +851,32 @@ angular.module('starter.services', [])
     },
 
 
+    getCount1:function () {
+      return count1
+    },
+
+    getCount2:function () {
+      return count2
+    },
+    clearSecondCount:function () {
+      secondCount=1;
+    },
+
     //三级级目录的数据 传入的id是二级目录的id
 
     deptThirdInfo:function (deptId) {
 
-      $api.getChild(userId,deptId,1,10,function (msg) {
+      $api.getChild(userId,deptId,thirdCount,10,function (msg) {
         deptThirdInfo=msg;
         secondId=msg.deptID;
+        count3=msg.deptCount;
+        count4=msg.userCount;
+
         $api.getDeparment(userId,secondId,function (msg) {
+
           secondname=msg.deptInfo
           $rootScope.$broadcast('third.update');
-
+          thirdCount++;
         },function (msg) {
 
         });
@@ -831,24 +884,43 @@ angular.module('starter.services', [])
 
       },function (msg) {
 
+        count3=0;
+        count4=0;
+        $rootScope.$broadcast('third.update');
+
       });
 
     },
+
     getDeptThirdInfo:function () {
       return deptThirdInfo;
     },
 
+    getCount3:function () {
+      return count3
+    },
+
+    getCount4:function () {
+      return count4
+    },
+
+    clearThirdCount:function () {
+      thirdCount=1;
+    },
 
     //四级目录的数据 传入的id是三级目录的id
 
     deptForthInfo:function (deptId) {
 
-      $api.getChild(userId,deptId,1,10,function (msg) {
+      $api.getChild(userId,deptId,forthCount,10,function (msg) {
         deptForthInfo=msg;
         thirdId=msg.deptID;
+        count5=msg.deptCount;
+        count6=msg.userCount;
         $api.getDeparment(userId,thirdId,function (msg) {
           thirdname=msg.deptInfo
           $rootScope.$broadcast('forth.update');
+          forthCount++;
 
         },function (msg) {
 
@@ -856,7 +928,9 @@ angular.module('starter.services', [])
 
 
       },function (msg) {
-
+        count5=0;
+        count6=0;
+        $rootScope.$broadcast('forth.update');
       });
 
     },
@@ -864,16 +938,31 @@ angular.module('starter.services', [])
       return deptForthInfo;
     },
 
+    getCount5:function () {
+      return count5
+    },
+
+    getCount6:function () {
+      return count6
+    },
+
+    clearForthCount:function () {
+      forthCount=1;
+    },
+
     //五级目录的数据 传入的是四级目录的id
 
     deptFifthInfo:function (deptId) {
 
-      $api.getChild(userId,deptId,1,10,function (msg) {
+      $api.getChild(userId,deptId,fifthCount,10,function (msg) {
         deptFifhtInfo=msg;
         forthId=msg.deptID;
+        count7=msg.deptCount;
+        count8=msg.userCount;
         $api.getDeparment(userId,forthId,function (msg) {
           forthname=msg.deptInfo
           $rootScope.$broadcast('fifth.update');
+          fifthCount++;
 
         },function (msg) {
 
@@ -881,13 +970,133 @@ angular.module('starter.services', [])
 
 
       },function (msg) {
-
+        count7=0;
+        count8=0;
+        $rootScope.$broadcast('fifth.update');
       });
 
     },
     getDeptFifthInfo:function () {
       return deptFifhtInfo;
     },
+
+    getCount7:function () {
+      return count7;
+    },
+
+    getCount8:function () {
+      return count8;
+    },
+
+    clearFifthCount:function () {
+      fifthCount=1;
+    },
+
+
+
+
+
+
+
+
+
+    //六级目录的数据 传入是是五级目录的id
+
+    deptSixthInfo:function (deptId) {
+
+      $api.getChild(userId,deptId,sixthCount,10,function (msg) {
+        deptSixthInfo=msg;
+        fifthId=msg.deptID;
+        count9=msg.deptCount;
+        count10=msg.userCount;
+        $api.getDeparment(userId,fifthId,function (msg) {
+          fifthname=msg.deptInfo
+          $rootScope.$broadcast('sixth.update');
+          sixthCount++;
+        },function (msg) {
+
+        });
+
+
+      },function (msg) {
+        count9=0;
+        count10=0;
+        $rootScope.$broadcast('sixth.update');
+
+      });
+
+    },
+    getDeptSixthInfo:function () {
+      return deptSixthInfo;
+    },
+    getCount9:function () {
+      return count9;
+    },
+
+    getCount10:function () {
+      return count10;
+    },
+
+    clearSixthCount:function () {
+      sixthCount=1;
+    },
+
+
+    //七级目录的数据 传入是是六级目录的id
+
+    deptSeventhInfo:function (deptId) {
+      $api.getChild(userId,deptId,seventhCount,10,function (msg) {
+        deptSeventhInfo=msg;
+        sixthId=msg.deptID;
+        count11=msg.deptCount;
+        count12=msg.userCount;
+
+        $api.getDeparment(userId,sixthId,function (msg) {
+          sixthname=msg.deptInfo
+          $rootScope.$broadcast('seventh.update');
+          seventhCount++;
+        },function (err) {
+
+        });
+      },function (err) {
+        count11=0;
+        count12=0;
+        $rootScope.$broadcast('seventh.update');
+      })
+    },
+
+    getDeptSeventhInfo:function () {
+      return deptSeventhInfo;
+    },
+    getCount11:function () {
+      return count11;
+    },
+
+    getCount12:function () {
+      return count12;
+    },
+
+    clearSeventhCount:function () {
+      seventhCount=1;
+    },
+
+
+
+    //获取详情信息
+
+    personDetail:function (id) {
+      $api.getUser(id,function (msg) {
+        persondetail=msg.user
+        $rootScope.$broadcast('personDetail.update');
+      },function (msg) {
+
+      });
+    },
+
+    getPersonDetail:function () {
+      return persondetail;
+    },
+
 
 
 
@@ -911,6 +1120,12 @@ angular.module('starter.services', [])
     getForthDeptName:function () {
       return forthname;
     },
+    getFifthDeptName:function () {
+      return fifthname;
+    },
+    getSixthDeptName:function () {
+      return sixthname;
+    },
 
     getFirstID:function () {
       return firstId;
@@ -927,6 +1142,13 @@ angular.module('starter.services', [])
     getForthID:function () {
       return forthId;
     },
+    getFifthID:function () {
+      return fifthId;
+    },
+
+    getSixthID:function () {
+      return sixthId;
+    }
 
 
 

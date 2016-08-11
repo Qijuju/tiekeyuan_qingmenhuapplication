@@ -136,15 +136,17 @@ angular.module('im.routes', [])
 
       })
       .state('sixth', {
-        url: '/sixth/:contactId',
+        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
         templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl'
+        controller: 'ContactSixthCtrl',
+        cache:false
 
       })
       .state('seventh', {
-        url: '/seventh/:contactId',
+        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
         templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl'
+        controller: 'ContactSeventhCtrl',
+        cache:false
 
       })
 
@@ -156,13 +158,10 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person',
+        url: '/person/:userId',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
-        params: {
-          obj: null
-        }
-
+        cache:false
       })
 
       .state('group', {

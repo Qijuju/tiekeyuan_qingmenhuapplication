@@ -7,7 +7,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content>
+  <ion-content >
     <div class=" item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
@@ -22,19 +22,21 @@
     </ion-scroll>
     <div>
       <ion-list>
-        <ion-item ng-repeat=" item in depts"  ng-if="deptcount>0" ng-click="jumpThird(item.DeptID,deptinfo)">
+        <ion-item ng-repeat=" item in departlist"   ng-click="jumpThird(item.DeptID,deptinfo)">
           <img src="img/icon_org.png" style="vertical-align: bottom" width="25" height="25"
                style="display: inline;">&nbsp;&nbsp;<span
           ng-bind="item.DeptName" style="vertical-align: center;"></span>
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item ng-repeat=" item in users" ng-if="usercount>0" ng-click="goSecondDetail(item,2)">
-          <img src="img/ion_friends.png" style="vertical-align: bottom" width="25" height="25" style="display: inline;">&nbsp;&nbsp;<span
+        <ion-item ng-repeat=" item in userlist"  ng-click="goSecondDetail(item.UserID)" >
+          <img src="img/icon_friends.png" style="vertical-align: bottom" width="25" height="25" style="display: inline;">&nbsp;&nbsp;<span
           ng-bind="item.UserName" style="vertical-align: center;"></span>
         </ion-item>
       </ion-list>
     </div>
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <ion-infinite-scroll  ng-if="secondStatus" on-infinite="loadMoreSecond()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
 </ion-view>
 

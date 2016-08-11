@@ -422,10 +422,8 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getUser(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String login_info = SPUtils.getString("login_info", "");
-            JSONObject obj = new JSONObject(login_info);
             String userID = args.getString(0);
-            SystemApi.getUser(obj.getString("userID"), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
+            SystemApi.getUser(getUserID(), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
                 @Override
                 public void onComplete(IMUser.AsyncClient.GetUser_call getUser_call) {
                     try {
