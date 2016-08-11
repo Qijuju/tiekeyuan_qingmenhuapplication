@@ -1063,7 +1063,7 @@ angular.module('im.controllers', [])
         // $scope.groupMsgs=$mqtt.getAllGroupMsg();
         // $mqtt.getAllGroupMsg($scope);
         // alert($scope.groupMsgs.length)
-        viewScroll.scrollBottom();
+        // viewScroll.scrollBottom();
       })
 
     });
@@ -1094,7 +1094,6 @@ angular.module('im.controllers', [])
         // });
         // $scope.groupMsgs=$mqtt.getAllGroupMsg();
         // $mqtt.getAllGroupMsg($scope);
-        viewScroll.scrollBottom();
       })
     });
 
@@ -1158,18 +1157,6 @@ angular.module('im.controllers', [])
 
 
 
-    // $mqtt.rececivGroupMsg("sy");
-    //
-    // $scope.$on('groupMsgs.update',function (event) {
-    //
-    //   $scope.$apply(function () {
-    //     $scope.recentGroupMsgs=$mqtt.getAllGroupMsg();
-    //     $scope.lastGroupCount=$mqtt.getGroupMsgCount();
-    //     alert('放入群组');
-    //
-    //   })
-    //
-    // });
 
     $scope.goGroupMessage=function () {
       $mqtt.clearMsgGroupCount();
