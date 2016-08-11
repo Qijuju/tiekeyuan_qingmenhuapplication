@@ -27,7 +27,7 @@ public class PhonePlugin extends CordovaPlugin{
             sms(args.get(0).toString(),callbackContext);
             return true;
         }
-        callbackContext.error("失败");
+        callbackContext.error("电话号码不能为空");
         return false;
     }
     //打电话

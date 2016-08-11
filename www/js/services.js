@@ -400,6 +400,9 @@ angular.module('starter.services', [])
 
   })
 
+
+
+
 .factory('localContact',function ($rootScope) {
 
   var contactPlugin
@@ -677,14 +680,14 @@ angular.module('starter.services', [])
           // });
           alert("成功")
         },function (message) {
-          alert("失败")
+          alert("电话号码不能为空")
         });
       },
       sms:function (msg) {
         phonePlugin.sms(msg,function (message) {
           alert("成功")
         },function (message) {
-          alert("失败")
+          alert("电话号码不能为空")
         });
       }
     };
@@ -1193,36 +1196,94 @@ angular.module('starter.services', [])
 })
 
 
+.factory('$searchdata',function ($api,$rootScope) {
+
+  var persondetail;
+
+  return{
+    personDetail:function (userID) {
+      $api.getUser(userID,function (msg) {
+        persondetail=msg;
+        $rootScope.$broadcast('person.update');
+
+      },function (msg) {
+
+      });
+    },
+
+    getPersonDetail:function () {
+      return persondetail;
+    }
+  }
+
+})
+
+  .factory('$search111',function ($api,$rootScope) {
+
+    var persons;
+    return{
+      search1111:function (userid,page,count,query) {
+        $api.seachUsers(userid,query,page,count,function (msg) {
+          persons=msg;
+          $rootScope.$broadcast('persons.update');
+
+        },function (msg) {
+          alert(msg);
+        });
+      },
+
+      getPersons:function () {
+        return persons;
+      }
+    }
+
+  })
+
+  .factory('$search222',function ($api,$rootScope) {
+
+    var persons2;
+    return{
+      search2222:function (userid,page,count,query) {
+        $api.seachUsers(userid,query,page,count,function (msg) {
+          persons2=msg;
+          $rootScope.$broadcast('persons2.update2');
+
+        },function (msg) {
+          alert(msg);
+        });
+      },
+
+      getPersons2:function () {
+        return persons2;
+      }
+    }
+
+  })
+  .factory('$searchlocal',function ($rootScope) {
+    var contactPlugin
+    var localpersons;
+    document.addEventListener('deviceready',function () {
+      contactPlugin=cordova.require('localContact.localContact');
+
+    });
+    return{
+      getlocalContact:function (query) {
+        //联系人插件里的按关键字搜索
+        contactPlugin.getLocalContactsInfosByText(query,function (message) {
+          if(message!=null){
+            localpersons=message;
+            $rootScope.$broadcast('localperson.update');
+          }
+        },function (message) {
+        });
+      },
+      getLocalContacts:function () {
+        return localpersons;
+      },
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;
-
-
-
-
-
-
+  })
 
 
 

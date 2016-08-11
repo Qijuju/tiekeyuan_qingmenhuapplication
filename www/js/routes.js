@@ -215,6 +215,55 @@ angular.module('im.routes', [])
         }
       })
 
+      .state('search', {
+        url: '/search',
+        templateUrl: 'templates/search.html',
+        controller: 'searchCtrl',
+        cache:false
+      })
+
+      .state('searchdetail', {
+        url: '/searchdetail/:UserID',
+        templateUrl: 'templates/searchDetail.html',
+        controller: 'searchDetailCtrl',
+        cache: false
+      })
+
+      .state('addnewpersonfirst', {
+        url: '/addnewpersonfirst',
+        templateUrl: 'templates/addNewPerson-first.html',
+        controller: 'addNewPersonfirstCtrl'
+      })
+      .state('addnewpersonsecond', {
+        url: '/addnewpersonsecond/:contactId',
+        templateUrl: 'templates/addNewPerson-second.html',
+        controller: 'addNewPersonsecondCtrl'
+      })
+      .state('addnewpersonthird', {
+        url: '/addnewpersonthird/:contactId',
+        templateUrl: 'templates/addNewPerson-third.html',
+        controller: 'addNewPersonthirdCtrl'
+      })
+      .state('addnewpersonforth', {
+        url: '/addnewpersonforth/:contactId',
+        templateUrl: 'templates/addNewPerson-forth.html',
+        controller: 'addNewPersonforthCtrl'
+      })
+      .state('addnewpersonfifth', {
+        url: '/addnewpersonfifth/:contactId',
+        templateUrl: 'templates/addNewPerson-fifth.html',
+        controller: 'addNewPersonfifthCtrl'
+      })
+      .state('addnewpersonsixth', {
+        url: '/addnewpersonsixth/:contactId',
+        templateUrl: 'templates/addNewPerson-sixth.html',
+        controller: 'addNewPersonsixthCtrl'
+      })
+      .state('searchlocal', {
+        url: '/searchlocal',
+        templateUrl: 'templates/searchLocal.html',
+        controller: 'searchLocalCtrl'
+      })
       .state('historymessage',{
         url:'/historymessage',
         templateUrl: 'templates/historymessage.html',

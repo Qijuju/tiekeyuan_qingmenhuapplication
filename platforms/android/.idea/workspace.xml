@@ -5,23 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67e5f884-8117-4299-bedf-35c182d52042" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-first.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/local-details.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/search.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/searchDetail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/searchLocal.html" />
+      <change type="DELETED" beforePath="E:\WebstormProjects\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger603547675240848135.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\WebstormProjects\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger6704843052472977360.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\WebstormProjects\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger8359092425655108090.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/localContact/LocalContacts.java" afterPath="$PROJECT_DIR$/src/com/tky/localContact/LocalContacts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/phone/PhonePlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/phone/PhonePlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-local.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-local.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-local.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-local.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controllers.js" afterPath="$PROJECT_DIR$/assets/www/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controllers.js" afterPath="$PROJECT_DIR$/../../www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/localContact/www/android/localContact.js" afterPath="$PROJECT_DIR$/assets/www/plugins/localContact/www/android/localContact.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/localContact/www/android/localContact.js" afterPath="$PROJECT_DIR$/platform_www/plugins/localContact/www/android/localContact.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/services.js" afterPath="$PROJECT_DIR$/assets/www/js/services.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/services.js" afterPath="$PROJECT_DIR$/../../www/js/services.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_0_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -58,8 +76,8 @@
               <folding>
                 <element signature="e#1817#2440#0" expanded="true" />
                 <element signature="e#2439#2440#0" expanded="true" />
-                <element signature="e#40884#40892#0" expanded="true" />
-                <element signature="e#41284#41300#0" expanded="true" />
+                <element signature="e#40861#40869#0" expanded="true" />
+                <element signature="e#41261#41277#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,7 +86,7 @@
       <file leaf-file-name="MqttParams.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1262136">
+            <state vertical-scroll-proportion="0.12206573">
               <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
               <folding />
             </state>
@@ -1225,7 +1243,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="D:\impro\im\platforms\android" value="5873562460903" />
-        <entry key="E:\WebstormProjects\im\platforms\android" value="5881855446268" />
+        <entry key="E:\WebstormProjects\im\platforms\android" value="5881859185925" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2608,8 +2626,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2621,8 +2639,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2634,8 +2652,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2647,8 +2665,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2660,8 +2678,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2680,8 +2698,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2701,8 +2719,8 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2857,15 +2875,15 @@
           <folding>
             <element signature="e#1817#2440#0" expanded="true" />
             <element signature="e#2439#2440#0" expanded="true" />
-            <element signature="e#40884#40892#0" expanded="true" />
-            <element signature="e#41284#41300#0" expanded="true" />
+            <element signature="e#40861#40869#0" expanded="true" />
+            <element signature="e#41261#41277#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1262136">
+        <state vertical-scroll-proportion="0.12206573">
           <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
           <folding />
         </state>
