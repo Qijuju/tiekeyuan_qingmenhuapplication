@@ -603,24 +603,23 @@ angular.module('im.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
+  .controller('LoginCtrl', ['$scope', '$state', '$ionicPopup', '$ionicLoading', '$cordovaFileOpener2', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http,$mqtt,$cordovaPreferences,$api) {
     $scope.name="";
     $scope.password="";
 
     document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getString('historyusername',function(message){
+        $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
       if(!$mqtt.isLogin()) {
-        $mqtt.getMqtt().getString('name', function (message) {
-          if (message != null && message != '') {
-            $mqtt.startMqttChat(message + ',zhuanjiazu');
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          if (msg != null && msg != '') {
+            $mqtt.startMqttChat(msg);
             $mqtt.setLogin(true);
             $state.go('tab.message');
             return;
           }
-        }, function (message) {
-          alert(message);
+        },function (msg) {
         });
       }
       /*$cordovaPreferences.fetch('name')
@@ -669,19 +668,20 @@ angular.module('im.controllers', [])
           });
         }*/
         // alert(message.toString());
-        $api.getVersion("", function (msg) {
-        },function (msg) {
-        });
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
-        $mqtt.getMqtt().save('name', $scope.name, function (message) {
+        $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
-        $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
-        $mqtt.setLogin(true);
-        $state.go('tab.message');
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $mqtt.startMqttChat(msg);
+          $mqtt.setLogin(true);
+          $state.go('tab.message');
+        },function (msg) {
+        });
       }, function (message) {
         //alert(message);
         $scope.name = response;

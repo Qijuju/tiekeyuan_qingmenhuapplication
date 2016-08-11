@@ -342,8 +342,8 @@ angular.module('starter.services', [])
       //   // })
       //   return msgs;
       // },
-      disconnect:function () {
-        mqtt.disconnect();
+      disconnect:function (success, error) {
+        mqtt.disconnect(success, error);
       },
       save:function (key,value) {
         mqtt.save(key,value);
@@ -753,8 +753,8 @@ angular.module('starter.services', [])
       getVersionInfo:function(success, error) {
         api.getVersionInfo(success, error);
       },
-      getVersion:function(savePath, success, error) {
-        api.getVersion(savePath, success, error);
+      getVersion:function(savePath, versionCode, success, error) {
+        api.getVersion(savePath, versionCode, success, error);
       },
       addAttention:function(membersArr, success, error) {
         api.addAttention(membersArr, success, error);
@@ -764,6 +764,60 @@ angular.module('starter.services', [])
       },
       getAttention:function(success, error) {
         api.getAttention(success, error);
+      },
+      needUpgrade:function(versionName, success, error) {
+        api.needUpgrade(versionName, success, error);
+      },
+      checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
+        api.getVersionInfo(function (msg) {
+          var versionName = msg.versionName;
+          var versionDesc = msg.versionDesc;
+          var targetPath = "";
+          api.needUpgrade('1.2.0', function (msg) {
+            if(msg == 'true') {
+              var confirmPopup = $ionicPopup.confirm({
+                title: '版本升级',
+                template: versionDesc, //从服务端获取更新的内容
+                cancelText: '取消',
+                okText: '升级'
+              });
+              confirmPopup.then(function (res) {
+                if(res) {
+                  var loading = $ionicLoading.show({
+                    template: "下载中..."//"已经下载：0%"
+                  });
+                  api.getVersion("", versionName, function (msg) {
+                    targetPath = msg;
+                    $ionicLoading.hide();
+                    $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+                      // 成功
+                      $mqtt.save('install_cancel', 'false');
+                      $mqtt.save('install_cancel_version', '');
+                    }, function (err) {
+                      // 错误
+                      $mqtt.save('install_cancel', 'false');
+                      $mqtt.save('install_cancel_version', '');
+                    });
+                  },function (msg) {
+                    $ionicLoading.hide();
+                    alert(msg);
+                  });
+                } else {
+                  //取消更新
+                  $mqtt.save('install_cancel', 'true');
+                  $mqtt.save('install_cancel_version', versionName);
+                }
+
+              });
+            } else {
+              alert(msg);
+            }
+          },function (msg) {
+            alert("检查更新失败！");
+          });
+        }, function (msg) {
+          alert(msg);
+        });
       }
     };
   });
