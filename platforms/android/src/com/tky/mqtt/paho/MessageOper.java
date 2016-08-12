@@ -3,15 +3,13 @@ package com.tky.mqtt.paho;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.protocol.factory.IMMsgFactory;
+import com.tky.protocol.model.IMPException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
-import java.util.UUID;
-
-import im.mqtt.notify.factory.IMMsgFactory;
-import im.protocol.model.IMPException;
 
 public class MessageOper {
 	/**
@@ -27,12 +25,19 @@ public class MessageOper {
 		UIUtils.getContext().sendBroadcast(intent);
 	}
 
+	/**
+	 * 封包（将要发送的数据封装到byte数组中）
+	 * @param content
+	 * @return
+	 * @throws JSONException
+	 * @throws IMPException
+	 */
 	public static byte[] packData(String content) throws JSONException, IMPException {
 		JSONObject obj = new JSONObject(content);
 		if (obj == null) {
 			return null;
 		}
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, Long.parseLong(obj.getString("when")), obj.getString("sessionid"), getUserID(), obj.getString("message"));
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"));
 	}
 
 	/**
@@ -42,10 +47,10 @@ public class MessageOper {
 	 * @throws IMPException
 	 * @throws JSONException
 	 */
-	public static MessageBean unpackData(byte[] msg) throws IMPException, JSONException {
+	public static MessageBean unpack(byte[] msg) throws IMPException, JSONException {
 		Map<String, Object> msgMap = IMMsgFactory.createMsg(msg);
 		MessageBean bean = new MessageBean();
-		bean.set_id(UUID.randomUUID().toString().toUpperCase());
+		bean.set_id((String) msgMap.get("to"));
 		bean.setSessionid((String) msgMap.get("to"));
 		bean.setAccount(getUserID());
 		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));

@@ -43,8 +43,7 @@ public class MqttMessageCallback implements MqttCallback {
 	@Override
 	public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
 		Log.d("messageArrived", new String(msg.getPayload()));
-//		String msgStr = "";//new String(msg.getPayload());
-		final MessageBean map = MessageOper.unpackData(msg.getPayload());
+		final MessageBean map = MessageOper.unpack(msg.getPayload());
 		final String msgTopic = (String) map.getSessionid();
 		final String msgContent = (String) map.getMessage();
 		UIUtils.runInMainThread(new Runnable() {
@@ -52,8 +51,6 @@ public class MqttMessageCallback implements MqttCallback {
 			@Override
 			public void run() {
 				MqttNotification.showNotify(msgTopic, msgContent, new Intent(context, MainActivity.class));
-
-
 				Intent intent = new Intent();
 				intent.setAction(ReceiverParams.MESSAGEARRIVED);
 				intent.putExtra("topic", topic);

@@ -169,7 +169,7 @@ angular.module('starter.services', [])
         messageDetail.message=content;
         messageDetail.messagetype='normal';
         messageDetail.platform='Windows';
-        messageDetail.when='lll';
+        messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
 
         mqtt.sendMsg(topic, messageDetail, function (message) {
@@ -265,7 +265,7 @@ angular.module('starter.services', [])
         messageReal.message=content;
         messageReal.messagetype='normal';
         messageReal.platform='Windows';
-        messageReal.when='lll';
+        messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);

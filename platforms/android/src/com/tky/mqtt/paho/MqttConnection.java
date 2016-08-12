@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.tky.protocol.model.IMPException;
+
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
@@ -14,8 +16,6 @@ import org.json.JSONException;
 
 import java.util.Iterator;
 import java.util.Map;
-
-import im.protocol.model.IMPException;
 
 public class MqttConnection {
 
@@ -88,6 +88,7 @@ public class MqttConnection {
 							public void onSend(String topic, String content) {
 								MqttMessage message = new MqttMessage();
 								try {
+									String msg = new String(MessageOper.packData(content));
 									message.setPayload(MessageOper.packData(content));
 								} catch (JSONException e) {
 									e.printStackTrace();

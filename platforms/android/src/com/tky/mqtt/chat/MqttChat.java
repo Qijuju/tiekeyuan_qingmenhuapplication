@@ -18,6 +18,7 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.protocol.model.IMPException;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -30,8 +31,6 @@ import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import im.protocol.model.IMPException;
 
 /**
  * This class echoes a string called from JavaScript.
