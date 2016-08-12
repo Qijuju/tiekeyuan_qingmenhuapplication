@@ -1032,7 +1032,7 @@ angular.module('im.controllers', [])
       },function (err) {
         alert(err+"数据离开失败");
       });
-
+      $state.go("tab.message");
     }
     $scope.skipmessagebox=function () {
       alert("正确进入聊天方法");
