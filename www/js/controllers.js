@@ -2081,18 +2081,43 @@ angular.module('im.controllers', [])
     });
 
   })
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService,$api) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService,$api,$ionicPopup) {
     $scope.UserIDsethou = $stateParams.UserIDset;
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
-    $scope.changepassword = function () {
-      $api.updatePwd("1","2","2",function (msg) {
-        alert(msg)
-      },function (msg) {
-        alert(msg)
-      })
-    }
+    // 触发一个按钮点击，或一些其他目标
+    $scope.showPopup = function() {
+      $scope.data = {}
+        // <label class="item item-input"><i class="icon  ion-android-person positive positive"></i><input type="text" placeholder="请输入用户名" ng-model="name"></label>
+      // 一个精心制作的自定义弹窗
+      var myPopup = $ionicPopup.show({
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入原密码" ng-model="data.oldpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入新密码" ng-model="data.newpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请确认新密码" ng-model="data.enterpassword"></label>',
+        title: '修改密码',
+        subTitle: '区分大小写，请认真填写',
+        scope: $scope,
+        buttons: [
+          { text: '取消' },
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
+              $api.updatePwd($scope.data.oldpassword,$scope.data.newpassword,$scope.data.enterpassword,function (msg) {
+                alert(msg+"修改成功")
+              },function (msg) {
+                alert(msg+"修改失败")
+              })
+            }
+          },
+        ]
+      });
+      myPopup.then(function(res) {
+
+      });
+       // myPopup.close(); //关闭
+    };
+
 
   })
   .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, contactService) {
