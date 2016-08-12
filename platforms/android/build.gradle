@@ -241,10 +241,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
+    compile fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
-    debugCompile project(path: "CordovaLib", configuration: "debug")
-    releaseCompile project(path: "CordovaLib", configuration: "release")
+    debugCompile project(path: 'CordovaLib', configuration: 'debug')
+    releaseCompile project(path: 'CordovaLib', configuration: 'release')
     // SUB-PROJECT DEPENDENCIES END
     compile files('libs/org.eclipse.paho.client.mqttv3-1.0.1-20141007.040217-92.jar')
     compile 'com.android.support:support-v4:23.0.1'
@@ -257,6 +257,7 @@ dependencies {
     compile files('libs/log4j-1.2.14.jar')
     compile files('libs/slf4j-api-1.7.12.jar')
     compile files('libs/slf4j-log4j12-1.6.2.jar')
+    compile files('libs/imDataCast.jar')
 }
 
 def promptForReleaseKeyPassword() {

@@ -31,6 +31,8 @@ import org.json.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import im.protocol.model.IMPException;
+
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -206,7 +208,11 @@ public class MqttChat extends CordovaPlugin {
         }
         String tosb = args.getString(0);
         String message = args.getString(1);
-        MessageOper.sendMsg(tosb, message);
+        try {
+            MessageOper.sendMsg(tosb, message);
+        } catch (IMPException e) {
+            e.printStackTrace();
+        }
         //发布消息的广播
         MqttReceiver topicReceiver = MqttReceiver.getInstance();
         IntentFilter topicFilter = new IntentFilter();
