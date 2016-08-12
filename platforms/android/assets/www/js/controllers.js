@@ -1310,29 +1310,40 @@ angular.module('im.controllers', [])
     $scope.addFriend1=function () {
       $state.go("myAttention1");
     }
+    $scope.gohistory=function () {
+      $state.go("historyMessage");
+    }
   })
 
-  .controller('AccountCtrl',function ($scope, $state,$ionicPopup, $ionicLoading, $http,$mqtt,$cordovaPreferences) {
+  .controller('AccountCtrl',function ($scope, $state, $ionicPopup, $ionicLoading, $http,$mqtt,$contacts) {
     $scope.name="";
-    /*$scope.fetch = function() {
-     $mqtt.getMqtt().getString('name',function (message) {
-     alert(message+"sdsfsdg");
-     if(message != null && message != ''){
-     $scope.name=message;
-     }
-     },function (message) {
-     alert(message);
-     });
-     /!*$cordovaPreferences.fetch('name')
-     .success(function(value) {
-     if(value != null && value != ''){
-     $scope.name=value;
-     }
-     })
-     .error(function(error) {
-     })*!/
-     };*/
-    // $scope.fetch();
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID= msg.userID
+    },function (msg) {
+
+    });
+    $scope.gomyinformation=function () {
+      $state.go("myinformation",{
+        "UserIDfor":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+
+    $scope.goacountsettion=function () {
+      $state.go("accountsettion",{
+        "UserIDset":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+    $scope.goaboutus=function () {
+      $state.go("aboutours",{
+        "UserIDabout":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+
+
+
     document.addEventListener('deviceready',function () {
       $mqtt.getMqtt().getString('name',function (message) {
         if(message != null && message != ''){
@@ -1342,18 +1353,6 @@ angular.module('im.controllers', [])
         alert(message);
       });
     });
-    // $scope.name="";
-    /*$scope.fetch = function() {
-      $cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $scope.name=value;
-          }
-        })
-        .error(function(error) {
-        })
-    };*/
-    // $scope.fetch();
     // 一个确认对话框
     $scope.showConfirm = function() {
       var confirmPopup = $ionicPopup.confirm({
@@ -1364,33 +1363,7 @@ angular.module('im.controllers', [])
       });
       confirmPopup.then(function(res) {
         if(res) {
-          // $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
-          //   $scope.names = response;
-          //   $ionicLoading.hide();
-          //   //调用保存用户名方法
-          //   $scope.store();
-          //   //连接MQTT
-          //
-          //   $scope.fetch = function() {
-          //     $cordovaPreferences.fetch('name')
-          //       .success(function(value) {
-          //         if(value != null && value != ''){
-          //           $mqtt.startMqttChat(value + ',zhuanjiazu');
-          //         }
-          //       })
-          //       .error(function(error) {
-          //       })
-          //   };
-          //   $scope.fetch();
-          //
-          //
-          //   $state.go('tab.message');
-          // }).error(function (response) {
-          //   $scope.name = response;
-          //   $ionicLoading.hide();
-          //   $state.go('tab.message');
-          // })
-          // ionic.Platform.exitApp();
+
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
               $state.go("login");
@@ -1406,37 +1379,6 @@ angular.module('im.controllers', [])
       });
     };
   })
- /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
-    $scope.name="";
-    /!*$scope.fetch = function() {
-      $mqtt.getMqtt().getString('name',function (message) {
-        alert(message+"sdsfsdg");
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-      /!*$cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $scope.name=value;
-          }
-        })
-        .error(function(error) {
-        })*!/
-    };*!/
-    // $scope.fetch();
-    document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-    });
-  })*/
   .controller('myAttentionSelectCtrl',function ($scope,$state) {
 
     $scope.goBackChat=function () {
@@ -2006,26 +1948,33 @@ angular.module('im.controllers', [])
     //     })
     //   });
     // }
-    // Setup the loader
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'silde-in-up',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
+    $myattentionser.getAttentionList();
+    $scope.$on('attention.update',function (event) {
+      $scope.$apply(function () {
+        $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        //alert($scope.localpersons)
+      })
     });
+    // 加载效果
+    // $ionicLoading.show({
+    //  content: 'Loading',
+    //   animation: 'silde-in-up',
+    //   showBackdrop: true,
+    //   maxWidth: 1,
+    //   showDelay: 0
+    // });
 
-    // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
-    $timeout(function () {
-      $ionicLoading.hide();
-      $myattentionser.getAttentionList();
-      $scope.$on('attention.update',function (event) {
-        $scope.$apply(function () {
-          $scope.contactsListatten=$myattentionser.getAttentionaaList();
-          //alert($scope.localpersons)
-        })
-      });
-    }, 2000);
+    // //完成加载
+    // $timeout(function () {
+    //   $ionicLoading.hide();
+    //   $myattentionser.getAttentionList();
+    //   $scope.$on('attention.update',function (event) {
+    //     $scope.$apply(function () {
+    //       $scope.contactsListatten=$myattentionser.getAttentionaaList();
+    //       //alert($scope.localpersons)
+    //     })
+    //   });
+    // }, 2000);
 
 
   })
@@ -2115,6 +2064,34 @@ angular.module('im.controllers', [])
   .controller('historyMessageCtrl', function ($scope, $http, $state, $stateParams, contactService) {
     $scope.goSetting = function () {
       $state.go("personalSetting");
+    }
+
+  })
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
+    $scope.UserIDforhou = $stateParams.UserIDfor;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
+    $searchdatadianji.personDetaildianji($scope.UserIDforhou)
+
+    $scope.$on('person.dianji',function (event) {
+      $scope.$apply(function () {
+        $scope.mypersons=$searchdatadianji.getPersonDetaildianji();
+      })
+    });
+
+  })
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+    $scope.UserIDsethou = $stateParams.UserIDset;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
+
+  })
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+    $scope.UserIDabouthou = $stateParams.UserIDabout;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
     }
 
   })

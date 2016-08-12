@@ -9,8 +9,33 @@
 
 
 
-  <ion-content overflow-scroll="false">
-<!--此处写主要内容-->
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()">
+    <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
+                   pulling-text="更多消息" id="refresh">
+    </ion-refresher>
+    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>
+    <div>
+      <!--<p class="rj-message-time">5月27日 16:33</p>-->
+
+      <div ng-repeat="msg in msgs">
+        <div class="rj-message-wrap" ng-if="(msg.from==='false')">
+          <img src="img/mike.png" class="rj-head-pic">
+          <span class="rj-triangle-left"></span>
+          <p class="rj-message">{{msg.message}}</p>
+        </div>
+
+
+        <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
+          <img src="img/ben.png" class="rj-head-pic-right">
+          <span class="rj-triangle-right"></span>
+           <span>
+             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendshow('cll',msg.message, 'cll')"><font class="rj-message-right">{{msg.message}}</font></p>
+          </span>
+        </div>
+      </div>
+
+    </div>
   </ion-content>
 
 
@@ -18,19 +43,19 @@
   <ion-footer-bar align="center" class="bar-light" resize-foot-bar>
     <div class="row" >
       <div class="col-35" align="center" ng-click="" style="vertical-align: middle">
-        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 50%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
+        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 65%;position: absolute;vertical-align: middle"> 3 </div>
+        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> 30 </div>
       </div>
       <div class="col-10" align="center" >
         <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 75%;position: absolute;vertical-align: middle"> 10 </div>
+        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle"> 100 </div>
       </div>
       <div class="col-35" align="center"  ng-click="">
-        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 75%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
+        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
       </div>
     </div>
 

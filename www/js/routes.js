@@ -278,6 +278,24 @@ angular.module('im.routes', [])
         controller: 'historyMessageCtrl',
         cache:false
       })
+      .state('myinformation', {
+        url: '/myinformation/:UserIDfor',
+        templateUrl: 'templates/myinfomation.html',
+        controller: 'myinformationCtrl',
+        cache:false
+      })
+      .state('accountsettion', {
+        url: '/accountsettion/:UserIDset',
+        templateUrl: 'templates/acount-setting.html',
+        controller: 'accountsettionCtrl',
+        cache:false
+      })
+      .state('aboutours', {
+        url: '/aboutours/:UserIDabout',
+        templateUrl: 'templates/aboutours.html',
+        controller: 'aboutoursCtrl',
+        cache:false
+      })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 

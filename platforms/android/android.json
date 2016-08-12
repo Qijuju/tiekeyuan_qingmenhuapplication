@@ -63,6 +63,10 @@
                         {
                             "xml": "<feature name=\"ThriftApiClient\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.thrift.ThriftApiClient\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ToastUtils\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.toast.ToastUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -132,6 +136,9 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "ThriftApiClient": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "ToastUtils": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -250,6 +257,13 @@
             "clobbers": [
                 "cordova.plugins.ThriftApiClient"
             ]
+        },
+        {
+            "file": "plugins/ToastUtils/www/toast_utils.js",
+            "id": "ToastUtils.toast_utils",
+            "clobbers": [
+                "cordova.plugins.ToastUtils"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -268,6 +282,7 @@
         "SavaLocalPlugin": "1.0.0",
         "cordova-sqlite-storage": "0.7.14",
         "GreenDaoPlugin": "1.0.0",
-        "ThriftApiClient": "1.0.0"
+        "ThriftApiClient": "1.0.0",
+        "ToastUtils": "1.0.0"
     }
 }

@@ -1240,7 +1240,7 @@ angular.module('starter.services', [])
     return{
       personDetaildianji:function (userID) {
         $api.getUser(userID,function (msg) {
-          persondetaildianji=msg;
+          persondetaildianji=msg.user;
           $rootScope.$broadcast('person.dianji');
 
         },function (msg) {
