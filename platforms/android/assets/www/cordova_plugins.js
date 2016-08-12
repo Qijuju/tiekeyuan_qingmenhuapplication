@@ -113,6 +113,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.ThriftApiClient"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "clobbers": [
+            "cordova.plugins.fileOpener2"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -133,7 +140,8 @@ module.exports.metadata =
     "SavaLocalPlugin": "1.0.0",
     "cordova-sqlite-storage": "0.7.14",
     "GreenDaoPlugin": "1.0.0",
-    "ThriftApiClient": "1.0.0"
+    "ThriftApiClient": "1.0.0",
+    "cordova-plugin-file-opener2": "2.0.2"
 };
 // BOTTOM OF METADATA
 });

@@ -16,7 +16,7 @@
     </div>
 
     <ion-list>
-      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-click="goDetailMessage()" ng-repeat="item in items">
+      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName)">
         <img src={{item.imgSrc}} width="80px" height="80px">
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
         <h2>{{item.chatName}}</h2>

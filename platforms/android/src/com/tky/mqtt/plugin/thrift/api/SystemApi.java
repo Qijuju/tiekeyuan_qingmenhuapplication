@@ -341,14 +341,20 @@ public class SystemApi {
         RandomAccessFile raf = new RandomAccessFile(apkFile, "rw");
         raf.seek(0);
         RSTversion result = null;
+        boolean flag = true;
         while (result == null || !result.isFinish) {
             FileSyncClient fileSyncClient = getFileSyncClient();
             result = fileSyncClient.getFileClient().GetVersion(ID, versionCode, (result == null ? 0 : (result.offset + result.getFileByte().length)), 1024 * 200);
-            raf.write(result.getFileByte());
-            fileSyncClient.close();
+            if(result != null && result.result) {
+                raf.write(result.getFileByte());
+                fileSyncClient.close();
+            } else {
+                flag = false;
+                break;
+            }
         }
         raf.close();
-        return true;
+        return flag;
     }
 
     /**

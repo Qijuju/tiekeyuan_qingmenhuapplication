@@ -803,7 +803,7 @@ angular.module('im.controllers', [])
   }])
 
 
-  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory) {
+  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope) {
 
     $scope.userId = $stateParams.userId;
 
@@ -843,31 +843,30 @@ angular.module('im.controllers', [])
     $scope.sms = function(phonenumber) {
       $phonepluin.sms(phonenumber);
     };
-    
+
     //创建聊天
-    $scope.createchat=function (id,sessionid,account) {
+    $scope.createchat=function (id,sessionid) {
       $rootScope.isPersonSend='true';
-      alert(id+sessionid+account);
+      alert(id+sessionid);
       $state.go('tab.message',{
         "id":id,
-        "sessionid":sessionid,
-        "account":account
+        "sessionid":sessionid
       });
     };
 
   })
 
 
-
-
-  .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout,$rootScope) {
+  .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout,$rootScope,$stateParams) {
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   alert(data);
     // },function (err) {
     //   alert(err);
     // });
-
+    //对话框名称
+    $scope.viewtitle=$stateParams.ssid;
+    alert($scope.viewtitle+"抬头");
     $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','User',function (data) {
       for(var i = 1; i <= data.length; i++) {
         $mqtt.getDanliao().push(data[data.length-i]);
@@ -1044,7 +1043,6 @@ angular.module('im.controllers', [])
   })
 
 
-
   .controller('MessageGroupCtrl',function ($scope,$state, $http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
     $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','Group',function (data) {
       for(var i = 1; i <= data.length; i++) {
@@ -1182,7 +1180,10 @@ angular.module('im.controllers', [])
 
   .controller('MessageCtrl', function ($scope, $http, $state,$mqtt,$chatarr,$stateParams,$rootScope,$greendao) {
     if($rootScope.isPersonSend === 'true'){
-      alert("进来panduan");
+      //从个人详情界面跳转过来直接进入聊天对话界面，将id，和sessionid赋值
+      // $scope.id=$stateParams.id;
+      // $scope.ssid=$stateParams.ssid;
+      // alert("nihao"+$scope.id+"id"+$scope.ssid);
       $scope.items=$chatarr.getAll($rootScope.isPersonSend);
       $scope.$on('chatarr.update',function (event) {
         $scope.$apply(function () {
@@ -1195,7 +1196,8 @@ angular.module('im.controllers', [])
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.loadAllData('ChatListService',function (data) {
       $scope.items=data;
-
+      //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
+      // $scope.ssid=
       alert($scope.items.length+"聊天列表长度");
     },function (err) {
       alert(err);
@@ -1258,7 +1260,12 @@ angular.module('im.controllers', [])
     });
 
     //进入单聊界面
-    $scope.goDetailMessage=function () {
+    $scope.goDetailMessage=function (id,ssid) {
+
+
+    alert(ssid+"低头"+id);
+
+
       $mqtt.clearMsgCount();
       //将变化的count赋值给unread对象
       $scope.unread =$mqtt.getMsgCount();
@@ -1291,7 +1298,15 @@ angular.module('im.controllers', [])
         alert(err);
       });
 
-      $state.go("messageDetail");
+      //进入聊天详情界面
+      $state.go('messageDetail',
+        {
+          "id":id,
+          "ssid":ssid
+        });
+
+
+
 
     };
 
@@ -1334,24 +1349,23 @@ angular.module('im.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
+  .controller('LoginCtrl', ['$scope', '$state', '$ionicPopup', '$ionicLoading', '$cordovaFileOpener2', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http,$mqtt,$cordovaPreferences,$api) {
     $scope.name="";
     $scope.password="";
 
     document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getString('historyusername',function(message){
+        $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
       if(!$mqtt.isLogin()) {
-        $mqtt.getMqtt().getString('name', function (message) {
-          if (message != null && message != '') {
-            $mqtt.startMqttChat(message + ',zhuanjiazu');
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          if (msg != null && msg != '') {
+            $mqtt.startMqttChat(msg);
             $mqtt.setLogin(true);
             $state.go('tab.message');
             return;
           }
-        }, function (message) {
-          alert(message);
+        },function (msg) {
         });
       }
       /*$cordovaPreferences.fetch('name')
@@ -1400,19 +1414,20 @@ angular.module('im.controllers', [])
           });
         }*/
         // alert(message.toString());
-        $api.getVersion("", function (msg) {
-        },function (msg) {
-        });
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
-        $mqtt.getMqtt().save('name', $scope.name, function (message) {
+        $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
-        $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
-        $mqtt.setLogin(true);
-        $state.go('tab.message');
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $mqtt.startMqttChat(msg);
+          $mqtt.setLogin(true);
+          $state.go('tab.message');
+        },function (msg) {
+        });
       }, function (message) {
         //alert(message);
         $scope.name = response;
@@ -1528,7 +1543,6 @@ angular.module('im.controllers', [])
             $mqtt.disconnect(function (message) {
               $state.go("login");
             },function (message) {
-
             });
           },function (message) {
             alert(message);
