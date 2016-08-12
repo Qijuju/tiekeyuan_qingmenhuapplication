@@ -8,8 +8,8 @@ import org.eclipse.paho.client.mqttv3.MqttPingSender;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MqttParams {
-	private String serverURI = SwitchLocal.getLocalIp();//"tcp://61.237.239.152:1883";
-	private String clientId = UIUtils.getDeviceId();//UUID.randomUUID().toString().toUpperCase();
+	private String serverURI = SwitchLocal.getLocalIp();
+	private String clientId = "wuwuwu";//UUID.randomUUID().toString().toUpperCase();
 	private String userName = "lb";
 	private String password = "lb";
 	private MqttClientPersistence persistence = new MemoryPersistence();

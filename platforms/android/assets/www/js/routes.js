@@ -34,7 +34,8 @@ angular.module('im.routes', [])
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
-        url: '/message',
+        url: '/message/:id/:sessionid',
+        cache:false,
         views: {
           'tab-message': {
             templateUrl: 'templates/tab-message.html',
@@ -44,7 +45,7 @@ angular.module('im.routes', [])
       })
 
       .state('messageDetail', {
-        url: '/messageDetail',
+        url: '/messageDetail/:id/:ssid',
         templateUrl: 'templates/message-detail.html',
         controller: 'MessageDetailCtrl'
 
@@ -69,8 +70,8 @@ angular.module('im.routes', [])
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
-
-
+        controller: 'myattentionaaaSelectCtrl',
+        cache: false
       })
 
 
@@ -108,38 +109,45 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second',
+        url: '/second/:contactId',
         templateUrl: 'templates/contact-second.html',
-        controller: 'ContactSecondCtrl'
+        controller: 'ContactSecondCtrl',
+        cache:false
+
       })
       .state('third', {
-        url: '/third/:contactId',
+        url: '/third/:contactId/:secondname',
         templateUrl: 'templates/contact-third.html',
         controller: 'ContactThirdCtrl',
+        cache:false
 
       })
       .state('forth', {
-        url: '/forth/:contactId',
+        url: '/forth/:contactId/:secondname/:thirdname',
         templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl'
+        controller: 'ContactForthCtrl',
+        cache:false
 
       })
       .state('fifth', {
-        url: '/fifth/:contactId',
+        url: '/fifth/:contactId/:secondname/:thirdname/:forthname',
         templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl'
+        controller: 'ContactFifthCtrl',
+        cache:false
 
       })
       .state('sixth', {
-        url: '/sixth/:contactId',
+        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
         templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl'
+        controller: 'ContactSixthCtrl',
+        cache:false
 
       })
       .state('seventh', {
-        url: '/seventh/:contactId',
+        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
         templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl'
+        controller: 'ContactSeventhCtrl',
+        cache:false
 
       })
 
@@ -151,13 +159,10 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person',
+        url: '/person/:userId',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
-        params: {
-          obj: null
-        }
-
+        cache:false
       })
 
       .state('group', {
@@ -211,10 +216,68 @@ angular.module('im.routes', [])
         }
       })
 
-      .state('historymessage',{
-        url:'/historymessage',
+      .state('search', {
+        url: '/search',
+        templateUrl: 'templates/search.html',
+        controller: 'searchCtrl',
+        cache:false
+      })
+
+      .state('searchdetail', {
+        url: '/searchdetail/:UserID',
+        templateUrl: 'templates/searchDetail.html',
+        controller: 'searchDetailCtrl',
+        cache:false
+      })
+
+      .state('addnewpersonfirst', {
+        url: '/addnewpersonfirst',
+        templateUrl: 'templates/addNewPerson-first.html',
+        controller: 'addNewPersonfirstCtrl'
+      })
+      .state('addnewpersonsecond', {
+        url: '/addnewpersonsecond/:contactId',
+        templateUrl: 'templates/addNewPerson-second.html',
+        controller: 'addNewPersonsecondCtrl'
+      })
+      .state('addnewpersonthird', {
+        url: '/addnewpersonthird/:contactId',
+        templateUrl: 'templates/addNewPerson-third.html',
+        controller: 'addNewPersonthirdCtrl'
+      })
+      .state('addnewpersonforth', {
+        url: '/addnewpersonforth/:contactId',
+        templateUrl: 'templates/addNewPerson-forth.html',
+        controller: 'addNewPersonforthCtrl'
+      })
+      .state('addnewpersonfifth', {
+        url: '/addnewpersonfifth/:contactId',
+        templateUrl: 'templates/addNewPerson-fifth.html',
+        controller: 'addNewPersonfifthCtrl'
+      })
+      .state('addnewpersonsixth', {
+        url: '/addnewpersonsixth/:contactId',
+        templateUrl: 'templates/addNewPerson-sixth.html',
+        controller: 'addNewPersonsixthCtrl'
+      })
+      .state('searchlocal', {
+        url: '/searchlocal',
+        templateUrl: 'templates/searchLocal.html',
+        controller: 'searchLocalCtrl'
+      })
+
+      .state('attentionDetail', {
+        url: '/attentionDetail/:UserIDatten',
+        templateUrl: 'templates/attentionDetail.html',
+        controller: 'attentionDetailCtrl',
+        cache:false
+      })
+
+      .state('historyMessage', {
+        url: '/historyMessage',
         templateUrl: 'templates/historymessage.html',
-        controller: 'HistoryCtrl'
+        controller: 'historyMessageCtrl',
+        cache:false
       })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

@@ -39,49 +39,51 @@ public class SavaLocalPlugin extends CordovaPlugin{
 
     public void insert(String given_name, String mobile_number/*,
                         String work_email, String im_qq*/) {
-        List<Friend> localContactsInfos = getLocalContactsInfos();
-        int j=1;
-        for (int i = 0; i < localContactsInfos.size(); i++) {
-            if (!mobile_number.equals(localContactsInfos.get(i).getMobile())&&mobile_number.length()>0){
-                j++;
-            }
-        }
-        if (j==localContactsInfos.size()){
-            try {
-                ContentValues values = new ContentValues();
-                Uri contentUri = cordova.getActivity().getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI,
-                        values);
-                long rawContactId = ContentUris.parseId(contentUri);
-                // 插入姓名
-                if (!TextUtils.isEmpty(given_name)) {
-                    values.clear();
-                    values.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
-                    values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
-                    values.put(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, given_name);
-                    cordova.getActivity().getContentResolver().insert(ContactsContract.Data.CONTENT_URI,
-                            values);
+        if (mobile_number.length()>0&&mobile_number!=null){
+            List<Friend> localContactsInfos = getLocalContactsInfos();
+            int j=0;
+            for (int i = 0; i < localContactsInfos.size(); i++) {
+                if (!mobile_number.equals(localContactsInfos.get(i).getMobile())&&mobile_number.length()>0){
+                    j++;
                 }
-
-                // 向data表插入电话数据
-                if (!TextUtils.isEmpty(mobile_number)) {
-                    values.clear();
-                    values.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
-                    values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-                    values.put(ContactsContract.CommonDataKinds.Phone.NUMBER, mobile_number);
-                    values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
-                    cordova.getActivity().getContentResolver().insert(ContactsContract.Data.CONTENT_URI,
-                            values);
-                } else {
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }else {
-            Toast.makeText(cordova.getActivity(),"手机中已经存在",Toast.LENGTH_SHORT).show();
-        }
+            if (j==localContactsInfos.size()){
+                try {
+                    ContentValues values = new ContentValues();
+                    Uri contentUri = cordova.getActivity().getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI,
+                            values);
+                    long rawContactId = ContentUris.parseId(contentUri);
+                    // 插入姓名
+                    if (!TextUtils.isEmpty(given_name)) {
+                        values.clear();
+                        values.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
+                        values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
+                        values.put(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, given_name);
+                        cordova.getActivity().getContentResolver().insert(ContactsContract.Data.CONTENT_URI,
+                                values);
+                    }
 
-        // 向data表插入Email数据
+                    // 向data表插入电话数据
+                    if (!TextUtils.isEmpty(mobile_number)) {
+                        values.clear();
+                        values.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
+                        values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                        values.put(ContactsContract.CommonDataKinds.Phone.NUMBER, mobile_number);
+                        values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+                        cordova.getActivity().getContentResolver().insert(ContactsContract.Data.CONTENT_URI,
+                                values);
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(cordova.getActivity(),"保存至本地成功",Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(cordova.getActivity(),"手机中已经存在",Toast.LENGTH_SHORT).show();
+            }
+
+            // 向data表插入Email数据
         /*if (work_email != "") {
             values.clear();
 			values.put(Data.RAW_CONTACT_ID, rawContactId);
@@ -92,7 +94,7 @@ public class SavaLocalPlugin extends CordovaPlugin{
 					values);
 		}*/
 
-        // 向data表插入QQ数据
+            // 向data表插入QQ数据
 		/*if (im_qq != "") {
 			values.clear();
 			values.put(Data.RAW_CONTACT_ID, rawContactId);
@@ -113,6 +115,10 @@ public class SavaLocalPlugin extends CordovaPlugin{
         values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, avatar);
         UIUtils.getContext().getContentResolver().insert(ContactsContract.Data.CONTENT_URI,
                 values);*/
+        }else {
+            Toast.makeText(cordova.getActivity(),"该号码为空",Toast.LENGTH_SHORT).show();
+        }
+
 
     }
     public List<Friend> getLocalContactsInfos() {

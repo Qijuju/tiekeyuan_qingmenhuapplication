@@ -7,20 +7,26 @@
 
 
   <ion-content overflow-scroll="false">
-    <div class=" item-input-inset">
+
+    <div class=" item-input-inset" ng-click="goSearch()">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="搜索" >
+        <input type="search" placeholder="Search" ng-model="query"  >
       </label>
     </div>
+
     <ion-list>
-      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-click="goDetailMessage()">
-        <img src="img/max.png" width="80px" height="80px">
+      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-click="goDetailMessage()" ng-repeat="item in items">
+        <img src={{item.imgSrc}} width="80px" height="80px">
+        <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
+        <h2>{{item.chatName}}</h2>
+        <p> {{item.lastText}}</p>
+        <span class="rj-push-right" >{{ item.lastDate | date:'HH:mm:ss' }}</span>
         <!--这个就是来了新消息, 头像上的小红数字-->
-        <span class="rj-sm-red-icon" ng-show="lastCount > 0"><p>{{lastCount}}</p></span>
-        <h2>{{ danliaomsg[danliaomsg.length-1]._id}}</h2>
-        <p> {{danliaomsg[danliaomsg.length-1].message}}</p>
-        <span class="rj-push-right">6月8日</span>
+        <!--<span class="rj-sm-red-icon" ng-show="lastCount > 0"><p>{{lastCount}}</p></span>-->
+        <!--<h2>{{ danliaomsg[danliaomsg.length-1]._id}}</h2>-->
+        <!--<p> {{danliaomsg[danliaomsg.length-1].message}}</p>-->
+        <!--<span class="rj-push-right">6月8日</span>-->
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
         </ion-option-button>

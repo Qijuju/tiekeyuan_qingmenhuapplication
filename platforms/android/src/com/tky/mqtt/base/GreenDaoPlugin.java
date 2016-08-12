@@ -2,11 +2,13 @@ package com.tky.mqtt.base;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SubDeptService;
@@ -21,6 +23,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,6 +55,10 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setPlatform(jsonobj.getString("platform"));
             message.setWhen(System.currentTimeMillis());
             message.setIsFailure(jsonobj.getString("isFailure"));
+            message.setSinglecount(jsonobj.getString("singlecount"));
+            message.setQunliaocount(jsonobj.getString("qunliaocount"));
+            message.setIsDelete(jsonobj.getString("isDelete"));
+            message.setImgSrc(jsonobj.getString("imgSrc"));
             obj = message;
         }else if("ParentDeptService".equals(services)){
             obj = new ParentDept();
@@ -65,6 +72,60 @@ public class GreenDaoPlugin extends CordovaPlugin {
             topContacts.setCount(jsonobj.getString("count"));
             topContacts.setWhen(System.currentTimeMillis()+"");
             obj=topContacts;
+        }else if("ChatListService".equals(services)){
+            ChatList chatList=new ChatList();
+            chatList.setId(jsonobj.getString("id"));
+            chatList.setChatName(jsonobj.getString("chatName"));
+            chatList.setImgSrc(jsonobj.getString("imgSrc"));
+            chatList.setCount(jsonobj.getString("count"));
+            chatList.setIsDelete(jsonobj.getString("isDelete"));
+            chatList.setLastDate(jsonobj.getLong("lastDate"));
+            chatList.setLastText(jsonobj.getString("lastText"));
+            obj=chatList;
+        }
+        return obj;
+    }
+
+    /**
+     * 获取obj对象
+     * @param services
+     * @param jsonArray
+     * @return
+     */
+    public List<BaseDao> getListResult(String services, JSONArray jsonArray) throws JSONException {
+        List<BaseDao> obj = new ArrayList<BaseDao>();
+        if("MessagesService".equals(services)){
+            List<Messages> messagesList=new ArrayList<Messages>();
+            for(int i=0;i<jsonArray.length();i++){
+                Messages message = new Messages();
+                String data=jsonArray.get(i).toString();
+                JSONObject jsonobj=new JSONObject(data);
+                message.set_id(UUID.randomUUID().toString());
+                message.setAccount(jsonobj.getString("account"));
+                message.setSessionid(jsonobj.getString("sessionid"));
+                message.setType(jsonobj.getString("type"));
+                message.setFrom(jsonobj.getString("from"));
+                message.setMessage(jsonobj.getString("message"));
+                message.setMessagetype(jsonobj.getString("messagetype"));
+                message.setPlatform(jsonobj.getString("platform"));
+                message.setWhen(System.currentTimeMillis());
+                message.setIsFailure(jsonobj.getString("isFailure"));
+                message.setSinglecount(jsonobj.getString("singlecount"));
+                message.setQunliaocount(jsonobj.getString("qunliaocount"));
+                message.setIsDelete(jsonobj.getString("isDelete"));
+                message.setImgSrc(jsonobj.getString("imgSrc"));
+                messagesList.add(message);
+            }
+
+            obj.addAll(messagesList);
+        }else if("ParentDeptService".equals(services)){
+
+        }else if("SubDeptService".equals(services)){
+
+        }else if ("TopContactsService".equals(services)){
+
+        }else if("ChatListService".equals(services)){
+
         }
         return obj;
     }
@@ -85,6 +146,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface = SubDeptService.getInstance(UIUtils.getContext());
         }else if ("TopContactsService".equals(services)){
             baseInterface= TopContactsService.getInstance(UIUtils.getContext());
+        }else if("ChatListService".equals(services)){
+            baseInterface= ChatListService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -198,6 +261,18 @@ public class GreenDaoPlugin extends CordovaPlugin {
      */
     public void saveDataLists(final JSONArray args, final CallbackContext callbackContext) {
 
+        try {
+            String services= args.getString(0);
+            BaseInterface savelist=getInterface(services);
+            JSONArray jsonArray=args.getJSONArray(1);
+            List<BaseDao> daolist=getListResult(services, jsonArray);
+            savelist.saveDataLists(daolist);
+            setResult("success",PluginResult.Status.OK,callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("failure",PluginResult.Status.ERROR,callbackContext);
+        }
+
     }
 
     /**
@@ -232,7 +307,17 @@ public class GreenDaoPlugin extends CordovaPlugin {
      * @param callbackContext 插件回调
      */
     public void deleteObj(final JSONArray args, final CallbackContext callbackContext) {
-
+        try {
+            String services = args.getString(0);
+            JSONObject jsonobj=args.getJSONObject(1);
+            BaseInterface anInterface = getInterface(services);
+            BaseDao daoObj= getResult(services,jsonobj);
+            anInterface.deleteObj(daoObj);
+            setResult("success", PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("failure", PluginResult.Status.ERROR, callbackContext);
+        }
     }
 
     /**
@@ -243,6 +328,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
     public void queryMessagelistByIsSingle(final JSONArray args, final CallbackContext callbackContext) {
 
     }
+
+
 
     /**
      * 设置返回信息

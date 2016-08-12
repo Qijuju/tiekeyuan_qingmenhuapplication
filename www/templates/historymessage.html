@@ -1,6 +1,38 @@
-<ion-view id="historymessage" view-title="消息盒子">
-  <ion-content>
-    <button>上一页</button>
-    <button>下一页</button>
+<ion-view  view-title="消息记录">
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goSetting()">
+        设置
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+
+  <ion-content overflow-scroll="false">
+<!--此处写主要内容-->
   </ion-content>
+
+
+
+  <ion-footer-bar align="center" class="bar-light" resize-foot-bar>
+    <div class="row" >
+      <div class="col-35" align="center" ng-click="" style="vertical-align: middle">
+        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 50%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
+      </div>
+      <div class="col-10" align="center" >
+        <div style="font-size: 20px ;height: 50%;width: 65%;position: absolute;vertical-align: middle"> 3 </div>
+      </div>
+      <div class="col-10" align="center" >
+        <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
+      </div>
+      <div class="col-10" align="center" >
+        <div style="font-size: 20px ;height: 50%;width: 75%;position: absolute;vertical-align: middle"> 10 </div>
+      </div>
+      <div class="col-35" align="center"  ng-click="">
+        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 75%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
+      </div>
+    </div>
+
+  </ion-footer-bar>
 </ion-view>

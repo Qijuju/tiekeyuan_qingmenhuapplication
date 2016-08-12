@@ -6,7 +6,11 @@ cordova.define("localContact.localContact", function(require, exports, module) {
     exec(success, error, "localContact", "getLocalContactsInfos", [arg0]);
   };
 
+  exports.getLocalContactsInfosByText = function(arg0, success, error) {
+    exec(success, error, "localContact", "getLocalContactsInfosByText", [arg0]);
+  };
 
-
-
+  exports.getLocalContactsInfosBynumber = function(arg0, success, error) {
+    exec(success, error, "localContact", "getLocalContactsInfosBynumber", [arg0]);
+  };
 });

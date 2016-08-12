@@ -40,8 +40,20 @@ exports.setHeadPic = function(success, error) {
 exports.getVersionInfo = function(success, error) {
   exec(success, error, "ThriftApiClient", "getVersionInfo", []);
 };
-exports.getVersion = function(savePath, success, error) {
-  exec(success, error, "ThriftApiClient", "getVersion", [savePath]);
+exports.getVersion = function(savePath, versionCode, success, error) {
+  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode]);
+};
+exports.addAttention = function(membersArr, success, error) {
+  exec(success, error, "ThriftApiClient", "addAttention", [membersArr]);
+};
+exports.removeAttention = function(membersArr, success, error) {
+  exec(success, error, "ThriftApiClient", "removeAttention", [membersArr]);
+};
+exports.getAttention = function(success, error) {
+  exec(success, error, "ThriftApiClient", "getAttention", []);
+};
+exports.needUpgrade = function(versionName, success, error) {
+  exec(success, error, "ThriftApiClient", "needUpgrade", [versionName]);
 };
 
 });

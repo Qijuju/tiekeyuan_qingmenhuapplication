@@ -124,8 +124,37 @@ angular.module('starter.services', [])
   };
 })
 
-
-
+  .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var mainlist=new Array();
+    var savedata;
+    return{
+      getAll:function (isPersonSend) {
+        if(isPersonSend === 'true'){
+          var chatitem={};
+          chatitem.id=$stateParams.id;
+          chatitem.chatName=$stateParams.sessionid;
+          alert(chatitem.id+chatitem.chatName);
+          chatitem.imgSrc='';
+          chatitem.lastText='';
+          chatitem.count='';
+          chatitem.isDelete='false';
+          chatitem.lastDate=new Date().getTime();
+          mainlist.push(chatitem);
+           $greendao.saveObj('ChatListService',chatitem,function (data) {
+           },function (err) {
+           });
+          $rootScope.$broadcast('chatarr.update');
+        }
+        return mainlist;
+      },
+      setData:function (data) {
+        savedata = data;
+      },
+      getData:function () {
+        return savedata;
+      }
+    }
+  })
 
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
@@ -171,7 +200,10 @@ angular.module('starter.services', [])
         messageDetail.platform='Windows';
         messageDetail.when='lll';
         messageDetail.isFailure='false';
-
+        messageDetail.singlecount='';
+        messageDetail.qunliaocount='';
+        messageDetail.isDelete='false';
+        messageDetail.imgSrc='';
         mqtt.sendMsg(topic, messageDetail, function (message) {
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -208,16 +240,23 @@ angular.module('starter.services', [])
           arriveMessage.platform=message.platform;
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
+          arriveMessage.isDelete=message.isDelete;
+          arriveMessage.imgSrc=message.imgSrc;
+          arriveMessage.singlecount='';
+          arriveMessage.qunliaocount='';
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
-            // alert(data+"shoudaole");
           },function (err) {
-            alert(err+"arrmistake");
           });
-          if (message.type==="User"){
+          if(message.type==="User"){
             count++;
+            // $rootScope.unread=count;
+            // $rootScope.$broadcast('count.update');
+            // alert($rootScope.unread+"111");
             danliao.push(arriveMessage);
           }else {
             groupCount++;
+            // arriveMessage.singlecount='';
+            // arriveMessage.qunliaocount='';
             qunliao.push(arriveMessage);
           }
           $rootScope.$broadcast('msgs.update');
@@ -251,6 +290,7 @@ angular.module('starter.services', [])
       },
 
       clearMsgGroupCount:function () {
+        alert("clear");
         groupCount=0;
       },
 
@@ -342,8 +382,8 @@ angular.module('starter.services', [])
       //   // })
       //   return msgs;
       // },
-      disconnect:function () {
-        mqtt.disconnect();
+      disconnect:function (success, error) {
+        mqtt.disconnect(success, error);
       },
       save:function (key,value) {
         mqtt.save(key,value);
@@ -357,6 +397,7 @@ angular.module('starter.services', [])
       isLogin:function () {
         return isLogin;
       }
+
 
 
     };
@@ -382,16 +423,16 @@ angular.module('starter.services', [])
         greendao.saveObj(services,jsonObject, success, error);
       },
       saveDataLists:function (services,arraylist, success, error) {
-
+        greendao.saveDataLists(services,arraylist, success, error);
       },
       deleteAllData:function (services, success, error) {
         greendao.deleteAllData(services, success, error);
       },
       deleteDataByArg:function (services,str, success, error) {
-
+        greendao.deleteDataByArg(services,str, success, error);
       },
       deleteObj:function (services,jsonObject, success, error) {
-
+        greendao.deleteObj(services,jsonObject, success, error);
       },
       queryMessagelistByIsSingle:function (services,isSingle, success, error) {
 
@@ -753,11 +794,333 @@ angular.module('starter.services', [])
       getVersionInfo:function(success, error) {
         api.getVersionInfo(success, error);
       },
-      getVersion:function(savePath, success, error) {
-        api.getVersion(savePath, success, error);
+      getVersion:function(savePath, versionCode, success, error) {
+        api.getVersion(savePath, versionCode, success, error);
+      },
+      addAttention:function(membersArr, success, error) {
+        api.addAttention(membersArr, success, error);
+      },
+      removeAttention:function(membersArr, success, error) {
+        api.removeAttention(membersArr, success, error);
+      },
+      getAttention:function(success, error) {
+        api.getAttention(success, error);
+      },
+      needUpgrade:function(versionName, success, error) {
+        api.needUpgrade(versionName, success, error);
+      },
+      checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
+        api.getVersionInfo(function (msg) {
+          var versionName = msg.versionName;
+          var versionDesc = msg.versionDesc;
+          var targetPath = "";
+          api.needUpgrade('1.2.0', function (msg) {
+            if(msg == 'true') {
+              var confirmPopup = $ionicPopup.confirm({
+                title: '版本升级',
+                template: versionDesc, //从服务端获取更新的内容
+                cancelText: '取消',
+                okText: '升级'
+              });
+              confirmPopup.then(function (res) {
+                if(res) {
+                  var loading = $ionicLoading.show({
+                    template: "下载中..."//"已经下载：0%"
+                  });
+                  api.getVersion("", versionName, function (msg) {
+                    targetPath = msg;
+                    $ionicLoading.hide();
+                    $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+                      // 成功
+                      $mqtt.save('install_cancel', 'false');
+                      $mqtt.save('install_cancel_version', '');
+                    }, function (err) {
+                      // 错误
+                      $mqtt.save('install_cancel', 'false');
+                      $mqtt.save('install_cancel_version', '');
+                    });
+                  },function (msg) {
+                    $ionicLoading.hide();
+                    alert(msg);
+                  });
+                } else {
+                  //取消更新
+                  $mqtt.save('install_cancel', 'true');
+                  $mqtt.save('install_cancel_version', versionName);
+                }
+
+              });
+            } else {
+              alert(msg);
+            }
+          },function (msg) {
+            alert("检查更新失败！");
+          });
+        }, function (msg) {
+          alert(msg);
+        });
       }
     };
-  });
+  })
+
+  .factory('$contacts',function ($mqtt, $api,$rootScope) {
+
+    $mqtt.getUserInfo()
+    var userId;
+    var rootList=[];
+    var deptinfo;
+    var deptThirdInfo;
+    var deptForthInfo;
+    var deptFifhtInfo;
+    var deptSixthInfo;
+    var deptSeventhInfo;
+
+    var moreDeptThirdInfo;
+
+    var firstname;
+    var secondname;
+    var thirdname;
+    var forthname;
+    var fifthname;
+    var sixthname;
+
+    var firstId;
+    var secondId;
+    var thirdId;
+    var forthId;
+    var fifthId;
+    var sixthId;
+    var persondetail;
+
+    var secondCount=1;
+    var thirdCount=1;
+    var forthCount=1;
+    var fifthCount=1;
+    var sixthCount=1;
+    var seventhCount=1;
+
+    var count1;
+    var count2;
+    var count3;
+    var count4;
+    var count5;
+    var count6;
+    var count7;
+    var count8;
+    var count9;
+    var count10;
+
+    var count11;
+    var count12;
+
+
+
+    return{
+      //获取根目录的
+      rootDept:function () {
+
+        $mqtt.getUserInfo(function (msg) {
+          userId=msg.userID;
+
+          $api.getUserRoot(userId,function (msg) {
+            rootList=msg.deptList;
+            $rootScope.$broadcast('first.update');
+
+          },function (msg) {
+
+          });
+        },function (msg) {
+
+
+        });
+
+        return null;
+      },
+      getRootDept:function () {
+
+        return rootList;
+      },
+
+      //获取登录用户的id
+      getUserID:function () {
+        return userId;
+      },
+
+
+      //二级目录的数据 传入的id是一级目录的id
+      deptInfo:function (deptId) {
+        $api.getChild(userId,deptId,secondCount,10,function (msg) {
+
+          deptinfo=msg;
+
+          count1=msg.deptCount;
+          count2=msg.userCount;
+          //返回的一级目录的id ，也就是rootId
+          firstId=msg.deptID
+          $api.getDeparment(userId,deptId,function (msg) {
+            //拿到root部门的详细信息
+            firstname=msg.deptInfo
+            $rootScope.$broadcast('second.update');
+
+            secondCount++;
+
+          },function (msg) {
+
+          });
+
+        },function (msg) {
+          count1=0;
+          count2=0;
+          $rootScope.$broadcast('second.update');
+
+        });
+
+      },
+      getDeptInfo:function () {
+        return deptinfo;
+      },
+
+
+      getCount1:function () {
+        return count1
+      },
+
+      getCount2:function () {
+        return count2
+      },
+      clearSecondCount:function () {
+        secondCount=1;
+      },
+
+      //三级级目录的数据 传入的id是二级目录的id
+
+      deptThirdInfo:function (deptId) {
+
+        $api.getChild(userId,deptId,thirdCount,10,function (msg) {
+          deptThirdInfo=msg;
+          secondId=msg.deptID;
+          count3=msg.deptCount;
+          count4=msg.userCount;
+
+          $api.getDeparment(userId,secondId,function (msg) {
+
+            secondname=msg.deptInfo
+            $rootScope.$broadcast('third.update');
+            thirdCount++;
+          },function (msg) {
+
+          });
+
+
+        },function (msg) {
+
+          count3=0;
+          count4=0;
+          $rootScope.$broadcast('third.update');
+
+        });
+
+      },
+
+      getDeptThirdInfo:function () {
+        return deptThirdInfo;
+      },
+
+      getCount3:function () {
+        return count3
+      },
+
+      getCount4:function () {
+        return count4
+      },
+
+      clearThirdCount:function () {
+        thirdCount=1;
+      },
+
+      //四级目录的数据 传入的id是三级目录的id
+
+      deptForthInfo:function (deptId) {
+
+        $api.getChild(userId,deptId,forthCount,10,function (msg) {
+          deptForthInfo=msg;
+          thirdId=msg.deptID;
+          count5=msg.deptCount;
+          count6=msg.userCount;
+          $api.getDeparment(userId,thirdId,function (msg) {
+            thirdname=msg.deptInfo
+            $rootScope.$broadcast('forth.update');
+            forthCount++;
+
+          },function (msg) {
+
+          });
+
+
+        },function (msg) {
+          count5=0;
+          count6=0;
+          $rootScope.$broadcast('forth.update');
+        });
+
+      },
+      getDeptForthInfo:function () {
+        return deptForthInfo;
+      },
+
+      getCount5:function () {
+        return count5
+      },
+
+      getCount6:function () {
+        return count6
+      },
+
+      clearForthCount:function () {
+        forthCount=1;
+      },
+
+      //五级目录的数据 传入的是四级目录的id
+
+      deptFifthInfo:function (deptId) {
+
+        $api.getChild(userId,deptId,fifthCount,10,function (msg) {
+          deptFifhtInfo=msg;
+          forthId=msg.deptID;
+          count7=msg.deptCount;
+          count8=msg.userCount;
+          $api.getDeparment(userId,forthId,function (msg) {
+            forthname=msg.deptInfo
+            $rootScope.$broadcast('fifth.update');
+            fifthCount++;
+
+          },function (msg) {
+
+          });
+
+
+        },function (msg) {
+          count7=0;
+          count8=0;
+          $rootScope.$broadcast('fifth.update');
+        });
+
+      },
+      getDeptFifthInfo:function () {
+        return deptFifhtInfo;
+      },
+
+      getCount7:function () {
+        return count7;
+      },
+
+      getCount8:function () {
+        return count8;
+      },
+
+      clearFifthCount:function () {
+        fifthCount=1;
+      },
 
 
 
@@ -767,19 +1130,344 @@ angular.module('starter.services', [])
 
 
 
+      //六级目录的数据 传入是是五级目录的id
+
+      deptSixthInfo:function (deptId) {
+
+        $api.getChild(userId,deptId,sixthCount,10,function (msg) {
+          deptSixthInfo=msg;
+          fifthId=msg.deptID;
+          count9=msg.deptCount;
+          count10=msg.userCount;
+          $api.getDeparment(userId,fifthId,function (msg) {
+            fifthname=msg.deptInfo
+            $rootScope.$broadcast('sixth.update');
+            sixthCount++;
+          },function (msg) {
+
+          });
+
+
+        },function (msg) {
+          count9=0;
+          count10=0;
+          $rootScope.$broadcast('sixth.update');
+
+        });
+
+      },
+      getDeptSixthInfo:function () {
+        return deptSixthInfo;
+      },
+      getCount9:function () {
+        return count9;
+      },
+
+      getCount10:function () {
+        return count10;
+      },
+
+      clearSixthCount:function () {
+        sixthCount=1;
+      },
+
+
+      //七级目录的数据 传入是是六级目录的id
+
+      deptSeventhInfo:function (deptId) {
+        $api.getChild(userId,deptId,seventhCount,10,function (msg) {
+          deptSeventhInfo=msg;
+          sixthId=msg.deptID;
+          count11=msg.deptCount;
+          count12=msg.userCount;
+
+          $api.getDeparment(userId,sixthId,function (msg) {
+            sixthname=msg.deptInfo
+            $rootScope.$broadcast('seventh.update');
+            seventhCount++;
+          },function (err) {
+
+          });
+        },function (err) {
+          count11=0;
+          count12=0;
+          $rootScope.$broadcast('seventh.update');
+        })
+      },
+
+      getDeptSeventhInfo:function () {
+        return deptSeventhInfo;
+      },
+      getCount11:function () {
+        return count11;
+      },
+
+      getCount12:function () {
+        return count12;
+      },
+
+      clearSeventhCount:function () {
+        seventhCount=1;
+      },
+
+
+
+      //获取详情信息
+
+      personDetail:function (id) {
+        $api.getUser(id,function (msg) {
+          persondetail=msg.user
+          $rootScope.$broadcast('personDetail.update');
+        },function (msg) {
+
+        });
+      },
+
+      getPersonDetail:function () {
+        return persondetail;
+      },
 
 
 
 
 
+      //.......................................................
+
+      getFirstDeptName:function () {
+        return firstname;
+      },
+
+
+
+      getSecondDeptName:function () {
+        return secondname;
+      },
+
+      getThirdDeptName:function () {
+        return thirdname;
+      },
+
+      getForthDeptName:function () {
+        return forthname;
+      },
+      getFifthDeptName:function () {
+        return fifthname;
+      },
+      getSixthDeptName:function () {
+        return sixthname;
+      },
+
+      getFirstID:function () {
+        return firstId;
+      },
+
+      getSecondID:function () {
+        return secondId;
+      },
+
+      getThirdID:function () {
+        return thirdId;
+      },
+
+      getForthID:function () {
+        return forthId;
+      },
+      getFifthID:function () {
+        return fifthId;
+      },
+
+      getSixthID:function () {
+        return sixthId;
+      }
 
 
 
 
 
+    }
+  })
+
+
+  .factory('$searchdata',function ($api,$rootScope) {
+    var youmeiyou;
+    var persondetail;
+    var contactPlugin;
+    document.addEventListener('deviceready',function () {
+      contactPlugin=cordova.require('localContact.localContact');
+
+    });
+
+    return{
+      personDetail:function (userID) {
+        $api.getUser(userID,function (msg) {
+          persondetail=msg;
+          $rootScope.$broadcast('person.update');
+
+        },function (msg) {
+
+        });
+      },
+      getPersonDetail:function () {
+        return persondetail;
+      },
+
+      getyesorno:function (number) {
+        contactPlugin.getLocalContactsInfosBynumber(number,function (message) {
+          youmeiyou= message;
+          //  alert("真实请求的是这个"+youmeiyou)
+          $rootScope.$broadcast('personyes.updateno');
+        },function (message) {
+
+        });
+      },
+      getYoumeiyou:function () {
+        return youmeiyou;
+      }
+    }
+
+  })
+  .factory('$searchdatadianji',function ($api,$rootScope) {
+    var persondetaildianji;
+
+    return{
+      personDetaildianji:function (userID) {
+        $api.getUser(userID,function (msg) {
+          persondetaildianji=msg;
+          $rootScope.$broadcast('person.dianji');
+
+        },function (msg) {
+
+        });
+      },
+      getPersonDetaildianji:function () {
+        return persondetaildianji;
+      },
+
+    }
+
+  })
+
+  .factory('$search111',function ($api,$rootScope) {
+
+    var persons;
+    return{
+      search1111:function (userid,page,count,query) {
+        $api.seachUsers(userid,query,page,count,function (msg) {
+          persons=msg;
+          $rootScope.$broadcast('persons.update');
+
+        },function (msg) {
+          alert(msg);
+        });
+      },
+
+      getPersons:function () {
+        return persons;
+      }
+    }
+
+  })
+
+  .factory('$search222',function ($api,$rootScope) {
+
+    var persons2;
+    return{
+      search2222:function (userid,page,count,query) {
+        $api.seachUsers(userid,query,page,count,function (msg) {
+          persons2=msg;
+          if (msg.searchCount==0){
+            persons2=null;
+          }
+          $rootScope.$broadcast('persons2.update2');
+        },function (msg) {
+          persons2=null;
+          $rootScope.$broadcast('persons2.update2');
+        });
+      },
+
+      getPersons2:function () {
+        return persons2;
+      }
+    }
+
+  })
+  .factory('$searchlocal',function ($rootScope) {
+    var contactPlugin
+    var localpersons;
+    document.addEventListener('deviceready',function () {
+      contactPlugin=cordova.require('localContact.localContact');
+
+    });
+    return{
+      getlocalContact:function (query) {
+        //联系人插件里的按关键字搜索
+        contactPlugin.getLocalContactsInfosByText(query,function (message) {
+          if(message!=null){
+            localpersons=message;
+            $rootScope.$broadcast('localperson.update');
+          }
+        },function (message) {
+        });
+      },
+      getLocalContacts:function () {
+        return localpersons;
+      }
+
+    };
 
 
 
+  })
+
+
+
+  .factory('$myattentionser',function ($api,$rootScope) {
+    var attentionList;
+    return{
+      getAttentionList:function () {
+        $api.getAttention(function (msg) {
+          attentionList=msg;
+          $rootScope.$broadcast('attention.update');
+        },function (msg) {
+          alert(msg);
+        });
+      },
+
+      getAttentionaaList:function () {
+        return attentionList;
+      }
+    }
+
+  })
+
+  .factory('$addattentionser',function ($api,$rootScope) {
+    var addwancheng;
+    return{
+      addAttention111:function (membersAerr) {
+        $api.addAttention(membersAerr,function (msg) {
+          addwancheng=true;
+          $rootScope.$broadcast('attention.add');
+        },function (msg) {
+          alert("添加关注失败")
+          $rootScope.$broadcast('attention.add');
+        });
+      },
+      removeAttention111:function (membersAerr) {
+        $api.removeAttention(membersAerr,function (msg) {
+          addwancheng=false;
+          $rootScope.$broadcast('attention.delete');
+        },function (msg) {
+          alert("取消关注失败")
+          $rootScope.$broadcast('attention.delete');
+        });
+      },
+
+      getaddAttention111:function () {
+        return addwancheng;
+      }
+    }
+
+  })
 
 
 
