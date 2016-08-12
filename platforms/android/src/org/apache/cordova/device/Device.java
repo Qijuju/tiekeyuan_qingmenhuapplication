@@ -72,7 +72,7 @@ public class Device extends CordovaPlugin {
             r.put("uuid", Device.uuid);
             r.put("version", this.getOSVersion());
             r.put("platform", this.getPlatform());
-            r.put("model", this.getModel());
+            r.put("com/tky/protocol/model", this.getModel());
             r.put("manufacturer", this.getManufacturer());
 	        r.put("isVirtual", this.isVirtual());
             r.put("serial", this.getSerialNumber());

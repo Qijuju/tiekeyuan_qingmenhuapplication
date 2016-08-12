@@ -307,6 +307,7 @@ angular.module('starter.services', [])
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
+        messageReal.singlecount='';
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {

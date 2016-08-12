@@ -22,6 +22,7 @@ import java.util.Map;
 import im.server.Department.IMDepartment;
 import im.server.File.IMFile;
 import im.server.File.RSTversion;
+import im.server.Message.IMMessage;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
 import im.server.attention.IMAttention;
@@ -108,6 +109,19 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6007, 30000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    private static IMMessage.AsyncClient getMsgClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 30000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -393,6 +407,11 @@ public class SystemApi {
     public static void getAttention(String ID, AsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call> callback) throws IOException, TException {
         IMAttention.AsyncClient client = getAttentionClient();
         client.GetAttention(ID, callback);
+    }
+
+    public static void createMsg() throws IOException {
+        IMMessage.AsyncClient client = getMsgClient();
+//        client.GetHistoryMsg();
     }
 
 }
