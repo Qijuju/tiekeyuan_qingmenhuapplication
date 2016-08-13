@@ -1427,7 +1427,7 @@ angular.module('im.controllers', [])
       $ionicLoading.show({
         template: '登录中...'
       });
-      $api.login($scope.name,$scope.password,'123', function (message) {
+      $api.login($scope.name,$scope.password,'321', function (message) {
         //alert(message.toJSONString());
         /*if (message.isActive === false) {
           $api.activeUser(message.userID, '321', function (message) {
@@ -2375,23 +2375,37 @@ angular.module('im.controllers', [])
     }
     $scope.totalpage=1
     $scope.dangqianpage=1;
-    alert("进到了")
     //总页数
-    // $api.getMsgCount("U","102357",function (msg) {
-    //   alert(msg)
-    //   $scope.totalpage=msg.msgCount/10+1
-    //   alert($scope.totalpage)
-    // },function (msg) {
-    //   alert("失败")
-    // })
+    $api.getMsgCount("U","127440",function (msg) {
+      var mo = msg%10;
+      if(mo === 0) {
+        $scope.totalpage = msg / 10;
+      } else {
+        $scope.totalpage = (msg - mo) / 10 + 1;
+      }
+      // $scope.totalpage=msg/10+1   ;
+      alert($scope.totalpage)
+    },function (msg) {
+      alert("失败");
+    });
+    $historyduifang.getHistoryduifanga("U","127440",1,10);
+    $scope.$on('historymsg.duifang',function (event) {
+      $scope.$apply(function () {
+        $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+        /*var msgDate = $historyduifang.getHistoryduifangc()[0].MsgDate;
+        var date = new Date(parseInt(msgDate));
+        alert(date.getFullYear() + "的");*/
+      })
+    });
+  
     //下一页
       $scope.nextpage=function () {
         if ($scope.dangqianpage<$scope.totalpage){
             $scope.dangqianpage++;
-          $historyduifang.getHistoryduifanga("U","102357",$scope.dangqianpage,"10");
+          $historyduifang.getHistoryduifanga("U","127440",$scope.dangqianpage,"10");
             $scope.$on('historymsg.duifang',function (event) {
               $scope.$apply(function () {
-                $scope.historyduifangsss=$historyduifang.getHistoryduifangc().msg;
+                $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
               })
             });
 
@@ -2409,10 +2423,10 @@ angular.module('im.controllers', [])
       $scope.backpage=function () {
             if($scope.dangqianpage>1){
             $scope.dangqianpage--;
-              $historyduifang.getHistoryduifanga("U","102357",$scope.dangqianpage,"10");
+              $historyduifang.getHistoryduifanga("U","127440",$scope.dangqianpage,"10");
             $scope.$on('historymsg.duifang',function (event) {
               $scope.$apply(function () {
-                $scope.historyduifangsss=$historyduifang.getHistoryduifangc().msg;
+                $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
               })
             });
 

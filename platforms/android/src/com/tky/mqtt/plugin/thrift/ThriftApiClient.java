@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -946,7 +947,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
             String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
-            int pageNum = args.getInt(2);//搜索的页数(0时为末页)
+            final int pageNum = args.getInt(2);//搜索的页数(0时为末页)
             int pageCount = args.getInt(3);//每页的数目(0时为10)
             SystemApi.getHistoryMsg(getUserID(), sessionType, sessionID, pageNum, pageCount, new AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call>() {
                 @Override
@@ -955,6 +956,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTgetMsg result = getHistoryMsg_call.getResult();
                         if (result != null && result.result) {
                             List<Msg> attentions = result.getMsglist();
+                            Date date=new Date(attentions.get(pageNum).getMsgDate());
                             String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<Msg>>() {
                             }.getType());
                             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -1002,7 +1004,7 @@ public class ThriftApiClient extends CordovaPlugin {
                     try {
                         RSTgetMsgCount result = getMsgCount_call.getResult();
                         if (result != null && result.result) {
-                            int msgCount = result.getMsgCount();
+                            long msgCount = result.getMsgCount();
                             setResult(msgCount, PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
@@ -1158,6 +1160,16 @@ public class ThriftApiClient extends CordovaPlugin {
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
     }
-
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Sgetatus.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    private void setResult(long result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
 
 }

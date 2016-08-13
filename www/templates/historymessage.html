@@ -14,26 +14,30 @@
                    <!--pulling-text="更多消息" id="refresh">-->
     <!--</ion-refresher>-->
     <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
-    <div>
+
 
       <div ng-repeat="historyduifangaaa in historyduifangsss">
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID=='102357')">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID=='127440')">
           <img src="img/mike.png" class="rj-head-pic">
-          <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{historyduifangaaa.Msg}}</p>
+          <!--<span class="rj-triangle-left">{{historyduifangaaa.FromName}}</span>-->
+          <ul class="list">
+            <li class="item background_white">
+          <p>{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+          <h5>{{historyduifangaaa.Msg}}</h5>
+            </li>
+          </ul>
         </div>
 
 
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID === '127440')">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID === '102357')">
           <img src="img/ben.png" class="rj-head-pic-right">
-          <span class="rj-triangle-right"></span>
-           <span>
-             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ><font class="rj-message-right">{{historyduifangaaa.Msg}}</font></p>
-             <!--ng-if="(historyduifang.FromID === '127440')"  ng-click="resendshow('cll',historyduifang.Msg, 'cll')"-->
-          </span>
+          <ul class="list">
+            <li class="item background_white">
+              <p style="float: right;">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+              <h5 style="float: right;">{{historyduifangaaa.Msg}}</h5>
+            </li>
+            </ul>
         </div>
-      </div>
 
     </div>
   </ion-content>

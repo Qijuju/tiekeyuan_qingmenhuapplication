@@ -25,16 +25,12 @@
     </ion-refresher>
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
-      <!--<p class="rj-message-time">5月27日 16:33</p>-->
-
       <div ng-repeat="msg in msgs">
         <div class="rj-message-wrap" ng-if="(msg.from==='false')">
           <img src="img/mike.png" class="rj-head-pic">
           <span class="rj-triangle-left"></span>
           <p class="rj-message">{{msg.message}}</p>
         </div>
-
-
         <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
           <img src="img/ben.png" class="rj-head-pic-right">
           <span class="rj-triangle-right"></span>
@@ -44,7 +40,6 @@
           </span>
         </div>
       </div>
-
     </div>
   </ion-content>
 
