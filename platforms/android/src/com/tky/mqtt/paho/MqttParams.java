@@ -6,10 +6,14 @@ import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttPingSender;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.UUID;
 
 public class MqttParams {
 	private String serverURI = SwitchLocal.getLocalIp();
-	private String clientId = "hhj";//UUID.randomUUID().toString().toUpperCase();
+	private String clientId = getUserID();
 	private String userName = "lb";
 	private String password = "lb";
 	private MqttClientPersistence persistence = new MemoryPersistence();
@@ -110,4 +114,25 @@ public class MqttParams {
 	public void setCleanSession(boolean cleanSession) {
 		this.cleanSession = cleanSession;
 	}
+
+	/**
+	 * 获取当前登录的用户ID
+	 * @return
+	 */
+	private String getUserID() {
+		JSONObject userInfo = null;
+		try {
+			userInfo = getUserInfo();
+			return userInfo.getString("userID");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return UUID.randomUUID().toString().toUpperCase().substring(0, 6);
+	}
+
+	private JSONObject getUserInfo() throws JSONException {
+		String login_info = SPUtils.getString("login_info", "");
+		return new JSONObject(login_info);
+	}
+
 }
