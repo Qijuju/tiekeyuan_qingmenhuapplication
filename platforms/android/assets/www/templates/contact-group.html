@@ -1,5 +1,5 @@
 <ion-view view-title="我的群组">
-  <ion-nav-bar align-title="center">
+  <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-back" ui-sref="tab.contacts">
         联系人
@@ -10,25 +10,13 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false"  >
-
-        <div class="rj-group-index-bar">我创建的</div>
         <ion-list>
-          <ion-item class="item-remove-animate item-avatar item-icon-right"  ng-repeat="name in names" ng-if="name.parentdeptid=='279'" ng-click="chatsMesssage()">
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="jumpGroupChat()">
             <img src="img/default_org_icon.png">
-            <h2>{{name.deptname}}</h2>
-            <p>3人</p>
+            <h2>{{deptinfo}}</h2>
+            <p>{{groupCount}}人</p>
           </ion-item>
         </ion-list>
-
-        <div class="rj-group-index-bar">我加入的</div>
-        <ion-list>
-          <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="name in names" ng-if="name.parentdeptid=='279'" ng-click="chatsMesssage()">
-            <img src="img/default_org_icon.png">
-            <h2>{{name.deptname}}</h2>
-            <p>3人</p>
-          </ion-item>
-        </ion-list>
-
   </ion-content>
 </ion-view>
 

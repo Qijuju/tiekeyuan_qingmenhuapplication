@@ -19,7 +19,7 @@ public class BaseApplication extends Application {
 	private static DaoMaster daoMaster;
 	private static DaoSession daoSession;
 	public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
-			+ File.separator+"TKY"+ File.separator+"ttt";//数据库路径
+			+ File.separator+"TKY"+ File.separator+"SY";//数据库路径
 	@Override
 	public void onCreate() {
 		super.onCreate();

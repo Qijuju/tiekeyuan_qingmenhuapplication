@@ -12,8 +12,9 @@ public class TopContacts extends BaseDao {
     private String _id;
     private String name;
     private String phone;
-    private String when;
-    private String count;
+    private String type;
+    private Integer count;
+    private Long when;
 
     public TopContacts() {
     }
@@ -22,12 +23,13 @@ public class TopContacts extends BaseDao {
         this._id = _id;
     }
 
-    public TopContacts(String _id, String name, String phone, String when, String count) {
+    public TopContacts(String _id, String name, String phone, String type, Integer count, Long when) {
         this._id = _id;
         this.name = name;
         this.phone = phone;
-        this.when = when;
+        this.type = type;
         this.count = count;
+        this.when = when;
     }
 
     public String get_id() {
@@ -54,20 +56,28 @@ public class TopContacts extends BaseDao {
         this.phone = phone;
     }
 
-    public String getWhen() {
-        return when;
+    public String getType() {
+        return type;
     }
 
-    public void setWhen(String when) {
-        this.when = when;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public Long getWhen() {
+        return when;
+    }
+
+    public void setWhen(Long when) {
+        this.when = when;
     }
 
 }

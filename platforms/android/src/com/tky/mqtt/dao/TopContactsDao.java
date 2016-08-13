@@ -26,8 +26,9 @@ public class TopContactsDao extends AbstractDao<TopContacts, String> {
         public final static Property _id = new Property(0, String.class, "_id", true, "_ID");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Phone = new Property(2, String.class, "phone", false, "PHONE");
-        public final static Property When = new Property(3, String.class, "when", false, "WHEN");
-        public final static Property Count = new Property(4, String.class, "count", false, "COUNT");
+        public final static Property Type = new Property(3, String.class, "type", false, "TYPE");
+        public final static Property Count = new Property(4, Integer.class, "count", false, "COUNT");
+        public final static Property When = new Property(5, Long.class, "when", false, "WHEN");
     };
 
 
@@ -46,8 +47,9 @@ public class TopContactsDao extends AbstractDao<TopContacts, String> {
                 "'_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: _id
                 "'NAME' TEXT," + // 1: name
                 "'PHONE' TEXT," + // 2: phone
-                "'WHEN' TEXT," + // 3: when
-                "'COUNT' TEXT);"); // 4: count
+                "'TYPE' TEXT," + // 3: type
+                "'COUNT' INTEGER," + // 4: count
+                "'WHEN' INTEGER);"); // 5: when
     }
 
     /** Drops the underlying database table. */
@@ -76,14 +78,19 @@ public class TopContactsDao extends AbstractDao<TopContacts, String> {
             stmt.bindString(3, phone);
         }
  
-        String when = entity.getWhen();
-        if (when != null) {
-            stmt.bindString(4, when);
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(4, type);
         }
  
-        String count = entity.getCount();
+        Integer count = entity.getCount();
         if (count != null) {
-            stmt.bindString(5, count);
+            stmt.bindLong(5, count);
+        }
+ 
+        Long when = entity.getWhen();
+        if (when != null) {
+            stmt.bindLong(6, when);
         }
     }
 
@@ -100,8 +107,9 @@ public class TopContactsDao extends AbstractDao<TopContacts, String> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // _id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // phone
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // when
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // count
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // type
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // count
+            cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5) // when
         );
         return entity;
     }
@@ -112,8 +120,9 @@ public class TopContactsDao extends AbstractDao<TopContacts, String> {
         entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setPhone(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setWhen(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setCount(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setCount(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setWhen(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
      }
     
     /** @inheritdoc */

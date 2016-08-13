@@ -64,6 +64,7 @@ angular.module('im.routes', [])
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
+        controller: 'TopContactsCtrl'
 
 
       })
@@ -169,7 +170,8 @@ angular.module('im.routes', [])
       .state('group', {
         url: '/group',
         templateUrl: 'templates/contact-group.html',
-        controller: 'GroupCtrl'
+        controller: 'GroupCtrl',
+        cache:false
 
       })
 

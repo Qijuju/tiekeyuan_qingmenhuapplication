@@ -13,14 +13,14 @@ exports.getDatetime = function(userId, success, error) {
 exports.seachUsers = function(username,searchText,pageNum,pageCount, success, error) {
   exec(success, error, "ThriftApiClient", "seachUsers", [username,searchText,pageNum,pageCount]);
 };
-exports.getChild = function(ID,deptID,pageNum,pageCount, success, error) {
-  exec(success, error, "ThriftApiClient", "getChild", [ID,deptID,pageNum,pageCount]);
+exports.getChild = function(deptID,pageNum,pageCount, success, error) {
+  exec(success, error, "ThriftApiClient", "getChild", [deptID,pageNum,pageCount]);
 };
-exports.getDeparment = function(ID,deptID, success, error) {
-  exec(success, error, "ThriftApiClient", "getDeparment", [ID,deptID]);
+exports.getDeparment = function(deptID, success, error) {
+  exec(success, error, "ThriftApiClient", "getDeparment", [deptID]);
 };
-exports.getUserRoot = function(ID, success, error) {
-  exec(success, error, "ThriftApiClient", "getUserRoot", [ID]);
+exports.getUserRoot = function(success, error) {
+  exec(success, error, "ThriftApiClient", "getUserRoot", []);
 };
 exports.getUser = function(userID, success, error) {
   exec(success, error, "ThriftApiClient", "getUser", [userID]);
