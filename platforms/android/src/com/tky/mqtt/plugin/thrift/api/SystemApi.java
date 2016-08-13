@@ -180,6 +180,19 @@ public class SystemApi {
     }
 
     /**
+     * 解绑用户（让用户可以在其他设备上登录）
+     * @param ID
+     * @param imCode
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void cancelUser(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback) throws IOException, TException {
+        IMSystem.AsyncClient asyncClient = getSystemClient();
+        asyncClient.CancelUser(ID, imCode, callback);
+    }
+
+    /**
      * 获取子部门和人员列表
      * @param ID 被激活用户的ID
      * @param deptID 要获取的部门ID
@@ -409,9 +422,34 @@ public class SystemApi {
         client.GetAttention(ID, callback);
     }
 
-    public static void createMsg() throws IOException {
+    /**
+     * 获取历史消息
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param pageNum 搜索的页数(0时为末页)
+     * @param pageCount 每页的数目(0时为10)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getHistoryMsg(String ID, String sessionType, String sessionID, int pageNum, int pageCount, AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call> callback) throws IOException, TException {
         IMMessage.AsyncClient client = getMsgClient();
-//        client.GetHistoryMsg();
+        client.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 获取历史消息数
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+        IMMessage.AsyncClient client = getMsgClient();
+        client.GetMsgCount(ID, sessionType, sessionID, callback);
     }
 
 }
