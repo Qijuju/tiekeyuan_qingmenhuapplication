@@ -180,6 +180,19 @@ public class SystemApi {
     }
 
     /**
+     * 解绑用户（让用户可以在其他设备上登录）
+     * @param ID
+     * @param imCode
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void cancelUser(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback) throws IOException, TException {
+        IMSystem.AsyncClient asyncClient = getSystemClient();
+        asyncClient.CancelUser(ID, imCode, callback);
+    }
+
+    /**
      * 获取子部门和人员列表
      * @param ID 被激活用户的ID
      * @param deptID 要获取的部门ID

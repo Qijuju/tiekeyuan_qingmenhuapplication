@@ -55,5 +55,14 @@ exports.getAttention = function(success, error) {
 exports.needUpgrade = function(versionName, success, error) {
   exec(success, error, "ThriftApiClient", "needUpgrade", [versionName]);
 };
+exports.getHistoryMsg = function(sessionType, sessionID, pageNum, pageCount, success, error) {
+  exec(success, error, "ThriftApiClient", "getHistoryMsg", [sessionType, sessionID, pageNum, pageCount]);
+};
+exports.getMsgCount = function(sessionType, sessionID, success, error) {
+  exec(success, error, "ThriftApiClient", "getMsgCount", [sessionType, sessionID]);
+};
+exports.cancelUser = function(success, error) {//解绑用户，以让其他设备可以登录使用该账户
+  exec(success, error, "ThriftApiClient", "cancelUser", []);
+};
 
 });

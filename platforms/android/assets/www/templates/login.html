@@ -18,7 +18,7 @@
       <button class="button button-block button-positive" ng-click="login(name,password)">
         <i class="icon ion-log-in"></i>&nbsp;登录
       </button>
-    <div><input type="checkbox" style="margin-left: 10px">
+    <div><input type="checkbox" ng-checked="remPwd === 'true'" checked style="margin-left: 10px" ng-click="rememberPwd()">
       记住密码
       </div>
 

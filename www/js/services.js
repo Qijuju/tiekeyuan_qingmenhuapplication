@@ -866,6 +866,9 @@ angular.module('starter.services', [])
       },
       getMsgCount:function(sessionType, sessionID, success, error) {//获取历史消息数
         api.getMsgCount(sessionType, sessionID, success, error);
+      },
+      cancelUser:function(success, error) {//解绑用户（让其他用户可以使用该帐号登录其他设备）
+        api.cancelUser(success,error);
       }
     };
   })

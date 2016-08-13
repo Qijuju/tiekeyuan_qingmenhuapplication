@@ -15,9 +15,11 @@ import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.protocol.model.IMPException;
 
 import org.apache.cordova.CallbackContext;
@@ -25,12 +27,15 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
+import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import im.server.System.IMSystem;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -252,10 +257,30 @@ public class MqttChat extends CordovaPlugin {
                 }
     }
 
+    /**
+     * 断开MQTT连接并解除用户的绑定
+     * @param args
+     * @param callbackContext
+     */
     public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
         hasLogin = false;
         MqttOper.closeMqttConnection();
-        setResult("success", PluginResult.Status.OK, callbackContext);
+        try {
+            SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
+                @Override
+                public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+                    setResult("success", PluginResult.Status.OK, callbackContext);
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (Exception e) {
+            setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**

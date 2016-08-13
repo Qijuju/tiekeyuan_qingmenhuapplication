@@ -275,6 +275,54 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
+    /**
+     * 解绑用户（让用户可以用其他设备登录账户）
+     * @param args
+     * @param callbackContext
+     */
+    public void cancelUser(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
+                @Override
+                public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+                    try {
+                        RST result = cancelUser_call.getResult();
+                        if (result == null) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            String json = GsonUtils.toJson(result, RST.class);
+                            if (result.result) {
+                                try {
+                                    setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                            }
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
 
     ///////部门接口
 
