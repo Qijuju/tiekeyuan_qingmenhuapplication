@@ -277,11 +277,11 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getChild(final JSONArray args, final CallbackContext callbackContext) {
         try {
-            String ID = args.getString(0);
-            String deptID = args.getString(1);
-            int pageNum = args.getInt(2);
-            int pageCount = args.getInt(3);
-            SystemApi.getChild(ID, deptID, pageNum, pageCount, new AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call>() {
+            //String ID = args.getString(0);
+            String deptID = args.getString(0);
+            int pageNum = args.getInt(1);
+            int pageCount = args.getInt(2);
+            SystemApi.getChild(getUserID(), deptID, pageNum, pageCount, new AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetChild_call getChild_call) {
                     try {
@@ -330,10 +330,10 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getDeparment(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String ID = args.getString(0);
-            String deptID = args.getString(1);
+            //String ID = args.getString(0);
+            String deptID = args.getString(0);
 
-            SystemApi.getDeparment(ID, deptID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
+            SystemApi.getDeparment(getUserID(), deptID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetDeparment_call getDeparment_call) {
                     try {
@@ -382,8 +382,8 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getUserRoot(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String ID = args.getString(0);
-            SystemApi.getUserRoot(ID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
+            //String ID = args.getString(0);
+            SystemApi.getUserRoot(getUserID(), new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetUserRoot_call getUserRoot_call) {
                     try {

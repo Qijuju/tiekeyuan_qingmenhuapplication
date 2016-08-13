@@ -24,20 +24,8 @@ public class ParentDeptDao extends AbstractDao<ParentDept, String> {
     */
     public static class Properties {
         public final static Property _id = new Property(0, String.class, "_id", true, "_ID");
-        public final static Property Account = new Property(1, String.class, "account", false, "ACCOUNT");
-        public final static Property Authority = new Property(2, String.class, "authority", false, "AUTHORITY");
-        public final static Property Create_date = new Property(3, String.class, "create_date", false, "CREATE_DATE");
-        public final static Property Create_user = new Property(4, String.class, "create_user", false, "CREATE_USER");
-        public final static Property Description = new Property(5, String.class, "description", false, "DESCRIPTION");
-        public final static Property Grade = new Property(6, String.class, "grade", false, "GRADE");
-        public final static Property Lastupdate = new Property(7, String.class, "lastupdate", false, "LASTUPDATE");
-        public final static Property Name = new Property(8, String.class, "name", false, "NAME");
-        public final static Property Priority = new Property(9, String.class, "priority", false, "PRIORITY");
-        public final static Property Prjid = new Property(10, String.class, "prjid", false, "PRJID");
-        public final static Property Root = new Property(11, String.class, "root", false, "ROOT");
-        public final static Property Sync_stage = new Property(12, String.class, "sync_stage", false, "SYNC_STAGE");
-        public final static Property Update_user = new Property(13, String.class, "update_user", false, "UPDATE_USER");
-        public final static Property F_sectid = new Property(14, String.class, "f_sectid", false, "F_SECTID");
+        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Childcount = new Property(2, Integer.class, "childcount", false, "CHILDCOUNT");
     };
 
     private DaoSession daoSession;
@@ -57,20 +45,8 @@ public class ParentDeptDao extends AbstractDao<ParentDept, String> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'PARENT_DEPT' (" + //
                 "'_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: _id
-                "'ACCOUNT' TEXT," + // 1: account
-                "'AUTHORITY' TEXT," + // 2: authority
-                "'CREATE_DATE' TEXT," + // 3: create_date
-                "'CREATE_USER' TEXT," + // 4: create_user
-                "'DESCRIPTION' TEXT," + // 5: description
-                "'GRADE' TEXT," + // 6: grade
-                "'LASTUPDATE' TEXT," + // 7: lastupdate
-                "'NAME' TEXT," + // 8: name
-                "'PRIORITY' TEXT," + // 9: priority
-                "'PRJID' TEXT," + // 10: prjid
-                "'ROOT' TEXT," + // 11: root
-                "'SYNC_STAGE' TEXT," + // 12: sync_stage
-                "'UPDATE_USER' TEXT," + // 13: update_user
-                "'F_SECTID' TEXT);"); // 14: f_sectid
+                "'NAME' TEXT," + // 1: name
+                "'CHILDCOUNT' INTEGER);"); // 2: childcount
     }
 
     /** Drops the underlying database table. */
@@ -89,74 +65,14 @@ public class ParentDeptDao extends AbstractDao<ParentDept, String> {
             stmt.bindString(1, _id);
         }
  
-        String account = entity.getAccount();
-        if (account != null) {
-            stmt.bindString(2, account);
-        }
- 
-        String authority = entity.getAuthority();
-        if (authority != null) {
-            stmt.bindString(3, authority);
-        }
- 
-        String create_date = entity.getCreate_date();
-        if (create_date != null) {
-            stmt.bindString(4, create_date);
-        }
- 
-        String create_user = entity.getCreate_user();
-        if (create_user != null) {
-            stmt.bindString(5, create_user);
-        }
- 
-        String description = entity.getDescription();
-        if (description != null) {
-            stmt.bindString(6, description);
-        }
- 
-        String grade = entity.getGrade();
-        if (grade != null) {
-            stmt.bindString(7, grade);
-        }
- 
-        String lastupdate = entity.getLastupdate();
-        if (lastupdate != null) {
-            stmt.bindString(8, lastupdate);
-        }
- 
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(9, name);
+            stmt.bindString(2, name);
         }
  
-        String priority = entity.getPriority();
-        if (priority != null) {
-            stmt.bindString(10, priority);
-        }
- 
-        String prjid = entity.getPrjid();
-        if (prjid != null) {
-            stmt.bindString(11, prjid);
-        }
- 
-        String root = entity.getRoot();
-        if (root != null) {
-            stmt.bindString(12, root);
-        }
- 
-        String sync_stage = entity.getSync_stage();
-        if (sync_stage != null) {
-            stmt.bindString(13, sync_stage);
-        }
- 
-        String update_user = entity.getUpdate_user();
-        if (update_user != null) {
-            stmt.bindString(14, update_user);
-        }
- 
-        String f_sectid = entity.getF_sectid();
-        if (f_sectid != null) {
-            stmt.bindString(15, f_sectid);
+        Integer childcount = entity.getChildcount();
+        if (childcount != null) {
+            stmt.bindLong(3, childcount);
         }
     }
 
@@ -177,20 +93,8 @@ public class ParentDeptDao extends AbstractDao<ParentDept, String> {
     public ParentDept readEntity(Cursor cursor, int offset) {
         ParentDept entity = new ParentDept( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // _id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // account
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // authority
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // create_date
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // create_user
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // description
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // grade
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // lastupdate
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // name
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // priority
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // prjid
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // root
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // sync_stage
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // update_user
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // f_sectid
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
+            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2) // childcount
         );
         return entity;
     }
@@ -199,20 +103,8 @@ public class ParentDeptDao extends AbstractDao<ParentDept, String> {
     @Override
     public void readEntity(Cursor cursor, ParentDept entity, int offset) {
         entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setAccount(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setAuthority(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setCreate_date(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setCreate_user(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setDescription(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setGrade(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setLastupdate(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setName(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setPriority(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setPrjid(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setRoot(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setSync_stage(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setUpdate_user(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setF_sectid(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setChildcount(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
      }
     
     /** @inheritdoc */

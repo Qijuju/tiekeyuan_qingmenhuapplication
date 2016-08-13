@@ -10,8 +10,13 @@ import de.greenrobot.dao.DaoException;
  */
 public class SubDept extends BaseDao implements java.io.Serializable {
 
-    private String sub_id;
+    private String _id;
+    private String name;
     private String type;
+    private String isactive;
+    private String parentname;
+    private Integer pagesize;
+    private Integer childcount;
     /** Not-null value. */
     private String f_id;
 
@@ -28,13 +33,18 @@ public class SubDept extends BaseDao implements java.io.Serializable {
     public SubDept() {
     }
 
-    public SubDept(String sub_id) {
-        this.sub_id = sub_id;
+    public SubDept(String _id) {
+        this._id = _id;
     }
 
-    public SubDept(String sub_id, String type, String f_id) {
-        this.sub_id = sub_id;
+    public SubDept(String _id, String name, String type, String isactive, String parentname, Integer pagesize, Integer childcount, String f_id) {
+        this._id = _id;
+        this.name = name;
         this.type = type;
+        this.isactive = isactive;
+        this.parentname = parentname;
+        this.pagesize = pagesize;
+        this.childcount = childcount;
         this.f_id = f_id;
     }
 
@@ -44,12 +54,20 @@ public class SubDept extends BaseDao implements java.io.Serializable {
         myDao = daoSession != null ? daoSession.getSubDeptDao() : null;
     }
 
-    public String getSub_id() {
-        return sub_id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setSub_id(String sub_id) {
-        this.sub_id = sub_id;
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -58,6 +76,38 @@ public class SubDept extends BaseDao implements java.io.Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(String isactive) {
+        this.isactive = isactive;
+    }
+
+    public String getParentname() {
+        return parentname;
+    }
+
+    public void setParentname(String parentname) {
+        this.parentname = parentname;
+    }
+
+    public Integer getPagesize() {
+        return pagesize;
+    }
+
+    public void setPagesize(Integer pagesize) {
+        this.pagesize = pagesize;
+    }
+
+    public Integer getChildcount() {
+        return childcount;
+    }
+
+    public void setChildcount(Integer childcount) {
+        this.childcount = childcount;
     }
 
     /** Not-null value. */

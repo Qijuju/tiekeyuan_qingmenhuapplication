@@ -36,3 +36,10 @@ exports.deleteObj = function(services,jsonObject, success, error) {
 exports.queryMessagelistByIsSingle = function(services,isSingle, success, error) {
   exec(success, error, "GreenDaoPlugin", "queryMessagelistByIsSingle", [services,isSingle]);
 };
+//通过具体的某个字段来排序
+exports.loadByCount = function(success, error) {
+  exec(success, error, "GreenDaoPlugin", "loadByCount", []);
+};
+
+
+
