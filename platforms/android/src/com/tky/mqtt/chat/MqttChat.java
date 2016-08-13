@@ -27,6 +27,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
+import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -269,7 +271,16 @@ public class MqttChat extends CordovaPlugin {
             SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
-                    setResult("success", PluginResult.Status.OK, callbackContext);
+                    try {
+                        RST result = cancelUser_call.getResult();
+                        if (result.result) {
+                            setResult("success", PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override

@@ -45,8 +45,9 @@ public class MqttConnection {
 	 */
 	public void reconnect() throws MqttException {
 		if (mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.close();
+			mqttAsyncClient.disconnect(quiesceTimeout)
 			mqttAsyncClient.disconnect();
+			mqttAsyncClient.close();
 			mqttAsyncClient = null;
 		}
 		isReconnect = true;

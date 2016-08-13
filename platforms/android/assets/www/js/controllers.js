@@ -1429,12 +1429,12 @@ angular.module('im.controllers', [])
       });
       $api.login($scope.name,$scope.password,'321', function (message) {
         //alert(message.toJSONString());
-        /*if (message.isActive === false) {
+        if (message.isActive === false) {
           $api.activeUser(message.userID, '321', function (message) {
           },function (message) {
             alert(message);
           });
-        }*/
+        }
         // alert(message.toString());
         $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
@@ -1458,10 +1458,9 @@ angular.module('im.controllers', [])
         },function (msg) {
         });
       }, function (message) {
-        //alert(message);
-        $scope.name = response;
+        alert(message);
         $ionicLoading.hide();
-        $state.go('tab.message');
+        // $state.go('tab.message');
       });
 
     };

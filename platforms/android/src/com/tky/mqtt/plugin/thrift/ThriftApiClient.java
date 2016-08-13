@@ -87,7 +87,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String username = args.getString(0);
             String password = args.getString(1);
-            String imCode = args.getString(2);
+            String imCode = UIUtils.getDeviceId();
             SystemApi.login(username, password, imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
