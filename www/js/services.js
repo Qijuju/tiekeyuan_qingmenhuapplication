@@ -860,6 +860,12 @@ angular.module('starter.services', [])
         }, function (msg) {
           alert(msg);
         });
+      },
+      getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
+        api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount, success, error);
+      },
+      getMsgCount:function(sessionType, sessionID, success, error) {//获取历史消息数
+        api.getMsgCount(sessionType, sessionID, success, error);
       }
     };
   })
