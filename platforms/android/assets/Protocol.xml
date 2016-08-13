@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Protocols>
+ 	<Protocol id="MsgProtocol">
+		<Node id="NotifyType">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		</Node>
+		<Node id="type">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nValue>U,G,D,C</nValue>
+		</Node>
+		<Node id="mediaType">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nValue>T,I,F,S,E,A,V</nValue>
+		</Node>
+		<Node id="platform">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nValue>A,W</nValue>
+		</Node>
+		<Node id="receipt">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nValue>T,F</nValue>
+		</Node>
+		<Node id="when">
+		 	<nLength>13</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nType>L</nType>
+		</Node>
+		<Node id="to">
+		 	<nLength>2</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="from">
+		 	<nLength>2</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="message">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="EventProtocol">
+		<Node id="NotifyType">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		</Node>
+		<Node id="EventCode">
+		 	<nLength>3</nLength>
+		 	<nFixed>true</nFixed>
+		</Node>
+		<Node id="Event">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="GAA">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="GAM">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="G00">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="GR0">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="GRA">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="GRM">
+		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="US0">
+		<Node id="UserID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="UserState">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="UU0">
+		<Node id="UserID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="ChangeOBJ">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		 	<nType>A</nType>
+		</Node>
+	</Protocol>
+</Protocols>

@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import im.model.Msg;
 import im.model.RST;
 import im.model.User;
 import im.server.Department.IMDepartment;
@@ -40,6 +41,9 @@ import im.server.Department.RSTgetDept;
 import im.server.Department.RSTgetRoot;
 import im.server.File.IMFile;
 import im.server.File.RSTversionInfo;
+import im.server.Message.IMMessage;
+import im.server.Message.RSTgetMsg;
+import im.server.Message.RSTgetMsgCount;
 import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
@@ -886,6 +890,99 @@ public class ThriftApiClient extends CordovaPlugin {
     }
 
     /**
+     * 获取历史消息
+     * @param args
+     * @param callbackContext
+     */
+    public void getHistoryMsg(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
+            String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
+            int pageNum = args.getInt(2);//搜索的页数(0时为末页)
+            int pageCount = args.getInt(3);//每页的数目(0时为10)
+            SystemApi.getHistoryMsg(getUserID(), sessionType, sessionID, pageNum, pageCount, new AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call>() {
+                @Override
+                public void onComplete(IMMessage.AsyncClient.GetHistoryMsg_call getHistoryMsg_call) {
+                    try {
+                        RSTgetMsg result = getHistoryMsg_call.getResult();
+                        if (result != null && result.result) {
+                            List<Msg> attentions = result.getMsglist();
+                            String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<Msg>>() {
+                            }.getType());
+                            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取历史消息数
+     * @param args
+     * @param callbackContext
+     */
+    public void getMsgCount(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
+            String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
+            SystemApi.getMsgCount(getUserID(), sessionType, sessionID, new AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call>() {
+                @Override
+                public void onComplete(IMMessage.AsyncClient.GetMsgCount_call getMsgCount_call) {
+                    try {
+                        RSTgetMsgCount result = getMsgCount_call.getResult();
+                        if (result != null && result.result) {
+                            int msgCount = result.getMsgCount();
+                            setResult(msgCount, PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 是否需要升级，传入的新老版本都要以数字和小数点组合
      * @param oldVersionName
      * @param newVersionName
@@ -998,6 +1095,17 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     private void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    private void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);

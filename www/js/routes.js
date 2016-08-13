@@ -94,6 +94,7 @@ angular.module('im.routes', [])
       .state('groupSetting', {
         url: '/groupSetting',
         templateUrl: 'templates/group-setting.html',
+        controller: 'groupSettingCtrl'
       })
 
 

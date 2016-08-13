@@ -18,6 +18,7 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.protocol.model.IMPException;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -206,7 +207,11 @@ public class MqttChat extends CordovaPlugin {
         }
         String tosb = args.getString(0);
         String message = args.getString(1);
-        MessageOper.sendMsg(tosb, message);
+        try {
+            MessageOper.sendMsg(tosb, message);
+        } catch (IMPException e) {
+            e.printStackTrace();
+        }
         //发布消息的广播
         MqttReceiver topicReceiver = MqttReceiver.getInstance();
         IntentFilter topicFilter = new IntentFilter();

@@ -22,6 +22,7 @@ import java.util.Map;
 import im.server.Department.IMDepartment;
 import im.server.File.IMFile;
 import im.server.File.RSTversion;
+import im.server.Message.IMMessage;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
 import im.server.attention.IMAttention;
@@ -108,6 +109,19 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6007, 30000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    private static IMMessage.AsyncClient getMsgClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 30000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -393,6 +407,36 @@ public class SystemApi {
     public static void getAttention(String ID, AsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call> callback) throws IOException, TException {
         IMAttention.AsyncClient client = getAttentionClient();
         client.GetAttention(ID, callback);
+    }
+
+    /**
+     * 获取历史消息
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param pageNum 搜索的页数(0时为末页)
+     * @param pageCount 每页的数目(0时为10)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getHistoryMsg(String ID, String sessionType, String sessionID, int pageNum, int pageCount, AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call> callback) throws IOException, TException {
+        IMMessage.AsyncClient client = getMsgClient();
+        client.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 获取历史消息数
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+        IMMessage.AsyncClient client = getMsgClient();
+        client.GetMsgCount(ID, sessionType, sessionID, callback);
     }
 
 }

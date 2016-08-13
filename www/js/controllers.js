@@ -1028,7 +1028,7 @@ angular.module('im.controllers', [])
       },function (err) {
         alert(err+"数据离开失败");
       });
-
+      $state.go("tab.message");
     }
     $scope.skipmessagebox=function () {
     //  alert("正确进入聊天方法");
@@ -2340,11 +2340,62 @@ angular.module('im.controllers', [])
     });
 
   })
-  .controller('historyMessageCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang) {
     $scope.goSetting = function () {
       $state.go("personalSetting");
     }
+    $scope.totalpage=1
+    $scope.dangqianpage=1;
+    //总页数
+    $api.getMsgCount("U","102357",function (msg) {
+      /*alert(msg)
+      $scope.totalpage=msg.msgCount/10+1
+      alert($scope.totalpage)*/
+    },function (msg) {
+      alert("失败");
+    });
+    //下一页
+      $scope.nextpage=function () {
+        if ($scope.dangqianpage<$scope.totalpage){
+            $scope.dangqianpage++;
+          $historyduifang.getHistoryduifanga("U","102357",$scope.dangqianpage,"10");
+            $scope.$on('historymsg.duifang',function (event) {
+              $scope.$apply(function () {
+                $scope.historyduifangsss=$historyduifang.getHistoryduifangc().msg;
+              })
+            });
 
+          // $historyziji.getHistoryzijia("U","127440",$scope.dangqianpage,"10");
+          // $scope.$on('historymsg.ziji',function (event) {
+          //   $scope.$apply(function () {
+          //     $scope.historyziji=$historyziji.getHistoryzijic().msg;
+          //   })
+          // });
+      }else {
+           alert("已经到最后一页了")
+        }
+    }
+    //上一页
+      $scope.backpage=function () {
+            if($scope.dangqianpage>1){
+            $scope.dangqianpage--;
+              $historyduifang.getHistoryduifanga("U","102357",$scope.dangqianpage,"10");
+            $scope.$on('historymsg.duifang',function (event) {
+              $scope.$apply(function () {
+                $scope.historyduifangsss=$historyduifang.getHistoryduifangc().msg;
+              })
+            });
+
+              // $historyziji.getHistoryzijia("U","127440",$scope.dangqianpage,"10");
+              // $scope.$on('historymsg.ziji',function (event) {
+              //   $scope.$apply(function () {
+              //     $scope.historyziji=$historyziji.getHistoryzijic().msg;
+              //   })
+              // });
+      }else {
+          alert("已经到第一页了")
+        }
+    }
 
   })
   .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
@@ -2407,4 +2458,11 @@ angular.module('im.controllers', [])
       $state.go("tab.account");
     }
 
+  })
+  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+
+    $scope.gohistoryMessage = function () {
+      alert("要跳了")
+      $state.go("historyMessage");
+    }
   })

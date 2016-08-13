@@ -241,7 +241,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
+    compile fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     debugCompile project(path: "CordovaLib", configuration: "debug")
     releaseCompile project(path: "CordovaLib", configuration: "release")
@@ -257,6 +257,8 @@ dependencies {
     compile files('libs/log4j-1.2.14.jar')
     compile files('libs/slf4j-api-1.7.12.jar')
     compile files('libs/slf4j-log4j12-1.6.2.jar')
+    compile files('libs/imDataCast.jar')
+    compile files('libs/dom4j-1.6.1.jar')
 }
 
 def promptForReleaseKeyPassword() {

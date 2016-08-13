@@ -9,28 +9,28 @@
 
 
 
-  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()">
-    <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
-                   pulling-text="更多消息" id="refresh">
-    </ion-refresher>
-    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>
+  <ion-content overflow-scroll="false">
+    <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
+                   <!--pulling-text="更多消息" id="refresh">-->
+    <!--</ion-refresher>-->
+    <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
     <div>
-      <!--<p class="rj-message-time">5月27日 16:33</p>-->
 
-      <div ng-repeat="msg in msgs">
-        <div class="rj-message-wrap" ng-if="(msg.from==='false')">
+      <div ng-repeat="historyduifangaaa in historyduifangsss">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID=='102357')">
           <img src="img/mike.png" class="rj-head-pic">
           <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{msg.message}}</p>
+          <p class="rj-message">{{historyduifangaaa.Msg}}</p>
         </div>
 
 
-        <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID === '127440')">
           <img src="img/ben.png" class="rj-head-pic-right">
           <span class="rj-triangle-right"></span>
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendshow('cll',msg.message, 'cll')"><font class="rj-message-right">{{msg.message}}</font></p>
+             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ><font class="rj-message-right">{{historyduifangaaa.Msg}}</font></p>
+             <!--ng-if="(historyduifang.FromID === '127440')"  ng-click="resendshow('cll',historyduifang.Msg, 'cll')"-->
           </span>
         </div>
       </div>
@@ -40,21 +40,21 @@
 
 
 
-  <ion-footer-bar align="center" class="bar-light" resize-foot-bar>
+  <ion-footer-bar align="center" class="bar-light">
     <div class="row" >
-      <div class="col-35" align="center" ng-click="" style="vertical-align: middle">
+      <div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">
         <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> 30 </div>
+        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>
       </div>
       <div class="col-10" align="center" >
         <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle"> 100 </div>
+        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>
       </div>
-      <div class="col-35" align="center"  ng-click="">
+      <div class="col-35" align="center"  ng-click="nextpage()">
         <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
       </div>
     </div>

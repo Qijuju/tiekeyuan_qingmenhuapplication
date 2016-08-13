@@ -307,6 +307,7 @@ angular.module('starter.services', [])
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
+        messageReal.singlecount='';
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
@@ -859,6 +860,12 @@ angular.module('starter.services', [])
         }, function (msg) {
           alert(msg);
         });
+      },
+      getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
+        api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount, success, error);
+      },
+      getMsgCount:function(sessionType, sessionID, success, error) {//获取历史消息数
+        api.getMsgCount(sessionType, sessionID, success, error);
       }
     };
   })
@@ -1468,7 +1475,39 @@ angular.module('starter.services', [])
     }
 
   })
-
-
+  .factory('$historyduifang',function ($api,$rootScope) {
+    var historymessageduifang;
+    return{
+      getHistoryduifanga:function (sessionType, sessionID, pageNum, pageCount) {
+        $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
+          historymessageduifang=message;
+          $rootScope.$broadcast('historymsg.duifang');
+        },function (message) {
+          alert("获取失败");
+          $rootScope.$broadcast('historymsg.duifang');
+        });
+      },
+      getHistoryduifangc:function () {
+        return historymessageduifang;
+      }
+    }
+  })
+  // .factory('$historyziji',function ($api,$rootScope) {
+  //   var historymessageziji;
+  //   return{
+  //     getHistoryzijia:function (sessionType, sessionID, pageNum, pageCount) {
+  //       $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
+  //         historymessageziji=message;
+  //         $rootScope.$broadcast('historymsg.ziji');
+  //       },function (message) {
+  //         alert("获取失败");
+  //         $rootScope.$broadcast('historymsg.ziji');
+  //       });
+  //     },
+  //     getHistoryzijic:function () {
+  //       return historymessageziji;
+  //     }
+  //   }
+  // })
 
 ;
