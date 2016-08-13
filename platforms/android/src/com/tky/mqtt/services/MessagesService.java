@@ -37,20 +37,6 @@ public class MessagesService implements BaseInterface<Messages>{
         return instance;
     }
 
-
-
-    /**
-     * 根据消息类型查询消息集合
-     * @param isSingle
-     * @return
-     */
-    public List<Messages> queryMessagelistByIsSingle(String isSingle){
-        return messagesDao.queryBuilder()
-                .where(MessagesDao.Properties.IsSingle.eq(isSingle))
-                .orderDesc(MessagesDao.Properties.When)
-                .list();
-    }
-
     @Override
     public Messages loadDataByArg(String arg) {
         return messagesDao.load(arg);

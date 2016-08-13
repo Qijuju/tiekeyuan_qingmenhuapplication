@@ -92,7 +92,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String username = args.getString(0);
             String password = args.getString(1);
-            String imCode = args.getString(2);
+            String imCode = UIUtils.getDeviceId();
             SystemApi.login(username, password, imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
@@ -144,7 +144,7 @@ public class ThriftApiClient extends CordovaPlugin {
     public void activeUser(final JSONArray args, final CallbackContext callbackContext) {
         try {
             String userId = args.getString(0);
-            String imCode = args.getString(1);
+            String imCode = UIUtils.getDeviceId();
             SystemApi.activeUser(userId, imCode, new AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {

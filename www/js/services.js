@@ -124,8 +124,37 @@ angular.module('starter.services', [])
   };
 })
 
-
-
+  .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var mainlist=new Array();
+    var savedata;
+    return{
+      getAll:function (isPersonSend) {
+        if(isPersonSend === 'true'){
+          var chatitem={};
+          chatitem.id=$stateParams.id;
+          chatitem.chatName=$stateParams.sessionid;
+          alert(chatitem.id+chatitem.chatName);
+          chatitem.imgSrc='';
+          chatitem.lastText='';
+          chatitem.count='';
+          chatitem.isDelete='false';
+          chatitem.lastDate=new Date().getTime();
+          mainlist.push(chatitem);
+           $greendao.saveObj('ChatListService',chatitem,function (data) {
+           },function (err) {
+           });
+          $rootScope.$broadcast('chatarr.update');
+        }
+        return mainlist;
+      },
+      setData:function (data) {
+        savedata = data;
+      },
+      getData:function () {
+        return savedata;
+      }
+    }
+  })
 
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
@@ -159,19 +188,20 @@ angular.module('starter.services', [])
       },
 
 
-      sendMsg:function (topic,content,id) {
+      sendMsg:function (topic,content,id,account) {
         var messageDetail={};
         messageDetail._id=id;
-        messageDetail.account='6698';
-        messageDetail.sessionid=topic;
+        messageDetail.sessionid=id;
         messageDetail.type='User';
         messageDetail.from='true';
         messageDetail.message=content;
         messageDetail.messagetype='normal';
         messageDetail.platform='Windows';
-        messageDetail.when='lll';
+        messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
-
+        messageDetail.isDelete='false';
+        messageDetail.imgSrc='';
+        messageDetail.username=account;
         mqtt.sendMsg(topic, messageDetail, function (message) {
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -184,9 +214,7 @@ angular.module('starter.services', [])
           messageDetail.isFailure='true';
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
-            // alert(data);
           },function (err) {
-            // alert(err+"msgerr");
           });
           $rootScope.$broadcast('msgs.error');
           return "失败";
@@ -199,7 +227,6 @@ angular.module('starter.services', [])
 
           var arriveMessage={};
           arriveMessage._id=message._id;
-          arriveMessage.account=message.account;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
           arriveMessage.from=message.from;
@@ -208,12 +235,13 @@ angular.module('starter.services', [])
           arriveMessage.platform=message.platform;
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
+          arriveMessage.isDelete=message.isDelete;
+          arriveMessage.imgSrc=message.imgSrc;
+          arriveMessage.username=message.username;
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
-            // alert(data+"shoudaole");
           },function (err) {
-            alert(err+"arrmistake");
           });
-          if (message.type==="User"){
+          if(message.type==="User"){
             count++;
             danliao.push(arriveMessage);
           }else {
@@ -251,6 +279,7 @@ angular.module('starter.services', [])
       },
 
       clearMsgGroupCount:function () {
+        alert("clear");
         groupCount=0;
       },
 
@@ -265,8 +294,9 @@ angular.module('starter.services', [])
         messageReal.message=content;
         messageReal.messagetype='normal';
         messageReal.platform='Windows';
-        messageReal.when='lll';
+        messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
+        messageReal.singlecount='';
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
@@ -382,15 +412,16 @@ angular.module('starter.services', [])
         greendao.saveObj(services,jsonObject, success, error);
       },
       saveDataLists:function (services,arraylist, success, error) {
-
+        greendao.saveDataLists(services,arraylist, success, error);
       },
       deleteAllData:function (services, success, error) {
         greendao.deleteAllData(services, success, error);
       },
       deleteDataByArg:function (services,str, success, error) {
-
+        greendao.deleteDataByArg(services,str, success, error);
       },
       deleteObj:function (services,jsonObject, success, error) {
+        greendao.deleteObj(services,jsonObject, success, error);
 
       },
       queryMessagelistByIsSingle:function (services,isSingle, success, error) {
@@ -404,7 +435,7 @@ angular.module('starter.services', [])
   })
 
 
-  .factory('localContact', function ($rootScope) {
+.factory('localContact',function ($rootScope) {
 
   var contactPlugin
   document.addEventListener('deviceready',function () {
@@ -795,11 +826,11 @@ angular.module('starter.services', [])
           api = cordova.require('ThriftApiClient.thrift_api_client');
         });
       },
-      login: function (username, password, imCode, success, error) {
-        api.login(username, password, imCode, success, error);
+      login:function(username,password, success, error) {
+        api.login(username,password, success, error);
       },
-      activeUser: function (userId, imCode, success, error) {
-        api.activeUser(userId, imCode, success, error);
+      activeUser:function(userId, success, error) {
+        api.activeUser(userId, success, error);
       },
       getDatetime: function (userId, success, error) {
         api.getDatetime(userId, success, error);

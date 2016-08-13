@@ -29,5 +29,11 @@ exports.getUserInfo = function(success, error) {//获取用户信息
 exports.getMyTopic = function(success, error) {//获取当前登录用户的topic
     exec(success, error, "MqttChat", "getMyTopic", []);
 };
+exports.getTopic = function(userID,type,success, error) {//获取当前登录用户的topic
+    exec(success, error, "MqttChat", "getTopic", [userID,type]);
+};
+exports.getUserId = function(success, error) {//获取当前登录用户的topic
+    exec(success, error, "MqttChat", "getUserId", []);
+};
 
 });

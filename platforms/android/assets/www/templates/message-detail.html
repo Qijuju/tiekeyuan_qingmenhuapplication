@@ -12,7 +12,7 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="secondary">
-      <button class="button button-icon icon ion-ios-person-outline" ui-sref="personalSetting"
+      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
               style="margin-right: 5px"></button>
 
     </ion-nav-buttons>
@@ -62,7 +62,7 @@
         </button>
       </div>
       <div class="rj-send-button" ng-hide="!send_content || send_content === ''"
-           ng-click="sendSingleMsg('sy',send_content, 'sy')">
+           ng-click="sendSingleMsg(userId,send_content, userId,viewtitle)">
         <p>发送</p>
       </div>
     </div>

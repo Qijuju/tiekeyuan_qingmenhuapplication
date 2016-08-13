@@ -27,6 +27,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
+import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -269,7 +271,16 @@ public class MqttChat extends CordovaPlugin {
             SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
-                    setResult("success", PluginResult.Status.OK, callbackContext);
+                    try {
+                        RST result = cancelUser_call.getResult();
+                        if (result.result) {
+                            setResult("success", PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -309,6 +320,49 @@ public class MqttChat extends CordovaPlugin {
         } catch (JSONException e) {
             setResult("获取失败！", PluginResult.Status.OK, callbackContext);
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取当前登录用户的topic
+     * @param args
+     * @param callbackContext
+     */
+    public void getTopic(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String userID = args.getString(0);
+            String type = args.getString(1);
+            String topic = SwitchLocal.getATopic(getType(type), userID);
+            setResult(topic, PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("获取失败！", PluginResult.Status.OK, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取当前登录的用户ID
+     * @param args
+     * @param callbackContext
+     */
+    public void getUserId(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            setResult(getUserID(), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("获取用户ID失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    public static MType getType(String type) {
+        if ("U" == type) {
+            return MType.U;
+        } else if ("G" == type) {
+            return MType.G;
+        } else if ("D" == type) {
+            return MType.D;
+        } else {
+            return MType.U;
         }
     }
 

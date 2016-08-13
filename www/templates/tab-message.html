@@ -17,7 +17,8 @@
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
         <h2>{{item.chatName}}</h2>
         <p> {{item.lastText}}</p>
-        <span class="rj-push-right" >{{ item.lastDate | date:'HH:mm:ss' }}</span>
+        <span class="rj-push-right" ng-if="item.lastDate != 0">{{ item.lastDate | date:'HH:mm:ss' }}</span>
+        <span class="rj-push-right" ng-if="item.lastDate === 0"></span>
         <!--这个就是来了新消息, 头像上的小红数字-->
         <!--<span class="rj-sm-red-icon" ng-show="lastCount > 0"><p>{{lastCount}}</p></span>-->
         <!--<h2>{{ danliaomsg[danliaomsg.length-1]._id}}</h2>-->
