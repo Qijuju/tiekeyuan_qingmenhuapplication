@@ -119,10 +119,10 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="935" column="14" selection-start-line="935" selection-start-column="14" selection-end-line="935" selection-end-column="14" />
+            <state vertical-scroll-proportion="-0.26984128">
+              <caret line="278" column="26" selection-start-line="278" selection-start-column="16" selection-end-line="278" selection-end-column="26" />
               <folding>
-                <element signature="e#44845#44853#0" expanded="true" />
+                <element signature="e#47057#47065#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,27 +131,20 @@
       <file leaf-file-name="thrift_api_client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="80" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
+            <state vertical-scroll-proportion="-17.866667">
+              <caret line="63" column="47" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="210" column="28" selection-start-line="210" selection-start-column="28" selection-end-line="210" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.33250928">
+              <caret line="125" column="26" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="26" />
               <folding>
-                <element signature="e#1585#2194#0" expanded="false" />
-                <element signature="e#2193#2194#0" expanded="false" />
-                <element signature="e#5965#6455#0" expanded="false" />
-                <element signature="e#6454#6455#0" expanded="false" />
-                <element signature="e#7925#8141#0" expanded="false" />
-                <element signature="e#8140#8141#0" expanded="false" />
-                <element signature="e#8714#9107#0" expanded="false" />
-                <element signature="e#9106#9107#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -203,11 +196,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SystemApi.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SystemApi.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57798165">
-              <caret line="412" column="13" selection-start-line="412" selection-start-column="7" selection-end-line="412" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="189" column="33" selection-start-line="189" selection-start-column="23" selection-end-line="189" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -1909,13 +1902,13 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-        <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+        <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
       </list>
     </option>
   </component>
@@ -2551,37 +2544,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java</url>
-          <line>315</line>
+          <line>328</line>
           <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java</url>
-          <line>314</line>
+          <line>327</line>
           <properties />
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>707</line>
+          <line>755</line>
           <properties />
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java</url>
-          <line>301</line>
+          <line>314</line>
           <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java</url>
-          <line>340</line>
+          <line>353</line>
           <properties />
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java</url>
-          <line>203</line>
+          <line>208</line>
           <properties />
           <option name="timeStamp" value="115" />
         </line-breakpoint>
@@ -2634,14 +2627,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
           <folding>
-            <element signature="e#1585#2194#0" expanded="false" />
-            <element signature="e#2193#2194#0" expanded="false" />
-            <element signature="e#5965#6455#0" expanded="false" />
-            <element signature="e#6454#6455#0" expanded="false" />
-            <element signature="e#7925#8141#0" expanded="false" />
-            <element signature="e#8140#8141#0" expanded="false" />
-            <element signature="e#8714#9107#0" expanded="false" />
-            <element signature="e#9106#9107#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3005,23 +2991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="210" column="28" selection-start-line="210" selection-start-column="28" selection-end-line="210" selection-end-column="28" />
-          <folding>
-            <element signature="e#1585#2194#0" expanded="false" />
-            <element signature="e#2193#2194#0" expanded="false" />
-            <element signature="e#5965#6455#0" expanded="false" />
-            <element signature="e#6454#6455#0" expanded="false" />
-            <element signature="e#7925#8141#0" expanded="false" />
-            <element signature="e#8140#8141#0" expanded="false" />
-            <element signature="e#8714#9107#0" expanded="false" />
-            <element signature="e#9106#9107#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3117,29 +3086,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="80" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
+          <caret line="189" column="33" selection-start-line="189" selection-start-column="23" selection-end-line="189" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="935" column="14" selection-start-line="935" selection-start-column="14" selection-end-line="935" selection-end-column="14" />
+        <state vertical-scroll-proportion="-0.26984128">
+          <caret line="278" column="26" selection-start-line="278" selection-start-column="16" selection-end-line="278" selection-end-column="26" />
           <folding>
-            <element signature="e#44845#44853#0" expanded="true" />
+            <element signature="e#47057#47065#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+    <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57798165">
-          <caret line="412" column="13" selection-start-line="412" selection-start-column="7" selection-end-line="412" selection-end-column="13" />
+        <state vertical-scroll-proportion="-17.866667">
+          <caret line="63" column="47" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33250928">
+          <caret line="125" column="26" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

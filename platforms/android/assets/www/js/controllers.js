@@ -1357,6 +1357,16 @@ angular.module('im.controllers', [])
         $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
+      $mqtt.getMqtt().getString('remPwd',function (pwd) {
+        $scope.remPwd = pwd;
+        if(pwd === 'true') {
+          $mqtt.getMqtt().getString('pwd', function (pwd) {
+            $scope.password = pwd;
+          },function (msg) {
+          });
+        }
+      },function (msg) {
+      });
       if(!$mqtt.isLogin()) {
         $mqtt.getMqtt().getMyTopic(function (msg) {
           if (msg != null && msg != '') {
@@ -1393,6 +1403,18 @@ angular.module('im.controllers', [])
      })
      };*/
 
+    //保存密码的方法
+    $scope.rememberPwd = function () {
+      $mqtt.getMqtt().getString('remPwd',function (pwd) {
+        if(pwd === '' || pwd === 'false') {
+          $scope.remPwd = 'true';
+        } else {
+          $scope.remPwd = 'false';
+        }
+      },function (msg) {
+      });
+    };
+
     $scope.login = function (name, password) {
       if(name == '' || password == '') {
         alert('用户名或密码不能为空！');
@@ -1423,6 +1445,13 @@ angular.module('im.controllers', [])
           alert(message);
         });
         $mqtt.getMqtt().getMyTopic(function (msg) {
+          //是否保存密码
+          $mqtt.save('remPwd', $scope.remPwd);
+          if($scope.remPwd === 'true') {//如果需要保存密码，将密码保存到SP中
+            $mqtt.save('pwd', $scope.password);
+          } else {
+            $mqtt.save('pwd', '');
+          }
           $mqtt.startMqttChat(msg);
           $mqtt.setLogin(true);
           $state.go('tab.message');

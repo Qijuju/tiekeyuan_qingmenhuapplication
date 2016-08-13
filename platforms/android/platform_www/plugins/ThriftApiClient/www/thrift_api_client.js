@@ -61,5 +61,8 @@ exports.getHistoryMsg = function(sessionType, sessionID, pageNum, pageCount, suc
 exports.getMsgCount = function(sessionType, sessionID, success, error) {
   exec(success, error, "ThriftApiClient", "getMsgCount", [sessionType, sessionID]);
 };
+exports.cancelUser = function(success, error) {//解绑用户，以让其他设备可以登录使用该账户
+  exec(success, error, "ThriftApiClient", "cancelUser", []);
+};
 
 });
