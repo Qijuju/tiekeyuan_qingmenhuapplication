@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttService;
@@ -16,6 +17,7 @@ import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.paho.utils.SwitchLocal;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -71,6 +73,27 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void save(final JSONArray args, final CallbackContext callbackContext) {
+        if (args != null) {
+            try {
+                String key = args.getString(0);
+                String value = args.getString(1);
+                SPUtils.save(key, value);
+                setResult(key + "#" + value, PluginResult.Status.OK, callbackContext);
+            } catch (JSONException e) {
+                setResult("JSONError", PluginResult.Status.ERROR, callbackContext);
+                e.printStackTrace();
+            }
+        } else {
+            setResult("NULLPointerException", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 保存登录的用户名
+     * @param args
+     * @param callbackContext
+     */
+    public void saveLogin(final JSONArray args, final CallbackContext callbackContext) {
         if (args != null) {
             try {
                 String key = args.getString(0);
@@ -242,6 +265,45 @@ public class MqttChat extends CordovaPlugin {
             setResult("未登录或获取用户信息失败！", PluginResult.Status.OK, callbackContext);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取当前登录用户的topic
+     * @param args
+     * @param callbackContext
+     */
+    public void getMyTopic(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String topic = SwitchLocal.getATopic(MType.U, getUserID()) + "," + SwitchLocal.getATopic(MType.D, getDeptID());
+            setResult(topic, PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("获取失败！", PluginResult.Status.OK, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取当前登录的用户ID
+     * @return
+     */
+    public String getUserID() throws JSONException {
+        JSONObject userInfo = getUserInfo();
+        return userInfo.getString("userID");
+    }
+
+    /**
+     * 获取当前登录用户的deptID
+     * @return
+     * @throws JSONException
+     */
+    public String getDeptID() throws JSONException {
+        JSONObject userInfo = getUserInfo();
+        return userInfo.getString("deptID");
+    }
+
+    public JSONObject getUserInfo() throws JSONException {
+        String login_info = SPUtils.getString("login_info", "");
+        return new JSONObject(login_info);
     }
 
     /**

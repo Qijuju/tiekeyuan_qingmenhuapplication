@@ -34,7 +34,8 @@ angular.module('im.routes', [])
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
-        url: '/message',
+        url: '/message/:id/:sessionid',
+        cache:false,
         views: {
           'tab-message': {
             templateUrl: 'templates/tab-message.html',
@@ -44,7 +45,7 @@ angular.module('im.routes', [])
       })
 
       .state('messageDetail', {
-        url: '/messageDetail',
+        url: '/messageDetail/:id/:ssid',
         templateUrl: 'templates/message-detail.html',
         controller: 'MessageDetailCtrl'
 

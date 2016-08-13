@@ -1,13 +1,17 @@
 package com.tky.mqtt.plugin.thrift;
 
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+import com.tky.mqtt.plugin.toast.ToastUtils;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -612,6 +616,9 @@ public class ThriftApiClient extends CordovaPlugin {
     public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
         try {
             String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
+            File file=new File(filePath);
+            boolean exists = file.exists();
+
             SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
@@ -660,12 +667,15 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTversionInfo result = getVersionInfo_call.getResult();
                         if (result != null && result.result) {
                             String info = result.getInfo();
-                            setResult("success", PluginResult.Status.OK, callbackContext);
+                            setResult(new JSONObject(info), PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("网络异常！", PluginResult.Status.OK, callbackContext);
                         }
                     } catch (TException e) {
                         setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
                         e.printStackTrace();
                     }
                 }
@@ -679,7 +689,7 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
@@ -693,53 +703,45 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void getVersion(final JSONArray args, final CallbackContext callbackContext){
+        String savePath = null;
         try {
-            SystemApi.getVersionInfo(getUserID(), new AsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call>() {
-                @Override
-                public void onComplete(IMFile.AsyncClient.GetVersionInfo_call getVersionInfo_call) {
-                    String savePath = null;
-                    try {
-                        RSTversionInfo result = getVersionInfo_call.getResult();
-                        if (result != null && result.result) {
-                            String info = "{" + result.getInfo() + "}";
-                            JSONObject obj = new JSONObject(info);
-                            String versionCode = obj.getString("versionCode");
-                            if (isNeedsUpgrade(UIUtils.getVersion(), versionCode)) {
-                                savePath = args.getString(0);
-                                savePath = FileUtils.getDownloadDir() + File.separator + "apk";
-                                boolean success = SystemApi.getVersion(savePath, "149435"/*getUserID()*/, versionCode);
-                                setResult("success", PluginResult.Status.OK, callbackContext);
-                            } else {
-                                setResult("已是最新版本，无需更新！", PluginResult.Status.ERROR, callbackContext);
-                            }
-                        } else {
-                            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-                        }
-                    } catch (JSONException e) {
-                        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                    } catch (TException e) {
-                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
-                }
-            });
+            savePath = args.getString(0);
+            String versionCode = args.getString(1);
+            savePath = FileUtils.getDownloadDir() + File.separator + "apk";
+            String userID = getUserID();
+            boolean success = SystemApi.getVersion(savePath, getUserID(), versionCode);
+            String exePath = savePath + File.separator + "1000"/*apkVersion*/ + ".apk";
+            setResult(success ? exePath : "更新失败！", success ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 是否需要更新
+     * @param args
+     * @param callbackContext
+     */
+    public void needUpgrade(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String newVersion = args.getString(0);
+            String install_cancel = SPUtils.getString("install_cancel", "false");
+            String install_cancel_version = SPUtils.getString("install_cancel_version", "");
+            if (install_cancel.equals("true") && install_cancel_version.equals(newVersion)) {
+                setResult("false", PluginResult.Status.OK, callbackContext);
+                return;
+            }
+            boolean needsUpgrade = isNeedsUpgrade(UIUtils.getVersion(), newVersion);
+            setResult(needsUpgrade ? "true" : "已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
     }

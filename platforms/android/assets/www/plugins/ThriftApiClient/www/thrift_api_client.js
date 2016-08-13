@@ -34,14 +34,14 @@ exports.updateUserInfo = function(newUserInfoObj, success, error) {//newUserInfo
 exports.getHeadPic = function(picUserID, picSize, success, error) {
   exec(success, error, "ThriftApiClient", "getHeadPic", [picUserID, picSize]);
 };
-exports.setHeadPic = function(success, error) {
-  exec(success, error, "ThriftApiClient", "setHeadPic", []);
+exports.setHeadPic = function(filePath,success, error) {
+  exec(success, error, "ThriftApiClient", "setHeadPic", [filePath]);
 };
 exports.getVersionInfo = function(success, error) {
   exec(success, error, "ThriftApiClient", "getVersionInfo", []);
 };
-exports.getVersion = function(savePath, success, error) {
-  exec(success, error, "ThriftApiClient", "getVersion", [savePath]);
+exports.getVersion = function(savePath, versionCode, success, error) {
+  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode]);
 };
 exports.addAttention = function(membersArr, success, error) {
   exec(success, error, "ThriftApiClient", "addAttention", [membersArr]);
@@ -51,6 +51,9 @@ exports.removeAttention = function(membersArr, success, error) {
 };
 exports.getAttention = function(success, error) {
   exec(success, error, "ThriftApiClient", "getAttention", []);
+};
+exports.needUpgrade = function(versionName, success, error) {
+  exec(success, error, "ThriftApiClient", "needUpgrade", [versionName]);
 };
 
 });

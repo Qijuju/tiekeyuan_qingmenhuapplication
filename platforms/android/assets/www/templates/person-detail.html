@@ -7,7 +7,9 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-star">
+      <button  ng-if="!persondsfs.IsAttention" class="button button-icon icon ion-ios-star-outline" ng-click="addattentiondetail(personsdetail.UserID)">
+      </button>
+      <button  ng-if="persondsfs.IsAttention" class="button button-icon icon ion-ios-star" ng-click="removeattention(personsdetail.UserID)">
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -17,7 +19,8 @@
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
         <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
         <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{simpleName}}</div>
-        <P style="font-size: 18px;color: #ffffff">{{persondsfs.UserName}}</P>
+        <div><span style="font-size: 18px;color: #ffffff">{{persondsfs.UserName}}</span>&nbsp;<img ng-show="persondsfs.Sex=='男'" src="img/man.png" width="20px" height="20px" ><img ng-show="persondsfs.Sex=='女'" src="img/woman.png" width="20px" height="20px" >
+        </div>
       </div>
 
       <ul class="list">
@@ -46,11 +49,11 @@
   <ion-footer-bar>
   <div class="tabs tabs-stable tabs-icon-top">
 
-    <div class="tab-item ">
-      <i class="icon ion-chatbubble-working"></i>
+    <div class="tab-item" ng-click="createchat(userId,persondsfs.UserName)">
+      <i class="icon ion-chatbubble-working" ></i>
       创建聊天
     </div>
-    <div class="tab-item has-badge" ng-click="call(18300633313,detailPerson.name)">
+    <div class="tab-item has-badge" ng-click="call(18300633313,persondsfs.UserName)">
       <i class="icon ion-ios-telephone" ></i>
       打电话
     </div>

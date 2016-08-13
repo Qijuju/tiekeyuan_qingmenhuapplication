@@ -659,7 +659,7 @@ angular.module('im.controllers', [])
           }
         }
         $scope.count2=$contacts.getCount12();
-        alert("七级的数字"+$scope.count2);
+     //   alert("七级的数字"+$scope.count2);
         if ($scope.count2>0){
           var oldusers=$contacts.getDeptSeventhInfo().userList;
 
@@ -772,7 +772,7 @@ angular.module('im.controllers', [])
   .controller('MyDepartmentCtrl', function ($scope, $http, $state, $stateParams, contactService,$mqtt) {
 
     $mqtt.getUserInfo(function (msg) {
-      alert(msg.deptID)
+   //   alert(msg.deptID)
     },function (msg) {
       alert(msg)
     })
@@ -809,7 +809,7 @@ angular.module('im.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory) {
+  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope) {
 
     $scope.userId = $stateParams.userId;
 
@@ -853,15 +853,21 @@ angular.module('im.controllers', [])
   })
 
 
-  .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout) {
+  .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout,$rootScope,$stateParams) {
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   alert(data);
     // },function (err) {
     //   alert(err);
     // });
-    $greendao.queryData('MessagesService','where type =?','User',function (data) {
-      $scope.msgs=data;
+    //对话框名称
+    $scope.viewtitle=$stateParams.ssid;
+  //  alert($scope.viewtitle+"抬头");
+    $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,10','User',function (data) {
+      for(var i = 1; i <= data.length; i++) {
+        $mqtt.getDanliao().push(data[data.length-i]);
+      }
+      $scope.msgs=$mqtt.getDanliao();
     },function (err) {
       alert(err);
     });
@@ -878,10 +884,10 @@ angular.module('im.controllers', [])
     $scope.doRefresh = function () {
       $greendao.queryData('MessagesService','where type =? order by "when" desc limit 1,'+($mqtt.getDanliao().length+10),'User',function (data) {
         if($scope.msgs.length <50){
-          for(var j=0;j<$mqtt.getDanliao().length;j++){
+          for(var j=0;j<=$mqtt.getDanliao().length;j++){
             $mqtt.getDanliao().splice(j,$mqtt.getDanliao().length);//清除之前数组里存的数据
           }
-          alert($mqtt.getDanliao().length+"come in222");
+      //    alert($mqtt.getDanliao().length+"come in222");
           for(var i = 1; i <= data.length; i++) {
             $mqtt.getDanliao().push(data[data.length-i]);
           }
@@ -916,29 +922,29 @@ angular.module('im.controllers', [])
       };
 
     }
-    $mqtt.arriveMsg("");
+    // $mqtt.arriveMsg("");
     $scope.$on('msgs.update',function (event) {
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
-        // $greendao.loadAllData('MessagesService',function (data) {
-        //   // alert(data+"update");
-        //   $scope.msgs=data;
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // },function (err) {
         //   alert(err);
         // });
-
-        // $scope.msgs=$mqtt.getAllMsg();
-        //alert($scope.msgs.length);
-        // $mqtt.getAllMsg($scope);
-
+        // $greendao.queryData('MessagesService','where type =? order by "when" desc ','User',function (data) {
+        //   alert(usermsgs.length+"eee");
+        //   for(var i=usermsgs.length;i<=data.length;i++){
+        //     alert(data.length-i +" fff ");
+        //     usermsgs.push(data[data.length-i]);
+        //   }
+        //   $scope.msgs=usermsgs;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
       })
 
     });
@@ -947,15 +953,10 @@ angular.module('im.controllers', [])
     $scope.$on('msgs.error',function (event) {
       //alert("发送失败");
       $scope.$apply(function () {
-        $greendao.queryData('MessagesService','where type =?','User',function (data) {
-          // alert("查询方法成功");
-          $scope.msgs=data;
-          $timeout(function() {
-            viewScroll.scrollBottom();
-          }, 100);
-        },function (err) {
-          alert(err);
-        });
+        $scope.msgs=$mqtt.getDanliao();
+        $timeout(function() {
+          viewScroll.scrollBottom();
+        }, 100);
         // $greendao.loadAllData('MessagesService',function (data) {
         //   //alert(data+"senderrlist");
         //   $scope.msgs=data;
@@ -994,9 +995,46 @@ angular.module('im.controllers', [])
 
     $scope.backFirstMenu=function () {
       $mqtt.clearMsgCount();
-      $state.go("tab.message");
-    }
+      $greendao.queryData('MessagesService','where sessionid=? order by "when" desc limit 0,1','cll',function (data) {
+        $scope.lastText=data[0].message;//最后一条消息内容
+        $scope.lastDate=data[0].when;//最后一条消息的时间
+        $scope.chatName=data[0].sessionid;//对话框名称
+        $scope.imgSrc=data[0].imgSrc;//最后一条消息的头像
+    //    alert($scope.lastText+$scope.lastDate+$scope.chatName+$scope.imgSrc);
+        $greendao.queryData('ChatListService','where CHAT_NAME=?','cll',function (data) {
+          var chatitem={};
+          chatitem.id=data[0].id;
+          chatitem.chatName=$scope.chatName;
+          chatitem.imgSrc=$scope.imgSrc;
+          chatitem.lastText=$scope.lastText;
+          chatitem.count='0';
+          chatitem.isDelete=data[0].isDelete;
+          chatitem.lastDate=$scope.lastDate;
+     //     alert(chatitem.lastText+chatitem.lastDate+chatitem.chatName+chatitem.imgSrc);
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+        //    alert("save success");
+            $greendao.loadAllData('ChatListService',function (data) {
+      //        alert("加载成功");
+              $state.go("tab.message");
+            },function (err) {
+              alert(err+"加载全部数据失败");
+            });
+          },function (err) {
+            alert(err+"数据保存失败");
+          });
+        },function (err) {
+          alert(err+"查询聊天列表失败");
+        });
+      },function (err) {
+        alert(err+"数据离开失败");
+      });
 
+    }
+    $scope.skipmessagebox=function () {
+    //  alert("正确进入聊天方法");
+      $state.go("historymessage");
+
+    };
 
   })
 
@@ -1139,8 +1177,30 @@ angular.module('im.controllers', [])
 
 
 
-  .controller('MessageCtrl', ['$scope', '$http', '$state','$mqtt', function ($scope, $http, $state,$mqtt) {
-
+  .controller('MessageCtrl', function ($scope, $http, $state,$mqtt,$chatarr,$stateParams,$rootScope,$greendao) {
+    if($rootScope.isPersonSend === 'true'){
+      //从个人详情界面跳转过来直接进入聊天对话界面，将id，和sessionid赋值
+      // $scope.id=$stateParams.id;
+      // $scope.ssid=$stateParams.ssid;
+      // alert("nihao"+$scope.id+"id"+$scope.ssid);
+      $scope.items=$chatarr.getAll($rootScope.isPersonSend);
+      $scope.$on('chatarr.update',function (event) {
+        $scope.$apply(function () {
+          $scope.items=$chatarr.getAll($rootScope.isPersonSend);
+      //    alert($scope.items.length+"ctrl长度");
+        });
+      });
+      $rootScope.isPersonSend = 'false';
+    }
+    //如果不是创建聊天，就直接从数据库里取列表数据
+    $greendao.loadAllData('ChatListService',function (data) {
+      $scope.items=data;
+      //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
+      // $scope.ssid=
+  //    alert($scope.items.length+"聊天列表长度");
+    },function (err) {
+      alert(err);
+    });
     $mqtt.arriveMsg("");
 
     $scope.$on('msgs.update',function (event) {
@@ -1148,25 +1208,110 @@ angular.module('im.controllers', [])
       $scope.$apply(function () {
         $scope.danliaomsg=$mqtt.getDanliao();
         $scope.qunliaomsg=$mqtt.getQunliao();
+        //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount=$mqtt.getMsgCount();
+        //取出与‘ppp’的聊天记录最后一条
+        $greendao.queryData('MessagesService','where sessionid=? order by "when" desc limit 0,1','cll',function (data) {
+     //     alert(data.length+"最后一条数据");
+          $scope.lastText=data[0].message;//最后一条消息内容
+          $scope.lastDate=data[0].when;//最后一条消息的时间
+          $scope.chatName=data[0].sessionid;//对话框名称
+          $scope.imgSrc=data[0].imgSrc;//最后一条消息的头像
+     //     alert($scope.lastText+$scope.lastDate+$scope.chatName+$scope.imgSrc);
+          //取出‘ppp’聊天对话的列表数据并进行数据库更新
+          $greendao.queryData('ChatListService','where CHAT_NAME=?','cll',function (data) {
+            $scope.unread=$scope.lastCount;
+            var chatitem={};
+            chatitem.id=data[0].id;
+            chatitem.chatName=$scope.chatName;
+            chatitem.imgSrc=$scope.imgSrc;
+            chatitem.lastText=$scope.lastText;
+            chatitem.count=$scope.unread;
+            chatitem.isDelete=data[0].isDelete;
+            chatitem.lastDate=$scope.lastDate;
+            $greendao.saveObj('ChatListService',chatitem,function (data) {
+              $greendao.loadAllData('ChatListService',function (data) {
+                $chatarr.setData(data);
+                $rootScope.$broadcast('lastcount.update');
+              },function (err) {
+
+              });
+            },function (err) {
+              alert(err+"数据保存失败");
+            });
+          },function (err) {
+            alert(err);
+          });
+        },function (err) {
+          alert(err);
+        });
         $scope.lastGroupCount=$mqtt.getMsgGroupCount();
       })
 
     });
 
-    $scope.goDetailMessage=function () {
+    $scope.$on('lastcount.update',function (event) {
+      $scope.$apply(function () {
+   //     alert("成功进入监听");
+        $scope.items=$chatarr.getData();
+      });
+
+    });
+
+    //进入单聊界面
+    $scope.goDetailMessage=function (id,ssid) {
+
+
+  //    alert(ssid+"低头"+id);
+
 
       $mqtt.clearMsgCount();
-      $scope.lastCount=$mqtt.getMsgCount();
-      $state.go("messageDetail");
+      //将变化的count赋值给unread对象
+      $scope.unread =$mqtt.getMsgCount();
+      //取出最后一条消息记录的数据
+      $greendao.queryData('MessagesService','where sessionid=? order by "when" desc limit 0,1','cll',function (data) {
+  //      alert(data.length+"最后一条数据");
+        $scope.lastText=data[0].message;//最后一条消息内容
+        $scope.lastDate=data[0].when;//最后一条消息的时间
+        $scope.chatName=data[0].sessionid;//对话框名称
+        $scope.imgSrc=data[0].imgSrc;//最后一条消息的头像
+  //      alert($scope.lastText+$scope.lastDate+$scope.chatName+$scope.imgSrc);
+        //如果count为0，就不用做数据更新；如果count不为0并且chatname为‘PPP’，则将更改后的unread值插入数据库更新
+        $greendao.queryData('ChatListService','where CHAT_NAME=? and count !=0','cll',function (data) {
+          var chatitem={};
+          chatitem.id=data[0].id;
+          chatitem.chatName=$scope.chatName;
+          chatitem.imgSrc=$scope.imgSrc;
+          chatitem.lastText=$scope.lastText;
+          chatitem.count=$scope.unread;
+          chatitem.isDelete=data[0].isDelete;
+          chatitem.lastDate=$scope.lastDate;
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+          },function (err) {
+            alert(err);
+          });
+        },function (err) {
+          alert(err);
+        });
+      },function (err) {
+        alert(err);
+      });
+
+      //进入聊天详情界面
+      $state.go('messageDetail',
+        {
+          "id":id,
+          "ssid":ssid
+        });
+
+
+
 
     };
-    $scope.goSearch= function () {
-      $state.go("search");
-    }
 
 
 
+    //进入群聊界面
     $scope.goGroupMessage=function () {
       $mqtt.clearMsgGroupCount();
       $scope.lastGroupCount=$mqtt.getMsgGroupCount();
@@ -1174,9 +1319,11 @@ angular.module('im.controllers', [])
     }
 
 
+    $scope.goSearch= function () {
+      $state.go("search");
+    }
 
-
-  }])
+  })
 
 
 
@@ -1201,7 +1348,7 @@ angular.module('im.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', ['$scope', '$state', '$ionicLoading', '$http','$mqtt','$cordovaPreferences','$api',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api) {
+  .controller('LoginCtrl',function ($scope, $state, $ionicLoading, $http,$mqtt,$cordovaPreferences,$api,$cordovaFileOpener2,$ionicPopup) {
     $scope.name="";
     $scope.password="";
 
@@ -1258,7 +1405,7 @@ angular.module('im.controllers', [])
       $ionicLoading.show({
         template: '登录中...'
       });
-      $api.login($scope.name,$scope.password,'321', function (message) {
+      $api.login($scope.name,$scope.password,'123', function (message) {
         //alert(message.toJSONString());
         /*if (message.isActive === false) {
           $api.activeUser(message.userID, '321', function (message) {
@@ -1267,19 +1414,20 @@ angular.module('im.controllers', [])
           });
         }*/
         // alert(message.toString());
-        $api.getVersion("", function (msg) {
-        },function (msg) {
-        });
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
-        $mqtt.getMqtt().save('name', $scope.name, function (message) {
+        $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
         },function (message) {
           alert(message);
         });
-        $mqtt.startMqttChat($scope.name + ',zhuanjiazu');
-        $mqtt.setLogin(true);
-        $state.go('tab.message');
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $mqtt.startMqttChat(msg);
+          $mqtt.setLogin(true);
+          $state.go('tab.message');
+        },function (msg) {
+        });
       }, function (message) {
         //alert(message);
         $scope.name = response;
@@ -1288,7 +1436,8 @@ angular.module('im.controllers', [])
       });
 
     };
-  }])
+  })
+
   .controller('TabMessageCtrl',function ($scope) {
     /*document.addEventListener('deviceready',function () {
       $mqtt.getMqtt().getChats('sls',function(message){
@@ -1315,7 +1464,7 @@ angular.module('im.controllers', [])
     }
   })
 
-  .controller('AccountCtrl',function ($scope, $state, $ionicPopup, $ionicLoading, $http,$mqtt,$contacts) {
+  .controller('AccountCtrl',function ($scope, $state, $ionicPopup, $ionicLoading, $http,$mqtt,$contacts,$cordovaCamera,$ionicActionSheet,$phonepluin,$api) {
     $scope.name="";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID= msg.userID
@@ -1341,7 +1490,93 @@ angular.module('im.controllers', [])
         // "youmeiyou":$scope.youmeiyou,
       });
     }
+    $scope.setpic=function (name) {
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          { text: '拍照上传' },
+          { text: '选择相册'}
+        ],
+        titleText: '上传头像',
+        cancelText: '取消',
+        buttonClicked: function(index) {
+          if(index==0){
+            $scope.takePhoto();
+          }else {
+            $scope.selectphoto();
+          }
+          return true;
+        }
 
+      });
+    }
+
+    //拍照片
+    $scope.takePhoto=function(){
+      var options = {
+        //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.CAMERA,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,                                        //在选择之前允许修改截图
+        encodingType:Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        // targetWidth: 200,                                        //照片宽度
+        // targetHeight: 200,                                       //照片高度
+        mediaType:0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        cameraDirection:0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true                                   //保存进手机相册
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        alert(imageData);
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+        $api.setHeadPic(imageData,function (msg) {
+          alert("成功")
+        },function (msg) {
+          alert("失败")
+        });
+      }, function(err) {
+        // error
+        alert(err);
+      });
+
+    };
+    //选相册
+    $scope.selectphoto=function(){
+      var options = {
+        //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.NATIVE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,                                        //在选择之前允许修改截图
+        encodingType:Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        // targetWidth: 200,                                        //照片宽度
+        // targetHeight: 200,                                       //照片高度
+        mediaType:0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        cameraDirection:0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true                                   //保存进手机相册
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        alert(imageData);
+        $api.setHeadPic(imageData,function (msg) {
+          alert("成功")
+        },function (msg) {
+          alert("失败")
+        });
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+      }, function(err) {
+        // error
+        alert(err);
+      });
+
+    };
 
 
     document.addEventListener('deviceready',function () {
@@ -1353,6 +1588,18 @@ angular.module('im.controllers', [])
         alert(message);
       });
     });
+    // $scope.name="";
+    /*$scope.fetch = function() {
+      $cordovaPreferences.fetch('name')
+        .success(function(value) {
+          if(value != null && value != ''){
+            $scope.name=value;
+          }
+        })
+        .error(function(error) {
+        })
+    };*/
+    // $scope.fetch();
     // 一个确认对话框
     $scope.showConfirm = function() {
       var confirmPopup = $ionicPopup.confirm({
@@ -1379,6 +1626,38 @@ angular.module('im.controllers', [])
       });
     };
   })
+
+ /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
+    $scope.name="";
+    /!*$scope.fetch = function() {
+      $mqtt.getMqtt().getString('name',function (message) {
+        alert(message+"sdsfsdg");
+        if(message != null && message != ''){
+          $scope.name=message;
+        }
+      },function (message) {
+        alert(message);
+      });
+      /!*$cordovaPreferences.fetch('name')
+        .success(function(value) {
+          if(value != null && value != ''){
+            $scope.name=value;
+          }
+        })
+        .error(function(error) {
+        })*!/
+    };*!/
+    // $scope.fetch();
+    document.addEventListener('deviceready',function () {
+      $mqtt.getMqtt().getString('name',function (message) {
+        if(message != null && message != ''){
+          $scope.name=message;
+        }
+      },function (message) {
+        alert(message);
+      });
+    });
+  })*/
   .controller('myAttentionSelectCtrl',function ($scope,$state) {
 
     $scope.goBackChat=function () {
@@ -1389,7 +1668,7 @@ angular.module('im.controllers', [])
   //历史消息controller
   .controller('HistoryCtrl',function ($scope,$state) {
 
-    alert("come 正确的页面了");
+ //   alert("come 正确的页面了");
   })
 
 
@@ -1690,7 +1969,7 @@ angular.module('im.controllers', [])
     $scope.$on('persons2.update2',function (event) {
       $scope.$apply(function () {
         if ($search222.getPersons2()===null){
-          alert("没有更多数据")
+    //      alert("没有更多数据")
           $scope.hasmore=false
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }else {
@@ -2066,6 +2345,7 @@ angular.module('im.controllers', [])
       $state.go("personalSetting");
     }
 
+
   })
   .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
@@ -2081,16 +2361,14 @@ angular.module('im.controllers', [])
     });
 
   })
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService,$api,$ionicPopup) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService,$api,$ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
     $scope.UserIDsethou = $stateParams.UserIDset;
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
-    // 触发一个按钮点击，或一些其他目标
+    // 修改密码
     $scope.showPopup = function() {
       $scope.data = {}
-        // <label class="item item-input"><i class="icon  ion-android-person positive positive"></i><input type="text" placeholder="请输入用户名" ng-model="name"></label>
-      // 一个精心制作的自定义弹窗
       var myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入原密码" ng-model="data.oldpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入新密码" ng-model="data.newpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请确认新密码" ng-model="data.enterpassword"></label>',
         title: '修改密码',
@@ -2102,7 +2380,7 @@ angular.module('im.controllers', [])
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function(e) {
-              alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
+       //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
               $api.updatePwd($scope.data.oldpassword,$scope.data.newpassword,$scope.data.enterpassword,function (msg) {
                 alert(msg+"修改成功")
               },function (msg) {
@@ -2117,7 +2395,10 @@ angular.module('im.controllers', [])
       });
        // myPopup.close(); //关闭
     };
-
+    //在线升级
+    $scope.zaixianshengji = function () {
+      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    }
 
   })
   .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, contactService) {
