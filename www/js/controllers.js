@@ -2325,7 +2325,7 @@ angular.module('im.controllers', [])
     $scope.$on('attention.add',function (event) {
       $scope.$apply(function () {
         $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+        // $scope.youmeiyou= $searchdata.getyesorno(.personsdetail111.Mobile)
       })
     });
 

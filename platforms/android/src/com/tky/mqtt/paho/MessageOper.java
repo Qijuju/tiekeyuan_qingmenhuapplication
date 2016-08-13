@@ -51,7 +51,7 @@ public class MessageOper {
 		Map<String, Object> msgMap = IMMsgFactory.createMsg(msg);
 		MessageBean bean = new MessageBean();
 		bean.set_id((String) msgMap.get("to"));
-		bean.setSessionid((String) msgMap.get("to"));
+		bean.setSessionid((String) msgMap.get("from"));
 		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 		bean.setFrom("false");
 		bean.setMessage((String) msgMap.get("message"));

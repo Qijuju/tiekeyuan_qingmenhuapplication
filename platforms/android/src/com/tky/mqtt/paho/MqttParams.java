@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class MqttParams {
 	private String serverURI = SwitchLocal.getLocalIp();
-	private String clientId = getUserID();
+	private String clientId = "tpa" + getUserID();//设备唯一标识码
 	private String userName = "lb";
 	private String password = "lb";
 	private MqttClientPersistence persistence = new MemoryPersistence();
