@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class MessageBean implements Serializable {
     private String _id;// UUID.randomUUID().toString().toUpperCase());
     private String sessionid;//", msgMap.get("to"));
-    private String account;//", getUserID());
     private String type;//", getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
     private String from;//", "false");
     private String message;//", msgMap.get("message"));
@@ -19,10 +18,9 @@ public class MessageBean implements Serializable {
     private String platform;//", getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
     private Long when;//", msgMap.get("when"));
     private String isFailure;//", "false");
-    private String singlecount;//", "");
-    private String qunliaocount;//", "");
     private String isDelete;//", "");
     private String imgSrc;//", "");
+    private String username;
 
     public String get_id() {
         return _id;
@@ -38,14 +36,6 @@ public class MessageBean implements Serializable {
 
     public void setSessionid(String sessionid) {
         this.sessionid = sessionid;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getType() {
@@ -104,22 +94,6 @@ public class MessageBean implements Serializable {
         this.isFailure = isFailure;
     }
 
-    public String getSinglecount() {
-        return singlecount;
-    }
-
-    public void setSinglecount(String singlecount) {
-        this.singlecount = singlecount;
-    }
-
-    public String getQunliaocount() {
-        return qunliaocount;
-    }
-
-    public void setQunliaocount(String qunliaocount) {
-        this.qunliaocount = qunliaocount;
-    }
-
     public String getIsDelete() {
         return isDelete;
     }
@@ -134,5 +108,13 @@ public class MessageBean implements Serializable {
 
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

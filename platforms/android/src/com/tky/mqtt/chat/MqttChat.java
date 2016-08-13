@@ -288,6 +288,49 @@ public class MqttChat extends CordovaPlugin {
     }
 
     /**
+     * 获取当前登录用户的topic
+     * @param args
+     * @param callbackContext
+     */
+    public void getTopic(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String userID = args.getString(0);
+            String type = args.getString(1);
+            String topic = SwitchLocal.getATopic(getType(type), userID);
+            setResult(topic, PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("获取失败！", PluginResult.Status.OK, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取当前登录的用户ID
+     * @param args
+     * @param callbackContext
+     */
+    public void getUserId(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            setResult(getUserID(), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            setResult("获取用户ID失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    public static MType getType(String type) {
+        if ("U" == type) {
+            return MType.U;
+        } else if ("G" == type) {
+            return MType.G;
+        } else if ("D" == type) {
+            return MType.D;
+        } else {
+            return MType.U;
+        }
+    }
+
+    /**
      * 获取当前登录的用户ID
      * @return
      */

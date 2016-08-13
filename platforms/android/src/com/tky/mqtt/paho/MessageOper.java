@@ -37,7 +37,7 @@ public class MessageOper {
 		if (obj == null) {
 			return null;
 		}
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"));
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**
@@ -52,7 +52,6 @@ public class MessageOper {
 		MessageBean bean = new MessageBean();
 		bean.set_id((String) msgMap.get("to"));
 		bean.setSessionid((String) msgMap.get("to"));
-		bean.setAccount(getUserID());
 		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 		bean.setFrom("false");
 		bean.setMessage((String) msgMap.get("message"));
@@ -60,10 +59,9 @@ public class MessageOper {
 		bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
 		bean.setWhen((Long) msgMap.get("when"));
 		bean.setIsFailure("false");
-		bean.setSinglecount("");
-		bean.setQunliaocount("");
 		bean.setIsDelete("");
 		bean.setImgSrc("");
+		bean.setUsername((String) msgMap.get("fromName"));
 		return bean;
 	}
 

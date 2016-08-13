@@ -43,20 +43,17 @@ public class GreenDaoGenerator {
     private  static  void addMessages(Schema schema){
         Entity message=schema.addEntity("Messages");
         message.addStringProperty("_id").primaryKey();//主键id
-        message.addStringProperty("account");//消息发出者所在公司id
-        message.addStringProperty("sessionid");//发送者id+接收者id、群组id
+        message.addStringProperty("sessionid");//接收者id、群组id
         message.addStringProperty("type");//聊天类型：群聊、单聊、应用推送
         message.addStringProperty("from");//消息发出者id
         message.addStringProperty("message");//消息内容
         message.addStringProperty("messagetype");//消息类型:普通、回执、抖动窗口
         message.addStringProperty("platform");//客户端类型
-        message.addStringProperty("isSingle");//暂时无用
         message.addStringProperty("isFailure");//消息发送成功与否
         message.addLongProperty("when");//消息发送时间
         message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
         message.addStringProperty("imgSrc");//头像图片来源
-        message.addStringProperty("singlecount");//单聊未读消息数
-        message.addStringProperty("qunliaocount");//群聊未读消息数
+        message.addStringProperty("username");//用户名
     }
 
 

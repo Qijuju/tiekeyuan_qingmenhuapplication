@@ -47,6 +47,7 @@ angular.module('im.routes', [])
       .state('messageDetail', {
         url: '/messageDetail/:id/:ssid',
         templateUrl: 'templates/message-detail.html',
+        cache:false,
         controller: 'MessageDetailCtrl'
 
 
@@ -86,7 +87,7 @@ angular.module('im.routes', [])
 
 
       .state('personalSetting', {
-        url: '/personalSetting',
+        url: '/personalSetting/:id/:ssid',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
@@ -274,7 +275,7 @@ angular.module('im.routes', [])
       })
 
       .state('historyMessage', {
-        url: '/historyMessage',
+        url: '/historyMessage/:id/:ssid',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
         cache:false

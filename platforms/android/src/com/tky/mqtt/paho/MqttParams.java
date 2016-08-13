@@ -9,7 +9,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MqttParams {
 	private String serverURI = SwitchLocal.getLocalIp();
-	private String clientId = "zheshisunlins";//UUID.randomUUID().toString().toUpperCase();
+	private String clientId = "hhj";//UUID.randomUUID().toString().toUpperCase();
 	private String userName = "lb";
 	private String password = "lb";
 	private MqttClientPersistence persistence = new MemoryPersistence();

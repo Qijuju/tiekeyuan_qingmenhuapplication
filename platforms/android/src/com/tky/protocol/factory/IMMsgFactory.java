@@ -35,7 +35,24 @@ public class IMMsgFactory {
 	};
 
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
-								   Receipt rp, long when, String to, String from, String msg) throws IMPException {
+								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException{
+		Map<String,Object> msgMap = new HashMap<String,Object>();
+		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
+		msgMap.put(IMPFields.Msg_type, getMsgType(msType));
+		msgMap.put(IMPFields.Msg_mediaType, getMediaType(mdType));
+		msgMap.put(IMPFields.Msg_platform, getPlatformType(pfType));
+		msgMap.put(IMPFields.Msg_receipt, getReceipt(rp));
+		msgMap.put(IMPFields.Msg_when, System.currentTimeMillis());
+		msgMap.put(IMPFields.Msg_to, to);
+		msgMap.put(IMPFields.Msg_from, from);
+		msgMap.put(IMPFields.Msg_message, msg);
+		msgMap.put(IMPFields.Msg_fromName, fromName);
+
+		return ProtocolUtil.doPackage(msgMap);
+	}
+
+	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
+								   Receipt rp, long when, String to, String from, String msg) throws IMPException{
 
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
