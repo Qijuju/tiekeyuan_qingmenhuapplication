@@ -34,8 +34,8 @@ exports.updateUserInfo = function(newUserInfoObj, success, error) {//newUserInfo
 exports.getHeadPic = function(picUserID, picSize, success, error) {
   exec(success, error, "ThriftApiClient", "getHeadPic", [picUserID, picSize]);
 };
-exports.setHeadPic = function(success, error) {
-  exec(success, error, "ThriftApiClient", "setHeadPic", []);
+exports.setHeadPic = function(filePath, success, error) {
+  exec(success, error, "ThriftApiClient", "setHeadPic", [filePath]);
 };
 exports.getVersionInfo = function(success, error) {
   exec(success, error, "ThriftApiClient", "getVersionInfo", []);
@@ -54,6 +54,12 @@ exports.getAttention = function(success, error) {
 };
 exports.needUpgrade = function(versionName, success, error) {
   exec(success, error, "ThriftApiClient", "needUpgrade", [versionName]);
+};
+exports.getHistoryMsg = function(sessionType, sessionID, pageNum, pageCount, success, error) {
+  exec(success, error, "ThriftApiClient", "getHistoryMsg", [sessionType, sessionID, pageNum, pageCount]);
+};
+exports.getMsgCount = function(sessionType, sessionID, success, error) {
+  exec(success, error, "ThriftApiClient", "getMsgCount", [sessionType, sessionID]);
 };
 
 });

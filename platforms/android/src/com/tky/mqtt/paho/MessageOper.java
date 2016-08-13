@@ -52,7 +52,6 @@ public class MessageOper {
 		MessageBean bean = new MessageBean();
 		bean.set_id((String) msgMap.get("to"));
 		bean.setSessionid((String) msgMap.get("to"));
-		bean.setAccount(getUserID());
 		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 		bean.setFrom("false");
 		bean.setMessage((String) msgMap.get("message"));
@@ -60,10 +59,9 @@ public class MessageOper {
 		bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
 		bean.setWhen((Long) msgMap.get("when"));
 		bean.setIsFailure("false");
-		bean.setSinglecount("");
-		bean.setQunliaocount("");
 		bean.setIsDelete("");
 		bean.setImgSrc("");
+		bean.setUsername("");
 		return bean;
 	}
 
