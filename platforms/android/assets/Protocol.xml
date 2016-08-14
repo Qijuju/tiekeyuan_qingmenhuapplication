@@ -38,6 +38,10 @@
 		 	<nLength>2</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
+		<Node id="fromName">
+		 	<nLength>3</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
 		<Node id="message">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>

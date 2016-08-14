@@ -12,7 +12,7 @@ public class IMPFields {
 	public static final String DT_String = "S";
 	public static final String DT_List = "A";
 	public static final String DT_Map = "M";
-	
+
 	public static final String N_Error = "Error";
 
 	public static final String MsgProtocol = "MsgProtocol";
@@ -21,7 +21,7 @@ public class IMPFields {
 	public static final String NotifyType = "NotifyType";
 	public static final String N_Type_Msg = "M";
 	public static final String N_Type_Event = "E";
-	
+
 
 	public static final String Msg_type = "type";
 	public static final String M_Type_User = "U";
@@ -47,13 +47,14 @@ public class IMPFields {
 	public static final String Msg_receipt = "receipt";
 	public static final String M_Recipt_True  = "T";
 	public static final String M_Recipt_False = "F";
-	
+
 	public static final String Msg_when = "when";
 	public static final String Msg_to = "to";
 	public static final String Msg_from = "from";
 	public static final String Msg_message = "message";
+	public static final String Msg_fromName = "fromName";
 
 	public static final String EventCode = "EventCode";
 	public static final String Event = "Event";
-	
+
 }

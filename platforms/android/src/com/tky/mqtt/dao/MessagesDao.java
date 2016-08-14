@@ -24,20 +24,17 @@ public class MessagesDao extends AbstractDao<Messages, String> {
     */
     public static class Properties {
         public final static Property _id = new Property(0, String.class, "_id", true, "_ID");
-        public final static Property Account = new Property(1, String.class, "account", false, "ACCOUNT");
-        public final static Property Sessionid = new Property(2, String.class, "sessionid", false, "SESSIONID");
-        public final static Property Type = new Property(3, String.class, "type", false, "TYPE");
-        public final static Property From = new Property(4, String.class, "from", false, "FROM");
-        public final static Property Message = new Property(5, String.class, "message", false, "MESSAGE");
-        public final static Property Messagetype = new Property(6, String.class, "messagetype", false, "MESSAGETYPE");
-        public final static Property Platform = new Property(7, String.class, "platform", false, "PLATFORM");
-        public final static Property IsSingle = new Property(8, String.class, "isSingle", false, "IS_SINGLE");
-        public final static Property IsFailure = new Property(9, String.class, "isFailure", false, "IS_FAILURE");
-        public final static Property When = new Property(10, Long.class, "when", false, "WHEN");
-        public final static Property IsDelete = new Property(11, String.class, "isDelete", false, "IS_DELETE");
-        public final static Property ImgSrc = new Property(12, String.class, "imgSrc", false, "IMG_SRC");
-        public final static Property Singlecount = new Property(13, String.class, "singlecount", false, "SINGLECOUNT");
-        public final static Property Qunliaocount = new Property(14, String.class, "qunliaocount", false, "QUNLIAOCOUNT");
+        public final static Property Sessionid = new Property(1, String.class, "sessionid", false, "SESSIONID");
+        public final static Property Type = new Property(2, String.class, "type", false, "TYPE");
+        public final static Property From = new Property(3, String.class, "from", false, "FROM");
+        public final static Property Message = new Property(4, String.class, "message", false, "MESSAGE");
+        public final static Property Messagetype = new Property(5, String.class, "messagetype", false, "MESSAGETYPE");
+        public final static Property Platform = new Property(6, String.class, "platform", false, "PLATFORM");
+        public final static Property IsFailure = new Property(7, String.class, "isFailure", false, "IS_FAILURE");
+        public final static Property When = new Property(8, Long.class, "when", false, "WHEN");
+        public final static Property IsDelete = new Property(9, String.class, "isDelete", false, "IS_DELETE");
+        public final static Property ImgSrc = new Property(10, String.class, "imgSrc", false, "IMG_SRC");
+        public final static Property Username = new Property(11, String.class, "username", false, "USERNAME");
     };
 
 
@@ -54,20 +51,17 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'MESSAGES' (" + //
                 "'_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: _id
-                "'ACCOUNT' TEXT," + // 1: account
-                "'SESSIONID' TEXT," + // 2: sessionid
-                "'TYPE' TEXT," + // 3: type
-                "'FROM' TEXT," + // 4: from
-                "'MESSAGE' TEXT," + // 5: message
-                "'MESSAGETYPE' TEXT," + // 6: messagetype
-                "'PLATFORM' TEXT," + // 7: platform
-                "'IS_SINGLE' TEXT," + // 8: isSingle
-                "'IS_FAILURE' TEXT," + // 9: isFailure
-                "'WHEN' INTEGER," + // 10: when
-                "'IS_DELETE' TEXT," + // 11: isDelete
-                "'IMG_SRC' TEXT," + // 12: imgSrc
-                "'SINGLECOUNT' TEXT," + // 13: singlecount
-                "'QUNLIAOCOUNT' TEXT);"); // 14: qunliaocount
+                "'SESSIONID' TEXT," + // 1: sessionid
+                "'TYPE' TEXT," + // 2: type
+                "'FROM' TEXT," + // 3: from
+                "'MESSAGE' TEXT," + // 4: message
+                "'MESSAGETYPE' TEXT," + // 5: messagetype
+                "'PLATFORM' TEXT," + // 6: platform
+                "'IS_FAILURE' TEXT," + // 7: isFailure
+                "'WHEN' INTEGER," + // 8: when
+                "'IS_DELETE' TEXT," + // 9: isDelete
+                "'IMG_SRC' TEXT," + // 10: imgSrc
+                "'USERNAME' TEXT);"); // 11: username
     }
 
     /** Drops the underlying database table. */
@@ -86,74 +80,59 @@ public class MessagesDao extends AbstractDao<Messages, String> {
             stmt.bindString(1, _id);
         }
  
-        String account = entity.getAccount();
-        if (account != null) {
-            stmt.bindString(2, account);
-        }
- 
         String sessionid = entity.getSessionid();
         if (sessionid != null) {
-            stmt.bindString(3, sessionid);
+            stmt.bindString(2, sessionid);
         }
  
         String type = entity.getType();
         if (type != null) {
-            stmt.bindString(4, type);
+            stmt.bindString(3, type);
         }
  
         String from = entity.getFrom();
         if (from != null) {
-            stmt.bindString(5, from);
+            stmt.bindString(4, from);
         }
  
         String message = entity.getMessage();
         if (message != null) {
-            stmt.bindString(6, message);
+            stmt.bindString(5, message);
         }
  
         String messagetype = entity.getMessagetype();
         if (messagetype != null) {
-            stmt.bindString(7, messagetype);
+            stmt.bindString(6, messagetype);
         }
  
         String platform = entity.getPlatform();
         if (platform != null) {
-            stmt.bindString(8, platform);
-        }
- 
-        String isSingle = entity.getIsSingle();
-        if (isSingle != null) {
-            stmt.bindString(9, isSingle);
+            stmt.bindString(7, platform);
         }
  
         String isFailure = entity.getIsFailure();
         if (isFailure != null) {
-            stmt.bindString(10, isFailure);
+            stmt.bindString(8, isFailure);
         }
  
         Long when = entity.getWhen();
         if (when != null) {
-            stmt.bindLong(11, when);
+            stmt.bindLong(9, when);
         }
  
         String isDelete = entity.getIsDelete();
         if (isDelete != null) {
-            stmt.bindString(12, isDelete);
+            stmt.bindString(10, isDelete);
         }
  
         String imgSrc = entity.getImgSrc();
         if (imgSrc != null) {
-            stmt.bindString(13, imgSrc);
+            stmt.bindString(11, imgSrc);
         }
  
-        String singlecount = entity.getSinglecount();
-        if (singlecount != null) {
-            stmt.bindString(14, singlecount);
-        }
- 
-        String qunliaocount = entity.getQunliaocount();
-        if (qunliaocount != null) {
-            stmt.bindString(15, qunliaocount);
+        String username = entity.getUsername();
+        if (username != null) {
+            stmt.bindString(12, username);
         }
     }
 
@@ -168,20 +147,17 @@ public class MessagesDao extends AbstractDao<Messages, String> {
     public Messages readEntity(Cursor cursor, int offset) {
         Messages entity = new Messages( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // _id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // account
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sessionid
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // type
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // from
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // message
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // messagetype
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // platform
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // isSingle
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // isFailure
-            cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10), // when
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // isDelete
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // imgSrc
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // singlecount
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // qunliaocount
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // sessionid
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // type
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // from
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // message
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // messagetype
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // platform
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // isFailure
+            cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8), // when
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // isDelete
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // imgSrc
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // username
         );
         return entity;
     }
@@ -190,20 +166,17 @@ public class MessagesDao extends AbstractDao<Messages, String> {
     @Override
     public void readEntity(Cursor cursor, Messages entity, int offset) {
         entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setAccount(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setSessionid(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setFrom(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setMessage(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setMessagetype(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setPlatform(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setIsSingle(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setIsFailure(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setWhen(cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10));
-        entity.setIsDelete(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setImgSrc(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setSinglecount(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setQunliaocount(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setSessionid(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setType(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setFrom(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setMessage(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setMessagetype(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setPlatform(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setIsFailure(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setWhen(cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8));
+        entity.setIsDelete(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setImgSrc(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setUsername(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     /** @inheritdoc */

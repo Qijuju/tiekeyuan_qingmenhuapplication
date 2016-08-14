@@ -7,23 +7,20 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table MESSAGES.
  */
-public class Messages extends BaseDao{
+public class Messages extends BaseDao {
 
     private String _id;
-    private String account;
     private String sessionid;
     private String type;
     private String from;
     private String message;
     private String messagetype;
     private String platform;
-    private String isSingle;
     private String isFailure;
     private Long when;
     private String isDelete;
     private String imgSrc;
-    private String singlecount;
-    private String qunliaocount;
+    private String username;
 
     public Messages() {
     }
@@ -32,22 +29,19 @@ public class Messages extends BaseDao{
         this._id = _id;
     }
 
-    public Messages(String _id, String account, String sessionid, String type, String from, String message, String messagetype, String platform, String isSingle, String isFailure, Long when, String isDelete, String imgSrc, String singlecount, String qunliaocount) {
+    public Messages(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username) {
         this._id = _id;
-        this.account = account;
         this.sessionid = sessionid;
         this.type = type;
         this.from = from;
         this.message = message;
         this.messagetype = messagetype;
         this.platform = platform;
-        this.isSingle = isSingle;
         this.isFailure = isFailure;
         this.when = when;
         this.isDelete = isDelete;
         this.imgSrc = imgSrc;
-        this.singlecount = singlecount;
-        this.qunliaocount = qunliaocount;
+        this.username = username;
     }
 
     public String get_id() {
@@ -56,14 +50,6 @@ public class Messages extends BaseDao{
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getSessionid() {
@@ -114,14 +100,6 @@ public class Messages extends BaseDao{
         this.platform = platform;
     }
 
-    public String getIsSingle() {
-        return isSingle;
-    }
-
-    public void setIsSingle(String isSingle) {
-        this.isSingle = isSingle;
-    }
-
     public String getIsFailure() {
         return isFailure;
     }
@@ -154,20 +132,12 @@ public class Messages extends BaseDao{
         this.imgSrc = imgSrc;
     }
 
-    public String getSinglecount() {
-        return singlecount;
+    public String getUsername() {
+        return username;
     }
 
-    public void setSinglecount(String singlecount) {
-        this.singlecount = singlecount;
-    }
-
-    public String getQunliaocount() {
-        return qunliaocount;
-    }
-
-    public void setQunliaocount(String qunliaocount) {
-        this.qunliaocount = qunliaocount;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }

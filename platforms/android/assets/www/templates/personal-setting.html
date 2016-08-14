@@ -1,7 +1,7 @@
 <ion-view view-title="聊天设置">
   <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ui-sref="messageDetail">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="gobackmsgdetail(userId,userName)">
         返回
       </button>
     </ion-nav-buttons>
@@ -9,8 +9,8 @@
   <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
     <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
       <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-      <div class="vcenter" style="position: absolute;left: 47%;top: 57px">宋亚</div>
-      <P style="font-size: 18px">宋亚</P>
+      <div class="vcenter" style="position: absolute;left: 47%;top: 57px">{{userName}}</div>
+      <P style="font-size: 18px">{{userName}}</P>
 
     </div>
 
@@ -41,7 +41,7 @@
         </a>
       </div>
 
-      <div class="col" align="center" ng-click="gohistory()">
+      <div class="col" align="center" ng-click="gohistoryMessage(userId)">
         <a >
           <ul>
             <li><img src="img/record.png" width="40" height="40"></li>
@@ -69,7 +69,7 @@
             消息免打扰
           </ion-toggle>
         </Li>
-        <li class="item">
+        <li class="item" ng-click="clearMsg(userId,userName)">
           <a href="#/tab/message">清空聊天记录</a>
         </li>
       </ul>

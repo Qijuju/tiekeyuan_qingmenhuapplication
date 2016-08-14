@@ -8,7 +8,7 @@
             <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
             </form>
           </label>
-          <button class="button button-clear" style="color: #49B746;" ui-sref="tab.message" >取消</button>
+          <button class="button button-clear" style="color: #49B746;" ng-click="searchBack()" >取消</button>
         </div>
 
     <ion-list>
@@ -17,8 +17,8 @@
           <div class="col-20" align="center" ng-click="tanchuangsearch(persondetail1.UserID)">
             <img src="img/icon_friends.png"  style="width: 25px;height: 25px" >
           </div>
-          <div class="col-80" align="left" ng-click="jumpSearch(persondetail1.UserID)">
-            <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>
+          <div class="col-80" align="left" ng-click="goSearchDetail(persondetail1.UserID)">
+            <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="goSearchDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>
           </div>
         </div>
       </ion-item>

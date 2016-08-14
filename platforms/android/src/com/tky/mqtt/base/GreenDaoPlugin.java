@@ -46,7 +46,6 @@ public class GreenDaoPlugin extends CordovaPlugin {
         if ("MessagesService".equals(services)) {
             Messages message = new Messages();
             message.set_id(UUID.randomUUID().toString());
-            message.setAccount(jsonobj.getString("account"));
             message.setSessionid(jsonobj.getString("sessionid"));
             message.setType(jsonobj.getString("type"));
             message.setFrom(jsonobj.getString("from"));
@@ -55,8 +54,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setPlatform(jsonobj.getString("platform"));
             message.setWhen(System.currentTimeMillis());
             message.setIsFailure(jsonobj.getString("isFailure"));
-            message.setSinglecount(jsonobj.getString("singlecount"));
-            message.setQunliaocount(jsonobj.getString("qunliaocount"));
+            message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
             message.setImgSrc(jsonobj.getString("imgSrc"));
             obj = message;
@@ -90,6 +88,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setCount(jsonobj.getString("count"));
             chatList.setIsDelete(jsonobj.getString("isDelete"));
             chatList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                chatList.setLastDate(0L);
+            }else{
+                chatList.setLastDate(System.currentTimeMillis());
+            }
             chatList.setLastText(jsonobj.getString("lastText"));
             obj = chatList;
         }
@@ -121,6 +125,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 message.setIsFailure(jsonobj.getString("isFailure"));
                 message.setIsDelete(jsonobj.getString("isDelete"));
                 message.setImgSrc(jsonobj.getString("imgSrc"));
+                message.setUsername(jsonobj.getString("username"));
                 messagesList.add(message);
             }
 
@@ -330,7 +335,16 @@ public class GreenDaoPlugin extends CordovaPlugin {
      * @param callbackContext 插件回调
      */
     public void deleteDataByArg(final JSONArray args, final CallbackContext callbackContext) {
-
+        try {
+            String services = args.getString(0);
+            String key=args.getString(1);
+            BaseInterface anInterface = getInterface(services);
+            anInterface.deleteDataByArg(key);
+            setResult("success", PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("delete by key failure",PluginResult.Status.ERROR,callbackContext);
+        }
     }
 
     /**
