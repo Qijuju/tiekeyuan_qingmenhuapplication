@@ -25,7 +25,7 @@ angular.module('im.controllers', [])
   })
 
   //常用联系人
-  .controller('TopContactsCtrl',function ($scope,$state,$contacts,$ionicActionSheet,$phonepluin) {
+  .controller('TopContactsCtrl',function ($scope,$state,$contacts,$ionicActionSheet,$phonepluin,$rootScope) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
@@ -37,6 +37,15 @@ angular.module('im.controllers', [])
     $scope.topContactGoDetail=function (id) {
       $state.go("person", {
         "userId": id,
+      });
+    };
+
+    $scope.createchat=function (id,name) {
+      $rootScope.isPersonSend='true';
+      alert(id+name);
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name
       });
     };
 
@@ -54,7 +63,7 @@ angular.module('im.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
-            alert("发消息");
+            $scope.createchat(id,name);
           } else if (index ==1 ) {
             $phonepluin.call(id,phone,name,type);
           }else {
@@ -72,7 +81,7 @@ angular.module('im.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts,$greendao,$ionicActionSheet,$phonepluin) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts,$greendao,$ionicActionSheet,$phonepluin,$rootScope) {
 
 
     $contacts.topContactsInfo();
@@ -119,7 +128,7 @@ angular.module('im.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
-            alert("发消息");
+            $scope.createchat(id,name);
           } else if (index ==1 ) {
             $phonepluin.call(id,phone,name,type);
           }else {
@@ -131,7 +140,18 @@ angular.module('im.controllers', [])
       });
     };
 
+    $scope.createchat=function (id,name) {
+      $rootScope.isPersonSend='true';
+      alert(id+name);
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name
+      });
+    };
 
+    $scope.goSearch= function () {
+      $state.go("search");
+    }
 
 
 
@@ -883,10 +903,13 @@ angular.module('im.controllers', [])
   .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope,$addattentionser) {
 
     $scope.userId = $stateParams.userId;
+
+
     $contacts.personDetail($scope.userId);
     $scope.$on('personDetail.update',function (event) {
       $scope.$apply(function () {
         $scope.persondsfs=$contacts.getPersonDetail();
+        //alert($scope.persondsfs.IsAttention+"guanzhu");
         if ($scope.persondsfs.UserName.length > 3) {
           $scope.simpleName = $scope.persondsfs.UserName.substr(1, 2);
         } else {
@@ -973,6 +996,7 @@ angular.module('im.controllers', [])
       })
     });
   })
+
 
   .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout,$rootScope,$stateParams) {
     //清表数据
@@ -1127,31 +1151,31 @@ angular.module('im.controllers', [])
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
         }
         $greendao.queryData('ChatListService','where id=?',$scope.userId,function (data) {
-            var chatitem={};
-            chatitem.id=data[0].id;
-            chatitem.chatName=$scope.chatName;
-            chatitem.imgSrc=$scope.imgSrc;
-            chatitem.lastText=$scope.lastText;
-            chatitem.count='0';
-            chatitem.isDelete=data[0].isDelete;
-            chatitem.lastDate=$scope.lastDate;
-            $greendao.saveObj('ChatListService',chatitem,function (data) {
-              // alert("save success");
-              $greendao.loadAllData('ChatListService',function (data) {
-                // alert("加载成功");
-                $state.go("tab.message",{
-                  "id":$scope.userId,
-                  "sessionid":$scope.chatName
-                });
-              },function (err) {
-                alert(err+"加载全部数据失败");
+          var chatitem={};
+          chatitem.id=data[0].id;
+          chatitem.chatName=$scope.chatName;
+          chatitem.imgSrc=$scope.imgSrc;
+          chatitem.lastText=$scope.lastText;
+          chatitem.count='0';
+          chatitem.isDelete=data[0].isDelete;
+          chatitem.lastDate=$scope.lastDate;
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+            // alert("save success");
+            $greendao.loadAllData('ChatListService',function (data) {
+              // alert("加载成功");
+              $state.go("tab.message",{
+                "id":$scope.userId,
+                "sessionid":$scope.chatName
               });
             },function (err) {
-              alert(err+"数据保存失败");
+              alert(err+"加载全部数据失败");
             });
           },function (err) {
-            alert(err+"查询聊天列表失败");
+            alert(err+"数据保存失败");
           });
+        },function (err) {
+          alert(err+"查询聊天列表失败");
+        });
       },function (err) {
         alert(err+"数据离开失败");
       });
@@ -1224,14 +1248,14 @@ angular.module('im.controllers', [])
         $timeout(function() {
           viewScroll.scrollBottom();
         }, 100);
-      //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-      //     $scope.msgs=data;
-      //     $timeout(function() {
-      //     viewScroll.scrollBottom();
-      //   }, 100);
-      // },function (err) {
-      //   alert(err);
-      // });
+        //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+        //     $scope.msgs=data;
+        //     $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -1334,7 +1358,7 @@ angular.module('im.controllers', [])
     }
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.loadAllData('ChatListService',function (data) {
-        $scope.items=data;
+      $scope.items=data;
       //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
       // $scope.ssid=
       // alert($scope.items.length+"聊天列表长度");
@@ -1508,7 +1532,7 @@ angular.module('im.controllers', [])
     $scope.password="";
 
     document.addEventListener('deviceready',function () {
-        $mqtt.getMqtt().getString('historyusername',function(message){
+      $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
       $mqtt.getMqtt().getString('remPwd',function (pwd) {
@@ -1533,15 +1557,15 @@ angular.module('im.controllers', [])
         });
       }
       /*$cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $mqtt.startMqttChat(value + ',zhuanjiazu');
-            $state.go('tab.message');
-            return;
-          }
-        })
-        .error(function(error) {
-        })*/
+       .success(function(value) {
+       if(value != null && value != ''){
+       $mqtt.startMqttChat(value + ',zhuanjiazu');
+       $state.go('tab.message');
+       return;
+       }
+       })
+       .error(function(error) {
+       })*/
     });
 
 
@@ -1636,18 +1660,25 @@ angular.module('im.controllers', [])
   })
   .controller('TabMessageCtrl',function ($scope) {
     /*document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getChats('sls',function(message){
-        alert(message);
-      },function(message){
-        alert(message);
-      });
-    });*/
+     $mqtt.getMqtt().getChats('sls',function(message){
+     alert(message);
+     },function(message){
+     alert(message);
+     });
+     });*/
   })
 
   .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao) {
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
+    $scope.gohistoryMessage = function () {
+      alert("要跳了")
+      $state.go('historyMessage',{
+        id:id,
+        ssid:ssid
+      });
+    }
     // alert($scope.userId+"daiguolai"+$scope.userName);
     $scope.addFriend1=function () {
       $state.go("myAttention1");
@@ -1850,37 +1881,37 @@ angular.module('im.controllers', [])
     };
   })
 
- /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
-    $scope.name="";
-    /!*$scope.fetch = function() {
-      $mqtt.getMqtt().getString('name',function (message) {
-        alert(message+"sdsfsdg");
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-      /!*$cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $scope.name=value;
-          }
-        })
-        .error(function(error) {
-        })*!/
-    };*!/
-    // $scope.fetch();
-    document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-    });
-  })*/
+  /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
+   $scope.name="";
+   /!*$scope.fetch = function() {
+   $mqtt.getMqtt().getString('name',function (message) {
+   alert(message+"sdsfsdg");
+   if(message != null && message != ''){
+   $scope.name=message;
+   }
+   },function (message) {
+   alert(message);
+   });
+   /!*$cordovaPreferences.fetch('name')
+   .success(function(value) {
+   if(value != null && value != ''){
+   $scope.name=value;
+   }
+   })
+   .error(function(error) {
+   })*!/
+   };*!/
+   // $scope.fetch();
+   document.addEventListener('deviceready',function () {
+   $mqtt.getMqtt().getString('name',function (message) {
+   if(message != null && message != ''){
+   $scope.name=message;
+   }
+   },function (message) {
+   alert(message);
+   });
+   });
+   })*/
   .controller('myAttentionSelectCtrl',function ($scope,$state) {
 
     $scope.goBackChat=function () {
@@ -1897,7 +1928,7 @@ angular.module('im.controllers', [])
 
   .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
 
-  //  var searchdata1=document.getElementById("searchdata1").innerText;
+    //  var searchdata1=document.getElementById("searchdata1").innerText;
 
     // window.addEventListener("native.keyboardshow", function (e) {
     //   $ionicBackdrop.retain();
@@ -2140,7 +2171,7 @@ angular.module('im.controllers', [])
 
 
   })
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory) {
 
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
@@ -2256,10 +2287,12 @@ angular.module('im.controllers', [])
 
     };
 
-    //跳到详情界面
-    $scope.jumpSearch=function (id) {
-      $state.go("searchdetail",{
-        "UserID":id,
+
+
+    //点击人员进入人员详情
+    $scope.goSearchDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
 
     };
@@ -2268,7 +2301,7 @@ angular.module('im.controllers', [])
     $scope.searchBack=function () {
       $ionicHistory.goBack();
     };
-    
+
   })
 
 
@@ -2598,35 +2631,35 @@ angular.module('im.controllers', [])
     });
 
     //下一页
-      $scope.nextpage=function () {
-        if ($scope.dangqianpage<$scope.totalpage){
-            $scope.dangqianpage++;
-          $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
-            $scope.$on('historymsg.duifang',function (event) {
-              $scope.$apply(function () {
-                $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
-              })
-            });
+    $scope.nextpage=function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+          })
+        });
 
       }else {
-           alert("已经到最后一页了")
-        }
+        alert("已经到最后一页了")
+      }
     }
     //上一页
-      $scope.backpage=function () {
-            if($scope.dangqianpage>1){
-            $scope.dangqianpage--;
-              $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
-            $scope.$on('historymsg.duifang',function (event) {
-              $scope.$apply(function () {
-                $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
-              })
-            });
+    $scope.backpage=function () {
+      if($scope.dangqianpage>1){
+        $scope.dangqianpage--;
+        $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+          })
+        });
 
 
       }else {
-          alert("已经到第一页了")
-        }
+        alert("已经到第一页了")
+      }
     }
 
   })
@@ -2663,7 +2696,7 @@ angular.module('im.controllers', [])
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function(e) {
-       //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
+              //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
               $api.updatePwd($scope.data.oldpassword,$scope.data.newpassword,$scope.data.enterpassword,function (msg) {
                 alert(msg+"修改成功")
               },function (msg) {
@@ -2676,7 +2709,7 @@ angular.module('im.controllers', [])
       myPopup.then(function(res) {
 
       });
-       // myPopup.close(); //关闭
+      // myPopup.close(); //关闭
     };
     //在线升级
     $scope.zaixianshengji = function () {
