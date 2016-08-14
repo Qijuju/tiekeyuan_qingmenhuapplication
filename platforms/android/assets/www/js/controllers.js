@@ -25,7 +25,7 @@ angular.module('im.controllers', [])
   })
 
   //常用联系人
-  .controller('TopContactsCtrl',function ($scope,$state,$contacts,$ionicActionSheet,$phonepluin,$rootScope) {
+  .controller('TopContactsCtrl',function ($scope,$state,$contacts,$ionicActionSheet,$phonepluin) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
@@ -37,15 +37,6 @@ angular.module('im.controllers', [])
     $scope.topContactGoDetail=function (id) {
       $state.go("person", {
         "userId": id,
-      });
-    };
-
-    $scope.createchat=function (id,name) {
-      $rootScope.isPersonSend='true';
-      alert(id+name);
-      $state.go('tab.message',{
-        "id":id,
-        "sessionid":name
       });
     };
 
@@ -63,7 +54,7 @@ angular.module('im.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
-            $scope.createchat(id,name);
+            alert("发消息");
           } else if (index ==1 ) {
             $phonepluin.call(id,phone,name,type);
           }else {
@@ -81,7 +72,7 @@ angular.module('im.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts,$greendao,$ionicActionSheet,$phonepluin,$rootScope) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts,$greendao,$ionicActionSheet,$phonepluin) {
 
 
     $contacts.topContactsInfo();
@@ -128,7 +119,7 @@ angular.module('im.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
-            $scope.createchat(id,name);
+            alert("发消息");
           } else if (index ==1 ) {
             $phonepluin.call(id,phone,name,type);
           }else {
@@ -140,18 +131,7 @@ angular.module('im.controllers', [])
       });
     };
 
-    $scope.createchat=function (id,name) {
-      $rootScope.isPersonSend='true';
-      alert(id+name);
-      $state.go('tab.message',{
-        "id":id,
-        "sessionid":name
-      });
-    };
 
-    $scope.goSearch= function () {
-      $state.go("search");
-    }
 
 
 
@@ -903,13 +883,10 @@ angular.module('im.controllers', [])
   .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope,$addattentionser) {
 
     $scope.userId = $stateParams.userId;
-
-
     $contacts.personDetail($scope.userId);
     $scope.$on('personDetail.update',function (event) {
       $scope.$apply(function () {
         $scope.persondsfs=$contacts.getPersonDetail();
-        //alert($scope.persondsfs.IsAttention+"guanzhu");
         if ($scope.persondsfs.UserName.length > 3) {
           $scope.simpleName = $scope.persondsfs.UserName.substr(1, 2);
         } else {
@@ -996,7 +973,6 @@ angular.module('im.controllers', [])
       })
     });
   })
-
 
   .controller('MessageDetailCtrl', function ($scope, $state,$http, $ionicScrollDelegate,$mqtt,$ionicActionSheet,$greendao,$timeout,$rootScope,$stateParams) {
     //清表数据
@@ -1348,6 +1324,7 @@ angular.module('im.controllers', [])
     // alert($scope.userId+"messageC"+$scope.userName);
     if($rootScope.isPersonSend === 'true'){
       $scope.items=$chatarr.getAll($rootScope.isPersonSend);
+      alert($scope.items.length+"长度");
       $scope.$on('chatarr.update',function (event) {
         $scope.$apply(function () {
           $scope.items=$chatarr.getAll($rootScope.isPersonSend);
@@ -1357,8 +1334,7 @@ angular.module('im.controllers', [])
     }
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.loadAllData('ChatListService',function (data) {
-      $scope.items=data;
-      alert("是不是有数据"+data.length);
+        $scope.items=data;
       //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
       // $scope.ssid=
       // alert($scope.items.length+"聊天列表长度");
@@ -1379,9 +1355,10 @@ angular.module('im.controllers', [])
           $scope.lastText=data[0].message;//最后一条消息内容
           $scope.lastDate=data[0].when;//最后一条消息的时间
           $scope.chatName=data[0].username;//对话框名称
+          alert($scope.chatName+"用户名1");
           $scope.imgSrc=data[0].imgSrc;//最后一条消息的头像
           //取出‘ppp’聊天对话的列表数据并进行数据库更新
-          $greendao.queryData('ChatListService','where CHAT_NAME =?',$scope.chatName,function (data) {
+          $greendao.queryData('ChatListService','where CHAT_NAME =?',$scope.userName,function (data) {
             $scope.unread=$scope.lastCount;
             var chatitem={};
             chatitem.id=data[0].id;
@@ -1671,13 +1648,6 @@ angular.module('im.controllers', [])
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
-    $scope.gohistoryMessage = function () {
-      alert("要跳了")
-      $state.go('historyMessage',{
-        id:id,
-        ssid:ssid
-      });
-    }
     // alert($scope.userId+"daiguolai"+$scope.userName);
     $scope.addFriend1=function () {
       $state.go("myAttention1");
@@ -2170,7 +2140,7 @@ angular.module('im.controllers', [])
 
 
   })
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji) {
 
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
@@ -2286,12 +2256,10 @@ angular.module('im.controllers', [])
 
     };
 
-
-
-    //点击人员进入人员详情
-    $scope.goSearchDetail = function (id) {
-      $state.go("person", {
-        "userId": id,
+    //跳到详情界面
+    $scope.jumpSearch=function (id) {
+      $state.go("searchdetail",{
+        "UserID":id,
       });
 
     };
@@ -2300,16 +2268,7 @@ angular.module('im.controllers', [])
     $scope.searchBack=function () {
       $ionicHistory.goBack();
     };
-
-
-
-    $scope.$on('$ionicView.enter', function () {
-      var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
-      keyboard.show();
-    });
-
-
-
+    
   })
 
 
