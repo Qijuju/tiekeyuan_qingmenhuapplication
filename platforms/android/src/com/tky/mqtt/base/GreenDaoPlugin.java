@@ -8,6 +8,7 @@ import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SubDeptService;
@@ -144,24 +145,26 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     /**
      * 初始化业务类对象
-     *
      * @param services
      * @param <T>
      * @return
      */
     public <T> BaseInterface<T> getInterface(String services) {
         BaseInterface baseInterface = null;
-        if ("MessagesService".equals(services)) {
+        if("MessagesService".equals(services)){
             baseInterface = MessagesService.getInstance(UIUtils.getContext());
-        } else if ("ParentDeptService".equals(services)) {
+        }else if("ParentDeptService".equals(services)){
             baseInterface = ParentDeptService.getInstance(UIUtils.getContext());
-        } else if ("SubDeptService".equals(services)) {
+        }else if("SubDeptService".equals(services)){
             baseInterface = SubDeptService.getInstance(UIUtils.getContext());
-        } else if ("TopContactsService".equals(services)) {
-            baseInterface = TopContactsService.getInstance(UIUtils.getContext());
+        }else if ("TopContactsService".equals(services)){
+            baseInterface= TopContactsService.getInstance(UIUtils.getContext());
+        }else if("ChatListService".equals(services)){
+            baseInterface= ChatListService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
+
 
     /**
      * @param action          The action to execute.
