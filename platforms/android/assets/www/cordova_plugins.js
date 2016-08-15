@@ -115,10 +115,10 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
-        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "file": "plugins/ToastUtils/www/toast_utils.js",
+        "id": "ToastUtils.toast_utils",
         "clobbers": [
-            "cordova.plugins.fileOpener2"
+            "cordova.plugins.ToastUtils"
         ]
     }
 ];
@@ -141,7 +141,7 @@ module.exports.metadata =
     "cordova-sqlite-storage": "0.7.14",
     "GreenDaoPlugin": "1.0.0",
     "ThriftApiClient": "1.0.0",
-    "cordova-plugin-file-opener2": "2.0.2"
+    "ToastUtils": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

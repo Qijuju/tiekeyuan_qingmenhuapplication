@@ -20,7 +20,8 @@
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
         <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
         <div class="center" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{personsdetail.UserName}}</div>
-        <P style="font-size: 18px;color: #ffffff">{{personsdetail.UserName}}</P>
+        <div><span style="font-size: 18px;color: #ffffff">{{personsdetail.UserName}}</span>&nbsp;<img ng-show="personsdetail.Sex=='男'" src="img/man.png" width="20px" height="20px" ><img ng-show="personsdetail.Sex=='女'" src="img/woman.png" width="20px" height="20px" >
+        </div>
       </div>
 
       <ul class="list">

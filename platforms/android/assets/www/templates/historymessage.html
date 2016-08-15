@@ -10,27 +10,56 @@
 
 
   <ion-content overflow-scroll="false">
-<!--此处写主要内容-->
+    <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
+                   <!--pulling-text="更多消息" id="refresh">-->
+    <!--</ion-refresher>-->
+    <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
+
+
+      <div ng-repeat="historyduifangaaa in historyduifangsss">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID=='127440')">
+          <img src="img/mike.png" class="rj-head-pic">
+          <!--<span class="rj-triangle-left">{{historyduifangaaa.FromName}}</span>-->
+          <ul class="list" >
+            <li class="item background_white" style="background-color: #daffea">
+          <p>{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+          <h5>{{historyduifangaaa.Msg}}</h5>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID === '102357')">
+          <img src="img/ben.png" class="rj-head-pic-right">
+          <ul class="list">
+            <li class="item background_white">
+              <p style="float: right;">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+              <h5 style="float: right;">{{historyduifangaaa.Msg}}</h5>
+            </li>
+            </ul>
+        </div>
+
+    </div>
   </ion-content>
 
 
 
-  <ion-footer-bar align="center" class="bar-light" resize-foot-bar>
+  <ion-footer-bar align="center" class="bar-light">
     <div class="row" >
-      <div class="col-35" align="center" ng-click="" style="vertical-align: middle">
-        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 50%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
+      <div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">
+        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 65%;position: absolute;vertical-align: middle"> 3 </div>
+        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>
       </div>
       <div class="col-10" align="center" >
         <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
       </div>
       <div class="col-10" align="center" >
-        <div style="font-size: 20px ;height: 50%;width: 75%;position: absolute;vertical-align: middle"> 10 </div>
+        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>
       </div>
-      <div class="col-35" align="center"  ng-click="">
-        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 75%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
+      <div class="col-35" align="center"  ng-click="nextpage()">
+        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
       </div>
     </div>
 

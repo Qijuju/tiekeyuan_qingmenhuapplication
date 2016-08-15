@@ -127,11 +127,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-file-opener2": {
+    "ToastUtils": {
         "source": {
-            "type": "git",
-            "url": "https://github.com/pwlin/cordova-plugin-file-opener2.git",
-            "subdir": "."
+            "type": "local",
+            "path": "E:\\qq\\865395386\\FileRecv\\toast_utils"
         },
         "is_top_level": true,
         "variables": {}

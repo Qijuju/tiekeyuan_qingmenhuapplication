@@ -65,7 +65,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"FileOpener2\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.fileopener2.FileOpener2\" /></feature>",
+                            "xml": "<feature name=\"ToastUtils\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.toast.ToastUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -82,10 +82,6 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ]
@@ -142,7 +138,7 @@
         "ThriftApiClient": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
-        "cordova-plugin-file-opener2": {
+        "ToastUtils": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -263,10 +259,10 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
-            "id": "cordova-plugin-file-opener2.FileOpener2",
+            "file": "plugins/ToastUtils/www/toast_utils.js",
+            "id": "ToastUtils.toast_utils",
             "clobbers": [
-                "cordova.plugins.fileOpener2"
+                "cordova.plugins.ToastUtils"
             ]
         }
     ],
@@ -287,6 +283,6 @@
         "cordova-sqlite-storage": "0.7.14",
         "GreenDaoPlugin": "1.0.0",
         "ThriftApiClient": "1.0.0",
-        "cordova-plugin-file-opener2": "2.0.2"
+        "ToastUtils": "1.0.0"
     }
 }

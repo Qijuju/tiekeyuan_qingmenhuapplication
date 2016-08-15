@@ -65,6 +65,7 @@ angular.module('im.routes', [])
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
+        controller: 'TopContactsCtrl'
 
 
       })
@@ -95,6 +96,7 @@ angular.module('im.routes', [])
       .state('groupSetting', {
         url: '/groupSetting',
         templateUrl: 'templates/group-setting.html',
+        controller: 'groupSettingCtrl'
       })
 
 
@@ -169,7 +171,8 @@ angular.module('im.routes', [])
       .state('group', {
         url: '/group',
         templateUrl: 'templates/contact-group.html',
-        controller: 'GroupCtrl'
+        controller: 'GroupCtrl',
+        cache:false
 
       })
 
@@ -278,6 +281,24 @@ angular.module('im.routes', [])
         url: '/historyMessage/:id/:ssid',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
+        cache:false
+      })
+      .state('myinformation', {
+        url: '/myinformation/:UserIDfor',
+        templateUrl: 'templates/myinfomation.html',
+        controller: 'myinformationCtrl',
+        cache:false
+      })
+      .state('accountsettion', {
+        url: '/accountsettion/:UserIDset',
+        templateUrl: 'templates/acount-setting.html',
+        controller: 'accountsettionCtrl',
+        cache:false
+      })
+      .state('aboutours', {
+        url: '/aboutours/:UserIDabout',
+        templateUrl: 'templates/aboutours.html',
+        controller: 'aboutoursCtrl',
         cache:false
       })
     // if none of the above states are matched, use this as the fallback

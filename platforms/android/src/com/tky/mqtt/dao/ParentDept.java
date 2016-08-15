@@ -13,20 +13,8 @@ import de.greenrobot.dao.DaoException;
 public class ParentDept extends BaseDao implements java.io.Serializable {
 
     private String _id;
-    private String account;
-    private String authority;
-    private String create_date;
-    private String create_user;
-    private String description;
-    private String grade;
-    private String lastupdate;
     private String name;
-    private String priority;
-    private String prjid;
-    private String root;
-    private String sync_stage;
-    private String update_user;
-    private String f_sectid;
+    private Integer childcount;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -43,22 +31,10 @@ public class ParentDept extends BaseDao implements java.io.Serializable {
         this._id = _id;
     }
 
-    public ParentDept(String _id, String account, String authority, String create_date, String create_user, String description, String grade, String lastupdate, String name, String priority, String prjid, String root, String sync_stage, String update_user, String f_sectid) {
+    public ParentDept(String _id, String name, Integer childcount) {
         this._id = _id;
-        this.account = account;
-        this.authority = authority;
-        this.create_date = create_date;
-        this.create_user = create_user;
-        this.description = description;
-        this.grade = grade;
-        this.lastupdate = lastupdate;
         this.name = name;
-        this.priority = priority;
-        this.prjid = prjid;
-        this.root = root;
-        this.sync_stage = sync_stage;
-        this.update_user = update_user;
-        this.f_sectid = f_sectid;
+        this.childcount = childcount;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -75,62 +51,6 @@ public class ParentDept extends BaseDao implements java.io.Serializable {
         this._id = _id;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    public String getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(String create_date) {
-        this.create_date = create_date;
-    }
-
-    public String getCreate_user() {
-        return create_user;
-    }
-
-    public void setCreate_user(String create_user) {
-        this.create_user = create_user;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getLastupdate() {
-        return lastupdate;
-    }
-
-    public void setLastupdate(String lastupdate) {
-        this.lastupdate = lastupdate;
-    }
-
     public String getName() {
         return name;
     }
@@ -139,52 +59,12 @@ public class ParentDept extends BaseDao implements java.io.Serializable {
         this.name = name;
     }
 
-    public String getPriority() {
-        return priority;
+    public Integer getChildcount() {
+        return childcount;
     }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public String getPrjid() {
-        return prjid;
-    }
-
-    public void setPrjid(String prjid) {
-        this.prjid = prjid;
-    }
-
-    public String getRoot() {
-        return root;
-    }
-
-    public void setRoot(String root) {
-        this.root = root;
-    }
-
-    public String getSync_stage() {
-        return sync_stage;
-    }
-
-    public void setSync_stage(String sync_stage) {
-        this.sync_stage = sync_stage;
-    }
-
-    public String getUpdate_user() {
-        return update_user;
-    }
-
-    public void setUpdate_user(String update_user) {
-        this.update_user = update_user;
-    }
-
-    public String getF_sectid() {
-        return f_sectid;
-    }
-
-    public void setF_sectid(String f_sectid) {
-        this.f_sectid = f_sectid;
+    public void setChildcount(Integer childcount) {
+        this.childcount = childcount;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

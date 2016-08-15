@@ -389,7 +389,6 @@ angular.module('starter.services', [])
       }
 
 
-
     };
   })
 
@@ -423,10 +422,18 @@ angular.module('starter.services', [])
       },
       deleteObj:function (services,jsonObject, success, error) {
         greendao.deleteObj(services,jsonObject, success, error);
+
+      },
+      queryMessagelistByIsSingle:function (services,isSingle, success, error) {
+
+      },
+      loadByCount:function (success,error) {
+        greendao.loadByCount(success,error);
       }
     };
 
   })
+
 
 .factory('localContact',function ($rootScope) {
 
@@ -671,74 +678,146 @@ angular.module('starter.services', [])
 })
 
 
-  .factory('$phonepluin',function ($greendao) {
+  .factory('$phonepluin', function ($greendao) {
     var phonePlugin;
-    document.addEventListener('deviceready',function () {
+    document.addEventListener('deviceready', function () {
       phonePlugin = cordova.require('PhonePlugin.phoneplugin');
 
     })
 
-    return{
+    return {
 
-      call:function (phonenumber,name) {
+      call: function (id, phone, name,querytype) {
 
-        var topContacts={};
 
-        topContacts.name=name;
-        topContacts.phone=phonenumber;
-        topContacts.count="1";
-        topContacts._id="2";
-        topContacts.when="123"
+        if(querytype==1){
+          $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
+            if (msg.length > 0) {
+              //如果大于0说明已经村上去一次
+              var queryCount = msg[0].count;
+              //取到值后再重新存一次
+              var queryTopContact = {};
+              queryTopContact._id = msg[0]._id;
+              queryTopContact.phone = msg[0].phone;
+              queryTopContact.name = msg[0].name;
+              queryTopContact.type = msg[0].type;
+              queryTopContact.count = queryCount + 1;
+              queryTopContact.when = 0;
 
-        $greendao.saveObj('TopContactsService',topContacts,function (data) {
+              $greendao.saveObj('TopContactsService', queryTopContact, function (data) {
+              }, function (err) {
 
-        },function (err) {
+              });
+            } else {
+              //没有查到说明是第一次存到里面
 
-        });
+              var fistTopContacts = {};
+              fistTopContacts._id = id;
+              fistTopContacts.phone = phone;
+              fistTopContacts.name = name;
+              fistTopContacts.type = "1";  //常用联系人的类型  1 代表打电话
+              fistTopContacts.count = 1;
+              fistTopContacts.when = 0;
+              $greendao.saveObj('TopContactsService', fistTopContacts, function (data) {
+              }, function (err) {
 
-        phonePlugin.call(phonenumber,function (message) {
-          //alert(phonenumber);
-          // $greendao.saveObj('TopContactsService',topContacts,function (data) {
-          //
-          // },function (err) {
-          //
-          // });
-          alert("成功")
-        },function (message) {
-          alert("失败")
+              });
+            }
+
+
+          }, function (err) {
+
+          });
+        }
+
+        //调用插件的打电话功能
+        phonePlugin.call(phone, function (message) {
+
+        }, function (message) {
+
         });
       },
-      sms:function (msg) {
-        phonePlugin.sms(msg,function (message) {
+
+
+      // 调用发短信功能 也会存入数据库
+      sms: function (id, phone, name,querytype) {
+        if (querytype==1){
+          $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
+            if (msg.length > 0) {
+              //如果大于0说明已经存上去一次
+              var queryCount = msg[0].count;
+              //取到值后再重新存一次
+              var queryTopContact = {};
+
+              queryTopContact._id = msg[0]._id;
+              queryTopContact.phone = msg[0].phone;
+              queryTopContact.name = msg[0].name;
+              queryTopContact.type = msg[0].type;
+              queryTopContact.count = queryCount + 1;
+              queryTopContact.when = 0;
+
+              $greendao.saveObj('TopContactsService', queryTopContact, function (data) {
+              }, function (err) {
+
+              });
+            } else {
+              //没有查到说明是第一次存到里面
+              var fistTopContacts = {};
+              fistTopContacts._id = id;
+              fistTopContacts.phone = phone;
+              fistTopContacts.name = name;
+              fistTopContacts.type = "2";  //常用联系人的类型  2 代表打电话
+              fistTopContacts.count = 1;
+              fistTopContacts.when = 0;
+
+              $greendao.saveObj('TopContactsService', fistTopContacts, function (data) {
+              }, function (err) {
+
+              });
+            }
+
+
+          }, function (err) {
+
+          });
+        }
+
+
+        //调用发短信的功能
+        phonePlugin.sms(phone, function (message) {
           alert("成功")
-        },function (message) {
-          alert("失败")
+        }, function (message) {
+          alert("电话号码不能为空")
         });
       }
+
+
     };
   })
 
-.factory('$savaLocalPlugin',function () {
-  var SavaLocalPlugin;
-  document.addEventListener('deviceready',function () {
-    SavaLocalPlugin=cordova.require('SavaLocalPlugin.SavaLocalPlugin');
+  .factory('$savaLocalPlugin', function () {
+    var SavaLocalPlugin;
+    document.addEventListener('deviceready', function () {
+      SavaLocalPlugin = cordova.require('SavaLocalPlugin.SavaLocalPlugin');
 
-  });
-  return{
-    insert:function (name,phonenumber) {
-      SavaLocalPlugin.insert(name,phonenumber,function (message) {
-        alert("成功")
-      },function (message) {
-        alert("失败")
-      });
+    });
+    return {
+      insert: function (name, phonenumber) {
+        SavaLocalPlugin.insert(name, phonenumber, function (message) {
+          alert("成功")
+        }, function (message) {
+          alert("失败")
+        });
+      }
     }
-  }
-})
+  })
+
+
   .factory('$api', function () {//系统接口。
     var api;
     return {
-      init:function () {
-        document.addEventListener('deviceready',function () {
+      init: function () {
+        document.addEventListener('deviceready', function () {
           api = cordova.require('ThriftApiClient.thrift_api_client');
         });
       },
@@ -748,49 +827,49 @@ angular.module('starter.services', [])
       activeUser:function(userId, success, error) {
         api.activeUser(userId, success, error);
       },
-      getDatetime:function(userId, success, error) {
+      getDatetime: function (userId, success, error) {
         api.getDatetime(userId, success, error);
       },
-      seachUsers:function(username,searchText,pageNum,pageCount, success, error) {
-        api.seachUsers(username,searchText,pageNum,pageCount, success, error);
+      seachUsers: function (username, searchText, pageNum, pageCount, success, error) {
+        api.seachUsers(username, searchText, pageNum, pageCount, success, error);
       },
-      getChild:function(ID,deptID,pageNum,pageCount, success, error) {
-        api.getChild(ID,deptID,pageNum,pageCount, success, error);
+      getChild: function (deptID, pageNum, pageCount, success, error) {
+        api.getChild(deptID, pageNum, pageCount, success, error);
       },
-      getDeparment:function(ID,deptID, success, error) {
-        api.getDeparment(ID,deptID, success, error);
+      getDeparment: function (deptID, success, error) {
+        api.getDeparment(deptID, success, error);
       },
-      getUserRoot:function(ID, success, error) {
-        api.getUserRoot(ID, success, error);
+      getUserRoot: function (success, error) {
+        api.getUserRoot(success, error);
       },
-      getUser:function(userID, success, error) {
+      getUser: function (userID, success, error) {
         api.getUser(userID, success, error);
       },
-      updatePwd:function(oldPWD, newPWD, confirmPWD, success, error) {
+      updatePwd: function (oldPWD, newPWD, confirmPWD, success, error) {
         api.updatePwd(oldPWD, newPWD, confirmPWD, success, error);
       },
-      updateUserInfo:function(newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
+      updateUserInfo: function (newUserInfoObj, success, error) {//newUserInfoObj：这是一个JSONObject
         api.updateUserInfo(newUserInfoObj, success, error);
       },
-      getHeadPic:function(picUserID, picSize, success, error) {
+      getHeadPic: function (picUserID, picSize, success, error) {
         api.getHeadPic(picUserID, picSize, success, error);
       },
-      setHeadPic:function(success, error) {
+      setHeadPic: function (success, error) {
         api.setHeadPic(success, error);
       },
-      getVersionInfo:function(success, error) {
+      getVersionInfo: function (success, error) {
         api.getVersionInfo(success, error);
       },
-      getVersion:function(savePath, versionCode, success, error) {
-        api.getVersion(savePath, versionCode, success, error);
+      getVersion: function (savePath, success, error) {
+        api.getVersion(savePath, success, error);
       },
-      addAttention:function(membersArr, success, error) {
+      addAttention: function (membersArr, success, error) {
         api.addAttention(membersArr, success, error);
       },
-      removeAttention:function(membersArr, success, error) {
+      removeAttention: function (membersArr, success, error) {
         api.removeAttention(membersArr, success, error);
       },
-      getAttention:function(success, error) {
+      getAttention: function (success, error) {
         api.getAttention(success, error);
       },
       needUpgrade:function(versionName, success, error) {
@@ -859,19 +938,18 @@ angular.module('starter.services', [])
     };
   })
 
-  .factory('$contacts',function ($mqtt, $api,$rootScope) {
+  .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
 
-    $mqtt.getUserInfo()
-    var userId;
-    var rootList=[];
-    var deptinfo;
+    var loginId;
+    var topContactList;
+    var rootList = [];
+    var deptSecondInfo;
     var deptThirdInfo;
     var deptForthInfo;
     var deptFifhtInfo;
     var deptSixthInfo;
     var deptSeventhInfo;
 
-    var moreDeptThirdInfo;
 
     var firstname;
     var secondname;
@@ -888,12 +966,12 @@ angular.module('starter.services', [])
     var sixthId;
     var persondetail;
 
-    var secondCount=1;
-    var thirdCount=1;
-    var forthCount=1;
-    var fifthCount=1;
-    var sixthCount=1;
-    var seventhCount=1;
+    var secondCount = 1;
+    var thirdCount = 1;
+    var forthCount = 1;
+    var fifthCount = 1;
+    var sixthCount = 1;
+    var seventhCount = 1;
 
     var count1;
     var count2;
@@ -910,374 +988,385 @@ angular.module('starter.services', [])
     var count12;
 
 
+    return {
 
-    return{
-      //获取根目录的
-      rootDept:function () {
-
+      //获取登录用的id
+      loginInfo:function () {
+        //获取登录用户的信息
         $mqtt.getUserInfo(function (msg) {
-          userId=msg.userID;
 
-          $api.getUserRoot(userId,function (msg) {
-            rootList=msg.deptList;
-            $rootScope.$broadcast('first.update');
+          //用户的id
+          loginId=msg.deptID;
+          $rootScope.$broadcast('login.update');
 
-          },function (msg) {
+        },function (err) {
 
-          });
-        },function (msg) {
+        })
+      },
 
+
+      getLoignInfo:function () {
+        return loginId;
+      },
+
+      //获取常用联系人
+
+      topContactsInfo:function () {
+        $greendao.loadByCount(function (msg) {
+          topContactList=msg;
+          $rootScope.$broadcast('topcontacts.update');
+        },function (err) {
+
+        });
+      },
+
+      getTopContactsInfo:function () {
+        return topContactList;
+      },
+
+
+
+
+
+      //获取根目录的
+      rootDept: function () {
+
+        $api.getUserRoot(function (msg) {
+          rootList = msg.deptList;
+          $rootScope.$broadcast('first.update');
+
+        }, function (msg) {
 
         });
 
+
         return null;
       },
-      getRootDept:function () {
+      getRootDept: function () {
 
         return rootList;
       },
 
-      //获取登录用户的id
-      getUserID:function () {
-        return userId;
-      },
 
 
       //二级目录的数据 传入的id是一级目录的id
-      deptInfo:function (deptId) {
-        $api.getChild(userId,deptId,secondCount,10,function (msg) {
+      deptInfo: function (deptId) {
+        $api.getChild(deptId, secondCount, 10, function (msg) {
 
-          deptinfo=msg;
-
-          count1=msg.deptCount;
-          count2=msg.userCount;
+          deptSecondInfo = msg;
+          count1 = msg.deptCount;
+          count2 = msg.userCount;
+          var parentid = msg.deptID;
           //返回的一级目录的id ，也就是rootId
-          firstId=msg.deptID
-          $api.getDeparment(userId,deptId,function (msg) {
+          firstId = msg.deptID
+          $api.getDeparment(deptId, function (msg) {
             //拿到root部门的详细信息
-            firstname=msg.deptInfo
+            firstname = msg.deptInfo
             $rootScope.$broadcast('second.update');
-
             secondCount++;
-
-          },function (msg) {
+          }, function (msg) {
 
           });
 
-        },function (msg) {
-          count1=0;
-          count2=0;
+        }, function (msg) {
+          count1 = 0;
+          count2 = 0;
           $rootScope.$broadcast('second.update');
 
         });
 
       },
-      getDeptInfo:function () {
-        return deptinfo;
+      getDeptInfo: function () {
+        return deptSecondInfo;
       },
 
 
-      getCount1:function () {
+      getCount1: function () {
         return count1
       },
 
-      getCount2:function () {
+      getCount2: function () {
         return count2
       },
-      clearSecondCount:function () {
-        secondCount=1;
+      clearSecondCount: function () {
+        secondCount = 1;
       },
 
       //三级级目录的数据 传入的id是二级目录的id
 
-      deptThirdInfo:function (deptId) {
+      deptThirdInfo: function (deptId) {
 
-        $api.getChild(userId,deptId,thirdCount,10,function (msg) {
-          deptThirdInfo=msg;
-          secondId=msg.deptID;
-          count3=msg.deptCount;
-          count4=msg.userCount;
+        $api.getChild(deptId, thirdCount, 10, function (msg) {
+          deptThirdInfo = msg;
+          secondId = msg.deptID;
+          count3 = msg.deptCount;
+          count4 = msg.userCount;
 
-          $api.getDeparment(userId,secondId,function (msg) {
+          $api.getDeparment(secondId, function (msg) {
 
-            secondname=msg.deptInfo
+            secondname = msg.deptInfo
             $rootScope.$broadcast('third.update');
             thirdCount++;
-          },function (msg) {
+          }, function (msg) {
 
           });
 
 
-        },function (msg) {
+        }, function (msg) {
 
-          count3=0;
-          count4=0;
+          count3 = 0;
+          count4 = 0;
           $rootScope.$broadcast('third.update');
 
         });
 
       },
 
-      getDeptThirdInfo:function () {
+      getDeptThirdInfo: function () {
         return deptThirdInfo;
       },
 
-      getCount3:function () {
+      getCount3: function () {
         return count3
       },
 
-      getCount4:function () {
+      getCount4: function () {
         return count4
       },
 
-      clearThirdCount:function () {
-        thirdCount=1;
+      clearThirdCount: function () {
+        thirdCount = 1;
       },
 
       //四级目录的数据 传入的id是三级目录的id
 
-      deptForthInfo:function (deptId) {
+      deptForthInfo: function (deptId) {
 
-        $api.getChild(userId,deptId,forthCount,10,function (msg) {
-          deptForthInfo=msg;
-          thirdId=msg.deptID;
-          count5=msg.deptCount;
-          count6=msg.userCount;
-          $api.getDeparment(userId,thirdId,function (msg) {
-            thirdname=msg.deptInfo
+        $api.getChild(deptId, forthCount, 10, function (msg) {
+          deptForthInfo = msg;
+          thirdId = msg.deptID;
+          count5 = msg.deptCount;
+          count6 = msg.userCount;
+          $api.getDeparment(thirdId, function (msg) {
+            thirdname = msg.deptInfo
             $rootScope.$broadcast('forth.update');
             forthCount++;
 
-          },function (msg) {
+          }, function (msg) {
 
           });
 
 
-        },function (msg) {
-          count5=0;
-          count6=0;
+        }, function (msg) {
+          count5 = 0;
+          count6 = 0;
           $rootScope.$broadcast('forth.update');
         });
 
       },
-      getDeptForthInfo:function () {
+      getDeptForthInfo: function () {
         return deptForthInfo;
       },
 
-      getCount5:function () {
+      getCount5: function () {
         return count5
       },
 
-      getCount6:function () {
+      getCount6: function () {
         return count6
       },
 
-      clearForthCount:function () {
-        forthCount=1;
+      clearForthCount: function () {
+        forthCount = 1;
       },
 
       //五级目录的数据 传入的是四级目录的id
 
-      deptFifthInfo:function (deptId) {
+      deptFifthInfo: function (deptId) {
 
-        $api.getChild(userId,deptId,fifthCount,10,function (msg) {
-          deptFifhtInfo=msg;
-          forthId=msg.deptID;
-          count7=msg.deptCount;
-          count8=msg.userCount;
-          $api.getDeparment(userId,forthId,function (msg) {
-            forthname=msg.deptInfo
+        $api.getChild(deptId, fifthCount, 10, function (msg) {
+          deptFifhtInfo = msg;
+          forthId = msg.deptID;
+          count7 = msg.deptCount;
+          count8 = msg.userCount;
+          $api.getDeparment(forthId, function (msg) {
+            forthname = msg.deptInfo
             $rootScope.$broadcast('fifth.update');
             fifthCount++;
 
-          },function (msg) {
+          }, function (msg) {
 
           });
 
 
-        },function (msg) {
-          count7=0;
-          count8=0;
+        }, function (msg) {
+          count7 = 0;
+          count8 = 0;
           $rootScope.$broadcast('fifth.update');
         });
 
       },
-      getDeptFifthInfo:function () {
+      getDeptFifthInfo: function () {
         return deptFifhtInfo;
       },
 
-      getCount7:function () {
+      getCount7: function () {
         return count7;
       },
 
-      getCount8:function () {
+      getCount8: function () {
         return count8;
       },
 
-      clearFifthCount:function () {
-        fifthCount=1;
+      clearFifthCount: function () {
+        fifthCount = 1;
       },
-
-
-
-
-
-
-
 
 
       //六级目录的数据 传入是是五级目录的id
 
-      deptSixthInfo:function (deptId) {
+      deptSixthInfo: function (deptId) {
 
-        $api.getChild(userId,deptId,sixthCount,10,function (msg) {
-          deptSixthInfo=msg;
-          fifthId=msg.deptID;
-          count9=msg.deptCount;
-          count10=msg.userCount;
-          $api.getDeparment(userId,fifthId,function (msg) {
-            fifthname=msg.deptInfo
+        $api.getChild(deptId, sixthCount, 10, function (msg) {
+          deptSixthInfo = msg;
+          fifthId = msg.deptID;
+          count9 = msg.deptCount;
+          count10 = msg.userCount;
+          $api.getDeparment(fifthId, function (msg) {
+            fifthname = msg.deptInfo
             $rootScope.$broadcast('sixth.update');
             sixthCount++;
-          },function (msg) {
+          }, function (msg) {
 
           });
 
 
-        },function (msg) {
-          count9=0;
-          count10=0;
+        }, function (msg) {
+          count9 = 0;
+          count10 = 0;
           $rootScope.$broadcast('sixth.update');
 
         });
 
       },
-      getDeptSixthInfo:function () {
+      getDeptSixthInfo: function () {
         return deptSixthInfo;
       },
-      getCount9:function () {
+      getCount9: function () {
         return count9;
       },
 
-      getCount10:function () {
+      getCount10: function () {
         return count10;
       },
 
-      clearSixthCount:function () {
-        sixthCount=1;
+      clearSixthCount: function () {
+        sixthCount = 1;
       },
 
 
       //七级目录的数据 传入是是六级目录的id
 
-      deptSeventhInfo:function (deptId) {
-        $api.getChild(userId,deptId,seventhCount,10,function (msg) {
-          deptSeventhInfo=msg;
-          sixthId=msg.deptID;
-          count11=msg.deptCount;
-          count12=msg.userCount;
+      deptSeventhInfo: function (deptId) {
+        $api.getChild(deptId, seventhCount, 10, function (msg) {
+          deptSeventhInfo = msg;
+          sixthId = msg.deptID;
+          count11 = msg.deptCount;
+          count12 = msg.userCount;
 
-          $api.getDeparment(userId,sixthId,function (msg) {
-            sixthname=msg.deptInfo
+          $api.getDeparment(sixthId, function (msg) {
+            sixthname = msg.deptInfo
             $rootScope.$broadcast('seventh.update');
             seventhCount++;
-          },function (err) {
+          }, function (err) {
 
           });
-        },function (err) {
-          count11=0;
-          count12=0;
+        }, function (err) {
+          count11 = 0;
+          count12 = 0;
           $rootScope.$broadcast('seventh.update');
         })
       },
 
-      getDeptSeventhInfo:function () {
+      getDeptSeventhInfo: function () {
         return deptSeventhInfo;
       },
-      getCount11:function () {
+      getCount11: function () {
         return count11;
       },
 
-      getCount12:function () {
+      getCount12: function () {
         return count12;
       },
 
-      clearSeventhCount:function () {
-        seventhCount=1;
+      clearSeventhCount: function () {
+        seventhCount = 1;
       },
-
 
 
       //获取详情信息
 
-      personDetail:function (id) {
-        $api.getUser(id,function (msg) {
-          persondetail=msg.user
+      personDetail: function (id) {
+        $api.getUser(id, function (msg) {
+          persondetail = msg.user
           $rootScope.$broadcast('personDetail.update');
-        },function (msg) {
+        }, function (msg) {
 
         });
       },
 
-      getPersonDetail:function () {
+      getPersonDetail: function () {
         return persondetail;
       },
 
 
-
-
-
       //.......................................................
 
-      getFirstDeptName:function () {
+      getFirstDeptName: function () {
         return firstname;
       },
 
 
-
-      getSecondDeptName:function () {
+      getSecondDeptName: function () {
         return secondname;
       },
 
-      getThirdDeptName:function () {
+      getThirdDeptName: function () {
         return thirdname;
       },
 
-      getForthDeptName:function () {
+      getForthDeptName: function () {
         return forthname;
       },
-      getFifthDeptName:function () {
+      getFifthDeptName: function () {
         return fifthname;
       },
-      getSixthDeptName:function () {
+      getSixthDeptName: function () {
         return sixthname;
       },
 
-      getFirstID:function () {
+      getFirstID: function () {
         return firstId;
       },
 
-      getSecondID:function () {
+      getSecondID: function () {
         return secondId;
       },
 
-      getThirdID:function () {
+      getThirdID: function () {
         return thirdId;
       },
 
-      getForthID:function () {
+      getForthID: function () {
         return forthId;
       },
-      getFifthID:function () {
+      getFifthID: function () {
         return fifthId;
       },
 
-      getSixthID:function () {
+      getSixthID: function () {
         return sixthId;
       }
-
-
-
 
 
     }
@@ -1328,7 +1417,7 @@ angular.module('starter.services', [])
     return{
       personDetaildianji:function (userID) {
         $api.getUser(userID,function (msg) {
-          persondetaildianji=msg;
+          persondetaildianji=msg.user;
           $rootScope.$broadcast('person.dianji');
 
         },function (msg) {
@@ -1464,7 +1553,39 @@ angular.module('starter.services', [])
     }
 
   })
-
-
+  .factory('$historyduifang',function ($api,$rootScope) {
+    var historymessageduifang;
+    return{
+      getHistoryduifanga:function (sessionType, sessionID, pageNum, pageCount) {
+        $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
+          historymessageduifang=message;
+          $rootScope.$broadcast('historymsg.duifang');
+        },function (message) {
+          alert("获取失败");
+          $rootScope.$broadcast('historymsg.duifang');
+        });
+      },
+      getHistoryduifangc:function () {
+        return historymessageduifang;
+      }
+    }
+  })
+// .factory('$historyziji',function ($api,$rootScope) {
+//   var historymessageziji;
+//   return{
+//     getHistoryzijia:function (sessionType, sessionID, pageNum, pageCount) {
+//       $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
+//         historymessageziji=message;
+//         $rootScope.$broadcast('historymsg.ziji');
+//       },function (message) {
+//         alert("获取失败");
+//         $rootScope.$broadcast('historymsg.ziji');
+//       });
+//     },
+//     getHistoryzijic:function () {
+//       return historymessageziji;
+//     }
+//   }
+// })
 
 ;

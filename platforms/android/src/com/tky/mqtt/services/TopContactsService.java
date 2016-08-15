@@ -53,7 +53,7 @@ public class TopContactsService implements BaseInterface<TopContacts>{
 
     @Override
     public List<TopContacts> queryData(String where, String... params) {
-        return topContactsDao.queryRaw(where,params);
+        return topContactsDao.queryRaw(where, params);
     }
 
     @Override
@@ -79,5 +79,14 @@ public class TopContactsService implements BaseInterface<TopContacts>{
     @Override
     public void deleteObj(TopContacts topContacts) {
         topContactsDao.delete(topContacts);
+    }
+
+    public List<TopContacts> queryAsc(){
+
+      return topContactsDao.queryBuilder()
+        .orderDesc(TopContactsDao.Properties.Count)
+        .orderDesc(TopContactsDao.Properties.When)
+        .build()
+        .list();
     }
 }

@@ -24,64 +24,195 @@ angular.module('im.controllers', [])
     }
   })
 
-  .controller('ContactsCtrl',  function ($scope, $http, $state,$stateParams,$greendao,$mqtt,$api,$contacts) {
+  //常用联系人
+  .controller('TopContactsCtrl',function ($scope,$state,$contacts,$ionicActionSheet,$phonepluin,$rootScope) {
 
-    $contacts.rootDept();
-    $scope.$on('first.update',function (event) {
+    $contacts.topContactsInfo();
+    $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
-        $scope.depts=$contacts.getRootDept();
+        $scope.topContactLists=$contacts.getTopContactsInfo();
       })
-
     });
+
+    $scope.topContactGoDetail=function (id) {
+      $state.go("person", {
+        "userId": id,
+      });
+    };
+
+    $scope.createchat=function (id,name) {
+      $rootScope.isPersonSend='true';
+      alert(id+name);
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name
+      });
+    };
+
+    //快速打开的入口  传入类型的原因的 当type等于1 的时候才存入数据库  不等于的时候走的本地通讯录
+    $scope.sheetShow=function (id,phone,name,type) {
+
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '发消息'},
+          {text: '打电话'},
+          {text: '发短信'}
+        ],
+        titleText: name,
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $scope.createchat(id,name);
+          } else if (index ==1 ) {
+            $phonepluin.call(id,phone,name,type);
+          }else {
+            $phonepluin.sms(id,phone,name,type)
+          }
+          return true;
+        }
+
+      });
+    };
+
+
+
+
+
   })
 
-  .controller('ContactSecondCtrl',  function ($scope, $state, $stateParams, contactService,$contacts) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts,$greendao,$ionicActionSheet,$phonepluin,$rootScope) {
 
-    $scope.departlist=[];
-    $scope.userlist=[];
+
+    $contacts.topContactsInfo();
+    $scope.$on('topcontacts.update', function (event) {
+      $scope.$apply(function () {
+        $scope.topContactLists=$contacts.getTopContactsInfo();
+      })
+    });
+
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+        $scope.logId=$contacts.getLoignInfo();
+      })
+    });
+
+
+    $contacts.rootDept();
+    $scope.$on('first.update', function (event) {
+      $scope.$apply(function () {
+        $scope.depts = $contacts.getRootDept();
+      })
+    });
+
+
+
+    $scope.topGoDetail=function (id) {
+      $state.go("person", {
+        "userId": id,
+      });
+    };
+
+    //快速打开的入口  传入类型的原因的 当type等于1 的时候才存入数据库  不等于的时候走的本地通讯录
+    $scope.simpleSheetShow=function (id,phone,name,type) {
+
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '发消息'},
+          {text: '打电话'},
+          {text: '发短信'}
+        ],
+        titleText: name,
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $scope.createchat(id,name);
+          } else if (index ==1 ) {
+            $phonepluin.call(id,phone,name,type);
+          }else {
+            $phonepluin.sms(id,phone,name,type)
+          }
+          return true;
+        }
+
+      });
+    };
+
+    $scope.createchat=function (id,name) {
+      $rootScope.isPersonSend='true';
+      alert(id+name);
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name
+      });
+    };
+
+    $scope.goSearch= function () {
+      $state.go("search");
+    }
+
+
+
+
+
+
+    /*$greendao.deleteAllData('TopContactsService',function (data) {
+     alert('清除数据成功');
+     },function (err) {
+     alert(err);
+     });*/
+
+
+  })
+
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, contactService, $contacts) {
+
+    $scope.departlist = [];
+    $scope.userlist = [];
     $scope.secondStatus;
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
-    $scope.$on('second.update',function (event) {
+    $scope.$on('second.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.deptinfo=$contacts.getFirstDeptName().DeptName;
+        $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
 
-        $scope.activeSecondDeptCount= $contacts.getCount1();
+        $scope.activeSecondDeptCount = $contacts.getCount1();
 
-        $scope.activeSecondUserCount=$contacts.getCount2();
+        $scope.activeSecondUserCount = $contacts.getCount2();
 
 
-        if ($scope.activeSecondDeptCount>0){
-          var olddepts=$contacts.getDeptInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        if ($scope.activeSecondDeptCount > 0) {
+          var olddepts = $contacts.getDeptInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.departlist.push(olddepts[i]);
           }
         }
 
 
-
-        if($scope.activeSecondUserCount){
-          var oldusers=$contacts.getDeptInfo().userList;
-          for (var i=0; i<oldusers.length;i++){
+        if ($scope.activeSecondUserCount) {
+          var oldusers = $contacts.getDeptInfo().userList;
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.userlist.push(oldusers[i]);
           }
         }
 
 
-        if (($scope.activeSecondDeptCount+$scope.activeSecondUserCount)===10){
-          $scope.secondStatus=true;
-        }else if (($scope.activeSecondDeptCount+$scope.activeSecondUserCount)<10){
-          $scope.secondStatus=false;
+        if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) === 10) {
+          $scope.secondStatus = true;
+        } else if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) < 10) {
+          $scope.secondStatus = false;
 
         }
 
 
-        $scope.parentID=$contacts.getDeptInfo().deptID;
+        $scope.parentID = $contacts.getDeptInfo().deptID;
 
 
         $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -90,14 +221,12 @@ angular.module('im.controllers', [])
       })
 
     });
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearSecondCount();
     });
 
 
-
-
-    $scope.loadMoreSecond=function () {
+    $scope.loadMoreSecond = function () {
       $contacts.deptInfo($scope.contactId);
     };
 
@@ -108,75 +237,73 @@ angular.module('im.controllers', [])
     }
 
     //在二级目录跳转到三级目录
-    $scope.jumpThird=function (id,pname) {
-      $state.go("third",{
+    $scope.jumpThird = function (id, pname) {
+      $state.go("third", {
         "contactId": id,
-        "secondname":pname
+        "secondname": pname
       });
     };
 
     //点击人员进入人员详情
-    $scope.goSecondDetail=function (id) {
-      $state.go("person",{
-        "userId":id,
+    $scope.goSecondDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
 
     };
-
-
 
 
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams,$contacts) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
 
-    $scope.departthirdlist=[];
-    $scope.userthirdlist=[];
+    $scope.departthirdlist = [];
+    $scope.userthirdlist = [];
     $scope.thirdStatus;
 
     //点击当前点击部门的id
     $scope.contactId = $stateParams.contactId;
     //一级的名字
-    $scope.pppid=$stateParams.secondname;
+    $scope.pppid = $stateParams.secondname;
 
     //根据id获取子部门的数据
     $contacts.deptThirdInfo($scope.contactId);
 
 
-    $scope.$on('third.update',function (event) {
+    $scope.$on('third.update', function (event) {
 
       $scope.$apply(function () {
-        $scope.count1=$contacts.getCount3();
-        if ($scope.count1>0){
-          var olddepts=$contacts.getDeptThirdInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        $scope.count1 = $contacts.getCount3();
+        if ($scope.count1 > 0) {
+          var olddepts = $contacts.getDeptThirdInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.departthirdlist.push(olddepts[i]);
           }
         }
-        $scope.count2=$contacts.getCount4();
+        $scope.count2 = $contacts.getCount4();
 
-        if ($scope.count2>0){
-          var oldusers=$contacts.getDeptThirdInfo().userList;
+        if ($scope.count2 > 0) {
+          var oldusers = $contacts.getDeptThirdInfo().userList;
 
-          for (var i=0; i<oldusers.length;i++){
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.userthirdlist.push(oldusers[i]);
           }
         }
 
-        $scope.parentID=$contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2=$contacts.getSecondDeptName().DeptName;
+        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
 
-        $scope.thirdlength=(document.getElementById('a1').innerText.length+$scope.pppid.length+$scope.deptinfo2.length)*15+80;
-        var thirddiv=document.getElementById("thirdscroll");
-        thirddiv.style.width=$scope.thirdlength+"px";
+        $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
+        var thirddiv = document.getElementById("thirdscroll");
+        thirddiv.style.width = $scope.thirdlength + "px";
 
-        if (($scope.count1+$scope.count2)===10){
-          $scope.thirdStatus=true;
-        }else if (($scope.count1+$scope.count2)<10){
-          $scope.thirdStatus=false;
+        if (($scope.count1 + $scope.count2) === 10) {
+          $scope.thirdStatus = true;
+        } else if (($scope.count1 + $scope.count2) < 10) {
+          $scope.thirdStatus = false;
 
         }
       })
@@ -185,19 +312,19 @@ angular.module('im.controllers', [])
     });
 
 
-    $scope.loadThirdMore=function () {
+    $scope.loadThirdMore = function () {
 
       $contacts.deptThirdInfo($scope.contactId);
 
     };
 
 
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearThirdCount();
     });
 
     //在三级目录返回第二级
-    $scope.idddd=$contacts.getFirstID();
+    $scope.idddd = $contacts.getFirstID();
 
     $scope.backSecond = function (sd) {
       $state.go("second", {
@@ -207,79 +334,76 @@ angular.module('im.controllers', [])
 
 
     //在第二级目录跳转到第四级目录
-    $scope.jumpForth=function (id,sname,tname) {
-      $state.go("forth",{
+    $scope.jumpForth = function (id, sname, tname) {
+      $state.go("forth", {
         "contactId": id,
-        "secondname":sname,
-        "thirdname":tname
+        "secondname": sname,
+        "thirdname": tname
       });
     }
 
 
     //点击人员进入人员详情
-    $scope.goThirdDetail=function (id) {
-      $state.go("person",{
-        "userId":id,
+    $scope.goThirdDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
 
     };
 
 
-
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams, contactService,$contacts) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams, contactService, $contacts) {
 
-    $scope.departlist=[];
-    $scope.userlist=[];
+    $scope.departlist = [];
+    $scope.userlist = [];
 
     $scope.forthStatus;
 
 
     $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
+    $scope.secondName = $stateParams.secondname;
+    $scope.thirdName = $stateParams.thirdname;
 
     //根据id获取子部门和人员信息
     $contacts.deptForthInfo($scope.contactId);
-    $scope.$on('forth.update',function (event) {
+    $scope.$on('forth.update', function (event) {
       $scope.$apply(function () {
 
 
-        $scope.count1=$contacts.getCount5();
-        if ($scope.count1>0){
-          var olddepts=$contacts.getDeptForthInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        $scope.count1 = $contacts.getCount5();
+        if ($scope.count1 > 0) {
+          var olddepts = $contacts.getDeptForthInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.departlist.push(olddepts[i]);
           }
         }
-        $scope.count2=$contacts.getCount6();
+        $scope.count2 = $contacts.getCount6();
 
-        if ($scope.count2>0){
-          var oldusers=$contacts.getDeptForthInfo().userList;
+        if ($scope.count2 > 0) {
+          var oldusers = $contacts.getDeptForthInfo().userList;
 
-          for (var i=0; i<oldusers.length;i++){
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.userlist.push(oldusers[i]);
           }
         }
 
-        $scope.parentID=$contacts.getDeptForthInfo().deptID;
-        $scope.deptinfo4=$contacts.getThirdDeptName().DeptName;
+        $scope.parentID = $contacts.getDeptForthInfo().deptID;
+        $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
 
 
+        $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
 
+        var forthdiv = document.getElementById("forthscroll");
+        forthdiv.style.width = $scope.forthlength + "px";
 
-        $scope.forthlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+ $scope.deptinfo4.length)*15+120;
-
-        var forthdiv=document.getElementById("forthscroll");
-        forthdiv.style.width=$scope.forthlength+"px";
-
-        if (($scope.count1+$scope.count2)===10){
-          $scope.forthStatus=true;
-        }else if (($scope.count1+$scope.count2)<10){
-          $scope.forthStatus=false;
+        if (($scope.count1 + $scope.count2) === 10) {
+          $scope.forthStatus = true;
+        } else if (($scope.count1 + $scope.count2) < 10) {
+          $scope.forthStatus = false;
 
         }
 
@@ -290,116 +414,110 @@ angular.module('im.controllers', [])
 
     });
 
-    $scope.loadForthMore=function () {
+    $scope.loadForthMore = function () {
       $contacts.deptForthInfo($scope.contactId);
 
     }
 
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearForthCount();
     });
 
 
-
     //在四级目录需要返回三级目录  （ 三级目录进来需要两个参数 一个是 二级目录id一个是二级目录的名字 ）
 
-    $scope.idididi=$contacts.getSecondID();
-    $scope.firstid=$contacts.getFirstID();
+    $scope.idididi = $contacts.getSecondID();
+    $scope.firstid = $contacts.getFirstID();
 
 
-    $scope.backThird=function (sd,named) {
+    $scope.backThird = function (sd, named) {
 
       $state.go("third", {
         "contactId": sd,
-        "secondname":named
+        "secondname": named
       });
 
     };
 
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
-    $scope.fromForthToSecond=function (sd) {
+    $scope.fromForthToSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
     };
 
     //从四级目录跳入五级目录
-    $scope.jumpFifth=function (id,sname,tname,fname) {
-      $state.go("fifth",{
-        "contactId":id,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":fname,
+    $scope.jumpFifth = function (id, sname, tname, fname) {
+      $state.go("fifth", {
+        "contactId": id,
+        "secondname": sname,
+        "thirdname": tname,
+        "forthname": fname,
       });
     };
 
     //从四级目录跳入详情界面
 
-    $scope.goForthDetail=function (id) {
-      $state.go("person",{
-        "userId":id,
+    $scope.goForthDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
     }
 
   })
 
 
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts) {
 
-
-
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams,$contacts) {
-
-    $scope.departfifthlist=[];
-    $scope.userfifthlist=[];
+    $scope.departfifthlist = [];
+    $scope.userfifthlist = [];
     $scope.fifthStatus;
 
     $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
-    $scope.forthName=$stateParams.forthname;
+    $scope.secondName = $stateParams.secondname;
+    $scope.thirdName = $stateParams.thirdname;
+    $scope.forthName = $stateParams.forthname;
 
     //根据id获取子部门和人员信息
     $contacts.deptFifthInfo($scope.contactId);
-    $scope.$on('fifth.update',function (event) {
+    $scope.$on('fifth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1=$contacts.getCount7();
-        if ($scope.count1>0){
-          var olddepts=$contacts.getDeptFifthInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        $scope.count1 = $contacts.getCount7();
+        if ($scope.count1 > 0) {
+          var olddepts = $contacts.getDeptFifthInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.departfifthlist.push(olddepts[i]);
           }
         }
-        $scope.count2=$contacts.getCount8();
+        $scope.count2 = $contacts.getCount8();
 
-        if ($scope.count2>0){
-          var oldusers=$contacts.getDeptFifthInfo().userList;
+        if ($scope.count2 > 0) {
+          var oldusers = $contacts.getDeptFifthInfo().userList;
 
-          for (var i=0; i<oldusers.length;i++){
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.userfifthlist.push(oldusers[i]);
           }
         }
 
 
-        if (($scope.count1+$scope.count2)===10){
-          $scope.fifthStatus=true;
-        }else if (($scope.count1+$scope.count2)<10){
-          $scope.fifthStatus=false;
+        if (($scope.count1 + $scope.count2) === 10) {
+          $scope.fifthStatus = true;
+        } else if (($scope.count1 + $scope.count2) < 10) {
+          $scope.fifthStatus = false;
 
         }
 
-        $scope.parentID=$contacts.getDeptFifthInfo().deptID;
-        $scope.deptinfo5=$contacts.getForthDeptName().DeptName;
+        $scope.parentID = $contacts.getDeptFifthInfo().deptID;
+        $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
 
-        $scope.fifthlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+$scope.forthName.length +$scope.deptinfo5.length)*15+140;
-
-
+        $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
 
 
-        var fifthdiv=document.getElementById("fifthscroll");
-        fifthdiv.style.width=$scope.fifthlength+"px";
+        var fifthdiv = document.getElementById("fifthscroll");
+        fifthdiv.style.width = $scope.fifthlength + "px";
 
         $scope.$broadcast('scroll.infiniteScrollComplete');
 
@@ -408,22 +526,22 @@ angular.module('im.controllers', [])
 
     });
 
-    $scope.loadFifthMore=function () {
+    $scope.loadFifthMore = function () {
       $contacts.deptFifthInfo($scope.contactId);
 
     }
 
 
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearFifthCount();
     });
 
     //返回二级部门 需要一个id；
-    $scope.firstid=$contacts.getFirstID();
-    $scope.secondid=$contacts.getSecondID();
-    $scope.thirdid=$contacts.getThirdID();
+    $scope.firstid = $contacts.getFirstID();
+    $scope.secondid = $contacts.getSecondID();
+    $scope.thirdid = $contacts.getThirdID();
 
-    $scope.fromFifthToSecond=function (sd) {
+    $scope.fromFifthToSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
@@ -431,118 +549,104 @@ angular.module('im.controllers', [])
     };
 
 
-
     //返回三级部门需要一个Id和一个名字；
-    $scope.fromFifthToThird=function (sd,sname) {
-      $state.go("third",{
+    $scope.fromFifthToThird = function (sd, sname) {
+      $state.go("third", {
         "contactId": sd,
-        "secondname":sname,
+        "secondname": sname,
       });
     };
 
 
-
-
     //返回四级部门 需要一个id 和 两个名字
-    $scope.backForth=function (sd,sname,tname) {
-      $state.go("forth",{
+    $scope.backForth = function (sd, sname, tname) {
+      $state.go("forth", {
         "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
+        "secondname": sname,
+        "thirdname": tname,
       });
     };
 
     //从五级部门跳转到六级部门
-    $scope.jumpSixth=function (id,sname,tname,fname,dd) {
-      $state.go("sixth",{
-        "contactId":id,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":fname,
-        "fifthname":dd
+    $scope.jumpSixth = function (id, sname, tname, fname, dd) {
+      $state.go("sixth", {
+        "contactId": id,
+        "secondname": sname,
+        "thirdname": tname,
+        "forthname": fname,
+        "fifthname": dd
       });
     };
 
 
-
-
     //从五级部门跳转到详情界面
-    $scope.goFifthDetail=function(id){
-      $state.go("person",{
-        "userId":id,
+    $scope.goFifthDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
     }
-
-
 
 
   })
 
 
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
 
-
-
-
-
-  .controller('ContactSixthCtrl' ,function ($scope, $http, $state, $stateParams,$contacts) {
-
-    $scope.departsixthlist=[];
-    $scope.usersixthlist=[];
+    $scope.departsixthlist = [];
+    $scope.usersixthlist = [];
     $scope.sixthStatus;
 
     $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
-    $scope.forthName=$stateParams.forthname;
-    $scope.fifthName=$stateParams.fifthname;
+    $scope.secondName = $stateParams.secondname;
+    $scope.thirdName = $stateParams.thirdname;
+    $scope.forthName = $stateParams.forthname;
+    $scope.fifthName = $stateParams.fifthname;
 
 
     //根据id获取子部门和人员信息
 
     //根据id获取子部门和人员信息
     $contacts.deptSixthInfo($scope.contactId);
-    $scope.$on('sixth.update',function (event) {
+    $scope.$on('sixth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1=$contacts.getCount9();
-        if ($scope.count1>0){
-          var olddepts=$contacts.getDeptSixthInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        $scope.count1 = $contacts.getCount9();
+        if ($scope.count1 > 0) {
+          var olddepts = $contacts.getDeptSixthInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.departsixthlist.push(olddepts[i]);
           }
         }
-        $scope.count2=$contacts.getCount10();
+        $scope.count2 = $contacts.getCount10();
 
-        if ($scope.count2>0){
-          var oldusers=$contacts.getDeptSixthInfo().userList;
+        if ($scope.count2 > 0) {
+          var oldusers = $contacts.getDeptSixthInfo().userList;
 
-          for (var i=0; i<oldusers.length;i++){
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.usersixthlist.push(oldusers[i]);
           }
         }
 
 
-        if (($scope.count1+$scope.count2)===10){
-          $scope.sixthStatus=true;
-        }else if (($scope.count1+$scope.count2)<10){
-          $scope.sixthStatus=false;
+        if (($scope.count1 + $scope.count2) === 10) {
+          $scope.sixthStatus = true;
+        } else if (($scope.count1 + $scope.count2) < 10) {
+          $scope.sixthStatus = false;
 
         }
 
 
-
-        $scope.parentID=$contacts.getDeptSixthInfo().deptID;
-        $scope.deptinfo6=$contacts.getFifthDeptName().DeptName;
-
+        $scope.parentID = $contacts.getDeptSixthInfo().deptID;
+        $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
 
 
-        $scope.sixthlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+
-          $scope.forthName.length +$scope.fifthName.length+$scope.deptinfo6.length)*15+180;
+        $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
+          $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
 
-        var sixthdiv=document.getElementById("sixthscroll");
-        sixthdiv.style.width=$scope.sixthlength+"px";
+        var sixthdiv = document.getElementById("sixthscroll");
+        sixthdiv.style.width = $scope.sixthlength + "px";
 
         $scope.$broadcast('scroll.infiniteScrollComplete');
 
@@ -552,141 +656,137 @@ angular.module('im.controllers', [])
     });
 
 
-
-    $scope.loadSixthMore=function () {
+    $scope.loadSixthMore = function () {
       $contacts.deptSixthInfo($scope.contactId);
 
     }
 
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearSixthCount();
     });
 
 
-
-
     //返回二级部门 需要一个id；
-    $scope.firstidInSix=$contacts.getFirstID();
-    $scope.secondidInSix=$contacts.getSecondID();
-    $scope.thirdidInSix=$contacts.getThirdID();
-    $scope.forthidInSix=$contacts.getForthID();
-
+    $scope.firstidInSix = $contacts.getFirstID();
+    $scope.secondidInSix = $contacts.getSecondID();
+    $scope.thirdidInSix = $contacts.getThirdID();
+    $scope.forthidInSix = $contacts.getForthID();
 
 
     //从六级部门跳转到七级部门
-    $scope.jumpSeventh=function (id,sname,tname,fname,sixname,ddd) {
-      $state.go("seventh",{
-        "contactId":id,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":fname,
-        "fifthname":sixname,
-        "sixthname":ddd
+    $scope.jumpSeventh = function (id, sname, tname, fname, sixname, ddd) {
+      $state.go("seventh", {
+        "contactId": id,
+        "secondname": sname,
+        "thirdname": tname,
+        "forthname": fname,
+        "fifthname": sixname,
+        "sixthname": ddd
       });
     };
 
     //从六级界面跳转到2级界面 只需要一个参数
-    $scope.fromSixthToSecond=function (sd) {
+    $scope.fromSixthToSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
     };
 
     //从六级跳转到3级界面 需要两个参数
-    $scope.fromSixthToThird=function (sd,sname) {
-      $state.go("third",{
+    $scope.fromSixthToThird = function (sd, sname) {
+      $state.go("third", {
         "contactId": sd,
-        "secondname":sname,
+        "secondname": sname,
       });
     };
 
     //从六级跳转到4级界面  需要三个参数
 
-    $scope.fromSixthToForth=function (sd,sname,tname) {
-      $state.go("forth",{
+    $scope.fromSixthToForth = function (sd, sname, tname) {
+      $state.go("forth", {
         "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
+        "secondname": sname,
+        "thirdname": tname,
       });
     };
 
     //从六级返回五级  需要四个参数
 
-    $scope.backFifth=function (sd,sname,tname,ttname) {
-      $state.go("fifth",{
+    $scope.backFifth = function (sd, sname, tname, ttname) {
+      $state.go("fifth", {
         "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":ttname
+        "secondname": sname,
+        "thirdname": tname,
+        "forthname": ttname
       });
     };
 
 
     //从六级部门跳转到详情界面
-    $scope.goSixthDetail=function(id){
-      $state.go("person",{
-        "userId":id,
+    $scope.goSixthDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
     };
 
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory) {
 
-    $scope.nihao=[];
-    $scope.buhao=[];
+    $scope.nihao = [];
+    $scope.buhao = [];
     $scope.seventhStatus;
 
     $scope.contactId = $stateParams.contactId;
-    $scope.secondName=$stateParams.secondname;
-    $scope.thirdName=$stateParams.thirdname;
-    $scope.forthName=$stateParams.forthname;
-    $scope.fifthName=$stateParams.fifthname;
-    $scope.sixthName=$stateParams.sixthname;
+    $scope.secondName = $stateParams.secondname;
+    $scope.thirdName = $stateParams.thirdname;
+    $scope.forthName = $stateParams.forthname;
+    $scope.fifthName = $stateParams.fifthname;
+    $scope.sixthName = $stateParams.sixthname;
 
     //根据id获取子部门和人员信息
 
     $contacts.deptSeventhInfo($scope.contactId);
-    $scope.$on('seventh.update',function (event) {
+    $scope.$on('seventh.update', function (event) {
       $scope.$apply(function () {
-        $scope.count1=$contacts.getCount11();
-        if ($scope.count1>0){
-          var olddepts=$contacts.getDeptSeventhInfo().deptList;
-          for (var i=0; i<olddepts.length;i++){
+        $scope.count1 = $contacts.getCount11();
+        if ($scope.count1 > 0) {
+          var olddepts = $contacts.getDeptSeventhInfo().deptList;
+          for (var i = 0; i < olddepts.length; i++) {
 
             $scope.nihao.push(olddepts[i]);
           }
         }
-        $scope.count2=$contacts.getCount12();
-        alert("七级的数字"+$scope.count2);
-        if ($scope.count2>0){
-          var oldusers=$contacts.getDeptSeventhInfo().userList;
+        $scope.count2 = $contacts.getCount12();
+        alert("七级的数字" + $scope.count2);
+        if ($scope.count2 > 0) {
+          var oldusers = $contacts.getDeptSeventhInfo().userList;
 
-          for (var i=0; i<oldusers.length;i++){
+          for (var i = 0; i < oldusers.length; i++) {
 
             $scope.buhao.push(oldusers[i]);
           }
         }
 
 
-        if (($scope.count1+$scope.count2)===10){
-          $scope.seventhStatus=true;
-        }else if (($scope.count1+$scope.count2)<10){
-          $scope.seventhStatus=false;
+        if (($scope.count1 + $scope.count2) === 10) {
+          $scope.seventhStatus = true;
+        } else if (($scope.count1 + $scope.count2) < 10) {
+          $scope.seventhStatus = false;
 
         }
 
 
-        $scope.parentID=$contacts.getDeptSeventhInfo().deptID;
-        $scope.deptinfo7=$contacts.getSixthDeptName().DeptName;
+        $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
+        $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
 
 
-        $scope.seventhlength=(document.getElementById('a1').innerText.length+$scope.secondName.length+$scope.thirdName.length+$scope.forthName.length
-          +$scope.fifthName.length+$scope.sixthName.length+$scope.deptinfo7.length)*15+200;
+        $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+          + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
 
-        var seventhdiv=document.getElementById("seventhscroll");
-        seventhdiv.style.width=$scope.seventhlength+"px";
+        var seventhdiv = document.getElementById("seventhscroll");
+        seventhdiv.style.width = $scope.seventhlength + "px";
 
         $scope.$broadcast('scroll.infiniteScrollComplete');
 
@@ -694,65 +794,62 @@ angular.module('im.controllers', [])
 
     });
 
-    $scope.loadSeventhMore=function () {
+    $scope.loadSeventhMore = function () {
       $contacts.deptSeventhInfo($scope.contactId);
 
     }
 
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       $contacts.clearSeventhCount();
     });
 
-    $scope.firstidInSeven=$contacts.getFirstID();
-    $scope.secondidInSeven=$contacts.getSecondID();
-    $scope.thirdidInSeven=$contacts.getThirdID();
-    $scope.forthidInSeven=$contacts.getForthID();
-    $scope.fifthidInSeven=$contacts.getFifthID();
-
-
-
+    $scope.firstidInSeven = $contacts.getFirstID();
+    $scope.secondidInSeven = $contacts.getSecondID();
+    $scope.thirdidInSeven = $contacts.getThirdID();
+    $scope.forthidInSeven = $contacts.getForthID();
+    $scope.fifthidInSeven = $contacts.getFifthID();
 
 
     //返回六级列表
 
-    $scope.backSixth=function () {
+    $scope.backSixth = function () {
       $ionicHistory.goBack();
 
     }
 
 
     //从七级目录到五级目录  五级目录需要四个参数
-    $scope.formSeventhToFifth=function (sd,sname,tname,ttname) {
-      $state.go("fifth",{
+    $scope.formSeventhToFifth = function (sd, sname, tname, ttname) {
+      $state.go("fifth", {
         "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
-        "forthname":ttname
+        "secondname": sname,
+        "thirdname": tname,
+        "forthname": ttname
       });
     }
 
     //从七级目录到四级目录  四级目录需要四个参数
-    $scope.fromSeventhToForth=function (sd,sname,tname) {
-      $state.go("forth",{
+    $scope.fromSeventhToForth = function (sd, sname, tname) {
+      $state.go("forth", {
         "contactId": sd,
-        "secondname":sname,
-        "thirdname":tname,
+        "secondname": sname,
+        "thirdname": tname,
       });
     };
 
     //从七级目录到三级目录  三级目录需要两个个参数
 
 
-    $scope.fromSeventhToThird=function (sd,sname) {
-      $state.go("third",{
+    $scope.fromSeventhToThird = function (sd, sname) {
+      $state.go("third", {
         "contactId": sd,
-        "secondname":sname,
+        "secondname": sname,
       });
     };
 
     //从七级目录到二级目录  二级目录需要1个参数
 
-    $scope.fromSeventhToSecond=function (sd) {
+    $scope.fromSeventhToSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
@@ -760,9 +857,9 @@ angular.module('im.controllers', [])
 
 
     //从七级界面跳入到详情界面
-    $scope.goSeventhDetail=function(id){
-      $state.go("person",{
-        "userId":id,
+    $scope.goSeventhDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
     };
 
@@ -803,7 +900,7 @@ angular.module('im.controllers', [])
   }])
 
 
-  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope) {
+  .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope,$addattentionser) {
 
     $scope.userId = $stateParams.userId;
 
@@ -812,6 +909,7 @@ angular.module('im.controllers', [])
     $scope.$on('personDetail.update',function (event) {
       $scope.$apply(function () {
         $scope.persondsfs=$contacts.getPersonDetail();
+        //alert($scope.persondsfs.IsAttention+"guanzhu");
         if ($scope.persondsfs.UserName.length > 3) {
           $scope.simpleName = $scope.persondsfs.UserName.substr(1, 2);
         } else {
@@ -829,19 +927,37 @@ angular.module('im.controllers', [])
 
     };
 
-    //存本地
-    $scope.insertPhone = function(name,phonenumber) {
-      $savaLocalPlugin.insert(name,phonenumber);
+    //调用打电话功能，并且会存到数据库里面
+    $scope.detailCall = function (id, phone, name,type) {
+      if (phone != "") {
+        $phonepluin.call(id, phone, name,type);
+      } else {
+        alert("电话为空");
+      }
+    }
+
+
+    //发短信 也会把存入数据库  传入类型的原因是 type 只是存 通过组织架构拨打出去的电话和人
+    $scope.detailSendSms = function (id, phone, name,type) {
+      if (phone != "") {
+
+        $phonepluin.sms(id, phone, name,type);
+      } else {
+        alert("电话为空");
+      }
     };
 
-    //打电话
-    $scope.call = function(phonenumber,name) {
-      alert(name)
-      $phonepluin.call(phonenumber,name);
-    };
-    //发短信
-    $scope.sms = function(phonenumber) {
-      $phonepluin.sms(phonenumber);
+
+    //把联系人存入本地
+    $scope.insertPhone = function (name, phone) {
+      if (name != null && phone != null) {
+        $savaLocalPlugin.insert(name, phone);
+
+      } else {
+
+        alert("姓名或者电话为空");
+
+      }
     };
 
     //创建聊天
@@ -854,6 +970,31 @@ angular.module('im.controllers', [])
       });
     };
 
+    //取消关注
+    $scope.removeattention=function (id) {
+      var membersAerr=[];
+      membersAerr.push(id);
+      $addattentionser.removeAttention111(membersAerr);
+    }
+    $scope.$on('attention.delete',function (event) {
+      $scope.$apply(function () {
+        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
+
+    //添加关注
+    $scope.addattentiondetail = function(id) {
+      var membersAerr=[];
+      membersAerr.push(id);
+      $addattentionser.addAttention111(membersAerr);
+    };
+    $scope.$on('attention.add',function (event) {
+      $scope.$apply(function () {
+        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+      })
+    });
   })
 
 
@@ -941,6 +1082,22 @@ angular.module('im.controllers', [])
         $timeout(function() {
           viewScroll.scrollBottom();
         }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
+        // $greendao.queryData('MessagesService','where type =? order by "when" desc ','User',function (data) {
+        //   alert(usermsgs.length+"eee");
+        //   for(var i=usermsgs.length;i<=data.length;i++){
+        //     alert(data.length-i +" fff ");
+        //     usermsgs.push(data[data.length-i]);
+        //   }
+        //   $scope.msgs=usermsgs;
+        //   $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
       })
 
     });
@@ -994,31 +1151,31 @@ angular.module('im.controllers', [])
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
         }
         $greendao.queryData('ChatListService','where id=?',$scope.userId,function (data) {
-            var chatitem={};
-            chatitem.id=data[0].id;
-            chatitem.chatName=$scope.chatName;
-            chatitem.imgSrc=$scope.imgSrc;
-            chatitem.lastText=$scope.lastText;
-            chatitem.count='0';
-            chatitem.isDelete=data[0].isDelete;
-            chatitem.lastDate=$scope.lastDate;
-            $greendao.saveObj('ChatListService',chatitem,function (data) {
-              // alert("save success");
-              $greendao.loadAllData('ChatListService',function (data) {
-                // alert("加载成功");
-                $state.go("tab.message",{
-                  "id":$scope.userId,
-                  "sessionid":$scope.chatName
-                });
-              },function (err) {
-                alert(err+"加载全部数据失败");
+          var chatitem={};
+          chatitem.id=data[0].id;
+          chatitem.chatName=$scope.chatName;
+          chatitem.imgSrc=$scope.imgSrc;
+          chatitem.lastText=$scope.lastText;
+          chatitem.count='0';
+          chatitem.isDelete=data[0].isDelete;
+          chatitem.lastDate=$scope.lastDate;
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+            // alert("save success");
+            $greendao.loadAllData('ChatListService',function (data) {
+              // alert("加载成功");
+              $state.go("tab.message",{
+                "id":$scope.userId,
+                "sessionid":$scope.chatName
               });
             },function (err) {
-              alert(err+"数据保存失败");
+              alert(err+"加载全部数据失败");
             });
           },function (err) {
-            alert(err+"查询聊天列表失败");
+            alert(err+"数据保存失败");
           });
+        },function (err) {
+          alert(err+"查询聊天列表失败");
+        });
       },function (err) {
         alert(err+"数据离开失败");
       });
@@ -1091,14 +1248,14 @@ angular.module('im.controllers', [])
         $timeout(function() {
           viewScroll.scrollBottom();
         }, 100);
-      //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-      //     $scope.msgs=data;
-      //     $timeout(function() {
-      //     viewScroll.scrollBottom();
-      //   }, 100);
-      // },function (err) {
-      //   alert(err);
-      // });
+        //   $greendao.queryData('MessagesService','where type =?','Group',function (data) {
+        //     $scope.msgs=data;
+        //     $timeout(function() {
+        //     viewScroll.scrollBottom();
+        //   }, 100);
+        // },function (err) {
+        //   alert(err);
+        // });
         // $greendao.loadAllData('MessagesService',function (data) {
         //   // alert(data+"update");
         //   $scope.msgs=data;
@@ -1191,6 +1348,7 @@ angular.module('im.controllers', [])
     // alert($scope.userId+"messageC"+$scope.userName);
     if($rootScope.isPersonSend === 'true'){
       $scope.items=$chatarr.getAll($rootScope.isPersonSend);
+      alert($scope.items.length+"长度");
       $scope.$on('chatarr.update',function (event) {
         $scope.$apply(function () {
           $scope.items=$chatarr.getAll($rootScope.isPersonSend);
@@ -1221,9 +1379,10 @@ angular.module('im.controllers', [])
           $scope.lastText=data[0].message;//最后一条消息内容
           $scope.lastDate=data[0].when;//最后一条消息的时间
           $scope.chatName=data[0].username;//对话框名称
+          alert($scope.chatName+"用户名1");
           $scope.imgSrc=data[0].imgSrc;//最后一条消息的头像
           //取出‘ppp’聊天对话的列表数据并进行数据库更新
-          $greendao.queryData('ChatListService','where CHAT_NAME =?',$scope.chatName,function (data) {
+          $greendao.queryData('ChatListService','where CHAT_NAME =?',$scope.userName,function (data) {
             $scope.unread=$scope.lastCount;
             var chatitem={};
             chatitem.id=data[0].id;
@@ -1323,23 +1482,46 @@ angular.module('im.controllers', [])
   })
 
 
+  .controller('GroupCtrl', function ($scope,$contacts) {
 
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+        $contacts.clearSecondCount();
 
+        //部门id
+        $scope.depid=$contacts.getLoignInfo();
 
+        $contacts.deptInfo($scope.depid)
 
-  .controller('GroupCtrl', function ($scope, $state, contactService) {
-    contactService.getContacts().then(function (response) {
-      $scope.names = response;
-
+      })
     });
 
-    $scope.chatsMesssage=function () {
-      $state.go("messageGroup");
-    }
+    $scope.$on('second.update', function (event) {
+      $scope.$apply(function () {
+        //部门id
+        $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
+
+        $scope.deptCount = $contacts.getCount1();
+
+        $scope.groupCount = $contacts.getCount2();
+
+      })
+    });
+
+
+    $scope.jumpGroupChat=function () {
+
+    };
+
 
 
 
   })
+
+
+
+
 
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
@@ -1350,7 +1532,7 @@ angular.module('im.controllers', [])
     $scope.password="";
 
     document.addEventListener('deviceready',function () {
-        $mqtt.getMqtt().getString('historyusername',function(message){
+      $mqtt.getMqtt().getString('historyusername',function(message){
         $scope.name = message;
       });
       $mqtt.getMqtt().getString('remPwd',function (pwd) {
@@ -1375,15 +1557,15 @@ angular.module('im.controllers', [])
         });
       }
       /*$cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $mqtt.startMqttChat(value + ',zhuanjiazu');
-            $state.go('tab.message');
-            return;
-          }
-        })
-        .error(function(error) {
-        })*/
+       .success(function(value) {
+       if(value != null && value != ''){
+       $mqtt.startMqttChat(value + ',zhuanjiazu');
+       $state.go('tab.message');
+       return;
+       }
+       })
+       .error(function(error) {
+       })*/
     });
 
 
@@ -1478,18 +1660,25 @@ angular.module('im.controllers', [])
   })
   .controller('TabMessageCtrl',function ($scope) {
     /*document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getChats('sls',function(message){
-        alert(message);
-      },function(message){
-        alert(message);
-      });
-    });*/
+     $mqtt.getMqtt().getChats('sls',function(message){
+     alert(message);
+     },function(message){
+     alert(message);
+     });
+     });*/
   })
 
   .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao) {
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
+    $scope.gohistoryMessage = function () {
+      alert("要跳了")
+      $state.go('historyMessage',{
+        id:id,
+        ssid:ssid
+      });
+    }
     // alert($scope.userId+"daiguolai"+$scope.userName);
     $scope.addFriend1=function () {
       $state.go("myAttention1");
@@ -1529,27 +1718,121 @@ angular.module('im.controllers', [])
     };
   })
 
-  .controller('AccountCtrl',function ($scope, $state,$ionicPopup, $ionicLoading, $http,$mqtt,$cordovaPreferences) {
+  .controller('AccountCtrl',function ($scope, $state, $ionicPopup, $ionicLoading, $http,$mqtt,$contacts,$cordovaCamera,$ionicActionSheet,$phonepluin,$api) {
     $scope.name="";
-    /*$scope.fetch = function() {
-     $mqtt.getMqtt().getString('name',function (message) {
-     alert(message+"sdsfsdg");
-     if(message != null && message != ''){
-     $scope.name=message;
-     }
-     },function (message) {
-     alert(message);
-     });
-     /!*$cordovaPreferences.fetch('name')
-     .success(function(value) {
-     if(value != null && value != ''){
-     $scope.name=value;
-     }
-     })
-     .error(function(error) {
-     })*!/
-     };*/
-    // $scope.fetch();
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID= msg.userID
+    },function (msg) {
+
+    });
+    $scope.gomyinformation=function () {
+      $state.go("myinformation",{
+        "UserIDfor":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+
+    $scope.goacountsettion=function () {
+      $state.go("accountsettion",{
+        "UserIDset":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+    $scope.goaboutus=function () {
+      $state.go("aboutours",{
+        "UserIDabout":$scope.UserID
+        // "youmeiyou":$scope.youmeiyou,
+      });
+    }
+    $scope.setpic=function (name) {
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          { text: '拍照上传' },
+          { text: '选择相册'}
+        ],
+        titleText: '上传头像',
+        cancelText: '取消',
+        buttonClicked: function(index) {
+          if(index==0){
+            $scope.takePhoto();
+          }else {
+            $scope.selectphoto();
+          }
+          return true;
+        }
+
+      });
+    }
+
+    //拍照片
+    $scope.takePhoto=function(){
+      var options = {
+        //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.CAMERA,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,                                        //在选择之前允许修改截图
+        encodingType:Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        // targetWidth: 200,                                        //照片宽度
+        // targetHeight: 200,                                       //照片高度
+        mediaType:0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        cameraDirection:0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true                                   //保存进手机相册
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        alert(imageData);
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+        $api.setHeadPic(imageData,function (msg) {
+          alert("成功")
+        },function (msg) {
+          alert("失败")
+        });
+      }, function(err) {
+        // error
+        alert(err);
+      });
+
+    };
+    //选相册
+    $scope.selectphoto=function(){
+      var options = {
+        //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.NATIVE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,                                        //在选择之前允许修改截图
+        encodingType:Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        // targetWidth: 200,                                        //照片宽度
+        // targetHeight: 200,                                       //照片高度
+        mediaType:0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        cameraDirection:0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true                                   //保存进手机相册
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        alert(imageData);
+        $api.setHeadPic(imageData,function (msg) {
+          alert("成功")
+        },function (msg) {
+          alert("失败")
+        });
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+      }, function(err) {
+        // error
+        alert(err);
+      });
+
+    };
+
+
     document.addEventListener('deviceready',function () {
       $mqtt.getMqtt().getString('name',function (message) {
         if(message != null && message != ''){
@@ -1561,15 +1844,15 @@ angular.module('im.controllers', [])
     });
     // $scope.name="";
     /*$scope.fetch = function() {
-      $cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $scope.name=value;
-          }
-        })
-        .error(function(error) {
-        })
-    };*/
+     $cordovaPreferences.fetch('name')
+     .success(function(value) {
+     if(value != null && value != ''){
+     $scope.name=value;
+     }
+     })
+     .error(function(error) {
+     })
+     };*/
     // $scope.fetch();
     // 一个确认对话框
     $scope.showConfirm = function() {
@@ -1581,33 +1864,7 @@ angular.module('im.controllers', [])
       });
       confirmPopup.then(function(res) {
         if(res) {
-          // $http.get('http://61.237.239.144/baseservice/rest/login/getdepartmentlist1?nodetype=2&nodeparentid=279').success(function (response) {
-          //   $scope.names = response;
-          //   $ionicLoading.hide();
-          //   //调用保存用户名方法
-          //   $scope.store();
-          //   //连接MQTT
-          //
-          //   $scope.fetch = function() {
-          //     $cordovaPreferences.fetch('name')
-          //       .success(function(value) {
-          //         if(value != null && value != ''){
-          //           $mqtt.startMqttChat(value + ',zhuanjiazu');
-          //         }
-          //       })
-          //       .error(function(error) {
-          //       })
-          //   };
-          //   $scope.fetch();
-          //
-          //
-          //   $state.go('tab.message');
-          // }).error(function (response) {
-          //   $scope.name = response;
-          //   $ionicLoading.hide();
-          //   $state.go('tab.message');
-          // })
-          // ionic.Platform.exitApp();
+
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
               $state.go("login");
@@ -1624,37 +1881,37 @@ angular.module('im.controllers', [])
     };
   })
 
- /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
-    $scope.name="";
-    /!*$scope.fetch = function() {
-      $mqtt.getMqtt().getString('name',function (message) {
-        alert(message+"sdsfsdg");
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-      /!*$cordovaPreferences.fetch('name')
-        .success(function(value) {
-          if(value != null && value != ''){
-            $scope.name=value;
-          }
-        })
-        .error(function(error) {
-        })*!/
-    };*!/
-    // $scope.fetch();
-    document.addEventListener('deviceready',function () {
-      $mqtt.getMqtt().getString('name',function (message) {
-        if(message != null && message != ''){
-          $scope.name=message;
-        }
-      },function (message) {
-        alert(message);
-      });
-    });
-  })*/
+  /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
+   $scope.name="";
+   /!*$scope.fetch = function() {
+   $mqtt.getMqtt().getString('name',function (message) {
+   alert(message+"sdsfsdg");
+   if(message != null && message != ''){
+   $scope.name=message;
+   }
+   },function (message) {
+   alert(message);
+   });
+   /!*$cordovaPreferences.fetch('name')
+   .success(function(value) {
+   if(value != null && value != ''){
+   $scope.name=value;
+   }
+   })
+   .error(function(error) {
+   })*!/
+   };*!/
+   // $scope.fetch();
+   document.addEventListener('deviceready',function () {
+   $mqtt.getMqtt().getString('name',function (message) {
+   if(message != null && message != ''){
+   $scope.name=message;
+   }
+   },function (message) {
+   alert(message);
+   });
+   });
+   })*/
   .controller('myAttentionSelectCtrl',function ($scope,$state) {
 
     $scope.goBackChat=function () {
@@ -1671,7 +1928,7 @@ angular.module('im.controllers', [])
 
   .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
 
-  //  var searchdata1=document.getElementById("searchdata1").innerText;
+    //  var searchdata1=document.getElementById("searchdata1").innerText;
 
     // window.addEventListener("native.keyboardshow", function (e) {
     //   $ionicBackdrop.retain();
@@ -1914,7 +2171,7 @@ angular.module('im.controllers', [])
 
 
   })
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, contactService,$timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory) {
 
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
@@ -2030,13 +2287,20 @@ angular.module('im.controllers', [])
 
     };
 
-    //跳到详情界面
-    $scope.jumpSearch=function (id) {
-      $state.go("searchdetail",{
-        "UserID":id,
-      });
-    }
 
+
+    //点击人员进入人员详情
+    $scope.goSearchDetail = function (id) {
+      $state.go("person", {
+        "userId": id,
+      });
+
+    };
+
+    //当点击取消时候执行
+    $scope.searchBack=function () {
+      $ionicHistory.goBack();
+    };
 
   })
 
@@ -2156,15 +2420,14 @@ angular.module('im.controllers', [])
     //     //alert($scope.localpersons)
     //   })
     // });
-
-    $scope.jumpattenDetial=function (id) {
-      // $searchdatadianji.personDetaildianji(id);
-      $state.go("attentionDetail",{
-        "UserIDatten":id
-        // "youmeiyou":$scope.youmeiyou,
+    //点击人员进入人员详情
+    $scope.jumpattenDetial = function (id) {
+      $state.go("person", {
+        "userId": id,
       });
 
-    }
+    };
+
 
     $scope.$on('person.update',function (event) {
       $scope.$apply(function () {
@@ -2224,26 +2487,33 @@ angular.module('im.controllers', [])
     //     })
     //   });
     // }
-    // Setup the loader
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'silde-in-up',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
+    $myattentionser.getAttentionList();
+    $scope.$on('attention.update',function (event) {
+      $scope.$apply(function () {
+        $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        //alert($scope.localpersons)
+      })
     });
+    // 加载效果
+    // $ionicLoading.show({
+    //  content: 'Loading',
+    //   animation: 'silde-in-up',
+    //   showBackdrop: true,
+    //   maxWidth: 1,
+    //   showDelay: 0
+    // });
 
-    // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
-    $timeout(function () {
-      $ionicLoading.hide();
-      $myattentionser.getAttentionList();
-      $scope.$on('attention.update',function (event) {
-        $scope.$apply(function () {
-          $scope.contactsListatten=$myattentionser.getAttentionaaList();
-          //alert($scope.localpersons)
-        })
-      });
-    }, 2000);
+    // //完成加载
+    // $timeout(function () {
+    //   $ionicLoading.hide();
+    //   $myattentionser.getAttentionList();
+    //   $scope.$on('attention.update',function (event) {
+    //     $scope.$apply(function () {
+    //       $scope.contactsListatten=$myattentionser.getAttentionaaList();
+    //       //alert($scope.localpersons)
+    //     })
+    //   });
+    // }, 2000);
 
 
   })
@@ -2325,14 +2595,139 @@ angular.module('im.controllers', [])
     $scope.$on('attention.add',function (event) {
       $scope.$apply(function () {
         $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno(.personsdetail111.Mobile)
+        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
 
   })
-  .controller('historyMessageCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang) {
+    $scope.id = $stateParams.id;
+    $scope.ssid = $stateParams.ssid;
+
     $scope.goSetting = function () {
       $state.go("personalSetting");
     }
+    $scope.totalpage=1
+    $scope.dangqianpage=1;
+    //总页数
+    $api.getMsgCount("U", $scope.id,function (msg) {
+      var mo = msg%10;
+      if(mo === 0) {
+        $scope.totalpage = msg / 10;
+      } else {
+        $scope.totalpage = (msg - mo) / 10 + 1;
+      }
+      // $scope.totalpage=msg/10+1   ;
+      alert($scope.totalpage)
+    },function (msg) {
+      alert("失败");
+    });
+    $historyduifang.getHistoryduifanga("U",$scope.id,1,10);
+    $scope.$on('historymsg.duifang',function (event) {
+      $scope.$apply(function () {
+        $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
 
+      })
+    });
+
+    //下一页
+    $scope.nextpage=function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+          })
+        });
+
+      }else {
+        alert("已经到最后一页了")
+      }
+    }
+    //上一页
+    $scope.backpage=function () {
+      if($scope.dangqianpage>1){
+        $scope.dangqianpage--;
+        $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+          })
+        });
+
+
+      }else {
+        alert("已经到第一页了")
+      }
+    }
+
+  })
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
+    $scope.UserIDforhou = $stateParams.UserIDfor;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
+    $searchdatadianji.personDetaildianji($scope.UserIDforhou)
+
+    $scope.$on('person.dianji',function (event) {
+      $scope.$apply(function () {
+        $scope.mypersons=$searchdatadianji.getPersonDetaildianji();
+      })
+    });
+
+  })
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, contactService,$api,$ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
+    $scope.UserIDsethou = $stateParams.UserIDset;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
+    // 修改密码
+    $scope.showPopup = function() {
+      $scope.data = {}
+      var myPopup = $ionicPopup.show({
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入原密码" ng-model="data.oldpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入新密码" ng-model="data.newpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请确认新密码" ng-model="data.enterpassword"></label>',
+        title: '修改密码',
+        subTitle: '区分大小写，请认真填写',
+        scope: $scope,
+        buttons: [
+          { text: '取消' },
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
+              $api.updatePwd($scope.data.oldpassword,$scope.data.newpassword,$scope.data.enterpassword,function (msg) {
+                alert(msg+"修改成功")
+              },function (msg) {
+                alert(msg+"修改失败")
+              })
+            }
+          },
+        ]
+      });
+      myPopup.then(function(res) {
+
+      });
+      // myPopup.close(); //关闭
+    };
+    //在线升级
+    $scope.zaixianshengji = function () {
+      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    }
+
+  })
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+    $scope.UserIDabouthou = $stateParams.UserIDabout;
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
+
+  })
+  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams, contactService) {
+
+    $scope.gohistoryMessage = function () {
+      alert("要跳了")
+      $state.go("historyMessage");
+    }
   })

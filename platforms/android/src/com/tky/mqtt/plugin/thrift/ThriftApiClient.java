@@ -1,13 +1,17 @@
 package com.tky.mqtt.plugin.thrift;
 
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+import com.tky.mqtt.plugin.toast.ToastUtils;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -23,6 +27,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -329,11 +334,11 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getChild(final JSONArray args, final CallbackContext callbackContext) {
         try {
-            String ID = args.getString(0);
-            String deptID = args.getString(1);
-            int pageNum = args.getInt(2);
-            int pageCount = args.getInt(3);
-            SystemApi.getChild(ID, deptID, pageNum, pageCount, new AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call>() {
+            //String ID = args.getString(0);
+            String deptID = args.getString(0);
+            int pageNum = args.getInt(1);
+            int pageCount = args.getInt(2);
+            SystemApi.getChild(getUserID(), deptID, pageNum, pageCount, new AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetChild_call getChild_call) {
                     try {
@@ -382,10 +387,10 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getDeparment(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String ID = args.getString(0);
-            String deptID = args.getString(1);
+            //String ID = args.getString(0);
+            String deptID = args.getString(0);
 
-            SystemApi.getDeparment(ID, deptID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
+            SystemApi.getDeparment(getUserID(), deptID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetDeparment_call getDeparment_call) {
                     try {
@@ -434,8 +439,8 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void getUserRoot(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String ID = args.getString(0);
-            SystemApi.getUserRoot(ID, new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
+            //String ID = args.getString(0);
+            SystemApi.getUserRoot(getUserID(), new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
                 @Override
                 public void onComplete(IMDepartment.AsyncClient.GetUserRoot_call getUserRoot_call) {
                     try {
@@ -664,6 +669,9 @@ public class ThriftApiClient extends CordovaPlugin {
     public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
         try {
             String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
+            File file=new File(filePath);
+            boolean exists = file.exists();
+
             SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
@@ -939,7 +947,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
             String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
-            int pageNum = args.getInt(2);//搜索的页数(0时为末页)
+            final int pageNum = args.getInt(2);//搜索的页数(0时为末页)
             int pageCount = args.getInt(3);//每页的数目(0时为10)
             SystemApi.getHistoryMsg(getUserID(), sessionType, sessionID, pageNum, pageCount, new AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call>() {
                 @Override
@@ -948,6 +956,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTgetMsg result = getHistoryMsg_call.getResult();
                         if (result != null && result.result) {
                             List<Msg> attentions = result.getMsglist();
+                            Date date=new Date(attentions.get(pageNum).getMsgDate());
                             String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<Msg>>() {
                             }.getType());
                             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -995,7 +1004,7 @@ public class ThriftApiClient extends CordovaPlugin {
                     try {
                         RSTgetMsgCount result = getMsgCount_call.getResult();
                         if (result != null && result.result) {
-                            int msgCount = result.getMsgCount();
+                            long msgCount = result.getMsgCount();
                             setResult(msgCount, PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
@@ -1151,6 +1160,16 @@ public class ThriftApiClient extends CordovaPlugin {
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
     }
-
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Sgetatus.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    private void setResult(long result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
 
 }

@@ -28,9 +28,14 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Sub_id = new Property(0, String.class, "sub_id", true, "SUB_ID");
-        public final static Property Type = new Property(1, String.class, "type", false, "TYPE");
-        public final static Property F_id = new Property(2, String.class, "f_id", false, "F_ID");
+        public final static Property _id = new Property(0, String.class, "_id", true, "_ID");
+        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Type = new Property(2, String.class, "type", false, "TYPE");
+        public final static Property Isactive = new Property(3, String.class, "isactive", false, "ISACTIVE");
+        public final static Property Parentname = new Property(4, String.class, "parentname", false, "PARENTNAME");
+        public final static Property Pagesize = new Property(5, Integer.class, "pagesize", false, "PAGESIZE");
+        public final static Property Childcount = new Property(6, Integer.class, "childcount", false, "CHILDCOUNT");
+        public final static Property F_id = new Property(7, String.class, "f_id", false, "F_ID");
     };
 
     private DaoSession daoSession;
@@ -50,9 +55,14 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'SUB_DEPT' (" + //
-                "'SUB_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: sub_id
-                "'TYPE' TEXT," + // 1: type
-                "'F_ID' TEXT NOT NULL );"); // 2: f_id
+                "'_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: _id
+                "'NAME' TEXT," + // 1: name
+                "'TYPE' TEXT," + // 2: type
+                "'ISACTIVE' TEXT," + // 3: isactive
+                "'PARENTNAME' TEXT," + // 4: parentname
+                "'PAGESIZE' INTEGER," + // 5: pagesize
+                "'CHILDCOUNT' INTEGER," + // 6: childcount
+                "'F_ID' TEXT NOT NULL );"); // 7: f_id
     }
 
     /** Drops the underlying database table. */
@@ -66,16 +76,41 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
     protected void bindValues(SQLiteStatement stmt, SubDept entity) {
         stmt.clearBindings();
  
-        String sub_id = entity.getSub_id();
-        if (sub_id != null) {
-            stmt.bindString(1, sub_id);
+        String _id = entity.get_id();
+        if (_id != null) {
+            stmt.bindString(1, _id);
+        }
+ 
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(2, name);
         }
  
         String type = entity.getType();
         if (type != null) {
-            stmt.bindString(2, type);
+            stmt.bindString(3, type);
         }
-        stmt.bindString(3, entity.getF_id());
+ 
+        String isactive = entity.getIsactive();
+        if (isactive != null) {
+            stmt.bindString(4, isactive);
+        }
+ 
+        String parentname = entity.getParentname();
+        if (parentname != null) {
+            stmt.bindString(5, parentname);
+        }
+ 
+        Integer pagesize = entity.getPagesize();
+        if (pagesize != null) {
+            stmt.bindLong(6, pagesize);
+        }
+ 
+        Integer childcount = entity.getChildcount();
+        if (childcount != null) {
+            stmt.bindLong(7, childcount);
+        }
+        stmt.bindString(8, entity.getF_id());
     }
 
     @Override
@@ -94,9 +129,14 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
     @Override
     public SubDept readEntity(Cursor cursor, int offset) {
         SubDept entity = new SubDept( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // sub_id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // type
-            cursor.getString(offset + 2) // f_id
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // _id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // type
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // isactive
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // parentname
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // pagesize
+            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // childcount
+            cursor.getString(offset + 7) // f_id
         );
         return entity;
     }
@@ -104,22 +144,27 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, SubDept entity, int offset) {
-        entity.setSub_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setType(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setF_id(cursor.getString(offset + 2));
+        entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
+        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setType(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setIsactive(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setParentname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setPagesize(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setChildcount(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setF_id(cursor.getString(offset + 7));
      }
     
     /** @inheritdoc */
     @Override
     protected String updateKeyAfterInsert(SubDept entity, long rowId) {
-        return entity.getSub_id();
+        return entity.get_id();
     }
     
     /** @inheritdoc */
     @Override
     public String getKey(SubDept entity) {
         if(entity != null) {
-            return entity.getSub_id();
+            return entity.get_id();
         } else {
             return null;
         }
