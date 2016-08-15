@@ -212,7 +212,6 @@ angular.module('common.services', [])
           firstTopContact.type = "3";
           firstTopContact.count =  1;
           firstTopContact.when = 0;
-          alert("消息进入了");
           $greendao.saveObj('TopContactsService', firstTopContact, function (data) {
           }, function (err) {
 

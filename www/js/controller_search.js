@@ -84,11 +84,19 @@ angular.module('search.controllers', [])
         $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
         $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
 
+        $scope.createchat = function (id, name) {
+          $rootScope.isPersonSend = 'true';
+          alert(id + name);
+          $state.go('tab.message', {
+            "id": id,
+            "sessionid": name
+          });
+        };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
             { text: '打电话' },
-
+            { text: '发消息' },
             { text: '发短信'}
           ],
           titleText: $scope.nameattention,
@@ -100,6 +108,8 @@ angular.module('search.controllers', [])
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
+            }else if(index==1){
+              $scope.createchat($scope.idattention,$scope.nameattention);
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);

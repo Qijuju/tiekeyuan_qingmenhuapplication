@@ -483,7 +483,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils) {
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
@@ -494,6 +494,12 @@ angular.module('message.controllers', [])
         ssid:$scope.userName
       });
     }
+    if ($scope.userName.length>2){
+      $scope.jiename=$scope.userName.substring(($scope.userName.length-2),$scope.userName.length);
+    }else {
+      $scope.jiename=$scope.userName
+    }
+
     // alert($scope.userId+"daiguolai"+$scope.userName);
     $scope.addFriend1=function () {
       $state.go("myAttention1");
@@ -516,12 +522,12 @@ angular.module('message.controllers', [])
       //   alert(err);
       // });
       $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
+        $ToastUtils.showToast("删除成功");
         // alert(data.length+"查询消息记录长度");
         for(var i=0;i<data.length;i++){
           var key=data[i]._id;
           // alert("消息对象"+key);
           $greendao.deleteDataByArg('MessagesService',key,function (data) {
-            alert("删除成功");
           },function (err) {
             alert(err+清空消息记录失败);
           });
@@ -531,6 +537,10 @@ angular.module('message.controllers', [])
       });
 
     };
+
+    $scope.meizuo=function () {
+      $ToastUtils.showToast("此功能暂未开发");
+    }
   })
 
   .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt) {
@@ -542,18 +552,26 @@ angular.module('message.controllers', [])
 
     });
     $scope.goSetting = function () {
-      $state.go("personalSetting");
+      $state.go('personalSetting',{
+        id:$scope.id,
+        ssid:$scope.ssid
+      });
     }
     $scope.totalpage=1
     $scope.dangqianpage=1;
     //总页数
     $api.getMsgCount("U", $scope.id,function (msg) {
+
       var mo = msg%10;
       if(mo === 0) {
         $scope.totalpage = msg / 10;
+        if ($scope.totalpage === 0){
+          $scope.totalpage=1;
+        }
       } else {
         $scope.totalpage = (msg - mo) / 10 + 1;
       }
+
       // $scope.totalpage=msg/10+1   ;
       alert($scope.totalpage)
     },function (msg) {
@@ -562,8 +580,7 @@ angular.module('message.controllers', [])
     $historyduifang.getHistoryduifanga("U",$scope.id,1,10);
     $scope.$on('historymsg.duifang',function (event) {
       $scope.$apply(function () {
-        $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
-
+        $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
       })
     });
 
@@ -574,7 +591,7 @@ angular.module('message.controllers', [])
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
           })
         });
 
@@ -589,7 +606,7 @@ angular.module('message.controllers', [])
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
           })
         });
 
@@ -601,7 +618,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory) {
+  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory,$ToastUtils) {
     $scope.backAny = function () {
 
       $ionicHistory.goBack();
@@ -610,6 +627,9 @@ angular.module('message.controllers', [])
     $scope.gohistoryMessage = function () {
       alert("要跳了")
       $state.go("historyMessage");
+    }
+    $scope.meizuo=function () {
+      $ToastUtils.showToast("此功能暂未开发");
     }
   })
 
