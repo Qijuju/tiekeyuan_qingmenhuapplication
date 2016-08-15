@@ -689,7 +689,6 @@ angular.module('starter.services', [])
 
       call: function (id, phone, name,querytype) {
 
-        alert("进了");
 
         if(querytype==1){
           $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
@@ -707,13 +706,11 @@ angular.module('starter.services', [])
 
               $greendao.saveObj('TopContactsService', queryTopContact, function (data) {
               }, function (err) {
-                alert("第二次存入电话");
 
               });
             } else {
               //没有查到说明是第一次存到里面
 
-              alert("第一就好");
               var fistTopContacts = {};
               fistTopContacts._id = id;
               fistTopContacts.phone = phone;
@@ -721,10 +718,8 @@ angular.module('starter.services', [])
               fistTopContacts.type = "1";  //常用联系人的类型  1 代表打电话
               fistTopContacts.count = 1;
               fistTopContacts.when = 0;
-              alert("我就是第一次过来的");
               $greendao.saveObj('TopContactsService', fistTopContacts, function (data) {
               }, function (err) {
-                alert("第一次存入电话");
 
               });
             }
