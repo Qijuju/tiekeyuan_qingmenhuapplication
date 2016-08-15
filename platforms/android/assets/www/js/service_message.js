@@ -67,9 +67,9 @@ angular.module('message.services', [])
       },
 
 
-      sendMsg:function (topic,content,id,account) {
+      sendMsg:function (topic,content,id,account,sqlid) {
         var messageDetail={};
-        messageDetail._id=id;
+        messageDetail._id=sqlid;
         messageDetail.sessionid=id;
         messageDetail.type='User';
         messageDetail.from='true';
@@ -93,9 +93,13 @@ angular.module('message.services', [])
           messageDetail.isFailure='true';
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            if (data != 'success') {
+              messageDetail._id = data;
+              alert(messageDetail._id+"消息失败id"+data);
+              $rootScope.$broadcast('msgs.error');
+            }
           },function (err) {
           });
-          $rootScope.$broadcast('msgs.error');
           return "失败";
         });
         return "啥也不是";
@@ -103,7 +107,6 @@ angular.module('message.services', [])
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
-
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
@@ -141,6 +144,9 @@ angular.module('message.services', [])
       getDanliao:function () {
         return danliao;
       },
+      remove:function (message) {
+        danliao.remove(message);
+      },
       getQunliao:function () {
         return qunliao;
       },
@@ -161,6 +167,10 @@ angular.module('message.services', [])
         alert("clear");
         groupCount=0;
       },
+      // getIsSuccess:function(isSuccess){
+      //   $rootScope.isSuccess=isSuccess;
+      //   alert($rootScope.isSuccess+"发送失败");
+      // },
 
 
       sendGroupMsg:function (topic,content,id) {

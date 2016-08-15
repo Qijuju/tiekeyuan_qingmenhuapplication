@@ -10,6 +10,7 @@ angular.module('message.controllers', [])
     //   alert(err);
     // });
     //对话框名称
+    $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;
     $scope.userId = $stateParams.id;
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
@@ -24,6 +25,7 @@ angular.module('message.controllers', [])
         $mqtt.getDanliao().push(data[data.length - i]);
       }
       $scope.msgs = $mqtt.getDanliao();
+      //alert($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
       alert(err);
     });
@@ -60,9 +62,9 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleMsg = function (topic, content, id, account) {
+    $scope.sendSingleMsg = function (topic, content, id, account,sqlid) {
       $mqtt.getMqtt().getTopic(topic, 'U', function (userTopic) {
-        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account);
+        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account,sqlid);
         $scope.send_content = "";
         keepKeyboardOpen();
       }, function (msg) {
@@ -119,8 +121,9 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id) {
-
+    $scope.resendshow = function (topic,content,id,account,sqlid,msgSingle) {
+      // $scope.msgs.remove(msgSingle);
+      // alert(msgSingle);
       // 显示操作表
       $ionicActionSheet.show({
         buttons: [
@@ -132,7 +135,7 @@ angular.module('message.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index === 0) {
-            $scope.sendSingleMsg(topic, content, id);
+            $scope.sendSingleMsg(topic,content,id,account,sqlid);
           } else if (index === 1) {
 
           }
@@ -362,7 +365,7 @@ angular.module('message.controllers', [])
       $rootScope.isPersonSend = 'false';
     }
     //如果不是创建聊天，就直接从数据库里取列表数据
-    $greendao.queryData('ChatListService','order by "lastDate" desc', function (data) {
+    $greendao.loadAllData('ChatListService', function (data) {
       $scope.items = data;
       //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
       // $scope.ssid=

@@ -10,6 +10,7 @@ angular.module('message.controllers', [])
     //   alert(err);
     // });
     //对话框名称
+    $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;
     $scope.userId = $stateParams.id;
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
@@ -24,6 +25,7 @@ angular.module('message.controllers', [])
         $mqtt.getDanliao().push(data[data.length - i]);
       }
       $scope.msgs = $mqtt.getDanliao();
+      //alert($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
       alert(err);
     });
@@ -119,8 +121,9 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id) {
-
+    $scope.resendshow = function (topic,content,id,account,sqlid,msgSingle) {
+      // $scope.msgs.remove(msgSingle);
+      // alert(msgSingle);
       // 显示操作表
       $ionicActionSheet.show({
         buttons: [
@@ -132,7 +135,7 @@ angular.module('message.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index === 0) {
-            $scope.sendSingleMsg(topic, content, id);
+            $scope.sendSingleMsg(topic,content,id,account,sqlid);
           } else if (index === 1) {
 
           }
