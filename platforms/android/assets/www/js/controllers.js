@@ -1,8 +1,7 @@
 angular.module('im.controllers', [])
 
 
-  .controller('DashCtrl', function ($scope) {
-  })
+
 
   .controller('ChatsCtrl', function ($scope, Chats) {
     // With the new view caching in Ionic, Controllers are only called
@@ -866,7 +865,7 @@ angular.module('im.controllers', [])
   })
 
 
-  .controller('MyDepartmentCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  .controller('MyDepartmentCtrl', function ($scope, $http, $state, $stateParams, contactService) {
 
     $scope.contactId = $stateParams.contactId;
 
@@ -897,7 +896,7 @@ angular.module('im.controllers', [])
       $state.go("forth");
     }
 
-  }])
+  })
 
 
   .controller('PersonCtrl', function ($scope,$stateParams, $state, $phonepluin,$savaLocalPlugin,$contacts,$ionicHistory,$rootScope,$addattentionser) {
@@ -978,7 +977,7 @@ angular.module('im.controllers', [])
     }
     $scope.$on('attention.delete',function (event) {
       $scope.$apply(function () {
-        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        $scope.persondsfs.IsAttention=$addattentionser.getaddAttention111();
         // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
@@ -991,7 +990,7 @@ angular.module('im.controllers', [])
     };
     $scope.$on('attention.add',function (event) {
       $scope.$apply(function () {
-        $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
+        $scope.persondsfs.IsAttention=$addattentionser.getaddAttention111();
         // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
@@ -1658,15 +1657,7 @@ angular.module('im.controllers', [])
       });
     }
   })
-  .controller('TabMessageCtrl',function ($scope) {
-    /*document.addEventListener('deviceready',function () {
-     $mqtt.getMqtt().getChats('sls',function(message){
-     alert(message);
-     },function(message){
-     alert(message);
-     });
-     });*/
-  })
+
 
   .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao) {
     //取出聊天界面带过来的id和ssid
@@ -1675,8 +1666,8 @@ angular.module('im.controllers', [])
     $scope.gohistoryMessage = function () {
       alert("要跳了")
       $state.go('historyMessage',{
-        id:id,
-        ssid:ssid
+        id:$scope.userId,
+        ssid:$scope.userName
       });
     }
     // alert($scope.userId+"daiguolai"+$scope.userName);
@@ -1881,49 +1872,9 @@ angular.module('im.controllers', [])
     };
   })
 
-  /* .controller('AccountCtrl',function ($scope,$cordovaPreferences,$mqtt) {
-   $scope.name="";
-   /!*$scope.fetch = function() {
-   $mqtt.getMqtt().getString('name',function (message) {
-   alert(message+"sdsfsdg");
-   if(message != null && message != ''){
-   $scope.name=message;
-   }
-   },function (message) {
-   alert(message);
-   });
-   /!*$cordovaPreferences.fetch('name')
-   .success(function(value) {
-   if(value != null && value != ''){
-   $scope.name=value;
-   }
-   })
-   .error(function(error) {
-   })*!/
-   };*!/
-   // $scope.fetch();
-   document.addEventListener('deviceready',function () {
-   $mqtt.getMqtt().getString('name',function (message) {
-   if(message != null && message != ''){
-   $scope.name=message;
-   }
-   },function (message) {
-   alert(message);
-   });
-   });
-   })*/
-  .controller('myAttentionSelectCtrl',function ($scope,$state) {
 
-    $scope.goBackChat=function () {
-      $state.go("messageGroup");
-    }
-  })
 
-  //历史消息controller
-  .controller('HistoryCtrl',function ($scope,$state) {
 
-    alert("come 正确的页面了");
-  })
 
 
   .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
@@ -2600,10 +2551,14 @@ angular.module('im.controllers', [])
     });
 
   })
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt) {
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID= msg.userID
+    },function (msg) {
 
+    });
     $scope.goSetting = function () {
       $state.go("personalSetting");
     }

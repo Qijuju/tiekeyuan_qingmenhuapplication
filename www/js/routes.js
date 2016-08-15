@@ -76,15 +76,7 @@ angular.module('im.routes', [])
         cache: false
       })
 
-
-      .state('myAttention1', {
-
-        url: '/myAttentionSelect',
-        cache: false,
-        templateUrl: 'templates/my_attention_select.html',
-        controller: 'myAttentionSelectCtrl'
-
-      })
+      
 
 
       .state('personalSetting', {
