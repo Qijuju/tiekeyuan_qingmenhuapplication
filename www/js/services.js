@@ -937,7 +937,15 @@ angular.module('starter.services', [])
       }
     };
   })
-
+  //___________________________________________________________________________________________________
+  //@createtime 2016.08.12
+  //@detail:
+  //@author: songya
+  //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  //@modifytime 2016.08.13
+  //@detail:
+  //@author:sunlinsong
+  
   .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
 
     var loginId;

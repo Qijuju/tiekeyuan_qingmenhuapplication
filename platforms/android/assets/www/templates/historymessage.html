@@ -17,7 +17,7 @@
 
 
       <div ng-repeat="historyduifangaaa in historyduifangsss">
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID=='127440')">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==$scope.id)">
           <img src="img/mike.png" class="rj-head-pic">
           <!--<span class="rj-triangle-left">{{historyduifangaaa.FromName}}</span>-->
           <ul class="list" >
@@ -29,7 +29,7 @@
         </div>
 
 
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID === '102357')">
+        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID )">
           <img src="img/ben.png" class="rj-head-pic-right">
           <ul class="list">
             <li class="item background_white">
