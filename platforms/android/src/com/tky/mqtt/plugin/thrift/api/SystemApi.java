@@ -22,6 +22,7 @@ import java.util.Map;
 import im.server.Department.IMDepartment;
 import im.server.File.IMFile;
 import im.server.File.RSTversion;
+import im.server.Message.IMMessage;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
 import im.server.attention.IMAttention;
@@ -112,6 +113,19 @@ public class SystemApi {
     }
 
     /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    private static IMMessage.AsyncClient getMsgClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 30000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
      * 登录接口
      * @param loginAccount 用户名
      * @param password 密码
@@ -163,6 +177,19 @@ public class SystemApi {
     public static void seachUsers(String userId, String searchText, int pageNum, int pageCount, AsyncMethodCallback<IMSystem.AsyncClient.UserSearch_call> callback) throws IOException, TException {
         IMSystem.AsyncClient asyncClient = getSystemClient();
         asyncClient.UserSearch(userId, searchText, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 解绑用户（让用户可以在其他设备上登录）
+     * @param ID
+     * @param imCode
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void cancelUser(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback) throws IOException, TException {
+        IMSystem.AsyncClient asyncClient = getSystemClient();
+        asyncClient.CancelUser(ID, imCode, callback);
     }
 
     /**
@@ -341,14 +368,20 @@ public class SystemApi {
         RandomAccessFile raf = new RandomAccessFile(apkFile, "rw");
         raf.seek(0);
         RSTversion result = null;
+        boolean flag = true;
         while (result == null || !result.isFinish) {
             FileSyncClient fileSyncClient = getFileSyncClient();
             result = fileSyncClient.getFileClient().GetVersion(ID, versionCode, (result == null ? 0 : (result.offset + result.getFileByte().length)), 1024 * 200);
-            raf.write(result.getFileByte());
-            fileSyncClient.close();
+            if(result != null && result.result) {
+                raf.write(result.getFileByte());
+                fileSyncClient.close();
+            } else {
+                flag = false;
+                break;
+            }
         }
         raf.close();
-        return true;
+        return flag;
     }
 
     /**
@@ -387,6 +420,36 @@ public class SystemApi {
     public static void getAttention(String ID, AsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call> callback) throws IOException, TException {
         IMAttention.AsyncClient client = getAttentionClient();
         client.GetAttention(ID, callback);
+    }
+
+    /**
+     * 获取历史消息
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param pageNum 搜索的页数(0时为末页)
+     * @param pageCount 每页的数目(0时为10)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getHistoryMsg(String ID, String sessionType, String sessionID, int pageNum, int pageCount, AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call> callback) throws IOException, TException {
+        IMMessage.AsyncClient client = getMsgClient();
+        client.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
+    }
+
+    /**
+     * 获取历史消息数
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+        IMMessage.AsyncClient client = getMsgClient();
+        client.GetMsgCount(ID, sessionType, sessionID, callback);
     }
 
 }

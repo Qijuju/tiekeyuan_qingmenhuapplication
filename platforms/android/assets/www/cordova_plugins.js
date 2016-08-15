@@ -113,6 +113,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.ThriftApiClient"
         ]
+    },
+    {
+        "file": "plugins/ToastUtils/www/toast_utils.js",
+        "id": "ToastUtils.toast_utils",
+        "clobbers": [
+            "cordova.plugins.ToastUtils"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -133,7 +140,8 @@ module.exports.metadata =
     "SavaLocalPlugin": "1.0.0",
     "cordova-sqlite-storage": "0.7.14",
     "GreenDaoPlugin": "1.0.0",
-    "ThriftApiClient": "1.0.0"
+    "ThriftApiClient": "1.0.0",
+    "ToastUtils": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

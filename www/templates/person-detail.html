@@ -7,7 +7,9 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-star">
+      <button  ng-if="!persondsfs.IsAttention" class="button button-icon icon ion-ios-star-outline" ng-click="addattentiondetail(persondsfs.UserID)">
+      </button>
+      <button  ng-if="persondsfs.IsAttention" class="button button-icon icon ion-ios-star" ng-click="removeattention(persondsfs.UserID)">
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -17,7 +19,8 @@
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
         <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
         <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{simpleName}}</div>
-        <P style="font-size: 18px;color: #ffffff">{{persondsfs.UserName}}</P>
+        <div><span style="font-size: 18px;color: #ffffff">{{persondsfs.UserName}}</span>&nbsp;<img ng-show="persondsfs.Sex=='男'" src="img/man.png" width="20px" height="20px" ><img ng-show="persondsfs.Sex=='女'" src="img/woman.png" width="20px" height="20px" >
+        </div>
       </div>
 
       <ul class="list">
@@ -44,30 +47,30 @@
 
   </ion-content>
   <ion-footer-bar>
-  <div class="tabs tabs-stable tabs-icon-top">
+    <div class="tabs tabs-stable tabs-icon-top">
 
-    <div class="tab-item " ng-click="createChat()">
-      <i class="icon ion-chatbubble-working"></i>
-      创建聊天
+      <div class="tab-item" ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)">
+        <i class="icon ion-chatbubble-working" ></i>
+        创建聊天
+      </div>
+      <div class="tab-item has-badge" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+        <i class="icon ion-ios-telephone" ></i>
+        打电话
+      </div>
+
+      <div class="tab-item " ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)" >
+        <i class="icon ion-iphone"></i>
+        存到手机
+      </div>
+
+      <div class="tab-item " ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+        <i class="icon ion-chatbox-working" ></i>
+        发短信
+      </div>
+
+
     </div>
-    <div class="tab-item has-badge" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
-      <i class="icon ion-ios-telephone" ></i>
-      打电话
-    </div>
-
-    <div class="tab-item " ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)" >
-      <i class="icon ion-iphone"></i>
-      存到手机
-    </div>
-
-    <div class="tab-item " ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
-      <i class="icon ion-chatbox-working" ></i>
-      发短信
-    </div>
-
-
-  </div>
-</ion-footer-bar>
+  </ion-footer-bar>
 </ion-view>
 
 

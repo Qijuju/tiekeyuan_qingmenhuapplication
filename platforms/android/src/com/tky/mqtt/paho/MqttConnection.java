@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.tky.protocol.model.IMPException;
+
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
 
 import java.util.Iterator;
 import java.util.Map;
+
 public class MqttConnection {
 
 	private MqttParams params;
@@ -41,8 +45,8 @@ public class MqttConnection {
 	 */
 	public void reconnect() throws MqttException {
 		if (mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.close();
 			mqttAsyncClient.disconnect();
+			mqttAsyncClient.close();
 			mqttAsyncClient = null;
 		}
 		isReconnect = true;
@@ -83,7 +87,14 @@ public class MqttConnection {
 							@Override
 							public void onSend(String topic, String content) {
 								MqttMessage message = new MqttMessage();
-								message.setPayload(content.getBytes());
+								try {
+									String msg = new String(MessageOper.packData(content));
+									message.setPayload(MessageOper.packData(content));
+								} catch (JSONException e) {
+									e.printStackTrace();
+								} catch (IMPException e) {
+									e.printStackTrace();
+								}
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
 								message.setQos(1);
 								try {

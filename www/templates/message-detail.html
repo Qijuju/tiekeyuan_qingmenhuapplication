@@ -1,4 +1,4 @@
-<ion-view id="messageDetail" view-title="宋亚">
+<ion-view id="messageDetail" view-title={{viewtitle}}>
   <ion-nav-bar align-title="center">
 
     <ion-nav-buttons side="left">
@@ -12,7 +12,7 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="secondary">
-      <button class="button button-icon icon ion-ios-person-outline" ui-sref="personalSetting"
+      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
               style="margin-right: 5px"></button>
 
     </ion-nav-buttons>
@@ -23,18 +23,14 @@
     <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
                    pulling-text="更多消息" id="refresh">
     </ion-refresher>
-    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>
+    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
-      <!--<p class="rj-message-time">5月27日 16:33</p>-->
-
       <div ng-repeat="msg in msgs">
         <div class="rj-message-wrap" ng-if="(msg.from==='false')">
           <img src="img/mike.png" class="rj-head-pic">
           <span class="rj-triangle-left"></span>
           <p class="rj-message">{{msg.message}}</p>
         </div>
-
-
         <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
           <img src="img/ben.png" class="rj-head-pic-right">
           <span class="rj-triangle-right"></span>
@@ -44,7 +40,6 @@
           </span>
         </div>
       </div>
-
     </div>
   </ion-content>
 
@@ -67,7 +62,7 @@
         </button>
       </div>
       <div class="rj-send-button" ng-hide="!send_content || send_content === ''"
-           ng-click="sendSingleMsg('sy',send_content, 'sy')">
+           ng-click="sendSingleMsg(userId,send_content, userId,viewtitle)">
         <p>发送</p>
       </div>
     </div>

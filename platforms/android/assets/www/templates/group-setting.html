@@ -1,7 +1,7 @@
 <ion-view view-title="群设置">
   <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ui-sref="messageGroup">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">
         返回
       </button>
     </ion-nav-buttons>
@@ -15,15 +15,15 @@
     <div class="row" style=" background-color: #ffffff; height: 80px">
 
       <div class="col" align="center" >
-        <a href="#">
+        <a>
           <ul>
             <li><img src="img/im_chat_btn_announce.png" width="40" height="40"></li>
             <li>群公告</li>
           </ul>
         </a>
       </div>
-      <div class="col" align="center">
-        <a href="#" >
+      <div class="col" align="center" ng-click="gohistoryMessage()">
+        <a >
           <ul>
             <li><img src="img/message.png" width="40" height="40"></li>
             <li>消息</li>
@@ -31,7 +31,7 @@
         </a>
       </div>
       <div class="col" align="center">
-        <a href="#" >
+        <a >
           <ul>
             <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
             <li>图片</li>
@@ -39,7 +39,7 @@
         </a>
       </div>
       <div class="col" align="center">
-        <a href="#" >
+        <a>
           <ul>
             <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
             <li>文件</li>

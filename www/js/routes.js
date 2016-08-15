@@ -34,7 +34,8 @@ angular.module('im.routes', [])
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
-        url: '/message',
+        url: '/message/:id/:sessionid',
+        cache:false,
         views: {
           'tab-message': {
             templateUrl: 'templates/tab-message.html',
@@ -44,8 +45,9 @@ angular.module('im.routes', [])
       })
 
       .state('messageDetail', {
-        url: '/messageDetail',
+        url: '/messageDetail/:id/:ssid',
         templateUrl: 'templates/message-detail.html',
+        cache:false,
         controller: 'MessageDetailCtrl'
 
 
@@ -70,23 +72,15 @@ angular.module('im.routes', [])
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
-
-
+        controller: 'myattentionaaaSelectCtrl',
+        cache: false
       })
 
 
-      .state('myAttention1', {
-
-        url: '/myAttentionSelect',
-        cache: false,
-        templateUrl: 'templates/my_attention_select.html',
-        controller: 'myAttentionSelectCtrl'
-
-      })
 
 
       .state('personalSetting', {
-        url: '/personalSetting',
+        url: '/personalSetting/:id/:ssid',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
@@ -94,6 +88,7 @@ angular.module('im.routes', [])
       .state('groupSetting', {
         url: '/groupSetting',
         templateUrl: 'templates/group-setting.html',
+        controller: 'groupSettingCtrl'
       })
 
 
@@ -147,6 +142,13 @@ angular.module('im.routes', [])
         url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
         templateUrl: 'templates/contact-seventh.html',
         controller: 'ContactSeventhCtrl',
+        cache:false
+
+      })
+      .state('eighth', {
+        url: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname',
+        templateUrl: 'templates/contact-eighth.html',
+        controller: 'ContactEighthCtrl',
         cache:false
 
       })
@@ -228,7 +230,7 @@ angular.module('im.routes', [])
         url: '/searchdetail/:UserID',
         templateUrl: 'templates/searchDetail.html',
         controller: 'searchDetailCtrl',
-        cache: false
+        cache:false
       })
 
       .state('addnewpersonfirst', {
@@ -266,10 +268,37 @@ angular.module('im.routes', [])
         templateUrl: 'templates/searchLocal.html',
         controller: 'searchLocalCtrl'
       })
-      .state('historymessage',{
-        url:'/historymessage',
+
+      .state('attentionDetail', {
+        url: '/attentionDetail/:UserIDatten',
+        templateUrl: 'templates/attentionDetail.html',
+        controller: 'attentionDetailCtrl',
+        cache:false
+      })
+
+      .state('historyMessage', {
+        url: '/historyMessage/:id/:ssid',
         templateUrl: 'templates/historymessage.html',
-        controller: 'HistoryCtrl'
+        controller: 'historyMessageCtrl',
+        cache:false
+      })
+      .state('myinformation', {
+        url: '/myinformation/:UserIDfor',
+        templateUrl: 'templates/myinfomation.html',
+        controller: 'myinformationCtrl',
+        cache:false
+      })
+      .state('accountsettion', {
+        url: '/accountsettion/:UserIDset',
+        templateUrl: 'templates/acount-setting.html',
+        controller: 'accountsettionCtrl',
+        cache:false
+      })
+      .state('aboutours', {
+        url: '/aboutours/:UserIDabout',
+        templateUrl: 'templates/aboutours.html',
+        controller: 'aboutoursCtrl',
+        cache:false
       })
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
