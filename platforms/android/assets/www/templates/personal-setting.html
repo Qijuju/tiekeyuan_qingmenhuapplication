@@ -9,14 +9,14 @@
   <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
     <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
       <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-      <div class="vcenter" style="position: absolute;left: 47%;top: 57px">{{userName}}</div>
+      <div class="vcenter" style="position: absolute;left: 47%;top: 57px">{{jiename}}</div>
       <P style="font-size: 18px">{{userName}}</P>
 
     </div>
 
 
     <div class="row" style=" background-color: #ffffff; height: 80px">
-      <div class="col" align="center">
+      <div class="col" align="center" ng-click="gohistoryMessage()">
         <a >
           <ul>
             <li><img src="img/message.png" width="40" height="40"></li>
@@ -24,7 +24,7 @@
           </ul>
         </a>
       </div>
-      <div class="col" align="center">
+      <div class="col" align="center" ng-click="meizuo()">
         <a >
           <ul>
             <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
@@ -32,7 +32,7 @@
           </ul>
         </a>
       </div>
-      <div class="col" align="center">
+      <div class="col" align="center" ng-click="meizuo()">
         <a >
           <ul>
             <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
@@ -41,7 +41,7 @@
         </a>
       </div>
 
-      <div class="col" align="center" ng-click="gohistoryMessage()">
+      <div class="col" align="center" ng-click="meizuo()">
         <a >
           <ul>
             <li><img src="img/record.png" width="40" height="40"></li>
@@ -52,7 +52,7 @@
     </div>
 
     <div style="">
-      <button class="button button-block button-light" ng-click="addFriend1()">
+      <button class="button button-block button-light" ng-click="meizuo()">
         <i class="icon ion-ios-plus-outline"></i>&nbsp;&nbsp;添加新成员
       </button>
     </div>
@@ -60,12 +60,12 @@
     <div>
       <ul>
         <Li>
-          <ion-toggle>
+          <ion-toggle ng-click="meizuo()">
             聊天置顶
           </ion-toggle>
         </Li>
         <Li>
-          <ion-toggle>
+          <ion-toggle ng-click="meizuo()">
             消息免打扰
           </ion-toggle>
         </Li>

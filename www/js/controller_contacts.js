@@ -846,8 +846,8 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $scope.persondsfs = $contacts.getPersonDetail();
         //alert($scope.persondsfs.IsAttention+"guanzhu");
-        if ($scope.persondsfs.UserName.length > 3) {
-          $scope.simpleName = $scope.persondsfs.UserName.substr(1, 2);
+        if ($scope.persondsfs.UserName.length > 2) {
+          $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
         } else {
           $scope.simpleName = $scope.persondsfs.UserName;
 
@@ -915,7 +915,6 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.delete', function (event) {
       $scope.$apply(function () {
         $scope.persondsfs.IsAttention = $addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
 
@@ -928,12 +927,12 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.add', function (event) {
       $scope.$apply(function () {
         $scope.persondsfs.IsAttention = $addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+
       })
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$contacts) {
+  .controller('GroupCtrl', function ($scope,$contacts,$ToastUtils) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -964,7 +963,9 @@ angular.module('contacts.controllers', [])
     $scope.jumpGroupChat=function () {
 
     };
-
+    $scope.meizuo=function () {
+      $ToastUtils.showToast("此功能暂未开发");
+    }
 
 
 
@@ -1059,13 +1060,6 @@ angular.module('contacts.controllers', [])
 
 // 点击按钮触发，或一些其他的触发条件
     $scope.tanchuang = function(phonenumber,name) {
-      //打电话
-      $scope.call = function(phonenumber1,name) {
-        $phonepluin.call(phonenumber1,name);
-      };
-      $scope.sms = function(phonenumber1) {
-        $phonepluin.sms(phonenumber1);
-      };
       // 显示操作表
       $ionicActionSheet.show({
         buttons: [
@@ -1076,9 +1070,17 @@ angular.module('contacts.controllers', [])
         cancelText: '取消',
         buttonClicked: function(index) {
           if(index==0){
-            $scope.call(phonenumber);
+            if (phonenumber!=""){
+              $phonepluin.call(0, phonenumber, name,0);
+            }else {
+              $ToastUtils.showToast("电话号码为空");
+            }
           }else {
-            $scope.sms(phonenumber);
+            if (phonenumber!=""){
+              $phonepluin.sms(0,phonenumber, name, 0);
+            }else {
+              $ToastUtils.showToast("电话号码为空");
+            }
           }
           return true;
         }
@@ -1088,7 +1090,7 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope) {
 
     //点击人员进入人员详情
     $scope.jumpattenDetial = function (id) {
@@ -1105,10 +1107,19 @@ angular.module('contacts.controllers', [])
         $scope.nameattention=$searchdata.getPersonDetail().user.UserName;
         $scope.idattention=$searchdata.getPersonDetail().user.UserID;
 
+        $scope.createchat = function (id, name) {
+          $rootScope.isPersonSend = 'true';
+          alert(id + name);
+          $state.go('tab.message', {
+            "id": id,
+            "sessionid": name
+          });
+        };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
             { text: '打电话' },
+            { text: '发消息' },
             { text: '发短信'}
           ],
           titleText: $scope.nameattention,
@@ -1120,6 +1131,8 @@ angular.module('contacts.controllers', [])
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
+            }else if(index==1){
+              $scope.createchat($scope.idattention,$scope.nameattention);
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
@@ -1131,7 +1144,7 @@ angular.module('contacts.controllers', [])
           }
 
         });
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+
       })
     });
     // 点击按钮触发，或一些其他的触发条件
@@ -1196,24 +1209,7 @@ angular.module('contacts.controllers', [])
     }
     //拿上一个页面传的参数
     $scope.UserIDattention = $stateParams.UserIDatten;
-    // $scope.$on('$ionicView.loaded', function() {
-    //   $scope.youmeiyou = $stateParams.youmeiyou;
-    //   alert("111详情界面有没有啊"+$scope.youmeiyou);
-    // });
-    // $scope.youmeiyou = $stateParams.youmeiyou;
-    // alert("拿到的数据是这样的"+$scope.youmeiyou);
 
-
-    // $scope.$on('personyes.updateno',function (event) {
-    //   alert("走这了2");
-    //   $scope.$apply(function () {
-    //     alert("走这了3");
-    //     $scope.youmeiyou=$searchdata.getYoumeiyou();
-    //     alert($scope.youmeiyou+"到底");
-    //     // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
-    //
-    //   })
-    // });
 
 
     //获取人员详细信息
@@ -1221,7 +1217,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('person.update',function (event) {
       $scope.$apply(function () {
         $scope.personsdetail111=$searchdata.getPersonDetail().user;
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+
       })
     });
 
@@ -1254,7 +1250,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.delete',function (event) {
       $scope.$apply(function () {
         $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
+
       })
     });
 
@@ -1267,7 +1263,6 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.add',function (event) {
       $scope.$apply(function () {
         $scope.personsdetail111.IsAttention=$addattentionser.getaddAttention111();
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
 

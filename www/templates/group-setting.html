@@ -14,7 +14,7 @@
     </div>
     <div class="row" style=" background-color: #ffffff; height: 80px">
 
-      <div class="col" align="center" >
+      <div class="col" align="center" ng-click="meizuo()">
         <a>
           <ul>
             <li><img src="img/im_chat_btn_announce.png" width="40" height="40"></li>
@@ -22,7 +22,7 @@
           </ul>
         </a>
       </div>
-      <div class="col" align="center" ng-click="gohistoryMessage()">
+      <div class="col" align="center" ng-click="meizuo()">
         <a >
           <ul>
             <li><img src="img/message.png" width="40" height="40"></li>
@@ -30,7 +30,7 @@
           </ul>
         </a>
       </div>
-      <div class="col" align="center">
+      <div class="col" align="center" ng-click="meizuo()">
         <a >
           <ul>
             <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
@@ -38,7 +38,7 @@
           </ul>
         </a>
       </div>
-      <div class="col" align="center">
+      <div class="col" align="center" ng-click="meizuo()">
         <a>
           <ul>
             <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
@@ -82,22 +82,22 @@
     <div>
       <ul>
         <Li>
-          <ion-toggle >
+          <ion-toggle ng-click="meizuo()">
             聊天置顶
           </ion-toggle>
         </Li>
         <Li>
-          <ion-toggle >
+          <ion-toggle ng-click="meizuo()">
             消息免打扰
           </ion-toggle>
         </Li>
-        <li class="item" >
+        <li class="item" ng-click="meizuo()">
           <a href="#/tab/message">清空聊天记录</a>
         </li>
       </ul>
     </div>
 
-    <div style="margin-bottom: 10px">
+    <div style="margin-bottom: 10px" ng-click="meizuo()">
       <button class="button button-block button-positive" ng-click="addFriend()">
         删除并退出
       </button>
