@@ -67,7 +67,7 @@ angular.module('message.services', [])
       },
 
 
-      sendMsg:function (topic,content,id,account) {
+      sendMsg:function (topic,content,id,account,sqlid) {
         var messageDetail={};
         messageDetail._id=id;
         messageDetail.sessionid=id;

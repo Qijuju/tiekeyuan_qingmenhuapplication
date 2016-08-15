@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('login.controllers', [])
-  
+
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
   })
@@ -128,10 +128,19 @@ angular.module('login.controllers', [])
         }
         $mqtt.startMqttChat(msg);
         $mqtt.setLogin(true);
+        $scope.getUserName();
         $state.go('tab.message');
       }, function (err) {
         alert(message);
         $ionicLoading.hide();
       });
     }
+
+    //登录成功之后获取用户姓名（昵称）
+    $scope.getUserName = function () {
+      $mqtt.getUserInfo(function (userInfo) {
+        $rootScope.userName = userInfo.userName;
+      },function (err) {
+      });
+    };
   })

@@ -12,7 +12,8 @@ angular.module('message.controllers', [])
     //对话框名称
     $scope.myUserID = $rootScope.rootUserId;
     $scope.userId = $stateParams.id;
-    $scope.viewtitle = $stateParams.ssid;
+    $scope.viewtitle = $stateParams.ssid;//接收方姓名
+    $scope.localusr=$rootScope.userName;
     // alert($scope.viewtitle+"抬头"+$scope.myUserID);
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.userId, function (data) {
       //根据不同用户，显示聊天记录，查询数据库以后，不论有没有数据，都要清楚之前数组里面的数据
@@ -59,9 +60,9 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleMsg = function (topic, content, id, account) {
+    $scope.sendSingleMsg = function (topic, content, id, account,sqlid) {
       $mqtt.getMqtt().getTopic(topic, 'U', function (userTopic) {
-        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account);
+        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account,sqlid);
         $scope.send_content = "";
         keepKeyboardOpen();
       }, function (msg) {
@@ -158,7 +159,7 @@ angular.module('message.controllers', [])
         $greendao.queryData('ChatListService', 'where id=?', $scope.userId, function (data) {
           var chatitem = {};
           chatitem.id = data[0].id;
-          chatitem.chatName = $scope.chatName;
+          chatitem.chatName = data[0].chatName;
           chatitem.imgSrc = $scope.imgSrc;
           chatitem.lastText = $scope.lastText;
           chatitem.count = '0';
@@ -390,7 +391,7 @@ angular.module('message.controllers', [])
             $scope.unread = $scope.lastCount;
             var chatitem = {};
             chatitem.id = data[0].id;
-            chatitem.chatName = $scope.chatName;
+            chatitem.chatName = data[0].chatName;
             chatitem.imgSrc = $scope.imgSrc;
             chatitem.lastText = $scope.lastText;
             chatitem.count = $scope.unread;
@@ -440,7 +441,7 @@ angular.module('message.controllers', [])
         $greendao.queryData('ChatListService', 'where CHAT_NAME=? and count !=0', $scope.chatName, function (data) {
           var chatitem = {};
           chatitem.id = data[0].id;
-          chatitem.chatName = $scope.chatName;
+          chatitem.chatName = data[0].chatName;
           chatitem.imgSrc = $scope.imgSrc;
           chatitem.lastText = $scope.lastText;
           chatitem.count = $scope.unread;
