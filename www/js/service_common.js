@@ -43,7 +43,7 @@ angular.module('common.services', [])
     };
 
   })
-  
+
   .factory('$api', function () {//系统接口。
     var api;
     return {
@@ -168,3 +168,16 @@ angular.module('common.services', [])
       }
     };
   })
+
+  .factory('$ToastUtils', function () {//系统接口。
+    var toast_utils;
+    document.addEventListener('deviceready',function () {
+      toast_utils = cordova.require('ToastUtils.toast_utils');
+    });
+    return{
+      showToast:function(content,success, error) {
+        toast_utils.showToast(content,success,error);
+      }
+    }
+  })
+

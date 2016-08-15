@@ -601,8 +601,12 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams) {
+  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory) {
+    $scope.backAny = function () {
 
+      $ionicHistory.goBack();
+
+    };
     $scope.gohistoryMessage = function () {
       alert("要跳了")
       $state.go("historyMessage");

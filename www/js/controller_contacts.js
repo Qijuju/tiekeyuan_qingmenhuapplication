@@ -1088,15 +1088,8 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils) {
 
-    // $myattentionser.getAttentionList();
-    // $scope.$on('attention.update',function (event) {
-    //   $scope.$apply(function () {
-    //     $scope.contactsListatten=$myattentionser.getAttentionaaList();
-    //     //alert($scope.localpersons)
-    //   })
-    // });
     //点击人员进入人员详情
     $scope.jumpattenDetial = function (id) {
       $state.go("person", {
@@ -1110,14 +1103,8 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $scope.phoneattention=$searchdata.getPersonDetail().user.Mobile;
         $scope.nameattention=$searchdata.getPersonDetail().user.UserName;
-//打电话
-        $scope.call = function(phonenumber,name) {
-          $phonepluin.call(phonenumber,name);
-        };
-        //发短信
-        $scope.sms = function(phonenumber) {
-          $phonepluin.sms(phonenumber);
-        };
+        $scope.idattention=$searchdata.getPersonDetail().user.UserID;
+
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
@@ -1128,9 +1115,17 @@ angular.module('contacts.controllers', [])
           cancelText: '取消',
           buttonClicked: function(index) {
             if(index==0){
-              $scope.call($scope.phoneattention,$scope.nameattention);
+              if ($scope.phoneattention!=""){
+                $phonepluin.call($scope.idattention, $scope.phoneattention, $scope.nameattention,1);
+              }else {
+                $ToastUtils.showToast("电话号码为空");
+              }
             }else {
-              $scope.sms($scope.phoneattention);
+              if ($scope.phoneattention!=""){
+                $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
+              }else {
+                $ToastUtils.showToast("电话号码为空");
+              }
             }
             return true;
           }

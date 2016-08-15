@@ -252,8 +252,8 @@ angular.module('contacts.services', [])
 
       call: function (id, phone, name,querytype) {
 
-
-        if(querytype==1){
+        alert("进入打电话功能");
+        if(querytype===1){
           $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
             if (msg.length > 0) {
               //如果大于0说明已经村上去一次
@@ -273,7 +273,7 @@ angular.module('contacts.services', [])
               });
             } else {
               //没有查到说明是第一次存到里面
-
+              alert("进来了打电话存");
               var fistTopContacts = {};
               fistTopContacts._id = id;
               fistTopContacts.phone = phone;
@@ -281,6 +281,8 @@ angular.module('contacts.services', [])
               fistTopContacts.type = "1";  //常用联系人的类型  1 代表打电话
               fistTopContacts.count = 1;
               fistTopContacts.when = 0;
+              alert("进来了打电话入");
+
               $greendao.saveObj('TopContactsService', fistTopContacts, function (data) {
               }, function (err) {
 
@@ -878,7 +880,7 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('persons.update');
 
         },function (msg) {
-          alert(msg);
+          $rootScope.$broadcast('persons.update');
         });
       },
 
