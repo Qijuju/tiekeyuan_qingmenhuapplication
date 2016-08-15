@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('login.controllers', [])
-  
+
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
   })
@@ -25,7 +25,8 @@ angular.module('login.controllers', [])
         }
       }, function (msg) {
       });
-      if (!$mqtt.isLogin()) {
+      if ($mqtt.isLogin()) {
+        alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           if (msg != null && msg != '') {
             $mqtt.startMqttChat(msg);
@@ -95,10 +96,9 @@ angular.module('login.controllers', [])
           loginM();
         }
       }, function (message) {
-        //alert(message);
-        $scope.name = response;
+        alert(message);
         $ionicLoading.hide();
-        $state.go('tab.message');
+        // $state.go('tab.message');
       });
 
     };

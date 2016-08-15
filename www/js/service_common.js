@@ -43,7 +43,7 @@ angular.module('common.services', [])
     };
 
   })
-  
+
   .factory('$api', function () {//系统接口。
     var api;
     return {

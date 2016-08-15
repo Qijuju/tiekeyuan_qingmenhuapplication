@@ -46,6 +46,7 @@ angular.module('message.services', [])
     var size;
     var count = 0;
     var groupCount=0;
+    var isLogin = false;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');

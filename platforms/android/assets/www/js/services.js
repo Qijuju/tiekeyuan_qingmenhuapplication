@@ -167,6 +167,7 @@ angular.module('starter.services', [])
     var size;
     var count = 0;
     var groupCount=0;
+    var isLogin = false;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -945,7 +946,7 @@ angular.module('starter.services', [])
   //@modifytime 2016.08.13
   //@detail:
   //@author:sunlinsong
-  
+
   .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
 
     var loginId;
