@@ -3,7 +3,7 @@
  */
 angular.module('contacts.controllers', [])
   //常用联系人
-  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts) {
+  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
@@ -22,7 +22,6 @@ angular.module('contacts.controllers', [])
 
       $saveMessageContacts.saveMessageContacts(id,phone,name);
       $rootScope.isPersonSend = 'true';
-      alert(id + name);
       $state.go('tab.message', {
         "id": id,
         "sessionid": name
@@ -45,9 +44,18 @@ angular.module('contacts.controllers', [])
           if (index == 0) {
             $scope.createchat(id,phone, name);
           } else if (index == 1) {
-            $phonepluin.call(id, phone, name, type);
+            if(phone!=""){
+              $phonepluin.call(id, phone, name, type);
+            }else {
+              $ToastUtils.showToast("电话为空")
+            }
           } else {
-            $phonepluin.sms(id, phone, name, type)
+            if(phone!=""){
+              $phonepluin.sms(id, phone, name, type)
+            }else {
+              $ToastUtils.showToast("电话为空")
+
+            }
           }
           return true;
         }
@@ -58,7 +66,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils) {
 
 
     $contacts.topContactsInfo();
@@ -106,9 +114,18 @@ angular.module('contacts.controllers', [])
           if (index == 0) {
             $scope.createchat(id, phone,name);
           } else if (index == 1) {
-            $phonepluin.call(id, phone, name, type);
+            if(phone!=""){
+              $phonepluin.call(id, phone, name, type);
+            }else {
+              $ToastUtils.showToast("电话为空")
+            }
           } else {
-            $phonepluin.sms(id, phone, name, type)
+            if(phone!=""){
+              $phonepluin.sms(id, phone, name, type)
+            }else {
+              $ToastUtils.showToast("电话为空")
+
+            }
           }
           return true;
         }
@@ -120,7 +137,6 @@ angular.module('contacts.controllers', [])
       $saveMessageContacts.saveMessageContacts(id,phone,name);
 
       $rootScope.isPersonSend = 'true';
-      alert(id + name);
       $state.go('tab.message', {
         "id": id,
         "sessionid": name
@@ -211,7 +227,7 @@ angular.module('contacts.controllers', [])
     }
 
     //在二级目录跳转到三级目录
-    $scope.jumpThird = function (id, pname) {
+    $scope.jumpThird = function (id, pname,number) {
       $state.go("third", {
         "contactId": id,
         "secondname": pname
@@ -733,7 +749,6 @@ angular.module('contacts.controllers', [])
           }
         }
         $scope.count2 = $contacts.getCount12();
-        alert("七级的数字" + $scope.count2);
         if ($scope.count2 > 0) {
           var oldusers = $contacts.getDeptSeventhInfo().userList;
 
@@ -881,7 +896,6 @@ angular.module('contacts.controllers', [])
           }
         }
         $scope.count2 = $contacts.getCount14();
-        alert("八级的数字" + $scope.count2);
         if ($scope.count2 > 0) {
           var oldusers = $contacts.getDeptEighthInfo().userList;
 
@@ -902,7 +916,6 @@ angular.module('contacts.controllers', [])
 
         $scope.parentID = $contacts.getDeptEighthInfo().deptID;
         $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
-        alert( $scope.deptinfo8+"八级目录的名字");
 
 
         $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
@@ -1000,7 +1013,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils) {
 
     $scope.userId = $stateParams.userId;
 
@@ -1009,7 +1022,6 @@ angular.module('contacts.controllers', [])
     $scope.$on('personDetail.update', function (event) {
       $scope.$apply(function () {
         $scope.persondsfs = $contacts.getPersonDetail();
-        //alert($scope.persondsfs.IsAttention+"guanzhu");
         if ($scope.persondsfs.UserName.length > 2) {
           $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
         } else {
@@ -1032,7 +1044,7 @@ angular.module('contacts.controllers', [])
       if (phone != "") {
         $phonepluin.call(id, phone, name, type);
       } else {
-        alert("电话为空");
+        $ToastUtils.showToast("电话为空")
       }
     }
 
@@ -1043,7 +1055,7 @@ angular.module('contacts.controllers', [])
 
         $phonepluin.sms(id, phone, name, type);
       } else {
-        alert("电话为空");
+        $ToastUtils.showToast("电话为空")
       }
     };
 
@@ -1054,9 +1066,7 @@ angular.module('contacts.controllers', [])
         $savaLocalPlugin.insert(name, phone);
 
       } else {
-
-        alert("姓名或者电话为空");
-
+        $ToastUtils.showToast("姓名或者电话为空")
       }
     };
 
@@ -1066,7 +1076,6 @@ angular.module('contacts.controllers', [])
       $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
 
       $rootScope.isPersonSend = 'true';
-      alert(id + sessionid);
       $state.go('tab.message', {
         "id": id,
         "sessionid": sessionid
@@ -1257,7 +1266,7 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
 
     //点击人员进入人员详情
     $scope.jumpattenDetial = function (id) {
@@ -1274,9 +1283,9 @@ angular.module('contacts.controllers', [])
         $scope.nameattention=$searchdata.getPersonDetail().user.UserName;
         $scope.idattention=$searchdata.getPersonDetail().user.UserID;
 
-        $scope.createchat = function (id, name) {
+        $scope.createchat = function (id, phone,name) {
+          $saveMessageContacts.saveMessageContacts(id,phone,name)
           $rootScope.isPersonSend = 'true';
-          alert(id + name);
           $state.go('tab.message', {
             "id": id,
             "sessionid": name
@@ -1299,7 +1308,7 @@ angular.module('contacts.controllers', [])
                 $ToastUtils.showToast("电话号码为空");
               }
             }else if(index==1){
-              $scope.createchat($scope.idattention,$scope.nameattention);
+              $scope.createchat($scope.idattention,$scope.phoneattention,$scope.nameattention);
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
@@ -1321,51 +1330,14 @@ angular.module('contacts.controllers', [])
 
     };
 
-    // //取消关注
-    // $scope.removeattention=function (id) {
-    //   var deletemembersArr=[];
-    //   deletemembersArr.push(id);
-    //   $api.removeAttention(deletemembersArr, function (msg) {
-    //     alert("取消关注成功");
-    //   }, function (msg) {
-    //     alert("取消关注失败");
-    //   });
-    //
-    //   $myattentionser.getAttentionList();
-    //   $scope.$on('attention.update',function (event) {
-    //     $scope.$apply(function () {
-    //       $scope.contactsListatten=$myattentionser.getAttentionaaList();
-    //       //alert($scope.localpersons)
-    //     })
-    //   });
-    // }
+
     $myattentionser.getAttentionList();
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
         $scope.contactsListatten=$myattentionser.getAttentionaaList();
-        //alert($scope.localpersons)
       })
     });
-    // 加载效果
-    // $ionicLoading.show({
-    //  content: 'Loading',
-    //   animation: 'silde-in-up',
-    //   showBackdrop: true,
-    //   maxWidth: 1,
-    //   showDelay: 0
-    // });
 
-    // //完成加载
-    // $timeout(function () {
-    //   $ionicLoading.hide();
-    //   $myattentionser.getAttentionList();
-    //   $scope.$on('attention.update',function (event) {
-    //     $scope.$apply(function () {
-    //       $scope.contactsListatten=$myattentionser.getAttentionaaList();
-    //       //alert($scope.localpersons)
-    //     })
-    //   });
-    // }, 2000);
 
 
   })
@@ -1389,8 +1361,7 @@ angular.module('contacts.controllers', [])
     });
 
 
-    // $scope.number=$searchdata.getPersonDetail().user.Mobile;
-    // alert($scope.number)
+
 
     //存本地
     $scope.insertPhoneSearch = function(name,phonenumber) {

@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('search.controllers', [])
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
 
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
@@ -84,7 +84,9 @@ angular.module('search.controllers', [])
         $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
         $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
 
-        $scope.createchat = function (id, name) {
+        $scope.createchat = function (id,phone, name) {
+          $saveMessageContacts.saveMessageContacts(id,phone,name);
+
           $rootScope.isPersonSend = 'true';
           alert(id + name);
           $state.go('tab.message', {
@@ -109,7 +111,7 @@ angular.module('search.controllers', [])
                 $ToastUtils.showToast("电话号码为空");
               }
             }else if(index==1){
-              $scope.createchat($scope.idattention,$scope.nameattention);
+              $scope.createchat($scope.idattention,$scope.phoneattention,$scope.nameattention);
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);

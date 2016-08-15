@@ -252,7 +252,6 @@ angular.module('contacts.services', [])
 
       call: function (id, phone, name,querytype) {
 
-        alert("进入打电话功能");
         if(querytype===1){
           $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
             if (msg.length > 0) {
@@ -273,7 +272,6 @@ angular.module('contacts.services', [])
               });
             } else {
               //没有查到说明是第一次存到里面
-              alert("进来了打电话存");
               var fistTopContacts = {};
               fistTopContacts._id = id;
               fistTopContacts.phone = phone;
@@ -281,7 +279,6 @@ angular.module('contacts.services', [])
               fistTopContacts.type = "1";  //常用联系人的类型  1 代表打电话
               fistTopContacts.count = 1;
               fistTopContacts.when = 0;
-              alert("进来了打电话入");
 
               $greendao.saveObj('TopContactsService', fistTopContacts, function (data) {
               }, function (err) {
@@ -496,28 +493,29 @@ angular.module('contacts.services', [])
 
 
       //二级目录的数据 传入的id是一级目录的id
-      deptInfo: function (deptId) {
-        $api.getChild(deptId, secondCount, 10, function (msg) {
 
-          deptSecondInfo = msg;
-          count1 = msg.deptCount;
-          count2 = msg.userCount;
-          var parentid = msg.deptID;
-          //返回的一级目录的id ，也就是rootId
-          firstId = msg.deptID
-          $api.getDeparment(deptId, function (msg) {
-            //拿到root部门的详细信息
-            firstname = msg.deptInfo
+      deptInfo: function (deptId) {
+
+        $api.getDeparment(deptId, function (msg) {
+          //拿到root部门的详细信息
+          firstname = msg.deptInfo
+          $api.getChild(deptId, secondCount, 10, function (msg) {
+
+            deptSecondInfo = msg;
+            count1 = msg.deptCount;
+            count2 = msg.userCount;
+            //返回的一级目录的id ，也就是rootId
+            firstId = msg.deptID
             $rootScope.$broadcast('second.update');
             secondCount++;
+
           }, function (msg) {
+            count1 = 0;
+            count2 = 0;
+            $rootScope.$broadcast('second.update');
 
           });
-
         }, function (msg) {
-          count1 = 0;
-          count2 = 0;
-          $rootScope.$broadcast('second.update');
 
         });
 
@@ -542,27 +540,30 @@ angular.module('contacts.services', [])
 
       deptThirdInfo: function (deptId) {
 
-        $api.getChild(deptId, thirdCount, 10, function (msg) {
-          deptThirdInfo = msg;
-          secondId = msg.deptID;
-          count3 = msg.deptCount;
-          count4 = msg.userCount;
 
-          $api.getDeparment(secondId, function (msg) {
+        $api.getDeparment(deptId, function (msg) {
 
-            secondname = msg.deptInfo
+          secondname = msg.deptInfo
+          $api.getChild(deptId, thirdCount, 10, function (msg) {
+            deptThirdInfo = msg;
+            secondId = msg.deptID;
+            count3 = msg.deptCount;
+            count4 = msg.userCount;
             $rootScope.$broadcast('third.update');
             thirdCount++;
+
+
+
           }, function (msg) {
+
+            count3 = 0;
+            count4 = 0;
+            $rootScope.$broadcast('third.update');
 
           });
 
 
         }, function (msg) {
-
-          count3 = 0;
-          count4 = 0;
-          $rootScope.$broadcast('third.update');
 
         });
 
@@ -586,30 +587,33 @@ angular.module('contacts.services', [])
 
       //四级目录的数据 传入的id是三级目录的id
 
-      deptForthInfo: function (deptId) {
 
-        $api.getChild(deptId, forthCount, 10, function (msg) {
-          deptForthInfo = msg;
-          thirdId = msg.deptID;
-          count5 = msg.deptCount;
-          count6 = msg.userCount;
-          $api.getDeparment(thirdId, function (msg) {
-            thirdname = msg.deptInfo
+      deptForthInfo: function (deptId) {
+        $api.getDeparment(deptId, function (msg) {
+          thirdname = msg.deptInfo
+          $api.getChild(deptId, forthCount, 10, function (msg) {
+            deptForthInfo = msg;
+            thirdId = msg.deptID;
+            count5 = msg.deptCount;
+            count6 = msg.userCount;
             $rootScope.$broadcast('forth.update');
             forthCount++;
-
           }, function (msg) {
-
+            count5 = 0;
+            count6 = 0;
+            $rootScope.$broadcast('forth.update');
           });
 
 
         }, function (msg) {
-          count5 = 0;
-          count6 = 0;
-          $rootScope.$broadcast('forth.update');
+
         });
 
+
+
       },
+
+
       getDeptForthInfo: function () {
         return deptForthInfo;
       },
@@ -628,30 +632,34 @@ angular.module('contacts.services', [])
 
       //五级目录的数据 传入的是四级目录的id
 
-      deptFifthInfo: function (deptId) {
 
-        $api.getChild(deptId, fifthCount, 10, function (msg) {
-          deptFifhtInfo = msg;
-          forthId = msg.deptID;
-          count7 = msg.deptCount;
-          count8 = msg.userCount;
-          $api.getDeparment(forthId, function (msg) {
-            forthname = msg.deptInfo
+      deptFifthInfo: function (deptId) {
+        $api.getDeparment(deptId, function (msg) {
+          forthname = msg.deptInfo
+          $api.getChild(deptId, fifthCount, 10, function (msg) {
+            deptFifhtInfo = msg;
+            forthId = msg.deptID;
+            count7 = msg.deptCount;
+            count8 = msg.userCount;
             $rootScope.$broadcast('fifth.update');
             fifthCount++;
 
-          }, function (msg) {
 
+          }, function (msg) {
+            count7 = 0;
+            count8 = 0;
+            $rootScope.$broadcast('fifth.update');
           });
 
-
         }, function (msg) {
-          count7 = 0;
-          count8 = 0;
-          $rootScope.$broadcast('fifth.update');
+
         });
 
       },
+
+
+
+
       getDeptFifthInfo: function () {
         return deptFifhtInfo;
       },
@@ -671,30 +679,35 @@ angular.module('contacts.services', [])
 
       //六级目录的数据 传入是是五级目录的id
 
+
+
       deptSixthInfo: function (deptId) {
 
-        $api.getChild(deptId, sixthCount, 10, function (msg) {
-          deptSixthInfo = msg;
-          fifthId = msg.deptID;
-          count9 = msg.deptCount;
-          count10 = msg.userCount;
-          $api.getDeparment(fifthId, function (msg) {
-            fifthname = msg.deptInfo
+        $api.getDeparment(deptId, function (msg) {
+          fifthname = msg.deptInfo
+          $api.getChild(deptId, sixthCount, 10, function (msg) {
+            deptSixthInfo = msg;
+            fifthId = msg.deptID;
+            count9 = msg.deptCount;
+            count10 = msg.userCount;
             $rootScope.$broadcast('sixth.update');
             sixthCount++;
           }, function (msg) {
+            count9 = 0;
+            count10 = 0;
+            $rootScope.$broadcast('sixth.update');
 
           });
 
-
         }, function (msg) {
-          count9 = 0;
-          count10 = 0;
-          $rootScope.$broadcast('sixth.update');
 
         });
 
+
+
       },
+
+
       getDeptSixthInfo: function () {
         return deptSixthInfo;
       },
@@ -713,26 +726,34 @@ angular.module('contacts.services', [])
 
       //七级目录的数据 传入是是六级目录的id
 
-      deptSeventhInfo: function (deptId) {
-        $api.getChild(deptId, seventhCount, 10, function (msg) {
-          deptSeventhInfo = msg;
-          sixthId = msg.deptID;
-          count11 = msg.deptCount;
-          count12 = msg.userCount;
 
-          $api.getDeparment(sixthId, function (msg) {
-            sixthname = msg.deptInfo
+
+      deptSeventhInfo: function (deptId) {
+
+        $api.getDeparment(deptId, function (msg) {
+          sixthname = msg.deptInfo
+          $api.getChild(deptId, seventhCount, 10, function (msg) {
+            deptSeventhInfo = msg;
+            sixthId = msg.deptID;
+            count11 = msg.deptCount;
+            count12 = msg.userCount;
             $rootScope.$broadcast('seventh.update');
             seventhCount++;
           }, function (err) {
+            count11 = 0;
+            count12 = 0;
+            $rootScope.$broadcast('seventh.update');
+          })
 
-          });
+
         }, function (err) {
-          count11 = 0;
-          count12 = 0;
-          $rootScope.$broadcast('seventh.update');
-        })
+
+        });
+
+
       },
+
+
 
       getDeptSeventhInfo: function () {
         return deptSeventhInfo;
@@ -751,26 +772,32 @@ angular.module('contacts.services', [])
 
 
       //八级目录传入的是七级目录的id
-      deptEighthInfo: function (deptId) {
-        $api.getChild(deptId, eighthCount, 10, function (msg) {
-          deptEighthInfo = msg;
-          seventhId = msg.deptID;
-          count13 = msg.deptCount;
-          count14 = msg.userCount;
 
-          $api.getDeparment(seventhId, function (msg) {
-            seventhname = msg.deptInfo
+
+      deptEighthInfo: function (deptId) {
+
+        $api.getDeparment(deptId, function (msg) {
+          seventhname = msg.deptInfo
+          $api.getChild(deptId, eighthCount, 10, function (msg) {
+            deptEighthInfo = msg;
+            seventhId = msg.deptID;
+            count13 = msg.deptCount;
+            count14 = msg.userCount;
             $rootScope.$broadcast('eighth.update');
             eighthCount++;
           }, function (err) {
+            count13 = 0;
+            count14 = 0;
+            $rootScope.$broadcast('eighth.update');
+          })
 
-          });
         }, function (err) {
-          count13 = 0;
-          count14 = 0;
-          $rootScope.$broadcast('eighth.update');
-        })
+
+        });
+
+
       },
+
 
       getDeptEighthInfo: function () {
         return deptEighthInfo;

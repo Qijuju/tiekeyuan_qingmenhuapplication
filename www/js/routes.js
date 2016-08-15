@@ -65,7 +65,8 @@ angular.module('im.routes', [])
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
-        controller: 'TopContactsCtrl'
+        controller: 'TopContactsCtrl',
+        cache:false
 
 
       })
