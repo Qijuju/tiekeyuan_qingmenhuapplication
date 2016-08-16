@@ -102,10 +102,11 @@ angular.module('login.controllers', [])
       });
 
     };
+    //获取当前用户的id
     var loginM = function () {
-      //获取当前用户的id
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;
+        alert("当前用户的id"+userID);
       }, function (err) {
 
       });

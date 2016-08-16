@@ -11,6 +11,8 @@ import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.MessagesService;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -105,6 +107,19 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if ("100".equals(result.getResultCode())) {
                                     Gson gson = new Gson();
                                     String json = gson.toJson(result, RSTlogin.class);
+                                    JSONObject newUserObj = new JSONObject(json);
+                                    String newuserID = newUserObj.getString("userID");//新登陆用户名
+//                                    System.out.println("新用户名"+newuserID);
+                                    String userID = getUserID();//旧用户名
+//                                    System.out.println("旧用户名"+userID);
+                                    //若前后两次用户名不一致,清楚本地数据库数据库缓存
+                                    if(!(newuserID.equals(userID))){
+                                        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+                                        ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+                                        messagesService.deleteAllData();
+                                        chatListService.deleteAllData();
+//                                        System.out.println("删除本地缓存成功");
+                                    }
                                     //保存登录信息
                                     SPUtils.save("login_info", json);
                                     try {
@@ -118,6 +133,8 @@ public class ThriftApiClient extends CordovaPlugin {
                             }
                         } catch (TException e) {
                             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

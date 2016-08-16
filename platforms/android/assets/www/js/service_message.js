@@ -108,7 +108,7 @@ angular.module('message.services', [])
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
-          arriveMessage._id=message._id;
+          arriveMessage._id='';
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
           arriveMessage.from=message.from;
@@ -125,6 +125,9 @@ angular.module('message.services', [])
           });
           if(message.type==="User"){
             count++;
+            // alert("接受消息的sessionid"+arriveMessage.sessionid);
+            $rootScope.firstSessionid=arriveMessage.sessionid;
+            // alert("存的对不对"+$rootScope.firstSessionid);
             danliao.push(arriveMessage);
           }else {
             groupCount++;
@@ -167,10 +170,10 @@ angular.module('message.services', [])
         alert("clear");
         groupCount=0;
       },
-      // getIsSuccess:function(isSuccess){
-      //   $rootScope.isSuccess=isSuccess;
-      //   alert($rootScope.isSuccess+"发送失败");
-      // },
+      getFirstReceiverSsid:function(){
+        alert($rootScope.firstSessionid+"save");
+        return $rootScope.firstSessionid;
+      },
 
 
       sendGroupMsg:function (topic,content,id) {

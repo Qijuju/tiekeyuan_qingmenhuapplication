@@ -26,7 +26,7 @@
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
       <div ng-repeat="msgSingle in msgs">
-        <div class="rj-message-wrap" ng-if="(msgSingle.from==='false')">
+        <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
           <img src="img/mike.png" class="rj-head-pic">
           <span class="rj-triangle-left"></span>
           <p class="rj-message">{{msgSingle.message}}</p>
