@@ -4,6 +4,16 @@
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
 
+    var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+    $scope.$on('$ionicView.afterEnter', function () {
+      keyboard.show();
+      document.getElementById("searchdata").focus();
+    });
+    $scope.onDrag = function () {
+      keyboard.close();
+    };
+
+
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.id=msg.userID;
