@@ -12,7 +12,7 @@ angular.module('message.services', [])
         var chatitem={};
         chatitem.id=$stateParams.id;
         chatitem.chatName=$stateParams.sessionid;
-        alert(chatitem.id+chatitem.chatName);
+        // alert(chatitem.id+chatitem.chatName);
         chatitem.imgSrc='';
         chatitem.lastText='';
         chatitem.count='';

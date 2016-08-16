@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('search.controllers', [])
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
 
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
@@ -80,29 +80,44 @@ angular.module('search.controllers', [])
     //点击头像弹窗
     $scope.$on('person.dianji',function (event) {
       $scope.$apply(function () {
-        $scope.phoneattention=$searchdatadianji.getPersonDetaildianji().user.Mobile;
-        $scope.nameattention=$searchdatadianji.getPersonDetaildianji().user.UserName;
-//打电话
-        $scope.call = function(phonenumber,name) {
-          $phonepluin.call(phonenumber,name);
-        };
-        //发短信
-        $scope.sms = function(phonenumber) {
-          $phonepluin.sms(phonenumber);
+        $scope.phoneattention=$searchdatadianji.getPersonDetaildianji().Mobile;
+        $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
+        $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
+
+        $scope.createchat = function (id,phone, name) {
+          $saveMessageContacts.saveMessageContacts(id,phone,name);
+
+          $rootScope.isPersonSend = 'true';
+          alert(id + name);
+          $state.go('tab.message', {
+            "id": id,
+            "sessionid": name
+          });
         };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
             { text: '打电话' },
+            { text: '发消息' },
             { text: '发短信'}
           ],
           titleText: $scope.nameattention,
           cancelText: '取消',
           buttonClicked: function(index) {
             if(index==0){
-              $scope.call($scope.phoneattention,$scope.nameattention);
+              if ($scope.phoneattention!=""){
+                $phonepluin.call($scope.idattention, $scope.phoneattention, $scope.nameattention,1);
+              }else {
+                $ToastUtils.showToast("电话号码为空");
+              }
+            }else if(index==1){
+              $scope.createchat($scope.idattention,$scope.phoneattention,$scope.nameattention);
             }else {
-              $scope.sms($scope.phoneattention);
+              if ($scope.phoneattention!=""){
+                $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
+              }else {
+                $ToastUtils.showToast("电话号码为空");
+              }
             }
             return true;
           }

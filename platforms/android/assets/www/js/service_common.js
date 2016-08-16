@@ -43,7 +43,7 @@ angular.module('common.services', [])
     };
 
   })
-  
+
   .factory('$api', function () {//系统接口。
     var api;
     return {
@@ -168,3 +168,61 @@ angular.module('common.services', [])
       }
     };
   })
+
+  .factory('$ToastUtils', function () {//系统接口。
+    var toast_utils;
+    document.addEventListener('deviceready',function () {
+      toast_utils = cordova.require('ToastUtils.toast_utils');
+    });
+    return{
+      showToast:function(content,success, error) {
+        toast_utils.showToast(content,success,error);
+      }
+    }
+  })
+
+.factory('$saveMessageContacts',function ($greendao) {
+
+  return{
+    saveMessageContacts:function (id,phone,name) {
+
+      $greendao.queryData("TopContactsService", 'where _id =?', id, function (msg) {
+        if (msg.length > 0) {
+          //如果大于0说明已经村上去一次
+          var messageCount = msg[0].count;
+          //取到值后再重新存一次
+          var queryTopContact = {};
+          queryTopContact._id = msg[0]._id;
+          queryTopContact.phone = msg[0].phone;
+          queryTopContact.name = msg[0].name;
+          queryTopContact.type = msg[0].type;
+          queryTopContact.count = messageCount + 1;
+          queryTopContact.when = 0;
+
+          $greendao.saveObj('TopContactsService', queryTopContact, function (data) {
+
+          }, function (err) {
+
+          });
+        }else{
+          var firstTopContact = {};
+          firstTopContact._id = id;
+          firstTopContact.phone = phone;
+          firstTopContact.name = name;
+          firstTopContact.type = "3";
+          firstTopContact.count =  1;
+          firstTopContact.when = 0;
+          $greendao.saveObj('TopContactsService', firstTopContact, function (data) {
+          }, function (err) {
+
+          });
+        }
+      })
+
+    }
+  }
+
+
+
+})
+
