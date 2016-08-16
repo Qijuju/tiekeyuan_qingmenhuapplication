@@ -174,20 +174,28 @@ public class MqttConnection {
 	 */
 	public void publish(String topic, MqttMessage message) throws MqttException{
 		if (mqttAsyncClient != null) {
-			mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
-				@Override
-				public void onSuccess(IMqttToken iMqttToken) {
+			try {
+				mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
+					@Override
+					public void onSuccess(IMqttToken iMqttToken) {
 
-				}
+					}
 
-				@Override
-				public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-					//发送中，消息发送失败，回调
-					Intent intent=new Intent();
-					intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-					context.sendBroadcast(intent);
-				}
-			});
+					@Override
+					public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+						//发送中，消息发送失败，回调
+						Intent intent=new Intent();
+						intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+						context.sendBroadcast(intent);
+					}
+				});
+			} catch (Exception e) {
+				//发送中，消息发送失败，回调
+				Intent intent=new Intent();
+				intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+				context.sendBroadcast(intent);
+				ToastUtil.showSafeToast("发送失败！");
+			}
 		}
 	}
 
@@ -199,16 +207,19 @@ public class MqttConnection {
 	 * @throws MqttException
 	 */
 	public void closeConnection() throws MqttException {
-		if (receiver != null) {
-			context.unregisterReceiver(receiver);
-			receiver = null;
-		}
 		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.disconnect();
+			mqttAsyncClient.disconnect(0);
 			if (mqttAsyncClient != null) {
 				mqttAsyncClient.close();
 				mqttAsyncClient = null;
 			}
+		} else if (mqttAsyncClient != null) {
+			mqttAsyncClient.close();
+			mqttAsyncClient = null;
+		}
+		if (receiver != null) {
+			context.unregisterReceiver(receiver);
+			receiver = null;
 		}
 	}
 

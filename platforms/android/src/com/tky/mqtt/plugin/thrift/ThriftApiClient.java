@@ -1,16 +1,14 @@
 package com.tky.mqtt.plugin.thrift;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -111,6 +109,10 @@ public class ThriftApiClient extends CordovaPlugin {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                } else if ("104".equals(result.getResultCode())) {
+                                    setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("105".equals(result.getResultCode())) {
+                                    setResult("用户在不常用的设备上登录！", PluginResult.Status.ERROR, callbackContext);
                                 } else {
                                     setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
                                 }

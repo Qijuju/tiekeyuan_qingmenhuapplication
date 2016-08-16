@@ -18,6 +18,10 @@ public class MqttMessageCallback implements MqttCallback {
 
 	private Context context;
 	private final MqttConnection mqttAsyncClient;
+	/**
+	 * 重连次数
+	 */
+	private static int count = 0;
 
 	public MqttMessageCallback(Context context, MqttConnection mqttAsyncClient) {
 		this.context = context;
@@ -29,7 +33,12 @@ public class MqttMessageCallback implements MqttCallback {
 		Log.d("reconnect", "断掉了，哥们~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
 		if (NetUtils.isConnect(context)) {
 			try {
-				mqttAsyncClient.reconnect();
+				count++;
+				if (count <= 5) {
+					mqttAsyncClient.reconnect();
+				} else {
+					ToastUtil.showSafeToast("异常连接MQTT，请重新进行登录！");
+				}
 			} catch (MqttException e) {
 				e.printStackTrace();
 			}

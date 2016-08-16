@@ -8,6 +8,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
+    $mqtt.setLogin(false);
     $scope.name = "";
     $scope.password = "";
 
@@ -96,10 +97,9 @@ angular.module('login.controllers', [])
           loginM();
         }
       }, function (message) {
-        //alert(message);
-        $scope.name = response;
+        alert(message);
         $ionicLoading.hide();
-        $state.go('tab.message');
+        // $state.go('tab.message');
       });
 
     };

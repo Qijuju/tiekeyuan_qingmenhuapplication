@@ -8,6 +8,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
+    $mqtt.setLogin(false);
     $scope.name = "";
     $scope.password = "";
 
