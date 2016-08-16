@@ -289,7 +289,6 @@ angular.module('message.services', [])
           historymessageduifang=message;
           $rootScope.$broadcast('historymsg.duifang');
         },function (message) {
-          alert("获取失败");
           $rootScope.$broadcast('historymsg.duifang');
         });
       },

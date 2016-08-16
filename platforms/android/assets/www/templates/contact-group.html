@@ -6,12 +6,13 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class=" button button-icon ">发起聊天</button>
+      <button class=" button button-icon "  ng-click="meizuo()">发起聊天</button>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false"  >
         <ion-list>
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="jumpGroupChat()">
+          <!--ng-click="jumpGroupChat()"-->
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="meizuo()">
             <img src="img/default_org_icon.png">
             <h2>{{deptinfo}}</h2>
             <p>{{groupCount}}人</p>

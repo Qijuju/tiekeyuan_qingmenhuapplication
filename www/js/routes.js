@@ -65,7 +65,8 @@ angular.module('im.routes', [])
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
-        controller: 'TopContactsCtrl'
+        controller: 'TopContactsCtrl',
+        cache:false
 
 
       })
@@ -76,7 +77,7 @@ angular.module('im.routes', [])
         cache: false
       })
 
-      
+
 
 
       .state('personalSetting', {
@@ -142,6 +143,13 @@ angular.module('im.routes', [])
         url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
         templateUrl: 'templates/contact-seventh.html',
         controller: 'ContactSeventhCtrl',
+        cache:false
+
+      })
+      .state('eighth', {
+        url: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname',
+        templateUrl: 'templates/contact-eighth.html',
+        controller: 'ContactEighthCtrl',
         cache:false
 
       })
