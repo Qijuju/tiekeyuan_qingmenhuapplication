@@ -121,6 +121,12 @@ angular.module('my.controllers', [])
       $mqtt.getMqtt().getString('name', function (message) {
         if (message != null && message != '') {
           $scope.name = message;
+          if ($scope.name.length>2){
+            $scope.jiename=$scope.name.substring(($scope.name.length-2),$scope.name.length);
+          }else {
+            $scope.jiename=$scope.name
+          }
+
         }
       }, function (message) {
         alert(message);
@@ -179,7 +185,10 @@ angular.module('my.controllers', [])
     });
 
   })
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils) {
+    $scope.meizuo=function () {
+      $ToastUtils.showToast("此功能暂未开发");
+    }
     $scope.UserIDsethou = $stateParams.UserIDset;
     $scope.goAcount = function () {
       $state.go("tab.account");

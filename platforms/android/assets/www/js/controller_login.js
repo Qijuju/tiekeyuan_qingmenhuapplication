@@ -129,10 +129,19 @@ angular.module('login.controllers', [])
         }
         $mqtt.startMqttChat(msg);
         $mqtt.setLogin(true);
+        $scope.getUserName();
         $state.go('tab.message');
       }, function (err) {
         alert(message);
         $ionicLoading.hide();
       });
     }
+
+    //登录成功之后获取用户姓名（昵称）
+    $scope.getUserName = function () {
+      $mqtt.getUserInfo(function (userInfo) {
+        $rootScope.userName = userInfo.userName;
+      },function (err) {
+      });
+    };
   })

@@ -46,7 +46,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
         BaseDao obj = null;
         if ("MessagesService".equals(services)) {
             Messages message = new Messages();
-            message.set_id(UUID.randomUUID().toString());
+            if("".equals(jsonobj.getString("_id"))){
+                message.set_id(UUID.randomUUID().toString());
+            }else{
+                message.set_id(jsonobj.getString("_id"));
+            }
+
             message.setSessionid(jsonobj.getString("sessionid"));
             message.setType(jsonobj.getString("type"));
             message.setFrom(jsonobj.getString("from"));
@@ -283,7 +288,17 @@ public class GreenDaoPlugin extends CordovaPlugin {
             BaseInterface anInterface = getInterface(services);
             BaseDao daoObj = getResult(services, jsonobj);
             anInterface.saveObj(daoObj);
-            setResult("success", PluginResult.Status.OK, callbackContext);
+            if (daoObj instanceof Messages) {
+                String isFailure = jsonobj.getString("isFailure");
+                if ("true".equals(isFailure)) {
+                    Messages msg = (Messages) daoObj;
+                    setResult(msg.get_id(), PluginResult.Status.OK, callbackContext);
+                } else {
+                    setResult("success", PluginResult.Status.OK, callbackContext);
+                }
+            } else {
+                setResult("success", PluginResult.Status.OK, callbackContext);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
