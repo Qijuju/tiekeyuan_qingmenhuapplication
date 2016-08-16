@@ -30,78 +30,41 @@
 }
 
 .circle1 {
-  background: none repeat scroll 0 0 #c8d8ff;
-  border-radius: 30px 30px 30px 30px;
+  background: none repeat scroll 0 0 #02b5bb;
+  border-radius: 50%;
   color: #FFFFFF;
-  padding:13px 10px;
+  padding: 9px 6px;
   position: absolute;
 }
 
 .circle2{
-  background: none repeat scroll 0 0 #ffa09e;
-  border-radius: 30px 30px 30px 30px;
+  background: none repeat scroll 0 0 #9d55b8;
+  border-radius: 50%;
   color: #FFFFFF;
-  padding:13px 10px;
+  padding: 9px 6px;
   position: absolute;
 }
 
 .circle3{
-  background: none repeat scroll 0 0 #cf69ff;
-  border-radius: 30px 30px 30px 30px;
+  background: none repeat scroll 0 0 #ea8010;
+  border-radius: 50%;
   color: #FFFFFF;
-  padding:13px 10px;
+  padding: 9px 6px;
   position: absolute;
 }
 
 .circle4{
-  background: none repeat scroll 0 0 #6aff60;
-  border-radius: 30px 30px 30px 30px;
+  background: none repeat scroll 0 0 #84cd30;
+  border-radius: 50%;
   color: #FFFFFF;
-  padding:13px 10px;
+  padding: 9px 6px;
   position: absolute;
 }
 
 .circle5{
-  background: none repeat scroll 0 0 #ffe93e;
-  border-radius: 30px 30px 30px 30px;
+  background: none repeat scroll 0 0 #eb67bb;
+  border-radius: 50%;
   color: #FFFFFF;
-  padding:13px 10px;
-  position: absolute;
-}
-
-.circle6{
-  background: none repeat scroll 0 0 #19ffd3;
-  border-radius: 30px 30px 30px 30px;
-  color: #FFFFFF;
-  padding:13px 10px;
-  position: absolute;
-}
-
-.circle7{
-  background: none repeat scroll 0 0 #ff6258;
-  border-radius: 30px 30px 30px 30px;
-  color: #FFFFFF;
-  padding:13px 10px;
-  position: absolute;
-}
-.circle8{
-  background: none repeat scroll 0 0 #ff7f21;
-  border-radius: 30px 30px 30px 30px;
-  color: #FFFFFF;
-  padding:13px 10px;
-  position: absolute;
-}
-.circle9{
-  background: none repeat scroll 0 0 #bcff6f;
-  border-radius: 30px 30px 30px 30px;
-  color: #FFFFFF;
-  padding:13px 10px;
-  position: absolute;
-}
-.circle0{
-  background: none repeat scroll 0 0 #899eff;
-  border-radius: 30px 30px 30px 30px;
-  color: #FFFFFF;
-  padding:13px 10px;
+  padding: 9px 6px;
   position: absolute;
 }

@@ -7,12 +7,12 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  >
-    <div class=" item-input-inset">
-      <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="京沈客专">
-      </label>
-    </div>
+    <!--<div class=" item-input-inset">-->
+      <!--<label class="item-input-wrapper">-->
+        <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
+        <!--<input type="search" placeholder="京沈客专">-->
+      <!--</label>-->
+    <!--</div>-->
 
     <ion-scroll zooming="true" direction="x" style="width: 100%">
       <div id="forthscroll" class="div-a-style">
@@ -26,15 +26,30 @@
     <div  class="item-style">
       <ion-list>
         <ion-item ng-repeat=" item in departlist"    ng-click="jumpFifth(item.DeptID,secondName,thirdName,deptinfo4)" >
-          <img src="img/icon_org.png" style="vertical-align: bottom" width="25" height="25"
-               style="display: inline;">&nbsp;&nbsp;<span
-          ng-bind="item.DeptName" style="vertical-align: center;"></span>
+          <div class="row" >
+            <div class="col-20" align="center">
+              <img src="img/icon_org.png" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;width: 39px;height: 39px">
+            </div>
+            <div class="col-80" align="left">
+              <p style="font-size: 18px" align="left">{{item.DeptName}}</p>
+            </div>
+          </div>
         </ion-item>
       </ion-list>
       <ion-list>
         <ion-item ng-repeat=" item in userlist"  ng-click="goForthDetail(item.UserID)" >
-          <img src="img/icon_friends.png" style="vertical-align: bottom" width="25" height="25" style="display: inline;">&nbsp;&nbsp;<span
-          ng-bind="item.UserName" style="vertical-align: center;"></span>
+          <div class="row" >
+            <div class="col-20" align="center">
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+            </div>
+            <div class="col-80" align="left">
+              <p style="font-size: 18px" align="left">{{item.UserName}}</p>
+            </div>
+          </div>
         </ion-item>
       </ion-list>
     </div>
