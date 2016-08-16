@@ -28,3 +28,17 @@
   0% { transform: translate(-9px, -25px) rotate(0deg); }
   100% { transform: translate(-9px, -25px) rotate(360deg); }
 }
+
+.circle {
+
+  background: none repeat scroll 0 0 #FF3300 ;
+
+  border-radius: 30px 30px 30px 30px;
+
+  color: #FFFFFF;
+
+  padding:10px 10px;
+
+  position: absolute;
+
+}
