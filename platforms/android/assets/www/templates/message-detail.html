@@ -25,18 +25,18 @@
     </ion-refresher>
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
-      <div ng-repeat="msg in msgs">
-        <div class="rj-message-wrap" ng-if="(msg.from==='false')">
+      <div ng-repeat="msgSingle in msgs">
+        <div class="rj-message-wrap" ng-if="(msgSingle.from==='false')">
           <img src="img/mike.png" class="rj-head-pic">
           <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{msg.message}}</p>
+          <p class="rj-message">{{msgSingle.message}}</p>
         </div>
-        <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
+        <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
           <img src="img/ben.png" class="rj-head-pic-right">
           <span class="rj-triangle-right"></span>
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendshow('cll',msg.message, 'cll')"><font class="rj-message-right">{{msg.message}}</font></p>
+             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)"><font class="rj-message-right">{{msgSingle.message}}</font></p>
           </span>
         </div>
       </div>
@@ -62,7 +62,7 @@
         </button>
       </div>
       <div class="rj-send-button" ng-hide="!send_content || send_content === ''"
-           ng-click="sendSingleMsg(userId,send_content, userId,viewtitle)">
+           ng-click="sendSingleMsg(userId,send_content, userId,localusr,_id)">
         <p>发送</p>
       </div>
     </div>
