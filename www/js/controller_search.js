@@ -4,6 +4,16 @@
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
 
+    var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+    $scope.$on('$ionicView.afterEnter', function () {
+      keyboard.show();
+      document.getElementById("searchdata").focus();
+    });
+    $scope.onDrag = function () {
+      keyboard.close();
+    };
+
+
     $scope.query = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.id=msg.userID;
@@ -30,6 +40,8 @@ angular.module('search.controllers', [])
           $scope.persons=[];
           $scope.query1 =query;
           $scope.persons=$search111.getPersons().searchResult;
+
+
           $scope.$broadcast('scroll.infiniteScrollComplete');
           if ($scope.persons.length>=15){
             $scope.hasmore=true
@@ -147,6 +159,7 @@ angular.module('search.controllers', [])
     $scope.searchBack=function () {
       $ionicHistory.goBack();
     };
+    
 
   })
 

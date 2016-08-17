@@ -144,6 +144,8 @@ angular.module('contacts.controllers', [])
     };
 
     $scope.goSearch = function () {
+      var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+      keyboard.close();
       $state.go("search");
     }
 

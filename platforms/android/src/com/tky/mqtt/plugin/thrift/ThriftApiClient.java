@@ -10,6 +10,7 @@ import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -113,6 +114,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                     if (userID != null && !(newuserID.equals(userID))) {
                                         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                         ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+                                        TopContactsService topContactsService=TopContactsService.getInstance(UIUtils.getContext());
+                                        topContactsService.deleteAllData();
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();
 //                                        System.out.println("删除本地缓存成功");

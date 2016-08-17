@@ -12,12 +12,16 @@
         <ion-item ng-repeat="item in contactsListatten" style="height: 60px" >
           <div class="row" >
             <div class="col-20" align="center" ng-click="tanchuangattention(item.UserID)">
-              <img src="img/icon_friends.png"  style="width: 25px;height: 25px" >
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
             </div>
             <div class="col-80" align="left" ng-click="jumpattenDetial(item.UserID)">
               <p style="font-size: 18px" align="left">{{item.UserName}}</p>
             </div>
-            <!--<div class="col-10" align="center" ng-click="jumpattenDetial(item.UserID)">-->
+            <!--<div class="col-15" align="center" ng-click="jumpattenDetial(item.UserID)">-->
               <!--<p style="font-size: 18px ; color: transparent" align="center">`````````````````````````````````</p>-->
             <!--</div>-->
 
