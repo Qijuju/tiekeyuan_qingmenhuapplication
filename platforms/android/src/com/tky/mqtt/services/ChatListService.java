@@ -67,7 +67,12 @@ public class ChatListService implements BaseInterface<ChatList>{
         return chatListDao.queryRaw(where, params);
     }
 
-    @Override
+  @Override
+  public List<ChatList> queryByConditions() {
+    return null;
+  }
+
+  @Override
     public void saveDataLists(final List<ChatList> list) {
         if(list == null || list.isEmpty()){
             return;

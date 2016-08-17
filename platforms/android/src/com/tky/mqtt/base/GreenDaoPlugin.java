@@ -250,6 +250,21 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+  public void queryByConditions(final  JSONArray args,final  CallbackContext callbackContext){
+    try {
+      String service=args.getString(0);
+      BaseInterface baseInterface=getInterface(service);
+      List<BaseDao> list=baseInterface.queryByConditions();
+      Gson gson = new Gson();
+      String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+      }.getType());
+      setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+    } catch (JSONException e) {
+      e.printStackTrace();
+      setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
 
     /**
      * 带参查询

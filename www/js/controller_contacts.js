@@ -1145,9 +1145,9 @@ angular.module('contacts.controllers', [])
       $ToastUtils.showToast("此功能暂未开发");
     }
 
-    $scope.faqi=function () {
-      $state.go(contactId);
-    };
+    // $scope.faqi=function () {
+    //   $state.go(contactId);
+    // };
 
   })
 

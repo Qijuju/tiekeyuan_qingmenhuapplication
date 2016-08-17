@@ -2,7 +2,10 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('selectgroup.controllers', [])
-.controller('addNewPersonfirstCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+
+
+
+.controller('addNewPersonfirstCtrl', function ($scope, $http, $state, $stateParams) {
 
 
   contactService.getContacts().then(function (response) {
@@ -18,8 +21,10 @@ angular.module('selectgroup.controllers', [])
     $state.go("messageGroup");
   }
 
-}])
-  .controller('addNewPersonsecondCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService){
+})
+
+
+  .controller('addNewPersonsecondCtrl',function ($scope, $http, $state, $stateParams){
     $scope.secondlength=(document.getElementById('a1').innerText.length+document.getElementById('a2').innerText.length)*15+50;
 
     var seconddiv=document.getElementById("secondscroll");
@@ -37,8 +42,8 @@ angular.module('selectgroup.controllers', [])
       });
     }
 
-  }])
-  .controller('addNewPersonthirdCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  })
+  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams) {
 
     contactService.getContacts().then(function (response) {
       $scope.names = response;
@@ -61,8 +66,10 @@ angular.module('selectgroup.controllers', [])
 
     var thirddiv=document.getElementById("thirdscroll");
     thirddiv.style.width=$scope.thirdlength+"px";
-  }])
-  .controller('addNewPersonforthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  })
+
+
+  .controller('addNewPersonforthCtrl', function ($scope, $http, $state, $stateParams) {
     $scope.contactId = $stateParams.contactId;
 
 
@@ -95,8 +102,11 @@ angular.module('selectgroup.controllers', [])
     var forthdiv=document.getElementById("forthscroll");
     forthdiv.style.width=$scope.forthlength+"px";
 
-  }])
-  .controller('addNewPersonfifthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  })
+
+
+
+  .controller('addNewPersonfifthCtrl', function ($scope, $http, $state, $stateParams, contactService) {
     contactService.getContacts().then(function (response) {
       $scope.names = response;
 
@@ -110,8 +120,8 @@ angular.module('selectgroup.controllers', [])
       $state.go("sixth");
     }
 
-  }])
-  .controller('addNewPersonsixthCtrl', ['$scope', '$http', '$state', '$stateParams', 'contactService', function ($scope, $http, $state, $stateParams, contactService) {
+  })
+  .controller('addNewPersonsixthCtrl', function ($scope, $http, $state, $stateParams, contactService) {
 
     contactService.getContacts().then(function (response) {
       $scope.names = response;
@@ -125,7 +135,9 @@ angular.module('selectgroup.controllers', [])
     $scope.goSeventh = function () {
       $state.go("seventh");
     }
-  }])
+  })
+
+  
   .controller('localDetailsCtrl',function ($scope,$state) {
 
 

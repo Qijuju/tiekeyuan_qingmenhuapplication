@@ -555,6 +555,7 @@ angular.module('message.controllers', [])
 
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
+      //
     }
   })
 
