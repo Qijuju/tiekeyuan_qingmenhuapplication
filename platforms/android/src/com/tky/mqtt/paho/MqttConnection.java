@@ -45,8 +45,7 @@ public class MqttConnection {
 	 */
 	public void reconnect() throws MqttException {
 		if (mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.disconnect();
-			mqttAsyncClient.close();
+			mqttAsyncClient.disconnectForcibly();
 			mqttAsyncClient = null;
 		}
 		isReconnect = true;
@@ -57,11 +56,15 @@ public class MqttConnection {
 
 		@Override
 		public void onFailure(IMqttToken arg0, Throwable arg1) {
-
 		}
 
 		@Override
 		public void onSuccess(IMqttToken arg0) {
+			/*try {
+				reconnect();
+			} catch (MqttException e) {
+				e.printStackTrace();
+			}*/
 			UIUtils.runInMainThread(new Runnable() {
 				@Override
 				public void run() {
@@ -174,20 +177,28 @@ public class MqttConnection {
 	 */
 	public void publish(String topic, MqttMessage message) throws MqttException{
 		if (mqttAsyncClient != null) {
-			mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
-				@Override
-				public void onSuccess(IMqttToken iMqttToken) {
+			try {
+				mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
+					@Override
+					public void onSuccess(IMqttToken iMqttToken) {
 
-				}
+					}
 
-				@Override
-				public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-					//发送中，消息发送失败，回调
-					Intent intent=new Intent();
-					intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-					context.sendBroadcast(intent);
-				}
-			});
+					@Override
+					public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+						//发送中，消息发送失败，回调
+						Intent intent=new Intent();
+						intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+						context.sendBroadcast(intent);
+					}
+				});
+			} catch (Exception e) {
+				//发送中，消息发送失败，回调
+				Intent intent=new Intent();
+				intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+				context.sendBroadcast(intent);
+				ToastUtil.showSafeToast("发送失败！");
+			}
 		}
 	}
 
@@ -199,16 +210,17 @@ public class MqttConnection {
 	 * @throws MqttException
 	 */
 	public void closeConnection() throws MqttException {
+		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
+			mqttAsyncClient.disconnectForcibly();
+			if (mqttAsyncClient != null) {
+				mqttAsyncClient = null;
+			}
+		} else if (mqttAsyncClient != null) {
+			mqttAsyncClient = null;
+		}
 		if (receiver != null) {
 			context.unregisterReceiver(receiver);
 			receiver = null;
-		}
-		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.disconnect();
-			if (mqttAsyncClient != null) {
-				mqttAsyncClient.close();
-				mqttAsyncClient = null;
-			}
 		}
 	}
 
