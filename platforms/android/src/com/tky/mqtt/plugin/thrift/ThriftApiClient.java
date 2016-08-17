@@ -1,11 +1,8 @@
 package com.tky.mqtt.plugin.thrift;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
@@ -112,12 +109,16 @@ public class ThriftApiClient extends CordovaPlugin {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                } else if ("104".equals(result.getResultCode())) {
+                                    setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("105".equals(result.getResultCode())) {
+                                    setResult("用户在不常用的设备上登录！", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                    setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         } catch (TException e) {
-                            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                             e.printStackTrace();
                         }
                     }
@@ -125,14 +126,14 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
-                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                    setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                 }
             });
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);

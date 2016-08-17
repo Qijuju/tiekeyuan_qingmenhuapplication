@@ -30,6 +30,7 @@ public class MqttParams {
 		options.setPassword(getPassword().toCharArray());
 		options.setConnectionTimeout(getConnectionTimeout());
 		options.setKeepAliveInterval(getKeepAliveInterval());
+		options.setWill("LN/U/105483", "MUTAF14713334965806 1050206 1055772  阎斌ghf".getBytes(), 1, false);
 	}
 
 	/**
