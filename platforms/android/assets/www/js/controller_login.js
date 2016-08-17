@@ -82,8 +82,9 @@ angular.module('login.controllers', [])
       $ionicLoading.show({
         template: '登录中...'
       });
+      alert("进入前。。。");
       $api.login($scope.name, $scope.password, function (message) {
-        // alert(message.isActive + "nh");
+        alert("nhdsf");
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {

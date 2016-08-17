@@ -94,7 +94,7 @@ public class ThriftApiClient extends CordovaPlugin {
             String username = args.getString(0);
             String password = args.getString(1);
             String imCode = UIUtils.getDeviceId();
-            SystemApi.login(username, password, imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
+            SystemApi.login(username.trim(), password.trim(), imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
                     if (login_call == null) {
@@ -113,9 +113,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                     String userID = getUserID();//旧用户名
 //                                    System.out.println("旧用户名"+userID);
                                     //若前后两次用户名不一致,清楚本地数据库数据库缓存
-                                    if(!(newuserID.equals(userID))){
-                                        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-                                        ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+                                    if (userID != null && !(newuserID.equals(userID))) {
+                                        MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+                                        ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();
 //                                        System.out.println("删除本地缓存成功");
@@ -972,7 +972,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTgetMsg result = getHistoryMsg_call.getResult();
                         if (result != null && result.result) {
                             List<Msg> attentions = result.getMsglist();
-                            Date date=new Date(attentions.get(pageNum).getMsgDate());
+                            Date date = new Date(attentions.get(pageNum).getMsgDate());
                             String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<Msg>>() {
                             }.getType());
                             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -1122,12 +1122,18 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public String getUserID() throws JSONException {
         JSONObject userInfo = getUserInfo();
-        return userInfo.getString("userID");
+        return userInfo == null ? null : userInfo.getString("userID");
     }
 
     public JSONObject getUserInfo() throws JSONException {
         String login_info = SPUtils.getString("login_info", "");
-        return new JSONObject(login_info);
+        JSONObject obj = null;
+        if (login_info == null || "".equals(login_info.trim())) {
+            obj = null;
+        } else {
+            obj = new JSONObject(login_info);
+        }
+        return obj;
     }
 
     /**

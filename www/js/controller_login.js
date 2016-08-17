@@ -83,7 +83,6 @@ angular.module('login.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name, $scope.password, function (message) {
-        // alert(message.isActive + "nh");
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {
