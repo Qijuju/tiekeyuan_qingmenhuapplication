@@ -296,18 +296,19 @@ angular.module('my.controllers', [])
               var string3="";
               if ($scope.data.phonea!=""){
                 string1=$scope.data.phonea;
-                arr.Mobile = string1;
+                arr.MB = string1;
               }
               if($scope.data.phoneb!=""){
                 string2=$scope.data.phoneb;
-                arr.FixPhone = string2;
+                arr.FP = string2;
               }
               if($scope.data.email!=""){
                 string3=$scope.data.email;
-                arr.Email = string3;
+                arr.EM = string3;
               }
               $api.updateUserInfo(arr,function (msg) {
                 $ToastUtils.showToast("修改个人资料成功")
+                $searchdatadianji.personDetaildianji($scope.UserIDforhou);
               },function (msg) {
                 $ToastUtils.showToast(msg)
               })
