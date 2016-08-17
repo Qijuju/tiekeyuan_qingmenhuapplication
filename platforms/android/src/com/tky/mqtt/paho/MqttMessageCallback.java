@@ -32,6 +32,7 @@ public class MqttMessageCallback implements MqttCallback {
 	public void connectionLost(Throwable arg0) {
 		Log.d("reconnect", "断掉了，哥们~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
 		if (NetUtils.isConnect(context)) {
+//		if (NetUtils.isConnect(context) && !SPUtils.getBoolean("shoudong", false)) {
 			try {
 				count++;
 				if (count <= 5) {

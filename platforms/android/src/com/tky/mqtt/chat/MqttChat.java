@@ -267,6 +267,7 @@ public class MqttChat extends CordovaPlugin {
     public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
         hasLogin = false;
         MqttOper.closeMqttConnection();
+        UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
         try {
             SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
                 @Override
@@ -279,6 +280,7 @@ public class MqttChat extends CordovaPlugin {
                             setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
                         }
                     } catch (TException e) {
+                        setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
                         e.printStackTrace();
                     }
                 }

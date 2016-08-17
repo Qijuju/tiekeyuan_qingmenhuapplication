@@ -45,8 +45,7 @@ public class MqttConnection {
 	 */
 	public void reconnect() throws MqttException {
 		if (mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.disconnect();
-			mqttAsyncClient.close();
+			mqttAsyncClient.disconnectForcibly();
 			mqttAsyncClient = null;
 		}
 		isReconnect = true;
@@ -57,11 +56,15 @@ public class MqttConnection {
 
 		@Override
 		public void onFailure(IMqttToken arg0, Throwable arg1) {
-
 		}
 
 		@Override
 		public void onSuccess(IMqttToken arg0) {
+			/*try {
+				reconnect();
+			} catch (MqttException e) {
+				e.printStackTrace();
+			}*/
 			UIUtils.runInMainThread(new Runnable() {
 				@Override
 				public void run() {
@@ -208,13 +211,11 @@ public class MqttConnection {
 	 */
 	public void closeConnection() throws MqttException {
 		if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
-			mqttAsyncClient.disconnect(0);
+			mqttAsyncClient.disconnectForcibly();
 			if (mqttAsyncClient != null) {
-				mqttAsyncClient.close();
 				mqttAsyncClient = null;
 			}
 		} else if (mqttAsyncClient != null) {
-			mqttAsyncClient.close();
 			mqttAsyncClient = null;
 		}
 		if (receiver != null) {

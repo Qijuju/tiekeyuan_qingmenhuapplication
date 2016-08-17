@@ -114,11 +114,11 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else if ("105".equals(result.getResultCode())) {
                                     setResult("用户在不常用的设备上登录！", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                    setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         } catch (TException e) {
-                            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                             e.printStackTrace();
                         }
                     }
@@ -126,14 +126,14 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
-                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                    setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                 }
             });
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
