@@ -1,0 +1,72 @@
+<ion-view view-title="我的资料 ">
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goAcount()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content overflow-scroll="false">
+    <div>
+      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
+        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
+        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{mypersons.UserName}}</div>
+        <P style="font-size: 18px;color: #ffffff">{{mypersons.UserName}}</P>
+      </div>
+      <ul class="list">
+        <li class="item">
+          <div class="row" >
+            <div class="col-30" align="center" style="margin-right: 20px">
+              <h2>姓名</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2>{{mypersons.UserName}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="row" >
+            <div class="col-30" align="center" style="margin-right: 20px">
+              <h2>部门</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2>{{mypersons.Duty}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="row" ng-click="updateinformation()">
+            <div class="col-30" align="center" style="margin-right: 20px">
+              <h2>手机号</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2>{{mypersons.Mobile}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="row" ng-click="updateinformation()">
+            <div class="col-30" align="center" style="margin-right: 20px">
+              <h2>办公电话</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2>{{mypersons.FixPhone}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="row"  ng-click="updateinformation()">
+            <div class="col-30" align="center" style="margin-right: 20px">
+              <h2>邮箱</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2>{{mypersons.Email}}</h2>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </ion-content>
+</ion-view>

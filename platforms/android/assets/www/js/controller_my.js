@@ -78,6 +78,17 @@ angular.module('my.controllers', [])
 
       });
     }
+    $scope.getpictur=function () {
+      alert("劲了");
+      Camera.getPicture(PictureSourceType.CAMERA).then(
+
+        //返回一个imageURI，记录了照片的路径
+        function (imageURI) {
+          alert(imageURI)
+        },
+        function (err) {
+        });
+    }
 
     //拍照片
     $scope.takePhoto = function () {
@@ -223,7 +234,7 @@ angular.module('my.controllers', [])
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function (e) {
-              alert("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
+             // alert("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
 
               var arr={};
               /*var arr={
@@ -237,26 +248,18 @@ angular.module('my.controllers', [])
               if ($scope.data.phonea!=""){
                 string1=$scope.data.phonea;
                 arr.Mobile = string1;
-                // arr.push(string1)
-                alert(arr+"arr的值1");
               }
               if($scope.data.phoneb!=""){
                 string2=$scope.data.phoneb;
-                // arr.push(string2)
                 arr.FixPhone = string2;
-                alert(arr+"arr的值2");
               }
               if($scope.data.email!=""){
                 string3=$scope.data.email;
                 arr.Email = string3;
-                // arr.push(string3)
-                alert(arr+"arr的值3");
               }
-              alert(arr+"arr的值4");
               $api.updateUserInfo(arr,function (msg) {
                 $ToastUtils.showToast("修改个人资料成功")
               },function (msg) {
-                alert("123")
                 $ToastUtils.showToast(msg)
               })
             }

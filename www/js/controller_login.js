@@ -8,6 +8,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
+    $mqtt.setLogin(false);
     $scope.name = "";
     $scope.password = "";
 
@@ -25,7 +26,8 @@ angular.module('login.controllers', [])
         }
       }, function (msg) {
       });
-      if (!$mqtt.isLogin()) {
+      if ($mqtt.isLogin()) {
+        alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           if (msg != null && msg != '') {
             $mqtt.startMqttChat(msg);
@@ -83,7 +85,6 @@ angular.module('login.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name, $scope.password, function (message) {
-        // alert(message.isActive + "nh");
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {
@@ -95,17 +96,17 @@ angular.module('login.controllers', [])
           loginM();
         }
       }, function (message) {
-        //alert(message);
-        $scope.name = response;
+        alert(message);
         $ionicLoading.hide();
-        $state.go('tab.message');
+        // $state.go('tab.message');
       });
 
     };
+    //获取当前用户的id
     var loginM = function () {
-      //获取当前用户的id
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;
+        alert("当前用户的id"+userID);
       }, function (err) {
 
       });

@@ -78,6 +78,17 @@ angular.module('my.controllers', [])
 
       });
     }
+    $scope.getpictur=function () {
+      alert("劲了");
+      Camera.getPicture(PictureSourceType.CAMERA).then(
+
+        //返回一个imageURI，记录了照片的路径
+        function (imageURI) {
+          alert(imageURI)
+        },
+        function (err) {
+        });
+    }
 
     //拍照片
     $scope.takePhoto = function () {
@@ -246,11 +257,9 @@ angular.module('my.controllers', [])
                 string3=$scope.data.email;
                 arr.Email = string3;
               }
-              alert(arr+"arr的值4");
               $api.updateUserInfo(arr,function (msg) {
                 $ToastUtils.showToast("修改个人资料成功")
               },function (msg) {
-                alert("123")
                 $ToastUtils.showToast(msg)
               })
             }

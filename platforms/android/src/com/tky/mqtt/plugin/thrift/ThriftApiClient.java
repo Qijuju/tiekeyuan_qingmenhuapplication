@@ -1,16 +1,16 @@
 package com.tky.mqtt.plugin.thrift;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import im.model.Msg;
 import im.model.RST;
@@ -92,7 +93,7 @@ public class ThriftApiClient extends CordovaPlugin {
             String username = args.getString(0);
             String password = args.getString(1);
             String imCode = UIUtils.getDeviceId();
-            SystemApi.login(username, password, imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
+            SystemApi.login(username.trim(), password.trim(), imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
                     if (login_call == null) {
@@ -105,6 +106,21 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if ("100".equals(result.getResultCode())) {
                                     Gson gson = new Gson();
                                     String json = gson.toJson(result, RSTlogin.class);
+                                    JSONObject newUserObj = new JSONObject(json);
+                                    String newuserID = newUserObj.getString("userID");//新登陆用户名
+//                                    System.out.println("新用户名"+newuserID);
+                                    String userID = getUserID();//旧用户名
+//                                    System.out.println("旧用户名"+userID);
+                                    //若前后两次用户名不一致,清楚本地数据库数据库缓存
+                                    if (userID != null && !(newuserID.equals(userID))) {
+                                        MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+                                        ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+                                        TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+                                        topContactsService.deleteAllData();
+                                        messagesService.deleteAllData();
+                                        chatListService.deleteAllData();
+//                                        System.out.println("删除本地缓存成功");
+                                    }
                                     //保存登录信息
                                     SPUtils.save("login_info", json);
                                     try {
@@ -112,12 +128,18 @@ public class ThriftApiClient extends CordovaPlugin {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                } else if ("104".equals(result.getResultCode())) {
+                                    setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("105".equals(result.getResultCode())) {
+                                    setResult("用户在不常用的设备上登录！", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                    setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         } catch (TException e) {
-                            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
@@ -125,14 +147,14 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
-                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                    setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                 }
             });
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
@@ -955,7 +977,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTgetMsg result = getHistoryMsg_call.getResult();
                         if (result != null && result.result) {
                             List<Msg> attentions = result.getMsglist();
-                            Date date=new Date(attentions.get(pageNum).getMsgDate());
+                            Date date = new Date(attentions.get(pageNum).getMsgDate());
                             String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<Msg>>() {
                             }.getType());
                             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -1091,7 +1113,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public Map<String, String> jsonobj2Map(JSONObject obj) throws JSONException {
         Map<String, String> map = new HashMap<String, String>();
-        for (Iterator<String> keys = obj.keys(); obj.keys().hasNext();) {
+        for (Iterator<String> keys = obj.keys(); keys.hasNext();) {
             String key = keys.next();
             String value = obj.getString(key);
             map.put(key, value);
@@ -1105,12 +1127,18 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public String getUserID() throws JSONException {
         JSONObject userInfo = getUserInfo();
-        return userInfo.getString("userID");
+        return userInfo == null ? null : userInfo.getString("userID");
     }
 
     public JSONObject getUserInfo() throws JSONException {
         String login_info = SPUtils.getString("login_info", "");
-        return new JSONObject(login_info);
+        JSONObject obj = null;
+        if (login_info == null || "".equals(login_info.trim())) {
+            obj = null;
+        } else {
+            obj = new JSONObject(login_info);
+        }
+        return obj;
     }
 
     /**

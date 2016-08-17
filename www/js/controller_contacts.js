@@ -1110,7 +1110,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$contacts,$ToastUtils) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1145,7 +1145,9 @@ angular.module('contacts.controllers', [])
       $ToastUtils.showToast("此功能暂未开发");
     }
 
-
+    $scope.faqi=function () {
+      $state.go(contactId);
+    };
 
   })
 

@@ -138,6 +138,8 @@ public class MqttReceiver extends BroadcastReceiver {
 	}
 
 	public void setOnMqttSendErrorListener(OnMqttSendErrorListener onMqttSendErrorListener) {
-		this.onMqttSendErrorListener = onMqttSendErrorListener;
+		if (this.onMqttSendErrorListener == null) {
+			this.onMqttSendErrorListener = onMqttSendErrorListener;
+		}
 	}
 }
