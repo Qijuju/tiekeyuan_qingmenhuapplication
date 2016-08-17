@@ -191,13 +191,13 @@ angular.module('my.controllers', [])
           });
         } else {
           // alert('不确定');
-          alert("退出登录失败！");
+          $ToastUtils.showToast("退出登录失败")
         }
       });
     };
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -209,7 +209,59 @@ angular.module('my.controllers', [])
         $scope.mypersons = $searchdatadianji.getPersonDetaildianji();
       })
     });
+    // 修改个人资料
+    $scope.updateinformation = function () {
+      $scope.data = {};
+      var myPopup = $ionicPopup.show({
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改邮箱" ng-model="data.email"></label>',
+        title: '修改个人资料',
+        subTitle: '请至少修改一项内容，否则无法提交',
+        scope: $scope,
+        buttons: [
+          {text: '取消'},
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function (e) {
+             // alert("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
 
+              var arr={};
+              /*var arr={
+                'Mobile':$scope.data.phonea,
+                'FixPhone':$scope.data.phoneb,
+                'Email':$scope.data.email
+              };*/
+              var string1="";
+              var string2="";
+              var string3="";
+              if ($scope.data.phonea!=""){
+                string1=$scope.data.phonea;
+                arr.Mobile = string1;
+              }
+              if($scope.data.phoneb!=""){
+                string2=$scope.data.phoneb;
+                arr.FixPhone = string2;
+              }
+              if($scope.data.email!=""){
+                string3=$scope.data.email;
+                arr.Email = string3;
+              }
+              alert(arr+"arr的值4");
+              $api.updateUserInfo(arr,function (msg) {
+                $ToastUtils.showToast("修改个人资料成功")
+              },function (msg) {
+                alert("123")
+                $ToastUtils.showToast(msg)
+              })
+            }
+          },
+        ]
+      });
+      myPopup.then(function (res) {
+
+      });
+      // myPopup.close(); //关闭
+    };
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils) {
     $scope.meizuo=function () {
@@ -235,9 +287,9 @@ angular.module('my.controllers', [])
             onTap: function (e) {
               //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
               $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
-                alert(msg + "修改成功")
+                $ToastUtils.showToast("修改密码成功")
               }, function (msg) {
-                alert(msg + "修改失败")
+                $ToastUtils.showToast(msg)
               })
             }
           },
