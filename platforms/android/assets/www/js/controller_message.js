@@ -351,12 +351,13 @@ angular.module('message.controllers', [])
     // },function (err) {
     //   alert(err);
     // });
+
     $scope.userId = $stateParams.id;
     $scope.userName = $stateParams.sessionid;
     // alert($scope.userId+"messageC"+$scope.userName);
     if ($rootScope.isPersonSend === 'true') {
       $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-      alert($scope.items.length + "长度");
+      // alert($scope.items.length + "长度");
       $scope.$on('chatarr.update', function (event) {
         $scope.$apply(function () {
           $scope.items = $chatarr.getAll($rootScope.isPersonSend);
@@ -382,15 +383,24 @@ angular.module('message.controllers', [])
         $scope.qunliaomsg = $mqtt.getQunliao();
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
+        // alert("未读消息count值"+$scope.lastCount+$scope.userId);
+        if($scope.userId === ''){
+          $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+          // alert("first login"+$scope.receiverssid);
+        }else{
+          $scope.receiverssid=$scope.userId;
+          // alert("有正常的用户名后"+$scope.userId);
+        }
         //取出与‘ppp’的聊天记录最后一条
-        $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId, function (data) {
+        $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+          // alert("未读消息时取出消息表中最后一条数据"+data.length);
           $scope.lastText = data[0].message;//最后一条消息内容
           $scope.lastDate = data[0].when;//最后一条消息的时间
           $scope.chatName = data[0].username;//对话框名称
-          alert($scope.chatName + "用户名1");
+          // alert($scope.chatName + "用户名1");
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
           //取出‘ppp’聊天对话的列表数据并进行数据库更新
-          $greendao.queryData('ChatListService', 'where id=?', $scope.userId, function (data) {
+          $greendao.queryData('ChatListService', 'where id=?',$scope.receiverssid, function (data) {
             $scope.unread = $scope.lastCount;
             var chatitem = {};
             chatitem.id = data[0].id;
@@ -430,11 +440,12 @@ angular.module('message.controllers', [])
 
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid) {
+      alert("单聊界面"+id+ssid);
       $mqtt.clearMsgCount();
       //将变化的count赋值给unread对象
       $scope.unread = $mqtt.getMsgCount();
       //取出最后一条消息记录的数据
-      $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId, function (data) {
+      $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
         // alert(data.length+"最后一条数据");
         $scope.lastText = data[0].message;//最后一条消息内容
         $scope.lastDate = data[0].when;//最后一条消息的时间

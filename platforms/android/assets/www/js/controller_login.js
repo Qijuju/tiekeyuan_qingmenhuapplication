@@ -85,7 +85,6 @@ angular.module('login.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name, $scope.password, function (message) {
-        // alert(message.isActive + "nh");
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {
@@ -103,10 +102,11 @@ angular.module('login.controllers', [])
       });
 
     };
+    //获取当前用户的id
     var loginM = function () {
-      //获取当前用户的id
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;
+        alert("当前用户的id"+userID);
       }, function (err) {
 
       });
