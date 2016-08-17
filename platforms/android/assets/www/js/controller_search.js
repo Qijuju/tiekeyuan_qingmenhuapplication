@@ -40,6 +40,8 @@ angular.module('search.controllers', [])
           $scope.persons=[];
           $scope.query1 =query;
           $scope.persons=$search111.getPersons().searchResult;
+
+
           $scope.$broadcast('scroll.infiniteScrollComplete');
           if ($scope.persons.length>=15){
             $scope.hasmore=true
@@ -157,6 +159,7 @@ angular.module('search.controllers', [])
     $scope.searchBack=function () {
       $ionicHistory.goBack();
     };
+    
 
   })
 

@@ -2,13 +2,43 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $mqtt, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $mqtt, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope) {
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
     }, function (msg) {
-
+      $ToastUtils.showToast(msg)
     });
+
+    $searchdata.personDetail($rootScope.rootUserId);
+    $scope.$on('person.update', function (event) {
+      $scope.$apply(function () {
+        $scope.mymypersonname = $searchdata.getPersonDetail().user.UserName;
+        if ($scope.mymypersonname.length>2){
+              $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
+            }else {
+              $scope.jiename=$scope.mymypersonname
+            }
+      })
+    });
+
+
+
+    // $api.getUser($rootScope.rootUserId,function (msg) {
+    //   $scope.mymypersonname=msg.user.UserName;
+    //   alert( $scope.mymypersonname)
+    //   if ($scope.mymypersonname.length>2){
+    //     $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
+    //   }else {
+    //     $scope.jiename=$scope.mymypersonname
+    //   }
+    //   alert($scope.jiename)
+    // },function (msg) {
+    //   $ToastUtils.showToast(msg)
+    // });
+
+
+
     $scope.gomyinformation = function () {
       $state.go("myinformation", {
         "UserIDfor": $scope.UserID
@@ -117,21 +147,17 @@ angular.module('my.controllers', [])
     };
 
 
-    document.addEventListener('deviceready', function () {
-      $mqtt.getMqtt().getString('name', function (message) {
-        if (message != null && message != '') {
-          $scope.name = message;
-          if ($scope.name.length>2){
-            $scope.jiename=$scope.name.substring(($scope.name.length-2),$scope.name.length);
-          }else {
-            $scope.jiename=$scope.name
-          }
-
-        }
-      }, function (message) {
-        alert(message);
-      });
-    });
+    // document.addEventListener('deviceready', function () {
+    //   $mqtt.getMqtt().getString('name', function (message) {
+    //     if (message != null && message != '') {
+    //       $scope.name = message;
+    //
+    //
+    //     }
+    //   }, function (message) {
+    //     alert(message);
+    //   });
+    // });
     // $scope.name="";
     /*$scope.fetch = function() {
      $cordovaPreferences.fetch('name')

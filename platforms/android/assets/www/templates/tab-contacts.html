@@ -8,7 +8,6 @@
         <input type="search" placeholder="Search" ng-model="query"  >
       </label>
     </div>
-    <br/>
     <div class="row" style="background: #ffffff;">
       <div class="col" align="center">
         <a href="#/localContacts"  >
@@ -45,12 +44,11 @@
     </div>
     <div style="float: none;"></div>
     <!-- 导航部分 END -->
-    <br/>
      <!--公司通讯录 START-->
+    <br/>
     <div class="background_white">
       <p class="company_contacts_title padding_10 font_18">公司通讯录</p>
     </div>
-    <br>
     <div class="background_white">
       <ion-list>
         <ion-item ng-repeat="item in depts" href="#/second/{{item.DeptID}}">
@@ -59,7 +57,6 @@
         </ion-item>
       </ion-list>
     </div>
-    <br>
     <div class="background_white">
       <ion-list>
         <ion-item  href="#/second/{{logId}}">
@@ -77,13 +74,17 @@
         <ion-item ng-repeat="item in topContactLists" style="height: 60px" >
 
           <div class="row">
-            <div class="col-10" align="left" ng-click="simpleSheetShow(item._id,item.phone,item.name,1)">
-              <img src="img/icon_friends.png"  width="35" height="35">
+            <div class="col-20" align="left" ng-click="simpleSheetShow(item._id,item.phone,item.name,1)">
+              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==1||item._id.substring((item._id.length-1),item._id.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==2||item._id.substring((item._id.length-1),item._id.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==3||item._id.substring((item._id.length-1),item._id.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==4||item._id.substring((item._id.length-1),item._id.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==5||item._id.substring((item._id.length-1),item._id.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
             </div>
             <div class="col-25" align="center" style="font-size: 18px" ng-click="topGoDetail(item._id)">
               <p style="font-size: 15px">{{item.name}}</p>
             </div>
-            <div class="col-40" align="center"  ng-click="topGoDetail(item._id)">
+            <div class="col-35" align="center"  ng-click="topGoDetail(item._id)">
               <p style="font-size: 15px">{{item.phone}}</p>
             </div>
           </div>
