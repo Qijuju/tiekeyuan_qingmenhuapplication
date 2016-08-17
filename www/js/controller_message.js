@@ -554,8 +554,9 @@ angular.module('message.controllers', [])
     };
 
     $scope.meizuo=function () {
-      $ToastUtils.showToast("此功能暂未开发");
-      //
+      //$ToastUtils.showToast("此功能暂未开发");
+      //跳到添加人员聊天界面
+      $state.go('addnewpersonfirst');
     }
   })
 

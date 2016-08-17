@@ -7,19 +7,7 @@ angular.module('selectgroup.controllers', [])
 
 .controller('addNewPersonfirstCtrl', function ($scope, $http, $state, $stateParams) {
 
-
-  contactService.getContacts().then(function (response) {
-    $scope.names = response;
-
-  });
-
-  $scope.contactId = $stateParams.contactId;
-  $scope.contactsInfo = contactService.getContactById($stateParams.contactId)
-
-
-  $scope.goGroupMessage = function () {
-    $state.go("messageGroup");
-  }
+  
 
 })
 
@@ -137,7 +125,7 @@ angular.module('selectgroup.controllers', [])
     }
   })
 
-  
+
   .controller('localDetailsCtrl',function ($scope,$state) {
 
 
