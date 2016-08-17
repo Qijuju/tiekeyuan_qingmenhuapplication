@@ -455,12 +455,14 @@ angular.module('contacts.services', [])
       //获取常用联系人
 
       topContactsInfo:function () {
-        $greendao.loadByCount(function (msg) {
+        $greendao.queryByConditions('TopContactsService',function (msg) {
           topContactList=msg;
           $rootScope.$broadcast('topcontacts.update');
+
         },function (err) {
 
-        });
+        })
+
       },
 
       getTopContactsInfo:function () {

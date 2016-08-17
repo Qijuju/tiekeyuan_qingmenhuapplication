@@ -7,6 +7,7 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.MessagesDao;
+import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;
@@ -62,8 +63,17 @@ public class MessagesService implements BaseInterface<Messages>{
         return messagesDao.queryRaw(where, params);
     }
 
+  @Override
+  public List<Messages> queryByConditions() {
+      return messagesDao.queryBuilder()
+              .orderDesc(MessagesDao.Properties.When)
+              .build()
+              .list();
+  }
 
-    /**
+
+
+  /**
      * insert or update note
      * @param message
      * @return insert or update note id

@@ -39,7 +39,12 @@ angular.module('common.services', [])
       },
       loadByCount:function (success,error) {
         greendao.loadByCount(success,error);
+      },
+
+      queryByConditions:function (services, success, error) {
+        greendao.queryByConditions(services,success,error);
       }
+
     };
 
   })

@@ -21,6 +21,8 @@ public interface BaseInterface <T> {
 
     public List<T> queryData(String where, String... params);
 
+    public List<T> queryByConditions();
+
 
     /**
      * insert or update note

@@ -7,6 +7,7 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.ChatListDao;
 import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;
@@ -67,7 +68,15 @@ public class ChatListService implements BaseInterface<ChatList>{
         return chatListDao.queryRaw(where, params);
     }
 
-    @Override
+  @Override
+  public List<ChatList> queryByConditions() {
+      return chatListDao.queryBuilder()
+              .orderDesc(ChatListDao.Properties.LastDate)
+              .build()
+              .list();
+  }
+
+  @Override
     public void saveDataLists(final List<ChatList> list) {
         if(list == null || list.isEmpty()){
             return;
