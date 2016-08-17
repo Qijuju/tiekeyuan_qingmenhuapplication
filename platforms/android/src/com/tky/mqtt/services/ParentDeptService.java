@@ -65,7 +65,12 @@ public class ParentDeptService implements BaseInterface<ParentDept>{
         return parentDeptDao.queryRaw(where, params);
     }
 
-    /**
+  @Override
+  public List<ParentDept> queryByConditions() {
+    return null;
+  }
+
+  /**
      * insert or update note
      * @param parentDept
      * @return insert or update note id

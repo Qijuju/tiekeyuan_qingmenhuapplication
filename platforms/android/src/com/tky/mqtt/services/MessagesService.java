@@ -62,8 +62,14 @@ public class MessagesService implements BaseInterface<Messages>{
         return messagesDao.queryRaw(where, params);
     }
 
+  @Override
+  public List<Messages> queryByConditions() {
+    return null;
+  }
 
-    /**
+
+
+  /**
      * insert or update note
      * @param message
      * @return insert or update note id

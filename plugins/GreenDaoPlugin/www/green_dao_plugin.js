@@ -41,5 +41,10 @@ exports.loadByCount = function(success, error) {
   exec(success, error, "GreenDaoPlugin", "loadByCount", []);
 };
 
+exports.queryByConditions = function (services,success, error) {
+  exec(success, error, "GreenDaoPlugin", "queryByConditions", [services]);
+};
+
+
 
 

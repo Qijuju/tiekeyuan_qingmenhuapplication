@@ -56,7 +56,17 @@ public class TopContactsService implements BaseInterface<TopContacts>{
         return topContactsDao.queryRaw(where, params);
     }
 
-    @Override
+  @Override
+  public List<TopContacts> queryByConditions() {
+    return topContactsDao.queryBuilder()
+      .orderDesc(TopContactsDao.Properties.Count)
+      .orderDesc(TopContactsDao.Properties.When)
+      .build()
+      .list();
+  }
+
+
+  @Override
     public long saveObj(TopContacts topContacts) {
         return topContactsDao.insertOrReplace(topContacts);
     }
