@@ -494,7 +494,7 @@ angular.module('message.controllers', [])
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
         $scope.firstUserId=$mqtt.getFirstReceiverSsid();
-        alert("未读消息count值"+$scope.lastCount+$scope.userId);
+        // alert("未读消息count值"+$scope.lastCount+$scope.userId);
         if($scope.userId === ''){
           $scope.receiverssid=$scope.firstUserId;
           $scope.chatName=$mqtt.getFirstReceiverChatName();
@@ -515,16 +515,16 @@ angular.module('message.controllers', [])
         // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
         //收到消息时先判断会话列表有没有这个用户
         $greendao.queryData('ChatListService','where id =?',$scope.receiverssid,function (data) {
-          alert(data.length+"收到消息时，查询chat表有无当前用户");
+          // alert(data.length+"收到消息时，查询chat表有无当前用户");
           if(data.length ===0){
             alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              alert("长度");
+              // alert("长度");
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
               $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-              alert($scope.items.length + "长度");
+              // alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
                   $scope.items = $chatarr.getAll($rootScope.isPersonSend);
