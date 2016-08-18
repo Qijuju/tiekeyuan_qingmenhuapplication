@@ -7,7 +7,9 @@ import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttParams;
 import com.tky.mqtt.paho.MqttReceiver;
+import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.callback.MqttMessageCallback;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -18,6 +20,9 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
+
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * 作者：
@@ -55,6 +60,15 @@ public class MqttConnection {
         UIUtils.runInMainThread(new Runnable() {
             @Override
             public void run() {
+                //发布主题
+                Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
+                Iterator<String> it = topicsAndQoss.keySet().iterator();
+                while (it.hasNext()) {
+                    String key = it.next();
+                    Integer value = topicsAndQoss.get(key);
+                    subscribe(key, value);
+                }
+                //MQTT消息处理
                 receiver = MqttReceiver.getInstance();
                 IntentFilter filter = new IntentFilter();
                 filter.addAction(ReceiverParams.SENDMESSAGE);
@@ -143,7 +157,6 @@ public class MqttConnection {
         }
         if (receiver != null) {
             context.unregisterReceiver(receiver);
-            receiver = null;
         }
     }
 
