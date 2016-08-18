@@ -242,7 +242,7 @@ angular.module('contacts.controllers', [])
 
     $scope.createchat = function (id, phone,name) {
       // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      alert("进来创建聊天");
+      // alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
       // $state.go('tab.message', {
       //   "id": id,
@@ -1190,7 +1190,7 @@ angular.module('contacts.controllers', [])
     //点击头像发送消息
     $scope.createchat = function (id, phone,name) {
       // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      alert("进来创建聊天");
+      // alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
       // $state.go('tab.message', {
       //   "id": id,
