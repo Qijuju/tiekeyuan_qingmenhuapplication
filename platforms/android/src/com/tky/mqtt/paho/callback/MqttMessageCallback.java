@@ -2,6 +2,8 @@ package com.tky.mqtt.paho.callback;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
@@ -36,10 +38,10 @@ public class MqttMessageCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable arg0) {
-        Log.d("reconnect", "断掉了，哥们~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
+        Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
         if (NetUtils.isConnect(context) && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
             try {
-                mqttAsyncClient.reconnect();
+                boolean reconnect = mqttAsyncClient.reconnect();
             } catch (MqttException e) {
                 e.printStackTrace();
             }
@@ -51,32 +53,47 @@ public class MqttMessageCallback implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
-        Log.d("messageArrived", new String(msg.getPayload()));
-        //如果收到空消息，做为空处理
-        if (msg == null) {
-            return;
-        }
-        if (msg.getPayload() == null || "".equals(new String(msg.getPayload()).trim())) {
-            return;
-        }
-        final MessageBean map = MessageOper.unpack(msg.getPayload());
-		final String msgTopic = (String) map.getSessionid();
-		final String msgContent = (String) map.getMessage();
-		UIUtils.runInMainThread(new Runnable() {
-
-            @Override
-            public void run() {
-                MqttNotification.showNotify(msgTopic, msgContent, new Intent(context, MainActivity.class));
-                Intent intent = new Intent();
-                intent.setAction(ReceiverParams.MESSAGEARRIVED);
-                intent.putExtra("topic", topic);
-                String json = GsonUtils.toJson(map, MessageBean.class);
-                intent.putExtra("content", json);
-                intent.putExtra("qos", msg.getQos());
-                msg.clearPayload();
-                context.sendBroadcast(intent);
+        public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
+            Log.d("messageArrived", new String(msg.getPayload()));
+            if (msg == null) {
+                return;
             }
-        });
-    }
+            if (msg.getPayload() == null || "".equals(new String(msg.getPayload()).trim())) {
+                return;
+            }
+            /*// 初始化MediaPlay对象 ，准备播放音乐
+            MediaPlayer mPlayer = MediaPlayer.create(context,
+                    R.raw.jijiaojinxingqu);
+            // 设置循环播放
+            mPlayer.setLooping(false);
+            // 开始播放
+            mPlayer.start();*/
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setDataSource(context, RingtoneManager
+                        .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                mp.prepare();
+                mp.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            final MessageBean map = MessageOper.unpack(msg.getPayload());
+    		final String username = (String) map.getUsername();
+    		final String msgContent = (String) map.getMessage();
+    		UIUtils.runInMainThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    MqttNotification.showNotify(username, msgContent, new Intent(context, MainActivity.class));
+                    Intent intent = new Intent();
+                    intent.setAction(ReceiverParams.MESSAGEARRIVED);
+                    intent.putExtra("topic", topic);
+                    String json = GsonUtils.toJson(map, MessageBean.class);
+                    intent.putExtra("content", json);
+                    intent.putExtra("qos", msg.getQos());
+                    msg.clearPayload();
+                    context.sendBroadcast(intent);
+                }
+            });
+        }
 }

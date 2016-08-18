@@ -17,9 +17,9 @@ angular.module('message.controllers', [])
     $scope.localusr=$rootScope.userName;
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
     if ($rootScope.isPersonSend === 'true') {
-      alert("长度");
+      // alert("长度");
       $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-      alert($scope.items.length + "长度");
+      // alert($scope.items.length + "长度");
       $scope.$on('chatarr.update', function (event) {
         $scope.$apply(function () {
           $scope.items = $chatarr.getAll($rootScope.isPersonSend);
@@ -103,30 +103,38 @@ angular.module('message.controllers', [])
         $scope.qunliaomsg = $mqtt.getQunliao();
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
-        alert("未读消息count值"+$scope.lastCount+$scope.userId);
+        $scope.firstUserId=$mqtt.getFirstReceiverSsid();
+        // alert("未读消息count值"+$scope.lastCount+$scope.userId);
         if($scope.userId === ''){
-          $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+          $scope.receiverssid=$scope.firstUserId;
           $scope.chatName=$mqtt.getFirstReceiverChatName();
-          alert("first login"+$scope.receiverssid);
+          // alert("first login"+$scope.receiverssid);
+        }else if($scope.userId != $scope.firstUserId){
+          /**
+           *  如果其他用户给当前用户发信息，则在会话列表添加item
+           *  判断信息过来的接收者id是否跟本机用户相等
+           */
+          $scope.receiverssid=$scope.firstUserId;
+          $scope.chatName=$mqtt.getFirstReceiverChatName();
+          // alert("有正常的用户名后"+$scope.receiverssid+$scope.chatName);
         }else{
           $scope.receiverssid=$scope.userId;
-          alert("有正常的用户名后"+$scope.userId);
         }
         //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
         // 接收者id
         // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
         //收到消息时先判断会话列表有没有这个用户
         $greendao.queryData('ChatListService','where id =?',$scope.receiverssid,function (data) {
-          alert(data.length+"收到消息时，查询chat表有无当前用户");
+          // alert(data.length+"收到消息时，查询chat表有无当前用户");
           if(data.length ===0){
-            alert("没有该会话");
+            // alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              alert("长度");
+              // alert("长度");
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
               $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-              alert($scope.items.length + "长度");
+              // alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
                   $scope.items = $chatarr.getAll($rootScope.isPersonSend);
@@ -215,9 +223,34 @@ angular.module('message.controllers', [])
 
     $scope.backFirstMenu = function () {
       $mqtt.clearMsgCount();
+      // alert("无参进来的userid"+$scope.userId);
+      //收到消息时先判断会话列表有没有这个用户
+      //如果直接创建聊天到聊天详情界面，继续返回到主界面，而会话列表还没有该条会话，进行会话列表的item添加
+      $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
+        // alert(data.length+"收到消息时，查询chat表有无当前用户");
+        if(data.length ===0){
+          // alert("没有该会话");
+          $rootScope.isPersonSend='true';
+          if ($rootScope.isPersonSend === 'true') {
+            // alert("长度");
+            //往service里面传值，为了创建会话
+            $chatarr.getIdChatName($scope.userId,$scope.viewtitle);
+            $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+            // alert($scope.items.length + "长度");
+            $scope.$on('chatarr.update', function (event) {
+              $scope.$apply(function () {
+                $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+              });
+            });
+            $rootScope.isPersonSend = 'false';
+          }
+        }
+      },function (err) {
+        alert("收到未读消息时，查询chat列表"+err);
+      });
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId, function (data) {
         if (data.length === 0) {
-          alert("无数据返回主界面1");
+          // alert("无数据返回主界面1");
           $scope.lastText = '';//最后一条消息内容
           $scope.lastDate = 0;//最后一条消息的时间
           $scope.chatName = $scope.viewtitle;//对话框名称
@@ -228,17 +261,18 @@ angular.module('message.controllers', [])
           $scope.chatName = data[0].username;//对话框名称
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
         }
-        alert("无参跳转用户名"+$scope.userId);
+        // alert("无参跳转用户名"+$scope.userId);
         $greendao.queryData('ChatListService', 'where id=?', $scope.userId, function (data) {
-          alert("无参跳转查询消息列表"+data.length);
-          var chatitem = {};
-          chatitem.id = data[0].id;
-          chatitem.chatName = data[0].chatName;
-          chatitem.imgSrc = $scope.imgSrc;
-          chatitem.lastText = $scope.lastText;
-          chatitem.count = '0';
-          chatitem.isDelete = data[0].isDelete;
-          chatitem.lastDate = $scope.lastDate;
+          // alert("无参跳转查询消息列表"+data.length);
+            var chatitem = {};
+            chatitem.id = data[0].id;
+            chatitem.chatName = data[0].chatName;
+            chatitem.imgSrc = $scope.imgSrc;
+            chatitem.lastText = $scope.lastText;
+            chatitem.count = '0';
+            chatitem.isDelete = data[0].isDelete;
+            chatitem.lastDate = $scope.lastDate;
+
           $greendao.saveObj('ChatListService', chatitem, function (data) {
             // alert("save success");
             $greendao.queryByConditions('ChatListService', function (data) {
@@ -425,7 +459,7 @@ angular.module('message.controllers', [])
 
     $scope.userId = $stateParams.id;
     $scope.userName = $stateParams.sessionid;
-    alert($scope.userId+"messageC"+$scope.userName);
+    // alert($scope.userId+"messageC"+$scope.userName);
     if ($rootScope.isPersonSend === 'true') {
       $scope.items = $chatarr.getAll($rootScope.isPersonSend);
       // alert($scope.items.length + "长度");
@@ -459,30 +493,38 @@ angular.module('message.controllers', [])
         $scope.qunliaomsg = $mqtt.getQunliao();
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
-        alert("未读消息count值"+$scope.lastCount+$scope.userId);
+        $scope.firstUserId=$mqtt.getFirstReceiverSsid();
+        // alert("未读消息count值"+$scope.lastCount+$scope.userId);
         if($scope.userId === ''){
-          $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+          $scope.receiverssid=$scope.firstUserId;
           $scope.chatName=$mqtt.getFirstReceiverChatName();
-          alert("first login"+$scope.receiverssid);
+          // alert("first login"+$scope.receiverssid);
+        }else if($scope.userId != $scope.firstUserId){
+          /**
+           *  如果其他用户给当前用户发信息，则在会话列表添加item
+           *  判断信息过来的接收者id是否跟本机用户相等
+           */
+          $scope.receiverssid=$scope.firstUserId;
+          $scope.chatName=$mqtt.getFirstReceiverChatName();
+          // alert("有正常的用户名后"+$scope.receiverssid+$scope.chatName);
         }else{
           $scope.receiverssid=$scope.userId;
-          alert("有正常的用户名后"+$scope.userId);
         }
         //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
         // 接收者id
         // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
         //收到消息时先判断会话列表有没有这个用户
         $greendao.queryData('ChatListService','where id =?',$scope.receiverssid,function (data) {
-          alert(data.length+"收到消息时，查询chat表有无当前用户");
+          // alert(data.length+"收到消息时，查询chat表有无当前用户");
           if(data.length ===0){
             alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              alert("长度");
+              // alert("长度");
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
               $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-              alert($scope.items.length + "长度");
+              // alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
                   $scope.items = $chatarr.getAll($rootScope.isPersonSend);

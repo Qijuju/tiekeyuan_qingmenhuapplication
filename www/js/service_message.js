@@ -14,7 +14,7 @@ angular.module('message.services', [])
         if(chatitem.id === undefined || chatitem.chatName === undefined){
           chatitem.id=$rootScope.id;
           chatitem.chatName=$rootScope.username;
-          alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+          // alert(chatitem.id+"监听消息来源"+chatitem.chatName);
         }else{
           chatitem.id=$stateParams.id;
           chatitem.chatName=$stateParams.ssid;
@@ -26,7 +26,7 @@ angular.module('message.services', [])
         chatitem.lastDate=new Date().getTime();
         mainlist.push(chatitem);
         $greendao.saveObj('ChatListService',chatitem,function (data) {
-          alert("保存成功"+data.length)
+          // alert("保存成功"+data.length)
         },function (err) {
         });
         $rootScope.$broadcast('chatarr.update');
@@ -42,7 +42,7 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      alert("先收到"+$rootScope.id+$rootScope.username);
+      // alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
@@ -101,7 +101,7 @@ angular.module('message.services', [])
             alert(err+"sendmistake");
           });
           $rootScope.firstSendId=messageDetail.sessionid;
-          alert("发送消息时对方id"+$rootScope.firstSendId);
+          // alert("发送消息时对方id"+$rootScope.firstSendId);
           $rootScope.$broadcast('msgs.update');
           return "成功";
         },function (message) {
@@ -110,7 +110,7 @@ angular.module('message.services', [])
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
             if (data != 'success') {
               messageDetail._id = data;
-              alert(messageDetail._id+"消息失败id"+data);
+              // alert(messageDetail._id+"消息失败id"+data);
               $rootScope.$broadcast('msgs.error');
             }
           },function (err) {
@@ -140,7 +140,7 @@ angular.module('message.services', [])
           });
           if(message.type==="User"){
             count++;
-            alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
+            // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             // alert("存的对不对"+$rootScope.firstSessionid);

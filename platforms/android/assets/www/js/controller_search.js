@@ -97,16 +97,21 @@ angular.module('search.controllers', [])
         //点击头像发送消息
         $scope.createchat = function (id, phone,name) {
           // $saveMessageContacts.saveMessageContacts(id,phone,name);
-          alert("进来创建聊天");
+          // alert("进来创建聊天");
           $rootScope.isPersonSend = 'true';
           // $state.go('tab.message', {
           //   "id": id,
           //   "sessionid": name
           // });
-          $state.go('messageDetail',{
-            "id":id,
-            "ssid":name
-          });
+          if(id ===null || name ===null || id === '' ||name ===''){
+            alert("当前用户信息不全");
+          }else{
+            $state.go('messageDetail',{
+              "id":id,
+              "ssid":name
+            });
+          }
+
         };
         // $scope.createchat = function (id,phone, name) {
         //   $saveMessageContacts.saveMessageContacts(id,phone,name);
