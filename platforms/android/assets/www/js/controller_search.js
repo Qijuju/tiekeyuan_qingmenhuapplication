@@ -94,15 +94,29 @@ angular.module('search.controllers', [])
         $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
         $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
 
-        $scope.createchat = function (id,phone, name) {
-          $saveMessageContacts.saveMessageContacts(id,phone,name);
-
+        //点击头像发送消息
+        $scope.createchat = function (id, phone,name) {
+          // $saveMessageContacts.saveMessageContacts(id,phone,name);
+          alert("进来创建聊天");
           $rootScope.isPersonSend = 'true';
-          $state.go('tab.message', {
-            "id": id,
-            "sessionid": name
+          // $state.go('tab.message', {
+          //   "id": id,
+          //   "sessionid": name
+          // });
+          $state.go('messageDetail',{
+            "id":id,
+            "ssid":name
           });
         };
+        // $scope.createchat = function (id,phone, name) {
+        //   $saveMessageContacts.saveMessageContacts(id,phone,name);
+        //
+        //   $rootScope.isPersonSend = 'true';
+        //   $state.go('tab.message', {
+        //     "id": id,
+        //     "sessionid": name
+        //   });
+        // };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [

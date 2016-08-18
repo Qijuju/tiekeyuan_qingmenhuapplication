@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr) {
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   alert(data);
@@ -15,6 +15,18 @@ angular.module('message.controllers', [])
     $scope.userId = $stateParams.id;
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.localusr=$rootScope.userName;
+    //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
+    if ($rootScope.isPersonSend === 'true') {
+      alert("长度");
+      $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+      alert($scope.items.length + "长度");
+      $scope.$on('chatarr.update', function (event) {
+        $scope.$apply(function () {
+          $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+        });
+      });
+      $rootScope.isPersonSend = 'false';
+    }
     // alert($scope.viewtitle+"抬头"+$scope.myUserID);
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.userId, function (data) {
       //根据不同用户，显示聊天记录，查询数据库以后，不论有没有数据，都要清楚之前数组里面的数据
@@ -368,7 +380,7 @@ angular.module('message.controllers', [])
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.queryByConditions('ChatListService',function (data) {
       $scope.items=data;
-      alert($scope.items.length+"聊天列表长度");
+      // alert($scope.items.length+"聊天列表长度");
     },function (err) {
       alert("按时间查询失败"+err);
     });
@@ -446,7 +458,7 @@ angular.module('message.controllers', [])
 
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid) {
-      alert("单聊界面"+id+ssid);
+      // alert("单聊界面"+id+ssid);
       $mqtt.clearMsgCount();
       //将变化的count赋值给unread对象
       $scope.unread = $mqtt.getMsgCount();

@@ -18,15 +18,30 @@ angular.module('contacts.controllers', [])
       });
     };
 
-    $scope.createchat = function (id,phone,name) {
-
-      $saveMessageContacts.saveMessageContacts(id,phone,name);
+    //点击头像发送消息
+    $scope.createchat = function (id, phone,name) {
+      // $saveMessageContacts.saveMessageContacts(id,phone,name);
+      alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      $state.go('tab.message', {
-        "id": id,
-        "sessionid": name
+      // $state.go('tab.message', {
+      //   "id": id,
+      //   "sessionid": name
+      // });
+      $state.go('messageDetail',{
+        "id":id,
+        "ssid":name
       });
     };
+
+    // $scope.createchat = function (id,phone,name) {
+    //
+    //   $saveMessageContacts.saveMessageContacts(id,phone,name);
+    //   $rootScope.isPersonSend = 'true';
+    //   $state.go('tab.message', {
+    //     "id": id,
+    //     "sessionid": name
+    //   });
+    // };
 
     //快速打开的入口  传入类型的原因的 当type等于1 的时候才存入数据库  不等于的时候走的本地通讯录
     $scope.sheetShow = function (id, phone, name, type) {
@@ -94,9 +109,9 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $scope.msgs = $mqtt.getDanliao();
         $scope.lastCount = $mqtt.getMsgCount();
-        alert("未读消息"+$scope.lastCount);
+        // alert("未读消息"+$scope.lastCount);
         $scope.receiverssid=$mqtt.getFirstReceiverSsid();
-        alert("接收者id"+$scope.receiverssid);
+        // alert("接收者id"+$scope.receiverssid);
         //取出与‘ppp’的聊天记录最后一条
         $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
           // alert("未读消息时取出消息表中最后一条数据"+data.length);
@@ -180,12 +195,16 @@ angular.module('contacts.controllers', [])
     };
 
     $scope.createchat = function (id, phone,name) {
-      $saveMessageContacts.saveMessageContacts(id,phone,name);
-
+      // $saveMessageContacts.saveMessageContacts(id,phone,name);
+      alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      $state.go('tab.message', {
-        "id": id,
-        "sessionid": name
+      // $state.go('tab.message', {
+      //   "id": id,
+      //   "sessionid": name
+      // });
+      $state.go('messageDetail',{
+        "id":id,
+        "ssid":name
       });
     };
 
@@ -1118,17 +1137,31 @@ angular.module('contacts.controllers', [])
       }
     };
 
-    //创建聊天
-    $scope.createchat = function (id, phone,sessionid) {
-
-      $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
-
+    //点击头像发送消息
+    $scope.createchat = function (id, phone,name) {
+      // $saveMessageContacts.saveMessageContacts(id,phone,name);
+      alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      $state.go('tab.message', {
-        "id": id,
-        "sessionid": sessionid
+      // $state.go('tab.message', {
+      //   "id": id,
+      //   "sessionid": name
+      // });
+      $state.go('messageDetail',{
+        "id":id,
+        "ssid":name
       });
     };
+    // //创建聊天
+    // $scope.createchat = function (id, phone,sessionid) {
+    //
+    //   $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
+    //
+    //   $rootScope.isPersonSend = 'true';
+    //   $state.go('tab.message', {
+    //     "id": id,
+    //     "sessionid": sessionid
+    //   });
+    // };
 
     //取消关注
     $scope.removeattention = function (id) {

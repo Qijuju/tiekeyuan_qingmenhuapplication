@@ -79,7 +79,7 @@ angular.module('my.controllers', [])
       });
     }
     $scope.getpictur=function () {
-      alert("劲了");
+      // alert("劲了");
       Camera.getPicture(PictureSourceType.CAMERA).then(
 
         //返回一个imageURI，记录了照片的路径
@@ -212,9 +212,9 @@ angular.module('my.controllers', [])
       $scope.$apply(function () {
         $scope.msgs = $mqtt.getDanliao();
         $scope.lastCount = $mqtt.getMsgCount();
-        alert("未读消息"+$scope.lastCount);
+        // alert("未读消息"+$scope.lastCount);
         $scope.receiverssid=$mqtt.getFirstReceiverSsid();
-        alert("接收者id"+$scope.receiverssid);
+        // alert("接收者id"+$scope.receiverssid);
         //取出与‘ppp’的聊天记录最后一条
         $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
           // alert("未读消息时取出消息表中最后一条数据"+data.length);

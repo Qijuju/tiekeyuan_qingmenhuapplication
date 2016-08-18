@@ -11,8 +11,8 @@ angular.module('message.services', [])
       if(isPersonSend === 'true'){
         var chatitem={};
         chatitem.id=$stateParams.id;
-        chatitem.chatName=$stateParams.sessionid;
-        // alert(chatitem.id+chatitem.chatName);
+        chatitem.chatName=$stateParams.ssid;
+        alert(chatitem.id+chatitem.chatName);
         chatitem.imgSrc='';
         chatitem.lastText='';
         chatitem.count='';
@@ -20,6 +20,7 @@ angular.module('message.services', [])
         chatitem.lastDate=new Date().getTime();
         mainlist.push(chatitem);
         $greendao.saveObj('ChatListService',chatitem,function (data) {
+          alert("保存成功"+data.length)
         },function (err) {
         });
         $rootScope.$broadcast('chatarr.update');
@@ -168,11 +169,11 @@ angular.module('message.services', [])
       },
 
       clearMsgGroupCount:function () {
-        alert("clear");
+        // alert("clear");
         groupCount=0;
       },
       getFirstReceiverSsid:function(){
-        alert($rootScope.firstSessionid+"save");
+        // alert($rootScope.firstSessionid+"save");
         return $rootScope.firstSessionid;
       },
 
