@@ -6,13 +6,19 @@ angular.module('message.services', [])
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
   var mainlist=new Array();
   var savedata;
+  var id,chatname;
   return{
     getAll:function (isPersonSend) {
       if(isPersonSend === 'true'){
         var chatitem={};
-        chatitem.id=$stateParams.id;
-        chatitem.chatName=$stateParams.ssid;
-        alert(chatitem.id+chatitem.chatName);
+        if(chatitem.id === undefined || chatitem.chatName === undefined){
+          chatitem.id=$rootScope.id;
+          chatitem.chatName=$rootScope.username;
+          alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+        }else{
+          chatitem.id=$stateParams.id;
+          chatitem.chatName=$stateParams.ssid;
+        }
         chatitem.imgSrc='';
         chatitem.lastText='';
         chatitem.count='';
@@ -32,6 +38,11 @@ angular.module('message.services', [])
     },
     getData:function () {
       return savedata;
+    },
+    getIdChatName:function (id,chatname) {
+      $rootScope.id=id;
+      $rootScope.username=chatname;
+      alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
@@ -89,6 +100,8 @@ angular.module('message.services', [])
           },function (err) {
             alert(err+"sendmistake");
           });
+          $rootScope.firstSendId=messageDetail.sessionid;
+          alert("发送消息时对方id"+$rootScope.firstSendId);
           $rootScope.$broadcast('msgs.update');
           return "成功";
         },function (message) {
@@ -127,8 +140,9 @@ angular.module('message.services', [])
           });
           if(message.type==="User"){
             count++;
-            // alert("接受消息的sessionid"+arriveMessage.sessionid);
+            alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
             $rootScope.firstSessionid=arriveMessage.sessionid;
+            $rootScope.firstUserName=arriveMessage.username;
             // alert("存的对不对"+$rootScope.firstSessionid);
             danliao.push(arriveMessage);
           }else {
@@ -176,7 +190,12 @@ angular.module('message.services', [])
         // alert($rootScope.firstSessionid+"save");
         return $rootScope.firstSessionid;
       },
-
+      getFirstReceiverChatName:function () {
+        return $rootScope.firstUserName;
+      },
+      getSenderID:function () {
+        return $rootScope.firstSendId;
+      },
 
       sendGroupMsg:function (topic,content,id) {
         var messageReal={};
