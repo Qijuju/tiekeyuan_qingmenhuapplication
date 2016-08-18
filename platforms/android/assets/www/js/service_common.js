@@ -116,7 +116,7 @@ angular.module('common.services', [])
           var versionName = msg.versionName;
           var versionDesc = msg.versionDesc;
           var targetPath = "";
-          api.needUpgrade('1.2.0', function (msg) {
+          api.needUpgrade(versionName, function (msg) {
             if(msg == 'true') {
               var confirmPopup = $ionicPopup.confirm({
                 title: '版本升级',
@@ -135,11 +135,11 @@ angular.module('common.services', [])
                     $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
                       // 成功
                       $mqtt.save('install_cancel', 'false');
-                      $mqtt.save('install_cancel_version', '');
+                      // $mqtt.save('install_cancel_version', '');
                     }, function (err) {
                       // 错误
                       $mqtt.save('install_cancel', 'false');
-                      $mqtt.save('install_cancel_version', '');
+                      // $mqtt.save('install_cancel_version', '');
                     });
                   },function (msg) {
                     $ionicLoading.hide();
@@ -148,11 +148,11 @@ angular.module('common.services', [])
                 } else {
                   //取消更新
                   $mqtt.save('install_cancel', 'true');
-                  $mqtt.save('install_cancel_version', versionName);
+                  // $mqtt.save('install_cancel_version', versionName);
                 }
 
               });
-            } else {
+            } else if(msg != 'false') {
               alert(msg);
             }
           },function (msg) {
