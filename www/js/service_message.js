@@ -6,13 +6,19 @@ angular.module('message.services', [])
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
   var mainlist=new Array();
   var savedata;
+  var id,chatname;
   return{
     getAll:function (isPersonSend) {
       if(isPersonSend === 'true'){
         var chatitem={};
-        chatitem.id=$stateParams.id;
-        chatitem.chatName=$stateParams.sessionid;
-        // alert(chatitem.id+chatitem.chatName);
+        if(chatitem.id === undefined || chatitem.chatName === undefined){
+          chatitem.id=$rootScope.id;
+          chatitem.chatName=$rootScope.username;
+          // alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+        }else{
+          chatitem.id=$stateParams.id;
+          chatitem.chatName=$stateParams.ssid;
+        }
         chatitem.imgSrc='';
         chatitem.lastText='';
         chatitem.count='';
@@ -20,6 +26,7 @@ angular.module('message.services', [])
         chatitem.lastDate=new Date().getTime();
         mainlist.push(chatitem);
         $greendao.saveObj('ChatListService',chatitem,function (data) {
+          // alert("保存成功"+data.length)
         },function (err) {
         });
         $rootScope.$broadcast('chatarr.update');
@@ -31,6 +38,11 @@ angular.module('message.services', [])
     },
     getData:function () {
       return savedata;
+    },
+    getIdChatName:function (id,chatname) {
+      $rootScope.id=id;
+      $rootScope.username=chatname;
+      // alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
@@ -88,6 +100,8 @@ angular.module('message.services', [])
           },function (err) {
             alert(err+"sendmistake");
           });
+          $rootScope.firstSendId=messageDetail.sessionid;
+          // alert("发送消息时对方id"+$rootScope.firstSendId);
           $rootScope.$broadcast('msgs.update');
           return "成功";
         },function (message) {
@@ -96,7 +110,7 @@ angular.module('message.services', [])
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
             if (data != 'success') {
               messageDetail._id = data;
-              alert(messageDetail._id+"消息失败id"+data);
+              // alert(messageDetail._id+"消息失败id"+data);
               $rootScope.$broadcast('msgs.error');
             }
           },function (err) {
@@ -126,8 +140,9 @@ angular.module('message.services', [])
           });
           if(message.type==="User"){
             count++;
-            // alert("接受消息的sessionid"+arriveMessage.sessionid);
+            // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
             $rootScope.firstSessionid=arriveMessage.sessionid;
+            $rootScope.firstUserName=arriveMessage.username;
             // alert("存的对不对"+$rootScope.firstSessionid);
             danliao.push(arriveMessage);
           }else {
@@ -148,9 +163,6 @@ angular.module('message.services', [])
       getDanliao:function () {
         return danliao;
       },
-      remove:function (message) {
-        danliao.remove(message);
-      },
       getQunliao:function () {
         return qunliao;
       },
@@ -168,14 +180,19 @@ angular.module('message.services', [])
       },
 
       clearMsgGroupCount:function () {
-        alert("clear");
+        // alert("clear");
         groupCount=0;
       },
       getFirstReceiverSsid:function(){
-        alert($rootScope.firstSessionid+"save");
+        // alert($rootScope.firstSessionid+"save");
         return $rootScope.firstSessionid;
       },
-
+      getFirstReceiverChatName:function () {
+        return $rootScope.firstUserName;
+      },
+      getSenderID:function () {
+        return $rootScope.firstSendId;
+      },
 
       sendGroupMsg:function (topic,content,id) {
         var messageReal={};

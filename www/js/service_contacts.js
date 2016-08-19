@@ -441,7 +441,7 @@ angular.module('contacts.services', [])
           //用户的id
           loginId=msg.deptID;
           $rootScope.$broadcast('login.update');
-          
+
         },function (err) {
 
         })

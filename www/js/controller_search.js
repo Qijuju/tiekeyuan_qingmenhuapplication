@@ -3,7 +3,10 @@
  */
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
-
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+    },function (msg) {
+    })
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     $scope.$on('$ionicView.afterEnter', function () {
       keyboard.show();
@@ -99,15 +102,36 @@ angular.module('search.controllers', [])
         $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
         $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
 
-        $scope.createchat = function (id,phone, name) {
-          $saveMessageContacts.saveMessageContacts(id,phone,name);
-
+        //点击头像发送消息
+        $scope.createchat = function (id, phone,name) {
+          // $saveMessageContacts.saveMessageContacts(id,phone,name);
+          // alert("进来创建聊天");
           $rootScope.isPersonSend = 'true';
-          $state.go('tab.message', {
-            "id": id,
-            "sessionid": name
-          });
+          // $state.go('tab.message', {
+          //   "id": id,
+          //   "sessionid": name
+          // });
+          if(id ===null || name ===null || id === '' ||name ===''){
+            $ToastUtils.showToast("当前用户信息不全");
+          }else if($scope.myid==id) {
+            $ToastUtils.showToast("无法对自己进行该项操作");
+          }else{
+            $state.go('messageDetail',{
+              "id":id,
+              "ssid":name
+            });
+          }
+
         };
+        // $scope.createchat = function (id,phone, name) {
+        //   $saveMessageContacts.saveMessageContacts(id,phone,name);
+        //
+        //   $rootScope.isPersonSend = 'true';
+        //   $state.go('tab.message', {
+        //     "id": id,
+        //     "sessionid": name
+        //   });
+        // };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
@@ -121,6 +145,8 @@ angular.module('search.controllers', [])
             if(index==0){
               if ($scope.phoneattention!=""){
                 $phonepluin.call($scope.idattention, $scope.phoneattention, $scope.nameattention,1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
@@ -129,6 +155,8 @@ angular.module('search.controllers', [])
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
@@ -292,19 +320,15 @@ angular.module('search.controllers', [])
         "sessionid":$scope.UserNameSM
       });
     }
-    $scope.query = "";
-    $scope.query1=""
     $scope.dosearch = function(query) {
       if (query!=""&&query.length>0){
-        $scope.hasmore=true;
-        $scope.page =1;
-        $scope.messagess=[];
-        $scope.namess=[];
-        $scope.lastMsg=[];
         $scope.query1 ="%"+query+"%";
         $searchmessage.searchmessagessss($scope.query1);
         $scope.$on('messagesss.search',function (event) {
           $scope.$apply(function () {
+            $scope.messagess=[];
+            $scope.namess=[];
+            $scope.lastMsg=[];
             var messages;
             var namea;
             for (var i=0;i<$searchmessage.getmessagessss().length;i++){
@@ -337,6 +361,8 @@ angular.module('search.controllers', [])
         });
       }else {
         $scope.lastMsg=[];
+        $scope.namess=[];
+        $scope.messagess=[];
       }
 
 
