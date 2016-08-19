@@ -1,79 +1,26 @@
-<ion-view class="dashbody" view-title="添加新成员">
+<ion-view view-title="添加新成员">
   <ion-nav-bar align-title="center">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" >
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backback()">
         取消
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content overflow-scroll="false" >
-    <div class=" item-input-inset background_white" >
-      <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="Search">
-      </label>
-    </div>
-    <div class="background_white">
-      <a class="item"><img src="img/icon_org.png" style="vertical-align: bottom" width="25" height="25" style="display: inline;">&nbsp;&nbsp;<strong
-        class="font_16" >京沈铁路客运专线辽宁责任有限公司</strong></a>
-    </div>
-    <br>
-    <div class="background_white item-checkbox" >
-      <ion-list>
-        <ion-item ng-repeat=" name in names " ng-if="name.parentdeptid=='279'" >
-          <div class="row row-top item-checkbox">
-            <label class="checkbox">
-              <input type="checkbox"></label>
-            <div class="col-20" align="center" >
-              <img src="img/icon_org.png" align="right" style="height:35px;width: 35px" >
-            </div>
-
-            <div class="col-25" align="center" style="font-size: 18px">
-             <span ng-bind="name.deptname" ></span>
-            </div>
-
-            <div class="col-34" align="center" >
-              <a style="float: right" href="#/addnewpersonsecond/{{name.deptid}}">下级</a>
-            </div>
-          </div>
-          <!--<label class="checkbox">-->
-            <!--<input type="checkbox"></label>-->
-          <!--<img src="img/icon_org.png" style="display: inline;vertical-align: bottom" width="25" height="25" >&nbsp;&nbsp;<span-->
-          <!--ng-bind="name.deptname" ></span>-->
-          <!--<a style="float: right" href="#/addnewpersonsecond/{{name.deptid}}">下级</a>-->
-        </ion-item>
-      </ion-list>
-
-    </div>
-    <br>
-    <div ng-controller="ContactsCtrl">
-      <ion-list>
-        <ion-item ng-repeat="item in contactsList" style="height: 80px">
-          <div class="row row-top item-checkbox">
-            <label class="checkbox">
-              <input type="checkbox"></label>
-            <div class="col-20" align="center" >
-              <img src="img/icon_org.png" align="right" style="height:35px;width: 35px" >
-            </div>
-
-            <div class="col-25" align="center" style="font-size: 18px">
-              <p style="font-size: 15px;margin-top: 8px">{{item.name}}</p>
-            </div>
-
-            <div class="col-34" align="center" >
-              <p style="font-size: 15px;margin-top: 8px">{{item.mobile}}</p>
-            </div>
-          </div>
-        </ion-item>
-      </ion-list>
-    </div>
+  <ion-content>
+        <div class="background_white">
+          <ion-list>
+            <ion-item ng-repeat="item in depts" href="#/addnewpersonsecond/{{item.DeptID}}">
+              <img src="img/icon_org.png" style="vertical-align: bottom" width="27" height="27" style="display: inline;">
+              <strong class="font_16">{{item.DeptName}}</strong>
+            </ion-item>
+          </ion-list>
+        </div>
   </ion-content>
-
-  <ion-footer-bar align-title="left" class="bar-light" resize-foot-bar>
-    <div class="rj-send-button" ng-click="goGroupMessage()">
-      <button class="button button-stable">
+  <ion-footer-bar>
+    <div style="position: absolute;right: 5px;width: 50px">
+      <button class="button button-balanced ">
         确定
       </button>
     </div>
-    </ion-footer-bar>
+  </ion-footer-bar>
 </ion-view>

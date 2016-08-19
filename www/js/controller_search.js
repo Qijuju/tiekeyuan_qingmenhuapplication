@@ -66,7 +66,6 @@ angular.module('search.controllers', [])
     $scope.$on('persons2.update2',function (event) {
       $scope.$apply(function () {
         if ($search222.getPersons2()===null){
-          alert("没有更多数据")
           $scope.hasmore=false
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }else {
@@ -81,7 +80,6 @@ angular.module('search.controllers', [])
           $scope.page++
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }else {
-          alert("没有更多数据")
           $scope.hasmore=false
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }
@@ -100,7 +98,6 @@ angular.module('search.controllers', [])
           $saveMessageContacts.saveMessageContacts(id,phone,name);
 
           $rootScope.isPersonSend = 'true';
-          alert(id + name);
           $state.go('tab.message', {
             "id": id,
             "sessionid": name
@@ -159,7 +156,7 @@ angular.module('search.controllers', [])
     $scope.searchBack=function () {
       $ionicHistory.goBack();
     };
-    
+
 
   })
 

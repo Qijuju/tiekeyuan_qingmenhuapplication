@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import im.model.Msg;
 import im.model.RST;
@@ -114,7 +115,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                     if (userID != null && !(newuserID.equals(userID))) {
                                         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                         ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
-                                        TopContactsService topContactsService=TopContactsService.getInstance(UIUtils.getContext());
+                                        TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
                                         topContactsService.deleteAllData();
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();
@@ -1112,7 +1113,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public Map<String, String> jsonobj2Map(JSONObject obj) throws JSONException {
         Map<String, String> map = new HashMap<String, String>();
-        for (Iterator<String> keys = obj.keys(); obj.keys().hasNext();) {
+        for (Iterator<String> keys = obj.keys(); keys.hasNext();) {
             String key = keys.next();
             String value = obj.getString(key);
             map.put(key, value);

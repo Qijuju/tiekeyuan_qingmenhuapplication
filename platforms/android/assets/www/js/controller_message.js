@@ -170,7 +170,7 @@ angular.module('message.controllers', [])
           chatitem.lastDate = $scope.lastDate;
           $greendao.saveObj('ChatListService', chatitem, function (data) {
             // alert("save success");
-            $greendao.loadAllData('ChatListService', function (data) {
+            $greendao.queryByConditions('ChatListService', function (data) {
               // alert("加载成功");
               $state.go("tab.message", {
                 "id": $scope.userId,
@@ -366,14 +366,20 @@ angular.module('message.controllers', [])
       $rootScope.isPersonSend = 'false';
     }
     //如果不是创建聊天，就直接从数据库里取列表数据
-    $greendao.loadAllData('ChatListService', function (data) {
-      $scope.items = data;
-      //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
-      // $scope.ssid=
-      // alert($scope.items.length+"聊天列表长度");
-    }, function (err) {
-      alert(err);
+    $greendao.queryByConditions('ChatListService',function (data) {
+      $scope.items=data;
+      alert($scope.items.length+"聊天列表长度");
+    },function (err) {
+      alert("按时间查询失败"+err);
     });
+    // $greendao.loadAllData('ChatListService', function (data) {
+    //   $scope.items = data;
+    //   //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
+    //   // $scope.ssid=
+    //   // alert($scope.items.length+"聊天列表长度");
+    // }, function (err) {
+    //   alert(err);
+    // });
     $mqtt.arriveMsg("");
 
     $scope.$on('msgs.update', function (event) {
@@ -411,7 +417,7 @@ angular.module('message.controllers', [])
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
-              $greendao.loadAllData('ChatListService', function (data) {
+              $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);
                 $rootScope.$broadcast('lastcount.update');
               }, function (err) {

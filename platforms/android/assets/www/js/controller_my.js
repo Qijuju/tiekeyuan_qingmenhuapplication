@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $mqtt, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt) {
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
@@ -77,6 +77,17 @@ angular.module('my.controllers', [])
         }
 
       });
+    }
+    $scope.getpictur=function () {
+      alert("劲了");
+      Camera.getPicture(PictureSourceType.CAMERA).then(
+
+        //返回一个imageURI，记录了照片的路径
+        function (imageURI) {
+          alert(imageURI)
+        },
+        function (err) {
+        });
     }
 
     //拍照片
@@ -191,13 +202,62 @@ angular.module('my.controllers', [])
           });
         } else {
           // alert('不确定');
-          alert("退出登录失败！");
+          $ToastUtils.showToast("退出登录失败")
         }
       });
     };
+
+    //确保在应用模块能收到消息，实现消息监听
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        $scope.msgs = $mqtt.getDanliao();
+        $scope.lastCount = $mqtt.getMsgCount();
+        alert("未读消息"+$scope.lastCount);
+        $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+        alert("接收者id"+$scope.receiverssid);
+        //取出与‘ppp’的聊天记录最后一条
+        $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+          // alert("未读消息时取出消息表中最后一条数据"+data.length);
+          $scope.lastText = data[0].message;//最后一条消息内容
+          $scope.lastDate = data[0].when;//最后一条消息的时间
+          $scope.chatName = data[0].username;//对话框名称
+          // alert($scope.chatName + "用户名1");
+          $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+          //取出‘ppp’聊天对话的列表数据并进行数据库更新
+          $greendao.queryData('ChatListService', 'where id=?',$scope.receiverssid, function (data) {
+            $scope.unread = $scope.lastCount;
+            var chatitem = {};
+            chatitem.id = data[0].id;
+            chatitem.chatName = data[0].chatName;
+            chatitem.imgSrc = $scope.imgSrc;
+            chatitem.lastText = $scope.lastText;
+            chatitem.count = $scope.unread;
+            chatitem.isDelete = data[0].isDelete;
+            chatitem.lastDate = $scope.lastDate;
+            $greendao.saveObj('ChatListService', chatitem, function (data) {
+              $greendao.queryByConditions('ChatListService', function (data) {
+                $chatarr.setData(data);
+                $rootScope.$broadcast('lastcount.update');
+              }, function (err) {
+
+              });
+            }, function (err) {
+              alert(err + "数据保存失败");
+            });
+          }, function (err) {
+            alert(err);
+          });
+        }, function (err) {
+          alert(err);
+        });
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
+    });
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -209,7 +269,58 @@ angular.module('my.controllers', [])
         $scope.mypersons = $searchdatadianji.getPersonDetaildianji();
       })
     });
+    // 修改个人资料
+    $scope.updateinformation = function () {
+      $scope.data = {};
+      var myPopup = $ionicPopup.show({
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改邮箱" ng-model="data.email"></label>',
+        title: '修改个人资料',
+        subTitle: '请至少修改一项内容，否则无法提交',
+        scope: $scope,
+        buttons: [
+          {text: '取消'},
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function (e) {
+             // alert("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
 
+              var arr={};
+              /*var arr={
+                'Mobile':$scope.data.phonea,
+                'FixPhone':$scope.data.phoneb,
+                'Email':$scope.data.email
+              };*/
+              var string1="";
+              var string2="";
+              var string3="";
+              if ($scope.data.phonea!=""){
+                string1=$scope.data.phonea;
+                arr.MB = string1;
+              }
+              if($scope.data.phoneb!=""){
+                string2=$scope.data.phoneb;
+                arr.FP = string2;
+              }
+              if($scope.data.email!=""){
+                string3=$scope.data.email;
+                arr.EM = string3;
+              }
+              $api.updateUserInfo(arr,function (msg) {
+                $ToastUtils.showToast("修改个人资料成功")
+                $searchdatadianji.personDetaildianji($scope.UserIDforhou);
+              },function (msg) {
+                $ToastUtils.showToast(msg)
+              })
+            }
+          },
+        ]
+      });
+      myPopup.then(function (res) {
+
+      });
+      // myPopup.close(); //关闭
+    };
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils) {
     $scope.meizuo=function () {
@@ -235,9 +346,9 @@ angular.module('my.controllers', [])
             onTap: function (e) {
               //       alert("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
               $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
-                alert(msg + "修改成功")
+                $ToastUtils.showToast("修改密码成功")
               }, function (msg) {
-                alert(msg + "修改失败")
+                $ToastUtils.showToast(msg)
               })
             }
           },

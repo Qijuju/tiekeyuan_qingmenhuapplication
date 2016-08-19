@@ -7,6 +7,7 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.MessagesDao;
+import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;
@@ -64,7 +65,10 @@ public class MessagesService implements BaseInterface<Messages>{
 
   @Override
   public List<Messages> queryByConditions() {
-    return null;
+      return messagesDao.queryBuilder()
+              .orderDesc(MessagesDao.Properties.When)
+              .build()
+              .list();
   }
 
 

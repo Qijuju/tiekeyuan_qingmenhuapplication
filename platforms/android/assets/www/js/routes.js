@@ -237,37 +237,66 @@ angular.module('im.routes', [])
       .state('addnewpersonfirst', {
         url: '/addnewpersonfirst',
         templateUrl: 'templates/addNewPerson-first.html',
-        controller: 'addNewPersonfirstCtrl'
+        controller: 'addNewPersonfirstCtrl',
+        cache:false
       })
       .state('addnewpersonsecond', {
         url: '/addnewpersonsecond/:contactId',
         templateUrl: 'templates/addNewPerson-second.html',
-        controller: 'addNewPersonsecondCtrl'
+        controller: 'addNewPersonsecondCtrl',
+        cache:false
+
       })
       .state('addnewpersonthird', {
-        url: '/addnewpersonthird/:contactId',
+        url: '/addnewpersonthird/:contactId/:secondname',
         templateUrl: 'templates/addNewPerson-third.html',
-        controller: 'addNewPersonthirdCtrl'
+        controller: 'addNewPersonthirdCtrl',
+        cache:false
+
       })
       .state('addnewpersonforth', {
-        url: '/addnewpersonforth/:contactId',
+        url: '/addnewpersonforth/:contactId/:secondname/:thirdname',
         templateUrl: 'templates/addNewPerson-forth.html',
-        controller: 'addNewPersonforthCtrl'
+        controller: 'addNewPersonforthCtrl',
+        cache:false
+
       })
       .state('addnewpersonfifth', {
-        url: '/addnewpersonfifth/:contactId',
+        url: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname',
         templateUrl: 'templates/addNewPerson-fifth.html',
-        controller: 'addNewPersonfifthCtrl'
+        controller: 'addNewPersonfifthCtrl',
+        cache:false
+
       })
       .state('addnewpersonsixth', {
-        url: '/addnewpersonsixth/:contactId',
+        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
         templateUrl: 'templates/addNewPerson-sixth.html',
-        controller: 'addNewPersonsixthCtrl'
+        controller: 'addNewPersonsixthCtrl',
+        cache:false
+
       })
+      .state('addnewpersonseventh', {
+        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
+        templateUrl: 'templates/addNewPerson-seventh.html',
+        controller: 'addNewPersonseventhCtrl',
+        cache:false
+
+      })
+
+      .state('addnewpersoneighth', {
+        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname',
+        templateUrl: 'templates/addNewPerson-eighth.html',
+        controller: 'addNewPersoneighthCtrl',
+        cache:false
+
+      })
+
+
+
       .state('searchlocal', {
         url: '/searchlocal',
         templateUrl: 'templates/searchLocal.html',
-        controller: 'searchLocalCtrl'
+        controller: 'searchLocalCtrl',
       })
 
       .state('attentionDetail', {
