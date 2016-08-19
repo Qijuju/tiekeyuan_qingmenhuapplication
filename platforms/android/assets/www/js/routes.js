@@ -227,6 +227,19 @@ angular.module('im.routes', [])
         cache:false
       })
 
+      .state('searchmessage', {
+        url: '/searchmessage/:UserIDSM/:UserNameSM',
+        templateUrl: 'templates/searchmessage.html',
+        controller: 'searchmessageCtrl',
+        cache:false
+      })
+      .state('searchmessage22', {
+        url: '/searchmessage22/:UserIDSM/:UserNameSM/:Username2/:Usermessage2',
+        templateUrl: 'templates/searchmessage2.html',
+        controller: 'searchmessage22Ctrl',
+        cache:false
+      })
+
       .state('searchdetail', {
         url: '/searchdetail/:UserID',
         templateUrl: 'templates/searchDetail.html',

@@ -66,9 +66,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils) {
-
-
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$mqtt) {
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
@@ -91,6 +89,54 @@ angular.module('contacts.controllers', [])
       })
     });
 
+    //在联系人界面时进行消息监听，确保人员收到消息
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        $scope.msgs = $mqtt.getDanliao();
+        $scope.lastCount = $mqtt.getMsgCount();
+        alert("未读消息"+$scope.lastCount);
+        $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+        alert("接收者id"+$scope.receiverssid);
+        //取出与‘ppp’的聊天记录最后一条
+        $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+          // alert("未读消息时取出消息表中最后一条数据"+data.length);
+          $scope.lastText = data[0].message;//最后一条消息内容
+          $scope.lastDate = data[0].when;//最后一条消息的时间
+          $scope.chatName = data[0].username;//对话框名称
+          // alert($scope.chatName + "用户名1");
+          $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+          //取出‘ppp’聊天对话的列表数据并进行数据库更新
+          $greendao.queryData('ChatListService', 'where id=?',$scope.receiverssid, function (data) {
+            $scope.unread = $scope.lastCount;
+            var chatitem = {};
+            chatitem.id = data[0].id;
+            chatitem.chatName = data[0].chatName;
+            chatitem.imgSrc = $scope.imgSrc;
+            chatitem.lastText = $scope.lastText;
+            chatitem.count = $scope.unread;
+            chatitem.isDelete = data[0].isDelete;
+            chatitem.lastDate = $scope.lastDate;
+            $greendao.saveObj('ChatListService', chatitem, function (data) {
+              $greendao.queryByConditions('ChatListService', function (data) {
+                $chatarr.setData(data);
+                $rootScope.$broadcast('lastcount.update');
+              }, function (err) {
+
+              });
+            }, function (err) {
+              alert(err + "数据保存失败");
+            });
+          }, function (err) {
+            alert(err);
+          });
+        }, function (err) {
+          alert(err);
+        });
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
+    });
 
     $scope.topGoDetail = function (id) {
       $state.go("person", {
@@ -1015,10 +1061,15 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt) {
 
     $scope.userId = $stateParams.userId;
-
+    alert($scope.userId+"$scope.userId")
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+      alert($scope.myid+"$scope.myid")
+    },function (msg) {
+    })
 
     $contacts.personDetail($scope.userId);
     $scope.$on('personDetail.update', function (event) {
@@ -1043,52 +1094,70 @@ angular.module('contacts.controllers', [])
 
     //调用打电话功能，并且会存到数据库里面
     $scope.detailCall = function (id, phone, name, type) {
-      if (phone != "") {
-        $phonepluin.call(id, phone, name, type);
-      } else {
-        $ToastUtils.showToast("电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (phone != "") {
+          $phonepluin.call(id, phone, name, type);
+        } else {
+          $ToastUtils.showToast("电话为空")
+        }
       }
     }
 
 
     //发短信 也会把存入数据库  传入类型的原因是 type 只是存 通过组织架构拨打出去的电话和人
     $scope.detailSendSms = function (id, phone, name, type) {
-      if (phone != "") {
-
-        $phonepluin.sms(id, phone, name, type);
-      } else {
-        $ToastUtils.showToast("电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (phone != "") {
+          $phonepluin.sms(id, phone, name, type);
+        } else {
+          $ToastUtils.showToast("电话为空")
+        }
       }
+
     };
 
 
     //把联系人存入本地
     $scope.insertPhone = function (name, phone) {
-      if (name != null && phone != null) {
-        $savaLocalPlugin.insert(name, phone);
-
-      } else {
-        $ToastUtils.showToast("姓名或者电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (name != null && phone != null) {
+          $savaLocalPlugin.insert(name, phone);
+        } else {
+          $ToastUtils.showToast("姓名或者电话为空")
+        }
       }
+
     };
 
     //创建聊天
     $scope.createchat = function (id, phone,sessionid) {
-
-      $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
-
-      $rootScope.isPersonSend = 'true';
-      $state.go('tab.message', {
-        "id": id,
-        "sessionid": sessionid
-      });
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
+        $rootScope.isPersonSend = 'true';
+        $state.go('tab.message', {
+          "id": id,
+          "sessionid": sessionid
+        });
+      }
     };
 
     //取消关注
     $scope.removeattention = function (id) {
-      var membersAerr = [];
-      membersAerr.push(id);
-      $addattentionser.removeAttention111(membersAerr);
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.removeAttention111(membersAerr);
+      }
     }
     $scope.$on('attention.delete', function (event) {
       $scope.$apply(function () {
@@ -1098,9 +1167,13 @@ angular.module('contacts.controllers', [])
 
     //添加关注
     $scope.addattentiondetail = function (id) {
-      var membersAerr = [];
-      membersAerr.push(id);
-      $addattentionser.addAttention111(membersAerr);
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.addAttention111(membersAerr);
+      }
     };
     $scope.$on('attention.add', function (event) {
       $scope.$apply(function () {
@@ -1110,7 +1183,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$contacts,$ToastUtils) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1145,7 +1218,9 @@ angular.module('contacts.controllers', [])
       $ToastUtils.showToast("此功能暂未开发");
     }
 
-
+    // $scope.faqi=function () {
+    //   $state.go(contactId);
+    // };
 
   })
 

@@ -455,12 +455,6 @@ angular.module('contacts.services', [])
       //获取常用联系人
 
       topContactsInfo:function () {
-        // $greendao.loadByCount(function (msg) {
-        //   topContactList=msg;
-        //   $rootScope.$broadcast('topcontacts.update');
-        // },function (err) {
-        //
-        // });
         $greendao.queryByConditions('TopContactsService',function (msg) {
           topContactList=msg;
           $rootScope.$broadcast('topcontacts.update');
@@ -1074,6 +1068,37 @@ angular.module('contacts.services', [])
 
       getaddAttention111:function () {
         return addwancheng;
+      }
+    }
+
+  })
+  .factory('$searchmessage',function ($greendao,$rootScope) {
+    var messagesss;
+    var messagenamess;
+    return{
+      searchmessagessss:function (quey) {
+        $greendao.queryData('MessagesService', 'where MESSAGE LIKE ?', quey, function (data) {
+          messagesss=data;
+          $rootScope.$broadcast('messagesss.search');
+        },function (msg) {
+          alert("失败")
+        })
+      },
+
+      searchmessagesbyperson:function (name,message) {
+        $greendao.querySearchDetail(name,message,function (data) {
+          messagenamess=data;
+          $rootScope.$broadcast('messagesss.name');
+        },function (msg) {
+          alert("失败")
+        })
+      },
+      getmessagenamess:function () {
+        return messagenamess;
+      },
+
+      getmessagessss:function () {
+        return messagesss;
       }
     }
 
