@@ -569,7 +569,7 @@ angular.module('message.controllers', [])
     }
   })
 
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils) {
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $mqtt.getUserInfo(function (msg) {
@@ -622,7 +622,7 @@ angular.module('message.controllers', [])
         });
 
       }else {
-        alert("已经到最后一页了")
+        $ToastUtils.showToast("已经到最后一页了")
       }
     }
     //上一页
@@ -638,7 +638,7 @@ angular.module('message.controllers', [])
 
 
       }else {
-        alert("已经到第一页了")
+        $ToastUtils.showToast("已经到第一页了");
       }
     }
 
