@@ -205,7 +205,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -271,7 +271,8 @@ angular.module('contacts.controllers', [])
 
     //在二级目录跳转到联系人界面
     $scope.backFirst = function () {
-      $state.go("tab.contacts");
+      //$state.go("tab.contacts");
+      $ionicHistory.goBack();
     }
 
     //在二级目录跳转到三级目录
@@ -294,7 +295,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -364,10 +365,13 @@ angular.module('contacts.controllers', [])
     //在三级目录返回第二级
     $scope.idddd = $contacts.getFirstID();
 
-    $scope.backSecond = function (sd) {
+    /*$scope.backSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
+    }*/
+    $scope.backSecond = function () {
+      $ionicHistory.goBack();
     }
 
 
@@ -392,7 +396,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,  $contacts) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -468,14 +472,21 @@ angular.module('contacts.controllers', [])
     $scope.firstid = $contacts.getFirstID();
 
 
-    $scope.backThird = function (sd, named) {
+    /*$scope.backThird = function (sd, named) {
 
       $state.go("third", {
         "contactId": sd,
         "secondname": named
       });
 
+    };*/
+
+    $scope.backThird = function () {
+
+      $ionicHistory.goBack();
+
     };
+
 
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
     $scope.fromForthToSecond = function (sd) {
@@ -505,7 +516,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -597,13 +608,16 @@ angular.module('contacts.controllers', [])
 
 
     //返回四级部门 需要一个id 和 两个名字
-    $scope.backForth = function (sd, sname, tname) {
+    /*$scope.backForth = function (sd, sname, tname) {
       $state.go("forth", {
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
       });
-    };
+    };*/
+    $scope.backForth = function () {
+      $ionicHistory.goBack();
+     };
 
     //从五级部门跳转到六级部门
     $scope.jumpSixth = function (id, sname, tname, fname, dd) {
@@ -628,7 +642,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -750,13 +764,17 @@ angular.module('contacts.controllers', [])
 
     //从六级返回五级  需要四个参数
 
-    $scope.backFifth = function (sd, sname, tname, ttname) {
+    /*$scope.backFifth = function (sd, sname, tname, ttname) {
       $state.go("fifth", {
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
         "forthname": ttname
       });
+    };*/
+
+    $scope.backFifth = function () {
+      $ionicHistory.goBack();
     };
 
 
