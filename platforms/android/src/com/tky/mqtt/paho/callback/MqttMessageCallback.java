@@ -11,6 +11,7 @@ import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.sync.MqttConnection;
@@ -38,9 +39,12 @@ public class MqttMessageCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable arg0) {
+//        count++;
+//        SPUtils.save("connectionLost", "第" + count + "次失联");
         Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
         if (NetUtils.isConnect(context) && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
             try {
+//                SPUtils.save("count", "第" + count + "次重联");
                 boolean reconnect = mqttAsyncClient.reconnect();
             } catch (MqttException e) {
                 e.printStackTrace();

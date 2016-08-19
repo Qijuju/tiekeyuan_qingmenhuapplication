@@ -44,6 +44,7 @@ public class MqttTopicRW {
 		intent.putExtra("topic", topic);
 		intent.putExtra("qos", qos);
 		UIUtils.getContext().sendBroadcast(intent);
+		SPUtils.save(getKey(), SPUtils.getString(getKey(), "") + ";" + topic + "#" + qos);
 	}
 
 	public static String getKey() {

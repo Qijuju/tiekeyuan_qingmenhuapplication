@@ -2,6 +2,7 @@ package com.tky.mqtt.plugin.thrift;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -31,8 +32,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import im.model.Group;
 import im.model.Msg;
 import im.model.RST;
 import im.model.User;
@@ -42,6 +43,9 @@ import im.server.Department.RSTgetDept;
 import im.server.Department.RSTgetRoot;
 import im.server.File.IMFile;
 import im.server.File.RSTversionInfo;
+import im.server.Group.IMGroup;
+import im.server.Group.RSTaddGroup;
+import im.server.Group.RSTgetGroup;
 import im.server.Message.IMMessage;
 import im.server.Message.RSTgetMsg;
 import im.server.Message.RSTgetMsgCount;
@@ -131,7 +135,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else if ("104".equals(result.getResultCode())) {
                                     setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                                 } else if ("105".equals(result.getResultCode())) {
-                                    setResult("用户在不常用的设备上登录！", PluginResult.Status.ERROR, callbackContext);
+                                    setResult("该用户已在其他手机终端登录！", PluginResult.Status.ERROR, callbackContext);
                                 } else {
                                     setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
@@ -1052,6 +1056,176 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
+    /**
+     * 创建群组
+     * @param args
+     * @param callbackContext
+     */
+    public void addGroup(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String groupName = args.getString(0);
+            JSONArray deptsArr = args.getJSONArray(1);
+            JSONArray membersArr = args.getJSONArray(2);
+            List<String> depts = jsonArray2List(deptsArr);
+            List<String> members = jsonArray2List(membersArr);
+            SystemApi.addGroup(getUserID(), groupName, depts, members, new AsyncMethodCallback<IMGroup.AsyncClient.AddGroup_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.AddGroup_call addGroup_call) {
+                    try {
+                        RSTaddGroup result = addGroup_call.getResult();
+                        if (result != null && result.result) {
+                            String groupID = result.getGroupID();
+                            MqttTopicRW.append("LN/G/" + groupID, 1);
+                            setResult(groupID, PluginResult.Status.OK, callbackContext);
+                        }
+                        if (result != null && "711".equals(result.getResultCode())) {
+                            setResult("创建的群组必须大于2人（包括自己）！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                        if (result != null && "712".equals(result.getResultCode())) {
+                            setResult("创建的群组超过了100人！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            setResult("创建群组失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取群组（列表）信息
+     * @param args
+     * @param callbackContext
+     */
+    public void getGroup(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            JSONArray groupIdsArr = args.getJSONArray(0);
+            SystemApi.getGroup(getUserID(), jsonArray2List(groupIdsArr), new AsyncMethodCallback<IMGroup.AsyncClient.GetGroup_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GetGroup_call getGroup_call) {
+                    try {
+                        RSTgetGroup result = getGroup_call.getResult();
+                        if (result != null && result.result) {
+                            List<Group> groups = result.getGroupList();
+                            if (groups != null) {
+                                String json = GsonUtils.toJson(groups, new TypeToken<List<Group>>() {
+                                }.getType());
+                                setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                            } else {
+                                setResult("数据群组失败！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        } if (result != null && "721".equals(result.getResultCode())) {
+                            setResult("指定的群组不存在！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            setResult("创建群组失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改群信息
+     * @param args
+     * @param callbackContext
+     */
+    public void modifyGroup(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 解散群组
+     * @param args
+     * @param callbackContext
+     */
+    public void removeGroup(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 获取群组指定信息
+     * @param args
+     * @param callbackContext
+     */
+    public void getGroupUpdate(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 群组添加人员（列表）
+     * @param args
+     * @param callbackContext
+     */
+    public void groupAddMember(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 群组移除人员（列表）
+     * @param args
+     * @param callbackContext
+     */
+    public void groupRemoveMember(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 群组添加管理员（列表）
+     * @param args
+     * @param callbackContext
+     */
+    public void groupAddAdmin(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 群组移除管理员（列表）
+     * @param args
+     * @param callbackContext
+     */
+    public void groupRemoveAdmin(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    /**
+     * 获取用户所有群组
+     * @param args
+     * @param callbackContext
+     */
+    public void getAllGroup(final JSONArray args, final CallbackContext callbackContext){
+    }
+
+    //以下为工具方法
     /**
      * 是否需要升级，传入的新老版本都要以数字和小数点组合
      * @param oldVersionName

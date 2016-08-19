@@ -22,6 +22,7 @@ import java.util.Map;
 import im.server.Department.IMDepartment;
 import im.server.File.IMFile;
 import im.server.File.RSTversion;
+import im.server.Group.IMGroup;
 import im.server.Message.IMMessage;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
@@ -122,6 +123,19 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    private static IMGroup.AsyncClient getGroupClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6004, 5000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMGroup.AsyncClient asyncClient = new IMGroup.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -450,6 +464,145 @@ public class SystemApi {
     public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
         IMMessage.AsyncClient client = getMsgClient();
         client.GetMsgCount(ID, sessionType, sessionID, callback);
+    }
+
+    /**
+     * 创建群组
+     * @param ID 用户ID
+     * @param groupName 群名称
+     * @param depts 直接选择的部们【deptID】列表
+     * @param members 加入群的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void addGroup(String ID, String groupName, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.AddGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.AddGroup(ID, groupName, depts, members, callback);
+    }
+
+    /**
+     * 获取群组（列表）信息
+     * @param ID 用户ID
+     * @param groupIds 群组ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getGroup(String ID, List<String> groupIds, AsyncMethodCallback<IMGroup.AsyncClient.GetGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetGroup(ID, groupIds, callback);
+    }
+
+    /**
+     * 修改群信息
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param groupName 群名称
+     * @param groupText 群公告
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void modifyGroup(String ID, String groupID, String groupName, String groupText, AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.ModifyGroup(ID, groupID, groupName, groupText, callback);
+    }
+
+    /**
+     * 解散群组
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void removeGroup(String ID, String groupID, AsyncMethodCallback<IMGroup.AsyncClient.RemoveGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.RemoveGroup(ID, groupID, callback);
+    }
+
+    /**
+     * 获取群组指定信息
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param getObjects 查询的项目代码列表（参考下表）
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getGroupUpdate(String ID, String groupID, List<String> getObjects, AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetGroupUpdate(ID, groupID, getObjects, callback);
+    }
+
+    /**
+     * 群组添加人员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param depts 加入群的部门ID列表
+     * @param members 需要添加的人员列表信息
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupAddMember(String ID, String groupID, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddMember_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupAddMember(ID, groupID, depts, members, callback);
+    }
+
+    /**
+     * 群组移除人员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param members 需要移除的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupRemoveMember(String ID, String groupID, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveMember_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupRemoveMember(ID, groupID, members, callback);
+    }
+
+    /**
+     * 群组添加管理员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param admins 需要添加为管理员的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupAddAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddAdmin_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupAddAdmin(ID, groupID, admins, callback);
+    }
+
+    /**
+     * 群组移除管理员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param admins 需要移除管理员的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupRemoveAdmin(ID, groupID, admins, callback);
+    }
+
+    /**
+     * 获取用户所有群组
+     * @param ID 用户ID
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getAllGroup(String ID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetAllGroup(ID, callback);
     }
 
 }
