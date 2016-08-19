@@ -108,6 +108,10 @@ angular.module('selectgroup.controllers', [])
 
     };
 
+    $scope.tantan=function (ff) {
+      alert("你好啊恢复"+ff);
+    }
+
   })
   .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
 
