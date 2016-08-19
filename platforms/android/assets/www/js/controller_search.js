@@ -3,7 +3,10 @@
  */
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
-
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+    },function (msg) {
+    })
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     $scope.$on('$ionicView.afterEnter', function () {
       keyboard.show();
@@ -14,7 +17,7 @@ angular.module('search.controllers', [])
     };
 
 
-    $scope.query = "";
+
     $mqtt.getUserInfo(function (msg) {
       $scope.id=msg.userID;
 
@@ -26,32 +29,37 @@ angular.module('search.controllers', [])
     $scope.page =1;
     $scope.count=15;
     $scope.persons=[];
+    $scope.query = "";
     $scope.query1=""
     $scope.dosearch = function(query) {
-      $scope.hasmore=true;
-      $scope.page =1;
-      $scope.persons=[];
-      $scope.query1 =query;
-      $search111.search1111($scope.id,$scope.page,$scope.count,query);
-      $scope.$on('persons.update',function (event) {
-        $scope.$apply(function () {
-          $scope.hasmore=true;
-          $scope.page =1;
-          $scope.persons=[];
-          $scope.query1 =query;
-          $scope.persons=$search111.getPersons().searchResult;
+      if (query!=""&&query.length>0){
+        $scope.hasmore=true;
+        $scope.page =1;
+        $scope.persons=[];
+        $scope.query1 =query;
+        $search111.search1111($scope.id,$scope.page,$scope.count,query);
+        $scope.$on('persons.update',function (event) {
+          $scope.$apply(function () {
+            $scope.hasmore=true;
+            $scope.page =1;
+            $scope.persons=[];
+            $scope.query1 =query;
+            $scope.persons=$search111.getPersons().searchResult;
 
 
-          $scope.$broadcast('scroll.infiniteScrollComplete');
-          if ($scope.persons.length>=15){
-            $scope.hasmore=true
-            $scope.page++
-          }else {
-            $scope.hasmore=false
-          }
-        })
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+            if ($scope.persons.length>=15){
+              $scope.hasmore=true
+              $scope.page++
+            }else {
+              $scope.hasmore=false
+            }
+          })
 
-      });
+        });
+      }else {
+        $scope.persons=[];
+      }
     }
 
 //上拉加载
@@ -104,7 +112,9 @@ angular.module('search.controllers', [])
           //   "sessionid": name
           // });
           if(id ===null || name ===null || id === '' ||name ===''){
-            alert("当前用户信息不全");
+            $ToastUtils.showToast("当前用户信息不全");
+          }else if($scope.myid==id) {
+            $ToastUtils.showToast("无法对自己进行该项操作");
           }else{
             $state.go('messageDetail',{
               "id":id,
@@ -135,6 +145,8 @@ angular.module('search.controllers', [])
             if(index==0){
               if ($scope.phoneattention!=""){
                 $phonepluin.call($scope.idattention, $scope.phoneattention, $scope.nameattention,1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
@@ -143,6 +155,8 @@ angular.module('search.controllers', [])
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
@@ -282,6 +296,119 @@ angular.module('search.controllers', [])
       });
 
     };
+
+
+  })
+
+  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage) {
+    Array.prototype.contains = function(item){
+      return RegExp("\\b"+item+"\\b").test(this);
+    };
+    var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+    $scope.$on('$ionicView.afterEnter', function () {
+      keyboard.show();
+      document.getElementById("searchdata").focus();
+    });
+    $scope.onDrag = function () {
+      keyboard.close();
+    };
+    $scope.UserIDSM = $stateParams.UserIDSM;
+    $scope.UserNameSM = $stateParams.UserNameSM;
+    $scope.backSearchSM = function () {
+      $state.go("tab.message",{
+        "id":$scope.UserIDSM,
+        "sessionid":$scope.UserNameSM
+      });
+    }
+    $scope.dosearch = function(query) {
+      if (query!=""&&query.length>0){
+        $scope.query1 ="%"+query+"%";
+        $searchmessage.searchmessagessss($scope.query1);
+        $scope.$on('messagesss.search',function (event) {
+          $scope.$apply(function () {
+            $scope.messagess=[];
+            $scope.namess=[];
+            $scope.lastMsg=[];
+            var messages;
+            var namea;
+            for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+              messages=$searchmessage.getmessagessss()[i];
+              $scope.messagess.push(messages)
+            }
+            namea=$searchmessage.getmessagessss()[0].username;
+            $scope.namess.push(namea);
+            for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+
+              namea=$searchmessage.getmessagessss()[i].username;
+              if ($scope.namess.indexOf(namea)==-1){
+                $scope.namess.push(namea)
+              }
+            }
+            for( var i=0; i<$scope.namess.length;i++){
+              var count=0;
+              var lastmsg={};
+              for(var j=0;j<$scope.messagess.length;j++){
+                if ($scope.namess[i]==$scope.messagess[j].username){
+                  lastmsg.name=$scope.namess[i];
+                  lastmsg.sessionid=$scope.messagess[j].sessionid
+                  count++;
+                  lastmsg.count=count;
+                }
+              }
+              $scope.lastMsg.push(lastmsg)
+            }
+          })
+        });
+      }else {
+        $scope.lastMsg=[];
+        $scope.namess=[];
+        $scope.messagess=[];
+      }
+
+
+    }
+    $scope.goSearchMsgDetail = function (name) {
+      $state.go("searchmessage22", {
+        "Username2": name,
+        "Usermessage2": $scope.query1,
+        "UserIDSM": $scope.UserIDSM,
+        "UserNameSM": $scope.UserNameSM
+      });
+
+    };
+    // $greendao.queryData('MessagesService', 'where message like', $scope.receiverssid, function (data) {
+    //
+    // },function (msg) {
+    //   alert("失败")
+    // })
+
+  })
+  .controller('searchmessage22Ctrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage) {
+
+    $scope.Username2 = $stateParams.Username2;
+    $scope.Usermessage2 = $stateParams.Usermessage2;
+    $scope.UserIDSM = $stateParams.UserIDSM;
+    $scope.UserNameSM = $stateParams.UserNameSM;
+    $scope.Usermessage3=$scope.Usermessage2.substr(1,($scope.Usermessage2.length-2));
+    $scope.backSearchMessage=function () {
+      $state.go("searchmessage", {
+        "UserIDSM": $scope.UserIDSM,
+        "UserNameSM": $scope.UserNameSM,
+      });
+    }
+    var messagenamess;
+    $scope.messagessname=[];
+      $searchmessage.searchmessagesbyperson($scope.Username2,$scope.Usermessage2);
+      $scope.$on('messagesss.name',function (event) {
+        $scope.$apply(function () {
+          for (var i=0;i<$searchmessage.getmessagenamess().length;i++){
+            messagenamess=$searchmessage.getmessagenamess()[i];
+            $scope.messagessname.push(messagenamess)
+          }
+          $scope.lengtha= $searchmessage.getmessagenamess().length;
+          $scope.sessionida=$searchmessage.getmessagenamess()[0].sessionid;
+        })
+      });
 
 
   })

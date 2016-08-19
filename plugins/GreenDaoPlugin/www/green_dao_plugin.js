@@ -45,6 +45,10 @@ exports.queryByConditions = function (services,success, error) {
   exec(success, error, "GreenDaoPlugin", "queryByConditions", [services]);
 };
 
+exports.querySearchDetail = function (name, message,success, error) {
+  exec(success, error, "GreenDaoPlugin", "querySearchDetail", [name, message]);
+};
+
 
 
 
