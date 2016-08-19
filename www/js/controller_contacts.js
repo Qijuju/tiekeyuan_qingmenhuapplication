@@ -1064,10 +1064,8 @@ angular.module('contacts.controllers', [])
   .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt) {
 
     $scope.userId = $stateParams.userId;
-    alert($scope.userId+"$scope.userId")
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
-      alert($scope.myid+"$scope.myid")
     },function (msg) {
     })
 
