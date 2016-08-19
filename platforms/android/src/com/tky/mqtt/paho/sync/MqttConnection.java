@@ -148,7 +148,7 @@ public class MqttConnection {
         this.connectionType = modeConnectionDownManual;
         if (client != null && client.isConnected()) {
             try {
-                client.disconnect();
+                client.disconnectForcibly();
 //                client.close();
                 client = null;
             } catch (MqttException e) {

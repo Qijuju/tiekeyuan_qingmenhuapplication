@@ -106,7 +106,7 @@ angular.module('login.controllers', [])
     var loginM = function () {
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;
-        alert("当前用户的id"+userID);
+        // alert("当前用户的id"+userID);
       }, function (err) {
 
       });
