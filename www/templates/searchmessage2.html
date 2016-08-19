@@ -1,0 +1,35 @@
+<ion-view >
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSearchMessage()">
+        {{Username2}}
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false">
+    <div class="background_white">
+      <p class="company_contacts_title padding_10 font_18" style="margin-top: 20px">共{{lengtha}}条与"{{Usermessage3}}"相关的聊天记录</p>
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="messageaname in messagessname" style="height: 60px" >
+        <div class="row" >
+          <div  class="col-20" style="text-align: center">
+            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==1||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==2||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==3||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==4||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==5||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+          </div>
+          <div class="col-80 text-center" align="left" ng-click="">
+            <h3 style="font-size: 15px;position: absolute;left: 23%;top: 20%">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</h3>
+            <h3 style="font-size: 15px;position: absolute;left: 23%;top: 50%">{{messageaname.username}}</h3>
+            <h3  style="font-size: 15px;position: absolute;left: 33%;top: 50%">{{messageaname.message}}</h3>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+  </ion-content>
+</ion-view>
+

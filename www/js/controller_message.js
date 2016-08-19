@@ -498,7 +498,10 @@ angular.module('message.controllers', [])
 
 
     $scope.goSearch = function () {
-      $state.go("search");
+      $state.go("searchmessage",{
+        "UserIDSM":$scope.userId,
+        "UserNameSM":$scope.userName
+      });
     }
 
   })

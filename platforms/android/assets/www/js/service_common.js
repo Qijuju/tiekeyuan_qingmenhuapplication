@@ -43,7 +43,10 @@ angular.module('common.services', [])
 
       queryByConditions:function (services, success, error) {
         greendao.queryByConditions(services,success,error);
-      }
+      },
+      querySearchDetail :function (name, message,success, error) {
+        greendao.querySearchDetail (name, message,success, error);
+      },
 
     };
 

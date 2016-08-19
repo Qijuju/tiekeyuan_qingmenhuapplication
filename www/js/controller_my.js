@@ -6,21 +6,23 @@ angular.module('my.controllers', [])
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
+      $scope.mymypersonname=msg.userName
+      if ($scope.mymypersonname.length>2){
+        $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
+      }else {
+        $scope.jiename=$scope.mymypersonname
+      }
     }, function (msg) {
       $ToastUtils.showToast(msg)
     });
 
-    $searchdata.personDetail($rootScope.rootUserId);
-    $scope.$on('person.update', function (event) {
-      $scope.$apply(function () {
-        $scope.mymypersonname = $searchdata.getPersonDetail().user.UserName;
-        if ($scope.mymypersonname.length>2){
-              $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
-            }else {
-              $scope.jiename=$scope.mymypersonname
-            }
-      })
-    });
+    // $searchdata.personDetail($rootScope.rootUserId);
+    // $scope.$on('person.update', function (event) {
+    //   $scope.$apply(function () {
+    //     $scope.mymypersonname = $searchdata.getPersonDetail().user.UserName;
+    //
+    //   })
+    // });
 
 
 
