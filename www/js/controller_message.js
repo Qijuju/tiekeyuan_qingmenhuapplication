@@ -517,7 +517,7 @@ angular.module('message.controllers', [])
         $greendao.queryData('ChatListService','where id =?',$scope.receiverssid,function (data) {
           // alert(data.length+"收到消息时，查询chat表有无当前用户");
           if(data.length ===0){
-            alert("没有该会话");
+            // alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
               // alert("长度");
@@ -637,7 +637,10 @@ angular.module('message.controllers', [])
 
 
     $scope.goSearch = function () {
-      $state.go("search");
+      $state.go("searchmessage",{
+        "UserIDSM":$scope.userId,
+        "UserNameSM":$scope.userName
+      });
     }
 
   })
@@ -699,12 +702,13 @@ angular.module('message.controllers', [])
     };
 
     $scope.meizuo=function () {
-      $ToastUtils.showToast("此功能暂未开发");
-      //
+      //$ToastUtils.showToast("此功能暂未开发");
+      //跳到添加人员聊天界面
+      $state.go('addnewpersonfirst');
     }
   })
 
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils) {
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $mqtt.getUserInfo(function (msg) {
@@ -757,7 +761,7 @@ angular.module('message.controllers', [])
         });
 
       }else {
-        alert("已经到最后一页了")
+        $ToastUtils.showToast("已经到最后一页了")
       }
     }
     //上一页
@@ -773,7 +777,7 @@ angular.module('message.controllers', [])
 
 
       }else {
-        alert("已经到第一页了")
+        $ToastUtils.showToast("已经到第一页了");
       }
     }
 

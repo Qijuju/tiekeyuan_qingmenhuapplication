@@ -126,4 +126,14 @@ public class MessagesService implements BaseInterface<Messages>{
     public void deleteObj(Messages message) {
         messagesDao.delete(message);
     }
+
+    public List<Messages>  querySearchDetail(String name,String msg){
+
+        return messagesDao.queryBuilder()
+                .orderDesc(MessagesDao.Properties.When)
+                .where(MessagesDao.Properties.Username.eq(name))
+                .where(MessagesDao.Properties.Message.like(msg))
+                .build()
+                .list();
+    }
 }

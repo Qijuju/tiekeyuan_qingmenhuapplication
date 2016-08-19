@@ -37,16 +37,6 @@ angular.module('contacts.controllers', [])
       }
     };
 
-    // $scope.createchat = function (id,phone,name) {
-    //
-    //   $saveMessageContacts.saveMessageContacts(id,phone,name);
-    //   $rootScope.isPersonSend = 'true';
-    //   $state.go('tab.message', {
-    //     "id": id,
-    //     "sessionid": name
-    //   });
-    // };
-
     //快速打开的入口  传入类型的原因的 当type等于1 的时候才存入数据库  不等于的时候走的本地通讯录
     $scope.sheetShow = function (id, phone, name, type) {
 
@@ -85,8 +75,12 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$mqtt,$chatarr) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$mqtt) {
     $contacts.topContactsInfo();
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+    },function (msg) {
+    })
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
@@ -223,12 +217,16 @@ angular.module('contacts.controllers', [])
           } else if (index == 1) {
             if(phone!=""){
               $phonepluin.call(id, phone, name, type);
+            }else if($scope.myid==id) {
+              $ToastUtils.showToast("无法对自己进行该项操作");
             }else {
               $ToastUtils.showToast("电话为空")
             }
           } else {
             if(phone!=""){
               $phonepluin.sms(id, phone, name, type)
+            }else if($scope.myid==id) {
+              $ToastUtils.showToast("无法对自己进行该项操作");
             }else {
               $ToastUtils.showToast("电话为空")
 
@@ -249,7 +247,9 @@ angular.module('contacts.controllers', [])
       //   "sessionid": name
       // });
       if(id ===null || name ===null || id === '' ||name ===''){
-        alert("当前用户信息不全");
+        $ToastUtils.showToast("当前用户信息不全");
+      }else if($scope.myid==id) {
+        $ToastUtils.showToast("无法对自己进行该项操作");
       }else{
         $state.go('messageDetail',{
           "id":id,
@@ -274,7 +274,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -340,11 +340,12 @@ angular.module('contacts.controllers', [])
 
     //在二级目录跳转到联系人界面
     $scope.backFirst = function () {
-      $state.go("tab.contacts");
+      //$state.go("tab.contacts");
+      $ionicHistory.goBack();
     }
 
     //在二级目录跳转到三级目录
-    $scope.jumpThird = function (id, pname,number) {
+    $scope.jumpThird = function (id, pname) {
       $state.go("third", {
         "contactId": id,
         "secondname": pname
@@ -363,7 +364,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -433,10 +434,13 @@ angular.module('contacts.controllers', [])
     //在三级目录返回第二级
     $scope.idddd = $contacts.getFirstID();
 
-    $scope.backSecond = function (sd) {
+    /*$scope.backSecond = function (sd) {
       $state.go("second", {
         "contactId": sd
       });
+    }*/
+    $scope.backSecond = function () {
+      $ionicHistory.goBack();
     }
 
 
@@ -461,7 +465,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,  $contacts) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -537,14 +541,21 @@ angular.module('contacts.controllers', [])
     $scope.firstid = $contacts.getFirstID();
 
 
-    $scope.backThird = function (sd, named) {
+    /*$scope.backThird = function (sd, named) {
 
       $state.go("third", {
         "contactId": sd,
         "secondname": named
       });
 
+    };*/
+
+    $scope.backThird = function () {
+
+      $ionicHistory.goBack();
+
     };
+
 
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
     $scope.fromForthToSecond = function (sd) {
@@ -574,7 +585,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -666,13 +677,16 @@ angular.module('contacts.controllers', [])
 
 
     //返回四级部门 需要一个id 和 两个名字
-    $scope.backForth = function (sd, sname, tname) {
+    /*$scope.backForth = function (sd, sname, tname) {
       $state.go("forth", {
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
       });
-    };
+    };*/
+    $scope.backForth = function () {
+      $ionicHistory.goBack();
+     };
 
     //从五级部门跳转到六级部门
     $scope.jumpSixth = function (id, sname, tname, fname, dd) {
@@ -697,7 +711,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -819,13 +833,17 @@ angular.module('contacts.controllers', [])
 
     //从六级返回五级  需要四个参数
 
-    $scope.backFifth = function (sd, sname, tname, ttname) {
+    /*$scope.backFifth = function (sd, sname, tname, ttname) {
       $state.go("fifth", {
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
         "forthname": ttname
       });
+    };*/
+
+    $scope.backFifth = function () {
+      $ionicHistory.goBack();
     };
 
 
@@ -1130,10 +1148,13 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt) {
 
     $scope.userId = $stateParams.userId;
-
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+    },function (msg) {
+    })
 
     $contacts.personDetail($scope.userId);
     $scope.$on('personDetail.update', function (event) {
@@ -1158,33 +1179,45 @@ angular.module('contacts.controllers', [])
 
     //调用打电话功能，并且会存到数据库里面
     $scope.detailCall = function (id, phone, name, type) {
-      if (phone != "") {
-        $phonepluin.call(id, phone, name, type);
-      } else {
-        $ToastUtils.showToast("电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (phone != "") {
+          $phonepluin.call(id, phone, name, type);
+        } else {
+          $ToastUtils.showToast("电话为空")
+        }
       }
     }
 
 
     //发短信 也会把存入数据库  传入类型的原因是 type 只是存 通过组织架构拨打出去的电话和人
     $scope.detailSendSms = function (id, phone, name, type) {
-      if (phone != "") {
-
-        $phonepluin.sms(id, phone, name, type);
-      } else {
-        $ToastUtils.showToast("电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (phone != "") {
+          $phonepluin.sms(id, phone, name, type);
+        } else {
+          $ToastUtils.showToast("电话为空")
+        }
       }
+
     };
 
 
     //把联系人存入本地
     $scope.insertPhone = function (name, phone) {
-      if (name != null && phone != null) {
-        $savaLocalPlugin.insert(name, phone);
-
-      } else {
-        $ToastUtils.showToast("姓名或者电话为空")
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        if (name != null && phone != null) {
+          $savaLocalPlugin.insert(name, phone);
+        } else {
+          $ToastUtils.showToast("姓名或者电话为空")
+        }
       }
+
     };
 
     //点击头像发送消息
@@ -1196,32 +1229,27 @@ angular.module('contacts.controllers', [])
       //   "id": id,
       //   "sessionid": name
       // });
-      if(id ===null || name ===null || id === '' ||name ===''){
-        alert("当前用户信息不全");
-      }else{
-        $state.go('messageDetail',{
-          "id":id,
-          "ssid":name
+      if ($scope.myid == $scope.userId) {
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      } else if (id === null || name === null || id === '' || name === '') {
+        $ToastUtils.showToast("当前用户信息不全")
+      } else {
+        $saveMessageContacts.saveMessageContacts(id, phone, name);
+        $state.go('messageDetail', {
+          "id": id,
+          "ssid": name
         });
       }
-    };
-    // //创建聊天
-    // $scope.createchat = function (id, phone,sessionid) {
-    //
-    //   $saveMessageContacts.saveMessageContacts(id,phone,sessionid);
-    //
-    //   $rootScope.isPersonSend = 'true';
-    //   $state.go('tab.message', {
-    //     "id": id,
-    //     "sessionid": sessionid
-    //   });
-    // };
-
+    }
     //取消关注
     $scope.removeattention = function (id) {
-      var membersAerr = [];
-      membersAerr.push(id);
-      $addattentionser.removeAttention111(membersAerr);
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.removeAttention111(membersAerr);
+      }
     }
     $scope.$on('attention.delete', function (event) {
       $scope.$apply(function () {
@@ -1231,9 +1259,13 @@ angular.module('contacts.controllers', [])
 
     //添加关注
     $scope.addattentiondetail = function (id) {
-      var membersAerr = [];
-      membersAerr.push(id);
-      $addattentionser.addAttention111(membersAerr);
+      if ($scope.myid==$scope.userId){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.addAttention111(membersAerr);
+      }
     };
     $scope.$on('attention.add', function (event) {
       $scope.$apply(function () {
@@ -1278,9 +1310,9 @@ angular.module('contacts.controllers', [])
       $ToastUtils.showToast("此功能暂未开发");
     }
 
-    $scope.faqi=function () {
-      $state.go(contactId);
-    };
+    // $scope.faqi=function () {
+    //   $state.go(contactId);
+    // };
 
   })
 
@@ -1403,8 +1435,11 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
-
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
+    $mqtt.getUserInfo(function (msg) {
+      $scope.myid=msg.userID;
+    },function (msg) {
+    })
     //点击人员进入人员详情
     $scope.jumpattenDetial = function (id) {
       $state.go("person", {
@@ -1424,8 +1459,11 @@ angular.module('contacts.controllers', [])
           $saveMessageContacts.saveMessageContacts(id,phone,name)
           $rootScope.isPersonSend = 'true';
           if(id ===null || name ===null || id === '' ||name ===''){
-            alert("当前用户信息不全");
-          }else{
+            $ToastUtils.showToast("当前用户信息不全");
+          }else if($scope.myid==id){
+            $ToastUtils.showToast("无法对自己进行该项操作");
+          }
+          else{
             $state.go('messageDetail',{
               "id":id,
               "ssid":name
@@ -1445,6 +1483,8 @@ angular.module('contacts.controllers', [])
             if(index==0){
               if ($scope.phoneattention!=""){
                 $phonepluin.call($scope.idattention, $scope.phoneattention, $scope.nameattention,1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
@@ -1453,6 +1493,8 @@ angular.module('contacts.controllers', [])
             }else {
               if ($scope.phoneattention!=""){
                 $phonepluin.sms($scope.idattention,$scope.phoneattention, $scope.nameattention, 1);
+              }else if($scope.myid==$scope.idattention){
+                $ToastUtils.showToast("无法对自己进行该项操作");
               }else {
                 $ToastUtils.showToast("电话号码为空");
               }
