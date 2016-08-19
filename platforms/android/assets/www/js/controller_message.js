@@ -211,6 +211,20 @@ angular.module('message.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index === 0) {
+            var arr = new Array();
+            arr[0] = '1';
+            arr[1] = '2';
+            arr[2] = '3';
+            alert(arr[0]);
+            //$mqtt.remove(sqlid);
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+              alert(sqlid+i+"来了"+$scope.msgs);
+              // if($scope.msgs[i]._id === sql_id){
+              //   // $mqtt.getDanliao().splice(i, 1);
+              //   // break;
+              // }
+            }*/
+
             $scope.sendSingleMsg(topic,content,id,account,sqlid);
           } else if (index === 1) {
 

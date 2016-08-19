@@ -163,8 +163,14 @@ angular.module('message.services', [])
       getDanliao:function () {
         return danliao;
       },
-      remove:function (message) {
-        danliao.remove(message);
+      remove:function (_id) {
+        for (var i = 0; i < danliao.length; i++) {
+          var single = danliao[0];
+          alert(single);
+          if (single._id === _id) {
+            danliao.splice(i,1);
+          }
+        }
       },
       getQunliao:function () {
         return qunliao;
