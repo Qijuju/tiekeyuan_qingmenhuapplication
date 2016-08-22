@@ -807,8 +807,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String newVersion = args.getString(0);
             String install_cancel = SPUtils.getString("install_cancel", "false");
-            String install_cancel_version = SPUtils.getString("install_cancel_version", "");
-            if (install_cancel.equals("true") && install_cancel_version.equals(newVersion)) {
+            if (install_cancel.equals("true")) {
                 setResult("false", PluginResult.Status.OK, callbackContext);
                 return;
             }

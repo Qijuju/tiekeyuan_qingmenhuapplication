@@ -31,4 +31,14 @@ public class MqttOper {
         UIUtils.getContext().sendBroadcast(netIntent);
         UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
     }
+
+    /**
+     * 消息发送失败后反馈给用户
+     */
+    public static void sendErrNotify() {
+        //发送中，消息发送失败，回调
+        Intent intent=new Intent();
+        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+        UIUtils.getContext().sendBroadcast(intent);
+    }
 }

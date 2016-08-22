@@ -19,7 +19,7 @@ public class MqttParams {
 	private MqttClientPersistence persistence = new MemoryPersistence();
 	private MqttPingSender pingSender = new MqttChatPingSender();
 	private int connectionTimeout = 10;
-	private int keepAliveInterval = 300;//Integer.MAX_VALUE;
+	private int keepAliveInterval = 3;//Integer.MAX_VALUE;
 	private MqttConnectOptions options;
 	private boolean cleanSession = false;
 
@@ -30,7 +30,6 @@ public class MqttParams {
 		options.setPassword(getPassword().toCharArray());
 		options.setConnectionTimeout(getConnectionTimeout());
 		options.setKeepAliveInterval(getKeepAliveInterval());
-		options.setWill("LN/U/105483", "MUTAF14713334965806 1050206 1055772  阎斌ghf".getBytes(), 1, false);
 	}
 
 	/**
