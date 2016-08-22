@@ -43,5 +43,7 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
   exports.queryByConditions = function (services,success, error) {
       exec(success, error, "GreenDaoPlugin", "queryByConditions", [services]);
     };
-
+   exports.querySearchDetail = function (name, message,success, error) {
+       exec(success, error, "GreenDaoPlugin", "querySearchDetail", [name, message]);
+    };
 });

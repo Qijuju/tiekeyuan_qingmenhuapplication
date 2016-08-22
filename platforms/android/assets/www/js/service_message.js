@@ -163,9 +163,6 @@ angular.module('message.services', [])
       getDanliao:function () {
         return danliao;
       },
-      remove:function (message) {
-        danliao.remove(message);
-      },
       getQunliao:function () {
         return qunliao;
       },

@@ -1,7 +1,7 @@
 <ion-view view-title="三级目录">
   <ion-nav-bar align-title="center">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecond(idddd)">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecond()">
         返回
       </button>
     </ion-nav-buttons>
@@ -17,7 +17,7 @@
     <ion-scroll zooming="true" direction="x" style="width: 100%" >
       <div id="thirdscroll" class="div-a-style">
         <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a2" class="a-style" ng-click="backSecond(idddd)" style="font-size: 15px">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
+        <a id="a2" class="a-style" ng-click="backSecond()" style="font-size: 15px">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo2}}</a>
       </div>
     </ion-scroll>

@@ -199,6 +199,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         return true;
     }
 
+
     /**
      * 带参加载数据
      *
@@ -253,7 +254,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
   public void queryByConditions(final  JSONArray args,final  CallbackContext callbackContext){
     try {
       String service=args.getString(0);
-      BaseInterface baseInterface=getInterface(service);
+      BaseInterface baseInterface = getInterface(service);
       List<BaseDao> list=baseInterface.queryByConditions();
       Gson gson = new Gson();
       String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
@@ -264,6 +265,24 @@ public class GreenDaoPlugin extends CordovaPlugin {
       setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
     }
   }
+
+    public void querySearchDetail(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService service = MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String name = args.getString(0);
+            String message = args.getString(1);
+            List<Messages> list=service.querySearchDetail(name, message);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
 
 
     /**
