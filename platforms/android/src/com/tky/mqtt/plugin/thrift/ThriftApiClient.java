@@ -2,7 +2,6 @@ package com.tky.mqtt.plugin.thrift;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -44,8 +43,10 @@ import im.server.Department.RSTgetRoot;
 import im.server.File.IMFile;
 import im.server.File.RSTversionInfo;
 import im.server.Group.IMGroup;
+import im.server.Group.RSTChangeGroup;
 import im.server.Group.RSTaddGroup;
 import im.server.Group.RSTgetGroup;
+import im.server.Group.RSTgetGroupUpdate;
 import im.server.Message.IMMessage;
 import im.server.Message.RSTgetMsg;
 import im.server.Message.RSTgetMsgCount;
@@ -1075,7 +1076,9 @@ public class ThriftApiClient extends CordovaPlugin {
                         RSTaddGroup result = addGroup_call.getResult();
                         if (result != null && result.result) {
                             String groupID = result.getGroupID();
-                            MqttTopicRW.append("LN/G/" + groupID, 1);
+                            /*if (groupID != null && !"".equals(groupID.trim())) {
+                                MqttTopicRW.append("LN/G/" + groupID, 1);
+                            }*/
                             setResult(groupID, PluginResult.Status.OK, callbackContext);
                         }
                         if (result != null && "711".equals(result.getResultCode())) {
@@ -1131,7 +1134,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             } else {
                                 setResult("数据群组失败！", PluginResult.Status.ERROR, callbackContext);
                             }
-                        } if (result != null && "721".equals(result.getResultCode())) {
+                        } else if (result != null && "721".equals(result.getResultCode())) {
                             setResult("指定的群组不存在！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             setResult("创建群组失败！", PluginResult.Status.ERROR, callbackContext);
@@ -1167,6 +1170,47 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void modifyGroup(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String groupType = args.getString(0);
+            String groupID = args.getString(1);
+            String groupName = args.getString(2);
+            String groupText = args.getString(3);
+            SystemApi.modifyGroup(getUserID(), groupType, groupID, groupName, groupText, new AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.ModifyGroup_call modifyGroup_call) {
+                    try {
+                        RSTChangeGroup result = modifyGroup_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else if (result != null && "731".equals(result.getResultCode())) {
+                            setResult("无修改群权限！", PluginResult.Status.ERROR, callbackContext);
+                        } else if (result != null && "732".equals(result.getResultCode())) {
+                            setResult("群名称不能为空！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            setResult("修改群组失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1175,6 +1219,43 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void removeGroup(final JSONArray args, final CallbackContext callbackContext){
+        String groupID = null;
+        try {
+            groupID = args.getString(0);
+            SystemApi.removeGroup(getUserID(), groupID, new AsyncMethodCallback<IMGroup.AsyncClient.RemoveGroup_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.RemoveGroup_call removeGroup_call) {
+                    try {
+                        RSTChangeGroup result = removeGroup_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else if (result != null && "741".equals(result.getResultCode())) {
+                            setResult("无解散群组权限！", PluginResult.Status.ERROR, callbackContext);
+                        } else {
+                            setResult("解散群组失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1183,6 +1264,46 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void getGroupUpdate(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String groupType = args.getString(0);
+            JSONArray objects = args.getJSONArray(1);
+            String groupID = args.getString(2);
+            //getObjects：查询的项目代码列表（参考下表）
+            SystemApi.getGroupUpdate(getUserID(), groupType, groupID, jsonArray2List(objects), new AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GetGroupUpdate_call getGroupUpdate_call) {
+                    try {
+                        RSTgetGroupUpdate result = getGroupUpdate_call.getResult();
+                        if (result != null && result.result) {
+                            String json = GsonUtils.toJson(result, new TypeToken<RSTgetGroupUpdate>() {
+                            }.getType());
+                            setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1191,6 +1312,42 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void groupAddMember(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String groupID = args.getString(0);
+            JSONArray deptsArr = args.getJSONArray(1);
+            JSONArray membersArr = args.getJSONArray(2);
+            SystemApi.groupAddMember(getUserID(), groupID, jsonArray2List(deptsArr), jsonArray2List(membersArr), new AsyncMethodCallback<IMGroup.AsyncClient.GroupAddMember_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GroupAddMember_call groupAddMember_call) {
+                    try {
+                        RSTChangeGroup result = groupAddMember_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("添加失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1199,6 +1356,42 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void groupRemoveMember(final JSONArray args, final CallbackContext callbackContext){
+        String groupID = null;
+        try {
+            groupID = args.getString(0);
+            JSONArray membersArr = args.getJSONArray(1);
+            SystemApi.groupRemoveMember(getUserID(), groupID, jsonArray2List(membersArr), new AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveMember_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GroupRemoveMember_call groupRemoveMember_call) {
+                    try {
+                        RSTChangeGroup result = groupRemoveMember_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("移除人员失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1207,6 +1400,42 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void groupAddAdmin(final JSONArray args, final CallbackContext callbackContext){
+        String groupID = null;
+        try {
+            groupID = args.getString(0);
+            JSONArray adminsArr = args.getJSONArray(1);
+            SystemApi.groupAddAdmin(getUserID(), groupID, jsonArray2List(adminsArr), new AsyncMethodCallback<IMGroup.AsyncClient.GroupAddAdmin_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GroupAddAdmin_call groupAddAdmin_call) {
+                    try {
+                        RSTChangeGroup result = groupAddAdmin_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("添加管理员失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1215,6 +1444,42 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void groupRemoveAdmin(final JSONArray args, final CallbackContext callbackContext){
+        String groupID = null;
+        try {
+            groupID = args.getString(0);
+            JSONArray adminsArr = args.getJSONArray(1);
+            SystemApi.groupRemoveAdmin(getUserID(), groupID, jsonArray2List(adminsArr), new AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveAdmin_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GroupRemoveAdmin_call groupRemoveAdmin_call) {
+                    try {
+                        RSTChangeGroup result = groupRemoveAdmin_call.getResult();
+                        if (result != null && result.result) {
+                            String groupIDN = result.getGroupID();
+                            setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("移除管理员失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1223,6 +1488,43 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void getAllGroup(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            SystemApi.getAllGroup(getUserID(), new AsyncMethodCallback<IMGroup.AsyncClient.GetAllGroup_call>() {
+                @Override
+                public void onComplete(IMGroup.AsyncClient.GetAllGroup_call getAllGroup_call) {
+                    try {
+                        RSTgetGroup result = getAllGroup_call.getResult();
+                        if (result != null && result.result) {
+                            String json = GsonUtils.toJson(result, new TypeToken<RSTgetGroup>() {
+                            }.getType());
+                            setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                        } else {
+                            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     //以下为工具方法

@@ -504,9 +504,9 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    public static void modifyGroup(String ID, String groupID, String groupName, String groupText, AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
+    public static void modifyGroup(String ID, String groupType, String groupID, String groupName, String groupText, AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
         IMGroup.AsyncClient client = getGroupClient();
-        client.ModifyGroup(ID, groupID, groupName, groupText, callback);
+        client.ModifyGroup(ID, groupType, groupID, groupName, groupText, callback);
     }
 
     /**
@@ -531,9 +531,9 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    public static void getGroupUpdate(String ID, String groupID, List<String> getObjects, AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
+    public static void getGroupUpdate(String ID, String groupType, String groupID, List<String> getObjects, AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
         IMGroup.AsyncClient client = getGroupClient();
-        client.GetGroupUpdate(ID, groupID, getObjects, callback);
+        client.GetGroupUpdate(ID, groupType, groupID, getObjects, callback);
     }
 
     /**
@@ -588,7 +588,7 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+    public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveAdmin_call> callback) throws IOException, TException {
         IMGroup.AsyncClient client = getGroupClient();
         client.GroupRemoveAdmin(ID, groupID, admins, callback);
     }
@@ -600,7 +600,7 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    public static void getAllGroup(String ID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+    public static void getAllGroup(String ID, AsyncMethodCallback<IMGroup.AsyncClient.GetAllGroup_call> callback) throws IOException, TException {
         IMGroup.AsyncClient client = getGroupClient();
         client.GetAllGroup(ID, callback);
     }
