@@ -3,4 +3,10 @@
  */
 angular.module('group.services', [])
 
+.factory('$group',function () {
+
+  
+
+});
+
 

@@ -27,6 +27,8 @@ angular.module('selectgroup.controllers', [])
     $scope.departlist = [];
     $scope.userlist = [];
     $scope.secondStatus;
+    $scope.lastString=[];
+
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
     //根据id获取子部门和人员信息
@@ -44,7 +46,7 @@ angular.module('selectgroup.controllers', [])
         if ($scope.activeSecondDeptCount > 0) {
           var olddepts = $contacts.getDeptInfo().deptList;
           for (var i = 0; i < olddepts.length; i++) {
-
+            olddepts[i].isSelected=false;
             $scope.departlist.push(olddepts[i]);
           }
         }
@@ -54,6 +56,7 @@ angular.module('selectgroup.controllers', [])
           var oldusers = $contacts.getDeptInfo().userList;
           for (var i = 0; i < oldusers.length; i++) {
 
+            oldusers[i].isSelected=false;
             $scope.userlist.push(oldusers[i]);
           }
         }
@@ -108,9 +111,26 @@ angular.module('selectgroup.controllers', [])
 
     };
 
-    $scope.tantan=function (ff) {
-      alert("你好啊恢复"+ff);
+    $scope.tantan=function (name,id,obj) {
+
+      alert(name+"你看看我啊"+obj.isSelected);
+
     }
+    $scope.tantan1=function (ff,dd) {
+      alert(dd+"你好啊恢复"+ff);
+    }
+
+    $scope.secondConfirm=function () {
+      for (var i=0;i<$scope.departlist.length;i++){
+        alert($scope.departlist[i].DeptName);
+        if($scope.departlist[i].isSelected){
+          $scope.lastString.push($scope.departlist[i].DeptID);
+        }
+      }
+      alert($scope.lastString.length)
+    }
+
+
 
   })
   .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
@@ -898,3 +918,11 @@ angular.module('selectgroup.controllers', [])
 
 
   })
+
+  //修改群名称
+  .controller('groupModifyNameCtrl',function ($scope,$state) {
+
+
+  })
+
+
