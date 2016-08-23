@@ -1276,7 +1276,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$rootScope) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1287,6 +1287,8 @@ angular.module('contacts.controllers', [])
         $scope.depid=$contacts.getLoignInfo();
 
         $contacts.deptInfo($scope.depid)
+        $group.allGroup();
+
 
       })
     });
@@ -1302,6 +1304,21 @@ angular.module('contacts.controllers', [])
 
       })
     });
+
+
+
+    $scope.$on('group.update', function (event) {
+      $scope.$apply(function () {
+
+        $scope.grouplist=$group.getAllGroup();
+
+      })
+    });
+
+
+
+
+
 
 
     $scope.jumpGroupChat=function () {

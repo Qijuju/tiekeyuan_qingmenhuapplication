@@ -53,7 +53,7 @@ public class MqttMessageCallback implements MqttCallback {
 	@Override
 	public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
 		Log.d("messageArrived", new String(msg.getPayload()));
-		final MessageBean map = MessageOper.unpack(msg.getPayload());
+		final MessageBean map = (MessageBean) MessageOper.unpack(msg.getPayload());
 		final String msgTopic = (String) map.getSessionid();
 		final String msgContent = (String) map.getMessage();
 		UIUtils.runInMainThread(new Runnable() {

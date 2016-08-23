@@ -92,6 +92,12 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-setting.html',
         controller: 'groupSettingCtrl'
       })
+      .state('groupModifyName', {
+        url: '/groupModifyName',
+        templateUrl: 'templates/group-modifyname.html',
+        controller: 'groupModifyNameCtrl'
+      })
+
 
 
       .state('tab.contacts', {

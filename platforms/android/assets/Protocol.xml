@@ -53,9 +53,15 @@
 		 	<nLength>1</nLength>
 		 	<nFixed>true</nFixed>
 		</Node>
+		<Node id="when">
+		 	<nLength>13</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nType>L</nType>
+		</Node>
 		<Node id="EventCode">
 		 	<nLength>3</nLength>
 		 	<nFixed>true</nFixed>
+		 	<nValue>YAA,YAM,G00,YRA,YRM,GAM,GRM,RG0</nValue>
 		</Node>
 		<Node id="Event">
 		 	<nLength>-1</nLength>
@@ -63,20 +69,23 @@
 		</Node>
 	</Protocol>
 	
-	<Protocol id="GAA">
+	<!--You're add to group's admin-->
+	<Protocol id="YAA">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
 	
-	<Protocol id="GAM">
+	<!--You're add to group's member-->
+	<Protocol id="YAM">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
 	
+	<!--The member's info changed-->
 	<Protocol id="G00">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
@@ -84,21 +93,48 @@
 		</Node>
 	</Protocol>
 	
-	<Protocol id="GR0">
+	<!--You're removed from group's admin-->
+	<Protocol id="YRA">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
 	
-	<Protocol id="GRA">
+	<!--You're removed from group's member-->
+	<Protocol id="YRM">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
 	
+	<!--The group add some member.-->
+	<Protocol id="GAM">
+		<Node id="GroupID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="UserName">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<!--The group remove some member.-->
 	<Protocol id="GRM">
+		<Node id="GroupID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="UserName">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<!--The group be removed .-->
+	<Protocol id="RG0">
 		<Node id="GroupID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>

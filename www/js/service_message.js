@@ -248,6 +248,7 @@ angular.module('message.services', [])
         messageReal.isDelete='false';
         messageReal.imgSrc='';
         messageReal.username=chatname;
+        alert(topic+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {

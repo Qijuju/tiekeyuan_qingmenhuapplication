@@ -353,9 +353,11 @@ angular.module('message.controllers', [])
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,chatname,sqlid) {
-      $mqtt.sendGroupMsg(topic, content, id,chatname,sqlid);
-      $scope.send_content = ""
-      keepKeyboardOpen();
+      $mqtt.getMqtt().getTopic(topic, 'D', function (userTopic) {
+        $mqtt.sendGroupMsg(userTopic, content, id,chatname,sqlid);
+        $scope.send_content = ""
+        keepKeyboardOpen();
+      });
     };
     function keepKeyboardOpen() {
       console.log('keepKeyboardOpen');
@@ -505,6 +507,10 @@ angular.module('message.controllers', [])
       alert("按时间查询失败"+err);
     });
     $mqtt.arriveMsg("");
+
+      /**
+       * 监听消息
+       */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         $scope.danliaomsg = $mqtt.getDanliao();
@@ -590,7 +596,16 @@ angular.module('message.controllers', [])
         }, function (err) {
           alert(err);
         });
-        $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+
+
+          /**
+           * 当群未读消息数变化的时候
+           * 1.将未读数、最后一条消息取出来，赋值给会话列表
+           * 2.保存并重新拉取列表以做数据刷新
+           */
+          $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+          alert("群未读数量"+$scope.lastGroupCount);
+
       })
 
     });
