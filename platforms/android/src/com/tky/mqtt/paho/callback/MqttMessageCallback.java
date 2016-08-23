@@ -13,7 +13,6 @@ import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -91,7 +90,6 @@ public class MqttMessageCallback implements MqttCallback {
             final MessageBean map = (MessageBean) bean;
             String from = map.getSessionid();
             if (from != null && MqttTopicRW.isFromMe(map.getType(), from)) {
-                ToastUtil.showSafeToast("自己发送的消息");
                 return;
             }
             final String username = (String) map.getUsername();

@@ -101,6 +101,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 chatList.setLastDate(System.currentTimeMillis());
             }
             chatList.setLastText(jsonobj.getString("lastText"));
+            chatList.setChatType(jsonobj.getString("chatType"));
             obj = chatList;
         }
         return obj;

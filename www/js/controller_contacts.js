@@ -172,6 +172,7 @@ angular.module('contacts.controllers', [])
             chatitem.count = $scope.unread;
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
+            chatitem.chatType = data[0].chatType;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);
@@ -1275,7 +1276,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1327,14 +1328,11 @@ angular.module('contacts.controllers', [])
     //跳转到群聊界面
 
     $scope.goGroupChats=function () {
+      $rootScope.isGroupSend='true';
       $state.go('tab.message',{
         "id":$scope.depid,
         "sessionid":$scope.deptinfo
       });
-
-
-
-
     }
 
   })

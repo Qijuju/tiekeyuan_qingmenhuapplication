@@ -89,16 +89,18 @@ public class MessageOper {
 		IMMsgFactory.MsgType msgType = IMMsgFactory.MsgType.User;
 		if ("User".equals(type)) {
 			msgType = IMMsgFactory.MsgType.User;
-		} else if ("Group".equals(IMMsgFactory.MsgType.Group)) {
+		} else if ("Group".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Group;
-		} else if ("Dept".equals(IMMsgFactory.MsgType.Dept)) {
+		} else if ("Dept".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Dept;
-		} else if ("Radio".equals(IMMsgFactory.MsgType.Radio)) {
+		} else if ("Radio".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Radio;
-		} else if ("Receipt".equals(IMMsgFactory.MsgType.Receipt)) {
+		} else if ("Receipt".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Receipt;
-		} else if ("System".equals(IMMsgFactory.MsgType.System)) {
+		} else if ("System".equals(type)) {
 			msgType = IMMsgFactory.MsgType.System;
+		} else {
+			msgType = IMMsgFactory.MsgType.User;
 		}
 		return msgType;
 	}

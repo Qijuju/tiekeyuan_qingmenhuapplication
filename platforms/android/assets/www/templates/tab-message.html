@@ -12,7 +12,7 @@
       </label>
     </div>
     <ion-list>
-      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName)">
+      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">
         <img src={{item.imgSrc}} width="80px" height="80px">
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
         <h2>{{item.chatName}}</h2>
@@ -28,17 +28,18 @@
           Delete
         </ion-option-button>
       </ion-item>
-      <ion-item class=" item-remove-animate item-avatar" ng-click="goGroupMessage()">
-        <img src="img/icon_org.png" width="80px" height="80px">
-        <!--这个就是来了新消息, 头像上的小红数字-->
-        <span class="rj-sm-red-icon" ng-show="lastGroupCount > 0"><p>{{lastGroupCount}}</p></span>
-        <h2>{{ qunliaomsg[qunliaomsg.length-1]._id}}</h2>
-        <p> {{qunliaomsg[qunliaomsg.length-1].message}}</p>
-        <span class="rj-push-right">6月8日</span>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          删 除
-        </ion-option-button>
-      </ion-item>
+      <!--<ion-item class=" item-remove-animate item-avatar" ng-repeat="groupitem in groupitems" ng-click="goGroupMessage(groupitem.id,groupitem.chatName)">-->
+        <!--<img src="{{groupitem.imgSrc}}" width="80px" height="80px">-->
+        <!--&lt;!&ndash;这个就是来了新消息, 头像上的小红数字&ndash;&gt;-->
+        <!--<span class="rj-sm-red-icon" ng-show="groupitem.count > 0"><p>{{groupitem.count}}</p></span>-->
+        <!--<h2>{{groupitem.chatName}}</h2>-->
+        <!--<p> {{groupitem.lastText}}</p>-->
+        <!--<span class="rj-push-right" ng-if="groupitem.lastDate != 0">{{ groupitem.lastDate | date:'HH:mm:ss' }}</span>-->
+        <!--<span class="rj-push-right" ng-if="groupitem.lastDate === 0"></span>-->
+        <!--<ion-option-button class="button-assertive" ng-click="remove(chat)">-->
+          <!--删 除-->
+        <!--</ion-option-button>-->
+      <!--</ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>
