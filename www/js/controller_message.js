@@ -74,9 +74,10 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleMsg = function (topic, content, id, account,sqlid) {
+    $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, 'U', function (userTopic) {
-        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account,sqlid);
+        alert("单聊topic"+userTopic);
+        $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid);
         $scope.send_content = "";
         keepKeyboardOpen();
       }, function (msg) {
@@ -198,7 +199,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic,content,id,account,sqlid,msgSingle) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
       // $scope.msgs.remove(msgSingle);
       // alert(msgSingle);
       // 显示操作表
@@ -221,7 +222,7 @@ angular.module('message.controllers', [])
             //   //   // break;
             //   // }
             // }
-            $scope.sendSingleMsg(topic,content,id,account,sqlid);
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
           } else if (index === 1) {
 
           }
@@ -325,10 +326,12 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope) {
     $scope._id='';
     $scope.groupid=$stateParams.id;
     $scope.chatname=$stateParams.chatName;
+    $scope.localusr = $rootScope.userName;
+    $scope.myUserID = $rootScope.rootUserId;
     alert("跳进群组详聊"+$scope.groupid+$scope.chatname);
     $greendao.queryData('MessagesService', 'where type =? order by "when" desc limit 0,10', 'Group', function (data) {
       for (var i = 1; i <= data.length; i++) {
@@ -352,9 +355,9 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleGroupMsg = function (topic, content, id,chatname,sqlid) {
+    $scope.sendSingleGroupMsg = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, 'D', function (userTopic) {
-        $mqtt.sendGroupMsg(userTopic, content, id,chatname,sqlid);
+        $mqtt.sendGroupMsg(userTopic, content, id,localuser,localuserId,sqlid);
         $scope.send_content = ""
         keepKeyboardOpen();
       });
@@ -439,7 +442,7 @@ angular.module('message.controllers', [])
 
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendgroupshow = function (topic, content, id,chatname,sqlid) {
+    $scope.resendgroupshow = function (topic, content, id,localuser,localuserId,sqlid) {
 
       // 显示操作表
       $ionicActionSheet.show({
@@ -453,7 +456,7 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           alert(index);
           if (index === 0) {
-            $scope.sendSingleGroupMsg(topic, content, id,chatname,sqlid);
+            $scope.sendSingleGroupMsg(topic, content, id,localuser,localuserId,sqlid);
           } else if (index === 1) {
 
           }
@@ -605,7 +608,43 @@ angular.module('message.controllers', [])
            */
           $scope.lastGroupCount = $mqtt.getMsgGroupCount();
           alert("群未读数量"+$scope.lastGroupCount);
+          //取出群聊天记录最后一条(需根据当前群组id+type来区分是哪个群)
+          $greendao.queryGroupOrSingleChat()
+          $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+            // alert("未读消息时取出消息表中最后一条数据"+data.length);
+            $scope.lastText = data[0].message;//最后一条消息内容
+            $scope.lastDate = data[0].when;//最后一条消息的时间
+            $scope.chatName = data[0].username;//对话框名称
+            // alert($scope.chatName + "用户名1");
+            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            //取出‘ppp’聊天对话的列表数据并进行数据库更新
+            $greendao.queryData('ChatListService', 'where id=?',$scope.receiverssid, function (data) {
+              $scope.unread = $scope.lastCount;
+              var chatitem = {};
+              chatitem.id = data[0].id;
+              chatitem.chatName = data[0].chatName;
+              chatitem.imgSrc = $scope.imgSrc;
+              chatitem.lastText = $scope.lastText;
+              chatitem.count = $scope.unread;
+              chatitem.isDelete = data[0].isDelete;
+              chatitem.lastDate = $scope.lastDate;
+              chatitem.chatType =data[0].chatType;
+              $greendao.saveObj('ChatListService', chatitem, function (data) {
+                $greendao.queryByConditions('ChatListService', function (data) {
+                  $chatarr.setData(data);
+                  $rootScope.$broadcast('lastcount.update');
+                }, function (err) {
 
+                });
+              }, function (err) {
+                alert(err + "数据保存失败");
+              });
+            }, function (err) {
+              alert(err);
+            });
+          }, function (err) {
+            alert(err);
+          });
       })
 
     });

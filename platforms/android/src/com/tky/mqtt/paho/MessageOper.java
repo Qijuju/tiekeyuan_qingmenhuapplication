@@ -56,7 +56,7 @@ public class MessageOper {
 		MessageTypeBean msgBean = null;
 		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
 			MessageBean bean = new MessageBean();
-			bean.set_id((String) msgMap.get("to"));
+			bean.set_id((String) msgMap.get("from"));
 			bean.setSessionid((String) msgMap.get("from"));
 			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 			bean.setFrom("false");

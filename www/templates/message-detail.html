@@ -37,7 +37,7 @@
           <span class="rj-triangle-right"></span>
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)"><font class="rj-message-right">{{msgSingle.message}}</font></p>
+             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font class="rj-message-right">{{msgSingle.message}}</font></p>
           </span>
         </div>
       </div>
@@ -63,7 +63,7 @@
         </button>
       </div>
       <div class="rj-send-button" ng-hide="!send_content || send_content === ''"
-           ng-click="sendSingleMsg(userId,send_content, userId,localusr,_id)">
+           ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
         <p>发送</p>
       </div>
     </div>

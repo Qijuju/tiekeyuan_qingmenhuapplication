@@ -55,6 +55,7 @@ public class GreenDaoGenerator {
         message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
         message.addStringProperty("imgSrc");//头像图片来源
         message.addStringProperty("username");//用户名
+        message.addStringProperty("senderid");//用于群聊时判断消息来源人id
     }
 
 

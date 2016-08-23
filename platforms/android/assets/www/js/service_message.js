@@ -119,7 +119,7 @@ angular.module('message.services', [])
       },
 
 
-      sendMsg:function (topic,content,id,account,sqlid) {
+      sendMsg:function (topic, content, id,localuser,localuserId,sqlid) {
         var messageDetail={};
         messageDetail._id=sqlid;
         messageDetail.sessionid=id;
@@ -132,8 +132,11 @@ angular.module('message.services', [])
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
         messageDetail.imgSrc='';
-        messageDetail.username=account;
+        messageDetail.username=localuser;
+        messageDetail.senderid=localuserId;
+        alert("发送者id"+localuserId);
         mqtt.sendMsg(topic, messageDetail, function (message) {
+          alert("发送者id123"+localuserId);
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
           },function (err) {
@@ -174,7 +177,10 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
+          arriveMessage.senderid=message._id;
+          alert("接受消息"+arriveMessage.senderid);
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
+            alert(data.length+"收消息");
           },function (err) {
           });
           if(message.type==="User"){
@@ -233,7 +239,7 @@ angular.module('message.services', [])
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic,content,id,chatname,sqlid) {
+      sendGroupMsg:function (topic, content, id,localuser,localuserId,sqlid) {
         alert("发送群消息"+sqlid);
         var messageReal={};
         messageReal._id=sqlid;
@@ -247,8 +253,9 @@ angular.module('message.services', [])
         messageReal.isFailure='false';
         messageReal.isDelete='false';
         messageReal.imgSrc='';
-        messageReal.username=chatname;
-        alert(topic+"ssss");
+        messageReal.username=localuser;
+        messageReal.senderid=localuserId;
+        alert(chatname+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
