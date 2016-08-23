@@ -145,3 +145,41 @@ angular.module('login.controllers', [])
       });
     };
   })
+  .controller('welcomeCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
+    $scope.startApp = function() {
+      $state.go('newspage');
+    };
+    $scope.next = function() {
+      $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function() {
+      $ionicSlideBoxDelegate.previous();
+    };
+
+    $scope.slideChanged = function(index) {
+      $scope.slideIndex = index;
+      if (index==2){
+        $timeout(function () {
+          $state.go('newspage');
+        }, 1500);
+      }
+    };
+    // //倒计时
+    // $scope.time = 5;
+    // var timer = null;
+    // timer = $interval(function(){
+    //   $scope.time = $scope.time - 1;
+    //   $scope.codetime = $scope.time+"秒后跳转";
+    //   if($scope.time === 0) {
+    //     $state.go('login');
+    //   }
+    // }, 1000);
+  })
+
+  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
+    $scope.goLogin = function() {
+      $state.go('login');
+    };
+
+    $scope.myActiveSlide = 0;
+  })

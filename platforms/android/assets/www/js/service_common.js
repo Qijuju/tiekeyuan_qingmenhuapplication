@@ -60,6 +60,9 @@ angular.module('common.services', [])
           api = cordova.require('ThriftApiClient.thrift_api_client');
         });
       },
+      openFile:function(filePath, success, error) {
+        api.openFile(filePath, success, error);
+      },
       login:function(username,password, success, error) {
         api.login(username,password, success, error);
       },

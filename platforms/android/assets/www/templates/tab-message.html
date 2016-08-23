@@ -13,7 +13,12 @@
     </div>
     <ion-list>
       <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName)">
-        <img src={{item.imgSrc}} width="80px" height="80px">
+        <div ng-if="item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9" class="center circle1" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+        <div ng-if="item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8" class="center circle2" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+        <div ng-if="item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7" class="center circle3" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+        <div ng-if="item.id.substring((item.id.length-1),item.id.length)==4||item.id.substring((item.id.length-1),item.id.length)==6" class="center circle4" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+        <div ng-if="item.id.substring((item.id.length-1),item.id.length)==5||item.id.substring((item.id.length-1),item.id.length)==0" class="center circle5" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+        <!--<img src={{item.imgSrc}} width="80px" height="80px">-->
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
         <h2>{{item.chatName}}</h2>
         <p> {{item.lastText}}</p>

@@ -2,7 +2,23 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('application.controllers', [])
-  .controller('ChatsCtrl', function ($scope,$timeout,$mqtt,$greendao,$rootScope,$chatarr) {
+  .controller('ChatsCtrl', function ($scope,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api) {
+    $scope.pdfshow=function () {
+       // alert($cordovaFileOpener2)
+      $api.openFile('/storage/emulated/0/pdf11.pdf',function (msg) {
+      },function (msg) {
+        alert(msg)
+      })
+      // $cordovaFileOpener2.open('../img/pdf11.pdf','application/pdf').then(function () {
+      //   // 成功
+      //   alert("成功")
+      // }, function (err) {
+      //   // 错误
+      //   alert("失败")
+      // });
+    }
+
+
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -109,6 +125,11 @@ angular.module('application.controllers', [])
         $scope.lastGroupCount = $mqtt.getMsgGroupCount();
       })
 
+
+
+
     });
+
+
   })
 

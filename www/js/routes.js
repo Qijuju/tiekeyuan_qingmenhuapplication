@@ -30,7 +30,16 @@ angular.module('im.routes', [])
         abstract: true,
         templateUrl: 'templates/tabs.html'
       })
-
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html',
+        controller: 'welcomeCtrl'
+      })
+      .state('newspage', {
+        url: '/newspage',
+        templateUrl: 'templates/newsPage.html',
+        controller: 'newspageCtrl'
+      })
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
@@ -344,6 +353,6 @@ angular.module('im.routes', [])
         cache:false
       })
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
-
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/welcome');
   });

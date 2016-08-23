@@ -64,5 +64,8 @@ exports.getMsgCount = function(sessionType, sessionID, success, error) {
 exports.cancelUser = function(success, error) {//解绑用户，以让其他设备可以登录使用该账户
   exec(success, error, "ThriftApiClient", "cancelUser", []);
 };
+exports.openFile = function(filePath,success, error) {
+  exec(success, error, "ThriftApiClient", "openFile", [filePath]);
+};
 
 });
