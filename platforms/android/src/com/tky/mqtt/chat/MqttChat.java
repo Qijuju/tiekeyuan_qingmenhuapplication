@@ -371,11 +371,11 @@ public class MqttChat extends CordovaPlugin {
     }
 
     public static MType getType(String type) {
-        if ("U".equals(type)) {
+        if ("User".equals(type)) {
             return MType.U;
-        } else if ("G".equals(type)) {
+        } else if ("Group".equals(type)) {
             return MType.G;
-        } else if ("D".equals(type)) {
+        } else if ("Dept".equals(type)) {
             return MType.D;
         } else {
             return MType.U;

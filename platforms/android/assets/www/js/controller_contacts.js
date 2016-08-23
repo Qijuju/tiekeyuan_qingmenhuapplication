@@ -32,7 +32,8 @@ angular.module('contacts.controllers', [])
       }else{
         $state.go('messageDetail',{
           "id":id,
-          "ssid":name
+          "ssid":name,
+          "grouptype":'User'
         });
       }
     };
@@ -137,14 +138,15 @@ angular.module('contacts.controllers', [])
             // alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              // alert("长度");
+              $scope.messageType=$mqtt.getMessageType();
+              alert("contacts长度"+$scope.messageType);
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
-              $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+              $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
               // alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
-                  $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+                  $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
                 });
               });
               $rootScope.isPersonSend = 'false';
@@ -254,7 +256,8 @@ angular.module('contacts.controllers', [])
       }else{
         $state.go('messageDetail',{
           "id":id,
-          "ssid":name
+          "ssid":name,
+          "grouptype":'User'
         });
       }
     };
@@ -1238,7 +1241,8 @@ angular.module('contacts.controllers', [])
         $saveMessageContacts.saveMessageContacts(id, phone, name);
         $state.go('messageDetail', {
           "id": id,
-          "ssid": name
+          "ssid": name,
+          "grouptype":'User'
         });
       }
     }
@@ -1282,14 +1286,10 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $contacts.clearSecondCount();
-
         //部门id
         $scope.depid=$contacts.getLoignInfo();
-
         $contacts.deptInfo($scope.depid)
         $group.allGroup();
-
-
       })
     });
 
@@ -1297,25 +1297,47 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         //部门id
         $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
-
-        $scope.deptCount = $contacts.getCount1();
-
-        $scope.groupCount = $contacts.getCount2();
-
       })
     });
-
-
 
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {
 
         $scope.grouplist=$group.getAllGroup();
+        $scope.ismycreat=$group.getCreateCount();
 
       })
     });
 
+    //我创建的
+    $scope.goCreateGroup=function (id,name) {
+      $rootScope.isGroupSend='true';
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Group"
+      });
+    }
 
+    //我加入的
+    $scope.goJoinGroup=function (id,name) {
+      $rootScope.isGroupSend='true';
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Group"
+      });
+    }
+
+    //部门的群
+    $scope.goDepartmentGroup=function (id,name) {
+      $rootScope.isGroupSend='true';
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Dept"
+      });
+    }
 
 
 
@@ -1487,7 +1509,8 @@ angular.module('contacts.controllers', [])
           else{
             $state.go('messageDetail',{
               "id":id,
-              "ssid":name
+              "ssid":name,
+              "grouptype":'User'
             });
           }
         };
