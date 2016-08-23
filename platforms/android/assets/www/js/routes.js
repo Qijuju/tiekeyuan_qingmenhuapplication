@@ -55,8 +55,9 @@ angular.module('im.routes', [])
 
 
       .state('messageGroup', {
-        url: '/messageGroup',
+        url: '/messageGroup/:id/:chatName',
         templateUrl: 'templates/message-group.html',
+        cache:false,
         controller: 'MessageGroupCtrl'
 
 

@@ -279,6 +279,7 @@ angular.module('my.controllers', [])
             chatitem.count = $scope.unread;
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
+            chatitem.chatType = data[0].chatType;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);

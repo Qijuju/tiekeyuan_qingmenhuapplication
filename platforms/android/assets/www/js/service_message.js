@@ -3,6 +3,8 @@
  */
 angular.module('message.services', [])
 
+
+  //单聊会话列表的数据保存
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
   var mainlist=new Array();
   var savedata;
@@ -24,6 +26,7 @@ angular.module('message.services', [])
         chatitem.count='';
         chatitem.isDelete='false';
         chatitem.lastDate=new Date().getTime();
+        chatitem.chatType='U';
         mainlist.push(chatitem);
         $greendao.saveObj('ChatListService',chatitem,function (data) {
           // alert("保存成功"+data.length)
@@ -46,6 +49,42 @@ angular.module('message.services', [])
     }
   }
 })
+
+  //群组会话列表的数据保存
+  .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var grouplist=new Array();
+    var savegroupdata;
+    return{
+      getAllGroupList:function (isGroupSend) {
+        alert("标识符"+isGroupSend);
+        if(isGroupSend === 'true'){
+          alert("跳转到service界面"+$stateParams.id+$stateParams.sessionid);
+          var groupchatitem={};
+          groupchatitem.id=$stateParams.id;
+          groupchatitem.chatName=$stateParams.sessionid;
+          groupchatitem.imgSrc='img/icon_org.png';
+          groupchatitem.lastText='';
+          groupchatitem.count='';
+          groupchatitem.isDelete='false';
+          groupchatitem.lastDate=new Date().getTime();
+          groupchatitem.chatType='G';
+          grouplist.push(groupchatitem);
+          $greendao.saveObj('ChatListService',groupchatitem,function (data) {
+            alert("保存成功"+data.length)
+          },function (err) {
+          });
+          $rootScope.$broadcast('groupchatarr.update');
+        }
+        return grouplist;
+      },
+      setData:function (data) {
+        savegroupdata = data;
+      },
+      getData:function () {
+        return savegroupdata;
+      }
+    }
+  })
 
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
@@ -194,11 +233,11 @@ angular.module('message.services', [])
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic,content,id) {
+      sendGroupMsg:function (topic,content,id,chatname,sqlid) {
+        alert("发送群消息"+sqlid);
         var messageReal={};
-        messageReal._id=id;
-        messageReal.account='6698';
-        messageReal.sessionid=topic;
+        messageReal._id=sqlid;
+        messageReal.sessionid=id;
         messageReal.type='Group';
         messageReal.from='true';
         messageReal.message=content;
@@ -206,23 +245,25 @@ angular.module('message.services', [])
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
-        messageReal.singlecount='';
+        messageReal.isDelete='false';
+        messageReal.imgSrc='';
+        messageReal.username=chatname;
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
-            // alert("群组消息保存成功");
+            alert("群组消息保存成功");
           },function (err) {
             alert("群组消息保存失败");
           });
           $rootScope.$broadcast('groupMsgs.update');
           return "成功";
         },function (message) {
-          messageReal.isFailure=true;
+          messageReal.isFailure='true';
           qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
-            // alert(data);
+            alert(data);
           },function (err) {
-            // alert(err+"msgerr");
+            alert(err+"msgerr");
           });
           $rootScope.$broadcast('groupMsgs.error');
           return "失败";

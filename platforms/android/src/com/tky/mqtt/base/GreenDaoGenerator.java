@@ -22,7 +22,7 @@ public class GreenDaoGenerator {
         addParentSubDept(schema);
         addTopContacts(schema);
         addChatLists(schema);
-        new DaoGenerator().generateAll(schema, "C:/Users/Administrator/webstormproject/im/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema, "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -40,7 +40,7 @@ public class GreenDaoGenerator {
 
     }
 
-    //聊天消息(单人聊天、群聊)
+    //聊天消息(单人聊天)
     private  static  void addMessages(Schema schema){
         Entity message=schema.addEntity("Messages");
         message.addStringProperty("_id").primaryKey();//主键id
@@ -95,6 +95,7 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
         chatitem.addStringProperty("count");//群聊or单聊未读消息数
         chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
     }
 
 }
