@@ -1,8 +1,5 @@
 package com.tky.mqtt.base;
 
-import android.view.View;
-import android.widget.Button;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;

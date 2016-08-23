@@ -16,7 +16,7 @@
     <div>
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in departlist" >
-          <div class="col-80" ng-click="tantan(item.DeptName,item.DeptID,item)">
+          <div class="col-80" >
             <ion-checkbox class="checkbox-dark" ng-model="item.isSelected" style="border: 0"><img src="img/icon_org.png" style="width: 25px;height: 25px" >
               <strong style="position: absolute;left: 33%;top:30%">{{item.DeptName}}</strong>
             </ion-checkbox>
@@ -28,8 +28,8 @@
       </ion-list>
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in userlist">
-          <div class="col-80" ng-click="tantan1(item.UserName,item.UserID)" >
-            <ion-checkbox class="checkbox-dark" style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
+          <div class="col-80"  >
+            <ion-checkbox class="checkbox-dark" ng-model="item.isSelected" style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.UserName}}</strong>
             </ion-checkbox>
           </div>

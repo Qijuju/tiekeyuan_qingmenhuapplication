@@ -27,7 +27,7 @@ angular.module('selectgroup.controllers', [])
     $scope.departlist = [];
     $scope.userlist = [];
     $scope.secondStatus;
-    $scope.lastString=[];
+    $scope.lastIds=[];
 
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
@@ -111,33 +111,38 @@ angular.module('selectgroup.controllers', [])
 
     };
 
-    $scope.tantan=function (name,id,obj) {
-
-      alert(name+"你看看我啊"+obj.isSelected);
-
-    }
-    $scope.tantan1=function (ff,dd) {
-      alert(dd+"你好啊恢复"+ff);
-    }
-
     $scope.secondConfirm=function () {
-      for (var i=0;i<$scope.departlist.length;i++){
-        alert($scope.departlist[i].DeptName);
-        if($scope.departlist[i].isSelected){
-          $scope.lastString.push($scope.departlist[i].DeptID);
+      alert("jinlai");
+      if($scope.departlist.length>0){
+        for (var i=0;i<$scope.departlist.length;i++){
+          if($scope.departlist[i].isSelected){
+            $scope.lastIds.push($scope.departlist[i].DeptID);
+          }
         }
       }
-      alert($scope.lastString.length)
+      if($scope.userlist.length>0){
+        for(var j=0;j<$scope.userlist.length;j++){
+          if($scope.userlist[j].isSelected){
+            $scope.lastIds.push($scope.userlist[j].UserID);
+          }
+        }
+
+      }
+      alert($scope.lastIds.length)
+      $scope.lastIds=[];
     }
 
 
 
   })
-  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
+  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
     $scope.thirdStatus;
+    $scope.thirdDeptIds=[];
+    $scope.thirdUserIds=[];
+
 
     //点击当前点击部门的id
     $scope.contactId = $stateParams.contactId;
@@ -155,7 +160,7 @@ angular.module('selectgroup.controllers', [])
         if ($scope.count1 > 0) {
           var olddepts = $contacts.getDeptThirdInfo().deptList;
           for (var i = 0; i < olddepts.length; i++) {
-
+            olddepts[i].isSelected=false;
             $scope.departthirdlist.push(olddepts[i]);
           }
         }
@@ -166,6 +171,7 @@ angular.module('selectgroup.controllers', [])
 
           for (var i = 0; i < oldusers.length; i++) {
 
+            oldusers[i].isSelected=false;
             $scope.userthirdlist.push(oldusers[i]);
           }
         }
@@ -203,13 +209,6 @@ angular.module('selectgroup.controllers', [])
     //在三级目录返回第二级
     $scope.idddd = $contacts.getFirstID();
 
-    /*$scope.backSecond = function (sd) {
-
-      $state.go("addnewpersonsecond", {
-        "contactId": sd
-      });
-    }*/
-
     $scope.backSecond = function () {
 
       $ionicHistory.goBack();
@@ -235,6 +234,64 @@ angular.module('selectgroup.controllers', [])
       });
 
     };
+
+    $scope.thirdConfirm=function () {
+
+      if($scope.departthirdlist.length>0){
+
+        for (var i=0;i<$scope.departthirdlist.length;i++){
+          if($scope.departthirdlist[i].isSelected){
+            $scope.thirdDeptIds.push($scope.departthirdlist[i].DeptID);
+          }
+        }
+
+        alert($scope.thirdDeptIds.length+"部门")
+
+      }
+      if($scope.userthirdlist.length>0){
+        for(var j=0;j<$scope.userthirdlist.length;j++){
+          if($scope.userthirdlist[j].isSelected){
+            $scope.thirdUserIds.push($scope.userthirdlist[j].UserID);
+          }
+        }
+        alert($scope.thirdUserIds.length+"人员")
+
+      }
+
+      $scope.data = {};
+      $ionicPopup.show({
+        template: '<input type="text" ng-model="data.name">',
+        title: '创建群聊',
+        subTitle: '请输入群名称',
+        scope: $scope,
+        buttons: [
+          { text: '取消' },
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              alert($scope.data.name);
+
+              alert($scope.thirdDeptIds.length+"部门1")
+              alert($scope.thirdUserIds.length+"人员1")
+
+              $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
+                alert("创建成功");
+              },function (err) {
+                $scope.thirdDeptIds=[];
+                $scope.thirdUserIds=[];
+              });
+            }
+          },
+        ]
+      });
+
+
+      alert($scope.thirdDeptIds.length+"部门")
+      alert($scope.thirdUserIds.length+"人员")
+    }
+
+
 
 
   })

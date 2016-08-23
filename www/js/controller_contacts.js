@@ -1275,7 +1275,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1301,6 +1301,22 @@ angular.module('contacts.controllers', [])
 
       })
     });
+
+
+
+    $group.allGroup();
+    $scope.$on('group.update', function (event) {
+      $scope.$apply(function () {
+
+        $scope.grouplist=$group.getAllGroup();
+
+      })
+    });
+
+
+
+
+
 
 
     $scope.jumpGroupChat=function () {

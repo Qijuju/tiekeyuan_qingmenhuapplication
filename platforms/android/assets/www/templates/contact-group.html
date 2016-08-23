@@ -6,27 +6,24 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class=" button button-icon "  ng-click="meizuo()">发起聊天</button>
+      <button class=" button button-icon " ng-click="meizuo()">发起聊天</button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content   　overflow-scroll="false"  >
-        <ion-list>
-          <!--ng-click="jumpGroupChat()"-->
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="goGroupChats()">
-            <img src="img/default_org_icon.png">
-            <h2>{{deptinfo}}</h2>
-           <!-- <p>{{groupCount}}人</p>-->
-          </ion-item>
-        </ion-list>
+  <ion-content 　overflow-scroll="false">
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="goGroupChats()">
+        <img src="img/default_org_icon.png">
+        <h2>{{deptinfo}}</h2>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in grouplist">
+        <img src="img/default_org_icon.png">
+        <h2>{{item.GroupName}}</h2>
+        <p>{{item.MemsCount}}</p>
+      </ion-item>
+    </ion-list>
   </ion-content>
-  <ion-tabs class=" tabs-color-active-positive">
-    <ion-tab title="我创建的" ng-controller="AccountCtrl">
-    </ion-tab>
-
-    <!-- Account Tab -->
-    <ion-tab title="我发起的" ng-controller="GroupCtrl" >
-    </ion-tab>
-  </ion-tabs>
 </ion-view>
 
 
