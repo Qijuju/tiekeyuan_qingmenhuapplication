@@ -1281,14 +1281,10 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $contacts.clearSecondCount();
-
         //部门id
         $scope.depid=$contacts.getLoignInfo();
-
         $contacts.deptInfo($scope.depid)
         $group.allGroup();
-
-
       })
     });
 
@@ -1296,25 +1292,46 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         //部门id
         $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
-
-        $scope.deptCount = $contacts.getCount1();
-
-        $scope.groupCount = $contacts.getCount2();
-
       })
     });
-
-
 
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {
 
         $scope.grouplist=$group.getAllGroup();
+        $scope.ismycreat=$group.getCreateCount();
 
       })
     });
 
+    //我创建的
+    $scope.goCreateGroup=function (id,name) {
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Group"
+      });
+    }
 
+    //我加入的
+    $scope.goJoinGroup=function (id,name) {
+
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Group"
+      });
+    }
+
+    //部门的群
+    $scope.goDepartmentGroup=function (id,name) {
+
+      $state.go('tab.message',{
+        "id":id,
+        "sessionid":name,
+        "grouptype":"Dept"
+      });
+    }
 
 
 
