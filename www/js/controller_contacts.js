@@ -1286,6 +1286,8 @@ angular.module('contacts.controllers', [])
         $scope.depid=$contacts.getLoignInfo();
 
         $contacts.deptInfo($scope.depid)
+        $group.allGroup();
+
 
       })
     });
@@ -1304,7 +1306,6 @@ angular.module('contacts.controllers', [])
 
 
 
-    $group.allGroup();
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {
 
