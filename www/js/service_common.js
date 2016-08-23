@@ -47,7 +47,9 @@ angular.module('common.services', [])
       querySearchDetail :function (name, message,success, error) {
         greendao.querySearchDetail (name, message,success, error);
       },
-
+      queryGroupOrSingleChat :function (type, sessionid,success, error) {
+        greendao.querySearchDetail (type, sessionid,success, error);
+      }
     };
 
   })

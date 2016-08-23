@@ -135,7 +135,7 @@ angular.module('selectgroup.controllers', [])
 
 
   })
-  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api) {
+  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -245,8 +245,6 @@ angular.module('selectgroup.controllers', [])
           }
         }
 
-        alert($scope.thirdDeptIds.length+"部门")
-
       }
       if($scope.userthirdlist.length>0){
         for(var j=0;j<$scope.userthirdlist.length;j++){
@@ -254,7 +252,6 @@ angular.module('selectgroup.controllers', [])
             $scope.thirdUserIds.push($scope.userthirdlist[j].UserID);
           }
         }
-        alert($scope.thirdUserIds.length+"人员")
 
       }
 
@@ -265,30 +262,43 @@ angular.module('selectgroup.controllers', [])
         subTitle: '请输入群名称',
         scope: $scope,
         buttons: [
-          { text: '取消' },
+          { text: '取消',
+            onTap: function(e) {
+              $scope.thirdDeptIds=[];
+              $scope.thirdUserIds=[];
+            }
+
+          },
           {
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function(e) {
-              alert($scope.data.name);
+              if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
 
-              alert($scope.thirdDeptIds.length+"部门1")
-              alert($scope.thirdUserIds.length+"人员1")
-
-              $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
-                alert("创建成功");
-              },function (err) {
                 $scope.thirdDeptIds=[];
                 $scope.thirdUserIds=[];
-              });
+                $ToastUtils.showToast("群名称不能为空");
+
+              }else{
+                $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
+
+                  $state.go('',{
+                    
+                  });
+
+                },function (err) {
+                  $scope.thirdDeptIds=[];
+                  $scope.thirdUserIds=[];
+                  $ToastUtils.showToast(err);
+
+                });
+              }
+
             }
           },
         ]
       });
 
-
-      alert($scope.thirdDeptIds.length+"部门")
-      alert($scope.thirdUserIds.length+"人员")
     }
 
 

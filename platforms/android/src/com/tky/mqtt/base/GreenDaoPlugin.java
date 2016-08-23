@@ -63,6 +63,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
             message.setImgSrc(jsonobj.getString("imgSrc"));
+            message.setSenderid(jsonobj.getString("senderid"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();
@@ -133,6 +134,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 message.setIsDelete(jsonobj.getString("isDelete"));
                 message.setImgSrc(jsonobj.getString("imgSrc"));
                 message.setUsername(jsonobj.getString("username"));
+                message.setSenderid(jsonobj.getString("senderid"));
                 messagesList.add(message);
             }
 
@@ -285,6 +287,27 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+
+    /**
+     * 带两个参数查询(messageservice)
+     */
+    public void queryGroupOrSingleChat(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService service = MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<Messages> list=service.querySearchDetail(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
 
     /**
      * 带参查询
