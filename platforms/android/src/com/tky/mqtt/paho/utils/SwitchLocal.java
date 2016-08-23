@@ -52,5 +52,17 @@ public class SwitchLocal {
         }
     }
 
+    public static MType getType(String type) {
+        if ("User" == type) {
+            return MType.U;
+        } else if ("Group" == type) {
+            return MType.G;
+        } else if ("Dept" == type) {
+            return MType.D;
+        } else {
+            return MType.U;
+        }
+    }
+
 
 }

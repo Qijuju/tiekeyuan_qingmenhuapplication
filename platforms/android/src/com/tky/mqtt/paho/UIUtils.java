@@ -233,10 +233,9 @@ public class UIUtils {
 	/**
 	 * 打开文件（各种类型）
 	 *
-	 * @param activity
 	 * @param filePath
 	 */
-	public static void openFile(Activity activity, String filePath) {
+	public static void openFile(String filePath) {
 		Intent intent = new Intent();
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setAction(Intent.ACTION_VIEW);
@@ -247,7 +246,7 @@ public class UIUtils {
 				.getMimeType(suffix) == null) ? MimeTypeConstants
 				.getMimeType("all") : MimeTypeConstants.getMimeType(suffix);
 		intent.setDataAndType(uri, mimeType);
-		activity.startActivity(intent);
+		UIUtils.getContext().startActivity(intent);
 	}
 
 	/**
