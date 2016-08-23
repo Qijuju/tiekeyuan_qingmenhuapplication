@@ -8,6 +8,7 @@ angular.module('group.services', [])
   var allGroup=[];
   var isMyCreate;
   var count=0;
+  var groupDetails;
 
   return{
     allGroup:function () {
@@ -34,7 +35,39 @@ angular.module('group.services', [])
 
     getCreateCount:function () {
       return isMyCreate;
+    },
+
+
+    groupDetail:function (type,id,typelist) {
+
+      $api.getGroupUpdate(type,id,typelist,function (msg) {
+        groupDetails=msg;
+        $rootScope.$broadcast('groupdetail.update');
+
+      },function (err) {
+
+
+      })
+    },
+
+    getGroupDetail:function () {
+      return groupDetails;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
 });

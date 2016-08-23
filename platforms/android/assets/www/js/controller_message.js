@@ -455,6 +455,12 @@ angular.module('message.controllers', [])
       });
 
     };
+
+    $scope.goGroupDetail=function () {
+      $state.go('groupSetting');
+    }
+
+
   })
 
 
@@ -792,7 +798,31 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory,$ToastUtils) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$group) {
+
+    $scope.listM=[];
+    $scope.listM.push('GM');
+    $scope.listM.push('GA');
+    $scope.listM.push('GN');
+    $scope.listM.push('GC');
+    $scope.listM.push('GS');
+    $scope.listM.push('GT');
+
+
+
+    $group.groupDetail('P','11',$scope.listM);
+    $scope.$on('groupdetail.update', function (event) {
+      $scope.$apply(function () {
+
+      $scope.groupDetail=$group.getGroupDetail();
+        alert($scope.groupDetail.groupName+"dfasdfjaskldjflkasdjfklasdjflkasdjfklasjdfkasjdflkasdjfklasd");
+
+      })
+    });
+
+
+
+
     $scope.backAny = function () {
 
       $ionicHistory.goBack();

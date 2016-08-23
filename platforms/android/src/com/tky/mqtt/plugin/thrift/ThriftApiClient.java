@@ -1264,8 +1264,8 @@ public class ThriftApiClient extends CordovaPlugin {
     public void getGroupUpdate(final JSONArray args, final CallbackContext callbackContext){
         try {
             String groupType = args.getString(0);
-            JSONArray objects = args.getJSONArray(1);
-            String groupID = args.getString(2);
+            JSONArray objects = args.getJSONArray(2);
+            String groupID = args.getString(1);
             //getObjects：查询的项目代码列表（参考下表）
             SystemApi.getGroupUpdate(getUserID(), groupType, groupID, jsonArray2List(objects), new AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call>() {
                 @Override
@@ -1275,7 +1275,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         if (result != null && result.result) {
                             String json = GsonUtils.toJson(result, new TypeToken<RSTgetGroupUpdate>() {
                             }.getType());
-                            setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                            setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
                         }

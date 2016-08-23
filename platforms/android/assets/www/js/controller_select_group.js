@@ -283,7 +283,7 @@ angular.module('selectgroup.controllers', [])
                 $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
 
                   $state.go('',{
-                    
+
                   });
 
                 },function (err) {
@@ -991,5 +991,14 @@ angular.module('selectgroup.controllers', [])
 
 
   })
+
+
+  //群成员展示
+  .controller('groupMemberCtrl',function ($scope,$state) {
+    
+
+  })
+
+
 
 

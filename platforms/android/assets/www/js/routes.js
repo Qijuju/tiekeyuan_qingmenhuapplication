@@ -89,12 +89,23 @@ angular.module('im.routes', [])
       .state('groupSetting', {
         url: '/groupSetting',
         templateUrl: 'templates/group-setting.html',
-        controller: 'groupSettingCtrl'
+        controller: 'groupSettingCtrl',
+        cache:false
       })
       .state('groupModifyName', {
         url: '/groupModifyName',
         templateUrl: 'templates/group-modifyname.html',
-        controller: 'groupModifyNameCtrl'
+        controller: 'groupModifyNameCtrl',
+        cache:false
+
+      })
+
+      .state('groupMember', {
+        url: '/groupMember',
+        templateUrl: 'templates/group-member.html',
+        controller: 'groupMemberCtrl',
+        cache:false
+
       })
 
 
