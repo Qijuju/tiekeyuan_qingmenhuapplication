@@ -438,7 +438,7 @@ angular.module('contacts.services', [])
         //获取登录用户的信息
         $mqtt.getUserInfo(function (msg) {
 
-          //用户的id
+          //用户的部门id
           loginId=msg.deptID;
           $rootScope.$broadcast('login.update');
 

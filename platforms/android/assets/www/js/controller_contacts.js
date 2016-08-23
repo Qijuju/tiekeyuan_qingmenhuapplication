@@ -1306,13 +1306,19 @@ angular.module('contacts.controllers', [])
     $scope.jumpGroupChat=function () {
 
     };
-    $scope.meizuo=function () {
-      $ToastUtils.showToast("此功能暂未开发");
-    }
 
-    // $scope.faqi=function () {
-    //   $state.go(contactId);
-    // };
+    //跳转到群聊界面
+
+    $scope.goGroupChats=function () {
+      $state.go('tab.message',{
+        "id":$scope.depid,
+        "sessionid":$scope.deptinfo
+      });
+
+
+
+
+    }
 
   })
 
