@@ -1,14 +1,12 @@
 package com.tky.mqtt.paho.bean;
 
-import java.io.Serializable;
-
 /**
  * 作者：
  * 包名：com.tky.mqtt.paho.bean
  * 日期：2016/8/12 9:13
  * 描述：
  */
-public class MessageBean implements Serializable {
+public class MessageBean extends MessageTypeBean {
     private String _id;// UUID.randomUUID().toString().toUpperCase());
     private String sessionid;//", msgMap.get("to"));
     private String type;//", getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
