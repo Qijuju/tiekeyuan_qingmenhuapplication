@@ -259,7 +259,7 @@ angular.module('selectgroup.controllers', [])
       }
 
       $scope.data = {};
-      /*$ionicPopup.show({
+      $ionicPopup.show({
         template: '<input type="text" ng-model="data.name">',
         title: '创建群聊',
         subTitle: '请输入群名称',
@@ -270,7 +270,7 @@ angular.module('selectgroup.controllers', [])
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function(e) {
-              /!*alert($scope.data.name);
+              alert($scope.data.name);
 
               alert($scope.thirdDeptIds.length+"部门1")
               alert($scope.thirdUserIds.length+"人员1")
@@ -280,11 +280,11 @@ angular.module('selectgroup.controllers', [])
               },function (err) {
                 $scope.thirdDeptIds=[];
                 $scope.thirdUserIds=[];
-              });*!/
+              });
             }
           },
         ]
-      });*/
+      });
 
 
       alert($scope.thirdDeptIds.length+"部门")
