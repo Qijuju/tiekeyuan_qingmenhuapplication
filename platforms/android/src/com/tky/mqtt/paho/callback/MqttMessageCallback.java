@@ -8,8 +8,10 @@ import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
 import com.tky.mqtt.paho.ConnectionType;
+import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
+import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.EventMessageBean;
@@ -18,6 +20,7 @@ import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.sync.MqttConnection;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.paho.utils.SwitchLocal;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -104,6 +107,9 @@ public class MqttMessageCallback implements MqttCallback {
             });
         } else if (bean != null && bean instanceof EventMessageBean) {
             EventMessageBean eventMsgBean = (EventMessageBean) bean;
+            String groupID = eventMsgBean.getGroupID();
+            String gTopic = SwitchLocal.getATopic(MType.G, groupID);
+            MqttTopicRW.append(gTopic, 1);
         }
     }
 }

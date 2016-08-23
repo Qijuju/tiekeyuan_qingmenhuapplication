@@ -72,6 +72,10 @@ public class MessageOper {
 		} else if (notifyType != null && notifyType.equals(IMPFields.N_Type_Event)) {
 			EventMessageBean bean = new EventMessageBean();
 			bean.setNotifyType(IMPFields.N_Type_Event);
+			bean.setEventCode((String) msgMap.get(IMPFields.EventCode));
+			bean.setWhen((Long) msgMap.get(IMPFields.Eventwhen));
+			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
+			msgBean = bean;
 		}
 		return msgBean;
 	}
