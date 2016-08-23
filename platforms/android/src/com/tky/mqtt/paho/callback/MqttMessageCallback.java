@@ -11,9 +11,10 @@ import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.sync.MqttConnection;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -57,14 +58,14 @@ public class MqttMessageCallback implements MqttCallback {
     }
 
     @Override
-        public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
-            Log.d("messageArrived", new String(msg.getPayload()));
-            if (msg == null) {
-                return;
-            }
-            if (msg.getPayload() == null || "".equals(new String(msg.getPayload()).trim())) {
-                return;
-            }
+    public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
+        Log.d("messageArrived", new String(msg.getPayload()));
+        if (msg == null) {
+            return;
+        }
+        if (msg.getPayload() == null || "".equals(new String(msg.getPayload()).trim())) {
+            return;
+        }
             /*// 初始化MediaPlay对象 ，准备播放音乐
             MediaPlayer mPlayer = MediaPlayer.create(context,
                     R.raw.jijiaojinxingqu);
@@ -72,19 +73,21 @@ public class MqttMessageCallback implements MqttCallback {
             mPlayer.setLooping(false);
             // 开始播放
             mPlayer.start();*/
-            MediaPlayer mp = new MediaPlayer();
-            try {
-                mp.setDataSource(context, RingtoneManager
-                        .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-                mp.prepare();
-                mp.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            final MessageBean map = MessageOper.unpack(msg.getPayload());
-    		final String username = (String) map.getUsername();
-    		final String msgContent = (String) map.getMessage();
-    		UIUtils.runInMainThread(new Runnable() {
+        MediaPlayer mp = new MediaPlayer();
+        try {
+            mp.setDataSource(context, RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            mp.prepare();
+            mp.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+        if (bean != null && bean instanceof MessageBean) {
+            final MessageBean map = (MessageBean) bean;
+            final String username = (String) map.getUsername();
+            final String msgContent = (String) map.getMessage();
+            UIUtils.runInMainThread(new Runnable() {
 
                 @Override
                 public void run() {
@@ -99,5 +102,8 @@ public class MqttMessageCallback implements MqttCallback {
                     context.sendBroadcast(intent);
                 }
             });
+        } else if (bean != null && bean instanceof EventMessageBean) {
+            EventMessageBean eventMsgBean = (EventMessageBean) bean;
         }
+    }
 }
