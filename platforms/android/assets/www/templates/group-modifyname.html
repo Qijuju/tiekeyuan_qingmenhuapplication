@@ -1,0 +1,20 @@
+<ion-view view-title="群名称">
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">
+        群设置
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-icon " style="margin-right: 5px">保存</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  style="background-color:#e5e5e5 " >
+    <label class="item item-input " style="height: 50px">
+      <textarea  ng-model="modifyname" style="margin-right: 45px;">
+        {{}}
+      </textarea>
+
+    </label>
+  </ion-content>
+</ion-view>
