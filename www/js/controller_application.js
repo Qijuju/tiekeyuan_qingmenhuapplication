@@ -92,6 +92,8 @@ angular.module('application.controllers', [])
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
             chatitem.chatType = data[0].chatType;
+            chatitem.senderId ='',
+            chatitem.senderName ='';
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);

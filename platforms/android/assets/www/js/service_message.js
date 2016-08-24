@@ -6,11 +6,12 @@ angular.module('message.services', [])
 
   //单聊会话列表的数据保存
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
-  var mainlist=new Array();
+  var mainlist;
   var savedata;
   var id,chatname;
   return{
     getAll:function (isPersonSend,messageType) {
+      mainlist=new Array();
       if(isPersonSend === 'true'){
         var chatitem={};
         if(chatitem.id === undefined || chatitem.chatName === undefined){
@@ -26,6 +27,8 @@ angular.module('message.services', [])
         chatitem.count='';
         chatitem.isDelete='false';
         chatitem.lastDate=new Date().getTime();
+        chatitem.senderId ='',
+        chatitem.senderName ='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }
@@ -47,28 +50,36 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      // alert("先收到"+$rootScope.id+$rootScope.username);
+      alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
 
   //群组会话列表的数据保存
   .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
-    var grouplist=new Array();
+    var grouplist;
     var savegroupdata;
     return{
       getAllGroupList:function (isGroupSend,messageType) {
-        alert("标识符"+isGroupSend);
+        grouplist=new Array()
         if(isGroupSend === 'true'){
           alert("跳转到service界面"+$stateParams.id+$stateParams.sessionid);
           var groupchatitem={};
-          groupchatitem.id=$stateParams.id;
-          groupchatitem.chatName=$stateParams.sessionid;
+          if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
+            groupchatitem.id=$rootScope.id;
+            groupchatitem.chatName=$rootScope.username;
+            alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
+          }else{
+            groupchatitem.id=$stateParams.id;
+            groupchatitem.chatName=$stateParams.sessionid;
+          }
           groupchatitem.imgSrc='img/icon_org.png';
           groupchatitem.lastText='';
           groupchatitem.count='';
           groupchatitem.isDelete='false';
           groupchatitem.lastDate=new Date().getTime();
+          groupchatitem.senderId ='',
+          groupchatitem.senderName ='';
           if(messageType === 'Dept'){
             groupchatitem.chatType='Dept';
           }else if(messageType === 'Group'){
@@ -88,6 +99,11 @@ angular.module('message.services', [])
       },
       getData:function () {
         return savegroupdata;
+      },
+      getGroupIdChatName:function (id,chatname) {
+        $rootScope.id=id;
+        $rootScope.username=chatname;
+        alert("先收到群组"+$rootScope.id+$rootScope.username);
       }
     }
   })
@@ -142,7 +158,6 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         alert("发送者id"+localuserId);
         mqtt.sendMsg(topic, messageDetail, function (message) {
-          alert("发送者id123"+localuserId);
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
           },function (err) {
@@ -199,6 +214,10 @@ angular.module('message.services', [])
             danliao.push(arriveMessage);
           }else {
             groupCount++;
+            $rootScope.firstSessionid=arriveMessage.sessionid;
+            $rootScope.firstUserName=arriveMessage.username;
+            $rootScope.messagetype= arriveMessage.type;
+            alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
             qunliao.push(arriveMessage);
           }
           $rootScope.$broadcast('msgs.update');

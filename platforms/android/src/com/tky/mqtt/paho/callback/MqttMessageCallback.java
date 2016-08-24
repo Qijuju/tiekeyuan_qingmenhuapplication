@@ -76,18 +76,15 @@ public class MqttMessageCallback implements MqttCallback {
             mPlayer.setLooping(false);
             // 开始播放
             mPlayer.start();*/
-        MediaPlayer mp = new MediaPlayer();
-        try {
-            mp.setDataSource(context, RingtoneManager
-                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-            mp.prepare();
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
         if (bean != null && bean instanceof MessageBean) {
             final MessageBean map = (MessageBean) bean;
+            String fromUserId = map.get_id();
+            if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId)) {
+                return;
+            }
+            //接收到消息时的铃声
+            ring();
             final String username = (String) map.getUsername();
             final String msgContent = (String) map.getMessage();
             UIUtils.runInMainThread(new Runnable() {
@@ -106,10 +103,25 @@ public class MqttMessageCallback implements MqttCallback {
                 }
             });
         } else if (bean != null && bean instanceof EventMessageBean) {
+            //接收到消息时的铃声
+            ring();
             EventMessageBean eventMsgBean = (EventMessageBean) bean;
             String groupID = eventMsgBean.getGroupID();
             String gTopic = SwitchLocal.getATopic(MType.G, groupID);
             MqttTopicRW.append(gTopic, 1);
+            MqttNotification.showNotify("群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+        }
+    }
+
+    private void ring() {
+        MediaPlayer mp = new MediaPlayer();
+        try {
+            mp.setDataSource(context, RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            mp.prepare();
+            mp.start();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

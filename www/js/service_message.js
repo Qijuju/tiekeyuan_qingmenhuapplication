@@ -27,6 +27,8 @@ angular.module('message.services', [])
         chatitem.count='';
         chatitem.isDelete='false';
         chatitem.lastDate=new Date().getTime();
+        chatitem.senderId ='';
+        chatitem.senderName ='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }
@@ -48,7 +50,7 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      // alert("先收到"+$rootScope.id+$rootScope.username);
+      alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
@@ -63,13 +65,21 @@ angular.module('message.services', [])
         if(isGroupSend === 'true'){
           alert("跳转到service界面"+$stateParams.id+$stateParams.sessionid);
           var groupchatitem={};
-          groupchatitem.id=$stateParams.id;
-          groupchatitem.chatName=$stateParams.sessionid;
+          if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
+            groupchatitem.id=$rootScope.id;
+            groupchatitem.chatName=$rootScope.username;
+            alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
+          }else{
+            groupchatitem.id=$stateParams.id;
+            groupchatitem.chatName=$stateParams.sessionid;
+          }
           groupchatitem.imgSrc='img/icon_org.png';
           groupchatitem.lastText='';
           groupchatitem.count='';
           groupchatitem.isDelete='false';
           groupchatitem.lastDate=new Date().getTime();
+          groupchatitem.senderId ='',
+          groupchatitem.senderName ='';
           if(messageType === 'Dept'){
             groupchatitem.chatType='Dept';
           }else if(messageType === 'Group'){
@@ -89,6 +99,11 @@ angular.module('message.services', [])
       },
       getData:function () {
         return savegroupdata;
+      },
+      getGroupIdChatName:function (id,chatname) {
+        $rootScope.id=id;
+        $rootScope.username=chatname;
+        alert("先收到群组"+$rootScope.id+$rootScope.username);
       }
     }
   })
@@ -199,6 +214,10 @@ angular.module('message.services', [])
             danliao.push(arriveMessage);
           }else {
             groupCount++;
+            $rootScope.firstSessionid=arriveMessage.sessionid;
+            $rootScope.firstUserName=arriveMessage.username;
+            $rootScope.messagetype= arriveMessage.type;
+            alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
             qunliao.push(arriveMessage);
           }
           $rootScope.$broadcast('msgs.update');

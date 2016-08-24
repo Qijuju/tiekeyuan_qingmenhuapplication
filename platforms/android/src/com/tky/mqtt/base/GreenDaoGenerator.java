@@ -97,6 +97,8 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("count");//群聊or单聊未读消息数
         chatitem.addLongProperty("lastDate");//最后一条消息的时间
         chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+        chatitem.addStringProperty("senderId");//消息来源人id
+        chatitem.addStringProperty("senderName");//消息来源人的名字
     }
 
 }

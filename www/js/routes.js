@@ -327,7 +327,7 @@ angular.module('im.routes', [])
       })
 
       .state('historyMessage', {
-        url: '/historyMessage/:id/:ssid',
+        url: '/historyMessage/:id/:ssid/:grouptype',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
         cache:false

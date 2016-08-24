@@ -103,6 +103,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }
             chatList.setLastText(jsonobj.getString("lastText"));
             chatList.setChatType(jsonobj.getString("chatType"));
+            chatList.setSenderId(jsonobj.getString("senderId"));
+            chatList.setSenderName(jsonobj.getString("senderName"));
             obj = chatList;
         }
         return obj;

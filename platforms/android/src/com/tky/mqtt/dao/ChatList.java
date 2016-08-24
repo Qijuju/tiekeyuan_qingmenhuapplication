@@ -17,6 +17,8 @@ public class ChatList extends BaseDao{
     private String count;
     private Long lastDate;
     private String chatType;
+    private String senderId;
+    private String senderName;
 
     public ChatList() {
     }
@@ -25,7 +27,7 @@ public class ChatList extends BaseDao{
         this.id = id;
     }
 
-    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType) {
+    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName) {
         this.id = id;
         this.chatName = chatName;
         this.isDelete = isDelete;
@@ -34,6 +36,8 @@ public class ChatList extends BaseDao{
         this.count = count;
         this.lastDate = lastDate;
         this.chatType = chatType;
+        this.senderId = senderId;
+        this.senderName = senderName;
     }
 
     public String getId() {
@@ -98,6 +102,22 @@ public class ChatList extends BaseDao{
 
     public void setChatType(String chatType) {
         this.chatType = chatType;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 
 }

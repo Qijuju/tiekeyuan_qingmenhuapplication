@@ -15,9 +15,10 @@
   </ion-nav-bar>
 
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()">
-    <ion-refresher refreshing-icon="ion-loading-c" ng-refresh="doRefresh()" refreshing-text="获取数据中..."
-                   pulling-text="下拉刷新数据..."></ion-refresher>
-
+    <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
+                   pulling-text="更多消息" id="refresh">
+    </ion-refresher>
+    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipgroupmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
       <!--<p class="rj-message-time">5月27日 16:33</p>-->
 
@@ -29,7 +30,7 @@
         </div>
 
 
-        <div class="rj-message-wrap" ng-if="(msg.from === 'true')">
+        <div class="rj-message-wrap" ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)">
           <img src="img/ben.png" class="rj-head-pic-right">
           <span class="rj-triangle-right"></span>
           <span>
