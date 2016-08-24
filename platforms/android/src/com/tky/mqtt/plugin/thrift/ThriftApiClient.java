@@ -2,6 +2,7 @@ package com.tky.mqtt.plugin.thrift;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -1173,7 +1174,7 @@ public class ThriftApiClient extends CordovaPlugin {
             String groupID = args.getString(1);
             String groupName = args.getString(2);
             String groupText = args.getString(3);
-            SystemApi.modifyGroup(getUserID(), groupType, groupID, groupName, groupText, new AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call>() {
+            SystemApi.modifyGroup(getUserID(), getType(groupType), groupID, groupName, groupText, new AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call>() {
                 @Override
                 public void onComplete(IMGroup.AsyncClient.ModifyGroup_call modifyGroup_call) {
                     try {
@@ -1264,10 +1265,10 @@ public class ThriftApiClient extends CordovaPlugin {
     public void getGroupUpdate(final JSONArray args, final CallbackContext callbackContext){
         try {
             String groupType = args.getString(0);
-            JSONArray objects = args.getJSONArray(1);
-            String groupID = args.getString(2);
+            JSONArray objects = args.getJSONArray(2);
+            String groupID = args.getString(1);
             //getObjects：查询的项目代码列表（参考下表）
-            SystemApi.getGroupUpdate(getUserID(), groupType, groupID, jsonArray2List(objects), new AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call>() {
+            SystemApi.getGroupUpdate(getUserID(), getType(groupType), groupID, jsonArray2List(objects), new AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call>() {
                 @Override
                 public void onComplete(IMGroup.AsyncClient.GetGroupUpdate_call getGroupUpdate_call) {
                     try {
@@ -1275,7 +1276,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         if (result != null && result.result) {
                             String json = GsonUtils.toJson(result, new TypeToken<RSTgetGroupUpdate>() {
                             }.getType());
-                            setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                            setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
                         }
@@ -1670,6 +1671,18 @@ public class ThriftApiClient extends CordovaPlugin {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
+    }
+
+    public static String getType(String type) {
+      if ("User".equals(type)) {
+        return "U";
+      } else if ("Group".equals(type)) {
+        return "G";
+      } else if ("Dept".equals(type)) {
+        return "D";
+      } else {
+        return "U";
+      }
     }
 
 }

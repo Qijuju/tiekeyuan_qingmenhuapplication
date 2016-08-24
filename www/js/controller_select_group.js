@@ -135,7 +135,7 @@ angular.module('selectgroup.controllers', [])
 
 
   })
-  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils) {
+  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils,$greendao) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -282,9 +282,24 @@ angular.module('selectgroup.controllers', [])
               }else{
                 $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
 
-                  $state.go('',{
-                    
+                  //信息保存到数据库
+                  var obj={};
+                  obj.id=msg;
+                  obj.groupName=$scope.data.name;
+                  obj.groupType='Group'
+                  $greendao.saveObj('GroupChatsService',obj,function (msg) {
+
+                  },function (err) {
+
                   });
+
+                  //跳转到主界面
+                  $state.go('tab.message',{
+                    "id":msg,
+                    "sessionid":$scope.data.name,
+                    "grouptype":"Group"
+                  });
+
 
                 },function (err) {
                   $scope.thirdDeptIds=[];
@@ -991,5 +1006,111 @@ angular.module('selectgroup.controllers', [])
 
 
   })
+
+
+  //普通群的展示
+  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams) {
+
+    $scope.groupId = $stateParams.groupid;
+    $scope.groupName = $stateParams.chatname;
+    $scope.groupType = $stateParams.grouptype;
+
+    $scope.groupMaster={};
+    $scope.groupAdmin=[];
+    $scope.groupCommon=[];
+
+
+
+
+    $scope.listM=[];
+      $scope.listM.push('GM');
+      $scope.listM.push('GA');
+      $scope.listM.push('GN');
+      $scope.listM.push('GC');
+      $scope.listM.push('GS');
+      $scope.listM.push('GT');
+
+     $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
+     $scope.$on('groupdetail.update', function (event) {
+     $scope.$apply(function () {
+
+      $scope.groupDetails=$group.getGroupDetail();
+      $scope.adminId=$group.getGroupDetail().admins;
+       $scope.members=$group.getGroupDetail().users;
+
+       //获取群主
+       for(var i=0;i<$scope.members.length;i++){
+         //去除群主
+         if($scope.members[i].UserID==$scope.groupDetails.creator){
+           $scope.groupMaster=$scope.members[i];
+         }
+       }
+
+       //管理员
+       for(var j=0;j<$scope.adminId.length;j++){
+
+         for(var k=0;k<$scope.members.length;k++){
+           if($scope.adminId[j]==$scope.members[k].UserID && $scope.adminId[j]!= $scope.groupDetails.creator){
+             $scope.groupAdmin.push($scope.members[k]);
+           }else if($scope.adminId[j]!=$scope.members[k].UserID &&$scope.members[k].UserID!= $scope.groupDetails.creator){
+             $scope.groupCommon.push($scope.members[k]);
+           }
+         }
+
+       }
+       alert($scope.groupAdmin.length);
+
+       alert($scope.groupCommon.length);
+
+       //普通人
+
+
+
+
+
+     })
+     });
+
+    $scope.addPerson=function () {
+      $state.go('addnewpersonfirst');
+    };
+
+
+
+
+
+  })
+
+  //部门群展示
+  .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams) {
+
+
+    $scope.groupId = $stateParams.groupid;
+    $scope.groupName = $stateParams.chatname;
+    $scope.groupType = $stateParams.grouptype;
+
+    $scope.listM=[];
+    $scope.listM.push('GM');
+    $scope.listM.push('GN');
+    $scope.listM.push('GS');
+
+    $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
+    $scope.$on('groupdetail.update', function (event) {
+      $scope.$apply(function () {
+
+        $scope.groupDetails=$group.getGroupDetail();
+
+        $scope.members=$group.getGroupDetail().users;
+
+      })
+    });
+
+
+
+  })
+
+
+
+
 
 

@@ -88,14 +88,33 @@ angular.module('im.routes', [])
       })
 
       .state('groupSetting', {
-        url: '/groupSetting',
+        url: '/groupSetting/:groupid/:chatname/:grouptype',
         templateUrl: 'templates/group-setting.html',
-        controller: 'groupSettingCtrl'
+        controller: 'groupSettingCtrl',
+        cache:false
       })
       .state('groupModifyName', {
         url: '/groupModifyName',
         templateUrl: 'templates/group-modifyname.html',
-        controller: 'groupModifyNameCtrl'
+        controller: 'groupModifyNameCtrl',
+        cache:false
+
+      })
+
+      .state('groupMember', {
+        url: '/groupMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-member.html',
+        controller: 'groupMemberCtrl',
+        cache:false
+
+      })
+
+      .state('groupDeptMember', {
+        url: '/groupDeptMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-deptmember.html',
+        controller: 'groupDeptMemberCtrl',
+        cache:false
+
       })
 
 

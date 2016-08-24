@@ -1282,7 +1282,7 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao) {
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1299,8 +1299,21 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         //部门id
         $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
+
+        //部门群的信息会被放入
+        var deptobj={};
+        deptobj.id=$scope.depid;
+        deptobj.groupName=$scope.deptinfo;
+        deptobj.groupType='Dept';
+        alert($scope.depid)
+        $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
+        },function (err) {
+          alert(err);
+        })
       })
     });
+
+
 
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {

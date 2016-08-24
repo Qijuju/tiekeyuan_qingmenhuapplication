@@ -521,6 +521,16 @@ angular.module('message.controllers', [])
       });
 
     };
+    //:groupid/:chatname/:grouptype
+    $scope.goGroupDetail=function (id,name,type) {
+      $state.go('groupSetting',{
+        'groupid':id,
+        'chatname':name,
+        'grouptype':type
+      });
+    }
+
+
   })
 
 
@@ -954,7 +964,34 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory,$ToastUtils) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils) {
+
+
+    $scope.groupId = $stateParams.groupid;
+    $scope.groupName = $stateParams.chatname;
+    $scope.groupType = $stateParams.grouptype;
+
+
+    $scope.goGroupPerson=function (id,name,type) {
+
+      if(type=='Group'){
+        $state.go('groupMember',{
+          "groupid":id,
+          "chatname":name,
+          "grouptype":type
+        });
+      }else {
+        $state.go('groupDeptMember',{
+          "groupid":id,
+          "chatname":name,
+          "grouptype":type
+        });
+      }
+    };
+
+    $scope.goGroupName=function () {
+      $state.go('groupModifyName');
+    };
     $scope.backAny = function () {
 
       $ionicHistory.goBack();

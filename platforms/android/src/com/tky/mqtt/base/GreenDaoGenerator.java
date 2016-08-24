@@ -22,7 +22,8 @@ public class GreenDaoGenerator {
         addParentSubDept(schema);
         addTopContacts(schema);
         addChatLists(schema);
-        new DaoGenerator().generateAll(schema, "D:/workspace/IM/platforms/android/src");//项目绝对路径
+        addGroupChats(schema);
+        new DaoGenerator().generateAll(schema, "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -99,6 +100,17 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
         chatitem.addStringProperty("senderId");//消息来源人id
         chatitem.addStringProperty("senderName");//消息来源人的名字
+    }
+
+    //创建群聊天会创建数据库
+    private static void addGroupChats(Schema schema){
+      //
+      Entity groupChat=schema.addEntity("GroupChats");
+      groupChat.addStringProperty("id").primaryKey(); //群组的id
+      groupChat.addStringProperty("groupName");//群组的名字
+      groupChat.addStringProperty("groupType");//群组的类型
+
+
     }
 
 }
