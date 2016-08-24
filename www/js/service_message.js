@@ -6,11 +6,12 @@ angular.module('message.services', [])
 
   //单聊会话列表的数据保存
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
-  var mainlist=new Array();
+  var mainlist;
   var savedata;
   var id,chatname;
   return{
     getAll:function (isPersonSend,messageType) {
+      mainlist=new Array();
       if(isPersonSend === 'true'){
         var chatitem={};
         if(chatitem.id === undefined || chatitem.chatName === undefined){
@@ -54,11 +55,11 @@ angular.module('message.services', [])
 
   //群组会话列表的数据保存
   .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
-    var grouplist=new Array();
+    var grouplist;
     var savegroupdata;
     return{
       getAllGroupList:function (isGroupSend,messageType) {
-        alert("标识符"+isGroupSend);
+        grouplist=new Array()
         if(isGroupSend === 'true'){
           alert("跳转到service界面"+$stateParams.id+$stateParams.sessionid);
           var groupchatitem={};
@@ -142,7 +143,6 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         alert("发送者id"+localuserId);
         mqtt.sendMsg(topic, messageDetail, function (message) {
-          alert("发送者id123"+localuserId);
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
           },function (err) {
