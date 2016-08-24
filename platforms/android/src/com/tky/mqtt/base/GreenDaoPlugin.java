@@ -3,12 +3,14 @@ package com.tky.mqtt.base;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
+import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SubDeptService;
@@ -63,6 +65,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
             message.setImgSrc(jsonobj.getString("imgSrc"));
+            message.setSenderid(jsonobj.getString("senderid"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();
@@ -101,7 +104,14 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 chatList.setLastDate(System.currentTimeMillis());
             }
             chatList.setLastText(jsonobj.getString("lastText"));
+            chatList.setChatType(jsonobj.getString("chatType"));
             obj = chatList;
+        }else if("GroupChatsService".equals(services)){
+          GroupChats groupChats=new GroupChats();
+          groupChats.setId(jsonobj.getString("id"));
+          groupChats.setGroupName(jsonobj.getString("groupName"));
+          groupChats.setGroupType(jsonobj.getString("groupType"));
+          obj=groupChats;
         }
         return obj;
     }
@@ -132,6 +142,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 message.setIsDelete(jsonobj.getString("isDelete"));
                 message.setImgSrc(jsonobj.getString("imgSrc"));
                 message.setUsername(jsonobj.getString("username"));
+                message.setSenderid(jsonobj.getString("senderid"));
                 messagesList.add(message);
             }
 
@@ -143,6 +154,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
         }else if ("TopContactsService".equals(services)){
 
         }else if("ChatListService".equals(services)){
+
+        }else if ("GroupChatsService".equals(services)){
 
         }
         return obj;
@@ -166,6 +179,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= TopContactsService.getInstance(UIUtils.getContext());
         }else if("ChatListService".equals(services)){
             baseInterface= ChatListService.getInstance(UIUtils.getContext());
+        }else if("GroupChatsService".equals(services)){
+          baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -284,6 +299,27 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+
+    /**
+     * 带两个参数查询(messageservice)
+     */
+    public void queryGroupOrSingleChat(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService service = MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<Messages> list=service.querySearchDetail(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
 
     /**
      * 带参查询

@@ -34,7 +34,7 @@ angular.module('im.routes', [])
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
-        url: '/message/:id/:sessionid',
+        url: '/message/:id/:sessionid/:grouptype',
         cache:false,
         views: {
           'tab-message': {
@@ -45,7 +45,7 @@ angular.module('im.routes', [])
       })
 
       .state('messageDetail', {
-        url: '/messageDetail/:id/:ssid',
+        url: '/messageDetail/:id/:ssid/:grouptype',
         templateUrl: 'templates/message-detail.html',
         cache:false,
         controller: 'MessageDetailCtrl'
@@ -55,8 +55,9 @@ angular.module('im.routes', [])
 
 
       .state('messageGroup', {
-        url: '/messageGroup',
+        url: '/messageGroup/:id/:chatName/:grouptype',
         templateUrl: 'templates/message-group.html',
+        cache:false,
         controller: 'MessageGroupCtrl'
 
 
@@ -87,7 +88,7 @@ angular.module('im.routes', [])
       })
 
       .state('groupSetting', {
-        url: '/groupSetting',
+        url: '/groupSetting/:groupid/:chatname/:grouptype',
         templateUrl: 'templates/group-setting.html',
         controller: 'groupSettingCtrl',
         cache:false
@@ -101,9 +102,17 @@ angular.module('im.routes', [])
       })
 
       .state('groupMember', {
-        url: '/groupMember',
+        url: '/groupMember/:groupid/:chatname/:grouptype',
         templateUrl: 'templates/group-member.html',
         controller: 'groupMemberCtrl',
+        cache:false
+
+      })
+
+      .state('groupDeptMember', {
+        url: '/groupDeptMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-deptmember.html',
+        controller: 'groupDeptMemberCtrl',
         cache:false
 
       })

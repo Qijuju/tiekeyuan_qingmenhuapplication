@@ -40,7 +40,8 @@ public class MessageOper {
 		if (obj == null) {
 			return null;
 		}
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
+		String type = obj.getString("type");
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), getUserID(), (!"User".equals(type) ? obj.getString("sessionid") : getUserID()), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**

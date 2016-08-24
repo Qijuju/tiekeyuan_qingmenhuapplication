@@ -22,7 +22,8 @@ public class GreenDaoGenerator {
         addParentSubDept(schema);
         addTopContacts(schema);
         addChatLists(schema);
-        new DaoGenerator().generateAll(schema, "C:/Users/Administrator/webstormproject/im/platforms/android/src");//项目绝对路径
+        addGroupChats(schema);
+        new DaoGenerator().generateAll(schema, "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -40,7 +41,7 @@ public class GreenDaoGenerator {
 
     }
 
-    //聊天消息(单人聊天、群聊)
+    //聊天消息(单人聊天)
     private  static  void addMessages(Schema schema){
         Entity message=schema.addEntity("Messages");
         message.addStringProperty("_id").primaryKey();//主键id
@@ -55,6 +56,7 @@ public class GreenDaoGenerator {
         message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
         message.addStringProperty("imgSrc");//头像图片来源
         message.addStringProperty("username");//用户名
+        message.addStringProperty("senderid");//用于群聊时判断消息来源人id
     }
 
 
@@ -95,6 +97,18 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
         chatitem.addStringProperty("count");//群聊or单聊未读消息数
         chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+    }
+
+    //创建群聊天会创建数据库
+    private static void addGroupChats(Schema schema){
+      //
+      Entity groupChat=schema.addEntity("GroupChats");
+      groupChat.addStringProperty("id").primaryKey(); //群组的id
+      groupChat.addStringProperty("groupName");//群组的名字
+      groupChat.addStringProperty("groupType");//群组的类型
+
+
     }
 
 }

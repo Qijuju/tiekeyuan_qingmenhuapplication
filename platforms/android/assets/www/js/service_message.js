@@ -3,12 +3,14 @@
  */
 angular.module('message.services', [])
 
+
+  //单聊会话列表的数据保存
 .factory('$chatarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
   var mainlist=new Array();
   var savedata;
   var id,chatname;
   return{
-    getAll:function (isPersonSend) {
+    getAll:function (isPersonSend,messageType) {
       if(isPersonSend === 'true'){
         var chatitem={};
         if(chatitem.id === undefined || chatitem.chatName === undefined){
@@ -24,6 +26,9 @@ angular.module('message.services', [])
         chatitem.count='';
         chatitem.isDelete='false';
         chatitem.lastDate=new Date().getTime();
+        if(messageType === 'User'){
+          chatitem.chatType='User';
+        }
         mainlist.push(chatitem);
         $greendao.saveObj('ChatListService',chatitem,function (data) {
           // alert("保存成功"+data.length)
@@ -46,6 +51,46 @@ angular.module('message.services', [])
     }
   }
 })
+
+  //群组会话列表的数据保存
+  .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var grouplist=new Array();
+    var savegroupdata;
+    return{
+      getAllGroupList:function (isGroupSend,messageType) {
+        alert("标识符"+isGroupSend);
+        if(isGroupSend === 'true'){
+          alert("跳转到service界面"+$stateParams.id+$stateParams.sessionid);
+          var groupchatitem={};
+          groupchatitem.id=$stateParams.id;
+          groupchatitem.chatName=$stateParams.sessionid;
+          groupchatitem.imgSrc='img/icon_org.png';
+          groupchatitem.lastText='';
+          groupchatitem.count='';
+          groupchatitem.isDelete='false';
+          groupchatitem.lastDate=new Date().getTime();
+          if(messageType === 'Dept'){
+            groupchatitem.chatType='Dept';
+          }else if(messageType === 'Group'){
+            groupchatitem.chatType='Group';
+          }
+          grouplist.push(groupchatitem);
+          $greendao.saveObj('ChatListService',groupchatitem,function (data) {
+            alert("保存成功"+data.length)
+          },function (err) {
+          });
+          $rootScope.$broadcast('groupchatarr.update');
+        }
+        return grouplist;
+      },
+      setData:function (data) {
+        savegroupdata = data;
+      },
+      getData:function () {
+        return savegroupdata;
+      }
+    }
+  })
 
   .factory('$mqtt',function ($rootScope,$greendao) {
     var mqtt;
@@ -80,7 +125,7 @@ angular.module('message.services', [])
       },
 
 
-      sendMsg:function (topic,content,id,account,sqlid) {
+      sendMsg:function (topic, content, id,localuser,localuserId,sqlid) {
         var messageDetail={};
         messageDetail._id=sqlid;
         messageDetail.sessionid=id;
@@ -93,8 +138,11 @@ angular.module('message.services', [])
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
         messageDetail.imgSrc='';
-        messageDetail.username=account;
+        messageDetail.username=localuser;
+        messageDetail.senderid=localuserId;
+        alert("发送者id"+localuserId);
         mqtt.sendMsg(topic, messageDetail, function (message) {
+          alert("发送者id123"+localuserId);
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
           },function (err) {
@@ -135,7 +183,10 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
+          arriveMessage.senderid=message._id;
+          alert("接受消息"+arriveMessage.senderid);
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
+            alert(data.length+"收消息");
           },function (err) {
           });
           if(message.type==="User"){
@@ -143,7 +194,8 @@ angular.module('message.services', [])
             // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
-            // alert("存的对不对"+$rootScope.firstSessionid);
+            $rootScope.messagetype= arriveMessage.type;
+            alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
             danliao.push(arriveMessage);
           }else {
             groupCount++;
@@ -190,39 +242,46 @@ angular.module('message.services', [])
       getFirstReceiverChatName:function () {
         return $rootScope.firstUserName;
       },
+      getMessageType:function () {
+        return $rootScope.messagetype;
+      },
       getSenderID:function () {
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic,content,id) {
+      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+        alert("发送群消息"+sqlid+localuserId+grouptype);
         var messageReal={};
-        messageReal._id=id;
-        messageReal.account='6698';
-        messageReal.sessionid=topic;
-        messageReal.type='Group';
+        messageReal._id=sqlid;
+        messageReal.sessionid=id;
+        messageReal.type=grouptype;
         messageReal.from='true';
         messageReal.message=content;
         messageReal.messagetype='normal';
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
-        messageReal.singlecount='';
+        messageReal.isDelete='false';
+        messageReal.imgSrc='';
+        messageReal.username=localuser;
+        messageReal.senderid=localuserId;
+        alert(localuser+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
-            // alert("群组消息保存成功");
+            alert("群组消息保存成功");
           },function (err) {
             alert("群组消息保存失败");
           });
           $rootScope.$broadcast('groupMsgs.update');
           return "成功";
         },function (message) {
-          messageReal.isFailure=true;
+          messageReal.isFailure='true';
           qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
-            // alert(data);
+            alert(data);
           },function (err) {
-            // alert(err+"msgerr");
+            alert(err+"msgerr");
           });
           $rootScope.$broadcast('groupMsgs.error');
           return "失败";
