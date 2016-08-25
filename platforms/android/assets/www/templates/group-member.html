@@ -1,0 +1,74 @@
+<ion-view view-title={{groupName}}>
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">
+        群设置
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-icon " ng-click="addPerson()">添加</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  style="background-color:#e5e5e5 " >
+    <ion-list>
+      <ion-item >
+        <div class="row" >
+          <div class="col-20" align="center">
+            <img src="img/icon_friends.png" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;width: 39px;height: 39px">
+          </div>
+          <div class="col-60" align="left">
+            <p style="font-size: 18px" align="left">{{groupMaster.UserName}}</p>
+          </div>
+          <div class="col-20" align="right">
+            <p style="font-size: 18px " align="right">群主 </p>
+          </div>
+        </div>
+        <ion-option-button class="button-energized" ng-if="false">
+          取消管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-if="false">
+          删除
+        </ion-option-button>
+      </ion-item>
+      <ion-item ng-repeat="item in groupAdmin">
+        <div class="row" >
+          <div class="col-20" align="center">
+            <img src="img/icon_friends.png" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;width: 39px;height: 39px">
+          </div>
+          <div class="col-60" align="left">
+            <p style="font-size: 18px" align="left">{{item.UserName}}</p>
+          </div>
+          <div class="col-20" align="right">
+            <p style="font-size: 18px " align="right">管理员</p>
+          </div>
+        </div>
+        <ion-option-button class="button-royal" ng-click="cancelAdmin(item.UserID)">
+          取消管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+          删除
+        </ion-option-button>
+      </ion-item>
+      <ion-item ng-repeat="item in groupCommon">
+        <div class="row" >
+          <div class="col-20" align="center">
+            <img src="img/icon_friends.png" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;width: 39px;height: 39px">
+          </div>
+          <div class="col-60" align="left">
+            <p style="font-size: 18px" align="left">{{item.UserName}}</p>
+          </div>
+          <div class="col-20" align="right">
+            <p style="font-size: 18px ;padding-left: 15px" align="right"></p>
+          </div>
+        </div>
+        <ion-option-button class="button-balanced" ng-click="addAdmin(item.UserID)">
+          添加管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

@@ -1,4 +1,4 @@
-<ion-view id="messageGroupDetail" view-title="专家组">
+<ion-view id="messageGroupDetail" view-title={{chatname}}>
   <ion-nav-bar align-title="center">
 
     <ion-nav-buttons side="left">
@@ -8,7 +8,7 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-people-outline" ui-sref="groupSetting"
+      <button class="button button-icon icon ion-ios-people-outline" ng-click="goGroupDetail(groupid,chatname,grouptype)"
               style="margin-right: 5px"></button>
     </ion-nav-buttons>
 
@@ -34,7 +34,7 @@
           <span class="rj-triangle-right"></span>
           <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow('zhuanjiazu',msg.message, 'cll')"><font class="rj-message-right">{{msg.message}}</font></p>
+             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>
           </span>
         </div>
       </div>
@@ -63,7 +63,7 @@
         </button>
       </div>
       <div class="rj-send-button" ng-hide="!send_content || send_content === ''"
-           ng-click="sendSingleGroupMsg('zhuanjiazu',send_content,'sy')">
+           ng-click="sendSingleGroupMsg(groupid,send_content,groupid,grouptype,localusr,myUserID,_id)">
         <p>发送</p>
       </div>
     </div>

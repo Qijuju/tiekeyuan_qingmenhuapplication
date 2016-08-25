@@ -136,4 +136,18 @@ public class MessagesService implements BaseInterface<Messages>{
                 .build()
                 .list();
     }
+
+    /**
+     * 区分群聊和单聊的信息
+     */
+    public List<Messages>  queryGroupOrSingleChat(String type,String sessionid){
+
+        return messagesDao.queryBuilder()
+                .orderDesc(MessagesDao.Properties.When)
+                .where(MessagesDao.Properties.Type.eq(type))
+                .where(MessagesDao.Properties.Sessionid.like(sessionid))
+                .build()
+                .list();
+    }
+
 }

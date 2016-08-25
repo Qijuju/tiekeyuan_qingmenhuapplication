@@ -82,7 +82,7 @@ exports.removeGroup = function(groupID, success, error) {//解散群组  groupID
   exec(success, error, "ThriftApiClient", "removeGroup", [groupID]);
 };
 exports.getGroupUpdate = function(groupType, groupID, objectsArr, success, error) {//获取群组指定信息  groupType：群组类型, groupID：群组ID, objectsArr：查询的项目代码列表
-  exec(success, error, "ThriftApiClient", "getGroupUpdate", [groupType,groupID,objects]);
+  exec(success, error, "ThriftApiClient", "getGroupUpdate", [groupType,groupID,objectsArr]);
 };
 exports.groupAddMember = function(groupID, deptsArr, membersArr, success, error) {//群组添加人员（列表）  groupID：群组ID, deptsArr选中所有部门的ID的集合, membersArr：选中所有人员的ID的集合
   exec(success, error, "ThriftApiClient", "groupAddMember", [groupID, deptsArr, membersArr]);

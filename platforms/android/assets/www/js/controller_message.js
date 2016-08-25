@@ -9,20 +9,21 @@ angular.module('message.controllers', [])
     // },function (err) {
     //   alert(err);
     // });
+    $scope.userId = $stateParams.id;
+    $scope.viewtitle = $stateParams.ssid;//接收方姓名
+    $scope.groupType = $stateParams.grouptype;//聊天类型
     //对话框名称
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;
-    $scope.userId = $stateParams.id;
-    $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.localusr=$rootScope.userName;
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
     if ($rootScope.isPersonSend === 'true') {
       // alert("长度");
-      $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+      $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.groupType);
       // alert($scope.items.length + "长度");
       $scope.$on('chatarr.update', function (event) {
         $scope.$apply(function () {
-          $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+          $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.groupType);
         });
       });
       $rootScope.isPersonSend = 'false';
@@ -74,9 +75,10 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleMsg = function (topic, content, id, account,sqlid) {
-      $mqtt.getMqtt().getTopic(topic, 'U', function (userTopic) {
-        $scope.suc = $mqtt.sendMsg(userTopic, content, id, account,sqlid);
+    $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.getMqtt().getTopic(topic, $scope.groupType, function (userTopic) {
+        alert("单聊topic"+userTopic+$scope.groupType);
+        $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid);
         $scope.send_content = "";
         keepKeyboardOpen();
       }, function (msg) {
@@ -133,11 +135,11 @@ angular.module('message.controllers', [])
               // alert("长度");
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
-              $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-              // alert($scope.items.length + "长度");
+              $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.groupType);
+              alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
-                  $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+                  $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.groupType);
                 });
               });
               $rootScope.isPersonSend = 'false';
@@ -165,6 +167,7 @@ angular.module('message.controllers', [])
             chatitem.count = $scope.unread;
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
+            chatitem.chatType = data[0].chatType;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);
@@ -197,7 +200,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic,content,id,account,sqlid,msgSingle) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
       // $scope.msgs.remove(msgSingle);
       // alert(msgSingle);
       // 显示操作表
@@ -220,7 +223,7 @@ angular.module('message.controllers', [])
             //   //   // break;
             //   // }
             // }
-            $scope.sendSingleMsg(topic,content,id,account,sqlid);
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
           } else if (index === 1) {
 
           }
@@ -230,7 +233,7 @@ angular.module('message.controllers', [])
 
     };
 
-    $scope.backFirstMenu = function () {
+    $scope.backFirstMenu = function (groupType) {
       $mqtt.clearMsgCount();
       // alert("无参进来的userid"+$scope.userId);
       //收到消息时先判断会话列表有没有这个用户
@@ -244,11 +247,11 @@ angular.module('message.controllers', [])
             // alert("长度");
             //往service里面传值，为了创建会话
             $chatarr.getIdChatName($scope.userId,$scope.viewtitle);
-            $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+            $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
             // alert($scope.items.length + "长度");
             $scope.$on('chatarr.update', function (event) {
               $scope.$apply(function () {
-                $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+                $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
               });
             });
             $rootScope.isPersonSend = 'false';
@@ -281,7 +284,7 @@ angular.module('message.controllers', [])
             chatitem.count = '0';
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
-
+            chatitem.chatType = data[0].chatType;
           $greendao.saveObj('ChatListService', chatitem, function (data) {
             // alert("save success");
             $greendao.queryByConditions('ChatListService', function (data) {
@@ -324,7 +327,16 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope) {
+    $scope.groupid=$stateParams.id;
+    $scope.chatname=$stateParams.chatName;
+    $scope.grouptype=$stateParams.grouptype;
+
+    $scope._id='';
+    $scope.localusr = $rootScope.userName;
+    $scope.myUserID = $rootScope.rootUserId;
+    alert("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype);
+
     $greendao.queryData('MessagesService', 'where type =? order by "when" desc limit 0,10', 'Group', function (data) {
       for (var i = 1; i <= data.length; i++) {
         $mqtt.getQunliao().push(data[data.length - i]);
@@ -347,10 +359,13 @@ angular.module('message.controllers', [])
       viewScroll.scrollBottom();
     });
 
-    $scope.sendSingleGroupMsg = function (topic, content, id) {
-      $mqtt.sendGroupMsg(topic, content, id);
-      $scope.send_content = ""
-      keepKeyboardOpen();
+    $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+      $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
+        alert("群聊topic"+userTopic+$scope.grouptype);
+        $mqtt.sendGroupMsg(userTopic, content, id,grouptype,localuser,localuserId,sqlid);
+        $scope.send_content = ""
+        keepKeyboardOpen();
+      });
     };
     function keepKeyboardOpen() {
       console.log('keepKeyboardOpen');
@@ -432,7 +447,7 @@ angular.module('message.controllers', [])
 
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendgroupshow = function (topic, content, id) {
+    $scope.resendgroupshow = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
 
       // 显示操作表
       $ionicActionSheet.show({
@@ -446,7 +461,7 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           alert(index);
           if (index === 0) {
-            $scope.sendSingleGroupMsg(topic, content, id);
+            $scope.sendSingleGroupMsg(topic, content, id,grouptype,localuser,localuserId,sqlid);
           } else if (index === 1) {
 
           }
@@ -455,30 +470,54 @@ angular.module('message.controllers', [])
       });
 
     };
+    //:groupid/:chatname/:grouptype
+    $scope.goGroupDetail=function (id,name,type) {
+      $state.go('groupSetting',{
+        'groupid':id,
+        'chatname':name,
+        'grouptype':type
+      });
+    }
+
+
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr) {
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   alert(data);
     // },function (err) {
     //   alert(err);
     // });
-
     $scope.userId = $stateParams.id;
     $scope.userName = $stateParams.sessionid;
-    // alert($scope.userId+"messageC"+$scope.userName);
-    if ($rootScope.isPersonSend === 'true') {
-      $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-      // alert($scope.items.length + "长度");
+    $scope.messageType = $stateParams.grouptype;
+    alert($scope.userId+"messageC"+$scope.userName+$scope.messageType);
+    if($rootScope.isGroupSend === 'true'){
+      //若是从群聊那边传过来的，就调用service存储
+      $scope.items = $grouparr.getAllGroupList($rootScope.isGroupSend,$scope.messageType);
+      alert($scope.items.length + "群聊长度");
+      $scope.$on('groupchatarr.update', function (event) {
+        $scope.$apply(function () {
+          $scope.items = $chatarr.getAllGroupList($rootScope.isPersonSend,$scope.messageType);
+        });
+      });
+      $rootScope.isGroupSend = 'false';
+      alert("走这吗？"+$rootScope.isGroupSend);
+    }else if($rootScope.isPersonSend === 'true'){
+      //若是从单聊那边创建聊天过来的，就调用service存储
+      //获取单聊的对方的userid和username
+      $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
+      alert($scope.items.length + "danliao长度");
       $scope.$on('chatarr.update', function (event) {
         $scope.$apply(function () {
-          $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+          $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
         });
       });
       $rootScope.isPersonSend = 'false';
     }
+
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.queryByConditions('ChatListService',function (data) {
       $scope.items=data;
@@ -486,16 +525,11 @@ angular.module('message.controllers', [])
     },function (err) {
       alert("按时间查询失败"+err);
     });
-    // $greendao.loadAllData('ChatListService', function (data) {
-    //   $scope.items = data;
-    //   //当登陆成功以后进入主界面，从数据库取值：聊天对话框名称
-    //   // $scope.ssid=
-    //   // alert($scope.items.length+"聊天列表长度");
-    // }, function (err) {
-    //   alert(err);
-    // });
     $mqtt.arriveMsg("");
 
+      /**
+       * 监听消息
+       */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         $scope.danliaomsg = $mqtt.getDanliao();
@@ -529,14 +563,15 @@ angular.module('message.controllers', [])
             // alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              // alert("长度");
+              $scope.messageType=$mqtt.getMessageType();
+              alert("会话列表聊天类型"+$scope.messageType);
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
-              $scope.items = $chatarr.getAll($rootScope.isPersonSend);
-              // alert($scope.items.length + "长度");
+              $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
+              alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
-                  $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+                  $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
                 });
               });
               $rootScope.isPersonSend = 'false';
@@ -564,6 +599,7 @@ angular.module('message.controllers', [])
             chatitem.count = $scope.unread;
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
+            chatitem.chatType =data[0].chatType;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);
@@ -580,7 +616,14 @@ angular.module('message.controllers', [])
         }, function (err) {
           alert(err);
         });
-        $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+
+
+          /**
+           * 当群未读消息数变化的时候
+           * 1.将未读数、最后一条消息取出来，赋值给会话列表
+           * 2.保存并重新拉取列表以做数据刷新
+           */
+          $scope.lastGroupCount = $mqtt.getMsgGroupCount();
       })
 
     });
@@ -593,8 +636,9 @@ angular.module('message.controllers', [])
     });
 
     //进入单聊界面
-    $scope.goDetailMessage = function (id, ssid) {
-      // alert("单聊界面"+id+ssid);
+    $scope.goDetailMessage = function (id, ssid,chatType) {
+
+      alert("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
       //将变化的count赋值给unread对象
       $scope.unread = $mqtt.getMsgCount();
@@ -615,6 +659,7 @@ angular.module('message.controllers', [])
           chatitem.count = $scope.unread;
           chatitem.isDelete = data[0].isDelete;
           chatitem.lastDate = $scope.lastDate;
+          chatitem.chatType =data[0].chatType;
           $greendao.saveObj('ChatListService', chatitem, function (data) {
           }, function (err) {
             alert(err);
@@ -626,23 +671,44 @@ angular.module('message.controllers', [])
         alert(err);
       });
 
-      //进入聊天详情界面
-      $state.go('messageDetail',
-        {
-          "id": id,
-          "ssid": ssid
-        });
+      if(chatType === "User"){
+        //进入聊天详情界面
+        alert("进入单聊界面");
+        $state.go('messageDetail',
+          {
+            "id": id,
+            "ssid": ssid,
+            "grouptype":chatType
+          });
 
+      }else if(chatType === "Dept"){
+        alert("进入部门界面");
+        // $mqtt.clearMsgGroupCount();
+        // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+        $state.go('messageGroup',{
+          "id":id,
+          "chatName":ssid,
+          "grouptype":chatType
+        });
+      }else if(chatType === "Group"){
+        alert("进入群聊界面");
+        // $mqtt.clearMsgGroupCount();
+        // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+        $state.go('messageGroup',{
+          "id":id,
+          "chatName":ssid,
+          "grouptype":chatType
+        });
+      }
 
     };
 
-
-    //进入群聊界面
-    $scope.goGroupMessage = function () {
-      $mqtt.clearMsgGroupCount();
-      $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-      $state.go("messageGroup");
-    }
+    //
+    //
+    // $scope.goGroupMessage = function (id,chatName) {
+    //
+    //
+    // }
 
 
     $scope.goSearch = function () {
@@ -792,16 +858,83 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $http, $state, $stateParams,$ionicHistory,$ToastUtils) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group) {
+
+
+    $scope.groupId = $stateParams.groupid;
+    $scope.groupType = $stateParams.grouptype;
+
+    $scope.listM=[];
+    $scope.listM.push('GN');
+    $scope.listM.push('GT');
+    $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
+    $scope.$on('groupdetail.update', function (event) {
+      $scope.$apply(function () {
+        $scope.groupName=$group.getGroupDetail().groupName;
+
+      })
+    });
+
+
+    $scope.goGroupPerson=function (id,name,type) {
+
+      if(type=='Group'){
+        $state.go('groupMember',{
+          "groupid":id,
+          "chatname":name,
+          "grouptype":type
+        });
+      }else {
+        $state.go('groupDeptMember',{
+          "groupid":id,
+          "chatname":name,
+          "grouptype":type
+        });
+      }
+    };
+
+
+    //解散群
+    $scope.dissolveGroup=function () {
+      $api.removeGroup($scope.groupId,function (msg) {
+
+        $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
+
+          $state.go('tab.message',{
+            "id":$scope.groupId,
+            "sessionid":$scope.groupName,
+            "grouptype":"Group"
+          });
+
+        },function (err) {
+          $ToastUtils.showToast(err)
+        })
+
+      },function (err) {
+        $ToastUtils.showToast(err)
+
+      });
+    }
+
+
+    //修改群名称
+    $scope.goGroupName=function (id,name) {
+      $state.go('groupModifyName',{
+        "groupid":id,
+        "groupname":name
+      });
+    };
+
     $scope.backAny = function () {
 
       $ionicHistory.goBack();
 
     };
+
     $scope.gohistoryMessage = function () {
-      // alert("要跳了")
       $state.go("historyMessage");
     }
+
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }

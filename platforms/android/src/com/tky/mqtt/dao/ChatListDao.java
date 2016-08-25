@@ -30,6 +30,7 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         public final static Property LastText = new Property(4, String.class, "lastText", false, "LAST_TEXT");
         public final static Property Count = new Property(5, String.class, "count", false, "COUNT");
         public final static Property LastDate = new Property(6, Long.class, "lastDate", false, "LAST_DATE");
+        public final static Property ChatType = new Property(7, String.class, "chatType", false, "CHAT_TYPE");
     };
 
 
@@ -51,7 +52,8 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
                 "'IMG_SRC' TEXT," + // 3: imgSrc
                 "'LAST_TEXT' TEXT," + // 4: lastText
                 "'COUNT' TEXT," + // 5: count
-                "'LAST_DATE' INTEGER);"); // 6: lastDate
+                "'LAST_DATE' INTEGER," + // 6: lastDate
+                "'CHAT_TYPE' TEXT);"); // 7: chatType
     }
 
     /** Drops the underlying database table. */
@@ -99,6 +101,11 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         if (lastDate != null) {
             stmt.bindLong(7, lastDate);
         }
+ 
+        String chatType = entity.getChatType();
+        if (chatType != null) {
+            stmt.bindString(8, chatType);
+        }
     }
 
     /** @inheritdoc */
@@ -117,7 +124,8 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // imgSrc
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // lastText
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // count
-            cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6) // lastDate
+            cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // lastDate
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // chatType
         );
         return entity;
     }
@@ -132,6 +140,7 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         entity.setLastText(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setCount(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setLastDate(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
+        entity.setChatType(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     /** @inheritdoc */

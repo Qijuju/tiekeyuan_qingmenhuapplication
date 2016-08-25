@@ -12,7 +12,7 @@
       </label>
     </div>
     <ion-list>
-      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName)">
+      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">
         <div ng-if="item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9" class="center circle1" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
         <div ng-if="item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8" class="center circle2" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
         <div ng-if="item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7" class="center circle3" style=" position: absolute;left: 5%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
@@ -33,17 +33,18 @@
           Delete
         </ion-option-button>
       </ion-item>
-      <ion-item class=" item-remove-animate item-avatar" ng-click="goGroupMessage()">
-        <img src="img/icon_org.png" width="80px" height="80px">
-        <!--这个就是来了新消息, 头像上的小红数字-->
-        <span class="rj-sm-red-icon" ng-show="lastGroupCount > 0"><p>{{lastGroupCount}}</p></span>
-        <h2>{{ qunliaomsg[qunliaomsg.length-1]._id}}</h2>
-        <p> {{qunliaomsg[qunliaomsg.length-1].message}}</p>
-        <span class="rj-push-right">6月8日</span>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          删 除
-        </ion-option-button>
-      </ion-item>
+      <!--<ion-item class=" item-remove-animate item-avatar" ng-repeat="groupitem in groupitems" ng-click="goGroupMessage(groupitem.id,groupitem.chatName)">-->
+        <!--<img src="{{groupitem.imgSrc}}" width="80px" height="80px">-->
+        <!--&lt;!&ndash;这个就是来了新消息, 头像上的小红数字&ndash;&gt;-->
+        <!--<span class="rj-sm-red-icon" ng-show="groupitem.count > 0"><p>{{groupitem.count}}</p></span>-->
+        <!--<h2>{{groupitem.chatName}}</h2>-->
+        <!--<p> {{groupitem.lastText}}</p>-->
+        <!--<span class="rj-push-right" ng-if="groupitem.lastDate != 0">{{ groupitem.lastDate | date:'HH:mm:ss' }}</span>-->
+        <!--<span class="rj-push-right" ng-if="groupitem.lastDate === 0"></span>-->
+        <!--<ion-option-button class="button-assertive" ng-click="remove(chat)">-->
+          <!--删 除-->
+        <!--</ion-option-button>-->
+      <!--</ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>

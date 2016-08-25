@@ -123,7 +123,8 @@ angular.module('search.controllers', [])
           }else{
             $state.go('messageDetail',{
               "id":id,
-              "ssid":name
+              "ssid":name,
+              "grouptype":'User'
             });
           }
 

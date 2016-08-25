@@ -265,14 +265,15 @@ angular.module('my.controllers', [])
             // alert("没有该会话");
             $rootScope.isPersonSend='true';
             if ($rootScope.isPersonSend === 'true') {
-              // alert("长度");
+              $scope.messageType=$mqtt.getMessageType();
+              alert("my长度"+$scope.messageType);
               //往service里面传值，为了创建会话
               $chatarr.getIdChatName($scope.receiverssid,$scope.chatName);
-              $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+              $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
               // alert($scope.items.length + "长度");
               $scope.$on('chatarr.update', function (event) {
                 $scope.$apply(function () {
-                  $scope.items = $chatarr.getAll($rootScope.isPersonSend);
+                  $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
                 });
               });
               $rootScope.isPersonSend = 'false';
@@ -300,6 +301,7 @@ angular.module('my.controllers', [])
             chatitem.count = $scope.unread;
             chatitem.isDelete = data[0].isDelete;
             chatitem.lastDate = $scope.lastDate;
+            chatitem.chatType = data[0].chatType;
             $greendao.saveObj('ChatListService', chatitem, function (data) {
               $greendao.queryByConditions('ChatListService', function (data) {
                 $chatarr.setData(data);
