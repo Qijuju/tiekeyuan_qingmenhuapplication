@@ -240,7 +240,7 @@ public class UIUtils {
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setAction(Intent.ACTION_VIEW);
 		Uri uri = Uri.fromFile(new File(filePath));
-		String suffix = filePath.substring(filePath.lastIndexOf("."),
+		String suffix = filePath.substring(filePath.lastIndexOf(".") + 1,
 				filePath.length());
 		String mimeType = (suffix == null || TextUtils.isEmpty(suffix) || MimeTypeConstants
 				.getMimeType(suffix) == null) ? MimeTypeConstants
