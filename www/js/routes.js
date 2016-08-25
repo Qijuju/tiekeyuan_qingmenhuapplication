@@ -30,7 +30,40 @@ angular.module('im.routes', [])
         abstract: true,
         templateUrl: 'templates/tabs.html'
       })
-
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html',
+        controller: 'welcomeCtrl'
+      })
+      .state('newspage', {
+        url: '/newspage',
+        templateUrl: 'templates/newsPage.html',
+        controller: 'newspageCtrl'
+      })
+      .state('datapicture', {
+        url: '/datapicture',
+        templateUrl: 'templates/datapicture.html',
+        controller: 'datapictureCtrl',
+        cache:false
+      })
+      .state('twoDimensionPic', {
+        url: '/twoDimensionPic',
+        templateUrl: 'templates/twoDimensionPic.html',
+        controller: 'twoDimensionPicCtrl',
+        cache:false
+      })
+      .state('groupcall', {
+        url: '/groupcall',
+        templateUrl: 'templates/groupcall.html',
+        controller: 'groupcallCtrl',
+        cache:false
+      })
+      .state('gesturepassword', {
+        url: '/gesturepassword',
+        templateUrl: 'templates/gesturepassword.html',
+        controller: 'gesturepasswordCtrl',
+        cache:false
+      })
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
@@ -370,6 +403,6 @@ angular.module('im.routes', [])
         cache:false
       })
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
-
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/welcome');
   });

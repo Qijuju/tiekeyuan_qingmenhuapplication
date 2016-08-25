@@ -5,37 +5,900 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/Resources/Overlay.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/Resources/Overlay@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/ko/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ko/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/pl/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib/ZXing.winmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib.UW/ANY/ZXing.winmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib.UW/ARM/ZXing.winmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib.UW/x64/ZXing.winmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib.UW/x86/ZXing.winmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/barcodescanner-release-2.0.1.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/bc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/ios/CDVBarcodeScanner.bundle/beep.caf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/raw/beep.ogg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/big-1d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/big-datamatrix.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/big-qr.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/bim1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/bim2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/bim3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/assets/cancel.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/cheliang.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/com.google.zxing.client.android.captureactivity.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/contact-results-screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/demo-no.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/demo-yes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/diaod.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/dingposition.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/gdbjt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/gdbwx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/huiyi.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/ic_action_discard_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-xhdpi/ic_action_discard_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/ic_action_discard_light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-xhdpi/ic_action_discard_light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/ic_action_done_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-xhdpi/ic_action_done_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/ic_action_done_light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-xhdpi/ic_action_done_light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-xhdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-hdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-ldpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-mdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-hdpi/image_bg.9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/ko/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/jsgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/khpb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable/launcher_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable-hdpi/launcher_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable-xhdpi/launcher_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable-xxhdpi/launcher_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/lc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/device/libBarcodeScanner.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/simulator/libBarcodeScanner.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/src/android/liblocSDK4.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/ljys.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable-hdpi/loading_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/src/android/locSDK_4.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/oa.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/pdf11.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/qljz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/quxian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/scan-example.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/scan-from-phone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/sdjxhgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/images/search-book-contents.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/sgtsh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable/share_via_barcode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable/shopper_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/drawable-hdpi/shopper_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/splash-small.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/tielu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/train.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/wulu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/wulu2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/wulu3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/wzgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/xmxx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/zdzl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/zlgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/lib/zxing.wp8.0.dll" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/zxpx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/.cproject" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/device/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/simulator/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/blackberry10/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI013103decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01320xDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01392xDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01393xDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI013x0x1xDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI013x0xDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01AndOtherAIs.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AI01weightDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/APACHE_LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/AbstractDoCoMoResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AbstractExpandedDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/AbstractRSSReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/AddressBookAUResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/AddressBookDoCoMoResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/AddressBookParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/AddressBookResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/AlignmentPattern.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/AlignmentPatternFinder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/AnyAIDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/share/AppPickerActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib/Properties/AssemblyInfo.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/AssetFilesystem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/common/executor/AsyncTaskExecInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/common/executor/AsyncTaskExecManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/AutoFocusManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/aztec/AztecDetectorResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/aztec/AztecReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/BSD_LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/pref/BSPlusPreference.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/src/android/BaiduLocation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/BarcodeFormat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/BarcodeMatrix.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/BarcodeRow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/BarcodeScanner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/browser/BarcodeScannerProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/BarcodeScannerProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/BarcodeScannerTask.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/BarcodeScannerUI.xaml.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/wp8/BarcodeScannerUI.xaml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/BeepManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/Binarizer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/BinaryBitmap.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/BitArray.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/BitArrayBuilder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/BitMatrix.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/decoder/BitMatrixParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/maxicode/decoder/BitMatrixParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/BitMatrixParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/BitMatrixParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/BitSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/BizcardResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/BlockPair.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/BlockParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/supplement/BookResultInfoRetriever.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/share/BookmarkAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/BookmarkDoCoMoResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/share/BookmarkPickerActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/book/BrowseBookListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/ByQuadrantReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/ByteMatrix.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVAssetLibraryFilesystem.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVAssetLibraryFilesystem.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/ios/CDVBarcodeScanner.mm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVFile.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/osx/CDVFile.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVFile.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/osx/CDVFile.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/ios/CDVFileTransfer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/ios/CDVFileTransfer.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVLocalFilesystem.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/osx/CDVLocalFilesystem.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ios/CDVLocalFilesystem.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/osx/CDVLocalFilesystem.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/ios/CDVLocation.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/ios/CDVLocation.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/CalendarParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/CalendarResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/CameraConfigurationManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/CameraManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/CaptureActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/CaptureActivityHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/CharacterSetECI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/ChecksumException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/CodaBarReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/CodaBarWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/Code128Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/Code128Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/Code39Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/Code39Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/Code93Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/Compaction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/ContactEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/ContentFilesystem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/Contents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/Coordinates.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/CurrentParsingState.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/history/DBHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/decoder/DataBlock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/DataBlock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/DataCharacter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/DataMask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/DataMatrixReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/DecodeFormatManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/DecodeHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/DecodeHintType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/DecodeThread.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/decoder/DecodedBitStreamParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/maxicode/decoder/DecodedBitStreamParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/DecodedBitStreamParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/DecodedBitStreamParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/DecodedChar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/DecodedInformation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/DecodedNumeric.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/DecodedObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/aztec/decoder/Decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/decoder/Decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/maxicode/decoder/Decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/Decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/Decoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/DecoderResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/common/executor/DefaultAsyncTaskExecInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/exposure/DefaultExposureInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/DefaultGridSampler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/open/DefaultOpenCameraInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/aztec/detector/Detector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/detector/Detector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/detector/Detector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/Detector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/DetectorResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/Dimensions.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/DirectoryEntry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/DirectoryManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/DirectoryReader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/EAN13Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/EAN13Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/EAN8Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/EAN8Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/EANManufacturerOrgSupport.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAlbumPickerController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAlbumPickerController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/Resources/ELCAlbumPickerController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAsset.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAsset.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetCell.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetCell.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/Resources/ELCAssetPicker.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetPickerFilterDelegate.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetSelectionDelegate.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetTablePicker.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCAssetTablePicker.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/Resources/ELCAssetTablePicker.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCImagePickerController.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/ELCImagePicker/ELCImagePickerController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/EmailAddressParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/EmailAddressResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/EmailAddressResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/EmailDoCoMoResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/EncodeActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/EncodeHintType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/Encoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/EncodingException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/Entry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/ec/ErrorCorrection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/ErrorCorrectionLevel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/ExpandedPair.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ExpandedProductParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ExpandedProductResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/exposure/ExposureInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/exposure/ExposureManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/com/synconset/ImagePicker/FakeR.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/FakeR.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/FieldParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/wp/File.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/File.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileEntry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileError.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/FileExistsException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/android/FileProgressResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/browser/FileProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/firefoxos/FileProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/windows/FileProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/FileProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileReader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/android/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/browser/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/firefoxos/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/ios/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/osx/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/ubuntu/FileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/wp/FileTransfer.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/amazon/FileTransfer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/android/FileTransfer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/FileTransfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/blackberry10/FileTransfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/browser/FileTransfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/FileTransferError.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/windows/FileTransferProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/blackberry10/FileTransferProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/firefoxos/FileTransferProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileUploadOptions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/wp/FileUploadOptions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/android/FileUploadResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileUploadResult.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/FileUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/FileWriter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/ubuntu/FileWriter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/Filesystem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/FinderPattern.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/FinderPattern.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/FinderPatternFinder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/detector/FinderPatternInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/FinishListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/Flags.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/FormatException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/FormatInformation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/Formatter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/exposure/FroyoExposureInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/decoders/GeneralAppIdDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/reedsolomon/GenericGF.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/reedsolomon/GenericGFPoly.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/GenericMultipleBarcodeReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/wp/GeoLocation.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/GeoParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/GeoResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/GeoResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/android/Geolocation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/firefoxos/GeolocationProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/windows/GeolocationProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/blackberry10/GeolocationProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/open/GingerbreadOpenCameraInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/GlobalHistogramBinarizer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/GridSampler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/H5lock.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/H5lock.publish.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/HelpActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/history/HistoryActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/history/HistoryItem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/history/HistoryItemAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/history/HistoryManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/common/executor/HoneycombAsyncTaskExecInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/HttpHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/HybridBinarizer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ISBNParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/ISBNResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ISBNResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/ITFReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/ITFWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/src/ImageFetcher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/com/synconset/ImagePicker/ImagePicker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/InactivityTimer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/IntentSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/Intents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/InvalidModificationException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/share/LoadPackagesAsyncTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/LocalFileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/LocalFilesystem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/LocalFilesystemURL.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/LocaleManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/Logger.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/Logger.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/LuminanceSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/MECARDContactEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/MaskUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/detector/MathUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/MatrixUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/maxicode/MaxiCodeReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/Metadata.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/Mode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/ec/ModulusGF.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/decoder/ec/ModulusPoly.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/detector/MonochromeRectangleDetector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/qrcode/detector/MultiDetector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/qrcode/detector/MultiFinderPatternFinder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/MultiFormatOneDReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/MultiFormatReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/MultiFormatUPCEANReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/MultiFormatWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/src/MultiImageChooserActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/MultipleBarcodeReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/NOTICE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/NOTICE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/NOTICE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/wifi/NetworkType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/NoModificationAllowedException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/NotFoundException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/OneDReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/OneDimensionalCodeWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/open/OpenCameraInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/open/OpenCameraManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/PDF417.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/PDF417ErrorCorrection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/PDF417HighLevelEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/PDF417Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/pdf417/encoder/PDF417Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/Pair.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ParsedResultType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/PendingRequests.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/PerspectiveTransform.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/PlanarYUVLuminanceSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/common/PlatformSupportManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/Position.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/PositionError.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/PreferencesActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/browser/Preparing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/camera/PreviewCallback.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ProductParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/ProductResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/supplement/ProductResultInfoRetriever.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ProductResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/ProgressEvent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/encoder/QRCode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/QRCodeEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/multi/qrcode/QRCodeMultiReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/QRCodeReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/QRCodeWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/de/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/es/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/fr/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/it/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/ja/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/pl/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/zh/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/de/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/es/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/fr/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/it/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ja/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/pl/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/zh/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/de/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/es/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/fr/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/it/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/ja/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/ko/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/zh/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/RELEASENOTES.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/RELEASENOTES.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/RELEASENOTES.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/RGBLuminanceSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/RSS14Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/expanded/RSSExpandedReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/rss/RSSUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib/Reader.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/Reader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/ReaderException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/reedsolomon/ReedSolomonDecoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/reedsolomon/ReedSolomonEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/reedsolomon/ReedSolomonException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/Result.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/ResultButtonListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/ResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/ResultHandlerFactory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/ResultMetadataType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/ResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/ResultPoint.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/ResultPointCallback.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/SMSMMSResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/SMSParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/SMSResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/SMSTOMMSTOResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/SMTPResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/SOSPicker.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/ios/SOSPicker.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/book/SearchBookContentsActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/book/SearchBookContentsAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/book/SearchBookContentsListItem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/book/SearchBookContentsResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/share/ShareActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/StringUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/supplement/SupplementalInfoRetriever.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/TelParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/TelResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/TelResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/tests/src/android/TestContentProvider.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/TextParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/TextResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/supplement/TitleRetriever.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/TypeMismatchException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCAReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCAWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEANExtension2Support.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEANExtension5Support.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEANExtensionSupport.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEANReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEANWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/oned/UPCEReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/URIParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/URIResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/supplement/URIResultInfoRetriever.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/URIResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/URLTOResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/encode/VCardContactEncoder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/VCardResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/VEventResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/datamatrix/decoder/Version.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/qrcode/decoder/Version.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/ViewfinderResultPointCallback.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/ViewfinderView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/common/detector/WhiteRectangleDetector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/wifi/WifiConfigManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/WifiParsedResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/android/result/WifiResultHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/client/result/WifiResultParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/lib/WinRTBarcodeReader.csproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/Writer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/src/com/google/zxing/WriterException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/about1d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/about2d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/layout/actionbar_custom_view_done_discard.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/layout/actionbar_discard_button.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/layout/actionbar_done_button.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/ant.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values/arrays.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/tests/www/fixtures/asset-test/asset-test.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/autolink.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/barcodescanner.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/barcodescanner_js.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/barcodescanner_js.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/barcodescanner_ndk.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/src/barcodescanner_ndk.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/wp7/base64.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/bookmark_picker_list_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/android/build-extras.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/build.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/capture.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout-ldpi/capture.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/menu/capture.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/hooks/windows/check-arch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/www/blackberry10/client.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values/colors.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/.settings/com.qnx.tools.ide.core.prefs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/config.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/copyTo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/createEntryFromNative.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/datapicture.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values/dimens.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/encode.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout-land/encode.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/menu/encode.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/exporting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/features.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/ubuntu/file-transfer.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/src/ubuntu/file-transfer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ubuntu/file.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/ubuntu/file.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/fileSystemPaths.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/fileSystems-roots.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/ubuntu/fileSystems-roots.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/fileSystems.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/forwards.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/ubuntu/geolocation.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/src/ubuntu/geolocation.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/geolocation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/www/android/geolocation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/gesturepassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/getDirectory.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/getFile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/getFileMetadata.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/getMetadata.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/getParent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/drawable/grid_background.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/groupcall.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/help.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/highcharts-3d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/highcharts-more.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/highcharts-ng.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/highcharts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/menu/history.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/history_list_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values/ids.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/anim/image_pop_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/www/imagepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/src/blackberry10/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/de/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/es/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/fr/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/it/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/ja/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/ko/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/pl/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/ru/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/doc/zh/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/de/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/es/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/fr/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/it/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ja/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ko/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/pl/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ru/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/zh/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/de/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/es/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/fr/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/it/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/ja/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/pl/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/ru/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/doc/zh/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/info.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/browser/isChrome.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/jquery-3.0.0.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/json.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_batchallocator.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_internalarray.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_internalmap.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_reader.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_value.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_valueiterator.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json_writer.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/moveTo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-de/multiimagechooser_strings_de.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values/multiimagechooser_strings_en.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-es/multiimagechooser_strings_es.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-fr/multiimagechooser_strings_fr.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-hu/multiimagechooser_strings_hu.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-ja/multiimagechooser_strings_ja.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values-ko/multiimagechooser_strings_ko.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/layout/multiselectorgrid.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/newsPage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/ng-cordova.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/windows/assets/plugin-barcodeScanner.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/plugin.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/plugin.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/com.spout.phonegap.plugins.baidulocation/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/tests/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/tests/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/tests/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/tests/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/de/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/es/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/fr/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/it/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ja/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ko/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/pl/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/ru/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/doc/zh/plugins.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/xml/preferences.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/proguard-android-optimize.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/project.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/qrcode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/readAsArrayBuffer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/readAsBinaryString.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/readAsDataURL.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/readAsText.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/readEntries.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/reader.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/remove.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/removeRecursively.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/requestAllFileSystems.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/requestAnimationFrame.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/requestFileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/requestFileSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/resolveLocalFileSystemURI.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/ios/scannerOverlay.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/scanning.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/search_book_contents.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/search_book_contents_header.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/search_book_contents_list_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/setMetadata.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout/share.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/layout-land/share.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/sharing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-ar/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-bg/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-ca/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-cs/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-da/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-de/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-el/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-es/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-eu/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-fi/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-fr/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-he/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-hi/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-hu/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-id/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-it/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-iw/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-ja/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-ko/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-nl/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-pl/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-pt/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-ru/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-sk/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-sl/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-sv/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-tr/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-zh-rCN/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/values-zh-rTW/strings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/tests/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/tests/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-geolocation/tests/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/tests/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-image-picker/src/android/Library/res/values/themes.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/tokenizer.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/tokenizer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/truncate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/twoDimensionPic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/value.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/welcome.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-de/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-en/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-es/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-fr/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-it/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ja/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ko/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-nl/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-pt/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-ru/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rCN/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/assets/html-zh-rTW/whatsnew.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file/www/blackberry10/write.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/blackberry10/native/public/json/writer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/cordova-plugin-file-transfer/www/blackberry10/xhrFileTransfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/ios/zxing-all-in-one.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../plugins/phonegap-plugin-barcodescanner/src/ios/zxing-all-in-one.h" />
+      <change type="DELETED" beforePath="E:\WebstormProjects\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger5626218351793630754.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutours.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/aboutours.html" afterPath="$PROJECT_DIR$/../../www/templates/aboutours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/acount-setting.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-group.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-member.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-member.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-member.html" afterPath="$PROJECT_DIR$/../../www/templates/group-member.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-modifyname.html" afterPath="$PROJECT_DIR$/../../www/templates/group-modifyname.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/group-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.json" afterPath="$PROJECT_DIR$/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/android.json" afterPath="$PROJECT_DIR$/../../plugins/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-fifth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-second.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-seventh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-sixth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-third.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_application.js" afterPath="$PROJECT_DIR$/../../www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_search.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_search.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_search.js" afterPath="$PROJECT_DIR$/../../www/js/controller_search.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/assets/www/cordova_plugins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platform_www/cordova_plugins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/fetch.json" afterPath="$PROJECT_DIR$/../../plugins/fetch.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/historymessage.html" afterPath="$PROJECT_DIR$/../../www/templates/historymessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/my_attention.html" afterPath="$PROJECT_DIR$/assets/www/templates/my_attention.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/my_attention.html" afterPath="$PROJECT_DIR$/../../www/templates/my_attention.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/myattention.css" afterPath="$PROJECT_DIR$/../../www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/../../www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/search.html" afterPath="$PROJECT_DIR$/assets/www/templates/search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/search.html" afterPath="$PROJECT_DIR$/../../www/templates/search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchmessage.html" afterPath="$PROJECT_DIR$/../../www/templates/searchmessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-chats.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/top_contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/top_contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -89,13 +952,9 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.59302324">
-              <caret line="1170" column="27" selection-start-line="1170" selection-start-column="16" selection-end-line="1170" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2355#2978#0" expanded="true" />
-                <element signature="e#2977#2978#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-2.4069767">
+              <caret line="1176" column="27" selection-start-line="1176" selection-start-column="27" selection-end-line="1176" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,11 +973,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupChats.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroupChats.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19908117">
+            <state vertical-scroll-proportion="-2.3214285">
               <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.099047616">
+              <caret line="88" column="48" selection-start-line="88" selection-start-column="48" selection-end-line="88" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.821429">
+              <caret line="92" column="24" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -1370,7 +2249,7 @@
         <entry key="D:\impro\IM\platforms\android" value="5882067129256" />
         <entry key="D:\workspace\IM\platforms\android" value="5885096616169" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
-        <entry key="E:\WebstormProjects\im\platforms\android" value="5884301840987" />
+        <entry key="E:\WebstormProjects\im\platforms\android" value="5884357960899" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2190,7 +3069,6 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
         <option value="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
         <option value="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java" />
@@ -2216,6 +3094,7 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/GroupChatsService.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
@@ -2284,146 +3163,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2695,25 +3434,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2654185" sideWeight="0.4914712" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18722467" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18722467" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6321586" sideWeight="0.50852877" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32819384" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21055438" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21055438" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13546255" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2818,61 +3557,61 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1067</line>
+          <line>1073</line>
           <properties />
           <option name="timeStamp" value="202" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1076</line>
+          <line>1082</line>
           <properties />
           <option name="timeStamp" value="203" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1083</line>
+          <line>1089</line>
           <properties />
           <option name="timeStamp" value="205" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1085</line>
+          <line>1091</line>
           <properties />
           <option name="timeStamp" value="206" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1088</line>
+          <line>1094</line>
           <properties />
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1091</line>
+          <line>1097</line>
           <properties />
           <option name="timeStamp" value="225" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1098</line>
+          <line>1104</line>
           <properties />
           <option name="timeStamp" value="226" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1102</line>
+          <line>1108</line>
           <properties />
           <option name="timeStamp" value="227" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1105</line>
+          <line>1111</line>
           <properties />
           <option name="timeStamp" value="228" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1108</line>
+          <line>1114</line>
           <properties />
           <option name="timeStamp" value="229" />
         </line-breakpoint>
@@ -2890,37 +3629,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1359</line>
+          <line>1365</line>
           <properties />
           <option name="timeStamp" value="249" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1360</line>
+          <line>1366</line>
           <properties />
           <option name="timeStamp" value="250" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1365</line>
+          <line>1371</line>
           <properties />
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1220</line>
+          <line>1226</line>
           <properties />
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1222</line>
+          <line>1228</line>
           <properties />
           <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1227</line>
+          <line>1233</line>
           <properties />
           <option name="timeStamp" value="256" />
         </line-breakpoint>
@@ -2935,13 +3674,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/SPUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3017,13 +3749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.857143">
-          <caret line="251" column="42" selection-start-line="251" selection-start-column="42" selection-end-line="251" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -3296,13 +4021,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.59302324">
-          <caret line="1170" column="27" selection-start-line="1170" selection-start-column="16" selection-end-line="1170" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2355#2978#0" expanded="true" />
-            <element signature="e#2977#2978#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-2.4069767">
+          <caret line="1176" column="27" selection-start-line="1176" selection-start-column="27" selection-end-line="1176" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3320,8 +4041,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19908117">
+        <state vertical-scroll-proportion="-2.3214285">
           <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.821429">
+          <caret line="92" column="24" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.099047616">
+          <caret line="88" column="48" selection-start-line="88" selection-start-column="48" selection-end-line="88" selection-end-column="48" />
           <folding />
         </state>
       </provider>

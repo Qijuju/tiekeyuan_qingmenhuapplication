@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker) {
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
@@ -80,17 +80,18 @@ angular.module('my.controllers', [])
 
       });
     }
-    $scope.getpictur=function () {
-      // alert("劲了");
-      Camera.getPicture(PictureSourceType.CAMERA).then(
-
-        //返回一个imageURI，记录了照片的路径
-        function (imageURI) {
-          alert(imageURI)
-        },
-        function (err) {
-        });
-    }
+    // $scope.setpic=function () {
+    //   // alert("劲了");
+    //   Camera.getPicture(PictureSourceType.CAMERA).then(
+    //
+    //     //返回一个imageURI，记录了照片的路径
+    //     function (imageURI) {
+    //       alert(imageURI)
+    //     },
+    //     function (err) {
+    //     });
+    //
+    // }
 
     //拍照片
     $scope.takePhoto = function () {
@@ -125,39 +126,59 @@ angular.module('my.controllers', [])
       });
 
     };
-    //选相册
-    $scope.selectphoto = function () {
+    //image picker
+    $scope.selectphoto = function() {
       var options = {
-        //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
-        quality: 100,                                            //相片质量0-100
-        destinationType: Camera.DestinationType.NATIVE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
-        sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,                                        //在选择之前允许修改截图
-        encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-        // targetWidth: 200,                                        //照片宽度
-        // targetHeight: 200,                                       //照片高度
-        mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
-        cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true                                   //保存进手机相册
+        maximumImagesCount: 1,
+        // width: 800,
+        // height: 800,
+        quality: 100
       };
 
-      $cordovaCamera.getPicture(options).then(function (imageData) {
-        alert(imageData);
-        $api.setHeadPic(imageData, function (msg) {
-          alert("成功")
-        }, function (msg) {
-          alert("失败")
+      $cordovaImagePicker.getPictures(options)
+        .then(function (results) {
+          // $scope.images_list.push(results[0]);
+          $api.setHeadPic(results[0], function (msg) {
+                  alert("成功")
+                }, function (msg) {
+                  alert("失败")
+                });
+        }, function (error) {
+          // error getting photos
         });
-        // var image = document.getElementById('myImage');
-        // image.src=imageData;
-        //image.src = "data:image/jpeg;base64," + imageData;
-      }, function (err) {
-        // error
-        alert(err);
-      });
-
-    };
+    }
+    // //选相册
+    // $scope.selectphoto = function () {
+    //   var options = {
+    //     //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+    //     quality: 100,                                            //相片质量0-100
+    //     destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+    //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+    //     allowEdit: false,                                       //在选择之前允许修改截图
+    //     encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+    //     // targetWidth: 200,                                        //照片宽度
+    //     // targetHeight: 200,                                       //照片高度
+    //     mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+    //     cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+    //     popoverOptions: CameraPopoverOptions,
+    //     saveToPhotoAlbum: true                                   //保存进手机相册
+    //   };
+    //   $cordovaCamera.getPicture(options).then(function (imageData) {
+    //     alert(imageData);
+    //     $api.setHeadPic(imageData, function (msg) {
+    //       alert("成功")
+    //     }, function (msg) {
+    //       alert("失败")
+    //     });
+    //     // var image = document.getElementById('myImage');
+    //     // image.src=imageData;
+    //     //image.src = "data:image/jpeg;base64," + imageData;
+    //   }, function (err) {
+    //     // error
+    //     alert(err);
+    //   });
+    //
+    // };
 
 
     // document.addEventListener('deviceready', function () {
@@ -368,7 +389,7 @@ angular.module('my.controllers', [])
       // myPopup.close(); //关闭
     };
   })
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
@@ -409,6 +430,19 @@ angular.module('my.controllers', [])
     $scope.zaixianshengji = function () {
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
+    //扫一扫
+    $scope.scanCode = function () {
+      $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        // console.log("Barcode Format -> " + imageData.format);
+        // console.log("Cancelled -> " + imageData.cancelled);
+      }, function(error) {
+        alert( error);
+      });
+    };
+    $scope.goGesturepassword = function () {
+      $state.go("gesturepassword");
+    }
 
   })
   .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams) {
@@ -416,6 +450,36 @@ angular.module('my.controllers', [])
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
+
+  })
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt) {
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID
+    }, function (msg) {
+    });
+    $scope.goSetting = function () {
+      $state.go("accountsettion", {
+        "UserIDset": $scope.UserID
+      });
+    }
+    var opt = {
+      chooseType: 3, // 3 , 4 , 5,
+      width: 350, // lock wrap width
+      height: 350, // lock wrap height
+      container: 'element', // the id attribute of element
+      inputEnd: function(psw){} // when draw end param is password string
+    }
+    var lock = new H5lock(opt);
+    lock.init();
+
+    $scope.resetpassword = function () {
+      lock.reset() // reset the lock
+    }
+    // lock.drawStatusPoint('notright') // draw the last notright circle
+    //
+    // lock.drawStatusPoint('right') // draw the last right circle
+    //
+
 
   })
 

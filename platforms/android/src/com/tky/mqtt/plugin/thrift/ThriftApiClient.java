@@ -1,8 +1,14 @@
 package com.tky.mqtt.plugin.thrift;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tky.mqtt.paho.MType;
+import com.tky.mqtt.paho.MimeTypeConstants;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -696,7 +702,7 @@ public class ThriftApiClient extends CordovaPlugin {
     public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
         try {
             String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
-            File file=new File(filePath);
+            File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/com.ionicframework.im366077/cache/tmp_IMG_20160822_112508-1513514986.jpg");
             boolean exists = file.exists();
 
             SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
@@ -1614,7 +1620,29 @@ public class ThriftApiClient extends CordovaPlugin {
         }
         return obj;
     }
-
+    /**
+     * 打开文件（各种类型）
+     *
+     */
+    public void openFile(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String fileName = args.getString(0);
+            String path=Environment.getExternalStorageDirectory().getPath()+"/"+fileName;
+            if (path != null && !"".equals(path)) {
+                boolean flag = UIUtils.openFile(path);
+                if (flag) {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
+                } else {
+                    setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
+                }
+            } else {
+                setResult("文件路径不能为空！", PluginResult.Status.ERROR, callbackContext);
+            }
+        } catch (JSONException e) {
+            setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
     /**
      * 设置返回信息
      * @param result 返回结果数据

@@ -1,8 +1,55 @@
 /**
  * Created by Administrator on 2016/8/14.
  */
-angular.module('application.controllers', [])
-  .controller('ChatsCtrl', function ($scope,$timeout,$mqtt,$greendao,$rootScope,$chatarr) {
+angular.module('application.controllers', ['ionic', 'ngCordova'])
+  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils) {
+    $scope.pdfshow=function () {
+       // alert($cordovaFileOpener2)
+      // /storage/emulated/0/pdf11.pdf
+      $api.openFile('pdf11.pdf',function (msg) {
+      },function (msg) {
+        alert(msg)
+      })
+      // $cordovaFileOpener2.open('../img/pdf11.pdf','application/pdf').then(function () {
+      //   // 成功
+      //   alert("成功")
+      // }, function (err) {
+      //   // 错误
+      //   alert("失败")
+      // });
+    }
+    $scope.a=0;
+    $scope.dianjiaaa=function () {
+      if ($scope.a==0){
+        $scope.a=1;
+      }else {
+        $scope.a=0;
+      }
+    }
+    $scope.b=0;
+    $scope.dianjibbb=function () {
+      if ($scope.b==0){
+        $scope.b=1;
+      }else {
+        $scope.b=0;
+      }
+    }
+    $scope.c=0;
+    $scope.dianjiccc=function () {
+      if ($scope.c==0){
+        $scope.c=1;
+      }else {
+        $scope.c=0;
+      }
+    }
+    $scope.d=0;
+    $scope.dianjiddd=function () {
+      if ($scope.d==0){
+        $scope.d=1;
+      }else {
+        $scope.d=0;
+      }
+    }
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -17,7 +64,7 @@ angular.module('application.controllers', [])
     // };*/
     // 一个提示对话框
     $scope.showAlert = function(msg) {
-      alert(msg);
+      $ToastUtils.showToast(msg);
     }
 
     //确保在应用模块能收到消息，实现消息监听
@@ -111,6 +158,277 @@ angular.module('application.controllers', [])
         $scope.lastGroupCount = $mqtt.getMsgGroupCount();
       })
 
+
+
+
     });
+    $scope.goDatapicture = function () {
+      $state.go("datapicture");
+    };
+    $scope.gogroupcall = function () {
+      $state.go("groupcall");
+    };
+    $scope.goTwoDimensionPic = function () {
+      $state.go("twoDimensionPic");
+    };
+  })
+  .controller('datapictureCtrl', function ($scope, $state) {
+
+    $scope.goApplication = function () {
+      $state.go("tab.chats");
+    };
+      // Set up the chart
+      var chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'container',
+          type: 'column',
+          options3d: {
+            enabled: true,
+            alpha: 15,
+            beta: 15,
+            depth: 50,
+            viewDistance: 25
+          }
+        },
+        title: {
+          text: '拌和站demo'
+        },
+        subtitle: {
+          text: '拌和站demo拌和站demo拌和站demo拌和站demo'
+        },
+        plotOptions: {
+          column: {
+            depth: 25
+          }
+        },
+        series: [{
+          data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        }]
+      });
+    $scope.showValues = function () {
+      $scope.aaa=chart.options.chart.options3d.alpha;
+      $scope.bbb=chart.options.chart.options3d.beta;
+      $scope.ccc=chart.options.chart.options3d.depth;
+    };
+
+    document.getElementById("alpha").addEventListener('input',function(){
+      chart.options.chart.options3d.alpha = document.getElementById("alpha").value;
+      $scope.showValues();
+      chart.redraw(false);
+    },false);
+    document.getElementById("beta").addEventListener('input',function(){
+      chart.options.chart.options3d.beta =  document.getElementById("beta").value;
+      $scope.showValues();
+      chart.redraw(false);
+    },false);
+
+    document.getElementById("depth").addEventListener('input',function(){
+      chart.options.chart.options3d.depth = document.getElementById("depth").value;
+      $scope.showValues();
+      chart.redraw(false);
+    },false);
+     $scope.showValues();
+
+  })
+  .controller('groupcallCtrl', function ($scope, $state,$cordovaGeolocation) {
+
+    $scope.goApplication = function () {
+      $state.go("tab.chats");
+    }
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+        var lat  = position.coords.latitude
+        var long = position.coords.longitude
+        alert("经度"+lat+"纬度"+long)
+      var latlon=position.coords.latitude+","+position.coords.longitude;
+      var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
+        +latlon+"&zoom=14&size=400x300&sensor=false";
+      document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
+    }, function(err) {
+        // error
+      });
+
+
+    // var watchOptions = {
+    //   timeout : 3000,
+    //   enableHighAccuracy: false // may cause errors if true
+    // };
+    //
+    // var watch = $cordovaGeolocation.watchPosition(watchOptions);
+    // watch.then(
+    //   null,
+    //   function(err) {
+    //     // error
+    //   },
+    //   function(position) {
+    //     var lat  = position.coords.latitude
+    //     var long = position.coords.longitude
+    //     alert(lat+","+long)
+    //   });
+    //
+    //
+    // watch.clearWatch();
+    // // OR
+    // $cordovaGeolocation.clearWatch(watch)
+    //   .then(function(result) {
+    //     alert(result)
+    //     // success
+    //   }, function (error) {
+    //     alert(error)
+    //     // error
+    //   });
+    // var x=document.getElementById("demo");
+    // function getLocation()
+    // {
+    //   if (navigator.geolocation)
+    //   {
+    //     navigator.geolocation.getCurrentPosition(showPosition,showError);
+    //   }
+    //   else
+    //   {
+    //     x.innerHTML="该浏览器不支持获取地理位置。";
+    //   }
+    // }
+    //
+    // function showPosition(position)
+    // {
+    //   lat=position.coords.latitude;
+    //   lon=position.coords.longitude;
+    //   latlon=new google.maps.LatLng(lat, lon)
+    //   mapholder=document.getElementById('mapholder')
+    //   mapholder.style.height='250px';
+    //   mapholder.style.width='500px';
+    //
+    //   var myOptions={
+    //     center:latlon,zoom:14,
+    //     mapTypeId:google.maps.MapTypeId.ROADMAP,
+    //     mapTypeControl:false,
+    //     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    //   };
+    //   var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+    //   var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+    // }
+    //
+    // function showError(error)
+    // {
+    //   switch(error.code)
+    //   {
+    //     case error.PERMISSION_DENIED:
+    //       x.innerHTML="用户拒绝对获取地理位置的请求。"
+    //       break;
+    //     case error.POSITION_UNAVAILABLE:
+    //       x.innerHTML="位置信息是不可用的。"
+    //       break;
+    //     case error.TIMEOUT:
+    //       x.innerHTML="请求用户地理位置超时。"
+    //       break;
+    //     case error.UNKNOWN_ERROR:
+    //       x.innerHTML="未知错误。"
+    //       break;
+    //   }
+    // }
+
+
   })
 
+  .controller('twoDimensionPicCtrl', function ($scope, $state) {
+    $scope.goApplication = function () {
+      $state.go("tab.chats");
+    };
+    // //横向二维柱型
+    // var option = {};
+    // option.chart = {};
+    // option.chart.type="bar";
+    // option.chart.renderTo="container";
+    // option.title={title:"水果的摄入"};
+    // option.xAxis={categories:['苹果','香蕉','桔子'],gridLineWidth:1};
+    // option.yAxis={title:{text:"吃水果的量"},tickInterval:1};
+    // option.series = [];
+    // option.series[0] = {};
+    // option.series[0].name="张三";
+    // option.series[0].data=[1,3,5];
+    // option.series[1] = {};
+    // option.series[1].name="李四";
+    // option.series[1].data=[6,1,5.5];
+    // option.series[2] = {};
+    // option.series[2].name="刘能";
+    // option.series[2].data=[3,1,0.3];
+    // var chart = new Highcharts.Chart(option);
+
+    // $('#container').highcharts
+    // var container=document.getElementById("container");
+    // var containeraa=$(container);
+    $('#container').highcharts({
+      chart: {
+        zoomType: 'xy'
+      },
+      title: {
+        text: 'Average Monthly Temperature and Rainfall in Tokyo'
+      },
+      subtitle: {
+        text: 'Source: WorldClimate.com'
+      },
+      xAxis: [{
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        crosshair: true
+      }],
+      yAxis: [{ // Primary yAxis
+        labels: {
+          format: '{value}°C',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        title: {
+          text: 'Temperature',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        }
+      }, { // Secondary yAxis
+        title: {
+          text: 'Rainfall',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        labels: {
+          format: '{value} mm',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        opposite: true
+      }],
+      tooltip: {
+        shared: true
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 120,
+        verticalAlign: 'top',
+        y: 100,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      series: [{
+        name: 'Rainfall',
+        type: 'column',
+        yAxis: 1,
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+        tooltip: {
+          valueSuffix: ' mm'
+        }
+      }, {
+        name: 'Temperature',
+        type: 'spline',
+        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+        tooltip: {
+          valueSuffix: '°C'
+        }
+      }]
+    });
+  })
