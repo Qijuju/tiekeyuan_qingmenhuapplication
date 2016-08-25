@@ -94,7 +94,7 @@ angular.module('im.routes', [])
         cache:false
       })
       .state('groupModifyName', {
-        url: '/groupModifyName',
+        url: '/groupModifyName/:groupid/:groupname',
         templateUrl: 'templates/group-modifyname.html',
         controller: 'groupModifyNameCtrl',
         cache:false

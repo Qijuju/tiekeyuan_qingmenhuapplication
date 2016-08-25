@@ -1303,9 +1303,7 @@ angular.module('contacts.controllers', [])
         deptobj.id=$scope.depid;
         deptobj.groupName=$scope.deptinfo;
         deptobj.groupType='Dept';
-        alert($scope.depid)
         $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
-            alert("除阿布关键成"+msg.length);
         },function (err) {
           alert(err);
         })

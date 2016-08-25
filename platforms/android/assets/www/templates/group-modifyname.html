@@ -5,16 +5,16 @@
         群设置
       </button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button button-icon " style="margin-right: 5px">保存</button>
-    </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
-    <label class="item item-input " style="height: 50px">
-      <textarea  ng-model="modifyname" style="margin-right: 45px;">
-        {{}}
-      </textarea>
-
+    <label class="item item-input ">
+      <input type="text" id="nameId"  ng-model="send_name">
     </label>
+    <div class="list padding">
+      <button class="button button-block button-positive" ng-click="saveName(send_name)">
+        保 存
+      </button>
+    </div>
+
   </ion-content>
 </ion-view>

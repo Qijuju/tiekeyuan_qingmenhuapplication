@@ -29,6 +29,8 @@
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="goDepartmentGroup(depid,deptinfo)">
           <img src="img/default_org_icon.png">
           <h2>{{deptinfo}}</h2>
+          <p>部门群</p>
+
         </ion-item>
         <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
                   ng-if="!item.isMyGroup" ng-click="goJoinGroup(item.GroupID,item.GroupName)">
