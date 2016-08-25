@@ -2,9 +2,12 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
+import com.tky.protocol.model.IMPFields;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,22 +50,34 @@ public class MessageOper {
 	 * @throws IMPException
 	 * @throws JSONException
 	 */
-	public static MessageBean unpack(byte[] msg) throws IMPException, JSONException {
-		Map<String, Object> msgMap = IMMsgFactory.createMsg(msg);
-		MessageBean bean = new MessageBean();
-		bean.set_id((String) msgMap.get("to"));
-		bean.setSessionid((String) msgMap.get("from"));
-		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
-		bean.setFrom("false");
-		bean.setMessage((String) msgMap.get("message"));
-		bean.setMessagetype(getMediaTypeStr((IMMsgFactory.MediaType) msgMap.get("mediaType")));
-		bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
-		bean.setWhen((Long) msgMap.get("when"));
-		bean.setIsFailure("false");
-		bean.setIsDelete("");
-		bean.setImgSrc("");
-		bean.setUsername((String) msgMap.get("fromName"));
-		return bean;
+	public static MessageTypeBean unpack(byte[] msg) throws IMPException, JSONException {
+		Map<String, Object> msgMap = IMMsgFactory.createNotify(msg);
+		Object notifyType = msgMap.get(IMPFields.NotifyType);
+		MessageTypeBean msgBean = null;
+		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
+			MessageBean bean = new MessageBean();
+			bean.set_id((String) msgMap.get("to"));
+			bean.setSessionid((String) msgMap.get("from"));
+			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+			bean.setFrom("false");
+			bean.setMessage((String) msgMap.get("message"));
+			bean.setMessagetype(getMediaTypeStr((IMMsgFactory.MediaType) msgMap.get("mediaType")));
+			bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
+			bean.setWhen((Long) msgMap.get("when"));
+			bean.setIsFailure("false");
+			bean.setIsDelete("");
+			bean.setImgSrc("");
+			bean.setUsername((String) msgMap.get("fromName"));
+			msgBean = bean;
+		} else if (notifyType != null && notifyType.equals(IMPFields.N_Type_Event)) {
+			EventMessageBean bean = new EventMessageBean();
+			bean.setNotifyType(IMPFields.N_Type_Event);
+			bean.setEventCode((String) msgMap.get(IMPFields.EventCode));
+			bean.setWhen((Long) msgMap.get(IMPFields.Eventwhen));
+			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
+			msgBean = bean;
+		}
+		return msgBean;
 	}
 
 	/**

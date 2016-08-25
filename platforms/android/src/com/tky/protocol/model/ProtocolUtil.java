@@ -18,7 +18,7 @@ public class ProtocolUtil {
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
 
-	private final String configFile = "file:///android_asset/Protocol.xml";
+//	private final String configFile = "file:///android_asset/Protocol.xml";
 
 	private final String XmlNode_Protocol = "Protocol";
 	private final String XmlNode_Node = "Node";
@@ -131,17 +131,15 @@ public class ProtocolUtil {
 			Protocol ptl = protocolList.get(IMPFields.MsgProtocol);
 			sendStr = doProtocol(sendNotify, ptl);
 		} else if(notifyType.equals(IMPFields.N_Type_Event)){			//打包为事件
-			sendStr += IMPFields.N_Type_Event;
-			String childPtlName = sendNotify.get(IMPFields.EventCode)==null ? null:
-					sendNotify.get(IMPFields.EventCode).toString();
-			if(childPtlName == null || childPtlName.isEmpty()){
-				throw new IMPException(IMPException.Err_MissObj, IMPFields.EventCode);
-			}
+			sendNotify.put(IMPFields.Event, "");
+			Protocol ptl = protocolList.get(IMPFields.EventProtocol);
+			sendStr = doProtocol(sendNotify, ptl);
+
+			String childPtlName = sendNotify.get(IMPFields.EventCode).toString();
 			Protocol childPtl = protocolList.get(childPtlName);
 			if(childPtl == null){
 				throw new IMPException(IMPException.Err_Unknown, IMPFields.EventCode);
 			}
-			sendStr += childPtl.getName();
 			sendStr += doProtocol(sendNotify, childPtl);
 		} else {
 			throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
@@ -155,9 +153,9 @@ public class ProtocolUtil {
 		}
 		String sendStr = "";
 		for(ProtocolNode node : ptl.getProtocolNodes()){
-			String nodeValue = sendNotify.get(node.getNodeName())==null ? null : sendNotify.get(node.getNodeName()).toString();
+			String nodeValue = sendNotify.get(node.getNodeName())==null ? "" : sendNotify.get(node.getNodeName()).toString();
 			int nodeLength = node.getNodeLength();
-			if(nodeValue != null && !nodeValue.isEmpty()){
+			if(nodeValue != null){
 				if(nodeLength <=0){
 					sendStr += nodeValue;
 				} else if(node.isFixed()){
@@ -170,7 +168,9 @@ public class ProtocolUtil {
 					sendStr += nodeValue;
 				} else {
 					String valueLength = Integer.toHexString(nodeValue.length());
-					if(valueLength.length() > nodeLength){
+					if(nodeLength <=0){
+						sendStr += nodeValue;
+					} else if(valueLength.length() > nodeLength){
 						throw new IMPException(IMPException.Err_Length, node.getNodeName());
 					}else{
 						valueLength = String.format("%-"+nodeLength+"s",valueLength);
@@ -221,7 +221,7 @@ public class ProtocolUtil {
 		return result;
 	}
 
-	public static Object convertData(String data, String dataTP){
+	private static Object convertData(String data, String dataTP){
 		if(dataTP.equals(IMPFields.DT_Boolean)){
 			return Boolean.parseBoolean(data);
 		} else if(dataTP.equals(IMPFields.DT_Int)){
@@ -243,3 +243,4 @@ public class ProtocolUtil {
 		return data;
 	}
 }
+

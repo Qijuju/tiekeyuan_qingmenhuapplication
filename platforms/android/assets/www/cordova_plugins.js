@@ -292,6 +292,32 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+        "id": "cordova-plugin-geolocation.geolocation",
+        "clobbers": [
+            "navigator.geolocation"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "id": "cordova-plugin-geolocation.PositionError",
+        "runs": true
+    },
+    {
+        "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
+        "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
+        "clobbers": [
+            "window.baiduLocation"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -316,7 +342,10 @@ module.exports.metadata =
     "ToastUtils": "1.0.0",
     "cordova-plugin-image-picker": "1.1.1",
     "cordova-plugin-file": "4.2.0",
-    "cordova-plugin-file-transfer": "1.5.2-dev"
+    "cordova-plugin-file-transfer": "1.5.2-dev",
+    "phonegap-plugin-barcodescanner": "6.0.1",
+    "cordova-plugin-geolocation": "2.2.0",
+    "com.spout.phonegap.plugins.baidulocation": "0.1.0"
 };
 // BOTTOM OF METADATA
 });

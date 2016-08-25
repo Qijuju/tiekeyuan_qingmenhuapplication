@@ -63,6 +63,15 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "com.spout.phonegap.plugins.baidulocation": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
     "dependent_plugins": {

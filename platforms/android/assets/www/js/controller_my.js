@@ -387,7 +387,7 @@ angular.module('my.controllers', [])
       // myPopup.close(); //关闭
     };
   })
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
@@ -428,6 +428,19 @@ angular.module('my.controllers', [])
     $scope.zaixianshengji = function () {
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
+    //扫一扫
+    $scope.scanCode = function () {
+      $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        // console.log("Barcode Format -> " + imageData.format);
+        // console.log("Cancelled -> " + imageData.cancelled);
+      }, function(error) {
+        alert( error);
+      });
+    };
+    $scope.goGesturepassword = function () {
+      $state.go("gesturepassword");
+    }
 
   })
   .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams) {
@@ -435,6 +448,36 @@ angular.module('my.controllers', [])
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
+
+  })
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt) {
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID
+    }, function (msg) {
+    });
+    $scope.goSetting = function () {
+      $state.go("accountsettion", {
+        "UserIDset": $scope.UserID
+      });
+    }
+    var opt = {
+      chooseType: 3, // 3 , 4 , 5,
+      width: 350, // lock wrap width
+      height: 350, // lock wrap height
+      container: 'element', // the id attribute of element
+      inputEnd: function(psw){} // when draw end param is password string
+    }
+    var lock = new H5lock(opt);
+    lock.init();
+
+    $scope.resetpassword = function () {
+      lock.reset() // reset the lock
+    }
+    // lock.drawStatusPoint('notright') // draw the last notright circle
+    //
+    // lock.drawStatusPoint('right') // draw the last right circle
+    //
+
 
   })
 

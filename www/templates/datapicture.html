@@ -1,0 +1,35 @@
+<ion-view view-title="拌和站 ">
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goApplication()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <!--<div>-->
+    <!--<img src="img/quxian.png" width="100%" style="margin-top: 50px">-->
+    <!--</div>-->
+    <!--<script id="popup-template.html" type="text/ng-template">-->
+    <!--<input ng-model="data.wifi" type="text" placeholder="Password">-->
+    <!--</script>-->
+    <div id="container"></div>
+    <div id="sliders">
+      <table>
+        <tr>
+          <td>Alpha Angle</td>
+          <td> <input id="alpha" type="range" min="0" max="90" value="15"/> <span id="alpha-value" class="value">{{aaa}}</span></td>
+        </tr>
+        <tr>
+          <td>Beta Angle</td>
+          <td> <input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value">{{bbb}}</span></td>
+        </tr>
+        <tr>
+          <td>Depth</td>
+          <td> <input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value">{{ccc}}</span></td>
+        </tr>
+      </table>
+    </div>
+  </ion-content>
+
+</ion-view>

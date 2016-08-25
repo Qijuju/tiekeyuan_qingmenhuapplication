@@ -11,7 +11,6 @@ angular.module('login.controllers', [])
     $mqtt.setLogin(false);
     $scope.name = "";
     $scope.password = "";
-
     document.addEventListener('deviceready', function () {
       $mqtt.getMqtt().getString('historyusername', function (message) {
         $scope.name = message;
