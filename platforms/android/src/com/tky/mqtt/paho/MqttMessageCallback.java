@@ -60,7 +60,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 			@Override
 			public void run() {
-				MqttNotification.showNotify(msgTopic, msgContent, new Intent(context, MainActivity.class));
+				MqttNotification.showNotify(msgTopic, msgTopic, msgContent, new Intent(context, MainActivity.class));
 				Intent intent = new Intent();
 				intent.setAction(ReceiverParams.MESSAGEARRIVED);
 				intent.putExtra("topic", topic);

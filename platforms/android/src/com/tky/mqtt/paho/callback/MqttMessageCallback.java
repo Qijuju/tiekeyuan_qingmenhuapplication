@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
+import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -21,11 +22,14 @@ import com.tky.mqtt.paho.sync.MqttConnection;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.services.GroupChatsService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.List;
 
 public class MqttMessageCallback implements MqttCallback {
 
@@ -91,7 +95,14 @@ public class MqttMessageCallback implements MqttCallback {
 
                 @Override
                 public void run() {
-                    MqttNotification.showNotify(username, msgContent, new Intent(context, MainActivity.class));
+                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+                    if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
+                        List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
+                        String chatname = groupChatsList.get(0).getGroupName();
+                        MqttNotification.showNotify(map.getSessionid(), chatname, msgContent, new Intent(context, MainActivity.class));
+                    } else {
+                        MqttNotification.showNotify(map.getSessionid(), username, msgContent, new Intent(context, MainActivity.class));
+                    }
                     Intent intent = new Intent();
                     intent.setAction(ReceiverParams.MESSAGEARRIVED);
                     intent.putExtra("topic", topic);
@@ -109,7 +120,7 @@ public class MqttMessageCallback implements MqttCallback {
             String groupID = eventMsgBean.getGroupID();
             String gTopic = SwitchLocal.getATopic(MType.G, groupID);
             MqttTopicRW.append(gTopic, 1);
-            MqttNotification.showNotify("群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+            MqttNotification.showNotify("qunzuxiaoxi","群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
         }
     }
 
