@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('application.controllers', ['ionic', 'ngCordova'])
-  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr) {
+  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr,$ionicActionSheet) {
     $scope.pdfshow=function () {
        // alert($cordovaFileOpener2)
       // /storage/emulated/0/pdf11.pdf
@@ -18,6 +18,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       //   alert("失败")
       // });
     }
+
     $scope.a=0;
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
@@ -26,6 +27,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         $scope.a=0;
       }
     }
+    
     $scope.b=0;
     $scope.dianjibbb=function () {
       if ($scope.b==0){
@@ -42,13 +44,27 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         $scope.c=0;
       }
     }
-    $scope.d=0;
-    $scope.dianjiddd=function () {
-      if ($scope.d==0){
-        $scope.d=1;
-      }else {
-        $scope.d=0;
-      }
+    $scope.duan='郑州至万州铁路河南段';
+    $scope.danxuanze=function () {
+
+        // 显示操作表
+        $ionicActionSheet.show({
+          buttons: [
+            {text: '郑州至万州铁路河南段'},
+            {text: '郑州至周口至阜阳铁路河南段'},
+          ],
+          titleText: '请选择',
+          cancelText: '取消',
+          buttonClicked: function (index) {
+            if (index == 0) {
+              $scope.duan='郑州至万州铁路河南段'
+            } else {
+              $scope.duan='郑州至周口至阜阳铁路河南段'
+            }
+            return true;
+          }
+
+        });
     }
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
