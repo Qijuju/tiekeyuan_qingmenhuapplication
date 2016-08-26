@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
+import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
@@ -100,10 +101,10 @@ public class MqttMessageCallback implements MqttCallback {
                         List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
                         if(groupChatsList.size() !=0){
                             String chatname = groupChatsList.get(0).getGroupName();
-                            MqttNotification.showNotify(map.getSessionid(), chatname, msgContent, new Intent(context, MainActivity.class));
+                            MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, msgContent, new Intent(context, MainActivity.class));
                         }
                     } else {
-                        MqttNotification.showNotify(map.getSessionid(), username, msgContent, new Intent(context, MainActivity.class));
+                        MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, msgContent, new Intent(context, MainActivity.class));
                     }
                     Intent intent = new Intent();
                     intent.setAction(ReceiverParams.MESSAGEARRIVED);
@@ -122,7 +123,7 @@ public class MqttMessageCallback implements MqttCallback {
             String groupID = eventMsgBean.getGroupID();
             String gTopic = SwitchLocal.getATopic(MType.G, groupID);
             MqttTopicRW.append(gTopic, 1);
-            MqttNotification.showNotify("qunzuxiaoxi","群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+            MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
         }
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
+import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -60,7 +61,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 			@Override
 			public void run() {
-				MqttNotification.showNotify(msgTopic, msgTopic, msgContent, new Intent(context, MainActivity.class));
+				MqttNotification.showNotify(msgTopic, R.drawable.ic_launcher, msgTopic, msgContent, new Intent(context, MainActivity.class));
 				Intent intent = new Intent();
 				intent.setAction(ReceiverParams.MESSAGEARRIVED);
 				intent.putExtra("topic", topic);
