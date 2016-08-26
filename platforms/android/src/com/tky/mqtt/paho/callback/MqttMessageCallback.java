@@ -98,8 +98,10 @@ public class MqttMessageCallback implements MqttCallback {
                     GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
                     if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
                         List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
-                        String chatname = groupChatsList.get(0).getGroupName();
-                        MqttNotification.showNotify(map.getSessionid(), chatname, msgContent, new Intent(context, MainActivity.class));
+                        if(groupChatsList.size() !=0){
+                            String chatname = groupChatsList.get(0).getGroupName();
+                            MqttNotification.showNotify(map.getSessionid(), chatname, msgContent, new Intent(context, MainActivity.class));
+                        }
                     } else {
                         MqttNotification.showNotify(map.getSessionid(), username, msgContent, new Intent(context, MainActivity.class));
                     }

@@ -1002,7 +1002,7 @@ angular.module('selectgroup.controllers', [])
   })
 
   //修改群名称
-  .controller('groupModifyNameCtrl',function ($scope,$state,$stateParams,$api,$ToastUtils,$ionicHistory,$greendao,$rootScope) {
+  .controller('groupModifyNameCtrl',function ($scope,$state,$stateParams,$api,$ToastUtils,$ionicHistory,$greendao,$rootScope,$ionicHistory) {
 
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     $scope.groupId=$stateParams.groupid;
@@ -1044,6 +1044,10 @@ angular.module('selectgroup.controllers', [])
 
 
     });
+
+    $scope.backAny=function () {
+      $ionicHistory.goBack();
+    }
 
   })
 
@@ -1156,7 +1160,7 @@ angular.module('selectgroup.controllers', [])
   })
 
   //部门群展示
-  .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams) {
+  .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams,$ionicHistory) {
 
 
     $scope.groupId = $stateParams.groupid;
@@ -1179,6 +1183,16 @@ angular.module('selectgroup.controllers', [])
       })
     });
 
+    $scope.backAny=function () {
+      $ionicHistory.goBack();
+    }
+
+
+    $scope.groupGoDetail=function (id) {
+      $state.go("person", {
+        "userId": id,
+      });
+    }
 
 
   })

@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('application.controllers', ['ionic', 'ngCordova'])
-  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr) {
+  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr,$ionicActionSheet) {
     $scope.pdfshow=function () {
        // alert($cordovaFileOpener2)
       // /storage/emulated/0/pdf11.pdf
@@ -18,6 +18,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       //   alert("失败")
       // });
     }
+
     $scope.a=0;
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
@@ -26,6 +27,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         $scope.a=0;
       }
     }
+
     $scope.b=0;
     $scope.dianjibbb=function () {
       if ($scope.b==0){
@@ -42,13 +44,27 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         $scope.c=0;
       }
     }
-    $scope.d=0;
-    $scope.dianjiddd=function () {
-      if ($scope.d==0){
-        $scope.d=1;
-      }else {
-        $scope.d=0;
-      }
+    $scope.duan='郑州至万州铁路河南段';
+    $scope.danxuanze=function () {
+
+        // 显示操作表
+        $ionicActionSheet.show({
+          buttons: [
+            {text: '郑州至万州铁路河南段'},
+            {text: '郑州至周口至阜阳铁路河南段'},
+          ],
+          titleText: '请选择',
+          cancelText: '取消',
+          buttonClicked: function (index) {
+            if (index == 0) {
+              $scope.duan='郑州至万州铁路河南段'
+            } else {
+              $scope.duan='郑州至周口至阜阳铁路河南段'
+            }
+            return true;
+          }
+
+        });
     }
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -199,7 +215,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
                   // alert($scope.items.length + "长度");
                   $scope.$on('groupchatarr.update', function (event) {
                     $scope.$apply(function () {
-                      alert("contact group监听");
+                      // alert("contact group监听");
                       /**
                        *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
                        *
@@ -213,7 +229,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
                 });
               }
             }else{
-              alert("有会话的时候");
+              // alert("有会话的时候");
               $scope.saveapplymsg();
             }
           }, function (err) {
@@ -355,7 +371,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
         var lat  = position.coords.latitude
         var long = position.coords.longitude
-        // alert("经度"+lat+"纬度"+long)
+       alert("经度"+lat+"纬度"+long)
       var latlon=position.coords.latitude+","+position.coords.longitude;
       var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
         +latlon+"&zoom=14&size=400x300&sensor=false";

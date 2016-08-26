@@ -148,16 +148,16 @@ angular.module('login.controllers', [])
     $scope.startApp = function() {
       $state.go('newspage');
     };
-    $scope.next = function() {
-      $ionicSlideBoxDelegate.next();
-    };
-    $scope.previous = function() {
-      $ionicSlideBoxDelegate.previous();
-    };
+    // $scope.next = function() {
+    //   $ionicSlideBoxDelegate.next();
+    // };
+    // $scope.previous = function() {
+    //   $ionicSlideBoxDelegate.previous();
+    // };
 
     $scope.slideChanged = function(index) {
       $scope.slideIndex = index;
-      if (index==2){
+      if (index==4){
         $timeout(function () {
           $state.go('newspage');
         }, 1500);

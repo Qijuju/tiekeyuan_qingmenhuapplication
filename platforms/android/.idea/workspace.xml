@@ -5,175 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/barcodescanner.aar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/bc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/bim1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/bim2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/bim3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/cheliang.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/diaod.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/dingposition.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/gdbjt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/gdbwx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/huiyi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_dark.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_discard_dark.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_discard_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_done_dark.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_done_dark.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_done_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_done_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/image_bg.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/jsgl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/khpb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/lc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/armeabi/liblocSDK4.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/ljys.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/loading_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/locSDK_4.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/oa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/pdf11.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/qljz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/quxian.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/sdjxhgl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/sgtsh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/splash-small.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/tielu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/train.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/wulu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/wulu2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/wulu3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/wzgl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/xmxx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/zdzl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/zlgl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/zxpx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/AssetFilesystem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/spout/phonegap/plugins/baidulocation/BaiduLocation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/ContentFilesystem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/DirectoryEntry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/DirectoryEntry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/DirectoryManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/DirectoryReader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/DirectoryReader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/EncodingException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/Entry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/Entry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/synconset/FakeR.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/File.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/File.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileEntry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileEntry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/FileExistsException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/filetransfer/FileProgressResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileReader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileReader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/android/FileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/android/FileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/filetransfer/FileTransfer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileUploadOptions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileUploadOptions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/filetransfer/FileUploadResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileUploadResult.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileUploadResult.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/FileUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/FileWriter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/FileWriter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/Filesystem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/Flags.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/Flags.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/geolocation/Geolocation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.publish.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/synconset/ImageFetcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/synconset/ImagePicker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/InvalidModificationException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/LocalFileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/LocalFileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/LocalFilesystem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/LocalFilesystemURL.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/Metadata.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/Metadata.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/synconset/MultiImageChooserActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/NoModificationAllowedException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/PendingRequests.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-geolocation/www/PositionError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-geolocation/www/PositionError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/ProgressEvent.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/ProgressEvent.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/file/TypeMismatchException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/actionbar_custom_view_done_discard.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/actionbar_discard_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/actionbar_done_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/datapicture.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/exporting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/fileSystemPaths.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/fileSystemPaths.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/fileSystems-roots.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/fileSystems-roots.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/fileSystems.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/fileSystems.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-geolocation/www/android/geolocation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-geolocation/www/android/geolocation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/grid_background.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/groupcall.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-3d.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-more.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-ng.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/highcharts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/anim/image_pop_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-image-picker/www/imagepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-image-picker/www/imagepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/browser/isChrome.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/browser/isChrome.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/jquery-3.0.0.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1474287300574183316.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger5746973251914401282.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger6165702146657045120.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7651887125546651427.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8320235533760612287.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-de/multiimagechooser_strings_de.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/multiimagechooser_strings_en.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-es/multiimagechooser_strings_es.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-fr/multiimagechooser_strings_fr.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-hu/multiimagechooser_strings_hu.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-ja/multiimagechooser_strings_ja.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-ko/multiimagechooser_strings_ko.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/multiselectorgrid.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/newsPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/ng-cordova.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/requestFileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/requestFileSystem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/themes.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/twoDimensionPic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/welcome.html" />
-      <change type="DELETED" beforePath="E:\WebstormProjects\IM\platforms\android\.idea\libraries\locSDK_4_0.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/im1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/im1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/im2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/im2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/im3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/im3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/im4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/im4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/im5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/im5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/qmh1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/qmh1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/qmh2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/qmh2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/qmh3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/qmh3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -186,49 +34,46 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatListDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/callback/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/callback/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttNotification.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttNotification.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-second.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-second.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_application.js" afterPath="$PROJECT_DIR$/../../www/js/controller_application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" afterPath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/historymessage.html" afterPath="$PROJECT_DIR$/../../www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-deptmember.html" afterPath="$PROJECT_DIR$/../../www/templates/group-deptmember.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/person-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/newsPage.html" afterPath="$PROJECT_DIR$/assets/www/templates/newsPage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/newsPage.html" afterPath="$PROJECT_DIR$/../../www/templates/newsPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/service_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/service_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-chats.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/welcome.html" afterPath="$PROJECT_DIR$/assets/www/templates/welcome.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/welcome.html" afterPath="$PROJECT_DIR$/../../www/templates/welcome.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -279,66 +124,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1178" column="13" selection-start-line="1178" selection-start-column="13" selection-end-line="1178" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupChatsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/GroupChatsService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="30" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.33271375">
+              <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2115#2116#0" expanded="true" />
-                <element signature="e#2150#2151#0" expanded="true" />
+                <element signature="e#2546#3169#0" expanded="true" />
+                <element signature="e#3168#3169#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupChats.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41684666">
-              <caret line="140" column="59" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="im366077-barcodescanner.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/phonegap-plugin-barcodescanner/im366077-barcodescanner.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1594,7 +1389,7 @@
         <entry key="D:\impro\IM\platforms\android" value="5882067129256" />
         <entry key="D:\workspace\IM\platforms\android" value="5885096616169" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
-        <entry key="E:\WebstormProjects\im\platforms\android" value="5884449293152" />
+        <entry key="E:\WebstormProjects\im\platforms\android" value="5884493476340" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2561,6 +2356,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -2832,14 +2681,14 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39647576" sideWeight="0.4914712" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18281938" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18722467" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.311674" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6321586" sideWeight="0.50852877" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18281938" sideWeight="0.510661" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270925" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.093612336" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3056,13 +2905,25 @@
           <properties />
           <option name="timeStamp" value="256" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>371</line>
+          <properties />
+          <option name="timeStamp" value="261" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>378</line>
+          <properties />
+          <option name="timeStamp" value="262" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js</url>
           <line>38</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="257" />
+      <option name="time" value="263" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3156,6 +3017,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="266" column="25" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3280,18 +3142,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2142856">
-          <caret line="372" column="0" selection-start-line="372" selection-start-column="0" selection-end-line="382" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.571429">
           <caret line="25" column="89" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="89" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3341,6 +3196,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.642857">
           <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3375,6 +3231,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.8122333">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3396,41 +3253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29213482">
           <caret line="17" column="28" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1178" column="13" selection-start-line="1178" selection-start-column="13" selection-end-line="1178" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/GroupChatsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2115#2116#0" expanded="true" />
-            <element signature="e#2150#2151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -3443,11 +3265,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3503521">
+          <caret line="259" column="79" selection-start-line="259" selection-start-column="79" selection-end-line="259" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41684666">
+        <state vertical-scroll-proportion="0.33978873">
           <caret line="140" column="59" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/GroupChatsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33271375">
+          <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2546#3169#0" expanded="true" />
+            <element signature="e#3168#3169#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

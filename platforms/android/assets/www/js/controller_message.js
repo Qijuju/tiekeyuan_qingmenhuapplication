@@ -623,7 +623,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts) {
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   alert(data);
@@ -784,7 +784,7 @@ angular.module('message.controllers', [])
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
             // alert(data.length+"收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // alert("没有该会话");
+              // alert("没有主界面该会话");
               $rootScope.isGroupSend = 'true';
               if ($rootScope.isGroupSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
@@ -973,6 +973,34 @@ angular.module('message.controllers', [])
         "UserNameSM":$scope.userName
       });
     }
+
+
+    $scope.$on('$ionicView.enter', function () {
+      $contacts.loginInfo();
+      $scope.$on('login.update', function (event) {
+        $scope.$apply(function () {
+          //部门id
+          $scope.depid=$contacts.getLoignInfo();
+          $contacts.loginDeptInfo($scope.depid);
+        })
+      });
+
+      $scope.$on('logindept.update', function (event) {
+        $scope.$apply(function () {
+          //部门id
+          $scope.deptinfo = $contacts.getloginDeptInfo();
+          //部门群的信息会被放入
+          var deptobj={};
+          deptobj.id=$scope.depid;
+          deptobj.groupName=$scope.deptinfo;
+          deptobj.groupType='Dept';
+          $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
+          },function (err) {
+            alert(err);
+          })
+        })
+      });
+    });
 
   })
 
