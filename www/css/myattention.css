@@ -147,7 +147,7 @@
 .intro_wrapper img {
   width: 90%;
   /*padding-top: 20px;*/
-  margin-bottom: -5px;
+  /*margin-bottom: -5px;*/
   padding-left: 8%;
 }
 .intro_title {
@@ -165,7 +165,7 @@
   background-image: none;
   /*height: 114px;
   padding-top: 38px;*/
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   position: absolute;
   z-index: 1;
 }
