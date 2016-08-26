@@ -50,7 +50,7 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      alert("先收到"+$rootScope.id+$rootScope.username);
+      // alert("先收到"+$rootScope.id+$rootScope.username);
     }
   }
 })
@@ -62,7 +62,7 @@ angular.module('message.services', [])
     return{
       getAllGroupList:function (isGroupSend,messageType) {
         if(isGroupSend === 'true'){
-          alert("跳转到service界面"+$stateParams.sessionid);
+          // alert("跳转到service界面"+$stateParams.sessionid);
           var groupchatitem={};
           if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
             groupchatitem.id=$rootScope.id;
@@ -158,7 +158,7 @@ angular.module('message.services', [])
         messageDetail.imgSrc='';
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
-        alert("发送者id"+localuserId);
+        // alert("发送者id"+localuserId);
         mqtt.sendMsg(topic, messageDetail, function (message) {
           danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -201,10 +201,10 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          alert("接受消息"+arriveMessage.senderid);
+          // alert("接受消息"+arriveMessage.senderid);
           $greendao.saveObj('MessagesService',arriveMessage,function (data) {
             $rootScope.$broadcast('msgs.update');
-            alert(data.length+"收消息");
+            // alert(data.length+"收消息");
           },function (err) {
           });
           if(message.type==="User"){
@@ -213,14 +213,14 @@ angular.module('message.services', [])
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
-            alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
+            // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
             danliao.push(arriveMessage);
           }else {
             groupCount++;
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
-            alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+            // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
             qunliao.push(arriveMessage);
           }
           return size;
@@ -269,7 +269,7 @@ angular.module('message.services', [])
       },
 
       sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
-        alert("发送群消息"+sqlid+localuserId+grouptype);
+        // alert("发送群消息"+sqlid+localuserId+grouptype);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
@@ -284,7 +284,7 @@ angular.module('message.services', [])
         messageReal.imgSrc='';
         messageReal.username=localuser;
         messageReal.senderid=localuserId;
-        alert(localuser+"ssss");
+        // alert(localuser+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {

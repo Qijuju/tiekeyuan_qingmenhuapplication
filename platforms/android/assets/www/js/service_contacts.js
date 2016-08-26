@@ -1033,7 +1033,6 @@ angular.module('contacts.services', [])
           attentionList=msg;
           $rootScope.$broadcast('attention.update');
         },function (msg) {
-          alert(msg);
         });
       },
 
