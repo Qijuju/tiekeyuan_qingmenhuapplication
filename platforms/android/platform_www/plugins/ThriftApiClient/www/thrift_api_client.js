@@ -99,5 +99,8 @@ exports.groupRemoveAdmin = function(groupID, adminsArr, success, error) {//群�
 exports.getAllGroup = function(success, error) {//获取用户所有群组
   exec(success, error, "ThriftApiClient", "getAllGroup", []);
 };
+exports.installApk = function(targetPath, success, error) {//安装应用
+  exec(success, error, "ThriftApiClient", "installApk", [targetPath]);
+};
 
 });

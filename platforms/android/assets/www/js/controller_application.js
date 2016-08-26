@@ -272,10 +272,10 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
           }
         }
       })
-
-
-
-
+      //加滑动底部
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
     $scope.goDatapicture = function () {
       $state.go("datapicture");

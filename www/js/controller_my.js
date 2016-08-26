@@ -433,9 +433,13 @@ angular.module('my.controllers', [])
               alert(err);
             });
           }
+
         }
       })
-
+      //加滑动底部
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
   })
 

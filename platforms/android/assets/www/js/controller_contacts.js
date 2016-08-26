@@ -308,7 +308,10 @@ angular.module('contacts.controllers', [])
           }
         }
       })
-
+      //加滑动底部
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
 
     $scope.topGoDetail = function (id) {

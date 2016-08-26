@@ -9,7 +9,36 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="" />
+    <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_application.js" afterPath="$PROJECT_DIR$/../../www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/build/intermediates/assets/" />
@@ -60,12 +89,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2535211">
-              <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="356" column="13" selection-start-line="356" selection-start-column="13" selection-end-line="356" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="818" column="26" selection-start-line="818" selection-start-column="16" selection-end-line="818" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thrift_api_client.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7526502">
+              <caret line="105" column="3" selection-start-line="105" selection-start-column="3" selection-end-line="105" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.571428">
+              <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+              <folding>
+                <element signature="e#3693#3717#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.714286">
+              <caret line="328" column="34" selection-start-line="328" selection-start-column="34" selection-end-line="328" selection-end-column="34" />
+              <folding>
+                <element signature="e#723#724#0" expanded="true" />
+                <element signature="e#765#766#0" expanded="true" />
+                <element signature="e#3096#3097#0" expanded="true" />
+                <element signature="e#3152#3153#0" expanded="true" />
+                <element signature="e#3500#3501#0" expanded="true" />
+                <element signature="e#3545#3546#0" expanded="true" />
+                <element signature="e#7112#7420#0" expanded="true" />
+                <element signature="e#7419#7420#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,18 +155,8 @@
       <file leaf-file-name="MqttTopicRW.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.785714">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatListService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="56" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -115,27 +187,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="68" column="53" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupChatsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/GroupChatsService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Messages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="27" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1768#2259#0" expanded="false" />
+                <element signature="e#2258#2259#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,16 +204,6 @@
               <folding>
                 <element signature="e#702#710#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TopContacts.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1392,7 +1438,7 @@
         <entry key="C:\Users\Administrator\webstormproject\im\platforms\android" value="5875942965181" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
         <entry key="D:\impro\IM\platforms\android" value="5882067129256" />
-        <entry key="D:\workspace\IM\platforms\android" value="5886896014763" />
+        <entry key="D:\workspace\IM\platforms\android" value="5886934762595" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1813,15 +1859,12 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/NetUtils.java" />
         <option value="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
-        <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
         <option value="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
         <option value="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/toast/ToastUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/sync/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttReceiver.java" />
@@ -1841,6 +1884,10 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttNotification.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/callback/MqttMessageCallback.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+        <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
       </list>
     </option>
   </component>
@@ -2001,6 +2048,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="paho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="base" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2023,6 +2100,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform_www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform_www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform_www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThriftApiClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -2035,7 +2170,7 @@
     <property name="android.project.structure.last.selected" value="Project" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="aca83410" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="1e3a116a" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="FullScreen" value="false" />
@@ -2274,7 +2409,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2283,7 +2418,7 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36633664" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31463146" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31463146" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37152392" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2294,7 +2429,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25053304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25053304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2458,22 +2593,16 @@
           <option name="timeStamp" value="218" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="220" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
           <line>333</line>
           <properties />
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>357</line>
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>820</line>
           <properties />
-          <option name="timeStamp" value="223" />
+          <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js</url>
@@ -2481,7 +2610,7 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="224" />
+      <option name="time" value="225" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2505,13 +2634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="17" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8474576">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -2554,13 +2676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6632124">
           <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="266" column="25" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -2631,14 +2746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/TopContactsService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2657,16 +2764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2803,6 +2900,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="28" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="e#398#399#0" expanded="false" />
+            <element signature="e#426#427#0" expanded="false" />
+            <element signature="e#627#628#0" expanded="false" />
+            <element signature="e#652#653#0" expanded="false" />
+            <element signature="e#688#689#0" expanded="false" />
+            <element signature="e#716#717#0" expanded="false" />
+            <element signature="e#752#753#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#834#835#0" expanded="false" />
+            <element signature="e#876#877#0" expanded="false" />
+            <element signature="e#912#913#0" expanded="false" />
+            <element signature="e#944#945#0" expanded="false" />
+            <element signature="e#994#995#0" expanded="false" />
+            <element signature="e#1036#1037#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2842,7 +2955,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="53" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1768#2259#0" expanded="false" />
+            <element signature="e#2258#2259#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2879,18 +2996,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.571428">
+          <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+          <folding>
+            <element signature="e#3693#3717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.714286">
+          <caret line="328" column="34" selection-start-line="328" selection-start-column="34" selection-end-line="328" selection-end-column="34" />
+          <folding>
+            <element signature="e#723#724#0" expanded="true" />
+            <element signature="e#765#766#0" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3152#3153#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3545#3546#0" expanded="true" />
+            <element signature="e#7112#7420#0" expanded="true" />
+            <element signature="e#7419#7420#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.785714">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2535211">
-          <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="356" column="13" selection-start-line="356" selection-start-column="13" selection-end-line="356" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="818" column="26" selection-start-line="818" selection-start-column="16" selection-end-line="818" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7526502">
+          <caret line="105" column="3" selection-start-line="105" selection-start-column="3" selection-end-line="105" selection-end-column="3" />
           <folding />
         </state>
       </provider>
