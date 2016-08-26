@@ -56,7 +56,7 @@
         </li>
       </div>
 
-      <div ng-click="goGroupName()">
+      <div ng-click="goGroupName(groupId,groupName)">
         <li class="item item-toggle item-button-right">
           群名称
           <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
@@ -76,8 +76,8 @@
         <a >清空聊天记录</a>
       </li>
     </ul>
-    <div style="margin-bottom: 10px" ng-click="disbandGroup()">
-      <button class="button button-block button-positive" ng-click="addFriend()">
+    <div style="margin-bottom: 10px">
+      <button class="button button-block button-positive" ng-click="dissolveGroup()">
         解散该群
       </button>
     </div>

@@ -1418,7 +1418,6 @@ angular.module('contacts.controllers', [])
         deptobj.id=$scope.depid;
         deptobj.groupName=$scope.deptinfo;
         deptobj.groupType='Dept';
-        alert($scope.depid)
         $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
         },function (err) {
           alert(err);

@@ -64,6 +64,9 @@ exports.getMsgCount = function(sessionType, sessionID, success, error) {
 exports.cancelUser = function(success, error) {//解绑用户，以让其他设备可以登录使用该账户
   exec(success, error, "ThriftApiClient", "cancelUser", []);
 };
+exports.openFile = function(filePath,success, error) {
+  exec(success, error, "ThriftApiClient", "openFile", [filePath]);
+};
 
 //以下是群组的10个接口
 exports.addGroup = function(groupName, deptsArr, membersArr, success, error) {//创建群组  groupName：群组名, deptsArr：所有部门（deptID的组合）, membersArr：所有选中人员（人员ID的组合）

@@ -28,16 +28,27 @@
       <div ng-repeat="msgSingle in msgs">
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
-          <img src="img/mike.png" class="rj-head-pic">
-          <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{msgSingle.message}}</p>
+          <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+          <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+          <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7" class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+          <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6" class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+          <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+          <!--<img src="img/mike.png" class="rj-head-pic">-->
+          <span>
+            <span class="rj-triangle-left" style="margin-right: 1px"></span>
+          <p class="rj-message" style="margin-left: 14.5%">{{msgSingle.message}}</p>
+          </span>
+
         </div>
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
-          <img src="img/ben.png" class="rj-head-pic-right">
-          <span class="rj-triangle-right"></span>
+         <!--<img src="img/circle6.png" class="rj-head-pic-right"><p class="rj-triangle-right" style="font-size: 13px;position: absolute;left: 5%;top: 23%;padding-top: 8px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}} </p>-->
+          <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
+
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font class="rj-message-right">{{msgSingle.message}}</font></p>
+             <span class="rj-triangle-right"></span>
+             <p style="margin-right: 10.5%"><font class="rj-message-right">{{msgSingle.message}}</font></p>
+             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)">
           </span>
         </div>
       </div>

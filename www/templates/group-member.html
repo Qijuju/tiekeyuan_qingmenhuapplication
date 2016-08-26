@@ -20,9 +20,15 @@
             <p style="font-size: 18px" align="left">{{groupMaster.UserName}}</p>
           </div>
           <div class="col-20" align="right">
-            <p style="font-size: 18px ;padding-left: 15px" align="right">群主</p>
+            <p style="font-size: 18px " align="right">群主 </p>
           </div>
         </div>
+        <ion-option-button class="button-energized" ng-if="false">
+          取消管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-if="false">
+          删除
+        </ion-option-button>
       </ion-item>
       <ion-item ng-repeat="item in groupAdmin">
         <div class="row" >
@@ -33,11 +39,14 @@
             <p style="font-size: 18px" align="left">{{item.UserName}}</p>
           </div>
           <div class="col-20" align="right">
-            <p style="font-size: 18px ;padding-left: 15px" align="right">管理员</p>
+            <p style="font-size: 18px " align="right">管理员</p>
           </div>
         </div>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
+        <ion-option-button class="button-royal" ng-click="cancelAdmin(item.UserID)">
+          取消管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+          删除
         </ion-option-button>
       </ion-item>
       <ion-item ng-repeat="item in groupCommon">
@@ -52,8 +61,11 @@
             <p style="font-size: 18px ;padding-left: 15px" align="right"></p>
           </div>
         </div>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
+        <ion-option-button class="button-balanced" ng-click="addAdmin(item.UserID)">
+          添加管理员
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+          删除
         </ion-option-button>
       </ion-item>
     </ion-list>

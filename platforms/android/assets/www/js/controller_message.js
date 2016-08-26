@@ -623,7 +623,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts) {
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   alert(data);
@@ -784,7 +784,7 @@ angular.module('message.controllers', [])
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
             // alert(data.length+"收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              alert("没有该会话");
+              alert("没有主界面该会话");
               $rootScope.isGroupSend = 'true';
               if ($rootScope.isGroupSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
@@ -793,7 +793,7 @@ angular.module('message.controllers', [])
                 // alert("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
                 //根据群组id获取群名称
                 $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
-                  // alert(data[0].groupName);
+                  alert(data[0].groupName);
                   $rootScope.groupName = data[0].groupName;
                   //往service里面传值，为了创建会话
                   $grouparr.getGroupIdChatName($scope.receiverssid, $scope.groupName);
@@ -974,6 +974,34 @@ angular.module('message.controllers', [])
       });
     }
 
+
+    $scope.$on('$ionicView.enter', function () {
+      $contacts.loginInfo();
+      $scope.$on('login.update', function (event) {
+        $scope.$apply(function () {
+          //部门id
+          $scope.depid=$contacts.getLoignInfo();
+          $contacts.deptInfo($scope.depid)
+        })
+      });
+
+      $scope.$on('second.update', function (event) {
+        $scope.$apply(function () {
+          //部门id
+          $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
+          //部门群的信息会被放入
+          var deptobj={};
+          deptobj.id=$scope.depid;
+          deptobj.groupName=$scope.deptinfo;
+          deptobj.groupType='Dept';
+          $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
+          },function (err) {
+            alert(err);
+          })
+        })
+      });
+    });
+
   })
 
 
@@ -1129,12 +1157,22 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group) {
 
 
     $scope.groupId = $stateParams.groupid;
-    $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
+
+    $scope.listM=[];
+    $scope.listM.push('GN');
+    $scope.listM.push('GT');
+    $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
+    $scope.$on('groupdetail.update', function (event) {
+      $scope.$apply(function () {
+        $scope.groupName=$group.getGroupDetail().groupName;
+
+      })
+    });
 
 
     $scope.goGroupPerson=function (id,name,type) {
@@ -1154,18 +1192,48 @@ angular.module('message.controllers', [])
       }
     };
 
-    $scope.goGroupName=function () {
-      $state.go('groupModifyName');
+
+    //解散群
+    $scope.dissolveGroup=function () {
+      $api.removeGroup($scope.groupId,function (msg) {
+
+        $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
+
+          $state.go('tab.message',{
+            "id":$scope.groupId,
+            "sessionid":$scope.groupName,
+            "grouptype":"Group"
+          });
+
+        },function (err) {
+          $ToastUtils.showToast(err)
+        })
+
+      },function (err) {
+        $ToastUtils.showToast(err)
+
+      });
+    }
+
+
+    //修改群名称
+    $scope.goGroupName=function (id,name) {
+      $state.go('groupModifyName',{
+        "groupid":id,
+        "groupname":name
+      });
     };
+
     $scope.backAny = function () {
 
       $ionicHistory.goBack();
 
     };
+
     $scope.gohistoryMessage = function () {
-      // alert("要跳了")
       $state.go("historyMessage");
     }
+
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
