@@ -2,6 +2,8 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.paho.utils.SwitchLocal;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +33,17 @@ public class MqttTopicRW {
 			map.put(tpaqArr[0], Integer.parseInt(tpaqArr[1]));
 		}
 		return map;
+	}
+
+	/**
+	 * 检查发过来的消息是否是自己发送的
+	 * @param type
+	 * @param from
+	 * @return
+	 */
+	public static boolean isFromMe(String type, String from) {
+		String aTopic = SwitchLocal.getATopic(SwitchLocal.getType(type), from);
+		return getTopicsAndQoss().containsKey(aTopic);
 	}
 	
 	/**
