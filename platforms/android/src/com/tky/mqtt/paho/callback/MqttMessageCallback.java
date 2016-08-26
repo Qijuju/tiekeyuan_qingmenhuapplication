@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
+import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -21,11 +22,14 @@ import com.tky.mqtt.paho.sync.MqttConnection;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.services.GroupChatsService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.List;
 
 public class MqttMessageCallback implements MqttCallback {
 
@@ -76,25 +80,29 @@ public class MqttMessageCallback implements MqttCallback {
             mPlayer.setLooping(false);
             // 开始播放
             mPlayer.start();*/
-        MediaPlayer mp = new MediaPlayer();
-        try {
-            mp.setDataSource(context, RingtoneManager
-                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-            mp.prepare();
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
         if (bean != null && bean instanceof MessageBean) {
             final MessageBean map = (MessageBean) bean;
+            String fromUserId = map.get_id();
+            if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId)) {
+                return;
+            }
+            //接收到消息时的铃声
+            ring();
             final String username = (String) map.getUsername();
             final String msgContent = (String) map.getMessage();
             UIUtils.runInMainThread(new Runnable() {
 
                 @Override
                 public void run() {
-                    MqttNotification.showNotify(username, msgContent, new Intent(context, MainActivity.class));
+                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+                    if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
+                        List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
+                        String chatname = groupChatsList.get(0).getGroupName();
+                        MqttNotification.showNotify(map.getSessionid(), chatname, msgContent, new Intent(context, MainActivity.class));
+                    } else {
+                        MqttNotification.showNotify(map.getSessionid(), username, msgContent, new Intent(context, MainActivity.class));
+                    }
                     Intent intent = new Intent();
                     intent.setAction(ReceiverParams.MESSAGEARRIVED);
                     intent.putExtra("topic", topic);
@@ -106,10 +114,25 @@ public class MqttMessageCallback implements MqttCallback {
                 }
             });
         } else if (bean != null && bean instanceof EventMessageBean) {
+            //接收到消息时的铃声
+            ring();
             EventMessageBean eventMsgBean = (EventMessageBean) bean;
             String groupID = eventMsgBean.getGroupID();
             String gTopic = SwitchLocal.getATopic(MType.G, groupID);
             MqttTopicRW.append(gTopic, 1);
+            MqttNotification.showNotify("qunzuxiaoxi","群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+        }
+    }
+
+    private void ring() {
+        MediaPlayer mp = new MediaPlayer();
+        try {
+            mp.setDataSource(context, RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            mp.prepare();
+            mp.start();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
