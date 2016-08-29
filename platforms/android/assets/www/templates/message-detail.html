@@ -7,9 +7,9 @@
       </button>
     </ion-nav-buttons>
 
-    <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-telephone" ng-click="call(10086)"></button>
-    </ion-nav-buttons>
+    <!--<ion-nav-buttons side="right">-->
+      <!--<button class="button button-icon icon ion-ios-telephone" ng-click="call(10086)"></button>-->
+    <!--</ion-nav-buttons>-->
 
     <ion-nav-buttons side="secondary">
       <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
@@ -35,18 +35,14 @@
           <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
-            <span class="rj-triangle-left" style="margin-right: 1px"></span>
           <p class="rj-message" style="margin-left: 14.5%">{{msgSingle.message}}</p>
           </span>
 
         </div>
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
-         <!--<img src="img/circle6.png" class="rj-head-pic-right"><p class="rj-triangle-right" style="font-size: 13px;position: absolute;left: 5%;top: 23%;padding-top: 8px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}} </p>-->
           <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
-
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <span class="rj-triangle-right"></span>
              <p style="margin-right: 10.5%"><font class="rj-message-right">{{msgSingle.message}}</font></p>
              <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)">
           </span>
@@ -55,7 +51,7 @@
     </div>
   </ion-content>
 
-  <ion-footer-bar align-title="left" class="bar-light" resize-foot-bar>
+  <ion-footer-bar align-title="left" class="bar-light " resize-foot-bar >
     <div class="rj-footer-btn-wrap">
       <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
       </button>

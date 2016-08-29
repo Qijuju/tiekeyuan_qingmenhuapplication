@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
 
     });
 
-    //主页面显示退出提示框
+    /*//主页面显示退出提示框
     $ionicPlatform.registerBackButtonAction(function (e) {
 
       e.preventDefault();
@@ -44,7 +44,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       }
 
       return false;
-    }, 101);
+    }, 101);*/
 
 
 

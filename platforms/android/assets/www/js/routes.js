@@ -244,6 +244,7 @@ angular.module('im.routes', [])
 
       .state('tab.chats', {
         url: '/chats',
+        cache: false,
         views: {
           'tab-chats': {
             templateUrl: 'templates/tab-chats.html',

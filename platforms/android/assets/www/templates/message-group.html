@@ -23,20 +23,37 @@
       <!--<p class="rj-message-time">5月27日 16:33</p>-->
 
       <div ng-repeat="msg in groupmsgs">
-        <div class="rj-message-wrap" ng-if="(msg.from==='false')">
-          <img src="img/mike.png" class="rj-head-pic">
-          <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{msg.message}}</p>
+        <!--<div class="rj-message-wrap" ng-if="(msg.from==='false')">-->
+          <!--<img src="img/mike.png" class="rj-head-pic">-->
+          <!--<span class="rj-triangle-left"></span>-->
+          <!--<p class="rj-message">{{msg.message}}</p>-->
+        <!--</div>-->
+        <div class="rj-message-wrap" ng-if="msg.from==='false'">
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7" class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6" class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <!--<img src="img/mike.png" class="rj-head-pic">-->
+          <span>
+          <p class="rj-message" style="margin-left: 14.5%">{{msg.message}}</p>
+          </span>
         </div>
 
 
         <div class="rj-message-wrap" ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)">
-          <img src="img/ben.png" class="rj-head-pic-right">
-          <span class="rj-triangle-right"></span>
-          <span>
+          <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+           <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>
+             <p style="margin-right: 10.5%"><font class="rj-message-right">{{msg.message}}</font></p>
+             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendshow(userId,msg.message, userId, localusr,msg._id,msg)">
           </span>
+          <!--<img src="img/ben.png" class="rj-head-pic-right">-->
+          <!--<span class="rj-triangle-right"></span>-->
+          <!--<span>-->
+             <!--&lt;!&ndash;<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">&ndash;&gt;-->
+             <!--<p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>-->
+          <!--</span>-->
         </div>
       </div>
 
@@ -55,7 +72,7 @@
 
       </textarea>
       <div class="buttons">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"  ></button>
+        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
       </div>
     </label>
     <div class="rj-footer-btn-wrap">

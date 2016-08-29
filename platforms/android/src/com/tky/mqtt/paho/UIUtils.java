@@ -320,4 +320,21 @@ public class UIUtils {
 
 		return info.activityInfo.name;
 	}
+
+	/**
+	 * 安装应用
+	 * @param context
+	 * @param appPath
+	 */
+	public static void installApk(final String appPath) {
+		runInMainThread(new Runnable() {
+			@Override
+			public void run() {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.fromFile(new File(appPath)), "application/vnd.android.package-archive");
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getContext().startActivity(intent);
+			}
+		});
+	}
 }
