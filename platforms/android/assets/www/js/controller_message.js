@@ -335,25 +335,15 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           if (index === 0) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-<<<<<<< HEAD
-            // alert($mqtt.getDanliao().length);
-            // for(var i=0;i<$mqtt.getDanliao().length;i++){
-            //   alert(sqlid+i+"来了"+$scope.msgs);
-=======
             // $ToastUtils.showToast($mqtt.getDanliao().length);
             // for(var i=0;i<$mqtt.getDanliao().length;i++){
             //   $ToastUtils.showToast(sqlid+i+"来了"+$scope.msgs);
->>>>>>> 4a2514664bb2627f32e95dab556c1091c53f597b
             //   // if($scope.msgs[i]._id === sql_id){
             //   //   // $mqtt.getDanliao().splice(i, 1);
             //   //   // break;
             //   // }
             // }
-<<<<<<< HEAD
-            $scope.sendSingleMsg(topic,content,id,account,sqlid);
-=======
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
->>>>>>> 4a2514664bb2627f32e95dab556c1091c53f597b
           } else if (index === 1) {
 
           }
