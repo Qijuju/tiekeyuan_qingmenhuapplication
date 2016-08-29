@@ -30,7 +30,40 @@ angular.module('im.routes', [])
         abstract: true,
         templateUrl: 'templates/tabs.html'
       })
-
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html',
+        controller: 'welcomeCtrl'
+      })
+      .state('newspage', {
+        url: '/newspage',
+        templateUrl: 'templates/newsPage.html',
+        controller: 'newspageCtrl'
+      })
+      .state('datapicture', {
+        url: '/datapicture',
+        templateUrl: 'templates/datapicture.html',
+        controller: 'datapictureCtrl',
+        cache:false
+      })
+      .state('twoDimensionPic', {
+        url: '/twoDimensionPic',
+        templateUrl: 'templates/twoDimensionPic.html',
+        controller: 'twoDimensionPicCtrl',
+        cache:false
+      })
+      .state('groupcall', {
+        url: '/groupcall',
+        templateUrl: 'templates/groupcall.html',
+        controller: 'groupcallCtrl',
+        cache:false
+      })
+      .state('gesturepassword', {
+        url: '/gesturepassword',
+        templateUrl: 'templates/gesturepassword.html',
+        controller: 'gesturepasswordCtrl',
+        cache:false
+      })
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
@@ -88,14 +121,33 @@ angular.module('im.routes', [])
       })
 
       .state('groupSetting', {
-        url: '/groupSetting',
+        url: '/groupSetting/:groupid/:chatname/:grouptype',
         templateUrl: 'templates/group-setting.html',
-        controller: 'groupSettingCtrl'
+        controller: 'groupSettingCtrl',
+        cache:false
       })
       .state('groupModifyName', {
-        url: '/groupModifyName',
+        url: '/groupModifyName/:groupid/:groupname',
         templateUrl: 'templates/group-modifyname.html',
-        controller: 'groupModifyNameCtrl'
+        controller: 'groupModifyNameCtrl',
+        cache:false
+
+      })
+
+      .state('groupMember', {
+        url: '/groupMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-member.html',
+        controller: 'groupMemberCtrl',
+        cache:false
+
+      })
+
+      .state('groupDeptMember', {
+        url: '/groupDeptMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-deptmember.html',
+        controller: 'groupDeptMemberCtrl',
+        cache:false
+
       })
 
 
@@ -327,7 +379,7 @@ angular.module('im.routes', [])
       })
 
       .state('historyMessage', {
-        url: '/historyMessage/:id/:ssid',
+        url: '/historyMessage/:id/:ssid/:grouptype',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
         cache:false
@@ -351,6 +403,6 @@ angular.module('im.routes', [])
         cache:false
       })
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
-
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/welcome');
   });

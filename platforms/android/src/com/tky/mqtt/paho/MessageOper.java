@@ -115,15 +115,15 @@ public class MessageOper {
 		String msgType = "User";
 		if (IMMsgFactory.MsgType.User.equals(type)) {
 			msgType = "User";
-		} else if (IMMsgFactory.MsgType.Group.equals(IMMsgFactory.MsgType.Group)) {
+		} else if (IMMsgFactory.MsgType.Group.equals(type)) {
 			msgType = "Group";
-		} else if (IMMsgFactory.MsgType.Dept.equals(IMMsgFactory.MsgType.Dept)) {
+		} else if (IMMsgFactory.MsgType.Dept.equals(type)) {
 			msgType = "Dept";
-		} else if (IMMsgFactory.MsgType.Radio.equals(IMMsgFactory.MsgType.Radio)) {
+		} else if (IMMsgFactory.MsgType.Radio.equals(type)) {
 			msgType = "Radio";
-		} else if (IMMsgFactory.MsgType.Receipt.equals(IMMsgFactory.MsgType.Receipt)) {
+		} else if (IMMsgFactory.MsgType.Receipt.equals(type)) {
 			msgType = "Receipt";
-		} else if (IMMsgFactory.MsgType.System.equals(IMMsgFactory.MsgType.System)) {
+		} else if (IMMsgFactory.MsgType.System.equals(type)) {
 			msgType = "System";
 		}
 		return msgType;

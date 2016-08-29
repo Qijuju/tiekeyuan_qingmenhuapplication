@@ -235,18 +235,23 @@ public class UIUtils {
 	 *
 	 * @param filePath
 	 */
-	public static void openFile(String filePath) {
+	public static boolean openFile(String filePath) {
+		File file = new File(filePath);
+		if (!file.exists()) {
+			return false;
+		}
 		Intent intent = new Intent();
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setAction(Intent.ACTION_VIEW);
 		Uri uri = Uri.fromFile(new File(filePath));
-		String suffix = filePath.substring(filePath.lastIndexOf(".") + 1,
+		String suffix = filePath.substring(filePath.lastIndexOf("."),
 				filePath.length());
 		String mimeType = (suffix == null || TextUtils.isEmpty(suffix) || MimeTypeConstants
 				.getMimeType(suffix) == null) ? MimeTypeConstants
 				.getMimeType("all") : MimeTypeConstants.getMimeType(suffix);
 		intent.setDataAndType(uri, mimeType);
-		UIUtils.getContext().startActivity(intent);
+		getContext().startActivity(intent);
+		return true;
 	}
 
 	/**

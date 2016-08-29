@@ -11,57 +11,78 @@
     <div>
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
         <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{mypersons.UserName}}</div>
+        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
         <P style="font-size: 18px;color: #ffffff">{{mypersons.UserName}}</P>
       </div>
       <ul class="list">
-        <li class="item">
+        <li class="item" style="height: 50px">
           <div class="row" >
-            <div class="col-30" align="center" style="margin-right: 20px">
-              <h2>姓名</h2>
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">姓名</h2>
             </div>
-            <div class="col-70" align="left" >
-              <h2>{{mypersons.UserName}}</h2>
+            <div class="col-70" align="left">
+              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.UserName}}</h2>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" style="height: 50px">
           <div class="row" >
-            <div class="col-30" align="center" style="margin-right: 20px">
-              <h2>部门</h2>
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">部门</h2>
             </div>
-            <div class="col-70" align="left" >
-              <h2>{{mypersons.Duty}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="row" ng-click="updateinformation()">
-            <div class="col-30" align="center" style="margin-right: 20px">
-              <h2>手机号</h2>
-            </div>
-            <div class="col-70" align="left" >
-              <h2>{{mypersons.Mobile}}</h2>
+            <div class="col-70" align="left">
+              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.Duty}}</h2>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="row" ng-click="updateinformation()">
-            <div class="col-30" align="center" style="margin-right: 20px">
-              <h2>办公电话</h2>
+        <li class="item" style="height: 50px">
+          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">手机号</h2>
             </div>
             <div class="col-70" align="left" >
-              <h2>{{mypersons.FixPhone}}</h2>
+              <h2 style="position: absolute;left: 25%;top: 32%">{{mypersons.Mobile}}</h2>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="row"  ng-click="updateinformation()">
-            <div class="col-30" align="center" style="margin-right: 20px">
-              <h2>邮箱</h2>
+        <li class="item" style="height: 50px">
+          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">办公电话</h2>
             </div>
             <div class="col-70" align="left" >
-              <h2>{{mypersons.Email}}</h2>
+              <h2 style="position: absolute;left: 30%;top: 32%">{{mypersons.FixPhone}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item" style="height: 50px">
+          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">邮箱</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.Email}}</h2>
+            </div>
+          </div>
+        </li>
+        <li class="item" style="height: 50px">
+          <div class="row"  style="padding-bottom: 8px">
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">地区</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2 style="position: absolute;left: 20%;top: 32%">北京</h2>
+              <img src="img/dingposition.png" width="25px" height="25px" style="position: absolute;left: 30%;top: 25%">
+            </div>
+          </div>
+        </li>
+        <li class="item" style="height: 50px">
+          <div class="row"  style="padding-bottom: 8px">
+            <div class="col-30" align="center" >
+              <h2 style="position: absolute;left: 5%;top: 32%">天气</h2>
+            </div>
+            <div class="col-70" align="left" >
+              <h2 style="position: absolute;left: 20%;top: 32%"></h2>
             </div>
           </div>
         </li>

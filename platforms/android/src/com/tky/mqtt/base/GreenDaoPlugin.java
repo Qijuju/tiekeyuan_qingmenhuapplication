@@ -3,12 +3,14 @@ package com.tky.mqtt.base;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
+import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SubDeptService;
@@ -103,7 +105,15 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }
             chatList.setLastText(jsonobj.getString("lastText"));
             chatList.setChatType(jsonobj.getString("chatType"));
+            chatList.setSenderId(jsonobj.getString("senderId"));
+            chatList.setSenderName(jsonobj.getString("senderName"));
             obj = chatList;
+        }else if("GroupChatsService".equals(services)){
+          GroupChats groupChats=new GroupChats();
+          groupChats.setId(jsonobj.getString("id"));
+          groupChats.setGroupName(jsonobj.getString("groupName"));
+          groupChats.setGroupType(jsonobj.getString("groupType"));
+          obj=groupChats;
         }
         return obj;
     }
@@ -147,6 +157,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if("ChatListService".equals(services)){
 
+        }else if ("GroupChatsService".equals(services)){
+
         }
         return obj;
     }
@@ -169,6 +181,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= TopContactsService.getInstance(UIUtils.getContext());
         }else if("ChatListService".equals(services)){
             baseInterface= ChatListService.getInstance(UIUtils.getContext());
+        }else if("GroupChatsService".equals(services)){
+          baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
