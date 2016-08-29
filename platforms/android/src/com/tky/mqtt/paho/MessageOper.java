@@ -41,7 +41,7 @@ public class MessageOper {
 			return null;
 		}
 		String type = obj.getString("type");
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), getUserID(), (!"User".equals(type) ? obj.getString("sessionid") : getUserID()), obj.getString("message"), obj.getString("username"));
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**
@@ -57,8 +57,9 @@ public class MessageOper {
 		MessageTypeBean msgBean = null;
 		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
 			MessageBean bean = new MessageBean();
-			bean.set_id((String) msgMap.get("to"));
-			bean.setSessionid((String) msgMap.get("from"));
+			bean.set_id((String) msgMap.get("from"));
+			bean.setSessionid("User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"))) ? (String) msgMap.get("from") : (String) msgMap.get("to"));
+			;
 			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 			bean.setFrom("false");
 			bean.setMessage((String) msgMap.get("message"));

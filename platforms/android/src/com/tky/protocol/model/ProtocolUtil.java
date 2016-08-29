@@ -7,6 +7,9 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +21,10 @@ public class ProtocolUtil {
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
 
-//	private final String configFile = "file:///android_asset/Protocol.xml";
+	private final String configFile = "Protocol.xml";
 
-	private final String XmlNode_Protocol = "Protocol";
-	private final String XmlNode_Node = "Node";
+	//	private final String XmlNode_Protocol = "Protocol";
+//	private final String XmlNode_Node = "Node";
 	private final String XmlNode_Node_Length = "nLength";
 	private final String XmlNode_Node_Fixed = "nFixed";
 	private final String XmlNode_Node_Type = "nType";
@@ -37,7 +40,6 @@ public class ProtocolUtil {
 	@SuppressWarnings("unchecked")
 	private ProtocolUtil(){
 		try {
-//			File f = new File(configFile);
 			SAXReader  reader = new SAXReader();
 			InputStream is = UIUtils.getContext().getAssets().open("Protocol.xml");
 			Document doc = reader.read(is);
@@ -70,7 +72,7 @@ public class ProtocolUtil {
 
 					ptl.addNode(ptlNode);
 				}
-				this.protocolList.put(ptl.getName(), ptl);
+				protocolList.put(ptl.getName(), ptl);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,6 +108,13 @@ public class ProtocolUtil {
 
 			result.putAll(unProtocol(notifyStr, ptl));
 
+			try {
+				result.put(IMPFields.Msg_message, URLDecoder.decode((String)result.get(IMPFields.Msg_message), "UTF-8"));
+				result.put(IMPFields.Msg_fromName, URLDecoder.decode((String)result.get(IMPFields.Msg_fromName), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				throw new IMPException(IMPException.Err_Format, IMPFields.Msg_message);
+			}
+
 		} else {
 			throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
 		}
@@ -117,7 +126,14 @@ public class ProtocolUtil {
 		if(config == null){
 			config = new ProtocolUtil();
 		}
-		Map<String, String> result = new HashMap<String,String>();
+
+		try {
+			sendNotify.put(IMPFields.Msg_message, URLEncoder.encode((String)sendNotify.get(IMPFields.Msg_message), "UTF-8"));
+			sendNotify.put(IMPFields.Msg_fromName, URLEncoder.encode((String)sendNotify.get(IMPFields.Msg_fromName), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new IMPException(IMPException.Err_Format, IMPFields.Msg_message);
+		}
+
 		String sendStr = "";
 		String notifyType = "";
 		if(sendNotify.get(IMPFields.NotifyType) == null)
@@ -243,4 +259,3 @@ public class ProtocolUtil {
 		return data;
 	}
 }
-
