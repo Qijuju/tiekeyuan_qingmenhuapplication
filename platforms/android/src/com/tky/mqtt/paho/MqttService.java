@@ -3,10 +3,6 @@ package com.tky.mqtt.paho;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.os.SystemClock;
-
-import com.tky.mqtt.paho.sync.MqttConnection;
-
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MqttService extends Service {
@@ -21,15 +17,9 @@ public class MqttService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		/*new Thread(new Runnable() {
+		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				*//*mqttConnection = new MqttConnection();
-				try {
-					mqttConnection.connect(getBaseContext());
-				} catch (MqttException e) {
-					e.printStackTrace();
-				}*//*
 				mqttConnection = new MqttConnection();
 				try {
 					mqttConnection.connect(getBaseContext());
@@ -37,13 +27,13 @@ public class MqttService extends Service {
 					e.printStackTrace();
 				}
 			}
-		}).start();*/
-		mqttConnection = new MqttConnection();
+		}).start();
+		/*mqttConnection = new MqttConnection();
 		try {
 			mqttConnection.connect(getBaseContext());
 		} catch (MqttException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		/*MqttReceiver receiver = new MqttReceiver();
 		IntentFilter filter = new IntentFilter();
@@ -59,7 +49,7 @@ public class MqttService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		return super.onStartCommand(intent, flags, startId);
+		return START_STICKY;
 	}
 
 	@Override

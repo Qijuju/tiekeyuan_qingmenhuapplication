@@ -15,6 +15,7 @@ import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -207,13 +208,26 @@ public class MqttChat extends CordovaPlugin {
     }
 
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
+        String tosb = args.getString(0);
+        String message = args.getString(1);
+        if (tosb == null || "".equals(tosb)){
+            ToastUtil.showSafeToast("接收者未知！");
+            return ;
+        }
+        if (message == null || "".equals(message.trim())) {
+            ToastUtil.showSafeToast("消息内容不能为空！");
+            return ;
+        }
+        JSONObject obj = new JSONObject(message);
+        String msg = obj.getString("message");
+        if (msg == null || "".equals(msg.trim())) {
+            return ;
+        }
         //消息发送失败，数据回调，然后结束(断网，失去连接)
         if(!NetUtils.isConnect(cordova.getActivity())){
             setResult("failure",PluginResult.Status.ERROR,callbackContext);
             return ;
         }
-        String tosb = args.getString(0);
-        String message = args.getString(1);
         try {
             MessageOper.sendMsg(tosb, message);
         } catch (IMPException e) {
@@ -357,11 +371,11 @@ public class MqttChat extends CordovaPlugin {
     }
 
     public static MType getType(String type) {
-        if ("U" == type) {
+        if ("User".equals(type)) {
             return MType.U;
-        } else if ("G" == type) {
+        } else if ("Group".equals(type)) {
             return MType.G;
-        } else if ("D" == type) {
+        } else if ("Dept".equals(type)) {
             return MType.D;
         } else {
             return MType.U;

@@ -1,70 +1,138 @@
-<ion-view view-title="应用商城">
-  <ion-nav-bar align-title="center" class="bar-stable">
+<ion-view view-title="郑万铁路客运专线河南有限责任公司">
+  <ion-nav-bar  align-title="center" class="bar-stable">
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
+    <!--<div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>-->
+    <!--<div style="background-color:#387ef5;height: 100%">-->
+      <!--<p class="company_contacts_title font_16 text-center" style="padding-top: 10px;color: #000000" ng-click="dianjiddd()">门户</p>-->
+    <!--</div>-->
     <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
-    <div class="row ">
+    <ion-slide-box slide-interval="1000" does-continue="true" active-slide="myActiveSlide" show-pager="false" auto-play="true" >
+      <!-- ion-slide house each page's content -->
+      <ion-slide>
+        <div style="background-color: transparent;width: 100%;height:200px">
+          <img src="img/qmh1.png" width="100%" height="200px">
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div style="background-color: transparent;width: 100%;height:200px">
+          <img src="img/bim2.png" width="100%" height="200px">
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div style="background-color: transparent;width: 100%;height:200px">
+          <img src="img/bim3.png" width="100%" height="200px">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
+    <div style="background-color:#ffffff;height: 100%" ng-click="dianjiaaa()">
+      <p class="company_contacts_title font_16 text-center" style="padding-top: 10px;color: #000000">综合管理</p>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="a==1"></div>
+    <div class="row" ng-if="a==1">
       <div class="col dark-border" align="center">
-        <a ng-click="showAlert('线形监测')">
+        <a ng-click="pdfshow()">
           <ul>
-            <li><img src="img/xxjk.png" style="height: 80px;width: 80px;" class="padding_10"></li>
-            <li style="color: #8c8c8c">线形监测</li>
+            <li><img src="img/oa.png" style="height: 80px;width: 80px;" class="padding_10"></li>
+            <li style="color: #8c8c8c">办公系统</li>
           </ul>
         </a>
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
 
       <div class="col " align="center">
-        <a ng-click="showAlert('拌和站')">
+        <a ng-click="gogroupcall()">
           <ul>
-            <li><img src="img/bhz.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">拌和站</li>
+            <li><img src="img/xmxx.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">项目信息</li>
           </ul>
         </a>
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('沉降观测')">
+        <a ng-click="showToast('诚信体系')">
           <ul>
-            <li><img src="img/cjgc.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">沉降观测</li>
+            <li><img src="img/khpb.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">诚信体系</li>
           </ul>
         </a>
       </div>
     </div>
-    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
-    <div class="row ">
-      <div class="col" align="center">
-        <a ng-click="showAlert('施工日志')">
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="a==1"></div>
+    <div class="row" ng-if="a==1">
+      <div class="col dark-border" align="center">
+        <a ng-click="showToast('技术管理')">
           <ul>
-            <li><img src="img/dzsgrz.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">施工日志</li>
+            <li><img src="img/jsgl.png" style="height: 80px;width: 80px;" class="padding_10"></li>
+            <li style="color: #8c8c8c">技术管理</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+
+      <div class="col " align="center">
+        <a ng-click="showToast('资料管理')">
+          <ul>
+            <li><img src="img/zlgl.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">资料管理</li>
           </ul>
         </a>
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('检验批')">
+        <a ng-click="showToast('车辆管理')">
           <ul>
-            <li><img src="img/jyp.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">检验批</li>
-          </ul>
-        </a>
-      </div>
-      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
-      <div class="col" align="center">
-        <a ng-click="showAlert('围岩量测')">
-          <ul>
-            <li><img src="img/sdjk.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">围岩量测</li>
+            <li><img src="img/cheliang.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">车辆管理</li>
           </ul>
         </a>
       </div>
     </div>
-    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
-    <div class="row">
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="a==1"></div>
+    <div class="row" ng-if="a==1">
+      <div class="col dark-border" align="center">
+        <a ng-click="showToast('会议管理')">
+          <ul>
+            <li><img src="img/huiyi.png" style="height: 80px;width: 80px;" class="padding_10"></li>
+            <li style="color: #8c8c8c">会议管理</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+
+      <div class="col " align="center">
+        <!--<a ng-click="showToast('资料管理')">-->
+          <!--<ul>-->
+            <!--<li><img src="img/zlgl.png" style="height: 80px;width: 80px" class="padding_10"></li>-->
+            <!--<li style="color: #8c8c8c">资料管理</li>-->
+          <!--</ul>-->
+        <!--</a>-->
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('施工组织')">
+        <!--<a ng-click="showToast('车辆管理')">-->
+          <!--<ul>-->
+            <!--<li><img src="img/cheliang.png" style="height: 80px;width: 80px" class="padding_10"></li>-->
+            <!--<li style="color: #8c8c8c">车辆管理</li>-->
+          <!--</ul>-->
+        <!--</a>-->
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
+    <div style="background-color:#ffffff;height: 100%" ng-click="danxuanze()">
+      <p class="company_contacts_title font_16 text-center" style="padding-top: 10px;color: #000000">{{duan}}</p>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
+    <div style="background-color:#ffffff;height: 100%" ng-click="dianjibbb()">
+      <p class="company_contacts_title font_16 text-center" style="padding-top: 10px;color: #000000">过程控制</p>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="b==1"></div>
+    <div class="row " ng-if="b==1">
+      <div class="col" align="center">
+        <a ng-click="showToast('施工组织')">
           <ul>
             <li><img src="img/sgzz.png" style="height: 80px;width: 80px" class="padding_10"></li>
             <li style="color: #8c8c8c">施工组织</li>
@@ -73,27 +141,65 @@
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('现场监视')">
+        <a ng-click="showToast('调度指挥')">
           <ul>
-            <li><img src="img/spjk.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">现场监视</li>
+            <li><img src="img/diaod.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">调度指挥</li>
           </ul>
         </a>
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('实验室')">
+        <a ng-click="showToast('征地拆迁')">
           <ul>
-            <li><img src="img/sys.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">实验室</li>
+            <li><img src="img/zdcq.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">征地拆迁</li>
           </ul>
         </a>
       </div>
     </div>
-    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
-    <div class="row">
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="b==1"></div>
+    <div class="row " ng-if="b==1">
       <div class="col" align="center">
-        <a ng-click="showAlert('问题库')">
+        <a ng-click="showToast('施工图审核')">
+          <ul>
+            <li><img src="img/sgtsh.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">施工图审核</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('施工日志')">
+          <ul>
+            <li><img src="img/dzsgrz.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">施工日志</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('物资设备')">
+          <ul>
+            <li><img src="img/wzgl.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">物资设备</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="b==1"></div>
+    <div class="row" ng-if="b==1">
+      <div class="col" align="center">
+        <a ng-click="showToast('验工计价')">
+          <ul>
+            <li><img src="img/ygjj.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">验工计价</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('问题库')">
           <ul>
             <li><img src="img/wtk.png" style="height: 80px;width: 80px" class="padding_10"></li>
             <li style="color: #8c8c8c">问题库</li>
@@ -102,24 +208,163 @@
       </div>
       <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
       <div class="col" align="center">
-        <a ng-click="showAlert('验工计价')">
+        <a ng-click="showToast('在线培训')">
           <ul>
-            <li><img src="img/ygjj.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">验工计价</li>
-          </ul>
-        </a>
-      </div>
-      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
-      <div class="col " align="center">
-        <a ng-click="showAlert('更多')">
-          <ul>
-            <li><img src="img/gengduo2.png" style="height: 80px;width: 80px" class="padding_10"></li>
-            <li style="color: #8c8c8c">更多</li>
+            <li><img src="img/zxpx.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">在线培训</li>
           </ul>
         </a>
       </div>
     </div>
     <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
-
+    <div style="background-color:#ffffff;height: 100%" ng-click="dianjiccc()">
+      <p class="company_contacts_title font_16 text-center" style="padding-top: 10px;color: #000000">现场管理</p>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="c==1"></div>
+    <div class="row" ng-if="c==1">
+      <div class="col" align="center">
+        <a ng-click="showToast('梁场')">
+          <ul>
+            <li><img src="img/lc.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">梁场</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('板场')">
+          <ul>
+            <li><img src="img/bc.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">板场</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('试验室')">
+          <ul>
+            <li><img src="img/sys.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">试验室</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="c==1"></div>
+    <div class="row" ng-if="c==1">
+      <div class="col" align="center">
+        <a ng-click="goDatapicture()">
+          <ul>
+            <li><img src="img/bhz.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">拌和站</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('检验批')">
+          <ul>
+            <li><img src="img/jyp.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">检验批</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col " align="center">
+        <a ng-click="showToast('沉降观测')">
+          <ul>
+            <li><img src="img/cjgc.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">沉降观测</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="c==1"></div>
+    <div class="row" ng-if="c==1">
+      <div class="col" align="center">
+        <a ng-click="goTwoDimensionPic()">
+          <ul>
+            <li><img src="img/sdjk.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">隧道监控</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('自动张拉')">
+          <ul>
+            <li><img src="img/zdzl.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">自动张拉</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col " align="center">
+        <a ng-click="showToast('连续压实')">
+          <ul>
+            <li><img src="img/ljys.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">连续压实</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="c==1"></div>
+    <div class="row" ng-if="c==1">
+      <div class="col" align="center">
+        <a ng-click="showToast('隧道形象化')">
+          <ul>
+            <li><img src="img/sdjxhgl.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">隧道形象化</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('桥梁静载')">
+          <ul>
+            <li><img src="img/qljz.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">桥梁静载</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col " align="center">
+        <a ng-click="showToast('连续梁')">
+          <ul>
+            <li><img src="img/xxjk.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">连续梁</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;" ng-if="c==1"></div>
+    <div class="row" ng-if="c==1">
+      <div class="col" align="center">
+        <a ng-click="showToast('轨道板精测')">
+          <ul>
+            <li><img src="img/gdbjt.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">轨道板精测</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col" align="center">
+        <a ng-click="showToast('轨道板外形')">
+          <ul>
+            <li><img src="img/gdbwx.png" style="height: 80px;width: 80px" class="padding_10"></li>
+            <li style="color: #8c8c8c">轨道板外形</li>
+          </ul>
+        </a>
+      </div>
+      <div style="width: 1px; height: 115px; background-color: #8c8c8c;"></div>
+      <div class="col " align="center">
+        <!--<a ng-click="showToast('连续梁')">-->
+          <!--<ul>-->
+            <!--<li><img src="img/xxjk.png" style="height: 80px;width: 80px" class="padding_10"></li>-->
+            <!--<li style="color: #8c8c8c">连续梁</li>-->
+          <!--</ul>-->
+        <!--</a>-->
+      </div>
+    </div>
+    <div style="margin:0;padding:0; width:100%;height:1px;background-color:#8c8c8c;overflow:hidden;"></div>
   </ion-content>
 </ion-view>

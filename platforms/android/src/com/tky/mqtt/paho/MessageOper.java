@@ -2,9 +2,12 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
+import com.tky.protocol.model.IMPFields;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +40,8 @@ public class MessageOper {
 		if (obj == null) {
 			return null;
 		}
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
+		String type = obj.getString("type");
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), getUserID(), (!"User".equals(type) ? obj.getString("sessionid") : getUserID()), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**
@@ -47,22 +51,34 @@ public class MessageOper {
 	 * @throws IMPException
 	 * @throws JSONException
 	 */
-	public static MessageBean unpack(byte[] msg) throws IMPException, JSONException {
-		Map<String, Object> msgMap = IMMsgFactory.createMsg(msg);
-		MessageBean bean = new MessageBean();
-		bean.set_id((String) msgMap.get("to"));
-		bean.setSessionid((String) msgMap.get("from"));
-		bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
-		bean.setFrom("false");
-		bean.setMessage((String) msgMap.get("message"));
-		bean.setMessagetype(getMediaTypeStr((IMMsgFactory.MediaType) msgMap.get("mediaType")));
-		bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
-		bean.setWhen((Long) msgMap.get("when"));
-		bean.setIsFailure("false");
-		bean.setIsDelete("");
-		bean.setImgSrc("");
-		bean.setUsername((String) msgMap.get("fromName"));
-		return bean;
+	public static MessageTypeBean unpack(byte[] msg) throws IMPException, JSONException {
+		Map<String, Object> msgMap = IMMsgFactory.createNotify(msg);
+		Object notifyType = msgMap.get(IMPFields.NotifyType);
+		MessageTypeBean msgBean = null;
+		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
+			MessageBean bean = new MessageBean();
+			bean.set_id((String) msgMap.get("to"));
+			bean.setSessionid((String) msgMap.get("from"));
+			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+			bean.setFrom("false");
+			bean.setMessage((String) msgMap.get("message"));
+			bean.setMessagetype(getMediaTypeStr((IMMsgFactory.MediaType) msgMap.get("mediaType")));
+			bean.setPlatform(getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform")));
+			bean.setWhen((Long) msgMap.get("when"));
+			bean.setIsFailure("false");
+			bean.setIsDelete("");
+			bean.setImgSrc("");
+			bean.setUsername((String) msgMap.get("fromName"));
+			msgBean = bean;
+		} else if (notifyType != null && notifyType.equals(IMPFields.N_Type_Event)) {
+			EventMessageBean bean = new EventMessageBean();
+			bean.setNotifyType(IMPFields.N_Type_Event);
+			bean.setEventCode((String) msgMap.get(IMPFields.EventCode));
+			bean.setWhen((Long) msgMap.get(IMPFields.Eventwhen));
+			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
+			msgBean = bean;
+		}
+		return msgBean;
 	}
 
 	/**
@@ -74,16 +90,18 @@ public class MessageOper {
 		IMMsgFactory.MsgType msgType = IMMsgFactory.MsgType.User;
 		if ("User".equals(type)) {
 			msgType = IMMsgFactory.MsgType.User;
-		} else if ("Group".equals(IMMsgFactory.MsgType.Group)) {
+		} else if ("Group".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Group;
-		} else if ("Dept".equals(IMMsgFactory.MsgType.Dept)) {
+		} else if ("Dept".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Dept;
-		} else if ("Radio".equals(IMMsgFactory.MsgType.Radio)) {
+		} else if ("Radio".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Radio;
-		} else if ("Receipt".equals(IMMsgFactory.MsgType.Receipt)) {
+		} else if ("Receipt".equals(type)) {
 			msgType = IMMsgFactory.MsgType.Receipt;
-		} else if ("System".equals(IMMsgFactory.MsgType.System)) {
+		} else if ("System".equals(type)) {
 			msgType = IMMsgFactory.MsgType.System;
+		} else {
+			msgType = IMMsgFactory.MsgType.User;
 		}
 		return msgType;
 	}
@@ -97,15 +115,15 @@ public class MessageOper {
 		String msgType = "User";
 		if (IMMsgFactory.MsgType.User.equals(type)) {
 			msgType = "User";
-		} else if (IMMsgFactory.MsgType.Group.equals(IMMsgFactory.MsgType.Group)) {
+		} else if (IMMsgFactory.MsgType.Group.equals(type)) {
 			msgType = "Group";
-		} else if (IMMsgFactory.MsgType.Dept.equals(IMMsgFactory.MsgType.Dept)) {
+		} else if (IMMsgFactory.MsgType.Dept.equals(type)) {
 			msgType = "Dept";
-		} else if (IMMsgFactory.MsgType.Radio.equals(IMMsgFactory.MsgType.Radio)) {
+		} else if (IMMsgFactory.MsgType.Radio.equals(type)) {
 			msgType = "Radio";
-		} else if (IMMsgFactory.MsgType.Receipt.equals(IMMsgFactory.MsgType.Receipt)) {
+		} else if (IMMsgFactory.MsgType.Receipt.equals(type)) {
 			msgType = "Receipt";
-		} else if (IMMsgFactory.MsgType.System.equals(IMMsgFactory.MsgType.System)) {
+		} else if (IMMsgFactory.MsgType.System.equals(type)) {
 			msgType = "System";
 		}
 		return msgType;

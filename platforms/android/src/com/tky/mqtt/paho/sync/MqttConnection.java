@@ -9,7 +9,6 @@ import com.tky.mqtt.paho.MqttParams;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.callback.MqttMessageCallback;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -57,6 +56,7 @@ public class MqttConnection {
         MqttMessageCallback callback = new MqttMessageCallback(context, this);
         client.setCallback(callback);
         token = client.connectWithResult(params.getOptions());
+        token.waitForCompletion();
         UIUtils.runInMainThread(new Runnable() {
             @Override
             public void run() {

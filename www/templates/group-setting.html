@@ -9,7 +9,7 @@
   <ion-content  style="background-color:#e5e5e5 " >
     <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
       <img src="img/icon_group_conversation.png" width="70px" height="70px" style="margin-top: 30px">
-      <P style="font-size: 18px">专家组</P>
+      <P style="font-size: 18px">{{groupName}}</P>
 
     </div>
     <div class="row" style=" background-color: #ffffff; height: 80px">
@@ -48,58 +48,37 @@
       </div>
     </div>
 
-    <div >
-      <div class="row">
-        <ul class="col-20" align="center">
-          <li><img src="img/icon_friends.png" width="40" height="40"></li>
-        </ul>
-        <ul class="col-20" align="center">
-          <li><img src="img/icon_friends.png" width="40" height="40"></li>
-        </ul>
-        <ul class="col-20" align="center">
-          <li><img src="img/icon_friends.png" width="40" height="40"></li>
-        </ul>
-        <ul class="col-20" align="center">
-          <li><img src="img/icon_local_contact.png" width="40" height="40"></li>
-        </ul>
-        <ul class="col-20" align="center">
-          <li>
-          <li>
-            <img src="img/icon_local_contact.png" width="40" height="40"></li>
-
-          </li>
-        </ul>
-
+    <ul class="list " style="margin-bottom: 10px">
+      <div ng-click="goGroupPerson(groupId,groupName,groupType)">
+        <li class="item item-toggle item-button-right" >
+          群成员
+          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
+        </li>
       </div>
 
-    </div>
-
-    <div class="item ">
-      群名称
-      <i class="rj-push-right">专家组</i>
-    </div>
-
-    <div>
-      <ul>
-        <Li>
-          <ion-toggle ng-click="meizuo()">
-            聊天置顶
-          </ion-toggle>
-        </Li>
-        <Li>
-          <ion-toggle ng-click="meizuo()">
-            消息免打扰
-          </ion-toggle>
-        </Li>
-        <li class="item" ng-click="meizuo()">
-          <a href="#/tab/message">清空聊天记录</a>
+      <div ng-click="goGroupName(groupId,groupName)">
+        <li class="item item-toggle item-button-right">
+          群名称
+          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
         </li>
-      </ul>
-    </div>
-
-    <div style="margin-bottom: 10px" ng-click="meizuo()">
-      <button class="button button-block button-positive" ng-click="addFriend()">
-        删除并退出
+      </div>
+      <Li>
+        <ion-toggle ng-click="meizuo()">
+          聊天置顶
+        </ion-toggle>
+      </Li>
+      <Li>
+        <ion-toggle ng-click="meizuo()">
+          消息免打扰
+        </ion-toggle>
+      </Li>
+      <li class="item" ng-click="meizuo()">
+        <a >清空聊天记录</a>
+      </li>
+    </ul>
+    <div style="margin-bottom: 10px">
+      <button class="button button-block button-positive" ng-click="dissolveGroup()">
+        解散该群
       </button>
     </div>
 

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic','ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers','my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services','message.services','my.services'])
+angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic','ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers','my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services','message.services','my.services','group.services'])
 
 /*'im.controllers', 'starter.services',*/
   .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api) {
@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
 
     });
 
-    //主页面显示退出提示框
+    /*//主页面显示退出提示框
     $ionicPlatform.registerBackButtonAction(function (e) {
 
       e.preventDefault();
@@ -44,7 +44,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       }
 
       return false;
-    }, 101);
+    }, 101);*/
 
 
 

@@ -233,10 +233,13 @@ public class UIUtils {
 	/**
 	 * 打开文件（各种类型）
 	 *
-	 * @param activity
 	 * @param filePath
 	 */
-	public static void openFile(Activity activity, String filePath) {
+	public static boolean openFile(String filePath) {
+		File file = new File(filePath);
+		if (!file.exists()) {
+			return false;
+		}
 		Intent intent = new Intent();
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setAction(Intent.ACTION_VIEW);
@@ -247,7 +250,8 @@ public class UIUtils {
 				.getMimeType(suffix) == null) ? MimeTypeConstants
 				.getMimeType("all") : MimeTypeConstants.getMimeType(suffix);
 		intent.setDataAndType(uri, mimeType);
-		activity.startActivity(intent);
+		getContext().startActivity(intent);
+		return true;
 	}
 
 	/**
@@ -315,5 +319,22 @@ public class UIUtils {
 		}
 
 		return info.activityInfo.name;
+	}
+
+	/**
+	 * 安装应用
+	 * @param context
+	 * @param appPath
+	 */
+	public static void installApk(final String appPath) {
+		runInMainThread(new Runnable() {
+			@Override
+			public void run() {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.fromFile(new File(appPath)), "application/vnd.android.package-archive");
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getContext().startActivity(intent);
+			}
+		});
 	}
 }

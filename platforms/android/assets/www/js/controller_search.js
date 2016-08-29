@@ -3,6 +3,11 @@
  */
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
+
+     // document.getElementById("searchdata").value =1;
+
+
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {
@@ -118,7 +123,8 @@ angular.module('search.controllers', [])
           }else{
             $state.go('messageDetail',{
               "id":id,
-              "ssid":name
+              "ssid":name,
+              "grouptype":'User'
             });
           }
 
