@@ -395,6 +395,7 @@ angular.module('contacts.services', [])
     var fifthname;
     var sixthname;
     var seventhname;
+    var logindeptname;
 
     var firstId;
     var secondId;
@@ -502,7 +503,6 @@ angular.module('contacts.services', [])
           //拿到root部门的详细信息
           firstname = msg.deptInfo
           $api.getChild(deptId, secondCount, 10, function (msg) {
-
             deptSecondInfo = msg;
             count1 = msg.deptCount;
             count2 = msg.userCount;
@@ -815,6 +815,25 @@ angular.module('contacts.services', [])
       clearEngithCount: function () {
         eighthCount = 1;
       },
+
+      //获取登录用户所在的部门
+
+      loginDeptInfo: function (deptId) {
+
+        $api.getDeparment(deptId, function (msg) {
+          logindeptname = msg.deptInfo.DeptName
+          $rootScope.$broadcast('logindept.update');
+
+        }, function (msg) {
+
+        });
+
+      },
+      getloginDeptInfo: function () {
+        return logindeptname;
+      },
+
+
 
 
 

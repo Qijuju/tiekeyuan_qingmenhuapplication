@@ -251,6 +251,7 @@ angular.module('contacts.controllers', [])
             }else{
               // $ToastUtils.showToast("有会话的时候");
               $scope.savemsg();
+              
             }
           }, function (err) {
             $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
@@ -308,10 +309,7 @@ angular.module('contacts.controllers', [])
           }
         }
       })
-      //加滑动底部
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
+
     });
 
     $scope.topGoDetail = function (id) {
@@ -1406,25 +1404,16 @@ angular.module('contacts.controllers', [])
         $contacts.clearSecondCount();
         //部门id
         $scope.depid=$contacts.getLoignInfo();
-        $contacts.deptInfo($scope.depid)
+        $contacts.loginDeptInfo($scope.depid);
         $group.allGroup();
       })
     });
 
-    $scope.$on('second.update', function (event) {
+    $scope.$on('logindept.update', function (event) {
       $scope.$apply(function () {
         //部门id
-        $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
+        $scope.deptinfo = $contacts.getloginDeptInfo();
 
-        //部门群的信息会被放入
-        var deptobj={};
-        deptobj.id=$scope.depid;
-        deptobj.groupName=$scope.deptinfo;
-        deptobj.groupType='Dept';
-        $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
-        },function (err) {
-          $ToastUtils.showToast(err);
-        })
       })
     });
 
