@@ -251,7 +251,7 @@ angular.module('contacts.controllers', [])
             }else{
               // $ToastUtils.showToast("有会话的时候");
               $scope.savemsg();
-              
+
             }
           }, function (err) {
             // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
@@ -502,6 +502,10 @@ angular.module('contacts.controllers', [])
     $scope.$on('third.update', function (event) {
 
       $scope.$apply(function () {
+        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
+
         $scope.count1 = $contacts.getCount3();
         if ($scope.count1 > 0) {
           var olddepts = $contacts.getDeptThirdInfo().deptList;
@@ -521,8 +525,7 @@ angular.module('contacts.controllers', [])
           }
         }
 
-        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
 
         $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
         var thirddiv = document.getElementById("thirdscroll");
@@ -1429,38 +1432,36 @@ angular.module('contacts.controllers', [])
     });
 
     //我创建的
-    $scope.goCreateGroup=function (id,name) {
+    $scope.goCreateGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //我加入的
-    $scope.goJoinGroup=function (id,name) {
+    $scope.goJoinGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //部门的群
-    $scope.goDepartmentGroup=function (id,name) {
+    $scope.goDepartmentGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      // $ToastUtils.showToast("进来丛台");
-      // $state.go('tab.message',{
-      //   "id":id,
-      //   "sessionid":name,
-      //   "grouptype":"Dept"
-      // });
+
       $state.go('messageGroup',{
         "id":id,
         "chatName":name,
-        "grouptype":"Dept"
+        "grouptype":"Dept",
+        "ismygroup":ismygrop
       });
     }
 

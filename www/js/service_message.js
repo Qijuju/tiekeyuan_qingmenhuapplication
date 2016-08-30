@@ -102,6 +102,9 @@ angular.module('message.services', [])
       getData:function () {
         return savegroupdata;
       },
+      getAllGroupChatList:function () {
+        return grouplist;
+      },
       getGroupIdChatName:function (id,chatname) {
         $rootScope.id=id;
         $rootScope.username=chatname;

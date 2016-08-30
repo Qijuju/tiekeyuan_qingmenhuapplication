@@ -564,7 +564,6 @@ angular.module('contacts.services', [])
 
           });
 
-
         }, function (msg) {
 
         });
