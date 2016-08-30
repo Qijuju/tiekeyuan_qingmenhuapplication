@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat.Builder;
 
@@ -31,7 +32,7 @@ public class MqttNotification {
 		cancelAll();
 	}
 
-	public static void showNotify(String userID, String title, String content, Intent intent) {
+	public static void showNotify(String userID, int imgRes, String title, String content, Intent intent) {
 		/*if (manager == null) {
 			manager = (NotificationManager) UIUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		}*/
@@ -45,7 +46,8 @@ public class MqttNotification {
 			.setContentIntent(pendingIntent)
 			.setContentText(content)
 			.setTicker(content).setWhen(when)
-			.setSmallIcon(R.drawable.screen);
+			.setSmallIcon(imgRes)
+			.setLargeIcon(BitmapFactory.decodeResource(UIUtils.getResources(), imgRes));
 		Notification notification = notificationCompat.build();
 		manager.notify(addAndGetNotification(userID), notification);
 	}

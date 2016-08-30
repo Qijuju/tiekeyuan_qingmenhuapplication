@@ -21,14 +21,14 @@ angular.module('contacts.controllers', [])
     //点击头像发送消息
     $scope.createchat = function (id, phone,name) {
       // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // alert("进来创建聊天");
+      // $ToastUtils.showToast("进来创建聊天");
       $rootScope.isPersonSend = 'true';
       // $state.go('tab.message', {
       //   "id": id,
       //   "sessionid": name
       // });
       if(id ===null || name ===null || id === '' ||name ===''){
-        // alert("当前用户信息不全");
+        // $ToastUtils.showToast("当前用户信息不全");
       }else{
         $state.go('messageDetail',{
           "id":id,
@@ -119,10 +119,10 @@ angular.module('contacts.controllers', [])
         $scope.receiverssid = $scope.firstUserId;
         $scope.chatName = $mqtt.getFirstReceiverChatName();
         $scope.firstmessageType = $mqtt.getMessageType();
-        // alert("未读消息singlecount值"+$scope.lastCount+"未读群聊count"+$scope.lastGroupCount+$scope.firstUserId+$scope.chatName+$scope.firstmessageType);
+        // $ToastUtils.showToast("未读消息singlecount值"+$scope.lastCount+"未读群聊count"+$scope.lastGroupCount+$scope.firstUserId+$scope.chatName+$scope.firstmessageType);
         // if ($scope.userId === '') {
 
-          // alert("first login"+$scope.receiverssid+$scope.firstmessageType);
+          // $ToastUtils.showToast("first login"+$scope.receiverssid+$scope.firstmessageType);
         // } else if ($scope.userId != $scope.firstUserId) {
           /**
            *  如果其他用户给当前用户发信息，则在会话列表添加item
@@ -130,7 +130,7 @@ angular.module('contacts.controllers', [])
            */
           // $scope.receiverssid = $scope.firstUserId;
           // $scope.chatName = $mqtt.getFirstReceiverChatName();
-        //   alert("有正常的用户名后" + $scope.receiverssid + $scope.chatName);
+        //   $ToastUtils.showToast("有正常的用户名后" + $scope.receiverssid + $scope.chatName);
         // } else {
         //   $scope.receiverssid = $scope.userId;
         // }
@@ -145,17 +145,17 @@ angular.module('contacts.controllers', [])
           // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
           //收到消息时先判断会话列表有没有这个用户
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
-            // alert(data.length + "收到geren消息时，查询chat表有无当前用户");
+            // $ToastUtils.showToast(data.length + "收到geren消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // alert("没有该danren会话");
+              // $ToastUtils.showToast("没有该danren会话");
               $rootScope.isPersonSend = 'true';
               if ($rootScope.isPersonSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
-                // alert("会话列表聊天类型" + $scope.messageType);
+                // $ToastUtils.showToast("会话列表聊天类型" + $scope.messageType);
                 //往service里面传值，为了创建会话
                 $chatarr.getIdChatName($scope.receiverssid, $scope.chatName);
                 $scope.items = $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
-                // alert($scope.items.length + "长度");
+                // $ToastUtils.showToast($scope.items.length + "长度");
                 $scope.$on('chatarr.update', function (event) {
                   $scope.$apply(function () {
                     $scope.items = $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
@@ -165,20 +165,20 @@ angular.module('contacts.controllers', [])
               }
             }
           }, function (err) {
-            alert("收到未读消息时，查询chat列表" + err);
+            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
-            // alert("未读消息时取出消息表中最后一条数据"+data.length);
+            // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             $scope.lastText = data[0].message;//最后一条消息内容
             $scope.lastDate = data[0].when;//最后一条消息的时间
             $scope.chatName = data[0].username;//对话框名称
-            // alert($scope.chatName + "用户名1");
+            // $ToastUtils.showToast($scope.chatName + "用户名1");
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('ChatListService', 'where id=?', $scope.receiverssid, function (data) {
               $scope.unread = $scope.lastCount;
-              // alert("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+              // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
@@ -198,16 +198,16 @@ angular.module('contacts.controllers', [])
 
                 });
               }, function (err) {
-                alert(err + "数据保存失败");
+                $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              alert(err);
+              $ToastUtils.showToast(err);
             });
           }, function (err) {
-            alert(err);
+            $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
-          // alert("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
+          // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
           /**
            * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
            * 2.查出当前群聊的最后一条聊天记录(messageService)
@@ -216,26 +216,26 @@ angular.module('contacts.controllers', [])
            * 5.数据刷新(chatListService)按时间降序排列展示
            */
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
-            // alert(data.length+"收到qunzu消息时，查询chat表有无当前用户");
+            // $ToastUtils.showToast(data.length+"收到qunzu消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // alert("没有该会话");
+              // $ToastUtils.showToast("没有该会话");
               $rootScope.isGroupSend = 'true';
               if ($rootScope.isGroupSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
                 //获取消息来源人
                 $scope.chatName = $mqtt.getFirstReceiverChatName();//取到消息来源人，准备赋值，保存chat表
-                // alert("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
+                // $ToastUtils.showToast("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
                 //根据群组id获取群名称
                 $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
-                  // alert(data[0].groupName);
+                  // $ToastUtils.showToast(data[0].groupName);
                   $rootScope.groupName = data[0].groupName;
                   //往service里面传值，为了创建会话
                   $grouparr.getGroupIdChatName($scope.receiverssid, $scope.groupName);
                   $scope.items = $grouparr.getAllGroupList($rootScope.isGroupSend, $scope.messageType);
-                  // alert($scope.items.length + "长度");
+                  // $ToastUtils.showToast($scope.items.length + "长度");
                   $scope.$on('groupchatarr.update', function (event) {
                     $scope.$apply(function () {
-                      // alert("contact group监听");
+                      // $ToastUtils.showToast("contact group监听");
                       /**
                        *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
                        *
@@ -245,15 +245,16 @@ angular.module('contacts.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  alert(err + "查询群组对应关系");
+                  $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
-              // alert("有会话的时候");
+              // $ToastUtils.showToast("有会话的时候");
               $scope.savemsg();
+
             }
           }, function (err) {
-            alert("收到群组未读消息时，查询chat列表" + err);
+            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.savemsg=function () {
@@ -261,18 +262,18 @@ angular.module('contacts.controllers', [])
              *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
              *
              */
-            // alert("群组长度" +$scope.receiverssid);
+            // $ToastUtils.showToast("群组长度" +$scope.receiverssid);
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
               $scope.lastText = data[0].message;//最后一条消息内容
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
-              // alert($scope.srcName + "群组消息来源人" + $scope.srcId + $scope.lastText);
+              // $ToastUtils.showToast($scope.srcName + "群组消息来源人" + $scope.srcId + $scope.lastText);
               $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
               //取出id聊天对话的列表数据并进行数据库更新
               $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
                 $scope.unread = $scope.lastGroupCount;
-                // alert("未读群组消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+                // $ToastUtils.showToast("未读群组消息时取出消息表中最后一条数据" + data.length + $scope.unread);
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 if($rootScope.groupName === '' || $rootScope.groupName === undefined){
@@ -280,7 +281,7 @@ angular.module('contacts.controllers', [])
                 }else{
                   chatitem.chatName =$rootScope.groupName;
                 }
-                // alert("第一次创建会话时保存的群聊名称"+chatitem.chatName);
+                // $ToastUtils.showToast("第一次创建会话时保存的群聊名称"+chatitem.chatName);
                 chatitem.imgSrc = data[0].imgSrc;
                 chatitem.lastText = $scope.lastText;
                 chatitem.count = $scope.unread;
@@ -294,16 +295,16 @@ angular.module('contacts.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    alert(err);
+                    $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  alert(err + "数据保存失败");
+                  $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                alert(err);
+                $ToastUtils.showToast(err);
               });
             }, function (err) {
-              alert(err);
+              $ToastUtils.showToast(err);
             });
           }
         }
@@ -358,7 +359,7 @@ angular.module('contacts.controllers', [])
 
     $scope.createchat = function (id, phone,name) {
       // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // alert("进来创建聊天");
+      // $ToastUtils.showToast("进来创建聊天");
       $rootScope.isPersonSend = 'true';
       // $state.go('tab.message', {
       //   "id": id,
@@ -385,15 +386,15 @@ angular.module('contacts.controllers', [])
 
 
     /*$greendao.deleteAllData('TopContactsService',function (data) {
-     alert('清除数据成功');
+     $ToastUtils.showToast('清除数据成功');
      },function (err) {
-     alert(err);
+     $ToastUtils.showToast(err);
      });*/
 
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -483,7 +484,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -501,6 +502,10 @@ angular.module('contacts.controllers', [])
     $scope.$on('third.update', function (event) {
 
       $scope.$apply(function () {
+        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
+
         $scope.count1 = $contacts.getCount3();
         if ($scope.count1 > 0) {
           var olddepts = $contacts.getDeptThirdInfo().deptList;
@@ -520,8 +525,7 @@ angular.module('contacts.controllers', [])
           }
         }
 
-        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
 
         $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
         var thirddiv = document.getElementById("thirdscroll");
@@ -529,7 +533,7 @@ angular.module('contacts.controllers', [])
 
         if (($scope.count1 + $scope.count2) === 10) {
           $scope.thirdStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
+        } else if (($scope.count1 + $scope.count2) < 10) { 
           $scope.thirdStatus = false;
 
         }
@@ -584,7 +588,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils) {
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -704,7 +708,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -830,7 +834,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -976,7 +980,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils) {
 
     $scope.nihao = [];
     $scope.buhao = [];
@@ -1121,7 +1125,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
 
     $scope.eightDept = [];
     $scope.eightUser = [];
@@ -1342,7 +1346,7 @@ angular.module('contacts.controllers', [])
     //点击头像发送消息
     $scope.createchat = function (id, phone,name) {
       // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // alert("进来创建聊天");
+      // $ToastUtils.showToast("进来创建聊天");
       $rootScope.isPersonSend = 'true';
       // $state.go('tab.message', {
       //   "id": id,
@@ -1450,7 +1454,7 @@ angular.module('contacts.controllers', [])
     //部门的群
     $scope.goDepartmentGroup=function (id,name) {
       $rootScope.isGroupSend='true';
-      // alert("进来丛台");
+      // $ToastUtils.showToast("进来丛台");
       // $state.go('tab.message',{
       //   "id":id,
       //   "sessionid":name,
@@ -1483,7 +1487,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt) {
+  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils) {
 
     //  var searchdata1=document.getElementById("searchdata1").innerText;
 
@@ -1692,7 +1696,7 @@ angular.module('contacts.controllers', [])
 
 
   })
-  .controller('attentionDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata,$api,$searchlocal,$addattentionser) {
+  .controller('attentionDetailCtrl',function ($scope,$state,$stateParams,$savaLocalPlugin,$phonepluin,$searchdata,$api,$searchlocal,$addattentionser,$ToastUtils) {
     //返回关注列表界面
     $scope.backAttention = function () {
       $state.go("myAttention");
