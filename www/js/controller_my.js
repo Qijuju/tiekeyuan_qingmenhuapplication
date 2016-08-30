@@ -2,7 +2,8 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$grouparr) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$grouparr,$ionicPlatform,$location) {
+
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
@@ -15,6 +16,12 @@ angular.module('my.controllers', [])
     }, function (msg) {
       $ToastUtils.showToast(msg)
     });
+
+    // $ionicPlatform.registerBackButtonAction(function(e) {
+    //   if ($location.path() == '/account'){
+    //     showConfirm();
+    //   }
+    // }, 501);
 
     // $searchdata.personDetail($rootScope.rootUserId);
     // $scope.$on('person.update', function (event) {

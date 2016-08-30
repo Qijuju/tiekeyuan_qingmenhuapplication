@@ -1,14 +1,16 @@
 .spinner svg {
   width: 50px;
   height: 50px;
-  border: 8px solid;
+  border: 6px solid;
   border-top-color: hsl(112, 100%, 88%);
   border-left-color: hsl(142, 100%, 89%);
   border-bottom-color: hsl(156, 100%, 86%);
   border-right-color: hsl(200, 100%, 87%);
   border-radius: 50%;
   transform: rotate(45deg);
-  margin: -50px auto;
+  margin: 2000px 2000px;
+  /*color: #ffffff;*/
+  /*background-color: #ffffff;*/
 
   display: inline-block;
   /* The background is used to specify the border background */

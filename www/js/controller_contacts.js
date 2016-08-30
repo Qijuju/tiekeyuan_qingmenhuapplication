@@ -251,7 +251,7 @@ angular.module('contacts.controllers', [])
             }else{
               // $ToastUtils.showToast("有会话的时候");
               $scope.savemsg();
-              
+
             }
           }, function (err) {
             $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
@@ -1268,7 +1268,19 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading) {
+
+    // Setup the loader
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
+    // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
+
 
     $scope.userId = $stateParams.userId;
     $mqtt.getUserInfo(function (msg) {
@@ -1276,19 +1288,19 @@ angular.module('contacts.controllers', [])
     },function (msg) {
     })
 
-    $contacts.personDetail($scope.userId);
+    $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
     $scope.$on('personDetail.update', function (event) {
       $scope.$apply(function () {
-        $scope.persondsfs = $contacts.getPersonDetail();
-        if ($scope.persondsfs.UserName.length > 2) {
-          $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
-        } else {
-          $scope.simpleName = $scope.persondsfs.UserName;
-
-        }
-
+          $timeout(function () {
+            $ionicLoading.hide();
+            $scope.persondsfs = $contacts.getPersonDetail();
+            if ($scope.persondsfs.UserName.length > 2) {
+              $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
+            } else {
+              $scope.simpleName = $scope.persondsfs.UserName;
+            }
+          });
       })
-
     });
 
     $scope.backAny = function () {

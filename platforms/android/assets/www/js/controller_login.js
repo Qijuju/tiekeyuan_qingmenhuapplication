@@ -7,7 +7,17 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ionicPlatform,$location,$ionicHistory) {
+    //登陆界面直接退出
+    $ionicPlatform.registerBackButtonAction(function(e) {
+      if ($location.path() == '/login'){
+        ionic.Platform.exitApp();
+      }else {
+        $ionicHistory.goBack();
+      }
+      return false;
+    }, 501);
+
     $mqtt.setLogin(false);
     $scope.name = "";
     $scope.password = "";
