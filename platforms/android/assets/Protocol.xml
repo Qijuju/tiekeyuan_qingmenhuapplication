@@ -41,10 +41,12 @@
 		<Node id="fromName">
 		 	<nLength>3</nLength>
 		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
 		</Node>
 		<Node id="message">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
 		</Node>
 	</Protocol>
 	
@@ -118,6 +120,7 @@
 		<Node id="UserName">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
 		</Node>
 	</Protocol>
 	
@@ -130,6 +133,7 @@
 		<Node id="UserName">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
 		</Node>
 	</Protocol>
 	
@@ -141,6 +145,7 @@
 		</Node>
 	</Protocol>
 	
+	<!-- 
 	<Protocol id="US0">
 		<Node id="UserID">
 		 	<nLength>1</nLength>
@@ -163,4 +168,6 @@
 		 	<nType>A</nType>
 		</Node>
 	</Protocol>
+	 -->
 </Protocols>
+

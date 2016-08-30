@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ProtocolUtil {
-
 	private static ProtocolUtil config = null;
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
@@ -107,14 +106,6 @@ public class ProtocolUtil {
 			Protocol ptl = protocolList.get(IMPFields.MsgProtocol);
 
 			result.putAll(unProtocol(notifyStr, ptl));
-
-			try {
-				result.put(IMPFields.Msg_message, URLDecoder.decode((String)result.get(IMPFields.Msg_message), "UTF-8"));
-				result.put(IMPFields.Msg_fromName, URLDecoder.decode((String)result.get(IMPFields.Msg_fromName), "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				throw new IMPException(IMPException.Err_Format, IMPFields.Msg_message);
-			}
-
 		} else {
 			throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
 		}
@@ -125,13 +116,6 @@ public class ProtocolUtil {
 	public static byte[] doPackage(Map<String,Object> sendNotify) throws IMPException{
 		if(config == null){
 			config = new ProtocolUtil();
-		}
-
-		try {
-			sendNotify.put(IMPFields.Msg_message, URLEncoder.encode((String)sendNotify.get(IMPFields.Msg_message), "UTF-8"));
-			sendNotify.put(IMPFields.Msg_fromName, URLEncoder.encode((String)sendNotify.get(IMPFields.Msg_fromName), "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			throw new IMPException(IMPException.Err_Format, IMPFields.Msg_message);
 		}
 
 		String sendStr = "";
@@ -172,6 +156,13 @@ public class ProtocolUtil {
 			String nodeValue = sendNotify.get(node.getNodeName())==null ? "" : sendNotify.get(node.getNodeName()).toString();
 			int nodeLength = node.getNodeLength();
 			if(nodeValue != null){
+				if(node.get_type().equals(IMPFields.DT_String_CN)){
+					try {
+						nodeValue = URLEncoder.encode(nodeValue, "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						throw new IMPException(IMPException.Err_Format, node.getNodeName());
+					}
+				}
 				if(nodeLength <=0){
 					sendStr += nodeValue;
 				} else if(node.isFixed()){
@@ -209,10 +200,10 @@ public class ProtocolUtil {
 		int position = 0;
 		for(ProtocolNode node : ptl.getProtocolNodes()){
 			int nodeLength = node.getNodeLength();
+			String value = "";
 			if(nodeLength <=0){
-				result.put(node.getNodeName(), notifyStr.substring(position));
+				value = notifyStr.substring(position);
 			} else if(notifyStr.length() >= position + nodeLength){
-				String value = null;
 				if(node.isFixed()){
 					value = notifyStr.substring(position, position+nodeLength);
 					if(node.get_values() != null && !node.get_values().isEmpty() &&
@@ -229,15 +220,20 @@ public class ProtocolUtil {
 					value = notifyStr.substring(position, position+valueLength);
 					position += valueLength;
 				}
-				result.put(node.getNodeName(), convertData(value, node.get_type()));
 			} else {
 				throw new IMPException(IMPException.Err_Length, node.getNodeName());
+			}
+
+			try {
+				result.put(node.getNodeName(), convertData(value, node.get_type()));
+			} catch (UnsupportedEncodingException e) {
+				throw new IMPException(IMPException.Err_Format, node.getNodeName());
 			}
 		}
 		return result;
 	}
 
-	private static Object convertData(String data, String dataTP){
+	private static Object convertData(String data, String dataTP) throws UnsupportedEncodingException{
 		if(dataTP.equals(IMPFields.DT_Boolean)){
 			return Boolean.parseBoolean(data);
 		} else if(dataTP.equals(IMPFields.DT_Int)){
@@ -255,6 +251,9 @@ public class ProtocolUtil {
 			}
 			return list;
 		} else if(dataTP.equals(IMPFields.DT_Map)){
+
+		} else if(dataTP.equals(IMPFields.DT_String_CN)){
+			return URLDecoder.decode(data, "UTF-8");
 		}
 		return data;
 	}

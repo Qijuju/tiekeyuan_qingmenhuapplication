@@ -22,7 +22,6 @@ public class MqttConnection {
     private MqttParams params;
     private MqttAsyncClient mqttAsyncClient;
     private Context context;
-    private boolean isReconnect = false;
     private MqttReceiver receiver;
     private ConnectionType connectionType;
 
@@ -50,7 +49,6 @@ public class MqttConnection {
      */
     public void reconnect() throws MqttException {
         closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
-        isReconnect = true;
         connect(context);
     }
 
@@ -84,6 +82,7 @@ public class MqttConnection {
                         IntentFilter filter = new IntentFilter();
                         filter.addAction(ReceiverParams.SENDMESSAGE);
                         filter.addAction(ReceiverParams.RECONNECT_MQTT);
+                        filter.addAction(ReceiverParams.NET_DOWN_MQTT);
                         filter.addAction(ReceiverParams.CONNECTION_DOWN_MQTT);
                         filter.addAction(ReceiverParams.SUBSCRIBE);
                         context.registerReceiver(receiver, filter);
@@ -133,6 +132,17 @@ public class MqttConnection {
                             public void onConnectionDown() {
                                 try {
                                     closeConnection(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+                                } catch (MqttException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
+                        receiver.setOnNetDownListener(new MqttReceiver.OnNetDownListener() {
+                            @Override
+                            public void onNetDown() {
+                                try {
+                                    closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
                                 } catch (MqttException e) {
                                     e.printStackTrace();
                                 }
@@ -235,7 +245,7 @@ public class MqttConnection {
             mqttAsyncClient = null;
         }
         if (receiver != null) {
-            context.unregisterReceiver(receiver);
+//            context.unregisterReceiver(receiver);
         }
     }
 
@@ -265,6 +275,23 @@ public class MqttConnection {
 
     public void setConnectionType(ConnectionType connectionType) {
         this.connectionType = connectionType;
+    }
+
+    /**
+     * 清理MQTT功能
+     */
+    private void freezeMqtt() {
+        //反注册广播接收者
+        if (receiver != null) {
+            context.unregisterReceiver(receiver);
+        }
+        if (mqttAsyncClient != null) {
+            try {
+                closeConnection(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

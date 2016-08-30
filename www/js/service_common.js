@@ -227,6 +227,9 @@ angular.module('common.services', [])
       getAllGroup:function(success, error) {
         //获取用户所有群组
         api.getAllGroup(success, error);
+      },
+      getAllGroupIds:function(success, error) {//获取所有群组的群组ID，群组ID之间以逗号隔开，返回字符串
+        api.getAllGroupIds(success, error);
       }
     };
   })

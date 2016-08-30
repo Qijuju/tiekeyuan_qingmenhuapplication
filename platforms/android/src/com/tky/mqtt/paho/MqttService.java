@@ -3,6 +3,9 @@ package com.tky.mqtt.paho;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+
+import com.tky.mqtt.paho.utils.MqttOper;
+
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MqttService extends Service {
@@ -56,6 +59,8 @@ public class MqttService extends Service {
 	public void onDestroy() {
 		if (mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			startService(new Intent(getBaseContext(), MqttService.class));
+		} else {
+			MqttOper.freeMqtt();
 		}
 		super.onDestroy();
 	}
