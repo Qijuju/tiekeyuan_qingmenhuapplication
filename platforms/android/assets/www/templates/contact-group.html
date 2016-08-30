@@ -14,7 +14,7 @@
       <div class="rj-contacts-index-bar">我创建的</div>
       <ion-list>
         <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
-                  ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName)">
+                  ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName,item.isMyGroup)">
           <img src="img/default_org_icon.png">
           <h2>{{item.GroupName}}</h2>
           <p>{{item.MemsCount}}人</p>
@@ -26,14 +26,14 @@
     <ion-item class="rj-contacts-item">
       <div class="rj-contacts-index-bar">我加入的</div>
       <ion-list>
-        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="goDepartmentGroup(depid,deptinfo)">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="goDepartmentGroup(depid,deptinfo,false)">
           <img src="img/default_org_icon.png">
           <h2>{{deptinfo}}</h2>
           <p>部门群</p>
 
         </ion-item>
         <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
-                  ng-if="!item.isMyGroup" ng-click="goJoinGroup(item.GroupID,item.GroupName)">
+                  ng-if="!item.isMyGroup" ng-click="goJoinGroup(item.GroupID,item.GroupName,item.isMyGroup)">
           <img src="img/default_org_icon.png">
           <h2>{{item.GroupName}}</h2>
           <p>{{item.MemsCount}}人</p>

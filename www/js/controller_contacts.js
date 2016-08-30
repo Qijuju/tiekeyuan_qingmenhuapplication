@@ -165,7 +165,7 @@ angular.module('contacts.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -198,13 +198,13 @@ angular.module('contacts.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -245,7 +245,7 @@ angular.module('contacts.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
@@ -254,7 +254,7 @@ angular.module('contacts.controllers', [])
 
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.savemsg=function () {
@@ -295,16 +295,16 @@ angular.module('contacts.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
         }
@@ -533,7 +533,7 @@ angular.module('contacts.controllers', [])
 
         if (($scope.count1 + $scope.count2) === 10) {
           $scope.thirdStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) { 
+        } else if (($scope.count1 + $scope.count2) < 10) {
           $scope.thirdStatus = false;
 
         }
@@ -1432,38 +1432,36 @@ angular.module('contacts.controllers', [])
     });
 
     //我创建的
-    $scope.goCreateGroup=function (id,name) {
+    $scope.goCreateGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //我加入的
-    $scope.goJoinGroup=function (id,name) {
+    $scope.goJoinGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //部门的群
-    $scope.goDepartmentGroup=function (id,name) {
+    $scope.goDepartmentGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      // $ToastUtils.showToast("进来丛台");
-      // $state.go('tab.message',{
-      //   "id":id,
-      //   "sessionid":name,
-      //   "grouptype":"Dept"
-      // });
+
       $state.go('messageGroup',{
         "id":id,
         "chatName":name,
-        "grouptype":"Dept"
+        "grouptype":"Dept",
+        "ismygroup":ismygrop
       });
     }
 
