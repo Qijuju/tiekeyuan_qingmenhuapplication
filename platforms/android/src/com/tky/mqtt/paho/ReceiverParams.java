@@ -30,4 +30,12 @@ public class ReceiverParams {
 	 * 消息发送失败
 	 */
 	public static final String SENDMESSAGE_ERROR="com.tky.mqtt.mqttserverdemo.sendmessageerror";
+	/**
+	 * 由于网络断开而断开MQTT
+	 */
+	public static final String NET_DOWN_MQTT = "com.tky.mqtt.mqttserverdemo.net_down_mqtt";
+	/**
+	 * 彻底断掉MQTT的后续工作
+	 */
+	public static final String FREEZE_MQTT = "com.tky.mqtt.mqttserverdemo.free_mqtt";
 }
