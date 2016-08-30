@@ -18,7 +18,7 @@ public class MqttParams {
 	private MqttClientPersistence persistence = new MemoryPersistence();
 	private MqttChatPingSender pingSender = new MqttChatPingSender();
 	private int connectionTimeout = 10;
-	private int keepAliveInterval = 300;//Integer.MAX_VALUE;
+	private int keepAliveInterval = 20;//Integer.MAX_VALUE;
 	private MqttConnectOptions options;
 	private boolean cleanSession = false;
 

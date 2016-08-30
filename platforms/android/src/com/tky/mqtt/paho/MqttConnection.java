@@ -34,7 +34,7 @@ public class MqttConnection {
         mqttAsyncClient = new MqttAsyncClient(params.getServerURI(),
                 params.getClientId(), params.getPersistence(),
                 params.getPingSender());
-        params.getPingSender().start();
+//        params.getPingSender().start();
         IMqttActionListener callback = new MqttActionListener();
         mqttAsyncClient.connect(params.getOptions(), null, callback);
 
