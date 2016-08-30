@@ -40,12 +40,19 @@
 
         </div>
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
-          <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
-           <span>
-             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="margin-right: 10.5%"><font class="rj-message-right">{{msgSingle.message}}</font></p>
-             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)">
+          <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
+
+          <span class="rj-triangle-right"></span>
+          <span>
+          <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true'" ng-click="resendgroupshow(groupid,msgSingle.message,groupid,grouptype,localusr,myUserID,msgSingle._id)"><font class="rj-message-right">{{msgSingle.message}}</font></p>
           </span>
+          <!--<span class="rj-triangle-right"></span>-->
+           <!--<span>-->
+             <!--&lt;!&ndash;<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">&ndash;&gt;-->
+             <!--<p style="margin-right: 10.5%"><font class="rj-message-right">{{msgSingle.message}}</font></p>-->
+             <!--<img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msgSingle.isFailure === 'true')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,msgSingle._id,msgSingle)">-->
+          <!--</span>-->
         </div>
       </div>
     </div>

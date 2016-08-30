@@ -51,7 +51,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         $ionicActionSheet.show({
           buttons: [
             {text: '郑州至万州铁路河南段'},
-            {text: '郑州至周口至阜阳铁路河南段'},
+            {text: '郑州至周口至阜阳铁路河南段'}
           ],
           titleText: '请选择',
           cancelText: '取消',

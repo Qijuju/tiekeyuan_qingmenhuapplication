@@ -840,12 +840,16 @@ angular.module('contacts.services', [])
 
       //获取详情信息
 
-      personDetail: function (id) {
+      personDetail: function (id,$timeout,$ToastUtils) {
         $api.getUser(id, function (msg) {
-          persondetail = msg.user
+          persondetail = msg.user;
           $rootScope.$broadcast('personDetail.update');
         }, function (msg) {
-
+          $timeout(function () {
+            persondetail = null;
+            $rootScope.$broadcast('personDetail.update');
+            $ToastUtils.showToast("获取数据失败")
+          },5000);
         });
       },
 
