@@ -2,7 +2,9 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('application.controllers', ['ionic', 'ngCordova'])
-  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr,$ionicActionSheet) {
+  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$grouparr,$ionicActionSheet,$ionicLoading,$ionicPlatform,$location,$ionicHistory) {
+
+
     $scope.pdfshow=function () {
        // $ToastUtils.showToast($cordovaFileOpener2)
       // /storage/emulated/0/pdf11.pdf
@@ -23,26 +25,62 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
         $scope.a=1;
+        // Setup the loader
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
+        $timeout(function () {
+          $ionicLoading.hide();
+        },500);
       }else {
         $scope.a=0;
       }
+
+
     }
 
     $scope.b=0;
     $scope.dianjibbb=function () {
       if ($scope.b==0){
         $scope.b=1;
+        // Setup the loader
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
+        $timeout(function () {
+          $ionicLoading.hide();
+        },500);
       }else {
         $scope.b=0;
       }
+
     }
     $scope.c=0;
     $scope.dianjiccc=function () {
       if ($scope.c==0){
         $scope.c=1;
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
+        $timeout(function () {
+          $ionicLoading.hide();
+        },500);
       }else {
         $scope.c=0;
       }
+
     }
     $scope.duan='郑州至万州铁路河南段';
     $scope.danxuanze=function () {

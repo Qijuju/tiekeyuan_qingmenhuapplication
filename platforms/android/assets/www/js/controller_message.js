@@ -450,6 +450,12 @@ angular.module('message.controllers', [])
         ssid: $scope.viewtitle
       });
     };
+    
+    $scope.godetail=function (userid) {
+      $state.go('person',{
+        'userId':userid
+      });
+    }
   })
 
 
@@ -469,6 +475,7 @@ angular.module('message.controllers', [])
     $scope._id='';
     $scope.localusr = $rootScope.userName;
     $scope.myUserID = $rootScope.rootUserId;
+
     $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype+$scope.ismygroup);
 
     if ($rootScope.isGroupSend === 'true') {
@@ -902,12 +909,40 @@ angular.module('message.controllers', [])
         'ismygroup':ismygroup
       });
     }
+    $scope.godetail=function (userid) {
+      $state.go('person',{
+        'userId':userid
+      });
+    }
 
 
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location) {
+     // alert($location.path());
+    $scope.a=false
+    $scope.popadd=function () {
+      if (!$scope.a){
+        $scope.a=true
+      }else {
+        $scope.a=false
+      }
+    }
+    $scope.shefalse=function () {
+      $scope.a=false
+    }
+    //扫一扫
+    $scope.saoyisao = function () {
+      $scope.a=false
+      $cordovaBarcodeScanner.scan().then(function(imageData) {
+         $ToastUtils.showToast(imageData.text);
+        // console.log("Barcode Format -> " + imageData.format);
+        // console.log("Cancelled -> " + imageData.cancelled);
+      }, function(error) {
+        // $ToastUtils.showToast( error);
+      });
+    };
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -1186,7 +1221,7 @@ angular.module('message.controllers', [])
     });
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid,chatType) {
-
+      $scope.a=false;
       // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
       $mqtt.clearMsgGroupCount();
@@ -1225,6 +1260,7 @@ angular.module('message.controllers', [])
     };
 
     $scope.goSearch = function () {
+      $scope.a=false;
       $state.go("searchmessage",{
         "UserIDSM":$scope.userId,
         "UserNameSM":$scope.userName

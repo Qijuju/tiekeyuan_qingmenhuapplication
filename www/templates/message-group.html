@@ -28,13 +28,12 @@
           <!--<span class="rj-triangle-left"></span>-->
           <!--<p class="rj-message">{{msg.message}}</p>-->
         <!--</div>-->
-
         <div class="rj-message-wrap" ng-if="(msg.from==='false') && (msg.sessionid === groupid) &&(!(msg.messagetype.substr(0,5)==='Event'))">
-          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
-          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
-          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7" class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
-          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6" class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
-          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7" class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6" class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
           <p class="rj-message" style="margin-left: 14.5%">{{msg.message}}</p>
@@ -56,11 +55,11 @@
              <!--<p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>-->
           <!--</span>-->
         </div>
+        <!--<div>-->
+          <!--<p ng-if="msg.messagetype.substr(0,5)==='Event'" style="margin-top: 5px;" align="center">{{msg.message}}</p>-->
+        <!--</div>-->
         <div>
-          <p ng-if="msg.messagetype.substr(0,5)==='Event'" style="margin-top: 5px;" align="center">{{msg.message}}</p>
-        </div>
-        <div>
-          <p ng-if="msg.messagetype.substr(0,5)==='Event'" style="margin-top: 5px;" align="center">{{msg.message}}</p>
+          <p ng-if="msg.messagetype.substr(0,5)==='Event' && (msg.sessionid === groupid) " style="margin-top: 5px;" align="center">{{msg.message}}</p>
         </div>
       </div>
 

@@ -1357,24 +1357,28 @@ angular.module('contacts.controllers', [])
 
     //点击头像发送消息
     $scope.createchat = function (id, phone,name) {
-      // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // $ToastUtils.showToast("进来创建聊天");
-      $rootScope.isPersonSend = 'true';
-      // $state.go('tab.message', {
-      //   "id": id,
-      //   "sessionid": name
-      // });
-      if ($scope.myid == $scope.userId) {
-        $ToastUtils.showToast("无法对自己进行该项操作")
-      } else if (id === null || name === null || id === '' || name === '') {
+      if (id==""||id==null||name==""||name==null){
         $ToastUtils.showToast("当前用户信息不全")
-      } else {
-        $saveMessageContacts.saveMessageContacts(id, phone, name);
-        $state.go('messageDetail', {
-          "id": id,
-          "ssid": name,
-          "grouptype":'User'
-        });
+      }else {
+        // $saveMessageContacts.saveMessageContacts(id,phone,name);
+        // $ToastUtils.showToast("进来创建聊天");
+        $rootScope.isPersonSend = 'true';
+        // $state.go('tab.message', {
+        //   "id": id,
+        //   "sessionid": name
+        // });
+        if ($scope.myid == $scope.userId) {
+          $ToastUtils.showToast("无法对自己进行该项操作")
+        } else if (id === null || name === null || id === '' || name === '') {
+          $ToastUtils.showToast("当前用户信息不全")
+        } else {
+          $saveMessageContacts.saveMessageContacts(id, phone, name);
+          $state.go('messageDetail', {
+            "id": id,
+            "ssid": name,
+            "grouptype":'User'
+          });
+        }
       }
     }
     //取消关注
