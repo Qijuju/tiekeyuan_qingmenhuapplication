@@ -1417,12 +1417,15 @@ angular.module('contacts.controllers', [])
 
   .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao) {
 
+
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $contacts.clearSecondCount();
+        //登录人员的id
+        $scope.loginId=$contacts.getLoignInfo().userID;
         //部门id
-        $scope.depid=$contacts.getLoignInfo();
+        $scope.depid=$contacts.getLoignInfo().deptID;
         $contacts.loginDeptInfo($scope.depid);
         $group.allGroup();
       })
@@ -1480,24 +1483,27 @@ angular.module('contacts.controllers', [])
         "ismygroup":ismygrop
       });
     }
+    var selectInfo={};
+    $scope.createGroupChats=function () {
 
+      //当创建群聊的时候先把登录的id和信息  存到数据库上面
+      selectInfo.id=$scope.loginId;
+      selectInfo.grade="0";
+      selectInfo.isselected=true;
+      $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
+      },function (err) {
 
+      })
 
-
-    $scope.jumpGroupChat=function () {
-
-    };
-
-    //跳转到群聊界面
-
-    $scope.goGroupChats=function () {
-      $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
-        "id":$scope.depid,
-        "sessionid":$scope.deptinfo
+      $state.go('addnewpersonfirst',{
+        createtype:'fromGroup'
       });
+
     }
+
+
+
 
   })
 
