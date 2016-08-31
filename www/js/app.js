@@ -24,6 +24,15 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       }
 
     });
+    //登陆界面直接退出
+    $ionicPlatform.registerBackButtonAction(function(e) {
+      if ($location.path() == '/login'){
+        ionic.Platform.exitApp();
+      }else {
+        $ionicHistory.goBack();
+      }
+      return false;
+    }, 501);
 
     /*//主页面显示退出提示框
     $ionicPlatform.registerBackButtonAction(function (e) {
