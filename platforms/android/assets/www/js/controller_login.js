@@ -7,16 +7,8 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ionicPlatform,$location,$ionicHistory) {
-    //登陆界面直接退出
-    $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'){
-        ionic.Platform.exitApp();
-      }else {
-        $ionicHistory.goBack();
-      }
-      return false;
-    }, 501);
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
+   
 
     $mqtt.setLogin(false);
     $scope.name = "";
@@ -38,12 +30,18 @@ angular.module('login.controllers', [])
       if ($mqtt.isLogin()) {
         alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
-          if (msg != null && msg != '') {
-            $mqtt.startMqttChat(msg);
-            $mqtt.setLogin(true);
-            $state.go('tab.message');
-            return;
-          }
+          $api.getAllGroupIds(function (groups) {
+            if (msg != null && msg != '') {
+              $mqtt.startMqttChat(msg + ',' + groups);
+              $mqtt.setLogin(true);
+              $state.go('tab.message');
+              return;
+            }
+          },function (err) {
+            $ToastUtils.showToast(err, function (success) {
+            },function (err) {
+            })
+          });
         }, function (msg) {
         });
       }
@@ -129,17 +127,23 @@ angular.module('login.controllers', [])
         alert(message);
       });
       $mqtt.getMqtt().getMyTopic(function (msg) {
-        //是否保存密码
-        $mqtt.save('remPwd', $scope.remPwd);
-        if ($scope.remPwd === 'true') {//如果需要保存密码，将密码保存到SP中
-          $mqtt.save('pwd', $scope.password);
-        } else {
-          $mqtt.save('pwd', '');
-        }
-        $mqtt.startMqttChat(msg);
-        $mqtt.setLogin(true);
-        $scope.getUserName();
-        $state.go('tab.message');
+        $api.getAllGroupIds(function (groups) {
+          //是否保存密码
+          $mqtt.save('remPwd', $scope.remPwd);
+          if ($scope.remPwd === 'true') {//如果需要保存密码，将密码保存到SP中
+            $mqtt.save('pwd', $scope.password);
+          } else {
+            $mqtt.save('pwd', '');
+          }
+          $mqtt.startMqttChat(msg + ',' + groups);
+          $mqtt.setLogin(true);
+          $scope.getUserName();
+          $state.go('tab.message');
+        }, function (err) {
+          $ToastUtils.showToast(err,function (success) {
+          },function (err) {
+          });
+        });
       }, function (err) {
         alert(message);
         $ionicLoading.hide();

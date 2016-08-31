@@ -102,5 +102,8 @@ exports.getAllGroup = function(success, error) {//获取用户所有群组
 exports.installApk = function(targetPath, success, error) {//安装应用
   exec(success, error, "ThriftApiClient", "installApk", [targetPath]);
 };
+exports.getAllGroupIds = function(success, error) {//获取所有群组的群组ID，群组ID之间以逗号隔开，返回字符串
+  exec(success, error, "ThriftApiClient", "getAllGroupIds", []);
+};
 
 });

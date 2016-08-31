@@ -14,7 +14,7 @@ angular.module('my.controllers', [])
         $scope.jiename=$scope.mymypersonname
       }
     }, function (msg) {
-      $ToastUtils.showToast(msg)
+      // $ToastUtils.showToast(msg)
     });
 
     // $ionicPlatform.registerBackButtonAction(function(e) {
@@ -129,7 +129,7 @@ angular.module('my.controllers', [])
         });
       }, function (err) {
         // error
-        $ToastUtils.showToast(err);
+        // $ToastUtils.showToast(err);
       });
 
     };
@@ -299,7 +299,7 @@ angular.module('my.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -332,13 +332,13 @@ angular.module('my.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -379,7 +379,7 @@ angular.module('my.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
@@ -387,7 +387,7 @@ angular.module('my.controllers', [])
               $scope.savemymsg();
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.savemymsg=function () {
@@ -428,16 +428,16 @@ angular.module('my.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
 
@@ -563,7 +563,7 @@ angular.module('my.controllers', [])
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
-        $ToastUtils.showToast( error);
+        // $ToastUtils.showToast( error);
       });
     };
     $scope.goGesturepassword = function () {
@@ -593,7 +593,9 @@ angular.module('my.controllers', [])
       width: 350, // lock wrap width
       height: 350, // lock wrap height
       container: 'element', // the id attribute of element
-      inputEnd: function(psw){} // when draw end param is password string
+      inputEnd: function(psw){
+        alert(psw)
+      } // when draw end param is password string
     }
     var lock = new H5lock(opt);
     lock.init();

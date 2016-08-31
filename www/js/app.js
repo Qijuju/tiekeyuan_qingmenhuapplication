@@ -8,7 +8,7 @@
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic','ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers','my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services','message.services','my.services','group.services'])
 
 /*'im.controllers', 'starter.services',*/
-  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api) {
+  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
     $ionicPlatform.ready(function() {
       $api.init();
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,13 +24,24 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       }
 
     });
+    var backButtonPressedOnceToExit=false;
     //登陆界面直接退出
     $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'){
-        ionic.Platform.exitApp();
+      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/tab/message///'){
+        if (backButtonPressedOnceToExit) {
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
       }else {
         $ionicHistory.goBack();
+        $ionicLoading.hide();
       }
+      e.preventDefault();
       return false;
     }, 501);
 

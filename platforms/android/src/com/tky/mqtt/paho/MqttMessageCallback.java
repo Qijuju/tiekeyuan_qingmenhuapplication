@@ -28,10 +28,6 @@ public class MqttMessageCallback implements MqttCallback {
 
 	private Context context;
 	private final MqttConnection mqttAsyncClient;
-	/**
-	 * 重连次数
-	 */
-	private static int count = 0;
 
 	public MqttMessageCallback(Context context, MqttConnection mqttAsyncClient) {
 		this.context = context;
@@ -44,6 +40,7 @@ public class MqttMessageCallback implements MqttCallback {
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
 		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
 		if (NetUtils.isConnect(context) && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
 //                SPUtils.save("count", "第" + count + "次重联");
 				mqttAsyncClient.reconnect();
@@ -73,7 +70,7 @@ public class MqttMessageCallback implements MqttCallback {
             mPlayer.setLooping(false);
             // 开始播放
             mPlayer.start();*/
-		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+ 		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
 			String fromUserId = map.get_id();
@@ -116,12 +113,63 @@ public class MqttMessageCallback implements MqttCallback {
 			String gTopic = SwitchLocal.getATopic(MType.G, groupID);
 			MqttTopicRW.append(gTopic, 1);
 			MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+			MessageBean eventBean = new MessageBean();
+			eventBean.set_id(groupID);
+			eventBean.setSessionid(groupID);
+			eventBean.setUsername("");
+			eventBean.setWhen(eventMsgBean.getWhen());
+			eventBean.setImgSrc("");
+			eventBean.setFrom("false");
+			eventBean.setIsFailure("");
+			eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
+			eventBean.setMessagetype(eventMsgBean.getEventCode());
+			eventBean.setPlatform("Android");
+			eventBean.setType("Group");
+
+			Intent intent = new Intent();
+			intent.setAction(ReceiverParams.MESSAGEARRIVED);
+			intent.putExtra("topic", topic);
+			String json = GsonUtils.toJson(eventBean, MessageBean.class);
+			intent.putExtra("content", json);
+			intent.putExtra("qos", msg.getQos());
+			msg.clearPayload();
+			context.sendBroadcast(intent);
+
 		}
 	}
 
+	/**
+	 * 根据事件类型设置消息内容
+	 * @param eventCode
+	 * @return
+	 */
+	private String getMessage(String eventCode) {
+		String message = "";
+		if ("YAA".equals(eventCode)) {//你被添加为管理员
+			message = "你被添加为管理员";
+		} else if ("YAM".equals(eventCode)) {//你被群组添加为成员
+			message = "你被群组添加为成员";
+		} else if ("G00".equals(eventCode)) {//群组信息增、改
+			message = "群组信息增、改";
+		} else if ("YRA".equals(eventCode)) {//你被移除管理员
+			message = "你被移除管理员";
+		} else if ("YRM".equals(eventCode)) {//你被移除出群组
+			message = "你被移除出群组";
+		} else if ("RG0".equals(eventCode)) {//群组被移除
+			message = "群组被移除";
+		} else if ("GAM".equals(eventCode)) {//群组添加某人
+			message = "群组添加某人";
+		} else if ("GRM".equals(eventCode)) {//群组移除某人
+			message = "群组移除某人";
+		}
+		return message;
+	}
+
 	private void ring() {
+
 		MediaPlayer mp = new MediaPlayer();
 		try {
+
 			mp.setDataSource(context, RingtoneManager
 					.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 			mp.prepare();

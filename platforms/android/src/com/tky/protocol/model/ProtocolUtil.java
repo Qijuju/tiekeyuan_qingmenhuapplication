@@ -7,21 +7,23 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ProtocolUtil {
-
 	private static ProtocolUtil config = null;
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
 
-//	private final String configFile = "file:///android_asset/Protocol.xml";
+	private final String configFile = "Protocol.xml";
 
-	private final String XmlNode_Protocol = "Protocol";
-	private final String XmlNode_Node = "Node";
+	//	private final String XmlNode_Protocol = "Protocol";
+//	private final String XmlNode_Node = "Node";
 	private final String XmlNode_Node_Length = "nLength";
 	private final String XmlNode_Node_Fixed = "nFixed";
 	private final String XmlNode_Node_Type = "nType";
@@ -37,7 +39,6 @@ public class ProtocolUtil {
 	@SuppressWarnings("unchecked")
 	private ProtocolUtil(){
 		try {
-//			File f = new File(configFile);
 			SAXReader  reader = new SAXReader();
 			InputStream is = UIUtils.getContext().getAssets().open("Protocol.xml");
 			Document doc = reader.read(is);
@@ -70,7 +71,7 @@ public class ProtocolUtil {
 
 					ptl.addNode(ptlNode);
 				}
-				this.protocolList.put(ptl.getName(), ptl);
+				protocolList.put(ptl.getName(), ptl);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +106,6 @@ public class ProtocolUtil {
 			Protocol ptl = protocolList.get(IMPFields.MsgProtocol);
 
 			result.putAll(unProtocol(notifyStr, ptl));
-
 		} else {
 			throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
 		}
@@ -117,7 +117,7 @@ public class ProtocolUtil {
 		if(config == null){
 			config = new ProtocolUtil();
 		}
-		Map<String, String> result = new HashMap<String,String>();
+
 		String sendStr = "";
 		String notifyType = "";
 		if(sendNotify.get(IMPFields.NotifyType) == null)
@@ -156,6 +156,13 @@ public class ProtocolUtil {
 			String nodeValue = sendNotify.get(node.getNodeName())==null ? "" : sendNotify.get(node.getNodeName()).toString();
 			int nodeLength = node.getNodeLength();
 			if(nodeValue != null){
+				if(node.get_type().equals(IMPFields.DT_String_CN)){
+					try {
+						nodeValue = URLEncoder.encode(nodeValue, "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						throw new IMPException(IMPException.Err_Format, node.getNodeName());
+					}
+				}
 				if(nodeLength <=0){
 					sendStr += nodeValue;
 				} else if(node.isFixed()){
@@ -193,10 +200,10 @@ public class ProtocolUtil {
 		int position = 0;
 		for(ProtocolNode node : ptl.getProtocolNodes()){
 			int nodeLength = node.getNodeLength();
+			String value = "";
 			if(nodeLength <=0){
-				result.put(node.getNodeName(), notifyStr.substring(position));
+				value = notifyStr.substring(position);
 			} else if(notifyStr.length() >= position + nodeLength){
-				String value = null;
 				if(node.isFixed()){
 					value = notifyStr.substring(position, position+nodeLength);
 					if(node.get_values() != null && !node.get_values().isEmpty() &&
@@ -213,15 +220,20 @@ public class ProtocolUtil {
 					value = notifyStr.substring(position, position+valueLength);
 					position += valueLength;
 				}
-				result.put(node.getNodeName(), convertData(value, node.get_type()));
 			} else {
 				throw new IMPException(IMPException.Err_Length, node.getNodeName());
+			}
+
+			try {
+				result.put(node.getNodeName(), convertData(value, node.get_type()));
+			} catch (UnsupportedEncodingException e) {
+				throw new IMPException(IMPException.Err_Format, node.getNodeName());
 			}
 		}
 		return result;
 	}
 
-	private static Object convertData(String data, String dataTP){
+	private static Object convertData(String data, String dataTP) throws UnsupportedEncodingException{
 		if(dataTP.equals(IMPFields.DT_Boolean)){
 			return Boolean.parseBoolean(data);
 		} else if(dataTP.equals(IMPFields.DT_Int)){
@@ -239,8 +251,10 @@ public class ProtocolUtil {
 			}
 			return list;
 		} else if(dataTP.equals(IMPFields.DT_Map)){
+
+		} else if(dataTP.equals(IMPFields.DT_String_CN)){
+			return URLDecoder.decode(data, "UTF-8");
 		}
 		return data;
 	}
 }
-

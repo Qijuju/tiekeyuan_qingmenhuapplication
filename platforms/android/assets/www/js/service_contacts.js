@@ -347,9 +347,9 @@ angular.module('contacts.services', [])
 
         //调用发短信的功能
         phonePlugin.sms(phone, function (message) {
-          alert("成功")
+          // alert("成功")
         }, function (message) {
-          alert("电话号码不能为空")
+          // alert("电话号码不能为空")
         });
       }
 
@@ -366,9 +366,9 @@ angular.module('contacts.services', [])
     return {
       insert: function (name, phonenumber) {
         SavaLocalPlugin.insert(name, phonenumber, function (message) {
-          alert("成功")
+          // alert("成功")
         }, function (message) {
-          alert("失败")
+          // alert("失败")
         });
       }
     }
@@ -563,7 +563,6 @@ angular.module('contacts.services', [])
             $rootScope.$broadcast('third.update');
 
           });
-
 
         }, function (msg) {
 
@@ -843,7 +842,7 @@ angular.module('contacts.services', [])
 
       personDetail: function (id,$timeout,$ToastUtils) {
         $api.getUser(id, function (msg) {
-          persondetail = msg.user
+          persondetail = msg.user;
           $rootScope.$broadcast('personDetail.update');
         }, function (msg) {
           $timeout(function () {
