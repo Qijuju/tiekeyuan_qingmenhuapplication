@@ -112,19 +112,32 @@ public class MqttMessageCallback implements MqttCallback {
 			String groupID = eventMsgBean.getGroupID();
 			String gTopic = SwitchLocal.getATopic(MType.G, groupID);
 			MqttTopicRW.append(gTopic, 1);
-			MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+			MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
 			MessageBean eventBean = new MessageBean();
 			eventBean.set_id(groupID);
 			eventBean.setSessionid(groupID);
-			eventBean.setUsername("");
+			eventBean.setUsername(eventMsgBean.getUserName() == null ? "" : eventMsgBean.getUserName());
 			eventBean.setWhen(eventMsgBean.getWhen());
 			eventBean.setImgSrc("");
 			eventBean.setFrom("false");
-			eventBean.setIsFailure("");
+			eventBean.setIsFailure("false");
 			eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
 			eventBean.setMessagetype(eventMsgBean.getEventCode());
 			eventBean.setPlatform("Android");
-			eventBean.setType("Group");
+			eventBean.setType("Event");
+			eventBean.setIsDelete("false");
+
+			//如果是被添加群成员，数据需要入库
+			if ("YAM".equals(eventMsgBean.getEventCode())) {
+				GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+				GroupChats groupChats = new GroupChats();
+				groupChats.setId(eventMsgBean.getGroupID());
+				groupChats.setGroupName(eventMsgBean.getGroupName() == null ? "无群组名称" : eventMsgBean.getGroupName());
+				groupChats.setGroupType("Group");
+				groupChats.setIsmygroup(false);
+				groupChatsService.saveObj(groupChats);
+			}
+
 
 			Intent intent = new Intent();
 			intent.setAction(ReceiverParams.MESSAGEARRIVED);

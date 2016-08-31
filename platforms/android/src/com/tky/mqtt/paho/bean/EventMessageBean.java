@@ -23,6 +23,14 @@ public class EventMessageBean extends MessageTypeBean {
      * 群组ID
      */
     private String GroupID;
+    /**
+     * 群组名称
+     */
+    private String GroupName;
+    /**
+     * 被添加或删除的人员的姓名
+     */
+    private String userName;
 
     public String getNotifyType() {
         return NotifyType;
@@ -54,5 +62,21 @@ public class EventMessageBean extends MessageTypeBean {
 
     public void setGroupID(String groupID) {
         GroupID = groupID;
+    }
+
+    public String getUserName() {
+        return (userName == null ? "" : userName);
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getGroupName() {
+        return (GroupName == null ? "无群组名称" : GroupName);
+    }
+
+    public void setGroupName(String groupName) {
+        GroupName = groupName;
     }
 }

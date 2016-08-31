@@ -113,6 +113,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
           groupChats.setId(jsonobj.getString("id"));
           groupChats.setGroupName(jsonobj.getString("groupName"));
           groupChats.setGroupType(jsonobj.getString("groupType"));
+          groupChats.setIsmygroup(jsonobj.getBoolean("ismygroup"));
           obj=groupChats;
         }
         return obj;

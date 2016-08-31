@@ -10,6 +10,7 @@ angular.module('message.controllers', [])
     //   $ToastUtils.showToast(err);
     // });
     $scope.userId = $stateParams.id;
+    // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
     //对话框名称
@@ -1183,12 +1184,6 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
       $mqtt.clearMsgGroupCount();
-      //加滑动底部
-      $timeout(function () {
-        alert("进这个定时器吗");
-        viewScroll.scrollBottom();
-      }, 100);
-
       if(chatType === "User"){
         //进入聊天详情界面
         $ToastUtils.showToast("进入单聊界面");
@@ -1250,6 +1245,7 @@ angular.module('message.controllers', [])
           deptobj.id=$scope.depid;
           deptobj.groupName=$scope.deptinfo;
           deptobj.groupType='Dept';
+          deptobj.ismygroup=false;
           $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
           },function (err) {
             // $ToastUtils.showToast(err);
