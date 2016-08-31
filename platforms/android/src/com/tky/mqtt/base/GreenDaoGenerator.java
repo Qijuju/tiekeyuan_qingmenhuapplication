@@ -23,11 +23,14 @@ public class GreenDaoGenerator {
         addTopContacts(schema);
         addChatLists(schema);
         addGroupChats(schema);
+        addGroupIDS(schema);
         new DaoGenerator().generateAll(schema, "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
-    //常用联系人表
+
+
+  //常用联系人表
     private static void addTopContacts(Schema schema) {
 
         Entity topContacts=schema.addEntity("TopContacts");
@@ -112,5 +115,18 @@ public class GreenDaoGenerator {
 
 
     }
+
+
+    //添加群聊人员选中ids的表
+
+  private static void addGroupIDS(Schema schema) {
+    Entity groupIds=schema.addEntity("SelectedId");
+
+    groupIds.addStringProperty("id").primaryKey();//选中人或者部门的id
+    groupIds.addStringProperty("grade");//选中的的在哪个级别
+    groupIds.addBooleanProperty("isselected");//是否被选中
+
+  }
+
 
 }

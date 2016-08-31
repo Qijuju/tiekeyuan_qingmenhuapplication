@@ -376,7 +376,7 @@ angular.module('contacts.services', [])
 
   .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
 
-    var loginId;
+    var loginInfo;
     var topContactList;
     var rootList = [];
     var deptSecondInfo;
@@ -440,7 +440,7 @@ angular.module('contacts.services', [])
         $mqtt.getUserInfo(function (msg) {
 
           //用户的部门id
-          loginId=msg.deptID;
+          loginInfo=msg;
           $rootScope.$broadcast('login.update');
 
         },function (err) {
@@ -450,7 +450,7 @@ angular.module('contacts.services', [])
 
 
       getLoignInfo:function () {
-        return loginId;
+        return loginInfo;
       },
 
       //获取常用联系人

@@ -6,6 +6,7 @@ import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ParentDept;
+import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
@@ -13,6 +14,7 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ParentDeptService;
+import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SubDeptService;
 import com.tky.mqtt.services.TopContactsService;
 
@@ -114,6 +116,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
           groupChats.setGroupName(jsonobj.getString("groupName"));
           groupChats.setGroupType(jsonobj.getString("groupType"));
           obj=groupChats;
+        }else if ("SelectIdService".equals(services)){
+          SelectedId selectedId=new SelectedId();
+          selectedId.setId(jsonobj.getString("id"));
+          selectedId.setGrade(jsonobj.getString("grade"));
+          selectedId.setIsselected(jsonobj.getBoolean("isselected"));
+          obj=selectedId;
         }
         return obj;
     }
@@ -159,6 +167,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if ("GroupChatsService".equals(services)){
 
+        }else if ("SelectIdService".equals(services)){
+
         }
         return obj;
     }
@@ -183,6 +193,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= ChatListService.getInstance(UIUtils.getContext());
         }else if("GroupChatsService".equals(services)){
           baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
+        }else if ("SelectIdService".equals(services)){
+          baseInterface= SelectIdService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }

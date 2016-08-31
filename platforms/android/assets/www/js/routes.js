@@ -308,24 +308,22 @@ angular.module('im.routes', [])
       })
 
       .state('addnewpersonfirst', {
-        url: '/addnewpersonfirst',
+        url: '/addnewpersonfirst/:createtype',
         templateUrl: 'templates/addNewPerson-first.html',
         controller: 'addNewPersonfirstCtrl',
-        cache:false
+        cache:false,
       })
       .state('addnewpersonsecond', {
-        url: '/addnewpersonsecond/:contactId',
+        url: '/addnewpersonsecond/:contactId:/createtype',
         templateUrl: 'templates/addNewPerson-second.html',
         controller: 'addNewPersonsecondCtrl',
-        cache:false
-
+        cache:false,
       })
       .state('addnewpersonthird', {
-        url: '/addnewpersonthird/:contactId/:secondname',
+        url: '/addnewpersonthird/:contactId/:secondname/:createtype',
         templateUrl: 'templates/addNewPerson-third.html',
         controller: 'addNewPersonthirdCtrl',
-        cache:false
-
+        cache:false,
       })
       .state('addnewpersonforth', {
         url: '/addnewpersonforth/:contactId/:secondname/:thirdname',
