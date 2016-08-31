@@ -82,8 +82,13 @@
 	<!--You're add to group's member-->
 	<Protocol id="YAM">
 		<Node id="GroupID">
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
+		</Node>
+		<Node id="GroupName">
 			<nLength>-1</nLength>
 			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 	</Protocol>
 
@@ -145,7 +150,7 @@
 		</Node>
 	</Protocol>
 
-	<!-- 
+	<!--
 	<Protocol id="US0">
 		<Node id="UserID">
 		 	<nLength>1</nLength>
@@ -156,7 +161,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="UU0">
 		<Node id="UserID">
 		 	<nLength>1</nLength>

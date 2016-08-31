@@ -122,9 +122,9 @@ public class MqttMessageCallback implements MqttCallback {
 			eventBean.setFrom("false");
 			eventBean.setIsFailure("false");
 			eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
-			eventBean.setMessagetype(eventMsgBean.getEventCode());
+			eventBean.setMessagetype("Event_" + eventMsgBean.getEventCode());
 			eventBean.setPlatform("Android");
-			eventBean.setType("Event");
+			eventBean.setType("Group");
 			eventBean.setIsDelete("false");
 
 			//如果是被添加群成员，数据需要入库

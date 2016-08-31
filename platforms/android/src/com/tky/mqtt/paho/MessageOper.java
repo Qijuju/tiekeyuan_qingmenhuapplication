@@ -78,7 +78,7 @@ public class MessageOper {
 			bean.setWhen((Long) msgMap.get(IMPFields.Eventwhen));
 			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
 			bean.setUserName((String) msgMap.get(IMPFields.E_UserName));
-//			bean.setGroupName((String) msgMap.get(IMPFields.E_GroupName));
+			bean.setGroupName((String) msgMap.get(IMPFields.E_GroupName));
 			msgBean = bean;
 		}
 		return msgBean;

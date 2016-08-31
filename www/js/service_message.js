@@ -62,13 +62,13 @@ angular.module('message.services', [])
     return{
       getAllGroupList:function (isGroupSend,messageType) {
         if(isGroupSend === 'true'){
-          // alert("跳转到service界面"+$stateParams.sessionid);
+          alert("跳转到service界面"+$stateParams.sessionid);
           var groupchatitem={};
           if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
             groupchatitem.id=$rootScope.id;
             groupchatitem.chatName=$rootScope.username;
-            // alert("dsddfs"+$rootScope.id+$rootScope.username);
-            // alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
+            alert("dsddfs"+$rootScope.id+$rootScope.username);
+            alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
           }else{
             groupchatitem.id=$stateParams.id;
             groupchatitem.chatName=$stateParams.sessionid;
@@ -108,7 +108,7 @@ angular.module('message.services', [])
       getGroupIdChatName:function (id,chatname) {
         $rootScope.id=id;
         $rootScope.username=chatname;
-        // alert("先收到群组"+$rootScope.id+$rootScope.username);
+        alert("先收到群组"+$rootScope.id+$rootScope.username);
       }
     }
   })
@@ -223,7 +223,7 @@ angular.module('message.services', [])
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
-            // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+            alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
             qunliao.push(arriveMessage);
           }
           return size;
