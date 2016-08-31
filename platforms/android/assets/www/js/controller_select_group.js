@@ -614,15 +614,15 @@ angular.module('selectgroup.controllers', [])
                   obj.id=msg;
                   obj.groupName=$scope.data.name;
                   obj.groupType='Group'
+                  obj.ismygroup=true
                   $greendao.saveObj('GroupChatsService',obj,function (msg) {
                     //跳转群聊天界面
                     $state.go('messageGroup',{
                       "id":obj.id,
-                      "sessionid":$scope.data.name,
+                      "chatName":$scope.data.name,
                       "grouptype":"Group",
-                      "ismygroup":true,
+                      "ismygroup":true
                     });
-
                   },function (err) {
 
                   });

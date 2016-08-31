@@ -450,7 +450,7 @@ angular.module('message.controllers', [])
         ssid: $scope.viewtitle
       });
     };
-    
+
     $scope.godetail=function (userid) {
       $state.go('person',{
         'userId':userid
