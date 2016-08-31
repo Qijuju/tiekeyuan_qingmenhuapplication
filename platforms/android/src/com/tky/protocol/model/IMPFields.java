@@ -60,6 +60,7 @@ public class IMPFields {
 	public static final String Event = "Event";
 
 	public static final String E_GroupID = "GroupID";
+	public static final String E_GroupName = "GroupName";
 	public static final String E_UserName = "UserName";
 
 	public static final String E_Code_YAA ="YAA";

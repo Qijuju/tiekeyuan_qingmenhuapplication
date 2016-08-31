@@ -2,7 +2,8 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$grouparr) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$grouparr,$ionicPlatform,$location) {
+
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
@@ -13,8 +14,14 @@ angular.module('my.controllers', [])
         $scope.jiename=$scope.mymypersonname
       }
     }, function (msg) {
-      $ToastUtils.showToast(msg)
+      // $ToastUtils.showToast(msg)
     });
+
+    // $ionicPlatform.registerBackButtonAction(function(e) {
+    //   if ($location.path() == '/account'){
+    //     showConfirm();
+    //   }
+    // }, 501);
 
     // $searchdata.personDetail($rootScope.rootUserId);
     // $scope.$on('person.update', function (event) {
@@ -122,7 +129,7 @@ angular.module('my.controllers', [])
         });
       }, function (err) {
         // error
-        $ToastUtils.showToast(err);
+        // $ToastUtils.showToast(err);
       });
 
     };
@@ -292,7 +299,7 @@ angular.module('my.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -325,13 +332,13 @@ angular.module('my.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -372,7 +379,7 @@ angular.module('my.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
@@ -380,7 +387,7 @@ angular.module('my.controllers', [])
               $scope.savemymsg();
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.savemymsg=function () {
@@ -421,16 +428,16 @@ angular.module('my.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
 
@@ -556,7 +563,7 @@ angular.module('my.controllers', [])
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
-        $ToastUtils.showToast( error);
+        // $ToastUtils.showToast( error);
       });
     };
     $scope.goGesturepassword = function () {

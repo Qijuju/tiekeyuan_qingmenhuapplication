@@ -4,6 +4,7 @@ import android.os.Environment;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -1096,11 +1097,12 @@ public class ThriftApiClient extends CordovaPlugin {
                 public void onComplete(IMGroup.AsyncClient.AddGroup_call addGroup_call) {
                     try {
                         RSTaddGroup result = addGroup_call.getResult();
+
                         if (result != null && result.result) {
                             String groupID = result.getGroupID();
-                            /*if (groupID != null && !"".equals(groupID.trim())) {
+                            if (groupID != null && !"".equals(groupID.trim())) {
                                 MqttTopicRW.append("LN/G/" + groupID, 1);
-                            }*/
+                            }
                             setResult(groupID, PluginResult.Status.OK, callbackContext);
                         } else if (result != null && "711".equals(result.getResultCode())) {
                             setResult("创建的群组必须大于2人（包括自己）！", PluginResult.Status.ERROR, callbackContext);

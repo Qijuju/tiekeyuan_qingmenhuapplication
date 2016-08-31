@@ -165,7 +165,7 @@ angular.module('contacts.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -198,13 +198,13 @@ angular.module('contacts.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -245,16 +245,16 @@ angular.module('contacts.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
               // $ToastUtils.showToast("有会话的时候");
               $scope.savemsg();
-              
+
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.savemsg=function () {
@@ -295,16 +295,16 @@ angular.module('contacts.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
         }
@@ -502,6 +502,10 @@ angular.module('contacts.controllers', [])
     $scope.$on('third.update', function (event) {
 
       $scope.$apply(function () {
+        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
+
         $scope.count1 = $contacts.getCount3();
         if ($scope.count1 > 0) {
           var olddepts = $contacts.getDeptThirdInfo().deptList;
@@ -521,8 +525,7 @@ angular.module('contacts.controllers', [])
           }
         }
 
-        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
 
         $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
         var thirddiv = document.getElementById("thirdscroll");
@@ -1268,7 +1271,19 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading) {
+
+    // Setup the loader
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
+    // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
+
 
     $scope.userId = $stateParams.userId;
     $mqtt.getUserInfo(function (msg) {
@@ -1276,19 +1291,19 @@ angular.module('contacts.controllers', [])
     },function (msg) {
     })
 
-    $contacts.personDetail($scope.userId);
+    $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
     $scope.$on('personDetail.update', function (event) {
       $scope.$apply(function () {
-        $scope.persondsfs = $contacts.getPersonDetail();
-        if ($scope.persondsfs.UserName.length > 2) {
-          $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
-        } else {
-          $scope.simpleName = $scope.persondsfs.UserName;
-
-        }
-
+          $timeout(function () {
+            $ionicLoading.hide();
+            $scope.persondsfs = $contacts.getPersonDetail();
+            if ($scope.persondsfs.UserName.length > 2) {
+              $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
+            } else {
+              $scope.simpleName = $scope.persondsfs.UserName;
+            }
+          });
       })
-
     });
 
     $scope.backAny = function () {
@@ -1429,38 +1444,36 @@ angular.module('contacts.controllers', [])
     });
 
     //我创建的
-    $scope.goCreateGroup=function (id,name) {
+    $scope.goCreateGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //我加入的
-    $scope.goJoinGroup=function (id,name) {
+    $scope.goJoinGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      $state.go('tab.message',{
+      $state.go('messageGroup',{
         "id":id,
-        "sessionid":name,
-        "grouptype":"Group"
+        "chatName":name,
+        "grouptype":"Group",
+        "ismygroup":ismygrop
       });
     }
 
     //部门的群
-    $scope.goDepartmentGroup=function (id,name) {
+    $scope.goDepartmentGroup=function (id,name,ismygrop) {
       $rootScope.isGroupSend='true';
-      // $ToastUtils.showToast("进来丛台");
-      // $state.go('tab.message',{
-      //   "id":id,
-      //   "sessionid":name,
-      //   "grouptype":"Dept"
-      // });
+
       $state.go('messageGroup',{
         "id":id,
         "chatName":name,
-        "grouptype":"Dept"
+        "grouptype":"Dept",
+        "ismygroup":ismygrop
       });
     }
 

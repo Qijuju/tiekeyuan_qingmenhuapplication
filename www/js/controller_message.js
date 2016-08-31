@@ -10,6 +10,7 @@ angular.module('message.controllers', [])
     //   $ToastUtils.showToast(err);
     // });
     $scope.userId = $stateParams.id;
+    // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
     //对话框名称
@@ -41,7 +42,7 @@ angular.module('message.controllers', [])
       $scope.msgs = $mqtt.getDanliao();
       //$ToastUtils.showToast($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
-      $ToastUtils.showToast(err);
+      // $ToastUtils.showToast(err);
     });
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
@@ -68,7 +69,7 @@ angular.module('message.controllers', [])
         }
         $scope.$broadcast("scroll.refreshComplete");
       }, function (err) {
-        $ToastUtils.showToast(err);
+        // $ToastUtils.showToast(err);
       });
     }
 
@@ -193,13 +194,13 @@ angular.module('message.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -240,7 +241,7 @@ angular.module('message.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
@@ -248,7 +249,7 @@ angular.module('message.controllers', [])
               $scope.saveapplymsg();
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.saveapplymsg=function () {
@@ -289,16 +290,16 @@ angular.module('message.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
         }
@@ -378,7 +379,7 @@ angular.module('message.controllers', [])
           }
         }
       },function (err) {
-        $ToastUtils.showToast("收到未读消息时，查询chat列表"+err);
+        // $ToastUtils.showToast("收到未读消息时，查询chat列表"+err);
       });
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId, function (data) {
         if (data.length === 0) {
@@ -419,16 +420,16 @@ angular.module('message.controllers', [])
                 "sessionid": $scope.chatName
               });
             }, function (err) {
-              $ToastUtils.showToast(err + "加载全部数据失败");
+              // $ToastUtils.showToast(err + "加载全部数据失败");
             });
           }, function (err) {
-            $ToastUtils.showToast(err + "数据保存失败");
+            // $ToastUtils.showToast(err + "数据保存失败");
           });
         }, function (err) {
-          $ToastUtils.showToast(err + "查询聊天列表失败");
+          // $ToastUtils.showToast(err + "查询聊天列表失败");
         });
       }, function (err) {
-        $ToastUtils.showToast(err + "数据离开失败");
+        // $ToastUtils.showToast(err + "数据离开失败");
       });
     }
 
@@ -459,7 +460,7 @@ angular.module('message.controllers', [])
     $scope.groupid=$stateParams.id;
     $scope.chatname=$stateParams.chatName;
     $scope.grouptype=$stateParams.grouptype;
-
+    $scope.ismygroup=$stateParams.ismygroup;
     /**
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
      * @type {string}
@@ -468,7 +469,7 @@ angular.module('message.controllers', [])
     $scope._id='';
     $scope.localusr = $rootScope.userName;
     $scope.myUserID = $rootScope.rootUserId;
-    // $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype);
+    $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype+$scope.ismygroup);
 
     if ($rootScope.isGroupSend === 'true') {
       $grouparr.getGroupIdChatName($scope.groupid,$scope.chatname);
@@ -476,30 +477,30 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast($scope.items.length + "群聊长度");
       $scope.$on('groupchatarr.update', function (event) {
         $scope.$apply(function () {
-          $scope.items = $grouparr.getAllGroupList($rootScope.isPersonSend,$scope.grouptype);
+          $grouparr.getAllGroupChatList();
         });
       });
       $rootScope.isGroupSend = 'false';
       // $ToastUtils.showToast("走这吗？"+$rootScope.isGroupSend);
     }
+      /**
+       * 从数据库根据时间降序查询10条数据进行展示
+       *
+       */
+      $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.groupid, function (data) {
+        // $ToastUtils.showToast("进入群聊界面，查询数据库长度"+data.length);
+        for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
+          $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
+        }
+        for (var i = 1; i <= data.length; i++) {
+          $mqtt.getQunliao().push(data[data.length - i]);
+        }
+        $scope.groupmsgs = $mqtt.getQunliao();
+      }, function (err) {
+        // $ToastUtils.showToast(err);
+      });
 
 
-    /**
-     * 从数据库根据时间降序查询10条数据进行展示
-     *
-     */
-    $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.groupid, function (data) {
-      // $ToastUtils.showToast("进入群聊界面，查询数据库长度"+data.length);
-      for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
-        $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
-      }
-      for (var i = 1; i <= data.length; i++) {
-        $mqtt.getQunliao().push(data[data.length - i]);
-      }
-      $scope.groupmsgs = $mqtt.getQunliao();
-    }, function (err) {
-      $ToastUtils.showToast(err);
-    });
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
@@ -522,7 +523,7 @@ angular.module('message.controllers', [])
         }
         $scope.$broadcast("scroll.refreshComplete");
       }, function (err) {
-        $ToastUtils.showToast(err);
+        // $ToastUtils.showToast(err);
       });
     }
 
@@ -556,6 +557,10 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
         $scope.danliaomsg = $mqtt.getDanliao();
         $scope.qunliaomsg = $mqtt.getQunliao();
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
@@ -614,7 +619,7 @@ angular.module('message.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -648,13 +653,13 @@ angular.module('message.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -695,7 +700,7 @@ angular.module('message.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
@@ -703,7 +708,7 @@ angular.module('message.controllers', [])
               $scope.saveapplymsg();
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
 
           $scope.saveapplymsg=function () {
@@ -744,51 +749,28 @@ angular.module('message.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
         }
       })
-      //加滑动底部
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
     });
 
-    $scope.$on('groupMsgs.error', function (event) {
+    $scope.$on('msgs.error', function (event) {
       $scope.$apply(function () {
         $scope.groupmsgs = $mqtt.getQunliao();
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
-        // $greendao.queryData('MessagesService','where type =?','Group',function (data) {
-        //   $scope.msgs=data;
-        //   $timeout(function() {
-        //     viewScroll.scrollBottom();
-        //   }, 100);
-        // },function (err) {
-        //   $ToastUtils.showToast(err);
-        // });
-        // $greendao.loadAllData('MessagesService',function (data) {
-        //   // $ToastUtils.showToast(data+"update");
-        //   $scope.msgs=data;
-        //   $timeout(function() {
-        //     viewScroll.scrollBottom();
-        //   }, 100);
-        // },function (err) {
-        //   $ToastUtils.showToast(err);
-        // });
-        // $scope.groupMsgs=$mqtt.getAllGroupMsg();
-        // $mqtt.getAllGroupMsg($scope);
       })
     });
 
@@ -816,7 +798,7 @@ angular.module('message.controllers', [])
           }
         }
       },function (err) {
-        $ToastUtils.showToast("收到未读消息时，查询chat列表"+err);
+        // $ToastUtils.showToast("收到未读消息时，查询chat列表"+err);
       });
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.groupid, function (data) {
         if (data.length === 0) {
@@ -859,16 +841,16 @@ angular.module('message.controllers', [])
                 "grouptype":$scope.grouptype
               });
             }, function (err) {
-              $ToastUtils.showToast(err + "加载全部数据失败");
+              // $ToastUtils.showToast(err + "加载全部数据失败");
             });
           }, function (err) {
-            $ToastUtils.showToast(err + "数据保存失败");
+            // $ToastUtils.showToast(err + "数据保存失败");
           });
         }, function (err) {
-          $ToastUtils.showToast(err + "查询聊天列表失败");
+          // $ToastUtils.showToast(err + "查询聊天列表失败");
         });
       }, function (err) {
-        $ToastUtils.showToast(err + "数据离开失败");
+        // $ToastUtils.showToast(err + "数据离开失败");
       });
     }
 
@@ -913,7 +895,8 @@ angular.module('message.controllers', [])
       $state.go('groupSetting',{
         'groupid':id,
         'chatname':name,
-        'grouptype':type
+        'grouptype':type,
+        'ismygroup':ismygroup
       });
     }
 
@@ -928,42 +911,48 @@ angular.module('message.controllers', [])
     // },function (err) {
     //   $ToastUtils.showToast(err);
     // });
-    $scope.userId = $stateParams.id;
-    $scope.userName = $stateParams.sessionid;
-    $scope.messageType = $stateParams.grouptype;
-    // $ToastUtils.showToast($scope.userId+"messageC"+$scope.userName+$scope.messageType);
-    if($rootScope.isGroupSend === 'true'){
-      //若是从群聊那边传过来的，就调用service存储
-      $grouparr.getGroupIdChatName($scope.userId,$scope.userName);
-      $scope.items = $grouparr.getAllGroupList($rootScope.isGroupSend,$scope.messageType);
-      // $ToastUtils.showToast($scope.items.length + "群聊长度");
-      $scope.$on('groupchatarr.update', function (event) {
-        $scope.$apply(function () {
-          $scope.items = $chatarr.getAllGroupList($rootScope.isPersonSend,$scope.messageType);
-        });
-      });
-      $rootScope.isGroupSend = 'false';
-      // $ToastUtils.showToast("走这吗？"+$rootScope.isGroupSend);
-    }else if($rootScope.isPersonSend === 'true'){
-      //若是从单聊那边创建聊天过来的，就调用service存储
-      //获取单聊的对方的userid和username
-      $chatarr.getIdChatName($scope.userId,$scope.userName);
-      $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
-      // $ToastUtils.showToast($scope.items.length + "danliao长度");
-      $scope.$on('chatarr.update', function (event) {
-        $scope.$apply(function () {
-          $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
-        });
-      });
-      $rootScope.isPersonSend = 'false';
-    }
+    /**
+     * 注释主界面创建列表的代码(封闭入口)
+     * 创建群组成功 以后点击直接进入群组/单人聊天界面
+     */
+
+    // $scope.userId = $stateParams.id;
+    // $scope.userName = $stateParams.sessionid;
+    // $scope.messageType = $stateParams.grouptype;
+    // // $ToastUtils.showToast($scope.userId+"messageC"+$scope.userName+$scope.messageType);
+    // if($rootScope.isGroupSend === 'true'){
+    //   //若是从群聊那边传过来的，就调用service存储
+    //   $grouparr.getGroupIdChatName($scope.userId,$scope.userName);
+    //   $scope.items = $grouparr.getAllGroupList($rootScope.isGroupSend,$scope.messageType);
+    //   // $ToastUtils.showToast($scope.items.length + "群聊长度");
+    //   $scope.$on('groupchatarr.update', function (event) {
+    //     $scope.$apply(function () {
+    //       $scope.items = $chatarr.getAllGroupList($rootScope.isPersonSend,$scope.messageType);
+    //     });
+    //   });
+    //   $rootScope.isGroupSend = 'false';
+    //   // $ToastUtils.showToast("走这吗？"+$rootScope.isGroupSend);
+    // }else if($rootScope.isPersonSend === 'true'){
+    //   //若是从单聊那边创建聊天过来的，就调用service存储
+    //   //获取单聊的对方的userid和username
+    //   $chatarr.getIdChatName($scope.userId,$scope.userName);
+    //   $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
+    //   // $ToastUtils.showToast($scope.items.length + "danliao长度");
+    //   $scope.$on('chatarr.update', function (event) {
+    //     $scope.$apply(function () {
+    //       $scope.items = $chatarr.getAll($rootScope.isPersonSend,$scope.messageType);
+    //     });
+    //   });
+    //   $rootScope.isPersonSend = 'false';
+    // }
+
 
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.queryByConditions('ChatListService',function (data) {
       $scope.items=data;
       // $ToastUtils.showToast($scope.items.length+"聊天列表长度");
     },function (err) {
-      $ToastUtils.showToast("按时间查询失败"+err);
+      // $ToastUtils.showToast("按时间查询失败"+err);
     });
     $mqtt.arriveMsg("");
 
@@ -1033,7 +1022,7 @@ angular.module('message.controllers', [])
               }
             }
           }, function (err) {
-            $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
           });
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -1066,13 +1055,13 @@ angular.module('message.controllers', [])
 
                 });
               }, function (err) {
-                $ToastUtils.showToast(err + "数据保存失败");
+                // $ToastUtils.showToast(err + "数据保存失败");
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }, function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
@@ -1116,14 +1105,14 @@ angular.module('message.controllers', [])
                   });
                   $rootScope.isGroupSend = 'false';
                 }, function (err) {
-                  $ToastUtils.showToast(err + "查询群组对应关系");
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
               $scope.savelastmsg();
             }
           }, function (err) {
-            $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
           $scope.savelastmsg=function () {
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
@@ -1158,16 +1147,16 @@ angular.module('message.controllers', [])
                     $grouparr.setData(data);
                     $rootScope.$broadcast('lastgroupcount.update');
                   }, function (err) {
-                    $ToastUtils.showToast(err);
+                    // $ToastUtils.showToast(err);
                   });
                 }, function (err) {
-                  $ToastUtils.showToast(err + "数据保存失败");
+                  // $ToastUtils.showToast(err + "数据保存失败");
                 });
               }, function (err) {
-                $ToastUtils.showToast(err);
+                // $ToastUtils.showToast(err);
               });
             }, function (err) {
-              $ToastUtils.showToast(err);
+              // $ToastUtils.showToast(err);
             });
           }
 
@@ -1195,42 +1184,9 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
       $mqtt.clearMsgGroupCount();
-      //将变化的count赋值给unread对象
-      // $scope.unread = $mqtt.getMsgCount();
-      // //取出最后一条消息记录的数据
-      // $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', id, function (data) {
-      //   $ToastUtils.showToast(data.length+"单聊界面最后一条数据"+id);
-      //   $scope.lastText = data[0].message;//最后一条消息内容
-      //   $scope.lastDate = data[0].when;//最后一条消息的时间
-      //   $scope.chatName = data[0].username;//对话框名称
-      //   $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
-      //   //如果count为0，就不用做数据更新；如果count不为0并且chatname为‘PPP’，则将更改后的unread值插入数据库更新
-      //   $greendao.queryData('ChatListService', 'where CHAT_NAME=? and count !=0', $scope.chatName, function (data) {
-      //     var chatitem = {};
-      //     chatitem.id = data[0].id;
-      //     chatitem.chatName = data[0].chatName;
-      //     chatitem.imgSrc = $scope.imgSrc;
-      //     chatitem.lastText = $scope.lastText;
-      //     chatitem.count = $scope.unread;
-      //     chatitem.isDelete = data[0].isDelete;
-      //     chatitem.lastDate = $scope.lastDate;
-      //     chatitem.chatType =data[0].chatType;
-      //     chatitem.senderId ='',
-      //     chatitem.senderName ='';
-      //     $greendao.saveObj('ChatListService', chatitem, function (data) {
-      //     }, function (err) {
-      //       $ToastUtils.showToast(err);
-      //     });
-      //   }, function (err) {
-      //     $ToastUtils.showToast(err);
-      //   });
-      // }, function (err) {
-      //   $ToastUtils.showToast(err);
-      // });
-
       if(chatType === "User"){
         //进入聊天详情界面
-        // $ToastUtils.showToast("进入单聊界面");
+        $ToastUtils.showToast("进入单聊界面");
         $state.go('messageDetail',
           {
             "id": id,
@@ -1239,34 +1195,28 @@ angular.module('message.controllers', [])
           });
 
       }else if(chatType === "Dept"){
-        // $ToastUtils.showToast("进入部门界面");
+        $ToastUtils.showToast("进入部门界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
         $state.go('messageGroup',{
           "id":id,
           "chatName":ssid,
-          "grouptype":chatType
+          "grouptype":chatType,
+          "ismygroup":false
         });
       }else if(chatType === "Group"){
-        // $ToastUtils.showToast("进入群聊界面");
+        $ToastUtils.showToast("进入群聊界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
         $state.go('messageGroup',{
           "id":id,
           "chatName":ssid,
-          "grouptype":chatType
+          "grouptype":chatType,
+          "ismygroup":true
         });
       }
 
     };
-
-    //
-    //
-    // $scope.goGroupMessage = function (id,chatName) {
-    //
-    //
-    // }
-
 
     $scope.goSearch = function () {
       $state.go("searchmessage",{
@@ -1295,9 +1245,10 @@ angular.module('message.controllers', [])
           deptobj.id=$scope.depid;
           deptobj.groupName=$scope.deptinfo;
           deptobj.groupType='Dept';
+          deptobj.ismygroup=false;
           $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
           },function (err) {
-            $ToastUtils.showToast(err);
+            // $ToastUtils.showToast(err);
           })
         })
       });
@@ -1352,11 +1303,11 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("消息对象"+key);
           $greendao.deleteDataByArg('MessagesService',key,function (data) {
           },function (err) {
-            $ToastUtils.showToast(err+清空消息记录失败);
+            // $ToastUtils.showToast(err+清空消息记录失败);
           });
         }
       },function (err) {
-        $ToastUtils.showToast(err+"查询所有记录失败");
+        // $ToastUtils.showToast(err+"查询所有记录失败");
       });
 
     };
@@ -1507,11 +1458,11 @@ angular.module('message.controllers', [])
           });
 
         },function (err) {
-          $ToastUtils.showToast(err)
+          // $ToastUtils.showToast(err)
         })
 
       },function (err) {
-        $ToastUtils.showToast(err)
+        // $ToastUtils.showToast(err)
 
       });
     }
