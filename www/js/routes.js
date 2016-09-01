@@ -326,7 +326,7 @@ angular.module('im.routes', [])
         cache:false,
       })
       .state('addnewpersonforth', {
-        url: '/addnewpersonforth/:contactId/:secondname/:thirdname',
+        url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype',
         templateUrl: 'templates/addNewPerson-forth.html',
         controller: 'addNewPersonforthCtrl',
         cache:false

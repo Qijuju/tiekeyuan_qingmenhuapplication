@@ -12,6 +12,7 @@ public class SelectedId extends BaseDao {
     private String id;
     private String grade;
     private Boolean isselected;
+    private String type;
 
     public SelectedId() {
     }
@@ -20,10 +21,11 @@ public class SelectedId extends BaseDao {
         this.id = id;
     }
 
-    public SelectedId(String id, String grade, Boolean isselected) {
+    public SelectedId(String id, String grade, Boolean isselected, String type) {
         this.id = id;
         this.grade = grade;
         this.isselected = isselected;
+        this.type = type;
     }
 
     public String getId() {
@@ -48,6 +50,14 @@ public class SelectedId extends BaseDao {
 
     public void setIsselected(Boolean isselected) {
         this.isselected = isselected;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

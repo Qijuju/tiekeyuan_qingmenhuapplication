@@ -476,7 +476,7 @@ angular.module('message.controllers', [])
     $scope.localusr = $rootScope.userName;
     $scope.myUserID = $rootScope.rootUserId;
 
-    $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype+$scope.ismygroup);
+    // $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype+$scope.ismygroup);
 
     if ($rootScope.isGroupSend === 'true') {
       $grouparr.getGroupIdChatName($scope.groupid,$scope.chatname);
