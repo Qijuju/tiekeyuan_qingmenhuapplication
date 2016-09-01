@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class=" button button-icon " ng-click="meizuo()">创建聊天</button>
+      <button class=" button button-icon " ng-click="createGroupChats()">创建聊天</button>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content 　overflow-scroll="false">
@@ -15,7 +15,12 @@
       <ion-list>
         <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
                   ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName,item.isMyGroup)">
-          <img src="img/default_org_icon.png">
+          <div ng-if="item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==1||item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==9" class=" square1" style=" position: absolute;left: 5%;font-size: 14px;padding-top: 9px">群</div>
+          <div ng-if="item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==2||item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==8" class=" square2" style=" position: absolute;left: 5%;font-size: 14px;padding-top: 9px">群</div>
+          <div ng-if="item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==3||item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==7" class=" square3" style=" position: absolute;left: 5%;font-size: 14px;padding-top: 9px">群</div>
+          <div ng-if="item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==4||item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==6" class=" square4" style=" position: absolute;left: 5%;font-size: 14px;padding-top: 9px">群</div>
+          <div ng-if="item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==5||item.GroupID.substring((item.GroupID.length-1),item.GroupID.length)==0" class=" square5" style=" position: absolute;left: 5%;font-size: 14px;padding-top: 9px">群</div>
+          <!--<img src="img/default_org_icon.png">-->
           <h2>{{item.GroupName}}</h2>
           <p>{{item.MemsCount}}人</p>
         </ion-item>

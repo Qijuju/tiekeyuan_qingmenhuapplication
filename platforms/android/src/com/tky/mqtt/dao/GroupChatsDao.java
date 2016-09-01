@@ -26,6 +26,7 @@ public class GroupChatsDao extends AbstractDao<GroupChats, String> {
         public final static Property Id = new Property(0, String.class, "id", true, "ID");
         public final static Property GroupName = new Property(1, String.class, "groupName", false, "GROUP_NAME");
         public final static Property GroupType = new Property(2, String.class, "groupType", false, "GROUP_TYPE");
+        public final static Property Ismygroup = new Property(3, Boolean.class, "ismygroup", false, "ISMYGROUP");
     };
 
 
@@ -43,7 +44,8 @@ public class GroupChatsDao extends AbstractDao<GroupChats, String> {
         db.execSQL("CREATE TABLE " + constraint + "'GROUP_CHATS' (" + //
                 "'ID' TEXT PRIMARY KEY NOT NULL ," + // 0: id
                 "'GROUP_NAME' TEXT," + // 1: groupName
-                "'GROUP_TYPE' TEXT);"); // 2: groupType
+                "'GROUP_TYPE' TEXT," + // 2: groupType
+                "'ISMYGROUP' INTEGER);"); // 3: ismygroup
     }
 
     /** Drops the underlying database table. */
@@ -71,6 +73,11 @@ public class GroupChatsDao extends AbstractDao<GroupChats, String> {
         if (groupType != null) {
             stmt.bindString(3, groupType);
         }
+ 
+        Boolean ismygroup = entity.getIsmygroup();
+        if (ismygroup != null) {
+            stmt.bindLong(4, ismygroup ? 1l: 0l);
+        }
     }
 
     /** @inheritdoc */
@@ -85,7 +92,8 @@ public class GroupChatsDao extends AbstractDao<GroupChats, String> {
         GroupChats entity = new GroupChats( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // groupName
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // groupType
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // groupType
+            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0 // ismygroup
         );
         return entity;
     }
@@ -96,6 +104,7 @@ public class GroupChatsDao extends AbstractDao<GroupChats, String> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setGroupName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setGroupType(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setIsmygroup(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
      }
     
     /** @inheritdoc */

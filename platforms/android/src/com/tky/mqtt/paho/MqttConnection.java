@@ -182,6 +182,36 @@ public class MqttConnection {
     }
 
     /**
+     * 注销topic
+     * @param topic
+     * @throws MqttException
+     */
+    public void unsubscribe(String topic) throws MqttException {
+        if (mqttAsyncClient != null) {
+            try {
+                mqttAsyncClient.unsubscribe(topic);
+            } catch (Exception e) {
+                ToastUtil.showSafeToast("注销TOPIC失败！");
+            }
+        }
+    }
+
+    /**
+     * 注销topics
+     * @param topics
+     * @throws MqttException
+     */
+    public void unsubscribe(String[] topics) throws MqttException {
+        if (mqttAsyncClient != null) {
+            try {
+                mqttAsyncClient.unsubscribe(topics);
+            } catch (Exception e) {
+                ToastUtil.showSafeToast("注销TOPIC失败！");
+            }
+        }
+    }
+
+    /**
      * 发布消息
      *
      * @param topic

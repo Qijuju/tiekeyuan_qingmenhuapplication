@@ -9,7 +9,7 @@
 
 
         H5lock.prototype.drawCle = function(x, y) { // 初始化解锁密码面板
-            this.ctx.strokeStyle = '#CFE6FF';
+            this.ctx.strokeStyle = '#ADD1E8';
             this.ctx.lineWidth = 2;
             this.ctx.beginPath();
             this.ctx.arc(x, y, this.r, 0, Math.PI * 2, true);
@@ -18,7 +18,7 @@
         }
         H5lock.prototype.drawPoint = function() { // 初始化圆心
             for (var i = 0 ; i < this.lastPoint.length ; i++) {
-                this.ctx.fillStyle = '#CFE6FF';
+                this.ctx.fillStyle = '#00A1E1';
                 this.ctx.beginPath();
                 this.ctx.arc(this.lastPoint[i].x, this.lastPoint[i].y, this.r / 2, 0, Math.PI * 2, true);
                 this.ctx.closePath();
@@ -134,7 +134,7 @@
         }
         H5lock.prototype.initDom = function(){
             var wrap = document.getElementById(this.container);
-            var str = '<canvas id="canvas" width="300" height="300" style="background-color: #305066;display: inline-block;margin-top: 15px;"></canvas>';
+            var str = '<canvas id="canvas" width="300" height="300" style="background-color: #ffffff;display: inline-block;margin-top: 15px;"></canvas>';
             // wrap.setAttribute('style','position: absolute;top:0;left:0;right:0;bottom:0;');
             wrap.innerHTML = str;
             // document.body.appendChild(wrap);

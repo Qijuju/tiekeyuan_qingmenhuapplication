@@ -450,7 +450,7 @@ angular.module('my.controllers', [])
     });
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$ionicPlatform,$ionicHistory) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -512,8 +512,14 @@ angular.module('my.controllers', [])
       myPopup.then(function (res) {
 
       });
+
       // myPopup.close(); //关闭
     };
+    $ionicPlatform.registerBackButtonAction(function(e) {
+      myPopup.close();
+      $ionicHistory.goBack();
+      return false;
+    }, 502);
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
     $scope.meizuo=function () {
@@ -578,7 +584,7 @@ angular.module('my.controllers', [])
     }
 
   })
-  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils) {
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout) {
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
     }, function (msg) {
@@ -588,25 +594,149 @@ angular.module('my.controllers', [])
         "UserIDset": $scope.UserID
       });
     }
-    var opt = {
-      chooseType: 3, // 3 , 4 , 5,
-      width: 350, // lock wrap width
-      height: 350, // lock wrap height
-      container: 'element', // the id attribute of element
-      inputEnd: function(psw){
-        alert(psw)
-      } // when draw end param is password string
-    }
-    var lock = new H5lock(opt);
-    lock.init();
+   // $scope.a=0;
+    //初始化
+    // var password="";
+    // var opt = {
+    //   chooseType: 3, // 3 , 4 , 5,
+    //   width: 350, // lock wrap width
+    //   height: 350, // lock wrap height
+    //   container: 'element', // the id attribute of element
+    //   inputEnd: function(psw){
+    //   } // when draw end param is password string
+    // }
+    // var lock = new H5lock(opt);
+    // lock.init();
+    //设置密码
+    // $scope.setpassword = function () {
+    var method=function () {
+      $scope.$apply(function () {
+        $scope.a=1
+      });
+      var setopt = {
+        chooseType: 3, // 3 , 4 , 5,
+        width: 350, // lock wrap width
+        height: 350, // lock wrap height
+        container: 'element', // the id attribute of element
+        inputEnd: function(psw){
+          // alert(psw)
+          password=psw;
+          $scope.$apply(function () {
+            $scope.a=2
+          })
+          $ToastUtils.showToast("请再输入一次")
+          setlock.reset();
+          var checkopt = {
+            chooseType: 3, // 3 , 4 , 5,
+            width: 350, // lock wrap width
+            height: 350, // lock wrap height
+            container: 'element', // the id attribute of element
+            inputEnd: function(psw){
+              // alert(psw)
+              if (psw==password){
+                checklock.drawStatusPoint('right')
+                $mqtt.save('gesturePwd', psw);//存
+                // $mqtt.getMqtt().getString();//取
+                $ToastUtils.showToast("两次输入一样,密码设置成功")
+                i=6;
+                $timeout(function () {
+                  checklock.reset()
+                },300);
+              }else {
+                checklock.drawStatusPoint('notright')
+                $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
+                $timeout(function () {
+                  checklock.reset();
+                  method();
+                },300);
 
-    $scope.resetpassword = function () {
-      lock.reset() // reset the lock
+              }
+            }
+          };
+          var checklock = new H5lock(checkopt);
+          checklock.init();
+        }
+      }
+      var setlock = new H5lock(setopt);
+      setlock.init();
     }
-    // lock.drawStatusPoint('notright') // draw the last notright circle
-    //
-    // lock.drawStatusPoint('right') // draw the last right circle
-    //
+      $scope.a=1
+      var setopt = {
+        chooseType: 3, // 3 , 4 , 5,
+        width: 350, // lock wrap width
+        height: 350, // lock wrap height
+        container: 'element', // the id attribute of element
+        inputEnd: function(psw){
+          // alert(psw)
+          password=psw;
+          $scope.$apply(function () {
+            $scope.a=2
+          })
+          $ToastUtils.showToast("请再输入一次")
+          setlock.reset();
+          var checkopt = {
+            chooseType: 3, // 3 , 4 , 5,
+            width: 350, // lock wrap width
+            height: 350, // lock wrap height
+            container: 'element', // the id attribute of element
+            inputEnd: function(psw){
+              // alert(psw)
+              if (psw==password){
+                checklock.drawStatusPoint('right')
+                $ToastUtils.showToast("两次输入一样,密码设置成功")
+                i=6;
+                $timeout(function () {
+                  checklock.reset()
+                },300);
+              }else {
+                checklock.drawStatusPoint('notright')
+                $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
+                $timeout(function () {
+                  checklock.reset();
+                  method();
+                },300);
+              }
+            }
+          };
+          var checklock = new H5lock(checkopt);
+          checklock.init();
+        }
+      }
+      var setlock = new H5lock(setopt);
+      setlock.init();
+
+
+    // };
+    // //验证密码
+    // $scope.checkpassword = function () {
+    //   $scope.a=2
+    //   var checkopt = {
+    //     chooseType: 3, // 3 , 4 , 5,
+    //     width: 350, // lock wrap width
+    //     height: 350, // lock wrap height
+    //     container: 'element', // the id attribute of element
+    //     inputEnd: function(psw){
+    //        // alert(psw)
+    //      if (psw==password){
+    //        checklock.drawStatusPoint('right')
+    //        $ToastUtils.showToast("两次输入一样,正确")
+    //        $timeout(function () {
+    //          checklock.reset()
+    //        },300);
+    //      }else {
+    //        checklock.drawStatusPoint('notright')
+    //        $ToastUtils.showToast("两次输入不一样,失败")
+    //        $timeout(function () {
+    //          checklock.reset()
+    //        },300);
+    //      }
+    //     }
+    //   };
+    //   var checklock = new H5lock(checkopt);
+    //   checklock.init();
+    // }
+
+
 
 
   })

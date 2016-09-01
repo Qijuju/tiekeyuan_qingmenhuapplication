@@ -9,7 +9,7 @@
   <ion-content>
         <div class="background_white">
           <ion-list>
-            <ion-item ng-repeat="item in depts" href="#/addnewpersonsecond/{{item.DeptID}}">
+            <ion-item ng-repeat="item in depts"  ng-click="jumpGroupSecond(item.DeptID)">
               <img src="img/icon_org.png" style="vertical-align: bottom" width="27" height="27" style="display: inline;">
               <strong class="font_16">{{item.DeptName}}</strong>
             </ion-item>

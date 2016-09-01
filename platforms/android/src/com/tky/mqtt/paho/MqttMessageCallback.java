@@ -110,21 +110,36 @@ public class MqttMessageCallback implements MqttCallback {
 			ring();
 			EventMessageBean eventMsgBean = (EventMessageBean) bean;
 			String groupID = eventMsgBean.getGroupID();
-			String gTopic = SwitchLocal.getATopic(MType.G, groupID);
-			MqttTopicRW.append(gTopic, 1);
-			MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", "您加入了新的群组！", new Intent(context, MainActivity.class));
+			MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
 			MessageBean eventBean = new MessageBean();
 			eventBean.set_id(groupID);
 			eventBean.setSessionid(groupID);
-			eventBean.setUsername("");
+			eventBean.setUsername(eventMsgBean.getUserName() == null ? "" : eventMsgBean.getUserName());
 			eventBean.setWhen(eventMsgBean.getWhen());
 			eventBean.setImgSrc("");
 			eventBean.setFrom("false");
-			eventBean.setIsFailure("");
+			eventBean.setIsFailure("false");
 			eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
-			eventBean.setMessagetype(eventMsgBean.getEventCode());
+			eventBean.setMessagetype("Event_" + eventMsgBean.getEventCode());
 			eventBean.setPlatform("Android");
 			eventBean.setType("Group");
+			eventBean.setIsDelete("false");
+
+			//如果是被添加群成员，数据需要入库
+			if ("YAM".equals(eventMsgBean.getEventCode())) {
+				GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+				GroupChats groupChats = new GroupChats();
+				System.out.println("群组id"+eventMsgBean.getGroupID());
+				groupChats.setId(eventMsgBean.getGroupID());
+				groupChats.setGroupName(eventMsgBean.getGroupName() == null ? "无群组名称" : eventMsgBean.getGroupName());
+				groupChats.setGroupType("Group");
+				groupChats.setIsmygroup(false);
+				groupChatsService.saveObj(groupChats);
+			}
+
+			//处理特殊业务（例如：注销topic，注册topic等）
+			doDelTopic(groupID, eventMsgBean.getEventCode());
+
 
 			Intent intent = new Intent();
 			intent.setAction(ReceiverParams.MESSAGEARRIVED);
@@ -163,6 +178,24 @@ public class MqttMessageCallback implements MqttCallback {
 			message = "群组移除某人";
 		}
 		return message;
+	}
+
+	/**
+	 * 群组中不包含自己时将topic注销
+	 * @param groupID
+	 * @param eventCode
+	 */
+	private void doDelTopic(String groupID, String eventCode) {
+		String gTopic = SwitchLocal.getATopic(MType.G, groupID);
+		if ("YRM".equals(eventCode) || "RG0".equals(eventCode)) {
+			try {
+				mqttAsyncClient.unsubscribe(gTopic);
+			} catch (MqttException e) {
+				e.printStackTrace();
+			}
+		} else if ("YAM".equals(eventCode)) {//你被群组添加为成员
+			MqttTopicRW.append(gTopic, 1);
+		}
 	}
 
 	private void ring() {
