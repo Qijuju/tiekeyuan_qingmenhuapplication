@@ -344,6 +344,40 @@ public class SystemApi {
     }
 
     /**
+     * 上传头像&发送文件(图片or音频)
+     * @param ID 用户ID
+     * @param objectTP 设置对象的类型：U:用户；G:群组；I:发送图片；A:声音；F:文件(未指定时，默认F)
+     * @param objectID 设置对象的ID:与objectTP对应，I,A,F时当offset=0时为null，offset>0时为起始发送时产生的fileID。
+     * @param fileByte 文件二进制流
+     * @param offset 上传的文件偏移位置，0表示从头开始；
+     * @param isFinish 文件是否传完。True表示传输完成
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void sendFile(String ID, String objectTP, String objectID, ByteBuffer fileByte, long offset, boolean isFinish, AsyncMethodCallback<IMFile.AsyncClient.SendFile_call> callback) throws IOException, TException {
+        IMFile.AsyncClient fileClient = getFileAsyncClient();
+        fileClient.SendFile(ID, objectTP, objectID, fileByte, offset, isFinish, callback);
+    }
+
+    /**
+     * 获取头像&获取文件(图片or音频)
+     * @param ID 用户ID
+     * @param objectTP 与SendFile对应
+     * @param objectID 与SendFile对应
+     * @param picSize 只对U、G和I有效,PicSize选项见下表
+     * @param offset 文件开始下载的位置
+     * @param getSize 请求的长度，为0时，采用默认
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getFile(String ID, String objectTP, String objectID, String picSize, long offset, int getSize, AsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback) throws IOException, TException {
+        IMFile.AsyncClient fileClient = getFileAsyncClient();
+        fileClient.GetFile(ID, objectTP, objectID, picSize, offset, getSize, callback);
+    }
+
+    /**
      * 下载APK 第一步
      * @param savePath
      * @param apkVersion

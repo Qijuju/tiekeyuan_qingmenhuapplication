@@ -120,15 +120,16 @@ public class MqttMessageCallback implements MqttCallback {
 			eventBean.setFrom("false");
 			eventBean.setIsFailure("false");
 			eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
-			eventBean.setMessagetype(eventMsgBean.getEventCode());
+			eventBean.setMessagetype("Event_" + eventMsgBean.getEventCode());
 			eventBean.setPlatform("Android");
-			eventBean.setType("Event");
+			eventBean.setType("Group");
 			eventBean.setIsDelete("false");
 
 			//如果是被添加群成员，数据需要入库
 			if ("YAM".equals(eventMsgBean.getEventCode())) {
 				GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
 				GroupChats groupChats = new GroupChats();
+				System.out.println("群组id"+eventMsgBean.getGroupID());
 				groupChats.setId(eventMsgBean.getGroupID());
 				groupChats.setGroupName(eventMsgBean.getGroupName() == null ? "无群组名称" : eventMsgBean.getGroupName());
 				groupChats.setGroupType("Group");

@@ -593,7 +593,9 @@ angular.module('my.controllers', [])
       width: 350, // lock wrap width
       height: 350, // lock wrap height
       container: 'element', // the id attribute of element
-      inputEnd: function(psw){} // when draw end param is password string
+      inputEnd: function(psw){
+        alert(psw)
+      } // when draw end param is password string
     }
     var lock = new H5lock(opt);
     lock.init();
