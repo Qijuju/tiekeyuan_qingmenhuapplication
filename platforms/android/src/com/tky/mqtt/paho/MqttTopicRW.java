@@ -2,9 +2,13 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 
+import org.eclipse.paho.client.mqttv3.MqttTopic;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class MqttTopicRW {
@@ -33,6 +37,26 @@ public class MqttTopicRW {
 			map.put(tpaqArr[0], Integer.parseInt(tpaqArr[1]));
 		}
 		return map;
+	}
+
+	/**
+	 * 删除一个topic，根据groupID
+	 * @param groupID
+	 */
+	public static void remove(String groupID) {
+		Map<String, Integer> topicsAndQoss = getTopicsAndQoss();
+		String aTopic = SwitchLocal.getATopic(MType.G, groupID);
+		topicsAndQoss.remove(aTopic);
+		StringBuilder sb = new StringBuilder();
+		Iterator iterator = topicsAndQoss.keySet().iterator();
+		while (iterator.hasNext()){
+			String key=(String)iterator.next();
+			int val=topicsAndQoss.get(key);
+			sb.append(key+"#"+val+";");
+		}
+		String resavetopic = sb.toString();
+		resavetopic = resavetopic.substring(0, resavetopic.length() - 1);
+		SPUtils.save(key, resavetopic);
 	}
 
 	/**

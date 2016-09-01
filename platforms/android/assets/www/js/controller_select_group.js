@@ -304,7 +304,7 @@ angular.module('selectgroup.controllers', [])
 
 
   })
-  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils,$greendao) {
+  .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils,$greendao,$rootScope) {
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -616,6 +616,7 @@ angular.module('selectgroup.controllers', [])
                   obj.groupType='Group'
                   obj.ismygroup=true
                   $greendao.saveObj('GroupChatsService',obj,function (msg) {
+                    $rootScope.isGroupSend = 'true'
                     //跳转群聊天界面
                     $state.go('messageGroup',{
                       "id":obj.id,
