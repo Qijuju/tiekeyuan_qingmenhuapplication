@@ -401,6 +401,7 @@ angular.module('contacts.controllers', [])
     $scope.secondStatus;
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
+    alert($scope.contactId)
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
     $scope.$on('second.update', function (event) {
