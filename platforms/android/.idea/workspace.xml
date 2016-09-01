@@ -10,34 +10,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger5213321629404499023.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttTopicRW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDept.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDept.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,16 +92,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GreenDaoGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-80.14286">
-              <caret line="98" column="56" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -139,24 +134,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupChats.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
+      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.928572">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding>
-                <element signature="e#714#715#0" expanded="true" />
-                <element signature="e#739#740#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-21.821428">
+              <caret line="125" column="25" selection-start-line="125" selection-start-column="25" selection-end-line="125" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
+      <file leaf-file-name="MqttConnection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33274338">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -184,11 +176,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4902655">
+            <state vertical-scroll-proportion="-4.946429">
               <caret line="169" column="31" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SelectedId.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.035714">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -2643,43 +2645,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>421</line>
+          <line>422</line>
           <properties />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>422</line>
+          <line>423</line>
           <properties />
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>423</line>
+          <line>424</line>
           <properties />
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>424</line>
+          <line>425</line>
           <properties />
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>425</line>
+          <line>426</line>
           <properties />
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>426</line>
+          <line>427</line>
           <properties />
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>429</line>
+          <line>430</line>
           <properties />
           <option name="timeStamp" value="153" />
         </line-breakpoint>
@@ -2820,13 +2822,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="56.82353">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="92.4">
@@ -3092,14 +3087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="29" selection-start-line="123" selection-start-column="29" selection-end-line="123" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3159,18 +3146,18 @@
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.928572">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#738#739#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-80.14286">
-          <caret line="98" column="56" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="56" />
+        <state vertical-scroll-proportion="-90.42857">
+          <caret line="110" column="54" selection-start-line="110" selection-start-column="54" selection-end-line="110" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -3179,14 +3166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.428572">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3237,8 +3216,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4902655">
+        <state vertical-scroll-proportion="-4.946429">
           <caret line="169" column="31" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.035714">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.821428">
+          <caret line="125" column="25" selection-start-line="125" selection-start-column="25" selection-end-line="125" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33274338">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>

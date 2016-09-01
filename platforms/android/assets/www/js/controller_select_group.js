@@ -31,8 +31,8 @@ angular.module('selectgroup.controllers', [])
 
 })
 
-
-  .controller('addNewPersonsecondCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$greendao){
+  //二级界面
+  .controller('addNewPersonsecondCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope){
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -41,27 +41,15 @@ angular.module('selectgroup.controllers', [])
     $scope.departlist = [];
     $scope.userlist = [];
     $scope.secondStatus;
-    $scope.lastIds=[];
-
     $scope.secondDeptIds=[];
     $scope.secondUserIds=[];
-
-    //$scope.$on('$ionicView.enter', function () {
-
-      //最终存入的数据
-      var finalInfo=[];
 
       //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
       var originalInfo=[];
       $greendao.queryData("SelectIdService", 'where grade =?', "0",function (msg) {
 
         originalInfo=msg;
-        if(originalInfo.length>0){
-          for(var i=0;i<originalInfo.length;i++){
-            finalInfo.push(originalInfo[i]);
-          }
 
-        }
       },function (err) {
 
       })
@@ -70,11 +58,6 @@ angular.module('selectgroup.controllers', [])
       $greendao.queryData("SelectIdService", 'where grade =?', "2",function (msg) {
 
         anotherInfo=msg;
-        if(anotherInfo.length>0){
-          for(var i=0;i<anotherInfo.length;i++){
-            finalInfo.push(anotherInfo[i]);
-          }
-        }
 
       },function (err) {
 
@@ -97,7 +80,6 @@ angular.module('selectgroup.controllers', [])
 
         if ($scope.activeSecondDeptCount > 0) {
 
-
           //拿到数据后开始变化展现形式
           var olddepts = $contacts.getDeptInfo().deptList;
 
@@ -108,16 +90,16 @@ angular.module('selectgroup.controllers', [])
           }
 
 
-
-          for(var j=0;j<finalInfo.length;j++){
-
-            for(var m=0;m<olddepts.length; m++){
-                if(finalInfo[j].id==olddepts[m].DeptID){
+          if(anotherInfo.length>0){
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<olddepts.length; m++){
+                if(anotherInfo[j].id==olddepts[m].DeptID){
                   olddepts[m].isSelected=true;
-                  alert(olddepts[m].DeptName)
                 }
+              }
             }
           }
+
 
           for (var i = 0; i < olddepts.length; i++) {
 
@@ -132,20 +114,32 @@ angular.module('selectgroup.controllers', [])
         if ($scope.activeSecondUserCount>0) {
           var oldusers = $contacts.getDeptInfo().userList;
 
+          //去除群主为了不让群主在里面显示
+          for(var i=0;i<originalInfo.length;i++){
+            for(var j=0;j<oldusers.length;j++){
+              if(originalInfo[i].id==oldusers[j].UserID){
+                oldusers.splice(j,1);
+              }
+            }
+          }
+
           //先把界面上所有的值给false
           for(var n=0;n<oldusers.length;n++){
             oldusers[n].isSelected=false;
 
           }
 
-          //然后再从数据库里面取出已经标记的了
-          for(var j=0;j<finalInfo.length;j++){
-            for(var m=0;m<oldusers.length; m++){
-              if(finalInfo[j].id==oldusers[m].UserID){
-                oldusers[m].isSelected=true;
+          if(anotherInfo.length>0){
+            //然后再从数据库里面取出已经标记的了
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<oldusers.length; m++){
+                if(anotherInfo[j].id==oldusers[m].UserID){
+                  oldusers[m].isSelected=true;
+                }
               }
             }
           }
+
 
           //在界面上展示已经显示的了
           for (var i = 0; i < oldusers.length; i++) {
@@ -184,12 +178,18 @@ angular.module('selectgroup.controllers', [])
     }
 
     //在二级目录跳转到三级目录
-    $scope.jumpGroupThird = function (id, pname) {
-      $state.go("addnewpersonthird", {
-        "contactId": id,
-        "secondname": pname,
-          obj:$scope.objall,
-      });
+    $scope.jumpGroupThird = function (id, pname,bb) {
+      if(bb){
+        $ToastUtils.showToast('选中后不可以再选择下级')
+        $event.stopPropagation()
+      }else {
+        $state.go("addnewpersonthird", {
+          "contactId": id,
+          "secondname": pname,
+          "createtype":$scope.createType
+        });
+      }
+
     };
 
     //点击人员进入人员详情
@@ -201,7 +201,7 @@ angular.module('selectgroup.controllers', [])
     };
 
     //当点击确定按钮的时候的操作
-    /*$scope.secondConfirm=function () {
+    $scope.secondConfirm=function () {
       if($scope.departlist.length>0){
         for (var i=0;i<$scope.departlist.length;i++){
           if($scope.departlist[i].isSelected){
@@ -218,70 +218,152 @@ angular.module('selectgroup.controllers', [])
 
       }
 
+      $scope.data = {};
+      $ionicPopup.show({
+        template: '<input type="text" ng-model="data.name">',
+        title: '创建群聊',
+        subTitle: '请输入群名称',
+        scope: $scope,
+        buttons: [
+          { text: '取消',
+            onTap: function(e) {
+              $scope.secondUserIds=[];
+              $scope.secondDeptIds=[];
+            }
 
+          },
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
+                $scope.secondUserIds=[];
+                $scope.secondDeptIds=[];
+                $ToastUtils.showToast("群名称不能为空");
+              }else{
+                // 查询数据库把不等于3这个级别的所有数据拿出来
+                $greendao.queryData('SelectIdService','where grade <>?', "2",function (data) {
 
+                  for(var i=0;i<data.length;i++){
+                    if(data[i].type=='user'){
 
+                      $scope.secondUserIds.push(data[i].id)
+                    }else if (data[i].type=='dept'){
+                      $scope.secondDeptIds.push(data[i].id)
+                    }
+                  }
 
+                  // alert('走到了这一步')
 
+                  //开始提交创建群组
+                  $api.addGroup($scope.data.name,$scope.secondDeptIds,$scope.secondUserIds,function (msg) {
+                    // alert('你好我进来了')
+                    //当成功的时候先把数据库给清了
+                    $greendao.deleteAllData('SelectIdService',function (data) {
+                      // alert('数据被清空了')
+                    },function (err) {
 
-    }*/
+                    });
 
+                    //信息保存到数据库
+                    var obj={};
+                    obj.id=msg;
+                    obj.groupName=$scope.data.name;
+                    obj.groupType='Group'
+                    obj.ismygroup=true
+                    $greendao.saveObj('GroupChatsService',obj,function (msg) {
+                      $rootScope.isGroupSend ='true'
+                      //跳转群聊天界面
+                      $state.go('messageGroup',{
+                        "id":obj.id,
+                        "chatName":$scope.data.name,
+                        "grouptype":"Group",
+                        "ismygroup":true
+                      });
+                    },function (err) {
+                      $scope.secondUserIds=[];
+                      $scope.secondDeptIds=[];
+                    });
+                  },function (err) {
+                    $scope.secondUserIds=[];
+                    $scope.secondDeptIds=[];
+                    $ToastUtils.showToast(err)
 
-    //当我离开这个页面的时候要先判断数据库里面有没有数据， 如果没有数据则证明已经创建群成功 我就不需要遍历再次存到数据库里面
-    //当数据库里面如果有数据的话，则证明没有创建群 只是跳入下一个界面而已 需要把选中的保存到数据库里面
+                  });
+                },function (err) {
+
+                });
+              }
+
+            }
+          },
+        ]
+      });
+    }
+
+    //当离开界面调用的方法
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearSecondCount();
       $greendao.loadAllData('SelectIdService',function (msg) {
         if(msg.length>0){
+          //查询级别等于2的值
+          $greendao.queryData("SelectIdService", 'where grade =?', "2",function (data) {
+            if(data.length>0){
 
-          //部门的操作
-          if($scope.departlist.length>0){
-            for (var i=0;i<$scope.departlist.length;i++){
-              if($scope.departlist[i].isSelected){
-
-                var deptSaveId={};
-                deptSaveId.id=$scope.departlist[i].DeptID;
-                deptSaveId.grade='2';                        //二级代表是二级目录存下来的数据
-                deptSaveId.isselected=true;
-                $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
+              //然后把等于3的都删除了
+              for(var k=0;k<data.length;k++){
+                $greendao.deleteObj('SelectIdService',data[k],function (data) {
 
                 },function (err) {
 
                 })
               }
             }
-          }
 
+            //对部门的操作
+            if($scope.departlist.length>0){
+              for (var i=0;i<$scope.departlist.length;i++){
+                if($scope.departlist[i].isSelected){
 
-          //人员的操作
-          if($scope.userlist.length>0){
-            for(var i=0;i<originalInfo.length;i++){
-                for(var j=0;j<$scope.userlist.length;j++){
-                  if(originalInfo[i].id==scope.userlist[j].UserID){
-                    $scope.userlist.splice(j,1);
-                  }
+                  var deptSaveId={};
+                  deptSaveId.id=$scope.departlist[i].DeptID;
+                  deptSaveId.grade='2';                        //二级代表是二级目录存下来的数据
+                  deptSaveId.isselected=true;
+                  deptSaveId.type='dept'
+                  $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
+
+                  },function (err) {
+
+                  })
                 }
+              }
             }
-          }
+
+
           //再次遍历这个集合把所有选中的ids添加到数据库
-          for(var j=0;j<$scope.userlist.length;j++){
-            if($scope.userlist[j].isSelected){
-              $scope.lastIds.push($scope.userlist[j].UserID);
 
+            for(var j=0;j<$scope.userlist.length;j++){
+              if($scope.userlist[j].isSelected){
 
-              var userSaveId={};
-              userSaveId.id=$scope.userlist[j].UserID;
-              userSaveId.grade='2';                        //二级代表是二级目录存下来的数据
-              userSaveId.isselected=true;
-              $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
+                var userSaveId={};
+                userSaveId.id=$scope.userlist[j].UserID;
+                userSaveId.grade='2';                        //二级代表是二级目录存下来的数据
+                userSaveId.isselected=true;
+                userSaveId.type='user'
+                $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
 
-              },function (err) {
+                },function (err) {
 
-              })
+                })
+
+              }
 
             }
 
-          }
+          },function (err) {
+            //第二次数据查询
+          })
+
         }
 
       },function (msg) {
@@ -294,34 +376,22 @@ angular.module('selectgroup.controllers', [])
     });
 
 
-
-
-
-
-
-
-
-
-
   })
+
+
+  //三级界面创建群聊
+
   .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils,$greendao,$rootScope) {
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
-
-    //最终存入的数据
-    var finalInfo=[];
 
     //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
     var originalInfo=[];
     $greendao.queryData("SelectIdService", 'where grade =?', "0",function (msg) {
 
       originalInfo=msg;
-      if(msg.length>0){
-        for(var i=0;i<msg.length;i++){
-          finalInfo.push(msg[i]);
-        }
-      }
+
     },function (err) {
 
     })
@@ -330,11 +400,7 @@ angular.module('selectgroup.controllers', [])
     $greendao.queryData("SelectIdService", 'where grade =?', "3",function (msg) {
 
       anotherInfo=msg;
-      if(msg.length>0){
-        for(var i=0;i<msg.length;i++){
-          finalInfo.push(msg[i]);
-        }
-      }
+
 
     },function (err) {
 
@@ -361,6 +427,8 @@ angular.module('selectgroup.controllers', [])
 
       $scope.$apply(function () {
         $scope.count1 = $contacts.getCount3();
+
+        //三级界面部门操作
         if ($scope.count1 > 0) {
           var olddepts = $contacts.getDeptThirdInfo().deptList;
 
@@ -371,43 +439,52 @@ angular.module('selectgroup.controllers', [])
           }
 
           //取出数据库中的并且设置为黑色
-          for(var j=0;j<finalInfo.length;j++){
-            for(var m=0;m<olddepts.length; m++){
-              if(finalInfo[j].id==olddepts[m].DeptID){
-                olddepts[m].isSelected=true;
+          if(anotherInfo.length>0){
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<olddepts.length; m++){
+                if(anotherInfo[j].id==olddepts[m].DeptID){
+                  olddepts[m].isSelected=true;
+                }
               }
             }
           }
-
-
           //在界面上面展示
           for (var i = 0; i < olddepts.length; i++) {
             $scope.departthirdlist.push(olddepts[i]);
           }
 
 
-
-
         }
+
+        //四级界面对部门的操作
         $scope.count2 = $contacts.getCount4();
 
         if ($scope.count2 > 0) {
           var oldusers = $contacts.getDeptThirdInfo().userList;
 
-          //设置所有的为false
-          for(var n=0;n<oldusers.length; n++){
-            oldusers[n].isSelected=false;
-          }
-
-          //从数据库取出数据然后赋值
-          for(var j=0;j<finalInfo.length;j++){
-            for(var m=0;m<oldusers.length; m++){
-              if(finalInfo[j].id==oldusers[m].UserID){
-                oldusers[m].isSelected=true;
+          //去除群主为了不让群主在里面显示
+          for(var i=0;i<originalInfo.length;i++){
+            for(var j=0;j<oldusers.length;j++){
+              if(originalInfo[i].id==oldusers[j].UserID){
+                oldusers.splice(j,1);
               }
             }
           }
 
+          //设置所有的为false
+          for(var n=0;n<oldusers.length; n++){
+            oldusers[n].isSelected=false;
+          }
+          if(anotherInfo.length>0){
+            //从数据库取出数据然后赋值
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<oldusers.length; m++){
+                if(anotherInfo[j].id==oldusers[m].UserID){
+                  oldusers[m].isSelected=true;
+                }
+              }
+            }
+          }
 
           //界面上面展示
 
@@ -456,12 +533,18 @@ angular.module('selectgroup.controllers', [])
 
 
     //在第二级目录跳转到第四级目录
-    $scope.jumpGroupForth = function (id, sname, tname) {
-      $state.go("addnewpersonforth", {
-        "contactId": id,
-        "secondname": sname,
-        "thirdname": tname
-      });
+    $scope.jumpGroupForth = function (id, sname, tname,isnext) {
+      if(isnext){
+        $ToastUtils.showToast('选中后不可以再选择下级')
+        $event.stopPropagation()
+      }else {
+        $state.go("addnewpersonforth", {
+          "contactId": id,
+          "secondname": sname,
+          "thirdname": tname
+        });
+      }
+
     }
 
 
@@ -502,6 +585,7 @@ angular.module('selectgroup.controllers', [])
                     deptSaveId.id=$scope.departthirdlist[i].DeptID;
                     deptSaveId.grade='3';                        //二级代表是二级目录存下来的数据
                     deptSaveId.isselected=true;
+                    deptSaveId.type='dept'
                     $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
 
                     },function (err) {
@@ -511,24 +595,16 @@ angular.module('selectgroup.controllers', [])
                 }
               }
 
-              //人员的操作
-              if($scope.userthirdlist.length>0){
-                for(var i=0;i<originalInfo.length;i++){
-                  for(var j=0;j<$scope.userthirdlist.length;j++){
-                    if(originalInfo[i].id==$scope.userthirdlist[j].UserID){
-                      $scope.userthirdlist.splice(j,1);
-                    }
-                  }
-                }
-              }
+
               //再次遍历这个集合把所有选中的ids添加到数据库
               for(var j=0;j<$scope.userthirdlist.length;j++){
                 if($scope.userthirdlist[j].isSelected){
 
                   var userSaveId={};
                   userSaveId.id=$scope.userthirdlist[j].UserID;
-                  userSaveId.grade='3';                        //二级代表是二级目录存下来的数据
+                  userSaveId.grade='3';
                   userSaveId.isselected=true;
+                  userSaveId.type='user'
                   $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
 
                   },function (err) {
@@ -568,10 +644,11 @@ angular.module('selectgroup.controllers', [])
 
       }
       if($scope.userthirdlist.length>0){
+
         for(var j=0;j<$scope.userthirdlist.length;j++){
-          if($scope.userthirdlist[j].isSelected){
-            $scope.thirdUserIds.push($scope.userthirdlist[j].UserID);
-          }
+         if($scope.userthirdlist[j].isSelected){
+         $scope.thirdUserIds.push($scope.userthirdlist[j].UserID);
+         }
         }
 
       }
@@ -585,8 +662,8 @@ angular.module('selectgroup.controllers', [])
         buttons: [
           { text: '取消',
             onTap: function(e) {
-              $scope.thirdDeptIds=[];
               $scope.thirdUserIds=[];
+              $scope.thirdDeptIds=[];
             }
 
           },
@@ -595,40 +672,57 @@ angular.module('selectgroup.controllers', [])
             type: 'button-positive',
             onTap: function(e) {
               if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
-
-                $scope.thirdDeptIds=[];
                 $scope.thirdUserIds=[];
+                $scope.thirdDeptIds=[];
                 $ToastUtils.showToast("群名称不能为空");
-
               }else{
-                $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
-                  //当成功的时候先把数据库给清了
-                  $greendao.deleteAllData('SelectIdService',function (data) {
-                      alert('数据被清空了')
-                  },function (err) {
+                // 查询数据库把不等于3这个级别的所有数据拿出来
+                $greendao.queryData('SelectIdService','where grade <>?', "3",function (data) {
 
-                  });
+                  for(var i=0;i<data.length;i++){
+                    if(data[i].type=='user'){
 
-                  //信息保存到数据库
-                  var obj={};
-                  obj.id=msg;
-                  obj.groupName=$scope.data.name;
-                  obj.groupType='Group'
-                  obj.ismygroup=true
-                  $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                    $rootScope.isGroupSend = 'true'
-                    //跳转群聊天界面
-                    $state.go('messageGroup',{
-                      "id":obj.id,
-                      "chatName":$scope.data.name,
-                      "grouptype":"Group",
-                      "ismygroup":true
+                      $scope.thirdUserIds.push(data[i].id)
+                    }else if (data[i].type=='dept'){
+                      $scope.thirdDeptIds.push(data[i].id)
+                    }
+                  }
+
+                  //开始提交创建群组
+                  $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
+                    //当成功的时候先把数据库给清了
+                    $greendao.deleteAllData('SelectIdService',function (data) {
+                      // alert('数据被清空了')
+                    },function (err) {
+
+                    });
+
+                    //信息保存到数据库
+                    var obj={};
+                    obj.id=msg;
+                    obj.groupName=$scope.data.name;
+                    obj.groupType='Group'
+                    obj.ismygroup=true
+                    $greendao.saveObj('GroupChatsService',obj,function (msg) {
+                      $rootScope.isGroupSend ='true'
+                      //跳转群聊天界面
+                      $state.go('messageGroup',{
+                        "id":obj.id,
+                        "chatName":$scope.data.name,
+                        "grouptype":"Group",
+                        "ismygroup":true
+                      });
+                    },function (err) {
+                      $scope.thirdUserIds=[];
+                      $scope.thirdDeptIds=[];
                     });
                   },function (err) {
+                    $scope.thirdUserIds=[];
+                    $scope.thirdDeptIds=[];
+                    $ToastUtils.showToast(err)
 
                   });
                 },function (err) {
-
 
                 });
               }
@@ -646,11 +740,39 @@ angular.module('selectgroup.controllers', [])
   })
 
 
-  .controller('addNewPersonforthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory) {
-    $scope.departlist = [];
-    $scope.userlist = [];
+  .controller('addNewPersonforthCtrl', function ($scope, $state, $stateParams,$contacts,$ionicHistory,$api,$ToastUtils,$greendao,$ionicPopup,$rootScope) {
 
+    //创建的类型看到底是从哪里过来的
+    $scope.createType=$stateParams.createtype;
+
+    //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
+    var originalInfo=[];
+    $greendao.queryData("SelectIdService", 'where grade =?', "0",function (msg) {
+
+      originalInfo=msg;
+
+    },function (err) {
+
+    })
+    //现在进入的是二级目录 所以要先获取等于二级的目录的人
+    var anotherInfo=[];
+    $greendao.queryData("SelectIdService", 'where grade =?', "4",function (msg) {
+
+      anotherInfo=msg;
+
+
+    },function (err) {
+
+    })
+
+
+
+    $scope.departforthlist = [];
+    $scope.userforthlist = [];
     $scope.forthStatus;
+
+    $scope.forthDeptIds=[];
+    $scope.forthUserIds=[];
 
 
     $scope.contactId = $stateParams.contactId;
@@ -662,24 +784,72 @@ angular.module('selectgroup.controllers', [])
     $scope.$on('forth.update', function (event) {
       $scope.$apply(function () {
 
-
+        //四级界面对部门的操作
         $scope.count1 = $contacts.getCount5();
         if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptForthInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departlist.push(olddepts[i]);
+          var olddepts = $contacts.getDeptForthInfo().deptList;
+          //遍历所有并且显示为false
+          for(var n=0;n<olddepts.length; n++){
+            olddepts[n].isSelected=false;
           }
+
+          //取出数据库中的并且设置为黑色
+          if(anotherInfo.length>0){
+
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<olddepts.length; m++){
+                if(anotherInfo[j].id==olddepts[m].DeptID){
+                  olddepts[m].isSelected=true;
+                }
+              }
+            }
+          }
+          //在界面上面展示
+          for (var i = 0; i < olddepts.length; i++) {
+            $scope.departforthlist.push(olddepts[i]);
+          }
+
         }
+
+
+        //四级界面对人员的保存
         $scope.count2 = $contacts.getCount6();
 
         if ($scope.count2 > 0) {
           var oldusers = $contacts.getDeptForthInfo().userList;
 
+          //去除群主为了不让群主在里面显示
+          for(var i=0;i<originalInfo.length;i++){
+            for(var j=0;j<oldusers.length;j++){
+              if(originalInfo[i].id==oldusers[j].UserID){
+                oldusers.splice(j,1);
+              }
+            }
+          }
+
+          //设置所有的为false
+          for(var n=0;n<oldusers.length; n++){
+            oldusers[n].isSelected=false;
+          }
+          if(anotherInfo.length>0){
+            //从数据库取出数据然后赋值
+            for(var j=0;j<anotherInfo.length;j++){
+              for(var m=0;m<oldusers.length; m++){
+                if(anotherInfo[j].id==oldusers[m].UserID){
+                  oldusers[m].isSelected=true;
+                }
+              }
+            }
+          }
+
+          //界面上面展示
+
           for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.userlist.push(oldusers[i]);
+            $scope.userforthlist.push(oldusers[i]);
           }
+
         }
 
         $scope.parentID = $contacts.getDeptForthInfo().deptID;
@@ -710,26 +880,13 @@ angular.module('selectgroup.controllers', [])
 
     }
 
-    $scope.$on('$ionicView.leave', function () {
-      $contacts.clearForthCount();
-    });
+
 
 
     //在四级目录需要返回三级目录  （ 三级目录进来需要两个参数 一个是 二级目录id一个是二级目录的名字 ）
 
     $scope.idididi = $contacts.getSecondID();
     $scope.firstid = $contacts.getFirstID();
-
-
-    /*$scope.backThird = function (sd, named) {
-
-      $state.go("addnewpersonthird", {
-        "contactId": sd,
-        "secondname": named
-      });
-
-    };*/
-
     $scope.backThird = function () {
 
       $ionicHistory.goBack();
@@ -760,6 +917,188 @@ angular.module('selectgroup.controllers', [])
       $state.go("person", {
         "userId": id,
       });
+    }
+
+    $scope.$on('$ionicView.leave', function () {
+      $contacts.clearForthCount();
+
+      $greendao.loadAllData('SelectIdService',function (msg) {
+        if(msg.length>0){
+          //先遍历拿出所有groud等于3的所有对象
+          $greendao.queryData("SelectIdService", 'where grade =?', "4",function (data) {
+            if(data.length>0){
+
+              //然后把等于3的都删除了
+              for(var k=0;k<data.length;k++){
+                $greendao.deleteObj('SelectIdService',data[k],function (data) {
+
+                },function (err) {
+
+                })
+              }
+            }
+
+
+            //然后在开始部门的操作
+            if($scope.departforthlist.length>0){
+              for (var i=0;i<$scope.departforthlist.length;i++){
+                if($scope.departforthlist[i].isSelected){
+
+                  var deptSaveId={};
+                  deptSaveId.id=$scope.departforthlist[i].DeptID;
+                  deptSaveId.grade='4';
+                  deptSaveId.isselected=true;
+                  deptSaveId.type='dept'
+                  $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
+
+                  },function (err) {
+
+                  })
+                }
+              }
+            }
+
+
+            //再次遍历这个集合把所有选中的ids添加到数据库
+            for(var j=0;j<$scope.userforthlist.length;j++){
+
+
+              if($scope.userforthlist[j].isSelected){
+
+                var userSaveId={};
+                userSaveId.id=$scope.userforthlist[j].UserID;
+                userSaveId.grade='4';
+                userSaveId.isselected=true;
+                userSaveId.type='user'
+                $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
+
+                },function (err) {
+
+                })
+
+              }
+
+            }
+
+
+          },function (err) {
+            //第二次数据查询
+          })
+
+        }
+        //数据查询结束第一次
+
+      },function (msg) {
+        //第一次数据查询
+      });
+
+
+    });
+
+    $scope.forthConfirm=function () {
+
+      //拿部门ids
+      if($scope.departforthlist.length>0){
+        for (var i=0;i<$scope.departforthlist.length;i++){
+          if($scope.departforthlist[i].isSelected){
+            $scope.forthDeptIds.push($scope.departforthlist[i].DeptID);
+          }
+        }
+      }
+      //拿人员ids
+      if($scope.userforthlist.length>0){
+        for(var j=0;j<$scope.userforthlist.length;j++){
+          if($scope.userforthlist[j].isSelected){
+            $scope.forthUserIds.push($scope.userforthlist[j].UserID);
+          }
+        }
+
+      }
+
+      $scope.data = {};
+
+      $ionicPopup.show({
+        template: '<input type="text" ng-model="data.name">',
+        title: '创建群聊',
+        subTitle: '请输入群名称',
+        scope: $scope,
+        buttons: [
+          { text: '取消',
+            onTap: function(e) {
+              $scope.forthDeptIds=[];
+              $scope.forthUserIds=[];
+            }
+
+          },
+          {
+            text: '<b>确定</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
+                $scope.forthDeptIds=[];
+                $scope.forthUserIds=[];
+                $ToastUtils.showToast("群名称不能为空");
+              }else{
+                // 查询数据库把不等于3这个级别的所有数据拿出来
+                $greendao.queryData('SelectIdService','where grade <>?', "4",function (data) {
+
+                  for(var i=0;i<data.length;i++){
+                    if(data[i].type=='user'){
+
+                      $scope.forthUserIds.push(data[i].id)
+                    }else if (data[i].type=='dept'){
+                      $scope.forthDeptIds.push(data[i].id)
+                    }
+                  }
+
+                  // alert('走到了这一步')
+
+                  //开始提交创建群组
+                  $api.addGroup($scope.data.name,$scope.forthDeptIds,$scope.forthUserIds,function (msg) {
+                    // alert('你好我进来了')
+                    //当成功的时候先把数据库给清了
+                    $greendao.deleteAllData('SelectIdService',function (data) {
+                      // alert('数据被清空了')
+                    },function (err) {
+
+                    });
+
+                    //信息保存到数据库
+                    var obj={};
+                    obj.id=msg;
+                    obj.groupName=$scope.data.name;
+                    obj.groupType='Group'
+                    obj.ismygroup=true
+                    $greendao.saveObj('GroupChatsService',obj,function (msg) {
+                      $rootScope.isGroupSend ='true'
+                      //跳转群聊天界面
+                      $state.go('messageGroup',{
+                        "id":obj.id,
+                        "chatName":$scope.data.name,
+                        "grouptype":"Group",
+                        "ismygroup":true
+                      });
+                    },function (err) {
+                      $scope.forthDeptIds=[];
+                      $scope.forthUserIds=[];
+                    });
+                  },function (err) {
+                    $scope.forthDeptIds=[];
+                    $scope.forthUserIds=[];
+                    $ToastUtils.showToast(err)
+
+                  });
+                },function (err) {
+
+                });
+              }
+
+            }
+          },
+        ]
+      });
+
+
     }
 
   })

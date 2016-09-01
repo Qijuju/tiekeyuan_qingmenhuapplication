@@ -92,6 +92,9 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $scope.logId = $contacts.getLoignInfo();
+
+        $scope.loginid=$contacts.getLoignInfo().deptID;
+
       })
     });
 
@@ -1491,6 +1494,7 @@ angular.module('contacts.controllers', [])
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
       selectInfo.isselected=true;
+      selectInfo.type='user'
       $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
       },function (err) {
