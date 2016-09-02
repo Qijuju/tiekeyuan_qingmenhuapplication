@@ -33,6 +33,7 @@ angular.module('message.services', [])
           chatitem.chatType='User';
         }
         mainlist.push(chatitem);
+        // alert("进来会话列表了吗");
         $greendao.saveObj('ChatListService',chatitem,function (data) {
           $rootScope.$broadcast('chatarr.update');
           // alert("保存成功"+data.length)
@@ -46,6 +47,9 @@ angular.module('message.services', [])
     },
     getData:function () {
       return savedata;
+    },
+    getAllData:function () {
+      return mainlist;
     },
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
@@ -62,18 +66,18 @@ angular.module('message.services', [])
     return{
       getAllGroupList:function (isGroupSend,messageType) {
         if(isGroupSend === 'true'){
-          alert("跳转到service界面"+$stateParams.sessionid);
+          // alert("跳转到service界面"+$stateParams.sessionid);
           var groupchatitem={};
           if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
             groupchatitem.id=$rootScope.id;
             groupchatitem.chatName=$rootScope.username;
-            alert("dsddfs"+$rootScope.id+$rootScope.username);
-            alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
+            // alert("dsddfs"+$rootScope.id+$rootScope.username);
+            // alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
           }else{
             groupchatitem.id=$stateParams.id;
             groupchatitem.chatName=$stateParams.sessionid;
           }
-          groupchatitem.imgSrc='img/icon_org.png';
+          groupchatitem.imgSrc='img/quntu1.png';
           groupchatitem.lastText='';
           groupchatitem.count='';
           groupchatitem.isDelete='false';
@@ -108,7 +112,7 @@ angular.module('message.services', [])
       getGroupIdChatName:function (id,chatname) {
         $rootScope.id=id;
         $rootScope.username=chatname;
-        alert("先收到群组"+$rootScope.id+$rootScope.username);
+        // alert("先收到群组"+$rootScope.id+$rootScope.username);
       }
     }
   })
@@ -167,7 +171,7 @@ angular.module('message.services', [])
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
             $rootScope.$broadcast('msgs.update');
           },function (err) {
-            alert(err+"sendmistake");
+            // alert(err+"sendmistake");
           });
           $rootScope.firstSendId=messageDetail.sessionid;
           // alert("发送消息时对方id"+$rootScope.firstSendId);
@@ -194,6 +198,7 @@ angular.module('message.services', [])
           arriveMessage._id='';
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
+          // alert("监听消息类型"+arriveMessage.type);
           arriveMessage.from=message.from;
           arriveMessage.message=message.message;
           arriveMessage.messagetype=message.messagetype;
@@ -219,11 +224,28 @@ angular.module('message.services', [])
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
             danliao.push(arriveMessage);
           }else {
-            groupCount++;
+            $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
+              if(data.length>0){
+                groupCount=data[0].count;
+                // alert("有值"+groupCount);
+                groupCount++;
+                $rootScope.$broadcast('msgs.update');
+              }else{
+                groupCount =0;
+                // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                groupCount++;
+                $rootScope.$broadcast('msgs.update');
+                // alert("groupCount"+groupCount);
+              }
+            },function (err) {
+              // alert(err);
+            });
+            // alert("测测是不是先出来");
+
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
-            alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+            // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
             qunliao.push(arriveMessage);
           }
           return size;
@@ -304,7 +326,7 @@ angular.module('message.services', [])
             $rootScope.$broadcast('msgs.error');
             // alert(data);
           },function (err) {
-            alert(err+"msgerr");
+            // alert(err+"msgerr");
           });
           return "失败";
         });

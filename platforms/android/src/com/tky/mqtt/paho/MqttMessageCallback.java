@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
+import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -15,6 +16,7 @@ import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -189,6 +191,7 @@ public class MqttMessageCallback implements MqttCallback {
 		String gTopic = SwitchLocal.getATopic(MType.G, groupID);
 		if ("YRM".equals(eventCode) || "RG0".equals(eventCode)) {
 			try {
+				MqttTopicRW.remove(groupID);
 				mqttAsyncClient.unsubscribe(gTopic);
 			} catch (MqttException e) {
 				e.printStackTrace();

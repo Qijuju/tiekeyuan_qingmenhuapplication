@@ -220,6 +220,13 @@ public class MqttChat extends CordovaPlugin {
         }
         JSONObject obj = new JSONObject(message);
         String msg = obj.getString("message");
+        if ("Group".equals(obj.getString("type"))) {
+            boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
+            if (!fromMe){
+                setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                return;
+            }
+        }
         if (msg == null || "".equals(msg.trim())) {
             return ;
         }

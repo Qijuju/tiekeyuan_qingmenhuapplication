@@ -122,6 +122,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
           selectedId.setId(jsonobj.getString("id"));
           selectedId.setGrade(jsonobj.getString("grade"));
           selectedId.setIsselected(jsonobj.getBoolean("isselected"));
+          selectedId.setType(jsonobj.getString("type"));
           obj=selectedId;
         }
         return obj;

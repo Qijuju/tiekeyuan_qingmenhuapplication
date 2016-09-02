@@ -92,6 +92,9 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $scope.logId = $contacts.getLoignInfo();
+
+        $scope.loginid=$contacts.getLoignInfo().deptID;
+
       })
     });
 
@@ -401,6 +404,7 @@ angular.module('contacts.controllers', [])
     $scope.secondStatus;
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
+    alert($scope.contactId)
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
     $scope.$on('second.update', function (event) {
@@ -1490,6 +1494,7 @@ angular.module('contacts.controllers', [])
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
       selectInfo.isselected=true;
+      selectInfo.type='user'
       $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
       },function (err) {

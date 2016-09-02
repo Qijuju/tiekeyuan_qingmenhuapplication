@@ -7,8 +7,12 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope) {
-   
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      $ToastUtils.showToast("手势密码:"+pwd);
+    }, function (msg) {
+      $ToastUtils.showToast("手势密码获取失败"+msg);
+    });
 
     $mqtt.setLogin(false);
     $scope.name = "";
