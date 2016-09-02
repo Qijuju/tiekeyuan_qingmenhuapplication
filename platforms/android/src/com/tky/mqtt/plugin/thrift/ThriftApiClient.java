@@ -1108,7 +1108,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         } else if (result != null && "711".equals(result.getResultCode())) {
                             setResult("创建的群组必须大于2人（包括自己）！", PluginResult.Status.ERROR, callbackContext);
                         } else if (result != null && "712".equals(result.getResultCode())) {
-                            setResult("创建的群组超过了100人！", PluginResult.Status.ERROR, callbackContext);
+                            setResult("创建的群组超过了20人！", PluginResult.Status.ERROR, callbackContext);
                         } else {
                             setResult("创建群组失败！", PluginResult.Status.ERROR, callbackContext);
                         }

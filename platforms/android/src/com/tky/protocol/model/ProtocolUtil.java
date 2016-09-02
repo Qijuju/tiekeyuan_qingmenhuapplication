@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ProtocolUtil {
+
 	private static ProtocolUtil config = null;
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
@@ -242,10 +243,7 @@ public class ProtocolUtil {
 			return Long.parseLong(data.trim());
 		} else if(dataTP.equals(IMPFields.DT_List)){
 			List<String> list = new ArrayList<String>();
-			data.replace("[", "");
-			data.replace("]", "");
-			data.replace(" ", "");
-			String[] values = data.split(",");
+			String[] values = data.replace("[", "").replace("]", "").replace(" ", "").split(",");
 			for(String str : values){
 				list.add(str);
 			}
