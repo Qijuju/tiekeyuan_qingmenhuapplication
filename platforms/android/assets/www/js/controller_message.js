@@ -473,6 +473,7 @@ angular.module('message.controllers', [])
     $scope.chatname=$stateParams.chatName;
     $scope.grouptype=$stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+    alert('ah哈哈哈哈哈发货后'+$scope.ismygroup);
     /**
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
      * @type {string}
@@ -909,6 +910,7 @@ angular.module('message.controllers', [])
     };
     //:groupid/:chatname/:grouptype
     $scope.goGroupDetail=function (id,name,type,ismygroup) {
+      alert(ismygroup)
       $state.go('groupSetting',{
         'groupid':id,
         'chatname':name,
@@ -1261,12 +1263,20 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("进入群聊界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-        $state.go('messageGroup',{
-          "id":id,
-          "chatName":ssid,
-          "grouptype":chatType,
-          "ismygroup":true
+        $greendao.queryData('GroupChatsService','where id =?',id,function (data) {
+
+          $state.go('messageGroup',{
+            "id":id,
+            "chatName":ssid,
+            "grouptype":chatType,
+            "ismygroup":data[0].ismygroup,
+          });
+
+        },function (err) {
+
         });
+
+
       }
 
     };
@@ -1468,7 +1478,9 @@ angular.module('message.controllers', [])
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
+    $scope.ismygroup=$stateParams.ismygroup;
 
+    $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
     $scope.listM.push('GN');
     $scope.listM.push('GT');
@@ -1501,8 +1513,14 @@ angular.module('message.controllers', [])
 
 
     //解散群
-    $scope.dissolveGroup=function () {
-      $api.removeGroup($scope.groupId,function (msg) {
+    $scope.dissolveGroup=function (aa) {
+      if(aa){
+        alert('你大爷正确')
+      }else {
+        alert('不正确')
+
+      }
+      /*$api.removeGroup($scope.groupId,function (msg) {
 
         $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
 
@@ -1519,7 +1537,7 @@ angular.module('message.controllers', [])
       },function (err) {
         // $ToastUtils.showToast(err)
 
-      });
+      });*/
     }
 
 

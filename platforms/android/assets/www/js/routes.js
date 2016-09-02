@@ -121,7 +121,7 @@ angular.module('im.routes', [])
       })
 
       .state('groupSetting', {
-        url: '/groupSetting/:groupid/:chatname/:grouptype',
+        url: '/groupSetting/:groupid/:chatname/:grouptype/:ismygroup',
         templateUrl: 'templates/group-setting.html',
         controller: 'groupSettingCtrl',
         cache:false
@@ -340,14 +340,14 @@ angular.module('im.routes', [])
 
       })
       .state('addnewpersonsixth', {
-        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
+        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype',
         templateUrl: 'templates/addNewPerson-sixth.html',
         controller: 'addNewPersonsixthCtrl',
         cache:false
 
       })
       .state('addnewpersonseventh', {
-        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
+        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype',
         templateUrl: 'templates/addNewPerson-seventh.html',
         controller: 'addNewPersonseventhCtrl',
         cache:false
@@ -355,7 +355,7 @@ angular.module('im.routes', [])
       })
 
       .state('addnewpersoneighth', {
-        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname',
+        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype',
         templateUrl: 'templates/addNewPerson-eighth.html',
         controller: 'addNewPersoneighthCtrl',
         cache:false
