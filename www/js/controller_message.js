@@ -1544,7 +1544,13 @@ angular.module('message.controllers', [])
 
     $scope.backAny = function () {
 
-      $ionicHistory.goBack();
+
+      $state.go('messageGroup',{
+        "id":$scope.groupId,
+        "chatName":$scope.groupName,
+        "grouptype":$scope.groupType,
+        "ismygroup":$scope.ismygroup,
+      });
 
     };
 
