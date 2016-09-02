@@ -731,6 +731,14 @@ angular.module('message.controllers', [])
              */
             // alert("群组长度" +$scope.receiverssid);
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+              if(data[0].messagetype ==="Event_GN0") {
+                $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
+                  // alert(data[0].groupName);
+                  $scope.chatname = data[0].groupName;
+                }, function (err) {
+                });
+              }
+              // alert("这走了把？"+data.length+data[0].messagetype);
               $scope.lastText = data[0].message;//最后一条消息内容
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.srcName = data[0].username;//消息来源人名字
@@ -1490,6 +1498,7 @@ angular.module('message.controllers', [])
       })
     });
 
+    
 
     //
     $scope.goGroupPerson=function (id,name,type) {

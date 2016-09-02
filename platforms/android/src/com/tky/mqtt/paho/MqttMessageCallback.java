@@ -143,6 +143,12 @@ public class MqttMessageCallback implements MqttCallback {
 				ChatList chatListobj=chatLists.get(0);
 				chatListobj.setChatName(eventMsgBean.getGroupName());
 				chatListService.saveObj(chatListobj);
+
+				GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+				List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", eventMsgBean.getGroupID());
+				GroupChats groupChatsObj=groupChatsList.get(0);
+				groupChatsObj.setGroupName(eventMsgBean.getGroupName());
+				groupChatsService.saveObj(groupChatsObj);
 			}
 
 			//处理特殊业务（例如：注销topic，注册topic等）

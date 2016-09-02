@@ -1144,6 +1144,16 @@ angular.module('selectgroup.controllers', [])
 
           })
           $ionicHistory.goBack();
+
+          $state.go('groupSetting',{
+            'groupid':$scope.groupId,
+            'chatname':name,
+            'grouptype':"Group",
+            'ismygroup':true
+          });
+
+
+
         },function (err) {
 
         })
@@ -1161,8 +1171,13 @@ angular.module('selectgroup.controllers', [])
 
     });
 
-    $scope.backAny=function () {
-      $ionicHistory.goBack();
+    $scope.backNameModify=function () {
+      $state.go('groupSetting',{
+        'groupid':$scope.groupId,
+        'chatname':groupName,
+        'grouptype':"Group",
+        'ismygroup':true
+      });
     }
 
   })
