@@ -135,7 +135,7 @@ angular.module('im.routes', [])
       })
 
       .state('groupMember', {
-        url: '/groupMember/:groupid/:chatname/:grouptype',
+        url: '/groupMember/:groupid/:chatname/:grouptype/:ismygroup',
         templateUrl: 'templates/group-member.html',
         controller: 'groupMemberCtrl',
         cache:false
@@ -314,7 +314,7 @@ angular.module('im.routes', [])
         cache:false,
       })
       .state('addnewpersonsecond', {
-        url: '/addnewpersonsecond/:contactId:/createtype',
+        url: '/addnewpersonsecond/:contactId:/:createtype',
         templateUrl: 'templates/addNewPerson-second.html',
         controller: 'addNewPersonsecondCtrl',
         cache:false,

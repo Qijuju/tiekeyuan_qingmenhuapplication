@@ -1498,7 +1498,8 @@ angular.module('message.controllers', [])
         $state.go('groupMember',{
           "groupid":id,
           "chatname":name,
-          "grouptype":type
+          "grouptype":type,
+          "ismygroup":$scope.ismygroup
         });
       }else {
         $state.go('groupDeptMember',{

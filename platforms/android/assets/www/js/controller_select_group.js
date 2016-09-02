@@ -9,6 +9,8 @@ angular.module('selectgroup.controllers', [])
 
   //创建的类型看到底是从哪里过来的
   $scope.createType=$stateParams.createtype;
+  alert($scope.createType+'1级')
+
   $contacts.rootDept();
   $scope.$on('first.update', function (event) {
     $scope.$apply(function () {
@@ -36,6 +38,8 @@ angular.module('selectgroup.controllers', [])
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
+    alert($scope.createType+'2级')
+
     $scope.contactId = $stateParams.contactId;//传过来的id；
 
     $scope.departlist = [];
@@ -384,6 +388,7 @@ angular.module('selectgroup.controllers', [])
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
+    alert($scope.createType+'三级')
 
     //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
     var originalInfo=[];
@@ -653,84 +658,91 @@ angular.module('selectgroup.controllers', [])
 
       }
 
-      $scope.data = {};
-      $ionicPopup.show({
-        template: '<input type="text" ng-model="data.name">',
-        title: '创建群聊',
-        subTitle: '请输入群名称',
-        scope: $scope,
-        buttons: [
-          { text: '取消',
-            onTap: function(e) {
-              $scope.thirdUserIds=[];
-              $scope.thirdDeptIds=[];
-            }
-
-          },
-          {
-            text: '<b>确定</b>',
-            type: 'button-positive',
-            onTap: function(e) {
-              if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
+      if( $scope.createType==="fromGroup"){
+        $scope.data = {};
+        $ionicPopup.show({
+          template: '<input type="text" ng-model="data.name">',
+          title: '创建群聊',
+          subTitle: '请输入群名称',
+          scope: $scope,
+          buttons: [
+            { text: '取消',
+              onTap: function(e) {
                 $scope.thirdUserIds=[];
                 $scope.thirdDeptIds=[];
-                $ToastUtils.showToast("群名称不能为空");
-              }else{
-                // 查询数据库把不等于3这个级别的所有数据拿出来
-                $greendao.queryData('SelectIdService','where grade <>?', "3",function (data) {
+              }
 
-                  for(var i=0;i<data.length;i++){
-                    if(data[i].type=='user'){
+            },
+            {
+              text: '<b>确定</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if($scope.data.name===undefined||$scope.data.name===null||$scope.data.name===""){
+                  $scope.thirdUserIds=[];
+                  $scope.thirdDeptIds=[];
+                  $ToastUtils.showToast("群名称不能为空");
+                }else{
+                  // 查询数据库把不等于3这个级别的所有数据拿出来
+                  $greendao.queryData('SelectIdService','where grade <>?', "3",function (data) {
 
-                      $scope.thirdUserIds.push(data[i].id)
-                    }else if (data[i].type=='dept'){
-                      $scope.thirdDeptIds.push(data[i].id)
+                    for(var i=0;i<data.length;i++){
+                      if(data[i].type=='user'){
+
+                        $scope.thirdUserIds.push(data[i].id)
+                      }else if (data[i].type=='dept'){
+                        $scope.thirdDeptIds.push(data[i].id)
+                      }
                     }
-                  }
 
-                  //开始提交创建群组
-                  $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
-                    //当成功的时候先把数据库给清了
-                    $greendao.deleteAllData('SelectIdService',function (data) {
-                      // alert('数据被清空了')
-                    },function (err) {
+                    //开始提交创建群组
+                    $api.addGroup($scope.data.name,$scope.thirdDeptIds,$scope.thirdUserIds,function (msg) {
+                      //当成功的时候先把数据库给清了
+                      $greendao.deleteAllData('SelectIdService',function (data) {
+                        // alert('数据被清空了')
+                      },function (err) {
 
-                    });
+                      });
 
-                    //信息保存到数据库
-                    var obj={};
-                    obj.id=msg;
-                    obj.groupName=$scope.data.name;
-                    obj.groupType='Group'
-                    obj.ismygroup=true
-                    $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                      $rootScope.isGroupSend ='true'
-                      //跳转群聊天界面
-                      $state.go('messageGroup',{
-                        "id":obj.id,
-                        "chatName":$scope.data.name,
-                        "grouptype":"Group",
-                        "ismygroup":true
+                      //信息保存到数据库
+                      var obj={};
+                      obj.id=msg;
+                      obj.groupName=$scope.data.name;
+                      obj.groupType='Group'
+                      obj.ismygroup=true
+                      $greendao.saveObj('GroupChatsService',obj,function (msg) {
+                        $rootScope.isGroupSend ='true'
+                        //跳转群聊天界面
+                        $state.go('messageGroup',{
+                          "id":obj.id,
+                          "chatName":$scope.data.name,
+                          "grouptype":"Group",
+                          "ismygroup":true
+                        });
+                      },function (err) {
+                        $scope.thirdUserIds=[];
+                        $scope.thirdDeptIds=[];
                       });
                     },function (err) {
                       $scope.thirdUserIds=[];
                       $scope.thirdDeptIds=[];
+                      $ToastUtils.showToast(err)
+
                     });
                   },function (err) {
-                    $scope.thirdUserIds=[];
-                    $scope.thirdDeptIds=[];
-                    $ToastUtils.showToast(err)
 
                   });
-                },function (err) {
+                }
 
-                });
               }
+            },
+          ]
+        });
+      }else {
 
-            }
-          },
-        ]
-      });
+      }
+
+
+
 
     }
 
@@ -1184,12 +1196,20 @@ angular.module('selectgroup.controllers', [])
 
 
   //普通群的展示
-  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils) {
+  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao) {
+
+    $greendao.deleteAllData('SelectIdService',function (data) {
+
+    },function (err) {
+
+    })
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
+    $scope.ismygroup=$stateParams.ismygroup;
 
+    $scope.addperonList=[];
     $scope.groupMaster={};
     $scope.groupAdmin=[];
     $scope.groupCommon=[];
@@ -1208,6 +1228,11 @@ angular.module('selectgroup.controllers', [])
       var groupDetails=$group.getGroupDetail();//所有的信息
       var adminId=$group.getGroupDetail().admins;//所有管理员的集合
        var members=$group.getGroupDetail().users;//所有人员的集合
+
+       for(var m=0;m<members.length;m++){
+         $scope.addperonList.push(members[m]);
+       }
+
 
        //获取群主
        for(var i=0;i<members.length;i++){
@@ -1236,6 +1261,33 @@ angular.module('selectgroup.controllers', [])
 
      })
      });
+
+
+    $scope.addPerson=function () {
+
+      //在添加的时候先去把存到数据库里面
+       for(var i=0;i<$scope.addperonList.length;i++){
+         //当创建群聊的时候先把登录的id和信息  存到数据库上面
+         var selectInfo={};
+
+         selectInfo.id=$scope.addperonList[i].UserID;
+         selectInfo.grade="0";
+         selectInfo.isselected=true;
+         selectInfo.type='user'
+         $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+         },function (err) {
+
+         })
+       }
+
+      $state.go('addnewpersonfirst',{
+        createtype:'fromGroup'
+      });
+
+    };
+
+
+
 
     //删除群聊里面的人
     $scope.removeGroupPerson=function (id) {
@@ -1280,9 +1332,16 @@ angular.module('selectgroup.controllers', [])
 
 
 
-    $scope.addPerson=function () {
-      $state.go('addnewpersonfirst');
-    };
+
+
+    $scope.backsetting=function () {
+      $state.go('groupSetting',{
+        'groupid':$scope.groupId,
+        'chatname':$scope.groupName,
+        'grouptype':$scope.groupType,
+        'ismygroup':$scope.ismygroup
+      });
+    }
 
 
 
