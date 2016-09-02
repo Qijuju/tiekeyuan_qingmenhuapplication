@@ -137,6 +137,12 @@ public class MqttMessageCallback implements MqttCallback {
 				groupChats.setGroupType("Group");
 				groupChats.setIsmygroup(false);
 				groupChatsService.saveObj(groupChats);
+			} else if ("GN0".equals(eventMsgBean.getEventCode())) {
+				ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+				List<ChatList> chatLists=chatListService.queryData("where id =?", eventMsgBean.getGroupID());
+				ChatList chatListobj=chatLists.get(0);
+				chatListobj.setChatName(eventMsgBean.getGroupName());
+				chatListService.saveObj(chatListobj);
 			}
 
 			//处理特殊业务（例如：注销topic，注册topic等）
@@ -166,6 +172,8 @@ public class MqttMessageCallback implements MqttCallback {
 			message = "你被添加为管理员";
 		} else if ("YAM".equals(eventCode)) {//你被群组添加为成员
 			message = "你被群组添加为成员";
+		} else if ("GN0".equals(eventCode)) {//群组名称增、改
+			message = "群组名称增、改";
 		} else if ("G00".equals(eventCode)) {//群组信息增、改
 			message = "群组信息增、改";
 		} else if ("YRA".equals(eventCode)) {//你被移除管理员

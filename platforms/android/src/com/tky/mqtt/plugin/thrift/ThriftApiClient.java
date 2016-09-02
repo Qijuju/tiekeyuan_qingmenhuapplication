@@ -9,6 +9,7 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
@@ -1571,9 +1572,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                 for (int i = 0; i < (groupList == null ? 0 : groupList.size()); i++){
                                     Group group = groupList.get(i);
                                     if (i != groupList.size() - 1) {
-                                        sb.append(group.getGroupID() + ",");
+                                        sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID() + ",");
                                     } else {
-                                        sb.append(group.getGroupID());
+                                        sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID());
                                     }
                                 }
                                 setResult(sb.toString(), PluginResult.Status.OK, callbackContext);
