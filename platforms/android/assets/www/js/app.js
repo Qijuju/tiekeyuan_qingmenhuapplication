@@ -5,7 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic','ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers','my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services','message.services','my.services','group.services'])
+angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
+  'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
+  'my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services',
+  'message.services','my.services','group.services','selectothergroup.controllers'])
 
 /*'im.controllers', 'starter.services',*/
   .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
