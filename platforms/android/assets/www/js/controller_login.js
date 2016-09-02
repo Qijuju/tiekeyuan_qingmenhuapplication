@@ -8,11 +8,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
-    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-      $ToastUtils.showToast("手势密码:"+pwd);
-    }, function (msg) {
-      $ToastUtils.showToast("手势密码获取失败"+msg);
-    });
+
 
     $mqtt.setLogin(false);
     $scope.name = "";
@@ -193,10 +189,174 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
+  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval,$mqtt) {
     $scope.goLogin = function() {
-      $state.go('login');
+      $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+        if(pwd==null||pwd==""||pwd.length==0){
+          $state.go('login');
+        }else {
+          $state.go('gesturelogin');
+        }
+        $ToastUtils.showToast("手势密码:"+pwd);
+      }, function (msg) {
+        $state.go('login');
+        $ToastUtils.showToast("手势密码获取失败"+msg);
+      });
+
     };
 
     $scope.myActiveSlide = 0;
+  })
+  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
+    $scope.goLogin = function() {
+      $state.go('login');
+    };
+    var password="";
+    var count=6;
+    // $scope.$apply(function () {
+    //   $scope.a=2
+    // })
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      password=pwd;
+      $ToastUtils.showToast("手势密码:"+pwd);
+    }, function (msg) {
+      $ToastUtils.showToast("手势密码获取失败"+msg);
+    });
+
+
+    //登录成功之后获取用户姓名（昵称）
+    $scope.getUserName = function () {
+      $mqtt.getUserInfo(function (userInfo) {
+        $rootScope.userName = userInfo.userName;
+      },function (err) {
+      });
+    };
+
+    var method=function () {
+      var secondopt = {
+        chooseType: 3,
+        width: 350,
+        height: 350,
+        container: 'element',
+        inputEnd: function(psw){
+          if(psw==password){
+            $mqtt.getMqtt().getUserId(function (userID) {
+              $rootScope.rootUserId = userID;
+              // alert("当前用户的id"+userID);
+            }, function (err) {
+            });
+
+            $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+
+            $mqtt.getMqtt().getMyTopic(function (msg) {
+              $api.getAllGroupIds(function (groups) {
+                $mqtt.startMqttChat(msg + ',' + groups);
+                // $mqtt.setLogin(true);
+                $scope.getUserName();
+              }, function (err) {
+                $ToastUtils.showToast(err,function (success) {
+                },function (err) {
+                });
+              });
+            }, function (err) {
+              alert(message);
+            });
+
+            secondlock.drawStatusPoint('right')
+            $ToastUtils.showToast("输入密码正确,logining...")
+            $ionicLoading.show({
+              content: 'Loading',
+              animation: 'fade-in',
+              showBackdrop: false,
+              maxWidth: 100,
+              showDelay: 0
+            });
+            $timeout(function () {
+              $ionicLoading.hide();
+              $state.go('tab.message');
+            });
+            $timeout(function () {
+              secondlock.reset();
+            },300);
+
+          }else {
+            secondlock.drawStatusPoint('notright')
+            $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+            if (count==0){
+              $mqtt.save('gesturePwd', "");//存
+              $state.go('login');
+            }
+            $timeout(function () {
+              secondlock.reset();
+              method();
+            },300);
+          }
+        }
+      }
+      var secondlock = new H5lock(secondopt);
+      secondlock.init();
+    }
+
+
+    var firstopt = {
+      chooseType: 3,
+      width: 350,
+      height: 350,
+      container: 'element',
+      inputEnd: function(psw){
+        if(psw==password){
+          $mqtt.getMqtt().getUserId(function (userID) {
+            $rootScope.rootUserId = userID;
+            // alert("当前用户的id"+userID);
+          }, function (err) {
+          });
+
+          $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+
+          $mqtt.getMqtt().getMyTopic(function (msg) {
+            $api.getAllGroupIds(function (groups) {
+              $mqtt.startMqttChat(msg + ',' + groups);
+              // $mqtt.setLogin(true);
+              $scope.getUserName();
+
+            }, function (err) {
+              $ToastUtils.showToast(err,function (success) {
+              },function (err) {
+              });
+            });
+          }, function (err) {
+            alert(message);
+          });
+
+          firstlock.drawStatusPoint('right')
+          $ToastUtils.showToast("输入密码正确,logining...")
+          $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 100,
+            showDelay: 0
+          });
+          $timeout(function () {
+            $ionicLoading.hide();
+            $state.go('tab.message');
+          });
+          $timeout(function () {
+            firstlock.reset();
+          },300);
+
+        }else {
+          firstlock.drawStatusPoint('notright')
+          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          $timeout(function () {
+            firstlock.reset();
+            method();
+          },300);
+        }
+      }
+    }
+    var firstlock = new H5lock(firstopt);
+    firstlock.init();
+
+
   })
