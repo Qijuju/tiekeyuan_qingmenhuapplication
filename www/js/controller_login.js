@@ -325,7 +325,7 @@ angular.module('login.controllers', [])
               });
             });
           }, function (err) {
-            alert(message);
+             alert(message);
           });
 
           firstlock.drawStatusPoint('right')

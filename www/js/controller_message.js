@@ -3,6 +3,18 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils) {
+    $scope.a=0;
+    $scope.gengduo=function () {
+     
+      if ($scope.a==0){
+        $scope.a=1;
+      }else {
+        $scope.a=0;
+      }
+    };
+    $scope.zhiling=function () {
+      $scope.a=0;
+    };
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   $ToastUtils.showToast(data);
