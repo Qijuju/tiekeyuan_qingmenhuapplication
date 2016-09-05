@@ -9,7 +9,9 @@ angular.module('selectgroup.controllers', [])
 
   //创建的类型看到底是从哪里过来的
   $scope.createType=$stateParams.createtype;
-  alert($scope.createType+'1级')
+  $scope.gourpId=$stateParams.groupid;
+  $scope.groupName=$stateParams.groupname;
+  alert($scope.createType+'1级'+$scope.gourpId)
 
   $contacts.rootDept();
   $scope.$on('first.update', function (event) {
@@ -24,9 +26,12 @@ angular.module('selectgroup.controllers', [])
 
   //跳转到二级选人界面
   $scope.jumpGroupSecond=function (id) {
+    alert($scope.gourpId+"待花开时代反函数")
     $state.go('addnewpersonsecond',{
       "contactId":id,
-      "createtype":$scope.createType
+      "createtype":$scope.createType,
+      "groupid":$scope.gourpId,
+      "groupname":$scope.groupName
     });
   }
 
@@ -38,7 +43,10 @@ angular.module('selectgroup.controllers', [])
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
-    alert($scope.createType+'2级')
+    $scope.gourpId=$stateParams.groupid;
+    $scope.groupName=$stateParams.groupname;
+    alert($scope.createType+'2级'+$scope.gourpId+"ddddddddddd")
+
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
 
@@ -186,10 +194,13 @@ angular.module('selectgroup.controllers', [])
         $ToastUtils.showToast('选中后不可以再选择下级')
         $event.stopPropagation()
       }else {
+        alert('三级'+$scope.gourpId)
         $state.go("addnewpersonthird", {
           "contactId": id,
           "secondname": pname,
-          "createtype":$scope.createType
+          "createtype":$scope.createType,
+          "groupid":$scope.gourpId,
+          "groupname":$scope.groupName
         });
       }
 
@@ -388,7 +399,12 @@ angular.module('selectgroup.controllers', [])
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
-    alert($scope.createType+'三级')
+    $scope.gourpId=$stateParams.groupid;
+    $scope.groupName=$stateParams.groupname;
+
+
+    alert($scope.createType+'三级'+$scope.groupName+"id"+$scope.gourpId+"ccccccccc")
+    alert()
 
     //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
     var originalInfo=[];
@@ -657,8 +673,8 @@ angular.module('selectgroup.controllers', [])
         }
 
       }
-
-      if( $scope.createType==="fromGroup"){
+      //如果过来的字段名字是“fromGroup” 说明的创建群聊
+      if( $scope.createType==="single"){
         $scope.data = {};
         $ionicPopup.show({
           template: '<input type="text" ng-model="data.name">',
@@ -738,7 +754,57 @@ angular.module('selectgroup.controllers', [])
           ]
         });
       }else {
+        //当是从添加群组的联系人开始的时候
 
+        $greendao.queryGroupIds('0','3',function (data) {
+
+          if(data.length>0){
+            for(var i=0;i<data.length;i++){
+              if(data[i].type=='user'){
+
+                $scope.thirdUserIds.push(data[i].id)
+              }else if (data[i].type=='dept'){
+                $scope.thirdDeptIds.push(data[i].id)
+              }
+            }
+          }
+
+          if($scope.thirdDeptIds.length>0 || $scope.thirdUserIds.length>0){
+            $api.groupAddMember($scope.gourpId,$scope.thirdDeptIds,$scope.thirdUserIds,function (data) {
+
+              $greendao.deleteAllData('SelectIdService',function (hh) {
+                alert('数据被清空了')
+                //跳转到设置界面
+                $state.go('groupMember',{
+                  "groupid":data,
+                  "chatname":$scope.groupName,
+                  "grouptype":'Group',
+                  "ismygroup":true
+                });
+
+              },function (err) {
+
+              });
+              alert("添加人员成功")
+
+            },function (err) {
+              $scope.thirdUserIds=[];
+              $scope.thirdDeptIds=[];
+              $ToastUtils.showToast(err)
+
+            })
+          }else {
+            $scope.thirdUserIds=[];
+            $scope.thirdDeptIds=[];
+            $ToastUtils.showToast('请先选择人员')
+          }
+
+        },function (err) {
+          $scope.thirdUserIds=[];
+          $scope.thirdDeptIds=[];
+          $ToastUtils.showToast(err)
+
+        })
       }
 
 
@@ -1198,18 +1264,19 @@ angular.module('selectgroup.controllers', [])
   //普通群的展示
   .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao) {
 
+    //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
 
     },function (err) {
 
     })
 
+
     $scope.groupId = $stateParams.groupid;
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
 
-    $scope.addperonList=[];
     $scope.groupMaster={};
     $scope.groupAdmin=[];
     $scope.groupCommon=[];
@@ -1225,10 +1292,10 @@ angular.module('selectgroup.controllers', [])
      $scope.$on('groupdetail.update', function (event) {
      $scope.$apply(function () {
 
+       $scope.addperonList=[];
       var groupDetails=$group.getGroupDetail();//所有的信息
       var adminId=$group.getGroupDetail().admins;//所有管理员的集合
        var members=$group.getGroupDetail().users;//所有人员的集合
-
        for(var m=0;m<members.length;m++){
          $scope.addperonList.push(members[m]);
        }
@@ -1279,9 +1346,12 @@ angular.module('selectgroup.controllers', [])
 
          })
        }
-
+      alert($scope.groupId+"普通群的id")
       $state.go('addnewpersonfirst',{
-        createtype:'fromGroup'
+        "createtype":'double',
+        "groupid":$scope.groupId,
+        "groupname":$scope.groupName
+
       });
 
     };

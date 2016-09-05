@@ -337,6 +337,25 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+    public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){
+      SelectIdService selectIdService=SelectIdService.getInstance(UIUtils.getContext());
+      try {
+        String one=args.getString(0);
+        String two=args.getString(1);
+        List<SelectedId> list=selectIdService.queryBy(one, two);
+        Gson gson=new Gson();
+        String jsonStr = gson.toJson(list, new TypeToken<List<SelectedId>>() {
+        }.getType());
+        setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+
+    }
+
+
+
+
     /**
      * 带参查询
      *

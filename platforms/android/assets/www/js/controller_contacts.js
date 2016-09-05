@@ -1502,7 +1502,9 @@ angular.module('contacts.controllers', [])
       })
 
       $state.go('addnewpersonfirst',{
-        createtype:'fromGroup'
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
       });
 
     }
