@@ -1273,12 +1273,20 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("进入群聊界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-        $state.go('messageGroup',{
-          "id":id,
-          "chatName":ssid,
-          "grouptype":chatType,
-          "ismygroup":true
+        $greendao.queryData('GroupChatsService','where id =?',id,function (data) {
+
+          $state.go('messageGroup',{
+            "id":id,
+            "chatName":ssid,
+            "grouptype":chatType,
+            "ismygroup":data[0].ismygroup,
+          });
+
+        },function (err) {
+
         });
+
+
       }
 
     };
@@ -1480,7 +1488,9 @@ angular.module('message.controllers', [])
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
+    $scope.ismygroup=$stateParams.ismygroup;
 
+    $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
     $scope.listM.push('GN');
     $scope.listM.push('GT');
@@ -1513,7 +1523,8 @@ angular.module('message.controllers', [])
 
 
     //解散群
-    $scope.dissolveGroup=function () {
+    $scope.dissolveGroup=function (aa) {
+
       $api.removeGroup($scope.groupId,function (msg) {
 
         $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
@@ -1545,7 +1556,13 @@ angular.module('message.controllers', [])
 
     $scope.backAny = function () {
 
-      $ionicHistory.goBack();
+
+      $state.go('messageGroup',{
+        "id":$scope.groupId,
+        "chatName":$scope.groupName,
+        "grouptype":$scope.groupType,
+        "ismygroup":$scope.ismygroup,
+      });
 
     };
 

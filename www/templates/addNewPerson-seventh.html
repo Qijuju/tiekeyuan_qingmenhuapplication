@@ -9,7 +9,7 @@
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%">
       <div id="seventhscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/addnewpersonfirst" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style"  ng-click="fromSeventhToSecond(firstidInSeven)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style"  ng-click="fromSeventhToThird(secondidInSeven,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a4" class="a-style"  ng-click="fromSeventhToForth(thirdidInSeven,secondName,thirdName)" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
@@ -21,21 +21,21 @@
     </ion-scroll>
     <div>
       <ion-list>
-        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in nihao">
+        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in departseventhlist">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_org.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_org.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.DeptName}}</strong>
             </ion-checkbox>
           </div>
           <div style="position: absolute;left: 80%;">
-            <button class="button button-clear" ng-click="jumpGroupEighth(item.DeptID,secondName,thirdName,forthName,fifthName,sixthName,deptinfo7)" style="color: #0a9dc7">下级</button>
+            <button class="button button-clear" ng-click="jumpGroupEighth(item.DeptID,secondName,thirdName,forthName,fifthName,sixthName,deptinfo7,item.isSelected)" style="color: #0a9dc7">下级</button>
           </div>
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in buhao">
+        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in userseventhlist">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.UserName}}</strong>
             </ion-checkbox>
           </div>
@@ -49,7 +49,7 @@
   </ion-content>
   <ion-footer-bar>
     <div style="position: absolute;right: 5px;width: 50px">
-      <button class="button button-balanced ">
+      <button class="button button-balanced " ng-click="seventhConfirm()">
         确定
       </button>
     </div>

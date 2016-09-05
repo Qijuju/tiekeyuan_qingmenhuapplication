@@ -260,6 +260,7 @@ dependencies {
     compile files('libs/slf4j-log4j12-1.6.2.jar')
     compile files('libs/imDataCast.jar')
     compile files('libs/dom4j-1.6.1.jar')
+    compile files('libs/okhttp-2.6.0.jar')
 }
 
 def promptForReleaseKeyPassword() {
