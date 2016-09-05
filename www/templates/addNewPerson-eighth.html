@@ -1,4 +1,4 @@
-<ion-view view-title="添加新成员7">
+<ion-view view-title="添加新成员8">
   <ion-nav-bar align-title="center">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSeventh()">
@@ -9,7 +9,7 @@
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%">
       <div id="eighthscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a1" class="a-style" href="#/tab/contacts/{{createType}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style"  ng-click="fromEighthToSecond(firstidInEighth)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style"   ng-click="fromEighthToThird(secondidInEighth,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a4" class="a-style"   ng-click="fromEighthToForth(thirdidInEighth,secondName,thirdName)" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
@@ -24,7 +24,7 @@
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in eightDept">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_org.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_org.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.DeptName}}</strong>
             </ion-checkbox>
           </div>
@@ -36,7 +36,7 @@
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in eightUser">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.UserName}}</strong>
             </ion-checkbox>
           </div>
@@ -50,7 +50,7 @@
   </ion-content>
   <ion-footer-bar>
     <div style="position: absolute;right: 5px;width: 50px">
-      <button class="button button-balanced ">
+      <button class="button button-balanced " ng-click="eighthConfirm()">
         确定
       </button>
     </div>

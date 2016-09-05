@@ -9,7 +9,7 @@
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%">
       <div id="fifthscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/addnewpersonfirst" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style" ng-click="fromFifthToSecond(firstid)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style"  ng-click="fromFifthToThird(secondid,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a4" class="a-style" ng-click="backForth()" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
@@ -20,19 +20,19 @@
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in departfifthlist">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_org.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_org.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.DeptName}}</strong>
             </ion-checkbox>
           </div>
           <div style="position: absolute;left: 80%;">
-            <button class="button button-clear"  style="color: #0a9dc7" ng-click="jumpGroupSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5)">下级</button>
+            <button class="button button-clear"  style="color: #0a9dc7" ng-click="jumpGroupSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5,item.isSelected)">下级</button>
           </div>
         </ion-item>
       </ion-list>
       <ion-list>
         <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in userfifthlist">
           <div class="col-80">
-            <ion-checkbox style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
+            <ion-checkbox style="border: 0" class="checkbox-dark" ng-model="item.isSelected"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
               <strong style="position: absolute;left: 33%;top:30%">{{item.UserName}}</strong>
             </ion-checkbox>
           </div>
@@ -46,7 +46,7 @@
   </ion-content>
   <ion-footer-bar>
     <div style="position: absolute;right: 5px;width: 50px">
-      <button class="button button-balanced ">
+      <button class="button button-balanced" ng-click="fifthConfirm()">
         确定
       </button>
     </div>
