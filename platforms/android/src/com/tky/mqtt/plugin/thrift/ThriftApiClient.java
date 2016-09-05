@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -1605,6 +1606,28 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
+    /**
+     * 二维码扫描登录接口
+     * @param args
+     * @param callbackContext
+     */
+    public void qrcodeLogin(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String qrcode = args.getString(1);
+            String url = "http://www.r93535.cn/servicesapitest/qrcode/setUser/" + qrcode + "/" + getUserID();
+            OKSyncGetClient client = new OKSyncGetClient();
+            String data = client.okSyncGet(url);
+            if ("1".equals(data.trim())) {//登录成功
+                setResult(true, PluginResult.Status.OK, callbackContext);
+            } else {//登录失败
+                setResult(false, PluginResult.Status.OK, callbackContext);
+            }
+        } catch (JSONException e) {
+            setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
     //以下为工具方法
     /**
      * 是否需要升级，传入的新老版本都要以数字和小数点组合
@@ -1769,6 +1792,18 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     private void setResult(long result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Sgetatus.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    private void setResult(boolean result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
