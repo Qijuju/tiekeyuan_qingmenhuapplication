@@ -1613,7 +1613,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void qrcodeLogin(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String qrcode = args.getString(1);
+            String qrcode = args.getString(0);
             String url = "http://www.r93535.cn/servicesapitest/qrcode/setUser/" + qrcode + "/" + getUserID();
             OKSyncGetClient client = new OKSyncGetClient();
             String data = client.okSyncGet(url);
