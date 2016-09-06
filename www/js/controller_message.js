@@ -957,15 +957,15 @@ angular.module('message.controllers', [])
       $cordovaBarcodeScanner.scan().then(function(imageData) {
          $ToastUtils.showToast(imageData.text);
          $api.qrcodeLogin(imageData.text,function (msg) {
-           alert(msg)
+           $ToastUtils.showToast(msg)
          },function (msg) {
-           alert(msg)
+           $ToastUtils.showToast(msg)
          });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
         // $ToastUtils.showToast( error);
-        alert(error)
+        $ToastUtils.showToast(error)
       });
     };
     //清表数据
