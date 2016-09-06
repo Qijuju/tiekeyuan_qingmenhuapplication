@@ -47,7 +47,7 @@ public class OKSyncGetClient {
 			call = client.newCall(request);
 			response = call.execute();
 			if (!response.isSuccessful()){
-				throw new IOException("Unexpected code " + response);
+				return "err";
 			}
 			return response.body().string();
 		} catch (IOException e) {
