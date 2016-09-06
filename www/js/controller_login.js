@@ -208,6 +208,7 @@ angular.module('login.controllers', [])
     $scope.myActiveSlide = 0;
   })
   .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
+    $mqtt.setLogin(false);
     $scope.goLogin = function() {
       $state.go('login');
     };
@@ -251,7 +252,7 @@ angular.module('login.controllers', [])
             $mqtt.getMqtt().getMyTopic(function (msg) {
               $api.getAllGroupIds(function (groups) {
                 $mqtt.startMqttChat(msg + ',' + groups);
-                // $mqtt.setLogin(true);
+                $mqtt.setLogin(true);
                 $scope.getUserName();
               }, function (err) {
                 $ToastUtils.showToast(err,function (success) {
@@ -259,7 +260,7 @@ angular.module('login.controllers', [])
                 });
               });
             }, function (err) {
-              alert(message);
+              $ToastUtils.showToast(err);
             });
 
             secondlock.drawStatusPoint('right')
@@ -307,7 +308,6 @@ angular.module('login.controllers', [])
         if(psw==password){
           $mqtt.getMqtt().getUserId(function (userID) {
             $rootScope.rootUserId = userID;
-            // alert("当前用户的id"+userID);
           }, function (err) {
           });
 
@@ -316,7 +316,7 @@ angular.module('login.controllers', [])
           $mqtt.getMqtt().getMyTopic(function (msg) {
             $api.getAllGroupIds(function (groups) {
               $mqtt.startMqttChat(msg + ',' + groups);
-              // $mqtt.setLogin(true);
+              $mqtt.setLogin(true);
               $scope.getUserName();
 
             }, function (err) {
@@ -325,7 +325,7 @@ angular.module('login.controllers', [])
               });
             });
           }, function (err) {
-             alert(message);
+            $ToastUtils.showToast(err);
           });
 
           firstlock.drawStatusPoint('right')

@@ -5,7 +5,7 @@ angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils) {
     $scope.a=0;
     $scope.gengduo=function () {
-     
+
       if ($scope.a==0){
         $scope.a=1;
       }else {
@@ -938,7 +938,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
      // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -956,10 +956,16 @@ angular.module('message.controllers', [])
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
          $ToastUtils.showToast(imageData.text);
+         $api.qrcodeLogin(imageData.text,function (msg) {
+           alert(msg)
+         },function (msg) {
+           alert(msg)
+         });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
         // $ToastUtils.showToast( error);
+        alert(error)
       });
     };
     //清表数据
