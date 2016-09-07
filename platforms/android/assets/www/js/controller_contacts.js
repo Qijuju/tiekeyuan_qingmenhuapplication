@@ -1487,9 +1487,8 @@ angular.module('contacts.controllers', [])
         "ismygroup":ismygrop
       });
     }
-    var selectInfo={};
     $scope.createGroupChats=function () {
-
+      var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";

@@ -52,7 +52,9 @@ angular.module('group.services', [])
 
     getGroupDetail:function () {
       return groupDetails;
-    }
+    },
+
+    
 
 
 

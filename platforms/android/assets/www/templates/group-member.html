@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon " ng-click="addPerson()">添加</button>
+      <button class="button button-icon " ng-click="addPerson()" ng-if="xianshi=='true' ||xianshi2=='true'">添加</button>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
@@ -42,10 +42,10 @@
             <p style="font-size: 18px " align="right">管理员</p>
           </div>
         </div>
-        <ion-option-button class="button-royal" ng-click="cancelAdmin(item.UserID)">
+        <ion-option-button class="button-royal" ng-click="cancelAdmin(item.UserID)" ng-if="xianshi=='true' ">
           取消管理员
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)" ng-if="xianshi=='true' ">
           删除
         </ion-option-button>
       </ion-item>
@@ -61,10 +61,10 @@
             <p style="font-size: 18px ;padding-left: 15px" align="right"></p>
           </div>
         </div>
-        <ion-option-button class="button-balanced" ng-click="addAdmin(item.UserID)">
+        <ion-option-button class="button-balanced" ng-click="addAdmin(item.UserID)" ng-if="xianshi=='true'">
           添加管理员
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)">
+        <ion-option-button class="button-assertive" ng-click="removeGroupPerson(item.UserID)" ng-if="xianshi=='true' ||xianshi2=='true'">
           删除
         </ion-option-button>
       </ion-item>

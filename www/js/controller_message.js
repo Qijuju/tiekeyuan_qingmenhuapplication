@@ -1319,10 +1319,30 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts) {
+
+    //进入界面先清除数据库表
+    $greendao.deleteAllData('SelectIdService',function (data) {
+
+    },function (err) {
+
+    })
+
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
+
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+        //登录人员的id
+        $scope.loginId=$contacts.getLoignInfo().userID;
+        //部门id
+        $scope.depid=$contacts.getLoignInfo().deptID;
+
+      })
+    });
+
     $scope.gohistoryMessage = function () {
       // $ToastUtils.showToast("要跳了")
       $state.go('historyMessage',{
@@ -1375,10 +1395,43 @@ angular.module('message.controllers', [])
     };
 
     $scope.meizuo=function () {
-      //$ToastUtils.showToast("此功能暂未开发");
-      //跳到添加人员聊天界面
-      $state.go('addnewpersonfirst');
+      $ToastUtils.showToast("此功能暂未开发");
+
     }
+
+    //添加人员功能
+    $scope.addNewPerson=function () {
+      $scope.addList=[];
+
+      $scope.addList.push($scope.loginId);
+      $scope.addList.push($scope.userId);
+
+      for(var i=0;i<$scope.addList.length;i++){
+        //当创建群聊的时候先把登录的id和信息  存到数据库上面
+        var selectInfo={};
+        selectInfo.id=$scope.addList[i];
+        selectInfo.grade="0";
+        selectInfo.isselected=true;
+        selectInfo.type='user'
+        $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+
+        },function (err) {
+
+        })
+      }
+      $state.go('addnewpersonfirst',{
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
+      });
+
+
+
+    }
+
+
+
+
   })
 
   .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
@@ -1562,5 +1615,24 @@ angular.module('message.controllers', [])
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
+
+    //打开群公告界面
+    $scope.groupNotice=function () {
+
+      $state.go('groupNotice',{
+        "groupid":$scope.groupId,
+        "grouptype":$scope.groupType,
+        "groupname":$scope.groupName,
+        "ismygroup":$scope.ismygroup,
+      });
+
+    }
+
+
+
+
+
+
+
   })
 

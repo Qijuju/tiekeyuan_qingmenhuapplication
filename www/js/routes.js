@@ -133,6 +133,20 @@ angular.module('im.routes', [])
         cache:false
 
       })
+      .state('groupNotice', {
+        url: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup',
+        templateUrl: 'templates/group-notice.html',
+        controller: 'groupNoticeCtrl',
+        cache:false
+
+      })
+      .state('groupCreateNotice', {
+        url: '/groupCreateNotice/:groupid/:grouptype/:groupname/:grouptext',
+        templateUrl: 'templates/group-createNotice.html',
+        controller: 'groupCreateNoticeCtrl',
+        cache:false
+
+      })
 
       .state('groupMember', {
         url: '/groupMember/:groupid/:chatname/:grouptype/:ismygroup',
