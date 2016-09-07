@@ -83,6 +83,17 @@ angular.module('im.routes', [])
         }
       })
 
+      .state('tab.notification', {
+        url: '/notification',
+        cache:false,
+        views: {
+          'tab-notification': {
+            templateUrl: 'templates/tab-notification.html',
+            controller: 'notificationCtrl'
+          }
+        }
+      })
+
       .state('messageDetail', {
         url: '/messageDetail/:id/:ssid/:grouptype',
         templateUrl: 'templates/message-detail.html',
