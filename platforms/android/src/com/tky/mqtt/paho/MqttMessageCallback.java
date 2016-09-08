@@ -153,8 +153,6 @@ public class MqttMessageCallback implements MqttCallback {
 
 			//处理特殊业务（例如：注销topic，注册topic等）
 			doDelTopic(groupID, eventMsgBean.getEventCode());
-
-
 			Intent intent = new Intent();
 			intent.setAction(ReceiverParams.MESSAGEARRIVED);
 			intent.putExtra("topic", topic);
