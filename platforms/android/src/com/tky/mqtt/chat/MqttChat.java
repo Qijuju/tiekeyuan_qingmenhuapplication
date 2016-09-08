@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -17,6 +19,7 @@ import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -48,6 +51,10 @@ public class MqttChat extends CordovaPlugin {
      * 是否已经登录
      */
     private boolean hasLogin = false;
+    /**
+     * 打开文件管理器请求码
+     */
+    private int FILE_SELECT_CODE = 0x0111;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -374,6 +381,34 @@ public class MqttChat extends CordovaPlugin {
         } catch (JSONException e) {
             setResult("获取用户ID失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 打开文件管理器
+     * @param args
+     * @param callbackContext
+     */
+    public void openDocWindow(final JSONArray args, final CallbackContext callbackContext) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        //显示文件管理器列表
+        try {
+            cordova.getActivity().startActivityForResult(Intent.createChooser(intent, "请选择一个要上传的文件"), FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(UIUtils.getContext(), "请安装文件管理器", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == FILE_SELECT_CODE && intent != null) {
+            Uri uri = intent.getData();
+            String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
+            ToastUtil.showSafeToast(path+"::这是路径~~~");
         }
     }
 

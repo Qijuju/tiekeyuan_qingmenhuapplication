@@ -570,6 +570,9 @@ angular.module('my.controllers', [])
     $scope.goGesturepassword = function () {
       $state.go("gesturepassword");
     }
+    $scope.goSetGesturepassword = function () {
+      $state.go("updategespassword");
+    }
 
   })
   .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils) {
@@ -633,7 +636,9 @@ angular.module('my.controllers', [])
                 $mqtt.save('gesturePwd', psw);//存
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("两次输入一样,密码设置成功")
-                i=6;
+                $scope.$apply(function () {
+                  $scope.a=3
+                })
                 $timeout(function () {
                   checklock.reset()
                 },300);
@@ -679,7 +684,10 @@ angular.module('my.controllers', [])
               if (psw==password){
                 checklock.drawStatusPoint('right')
                 $ToastUtils.showToast("两次输入一样,密码设置成功")
-                i=6;
+                $mqtt.save('gesturePwd', psw);//存
+                $scope.$apply(function () {
+                  $scope.a=3
+                })
                 $timeout(function () {
                   checklock.reset()
                 },300);
@@ -701,38 +709,153 @@ angular.module('my.controllers', [])
       setlock.init();
 
 
-    // };
-    // //验证密码
-    // $scope.checkpassword = function () {
-    //   $scope.a=2
-    //   var checkopt = {
-    //     chooseType: 3, // 3 , 4 , 5,
-    //     width: 350, // lock wrap width
-    //     height: 350, // lock wrap height
-    //     container: 'element', // the id attribute of element
-    //     inputEnd: function(psw){
-    //        // alert(psw)
-    //      if (psw==password){
-    //        checklock.drawStatusPoint('right')
-    //        $ToastUtils.showToast("两次输入一样,正确")
-    //        $timeout(function () {
-    //          checklock.reset()
-    //        },300);
-    //      }else {
-    //        checklock.drawStatusPoint('notright')
-    //        $ToastUtils.showToast("两次输入不一样,失败")
-    //        $timeout(function () {
-    //          checklock.reset()
-    //        },300);
-    //      }
-    //     }
-    //   };
-    //   var checklock = new H5lock(checkopt);
-    //   checklock.init();
-    // }
-
-
-
 
   })
 
+  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout) {
+    $scope.a=1;
+    var password="";
+    $scope.count=6;
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID
+    }, function (msg) {
+    });
+    $scope.goSetting = function () {
+      $state.go("accountsettion", {
+        "UserIDset": $scope.UserID
+      });
+    }
+    //初始化页面，第一次输入旧密码
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      password=pwd;
+      $ToastUtils.showToast("旧手势密码:"+pwd);
+    }, function (msg) {
+      $ToastUtils.showToast("旧手势密码获取失败"+msg);
+    });
+    var firstopt2 = {
+      chooseType: 3,
+      width: 350,
+      height: 350,
+      container: 'element',
+      inputEnd: function(psw){
+        if(psw==password){
+          firstlock2.drawStatusPoint('right');
+          $ToastUtils.showToast("输入密码正确,请输入新密码");
+          $timeout(function () {
+            firstlock2.reset();
+          },300);
+          $scope.$apply(function () {
+            $scope.a=2
+          });
+          newmethod()
+        }else {
+          firstlock2.drawStatusPoint('notright');
+          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--$scope.count)+"次");
+          method();
+          $timeout(function () {
+            firstlock2.reset();
+            method();
+          },300);
+        }
+      }
+    }
+    var firstlock2 = new H5lock(firstopt2);
+    firstlock2.init();
+    //旧密码输入错误情况跳入的方法
+    var method=function () {
+      if($scope.count==0){
+        $mqtt.save('gesturePwd', "");//存
+        $state.go("login");
+      }else {
+        $scope.$apply(function () {
+          $scope.a=0
+        });
+        var checkoldopt = {
+          chooseType: 3,
+          width: 350,
+          height: 350,
+          container: 'element',
+          inputEnd: function(psw){
+            if(psw==password){
+              checkoldlock.drawStatusPoint('right');
+              $ToastUtils.showToast("输入密码正确,请输入新密码");
+              $timeout(function () {
+                checkoldlock.reset();
+              },300);
+              $scope.$apply(function () {
+                $scope.a=2
+              });
+              newmethod()
+            }else {
+              checkoldlock.drawStatusPoint('notright');
+              $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--$scope.count)+"次");
+              method();
+              $timeout(function () {
+                checkoldlock.reset();
+                method();
+              },300);
+            }
+          }
+        }
+        var checkoldlock = new H5lock(checkoldopt);
+        checkoldlock.init();
+      }
+    }
+
+
+
+
+    var newmethod=function () {
+    var setopt = {
+      chooseType: 3, // 3 , 4 , 5,
+      width: 350, // lock wrap width
+      height: 350, // lock wrap height
+      container: 'element', // the id attribute of element
+      inputEnd: function(psw){
+        // alert(psw)
+        password=psw;
+        $scope.$apply(function () {
+          $scope.a=3
+        })
+        $ToastUtils.showToast("请再输入一次")
+        setlock.reset();
+
+        var checkopt = {
+          chooseType: 3, // 3 , 4 , 5,
+          width: 350, // lock wrap width
+          height: 350, // lock wrap height
+          container: 'element', // the id attribute of element
+          inputEnd: function(psw){
+            // alert(psw)
+            if (psw==password){
+              checklock.drawStatusPoint('right')
+              $ToastUtils.showToast("两次输入一样,密码设置成功")
+              $mqtt.save('gesturePwd', psw);//存
+              $scope.$apply(function () {
+                $scope.a=4
+              })
+              $timeout(function () {
+                checklock.reset()
+              },300);
+            }else {
+              checklock.drawStatusPoint('notright')
+              $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
+              $scope.$apply(function () {
+                $scope.a=2
+              })
+              $timeout(function () {
+                checklock.reset();
+                newmethod();
+              },300);
+            }
+          }
+        };
+        var checklock = new H5lock(checkopt);
+        checklock.init();
+      }
+    }
+    var setlock = new H5lock(setopt);
+    setlock.init();
+    }
+
+  })

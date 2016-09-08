@@ -230,6 +230,17 @@ angular.module('common.services', [])
       },
       getAllGroupIds:function(success, error) {//获取所有群组的群组ID，群组ID之间以逗号隔开，返回字符串
         api.getAllGroupIds(success, error);
+      },
+      //二维码登录接口，qrcode：扫描到的二维码  返回布尔类型的值：true为成功，false为登录失败
+      qrcodeLogin:function (qrcode, success, error) {
+        api.qrcodeLogin(qrcode, success, error);
+      },
+      //二维码登录接口，qrcode：扫描到的二维码  返回布尔类型的值：true为成功，false为登录失败
+      sendFile:function (objectTP,objectID,filePath, success, error) {
+        api.sendFile(objectTP,objectID,filePath, success, error);
+      },
+      getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
+       api.getFile(objectTP,objectID,picSize, success, error);
       }
     };
   })

@@ -2,7 +2,19 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api) {
+    $scope.a=0;
+    $scope.gengduo=function () {
+
+      if ($scope.a==0){
+        $scope.a=1;
+      }else {
+        $scope.a=0;
+      }
+    };
+    $scope.zhiling=function () {
+      $scope.a=0;
+    };
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -17,6 +29,7 @@ angular.module('message.controllers', [])
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;//当前用户id
     $scope.localusr=$rootScope.userName;//当前用户名
+    var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
     if ($rootScope.isPersonSend === 'true') {
@@ -75,6 +88,93 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast(err);
       });
     }
+    $scope.getPhoto = function(sourceTypeStr,topic, content, id,localuser,localuserId,sqlid) {
+      var sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+      if (sourceTypeStr === 'PHOTOLIBRARY') {
+        sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+      } else if(sourceTypeStr === 'CAMERA') {
+        sourceType = Camera.PictureSourceType.CAMERA;
+      }
+      var options = {
+        quality: 50,
+        targetWidth: 320,
+        targetHeight: 320,
+        saveToPhotoAlbum: false,
+        sourceType: sourceType,
+        // destinationType: Camera.DestinationType.DATA_URL
+        destinationType: Camera.DestinationType.FILE_URI
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageURI) {
+        // console.log($stateParams.conversationType + '--' + imageURI);
+        var picPath = imageURI;
+        console.log("getPicture:" + picPath);
+        // if(isIOS){
+        //   picPath = imageURI.replace('file://','');
+        // }
+        if(isAndroid){
+          picPath = imageURI.substring(0, imageURI.indexOf('?'));
+        }
+        // alert(picPath + "//ssss");
+        $api.sendFile('I',null,picPath,function (data) {
+          $scope.imgPath=data[0];
+          $scope.objID=data[1];
+          // alert(data[0] + "::::" + data[1]);
+
+          $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+            // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+            $scope.suc = $mqtt.sendMsg(userTopic, $scope.objID, id,localuser,localuserId,sqlid, "Image",$scope.imgPath);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          }, function (msg) {
+          });
+
+        },function (err) {
+          $ToastUtils.showToast(err+"上传图片失败",null,null);
+        });
+        // RongCloudLibPlugin.sendImageMessage({
+        //     conversationType: $stateParams.conversationType,
+        //     targetId: $stateParams.targetId,
+        //     imagePath: picPath,
+        //     extra: "this is a extra text"
+        //   },
+        //   function(ret, err) {
+        //     // $scope.lstResult = JSON.stringify(ret);
+        //     if (ret) {
+        //       if (ret.status == "prepare") {
+        //         //消息此时未发送成功，可以加入样式标明；成功后更新样式
+        //         appendNewMsg(ret.result.message, true);
+        //         console.log("prepare:" +  JSON.stringify(ret.result.message));
+        //         // alert("prepare");
+        //       }
+        //       if (ret.status == "success") {
+        //         // alert("success");
+        //         // 后续加入发送成功后修改显示样式
+        //       }
+        //     }
+        //     if (err) {
+        //       alert("sendImageMessage error: " + JSON.stringify(err));
+        //       console.log("sendImageMessage error: " + JSON.stringify(err));
+        //     }
+        //   }
+        // );
+        // $scope.lstResult = imageURI;
+      }, function(err) {
+        console.error(err);
+      });
+    };
+
+    $scope.openDocumentWindow = function () {
+      $mqtt.openDocWindow(function (path) {
+      }, function (err) {
+      });
+    };
+
+    /*$("#butAlbum").bind('click', function() {
+      window.alert("asdfadg");
+      getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);
+      return false;
+    });*/
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
@@ -926,7 +1026,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
      // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -944,10 +1044,16 @@ angular.module('message.controllers', [])
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
          $ToastUtils.showToast(imageData.text);
+         $api.qrcodeLogin(imageData.text,function (msg) {
+           alert(msg)
+         },function (msg) {
+           alert(msg)
+         });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
         // $ToastUtils.showToast( error);
+        alert(error)
       });
     };
     //清表数据

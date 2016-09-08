@@ -171,7 +171,7 @@ public class ProtocolUtil {
 						throw new IMPException(IMPException.Err_Length, node.getNodeName());
 					} else if(node.get_values() != null && !node.get_values().isEmpty() &&
 							!node.get_values().contains(nodeValue)){
-						throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
+						throw new IMPException(IMPException.Err_Unknown, node.getNodeName());
 					}
 					sendStr += nodeValue;
 				} else {
@@ -209,7 +209,7 @@ public class ProtocolUtil {
 					value = notifyStr.substring(position, position+nodeLength);
 					if(node.get_values() != null && !node.get_values().isEmpty() &&
 							!node.get_values().contains(value)){
-						throw new IMPException(IMPException.Err_Unknown, IMPFields.NotifyType);
+						throw new IMPException(IMPException.Err_Unknown, node.getNodeName());
 					}
 					position += nodeLength;
 				} else {

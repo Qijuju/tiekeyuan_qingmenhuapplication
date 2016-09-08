@@ -108,5 +108,10 @@ exports.getAllGroupIds = function(success, error) {//获取所有群组的群组
 exports.qrcodeLogin = function(qrcode, success, error) {//二维码扫描接口， qrcode：扫描到的二维码
   exec(success, error, "ThriftApiClient", "qrcodeLogin", [qrcode]);
 };
-
+exports.sendFile = function(objectTP,objectID,filePath, success, error) {//图片上传接口
+  exec(success, error, "ThriftApiClient", "sendFile", [objectTP,objectID,filePath]);
+};
+exports.getFile = function(objectTP,objectID,picSize, success, error) {//图片上传接口
+  exec(success, error, "ThriftApiClient", "getFile", [objectTP,objectID,picSize]);
+};
 });

@@ -41,7 +41,7 @@ public class MessageOper {
 			return null;
 		}
 		String type = obj.getString("type");
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType(obj.getString("messagetype")), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**
@@ -149,10 +149,12 @@ public class MessageOper {
 			mediaType = IMMsgFactory.MediaType.Image;
 		} else if ("Shake".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Shake;
-		} else if ("Text".equals(type)) {
+		} else if ("Text".equals(type) || "normal".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Text;
 		} else if ("Vedio".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Vedio;
+		} else {
+			mediaType = IMMsgFactory.MediaType.Text;
 		}
 		return mediaType;
 	}

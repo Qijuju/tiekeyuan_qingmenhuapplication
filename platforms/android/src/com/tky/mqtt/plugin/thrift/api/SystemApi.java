@@ -88,7 +88,7 @@ public class SystemApi {
         return asyncClient;
     }
 
-    private static FileSyncClient getFileSyncClient() throws IOException{
+    public static FileSyncClient getFileSyncClient() throws IOException{
         TTransport transport2 = new TFramedTransport(new TSocket("61.237.239.152", 6006, 5000));
         TProtocol protocol2 = new TCompactProtocol(transport2);
         IMFile.Client fileClient = new IMFile.Client(protocol2);
