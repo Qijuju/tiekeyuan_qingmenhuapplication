@@ -3,11 +3,9 @@
  */
 angular.module('group.services', [])
 
-.factory('$group',function ($api,$rootScope) {
+.factory('$group',function ($api,$rootScope,$timeout,$ToastUtils) {
 
   var allGroup=[];
-  var isMyCreate;
-  var count=0;
   var groupDetails;
 
   return{
@@ -15,26 +13,21 @@ angular.module('group.services', [])
       $api.getAllGroup(function (msg) {
 
         allGroup=msg.groupList
-        for(var i=0; i<allGroup.length;i++){
-          if(allGroup[i].isMyGroup==true){
-              count++;
-              isMyCreate=count;
-          }
-        }
+
 
         $rootScope.$broadcast('group.update');
 
       },function (err) {
-
+        $timeout(function () {
+          allGroup = null;
+          $rootScope.$broadcast('group.update');
+          $ToastUtils.showToast("获取数据失败")
+        },5000);
       });
     },
 
     getAllGroup:function () {
       return allGroup;
-    },
-
-    getCreateCount:function () {
-      return isMyCreate;
     },
 
 
@@ -45,7 +38,11 @@ angular.module('group.services', [])
         $rootScope.$broadcast('groupdetail.update');
 
       },function (err) {
-
+        $timeout(function () {
+          groupDetails = null;
+          $rootScope.$broadcast('groupdetail.update');
+          $ToastUtils.showToast("获取数据失败")
+        },5000);
 
       })
     },
@@ -54,7 +51,7 @@ angular.module('group.services', [])
       return groupDetails;
     },
 
-    
+
 
 
 

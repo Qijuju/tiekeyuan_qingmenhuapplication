@@ -3,7 +3,7 @@
  */
 angular.module('contacts.controllers', [])
   //常用联系人
-  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils) {
+  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$greendao) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
@@ -74,9 +74,27 @@ angular.module('contacts.controllers', [])
     };
 
 
+    $scope.deleteTopCotacts=function (id) {
+      $greendao.deleteDataByArg('TopContactsService',id,function (data) {
+
+        $contacts.topContactsInfo();
+      },function (err) {
+
+      })
+    }
+
+
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr,$ionicLoading) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -102,7 +120,10 @@ angular.module('contacts.controllers', [])
     $contacts.rootDept();
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
-        $scope.depts = $contacts.getRootDept();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.depts = $contacts.getRootDept();
+        });
       })
     });
 
@@ -1418,7 +1439,15 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$ionicLoading,$timeout) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
 
 
     $contacts.loginInfo();
@@ -1447,8 +1476,18 @@ angular.module('contacts.controllers', [])
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.grouplist=$group.getAllGroup();
-        $scope.ismycreat=$group.getCreateCount();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.grouplist=$group.getAllGroup();
+          $scope.ismycreat=0;
+
+          for(var i=0; i<$scope.grouplist.length;i++){
+            if($scope.grouplist[i].isMyGroup==true){
+              $scope.ismycreat++;
+            }
+          }
+
+        });
 
       })
     });
@@ -1631,7 +1670,15 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {
@@ -1714,10 +1761,32 @@ angular.module('contacts.controllers', [])
     $myattentionser.getAttentionList();
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
-        $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        });
       })
     });
 
+
+    //取消关注
+    $scope.removeattention = function (id) {
+      if ($scope.myid==id){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.removeAttention111(membersAerr);
+      }
+    }
+    $scope.$on('attention.delete', function (event) {
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $myattentionser.getAttentionList();
+        });
+      })
+    });
 
 
   })

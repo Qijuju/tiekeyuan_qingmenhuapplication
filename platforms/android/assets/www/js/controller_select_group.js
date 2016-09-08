@@ -1369,8 +1369,15 @@ angular.module('selectgroup.controllers', [])
 
 
   //普通群的展示
-  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao,$contacts) {
+  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao,$contacts,$ionicLoading,$timeout) {
 
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
 
@@ -1388,7 +1395,7 @@ angular.module('selectgroup.controllers', [])
       $scope.$apply(function () {
         //登录人员的id
         $scope.loginId=$contacts.getLoignInfo().userID;
-        alert('dengluid'+$scope.loginId)
+        // alert('dengluid'+$scope.loginId)
       })
     });
 
@@ -1555,9 +1562,15 @@ angular.module('selectgroup.controllers', [])
   })
 
   //部门群展示
-  .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams,$ionicHistory) {
+  .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams,$ionicHistory,$ionicLoading,$timeout) {
 
-
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
     $scope.groupId = $stateParams.groupid;
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
@@ -1571,9 +1584,16 @@ angular.module('selectgroup.controllers', [])
     $scope.$on('groupdetail.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.groupDetails=$group.getGroupDetail();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.groupDetails=$group.getGroupDetail();
 
-        $scope.members=$group.getGroupDetail().users;
+          $scope.members=$group.getGroupDetail().users;
+
+        });
+
+
+
 
       })
     });

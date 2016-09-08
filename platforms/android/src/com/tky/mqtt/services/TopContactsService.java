@@ -83,7 +83,7 @@ public class TopContactsService implements BaseInterface<TopContacts>{
 
     @Override
     public void deleteDataByArg(String arg) {
-
+      topContactsDao.deleteByKey(arg);
     }
 
     @Override

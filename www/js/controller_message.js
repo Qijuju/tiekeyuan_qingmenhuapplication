@@ -951,6 +951,30 @@ angular.module('message.controllers', [])
     $scope.shefalse=function () {
       $scope.a=false
     }
+    //发起群聊
+    $scope.createGroupChats=function () {
+      var selectInfo={};
+      //当创建群聊的时候先把登录的id和信息  存到数据库上面
+      selectInfo.id=$scope.loginId;
+      selectInfo.grade="0";
+      selectInfo.isselected=true;
+      selectInfo.type='user'
+      $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+
+      },function (err) {
+
+      })
+
+      $state.go('addnewpersonfirst',{
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
+      });
+    }
+
+
+
+
     //扫一扫
     $scope.saoyisao = function () {
       $scope.a=false
@@ -965,7 +989,7 @@ angular.module('message.controllers', [])
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
         // $ToastUtils.showToast( error);
-        $ToastUtils.showToast(error)
+        //$ToastUtils.showToast(error)
       });
     };
     //清表数据
@@ -1311,6 +1335,7 @@ angular.module('message.controllers', [])
       $scope.$on('login.update', function (event) {
         $scope.$apply(function () {
           //部门id
+          $scope.loginId=$contacts.getLoignInfo().userID;
           $scope.depid=$contacts.getLoignInfo();
           $contacts.loginDeptInfo($scope.depid);
         })
