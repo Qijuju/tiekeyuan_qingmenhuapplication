@@ -1,0 +1,19 @@
+<ion-view view-title="群公告">
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backcacle()">
+        取消
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  style="background-color:#e5e5e5 " >
+    <label class="item item-input " >
+      <input type="text" id="initialId" placeholder="请输入文字..." ng-model="send_notice">
+    </label>
+    <div class="list padding"  ng-click="saveNotice(send_notice)">
+      <button class="button button-block button-positive" >
+        发 布
+      </button >
+    </div>
+  </ion-content>
+</ion-view>

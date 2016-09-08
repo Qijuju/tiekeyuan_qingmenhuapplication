@@ -76,7 +76,15 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr,$ionicLoading) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -102,7 +110,10 @@ angular.module('contacts.controllers', [])
     $contacts.rootDept();
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
-        $scope.depts = $contacts.getRootDept();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.depts = $contacts.getRootDept();
+        });
       })
     });
 
@@ -1486,9 +1497,8 @@ angular.module('contacts.controllers', [])
         "ismygroup":ismygrop
       });
     }
-    var selectInfo={};
     $scope.createGroupChats=function () {
-
+      var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
@@ -1501,7 +1511,9 @@ angular.module('contacts.controllers', [])
       })
 
       $state.go('addnewpersonfirst',{
-        createtype:'fromGroup'
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
       });
 
     }
@@ -1630,7 +1642,15 @@ angular.module('contacts.controllers', [])
     };
   })
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {
@@ -1713,10 +1733,32 @@ angular.module('contacts.controllers', [])
     $myattentionser.getAttentionList();
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
-        $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        });
       })
     });
 
+
+    //取消关注
+    $scope.removeattention = function (id) {
+      if ($scope.myid==id){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.removeAttention111(membersAerr);
+      }
+    }
+    $scope.$on('attention.delete', function (event) {
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $myattentionser.getAttentionList();
+        });
+      })
+    });
 
 
   })
