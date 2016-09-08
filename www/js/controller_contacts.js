@@ -1743,6 +1743,13 @@ angular.module('contacts.controllers', [])
 
     //取消关注
     $scope.removeattention = function (id) {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
       if ($scope.myid==id){
         $ToastUtils.showToast("无法对自己进行该项操作")
       }else {
@@ -1753,10 +1760,7 @@ angular.module('contacts.controllers', [])
     }
     $scope.$on('attention.delete', function (event) {
       $scope.$apply(function () {
-        $timeout(function () {
-          $ionicLoading.hide();
-          $myattentionser.getAttentionList();
-        });
+        $myattentionser.getAttentionList();
       })
     });
 

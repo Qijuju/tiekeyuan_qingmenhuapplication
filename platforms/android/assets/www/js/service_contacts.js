@@ -1073,7 +1073,7 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$addattentionser',function ($api,$rootScope,$timeout,$ToastUtils,$ionicLoading) {
+  .factory('$addattentionser',function ($api,$rootScope,$timeout,$ToastUtils) {
     var addwancheng;
     return{
       addAttention111:function (membersAerr) {
@@ -1087,11 +1087,8 @@ angular.module('contacts.services', [])
       },
       removeAttention111:function (membersAerr) {
         $api.removeAttention(membersAerr,function (msg) {
-          $timeout(function () {
-            $ionicLoading.hide();
-            addwancheng=false;
-            $rootScope.$broadcast('attention.delete');
-          });
+          addwancheng=false;
+          $rootScope.$broadcast('attention.delete');
         },function (msg) {
           $timeout(function () {
             $rootScope.$broadcast('attention.delete');
