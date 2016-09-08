@@ -64,6 +64,12 @@ angular.module('im.routes', [])
         controller: 'gesturepasswordCtrl',
         cache:false
       })
+      .state('updategespassword', {
+        url: '/updategespassword',
+        templateUrl: 'templates/updategespassword.html',
+        controller: 'updategespasswordCtrl',
+        cache:false
+      })
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
@@ -73,6 +79,17 @@ angular.module('im.routes', [])
           'tab-message': {
             templateUrl: 'templates/tab-message.html',
             controller: 'MessageCtrl'
+          }
+        }
+      })
+
+      .state('tab.notification', {
+        url: '/notification',
+        cache:false,
+        views: {
+          'tab-notification': {
+            templateUrl: 'templates/tab-notification.html',
+            controller: 'notificationCtrl'
           }
         }
       })
@@ -281,6 +298,12 @@ angular.module('im.routes', [])
         cache: false,
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl',
+      })
+      .state('gesturelogin', {
+        url: '/gesturelogin',
+        cache: false,
+        templateUrl: 'templates/gesturelogin.html',
+        controller: 'gestureloginCtrl'
       })
 
       .state('tab.account', {

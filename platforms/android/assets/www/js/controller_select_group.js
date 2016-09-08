@@ -1406,7 +1406,6 @@ angular.module('selectgroup.controllers', [])
      $scope.$on('groupdetail.update', function (event) {
      $scope.$apply(function () {
 
-       alert('我到底进来了没有啊')
        $scope.groupMaster={};
 
        $scope.groupAdmin=[];
@@ -1447,7 +1446,6 @@ angular.module('selectgroup.controllers', [])
 
        if($scope.groupAdmin.length>0){
          for(var i=0;i<$scope.groupAdmin.length;i++){
-           alert('进来选中管理员了')
            if($scope.groupAdmin[i].UserID==$scope.loginId){
              $scope.xianshi2='true'
            }

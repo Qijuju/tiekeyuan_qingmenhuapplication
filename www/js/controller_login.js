@@ -8,11 +8,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
-    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-      $ToastUtils.showToast("手势密码:"+pwd);
-    }, function (msg) {
-      $ToastUtils.showToast("手势密码获取失败"+msg);
-    });
+
 
     $mqtt.setLogin(false);
     $scope.name = "";
@@ -96,6 +92,8 @@ angular.module('login.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name, $scope.password, function (message) {
+        $mqtt.save('pwdgesture', $scope.password);
+        $mqtt.save('namegesture', $scope.name);
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {
@@ -161,6 +159,21 @@ angular.module('login.controllers', [])
       },function (err) {
       });
     };
+    $scope.meizuo = function() {
+      $ToastUtils.showToast("此功能暂未开发");
+    };
+    $scope.goGestureLogin = function() {
+      $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+        if(pwd==null||pwd==""||pwd.length==0){
+          $ToastUtils.showToast("还未设置手势密码");
+        }else {
+          $state.go('gesturelogin');
+        }
+      }, function (msg) {
+        $ToastUtils.showToast("还未设置手势密码");
+      });
+
+    };
   })
   .controller('welcomeCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
     $scope.startApp = function() {
@@ -193,10 +206,211 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
+  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval,$mqtt) {
+    $mqtt.getMqtt().getString('pwdgesture', function (message) {
+      $scope.pwdgesturea = message;
+    });
+    $mqtt.getMqtt().getString('namegesture', function (message) {
+      $scope.namegesturea = message;
+    });
     $scope.goLogin = function() {
-      $state.go('login');
+      $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+        if(pwd==null||pwd==""||pwd.length==0|| $scope.pwdgesturea==""|| $scope.pwdgesturea.length==0|| $scope.pwdgesturea==null|| $scope.namegesturea==""|| $scope.namegesturea.length==0|| $scope.namegesturea==null){
+          $state.go('login');
+        }else {
+          $state.go('gesturelogin');
+        }
+        $ToastUtils.showToast("手势密码:"+pwd);
+      }, function (msg) {
+        $state.go('login');
+        $ToastUtils.showToast("手势密码获取失败"+msg);
+      });
+
     };
 
     $scope.myActiveSlide = 0;
+  })
+  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
+    $mqtt.setLogin(false);
+    $mqtt.getMqtt().getString('pwdgesture', function (message) {
+      $scope.pwdgesturea = message;
+    });
+    $mqtt.getMqtt().getString('namegesture', function (message) {
+      $scope.namegesturea = message;
+    });
+    $mqtt.getMqtt().getString('historyusername', function (message) {
+      $scope.username = message;
+    });
+
+    $mqtt.getMqtt().getString('userNamea', function (message) {
+      $scope.userNamea = message;
+    });
+    $scope.goLogin = function() {
+      $state.go('login');
+    };
+    $scope.meizuo = function() {
+      $ToastUtils.showToast("此功能暂未开发");
+    };
+    var password="";
+    var count=6;
+    // $scope.$apply(function () {
+    //   $scope.a=2
+    // })
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      password=pwd;
+      $ToastUtils.showToast("手势密码:"+pwd);
+    }, function (msg) {
+      $ToastUtils.showToast("手势密码获取失败"+msg);
+    });
+
+
+    //登录成功之后获取用户姓名（昵称）
+    $scope.getUserName = function () {
+      $mqtt.getUserInfo(function (userInfo) {
+        $rootScope.userName = userInfo.userName;
+      },function (err) {
+      });
+    };
+
+    var method=function () {
+      var secondopt = {
+        chooseType: 3,
+        width: 350,
+        height: 350,
+        container: 'element',
+        inputEnd: function(psw){
+          if(psw==password){
+            $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
+              $mqtt.save('pwdgesture', $scope.pwdgesturea);
+              $mqtt.save('namegesture', $scope.namegesturea);
+              if (message.isActive === false) {
+                $api.activeUser(message.userID, function (message) {
+                  loginM();
+                }, function (message) {
+                  $ToastUtils.showToast(message);
+                });
+              } else {
+                loginM();
+              }
+            }, function (message) {
+              $ToastUtils.showToast(message);
+            });
+
+            secondlock.drawStatusPoint('right')
+            $ionicLoading.show({
+              content: 'Loading',
+              animation: 'fade-in',
+              showBackdrop: false,
+              maxWidth: 100,
+              showDelay: 0
+            });
+            $timeout(function () {
+              $ionicLoading.hide();
+              $state.go('tab.message');
+            });
+            $timeout(function () {
+              secondlock.reset();
+            },300);
+
+          }else {
+            secondlock.drawStatusPoint('notright')
+            $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+            if (count==0){
+              $mqtt.save('gesturePwd', "");//存
+              $state.go('login');
+            }
+            $timeout(function () {
+              secondlock.reset();
+              method();
+            },300);
+          }
+        }
+      }
+      var secondlock = new H5lock(secondopt);
+      secondlock.init();
+    }
+
+
+    var firstopt = {
+      chooseType: 3,
+      width: 350,
+      height: 350,
+      container: 'element',
+      inputEnd: function(psw){
+        if(psw==password){
+          $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
+            $mqtt.save('pwdgesture', $scope.pwdgesturea);
+            $mqtt.save('namegesture', $scope.namegesturea);
+            if (message.isActive === false) {
+              $api.activeUser(message.userID, function (message) {
+                loginM();
+              }, function (message) {
+                $ToastUtils.showToast(message);
+              });
+            } else {
+              loginM();
+            }
+          }, function (message) {
+            $ToastUtils.showToast(message);
+          });
+
+          firstlock.drawStatusPoint('right')
+          $ToastUtils.showToast("输入密码正确,logining...")
+          $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 100,
+            showDelay: 0
+          });
+          $timeout(function () {
+            $ionicLoading.hide();
+            $state.go('tab.message');
+          });
+          $timeout(function () {
+            firstlock.reset();
+          },300);
+
+        }else {
+          firstlock.drawStatusPoint('notright')
+          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          $timeout(function () {
+            firstlock.reset();
+            method();
+          },300);
+        }
+      }
+    }
+    var firstlock = new H5lock(firstopt);
+    firstlock.init();
+//获取当前用户的id
+    var loginM = function () {
+      $mqtt.getMqtt().getUserId(function (userID) {
+        $rootScope.rootUserId = userID;
+        // alert("当前用户的id"+userID);
+      }, function (err) {
+
+      });
+      // alert(message.toString());
+      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+      //调用保存用户名方法
+      $mqtt.getMqtt().saveLogin('name', $scope.namegesturea, function (message) {
+      }, function (message) {
+        $ToastUtils.showToast(message);
+      });
+      $mqtt.getMqtt().getMyTopic(function (msg) {
+        $api.getAllGroupIds(function (groups) {
+          $mqtt.startMqttChat(msg + ',' + groups);
+          $mqtt.setLogin(true);
+          $scope.getUserName();
+        }, function (err) {
+          $ToastUtils.showToast(err,function (success) {
+          },function (err) {
+          });
+        });
+      }, function (err) {
+        $ToastUtils.showToast(err);
+      });
+    }
+
   })

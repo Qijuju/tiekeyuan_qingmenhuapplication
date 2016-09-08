@@ -11,8 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/group-createNotice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/group-notice.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/dingwei.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/okhttp-2.6.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/tupian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/wenjian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/Header.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/http/OKASyncGetClient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/callback/OKHttpCallBack.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/http/OKHttpTransport.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/http/OKSyncGetClient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/gesturelogin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger2367452894175382661.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_3_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_6_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/tab-notification.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/updategespassword.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -23,39 +38,53 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/acount-setting.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/personal-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" afterPath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/gesturepassword.html" afterPath="$PROJECT_DIR$/../../www/templates/gesturepassword.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/login.html" afterPath="$PROJECT_DIR$/assets/www/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/login.html" afterPath="$PROJECT_DIR$/../../www/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/myattention.css" afterPath="$PROJECT_DIR$/../../www/css/myattention.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/services_group.js" afterPath="$PROJECT_DIR$/../../www/js/services_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -110,12 +139,9 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28617364">
-              <caret line="1302" column="0" selection-start-line="1302" selection-start-column="0" selection-end-line="1302" selection-end-column="0" />
-              <folding>
-                <element signature="e#2437#3060#0" expanded="true" />
-                <element signature="e#3059#3060#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.21386604">
+              <caret line="1255" column="83" selection-start-line="1255" selection-start-column="83" selection-end-line="1255" selection-end-column="83" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,8 +149,8 @@
       <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.892857">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,7 +161,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,7 +173,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,8 +216,17 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
               <folding>
-                <element signature="e#2335#2336#0" expanded="true" />
-                <element signature="e#2377#2378#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1192#1193#0" expanded="false" />
+                <element signature="e#1232#1233#0" expanded="false" />
+                <element signature="e#1287#1288#0" expanded="false" />
+                <element signature="e#1327#1328#0" expanded="false" />
+                <element signature="e#1525#1526#0" expanded="false" />
+                <element signature="e#1546#1547#0" expanded="false" />
+                <element signature="e#1606#1607#0" expanded="false" />
+                <element signature="e#1664#1665#0" expanded="false" />
+                <element signature="e#2115#2116#0" expanded="false" />
+                <element signature="e#2150#2151#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -198,7 +237,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1186#1187#0" expanded="false" />
+                <element signature="e#1226#1227#0" expanded="false" />
+                <element signature="e#1520#1521#0" expanded="false" />
+                <element signature="e#1541#1542#0" expanded="false" />
+                <element signature="e#1601#1602#0" expanded="false" />
+                <element signature="e#1659#1660#0" expanded="false" />
+                <element signature="e#1832#2062#0" expanded="false" />
+                <element signature="e#2061#2062#0" expanded="false" />
+                <element signature="e#2112#2113#0" expanded="false" />
+                <element signature="e#2147#2148#0" expanded="false" />
+                <element signature="e#2332#2333#0" expanded="false" />
+                <element signature="e#2374#2375#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1454,7 +1507,7 @@
         <entry key="D:\impro\IM\platforms\android" value="5882067129256" />
         <entry key="D:\workspace\IM\platforms\android" value="5885096616169" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
-        <entry key="E:\WebstormProjects\im\platforms\android" value="5886556083167" />
+        <entry key="E:\WebstormProjects\im\platforms\android" value="5886568081245" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1881,14 +1934,19 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao/1.3.7/dda08161d004c4df96938da6909f1c2b96cd33c8/greendao-1.3.7.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao-generator/1.3.1/5581fe6a295cb4aa20f326c5a65c7e72fb58f7d1/greendao-generator-1.3.1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao-generator/1.3.1/2f757df97b422e40bf99f71094e5d105c98f32e7/greendao-generator-1.3.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.1.2/dca30bc4307110655542933b2bb986dcb6d0e648/okhttp-3.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.1.2/7052283359001bb108753cb0583a887d3bf94c82/okhttp-3.1.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/ed2c6f2a00062d3ddf8d86870a047e50a5355e65/freemarker-2.3.20-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/5ad6bea46b5af666d88c260c8acc6a03408723c8/freemarker-2.3.20.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/fb6ec0fbaa0229088b0d3dfe3b1f9d24add3e775/okio-1.6.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.1.1/3af19f153122737b372622fa6c81dd11a1c6b999/support-annotations-24.1.1.jar" />
                             <option value="$MODULE_DIR$/libs/dom4j-1.6.1.jar" />
                             <option value="$MODULE_DIR$/libs/imApi2.0.jar" />
                             <option value="$MODULE_DIR$/libs/libthrift-0.9.3.jar" />
                             <option value="$MODULE_DIR$/libs/locSDK_4.0.jar" />
                             <option value="$MODULE_DIR$/libs/log4j-1.2.14.jar" />
+                            <option value="$MODULE_DIR$/libs/okhttp-2.6.0.jar" />
                             <option value="$MODULE_DIR$/libs/org.eclipse.paho.client.mqttv3-1.0.1-20141007.040217-92.jar" />
                             <option value="$MODULE_DIR$/libs/slf4j-api-1.7.12.jar" />
                             <option value="$MODULE_DIR$/libs/slf4j-log4j12-1.6.2.jar" />
@@ -1988,14 +2046,19 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao/1.3.7/dda08161d004c4df96938da6909f1c2b96cd33c8/greendao-1.3.7.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao-generator/1.3.1/5581fe6a295cb4aa20f326c5a65c7e72fb58f7d1/greendao-generator-1.3.1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao-generator/1.3.1/2f757df97b422e40bf99f71094e5d105c98f32e7/greendao-generator-1.3.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.1.2/dca30bc4307110655542933b2bb986dcb6d0e648/okhttp-3.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.1.2/7052283359001bb108753cb0583a887d3bf94c82/okhttp-3.1.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/ed2c6f2a00062d3ddf8d86870a047e50a5355e65/freemarker-2.3.20-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/5ad6bea46b5af666d88c260c8acc6a03408723c8/freemarker-2.3.20.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/fb6ec0fbaa0229088b0d3dfe3b1f9d24add3e775/okio-1.6.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.1.1/3af19f153122737b372622fa6c81dd11a1c6b999/support-annotations-24.1.1.jar" />
                             <option value="$MODULE_DIR$/libs/dom4j-1.6.1.jar" />
                             <option value="$MODULE_DIR$/libs/imApi2.0.jar" />
                             <option value="$MODULE_DIR$/libs/libthrift-0.9.3.jar" />
                             <option value="$MODULE_DIR$/libs/locSDK_4.0.jar" />
                             <option value="$MODULE_DIR$/libs/log4j-1.2.14.jar" />
+                            <option value="$MODULE_DIR$/libs/okhttp-2.6.0.jar" />
                             <option value="$MODULE_DIR$/libs/org.eclipse.paho.client.mqttv3-1.0.1-20141007.040217-92.jar" />
                             <option value="$MODULE_DIR$/libs/slf4j-api-1.7.12.jar" />
                             <option value="$MODULE_DIR$/libs/slf4j-log4j12-1.6.2.jar" />
@@ -2306,11 +2369,11 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/SelectIdService.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
         <option value="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       </list>
     </option>
   </component>
@@ -2353,18 +2416,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -2542,6 +2594,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2805,7 +2868,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2813,7 +2876,6 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2863436" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25220263" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18281938" sideWeight="0.510661" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2825,14 +2887,15 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21055438" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1376652" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1376652" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25220263" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2841,11 +2904,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41045606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25053304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2861,8 +2924,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -2923,19 +2986,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1291</line>
+          <line>1292</line>
           <properties />
           <option name="timeStamp" value="313" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1290</line>
+          <line>1291</line>
           <properties />
           <option name="timeStamp" value="314" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1298</line>
+          <line>1299</line>
           <properties />
           <option name="timeStamp" value="315" />
         </line-breakpoint>
@@ -3238,7 +3301,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2234957">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3246,7 +3308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14326647">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3254,7 +3315,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3263,8 +3326,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
           <folding>
-            <element signature="e#2335#2336#0" expanded="true" />
-            <element signature="e#2377#2378#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="e#1232#1233#0" expanded="false" />
+            <element signature="e#1287#1288#0" expanded="false" />
+            <element signature="e#1327#1328#0" expanded="false" />
+            <element signature="e#1525#1526#0" expanded="false" />
+            <element signature="e#1546#1547#0" expanded="false" />
+            <element signature="e#1606#1607#0" expanded="false" />
+            <element signature="e#1664#1665#0" expanded="false" />
+            <element signature="e#2115#2116#0" expanded="false" />
+            <element signature="e#2150#2151#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3273,7 +3345,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1186#1187#0" expanded="false" />
+            <element signature="e#1226#1227#0" expanded="false" />
+            <element signature="e#1520#1521#0" expanded="false" />
+            <element signature="e#1541#1542#0" expanded="false" />
+            <element signature="e#1601#1602#0" expanded="false" />
+            <element signature="e#1659#1660#0" expanded="false" />
+            <element signature="e#1832#2062#0" expanded="false" />
+            <element signature="e#2061#2062#0" expanded="false" />
+            <element signature="e#2112#2113#0" expanded="false" />
+            <element signature="e#2147#2148#0" expanded="false" />
+            <element signature="e#2332#2333#0" expanded="false" />
+            <element signature="e#2374#2375#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3305,7 +3391,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3319,20 +3407,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.892857">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28617364">
-          <caret line="1302" column="0" selection-start-line="1302" selection-start-column="0" selection-end-line="1302" selection-end-column="0" />
-          <folding>
-            <element signature="e#2437#3060#0" expanded="true" />
-            <element signature="e#3059#3060#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.21386604">
+          <caret line="1255" column="83" selection-start-line="1255" selection-start-column="83" selection-end-line="1255" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>
