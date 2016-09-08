@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils,$searchdata,$phonepluin) {
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -474,6 +474,21 @@ angular.module('message.controllers', [])
         'userId':userid
       });
     }
+
+    $scope.callperson=function () {
+      $searchdata.personDetail($scope.userId);
+    }
+    $scope.$on('person.update', function (event) {
+      $scope.$apply(function () {
+        var phone=$searchdata.getPersonDetail().user.Mobile;
+        if(phone.length==0||phone==null||phone==""){
+          $ToastUtils.showToast("电话号码为空")
+        }else {
+          $phonepluin.call($scope.userId, phone, $scope.chatName,1);
+        }
+      })
+    });
+
   })
 
 
@@ -1350,6 +1365,12 @@ angular.module('message.controllers', [])
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
 
+    $scope.godetailaa=function () {
+      $state.go('person',{
+        'userId':$scope.userId
+      });
+    }
+
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
@@ -1615,19 +1636,20 @@ angular.module('message.controllers', [])
     };
 
     $scope.backAny = function () {
-
-
       $state.go('messageGroup',{
         "id":$scope.groupId,
         "chatName":$scope.groupName,
         "grouptype":$scope.groupType,
         "ismygroup":$scope.ismygroup,
       });
-
     };
 
-    $scope.gohistoryMessage = function () {
-      $state.go("historyMessage");
+    $scope.gohistoryMessagea = function () {
+      // $ToastUtils.showToast("要跳了")
+      $state.go('historymessagegroup',{
+        grouptype:$scope.groupType,
+        id:$scope.groupId
+      });
     }
 
     $scope.meizuo=function () {
@@ -1646,11 +1668,86 @@ angular.module('message.controllers', [])
 
     }
 
-
-
-
-
-
-
   })
 
+  .controller('historymessagegroupCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+    $scope.groupid = $stateParams.id;
+    // $scope.ssid = $stateParams.ssid;
+    $scope.grouptype=$stateParams.grouptype;
+    if($scope.grouptype=="Group"){
+      $scope.grouptype="G"
+    }
+    if($scope.grouptype=="Dept"){
+      $scope.grouptype="D"
+    }
+    // $ToastUtils.showToast("从群聊界面跳转过来的"+$scope.grouptype);
+    $scope.totalpage=1
+    $scope.dangqianpage=1;
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID= msg.userID
+    },function (msg) {
+
+    });
+
+    $scope.goSetting = function () {
+      $ionicHistory.goBack();
+    }
+
+    $api.getMsgCount($scope.grouptype, $scope.groupid,function (msg) {
+
+      var mo = msg%10;
+      if(mo === 0) {
+        $scope.totalpage = msg / 10;
+        if ($scope.totalpage === 0){
+          $scope.totalpage=1;
+        }
+      } else {
+        $scope.totalpage = (msg - mo) / 10 + 1;
+      }
+
+      // $scope.totalpage=msg/10+1   ;
+      // $ToastUtils.showToast($scope.totalpage)
+    },function (msg) {
+      $ToastUtils.showToast("失败");
+    });
+
+    $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,1,10);
+    $scope.$on('historymsg.duifang',function (event) {
+      $scope.$apply(function () {
+        $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+      })
+    });
+
+    //下一页
+    $scope.nextpage=function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+          })
+        });
+
+      }else {
+        $ToastUtils.showToast("已经到最后一页了")
+      }
+    }
+    //上一页
+    $scope.backpage=function () {
+      if($scope.dangqianpage>1){
+        $scope.dangqianpage--;
+        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+          })
+        });
+
+
+      }else {
+        $ToastUtils.showToast("已经到第一页了");
+      }
+    }
+
+  })

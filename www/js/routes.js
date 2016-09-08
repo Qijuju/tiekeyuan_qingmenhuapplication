@@ -99,7 +99,7 @@ angular.module('im.routes', [])
         cache:false,
         controller: 'notificationDetailCtrl'
       })
-    
+
 
       .state('messageDetail', {
         url: '/messageDetail/:id/:ssid/:grouptype',
@@ -425,6 +425,12 @@ angular.module('im.routes', [])
         url: '/historyMessage/:id/:ssid/:grouptype',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
+        cache:false
+      })
+      .state('historymessagegroup', {
+        url: '/historymessagegroup/:id/:ssid/:grouptype',
+        templateUrl: 'templates/historymessagegroup.html',
+        controller: 'historymessagegroupCtrl',
         cache:false
       })
       .state('myinformation', {
