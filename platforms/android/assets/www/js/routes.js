@@ -93,6 +93,13 @@ angular.module('im.routes', [])
           }
         }
       })
+      .state('notificationDetail', {
+        url: '/notificationDetail',
+        templateUrl: 'templates/notificationDetail.html',
+        cache:false,
+        controller: 'notificationDetailCtrl'
+      })
+    
 
       .state('messageDetail', {
         url: '/messageDetail/:id/:ssid/:grouptype',
