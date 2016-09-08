@@ -582,9 +582,10 @@ angular.module('my.controllers', [])
     }
 
   })
-  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout) {
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout,$rootScope) {
     $mqtt.getUserInfo(function (msg) {
-      $scope.UserID = msg.userID
+      $scope.UserID = msg.userID;
+      $scope.mymypersonname=msg.userName
     }, function (msg) {
     });
     $scope.goSetting = function () {
@@ -634,6 +635,7 @@ angular.module('my.controllers', [])
               if (psw==password){
                 checklock.drawStatusPoint('right')
                 $mqtt.save('gesturePwd', psw);//存
+                $mqtt.save('userNamea',  $scope.mymypersonname);
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("两次输入一样,密码设置成功")
                 $scope.$apply(function () {
@@ -685,6 +687,7 @@ angular.module('my.controllers', [])
                 checklock.drawStatusPoint('right')
                 $ToastUtils.showToast("两次输入一样,密码设置成功")
                 $mqtt.save('gesturePwd', psw);//存
+                $mqtt.save('userNamea',  $scope.mymypersonname);
                 $scope.$apply(function () {
                   $scope.a=3
                 })
@@ -712,12 +715,13 @@ angular.module('my.controllers', [])
 
   })
 
-  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout) {
+  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout,$rootScope) {
     $scope.a=1;
     var password="";
     $scope.count=6;
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
+      $scope.mymypersonname=msg.userName
     }, function (msg) {
     });
     $scope.goSetting = function () {
@@ -831,6 +835,7 @@ angular.module('my.controllers', [])
               checklock.drawStatusPoint('right')
               $ToastUtils.showToast("两次输入一样,密码设置成功")
               $mqtt.save('gesturePwd', psw);//存
+              $mqtt.save('userNamea',  $scope.mymypersonname);
               $scope.$apply(function () {
                 $scope.a=4
               })

@@ -3,6 +3,18 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils) {
+    $scope.a=0;
+    $scope.gengduo=function () {
+
+      if ($scope.a==0){
+        $scope.a=1;
+      }else {
+        $scope.a=0;
+      }
+    };
+    $scope.zhiling=function () {
+      $scope.a=0;
+    };
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -934,7 +946,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$grouparr,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
      // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -952,10 +964,16 @@ angular.module('message.controllers', [])
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
          $ToastUtils.showToast(imageData.text);
+         $api.qrcodeLogin(imageData.text,function (msg) {
+           $ToastUtils.showToast(msg)
+         },function (msg) {
+           $ToastUtils.showToast(msg)
+         });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
         // $ToastUtils.showToast( error);
+        //$ToastUtils.showToast(error)
       });
     };
     //清表数据
@@ -1327,10 +1345,30 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts) {
+
+    //进入界面先清除数据库表
+    $greendao.deleteAllData('SelectIdService',function (data) {
+
+    },function (err) {
+
+    })
+
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
+
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+        //登录人员的id
+        $scope.loginId=$contacts.getLoignInfo().userID;
+        //部门id
+        $scope.depid=$contacts.getLoignInfo().deptID;
+
+      })
+    });
+
     $scope.gohistoryMessage = function () {
       // $ToastUtils.showToast("要跳了")
       $state.go('historyMessage',{
@@ -1383,10 +1421,43 @@ angular.module('message.controllers', [])
     };
 
     $scope.meizuo=function () {
-      //$ToastUtils.showToast("此功能暂未开发");
-      //跳到添加人员聊天界面
-      $state.go('addnewpersonfirst');
+      $ToastUtils.showToast("此功能暂未开发");
+
     }
+
+    //添加人员功能
+    $scope.addNewPerson=function () {
+      $scope.addList=[];
+
+      $scope.addList.push($scope.loginId);
+      $scope.addList.push($scope.userId);
+
+      for(var i=0;i<$scope.addList.length;i++){
+        //当创建群聊的时候先把登录的id和信息  存到数据库上面
+        var selectInfo={};
+        selectInfo.id=$scope.addList[i];
+        selectInfo.grade="0";
+        selectInfo.isselected=true;
+        selectInfo.type='user'
+        $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+
+        },function (err) {
+
+        })
+      }
+      $state.go('addnewpersonfirst',{
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
+      });
+
+
+
+    }
+
+
+
+
   })
 
   .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
@@ -1507,7 +1578,8 @@ angular.module('message.controllers', [])
         $state.go('groupMember',{
           "groupid":id,
           "chatname":name,
-          "grouptype":type
+          "grouptype":type,
+          "ismygroup":$scope.ismygroup
         });
       }else {
         $state.go('groupDeptMember',{
@@ -1570,5 +1642,24 @@ angular.module('message.controllers', [])
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
+
+    //打开群公告界面
+    $scope.groupNotice=function () {
+
+      $state.go('groupNotice',{
+        "groupid":$scope.groupId,
+        "grouptype":$scope.groupType,
+        "groupname":$scope.groupName,
+        "ismygroup":$scope.ismygroup,
+      });
+
+    }
+
+
+
+
+
+
+
   })
 

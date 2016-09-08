@@ -101,4 +101,17 @@ public class SelectIdService implements BaseInterface<SelectedId> {
   public void deleteObj(SelectedId selectedId) {
     selectedIdDao.delete(selectedId);
   }
+
+
+  public List<SelectedId> queryBy(String one,String two){
+
+    return selectedIdDao.queryBuilder().
+      where(SelectedIdDao.Properties.Grade.notEq(one))
+      .where(SelectedIdDao.Properties.Grade.notEq(two))
+      .build()
+      .list();
+
+  }
+
+
 }

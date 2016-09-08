@@ -1,15 +1,26 @@
 <ion-view cache-view="false">
+  <ion-content style="background-color: #ffffff" overflow-scroll="false" scroll="false">
 
-  <ion-content style="background-color: #ffffff" overflow-scroll="false">
-    <button class="button" ng-click="goLogin()" style="height: 15px;position: absolute;left: 28%;top: 95%;background-color: rgba(110, 102, 255, 0.11);color: #000000;z-index: 2" >使用账号密码登陆</button>
-    <div class="list padding">
-      <div>
-        <img src="img/login4.jpg" width="100%" height="auto" style="align-content: center;z-index: 1">
+
+    <!--<div>-->
+    <!--<img src="img/login4.jpg" width="100%" height="auto" style="align-content: center;z-index: 1">-->
+    <!--</div>-->
+
+    <div class="list padding" style="z-index: 1">
+      <div  style="height: 160px;text-align: center;width:100%;margin-top: 16px">
+        <img  src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 16px">
+        <div class="vcenter" style="position: absolute;left: 46%;top: 67px;font-size: 15px">{{userNamea}}</div>
+        <div><span style="font-size: 18px;color: #000000">{{username}}</span></div>
       </div>
-      <div style="width: 100%;height: auto; text-align: center;margin-top: -20%">
+
+      <div style="width: 100%; text-align: center">
         <div id="element"></div>
       </div>
 
+    </div>
+    <div style="margin-top: 10%">
+    <button class="button" ng-click="meizuo()" style="height: 10px;;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;left: 3%;bottom: 2%" >找回密码</button>
+    <button class="button" ng-click="goLogin()" style="height: 10px;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;right: 3%;bottom: 2%" >切换登陆方式</button>
     </div>
   </ion-content>
 </ion-view>

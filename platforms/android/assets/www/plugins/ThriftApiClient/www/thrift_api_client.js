@@ -105,5 +105,8 @@ exports.installApk = function(targetPath, success, error) {//安装应用
 exports.getAllGroupIds = function(success, error) {//获取所有群组的群组ID，群组ID之间以逗号隔开，返回字符串
   exec(success, error, "ThriftApiClient", "getAllGroupIds", []);
 };
+exports.qrcodeLogin = function(qrcode, success, error) {//二维码扫描接口， qrcode：扫描到的二维码
+  exec(success, error, "ThriftApiClient", "qrcodeLogin", [qrcode]);
+};
 
 });

@@ -374,7 +374,7 @@ angular.module('contacts.services', [])
     }
   })
 
-  .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
+  .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao,$timeout,$ToastUtils) {
 
     var loginInfo;
     var topContactList;
@@ -482,14 +482,16 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('first.update');
 
         }, function (msg) {
-
+          $timeout(function () {
+            rootList = null;
+            $rootScope.$broadcast('first.update');
+            $ToastUtils.showToast("获取数据失败")
+          },5000);
         });
-
 
         return null;
       },
       getRootDept: function () {
-
         return rootList;
       },
 
@@ -1047,7 +1049,7 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$myattentionser',function ($api,$rootScope) {
+  .factory('$myattentionser',function ($api,$rootScope,$timeout,$ToastUtils) {
     var attentionList;
     return{
       getAttentionList:function () {
@@ -1055,17 +1057,23 @@ angular.module('contacts.services', [])
           attentionList=msg;
           $rootScope.$broadcast('attention.update');
         },function (msg) {
+          $timeout(function () {
+            attentionList=null;
+            $rootScope.$broadcast('attention.update');
+            $ToastUtils.showToast("获取数据失败")
+          },5000);
         });
       },
 
       getAttentionaaList:function () {
+
         return attentionList;
       }
     }
 
   })
 
-  .factory('$addattentionser',function ($api,$rootScope) {
+  .factory('$addattentionser',function ($api,$rootScope,$timeout,$ToastUtils) {
     var addwancheng;
     return{
       addAttention111:function (membersAerr) {
@@ -1073,7 +1081,7 @@ angular.module('contacts.services', [])
           addwancheng=true;
           $rootScope.$broadcast('attention.add');
         },function (msg) {
-          alert("添加关注失败")
+          $ToastUtils.showToast("添加关注失败")
           $rootScope.$broadcast('attention.add');
         });
       },
@@ -1082,8 +1090,10 @@ angular.module('contacts.services', [])
           addwancheng=false;
           $rootScope.$broadcast('attention.delete');
         },function (msg) {
-          alert("取消关注失败")
-          $rootScope.$broadcast('attention.delete');
+          $timeout(function () {
+            $rootScope.$broadcast('attention.delete');
+            $ToastUtils.showToast("取消关注失败")
+          },5000);
         });
       },
 
