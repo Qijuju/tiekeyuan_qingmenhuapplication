@@ -486,7 +486,7 @@ angular.module('contacts.services', [])
             rootList = null;
             $rootScope.$broadcast('first.update');
             $ToastUtils.showToast("获取数据失败")
-          },5000);
+          },4000);
         });
 
         return null;
@@ -520,6 +520,12 @@ angular.module('contacts.services', [])
 
           });
         }, function (msg) {
+          $timeout(function () {
+            firstname = null;
+            deptSecondInfo=null;
+            $rootScope.$broadcast('second.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -567,6 +573,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
+          $timeout(function () {
+            secondname = null;
+            deptThirdInfo=null;
+            $rootScope.$broadcast('third.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -609,7 +621,12 @@ angular.module('contacts.services', [])
 
 
         }, function (msg) {
-
+          $timeout(function () {
+            thirdname = null;
+            deptForthInfo=null;
+            $rootScope.$broadcast('forth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 
@@ -655,7 +672,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
-
+          $timeout(function () {
+            forthname = null;
+            deptFifhtInfo=null;
+            $rootScope.$broadcast('fifth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
       },
@@ -703,6 +725,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
+          $timeout(function () {
+            fifthname = null;
+            deptSixthInfo=null;
+            $rootScope.$broadcast('sixth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -750,7 +778,12 @@ angular.module('contacts.services', [])
 
 
         }, function (err) {
-
+          $timeout(function () {
+            sixthname = null;
+            deptSeventhInfo=null;
+            $rootScope.$broadcast('seventh.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 
@@ -795,7 +828,12 @@ angular.module('contacts.services', [])
           })
 
         }, function (err) {
-
+          $timeout(function () {
+            seventhname = null;
+            deptEighthInfo=null;
+            $rootScope.$broadcast('eighth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 

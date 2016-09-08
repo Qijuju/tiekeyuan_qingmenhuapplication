@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
   'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
-  'my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services',
+  'my.controllers','search.controllers','selectgroup.controllers','notification.controllers','common.services','contacts.services',
   'message.services','my.services','group.services','selectothergroup.controllers'])
 
 /*'im.controllers', 'starter.services',*/

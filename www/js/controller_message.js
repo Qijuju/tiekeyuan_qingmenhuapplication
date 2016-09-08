@@ -1567,8 +1567,15 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout) {
 
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
@@ -1581,7 +1588,11 @@ angular.module('message.controllers', [])
     $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
     $scope.$on('groupdetail.update', function (event) {
       $scope.$apply(function () {
-        $scope.groupName=$group.getGroupDetail().groupName;
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.groupName=$group.getGroupDetail().groupName;
+
+        });
 
       })
     });
@@ -1610,8 +1621,17 @@ angular.module('message.controllers', [])
     //解散群
     $scope.dissolveGroup=function (aa) {
 
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+
       $api.removeGroup($scope.groupId,function (msg) {
 
+        $ionicLoading.hide();
         $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
 
           $state.go('tab.message',{
@@ -1625,7 +1645,9 @@ angular.module('message.controllers', [])
         })
 
       },function (err) {
-        // $ToastUtils.showToast(err)
+        $ToastUtils.showToast('解散群失败')
+        $ionicLoading.hide();
+
 
       });
     }

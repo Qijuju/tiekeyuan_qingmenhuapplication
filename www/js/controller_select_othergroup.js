@@ -3,8 +3,14 @@
  */
 angular.module('selectothergroup.controllers', [])
 
-  .controller('addNewPersonfifthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope) {
-
+  .controller('addNewPersonfifthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
 
@@ -45,93 +51,96 @@ angular.module('selectothergroup.controllers', [])
     $scope.$on('fifth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1 = $contacts.getCount7();
-        //首先是对部门的操作
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptFifthInfo().deptList;
-          //遍历所有的ids并吧存在的设置为true
-          for(var n=0;n<olddepts.length; n++){
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount7();
+          //首先是对部门的操作
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptFifthInfo().deptList;
+            //遍历所有的ids并吧存在的设置为true
+            for(var n=0;n<olddepts.length; n++){
 
-            olddepts[n].isSelected=false;
-          }
+              olddepts[n].isSelected=false;
+            }
 
 
-          if(anotherInfo.length>0){
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<olddepts.length; m++){
-                if(anotherInfo[j].id==olddepts[m].DeptID){
-                  olddepts[m].isSelected=true;
+            if(anotherInfo.length>0){
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<olddepts.length; m++){
+                  if(anotherInfo[j].id==olddepts[m].DeptID){
+                    olddepts[m].isSelected=true;
+                  }
                 }
               }
             }
-          }
 
 
-          for (var i = 0; i < olddepts.length; i++) {
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departfifthlist.push(olddepts[i]);
+              $scope.departfifthlist.push(olddepts[i]);
 
-          }
-        }
-
-
-      //然后是对人员的操作
-        $scope.count2 = $contacts.getCount8();
-
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptFifthInfo().userList;
-
-          //去除群主为了不让群主在里面显示
-          for(var i=0;i<originalInfo.length;i++){
-            for(var j=0;j<oldusers.length;j++){
-              if(originalInfo[i].id==oldusers[j].UserID){
-                oldusers.splice(j,1);
-              }
             }
           }
 
-          //先把界面上所有的值给false
-          for(var n=0;n<oldusers.length;n++){
-            oldusers[n].isSelected=false;
 
-          }
+          //然后是对人员的操作
+          $scope.count2 = $contacts.getCount8();
 
-          if(anotherInfo.length>0){
-            //然后再从数据库里面取出已经标记的了
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<oldusers.length; m++){
-                if(anotherInfo[j].id==oldusers[m].UserID){
-                  oldusers[m].isSelected=true;
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptFifthInfo().userList;
+
+            //去除群主为了不让群主在里面显示
+            for(var i=0;i<originalInfo.length;i++){
+              for(var j=0;j<oldusers.length;j++){
+                if(originalInfo[i].id==oldusers[j].UserID){
+                  oldusers.splice(j,1);
                 }
               }
             }
+
+            //先把界面上所有的值给false
+            for(var n=0;n<oldusers.length;n++){
+              oldusers[n].isSelected=false;
+
+            }
+
+            if(anotherInfo.length>0){
+              //然后再从数据库里面取出已经标记的了
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<oldusers.length; m++){
+                  if(anotherInfo[j].id==oldusers[m].UserID){
+                    oldusers[m].isSelected=true;
+                  }
+                }
+              }
+            }
+
+
+            //在界面上展示已经显示的了
+            for (var i = 0; i < oldusers.length; i++) {
+              $scope.userfifthlist.push(oldusers[i]);
+            }
           }
 
 
-          //在界面上展示已经显示的了
-          for (var i = 0; i < oldusers.length; i++) {
-            $scope.userfifthlist.push(oldusers[i]);
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.fifthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.fifthStatus = false;
+
           }
-        }
+
+          $scope.parentID = $contacts.getDeptFifthInfo().deptID;
+          $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
+
+          $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.fifthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.fifthStatus = false;
+          var fifthdiv = document.getElementById("fifthscroll");
+          fifthdiv.style.width = $scope.fifthlength + "px";
 
-        }
-
-        $scope.parentID = $contacts.getDeptFifthInfo().deptID;
-        $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
-
-        $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
-
-
-        var fifthdiv = document.getElementById("fifthscroll");
-        fifthdiv.style.width = $scope.fifthlength + "px";
-
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
 
 
       })
@@ -450,8 +459,14 @@ angular.module('selectothergroup.controllers', [])
 
 
   //对六级目录的操作
-  .controller('addNewPersonsixthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope) {
-
+  .controller('addNewPersonsixthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
@@ -493,101 +508,109 @@ angular.module('selectothergroup.controllers', [])
     $scope.$on('sixth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1 = $contacts.getCount9();
-        //对部门的操作
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptSixthInfo().deptList;
+        $timeout(function () {
+          $ionicLoading.hide();
 
-          //遍历所有的ids并吧存在的设置为true
-          for(var n=0;n<olddepts.length; n++){
+          $scope.count1 = $contacts.getCount9();
+          //对部门的操作
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptSixthInfo().deptList;
 
-            olddepts[n].isSelected=false;
-          }
+            //遍历所有的ids并吧存在的设置为true
+            for(var n=0;n<olddepts.length; n++){
+
+              olddepts[n].isSelected=false;
+            }
 
 
-          if(anotherInfo.length>0){
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<olddepts.length; m++){
-                if(anotherInfo[j].id==olddepts[m].DeptID){
-                  olddepts[m].isSelected=true;
+            if(anotherInfo.length>0){
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<olddepts.length; m++){
+                  if(anotherInfo[j].id==olddepts[m].DeptID){
+                    olddepts[m].isSelected=true;
+                  }
                 }
               }
             }
-          }
 
 
-          for (var i = 0; i < olddepts.length; i++) {
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departsixthlist.push(olddepts[i]);
+              $scope.departsixthlist.push(olddepts[i]);
 
-          }
-
-
-
-        }
-
-
-
-
-
-        //对人员进行操作
-
-        $scope.count2 = $contacts.getCount10();
-
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptSixthInfo().userList;
-
-          //去除群主为了不让群主在里面显示
-          for(var i=0;i<originalInfo.length;i++){
-            for(var j=0;j<oldusers.length;j++){
-              if(originalInfo[i].id==oldusers[j].UserID){
-                oldusers.splice(j,1);
-              }
             }
-          }
 
-          //先把界面上所有的值给false
-          for(var n=0;n<oldusers.length;n++){
-            oldusers[n].isSelected=false;
+
 
           }
 
-          if(anotherInfo.length>0){
-            //然后再从数据库里面取出已经标记的了
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<oldusers.length; m++){
-                if(anotherInfo[j].id==oldusers[m].UserID){
-                  oldusers[m].isSelected=true;
+
+
+
+
+          //对人员进行操作
+
+          $scope.count2 = $contacts.getCount10();
+
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptSixthInfo().userList;
+
+            //去除群主为了不让群主在里面显示
+            for(var i=0;i<originalInfo.length;i++){
+              for(var j=0;j<oldusers.length;j++){
+                if(originalInfo[i].id==oldusers[j].UserID){
+                  oldusers.splice(j,1);
                 }
               }
             }
+
+            //先把界面上所有的值给false
+            for(var n=0;n<oldusers.length;n++){
+              oldusers[n].isSelected=false;
+
+            }
+
+            if(anotherInfo.length>0){
+              //然后再从数据库里面取出已经标记的了
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<oldusers.length; m++){
+                  if(anotherInfo[j].id==oldusers[m].UserID){
+                    oldusers[m].isSelected=true;
+                  }
+                }
+              }
+            }
+            //在界面上展示已经显示的了
+            for (var i = 0; i < oldusers.length; i++) {
+              $scope.usersixthlist.push(oldusers[i]);
+            }
           }
-          //在界面上展示已经显示的了
-          for (var i = 0; i < oldusers.length; i++) {
-            $scope.usersixthlist.push(oldusers[i]);
+
+
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.sixthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.sixthStatus = false;
+
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.sixthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.sixthStatus = false;
-
-        }
+          $scope.parentID = $contacts.getDeptSixthInfo().deptID;
+          $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
 
 
-        $scope.parentID = $contacts.getDeptSixthInfo().deptID;
-        $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
+          $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
+            $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
+
+          var sixthdiv = document.getElementById("sixthscroll");
+          sixthdiv.style.width = $scope.sixthlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
 
 
-        $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
-          $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
+        });
 
-        var sixthdiv = document.getElementById("sixthscroll");
-        sixthdiv.style.width = $scope.sixthlength + "px";
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
 
 
       })
@@ -916,7 +939,15 @@ angular.module('selectothergroup.controllers', [])
 
   //七级界面创建群聊
 
-  .controller('addNewPersonseventhCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope) {
+  .controller('addNewPersonseventhCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -960,96 +991,105 @@ angular.module('selectothergroup.controllers', [])
     $contacts.deptSeventhInfo($scope.contactId);
     $scope.$on('seventh.update', function (event) {
       $scope.$apply(function () {
-        $scope.count1 = $contacts.getCount11();
 
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptSeventhInfo().deptList;
+        $timeout(function () {
+          $ionicLoading.hide();
 
-          //遍历所有的ids并吧存在的设置为true
-          for(var n=0;n<olddepts.length; n++){
+          $scope.count1 = $contacts.getCount11();
 
-            olddepts[n].isSelected=false;
-          }
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptSeventhInfo().deptList;
+
+            //遍历所有的ids并吧存在的设置为true
+            for(var n=0;n<olddepts.length; n++){
+
+              olddepts[n].isSelected=false;
+            }
 
 
-          if(anotherInfo.length>0){
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<olddepts.length; m++){
-                if(anotherInfo[j].id==olddepts[m].DeptID){
-                  olddepts[m].isSelected=true;
+            if(anotherInfo.length>0){
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<olddepts.length; m++){
+                  if(anotherInfo[j].id==olddepts[m].DeptID){
+                    olddepts[m].isSelected=true;
+                  }
                 }
               }
             }
-          }
 
 
-          for (var i = 0; i < olddepts.length; i++) {
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departseventhlist.push(olddepts[i]);
+              $scope.departseventhlist.push(olddepts[i]);
 
-          }
-        }
-
-
-
-
-
-        $scope.count2 = $contacts.getCount12();
-
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptSeventhInfo().userList;
-
-          //去除群主为了不让群主在里面显示
-          for(var i=0;i<originalInfo.length;i++){
-            for(var j=0;j<oldusers.length;j++){
-              if(originalInfo[i].id==oldusers[j].UserID){
-                oldusers.splice(j,1);
-              }
             }
           }
 
-          //先把界面上所有的值给false
-          for(var n=0;n<oldusers.length;n++){
-            oldusers[n].isSelected=false;
 
-          }
 
-          if(anotherInfo.length>0){
-            //然后再从数据库里面取出已经标记的了
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<oldusers.length; m++){
-                if(anotherInfo[j].id==oldusers[m].UserID){
-                  oldusers[m].isSelected=true;
+
+
+          $scope.count2 = $contacts.getCount12();
+
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptSeventhInfo().userList;
+
+            //去除群主为了不让群主在里面显示
+            for(var i=0;i<originalInfo.length;i++){
+              for(var j=0;j<oldusers.length;j++){
+                if(originalInfo[i].id==oldusers[j].UserID){
+                  oldusers.splice(j,1);
                 }
               }
             }
+
+            //先把界面上所有的值给false
+            for(var n=0;n<oldusers.length;n++){
+              oldusers[n].isSelected=false;
+
+            }
+
+            if(anotherInfo.length>0){
+              //然后再从数据库里面取出已经标记的了
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<oldusers.length; m++){
+                  if(anotherInfo[j].id==oldusers[m].UserID){
+                    oldusers[m].isSelected=true;
+                  }
+                }
+              }
+            }
+            //在界面上展示已经显示的了
+            for (var i = 0; i < oldusers.length; i++) {
+              $scope.userseventhlist.push(oldusers[i]);
+            }
           }
-          //在界面上展示已经显示的了
-          for (var i = 0; i < oldusers.length; i++) {
-            $scope.userseventhlist.push(oldusers[i]);
+
+
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.seventhStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.seventhStatus = false;
+
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.seventhStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.seventhStatus = false;
-
-        }
+          $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
+          $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
 
 
-        $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
-        $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
+          $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+            + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
+
+          var seventhdiv = document.getElementById("seventhscroll");
+          seventhdiv.style.width = $scope.seventhlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        });
 
 
-        $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
 
-        var seventhdiv = document.getElementById("seventhscroll");
-        seventhdiv.style.width = $scope.seventhlength + "px";
-
-        $scope.$broadcast('scroll.infiniteScrollComplete');
 
       })
 
@@ -1392,7 +1432,15 @@ angular.module('selectothergroup.controllers', [])
 
   //八级界面的展示
 
-  .controller('addNewPersoneighthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope) {
+  .controller('addNewPersoneighthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -1443,93 +1491,100 @@ angular.module('selectothergroup.controllers', [])
     $contacts.deptEighthInfo($scope.contactId);
     $scope.$on('eighth.update', function (event) {
       $scope.$apply(function () {
-        $scope.count1 = $contacts.getCount13();
-        if ($scope.count1 > 0) {
 
-          var olddepts = $contacts.getDeptEighthInfo().deptList;
-          //遍历所有的ids并吧存在的设置为true
-          for(var n=0;n<olddepts.length; n++){
+        $timeout(function () {
+          $ionicLoading.hide();
 
-            olddepts[n].isSelected=false;
-          }
+          $scope.count1 = $contacts.getCount13();
+          if ($scope.count1 > 0) {
+
+            var olddepts = $contacts.getDeptEighthInfo().deptList;
+            //遍历所有的ids并吧存在的设置为true
+            for(var n=0;n<olddepts.length; n++){
+
+              olddepts[n].isSelected=false;
+            }
 
 
-          if(anotherInfo.length>0){
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<olddepts.length; m++){
-                if(anotherInfo[j].id==olddepts[m].DeptID){
-                  olddepts[m].isSelected=true;
+            if(anotherInfo.length>0){
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<olddepts.length; m++){
+                  if(anotherInfo[j].id==olddepts[m].DeptID){
+                    olddepts[m].isSelected=true;
+                  }
                 }
               }
             }
-          }
 
 
-          for (var i = 0; i < olddepts.length; i++) {
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.eightDept.push(olddepts[i]);
+              $scope.eightDept.push(olddepts[i]);
 
-          }
-
-        }
-
-
-        $scope.count2 = $contacts.getCount14();
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptEighthInfo().userList;
-
-          //去除群主为了不让群主在里面显示
-          for(var i=0;i<originalInfo.length;i++){
-            for(var j=0;j<oldusers.length;j++){
-              if(originalInfo[i].id==oldusers[j].UserID){
-                oldusers.splice(j,1);
-              }
             }
-          }
-
-          //先把界面上所有的值给false
-          for(var n=0;n<oldusers.length;n++){
-            oldusers[n].isSelected=false;
 
           }
 
-          if(anotherInfo.length>0){
-            //然后再从数据库里面取出已经标记的了
-            for(var j=0;j<anotherInfo.length;j++){
-              for(var m=0;m<oldusers.length; m++){
-                if(anotherInfo[j].id==oldusers[m].UserID){
-                  oldusers[m].isSelected=true;
+
+          $scope.count2 = $contacts.getCount14();
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptEighthInfo().userList;
+
+            //去除群主为了不让群主在里面显示
+            for(var i=0;i<originalInfo.length;i++){
+              for(var j=0;j<oldusers.length;j++){
+                if(originalInfo[i].id==oldusers[j].UserID){
+                  oldusers.splice(j,1);
                 }
               }
             }
+
+            //先把界面上所有的值给false
+            for(var n=0;n<oldusers.length;n++){
+              oldusers[n].isSelected=false;
+
+            }
+
+            if(anotherInfo.length>0){
+              //然后再从数据库里面取出已经标记的了
+              for(var j=0;j<anotherInfo.length;j++){
+                for(var m=0;m<oldusers.length; m++){
+                  if(anotherInfo[j].id==oldusers[m].UserID){
+                    oldusers[m].isSelected=true;
+                  }
+                }
+              }
+            }
+
+
+            //在界面上展示已经显示的了
+            for (var i = 0; i < oldusers.length; i++) {
+              $scope.eightUser.push(oldusers[i]);
+            }
+          }
+
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.eighthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.eighthStatus = false;
+
           }
 
 
-          //在界面上展示已经显示的了
-          for (var i = 0; i < oldusers.length; i++) {
-            $scope.eightUser.push(oldusers[i]);
-          }
-        }
-
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.eighthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.eighthStatus = false;
-
-        }
+          $scope.parentID = $contacts.getDeptEighthInfo().deptID;
+          $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
 
 
-        $scope.parentID = $contacts.getDeptEighthInfo().deptID;
-        $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
+          $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+            + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
+
+          var eighthdiv = document.getElementById("eighthscroll");
+          eighthdiv.style.width = $scope.eighthlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
 
 
-        $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
-
-        var eighthdiv = document.getElementById("eighthscroll");
-        eighthdiv.style.width = $scope.eighthlength + "px";
-
-        $scope.$broadcast('scroll.infiniteScrollComplete');
 
       })
 
