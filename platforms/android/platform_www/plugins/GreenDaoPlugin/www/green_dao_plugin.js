@@ -55,4 +55,8 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
                exec(success, error, "GreenDaoPlugin", "queryGroupIds", [one, two]);
         };
 
+    exports.qureyHistoryMsg = function (type,success, error) {
+                exec(success, error, "GreenDaoPlugin", "qureyHistoryMsg", [type]);
+         };
+
 });

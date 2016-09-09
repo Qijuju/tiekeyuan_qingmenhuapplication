@@ -52,6 +52,9 @@ angular.module('common.services', [])
       },
       queryGroupIds:function (one,two,success,error) {
         greendao.queryGroupIds(one,two,success,error);
+      },
+      qureyHistoryMsg:function (type,success,error) {
+        greendao.qureyHistoryMsg(type,success,error);
       }
     };
 

@@ -1015,12 +1015,24 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$search111',function ($api,$rootScope) {
+  .factory('$search111',function ($api,$rootScope,$greendao) {
 
     var persons;
     return{
       search1111:function (userid,page,count,query) {
         $api.seachUsers(userid,query,page,count,function (msg) {
+          alert("11111")
+          var msghistory={};
+          msghistory._id="";
+          msghistory.msg=query;
+          msghistory.type="person";
+          msghistory.when=0;
+          $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
+            alert("存取成功");
+          },function (message) {
+            alert("存取失败");
+          })
+          alert("222222")
           persons=msg;
           $rootScope.$broadcast('persons.update');
 
@@ -1146,7 +1158,9 @@ angular.module('contacts.services', [])
     var messagenamess;
     return{
       searchmessagessss:function (quey) {
+        alert("你好")
         $greendao.queryData('MessagesService', 'where MESSAGE LIKE ?', quey, function (data) {
+          alert("进来了")
           messagesss=data;
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
