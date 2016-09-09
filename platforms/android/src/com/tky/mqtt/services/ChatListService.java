@@ -103,7 +103,7 @@ public class ChatListService implements BaseInterface<ChatList>{
 
     public List<ChatList> queryByType(String one,String two){
         QueryBuilder qb = chatListDao.queryBuilder();
-        qb.or(ChatListDao.Properties.ChatType.eq(one),ChatListDao.Properties.ChatType.gt(two));
+        qb.or(ChatListDao.Properties.ChatType.eq(one),ChatListDao.Properties.ChatType.eq(two));
         List<ChatList> chatLists=qb.list();
         return chatLists;
 
