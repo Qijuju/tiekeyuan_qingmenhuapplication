@@ -23,7 +23,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 
@@ -50,7 +50,10 @@ public class MainActivity extends CordovaActivity
         if (requestCode == FILE_SELECT_CODE && intent != null) {
             Uri uri = intent.getData();
             String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
-            ToastUtil.showSafeToast(path + "::这是路径~~~");
+            Intent receiverIntent = new Intent();
+            receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
+            receiverIntent.putExtra("filePath", path);
+            sendBroadcast(receiverIntent);
         }
     }
 }

@@ -164,8 +164,24 @@ angular.module('message.controllers', [])
       });
     };
 
-    $scope.openDocumentWindow = function () {
-      $mqtt.openDocWindow(function (path) {
+    $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.openDocWindow(function (filePath) {
+        alert(filePath);
+        $api.sendDocFile('I', null, filePath, function (data) {
+          alert(filePath);
+          $scope.filePath=data[0];
+          $scope.fileObjID=data[1];
+          alert(data[0] + "::::" + data[1]);
+
+          $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+            // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "Image", $scope.filePath);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          });
+
+
+        });
       }, function (err) {
       });
     };

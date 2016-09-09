@@ -111,6 +111,9 @@ exports.qrcodeLogin = function(qrcode, success, error) {//二维码扫描接口�
 exports.sendFile = function(objectTP,objectID,filePath, success, error) {//图片上传接口
   exec(success, error, "ThriftApiClient", "sendFile", [objectTP,objectID,filePath]);
 };
+exports.sendDocFile = function(objectTP,objectID,filePath, success, error) {//图片上传接口
+  exec(success, error, "ThriftApiClient", "sendDocFile", [objectTP,objectID,filePath]);
+};
 exports.getFile = function(objectTP,objectID,picSize, success, error) {//图片上传接口
   exec(success, error, "ThriftApiClient", "getFile", [objectTP,objectID,picSize]);
 };

@@ -1618,12 +1618,11 @@ public class ThriftApiClient extends CordovaPlugin {
     }
 
     /**
-     *
+     * 只用来发送图片
      */
     public void sendFile(final JSONArray args, final CallbackContext callbackContext){
-        String objectTP= null;
         try {
-            objectTP = args.getString(0);
+            String objectTP = args.getString(0);
             String objectID = args.getString(1);
             if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
                 objectID = null;
@@ -1640,7 +1639,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 dirFile.mkdirs();
             }
             final String savePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());;
-            File saveFile = new File(savePath);
+//            File saveFile = new File(savePath);
             FileOutputStream fos = new FileOutputStream(savePath);
 
             byte[] bys = new byte[10 * 1024];
@@ -1749,6 +1748,100 @@ public class ThriftApiClient extends CordovaPlugin {
         JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "']");
         setResult(retObj, PluginResult.Status.OK, callbackContext);
         in.close();
+    }
+
+    /**
+     * 发送所有文件
+     * @param args
+     * @param callbackContext
+     */
+    public void sendDocFile(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String objectTP = args.getString(0);
+            String objectID = args.getString(1);
+            if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
+                objectID = null;
+            }
+            final String filePath=args.getString(2);
+
+            FileInputStream fis = new FileInputStream(filePath);
+
+
+
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(UIUtils.getContext().getContentResolver(), Uri.parse(filePath));
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+
+            final String dir = FileUtils.getIconDir() + File.separator + "chat_file";
+            File dirFile = new File(dir);
+            if (dirFile != null && !dirFile.exists()) {
+                dirFile.mkdirs();
+            }
+            final String savePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());;
+//            File saveFile = new File(savePath);
+            FileOutputStream fos = new FileOutputStream(savePath);
+
+            byte[] bys = new byte[10 * 1024];
+            int len = 0;
+            while ((len = fis.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+            }
+
+            fos.close();
+
+            File file = new File(savePath);
+            if (file == null || !file.exists()) {
+                return;
+            }
+
+            FileInputStream in = new FileInputStream(file);
+            int available = in.available();
+            ByteBuffer fileByte = ByteBuffer.allocate(200 * 1024);
+            in.getChannel().read(fileByte);
+            in.close();
+            fileByte.flip();
+            boolean isFinish = false;
+            if (available > 200 * 1024) {
+                isFinish = false;
+            } else {
+                isFinish = true;
+            }
+
+            SystemApi.sendFile(getUserID(), objectTP, objectID, fileByte, 0, isFinish, new AsyncMethodCallback<IMFile.AsyncClient.SendFile_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.SendFile_call sendFile_call) {
+                    if (sendFile_call != null) {
+                        try {
+                            RSTSendFile result = sendFile_call.getResult();
+                            if (result.result) {
+                                sendFile(result, savePath, callbackContext);
+                            } else {
+                                System.out.println("用户头像设置失败");
+                            }
+                            System.out.println(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (TException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (TException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

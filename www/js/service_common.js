@@ -235,9 +235,13 @@ angular.module('common.services', [])
       qrcodeLogin:function (qrcode, success, error) {
         api.qrcodeLogin(qrcode, success, error);
       },
-      //二维码登录接口，qrcode：扫描到的二维码  返回布尔类型的值：true为成功，false为登录失败
+      //图片发送接口
       sendFile:function (objectTP,objectID,filePath, success, error) {
         api.sendFile(objectTP,objectID,filePath, success, error);
+      },
+      //文件发送接口
+      sendDocFile:function (objectTP,objectID,filePath, success, error) {
+        api.sendDocFile(objectTP,objectID,filePath, success, error);
       },
       getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
        api.getFile(objectTP,objectID,picSize, success, error);
