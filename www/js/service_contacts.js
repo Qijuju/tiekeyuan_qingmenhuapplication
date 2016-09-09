@@ -1016,7 +1016,6 @@ angular.module('contacts.services', [])
   })
 
   .factory('$search111',function ($api,$rootScope,$greendao) {
-
     var persons;
     return{
       search1111:function (userid,page,count,query) {
@@ -1031,7 +1030,6 @@ angular.module('contacts.services', [])
           },function (message) {
 
           })
-
           persons=msg;
           $rootScope.$broadcast('persons.update');
 
