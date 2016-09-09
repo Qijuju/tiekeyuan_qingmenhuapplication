@@ -513,6 +513,7 @@ angular.module('message.services', [])
     return{
       getHistoryduifanga:function (sessionType, sessionID, pageNum, pageCount) {
         $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
+      
           historymessageduifang=message;
           $rootScope.$broadcast('historymsg.duifang');
         },function (message) {

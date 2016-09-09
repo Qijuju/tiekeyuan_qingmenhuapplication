@@ -11,13 +11,13 @@
 
   <ion-content overflow-scroll="false" style="background-color: #ddf2f5">
     <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
-                   <!--pulling-text="更多消息" id="refresh">-->
+    <!--pulling-text="更多消息" id="refresh">-->
     <!--</ion-refresher>-->
     <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
 
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
-      <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID==id">
+      <div class="rj-message-wrap" ng-if="!(historyduifangaaa.FromID == UserID)">
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==3||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==7" class=" circle3" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
@@ -36,20 +36,20 @@
         <p style="float: right;margin-right: 36px"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
         </span>
       </div>
-        <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->
-          <!--<img src="img/mike.png" class="rj-head-pic">-->
-          <!--<span class="rj-triangle-left"></span>-->
-          <!--<p class="rj-message">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>-->
-        <!--</div>-->
+      <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->
+      <!--<img src="img/mike.png" class="rj-head-pic">-->
+      <!--<span class="rj-triangle-left"></span>-->
+      <!--<p class="rj-message">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>-->
+      <!--</div>-->
 
 
-        <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID)">-->
-          <!--<img src="img/ben.png" class="rj-head-pic-right">-->
-          <!--<span class="rj-triangle-right"></span>-->
-           <!--<span>-->
-             <!--<p style="float: right;"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>-->
-          <!--</span>-->
-        <!--</div>-->
+      <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID)">-->
+      <!--<img src="img/ben.png" class="rj-head-pic-right">-->
+      <!--<span class="rj-triangle-right"></span>-->
+      <!--<span>-->
+      <!--<p style="float: right;"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>-->
+      <!--</span>-->
+      <!--</div>-->
     </div>
 
   </ion-content>

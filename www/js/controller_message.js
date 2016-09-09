@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin) {
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -577,6 +577,21 @@ angular.module('message.controllers', [])
         'userId':userid
       });
     }
+
+    $scope.callperson=function () {
+      $searchdata.personDetail($scope.userId);
+    }
+    $scope.$on('person.update', function (event) {
+      $scope.$apply(function () {
+        var phone=$searchdata.getPersonDetail().user.Mobile;
+        if(phone.length==0||phone==null||phone==""){
+          $ToastUtils.showToast("电话号码为空")
+        }else {
+          $phonepluin.call($scope.userId, phone, $scope.chatName,1);
+        }
+      })
+    });
+
   })
 
 
@@ -1062,6 +1077,30 @@ angular.module('message.controllers', [])
     $scope.shefalse=function () {
       $scope.a=false
     }
+    //发起群聊
+    $scope.createGroupChats=function () {
+      var selectInfo={};
+      //当创建群聊的时候先把登录的id和信息  存到数据库上面
+      selectInfo.id=$scope.loginId;
+      selectInfo.grade="0";
+      selectInfo.isselected=true;
+      selectInfo.type='user'
+      $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+
+      },function (err) {
+
+      })
+
+      $state.go('addnewpersonfirst',{
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
+      });
+    }
+
+
+
+
     //扫一扫
     $scope.saoyisao = function () {
       $scope.a=false
@@ -1422,6 +1461,7 @@ angular.module('message.controllers', [])
       $scope.$on('login.update', function (event) {
         $scope.$apply(function () {
           //部门id
+          $scope.loginId=$contacts.getLoignInfo().userID;
           $scope.depid=$contacts.getLoignInfo();
           $contacts.loginDeptInfo($scope.depid);
         })
@@ -1460,6 +1500,12 @@ angular.module('message.controllers', [])
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;
     $scope.userName=$stateParams.ssid;
+
+    $scope.godetailaa=function () {
+      $state.go('person',{
+        'userId':$scope.userId
+      });
+    }
 
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -1653,8 +1699,15 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout) {
 
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
@@ -1667,7 +1720,11 @@ angular.module('message.controllers', [])
     $group.groupDetail($scope.groupType,$scope.groupId,$scope.listM);
     $scope.$on('groupdetail.update', function (event) {
       $scope.$apply(function () {
-        $scope.groupName=$group.getGroupDetail().groupName;
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.groupName=$group.getGroupDetail().groupName;
+
+        });
 
       })
     });
@@ -1697,8 +1754,17 @@ angular.module('message.controllers', [])
     //解散群
     $scope.dissolveGroup=function (aa) {
 
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+
       $api.removeGroup($scope.groupId,function (msg) {
 
+        $ionicLoading.hide();
         $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
 
           $state.go('tab.message',{
@@ -1712,7 +1778,9 @@ angular.module('message.controllers', [])
         })
 
       },function (err) {
-        // $ToastUtils.showToast(err)
+        $ToastUtils.showToast('解散群失败')
+        $ionicLoading.hide();
+
 
       });
     }
@@ -1727,19 +1795,20 @@ angular.module('message.controllers', [])
     };
 
     $scope.backAny = function () {
-
-
       $state.go('messageGroup',{
         "id":$scope.groupId,
         "chatName":$scope.groupName,
         "grouptype":$scope.groupType,
         "ismygroup":$scope.ismygroup,
       });
-
     };
 
-    $scope.gohistoryMessage = function () {
-      $state.go("historyMessage");
+    $scope.gohistoryMessagea = function () {
+      // $ToastUtils.showToast("要跳了")
+      $state.go('historymessagegroup',{
+        grouptype:$scope.groupType,
+        id:$scope.groupId
+      });
     }
 
     $scope.meizuo=function () {
@@ -1758,11 +1827,86 @@ angular.module('message.controllers', [])
 
     }
 
-
-
-
-
-
-
   })
 
+  .controller('historymessagegroupCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+    $scope.groupid = $stateParams.id;
+    // $scope.ssid = $stateParams.ssid;
+    $scope.grouptype=$stateParams.grouptype;
+    if($scope.grouptype=="Group"){
+      $scope.grouptype="G"
+    }
+    if($scope.grouptype=="Dept"){
+      $scope.grouptype="D"
+    }
+    // $ToastUtils.showToast("从群聊界面跳转过来的"+$scope.grouptype);
+    $scope.totalpage=1
+    $scope.dangqianpage=1;
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID= msg.userID
+    },function (msg) {
+
+    });
+
+    $scope.goSetting = function () {
+      $ionicHistory.goBack();
+    }
+
+    $api.getMsgCount($scope.grouptype, $scope.groupid,function (msg) {
+
+      var mo = msg%10;
+      if(mo === 0) {
+        $scope.totalpage = msg / 10;
+        if ($scope.totalpage === 0){
+          $scope.totalpage=1;
+        }
+      } else {
+        $scope.totalpage = (msg - mo) / 10 + 1;
+      }
+
+      // $scope.totalpage=msg/10+1   ;
+      // $ToastUtils.showToast($scope.totalpage)
+    },function (msg) {
+      $ToastUtils.showToast("失败");
+    });
+
+    $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,1,10);
+    $scope.$on('historymsg.duifang',function (event) {
+      $scope.$apply(function () {
+        $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+      })
+    });
+
+    //下一页
+    $scope.nextpage=function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+          })
+        });
+
+      }else {
+        $ToastUtils.showToast("已经到最后一页了")
+      }
+    }
+    //上一页
+    $scope.backpage=function () {
+      if($scope.dangqianpage>1){
+        $scope.dangqianpage--;
+        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+          })
+        });
+
+
+      }else {
+        $ToastUtils.showToast("已经到第一页了");
+      }
+    }
+
+  })

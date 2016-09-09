@@ -276,7 +276,8 @@ angular.module('im.routes', [])
       .state('localContacts', {
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
-        controller: 'LocalContactCtrl'
+        controller: 'LocalContactCtrl',
+        cache:false
 
       })
 
@@ -425,6 +426,12 @@ angular.module('im.routes', [])
         url: '/historyMessage/:id/:ssid/:grouptype',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
+        cache:false
+      })
+      .state('historymessagegroup', {
+        url: '/historymessagegroup/:id/:ssid/:grouptype',
+        templateUrl: 'templates/historymessagegroup.html',
+        controller: 'historymessagegroupCtrl',
         cache:false
       })
       .state('myinformation', {

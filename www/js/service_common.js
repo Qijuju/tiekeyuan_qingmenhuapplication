@@ -55,6 +55,9 @@ angular.module('common.services', [])
       },
       queryByType : function (one, two,success, error) {
       greendao.queryByType(one, two,success, error);
+      },
+      qureyHistoryMsg:function (type,success,error) {
+        greendao.qureyHistoryMsg(type,success,error);
       }
       
     };

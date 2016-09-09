@@ -10,7 +10,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table PARENT_DEPT.
  */
-public class ParentDept extends BaseDao implements java.io.Serializable {
+public class ParentDept  extends BaseDao implements java.io.Serializable {
 
     private String _id;
     private String name;

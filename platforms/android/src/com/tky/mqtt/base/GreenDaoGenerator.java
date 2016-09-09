@@ -25,6 +25,8 @@ public class GreenDaoGenerator {
         addGroupChats(schema);
         addGroupIDS(schema);
         addSystemMsg(schema);
+        addSearchMsgHistory(schema);
+        addLocalPhone(schema);
         new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
@@ -142,7 +144,25 @@ public class GreenDaoGenerator {
     groupIds.addStringProperty("grade");//选中的的在哪个级别
     groupIds.addBooleanProperty("isselected");//是否被选中
     groupIds.addStringProperty("type");
-
   }
+    //添加搜素消息记录的表
 
+    private static void addSearchMsgHistory(Schema schema) {
+        Entity msgHistory=schema.addEntity("MsgHistory");
+        msgHistory.addStringProperty("_id").primaryKey();
+        msgHistory.addStringProperty("msg");//历史消息字段
+        msgHistory.addLongProperty("when");
+        msgHistory.addStringProperty("type");
+    }
+
+  //添加本地手机通讯录
+
+  private static void addLocalPhone(Schema schema){
+    Entity localPhone=schema.addEntity("LocalPhone");
+    localPhone.addStringProperty("id").primaryKey();
+    localPhone.addStringProperty("platformid");
+    localPhone.addStringProperty("name");
+    localPhone.addStringProperty("phonenumber");
+    localPhone.addStringProperty("pinyinname");
+  }
 }

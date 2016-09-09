@@ -10,7 +10,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content 　overflow-scroll="false">
-    <ion-item class="rj-contacts-item" ng-if="ismycreat>0">
+    <ion-item class="rj-contacts-item" ng-if="!ismycreat==0">
       <div class="rj-contacts-index-bar">我创建的</div>
       <ion-list>
         <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
