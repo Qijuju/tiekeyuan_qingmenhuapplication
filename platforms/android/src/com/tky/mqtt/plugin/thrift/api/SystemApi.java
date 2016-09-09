@@ -288,6 +288,16 @@ public class SystemApi {
     }
 
     /**
+     * 获取用户信息
+     * @param ID 用户ID
+     * @param userMB 要查询用户的本地ID和手机号
+     */
+    public static void checkLocalUser(String ID, Map<String, String> userMB, AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.CheckLocalUser(ID, userMB, callback);
+    }
+
+    /**
      * 获取头像图片
      * @param ID 用户ID
      * @param userID 要查询用户的ID
