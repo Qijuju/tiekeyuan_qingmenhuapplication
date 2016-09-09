@@ -101,6 +101,7 @@ public class MqttMessageCallback implements MqttCallback {
 					intent.setAction(ReceiverParams.MESSAGEARRIVED);
 					intent.putExtra("topic", topic);
 					String json = GsonUtils.toJson(map, MessageBean.class);
+					System.out.println("完整的数据格式"+json);
 					intent.putExtra("content", json);
 					intent.putExtra("qos", msg.getQos());
 					msg.clearPayload();

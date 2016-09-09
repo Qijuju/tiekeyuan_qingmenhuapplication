@@ -3,24 +3,24 @@
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar" ng-click="gonotificationDetail()">
+      <ion-item class="item-remove-animate item-avatar" ng-repeat="sysitem in syslist" ng-click="gonotificationDetail(sysitem.id,sysitem.chatName,sysitem.chatType)">
         <!--class="center tongzhi1"-->
         <img src="img/oa.png"  style=" position: absolute;left: 5%;top: 23%;text-align: center;z-index: 1;width: 40px;height: 40px">
-        <span class="rj-sm-red-icon" ng-if=""><p>1</p></span>
-        <h2>办公系统</h2>
-        <p> 111111111111111111</p>
-        <span class="rj-push-right">3222222222</span>
-        <!--<span class="rj-push-right"></span>-->
+        <span class="rj-sm-red-icon" ng-if="sysitem.count>0"><p>{{sysitem.count}}</p></span>
+        <h2>{{sysitem.chatName}}</h2>
+        <p> {{sysitem.lastText}}</p>
+        <span class="rj-push-right" ng-if="sysitem.lastDate != 0">{{ sysitem.lastDate | date:'HH:mm:ss' }}</span>
+        <span class="rj-push-right" ng-if="sysitem.lastDate === 0"></span>
       </ion-item>
-      <ion-item class="item-remove-animate item-avatar" ng-click="gonotificationDetail()">
-        <!--class="center tongzhi1"-->
-        <img src="img/bhz.png"  style=" position: absolute;left: 5%;top: 23%;text-align: center;z-index: 1;width: 40px;height: 40px">
-        <span class="rj-sm-red-icon" ng-if=""><p>1</p></span>
-        <h2>办公系统</h2>
-        <p> 111111111111111111</p>
-        <span class="rj-push-right">3222222222</span>
-        <!--<span class="rj-push-right"></span>-->
-      </ion-item>
+      <!--<ion-item class="item-remove-animate item-avatar" ng-click="gonotificationDetail()">-->
+        <!--&lt;!&ndash;class="center tongzhi1"&ndash;&gt;-->
+        <!--<img src="img/bhz.png"  style=" position: absolute;left: 5%;top: 23%;text-align: center;z-index: 1;width: 40px;height: 40px">-->
+        <!--<span class="rj-sm-red-icon" ng-if=""><p>1</p></span>-->
+        <!--<h2>办公系统</h2>-->
+        <!--<p> 111111111111111111</p>-->
+        <!--<span class="rj-push-right">3222222222</span>-->
+        <!--&lt;!&ndash;<span class="rj-push-right"></span>&ndash;&gt;-->
+      <!--</ion-item>-->
     </ion-list>
 
   </ion-content>

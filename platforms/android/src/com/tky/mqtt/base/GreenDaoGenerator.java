@@ -24,7 +24,8 @@ public class GreenDaoGenerator {
         addChatLists(schema);
         addGroupChats(schema);
         addGroupIDS(schema);
-        new DaoGenerator().generateAll(schema,  "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+        addSystemMsg(schema);
+        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -60,6 +61,24 @@ public class GreenDaoGenerator {
         message.addStringProperty("senderid");//用于群聊时判断消息来源人id
     }
 
+
+    //系统通知(通知、报警)
+    private  static  void addSystemMsg(Schema schema){
+        Entity message=schema.addEntity("SystemMsg");
+        message.addStringProperty("_id").primaryKey();//主键id
+        message.addStringProperty("sessionid");//接收者id、群组id
+        message.addStringProperty("type");//聊天类型：群聊、单聊、应用推送
+        message.addStringProperty("from");//消息发出者id
+        message.addStringProperty("message");//消息内容
+        message.addStringProperty("messagetype");//消息类型:普通、回执、抖动窗口
+        message.addStringProperty("platform");//客户端类型
+        message.addStringProperty("isFailure");//消息发送成功与否
+        message.addLongProperty("when");//消息发送时间
+        message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
+        message.addStringProperty("imgSrc");//头像图片来源
+        message.addStringProperty("username");//用户名
+        message.addStringProperty("senderid");//用于群聊时判断消息来源人id
+    }
 
     //部门表（1：n）
     private static void addParentSubDept(Schema schema) {

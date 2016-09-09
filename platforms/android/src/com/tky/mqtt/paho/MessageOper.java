@@ -41,7 +41,7 @@ public class MessageOper {
 			return null;
 		}
 		String type = obj.getString("type");
-		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType("Text"), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
+		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType(obj.getString("messagetype")), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
 	}
 
 	/**
@@ -58,8 +58,10 @@ public class MessageOper {
 		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
 			MessageBean bean = new MessageBean();
 			bean.set_id((String) msgMap.get("from"));
-			bean.setSessionid("User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"))) ? (String) msgMap.get("from") : (String) msgMap.get("to"));
-			;
+			boolean flag = "User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+					|| "Alarm".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+					|| "System".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+			bean.setSessionid((flag) ? (String) msgMap.get("from") : (String) msgMap.get("to"));
 			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 			bean.setFrom("false");
 			bean.setMessage((String) msgMap.get("message"));
@@ -128,6 +130,8 @@ public class MessageOper {
 			msgType = "Receipt";
 		} else if (IMMsgFactory.MsgType.System.equals(type)) {
 			msgType = "System";
+		} else if (IMMsgFactory.MsgType.Alarm.equals(type)) {
+			msgType = "Alarm";
 		}
 		return msgType;
 	}
@@ -149,10 +153,12 @@ public class MessageOper {
 			mediaType = IMMsgFactory.MediaType.Image;
 		} else if ("Shake".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Shake;
-		} else if ("Text".equals(type)) {
+		} else if ("Text".equals(type) || "normal".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Text;
 		} else if ("Vedio".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Vedio;
+		} else {
+			mediaType = IMMsgFactory.MediaType.Text;
 		}
 		return mediaType;
 	}

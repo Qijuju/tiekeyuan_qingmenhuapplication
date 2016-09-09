@@ -7,10 +7,14 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.ChatListDao;
 import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.dao.SelectedId;
+import com.tky.mqtt.dao.SelectedIdDao;
 import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;
+
+import de.greenrobot.dao.query.QueryBuilder;
 
 /**
  * Created by Administrator on 2016/8/8.
@@ -95,5 +99,13 @@ public class ChatListService implements BaseInterface<ChatList>{
     @Override
     public long saveObj(ChatList chatList) {
         return chatListDao.insertOrReplace(chatList);
+    }
+
+    public List<ChatList> queryByType(String one,String two){
+        QueryBuilder qb = chatListDao.queryBuilder();
+        qb.or(ChatListDao.Properties.ChatType.eq(one),ChatListDao.Properties.ChatType.gt(two));
+        List<ChatList> chatLists=qb.list();
+        return chatLists;
+
     }
 }
