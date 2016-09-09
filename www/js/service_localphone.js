@@ -10,7 +10,6 @@ angular.module('localphone.services', [])
       contactPlugin=cordova.require('localContact.localContact');
 
     });
-
     var contactsAll=new Array();
     var A=new Array();
     var B=new Array();
@@ -41,8 +40,38 @@ angular.module('localphone.services', [])
     var onsuch=new Array();
 
 
+
+
     return{
       getContact:function () {
+         contactsAll=[];
+         A=[];
+         B=[];
+         C=[];
+         D=[];
+         E=[];
+         F=[];
+         G=[];
+         H=[];
+         I=[];
+         J=[];
+         K=[];
+         L=[];
+         M=[];
+         N=[];
+         O=[];
+         P=[];
+         Q=[];
+         R=[];
+         S=[];
+         T=[];
+         U=[];
+         V=[];
+         W=[];
+         X=[];
+         Y=[];
+         Z=[];
+         onsuch=[];
 
         contactPlugin.getLocalContactsInfos("",function (message) {
           if(message!=null){

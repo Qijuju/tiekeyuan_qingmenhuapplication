@@ -25,6 +25,7 @@ public class GreenDaoGenerator {
         addGroupChats(schema);
         addGroupIDS(schema);
         addSearchMsgHistory(schema);
+        addLocalPhone(schema);
         new DaoGenerator().generateAll(schema,  "F:/xiao/dpan/WindowsApps/IM/platforms/android/src");//项目绝对路径
     }
 
@@ -134,4 +135,15 @@ public class GreenDaoGenerator {
         msgHistory.addLongProperty("when");
         msgHistory.addStringProperty("type");
     }
+
+  //添加本地手机通讯录
+
+  private static void addLocalPhone(Schema schema){
+    Entity localPhone=schema.addEntity("LocalPhone");
+    localPhone.addStringProperty("id").primaryKey();
+    localPhone.addStringProperty("platformid");
+    localPhone.addStringProperty("name");
+    localPhone.addStringProperty("phonenumber");
+    localPhone.addStringProperty("pinyinname");
+  }
 }

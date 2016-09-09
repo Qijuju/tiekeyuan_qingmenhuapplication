@@ -779,23 +779,20 @@ angular.module('contacts.services', [])
   })
 
   .factory('$search111',function ($api,$rootScope,$greendao) {
-
     var persons;
     return{
       search1111:function (userid,page,count,query) {
         $api.seachUsers(userid,query,page,count,function (msg) {
-          alert("11111")
           var msghistory={};
           msghistory._id="";
           msghistory.msg=query;
           msghistory.type="person";
           msghistory.when=0;
           $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
-            alert("存取成功");
+            // alert("存取成功");
           },function (message) {
-            alert("存取失败");
+
           })
-          alert("222222")
           persons=msg;
           $rootScope.$broadcast('persons.update');
 
