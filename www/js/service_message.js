@@ -16,11 +16,11 @@ angular.module('message.services', [])
         if(chatitem.id === undefined || chatitem.chatName === undefined){
           chatitem.id=$rootScope.id;
           chatitem.chatName=$rootScope.username;
-          alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+          // alert(chatitem.id+"监听消息来源"+chatitem.chatName);
         }else{
           chatitem.id=$stateParams.id;
           chatitem.chatName=$stateParams.ssid;
-          alert(chatitem.id+"监听消息来源222"+chatitem.chatName);
+          // alert(chatitem.id+"监听消息来源222"+chatitem.chatName);
         }
         chatitem.imgSrc='';
         chatitem.lastText='';
@@ -40,7 +40,7 @@ angular.module('message.services', [])
         // alert("进来会话列表了吗");
         $greendao.saveObj('ChatListService',chatitem,function (data) {
           $rootScope.$broadcast('chatarr.update');
-          alert("保存成功"+data.length)
+          // alert("保存成功"+data.length)
         },function (err) {
         });
       }
@@ -55,7 +55,7 @@ angular.module('message.services', [])
       return savedata;
     },
     getAllData:function () {
-      alert("service界面数组长度"+mainlist.length);
+      // alert("service界面数组长度"+mainlist.length);
       return mainlist;
     },
     getIdChatName:function (id,chatname) {
@@ -233,17 +233,17 @@ angular.module('message.services', [])
                }*/
               syscount++;
               $rootScope.$broadcast('notify.update');
-              alert(data.length+"收通知消息");
+              // alert(data.length+"收通知消息");
             },function (err) {
             });
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
-            alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
+            // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){//普通消息
             if (message.messagetype === "Image") {   //文件或者图片
               $api.getFile('I',arriveMessage.message,'00',function (data) {
-                alert("图片下载成功");
+                // alert("图片下载成功");
                 arriveMessage.message = data;
                 $greendao.saveObj('MessagesService',arriveMessage,function (data) {
                   /*if(arriveMessage.messagetype ==='Image'){
@@ -513,7 +513,7 @@ angular.module('message.services', [])
     return{
       getHistoryduifanga:function (sessionType, sessionID, pageNum, pageCount) {
         $api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount,function (message) {
-      
+
           historymessageduifang=message;
           $rootScope.$broadcast('historymsg.duifang');
         },function (message) {

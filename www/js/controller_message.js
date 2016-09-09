@@ -166,9 +166,9 @@ angular.module('message.controllers', [])
 
     $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(function (filePath) {
-        alert(filePath);
+        // alert(filePath);
         $api.sendDocFile('I', null, filePath, function (data) {
-          alert(filePath);
+          // alert(filePath);
           $scope.filePath=data[0];
           $scope.fileObjID=data[1];
 
