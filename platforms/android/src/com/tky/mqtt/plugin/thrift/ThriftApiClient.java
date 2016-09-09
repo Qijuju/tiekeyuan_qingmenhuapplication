@@ -50,6 +50,7 @@ import im.model.Group;
 import im.model.Msg;
 import im.model.RST;
 import im.model.User;
+import im.model.UserCheck;
 import im.server.Department.IMDepartment;
 import im.server.Department.RSTgetChild;
 import im.server.Department.RSTgetDept;
@@ -71,6 +72,7 @@ import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
 import im.server.System.RSTsysTime;
 import im.server.User.IMUser;
+import im.server.User.RSTCheckUser;
 import im.server.User.RSTgetUser;
 import im.server.attention.IMAttention;
 import im.server.attention.RSTgetAttention;
@@ -572,6 +574,61 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param args
+     * @param callbackContext
+     */
+    public void checkLocalUser(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            Map<String, String> userMB = null;
+            SystemApi.checkLocalUser(getUserID(), userMB, new AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.CheckLocalUser_call checkLocalUser_call) {
+                    try {
+                        RSTCheckUser result = checkLocalUser_call.getResult();
+                        if (result != null) {
+                            if (result.result) {
+                                List<UserCheck> userList = result.getUser();
+                                if (userList != null) {
+                                    String json = GsonUtils.toJson(userList, new TypeToken<List<UserCheck>>() {
+                                    }.getType());
+                                    setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                                } else {
+                                    setResult("获取数据为空！", PluginResult.Status.ERROR, callbackContext);
+                                }
+                            } else if ("531".equals(result.getResultCode())) {
+                                setResult("所查人员不存在！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        } else {
+                            setResult("获取数据失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (JSONException e) {
+            setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
     }

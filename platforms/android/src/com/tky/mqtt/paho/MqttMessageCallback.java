@@ -76,12 +76,14 @@ public class MqttMessageCallback implements MqttCallback {
 			final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
 			if (bean != null && bean instanceof MessageBean) {
 				final MessageBean map = (MessageBean) bean;
-				String fromUserId = map.get_id();
-				if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId)) {
+				final String fromUserId = map.get_id();
+				if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId) && "Android".equals(map.getPlatform())) {
 					return;
 				}
-				//接收到消息时的铃声
-				ring();
+				if (fromUserId != null && !map.isFromMe()) {
+					//接收到消息时的铃声
+					ring();
+				}
 				final String username = (String) map.getUsername();
 				final String msgContent = (String) map.getMessage();
 				UIUtils.runInMainThread(new Runnable() {
@@ -89,14 +91,16 @@ public class MqttMessageCallback implements MqttCallback {
 					@Override
 					public void run() {
 						GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
-						if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
-							List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
-							if (groupChatsList.size() != 0) {
-								String chatname = groupChatsList.get(0).getGroupName();
-								MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, msgContent, new Intent(context, MainActivity.class));
+						if (fromUserId != null && !map.isFromMe()) {
+							if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
+								List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
+								if (groupChatsList.size() != 0) {
+									String chatname = groupChatsList.get(0).getGroupName();
+									MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, msgContent, new Intent(context, MainActivity.class));
+								}
+							} else {
+								MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, msgContent, new Intent(context, MainActivity.class));
 							}
-						} else {
-							MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, msgContent, new Intent(context, MainActivity.class));
 						}
 						Intent intent = new Intent();
 						intent.setAction(ReceiverParams.MESSAGEARRIVED);
