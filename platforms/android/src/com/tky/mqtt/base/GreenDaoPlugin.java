@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.MsgHistory;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SubDept;
@@ -13,6 +14,7 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.MsgHistoryService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SubDeptService;
@@ -124,6 +126,13 @@ public class GreenDaoPlugin extends CordovaPlugin {
           selectedId.setIsselected(jsonobj.getBoolean("isselected"));
           selectedId.setType(jsonobj.getString("type"));
           obj=selectedId;
+        }else if ("MsgHistoryService".equals(services)){
+            MsgHistory msgHistory=new MsgHistory();
+            msgHistory.set_id(UUID.randomUUID().toString());
+            msgHistory.setMsg(jsonobj.getString("msg"));
+            msgHistory.setType(jsonobj.getString("type"));
+            msgHistory.setWhen(System.currentTimeMillis());
+            obj=msgHistory;
         }
         return obj;
     }
@@ -171,6 +180,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if ("SelectIdService".equals(services)){
 
+        }else if ("MsgHistoryService".equals(services)){
+
         }
         return obj;
     }
@@ -197,6 +208,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
           baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
         }else if ("SelectIdService".equals(services)){
           baseInterface= SelectIdService.getInstance(UIUtils.getContext());
+        }else if ("MsgHistoryService".equals(services)) {
+            baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -351,6 +364,20 @@ public class GreenDaoPlugin extends CordovaPlugin {
         e.printStackTrace();
       }
 
+    }
+
+    public void qureyHistoryMsg(JSONArray args,CallbackContext callbackContext){
+        MsgHistoryService  service=MsgHistoryService.getInstance(UIUtils.getContext());
+        try {
+            String type=args.getString(0);
+            List<MsgHistory> list=service.queryMsg(type);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<MsgHistory>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 

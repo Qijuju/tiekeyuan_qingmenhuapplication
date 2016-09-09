@@ -24,7 +24,8 @@ public class GreenDaoGenerator {
         addChatLists(schema);
         addGroupChats(schema);
         addGroupIDS(schema);
-        new DaoGenerator().generateAll(schema,  "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+        addSearchMsgHistory(schema);
+        new DaoGenerator().generateAll(schema,  "F:/xiao/dpan/WindowsApps/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -123,7 +124,14 @@ public class GreenDaoGenerator {
     groupIds.addStringProperty("grade");//选中的的在哪个级别
     groupIds.addBooleanProperty("isselected");//是否被选中
     groupIds.addStringProperty("type");
-
   }
+    //添加搜素消息记录的表
 
+    private static void addSearchMsgHistory(Schema schema) {
+        Entity msgHistory=schema.addEntity("MsgHistory");
+        msgHistory.addStringProperty("_id").primaryKey();
+        msgHistory.addStringProperty("msg");//历史消息字段
+        msgHistory.addLongProperty("when");
+        msgHistory.addStringProperty("type");
+    }
 }

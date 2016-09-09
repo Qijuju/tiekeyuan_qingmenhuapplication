@@ -306,7 +306,8 @@ angular.module('search.controllers', [])
 
   })
 
-  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage) {
+  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage,$mqtt) {
+
     Array.prototype.contains = function(item){
       return RegExp("\\b"+item+"\\b").test(this);
     };
@@ -327,6 +328,7 @@ angular.module('search.controllers', [])
       });
     }
     $scope.dosearch = function(query) {
+
       if (query!=""&&query.length>0){
         $scope.query1 ="%"+query+"%";
         $searchmessage.searchmessagessss($scope.query1);
