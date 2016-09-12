@@ -2,11 +2,17 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('search.controllers', [])
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao,$ionicLoading) {
 
      // document.getElementById("searchdata").value =1;
 
-    $greendao.qureyHistoryMsg();
+    $search111.getHistorymsg("person");
+    $scope.$on('persons.history',function (event) {
+      $scope.$apply(function () {
+        $scope.historymsgs=$search111.getHistorymsgs();
+      })
+    });
+
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -38,6 +44,13 @@ angular.module('search.controllers', [])
     $scope.query1=""
     $scope.dosearch = function(query) {
       if (query!=""&&query.length>0){
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         $scope.hasmore=true;
         $scope.page =1;
         $scope.persons=[];
@@ -49,9 +62,10 @@ angular.module('search.controllers', [])
             $scope.page =1;
             $scope.persons=[];
             $scope.query1 =query;
-            $scope.persons=$search111.getPersons().searchResult;
-
-
+            $timeout(function () {
+              $ionicLoading.hide();
+              $scope.persons=$search111.getPersons().searchResult;
+            });
             $scope.$broadcast('scroll.infiniteScrollComplete');
             if ($scope.persons.length>=15){
               $scope.hasmore=true
@@ -64,6 +78,7 @@ angular.module('search.controllers', [])
         });
       }else {
         $scope.persons=[];
+        $search111.getHistorymsg("person");
       }
     }
 
@@ -306,7 +321,7 @@ angular.module('search.controllers', [])
 
   })
 
-  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage,$mqtt) {
+  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage,$mqtt,$search111,$ionicLoading,$timeout) {
 
     Array.prototype.contains = function(item){
       return RegExp("\\b"+item+"\\b").test(this);
@@ -327,9 +342,33 @@ angular.module('search.controllers', [])
         "sessionid":$scope.UserNameSM
       });
     }
-    $scope.dosearch = function(query) {
 
+    $search111.getHistorymsg("message");
+    $scope.$on('persons.history',function (event) {
+      $scope.$apply(function () {
+        $scope.historymsgs=$search111.getHistorymsgs();
+      })
+    });
+    $scope.dosearch = function(query) {
       if (query!=""&&query.length>0){
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
+        var msghistory={};
+        msghistory._id="";
+        msghistory.msg=query;
+        msghistory.type="message";
+        msghistory.when=0;
+        $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
+          // alert("存取成功");
+        },function (message) {
+
+        })
+
         $scope.query1 ="%"+query+"%";
         $searchmessage.searchmessagessss($scope.query1);
         $scope.$on('messagesss.search',function (event) {
@@ -339,38 +378,42 @@ angular.module('search.controllers', [])
             $scope.lastMsg=[];
             var messages;
             var namea;
-            for (var i=0;i<$searchmessage.getmessagessss().length;i++){
-              messages=$searchmessage.getmessagessss()[i];
-              $scope.messagess.push(messages)
-            }
-            namea=$searchmessage.getmessagessss()[0].username;
-            $scope.namess.push(namea);
-            for (var i=0;i<$searchmessage.getmessagessss().length;i++){
-
-              namea=$searchmessage.getmessagessss()[i].username;
-              if ($scope.namess.indexOf(namea)==-1){
-                $scope.namess.push(namea)
+            $timeout(function () {
+              $ionicLoading.hide();
+              for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+                messages=$searchmessage.getmessagessss()[i];
+                $scope.messagess.push(messages)
               }
-            }
-            for( var i=0; i<$scope.namess.length;i++){
-              var count=0;
-              var lastmsg={};
-              for(var j=0;j<$scope.messagess.length;j++){
-                if ($scope.namess[i]==$scope.messagess[j].username){
-                  lastmsg.name=$scope.namess[i];
-                  lastmsg.sessionid=$scope.messagess[j].sessionid
-                  count++;
-                  lastmsg.count=count;
+              namea=$searchmessage.getmessagessss()[0].username;
+              $scope.namess.push(namea);
+              for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+
+                namea=$searchmessage.getmessagessss()[i].username;
+                if ($scope.namess.indexOf(namea)==-1){
+                  $scope.namess.push(namea)
                 }
               }
-              $scope.lastMsg.push(lastmsg)
-            }
+              for( var i=0; i<$scope.namess.length;i++){
+                var count=0;
+                var lastmsg={};
+                for(var j=0;j<$scope.messagess.length;j++){
+                  if ($scope.namess[i]==$scope.messagess[j].username){
+                    lastmsg.name=$scope.namess[i];
+                    lastmsg.sessionid=$scope.messagess[j].sessionid
+                    count++;
+                    lastmsg.count=count;
+                  }
+                }
+                $scope.lastMsg.push(lastmsg)
+              }
+            });
           })
         });
       }else {
         $scope.lastMsg=[];
         $scope.namess=[];
         $scope.messagess=[];
+        $search111.getHistorymsg("message");
       }
 
 
