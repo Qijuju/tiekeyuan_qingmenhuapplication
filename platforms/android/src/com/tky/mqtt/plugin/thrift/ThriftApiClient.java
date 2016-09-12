@@ -585,7 +585,8 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void checkLocalUser(final JSONArray args, final CallbackContext callbackContext){
         try {
-            Map<String, String> userMB = null;
+            JSONObject obj = args.getJSONObject(0);
+            Map<String, String> userMB = jsonobj2Map(obj);
             SystemApi.checkLocalUser(getUserID(), userMB, new AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call>() {
                 @Override
                 public void onComplete(IMUser.AsyncClient.CheckLocalUser_call checkLocalUser_call) {
