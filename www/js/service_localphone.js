@@ -3,7 +3,7 @@
  */
 angular.module('localphone.services', [])
 
-  .factory('localContact',function ($rootScope) {
+  .factory('localContact',function ($rootScope,$greendao,$api) {
 
     var contactPlugin
     document.addEventListener('deviceready',function () {
@@ -74,6 +74,40 @@ angular.module('localphone.services', [])
          onsuch=[];
 
         contactPlugin.getLocalContactsInfos("",function (message) {
+
+          //开始构造数据，然后再去调用接口的方法
+
+          $greendao.loadAllData("LocalPhoneService",function (msg) {
+
+          var replyList=[];
+
+           for(var i=0;i<msg.length;i++){
+             var reply={};
+             reply.id=msg.id;
+             reply.phone=msg.phone;
+             replyList.push(reply);
+
+           }
+
+
+           
+
+
+
+
+
+
+
+          },function (err) {
+
+          })
+
+
+
+
+
+
+
           if(message!=null){
             contactsAll=message;
             for(var i=0; i<message.length; i++){

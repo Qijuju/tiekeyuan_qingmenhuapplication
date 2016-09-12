@@ -94,7 +94,7 @@ angular.module('im.routes', [])
         }
       })
       .state('notificationDetail', {
-        url: '/notificationDetail',
+        url: '/notificationDetail/:id/:name/:type',
         templateUrl: 'templates/notificationDetail.html',
         cache:false,
         controller: 'notificationDetailCtrl'

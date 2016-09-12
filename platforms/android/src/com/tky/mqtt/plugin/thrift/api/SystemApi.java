@@ -88,7 +88,7 @@ public class SystemApi {
         return asyncClient;
     }
 
-    private static FileSyncClient getFileSyncClient() throws IOException{
+    public static FileSyncClient getFileSyncClient() throws IOException{
         TTransport transport2 = new TFramedTransport(new TSocket("61.237.239.152", 6006, 5000));
         TProtocol protocol2 = new TCompactProtocol(transport2);
         IMFile.Client fileClient = new IMFile.Client(protocol2);
@@ -285,6 +285,16 @@ public class SystemApi {
     public static void updateUserInfo(String ID, Map<String, String> updateInfo, AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
         IMUser.AsyncClient userClient = getUserClient();
         userClient.UserUpdate(ID, updateInfo, callback);
+    }
+
+    /**
+     * 获取用户信息
+     * @param ID 用户ID
+     * @param userMB 要查询用户的本地ID和手机号
+     */
+    public static void checkLocalUser(String ID, Map<String, String> userMB, AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.CheckLocalUser(ID, userMB, callback);
     }
 
     /**

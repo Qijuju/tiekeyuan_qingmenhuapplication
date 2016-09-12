@@ -1,6 +1,9 @@
 package com.tky.mqtt.plugin.thrift;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,10 +29,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,11 +50,14 @@ import im.model.Group;
 import im.model.Msg;
 import im.model.RST;
 import im.model.User;
+import im.model.UserCheck;
 import im.server.Department.IMDepartment;
 import im.server.Department.RSTgetChild;
 import im.server.Department.RSTgetDept;
 import im.server.Department.RSTgetRoot;
 import im.server.File.IMFile;
+import im.server.File.RSTSendFile;
+import im.server.File.RSTgetFile;
 import im.server.File.RSTversionInfo;
 import im.server.Group.IMGroup;
 import im.server.Group.RSTChangeGroup;
@@ -60,6 +72,7 @@ import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
 import im.server.System.RSTsysTime;
 import im.server.User.IMUser;
+import im.server.User.RSTCheckUser;
 import im.server.User.RSTgetUser;
 import im.server.attention.IMAttention;
 import im.server.attention.RSTgetAttention;
@@ -561,6 +574,61 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param args
+     * @param callbackContext
+     */
+    public void checkLocalUser(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            Map<String, String> userMB = null;
+            SystemApi.checkLocalUser(getUserID(), userMB, new AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call>() {
+                @Override
+                public void onComplete(IMUser.AsyncClient.CheckLocalUser_call checkLocalUser_call) {
+                    try {
+                        RSTCheckUser result = checkLocalUser_call.getResult();
+                        if (result != null) {
+                            if (result.result) {
+                                List<UserCheck> userList = result.getUser();
+                                if (userList != null) {
+                                    String json = GsonUtils.toJson(userList, new TypeToken<List<UserCheck>>() {
+                                    }.getType());
+                                    setResult(new JSONArray(json), PluginResult.Status.OK, callbackContext);
+                                } else {
+                                    setResult("获取数据为空！", PluginResult.Status.ERROR, callbackContext);
+                                }
+                            } else if ("531".equals(result.getResultCode())) {
+                                setResult("所查人员不存在！", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        } else {
+                            setResult("获取数据失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                    } catch (TException e) {
+                        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (JSONException e) {
+            setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
     }
@@ -1570,7 +1638,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 List<Group> groupList = result.getGroupList();
                                 StringBuilder sb = new StringBuilder();
                                 sb.append("");
-                                for (int i = 0; i < (groupList == null ? 0 : groupList.size()); i++){
+                                for (int i = 0; i < (groupList == null ? 0 : groupList.size()); i++) {
                                     Group group = groupList.get(i);
                                     if (i != groupList.size() - 1) {
                                         sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID() + ",");
@@ -1602,6 +1670,321 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
         } catch (IOException e) {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 只用来发送图片
+     */
+    public void sendFile(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String objectTP = args.getString(0);
+            String objectID = args.getString(1);
+            if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
+                objectID = null;
+            }
+            final String filePath=args.getString(2);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(UIUtils.getContext().getContentResolver(), Uri.parse(filePath));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+
+            final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
+            File dirFile = new File(dir);
+            if (dirFile != null && !dirFile.exists()) {
+                dirFile.mkdirs();
+            }
+            final String savePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());;
+//            File saveFile = new File(savePath);
+            FileOutputStream fos = new FileOutputStream(savePath);
+
+            byte[] bys = new byte[10 * 1024];
+            int len = 0;
+            while ((len = bais.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+            }
+
+            fos.close();
+
+            File file = new File(savePath);
+            if (file == null || !file.exists()) {
+                return;
+            }
+
+            FileInputStream in = new FileInputStream(file);
+            int available = in.available();
+            ByteBuffer fileByte = ByteBuffer.allocate(200 * 1024);
+            in.getChannel().read(fileByte);
+            in.close();
+            fileByte.flip();
+            boolean isFinish = false;
+            if (available > 200 * 1024) {
+                isFinish = false;
+            } else {
+                isFinish = true;
+            }
+
+            SystemApi.sendFile(getUserID(), objectTP, objectID, fileByte, 0, isFinish, new AsyncMethodCallback<IMFile.AsyncClient.SendFile_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.SendFile_call sendFile_call) {
+                    if (sendFile_call != null) {
+                        try {
+                            RSTSendFile result = sendFile_call.getResult();
+                            if (result.result) {
+                                sendFile(result, savePath, callbackContext);
+                            } else {
+                                System.out.println("用户头像设置失败");
+                            }
+                            System.out.println(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (TException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (TException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendFile(RSTSendFile result, String filePath, CallbackContext callbackContext) throws IOException, TException, JSONException {
+        int length = result.getLength();
+        long offset = result.getOffset();
+        offset = offset + length;
+        String fileId = result.getObjID();
+        String type = result.getObjType();
+        FileInputStream in;
+        in = new FileInputStream(filePath);
+        try{
+            in.skip(offset);
+        } catch(IOException e){
+            return;
+        }
+        byte[] sendByte = new byte[200*1024];
+        boolean isFinish = false;
+        int sendLength =0;
+        ByteBuffer fileByte = null;
+        sendLength = in.read(sendByte);
+        if(sendLength <= 0){
+            String objID = result.getObjID();
+            JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "']");
+            setResult(retObj, PluginResult.Status.OK, callbackContext);
+            return;
+        }
+        int i = 1;
+        while(!isFinish){
+            fileByte = ByteBuffer.wrap(sendByte.clone(), 0, sendLength);
+            sendLength = in.read(sendByte);
+            if(sendLength > 0){
+                isFinish = false;
+            }else{
+                isFinish = true;
+            }
+            long time = System.currentTimeMillis();
+            RSTSendFile rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
+            System.out.println("第" + i +"次发送，用时：" + (System.currentTimeMillis() - time));
+            i++;
+            offset = rlt.getOffset() + rlt.getLength();
+            fileByte.clear();
+        }
+        String objID = result.getObjID();
+        JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "']");
+        setResult(retObj, PluginResult.Status.OK, callbackContext);
+        in.close();
+    }
+
+    /**
+     * 发送所有文件
+     * @param args
+     * @param callbackContext
+     */
+    public void sendDocFile(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String objectTP = args.getString(0);
+            String objectID = args.getString(1);
+            if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
+                objectID = null;
+            }
+            final String filePath=args.getString(2);
+
+            FileInputStream fis = new FileInputStream(filePath);
+
+
+
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(UIUtils.getContext().getContentResolver(), Uri.parse(filePath));
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+
+            final String dir = FileUtils.getIconDir() + File.separator + "chat_file";
+            File dirFile = new File(dir);
+            if (dirFile != null && !dirFile.exists()) {
+                dirFile.mkdirs();
+            }
+            final String savePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());;
+//            File saveFile = new File(savePath);
+            FileOutputStream fos = new FileOutputStream(savePath);
+
+            byte[] bys = new byte[10 * 1024];
+            int len = 0;
+            while ((len = fis.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+            }
+
+            fos.close();
+
+            File file = new File(savePath);
+            if (file == null || !file.exists()) {
+                return;
+            }
+
+            FileInputStream in = new FileInputStream(file);
+            int available = in.available();
+            ByteBuffer fileByte = ByteBuffer.allocate(200 * 1024);
+            in.getChannel().read(fileByte);
+            in.close();
+            fileByte.flip();
+            boolean isFinish = false;
+            if (available > 200 * 1024) {
+                isFinish = false;
+            } else {
+                isFinish = true;
+            }
+
+            SystemApi.sendFile(getUserID(), objectTP, objectID, fileByte, 0, isFinish, new AsyncMethodCallback<IMFile.AsyncClient.SendFile_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.SendFile_call sendFile_call) {
+                    if (sendFile_call != null) {
+                        try {
+                            RSTSendFile result = sendFile_call.getResult();
+                            if (result.result) {
+                                sendFile(result, savePath, callbackContext);
+                            } else {
+                                System.out.println("用户头像设置失败");
+                            }
+                            System.out.println(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (TException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (TException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     */
+    public void getFile(final JSONArray args, final CallbackContext callbackContext){
+
+        try {
+            String objectTP=args.getString(0);
+            String objectID=args.getString(1);
+            String picSize=args.getString(2);
+            SystemApi.getFile(getUserID(),objectTP, objectID,picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+                @Override
+                public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
+                    if(arg0!=null){
+                        try {
+                            RSTgetFile result = arg0.getResult();
+                            String tempPicName = null;
+                            if (result.result) {
+                                System.out.println("获取图片成功");
+                                String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img";
+                                RandomAccessFile baf = null;
+//						String dir = "./tempHeadPic/";
+                                File directory = new File(tempUserPic);
+                                if (!directory.exists()) {
+                                    directory.mkdirs();
+                                }
+                                long offset = result.getOffset();
+                                String type = result.getObjectTP();
+                                tempPicName = "";
+                                if (type.equals("U") || type.equals("G") || type.equals("I")) {
+                                    tempPicName = tempUserPic + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
+                                } else {
+                                    tempPicName = tempUserPic + result.getObjectID();
+                                }
+                                File tempFile = new File(tempPicName);
+                                if (!tempFile.exists())
+                                    tempFile.createNewFile();
+                                baf = new RandomAccessFile(tempFile, "rw");
+                                baf.seek(offset);
+                                while (true) {
+                                    int length = result.fileByte.limit() - result.fileByte.position();
+                                    baf.getChannel().write(result.fileByte);
+                                    if (result.isFinish) {
+                                        System.out.println("文件下载完成。");
+                                        break;
+                                    }
+                                    try {
+                                        result = SystemApi.getFileSyncClient().getFileClient().GetFile(getUserID(), result.objectTP, result.getObjectID(),
+                                                result.getPicSize(), result.getOffset() + length, 0);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if (!result.result) {
+                                        System.out.println("本次请求失败，原因：" + result.getResultMsg());
+                                        break;
+                                    }
+                                }
+                                try {
+                                    baf.close();
+                                } catch (IOException ex) {
+
+                                }
+                            } else {
+                                System.out.println("获取我的头像失败");
+                            }
+                            setResult(tempPicName, PluginResult.Status.OK, callbackContext);
+                            System.out.println(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }catch(TException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -17,6 +18,7 @@ import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -48,10 +50,19 @@ public class MqttChat extends CordovaPlugin {
      * 是否已经登录
      */
     private boolean hasLogin = false;
+    /**
+     * 打开文件管理器请求码
+     */
+    private int FILE_SELECT_CODE = 0x0111;
+    private DocFileReceiver docFileReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        docFileReceiver = new DocFileReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ReceiverParams.DOC_FILE_GET);
+        UIUtils.getContext().registerReceiver(docFileReceiver, filter);
     }
 
     @Override
@@ -377,6 +388,37 @@ public class MqttChat extends CordovaPlugin {
         }
     }
 
+    /**
+     * 打开文件管理器
+     * @param args
+     * @param callbackContext
+     */
+    public void openDocWindow(final JSONArray args, final CallbackContext callbackContext) {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+                //显示文件管理器列表
+                try {
+                    cordova.getActivity().startActivityForResult(Intent.createChooser(intent, "请选择一个要上传的文件"), FILE_SELECT_CODE);
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(UIUtils.getContext(), "请安装文件管理器", Toast.LENGTH_SHORT).show();
+                }
+                if (docFileReceiver != null) {
+                    docFileReceiver.setOnScrachFilePathListener(new DocFileReceiver.OnScrachFilePathListener() {
+                        @Override
+                        public void onScrachFilePath(String path) {
+                            setResult(path, PluginResult.Status.OK, callbackContext);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     public static MType getType(String type) {
         if ("User".equals(type)) {
             return MType.U;
@@ -471,6 +513,10 @@ public class MqttChat extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
+        if (docFileReceiver != null) {
+            UIUtils.getContext().unregisterReceiver(docFileReceiver);
+            docFileReceiver = null;
+        }
         cordova.getActivity().stopService(new Intent(cordova.getActivity(), MqttService.class));
         cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
         super.onDestroy();
