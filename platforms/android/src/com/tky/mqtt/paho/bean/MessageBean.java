@@ -19,6 +19,10 @@ public class MessageBean extends MessageTypeBean {
     private String isDelete;//", "");
     private String imgSrc;//", "");
     private String username;
+    /**
+     * 是否是我自己发送的，不管是客户端还是手机端
+     */
+    private boolean isFromMe;
 
     public String get_id() {
         return _id;
@@ -114,5 +118,13 @@ public class MessageBean extends MessageTypeBean {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isFromMe() {
+        return isFromMe;
+    }
+
+    public void setIsFromMe(boolean isFromMe) {
+        this.isFromMe = isFromMe;
     }
 }
