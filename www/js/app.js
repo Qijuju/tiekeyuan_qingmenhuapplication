@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
   'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
-  'my.controllers','search.controllers','selectgroup.controllers','common.services','contacts.services',
-  'message.services','my.services','group.services','selectothergroup.controllers'])
+  'my.controllers','search.controllers','selectgroup.controllers','notification.controllers','common.services','contacts.services',
+  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services'])
 
 /*'im.controllers', 'starter.services',*/
   .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
@@ -30,7 +30,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出
     $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/tab/message///'||$location.path() == '/welcome'||$location.path() == '/newspage'){
+      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/tab/message///'||$location.path() == '/welcome'||$location.path() == '/newspage'){
         if (backButtonPressedOnceToExit) {
           ionic.Platform.exitApp();
         } else {

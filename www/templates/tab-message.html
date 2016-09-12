@@ -1,13 +1,13 @@
 <ion-view view-title="即时通" >
   <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="right">
-      <button class="common-title button no-animation button-icon icon ion-plus-circled" ng-click="popadd()"></button>
+      <button class="button no-animation button-icon icon ion-ios-plus-outline" ng-click="popadd()"></button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content overflow-scroll="false" ng-click="shefalse()">
+  <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
     <div style="position: absolute;left: 70%;top: 0;width: 30%;height: 150px;z-index: 2;text-align: center" ng-if="a">
       <ul class="list" style="width: 100%;height: 150px">
-        <div style="width: 100%;height: 50px;text-align: center;background-color: rgb(233, 233, 216);color: #000000">
+        <div style="width: 100%;height: 50px;text-align: center;background-color: rgb(233, 233, 216);color: #000000" ng-click="createGroupChats()">
           <li class="item" style="width: 100%;height: 50px;text-align: center;color: #000000;background-color: #e9e9d8">
            发起群聊
           </li>

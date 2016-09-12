@@ -7,9 +7,9 @@
       </button>
     </ion-nav-buttons>
 
-    <!--<ion-nav-buttons side="right">-->
-      <!--<button class="button button-icon icon ion-ios-telephone" ng-click="call(10086)"></button>-->
-    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+      <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
+    </ion-nav-buttons>
 
     <ion-nav-buttons side="secondary">
       <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
@@ -19,7 +19,7 @@
 
   </ion-nav-bar>
 
-  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()">
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()" ng-click="zhiling()">
     <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
                    pulling-text="更多消息" id="refresh">
     </ion-refresher>
@@ -60,20 +60,18 @@
   </ion-content>
 
   <ion-footer-bar  class="bar-light" style="height: auto">
-    <div class="rj-footer-btn-wrap" style="margin-top: 33px">
+    <div class="rj-footer-btn-wrap" style="margin-top: 37px">
       <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
       </button>
     </div>
-    <div class="item-input rj-footer-btn-wrap" style="width: 73%" ng-click="zhiling()">
-
+    <div class="item-input rj-footer-btn-wrap" style="width: 75%" ng-click="zhiling()">
       <textarea msd-elastic ng-model="send_content" style="margin-right: 45px">
       </textarea>
-      <div class="buttons" style="margin-top: 11px">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
-      </div>
-
     </div>
-    <div class="rj-footer-btn-wrap" style="margin-top: 33px;margin-right: 10px;margin-left: 5px">
+    <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px;margin-left: 30px">
+      <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+    </div>
+    <div class="rj-footer-btn-wrap" style="margin-top: 37px;margin-right: 10px">
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">
         </button>
@@ -89,7 +87,7 @@
         <div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px;" class="ion-image"></button></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">图片</li>
             </ul>
           </a>
@@ -97,7 +95,7 @@
         <div class="col" align="center" ng-click="openDocumentWindow(userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/wenjian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">文件</li>
             </ul>
           </a>
@@ -105,16 +103,16 @@
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
-              <li style="color: #848484;font-size: 10px">我的群组</li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
         </div>
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
-              <li style="color: #848484;font-size: 10px">我的群组</li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
         </div>
@@ -123,7 +121,7 @@
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px;" class="ion-image"></button></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">图片</li>
             </ul>
           </a>
@@ -131,7 +129,7 @@
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/wenjian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">文件</li>
             </ul>
           </a>
@@ -139,16 +137,16 @@
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
-              <li style="color: #848484;font-size: 10px">我的群组</li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
         </div>
         <div class="col" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li><button style="height: 50px;width: 50px" class="ion-image"></button></li>
-              <li style="color: #848484;font-size: 10px">我的群组</li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
         </div>

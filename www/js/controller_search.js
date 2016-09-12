@@ -2,11 +2,11 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('search.controllers', [])
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao) {
 
      // document.getElementById("searchdata").value =1;
 
-
+    $greendao.qureyHistoryMsg();
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -306,7 +306,8 @@ angular.module('search.controllers', [])
 
   })
 
-  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage) {
+  .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage,$mqtt) {
+
     Array.prototype.contains = function(item){
       return RegExp("\\b"+item+"\\b").test(this);
     };
@@ -327,6 +328,7 @@ angular.module('search.controllers', [])
       });
     }
     $scope.dosearch = function(query) {
+
       if (query!=""&&query.length>0){
         $scope.query1 ="%"+query+"%";
         $searchmessage.searchmessagessss($scope.query1);

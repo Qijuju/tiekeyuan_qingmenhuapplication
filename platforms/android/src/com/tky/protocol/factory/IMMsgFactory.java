@@ -14,7 +14,8 @@ public class IMMsgFactory {
 		System,		//系统推送 S
 		Radio,		//广播消息 R
 		Receipt,	//回执消息 C
-		Dept		//部门消息 D
+		Dept,		//部门消息 D
+		Alarm		//警报消息 A
 	};
 	public enum MediaType{
 		Text,		//文本 T
@@ -36,7 +37,7 @@ public class IMMsgFactory {
 
 	//需要添加发送人名
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
-								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException {
+								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException{
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
 		msgMap.put(IMPFields.Msg_type, getMsgType(msType));
@@ -86,6 +87,10 @@ public class IMMsgFactory {
 		return msgMap;
 	}
 
+	public static Map<String, Object> createEvent(byte[] msgData) throws IMPException{
+		return ProtocolUtil.unPackage(msgData);
+	}
+
 	public static Map<String, Object> createNotify(byte[] msgData) throws IMPException{
 		Map<String,Object> msgMap = ProtocolUtil.unPackage(msgData);
 
@@ -104,11 +109,6 @@ public class IMMsgFactory {
 		}
 		return msgMap;
 	}
-
-	public static Map<String, Object> createEvent(byte[] msgData) throws IMPException{
-		return ProtocolUtil.unPackage(msgData);
-	}
-
 	private static String getMsgType(MsgType msgType){
 		String msgTypeStr = "";
 		switch(msgType){
@@ -204,6 +204,8 @@ public class IMMsgFactory {
 			msgTypeStr = MsgType.Radio;
 		} else if(msgType.equals(IMPFields.M_Type_Recipt)){
 			msgTypeStr = MsgType.Receipt;
+		} else if(msgType.equals(IMPFields.M_Type_Alarm)){
+			msgTypeStr = MsgType.Alarm;
 		}
 		return msgTypeStr;
 	}

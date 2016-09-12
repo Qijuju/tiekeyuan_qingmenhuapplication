@@ -3,244 +3,7 @@
  */
 angular.module('contacts.services', [])
 
-.factory('localContact',function ($rootScope) {
-
-  var contactPlugin
-  document.addEventListener('deviceready',function () {
-    contactPlugin=cordova.require('localContact.localContact');
-
-  });
-
-  var contactsAll=new Array();
-  var A=new Array();
-  var B=new Array();
-  var C=new Array();
-  var D=new Array();
-  var E=new Array();
-  var F=new Array();
-  var G=new Array();
-  var H=new Array();
-  var I=new Array();
-  var J=new Array();
-  var K=new Array();
-  var L=new Array();
-  var M=new Array();
-  var N=new Array();
-  var O=new Array();
-  var P=new Array();
-  var Q=new Array();
-  var R=new Array();
-  var S=new Array();
-  var T=new Array();
-  var U=new Array();
-  var V=new Array();
-  var W=new Array();
-  var X=new Array();
-  var Y=new Array();
-  var Z=new Array();
-  var onsuch=new Array();
-
-
-  return{
-    getContact:function () {
-
-      contactPlugin.getLocalContactsInfos("",function (message) {
-        if(message!=null){
-          contactsAll=message;
-          for(var i=0; i<message.length; i++){
-
-            if (message[i].sortLetters.substring(0,1)==="A"){
-              A.push(message[i])
-            }else if (message[i].sortLetters.substring(0,1)==="B"){
-              B.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="C"){
-              C.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="D"){
-              D.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="E"){
-              E.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="F"){
-              F.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="G"){
-              G.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="H"){
-              H.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="I"){
-              I.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="J"){
-              J.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="K"){
-              K.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="L"){
-              L.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="M"){
-              M.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="N"){
-              N.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="O"){
-              O.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="P"){
-              P.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="Q"){
-              Q.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="R"){
-              R.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="S"){
-              S.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="T"){
-              T.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="U"){
-              U.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="V"){
-              V.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="W"){
-              W.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="X"){
-              X.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="Y"){
-              Y.push(message[i])
-
-            }else if (message[i].sortLetters.substring(0,1)==="Z"){
-              Z.push(message[i])
-
-            }else {
-              onsuch.push(message[i])
-            }
-
-
-          }
-
-          $rootScope.$broadcast('im.back');
-
-
-        }
-      },function (message) {
-
-
-      });
-    },
-
-
-    getAllContacts:function () {
-
-      return contactsAll;
-    },
-
-    getA:function () {
-      return A;
-
-    },
-    getB:function () {
-      return B;
-
-    },
-    getC:function () {
-      return C;
-
-    },
-    getD:function () {
-      return D;
-
-    },getE:function () {
-      return E;
-
-    },getF:function () {
-      return F;
-
-    },getG:function () {
-      return G;
-
-    },getH:function () {
-      return H;
-
-    },getI:function () {
-      return I;
-
-    },getJ:function () {
-      return J;
-
-    },getK:function () {
-      return K;
-
-    },getL:function () {
-      return L;
-
-    },getM:function () {
-      return M;
-
-    },getN:function () {
-      return N;
-
-    },getO:function () {
-      return O;
-
-    },getP:function () {
-      return P;
-
-    },getQ:function () {
-      return Q;
-
-    },getR:function () {
-      return R;
-
-    },getS:function () {
-      return S;
-
-    },getT:function () {
-      return T;
-
-    },getU:function () {
-      return U;
-
-    },getV:function () {
-      return V;
-
-    },getW:function () {
-      return W;
-
-    },getX:function () {
-      return X;
-
-    },getY:function () {
-      return Y;
-
-    },getZ:function () {
-      return Z;
-
-    },getNoSuch:function () {
-      return onsuch;
-
-    }
-
-
-
-  }
-
-})
-
+  
   .factory('$phonepluin', function ($greendao) {
     var phonePlugin;
     document.addEventListener('deviceready', function () {
@@ -374,7 +137,7 @@ angular.module('contacts.services', [])
     }
   })
 
-  .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao) {
+  .factory('$contacts', function ($api, $rootScope,$mqtt,$greendao,$timeout,$ToastUtils) {
 
     var loginInfo;
     var topContactList;
@@ -482,14 +245,16 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('first.update');
 
         }, function (msg) {
-
+          $timeout(function () {
+            rootList = null;
+            $rootScope.$broadcast('first.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
-
 
         return null;
       },
       getRootDept: function () {
-
         return rootList;
       },
 
@@ -518,6 +283,12 @@ angular.module('contacts.services', [])
 
           });
         }, function (msg) {
+          $timeout(function () {
+            firstname = null;
+            deptSecondInfo=null;
+            $rootScope.$broadcast('second.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -565,6 +336,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
+          $timeout(function () {
+            secondname = null;
+            deptThirdInfo=null;
+            $rootScope.$broadcast('third.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -607,7 +384,12 @@ angular.module('contacts.services', [])
 
 
         }, function (msg) {
-
+          $timeout(function () {
+            thirdname = null;
+            deptForthInfo=null;
+            $rootScope.$broadcast('forth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 
@@ -653,7 +435,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
-
+          $timeout(function () {
+            forthname = null;
+            deptFifhtInfo=null;
+            $rootScope.$broadcast('fifth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
       },
@@ -701,6 +488,12 @@ angular.module('contacts.services', [])
           });
 
         }, function (msg) {
+          $timeout(function () {
+            fifthname = null;
+            deptSixthInfo=null;
+            $rootScope.$broadcast('sixth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
 
         });
 
@@ -748,7 +541,12 @@ angular.module('contacts.services', [])
 
 
         }, function (err) {
-
+          $timeout(function () {
+            sixthname = null;
+            deptSeventhInfo=null;
+            $rootScope.$broadcast('seventh.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 
@@ -793,7 +591,12 @@ angular.module('contacts.services', [])
           })
 
         }, function (err) {
-
+          $timeout(function () {
+            seventhname = null;
+            deptEighthInfo=null;
+            $rootScope.$broadcast('eighth.update');
+            $ToastUtils.showToast("获取数据失败")
+          },4000);
         });
 
 
@@ -975,12 +778,21 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$search111',function ($api,$rootScope) {
-
+  .factory('$search111',function ($api,$rootScope,$greendao) {
     var persons;
     return{
       search1111:function (userid,page,count,query) {
         $api.seachUsers(userid,query,page,count,function (msg) {
+          var msghistory={};
+          msghistory._id="";
+          msghistory.msg=query;
+          msghistory.type="person";
+          msghistory.when=0;
+          $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
+            // alert("存取成功");
+          },function (message) {
+
+          })
           persons=msg;
           $rootScope.$broadcast('persons.update');
 
@@ -1047,7 +859,7 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$myattentionser',function ($api,$rootScope) {
+  .factory('$myattentionser',function ($api,$rootScope,$timeout,$ToastUtils) {
     var attentionList;
     return{
       getAttentionList:function () {
@@ -1055,17 +867,23 @@ angular.module('contacts.services', [])
           attentionList=msg;
           $rootScope.$broadcast('attention.update');
         },function (msg) {
+          $timeout(function () {
+            attentionList=null;
+            $rootScope.$broadcast('attention.update');
+            $ToastUtils.showToast("获取数据失败")
+          },5000);
         });
       },
 
       getAttentionaaList:function () {
+
         return attentionList;
       }
     }
 
   })
 
-  .factory('$addattentionser',function ($api,$rootScope) {
+  .factory('$addattentionser',function ($api,$rootScope,$timeout,$ToastUtils) {
     var addwancheng;
     return{
       addAttention111:function (membersAerr) {
@@ -1073,7 +891,7 @@ angular.module('contacts.services', [])
           addwancheng=true;
           $rootScope.$broadcast('attention.add');
         },function (msg) {
-          alert("添加关注失败")
+          $ToastUtils.showToast("添加关注失败")
           $rootScope.$broadcast('attention.add');
         });
       },
@@ -1082,8 +900,10 @@ angular.module('contacts.services', [])
           addwancheng=false;
           $rootScope.$broadcast('attention.delete');
         },function (msg) {
-          alert("取消关注失败")
-          $rootScope.$broadcast('attention.delete');
+          $timeout(function () {
+            $rootScope.$broadcast('attention.delete');
+            $ToastUtils.showToast("取消关注失败")
+          },5000);
         });
       },
 
@@ -1098,7 +918,9 @@ angular.module('contacts.services', [])
     var messagenamess;
     return{
       searchmessagessss:function (quey) {
+        alert("你好")
         $greendao.queryData('MessagesService', 'where MESSAGE LIKE ?', quey, function (data) {
+          alert("进来了")
           messagesss=data;
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {

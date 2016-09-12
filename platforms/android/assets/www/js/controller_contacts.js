@@ -3,7 +3,7 @@
  */
 angular.module('contacts.controllers', [])
   //常用联系人
-  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils) {
+  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$greendao) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
@@ -74,9 +74,27 @@ angular.module('contacts.controllers', [])
     };
 
 
+    $scope.deleteTopCotacts=function (id) {
+      $greendao.deleteDataByArg('TopContactsService',id,function (data) {
+
+        $contacts.topContactsInfo();
+      },function (err) {
+
+      })
+    }
+
+
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$grouparr,$ionicLoading) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -102,7 +120,10 @@ angular.module('contacts.controllers', [])
     $contacts.rootDept();
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
-        $scope.depts = $contacts.getRootDept();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.depts = $contacts.getRootDept();
+        });
       })
     });
 
@@ -397,56 +418,70 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.departlist = [];
     $scope.userlist = [];
     $scope.secondStatus;
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
-    alert($scope.contactId)
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
     $scope.$on('second.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
+        $timeout(function () {
+          $ionicLoading.hide();
 
-        $scope.activeSecondDeptCount = $contacts.getCount1();
+          $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
 
-        $scope.activeSecondUserCount = $contacts.getCount2();
+          $scope.activeSecondDeptCount = $contacts.getCount1();
+
+          $scope.activeSecondUserCount = $contacts.getCount2();
 
 
-        if ($scope.activeSecondDeptCount > 0) {
-          var olddepts = $contacts.getDeptInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
+          if ($scope.activeSecondDeptCount > 0) {
+            var olddepts = $contacts.getDeptInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departlist.push(olddepts[i]);
+              $scope.departlist.push(olddepts[i]);
+            }
           }
-        }
 
 
-        if ($scope.activeSecondUserCount) {
-          var oldusers = $contacts.getDeptInfo().userList;
-          for (var i = 0; i < oldusers.length; i++) {
+          if ($scope.activeSecondUserCount) {
+            var oldusers = $contacts.getDeptInfo().userList;
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.userlist.push(oldusers[i]);
+              $scope.userlist.push(oldusers[i]);
+            }
           }
-        }
 
 
-        if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) === 10) {
-          $scope.secondStatus = true;
-        } else if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) < 10) {
-          $scope.secondStatus = false;
+          if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) === 10) {
+            $scope.secondStatus = true;
+          } else if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) < 10) {
+            $scope.secondStatus = false;
 
-        }
-
-
-        $scope.parentID = $contacts.getDeptInfo().deptID;
+          }
 
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.parentID = $contacts.getDeptInfo().deptID;
+
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+
+
+        });
 
 
       })
@@ -488,7 +523,15 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -506,43 +549,51 @@ angular.module('contacts.controllers', [])
     $scope.$on('third.update', function (event) {
 
       $scope.$apply(function () {
-        $scope.parentID = $contacts.getDeptThirdInfo().deptID;
-        $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
+
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+          $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
 
 
-        $scope.count1 = $contacts.getCount3();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptThirdInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
+          $scope.count1 = $contacts.getCount3();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptThirdInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departthirdlist.push(olddepts[i]);
+              $scope.departthirdlist.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount4();
+          $scope.count2 = $contacts.getCount4();
 
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptThirdInfo().userList;
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptThirdInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.userthirdlist.push(oldusers[i]);
+              $scope.userthirdlist.push(oldusers[i]);
+            }
           }
-        }
 
 
 
-        $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
-        var thirddiv = document.getElementById("thirdscroll");
-        thirddiv.style.width = $scope.thirdlength + "px";
+          $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
+          var thirddiv = document.getElementById("thirdscroll");
+          thirddiv.style.width = $scope.thirdlength + "px";
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.thirdStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.thirdStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.thirdStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.thirdStatus = false;
 
-        }
-      })
-      $scope.$broadcast('scroll.infiniteScrollComplete');
+          }
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        })
+
+        });
+
+
 
     });
 
@@ -592,7 +643,15 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -609,43 +668,47 @@ angular.module('contacts.controllers', [])
     $scope.$on('forth.update', function (event) {
       $scope.$apply(function () {
 
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount5();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptForthInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
 
-        $scope.count1 = $contacts.getCount5();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptForthInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
-
-            $scope.departlist.push(olddepts[i]);
+              $scope.departlist.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount6();
+          $scope.count2 = $contacts.getCount6();
 
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptForthInfo().userList;
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptForthInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.userlist.push(oldusers[i]);
+              $scope.userlist.push(oldusers[i]);
+            }
           }
-        }
 
-        $scope.parentID = $contacts.getDeptForthInfo().deptID;
-        $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
+          $scope.parentID = $contacts.getDeptForthInfo().deptID;
+          $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
 
 
-        $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
+          $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
 
-        var forthdiv = document.getElementById("forthscroll");
-        forthdiv.style.width = $scope.forthlength + "px";
+          var forthdiv = document.getElementById("forthscroll");
+          forthdiv.style.width = $scope.forthlength + "px";
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.forthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.forthStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.forthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.forthStatus = false;
 
-        }
+          }
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        });
+
 
 
       })
@@ -712,7 +775,15 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -728,43 +799,51 @@ angular.module('contacts.controllers', [])
     $scope.$on('fifth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1 = $contacts.getCount7();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptFifthInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount7();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptFifthInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departfifthlist.push(olddepts[i]);
+              $scope.departfifthlist.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount8();
+          $scope.count2 = $contacts.getCount8();
 
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptFifthInfo().userList;
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptFifthInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.userfifthlist.push(oldusers[i]);
+              $scope.userfifthlist.push(oldusers[i]);
+            }
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.fifthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.fifthStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.fifthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.fifthStatus = false;
 
-        }
+          }
 
-        $scope.parentID = $contacts.getDeptFifthInfo().deptID;
-        $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
+          $scope.parentID = $contacts.getDeptFifthInfo().deptID;
+          $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
 
-        $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
+          $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
 
 
-        var fifthdiv = document.getElementById("fifthscroll");
-        fifthdiv.style.width = $scope.fifthlength + "px";
+          var fifthdiv = document.getElementById("fifthscroll");
+          fifthdiv.style.width = $scope.fifthlength + "px";
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        });
+
+
+
+
 
 
       })
@@ -838,7 +917,14 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -858,45 +944,50 @@ angular.module('contacts.controllers', [])
     $scope.$on('sixth.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.count1 = $contacts.getCount9();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptSixthInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.departsixthlist.push(olddepts[i]);
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount9();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptSixthInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
+
+              $scope.departsixthlist.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount10();
+          $scope.count2 = $contacts.getCount10();
 
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptSixthInfo().userList;
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptSixthInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.usersixthlist.push(oldusers[i]);
+              $scope.usersixthlist.push(oldusers[i]);
+            }
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.sixthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.sixthStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.sixthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.sixthStatus = false;
 
-        }
-
-
-        $scope.parentID = $contacts.getDeptSixthInfo().deptID;
-        $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
+          }
 
 
-        $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
-          $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
+          $scope.parentID = $contacts.getDeptSixthInfo().deptID;
+          $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
 
-        var sixthdiv = document.getElementById("sixthscroll");
-        sixthdiv.style.width = $scope.sixthlength + "px";
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
+            $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
+
+          var sixthdiv = document.getElementById("sixthscroll");
+          sixthdiv.style.width = $scope.sixthlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        });
 
 
       })
@@ -984,7 +1075,15 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
 
     $scope.nihao = [];
     $scope.buhao = [];
@@ -1002,44 +1101,48 @@ angular.module('contacts.controllers', [])
     $contacts.deptSeventhInfo($scope.contactId);
     $scope.$on('seventh.update', function (event) {
       $scope.$apply(function () {
-        $scope.count1 = $contacts.getCount11();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptSeventhInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.nihao.push(olddepts[i]);
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount11();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptSeventhInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
+
+              $scope.nihao.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount12();
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptSeventhInfo().userList;
+          $scope.count2 = $contacts.getCount12();
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptSeventhInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.buhao.push(oldusers[i]);
+              $scope.buhao.push(oldusers[i]);
+            }
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.seventhStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.seventhStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.seventhStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.seventhStatus = false;
 
-        }
-
-
-        $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
-        $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
+          }
 
 
-        $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
+          $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
+          $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
 
-        var seventhdiv = document.getElementById("seventhscroll");
-        seventhdiv.style.width = $scope.seventhlength + "px";
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+            + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
+
+          var seventhdiv = document.getElementById("seventhscroll");
+          seventhdiv.style.width = $scope.seventhlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
 
       })
 
@@ -1129,7 +1232,16 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
 
     $scope.eightDept = [];
     $scope.eightUser = [];
@@ -1149,44 +1261,52 @@ angular.module('contacts.controllers', [])
     $contacts.deptEighthInfo($scope.contactId);
     $scope.$on('eighth.update', function (event) {
       $scope.$apply(function () {
-        $scope.count1 = $contacts.getCount13();
-        if ($scope.count1 > 0) {
-          var olddepts = $contacts.getDeptEighthInfo().deptList;
-          for (var i = 0; i < olddepts.length; i++) {
 
-            $scope.eightDept.push(olddepts[i]);
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.count1 = $contacts.getCount13();
+          if ($scope.count1 > 0) {
+            var olddepts = $contacts.getDeptEighthInfo().deptList;
+            for (var i = 0; i < olddepts.length; i++) {
+
+              $scope.eightDept.push(olddepts[i]);
+            }
           }
-        }
-        $scope.count2 = $contacts.getCount14();
-        if ($scope.count2 > 0) {
-          var oldusers = $contacts.getDeptEighthInfo().userList;
+          $scope.count2 = $contacts.getCount14();
+          if ($scope.count2 > 0) {
+            var oldusers = $contacts.getDeptEighthInfo().userList;
 
-          for (var i = 0; i < oldusers.length; i++) {
+            for (var i = 0; i < oldusers.length; i++) {
 
-            $scope.eightUser.push(oldusers[i]);
+              $scope.eightUser.push(oldusers[i]);
+            }
           }
-        }
 
 
-        if (($scope.count1 + $scope.count2) === 10) {
-          $scope.eighthStatus = true;
-        } else if (($scope.count1 + $scope.count2) < 10) {
-          $scope.eighthStatus = false;
+          if (($scope.count1 + $scope.count2) === 10) {
+            $scope.eighthStatus = true;
+          } else if (($scope.count1 + $scope.count2) < 10) {
+            $scope.eighthStatus = false;
 
-        }
-
-
-        $scope.parentID = $contacts.getDeptEighthInfo().deptID;
-        $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
+          }
 
 
-        $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
+          $scope.parentID = $contacts.getDeptEighthInfo().deptID;
+          $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
 
-        var eighthdiv = document.getElementById("eighthscroll");
-        eighthdiv.style.width = $scope.eighthlength + "px";
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+            + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
+
+          var eighthdiv = document.getElementById("eighthscroll");
+          eighthdiv.style.width = $scope.eighthlength + "px";
+
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
+        });
+
+
+
 
       })
 
@@ -1419,7 +1539,15 @@ angular.module('contacts.controllers', [])
     });
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao) {
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$ionicLoading,$timeout) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
 
 
     $contacts.loginInfo();
@@ -1448,8 +1576,18 @@ angular.module('contacts.controllers', [])
     $scope.$on('group.update', function (event) {
       $scope.$apply(function () {
 
-        $scope.grouplist=$group.getAllGroup();
-        $scope.ismycreat=$group.getCreateCount();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.grouplist=$group.getAllGroup();
+          $scope.ismycreat=0;
+
+          for(var i=0; i<$scope.grouplist.length;i++){
+            if($scope.grouplist[i].isMyGroup==true){
+              $scope.ismycreat++;
+            }
+          }
+
+        });
 
       })
     });
@@ -1487,9 +1625,8 @@ angular.module('contacts.controllers', [])
         "ismygroup":ismygrop
       });
     }
-    var selectInfo={};
     $scope.createGroupChats=function () {
-
+      var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
@@ -1502,7 +1639,9 @@ angular.module('contacts.controllers', [])
       })
 
       $state.go('addnewpersonfirst',{
-        createtype:'fromGroup'
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":''
       });
 
     }
@@ -1512,126 +1651,16 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils) {
-
-    //  var searchdata1=document.getElementById("searchdata1").innerText;
-
-    // window.addEventListener("native.keyboardshow", function (e) {
-    //   $ionicBackdrop.retain();
-    //   document.getElementById("searchbutton").addEventListener('input',function(){
-    //
-    //     $state.go("search");
-    //   });
-    // });
-    //
-    // window.addEventListener("native.keyboardhide", function (e) {
-    //   $ionicBackdrop.release();
-    // });
-
-    $scope.goLocalSearch= function () {
-      $state.go("searchlocal");
-    }
-
-
-    localContact.getContact();
-    $scope.$on('im.back',function (event) {
-
-      $scope.$apply(function () {
-
-        $scope.contacts=localContact.getAllContacts();
-
-        $scope.contactsA=localContact.getA();
-        $scope.contactsB=localContact.getB();
-        $scope.contactsC=localContact.getC();
-        $scope.contactsD=localContact.getD();
-        $scope.contactsE=localContact.getE();
-        $scope.contactsF=localContact.getF();
-        $scope.contactsG=localContact.getG();
-        $scope.contactsH=localContact.getH();
-        $scope.contactsI=localContact.getI();
-        $scope.contactsJ=localContact.getJ();
-        $scope.contactsK=localContact.getK();
-        $scope.contactsL=localContact.getL();
-        $scope.contactsM=localContact.getM();
-        $scope.contactsN=localContact.getN();
-        $scope.contactsO=localContact.getO();
-        $scope.contactsP=localContact.getP();
-        $scope.contactsQ=localContact.getQ();
-        $scope.contactsR=localContact.getR();
-        $scope.contactsS=localContact.getS();
-        $scope.contactsT=localContact.getT();
-        $scope.contactsU=localContact.getU();
-        $scope.contactsV=localContact.getV();
-        $scope.contactsW=localContact.getW();
-        $scope.contactsX=localContact.getX();
-        $scope.contactsY=localContact.getY();
-        $scope.contactsZ=localContact.getZ();
-        $scope.contactsNoSuch=localContact.getNoSuch();
-        init();
-      })
-
+  
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
     });
-    function init(){
-      var startY = 0;
-      var lastY =  0;
-      var indicator =document.getElementById("indicator");
-      indicator.addEventListener('touchstart', function(e) {
-        lastY = startY = e.touches[0].pageY;
-        console.log(lastY+"start");
-      });
-      indicator.addEventListener('touchmove', function(e) {
-        var nowY = e.touches[0].pageY;
-        var moveY = nowY - lastY;
-        var contentTop = content.style.top.replace('px', '');
-        content.style.top = (parseInt(contentTop) + moveY) + 'px';
-        lastY = nowY;
-        console.log(lastY+"move");
-      });
-      indicator.addEventListener('touchend', function(e) {
-        // do touchend
-        var nowY = e.touches[0].pageY;
-        var moveY = nowY - lastY;
-        var contentTop = content.style.top.replace('px', '');
-        content.style.top = (parseInt(contentTop) + moveY) + 'px';
-        lastY = nowY+30;
-        console.log(lastY+"end");
-      });
-    }
 
-
-// 点击按钮触发，或一些其他的触发条件
-    $scope.tanchuang = function(phonenumber,name) {
-      // 显示操作表
-      $ionicActionSheet.show({
-        buttons: [
-          { text: '打电话' },
-          { text: '发短信'}
-        ],
-        titleText: name,
-        cancelText: '取消',
-        buttonClicked: function(index) {
-          if(index==0){
-            if (phonenumber!=""){
-              $phonepluin.call(0, phonenumber, name,0);
-            }else {
-              $ToastUtils.showToast("电话号码为空");
-            }
-          }else {
-            if (phonenumber!=""){
-              $phonepluin.sms(0,phonenumber, name, 0);
-            }else {
-              $ToastUtils.showToast("电话号码为空");
-            }
-          }
-          return true;
-        }
-
-      });
-
-    };
-  })
-
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts) {
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {
@@ -1714,10 +1743,36 @@ angular.module('contacts.controllers', [])
     $myattentionser.getAttentionList();
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
-        $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.contactsListatten=$myattentionser.getAttentionaaList();
+        });
       })
     });
 
+
+    //取消关注
+    $scope.removeattention = function (id) {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      if ($scope.myid==id){
+        $ToastUtils.showToast("无法对自己进行该项操作")
+      }else {
+        var membersAerr = [];
+        membersAerr.push(id);
+        $addattentionser.removeAttention111(membersAerr);
+      }
+    }
+    $scope.$on('attention.delete', function (event) {
+      $scope.$apply(function () {
+        $myattentionser.getAttentionList();
+      })
+    });
 
 
   })

@@ -58,11 +58,14 @@ public class MessageOper {
 		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
 			MessageBean bean = new MessageBean();
 			String platform = getPlatTypeStr((IMMsgFactory.PlatType) msgMap.get("platform"));
-			String from = (String) msgMap.get("from");
-			//如果平台是PC（Windows）并且from是自己，则返回true，否则返回false，该判断用于数据的转换
-			boolean fromMe = getUserID().equals(from) && ("Windows".equals(platform));
+            			String from = (String) msgMap.get("from");
+            			//如果平台是PC（Windows）并且from是自己，则返回true，否则返回false，该判断用于数据的转换
+            			boolean fromMe = getUserID().equals(from) && ("Windows".equals(platform));
 			bean.set_id(fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from"));
-			bean.setSessionid("User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"))) ? (fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from")) : (String) msgMap.get("to"));
+			boolean flag = "User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+					|| "Alarm".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+					|| "System".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+			bean.setSessionid((flag) ? (fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from")) : (String) msgMap.get("to"));
 			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 			bean.setFrom(fromMe ? "true" : "false");
 			bean.setMessage((String) msgMap.get("message"));
@@ -132,6 +135,8 @@ public class MessageOper {
 			msgType = "Receipt";
 		} else if (IMMsgFactory.MsgType.System.equals(type)) {
 			msgType = "System";
+		} else if (IMMsgFactory.MsgType.Alarm.equals(type)) {
+			msgType = "Alarm";
 		}
 		return msgType;
 	}
