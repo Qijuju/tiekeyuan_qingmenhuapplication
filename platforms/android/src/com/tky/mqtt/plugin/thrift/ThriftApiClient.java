@@ -585,7 +585,8 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void checkLocalUser(final JSONArray args, final CallbackContext callbackContext){
         try {
-            Map<String, String> userMB = null;
+            JSONArray obj = args.getJSONArray(0);
+            Map<String, String> userMB = jsonArray2Map(obj);
             SystemApi.checkLocalUser(getUserID(), userMB, new AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call>() {
                 @Override
                 public void onComplete(IMUser.AsyncClient.CheckLocalUser_call checkLocalUser_call) {
@@ -2048,6 +2049,23 @@ public class ThriftApiClient extends CordovaPlugin {
             }
         }
         return flag;
+    }
+
+    /**
+     * 将JSONArray转成Map集合（前提：JSON数组中每一个元素都是一个JSONObject）
+     * @param membersArr
+     * @return
+     * @throws JSONException
+     */
+    private Map<String, String> jsonArray2Map(JSONArray membersArr) throws JSONException {
+        Map<String, String> list = new HashMap<String, String>();
+        for (int i = 0; i < (membersArr == null ? 0 : membersArr.length()); i++) {
+            JSONObject obj = membersArr.getJSONObject(i);
+            String id = obj.getString("id");
+            String phone = obj.getString("phone");
+            list.put(id, phone);
+        }
+        return list;
     }
 
     /**

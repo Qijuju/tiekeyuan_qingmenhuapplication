@@ -66,6 +66,74 @@ angular.module('message.services', [])
   }
 })
 
+  .factory('$notifyarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var notifylist =new Array();
+    var savenotifydata;
+    var id,chatname;
+    return{
+      createNotifyData:function (isNotifySend,messageType) {
+        if(isNotifySend === 'true'){
+          var chatitem={};
+          if(chatitem.id === undefined || chatitem.chatName === undefined){
+            chatitem.id=$rootScope.id;
+            chatitem.chatName=$rootScope.username;
+            // alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+          }else{
+            chatitem.id=$stateParams.id;
+            chatitem.chatName=$stateParams.ssid;
+            // alert(chatitem.id+"监听消息来源222"+chatitem.chatName);
+          }
+          chatitem.imgSrc='';
+          chatitem.lastText='';
+          chatitem.count='';
+          chatitem.isDelete='false';
+          chatitem.lastDate=new Date().getTime();
+          chatitem.senderId ='';
+          chatitem.senderName ='';
+          if(messageType === 'System'){
+            chatitem.chatType='System';
+          }else if(messageType === 'Alarm'){
+            chatitem.chatType='Alarm';
+          }
+          notifylist.push(chatitem);
+          // alert("进来会话列表了吗");
+          $greendao.saveObj('NotifyListService',chatitem,function (data) {
+            $rootScope.$broadcast('notifyarr.update');
+            // alert("保存成功"+data.length)
+          },function (err) {
+          });
+        }
+        return notifylist;
+      },
+      setNotifyData:function (data) {
+        notifylist=new Array();
+        savenotifydata = data;
+        notifylist =savenotifydata;
+      },
+      updatelastData:function (data) {
+        for(var i=0;i<=notifylist.length-1;i++){
+          // alert("data ===="+data.lastText+"数组长度"+notifylist.length);
+          if( notifylist[i].id === data.id){
+            // alert("找出数组的被更改的数据了"+i);
+            notifylist.splice(i,1);
+          }
+        }
+        notifylist.unshift(data);
+        // alert("push after"+notifylist[notifylist.length-1].lastText+"数组长度"+notifylist.length);
+      },
+      getAllNotifyData:function () {
+        // alert("service界面数组长度"+notifylist.length);
+        return notifylist;
+      },
+      getNotifyIdChatName:function (id,chatname) {
+        $rootScope.id=id;
+        $rootScope.username=chatname;
+        // alert("先收到"+$rootScope.id+$rootScope.username);
+      }
+    }
+  })
+
+
   //群组会话列表的数据保存
   .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
     var grouplist =new Array();
@@ -228,13 +296,24 @@ angular.module('message.services', [])
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
 
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              /*if(arriveMessage.messagetype ==='Image'){
-               alert("有没有进来这里");
-               }*/
-              syscount++;
-              $rootScope.$broadcast('notify.update');
               // alert(data.length+"收通知消息");
             },function (err) {
+            });
+            $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+              if(data.length>0){
+                syscount=data[0].count;
+                // alert("有值"+syscount);
+                syscount++;
+                $rootScope.$broadcast('notify.update');
+              }else{
+                syscount =0;
+                // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                syscount++;
+                $rootScope.$broadcast('notify.update');
+                // alert("syscount"+syscount);
+              }
+            },function (err) {
+              // alert(err);
             });
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;

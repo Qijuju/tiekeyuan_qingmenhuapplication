@@ -4,15 +4,16 @@
 angular.module('notification.controllers', [])
 
 
-  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$chatarr,$greendao,$rootScope) {
+  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope) {
     //如果不是监听未读通知，就查询数据库展示通知列表
-    $greendao.queryByType('System','Alarm',function (data) {
+    $greendao.queryByConditions('NotifyListService',function (data) {
       // alert("通知列表的长度"+data.length);
-      $chatarr.setData(data);
-      $scope.syslist=$chatarr.getAllData();
+      $notifyarr.setNotifyData(data);
+      $scope.syslist=$notifyarr.getAllNotifyData();
     },function (err) {
       $ToastUtils.showToast("查询系统通知列表"+err);
-    } );
+    });
+
     //监听系统通知和报警信息、、还要继续操作
     $scope.$on('notify.update', function (event) {
       $scope.$apply(function () {
@@ -25,23 +26,22 @@ angular.module('notification.controllers', [])
          */
         if($scope.syscount >0){
           // alert("收到系统通知并且保存成功"+$scope.syscount+"消息类型"+$scope.type+$scope.id);
-          $greendao.queryData('ChatListService','where id =?',$scope.id,function (data) {
+          $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
             // alert("系统通知会话列表长度"+data.length);
             if(data.length === 0){
               // alert("没有系统通知会话");
-              $chatarr.getIdChatName($scope.id, $scope.alarmname);
-              $rootScope.isPersonSend ='true';
-              if($rootScope.isPersonSend === 'true'){
+              $notifyarr.getNotifyIdChatName($scope.id, $scope.alarmname);
+              $rootScope.isNotifySend ='true';
+              if($rootScope.isNotifySend === 'true'){
                 // alert("进入创建会话段");
-                $chatarr.getAll($rootScope.isPersonSend, $scope.type);
-                // alert($scope.syslist.length + "长度");
-                $scope.$on('chatarr.update', function (event) {
+                $notifyarr.createNotifyData($rootScope.isNotifySend, $scope.type);
+                $scope.$on('notifyarr.update', function (event) {
                   $scope.$apply(function () {
-                    $scope.syslist=$chatarr.getAllData();
+                    $scope.syslist=$notifyarr.getAllNotifyData();
                     // alert("监听以后的长度"+$scope.syslist.length);
                   });
                 });
-                $rootScope.isPersonSend === 'false';
+                $rootScope.isNotifySend = 'false';
               }
             }
           },function (err) {
@@ -59,7 +59,7 @@ angular.module('notification.controllers', [])
             // alert($scope.srcName + "用户名1"+$scope.srcId);
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
-            $greendao.queryData('ChatListService', 'where id=?', $scope.id, function (data) {
+            $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
               $scope.unread = $scope.syscount;
               // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
               var chatitem = {};
@@ -73,13 +73,10 @@ angular.module('notification.controllers', [])
               chatitem.chatType = data[0].chatType;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
-              $greendao.saveObj('ChatListService', chatitem, function (data) {
-                $greendao.queryByConditions('ChatListService', function (data) {
-                  $chatarr.setData(data);
-                  $rootScope.$broadcast('lastcount.update');
-                }, function (err) {
-
-                });
+              $greendao.saveObj('NotifyListService', chatitem, function (data) {
+                // alert("保存成功方法"+data.length);
+                $notifyarr.updatelastData(chatitem);
+                $rootScope.$broadcast('lastcount.update');
               }, function (err) {
                 // $ToastUtils.showToast(err + "数据保存失败");
               });
@@ -110,7 +107,8 @@ angular.module('notification.controllers', [])
      */
     $scope.$on('lastcount.update', function (event) {
       $scope.$apply(function () {
-        $scope.items = $chatarr.getData();
+        // alert("进来数据刷新");
+        $scope.syslist=$notifyarr.getAllNotifyData();
       });
 
     });
@@ -118,14 +116,14 @@ angular.module('notification.controllers', [])
 
 
   //单个系统通知详情界面控制器
-.controller('notificationDetailCtrl', function ($scope,$state,$greendao,$mqtt,$chatarr,$rootScope,$stateParams) {
+.controller('notificationDetailCtrl', function ($scope,$state,$greendao,$mqtt,$notifyarr,$rootScope,$stateParams) {
   /**
    * 从通知会话列表跳转带参
    */
   $scope.id=$stateParams.id;
   $scope.chatName=$stateParams.name;
   $scope.chatType=$stateParams.type;
-
+  // alert("跳转界面"+$scope.id+$scope.chatName);
   $greendao.queryData('SystemMsgService','where sessionid =? limit 0,10',$scope.id,function (data) {
     // alert("进来通知详情界面"+data.length);
     $scope.sysmsglist=data;
@@ -136,27 +134,28 @@ angular.module('notification.controllers', [])
   $scope.$on('notify.update', function (event) {
     $scope.$apply(function () {
       $scope.syscount=$mqtt.getSyscount();
-      $scope.id=$mqtt.getFirstReceiverSsid();
+      $scope.fisrtid=$mqtt.getFirstReceiverSsid();
       $scope.alarmname=$mqtt.getFirstReceiverChatName();
+      // alert("msg界面"+$scope.fisrtid+$scope.alarmname);
       $scope.type=$mqtt.getMessageType();
       /**
        * 先判断有没有该会话，没有就创建
        */
       if($scope.syscount >0){
-        $greendao.queryData('ChatListService','where chatType =?',$scope.id,function (data) {
+        $greendao.queryData('NotifyListService','where id =?',$scope.fisrtid,function (data) {
           // alert("系统通知会话列表长度"+data.length);
           if(data.length === 0){
-            $chatarr.getIdChatName($scope.id, $scope.alarmname);
-            $rootScope.isPersonSend ='true';
-            if($rootScope.isPersonSend === 'true'){
-              $scope.items = $chatarr.getAll($rootScope.isPersonSend, $scope.type);
+            $notifyarr.getNotifyIdChatName($scope.fisrtid, $scope.alarmname);
+            $rootScope.isNotifySend ='true';
+            if($rootScope.isNotifySend === 'true'){
+              $notifyarr.createNotifyData($rootScope.isNotifySend, $scope.type);
               // $ToastUtils.showToast($scope.items.length + "长度");
-              $scope.$on('chatarr.update', function (event) {
+              $scope.$on('notifyarr.update', function (event) {
                 $scope.$apply(function () {
-                  $chatarr.getAllData();
+                  $scope.syslist=$notifyarr.getAllNotifyData();
                 });
               });
-              $rootScope.isPersonSend === 'false';
+              $rootScope.isNotifySend = 'false';
             }
           }
         },function (err) {
@@ -164,7 +163,7 @@ angular.module('notification.controllers', [])
         });
 
         //取出与‘ppp’的聊天记录最后一条
-        $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.id, function (data) {
+        $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.fisrtid, function (data) {
           // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
           $scope.lastText = data[0].message;//最后一条消息内容
           $scope.lastDate = data[0].when;//最后一条消息的时间id
@@ -173,7 +172,7 @@ angular.module('notification.controllers', [])
           // alert($scope.srcName + "用户名1"+$scope.srcId);
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
           //取出‘ppp’聊天对话的列表数据并进行数据库更新
-          $greendao.queryData('ChatListService', 'where id=?', $scope.id, function (data) {
+          $greendao.queryData('NotifyListService', 'where id=?', $scope.fisrtid, function (data) {
             $scope.unread = $scope.syscount;
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
             var chatitem = {};
@@ -187,13 +186,13 @@ angular.module('notification.controllers', [])
             chatitem.chatType = data[0].chatType;
             chatitem.senderId = $scope.srcId;
             chatitem.senderName =$scope.srcName;
-            $greendao.saveObj('ChatListService', chatitem, function (data) {
-              $greendao.queryByConditions('ChatListService', function (data) {
-                $chatarr.setData(data);
+            $greendao.saveObj('NotifyListService', chatitem, function (data) {
+              // $greendao.queryByConditions('NotifyListService', function (data) {
+                $notifyarr.updatelastData(chatitem);
                 $rootScope.$broadcast('lastcount.update');
-              }, function (err) {
-
-              });
+              // }, function (err) {
+              //
+              // });
             }, function (err) {
               // $ToastUtils.showToast(err + "数据保存失败");
             });
@@ -213,6 +212,7 @@ angular.module('notification.controllers', [])
   $scope.goback = function () {
     $mqtt.clearSysCount();
     // $ToastUtils.showToast("无参进来的userid"+$scope.userId);
+    // alert("id-======="+$scope.id);
     $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.id, function (data) {
       if (data.length === 0) {
         // alert("无数据返回主界面1");
@@ -232,7 +232,7 @@ angular.module('notification.controllers', [])
         $scope.srcId = data[0].senderid;//消息来源人id
       }
       // $ToastUtils.showToast("无参跳转用户名"+$scope.userId);
-      $greendao.queryData('ChatListService', 'where id=?', $scope.id, function (data) {
+      $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
         // alert("跳转查询消息列表"+data.length);
         var chatitem = {};
         chatitem.id = data[0].id;
@@ -245,9 +245,9 @@ angular.module('notification.controllers', [])
         chatitem.chatType = data[0].chatType;
         chatitem.senderId = $scope.srcId;
         chatitem.senderName = $scope.srcName;
-        $greendao.saveObj('ChatListService', chatitem, function (data) {
+        $greendao.saveObj('NotifyListService', chatitem, function (data) {
           // alert("save success");
-          $greendao.queryByConditions('ChatListService', function (data) {
+          $greendao.queryByConditions('NotifyListService', function (data) {
             // alert("加载成功");
             $state.go("tab.notification", {
               "id": $scope.id,

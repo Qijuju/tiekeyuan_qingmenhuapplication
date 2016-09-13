@@ -59,7 +59,7 @@ angular.module('common.services', [])
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
       }
-      
+
     };
 
   })
@@ -255,7 +255,10 @@ angular.module('common.services', [])
       },
       getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
        api.getFile(objectTP,objectID,picSize, success, error);
-      }
+      },
+      checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
+        api.checkLocalUser(userMBList, success, error);
+  }
     };
   })
 

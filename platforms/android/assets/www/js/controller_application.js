@@ -425,7 +425,14 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
       })
 
-
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
+      // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          alert(result.address);
+        }
+      });
 
 
 
