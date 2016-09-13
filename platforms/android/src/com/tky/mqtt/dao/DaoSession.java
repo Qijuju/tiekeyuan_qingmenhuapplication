@@ -37,7 +37,7 @@ import com.tky.mqtt.dao.NotifyListDao;
 
 /**
  * {@inheritDoc}
- * 
+ *
  * @see de.greenrobot.dao.AbstractDaoSession
  */
 public class DaoSession extends AbstractDaoSession {
@@ -127,7 +127,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(LocalPhone.class, localPhoneDao);
         registerDao(NotifyList.class, notifyListDao);
     }
-    
+
     public void clear() {
         messagesDaoConfig.getIdentityScope().clear();
         parentDeptDaoConfig.getIdentityScope().clear();

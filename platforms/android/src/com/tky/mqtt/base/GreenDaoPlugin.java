@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.MsgHistory;
 import com.tky.mqtt.dao.NotifyList;
@@ -15,6 +16,7 @@ import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
+import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.MsgHistoryService;
 import com.tky.mqtt.services.NotifyListService;
@@ -176,6 +178,15 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setSenderId(jsonobj.getString("senderId"));
             notifyList.setSenderName(jsonobj.getString("senderName"));
             obj = notifyList;
+        }else if ("LocalPhoneService".equals(services)){
+            LocalPhone localPhone=new LocalPhone();
+            localPhone.setId(jsonobj.getString("id"));
+            localPhone.setPlatformid(jsonobj.getString("platformid"));
+            localPhone.setIsplatform(jsonobj.getBoolean("isplatform"));
+            localPhone.setName(jsonobj.getString("name"));
+            localPhone.setPhonenumber(jsonobj.getString("phonenumber"));
+            localPhone.setPinyinname(jsonobj.getString("pinyinname"));
+            obj=localPhone;
         }
         return obj;
     }
@@ -225,6 +236,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if ("MsgHistoryService".equals(services)){
 
+        }else if("LocalPhoneService".equals(services)){
+
         }
         return obj;
     }
@@ -257,6 +270,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
         }else if("NotifyListService".equals(services)){
             baseInterface= NotifyListService.getInstance(UIUtils.getContext());
+        }else if ("LocalPhoneService".equals(services)){
+            baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -431,7 +446,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
         try {
             String one=args.getString(0);
-            String two =args.getString(1);
+            String two=args.getString(1);
             List<ChatList> list=chatListService.queryByType(one, two);
             Gson gson=new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<ChatList>>() {

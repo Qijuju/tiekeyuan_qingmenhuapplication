@@ -7,12 +7,19 @@ angular.module('message.controllers', [])
     $scope.gengduo=function () {
 
       if ($scope.a==0){
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+       document.getElementById("contentaa").style.marginBottom='165px';
         $scope.a=1;
       }else {
+        document.getElementById("contentaa").style.marginBottom='0px';
         $scope.a=0;
       }
     };
     $scope.zhiling=function () {
+      document.getElementById("contentaa").style.marginBottom='0px';
       $scope.a=0;
     };
     //清表数据
@@ -166,15 +173,16 @@ angular.module('message.controllers', [])
 
     $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(function (filePath) {
-        // alert(filePath);
-        $api.sendDocFile('I', null, filePath, function (data) {
+        alert(filePath);
+        $api.sendDocFile('F', null, filePath, function (data) {
+          alert(filePath);
           // alert(filePath);
           $scope.filePath=data[0];
           $scope.fileObjID=data[1];
 
           $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
             // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "Image", $scope.filePath);
+            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "File", $scope.filePath);
             $scope.send_content = "";
             keepKeyboardOpen();
           });
@@ -1051,6 +1059,29 @@ angular.module('message.controllers', [])
         //$ToastUtils.showToast(error)
       });
     };
+
+    // //nfc
+    // $scope.nfcaaa = function () {
+    //  nfc.showSettings(function (msg) {
+    //    alert(msg);
+    //  },function (msg) {
+    //    alert(msg);
+    //  })
+    //   $scope.tags=nfcService.tag;
+    // }
+    //  if (window.nfc) {
+    //    nfc.bytesToHexString(input);
+    //    alert()
+    //  } else {
+    //    input;
+    //  }
+    //  if (window.nfc) {
+    //    nfc.bytesToString(input);
+    //  } else {
+    //    input;
+    //  }
+    
+    
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   $ToastUtils.showToast(data);

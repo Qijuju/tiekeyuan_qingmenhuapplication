@@ -28,7 +28,7 @@ public class GreenDaoGenerator {
         addSearchMsgHistory(schema);
         addLocalPhone(schema);
         addNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -177,6 +177,7 @@ public class GreenDaoGenerator {
   private static void addLocalPhone(Schema schema){
     Entity localPhone=schema.addEntity("LocalPhone");
     localPhone.addStringProperty("id").primaryKey();
+    localPhone.addBooleanProperty("isplatform");
     localPhone.addStringProperty("platformid");
     localPhone.addStringProperty("name");
     localPhone.addStringProperty("phonenumber");

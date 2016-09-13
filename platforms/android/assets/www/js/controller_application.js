@@ -379,16 +379,52 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-        var lat  = position.coords.latitude
-        var long = position.coords.longitude
-       $ToastUtils.showToast("经度"+lat+"纬度"+long)
-      var latlon=position.coords.latitude+","+position.coords.longitude;
-      var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
-        +latlon+"&zoom=14&size=400x300&sensor=false";
-      document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
+        var lat  = position.coords.latitude+0.006904;//   39.952728
+        var long = position.coords.longitude+0.012849;//  116.329102
+       $ToastUtils.showToast("经度"+lat+"纬度"+long);
+      var map = new BMap.Map("container"); // 创建地图实例
+      var point = new BMap.Point(long, lat); // 创建点坐标
+      map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.ScaleControl());
+      map.addControl(new BMap.OverviewMapControl());
+      map.addControl(new BMap.MapTypeControl());
+      var marker = new BMap.Marker(point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      marker.enableDragging();
+      marker.addEventListener("dragend", function(e){
+        alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+      })
+
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
+      // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          alert(result.address);
+        }
+      });
+
+
+
+
+      // var latlon=position.coords.latitude+","+position.coords.longitude;
+      // var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
+      //   +latlon+"&zoom=14&size=400x300&sensor=false";
+      // document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
     }, function(err) {
         // error
       });
+    // navigator.geolocation.watchPosition(function (position) {
+    //   var element = document.getElementById('geolocation');
+    //   element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+    //     'Longitude: ' + position.coords.longitude     + '<br />' +
+    //     '<hr />'      + element.innerHTML;
+    // }, function (error) {
+    //   alert('code: '    + error.code    + '\n' +
+    //     'message: ' + error.message + '\n');
+    // }, { timeout: 30000 });
 
 
     // var watchOptions = {
