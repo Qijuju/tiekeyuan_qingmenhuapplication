@@ -241,8 +241,14 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){//普通消息
-            if (message.messagetype === "Image") {   //文件或者图片
-              $api.getFile('I',arriveMessage.message,'00',function (data) {
+            if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
+              var objectTP = 'I';
+              if (message.messagetype === "Image") {
+                objectTP = 'I';
+              } else if(message.messagetype === "File") {
+                objectTP = 'F';
+              }
+              $api.getFile(objectTP,arriveMessage.message,'00',function (data) {
                 // alert("图片下载成功");
                 arriveMessage.message = data;
                 $greendao.saveObj('MessagesService',arriveMessage,function (data) {

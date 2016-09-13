@@ -113,9 +113,9 @@ angular.module('message.controllers', [])
         //   picPath = imageURI.replace('file://','');
         // }
         if(isAndroid){
-          picPath = imageURI.substring(0, imageURI.indexOf('?'));
+          picPath = imageURI.substring(0, (imageURI.indexOf('?') != -1 ? imageURI.indexOf('?') : imageURI.length));
         }
-        // alert(picPath + "//ssss");
+        // alert(imageURI.indexOf('?') + "//ssss");
         $api.sendFile('I',null,picPath,function (data) {
           $scope.imgPath=data[0];
           $scope.objID=data[1];
@@ -167,8 +167,6 @@ angular.module('message.controllers', [])
     $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(function (filePath) {
         alert(filePath);
-        $api.sendDocFile('F', null, filePath, function (data) {
-        // alert(filePath);
         $api.sendDocFile('I', null, filePath, function (data) {
           // alert(filePath);
           $scope.filePath=data[0];
@@ -177,7 +175,7 @@ angular.module('message.controllers', [])
           $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
             // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
             alert(filePath);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "File", $scope.filePath);
+            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "Image", $scope.filePath);
             $scope.send_content = "";
             keepKeyboardOpen();
           });

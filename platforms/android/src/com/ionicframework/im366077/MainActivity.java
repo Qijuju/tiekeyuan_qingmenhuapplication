@@ -20,12 +20,9 @@
 package com.ionicframework.im366077;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.UIUtils;
-import com.tky.mqtt.paho.utils.FileUtils;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -48,12 +45,17 @@ public class MainActivity extends CordovaActivity
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == FILE_SELECT_CODE && intent != null) {
-            Uri uri = intent.getData();
+            String filePath = intent.getStringExtra("filePath");
+            Intent receiverIntent = new Intent();
+            receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
+            receiverIntent.putExtra("filePath", filePath);
+            sendBroadcast(receiverIntent);
+            /*Uri uri = intent.getData();
             String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
             Intent receiverIntent = new Intent();
             receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
             receiverIntent.putExtra("filePath", path);
-            sendBroadcast(receiverIntent);
+            sendBroadcast(receiverIntent);*/
         }
     }
 }

@@ -1831,24 +1831,27 @@ public class ThriftApiClient extends CordovaPlugin {
 //            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 //            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 
-            final String dir = FileUtils.getIconDir() + File.separator + "chat_file";
+            final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
             File dirFile = new File(dir);
             if (dirFile != null && !dirFile.exists()) {
                 dirFile.mkdirs();
             }
             final String savePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());;
 //            File saveFile = new File(savePath);
-            FileOutputStream fos = new FileOutputStream(savePath);
+            File file = new File(savePath);
+            if (!file.exists()) {
+                FileOutputStream fos = new FileOutputStream(savePath);
 
-            byte[] bys = new byte[10 * 1024];
-            int len = 0;
-            while ((len = fis.read(bys)) != -1) {
-                fos.write(bys, 0, len);
+                byte[] bys = new byte[10 * 1024];
+                int len = 0;
+                while ((len = fis.read(bys)) != -1) {
+                    fos.write(bys, 0, len);
+                }
+
+                fos.close();
             }
 
-            fos.close();
 
-            File file = new File(savePath);
             if (file == null || !file.exists()) {
                 return;
             }

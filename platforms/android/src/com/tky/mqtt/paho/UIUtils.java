@@ -337,4 +337,14 @@ public class UIUtils {
 			}
 		});
 	}
+
+	/**
+	 * 获取文件后缀名
+	 * @param filePath
+	 * @return
+	 */
+	public static String getSuffix(String filePath) {
+		return filePath.substring(filePath.lastIndexOf(".") + 1,
+				filePath.length());
+	}
 }
