@@ -27,6 +27,7 @@ public class GreenDaoGenerator {
         addSystemMsg(schema);
         addSearchMsgHistory(schema);
         addLocalPhone(schema);
+        addNotifyLists(schema);
         new DaoGenerator().generateAll(schema,  "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
@@ -112,6 +113,22 @@ public class GreenDaoGenerator {
     //聊天列表
     private  static  void addChatLists(Schema schema){
         Entity chatitem=schema.addEntity("ChatList");
+        chatitem.addStringProperty("id").primaryKey();//接收者id、群组id
+        chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
+        chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)
+        chatitem.addStringProperty("imgSrc");//聊天图片来源
+        chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
+        chatitem.addStringProperty("count");//群聊or单聊未读消息数
+        chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+        chatitem.addStringProperty("senderId");//消息来源人id
+        chatitem.addStringProperty("senderName");//消息来源人的名字
+    }
+
+
+    //通知列表
+    private  static  void addNotifyLists(Schema schema){
+        Entity chatitem=schema.addEntity("NotifyList");
         chatitem.addStringProperty("id").primaryKey();//接收者id、群组id
         chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
         chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)

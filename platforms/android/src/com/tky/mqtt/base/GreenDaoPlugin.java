@@ -7,6 +7,7 @@ import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.MsgHistory;
+import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SubDept;
@@ -18,6 +19,7 @@ import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.MsgHistoryService;
+import com.tky.mqtt.services.NotifyListService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SubDeptService;
@@ -157,6 +159,25 @@ public class GreenDaoPlugin extends CordovaPlugin {
             msgHistory.setType(jsonobj.getString("type"));
             msgHistory.setWhen(System.currentTimeMillis());
             obj=msgHistory;
+        }else if("NotifyListService".equals(services)){
+            NotifyList notifyList = new NotifyList();
+            notifyList.setId(jsonobj.getString("id"));
+            notifyList.setChatName(jsonobj.getString("chatName"));
+            notifyList.setImgSrc(jsonobj.getString("imgSrc"));
+            notifyList.setCount(jsonobj.getString("count"));
+            notifyList.setIsDelete(jsonobj.getString("isDelete"));
+            notifyList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                notifyList.setLastDate(0L);
+            }else{
+                notifyList.setLastDate(System.currentTimeMillis());
+            }
+            notifyList.setLastText(jsonobj.getString("lastText"));
+            notifyList.setChatType(jsonobj.getString("chatType"));
+            notifyList.setSenderId(jsonobj.getString("senderId"));
+            notifyList.setSenderName(jsonobj.getString("senderName"));
+            obj = notifyList;
         }else if ("LocalPhoneService".equals(services)){
             LocalPhone localPhone=new LocalPhone();
             localPhone.setId(jsonobj.getString("id"));
@@ -247,6 +268,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
           baseInterface = SystemMsgService.getInstance(UIUtils.getContext());
         }else if ("MsgHistoryService".equals(services)) {
             baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
+        }else if("NotifyListService".equals(services)){
+            baseInterface= NotifyListService.getInstance(UIUtils.getContext());
         }else if ("LocalPhoneService".equals(services)){
             baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
         }
@@ -326,7 +349,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             Gson gson = new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<TopContacts>>() {
             }.getType());
-          setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
@@ -408,7 +431,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
     public void qureyHistoryMsg(JSONArray args,CallbackContext callbackContext){
         MsgHistoryService  service=MsgHistoryService.getInstance(UIUtils.getContext());
         try {
-            String type=args.getString(0);
+            String type =args.getString(0);
             List<MsgHistory> list = service.queryMsg(type);
             Gson gson=new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<MsgHistory>>() {
@@ -431,7 +454,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
-          setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
         }
 
     }
