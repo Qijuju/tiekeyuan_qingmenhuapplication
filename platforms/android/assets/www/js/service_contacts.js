@@ -3,7 +3,7 @@
  */
 angular.module('contacts.services', [])
 
-  
+
   .factory('$phonepluin', function ($greendao) {
     var phonePlugin;
     document.addEventListener('deviceready', function () {
@@ -622,8 +622,10 @@ angular.module('contacts.services', [])
 
       loginDeptInfo: function (deptId) {
 
+
         $api.getDeparment(deptId, function (msg) {
           logindeptname = msg.deptInfo.DeptName
+
           $rootScope.$broadcast('logindept.update');
 
         }, function (msg) {

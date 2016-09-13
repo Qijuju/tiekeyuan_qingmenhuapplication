@@ -4,7 +4,7 @@
 angular.module('notification.controllers', [])
 
 
-  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope) {
+  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope,$chatarr) {
     //如果不是监听未读通知，就查询数据库展示通知列表
     $greendao.queryByConditions('NotifyListService',function (data) {
       // alert("通知列表的长度"+data.length);
@@ -76,7 +76,7 @@ angular.module('notification.controllers', [])
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
                 $notifyarr.updatelastData(chatitem);
-                $rootScope.$broadcast('lastcount.update');
+                $rootScope.$broadcast('lastsyscount.update');
               }, function (err) {
                 // $ToastUtils.showToast(err + "数据保存失败");
               });
@@ -105,12 +105,194 @@ angular.module('notification.controllers', [])
     /**
      * 通知最后一条信息展示完成以后在列表界面进行刷新
      */
-    $scope.$on('lastcount.update', function (event) {
+    $scope.$on('lastsyscount.update', function (event) {
       $scope.$apply(function () {
         // alert("进来数据刷新");
         $scope.syslist=$notifyarr.getAllNotifyData();
       });
 
+    });
+
+
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
+        $scope.lastCount = $mqtt.getMsgCount();
+        // 当群未读消息lastGroupCount数变化的时候
+        $scope.lastGroupCount = $mqtt.getMsgGroupCount();
+        // alert("是不是先拿到这个值"+$scope.lastGroupCount);
+        $scope.firstUserId = $mqtt.getFirstReceiverSsid();
+        $scope.receiverssid = $scope.firstUserId;
+        $scope.chatName = $mqtt.getFirstReceiverChatName();
+        $scope.firstmessageType = $mqtt.getMessageType();
+
+        /**
+         * 判断是单聊未读还是群聊未读
+         */
+        if ($scope.lastCount > 0 && $scope.firstmessageType ==='User') {
+          // alert("进来单聊");
+          //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
+          // 接收者id
+          // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
+          //收到消息时先判断会话列表有没有这个用户
+          $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
+            // $ToastUtils.showToast(data.length + "收到消息时，查询chat表有无当前用户");
+            if (data.length === 0) {
+              // $ToastUtils.showToast("没有该会话");
+              $rootScope.isPersonSend = 'true';
+              if ($rootScope.isPersonSend === 'true') {
+                $scope.messageType = $mqtt.getMessageType();
+                // alert("会话列表聊天类型" + $scope.messageType);
+                //往service里面传值，为了创建会话
+                $chatarr.getIdChatName($scope.receiverssid, $scope.chatName);
+                $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
+                // $ToastUtils.showToast($scope.items.length + "长度");
+                $scope.$on('chatarr.update', function (event) {
+                  $scope.$apply(function () {
+                    $scope.items = $chatarr.getAllData();
+                  });
+                });
+                $rootScope.isPersonSend = 'false';
+              }
+            }
+          }, function (err) {
+            // $ToastUtils.showToast("收到未读消息时，查询chat列表" + err);
+          });
+          //取出与‘ppp’的聊天记录最后一条
+          $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+            // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
+            $scope.lastText = data[0].message;//最后一条消息内容
+            $scope.lastDate = data[0].when;//最后一条消息的时间
+            // $ToastUtils.showToast($scope.chatName + "用户名1");
+            $scope.srcName = data[0].username;//消息来源人名字
+            $scope.srcId = data[0].senderid;//消息来源人id
+            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            //取出‘ppp’聊天对话的列表数据并进行数据库更新
+            $greendao.queryData('ChatListService', 'where id=?', $scope.receiverssid, function (data) {
+              $scope.unread = $scope.lastCount;
+              // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+              var chatitem = {};
+              chatitem.id = data[0].id;
+              chatitem.chatName = data[0].chatName;
+              chatitem.imgSrc = $scope.imgSrc;
+              chatitem.lastText = $scope.lastText;
+              chatitem.count = $scope.unread;
+              chatitem.isDelete = data[0].isDelete;
+              chatitem.lastDate = $scope.lastDate;
+              chatitem.chatType = data[0].chatType;
+              chatitem.senderId = $scope.srcId;
+              chatitem.senderName = $scope.srcName;
+              $greendao.saveObj('ChatListService', chatitem, function (data) {
+                $chatarr.updatechatdata(chatitem);
+                $rootScope.$broadcast('lastcount.update');
+              }, function (err) {
+                // $ToastUtils.showToast(err + "数据保存失败");
+              });
+            }, function (err) {
+              // $ToastUtils.showToast(err);
+            });
+          }, function (err) {
+            // $ToastUtils.showToast(err);
+          });
+        } else if ($scope.lastGroupCount > 0) {
+          // alert("进来群聊id"+$scope.receiverssid);
+          // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
+          /**
+           * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
+           * 2.查出当前群聊的最后一条聊天记录(messageService)
+           * 3.查出会话列表的该条会话，将取出的数据进行赋值(chatListService)
+           * 4.保存数据(chatListService)
+           * 5.数据刷新(chatListService)按时间降序排列展示
+           */
+          $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
+            // alert(data.length+"收到消息时，查询chat表有无当前用户");
+            if (data.length === 0) {
+              // alert("群聊主界面没有该会话");
+              $rootScope.isPersonSend = 'true';
+              if ($rootScope.isPersonSend === 'true') {
+                $scope.messageType = $mqtt.getMessageType();
+                //获取消息来源人
+                $scope.chatName = $mqtt.getFirstReceiverChatName();//取到消息来源人，准备赋值，保存chat表
+                // alert("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
+                //根据群组id获取群名称
+                $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
+                  // alert(data[0].groupName);
+                  $rootScope.groupName = data[0].groupName;
+                  //往service里面传值，为了创建会话
+                  $chatarr.getIdChatName($scope.receiverssid, $scope.groupName);
+                  $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
+                  // alert($scope.items.length + "长度");
+                  $scope.$on('chatarr.update', function (event) {
+                    $scope.$apply(function () {
+                      $scope.items=$chatarr.getAllData();
+                      /**
+                       *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
+                       *
+                       */
+                      // $ToastUtils.showToast("群组长度" + $scope.items.length);
+                      $scope.savenotifylastmsg();
+                    });
+                  });
+                  $rootScope.isPersonSend = 'false';
+                }, function (err) {
+                  // $ToastUtils.showToast(err + "查询群组对应关系");
+                });
+              }
+            }else{
+              $scope.savenotifylastmsg();
+            }
+          }, function (err) {
+            // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
+          });
+          $scope.savenotifylastmsg=function () {
+            $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
+              $scope.lastText = data[0].message;//最后一条消息内容
+              $scope.lastDate = data[0].when;//最后一条消息的时间
+              $scope.srcName = data[0].username;//消息来源人名字
+              $scope.srcId = data[0].senderid;//消息来源人id
+              // alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
+              $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+              //取出id聊天对话的列表数据并进行数据库更新
+              $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
+                $scope.unread = $scope.lastGroupCount;
+                // alert("未读群消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+                var chatitem = {};
+                chatitem.id = data[0].id;
+                if($rootScope.groupName === '' || $rootScope.groupName === undefined){
+                  chatitem.chatName =$rootScope.groupName;
+                  // alert("群名称："+chatitem.chatName);
+                }else{
+                  chatitem.chatName =data[0].chatName ;
+                  // alert("群名称2222"+chatitem.chatName);
+                }
+                // $ToastUtils.showToast("第一次创建会话时保存的群聊名称"+chatitem.chatName);
+                chatitem.imgSrc = data[0].imgSrc;
+                chatitem.lastText = $scope.lastText;
+                chatitem.count = $scope.unread;
+                chatitem.isDelete = data[0].isDelete;
+                chatitem.lastDate = $scope.lastDate;
+                chatitem.chatType = data[0].chatType;
+                chatitem.senderId = $scope.srcId;
+                chatitem.senderName = $scope.srcName;
+                $greendao.saveObj('ChatListService', chatitem, function (data) {
+                  $chatarr.updatechatdata(chatitem);
+                  $rootScope.$broadcast('lastcount.update');
+                }, function (err) {
+                  // $ToastUtils.showToast(err + "数据保存失败");
+                });
+              }, function (err) {
+                // $ToastUtils.showToast(err);
+              });
+            }, function (err) {
+              // $ToastUtils.showToast(err);
+            });
+          }
+        }
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
     });
   })
 
@@ -189,7 +371,7 @@ angular.module('notification.controllers', [])
             $greendao.saveObj('NotifyListService', chatitem, function (data) {
               // $greendao.queryByConditions('NotifyListService', function (data) {
                 $notifyarr.updatelastData(chatitem);
-                $rootScope.$broadcast('lastcount.update');
+                $rootScope.$broadcast('lastsyscount.update');
               // }, function (err) {
               //
               // });
