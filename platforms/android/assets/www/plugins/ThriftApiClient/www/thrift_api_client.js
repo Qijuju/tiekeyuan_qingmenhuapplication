@@ -25,6 +25,9 @@ exports.getUserRoot = function(success, error) {
 exports.getUser = function(userID, success, error) {
   exec(success, error, "ThriftApiClient", "getUser", [userID]);
 };
+exports.checkLocalUser = function(userMBObj, success, error) {
+  exec(success, error, "ThriftApiClient", "checkLocalUser", [userMBObj]);
+};
 exports.updatePwd = function(oldPWD, newPWD, confirmPWD, success, error) {
   exec(success, error, "ThriftApiClient", "updatePwd", [oldPWD, newPWD, confirmPWD]);
 };

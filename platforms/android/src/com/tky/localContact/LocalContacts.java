@@ -49,6 +49,7 @@ public class LocalContacts extends CordovaPlugin {
   @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+
     }
 
     @Override
@@ -75,6 +76,10 @@ public class LocalContacts extends CordovaPlugin {
 
 
     public void getLocalContactsInfos(JSONArray args, CallbackContext callbackContext) {
+      instance= LocalPhoneService.getInstance(UIUtils.getContext());
+      mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
+      localPhoneDao=mDaoSession.getLocalPhoneDao();
+      localPhoneDao.deleteAll();
         ContentResolver cr = cordova.getActivity().getContentResolver();
         String str[] = {ContactsContract.CommonDataKinds.Phone.CONTACT_ID, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
         Cursor cur = cr.query(
@@ -236,16 +241,14 @@ public class LocalContacts extends CordovaPlugin {
     }
 
     private void initSortLetters(List<Friend> allContacts) {
-      instance= LocalPhoneService.getInstance(UIUtils.getContext());
-      mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
-      localPhoneDao=mDaoSession.getLocalPhoneDao();
+
         CharacterParser characterParser=CharacterParser.getInstance();
         for (Friend friend : allContacts) {
                 String nickname = friend.getNickname();
                 if (nickname != null && nickname.length() > 0) {
                     friend.setSortLetters(characterParser.getSelling(nickname).toUpperCase());
                   LocalPhone localPhone=new LocalPhone();
-                  localPhone.setId(UUID.randomUUID().toString());
+                  localPhone.setId(friend.getMobile()+"");
                   localPhone.setPlatformid("");
                   localPhone.setIsplatform(false);
                   localPhone.setName(friend.getNickname());

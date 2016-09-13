@@ -159,7 +159,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             obj=msgHistory;
         }else if ("LocalPhoneService".equals(services)){
             LocalPhone localPhone=new LocalPhone();
-            localPhone.setId(UUID.randomUUID().toString());
+            localPhone.setId(jsonobj.getString("id"));
             localPhone.setPlatformid(jsonobj.getString("platformid"));
             localPhone.setIsplatform(jsonobj.getBoolean("isplatform"));
             localPhone.setName(jsonobj.getString("name"));

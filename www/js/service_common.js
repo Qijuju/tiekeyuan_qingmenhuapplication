@@ -59,7 +59,7 @@ angular.module('common.services', [])
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
       }
-      
+
     };
 
   })
@@ -258,7 +258,7 @@ angular.module('common.services', [])
       },
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
-      }
+  }
     };
   })
 

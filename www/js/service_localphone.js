@@ -80,132 +80,159 @@ angular.module('localphone.services', [])
           $greendao.loadAllData("LocalPhoneService",function (msg) {
 
           var replyList=[];
+          var newList=[];
+
+          var lastList=msg;
 
            for(var i=0;i<msg.length;i++){
              var reply={};
-             reply.id=msg.id;
-             reply.phone=msg.phone;
+             reply.id=msg[i].id;
+             reply.phone=msg[i].phonenumber;
              replyList.push(reply);
 
            }
 
+            $api.checkLocalUser(replyList,function (msg) {
+              //拿到的msg是一个集合
+              for(var j=0;j<msg.length;j++){
+                if(msg[j].Flag==true){
+                  newList.push(msg[j])
+                }
+              }
 
-           
+              //然后更新数据库
+              for(var m=0;m<newList.length;m++){
+                for(var n=0;n<lastList.length;n++){
+
+                  if(newList[m].AppsID==lastList[n].id){
+                    var newobj={};
+                    newobj.id=newList[m].AppsID;
+                    newobj.isplatform=true;
+                    newobj.name=lastList[n].name;
+                    newobj.phonenumber=lastList[n].phonenumber;
+                    newobj.pinyinname=lastList[n].pinyinname;
+                    newobj.platformid=newList[m].UserID;
+
+                    $greendao.saveObj("LocalPhoneService",newobj,function (msg) {
+
+                    },function (err) {
+
+                    })
+                  }
+                }
+
+              }
+
+              $greendao.queryByConditions("LocalPhoneService",function (message) {
+
+                if(message!=null){
+                  contactsAll=message;
+                  for(var i=0; i<message.length; i++){
+
+                    if (message[i].pinyinname.substring(0,1)==="A"){
+                      A.push(message[i])
+                    }else if (message[i].pinyinname.substring(0,1)==="B"){
+                      B.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="C"){
+                      C.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="D"){
+                      D.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="E"){
+                      E.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="F"){
+                      F.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="G"){
+                      G.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="H"){
+                      H.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="I"){
+                      I.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="J"){
+                      J.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="K"){
+                      K.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="L"){
+                      L.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="M"){
+                      M.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="N"){
+                      N.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="O"){
+                      O.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="P"){
+                      P.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="Q"){
+                      Q.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="R"){
+                      R.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="S"){
+                      S.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="T"){
+                      T.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="U"){
+                      U.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="V"){
+                      V.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="W"){
+                      W.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="X"){
+                      X.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="Y"){
+                      Y.push(message[i])
+
+                    }else if (message[i].pinyinname.substring(0,1)==="Z"){
+                      Z.push(message[i])
+
+                    }else {
+                      onsuch.push(message[i])
+                    }
 
 
+                  }
+
+                  $rootScope.$broadcast('im.back');
 
 
+                }
 
 
+              },function (err) {
 
+              })
+            },function (err) {
+
+            })
           },function (err) {
 
           })
-
-
-
-
-
-
-
-          if(message!=null){
-            contactsAll=message;
-            for(var i=0; i<message.length; i++){
-
-              if (message[i].sortLetters.substring(0,1)==="A"){
-                A.push(message[i])
-              }else if (message[i].sortLetters.substring(0,1)==="B"){
-                B.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="C"){
-                C.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="D"){
-                D.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="E"){
-                E.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="F"){
-                F.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="G"){
-                G.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="H"){
-                H.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="I"){
-                I.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="J"){
-                J.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="K"){
-                K.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="L"){
-                L.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="M"){
-                M.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="N"){
-                N.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="O"){
-                O.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="P"){
-                P.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="Q"){
-                Q.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="R"){
-                R.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="S"){
-                S.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="T"){
-                T.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="U"){
-                U.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="V"){
-                V.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="W"){
-                W.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="X"){
-                X.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="Y"){
-                Y.push(message[i])
-
-              }else if (message[i].sortLetters.substring(0,1)==="Z"){
-                Z.push(message[i])
-
-              }else {
-                onsuch.push(message[i])
-              }
-
-
-            }
-
-            $rootScope.$broadcast('im.back');
-
-
-          }
         },function (message) {
 
 
         });
       },
-
 
       getAllContacts:function () {
 

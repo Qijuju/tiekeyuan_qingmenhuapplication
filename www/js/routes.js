@@ -277,7 +277,6 @@ angular.module('im.routes', [])
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
         controller: 'LocalContactCtrl',
-        cache:false
 
       })
 

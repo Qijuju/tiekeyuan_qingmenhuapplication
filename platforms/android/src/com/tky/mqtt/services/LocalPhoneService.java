@@ -58,7 +58,7 @@ public class LocalPhoneService implements BaseInterface<LocalPhone> {
 
   @Override
   public List<LocalPhone> queryByConditions() {
-    return null;
+    return localPhoneDao.queryBuilder().orderDesc(LocalPhoneDao.Properties.Isplatform).build().list();
   }
 
   @Override
