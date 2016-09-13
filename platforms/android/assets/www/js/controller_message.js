@@ -11,7 +11,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
-       document.getElementById("contentaa").style.marginBottom='165px';
+        document.getElementById("contentaa").style.marginBottom='165px';
         $scope.a=1;
       }else {
         document.getElementById("contentaa").style.marginBottom='0px';
@@ -194,10 +194,10 @@ angular.module('message.controllers', [])
     };
 
     /*$("#butAlbum").bind('click', function() {
-      window.alert("asdfadg");
-      getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);
-      return false;
-    });*/
+     window.alert("asdfadg");
+     getPhoto(Camera.PictureSourceType.PHOTOLIBRARY);
+     return false;
+     });*/
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
@@ -502,17 +502,17 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("无参跳转用户名"+$scope.userId);
         $greendao.queryData('ChatListService', 'where id=?', $scope.userId, function (data) {
           // $ToastUtils.showToast("无参跳转查询消息列表"+data.length);
-            var chatitem = {};
-            chatitem.id = data[0].id;
-            chatitem.chatName = data[0].chatName;
-            chatitem.imgSrc = $scope.imgSrc;
-            chatitem.lastText = $scope.lastText;
-            chatitem.count = '0';
-            chatitem.isDelete = data[0].isDelete;
-            chatitem.lastDate = $scope.lastDate;
-            chatitem.chatType = data[0].chatType;
-            chatitem.senderId = $scope.srcId;
-            chatitem.senderName = $scope.srcName;
+          var chatitem = {};
+          chatitem.id = data[0].id;
+          chatitem.chatName = data[0].chatName;
+          chatitem.imgSrc = $scope.imgSrc;
+          chatitem.lastText = $scope.lastText;
+          chatitem.count = '0';
+          chatitem.isDelete = data[0].isDelete;
+          chatitem.lastDate = $scope.lastDate;
+          chatitem.chatType = data[0].chatType;
+          chatitem.senderId = $scope.srcId;
+          chatitem.senderName = $scope.srcName;
           $greendao.saveObj('ChatListService', chatitem, function (data) {
             // $ToastUtils.showToast("save success");
             $greendao.queryByConditions('ChatListService', function (data) {
@@ -589,7 +589,7 @@ angular.module('message.controllers', [])
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
      * @type {string}
      * @private
-       */
+     */
     $scope._id='';
     $scope.localusr = $rootScope.userName;
     $scope.myUserID = $rootScope.rootUserId;
@@ -609,22 +609,22 @@ angular.module('message.controllers', [])
       $rootScope.isPersonSend = 'false';
       // $ToastUtils.showToast("走这吗？"+$rootScope.isGroupSend);
     }
-      /**
-       * 从数据库根据时间降序查询10条数据进行展示
-       *
-       */
-      $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.groupid, function (data) {
-        // $ToastUtils.showToast("进入群聊界面，查询数据库长度"+data.length);
-        for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
-          $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
-        }
-        for (var i = 1; i <= data.length; i++) {
-          $mqtt.getQunliao().push(data[data.length - i]);
-        }
-        $scope.groupmsgs = $mqtt.getQunliao();
-      }, function (err) {
-        // $ToastUtils.showToast(err);
-      });
+    /**
+     * 从数据库根据时间降序查询10条数据进行展示
+     *
+     */
+    $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.groupid, function (data) {
+      // $ToastUtils.showToast("进入群聊界面，查询数据库长度"+data.length);
+      for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
+        $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
+      }
+      for (var i = 1; i <= data.length; i++) {
+        $mqtt.getQunliao().push(data[data.length - i]);
+      }
+      $scope.groupmsgs = $mqtt.getQunliao();
+    }, function (err) {
+      // $ToastUtils.showToast(err);
+    });
 
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
@@ -989,10 +989,10 @@ angular.module('message.controllers', [])
     //:groupid/:chatname/:grouptype
     $scope.goGroupDetail=function (id,name,type,ismygroup) {
       $state.go('groupSetting',{
-          'groupid':id,
-          'chatname':name,
-          'grouptype':type,
-          'ismygroup':ismygroup
+        'groupid':id,
+        'chatname':name,
+        'grouptype':type,
+        'ismygroup':ismygroup
       });
     }
     $scope.godetail=function (userid) {
@@ -1006,7 +1006,7 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
-     // alert($location.path());
+    // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
       if (!$scope.a){
@@ -1046,12 +1046,12 @@ angular.module('message.controllers', [])
     $scope.saoyisao = function () {
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
-         $ToastUtils.showToast(imageData.text);
-         $api.qrcodeLogin(imageData.text,function (msg) {
-           $ToastUtils.showToast(msg)
-         },function (msg) {
-           $ToastUtils.showToast(msg)
-         });
+        $ToastUtils.showToast(imageData.text);
+        $api.qrcodeLogin(imageData.text,function (msg) {
+          $ToastUtils.showToast(msg)
+        },function (msg) {
+          $ToastUtils.showToast(msg)
+        });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
       }, function(error) {
@@ -1080,8 +1080,8 @@ angular.module('message.controllers', [])
     //  } else {
     //    input;
     //  }
-    
-    
+
+
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -1135,9 +1135,9 @@ angular.module('message.controllers', [])
     });
     $mqtt.arriveMsg("");
 
-      /**
-       * 监听消息
-       */
+    /**
+     * 监听消息
+     */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
