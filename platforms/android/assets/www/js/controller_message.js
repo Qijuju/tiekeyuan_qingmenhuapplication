@@ -1118,6 +1118,31 @@ angular.module('message.controllers', [])
         //$ToastUtils.showToast(error)
       });
     };
+
+
+    // //nfc
+    // $scope.nfcaaa = function () {
+    //  nfc.showSettings(function (msg) {
+    //    alert(msg);
+    //  },function (msg) {
+    //    alert(msg);
+    //  })
+    //   $scope.tags=nfcService.tag;
+    // }
+     //  if (window.nfc) {
+     //    nfc.bytesToHexString(input);
+     //    alert()
+     //  } else {
+     //    input;
+     //  }
+     //  if (window.nfc) {
+     //    nfc.bytesToString(input);
+     //  } else {
+     //    input;
+     //  }
+
+
+
     //清表数据
     // $greendao.deleteAllData('ChatListService',function (data) {
     //   $ToastUtils.showToast(data);

@@ -3,16 +3,29 @@
  */
 angular.module('search.controllers', [])
   .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao,$ionicLoading) {
-
      // document.getElementById("searchdata").value =1;
-
     $search111.getHistorymsg("person");
     $scope.$on('persons.history',function (event) {
       $scope.$apply(function () {
         $scope.historymsgs=$search111.getHistorymsgs();
       })
     });
-
+    $scope.deletehistory=function () {
+      $greendao.queryData("MsgHistoryService",'where type =?',"person",function (msg) {
+        for(var i=0;i<msg.length;i++){
+          var key=msg[i]._id;
+          // $ToastUtils.showToast("消息对象"+key);
+          $greendao.deleteDataByArg('MsgHistoryService',key,function (data) {
+            $search111.getHistorymsg("person");
+            $ToastUtils.showToast("清空搜索记录成功");
+          },function (err) {
+            $ToastUtils.showToast("清空消息记录失败");
+          });
+        }
+      },function (msg) {
+        alert(msg)
+      })
+    };
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -26,8 +39,6 @@ angular.module('search.controllers', [])
     $scope.onDrag = function () {
       keyboard.close();
     };
-
-
 
     $mqtt.getUserInfo(function (msg) {
       $scope.id=msg.userID;
@@ -349,6 +360,24 @@ angular.module('search.controllers', [])
         $scope.historymsgs=$search111.getHistorymsgs();
       })
     });
+
+    $scope.deletehistorymsg=function () {
+      $greendao.queryData("MsgHistoryService",'where type =?',"message",function (msg) {
+        for(var i=0;i<msg.length;i++){
+          var key=msg[i]._id;
+          // $ToastUtils.showToast("消息对象"+key);
+          $greendao.deleteDataByArg('MsgHistoryService',key,function (data) {
+            $search111.getHistorymsg("message");
+            $ToastUtils.showToast("清空搜索记录成功");
+          },function (err) {
+            $ToastUtils.showToast("清空消息记录失败");
+          });
+        }
+      },function (msg) {
+        alert(msg)
+      })
+    };
+
     $scope.dosearch = function(query) {
       if (query!=""&&query.length>0){
         $ionicLoading.show({
@@ -358,66 +387,94 @@ angular.module('search.controllers', [])
           maxWidth: 100,
           showDelay: 0
         });
-        var msghistory={};
-        msghistory._id="";
-        msghistory.msg=query;
-        msghistory.type="message";
-        msghistory.when=0;
-        $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
-          // alert("存取成功");
-        },function (message) {
+        $greendao.qureyHistoryMsg("message",function (msgaaa) {
+          var msgs=[];
+          for(var i=0;i<msgaaa.length;i++){
+            msgs.push(msgaaa[i].msg);
+          }
+          if(msgs.indexOf(query)==-1){
+            // alert(query)
+            var msghistory={};
+            msghistory._id="";
+            msghistory.msg=query;
+            msghistory.type="message";
+            msghistory.when=0;
+            $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
+            },function (message) {
 
-        })
+            })
+          }else {
+            $greendao.queryData("MsgHistoryService",'where msg =?',query,function (msgbbb) {
+              for(var j=0;j<msgbbb.length;j++) {
+                var key = msgbbb[j]._id;
+                $greendao.deleteDataByArg('MsgHistoryService', key, function (data) {
+                }, function (err) {
+                });
+              }
+              var msghistory={};
+              msghistory._id="";
+              msghistory.msg=query;
+              msghistory.type="message";
+              msghistory.when=0;
+              $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
+                // alert("存取成功");
+              },function (message) {
 
+              })
+            },function (msgbbb) {
+            })
+          }
+          // $rootScope.$broadcast('persons.history');
+        },function (msgaaa) {
+          // $rootScope.$broadcast('persons.history');
+        });
         $scope.query1 ="%"+query+"%";
         $searchmessage.searchmessagessss($scope.query1);
-        $scope.$on('messagesss.search',function (event) {
-          $scope.$apply(function () {
-            $scope.messagess=[];
-            $scope.namess=[];
-            $scope.lastMsg=[];
-            var messages;
-            var namea;
-            $timeout(function () {
-              $ionicLoading.hide();
-              for (var i=0;i<$searchmessage.getmessagessss().length;i++){
-                messages=$searchmessage.getmessagessss()[i];
-                $scope.messagess.push(messages)
-              }
-              namea=$searchmessage.getmessagessss()[0].username;
-              $scope.namess.push(namea);
-              for (var i=0;i<$searchmessage.getmessagessss().length;i++){
-
-                namea=$searchmessage.getmessagessss()[i].username;
-                if ($scope.namess.indexOf(namea)==-1){
-                  $scope.namess.push(namea)
-                }
-              }
-              for( var i=0; i<$scope.namess.length;i++){
-                var count=0;
-                var lastmsg={};
-                for(var j=0;j<$scope.messagess.length;j++){
-                  if ($scope.namess[i]==$scope.messagess[j].username){
-                    lastmsg.name=$scope.namess[i];
-                    lastmsg.sessionid=$scope.messagess[j].sessionid
-                    count++;
-                    lastmsg.count=count;
-                  }
-                }
-                $scope.lastMsg.push(lastmsg)
-              }
-            });
-          })
-        });
       }else {
         $scope.lastMsg=[];
         $scope.namess=[];
         $scope.messagess=[];
         $search111.getHistorymsg("message");
       }
-
-
     }
+    $scope.$on('messagesss.search',function (event) {
+      $scope.$apply(function () {
+        $scope.messagess=[];
+        $scope.namess=[];
+        $scope.lastMsg=[];
+        var messages;
+        var namea;
+        $timeout(function () {
+          $ionicLoading.hide();
+          for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+            messages=$searchmessage.getmessagessss()[i];
+            $scope.messagess.push(messages)
+          }
+          namea=$searchmessage.getmessagessss()[0].username;
+          $scope.namess.push(namea);
+          for (var i=0;i<$searchmessage.getmessagessss().length;i++){
+
+            namea=$searchmessage.getmessagessss()[i].username;
+            if ($scope.namess.indexOf(namea)==-1){
+              $scope.namess.push(namea)
+            }
+          }
+          for( var i=0; i<$scope.namess.length;i++){
+            var count=0;
+            var lastmsg={};
+            for(var j=0;j<$scope.messagess.length;j++){
+              if ($scope.namess[i]==$scope.messagess[j].username){
+                lastmsg.name=$scope.namess[i];
+                lastmsg.sessionid=$scope.messagess[j].sessionid
+                count++;
+                lastmsg.count=count;
+              }
+            }
+            $scope.lastMsg.push(lastmsg)
+          }
+        });
+      })
+    });
     $scope.goSearchMsgDetail = function (name) {
       $state.go("searchmessage22", {
         "Username2": name,

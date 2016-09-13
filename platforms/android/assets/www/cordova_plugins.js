@@ -318,6 +318,11 @@ module.exports = [
         "clobbers": [
             "window.baiduLocation"
         ]
+    },
+    {
+        "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+        "id": "phonegap-nfc.NFC",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -345,7 +350,8 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.5.2-dev",
     "phonegap-plugin-barcodescanner": "6.0.1",
     "cordova-plugin-geolocation": "2.2.0",
-    "com.spout.phonegap.plugins.baidulocation": "0.1.0"
+    "com.spout.phonegap.plugins.baidulocation": "0.1.0",
+    "phonegap-nfc": "0.6.6"
 };
 // BOTTOM OF METADATA
 });
