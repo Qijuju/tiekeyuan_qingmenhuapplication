@@ -65,7 +65,13 @@ public class SubDeptService implements BaseInterface <SubDept> {
         return subDeptDao.queryRaw(where, params);
     }
 
-    /**
+  @Override
+  public List<SubDept> queryByConditions() {
+    return null;
+  }
+
+
+  /**
      * insert or update note
      * @param subDept
      * @return insert or update note id

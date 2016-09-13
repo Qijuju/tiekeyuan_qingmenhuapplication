@@ -39,7 +39,27 @@ angular.module('common.services', [])
       },
       loadByCount:function (success,error) {
         greendao.loadByCount(success,error);
+      },
+
+      queryByConditions:function (services, success, error) {
+        greendao.queryByConditions(services,success,error);
+      },
+      querySearchDetail :function (name, message,success, error) {
+        greendao.querySearchDetail (name, message,success, error);
+      },
+      queryGroupOrSingleChat :function (type, sessionid,success, error) {
+        greendao.querySearchDetail (type, sessionid,success, error);
+      },
+      queryGroupIds:function (one,two,success,error) {
+        greendao.queryGroupIds(one,two,success,error);
+      },
+      queryByType : function (one, two,success, error) {
+      greendao.queryByType(one, two,success, error);
+      },
+      qureyHistoryMsg:function (type,success,error) {
+        greendao.qureyHistoryMsg(type,success,error);
       }
+      
     };
 
   })
@@ -51,6 +71,9 @@ angular.module('common.services', [])
         document.addEventListener('deviceready', function () {
           api = cordova.require('ThriftApiClient.thrift_api_client');
         });
+      },
+      openFile:function(filePath, success, error) {
+        api.openFile(filePath, success, error);
       },
       login:function(username,password, success, error) {
         api.login(username,password, success, error);
@@ -106,12 +129,15 @@ angular.module('common.services', [])
       needUpgrade:function(versionName, success, error) {
         api.needUpgrade(versionName, success, error);
       },
+      installApk:function(targetPath, success, error) {//安装应用
+        api.install(targetPath, success, error);
+      },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
         api.getVersionInfo(function (msg) {
           var versionName = msg.versionName;
           var versionDesc = msg.versionDesc;
           var targetPath = "";
-          api.needUpgrade('1.2.0', function (msg) {
+          api.needUpgrade(versionName, function (msg) {
             if(msg == 'true') {
               var confirmPopup = $ionicPopup.confirm({
                 title: '版本升级',
@@ -127,15 +153,20 @@ angular.module('common.services', [])
                   api.getVersion("", versionName, function (msg) {
                     targetPath = msg;
                     $ionicLoading.hide();
-                    $cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+                    api.installApk(targetPath, function (success) {
                       // 成功
                       $mqtt.save('install_cancel', 'false');
-                      $mqtt.save('install_cancel_version', '');
                     }, function (err) {
                       // 错误
                       $mqtt.save('install_cancel', 'false');
-                      $mqtt.save('install_cancel_version', '');
                     });
+                    /*$cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+
+                      // $mqtt.save('install_cancel_version', '');
+                    }, function (err) {
+
+                      // $mqtt.save('install_cancel_version', '');
+                    });*/
                   },function (msg) {
                     $ionicLoading.hide();
                     alert(msg);
@@ -143,11 +174,11 @@ angular.module('common.services', [])
                 } else {
                   //取消更新
                   $mqtt.save('install_cancel', 'true');
-                  $mqtt.save('install_cancel_version', versionName);
+                  // $mqtt.save('install_cancel_version', versionName);
                 }
 
               });
-            } else {
+            } else if(msg != 'false') {
               alert(msg);
             }
           },function (msg) {
@@ -165,6 +196,65 @@ angular.module('common.services', [])
       },
       cancelUser:function(success, error) {//解绑用户（让其他用户可以使用该帐号登录其他设备）
         api.cancelUser(success,error);
+      },
+      //以下为群组接口
+      addGroup:function(groupName, deptsArr, membersArr, success, error) {
+        //创建群组  groupName：群组名, deptsArr：所有部门（deptID的组合）, membersArr：所有选中人员（人员ID的组合）
+        api.addGroup(groupName, deptsArr, membersArr, success, error);
+      },
+      getGroup:function(groupIdsArr, success, error) {
+        //获取群组（列表）信息  groupIdsArr：群组ID的集合
+        api.getGroup(groupIdsArr, success, error);
+      },
+      modifyGroup:function(groupType, groupID, groupName, groupText, success, error){
+        //修改群信息  groupType：群组类型, groupID：群组ID, groupName：群组名称, groupText：群族公告
+        api.modifyGroup(groupType, groupID, groupName, groupText, success, error);
+      },
+      removeGroup:function(groupID, success, error) {
+        //解散群组  groupID：群组ID
+        api.removeGroup(groupID, success, error);
+      },
+      getGroupUpdate:function(groupType, groupID, objectsArr, success, error) {
+        //获取群组指定信息  groupType：群组类型, groupID：群组ID, objectsArr：查询的项目代码列表
+        api.getGroupUpdate(groupType, groupID, objectsArr, success, error);
+      },
+      groupAddMember:function(groupID, deptsArr, membersArr, success, error) {
+        //群组添加人员（列表）  groupID：群组ID, deptsArr选中所有部门的ID的集合, membersArr：选中所有人员的ID的集合
+        api.groupAddMember(groupID, deptsArr, membersArr, success, error);
+      },
+      groupRemoveMember:function(groupID, membersArr, success, error) {
+        //群组移除人员（列表）  groupID：群组ID, membersArr：要删除的群组成员
+        api.groupRemoveMember(groupID, membersArr, success, error);
+      },
+      groupAddAdmin:function(groupID, adminsArr, success, error) {
+        //群组添加管理员（列表）  groupID：群组ID, adminsArr：添加的所有管理员的ID
+        api.groupAddAdmin(groupID, adminsArr, success, error);
+      },
+      groupRemoveAdmin:function(groupID, adminsArr, success, error) {
+        //群组移除管理员（列表）  groupID：群组ID, adminsArr：所有管理员的集合
+        api.groupRemoveAdmin(groupID, adminsArr, success, error);
+      },
+      getAllGroup:function(success, error) {
+        //获取用户所有群组
+        api.getAllGroup(success, error);
+      },
+      getAllGroupIds:function(success, error) {//获取所有群组的群组ID，群组ID之间以逗号隔开，返回字符串
+        api.getAllGroupIds(success, error);
+      },
+      //二维码登录接口，qrcode：扫描到的二维码  返回布尔类型的值：true为成功，false为登录失败
+      qrcodeLogin:function (qrcode, success, error) {
+        api.qrcodeLogin(qrcode, success, error);
+      },
+      //图片发送接口
+      sendFile:function (objectTP,objectID,filePath, success, error) {
+        api.sendFile(objectTP,objectID,filePath, success, error);
+      },
+      //文件发送接口
+      sendDocFile:function (objectTP,objectID,filePath, success, error) {
+        api.sendDocFile(objectTP,objectID,filePath, success, error);
+      },
+      getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
+       api.getFile(objectTP,objectID,picSize, success, error);
       }
     };
   })

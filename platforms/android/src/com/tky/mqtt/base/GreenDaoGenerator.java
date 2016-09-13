@@ -22,7 +22,13 @@ public class GreenDaoGenerator {
         addParentSubDept(schema);
         addTopContacts(schema);
         addChatLists(schema);
-        new DaoGenerator().generateAll(schema, "C:/Users/Administrator/webstormproject/im/platforms/android/src");//项目绝对路径
+        addGroupChats(schema);
+        addGroupIDS(schema);
+        addSystemMsg(schema);
+        addSearchMsgHistory(schema);
+        addLocalPhone(schema);
+        addNotifyLists(schema);
+        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -40,7 +46,7 @@ public class GreenDaoGenerator {
 
     }
 
-    //聊天消息(单人聊天、群聊)
+    //聊天消息(单人聊天)
     private  static  void addMessages(Schema schema){
         Entity message=schema.addEntity("Messages");
         message.addStringProperty("_id").primaryKey();//主键id
@@ -55,8 +61,27 @@ public class GreenDaoGenerator {
         message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
         message.addStringProperty("imgSrc");//头像图片来源
         message.addStringProperty("username");//用户名
+        message.addStringProperty("senderid");//用于群聊时判断消息来源人id
     }
 
+
+    //系统通知(通知、报警)
+    private  static  void addSystemMsg(Schema schema){
+        Entity message=schema.addEntity("SystemMsg");
+        message.addStringProperty("_id").primaryKey();//主键id
+        message.addStringProperty("sessionid");//接收者id、群组id
+        message.addStringProperty("type");//聊天类型：群聊、单聊、应用推送
+        message.addStringProperty("from");//消息发出者id
+        message.addStringProperty("message");//消息内容
+        message.addStringProperty("messagetype");//消息类型:普通、回执、抖动窗口
+        message.addStringProperty("platform");//客户端类型
+        message.addStringProperty("isFailure");//消息发送成功与否
+        message.addLongProperty("when");//消息发送时间
+        message.addStringProperty("isDelete");//是否删除(记录该条信息的状态)
+        message.addStringProperty("imgSrc");//头像图片来源
+        message.addStringProperty("username");//用户名
+        message.addStringProperty("senderid");//用于群聊时判断消息来源人id
+    }
 
     //部门表（1：n）
     private static void addParentSubDept(Schema schema) {
@@ -95,6 +120,66 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
         chatitem.addStringProperty("count");//群聊or单聊未读消息数
         chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+        chatitem.addStringProperty("senderId");//消息来源人id
+        chatitem.addStringProperty("senderName");//消息来源人的名字
     }
 
+
+    //通知列表
+    private  static  void addNotifyLists(Schema schema){
+        Entity chatitem=schema.addEntity("NotifyList");
+        chatitem.addStringProperty("id").primaryKey();//接收者id、群组id
+        chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
+        chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)
+        chatitem.addStringProperty("imgSrc");//聊天图片来源
+        chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
+        chatitem.addStringProperty("count");//群聊or单聊未读消息数
+        chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+        chatitem.addStringProperty("senderId");//消息来源人id
+        chatitem.addStringProperty("senderName");//消息来源人的名字
+    }
+
+    //创建群聊天会创建数据库
+    private static void addGroupChats(Schema schema){
+      //
+      Entity groupChat=schema.addEntity("GroupChats");
+      groupChat.addStringProperty("id").primaryKey(); //群组的id
+      groupChat.addStringProperty("groupName");//群组的名字
+      groupChat.addStringProperty("groupType");//群组的类型
+      groupChat.addBooleanProperty("ismygroup");//是否为自建群
+
+    }
+
+
+  //添加群聊人员选中ids的表
+
+  private static void addGroupIDS(Schema schema) {
+    Entity groupIds=schema.addEntity("SelectedId");
+    groupIds.addStringProperty("id").primaryKey();//选中人或者部门的id
+    groupIds.addStringProperty("grade");//选中的的在哪个级别
+    groupIds.addBooleanProperty("isselected");//是否被选中
+    groupIds.addStringProperty("type");
+  }
+    //添加搜素消息记录的表
+
+    private static void addSearchMsgHistory(Schema schema) {
+        Entity msgHistory=schema.addEntity("MsgHistory");
+        msgHistory.addStringProperty("_id").primaryKey();
+        msgHistory.addStringProperty("msg");//历史消息字段
+        msgHistory.addLongProperty("when");
+        msgHistory.addStringProperty("type");
+    }
+
+  //添加本地手机通讯录
+
+  private static void addLocalPhone(Schema schema){
+    Entity localPhone=schema.addEntity("LocalPhone");
+    localPhone.addStringProperty("id").primaryKey();
+    localPhone.addStringProperty("platformid");
+    localPhone.addStringProperty("name");
+    localPhone.addStringProperty("phonenumber");
+    localPhone.addStringProperty("pinyinname");
+  }
 }

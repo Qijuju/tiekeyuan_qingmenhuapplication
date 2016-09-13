@@ -1,14 +1,12 @@
 package com.tky.mqtt.paho.bean;
 
-import java.io.Serializable;
-
 /**
  * 作者：
  * 包名：com.tky.mqtt.paho.bean
  * 日期：2016/8/12 9:13
  * 描述：
  */
-public class MessageBean implements Serializable {
+public class MessageBean extends MessageTypeBean {
     private String _id;// UUID.randomUUID().toString().toUpperCase());
     private String sessionid;//", msgMap.get("to"));
     private String type;//", getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
@@ -21,6 +19,10 @@ public class MessageBean implements Serializable {
     private String isDelete;//", "");
     private String imgSrc;//", "");
     private String username;
+    /**
+     * 是否是我自己发送的，不管是客户端还是手机端
+     */
+    private boolean isFromMe;
 
     public String get_id() {
         return _id;
@@ -116,5 +118,13 @@ public class MessageBean implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isFromMe() {
+        return isFromMe;
+    }
+
+    public void setIsFromMe(boolean isFromMe) {
+        this.isFromMe = isFromMe;
     }
 }

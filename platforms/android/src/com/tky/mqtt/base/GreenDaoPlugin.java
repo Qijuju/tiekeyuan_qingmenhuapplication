@@ -3,15 +3,25 @@ package com.tky.mqtt.base;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
+import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.MsgHistory;
+import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.ParentDept;
+import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SubDept;
+import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.MsgHistoryService;
+import com.tky.mqtt.services.NotifyListService;
 import com.tky.mqtt.services.ParentDeptService;
+import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SubDeptService;
+import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
@@ -63,6 +73,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
             message.setImgSrc(jsonobj.getString("imgSrc"));
+            message.setSenderid(jsonobj.getString("senderid"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();
@@ -101,7 +112,70 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 chatList.setLastDate(System.currentTimeMillis());
             }
             chatList.setLastText(jsonobj.getString("lastText"));
+            chatList.setChatType(jsonobj.getString("chatType"));
+            chatList.setSenderId(jsonobj.getString("senderId"));
+            chatList.setSenderName(jsonobj.getString("senderName"));
             obj = chatList;
+        }else if("GroupChatsService".equals(services)){
+          GroupChats groupChats=new GroupChats();
+          groupChats.setId(jsonobj.getString("id"));
+          groupChats.setGroupName(jsonobj.getString("groupName"));
+          groupChats.setGroupType(jsonobj.getString("groupType"));
+          groupChats.setIsmygroup(jsonobj.getBoolean("ismygroup"));
+          obj=groupChats;
+        }else if ("SelectIdService".equals(services)){
+          SelectedId selectedId=new SelectedId();
+          selectedId.setId(jsonobj.getString("id"));
+          selectedId.setGrade(jsonobj.getString("grade"));
+          selectedId.setIsselected(jsonobj.getBoolean("isselected"));
+          selectedId.setType(jsonobj.getString("type"));
+          obj=selectedId;
+        }else if("SystemMsgService".equals(services)){
+            SystemMsg systemMsg = new SystemMsg();
+            if("".equals(jsonobj.getString("_id"))){
+                systemMsg.set_id(UUID.randomUUID().toString());
+            }else{
+                systemMsg.set_id(jsonobj.getString("_id"));
+            }
+            systemMsg.setSessionid(jsonobj.getString("sessionid"));
+            systemMsg.setType(jsonobj.getString("type"));
+            systemMsg.setFrom(jsonobj.getString("from"));
+            systemMsg.setMessage(jsonobj.getString("message"));
+            systemMsg.setMessagetype(jsonobj.getString("messagetype"));
+            systemMsg.setPlatform(jsonobj.getString("platform"));
+            systemMsg.setWhen(System.currentTimeMillis());
+            systemMsg.setIsFailure(jsonobj.getString("isFailure"));
+            systemMsg.setUsername(jsonobj.getString("username"));
+            systemMsg.setIsDelete(jsonobj.getString("isDelete"));
+            systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
+            systemMsg.setSenderid(jsonobj.getString("senderid"));
+            obj = systemMsg;
+        }else if ("MsgHistoryService".equals(services)){
+            MsgHistory msgHistory=new MsgHistory();
+            msgHistory.set_id(UUID.randomUUID().toString());
+            msgHistory.setMsg(jsonobj.getString("msg"));
+            msgHistory.setType(jsonobj.getString("type"));
+            msgHistory.setWhen(System.currentTimeMillis());
+            obj=msgHistory;
+        }else if("NotifyListService".equals(services)){
+            NotifyList notifyList = new NotifyList();
+            notifyList.setId(jsonobj.getString("id"));
+            notifyList.setChatName(jsonobj.getString("chatName"));
+            notifyList.setImgSrc(jsonobj.getString("imgSrc"));
+            notifyList.setCount(jsonobj.getString("count"));
+            notifyList.setIsDelete(jsonobj.getString("isDelete"));
+            notifyList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                notifyList.setLastDate(0L);
+            }else{
+                notifyList.setLastDate(System.currentTimeMillis());
+            }
+            notifyList.setLastText(jsonobj.getString("lastText"));
+            notifyList.setChatType(jsonobj.getString("chatType"));
+            notifyList.setSenderId(jsonobj.getString("senderId"));
+            notifyList.setSenderName(jsonobj.getString("senderName"));
+            obj = notifyList;
         }
         return obj;
     }
@@ -132,6 +206,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
                 message.setIsDelete(jsonobj.getString("isDelete"));
                 message.setImgSrc(jsonobj.getString("imgSrc"));
                 message.setUsername(jsonobj.getString("username"));
+                message.setSenderid(jsonobj.getString("senderid"));
                 messagesList.add(message);
             }
 
@@ -143,6 +218,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
         }else if ("TopContactsService".equals(services)){
 
         }else if("ChatListService".equals(services)){
+
+        }else if ("GroupChatsService".equals(services)){
+
+        }else if ("SelectIdService".equals(services)){
+
+        }else if ("MsgHistoryService".equals(services)){
 
         }
         return obj;
@@ -166,6 +247,16 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= TopContactsService.getInstance(UIUtils.getContext());
         }else if("ChatListService".equals(services)){
             baseInterface= ChatListService.getInstance(UIUtils.getContext());
+        }else if("GroupChatsService".equals(services)){
+          baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
+        }else if ("SelectIdService".equals(services)){
+          baseInterface= SelectIdService.getInstance(UIUtils.getContext());
+        }else if("SystemMsgService".equals(services)){
+          baseInterface = SystemMsgService.getInstance(UIUtils.getContext());
+        }else if ("MsgHistoryService".equals(services)) {
+            baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
+        }else if("NotifyListService".equals(services)){
+            baseInterface= NotifyListService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -198,6 +289,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         });
         return true;
     }
+
 
     /**
      * 带参加载数据
@@ -246,6 +338,108 @@ public class GreenDaoPlugin extends CordovaPlugin {
         } catch (JSONException e) {
             e.printStackTrace();
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
+
+  public void queryByConditions(final  JSONArray args,final  CallbackContext callbackContext){
+    try {
+      String service=args.getString(0);
+      BaseInterface baseInterface = getInterface(service);
+      List<BaseDao> list=baseInterface.queryByConditions();
+      Gson gson = new Gson();
+      String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+      }.getType());
+      setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+    } catch (JSONException e) {
+      e.printStackTrace();
+      setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+    public void querySearchDetail(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService service = MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String name = args.getString(0);
+            String message = args.getString(1);
+            List<Messages> list=service.querySearchDetail(name, message);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
+
+
+    /**
+     * 带两个参数查询(messageservice)
+     */
+    public void queryGroupOrSingleChat(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService service = MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<Messages> list=service.querySearchDetail(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
+
+    public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){
+      SelectIdService selectIdService=SelectIdService.getInstance(UIUtils.getContext());
+      try {
+        String one=args.getString(0);
+        String two=args.getString(1);
+        List<SelectedId> list=selectIdService.queryBy(one, two);
+        Gson gson=new Gson();
+        String jsonStr = gson.toJson(list, new TypeToken<List<SelectedId>>() {
+        }.getType());
+        setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+
+    }
+
+    public void qureyHistoryMsg(JSONArray args,CallbackContext callbackContext){
+        MsgHistoryService  service=MsgHistoryService.getInstance(UIUtils.getContext());
+        try {
+            String type =args.getString(0);
+            List<MsgHistory> list = service.queryMsg(type);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<MsgHistory>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryByType(final JSONArray args,final CallbackContext callbackContext){
+        ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+        try {
+            String one=args.getString(0);
+            String two =args.getString(1);
+            List<ChatList> list=chatListService.queryByType(one, two);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<ChatList>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
         }
 
     }

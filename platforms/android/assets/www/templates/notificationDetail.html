@@ -1,0 +1,26 @@
+<ion-view view-title="办公系统">
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goback()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false" class="rj-stable-content">
+    <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
+                   <!--pulling-text="更多消息" id="refresh">-->
+    <!--</ion-refresher>-->
+
+      <div ng-repeat="sysmsg in sysmsglist">
+        <p style="text-align: center;padding: 20px" >{{sysmsg.when | date:'HH:mm:ss' }}</p>
+        <div class="rj-message-wrap" >
+          <span>
+          <p class="rj-notification" style="padding: 10px" >{{sysmsg.message}}</p>
+          </span>
+        </div>
+
+      </div>
+
+  </ion-content>
+</ion-view>
+

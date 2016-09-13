@@ -1,11 +1,11 @@
 <ion-view  view-title="搜索">
-  <ion-content overflow-scroll="false">
+  <ion-content overflow-scroll="false" on-drag="onDrag()">
 
         <div id="search-bar" class="bar bar-header item-input-inset" style="height: 50px;">
           <label class="item-input-wrapper" id="search-input">
             <i class="icon ion-ios-search" style="position: relative;color: gray;font-size: 1.5em;top: 1px;"></i>
             <form  onsubmit="dosearch(query)">
-            <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
+            <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off">
             </form>
           </label>
           <button class="button button-clear" style="color: #49B746;" ng-click="searchBack()" >取消</button>
@@ -14,8 +14,13 @@
     <ion-list>
       <ion-item ng-repeat="persondetail1 in persons" style="height: 60px" >
         <div class="row" >
-          <div class="col-20" align="center" ng-click="tanchuangsearch(persondetail1.UserID)">
-            <img src="img/icon_friends.png"  style="width: 25px;height: 25px" >
+          <div   class="col-20" style="text-align: center" ng-click="tanchuangsearch(persondetail1.UserID)">
+            <!--<img src="img/icon_status_andriod.png" style="position: absolute;left: 11%;top: 40%;width: 30px;height: 30px">-->
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==3||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==4||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==5||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
           </div>
           <div class="col-80" align="left" ng-click="goSearchDetail(persondetail1.UserID)">
             <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="goSearchDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="goSearchDetail(persondetail1.UserID)"></span>

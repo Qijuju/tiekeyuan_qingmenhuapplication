@@ -40,5 +40,26 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
   exports.loadByCount = function (success, error) {
     exec(success, error, "GreenDaoPlugin", "loadByCount", []);
   };
+  exports.queryByConditions = function (services,success, error) {
+      exec(success, error, "GreenDaoPlugin", "queryByConditions", [services]);
+    };
+   exports.querySearchDetail = function (name, message,success, error) {
+       exec(success, error, "GreenDaoPlugin", "querySearchDetail", [name, message]);
+    };
+
+    exports.queryGroupOrSingleChat = function (type, sessionid,success, error) {
+           exec(success, error, "GreenDaoPlugin", "queryGroupOrSingleChat", [type, sessionid]);
+    };
+
+    exports.queryGroupIds = function (one, two,success, error) {
+               exec(success, error, "GreenDaoPlugin", "queryGroupIds", [one, two]);
+        };
+  exports.queryByType = function (one, two,success, error) {
+    exec(success, error, "GreenDaoPlugin", "queryByType", [one, two]);
+  };
+
+    exports.qureyHistoryMsg = function (type,success, error) {
+                exec(success, error, "GreenDaoPlugin", "qureyHistoryMsg", [type]);
+         };
 
 });

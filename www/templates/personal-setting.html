@@ -8,14 +8,14 @@
   </ion-nav-bar>
   <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
     <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
-      <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-      <div class="vcenter" style="position: absolute;left: 47%;top: 57px">{{jiename}}</div>
+      <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="godetailaa()">
+      <div class="vcenter" style="position: absolute;left: 47%;top: 57px" ng-click="godetailaa()">{{jiename}}</div>
       <P style="font-size: 18px">{{userName}}</P>
 
     </div>
 
 
-    <div class="row" style=" background-color: #ffffff; height: 80px">
+    <div class="row" style="background-color: #ffffff; height: 80px">
       <div class="col" align="center" ng-click="gohistoryMessage()">
         <a >
           <ul>
@@ -52,7 +52,7 @@
     </div>
 
     <div style="">
-      <button class="button button-block button-light" ng-click="meizuo()">
+      <button class="button button-block button-light" ng-click="addNewPerson()">
         <i class="icon ion-ios-plus-outline"></i>&nbsp;&nbsp;添加新成员
       </button>
     </div>

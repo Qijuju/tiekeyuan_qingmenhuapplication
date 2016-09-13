@@ -18,13 +18,15 @@ public class MqttReceiver extends BroadcastReceiver {
 	private OnMqttStopListener onMqttStopListener;
 	private OnConnectionDownListener onConnectionDownListener;
 	private OnMqttSendErrorListener onMqttSendErrorListener;
+	private OnNetDownListener onNetDownListener;
+	private OnFreezeMqttListener onFreezeMqttListener;
 
 	private static final MqttReceiver INSTANCE = new MqttReceiver();
 
 	private MqttReceiver(){}
 
-	public static MqttReceiver getInstance() {
-		return INSTANCE;
+	public synchronized static MqttReceiver getInstance() {
+		return INSTANCE == null ? new MqttReceiver() : INSTANCE;
 	}
 
 	@Override
@@ -73,6 +75,14 @@ public class MqttReceiver extends BroadcastReceiver {
 			if(onMqttSendErrorListener !=null){
 				onMqttSendErrorListener.onMqttSendError();
 			}
+		} else if (ReceiverParams.NET_DOWN_MQTT.equals(intent.getAction())) {//由于网络断开而断开MQTT的监听回调
+			if (onNetDownListener != null) {
+				onNetDownListener.onNetDown();
+			}
+		} else if (ReceiverParams.FREEZE_MQTT.equals(intent.getAction())) {//彻底断掉MQTT并处理善后工作
+			if (onFreezeMqttListener != null) {
+				onFreezeMqttListener.OnFreezeMqtt();
+			}
 		}
 	}
 
@@ -111,6 +121,20 @@ public class MqttReceiver extends BroadcastReceiver {
 		public void onConnectionDown();
 	}
 
+	/**
+	 * Mqtt由于网络断开而断开连接的监听
+	 */
+	public interface OnNetDownListener {
+		public void onNetDown();
+	}
+
+	/**
+	 * 彻底断掉MQTT并处理善后工作
+	 */
+	public interface OnFreezeMqttListener {
+		public void OnFreezeMqtt();
+	}
+
 	public void setOnMessageArrivedListener(
 			OnMessageArrivedListener onMessageArrivedListener) {
 		this.onMessageArrivedListener = onMessageArrivedListener;
@@ -138,6 +162,16 @@ public class MqttReceiver extends BroadcastReceiver {
 	}
 
 	public void setOnMqttSendErrorListener(OnMqttSendErrorListener onMqttSendErrorListener) {
-		this.onMqttSendErrorListener = onMqttSendErrorListener;
+		if (this.onMqttSendErrorListener == null) {
+			this.onMqttSendErrorListener = onMqttSendErrorListener;
+		}
+	}
+
+	public void setOnNetDownListener(OnNetDownListener onNetDownListener) {
+		this.onNetDownListener = onNetDownListener;
+	}
+
+	public void setOnFreezeMqttListener(OnFreezeMqttListener onFreezeMqttListener) {
+		this.onFreezeMqttListener = onFreezeMqttListener;
 	}
 }

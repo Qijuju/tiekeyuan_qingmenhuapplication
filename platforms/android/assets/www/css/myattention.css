@@ -1,14 +1,16 @@
 .spinner svg {
   width: 50px;
   height: 50px;
-  border: 8px solid;
+  border: 6px solid;
   border-top-color: hsl(112, 100%, 88%);
   border-left-color: hsl(142, 100%, 89%);
   border-bottom-color: hsl(156, 100%, 86%);
   border-right-color: hsl(200, 100%, 87%);
   border-radius: 50%;
   transform: rotate(45deg);
-  margin: -50px auto;
+  margin: 20px -10px -33px 8px;//上，右，下，左
+  /*color: #ffffff;*/
+  /*background-color: #ffffff;*/
 
   display: inline-block;
   /* The background is used to specify the border background */
@@ -27,4 +29,312 @@
 @keyframes loading {
   0% { transform: translate(-9px, -25px) rotate(0deg); }
   100% { transform: translate(-9px, -25px) rotate(360deg); }
+}
+
+.circle1 {
+  /*background: none repeat scroll 0 0 #02b5bb;*/
+  background-image:url(../img/circle1.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle2{
+  /*background: none repeat scroll 0 0 #9d55b8;*/
+  background-image:url(../img/circle2.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle3{
+  /*background: none repeat scroll 0 0 #ea8010;*/
+  background-image:url(../img/circle3.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle4{
+  /*background: none repeat scroll 0 0 #84cd30;*/
+  background-image:url(../img/circle4.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle5{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle5.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle6{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle6.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square1{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu1.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square2{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu2.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square3{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu3.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square4{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu4.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square5{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu5.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square6{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu6.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.squareliao1{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  border-radius: 30%;
+  border: 2px solid;
+  border-top-color: #848484;
+  border-left-color: #848484;
+  border-bottom-color: #848484;
+  border-right-color: #848484;
+  background-color: #ffffff;
+  text-align: center;
+}
+/* Custom Fonts */
+@font-face {
+  font-family: 'avenir';
+  src: url('../fonts/avenir-book.eot');
+  src: url('../fonts/avenir-book.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/avenir-book.woff2') format('woff2'),
+  url('../fonts/avenir-book.woff') format('woff'),
+  url('../fonts/avenir-book.ttf') format('truetype'),
+  url('../fonts/avenir-book.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Side the scroll bar */
+.scroll-bar-indicator {
+  display: none;
+}
+
+/*
+	App Intro Styles
+*/
+
+.intro_wrapper {
+  width: 100%;
+  background-color: #22c064;
+}
+.intro_wrapper img {
+  width: 90%;
+  /*padding-top: 20px;*/
+  /*margin-bottom: -5px;*/
+  padding-left: 8%;
+}
+.intro_title {
+  background-color: #1a944d;
+}
+.intro_title h3 {
+  font-family: 'avenir-light', sans-serif;
+  font-size: 25px;
+  text-transform: capitalize;
+  text-align: center;
+  color: #fff;
+  padding: 25px;
+}
+.bar-footer {
+  background-image: none;
+  /*height: 114px;
+  padding-top: 38px;*/
+  /*margin-bottom: 20px;*/
+  position: absolute;
+  z-index: 1;
+}
+.bar-footer a {
+  text-decoration: none;
+  color: #22c064;
+  font-family: 'avenir', sans-serif;
+  font-size: 20px;
+  padding-left: 15px;
+}
+.bar-footer i.ion {
+  float: right;
+  padding-right: 20px;
+  font-size: 20px;
+  color: #22c064;
+  cursor: pointer;
+}
+.bar .button.button-clear.start {
+  font-size: 17px;
+  background-color: #22c064;
+  color: #fff;
+  padding: 4px 24px;
+  margin-top: -10px;
+  opacity: 1;
+}
+.baifenbai {
+  height: 100%;
+}
+.slider-pager {
+  bottom: 35px;
+  z-index: 3;
+  width: 45%;
+  margin-left: 30%;
+}
+.slider-pager .slider-pager-page i.ion-record:before {
+  /*color: #fff;*/
+  color: #22c064;
+}
+.slider-pager .slider-pager-page.active i.ion-record:before {
+  color: #22c064;
+}
+#container, #sliders {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#container {
+  height: 400px;
+}
+.yuanjiao{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  border-radius: 5%;
+}
+
+.tongzhi1{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/oa.png);
+  /*border-radius: 30%;*/
+  /*color: #FFFFFF;*/
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.rj-message-wrap .rj-notification{
+
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #fff;
+
 }

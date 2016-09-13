@@ -4,7 +4,6 @@ import com.tky.mqtt.paho.utils.SwitchLocal;
 
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttPingSender;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +16,9 @@ public class MqttParams {
 	private String userName = "lb";
 	private String password = "lb";
 	private MqttClientPersistence persistence = new MemoryPersistence();
-	private MqttPingSender pingSender = new MqttChatPingSender();
+	private MqttChatPingSender pingSender = new MqttChatPingSender();
 	private int connectionTimeout = 10;
-	private int keepAliveInterval = 300;//Integer.MAX_VALUE;
+	private int keepAliveInterval = 20;//Integer.MAX_VALUE;
 	private MqttConnectOptions options;
 	private boolean cleanSession = false;
 
@@ -83,11 +82,11 @@ public class MqttParams {
 		this.persistence = persistence;
 	}
 
-	public MqttPingSender getPingSender() {
+	public MqttChatPingSender getPingSender() {
 		return pingSender;
 	}
 
-	public void setPingSender(MqttPingSender pingSender) {
+	public void setPingSender(MqttChatPingSender pingSender) {
 		this.pingSender = pingSender;
 	}
 

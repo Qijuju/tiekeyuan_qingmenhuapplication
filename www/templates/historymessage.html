@@ -2,7 +2,7 @@
   <ion-nav-bar align-title="center">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goSetting()">
-        设置
+        返回
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -16,20 +16,40 @@
     <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
 
     <div ng-repeat="historyduifangaaa in historyduifangsss">
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">
-          <img src="img/mike.png" class="rj-head-pic">
-          <span class="rj-triangle-left"></span>
-          <p class="rj-message">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
-        </div>
+      <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
+      <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID==id">
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==3||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==7" class=" circle3" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==4||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==6" class=" circle4" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==5||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==0" class=" circle5" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <!--<img src="img/mike.png" class="rj-head-pic">-->
+        <!--<span class="rj-triangle-left" style="margin-left: -1%"></span>-->
+        <!--<p class="rj-message" style="margin-left: 15%">{{historyduifangaaa.Msg}}</p>-->
+        <p class="rj-message" style="margin-left: 45px">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
+      </div>
+      <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID == UserID">
+        <!--<img src="img/circle6.png" class="rj-head-pic-right"><p class="rj-triangle-right" style="font-size: 13px;position: absolute;left: 5%;top: 23%;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}} </p>-->
+        <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <!--<span class="rj-triangle-right"></span>-->
+        <span>
+        <p style="float: right;margin-right: 36px"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
+        </span>
+      </div>
+        <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->
+          <!--<img src="img/mike.png" class="rj-head-pic">-->
+          <!--<span class="rj-triangle-left"></span>-->
+          <!--<p class="rj-message">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>-->
+        <!--</div>-->
 
 
-        <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID)">
-          <img src="img/ben.png" class="rj-head-pic-right">
-          <span class="rj-triangle-right"></span>
-           <span>
-             <p style="float: right;"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
-          </span>
-        </div>
+        <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID)">-->
+          <!--<img src="img/ben.png" class="rj-head-pic-right">-->
+          <!--<span class="rj-triangle-right"></span>-->
+           <!--<span>-->
+             <!--<p style="float: right;"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>-->
+          <!--</span>-->
+        <!--</div>-->
     </div>
 
   </ion-content>
@@ -54,6 +74,5 @@
         <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
       </div>
     </div>
-
   </ion-footer-bar>
 </ion-view>

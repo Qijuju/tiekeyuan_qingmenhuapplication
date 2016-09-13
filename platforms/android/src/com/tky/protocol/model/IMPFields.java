@@ -10,6 +10,7 @@ public class IMPFields {
 	public static final String DT_Int = "I";
 	public static final String DT_Long = "L";
 	public static final String DT_String = "S";
+	public static final String DT_String_CN = "C";
 	public static final String DT_List = "A";
 	public static final String DT_Map = "M";
 
@@ -30,6 +31,7 @@ public class IMPFields {
 	public static final String M_Type_Dept = "D";
 	public static final String M_Type_Radio = "R";
 	public static final String M_Type_Recipt = "C";
+	public static final String M_Type_Alarm = "A";
 
 	public static final String Msg_mediaType = "mediaType";
 	public static final String M_MsgType_Text  = "T";
@@ -54,7 +56,23 @@ public class IMPFields {
 	public static final String Msg_message = "message";
 	public static final String Msg_fromName = "fromName";
 
+	public static final String Eventwhen = "when";
 	public static final String EventCode = "EventCode";
 	public static final String Event = "Event";
+
+	public static final String E_GroupID = "GroupID";
+	public static final String E_GroupName = "GroupName";
+	public static final String E_UserName = "UserName";
+	public static final String E_UpdateObj = "UpdateObj";
+
+	public static final String E_Code_YAA ="YAA";
+	public static final String E_Code_YAM ="YAM";
+	public static final String E_Code_G00 ="G00";
+	public static final String E_Code_YRA ="YRA";
+	public static final String E_Code_YRM ="YRM";
+	public static final String E_Code_GAM ="GAM";
+	public static final String E_Code_GRM ="GRM";
+	public static final String E_Code_RG0 ="RG0";
+	public static final String E_Code_GN0 ="GN0";
 
 }

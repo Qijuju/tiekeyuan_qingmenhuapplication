@@ -14,7 +14,8 @@ public class IMMsgFactory {
 		System,		//系统推送 S
 		Radio,		//广播消息 R
 		Receipt,	//回执消息 C
-		Dept		//部门消息 D
+		Dept,		//部门消息 D
+		Alarm		//警报消息 A
 	};
 	public enum MediaType{
 		Text,		//文本 T
@@ -34,6 +35,7 @@ public class IMMsgFactory {
 		False		//不需要回执
 	};
 
+	//需要添加发送人名
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
 								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException{
 		Map<String,Object> msgMap = new HashMap<String,Object>();
@@ -74,13 +76,14 @@ public class IMMsgFactory {
 
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
 		msgMap.put(IMPFields.Msg_type, getMsgType(msgMap.get(IMPFields.Msg_type).toString()));
-		msgMap.put(IMPFields.Msg_mediaType, getMsgType(msgMap.get(IMPFields.Msg_mediaType).toString()));
+		msgMap.put(IMPFields.Msg_mediaType, getMediaType(msgMap.get(IMPFields.Msg_mediaType).toString()));
 		msgMap.put(IMPFields.Msg_platform, getPlatformType(msgMap.get(IMPFields.Msg_platform).toString()));
 		msgMap.put(IMPFields.Msg_receipt, getReceipt(msgMap.get(IMPFields.Msg_receipt).toString()));
 		msgMap.put(IMPFields.Msg_when, msgMap.get(IMPFields.Msg_when));
 		msgMap.put(IMPFields.Msg_to, msgMap.get(IMPFields.Msg_to));
 		msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
 		msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
+		msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
 		return msgMap;
 	}
 
@@ -88,6 +91,24 @@ public class IMMsgFactory {
 		return ProtocolUtil.unPackage(msgData);
 	}
 
+	public static Map<String, Object> createNotify(byte[] msgData) throws IMPException{
+		Map<String,Object> msgMap = ProtocolUtil.unPackage(msgData);
+
+		Object notifyType = msgMap.get(IMPFields.NotifyType);
+		if(notifyType != null && notifyType.equals(IMPFields.N_Type_Msg)){
+			msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
+			msgMap.put(IMPFields.Msg_type, getMsgType(msgMap.get(IMPFields.Msg_type).toString()));
+			msgMap.put(IMPFields.Msg_mediaType, getMediaType(msgMap.get(IMPFields.Msg_mediaType).toString()));
+			msgMap.put(IMPFields.Msg_platform, getPlatformType(msgMap.get(IMPFields.Msg_platform).toString()));
+			msgMap.put(IMPFields.Msg_receipt, getReceipt(msgMap.get(IMPFields.Msg_receipt).toString()));
+			msgMap.put(IMPFields.Msg_when, msgMap.get(IMPFields.Msg_when));
+			msgMap.put(IMPFields.Msg_to, msgMap.get(IMPFields.Msg_to));
+			msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
+			msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
+			msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
+		}
+		return msgMap;
+	}
 	private static String getMsgType(MsgType msgType){
 		String msgTypeStr = "";
 		switch(msgType){
@@ -183,6 +204,8 @@ public class IMMsgFactory {
 			msgTypeStr = MsgType.Radio;
 		} else if(msgType.equals(IMPFields.M_Type_Recipt)){
 			msgTypeStr = MsgType.Receipt;
+		} else if(msgType.equals(IMPFields.M_Type_Alarm)){
+			msgTypeStr = MsgType.Alarm;
 		}
 		return msgTypeStr;
 	}

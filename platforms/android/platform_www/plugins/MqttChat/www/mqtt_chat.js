@@ -35,5 +35,8 @@ exports.getTopic = function(userID,type,success, error) {//获取当前登录用
 exports.getUserId = function(success, error) {//获取当前登录用户的topic
     exec(success, error, "MqttChat", "getUserId", []);
 };
+exports.openDocWindow = function(success, error) {//打开文件管理器
+    exec(success, error, "MqttChat", "openDocWindow", []);
+};
 
 });

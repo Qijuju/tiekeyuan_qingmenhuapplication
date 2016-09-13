@@ -30,11 +30,50 @@ angular.module('im.routes', [])
         abstract: true,
         templateUrl: 'templates/tabs.html'
       })
-
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html',
+        controller: 'welcomeCtrl'
+      })
+      .state('newspage', {
+        url: '/newspage',
+        templateUrl: 'templates/newsPage.html',
+        controller: 'newspageCtrl'
+      })
+      .state('datapicture', {
+        url: '/datapicture',
+        templateUrl: 'templates/datapicture.html',
+        controller: 'datapictureCtrl',
+        cache:false
+      })
+      .state('twoDimensionPic', {
+        url: '/twoDimensionPic',
+        templateUrl: 'templates/twoDimensionPic.html',
+        controller: 'twoDimensionPicCtrl',
+        cache:false
+      })
+      .state('groupcall', {
+        url: '/groupcall',
+        templateUrl: 'templates/groupcall.html',
+        controller: 'groupcallCtrl',
+        cache:false
+      })
+      .state('gesturepassword', {
+        url: '/gesturepassword',
+        templateUrl: 'templates/gesturepassword.html',
+        controller: 'gesturepasswordCtrl',
+        cache:false
+      })
+      .state('updategespassword', {
+        url: '/updategespassword',
+        templateUrl: 'templates/updategespassword.html',
+        controller: 'updategespasswordCtrl',
+        cache:false
+      })
       // Each tab has its own nav history stack:
 
       .state('tab.message', {
-        url: '/message/:id/:sessionid',
+        url: '/message/:id/:sessionid/:grouptype',
         cache:false,
         views: {
           'tab-message': {
@@ -44,8 +83,26 @@ angular.module('im.routes', [])
         }
       })
 
+      .state('tab.notification', {
+        url: '/notification',
+        cache:false,
+        views: {
+          'tab-notification': {
+            templateUrl: 'templates/tab-notification.html',
+            controller: 'notificationCtrl'
+          }
+        }
+      })
+      .state('notificationDetail', {
+        url: '/notificationDetail/:id/:name/:type',
+        templateUrl: 'templates/notificationDetail.html',
+        cache:false,
+        controller: 'notificationDetailCtrl'
+      })
+
+
       .state('messageDetail', {
-        url: '/messageDetail/:id/:ssid',
+        url: '/messageDetail/:id/:ssid/:grouptype',
         templateUrl: 'templates/message-detail.html',
         cache:false,
         controller: 'MessageDetailCtrl'
@@ -55,8 +112,9 @@ angular.module('im.routes', [])
 
 
       .state('messageGroup', {
-        url: '/messageGroup',
+        url: '/messageGroup/:id/:chatName/:grouptype/:ismygroup',
         templateUrl: 'templates/message-group.html',
+        cache:false,
         controller: 'MessageGroupCtrl'
 
 
@@ -87,10 +145,49 @@ angular.module('im.routes', [])
       })
 
       .state('groupSetting', {
-        url: '/groupSetting',
+        url: '/groupSetting/:groupid/:chatname/:grouptype/:ismygroup',
         templateUrl: 'templates/group-setting.html',
-        controller: 'groupSettingCtrl'
+        controller: 'groupSettingCtrl',
+        cache:false
       })
+      .state('groupModifyName', {
+        url: '/groupModifyName/:groupid/:groupname',
+        templateUrl: 'templates/group-modifyname.html',
+        controller: 'groupModifyNameCtrl',
+        cache:false
+
+      })
+      .state('groupNotice', {
+        url: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup',
+        templateUrl: 'templates/group-notice.html',
+        controller: 'groupNoticeCtrl',
+        cache:false
+
+      })
+      .state('groupCreateNotice', {
+        url: '/groupCreateNotice/:groupid/:grouptype/:groupname/:grouptext',
+        templateUrl: 'templates/group-createNotice.html',
+        controller: 'groupCreateNoticeCtrl',
+        cache:false
+
+      })
+
+      .state('groupMember', {
+        url: '/groupMember/:groupid/:chatname/:grouptype/:ismygroup',
+        templateUrl: 'templates/group-member.html',
+        controller: 'groupMemberCtrl',
+        cache:false
+
+      })
+
+      .state('groupDeptMember', {
+        url: '/groupDeptMember/:groupid/:chatname/:grouptype',
+        templateUrl: 'templates/group-deptmember.html',
+        controller: 'groupDeptMemberCtrl',
+        cache:false
+
+      })
+
 
 
       .state('tab.contacts', {
@@ -179,12 +276,14 @@ angular.module('im.routes', [])
       .state('localContacts', {
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
-        controller: 'LocalContactCtrl'
+        controller: 'LocalContactCtrl',
+        cache:false
 
       })
 
       .state('tab.chats', {
         url: '/chats',
+        cache: false,
         views: {
           'tab-chats': {
             templateUrl: 'templates/tab-chats.html',
@@ -208,6 +307,12 @@ angular.module('im.routes', [])
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl',
       })
+      .state('gesturelogin', {
+        url: '/gesturelogin',
+        cache: false,
+        templateUrl: 'templates/gesturelogin.html',
+        controller: 'gestureloginCtrl'
+      })
 
       .state('tab.account', {
         url: '/account',
@@ -227,6 +332,19 @@ angular.module('im.routes', [])
         cache:false
       })
 
+      .state('searchmessage', {
+        url: '/searchmessage/:UserIDSM/:UserNameSM',
+        templateUrl: 'templates/searchmessage.html',
+        controller: 'searchmessageCtrl',
+        cache:false
+      })
+      .state('searchmessage22', {
+        url: '/searchmessage22/:UserIDSM/:UserNameSM/:Username2/:Usermessage2',
+        templateUrl: 'templates/searchmessage2.html',
+        controller: 'searchmessage22Ctrl',
+        cache:false
+      })
+
       .state('searchdetail', {
         url: '/searchdetail/:UserID',
         templateUrl: 'templates/searchDetail.html',
@@ -235,39 +353,66 @@ angular.module('im.routes', [])
       })
 
       .state('addnewpersonfirst', {
-        url: '/addnewpersonfirst',
+        url: '/addnewpersonfirst/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-first.html',
-        controller: 'addNewPersonfirstCtrl'
+        controller: 'addNewPersonfirstCtrl',
+        cache:false,
       })
       .state('addnewpersonsecond', {
-        url: '/addnewpersonsecond/:contactId',
+        url: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-second.html',
-        controller: 'addNewPersonsecondCtrl'
+        controller: 'addNewPersonsecondCtrl',
+        cache:false,
       })
       .state('addnewpersonthird', {
-        url: '/addnewpersonthird/:contactId',
+        url: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-third.html',
-        controller: 'addNewPersonthirdCtrl'
+        controller: 'addNewPersonthirdCtrl',
+        cache:false,
       })
       .state('addnewpersonforth', {
-        url: '/addnewpersonforth/:contactId',
+        url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-forth.html',
-        controller: 'addNewPersonforthCtrl'
+        controller: 'addNewPersonforthCtrl',
+        cache:false
+
       })
       .state('addnewpersonfifth', {
-        url: '/addnewpersonfifth/:contactId',
+        url: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-fifth.html',
-        controller: 'addNewPersonfifthCtrl'
+        controller: 'addNewPersonfifthCtrl',
+        cache:false
+
       })
       .state('addnewpersonsixth', {
-        url: '/addnewpersonsixth/:contactId',
+        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype/:groupid/:groupname',
         templateUrl: 'templates/addNewPerson-sixth.html',
-        controller: 'addNewPersonsixthCtrl'
+        controller: 'addNewPersonsixthCtrl',
+        cache:false
+
       })
+      .state('addnewpersonseventh', {
+        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype/:groupid/:groupname',
+        templateUrl: 'templates/addNewPerson-seventh.html',
+        controller: 'addNewPersonseventhCtrl',
+        cache:false
+
+      })
+
+      .state('addnewpersoneighth', {
+        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype/:groupid/:groupname',
+        templateUrl: 'templates/addNewPerson-eighth.html',
+        controller: 'addNewPersoneighthCtrl',
+        cache:false
+
+      })
+
+
+
       .state('searchlocal', {
         url: '/searchlocal',
         templateUrl: 'templates/searchLocal.html',
-        controller: 'searchLocalCtrl'
+        controller: 'searchLocalCtrl',
       })
 
       .state('attentionDetail', {
@@ -278,9 +423,15 @@ angular.module('im.routes', [])
       })
 
       .state('historyMessage', {
-        url: '/historyMessage/:id/:ssid',
+        url: '/historyMessage/:id/:ssid/:grouptype',
         templateUrl: 'templates/historymessage.html',
         controller: 'historyMessageCtrl',
+        cache:false
+      })
+      .state('historymessagegroup', {
+        url: '/historymessagegroup/:id/:ssid/:grouptype',
+        templateUrl: 'templates/historymessagegroup.html',
+        controller: 'historymessagegroupCtrl',
         cache:false
       })
       .state('myinformation', {
@@ -302,6 +453,6 @@ angular.module('im.routes', [])
         cache:false
       })
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
-
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/welcome');
   });

@@ -22,6 +22,7 @@ import java.util.Map;
 import im.server.Department.IMDepartment;
 import im.server.File.IMFile;
 import im.server.File.RSTversion;
+import im.server.Group.IMGroup;
 import im.server.Message.IMMessage;
 import im.server.System.IMSystem;
 import im.server.User.IMUser;
@@ -42,7 +43,7 @@ public class SystemApi {
      */
     private static IMSystem.AsyncClient getSystemClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -55,7 +56,7 @@ public class SystemApi {
      */
     private static IMDepartment.AsyncClient getDeptClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6002, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6002, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -68,7 +69,7 @@ public class SystemApi {
      */
     private static IMUser.AsyncClient getUserClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6003, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6003, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -81,14 +82,14 @@ public class SystemApi {
      */
     private static IMFile.AsyncClient getFileAsyncClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6006, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6006, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMFile.AsyncClient asyncClient = new IMFile.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
-    private static FileSyncClient getFileSyncClient() throws IOException{
-        TTransport transport2 = new TFramedTransport(new TSocket("61.237.239.152", 6006, 300000));
+    public static FileSyncClient getFileSyncClient() throws IOException{
+        TTransport transport2 = new TFramedTransport(new TSocket("61.237.239.152", 6006, 5000));
         TProtocol protocol2 = new TCompactProtocol(transport2);
         IMFile.Client fileClient = new IMFile.Client(protocol2);
         try {
@@ -106,7 +107,7 @@ public class SystemApi {
      */
     private static IMAttention.AsyncClient getAttentionClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6007, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6007, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -119,9 +120,22 @@ public class SystemApi {
      */
     private static IMMessage.AsyncClient getMsgClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 30000);
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
+        return asyncClient;
+    }
+
+    /**
+     * 获取一个AsyncClient对象
+     * @return
+     * @throws IOException
+     */
+    private static IMGroup.AsyncClient getGroupClient() throws IOException {
+        TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6004, 5000);
+        TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+        IMGroup.AsyncClient asyncClient = new IMGroup.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
@@ -274,6 +288,16 @@ public class SystemApi {
     }
 
     /**
+     * 获取用户信息
+     * @param ID 用户ID
+     * @param userMB 要查询用户的本地ID和手机号
+     */
+    public static void checkLocalUser(String ID, Map<String, String> userMB, AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call> callback) throws IOException, TException {
+        IMUser.AsyncClient userClient = getUserClient();
+        userClient.CheckLocalUser(ID, userMB, callback);
+    }
+
+    /**
      * 获取头像图片
      * @param ID 用户ID
      * @param userID 要查询用户的ID
@@ -327,6 +351,40 @@ public class SystemApi {
      */
     public static boolean getVersion(String savePath, String ID, String apkVersion) throws IOException, TException {
         return downloadApk(savePath, apkVersion, ID, apkVersion);
+    }
+
+    /**
+     * 上传头像&发送文件(图片or音频)
+     * @param ID 用户ID
+     * @param objectTP 设置对象的类型：U:用户；G:群组；I:发送图片；A:声音；F:文件(未指定时，默认F)
+     * @param objectID 设置对象的ID:与objectTP对应，I,A,F时当offset=0时为null，offset>0时为起始发送时产生的fileID。
+     * @param fileByte 文件二进制流
+     * @param offset 上传的文件偏移位置，0表示从头开始；
+     * @param isFinish 文件是否传完。True表示传输完成
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void sendFile(String ID, String objectTP, String objectID, ByteBuffer fileByte, long offset, boolean isFinish, AsyncMethodCallback<IMFile.AsyncClient.SendFile_call> callback) throws IOException, TException {
+        IMFile.AsyncClient fileClient = getFileAsyncClient();
+        fileClient.SendFile(ID, objectTP, objectID, fileByte, offset, isFinish, callback);
+    }
+
+    /**
+     * 获取头像&获取文件(图片or音频)
+     * @param ID 用户ID
+     * @param objectTP 与SendFile对应
+     * @param objectID 与SendFile对应
+     * @param picSize 只对U、G和I有效,PicSize选项见下表
+     * @param offset 文件开始下载的位置
+     * @param getSize 请求的长度，为0时，采用默认
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getFile(String ID, String objectTP, String objectID, String picSize, long offset, int getSize, AsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback) throws IOException, TException {
+        IMFile.AsyncClient fileClient = getFileAsyncClient();
+        fileClient.GetFile(ID, objectTP, objectID, picSize, offset, getSize, callback);
     }
 
     /**
@@ -450,6 +508,145 @@ public class SystemApi {
     public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
         IMMessage.AsyncClient client = getMsgClient();
         client.GetMsgCount(ID, sessionType, sessionID, callback);
+    }
+
+    /**
+     * 创建群组
+     * @param ID 用户ID
+     * @param groupName 群名称
+     * @param depts 直接选择的部们【deptID】列表
+     * @param members 加入群的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void addGroup(String ID, String groupName, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.AddGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.AddGroup(ID, groupName, depts, members, callback);
+    }
+
+    /**
+     * 获取群组（列表）信息
+     * @param ID 用户ID
+     * @param groupIds 群组ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getGroup(String ID, List<String> groupIds, AsyncMethodCallback<IMGroup.AsyncClient.GetGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetGroup(ID, groupIds, callback);
+    }
+
+    /**
+     * 修改群信息
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param groupName 群名称
+     * @param groupText 群公告
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void modifyGroup(String ID, String groupType, String groupID, String groupName, String groupText, AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.ModifyGroup(ID, groupType, groupID, groupName, groupText, callback);
+    }
+
+    /**
+     * 解散群组
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void removeGroup(String ID, String groupID, AsyncMethodCallback<IMGroup.AsyncClient.RemoveGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.RemoveGroup(ID, groupID, callback);
+    }
+
+    /**
+     * 获取群组指定信息
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param getObjects 查询的项目代码列表（参考下表）
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getGroupUpdate(String ID, String groupType, String groupID, List<String> getObjects, AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetGroupUpdate(ID, groupType, groupID, getObjects, callback);
+    }
+
+    /**
+     * 群组添加人员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param depts 加入群的部门ID列表
+     * @param members 需要添加的人员列表信息
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupAddMember(String ID, String groupID, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddMember_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupAddMember(ID, groupID, depts, members, callback);
+    }
+
+    /**
+     * 群组移除人员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param members 需要移除的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupRemoveMember(String ID, String groupID, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveMember_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupRemoveMember(ID, groupID, members, callback);
+    }
+
+    /**
+     * 群组添加管理员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param admins 需要添加为管理员的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupAddAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddAdmin_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupAddAdmin(ID, groupID, admins, callback);
+    }
+
+    /**
+     * 群组移除管理员（列表）
+     * @param ID 用户ID
+     * @param groupID 群组ID
+     * @param admins 需要移除管理员的人员ID列表
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveAdmin_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GroupRemoveAdmin(ID, groupID, admins, callback);
+    }
+
+    /**
+     * 获取用户所有群组
+     * @param ID 用户ID
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getAllGroup(String ID, AsyncMethodCallback<IMGroup.AsyncClient.GetAllGroup_call> callback) throws IOException, TException {
+        IMGroup.AsyncClient client = getGroupClient();
+        client.GetAllGroup(ID, callback);
     }
 
 }

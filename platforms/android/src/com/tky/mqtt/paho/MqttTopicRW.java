@@ -2,7 +2,13 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.paho.utils.SwitchLocal;
+
+import org.eclipse.paho.client.mqttv3.MqttTopic;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class MqttTopicRW {
@@ -32,6 +38,37 @@ public class MqttTopicRW {
 		}
 		return map;
 	}
+
+	/**
+	 * 删除一个topic，根据groupID
+	 * @param groupID
+	 */
+	public static void remove(String groupID) {
+		Map<String, Integer> topicsAndQoss = getTopicsAndQoss();
+		String aTopic = SwitchLocal.getATopic(MType.G, groupID);
+		topicsAndQoss.remove(aTopic);
+		StringBuilder sb = new StringBuilder();
+		Iterator iterator = topicsAndQoss.keySet().iterator();
+		while (iterator.hasNext()){
+			String key=(String)iterator.next();
+			int val=topicsAndQoss.get(key);
+			sb.append(key+"#"+val+";");
+		}
+		String resavetopic = sb.toString();
+		resavetopic = resavetopic.substring(0, resavetopic.length() - 1);
+		SPUtils.save(key, resavetopic);
+	}
+
+	/**
+	 * 检查发过来的消息是否是自己发送的
+	 * @param type
+	 * @param from
+	 * @return
+	 */
+	public static boolean isFromMe(String type, String from) {
+		String aTopic = SwitchLocal.getATopic(SwitchLocal.getType(type), from);
+		return getTopicsAndQoss().containsKey(aTopic);
+	}
 	
 	/**
 	 * 发布主题，必须是启动Mqtt之后
@@ -44,6 +81,7 @@ public class MqttTopicRW {
 		intent.putExtra("topic", topic);
 		intent.putExtra("qos", qos);
 		UIUtils.getContext().sendBroadcast(intent);
+		SPUtils.save(getKey(), SPUtils.getString(getKey(), "") + ";" + topic + "#" + qos);
 	}
 
 	public static String getKey() {

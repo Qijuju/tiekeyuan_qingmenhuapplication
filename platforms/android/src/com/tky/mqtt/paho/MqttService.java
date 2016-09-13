@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.tky.mqtt.paho.utils.MqttOper;
+
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MqttService extends Service {
@@ -14,7 +16,7 @@ public class MqttService extends Service {
 	public IBinder onBind(Intent intent) {
 		return null;
 	}
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -26,9 +28,16 @@ public class MqttService extends Service {
 					mqttConnection.connect(getBaseContext());
 				} catch (MqttException e) {
 					e.printStackTrace();
-				}				
+				}
 			}
 		}).start();
+		/*mqttConnection = new MqttConnection();
+		try {
+			mqttConnection.connect(getBaseContext());
+		} catch (MqttException e) {
+			e.printStackTrace();
+		}*/
+
 		/*MqttReceiver receiver = new MqttReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ReceiverParams.MESSAGEARRIVED);
@@ -40,15 +49,19 @@ public class MqttService extends Service {
 			}
 		});*/
 	}
-	
+
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		return super.onStartCommand(intent, flags, startId);
+		return START_STICKY;
 	}
-	
+
 	@Override
 	public void onDestroy() {
-		startService(new Intent(getBaseContext(), MqttService.class));
+		if (mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+			startService(new Intent(getBaseContext(), MqttService.class));
+		} else {
+			MqttOper.freeMqtt();
+		}
 		super.onDestroy();
 	}
 }
