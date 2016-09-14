@@ -170,7 +170,11 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             // $ToastUtils.showToast($scope.chatName + "用户名1");
             $scope.srcName = data[0].username;//消息来源人名字

@@ -40,13 +40,13 @@
           </span>
 
         </div>
-        <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
+        <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
           <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
           <!--<img src="{{imgPath}}" />-->
           <span class="rj-triangle-right" ng-if="msgSingle.messagetype != 'Image'"></span>
           <span>
           <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true'" ng-click="resendgroupshow(groupid,msgSingle.message,groupid,grouptype,localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></font><font class="rj-message-right" ng-if="msgSingle.messagetype != 'Image'">{{msgSingle.message}}</font></p>
+          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></font><font class="rj-message-right" ng-if="msgSingle.messagetype != 'Image'">{{msgSingle.message}}</font></p>
           </span>
           <!--<span class="rj-triangle-right"></span>-->
            <!--<span>-->

@@ -139,7 +139,7 @@ angular.module('im.routes', [])
 
 
       .state('personalSetting', {
-        url: '/personalSetting/:id/:ssid',
+        url: '/personalSetting/:id/:ssid/:oppsiteid/:oppsiteusr',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
