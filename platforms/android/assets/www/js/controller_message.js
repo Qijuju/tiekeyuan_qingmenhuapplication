@@ -62,6 +62,7 @@ angular.module('message.controllers', [])
       for (var i = 1; i <= data.length; i++) {
         $mqtt.getDanliao().push(data[data.length - i]);
       }
+      // $mqtt.setDanliao(data);
       $scope.msgs = $mqtt.getDanliao();
       //$ToastUtils.showToast($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
@@ -173,9 +174,9 @@ angular.module('message.controllers', [])
 
     $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(function (filePath) {
-        alert(filePath);
+        // alert(filePath);
         $api.sendDocFile('F', null, filePath, function (data) {
-          alert(filePath);
+          // alert(filePath);
           // alert(filePath);
           $scope.filePath=data[0];
           $scope.fileObjID=data[1];
@@ -246,7 +247,7 @@ angular.module('message.controllers', [])
          * 判断是单聊未读还是群聊未读
          */
         if ($scope.lastCount > 0 && $scope.firstmessageType ==='User') {
-          // alert("进来单聊");
+          // alert("进来单聊"+$scope.receiverssid);
           //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
           // 接收者id
           // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
@@ -277,7 +278,12 @@ angular.module('message.controllers', [])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            // alert("消息类型"+data[0].messagetype);
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             // $ToastUtils.showToast($scope.chatName + "用户名1");
             $scope.srcName = data[0].username;//消息来源人名字
@@ -492,7 +498,12 @@ angular.module('message.controllers', [])
           $scope.srcId='';//若没有最后一条消息，则将senderid=‘’
           $scope.srcName ='';//若没有最后一条数据，则将senderName=‘’
         } else {
-          $scope.lastText = data[0].message;//最后一条消息内容
+          if(data[0].messagetype === "Image"){
+            // alert("返回即时通");
+            $scope.lastText = "[图片]";//最后一条消息内容
+          }else {
+            $scope.lastText = data[0].message;//最后一条消息内容
+          }
           $scope.lastDate = data[0].when;//最后一条消息的时间
           $scope.chatName = data[0].username;//对话框名称
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
@@ -549,8 +560,10 @@ angular.module('message.controllers', [])
     //点击小头像，跳转到聊天设置界面
     $scope.personalSetting = function () {
       $state.go('personalSetting', {
-        id: $scope.userId,
-        ssid: $scope.viewtitle
+        id: $scope.myUserID,
+        ssid:$scope.localusr,
+        oppsiteid:$scope.userId,
+        oppsiteusr:$scope.viewtitle
       });
     };
 
@@ -728,7 +741,11 @@ angular.module('message.controllers', [])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             // $ToastUtils.showToast($scope.chatName + "用户名1");
             $scope.srcName = data[0].username;//消息来源人名字
@@ -899,7 +916,11 @@ angular.module('message.controllers', [])
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.groupid, function (data) {
         if (data.length === 0) {
           // $ToastUtils.showToast("无数据返回主界面1");
-          $scope.lastText = '';//最后一条消息内容
+          if(data[0].messagetype === "Image"){
+            $scope.lastText = "[图片]";//最后一条消息内容
+          }else {
+            $scope.lastText = data[0].message;//最后一条消息内容
+          }
           $scope.lastDate = 0;//最后一条消息的时间
           $scope.chatName = $scope.chatname;//对话框名称
           $scope.imgSrc = '';//最后一条消息的头像
@@ -1162,7 +1183,7 @@ angular.module('message.controllers', [])
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast(data.length + "收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // $ToastUtils.showToast("没有该会话");
+              // alert("没有该会话");
               $rootScope.isPersonSend = 'true';
               if ($rootScope.isPersonSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
@@ -1185,7 +1206,11 @@ angular.module('message.controllers', [])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             // alert("丧心病狂"+$scope.lastText);
             $scope.lastDate = data[0].when;//最后一条消息的时间
             // $ToastUtils.showToast($scope.chatName + "用户名1");
@@ -1286,8 +1311,9 @@ angular.module('message.controllers', [])
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 if($rootScope.groupName === '' || $rootScope.groupName === undefined){
-                  chatitem.chatName =$rootScope.groupName;
-                  // alert("群名称："+chatitem.chatName);
+
+                    chatitem.chatName =$rootScope.groupName;
+                    // alert("群名称："+chatitem.chatName);
                 }else{
                   chatitem.chatName =data[0].chatName ;
                   // alert("群名称2222"+chatitem.chatName);
@@ -1439,8 +1465,11 @@ angular.module('message.controllers', [])
     })
 
     //取出聊天界面带过来的id和ssid
-    $scope.userId=$stateParams.id;
-    $scope.userName=$stateParams.ssid;
+    $scope.userId=$stateParams.id;//当前用户id
+    $scope.userName=$stateParams.ssid;//当前用户名
+    $scope.oppositeid=$stateParams.oppsiteid;//对方id
+    $scope.oppsiteusr=$stateParams.oppsiteusr;//对方名字
+
 
     $scope.godetailaa=function () {
       $state.go('person',{

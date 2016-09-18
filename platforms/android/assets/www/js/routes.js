@@ -139,7 +139,7 @@ angular.module('im.routes', [])
 
 
       .state('personalSetting', {
-        url: '/personalSetting/:id/:ssid',
+        url: '/personalSetting/:id/:ssid/:oppsiteid/:oppsiteusr',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
@@ -454,7 +454,7 @@ angular.module('im.routes', [])
       })
     // if none of the above states are matched, use this as the fallback
     //入口
-    $urlRouterProvider.otherwise('/welcome');
-    // $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/login');
 
   });

@@ -46,7 +46,7 @@
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
              <p style="margin-right: 10.5%"><font class="rj-message-right">{{msg.message}}</font></p>
-             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendshow(userId,msg.message, userId, localusr,msg._id,msg)">
+             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)">
           </span>
           <!--<img src="img/ben.png" class="rj-head-pic-right">-->
           <!--<span class="rj-triangle-right"></span>-->
