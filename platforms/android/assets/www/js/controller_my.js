@@ -286,7 +286,11 @@ angular.module('my.controllers', [])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             // $ToastUtils.showToast($scope.chatName + "用户名1");
             $scope.srcName = data[0].username;//消息来源人名字
@@ -421,7 +425,7 @@ angular.module('my.controllers', [])
     });
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -486,6 +490,42 @@ angular.module('my.controllers', [])
 
       // myPopup.close(); //关闭
     };
+    //地理位置
+    //获取定位的经纬度
+    var posOptions = {timeout: 100, enableHighAccuracy: false};
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      var lat  = position.coords.latitude+0.006954;//   39.952728
+      var long = position.coords.longitude+0.012647;//  116.329102
+      // $ToastUtils.showToast("经度"+lat+"纬度"+long);
+      // var map = new BMap.Map("container"); // 创建地图实例
+      // var point = new BMap.Point(long, lat); // 创建点坐标
+      // map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.OverviewMapControl());
+      // map.addControl(new BMap.MapTypeControl());
+      // var marker = new BMap.Marker(point); // 创建标注
+      // map.addOverlay(marker); // 将标注添加到地图中
+      // marker.enableDragging();
+      // marker.addEventListener("dragend", function(e){
+      //   alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+      // })
+
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
+      // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          // alert(result.address);
+          $scope.geolocation=result.address;
+        }
+      });
+
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+      // error
+    });
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
     $scope.meizuo=function () {
