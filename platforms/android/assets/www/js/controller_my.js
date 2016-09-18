@@ -492,7 +492,7 @@ angular.module('my.controllers', [])
     };
     //地理位置
     //获取定位的经纬度
-    var posOptions = {timeout: 100, enableHighAccuracy: false};
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       var lat  = position.coords.latitude+0.006954;//   39.952728
       var long = position.coords.longitude+0.012647;//  116.329102

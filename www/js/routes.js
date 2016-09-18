@@ -102,7 +102,7 @@ angular.module('im.routes', [])
 
 
       .state('messageDetail', {
-        url: '/messageDetail/:id/:ssid/:grouptype',
+        url: '/messageDetail/:id/:ssid/:grouptype/:longitude/:latitude',
         templateUrl: 'templates/message-detail.html',
         cache:false,
         controller: 'MessageDetailCtrl'
@@ -450,6 +450,12 @@ angular.module('im.routes', [])
         url: '/aboutours/:UserIDabout',
         templateUrl: 'templates/aboutours.html',
         controller: 'aboutoursCtrl',
+        cache:false
+      })
+      .state('sendGelocation', {
+        url: '/sendGelocation/:id/:ssid/:grouptype',
+        templateUrl: 'templates/sendGelocation.html',
+        controller: 'sendGelocationCtrl',
         cache:false
       })
     // if none of the above states are matched, use this as the fallback
