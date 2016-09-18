@@ -357,6 +357,7 @@ angular.module('message.services', [])
                   $rootScope.firstSessionid=arriveMessage.sessionid;
                   $rootScope.firstUserName=arriveMessage.username;
                   $rootScope.messagetype= arriveMessage.type;
+                  $rootScope.$broadcast('msgs.update');
                   // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
                   danliao.push(arriveMessage);
                 }else{
