@@ -119,6 +119,7 @@ angular.module('message.controllers', [])
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
         // console.log($stateParams.conversationType + '--' + imageURI);
+        alert(imageURI)
         var picPath = imageURI;
         console.log("getPicture:" + picPath);
         // if(isIOS){
