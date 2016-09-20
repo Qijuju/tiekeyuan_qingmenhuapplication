@@ -29,11 +29,14 @@
       </ion-item>
     </ion-list>
     <div ng-if="(lastMsg=='')||(lastMsg.length==0)||(lastMsg==null)">
-    <div style="width: auto">{{historysearchmsg[0]}}</div>
-    <div style="width: auto">{{historysearchmsg[1]}}</div>
-    <div style="width: auto">{{historysearchmsg[2]}}</div>
-    <div style="width: auto">{{historysearchmsg[3]}}</div>
-    <div style="width: auto">{{historysearchmsg[4]}}</div>
+      <div style="text-align: center;background-color: rgba(222, 222, 222, 0.79);width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae">历史搜索记录</div>
+      <div ng-repeat="historymsg in historymsgs">
+        <div style="width: auto;margin-left: 10px;padding-top: 20px;font-size: 20px" ng-click="dosearch(historymsg.msg)">
+          <i class="ion-ios-search"></i>
+          {{historymsg.msg}}
+        </div>
+      </div>
+      <div style="text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #0a80ff" ng-click="deletehistorymsg()">清空历史记录</div>
     </div>
     <!--<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>-->
     <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
