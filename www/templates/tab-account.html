@@ -5,9 +5,14 @@
     <div>
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
 
-        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic(mymypersonname)">
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="setpic(mymypersonname)">{{jiename}}</div>
+        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
+        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{jiename}}</div>
         <P style="font-size: 18px;color: #ffffff">{{mymypersonname}}</P>
+        <div  style="position: absolute;right: 40px;top: 37px;font-size: 15px;color: #ffffff">{{currentcity}}</div>
+        <div  style="position: absolute;right: 40px;top: 57px;font-size: 15px;color: #ffffff">{{weatherzhen}}</div>
+        <div  style="position: absolute;right: 40px;top: 77px;font-size: 15px;color: #ffffff">{{weathdate}}</div>
+        <div  style="position: absolute;right: 40px;top: 97px;font-size: 15px;color: #ffffff">pm25 : {{pm25aa}}</div>
+
       </div>
       <ul class="list">
         <div ng-click="gomyinformation()">

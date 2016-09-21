@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap'])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation) {
 
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
@@ -16,6 +16,30 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }, function (msg) {
       // $ToastUtils.showToast(msg)
     });
+
+    var lat="";
+    var long="";
+    var locationaaa="";
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    // alert("进来了")
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      lat  = position.coords.latitude+0.006954;//   39.952728
+      long = position.coords.longitude+0.012647;//  116.329102
+      locationaaa=long+","+lat;
+      $http.get("http://api.map.baidu.com/telematics/v3/weather?location="+locationaaa+"&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+        .success(function(response) {
+          $scope.pm25aa=response.results[0].pm25;
+          $scope.currentcity=response.results[0].currentCity;
+          $scope.weathdate=response.results[0].weather_data[0].date.substring(11,response.results[0].weather_data[0].date.length-1);
+          $scope.weatherzhen=response.results[0].weather_data[0].weather;
+
+        });
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+    });
+
+
 
     // $ionicPlatform.registerBackButtonAction(function(e) {
     //   if ($location.path() == '/account'){
