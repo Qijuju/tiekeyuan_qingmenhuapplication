@@ -258,17 +258,32 @@ angular.module('message.services', [])
         messageDetail.imgSrc='';
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
-        // alert("发送者id"+localuserId);
+        //判断是不是位置
+        if(messagetype === 'LOCATION'){
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.update');
+            },function (err) {
+            });
+          var arrs = content.split(',');
+          var longt = arrs[0];
+          var lat = arrs[1];
+          messageDetail.message=longt+","+lat;
+        }
         mqtt.sendMsg(topic, messageDetail, function (message) {
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
           }
-          danliao.push(messageDetail);
-          $greendao.saveObj('MessagesService',messageDetail,function (data) {
-            $rootScope.$broadcast('msgs.update');
-          },function (err) {
-            // alert(err+"sendmistake");
-          });
+          //判断是不是位置
+          if(!(messagetype === 'LOCATION')){
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.update');
+            },function (err) {
+              // alert(err+"sendmistake");
+            });
+            alert("发送消息"+content);
+          }
           $rootScope.firstSendId=messageDetail.sessionid;
           // alert("发送消息时对方id"+$rootScope.firstSendId);
           return "成功";
@@ -308,7 +323,7 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          alert("接受消息对方id"+arriveMessage.sessionid+message._id);
+          // alert("接受消息对方id"+arriveMessage.sessionid+message._id);
 
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
 
@@ -602,9 +617,13 @@ angular.module('message.services', [])
       },
       openDocWindow:function(success, error) {//打开文件管理器
         mqtt.openDocWindow(success, error);
+      },
+      openDocWindow:function(success, error) {//打开文件管理器
+        mqtt.openDocWindow(success, error);
+      },
+      getIconDir:function(success,error){
+        mqtt.getIconDir(success,error);
       }
-
-
     };
   })
 
@@ -625,3 +644,26 @@ angular.module('message.services', [])
       }
     }
   })
+
+  // .factory('$cordovaScreenshot',  function ($q){
+  //   return {
+  //     capture: function (filename, extension, quality){
+  //       extension = extension || 'jpg';
+  //       quality = quality || '100';
+  //
+  //       var defer = $q.defer();
+  //
+  //       navigator.screenshot.save(function (error, res){
+  //         if (error) {
+  //           console.error(error);
+  //           defer.reject(error);
+  //         } else {
+  //           console.log('screenshot saved in: ', res.filePath);
+  //           defer.resolve(res.filePath);
+  //         }
+  //       }, extension, quality, filename);
+  //
+  //       return defer.promise;
+  //     }
+  //   };
+  // })

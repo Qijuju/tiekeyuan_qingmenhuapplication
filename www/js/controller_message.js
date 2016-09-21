@@ -28,7 +28,7 @@ angular.module('message.controllers', [])
     // },function (err) {
     //   $ToastUtils.showToast(err);
     // });
-    $scope.userId = $stateParams.id;
+    $scope.userId = $stateParams.id; //对方id
     // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
@@ -36,6 +36,10 @@ angular.module('message.controllers', [])
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;//当前用户id
     $scope.localusr=$rootScope.userName;//当前用户名
+    $scope.longitude = $stateParams.longitude;//当前用户id
+    $scope.latitude=$stateParams.latitude;//当前用户名
+    // alert("经度"+$scope.longitude)
+    // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
@@ -60,6 +64,18 @@ angular.module('message.controllers', [])
         $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
       }
       for (var i = 1; i <= data.length; i++) {
+        // if(data[data.length - i].messagetype === 'LOCATION'){
+        //   alert("jinlaisddfsdsdf");
+        //   var long=data[data.length - i].message.substring(0,(data[data.length - i].message).indexOf(','));
+        //   var lat=data[data.length - i].message.substring((data[data.length - i].message).indexOf(',')+1,data[data.length - i].message.length);
+        //   alert("long"+long);
+        //   alert("lat"+lat);
+        //   var map = new BMap.Map("container"); // 创建地图实例
+        //   var point = new BMap.Point(116.329102, 39.952728); // 创建点坐标
+        //   map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+        //   // var marker = new BMap.Marker(point); // 创建标注
+        //   // map.addOverlay(marker); // 将标注添加到地图中
+        // }
         $mqtt.getDanliao().push(data[data.length - i]);
       }
       // $mqtt.setDanliao(data);
@@ -560,16 +576,55 @@ angular.module('message.controllers', [])
     //点击小头像，跳转到聊天设置界面
     $scope.personalSetting = function () {
       $state.go('personalSetting', {
-        id: $scope.myUserID,
-        ssid:$scope.localusr,
-        oppsiteid:$scope.userId,
-        oppsiteusr:$scope.viewtitle
+        id: $scope.userId,
+        ssid:$scope.viewtitle
       });
     };
+
+    //点击定位，跳转查询位置界面
+    $scope.gogelocation = function (messagetype,topic, content, id,localuser,localuserId,sqlid,groupType) {
+      $state.go('sendGelocation', {
+        topic:topic,
+        id: id,
+        ssid:$scope.viewtitle,
+        localuser:localuser,
+        localuserId:localuserId,
+        sqlid:sqlid,
+        grouptype:$scope.groupType,
+        messagetype:messagetype
+      });
+    };
+    var map ="";
+    var point ="";
+    // $scope.changelocation =function (content) {
+    //   alert("jinlaisddfsdsdf===");
+    //   var long=content.substring(0,(content).indexOf(','));
+    //   var lat=content.substring((content).indexOf(',')+1,content.length);
+    //   alert("long"+long);
+    //   alert("lat"+lat);
+    //   map = new BMap.Map("container"); // 创建地图实例
+    //   point = new BMap.Point(long, lat); // 创建点坐标
+    //   map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+    //   // var marker = new BMap.Marker(point); // 创建标注
+    //   // map.addOverlay(marker); // 将标注添加到地图中
+    // }
 
     $scope.godetail=function (userid) {
       $state.go('person',{
         'userId':userid
+      });
+    }
+
+    $scope.entermap=function (content) {
+      $scope.longitude=content.substring(0,(content).indexOf(','));
+      $scope.latitude=content.substring((content).indexOf(',')+1,content.length);
+      alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
+      $state.go('mapdetail', {
+        id: $scope.userId,
+        ssid:$scope.viewtitle,
+        grouptype:$scope.groupType,
+        longitude:$scope.longitude,
+        latitude:$scope.latitude
       });
     }
 
@@ -1465,10 +1520,8 @@ angular.module('message.controllers', [])
     })
 
     //取出聊天界面带过来的id和ssid
-    $scope.userId=$stateParams.id;//当前用户id
-    $scope.userName=$stateParams.ssid;//当前用户名
-    $scope.oppositeid=$stateParams.oppsiteid;//对方id
-    $scope.oppsiteusr=$stateParams.oppsiteusr;//对方名字
+    $scope.userId=$stateParams.id;//对方用户id
+    $scope.userName=$stateParams.ssid;//对方名字
 
 
     $scope.godetailaa=function () {
@@ -1877,6 +1930,164 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
+    }
+
+  })
+
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt) {
+    //取出聊天界面带过来的id和ssid
+    $scope.topic=$stateParams.topic;
+    $scope.userId=$stateParams.id;//对方用户id
+    $scope.userName=$stateParams.ssid;//对方用户名
+    $scope.localuser=$stateParams.localuser;//当前用户名
+    $scope.localuserId=$stateParams.localuserId;//当前用户id
+    $scope.sqlid=$stateParams.sqlid;//itemid
+    $scope.grouptype=$stateParams.grouptype;//grouptype
+    $scope.messagetype=$stateParams.messagetype;//消息类型
+    alert("拿到的数据"+$scope.userId+$scope.userName+$scope.localuser+$scope.localuserId+$scope.sqlid+$scope.grouptype+$scope.messagetype);
+
+    var lat="";
+    var long="";
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    // alert("进来了")
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      lat  = position.coords.latitude+0.006954;//   39.952728
+      long = position.coords.longitude+0.012647;//  116.329102
+      // $ToastUtils.showToast("经度"+lat+"纬度"+long);
+      var map = new BMap.Map("container"); // 创建地图实例
+      var point = new BMap.Point(long, lat); // 创建点坐标
+      map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.ScaleControl());
+      map.addControl(new BMap.OverviewMapControl());
+      map.addControl(new BMap.MapTypeControl());
+      var marker = new BMap.Marker(point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      marker.enableDragging();
+      marker.addEventListener("dragend", function(e){           //116.341749   39.959682
+        // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        lat=e.point.lat;
+        long=e.point.lng;
+      })
+
+      // // 创建地理编码实例
+      // var myGeo = new BMap.Geocoder();
+      // // 根据坐标得到地址描述
+      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
+      //   if (result){
+      //     alert(result.address);
+      //   }
+      // });
+
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+    });
+
+    //返回
+    $scope.gobackmsg=function () {
+///:id/:ssid/:grouptype
+      $state.go('messageDetail', {
+        id: $scope.userId,
+        ssid:$scope.userName,
+        grouptype:$scope.groupType,
+      });
+    }
+
+    //发送
+    $scope.sendgeloction=function () {
+      // alert("有没有进来发送方法"+$scope.topic+$scope.grouptype);
+      // var path;
+      // $mqtt.getIconDir(function (data) {
+      //   path=data;
+      //   alert("存储截图路径"+path);
+      // },function (err) {
+      //
+      // });
+      var url = new Date().getTime()+"";
+      navigator.screenshot.save(function(error,res){
+        alert("进不进截屏");
+        if(error){
+          console.error(error);
+        }else{
+          // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
+          $scope.screenpath=res.filePath+'/'+url+'.jpg';
+          $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
+            // alert("单聊topic"+userTopic+$scope.grouptype);
+            $scope.content=long+","+lat+","+$scope.screenpath;
+            // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+            $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          }, function (msg) {
+          });
+        }
+      },'jpg',100,url);
+      $state.go('messageDetail', {
+        id: $scope.userId,
+        ssid:$scope.userName,
+        grouptype:$scope.groupType,
+        longitude:long,
+        latitude:lat
+      });
+    }
+
+  })
+
+  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams) {
+    $scope.latitude=$stateParams.latitude;
+    $scope.longitude=$stateParams.longitude;
+    $scope.userId=$stateParams.id;//对方用户id
+    $scope.userName=$stateParams.ssid;//对方用户名
+    $scope.grouptype=$stateParams.grouptype;//grouptype
+    alert("取到经纬度"+$scope.latitude+"==="+$scope.longitude);
+    // var lat="";
+    // var long="";
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    // alert("进来了")
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      // lat  = position.coords.latitude+0.006954;//   39.952728
+      // long = position.coords.longitude+0.012647;//  116.329102
+      // $ToastUtils.showToast("经度"+lat+"纬度"+long);
+      var map = new BMap.Map("container"); // 创建地图实例
+      var point = new BMap.Point($scope.longitude, $scope.latitude); // 创建点坐标
+      map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.ScaleControl());
+      map.addControl(new BMap.OverviewMapControl());
+      map.addControl(new BMap.MapTypeControl());
+      var marker = new BMap.Marker(point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      marker.enableDragging();
+      marker.addEventListener("dragend", function(e){           //116.341749   39.959682
+        // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        lat=e.point.lat;
+        long=e.point.lng;
+      })
+
+      // // 创建地理编码实例
+      // var myGeo = new BMap.Geocoder();
+      // // 根据坐标得到地址描述
+      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
+      //   if (result){
+      //     alert(result.address);
+      //   }
+      // });
+
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+    });
+
+    //返回
+    $scope.gobackmsg=function () {
+      $state.go('messageDetail', {
+        id: $scope.userId,
+        ssid:$scope.userName,
+        grouptype:$scope.groupType
+      });
     }
 
   })
