@@ -604,6 +604,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     };
     //在线升级
     $scope.zaixianshengji = function () {
+      $mqtt.save('install_cancel', 'false');
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
     //扫一扫
