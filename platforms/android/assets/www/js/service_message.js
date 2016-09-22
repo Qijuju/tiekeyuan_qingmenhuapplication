@@ -260,6 +260,7 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         //判断是不是位置
         if(messagetype === 'LOCATION'){
+          alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
@@ -273,6 +274,10 @@ angular.module('message.services', [])
         mqtt.sendMsg(topic, messageDetail, function (message) {
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
+          }
+          if(messagetype === 'LOCATION'){
+            messageDetail.message=content;
+            alert("发送出去后的类型"+messageDetail.messagetype);
           }
           //判断是不是位置
           if(!(messagetype === 'LOCATION')){
@@ -323,7 +328,7 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          // alert("接受消息对方id"+arriveMessage.sessionid+message._id);
+          alert("接受消息对方id"+arriveMessage.messagetype+message._id);
 
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
 
@@ -413,7 +418,61 @@ angular.module('message.services', [])
                 $ToastUtils.showToast("图片下载失败"+err);
               });
 
+            }else if(message.messagetype === "LOCATION"){
+              $greendao.saveObj('MessagesService',arriveMessage,function (data) {
+              },function (err) {
+              });
+              if(message.type==="User"){
+                $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
+                  if(data.length>0){
+                    count=data[0].count;
+                    // alert("有值"+groupCount);
+                    count++;
+                    $rootScope.$broadcast('msgs.update');
+                  }else{
+                    count =0;
+                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                    count++;
+                    $rootScope.$broadcast('msgs.update');
+                    // alert("groupCount"+groupCount);
+                  }
+                },function (err) {
+                  // alert(err);
+                });
+                // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
+                $rootScope.firstSessionid=arriveMessage.sessionid;
+                $rootScope.firstUserName=arriveMessage.username;
+                $rootScope.messagetype= arriveMessage.type;
+                $rootScope.$broadcast('msgs.update');
+                // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
+                danliao.push(arriveMessage);
+              }else{
+                qunliao.push(arriveMessage);
+                $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
+                  if(data.length>0){
+                    groupCount=data[0].count;
+                    // alert("有值"+groupCount);
+                    groupCount++;
+                    $rootScope.$broadcast('msgs.update');
+                  }else{
+                    groupCount =0;
+                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                    groupCount++;
+                    $rootScope.$broadcast('msgs.update');
+                    // alert("groupCount"+groupCount);
+                  }
+                },function (err) {
+                  // alert(err);
+                });
+                // alert("测测是不是先出来");
+
+                $rootScope.firstSessionid=arriveMessage.sessionid;
+                $rootScope.firstUserName=arriveMessage.username;
+                $rootScope.messagetype= arriveMessage.type;
+                // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+              }
             }else{
+              // alert("近来啫哩");
               $greendao.saveObj('MessagesService',arriveMessage,function (data) {
               },function (err) {
               });
@@ -462,7 +521,30 @@ angular.module('message.services', [])
         return "nihao";
       },
       getDanliao:function () {
+        // alert("单聊长度"+danliao.length);
         return danliao;
+      },
+      setDanliao:function (data) {
+        danliao =new Array();
+        for(var i=0;i<data.length;i++){
+          danliao.unshift(data[i]);
+        }
+      },
+      adddanliaodata:function (data) {
+        // for(var i=0;i<=danliao.length-1;i++){
+        //   if( danliao[i].id === data.id){
+        //     // alert("找出chat数组的被更改的数据了"+i);
+        //     danliao.splice(i,1);
+        //   }
+        // }
+        danliao.unshift(data);
+        // alert("建群时消息"+data.message);
+      },
+      setQunliao:function (data) {
+        qunliao=new Array();
+        for(var i=0;i<data.length;i++){
+          qunliao.unshift(data[i]);
+        }
       },
       getQunliao:function () {
         return qunliao;
@@ -479,9 +561,6 @@ angular.module('message.services', [])
       clearSysCount:function () {
         syscount=0;
       },
-      // getAlarmcount:function () {
-      //   return alarmcount;
-      // },
       clearMsgCount:function () {
         count=0;
       },

@@ -6360,7 +6360,7 @@ button.item.item-button-right {
 .item-avatar-left,
 .item-avatar-left .item-content {
   padding-left: 72px;
-  min-height: 72px; }
+  max-height: 68px; }
   .item-avatar > img:first-child,
   .item-avatar .item-image,
   .item-avatar .item-content > img:first-child,

@@ -769,7 +769,7 @@ public class ThriftApiClient extends CordovaPlugin {
     public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
         try {
             String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
-            File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/com.ionicframework.im366077/cache/tmp_IMG_20160822_112508-1513514986.jpg");
+            File file=new File(filePath);
             boolean exists = file.exists();
 
             SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {

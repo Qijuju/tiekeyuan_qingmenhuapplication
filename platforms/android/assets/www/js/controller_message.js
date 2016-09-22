@@ -60,25 +60,13 @@ angular.module('message.controllers', [])
     // $ToastUtils.showToast($scope.viewtitle+"抬头"+$scope.myUserID);
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.userId, function (data) {
       //根据不同用户，显示聊天记录，查询数据库以后，不论有没有数据，都要清楚之前数组里面的数据
-      for (var j = 0; j <= $mqtt.getDanliao().length-1; j++) {
-        $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
-      }
-      for (var i = 1; i <= data.length; i++) {
-        // if(data[data.length - i].messagetype === 'LOCATION'){
-        //   alert("jinlaisddfsdsdf");
-        //   var long=data[data.length - i].message.substring(0,(data[data.length - i].message).indexOf(','));
-        //   var lat=data[data.length - i].message.substring((data[data.length - i].message).indexOf(',')+1,data[data.length - i].message.length);
-        //   alert("long"+long);
-        //   alert("lat"+lat);
-        //   var map = new BMap.Map("container"); // 创建地图实例
-        //   var point = new BMap.Point(116.329102, 39.952728); // 创建点坐标
-        //   map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-        //   // var marker = new BMap.Marker(point); // 创建标注
-        //   // map.addOverlay(marker); // 将标注添加到地图中
-        // }
-        $mqtt.getDanliao().push(data[data.length - i]);
-      }
-      // $mqtt.setDanliao(data);
+      // for (var j = 0; j <= $mqtt.getDanliao().length-1; j++) {
+      //   $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
+      // }
+      // for (var i = 1; i <= data.length; i++) {
+      //   $mqtt.getDanliao().push(data[data.length - i]);
+      // }
+      $mqtt.setDanliao(data);
       $scope.msgs = $mqtt.getDanliao();
       //$ToastUtils.showToast($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
@@ -97,12 +85,13 @@ angular.module('message.controllers', [])
     $scope.doRefresh = function () {
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,' + ($mqtt.getDanliao().length + 10), $scope.userId, function (data) {
         if ($scope.msgs.length < 50) {
-          for (var j = 0; j <= $mqtt.getDanliao().length-1; j++) {
-            $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
-          }
-          for (var i = 1; i <= data.length; i++) {
-            $mqtt.getDanliao().push(data[data.length - i]);
-          }
+          // for (var j = 0; j <= $mqtt.getDanliao().length-1; j++) {
+          //   $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
+          // }
+          // for (var i = 1; i <= data.length; i++) {
+          //   $mqtt.getDanliao().push(data[data.length - i]);
+          // }
+          $mqtt.setDanliao(data);
           $scope.msgs = $mqtt.getDanliao();
         } else if ($scope.msgs.length >= 50) {
           $scope.nomore = "true";
@@ -131,6 +120,7 @@ angular.module('message.controllers', [])
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
         // console.log($stateParams.conversationType + '--' + imageURI);
+        alert(imageURI)
         var picPath = imageURI;
         console.log("getPicture:" + picPath);
         // if(isIOS){
@@ -249,6 +239,8 @@ angular.module('message.controllers', [])
      */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
+        // $scope.msgs=$mqtt.getDanliao();
+        // alert("发送定位之后"+$scope.msgs.length+$scope.msgs[$scope.msgs.length-1].message);
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
         // 当群未读消息lastGroupCount数变化的时候
@@ -432,8 +424,6 @@ angular.module('message.controllers', [])
         }, 100);
       })
     });
-
-
     $scope.$on('msgs.error', function (event) {
       $scope.$apply(function () {
         $scope.msgs = $mqtt.getDanliao();
@@ -459,14 +449,15 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           if (index === 0) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            // $ToastUtils.showToast($mqtt.getDanliao().length);
-            // for(var i=0;i<$mqtt.getDanliao().length;i++){
-            //   $ToastUtils.showToast(sqlid+i+"来了"+$scope.msgs);
-            //   // if($scope.msgs[i]._id === sql_id){
-            //   //   // $mqtt.getDanliao().splice(i, 1);
-            //   //   // break;
-            //   // }
-            // }
+            alert($mqtt.getDanliao().length);
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                break;
+              }
+            }
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
           } else if (index === 1) {
 
@@ -618,7 +609,7 @@ angular.module('message.controllers', [])
     $scope.entermap=function (content) {
       $scope.longitude=content.substring(0,(content).indexOf(','));
       $scope.latitude=content.substring((content).indexOf(',')+1,content.length);
-      alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
+      // alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
       $state.go('mapdetail', {
         id: $scope.userId,
         ssid:$scope.viewtitle,
@@ -683,12 +674,13 @@ angular.module('message.controllers', [])
      */
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.groupid, function (data) {
       // $ToastUtils.showToast("进入群聊界面，查询数据库长度"+data.length);
-      for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
-        $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
-      }
-      for (var i = 1; i <= data.length; i++) {
-        $mqtt.getQunliao().push(data[data.length - i]);
-      }
+      // for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
+      //   $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
+      // }
+      // for (var i = 1; i <= data.length; i++) {
+      //   $mqtt.getQunliao().push(data[data.length - i]);
+      // }
+      $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
     }, function (err) {
       // $ToastUtils.showToast(err);
@@ -705,12 +697,13 @@ angular.module('message.controllers', [])
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,' + ($mqtt.getQunliao().length + 10), $scope.groupid, function (data) {
         if ($scope.groupmsgs.length < 50) {
           // $ToastUtils.showToast("群组刷新《50");
-          for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
-            $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
-          }
-          for (var i =1; i <=data.length; i++) {
-            $mqtt.getQunliao().push(data[data.length - i]);
-          }
+          // for (var j = 0; j <= $mqtt.getQunliao().length-1; j++) {
+          //   $mqtt.getQunliao().splice(j, $mqtt.getQunliao().length);//清除之前数组里存的数据
+          // }
+          // for (var i =1; i <=data.length; i++) {
+          //   $mqtt.getQunliao().push(data[data.length - i]);
+          // }
+          $mqtt.setQunliao(data);
           $scope.groupmsgs = $mqtt.getQunliao();
         } else if ($scope.groupmsgs.length >= 50) {
           $scope.nomore = "true";
@@ -1944,7 +1937,7 @@ angular.module('message.controllers', [])
     $scope.sqlid=$stateParams.sqlid;//itemid
     $scope.grouptype=$stateParams.grouptype;//grouptype
     $scope.messagetype=$stateParams.messagetype;//消息类型
-    alert("拿到的数据"+$scope.userId+$scope.userName+$scope.localuser+$scope.localuserId+$scope.sqlid+$scope.grouptype+$scope.messagetype);
+    // alert("拿到的数据"+$scope.userId+$scope.userName+$scope.localuser+$scope.localuserId+$scope.sqlid+$scope.grouptype+$scope.messagetype);
 
     var lat="";
     var long="";
@@ -2007,12 +2000,12 @@ angular.module('message.controllers', [])
       // });
       var url = new Date().getTime()+"";
       navigator.screenshot.save(function(error,res){
-        alert("进不进截屏");
+        // alert("进不进截屏");
         if(error){
           console.error(error);
         }else{
           // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
-          $scope.screenpath=res.filePath+'/'+url+'.jpg';
+          $scope.screenpath=res.filePath;
           $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
             // alert("单聊topic"+userTopic+$scope.grouptype);
             $scope.content=long+","+lat+","+$scope.screenpath;
@@ -2041,7 +2034,7 @@ angular.module('message.controllers', [])
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方用户名
     $scope.grouptype=$stateParams.grouptype;//grouptype
-    alert("取到经纬度"+$scope.latitude+"==="+$scope.longitude);
+    // alert("取到经纬度"+$scope.latitude+"==="+$scope.longitude);
     // var lat="";
     // var long="";
     //获取定位的经纬度

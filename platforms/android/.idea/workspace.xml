@@ -10,55 +10,111 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/mapdefault.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/mapdefault.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/PermissionHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/Screenshot.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/com.darktalker.cordova.screenshot/www/Screenshot.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/com.darktalker.cordova.screenshot/www/Screenshot.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger789489649257310105.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/mapdetail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/mapdetail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/sendGelocation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/sendGelocation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_0_0.xml" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_annotations_24_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_v4_24_1_1.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/circle_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/circle_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/angular-openweathermap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/angular-openweathermap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/ionic-datepicker.bundle.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" />
+      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger4359886117594973399.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger789489649257310105.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\res\drawable-xxhdpi\icon.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\res\drawable-xxxhdpi\icon.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/icon/drawable-hdpi-icon.png" afterPath="$PROJECT_DIR$/../../resources/android/icon/drawable-hdpi-icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-hdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-hdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-ldpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-ldpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-mdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-mdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xxhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xxxhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/icon/drawable-ldpi-icon.png" afterPath="$PROJECT_DIR$/../../resources/android/icon/drawable-ldpi-icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/icon/drawable-mdpi-icon.png" afterPath="$PROJECT_DIR$/../../resources/android/icon/drawable-mdpi-icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-hdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-hdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-ldpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-ldpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-mdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-mdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xxhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xxxhdpi-screen.png" afterPath="$PROJECT_DIR$/../../resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/android/icon/drawable-xhdpi-icon.png" afterPath="$PROJECT_DIR$/../../resources/android/icon/drawable-xhdpi-icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/icon.png" afterPath="$PROJECT_DIR$/../../resources/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-xhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-xhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-xxhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-xxhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-xxxhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-xxxhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-xhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-xhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-xxhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-xxhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-xxxhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-xxxhdpi/screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../resources/splash.png" afterPath="$PROJECT_DIR$/../../resources/splash.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Protocol.xml" afterPath="$PROJECT_DIR$/assets/Protocol.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.json" afterPath="$PROJECT_DIR$/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/android.json" afterPath="$PROJECT_DIR$/../../plugins/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../config.xml" afterPath="$PROJECT_DIR$/../../config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/assets/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platform_www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../plugins/fetch.json" afterPath="$PROJECT_DIR$/../../plugins/fetch.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/../../www/lib/ionic/css/ionic.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/MqttChat/www/mqtt_chat.js" afterPath="$PROJECT_DIR$/assets/www/plugins/MqttChat/www/mqtt_chat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" afterPath="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/personal-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/myattention.css" afterPath="$PROJECT_DIR$/../../www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/../../www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/person-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-account.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -109,31 +165,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ImageFetcher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/synconset/ImageFetcher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="361" column="5" selection-start-line="361" selection-start-column="5" selection-end-line="361" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Screenshot.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/www/plugins/com.darktalker.cordova.screenshot/www/Screenshot.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.428572">
-              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/FileUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5508197">
-              <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+            <state vertical-scroll-proportion="-12.0">
+              <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -142,7 +178,7 @@
       <file leaf-file-name="mqtt_chat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.285715">
+            <state vertical-scroll-proportion="0.0">
               <caret line="42" column="53" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="53" />
               <folding />
             </state>
@@ -152,12 +188,74 @@
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.0">
-              <caret line="423" column="87" selection-start-line="423" selection-start-column="16" selection-end-line="423" selection-end-column="87" />
+            <state vertical-scroll-proportion="-15.821428">
+              <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
               <folding>
-                <element signature="e#10211#10604#0" expanded="true" />
-                <element signature="e#10603#10604#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageOper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.0677967">
+              <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MqttParams.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33170733">
+              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.285714">
+              <caret line="75" column="52" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMMsgFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.321428">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="16" />
+              <folding>
+                <element signature="e#929#944#0" expanded="true" />
+                <element signature="e#1726#1741#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Protocol.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/Protocol.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMPFields.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.714286">
+              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,7 +263,7 @@
       <file leaf-file-name="cordova_plugins.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/platform_www/cordova_plugins.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.571428">
+            <state vertical-scroll-proportion="0.0">
               <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
               <folding />
             </state>
@@ -1402,7 +1500,7 @@
         <entry key="C:\Users\Administrator\webstormproject\im\platforms\android" value="5875942965181" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
         <entry key="D:\impro\IM\platforms\android" value="5882067129256" />
-        <entry key="D:\workspace\IM\platforms\android" value="5891262649829" />
+        <entry key="D:\workspace\IM\platforms\android" value="5891604703063" />
         <entry key="E:\WebstormProjects\im\platforms\android" value="5886694021870" />
         <entry key="F:\xiao\dpan\WindowsApps\IM\platforms\android" value="5887808620823" />
       </map>
@@ -1837,11 +1935,8 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/NetUtils.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/toast/ToastUtils.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/BaseInterface.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java" />
@@ -1878,6 +1973,9 @@
         <option value="$PROJECT_DIR$/assets/www/plugins/com.darktalker.cordova.screenshot/www/Screenshot.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
+        <option value="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
       </list>
     </option>
   </component>
@@ -1920,6 +2018,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2032,7 +2131,97 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="paho" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2176,64 +2365,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform_www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform_www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform_www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MqttChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -2281,7 +2412,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -2292,7 +2422,7 @@
     <property name="android.project.structure.last.selected" value="android" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="70cc4099" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="8FS7N16622007997" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="FullScreen" value="false" />
@@ -2301,11 +2431,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\IM\platforms\android\src\com\tky\protocol\factory" />
+      <recent name="D:\workspace\IM\platforms\android\src\com\tky\protocol\model" />
+      <recent name="D:\workspace\IM\platforms\android\assets" />
       <recent name="F:\xiao\dpan\WindowsApps\IM\platforms\android\libs" />
       <recent name="F:\xiao\dpan\WindowsApps\IM\platforms\android\src\com\tky\localContact" />
-      <recent name="F:\xiao\dpan\WindowsApps\IM\platforms\android\src\com\tky\baidulocation" />
-      <recent name="E:\WebstormProjects\IM\platforms\android\assets" />
-      <recent name="C:\Users\Administrator\webstormproject\im\platforms\android\assets" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.android">
@@ -2550,14 +2680,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20132013" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5170517" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18281938" sideWeight="0.510661" order="7" side_tool="true" content_ui="tabs" />
@@ -2566,8 +2696,8 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21002132" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2586,11 +2716,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41045606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25053304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2606,8 +2736,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -2702,48 +2832,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="230" column="57" selection-start-line="230" selection-start-column="57" selection-end-line="230" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CordovaLib/src/org/apache/cordova/engine/SystemWebViewEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2619047">
-          <caret line="272" column="13" selection-start-line="272" selection-start-column="13" selection-end-line="272" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/ng-cordova.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="37.892857">
-          <caret line="6" column="4549" selection-start-line="6" selection-start-column="4549" selection-end-line="6" selection-end-column="4549" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/phonegap-nfc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="74" selection-start-line="198" selection-start-column="74" selection-end-line="198" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/service_common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="162" column="84" selection-start-line="162" selection-start-column="84" selection-end-line="162" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/lib/ionic/js/angular-ui/angular-ui-router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2863,55 +2951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.892857">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/media/MediaMetadataCompat.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.142858">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/media/RatingCompat.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.142858">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/media/session/MediaSessionCompat.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.785714">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/media/session/ParcelableVolumeInfo.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.142858">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/media/session/PlaybackStateCompat.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.142858">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/aidl/android/support/v4/os/ResultReceiver.aidl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.142858">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.785714">
@@ -3017,10 +3056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="95" selection-start-line="39" selection-start-column="95" selection-end-line="39" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#7542#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3028,24 +3063,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="361" column="5" selection-start-line="361" selection-start-column="5" selection-end-line="361" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.0">
-          <caret line="423" column="87" selection-start-line="423" selection-start-column="16" selection-end-line="423" selection-end-column="87" />
           <folding>
-            <element signature="e#10211#10604#0" expanded="true" />
-            <element signature="e#10603#10604#0" expanded="true" />
+            <element signature="e#0#13559#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1941#1942#0" expanded="false" />
+            <element signature="e#1999#2000#0" expanded="false" />
+            <element signature="e#9783#9784#0" expanded="false" />
+            <element signature="e#9820#9821#0" expanded="false" />
+            <element signature="e#11353#11354#0" expanded="false" />
+            <element signature="e#11389#11390#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/plugins/com.darktalker.cordova.screenshot/www/Screenshot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.428572">
+        <state vertical-scroll-proportion="0.0">
           <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
           <folding />
         </state>
@@ -3053,7 +3086,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/platform_www/cordova_plugins.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.571428">
+        <state vertical-scroll-proportion="0.0">
           <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
           <folding />
         </state>
@@ -3061,16 +3094,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.285715">
+        <state vertical-scroll-proportion="0.0">
           <caret line="42" column="53" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5492958">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5508197">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+        <state vertical-scroll-proportion="-12.0">
+          <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/Protocol.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.714286">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.321428">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="16" />
+          <folding>
+            <element signature="e#929#944#0" expanded="true" />
+            <element signature="e#1726#1741#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.821428">
+          <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.285714">
+          <caret line="75" column="52" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0677967">
+          <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33170733">
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -1,0 +1,155 @@
+<ion-view view-title="通知">
+  <ion-nav-bar align-title="center" class="bar-stable">
+
+  </ion-nav-bar>
+  <ion-content>
+    <div class="button-bar">
+      <a class="button" ng-click="go(0)">程度</a>
+      <a class="button" ng-click="go(1)">时间</a>
+      <a class="button" ng-click="go(2)">模块</a>
+    </div>
+    <div style="width: 100%; height: 1px; background-color: #8c8c8c"></div>
+  </ion-content>
+  <ion-content  style="margin-top: 48px">
+
+    <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false" pager-click="go(index)" on-slide-changed="go_changed(index)">
+      <!-- ion-slide house each page's content -->
+      <ion-slide >
+        <div >
+            <ion-content style="height: 230px;width: 20%;margin-top: 25%" align="center">
+              <font style="align-content: center">紧急</font>
+            </ion-content>
+          <ion-content style="height: 230px;width: 1px; background-color: #8c8c8c;margin-left: 19%">
+          </ion-content>
+            <!--<div style="width: 1px; height: 100%; background-color: #8c8c8c;"></div>-->
+            <ion-content overflow-scroll="false" style="height: 230px;margin-left: 20%">
+              <ion-list>
+                <ion-item>
+                  2222222222222222222222222
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          <ion-content style="width: 100%; height: 1px; background-color: #8c8c8c;margin-top: 229px">
+          </ion-content>
+            <ion-content style="height: 50%;width: 20%;margin-top: 100%" align="center">
+                <font style="align-content: center">一般</font>
+            </ion-content>
+          <ion-content style="height: 50%;width: 1px; background-color: #8c8c8c;margin-left: 19%;margin-top: 230px">
+          </ion-content>
+            <ion-content overflow-scroll="false" style="margin-top: 230px;height: 50%;margin-left: 20%">
+              <ion-list>
+                <ion-item>
+                  444444444444444444
+                </ion-item>
+                <ion-item>
+                  5555555555555555555555
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+                <ion-item>
+                  333333333333333333333333333333333
+                </ion-item>
+              </ion-list>
+              </ion-content>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div >2
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="row" style="background: #ffffff;">
+          <div class="col" align="center">
+            <a>
+              <ul>
+                <li><img  src="img/oa.png" width="45" height="45">
+
+                </li>
+                <li style="color: #000000">办公系统</li>
+                <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px">3
+
+                </div>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center">
+            <a>
+              <ul>
+                <li><img  src="img/bhz.png" width="45" height="45"></li>
+                <li style="color: #000000">拌合站</li>
+                <div class="circlered" style="position: absolute;left: 42%;top: 7px;font-size: 10px">3
+
+                </div>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center">
+            <a>
+              <ul>
+                <li><img src="img/jyp.png" width="45" height="45"></li>
+                <li style="color: #000000">检验批</li>
+                <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px">3
+
+                </div>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center">
+            <a>
+              <ul>
+                <li><img src="img/lc.png" width="45" height="45"></li>
+                <li style="color: #000000">梁场</li>
+                <div class="circlered" style="position: absolute;left: 90%;top: 7px;font-size: 10px">3
+
+                </div>
+              </ul>
+            </a>
+          </div>
+        </div>
+      </ion-slide>
+
+    </ion-slide-box>
+    <!--<ion-list>-->
+      <!--<ion-item class="item-remove-animate item-avatar" ng-repeat="sysitem in syslist" ng-click="gonotificationDetail(sysitem.id,sysitem.chatName,sysitem.chatType)">-->
+        <!--&lt;!&ndash;class="center tongzhi1"&ndash;&gt;-->
+        <!--<img src="img/oa.png"  style=" position: absolute;left: 5%;top: 23%;text-align: center;z-index: 1;width: 40px;height: 40px">-->
+        <!--<span class="rj-sm-red-icon" ng-if="sysitem.count>0"><p>{{sysitem.count}}</p></span>-->
+        <!--<h2>{{sysitem.chatName}}</h2>-->
+        <!--<p> {{sysitem.lastText}}</p>-->
+        <!--<span class="rj-push-right" ng-if="sysitem.lastDate != 0">{{ sysitem.lastDate | date:'HH:mm:ss' }}</span>-->
+        <!--<span class="rj-push-right" ng-if="sysitem.lastDate === 0"></span>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+
+  </ion-content>
+</ion-view>
+
