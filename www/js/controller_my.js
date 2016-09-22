@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2016/8/14.
  */
-angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location) {
+angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap'])
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation) {
 
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
@@ -11,11 +11,35 @@ angular.module('my.controllers', [])
       if ($scope.mymypersonname.length>2){
         $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
       }else {
-        $scope.jiename=$scope.mymypersonname
+        $scope.jiename=$scope.mymypersonname;
       }
     }, function (msg) {
       // $ToastUtils.showToast(msg)
     });
+
+    var lat="";
+    var long="";
+    var locationaaa="";
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    // alert("进来了")
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      lat  = position.coords.latitude+0.006954;//   39.952728
+      long = position.coords.longitude+0.012647;//  116.329102
+      locationaaa=long+","+lat;
+      $http.get("http://api.map.baidu.com/telematics/v3/weather?location="+locationaaa+"&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+        .success(function(response) {
+          $scope.pm25aa=response.results[0].pm25;
+          $scope.currentcity=response.results[0].currentCity;
+          $scope.weathdate=response.results[0].weather_data[0].date.substring(11,response.results[0].weather_data[0].date.length-1);
+          $scope.weatherzhen=response.results[0].weather_data[0].weather;
+
+        });
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+    });
+
+
 
     // $ionicPlatform.registerBackButtonAction(function(e) {
     //   if ($location.path() == '/account'){
@@ -67,6 +91,7 @@ angular.module('my.controllers', [])
         // "youmeiyou":$scope.youmeiyou,
       });
     }
+    var isAndroid = ionic.Platform.isAndroid();
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({
@@ -107,85 +132,98 @@ angular.module('my.controllers', [])
         quality: 100,                                            //相片质量0-100
         destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
         sourceType: Camera.PictureSourceType.CAMERA,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,                                        //在选择之前允许修改截图
-        encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-        // targetWidth: 200,                                        //照片宽度
-        // targetHeight: 200,                                       //照片高度
-        mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
-        cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true                                   //保存进手机相册
+        // allowEdit: true,                                        //在选择之前允许修改截图
+        // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        targetWidth: 70,                                        //照片宽度
+        targetHeight: 70,                                       //照片高度
+        // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        // popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false                                   //保存进手机相册
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
+        alert(imageData)
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
         // image.src=imageData;
         //image.src = "data:image/jpeg;base64," + imageData;
-        $api.setHeadPic(imageData, function (msg) {
-          // $ToastUtils.showToast("成功")
+        // if(isAndroid){
+        var picPath = imageData.substring(0, imageData.indexOf('?'));
+        alert(picPath)
+        // }
+        $api.setHeadPic(picPath, function (msg) {
+          $ToastUtils.showToast("成功")
         }, function (msg) {
           $ToastUtils.showToast("失败")
         });
       }, function (err) {
         // error
-        // $ToastUtils.showToast(err);
+        $ToastUtils.showToast(err);
       });
 
     };
-    //image picker
-    $scope.selectphoto = function() {
-      var options = {
-        maximumImagesCount: 1,
-        // width: 800,
-        // height: 800,
-        quality: 100
-      };
-
-      $cordovaImagePicker.getPictures(options)
-        .then(function (results) {
-          // $scope.images_list.push(results[0]);
-          $api.setHeadPic(results[0], function (msg) {
-                  // $ToastUtils.showToast("成功")
-                }, function (msg) {
-                  $ToastUtils.showToast("失败")
-                });
-        }, function (error) {
-          // error getting photos
-        });
-    }
-    // //选相册
-    // $scope.selectphoto = function () {
+    // //image picker
+    // $scope.selectphoto = function() {
     //   var options = {
-    //     //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
-    //     quality: 100,                                            //相片质量0-100
-    //     destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
-    //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
-    //     allowEdit: false,                                       //在选择之前允许修改截图
-    //     encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-    //     // targetWidth: 200,                                        //照片宽度
-    //     // targetHeight: 200,                                       //照片高度
-    //     mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
-    //     cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
-    //     popoverOptions: CameraPopoverOptions,
-    //     saveToPhotoAlbum: true                                   //保存进手机相册
+    //     maximumImagesCount: 1,
+    //     // width: 800,
+    //     // height: 800,
+    //     quality: 100
     //   };
-    //   $cordovaCamera.getPicture(options).then(function (imageData) {
-    //     $ToastUtils.showToast(imageData);
-    //     $api.setHeadPic(imageData, function (msg) {
-    //       $ToastUtils.showToast("成功")
-    //     }, function (msg) {
-    //       $ToastUtils.showToast("失败")
-    //     });
-    //     // var image = document.getElementById('myImage');
-    //     // image.src=imageData;
-    //     //image.src = "data:image/jpeg;base64," + imageData;
-    //   }, function (err) {
-    //     // error
-    //     $ToastUtils.showToast(err);
-    //   });
     //
-    // };
+    //   $cordovaImagePicker.getPictures(options)
+    //     .then(function (results) {
+    //       // $scope.images_list.push(results[0]);
+    //       $api.setHeadPic(results[0], function (msg) {
+    //               // $ToastUtils.showToast("成功")
+    //             }, function (msg) {
+    //               $ToastUtils.showToast("失败")
+    //             });
+    //     }, function (error) {
+    //       // error getting photos
+    //     });
+    // }
+    //选相册
+    $scope.selectphoto = function () {
+      var options = {
+        quality: 100,
+        // targetWidth: 320,
+        // targetHeight: 320,
+        // saveToPhotoAlbum: false,
+        // //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        // quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        // allowEdit: false,                                       //在选择之前允许修改截图
+        // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        targetWidth: 70,                                        //照片宽度
+        targetHeight: 70,                                       //照片高度
+        // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        // popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false                                   //保存进手机相册
+      };
+      $cordovaCamera.getPicture(options).then(function (imageData) {
+        alert(imageData);
+        // if(isAndroid){
+        var picPath = imageData.substring(0, imageData.indexOf('?'));
+        alert(picPath)
+        // }
+        $api.setHeadPic(picPath, function (msg) {
+          $ToastUtils.showToast("成功")
+        }, function (msg) {
+          $ToastUtils.showToast("失败")
+        });
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+      }, function (err) {
+        // error
+        $ToastUtils.showToast(err);
+      });
+
+    };
 
 
     // document.addEventListener('deviceready', function () {
@@ -475,13 +513,13 @@ angular.module('my.controllers', [])
                 arr.EM = string3;
               }
               $api.updateUserInfo(arr,function (msg) {
-                $ToastUtils.showToast("修改个人资料成功")
+                $ToastUtils.showToast("修改个人资料成功");
                 $searchdatadianji.personDetaildianji($scope.UserIDforhou);
               },function (msg) {
                 $ToastUtils.showToast(msg)
               })
             }
-          },
+          }
         ]
       });
       myPopup.then(function (res) {
@@ -674,7 +712,7 @@ angular.module('my.controllers', [])
       var setlock = new H5lock(setopt);
       setlock.init();
     }
-      $scope.a=1
+      $scope.a=1;
       var setopt = {
         chooseType: 3, // 3 , 4 , 5,
         width: 350, // lock wrap width

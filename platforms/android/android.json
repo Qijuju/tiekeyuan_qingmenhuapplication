@@ -95,6 +95,10 @@
                         {
                             "xml": "<feature name=\"NfcPlugin\"><param name=\"android-package\" value=\"com.chariotsolutions.nfc.plugin.NfcPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -130,7 +134,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 4
+                            "count": 5
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -270,6 +274,9 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "phonegap-nfc": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "com.darktalker.cordova.screenshot": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -598,6 +605,13 @@
             "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
             "id": "phonegap-nfc.NFC",
             "runs": true
+        },
+        {
+            "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+            "id": "com.darktalker.cordova.screenshot.screenshot",
+            "merges": [
+                "navigator.screenshot"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -624,6 +638,7 @@
         "phonegap-plugin-barcodescanner": "6.0.1",
         "cordova-plugin-geolocation": "2.2.0",
         "com.spout.phonegap.plugins.baidulocation": "0.1.0",
-        "phonegap-nfc": "0.6.6"
+        "phonegap-nfc": "0.6.6",
+        "com.darktalker.cordova.screenshot": "0.1.5"
     }
 }
