@@ -1,5 +1,10 @@
 package com.tky.mqtt.plugin.thrift.api;
 
+import android.content.Context;
+
+import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
+
 import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.apache.thrift.async.TAsyncClientManager;
@@ -349,8 +354,8 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    public static boolean getVersion(String savePath, String ID, String apkVersion) throws IOException, TException {
-        return downloadApk(savePath, apkVersion, ID, apkVersion);
+    public static boolean getVersion(String savePath, String ID, String apkVersion,Context context,String filesize) throws IOException, TException {
+        return downloadApk(savePath, apkVersion, ID, apkVersion, context, filesize);
     }
 
     /**
@@ -396,7 +401,7 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    private static boolean downloadApk(String savePath, String apkVersion, String ID, String versionCode) throws IOException, TException {
+    private static boolean downloadApk(String savePath, String apkVersion, String ID, String versionCode,Context context,String filesize) throws IOException, TException {
         File saveDir = new File(savePath);
         if (saveDir != null && !saveDir.exists()) {
             saveDir.mkdirs();
@@ -410,7 +415,7 @@ public class SystemApi {
             apkFile.delete();
             apkFile.createNewFile();
         }
-        return download(apkFile, ID, versionCode);//多线程下载，第二个参数为线程数
+        return download(apkFile, ID, versionCode,context,filesize);//多线程下载，第二个参数为线程数
     }
 
     /**
@@ -422,7 +427,17 @@ public class SystemApi {
      * @throws IOException
      * @throws TException
      */
-    private static boolean download(File apkFile, String ID, String versionCode) throws IOException, TException {
+    private static boolean download(File apkFile, String ID, String versionCode, final Context context,String filesize) throws IOException, TException {
+
+        final long size=Long.parseLong(filesize);
+
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressDialogFactory.getProgressDialog(context);
+            }
+        });
+
         RandomAccessFile raf = new RandomAccessFile(apkFile, "rw");
         raf.seek(0);
         RSTversion result = null;
@@ -437,7 +452,21 @@ public class SystemApi {
                 flag = false;
                 break;
             }
+
+            //final long finalOffset = result.getOffset();
+            int progress = (int) (result.getOffset() * 1.0f / size * 100);
+            ProgressDialogFactory.setProgress(progress);
+
+
         }
+
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressDialogFactory.setProgress(1);
+                ProgressDialogFactory.cancel();
+            }
+        });
         raf.close();
         return flag;
     }
