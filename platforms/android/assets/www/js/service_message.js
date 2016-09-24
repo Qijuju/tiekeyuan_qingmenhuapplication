@@ -260,7 +260,7 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         //判断是不是位置
         if(messagetype === 'LOCATION'){
-          alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
+          // alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
@@ -277,7 +277,7 @@ angular.module('message.services', [])
           }
           if(messagetype === 'LOCATION'){
             messageDetail.message=content;
-            alert("发送出去后的类型"+messageDetail.messagetype);
+            // alert("发送出去后的类型"+messageDetail.messagetype);
           }
           //判断是不是位置
           if(!(messagetype === 'LOCATION')){
@@ -328,7 +328,7 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          alert("接受消息对方id"+arriveMessage.messagetype+message._id);
+          // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
 
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
 
@@ -472,7 +472,7 @@ angular.module('message.services', [])
                 // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
               }
             }else{
-              // alert("近来啫哩");
+              alert("收到群组信息增该");
               $greendao.saveObj('MessagesService',arriveMessage,function (data) {
               },function (err) {
               });

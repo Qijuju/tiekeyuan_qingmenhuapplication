@@ -289,6 +289,8 @@ angular.module('message.controllers', [])
             // alert("消息类型"+data[0].messagetype);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -508,6 +510,8 @@ angular.module('message.controllers', [])
           if(data[0].messagetype === "Image"){
             // alert("返回即时通");
             $scope.lastText = "[图片]";//最后一条消息内容
+          }else if(data[0].messagetype === "LOCATION"){
+            $scope.lastText = "[位置]";//最后一条消息内容
           }else {
             $scope.lastText = data[0].message;//最后一条消息内容
           }
@@ -791,6 +795,8 @@ angular.module('message.controllers', [])
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -966,6 +972,8 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("无数据返回主界面1");
           if(data[0].messagetype === "Image"){
             $scope.lastText = "[图片]";//最后一条消息内容
+          }else if(data[0].messagetype === "LOCATION"){
+            $scope.lastText = "[位置]";//最后一条消息内容
           }else {
             $scope.lastText = data[0].message;//最后一条消息内容
           }
@@ -978,6 +986,7 @@ angular.module('message.controllers', [])
           $scope.lastText = data[0].message;//最后一条消息内容
           $scope.lastDate = data[0].when;//最后一条消息的时间
           $scope.chatName = data[0].username;//对话框名称
+          // alert("拿到消息"+$scope.chatName);
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
           $scope.senderId = data[0].senderid;
         }
@@ -987,7 +996,13 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("无参跳转查询消息列表"+data.length);
           var chatitem = {};
           chatitem.id = data[0].id;
-          chatitem.chatName = data[0].chatName;
+          if(!($scope.chatname === data[0].chatName)){
+            chatitem.chatName = $scope.chatname;
+            // alert("这次应该正确了把？"+chatitem.chatName);
+          }else{
+            chatitem.chatName = data[0].chatName;
+          }
+          // alert("拿到聊天名字"+chatitem.chatName);
           chatitem.imgSrc = data[0].imgSrc;
           chatitem.lastText = $scope.lastText;
           chatitem.count = $scope.groupCount;
@@ -1256,6 +1271,8 @@ angular.module('message.controllers', [])
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1294,7 +1311,7 @@ angular.module('message.controllers', [])
             // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
-          // alert("进来群聊id"+$scope.receiverssid);
+          alert("进来群聊id"+$scope.receiverssid);
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
           /**
            * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
@@ -1350,8 +1367,17 @@ angular.module('message.controllers', [])
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
-              // alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
+              alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
               $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+              /**
+               * 当群已经存在时，必须重新取一次群名称，不然会报错
+               */
+              $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
+                $rootScope.groupName=data[0].groupName;
+                alert("能拿到数据吗?"+$rootScope.groupName);
+              },function (err) {
+
+              });
               //取出id聊天对话的列表数据并进行数据库更新
               $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
                 $scope.unread = $scope.lastGroupCount;
@@ -1359,12 +1385,11 @@ angular.module('message.controllers', [])
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 if($rootScope.groupName === '' || $rootScope.groupName === undefined){
-
                     chatitem.chatName =$rootScope.groupName;
-                    // alert("群名称："+chatitem.chatName);
+                    alert("群名称："+chatitem.chatName);
                 }else{
                   chatitem.chatName =data[0].chatName ;
-                  // alert("群名称2222"+chatitem.chatName);
+                  alert("群名称2222"+chatitem.chatName);
                 }
                 // $ToastUtils.showToast("第一次创建会话时保存的群聊名称"+chatitem.chatName);
                 chatitem.imgSrc = data[0].imgSrc;
@@ -1811,6 +1836,7 @@ angular.module('message.controllers', [])
     };
 
     $scope.backAny = function () {
+      alert("返回聊天界面"+$scope.groupName);
       $state.go('messageGroup',{
         "id":$scope.groupId,
         "chatName":$scope.groupName,
