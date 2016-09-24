@@ -226,6 +226,10 @@ angular.module('message.services', [])
     return{
 
       startMqttChat:function(topics){
+        if (topics === undefined || topics === null || topics === '') {
+          alert('非法登录！');
+          return;
+        }
         document.addEventListener('deviceready',function () {
           mqtt.startMqttChat(topics,function (message) {
           },function (message) {

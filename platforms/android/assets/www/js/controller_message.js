@@ -1585,8 +1585,14 @@ angular.module('message.controllers', [])
 
     };
 
-    $scope.meizuo=function () {
-      $ToastUtils.showToast("此功能暂未开发");
+    //个人图片
+    $scope.perosnPicture=function () {
+      $state.go('personpicture');
+
+    }
+    //个人文件
+    $scope.personFile=function () {
+      $state.go('personfile');
 
     }
 
@@ -1826,10 +1832,15 @@ angular.module('message.controllers', [])
         id:$scope.groupId
       });
     }
-
-    $scope.meizuo=function () {
-      $ToastUtils.showToast("此功能暂未开发");
+    //打开群图片界面
+    $scope.groupPicture=function () {
+      $state.go('personfile');
     }
+    //打开群文件界面
+    $scope.groupFile=function () {
+      $state.go('groupfile');
+    }
+
 
     //打开群公告界面
     $scope.groupNotice=function () {
