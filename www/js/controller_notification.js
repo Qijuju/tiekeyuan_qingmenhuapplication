@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/9/8.
  */
-angular.module('notification.controllers', [])
+angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
 
 
   .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope,$chatarr) {
@@ -163,6 +163,8 @@ angular.module('notification.controllers', [])
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -455,5 +457,45 @@ angular.module('notification.controllers', [])
   }
 
 })
+
+  .controller('notificationsCtrl', function ($scope,$state,$ToastUtils,$greendao,$ionicSlideBoxDelegate,ionicDatePicker) {
+    $scope.index = 0;
+    $scope.go = function(index){
+      $ionicSlideBoxDelegate.slide(index);
+    }
+    $scope.go_changed=function(index){
+      //第一个页面index=0,第二个页面index=0，第三个页面index=0
+      if (index==1){//当选择第二个页面也就是时间页面的时候调用时间选择器
+        $scope.openDatePicker();
+      }
+    }
+   //日期选择器
+    var ipObj1 = {
+      callback: function (val) {  //Mandatory
+       alert(val)//点击set返回的日期 1439676000000这个格式的
+      },
+      disabledDates: [            //Optional
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //日期的范围从什么什么时候开始
+      to: new Date(2020, 10, 30), //日期的范围从什么什么时候结束
+      inputDate: new Date(),      //Optional
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };
+
+  })
 
 

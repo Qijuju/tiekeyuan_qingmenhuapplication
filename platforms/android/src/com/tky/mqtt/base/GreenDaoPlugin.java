@@ -3,6 +3,7 @@ package com.tky.mqtt.base;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
+import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
@@ -15,6 +16,7 @@ import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.FilePictureService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
@@ -187,6 +189,21 @@ public class GreenDaoPlugin extends CordovaPlugin {
             localPhone.setPhonenumber(jsonobj.getString("phonenumber"));
             localPhone.setPinyinname(jsonobj.getString("pinyinname"));
             obj=localPhone;
+        }else if("FilePictureService".equals(services)){
+            FilePicture filePicture=new FilePicture();
+            filePicture.setFilepicid(jsonobj.getString("filepicid"));
+            filePicture.setFrom(jsonobj.getString("from"));
+            filePicture.setSessionid(jsonobj.getString("sessionid"));
+            filePicture.setFromname(jsonobj.getString("fromname"));
+            filePicture.setToname(jsonobj.getString("toname"));
+            filePicture.setSmallurl(jsonobj.getString("smallurl"));
+            filePicture.setBigurl(jsonobj.getString("bigurl"));
+            filePicture.setBytesize(jsonobj.getString("bytesize"));
+            filePicture.setMegabyte(jsonobj.getString("megabyte"));
+            filePicture.setFilename(jsonobj.getString("filename"));
+            filePicture.setType(jsonobj.getString("type"));
+            filePicture.setWhen(System.currentTimeMillis());
+            obj=filePicture;
         }
         return obj;
     }
@@ -238,6 +255,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if("LocalPhoneService".equals(services)){
 
+        }else if("FilePictureService".equals(services)){
+
         }
         return obj;
     }
@@ -272,6 +291,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= NotifyListService.getInstance(UIUtils.getContext());
         }else if ("LocalPhoneService".equals(services)){
             baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
+        }else if ("FilePictureService".equals(services)){
+            baseInterface= FilePictureService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }

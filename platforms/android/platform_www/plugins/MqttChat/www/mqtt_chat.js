@@ -39,4 +39,6 @@ exports.openDocWindow = function(type, success, error) {//打开文件管理器 
     exec(success, error, "MqttChat", "openDocWindow", [type]);
 };
 
+exports.getIconDir =function(success,error){
+exec(success, error, "MqttChat", "getIconDir", []);};
 });

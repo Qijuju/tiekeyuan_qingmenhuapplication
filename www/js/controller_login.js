@@ -175,7 +175,7 @@ angular.module('login.controllers', [])
 
     };
   })
-  .controller('welcomeCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval) {
+  .controller('welcomeCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout) {
     $scope.startApp = function() {
       $state.go('newspage');
     };

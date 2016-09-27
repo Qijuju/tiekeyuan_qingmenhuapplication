@@ -1,0 +1,26 @@
+<ion-view view-title="位置">
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="gobackmsg()">
+        返回
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class=" button button-icon " ng-click="sendgeloction()">发送</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false">
+
+    <div id="container"></div>
+    <!--<script id="popup-template.html" type="text/ng-template">-->
+    <!--<input ng-model="data.wifi" type="text" placeholder="Password">-->
+    <!--</script>-->
+    <ion-list>
+      <ion-item  ng-repeat="weizhia in weizhis">
+        <h2>{{weizhia}}</h2>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

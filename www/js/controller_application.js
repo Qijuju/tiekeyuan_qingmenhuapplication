@@ -172,6 +172,8 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -382,10 +384,12 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     }
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+    // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-        var lat  = position.coords.latitude+0.006904;//   39.952728
-        var long = position.coords.longitude+0.012849;//  116.329102
-       $ToastUtils.showToast("经度"+lat+"纬度"+long);
+        var lat  = position.coords.latitude+0.006954;//   39.952728
+        var long = position.coords.longitude+0.012647;//  116.329102
+       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
@@ -397,7 +401,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
-      marker.addEventListener("dragend", function(e){
+      marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
       })
 
@@ -410,105 +414,10 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
         }
       });
 
-
-
-
-      // var latlon=position.coords.latitude+","+position.coords.longitude;
-      // var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
-      //   +latlon+"&zoom=14&size=400x300&sensor=false";
-      // document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
     }, function(err) {
-        // error
+      $ToastUtils.showToast("请开启定位功能");
       });
-    // navigator.geolocation.watchPosition(function (position) {
-    //   var element = document.getElementById('geolocation');
-    //   element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-    //     'Longitude: ' + position.coords.longitude     + '<br />' +
-    //     '<hr />'      + element.innerHTML;
-    // }, function (error) {
-    //   alert('code: '    + error.code    + '\n' +
-    //     'message: ' + error.message + '\n');
-    // }, { timeout: 30000 });
 
-
-    // var watchOptions = {
-    //   timeout : 3000,
-    //   enableHighAccuracy: false // may cause errors if true
-    // };
-    //
-    // var watch = $cordovaGeolocation.watchPosition(watchOptions);
-    // watch.then(
-    //   null,
-    //   function(err) {
-    //     // error
-    //   },
-    //   function(position) {
-    //     var lat  = position.coords.latitude
-    //     var long = position.coords.longitude
-    //     $ToastUtils.showToast(lat+","+long)
-    //   });
-    //
-    //
-    // watch.clearWatch();
-    // // OR
-    // $cordovaGeolocation.clearWatch(watch)
-    //   .then(function(result) {
-    //     $ToastUtils.showToast(result)
-    //     // success
-    //   }, function (error) {
-    //     $ToastUtils.showToast(error)
-    //     // error
-    //   });
-    // var x=document.getElementById("demo");
-    // function getLocation()
-    // {
-    //   if (navigator.geolocation)
-    //   {
-    //     navigator.geolocation.getCurrentPosition(showPosition,showError);
-    //   }
-    //   else
-    //   {
-    //     x.innerHTML="该浏览器不支持获取地理位置。";
-    //   }
-    // }
-    //
-    // function showPosition(position)
-    // {
-    //   lat=position.coords.latitude;
-    //   lon=position.coords.longitude;
-    //   latlon=new google.maps.LatLng(lat, lon)
-    //   mapholder=document.getElementById('mapholder')
-    //   mapholder.style.height='250px';
-    //   mapholder.style.width='500px';
-    //
-    //   var myOptions={
-    //     center:latlon,zoom:14,
-    //     mapTypeId:google.maps.MapTypeId.ROADMAP,
-    //     mapTypeControl:false,
-    //     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-    //   };
-    //   var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
-    //   var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-    // }
-    //
-    // function showError(error)
-    // {
-    //   switch(error.code)
-    //   {
-    //     case error.PERMISSION_DENIED:
-    //       x.innerHTML="用户拒绝对获取地理位置的请求。"
-    //       break;
-    //     case error.POSITION_UNAVAILABLE:
-    //       x.innerHTML="位置信息是不可用的。"
-    //       break;
-    //     case error.TIMEOUT:
-    //       x.innerHTML="请求用户地理位置超时。"
-    //       break;
-    //     case error.UNKNOWN_ERROR:
-    //       x.innerHTML="未知错误。"
-    //       break;
-    //   }
-    // }
 
 
   })

@@ -323,6 +323,13 @@ module.exports = [
         "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
         "id": "phonegap-nfc.NFC",
         "runs": true
+    },
+    {
+        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+        "id": "com.darktalker.cordova.screenshot.screenshot",
+        "merges": [
+            "navigator.screenshot"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -351,7 +358,8 @@ module.exports.metadata =
     "phonegap-plugin-barcodescanner": "6.0.1",
     "cordova-plugin-geolocation": "2.2.0",
     "com.spout.phonegap.plugins.baidulocation": "0.1.0",
-    "phonegap-nfc": "0.6.6"
+    "phonegap-nfc": "0.6.6",
+    "com.darktalker.cordova.screenshot": "0.1.5"
 };
 // BOTTOM OF METADATA
 });

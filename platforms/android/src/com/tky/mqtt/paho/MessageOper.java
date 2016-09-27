@@ -162,6 +162,8 @@ public class MessageOper {
 			mediaType = IMMsgFactory.MediaType.Text;
 		} else if ("Vedio".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Vedio;
+		} else if ("LOCATION".equals(type)) {
+			mediaType = IMMsgFactory.MediaType.Position;
 		} else {
 			mediaType = IMMsgFactory.MediaType.Text;
 		}
@@ -189,6 +191,10 @@ public class MessageOper {
 			mediaType = "Text";
 		} else if (IMMsgFactory.MediaType.Vedio.equals(type)) {
 			mediaType = "Vedio";
+		} else if (IMMsgFactory.MediaType.Position.equals(type)) {
+			mediaType = "LOCATION";
+		} else {
+			mediaType = "Text";
 		}
 		return mediaType;
 	}
