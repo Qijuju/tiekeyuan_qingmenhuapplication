@@ -1064,6 +1064,16 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           // $ToastUtils.showToast(index);
           if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert($mqtt.getQunliao().length);
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getQunliao()[i]._id);
+                $mqtt.getQunliao().splice(i, 1);
+                break;
+              }
+            }
             $scope.sendSingleGroupMsg(topic, content, id,grouptype,localuser,localuserId,sqlid);
           } else if (index === 1) {
 

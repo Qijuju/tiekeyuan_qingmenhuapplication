@@ -58,9 +58,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
         BaseDao obj = null;
         if ("MessagesService".equals(services)) {
             Messages message = new Messages();
-            if("".equals(jsonobj.getString("_id"))){
+            if ("".equals(jsonobj.getString("_id"))) {
                 message.set_id(UUID.randomUUID().toString());
-            }else{
+            } else {
                 message.set_id(jsonobj.getString("_id"));
             }
 
@@ -108,9 +108,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setIsDelete(jsonobj.getString("isDelete"));
             chatList.setLastDate(jsonobj.getLong("lastDate"));
             System.out.println(jsonobj.getLong("lastDate") + "");
-            if(jsonobj.getLong("lastDate")== 0){
+            if (jsonobj.getLong("lastDate") == 0) {
                 chatList.setLastDate(0L);
-            }else{
+            } else {
                 chatList.setLastDate(System.currentTimeMillis());
             }
             chatList.setLastText(jsonobj.getString("lastText"));
@@ -118,25 +118,25 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setSenderId(jsonobj.getString("senderId"));
             chatList.setSenderName(jsonobj.getString("senderName"));
             obj = chatList;
-        }else if("GroupChatsService".equals(services)){
-          GroupChats groupChats=new GroupChats();
-          groupChats.setId(jsonobj.getString("id"));
-          groupChats.setGroupName(jsonobj.getString("groupName"));
-          groupChats.setGroupType(jsonobj.getString("groupType"));
-          groupChats.setIsmygroup(jsonobj.getBoolean("ismygroup"));
-          obj=groupChats;
-        }else if ("SelectIdService".equals(services)){
-          SelectedId selectedId=new SelectedId();
-          selectedId.setId(jsonobj.getString("id"));
-          selectedId.setGrade(jsonobj.getString("grade"));
-          selectedId.setIsselected(jsonobj.getBoolean("isselected"));
-          selectedId.setType(jsonobj.getString("type"));
-          obj=selectedId;
-        }else if("SystemMsgService".equals(services)){
+        } else if ("GroupChatsService".equals(services)) {
+            GroupChats groupChats = new GroupChats();
+            groupChats.setId(jsonobj.getString("id"));
+            groupChats.setGroupName(jsonobj.getString("groupName"));
+            groupChats.setGroupType(jsonobj.getString("groupType"));
+            groupChats.setIsmygroup(jsonobj.getBoolean("ismygroup"));
+            obj = groupChats;
+        } else if ("SelectIdService".equals(services)) {
+            SelectedId selectedId = new SelectedId();
+            selectedId.setId(jsonobj.getString("id"));
+            selectedId.setGrade(jsonobj.getString("grade"));
+            selectedId.setIsselected(jsonobj.getBoolean("isselected"));
+            selectedId.setType(jsonobj.getString("type"));
+            obj = selectedId;
+        } else if ("SystemMsgService".equals(services)) {
             SystemMsg systemMsg = new SystemMsg();
-            if("".equals(jsonobj.getString("_id"))){
+            if ("".equals(jsonobj.getString("_id"))) {
                 systemMsg.set_id(UUID.randomUUID().toString());
-            }else{
+            } else {
                 systemMsg.set_id(jsonobj.getString("_id"));
             }
             systemMsg.setSessionid(jsonobj.getString("sessionid"));
@@ -152,14 +152,14 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
             systemMsg.setSenderid(jsonobj.getString("senderid"));
             obj = systemMsg;
-        }else if ("MsgHistoryService".equals(services)){
-            MsgHistory msgHistory=new MsgHistory();
+        } else if ("MsgHistoryService".equals(services)) {
+            MsgHistory msgHistory = new MsgHistory();
             msgHistory.set_id(UUID.randomUUID().toString());
             msgHistory.setMsg(jsonobj.getString("msg"));
             msgHistory.setType(jsonobj.getString("type"));
             msgHistory.setWhen(System.currentTimeMillis());
-            obj=msgHistory;
-        }else if("NotifyListService".equals(services)){
+            obj = msgHistory;
+        } else if ("NotifyListService".equals(services)) {
             NotifyList notifyList = new NotifyList();
             notifyList.setId(jsonobj.getString("id"));
             notifyList.setChatName(jsonobj.getString("chatName"));
@@ -168,9 +168,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setIsDelete(jsonobj.getString("isDelete"));
             notifyList.setLastDate(jsonobj.getLong("lastDate"));
             System.out.println(jsonobj.getLong("lastDate") + "");
-            if(jsonobj.getLong("lastDate")== 0){
+            if (jsonobj.getLong("lastDate") == 0) {
                 notifyList.setLastDate(0L);
-            }else{
+            } else {
                 notifyList.setLastDate(System.currentTimeMillis());
             }
             notifyList.setLastText(jsonobj.getString("lastText"));
@@ -178,33 +178,34 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setSenderId(jsonobj.getString("senderId"));
             notifyList.setSenderName(jsonobj.getString("senderName"));
             obj = notifyList;
-        }else if ("LocalPhoneService".equals(services)){
-            LocalPhone localPhone=new LocalPhone();
+        } else if ("LocalPhoneService".equals(services)) {
+            LocalPhone localPhone = new LocalPhone();
             localPhone.setId(jsonobj.getString("id"));
             localPhone.setPlatformid(jsonobj.getString("platformid"));
             localPhone.setIsplatform(jsonobj.getBoolean("isplatform"));
             localPhone.setName(jsonobj.getString("name"));
             localPhone.setPhonenumber(jsonobj.getString("phonenumber"));
             localPhone.setPinyinname(jsonobj.getString("pinyinname"));
-            obj=localPhone;
+            obj = localPhone;
         }
         return obj;
     }
 
     /**
      * 获取obj对象
+     *
      * @param services
      * @param jsonArray
      * @return
      */
     public List<BaseDao> getListResult(String services, JSONArray jsonArray) throws JSONException {
         List<BaseDao> obj = new ArrayList<BaseDao>();
-        if("MessagesService".equals(services)){
-            List<Messages> messagesList=new ArrayList<Messages>();
-            for(int i=0;i<jsonArray.length();i++){
+        if ("MessagesService".equals(services)) {
+            List<Messages> messagesList = new ArrayList<Messages>();
+            for (int i = 0; i < jsonArray.length(); i++) {
                 Messages message = new Messages();
-                String data=jsonArray.get(i).toString();
-                JSONObject jsonobj=new JSONObject(data);
+                String data = jsonArray.get(i).toString();
+                JSONObject jsonobj = new JSONObject(data);
                 message.set_id(UUID.randomUUID().toString());
                 message.setSessionid(jsonobj.getString("sessionid"));
                 message.setType(jsonobj.getString("type"));
@@ -222,21 +223,21 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }
 
             obj.addAll(messagesList);
-        }else if("ParentDeptService".equals(services)){
+        } else if ("ParentDeptService".equals(services)) {
 
-        }else if("SubDeptService".equals(services)){
+        } else if ("SubDeptService".equals(services)) {
 
-        }else if ("TopContactsService".equals(services)){
+        } else if ("TopContactsService".equals(services)) {
 
-        }else if("ChatListService".equals(services)){
+        } else if ("ChatListService".equals(services)) {
 
-        }else if ("GroupChatsService".equals(services)){
+        } else if ("GroupChatsService".equals(services)) {
 
-        }else if ("SelectIdService".equals(services)){
+        } else if ("SelectIdService".equals(services)) {
 
-        }else if ("MsgHistoryService".equals(services)){
+        } else if ("MsgHistoryService".equals(services)) {
 
-        }else if("LocalPhoneService".equals(services)){
+        } else if ("LocalPhoneService".equals(services)) {
 
         }
         return obj;
@@ -244,34 +245,35 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     /**
      * 初始化业务类对象
+     *
      * @param services
      * @param <T>
      * @return
      */
     public <T> BaseInterface<T> getInterface(String services) {
         BaseInterface baseInterface = null;
-        if("MessagesService".equals(services)){
+        if ("MessagesService".equals(services)) {
             baseInterface = MessagesService.getInstance(UIUtils.getContext());
-        }else if("ParentDeptService".equals(services)){
+        } else if ("ParentDeptService".equals(services)) {
             baseInterface = ParentDeptService.getInstance(UIUtils.getContext());
-        }else if("SubDeptService".equals(services)){
+        } else if ("SubDeptService".equals(services)) {
             baseInterface = SubDeptService.getInstance(UIUtils.getContext());
-        }else if ("TopContactsService".equals(services)){
-            baseInterface= TopContactsService.getInstance(UIUtils.getContext());
-        }else if("ChatListService".equals(services)){
-            baseInterface= ChatListService.getInstance(UIUtils.getContext());
-        }else if("GroupChatsService".equals(services)){
-          baseInterface= GroupChatsService.getInstance(UIUtils.getContext());
-        }else if ("SelectIdService".equals(services)){
-          baseInterface= SelectIdService.getInstance(UIUtils.getContext());
-        }else if("SystemMsgService".equals(services)){
-          baseInterface = SystemMsgService.getInstance(UIUtils.getContext());
-        }else if ("MsgHistoryService".equals(services)) {
-            baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
-        }else if("NotifyListService".equals(services)){
-            baseInterface= NotifyListService.getInstance(UIUtils.getContext());
-        }else if ("LocalPhoneService".equals(services)){
-            baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
+        } else if ("TopContactsService".equals(services)) {
+            baseInterface = TopContactsService.getInstance(UIUtils.getContext());
+        } else if ("ChatListService".equals(services)) {
+            baseInterface = ChatListService.getInstance(UIUtils.getContext());
+        } else if ("GroupChatsService".equals(services)) {
+            baseInterface = GroupChatsService.getInstance(UIUtils.getContext());
+        } else if ("SelectIdService".equals(services)) {
+            baseInterface = SelectIdService.getInstance(UIUtils.getContext());
+        } else if ("SystemMsgService".equals(services)) {
+            baseInterface = SystemMsgService.getInstance(UIUtils.getContext());
+        } else if ("MsgHistoryService".equals(services)) {
+            baseInterface = MsgHistoryService.getInstance(UIUtils.getContext());
+        } else if ("NotifyListService".equals(services)) {
+            baseInterface = NotifyListService.getInstance(UIUtils.getContext());
+        } else if ("LocalPhoneService".equals(services)) {
+            baseInterface = LocalPhoneService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -357,27 +359,27 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
-  public void queryByConditions(final  JSONArray args,final  CallbackContext callbackContext){
-    try {
-      String service=args.getString(0);
-      BaseInterface baseInterface = getInterface(service);
-      List<BaseDao> list=baseInterface.queryByConditions();
-      Gson gson = new Gson();
-      String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
-      }.getType());
-      setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
-    } catch (JSONException e) {
-      e.printStackTrace();
-      setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+    public void queryByConditions(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String service = args.getString(0);
+            BaseInterface baseInterface = getInterface(service);
+            List<BaseDao> list = baseInterface.queryByConditions();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
     }
-  }
 
-    public void querySearchDetail(final JSONArray args,final CallbackContext callbackContext){
+    public void querySearchDetail(final JSONArray args, final CallbackContext callbackContext) {
         MessagesService service = MessagesService.getInstance(UIUtils.getContext());
         try {
             String name = args.getString(0);
             String message = args.getString(1);
-            List<Messages> list=service.querySearchDetail(name, message);
+            List<Messages> list = service.querySearchDetail(name, message);
             Gson gson = new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
             }.getType());
@@ -394,12 +396,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
     /**
      * 带两个参数查询(messageservice)
      */
-    public void queryGroupOrSingleChat(final JSONArray args,final CallbackContext callbackContext){
+    public void queryGroupOrSingleChat(final JSONArray args, final CallbackContext callbackContext) {
         MessagesService service = MessagesService.getInstance(UIUtils.getContext());
         try {
             String type = args.getString(0);
             String sessionid = args.getString(1);
-            List<Messages> list=service.querySearchDetail(type, sessionid);
+            List<Messages> list = service.querySearchDetail(type, sessionid);
             Gson gson = new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
             }.getType());
@@ -412,28 +414,28 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
-    public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){
-      SelectIdService selectIdService=SelectIdService.getInstance(UIUtils.getContext());
-      try {
-        String one=args.getString(0);
-        String two=args.getString(1);
-        List<SelectedId> list=selectIdService.queryBy(one, two);
-        Gson gson=new Gson();
-        String jsonStr = gson.toJson(list, new TypeToken<List<SelectedId>>() {
-        }.getType());
-        setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
-      } catch (JSONException e) {
-        e.printStackTrace();
-      }
+    public void queryGroupIds(final JSONArray args, final CallbackContext callbackContext) {
+        SelectIdService selectIdService = SelectIdService.getInstance(UIUtils.getContext());
+        try {
+            String one = args.getString(0);
+            String two = args.getString(1);
+            List<SelectedId> list = selectIdService.queryBy(one, two);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<SelectedId>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void qureyHistoryMsg(JSONArray args,CallbackContext callbackContext){
-        MsgHistoryService  service=MsgHistoryService.getInstance(UIUtils.getContext());
+    public void qureyHistoryMsg(JSONArray args, CallbackContext callbackContext) {
+        MsgHistoryService service = MsgHistoryService.getInstance(UIUtils.getContext());
         try {
-            String type =args.getString(0);
+            String type = args.getString(0);
             List<MsgHistory> list = service.queryMsg(type);
-            Gson gson=new Gson();
+            Gson gson = new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<MsgHistory>>() {
             }.getType());
             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -442,13 +444,13 @@ public class GreenDaoPlugin extends CordovaPlugin {
         }
     }
 
-    public void queryByType(final JSONArray args,final CallbackContext callbackContext){
-        ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+    public void queryByType(final JSONArray args, final CallbackContext callbackContext) {
+        ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
         try {
-            String one=args.getString(0);
-            String two=args.getString(1);
-            List<ChatList> list=chatListService.queryByType(one, two);
-            Gson gson=new Gson();
+            String one = args.getString(0);
+            String two = args.getString(1);
+            List<ChatList> list = chatListService.queryByType(one, two);
+            Gson gson = new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<ChatList>>() {
             }.getType());
             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
@@ -564,13 +566,13 @@ public class GreenDaoPlugin extends CordovaPlugin {
     public void deleteDataByArg(final JSONArray args, final CallbackContext callbackContext) {
         try {
             String services = args.getString(0);
-            String key=args.getString(1);
+            String key = args.getString(1);
             BaseInterface anInterface = getInterface(services);
             anInterface.deleteDataByArg(key);
             setResult("success", PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
-            setResult("delete by key failure",PluginResult.Status.ERROR,callbackContext);
+            setResult("delete by key failure", PluginResult.Status.ERROR, callbackContext);
         }
     }
 
