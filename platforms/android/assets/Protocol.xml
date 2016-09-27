@@ -1,155 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Protocols>
- 	<Protocol id="MsgProtocol">
+	<Protocol id="MsgProtocol">
 		<Node id="NotifyType">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
 		</Node>
 		<Node id="type">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nValue>U,G,D,C</nValue>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
+			<nValue>U,G,D,C,S,A</nValue>
 		</Node>
 		<Node id="mediaType">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nValue>T,I,F,S,E,A,V,P</nValue>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
+			<nValue>T,I,F,S,E,A,V,P</nValue>
 		</Node>
 		<Node id="platform">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nValue>A,W</nValue>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
+			<nValue>A,W</nValue>
 		</Node>
 		<Node id="receipt">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nValue>T,F</nValue>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
+			<nValue>T,F</nValue>
 		</Node>
 		<Node id="when">
-		 	<nLength>13</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nType>L</nType>
+			<nLength>13</nLength>
+			<nFixed>true</nFixed>
+			<nType>L</nType>
 		</Node>
 		<Node id="to">
-		 	<nLength>2</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>2</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 		<Node id="from">
-		 	<nLength>2</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>2</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 		<Node id="fromName">
-		 	<nLength>3</nLength>
-		 	<nFixed>false</nFixed>
-		 	<nType>C</nType>
+			<nLength>3</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 		<Node id="message">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
-		 	<nType>C</nType>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="EventProtocol">
 		<Node id="NotifyType">
-		 	<nLength>1</nLength>
-		 	<nFixed>true</nFixed>
+			<nLength>1</nLength>
+			<nFixed>true</nFixed>
 		</Node>
 		<Node id="when">
-		 	<nLength>13</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nType>L</nType>
+			<nLength>13</nLength>
+			<nFixed>true</nFixed>
+			<nType>L</nType>
 		</Node>
 		<Node id="EventCode">
-		 	<nLength>3</nLength>
-		 	<nFixed>true</nFixed>
-		 	<nValue>YAA,YAM,G00,YRA,YRM,GAM,GRM,RG0</nValue>
+			<nLength>3</nLength>
+			<nFixed>true</nFixed>
+			<nValue>YAA,YAM,GN0,G00,YRA,YRM,GAM,GRM,RG0</nValue>
 		</Node>
 		<Node id="Event">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're add to group's admin-->
 	<Protocol id="YAA">
 		<Node id="GroupID">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're add to group's member-->
 	<Protocol id="YAM">
 		<Node id="GroupID">
-		 	<nLength>1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 		<Node id="GroupName">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
-		 	<nType>C</nType>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
+	<!--The group's name changed-->
+	<Protocol id="GN0">
+		<Node id="GroupID">
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
+		</Node>
+		<Node id="GroupName">
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
+		</Node>
+	</Protocol>
+
 	<!--The member's info changed-->
 	<Protocol id="G00">
 		<Node id="GroupID">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
+		</Node>
+		<Node id="UpdateObj">
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>A</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're removed from group's admin-->
 	<Protocol id="YRA">
 		<Node id="GroupID">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're removed from group's member-->
 	<Protocol id="YRM">
 		<Node id="GroupID">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group add some member.-->
 	<Protocol id="GAM">
 		<Node id="GroupID">
-		 	<nLength>1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 		<Node id="UserName">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
-		 	<nType>C</nType>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group remove some member.-->
 	<Protocol id="GRM">
 		<Node id="GroupID">
-		 	<nLength>1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 		<Node id="UserName">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
-		 	<nType>C</nType>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
+			<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group be removed .-->
 	<Protocol id="RG0">
 		<Node id="GroupID">
-		 	<nLength>-1</nLength>
-		 	<nFixed>false</nFixed>
+			<nLength>-1</nLength>
+			<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!-- 
 	<Protocol id="US0">
 		<Node id="UserID">
@@ -175,4 +193,3 @@
 	</Protocol>
 	 -->
 </Protocols>
-

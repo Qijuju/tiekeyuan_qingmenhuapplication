@@ -326,6 +326,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
             if(data[0].messagetype === "Image"){
               $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
