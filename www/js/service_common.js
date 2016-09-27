@@ -178,11 +178,12 @@ angular.module('common.services', [])
                     }
 
                   });
-                } else if(msg != 'false') {
-                  $ToastUtils.showToast("检查更新失败！");
+                } else if(msg != 'false' && msg != '') {
+                  $mqtt.save('install_cancel', 'true');
+                  $ToastUtils.showToast(msg);
                 }
               },function (msg) {
-                $ToastUtils.showToast("检查更新失败！");
+                $ToastUtils.showToast(msg);
 
               });
             }, function (msg) {
