@@ -474,6 +474,43 @@ angular.module('im.routes', [])
         controller: 'mapdetailCtrl',
         cache:false
       })
+
+      .state('personpicture', {
+        url: '/personpicture',
+        templateUrl: 'templates/person-picture.html',
+        controller: 'personpictureCtrl',
+        cache:false
+      })
+
+      .state('personfile', {
+        url: '/personfile',
+        templateUrl: 'templates/person-file.html',
+        controller: 'personfileCtrl',
+        cache:false
+      })
+
+      .state('grouppicture', {
+        url: '/grouppicture',
+        templateUrl: 'templates/group-picture.html',
+        controller: 'grouppictureCtrl',
+        cache:false
+      })
+      
+      .state('groupfile', {
+        url: '/groupfile',
+        templateUrl: 'templates/group-file.html',
+        controller: 'groupfileCtrl',
+        cache:false
+      })
+
+
+
+
+
+
+
+
+
     // if none of the above states are matched, use this as the fallback
     //入口
     // $urlRouterProvider.otherwise('/welcome');
