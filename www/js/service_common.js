@@ -160,13 +160,6 @@ angular.module('common.services', [])
                           // 错误
                           $mqtt.save('install_cancel', 'false');
                         });
-                        /*$cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
-
-                         // $mqtt.save('install_cancel_version', '');
-                         }, function (err) {
-
-                         // $mqtt.save('install_cancel_version', '');
-                         });*/
                       },function (msg) {
 
                         $ToastUtils.showToast(msg);
@@ -174,7 +167,7 @@ angular.module('common.services', [])
                     } else {
                       //取消更新
                       $mqtt.save('install_cancel', 'true');
-                      // $mqtt.save('install_cancel_version', versionName);
+                    
                     }
 
                   });
