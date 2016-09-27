@@ -7,6 +7,8 @@ import com.tky.protocol.model.ProtocolUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class IMMsgFactory {
 	public enum MsgType{
 		User,		//用户 U
@@ -15,7 +17,8 @@ public class IMMsgFactory {
 		Radio,		//广播消息 R
 		Receipt,	//回执消息 C
 		Dept,		//部门消息 D
-		Alarm		//警报消息 A
+		Alarm,		//警报消息 A
+		Platfrom	//各平台消息 P
 	};
 	public enum MediaType{
 		Text,		//文本 T
@@ -25,7 +28,7 @@ public class IMMsgFactory {
 		Emote,		//表情 E
 		Audio,		//声音 A
 		Vedio,		//声音 V
-		Position,	//声音 P
+		Position	//定位 P
 	};
 	public enum PlatType{
 		Window,		//PC  W
@@ -34,6 +37,10 @@ public class IMMsgFactory {
 	public enum Receipt{
 		True,		//需要回执
 		False		//不需要回执
+	};
+	public enum MsgLevel{
+		Common,		//普通 0
+		Level_1		//紧急 1
 	};
 
 	//需要添加发送人名
@@ -85,6 +92,8 @@ public class IMMsgFactory {
 		msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
 		msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
 		msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
+		if(msgMap.containsKey(IMPFields.Msg_msgLevel))
+			msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
 		return msgMap;
 	}
 
@@ -107,6 +116,8 @@ public class IMMsgFactory {
 			msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
 			msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
 			msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
+			if(msgMap.containsKey(IMPFields.Msg_msgLevel))
+				msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
 		}
 		return msgMap;
 	}
@@ -257,4 +268,13 @@ public class IMMsgFactory {
 		return receipt;
 	}
 
+	private static MsgLevel getMsgLevel(String rp){
+		MsgLevel level = null;
+		if(rp.equals(IMPFields.M_MsgLevel_Common)){
+			level = MsgLevel.Common;
+		} else if(rp.equals(IMPFields.M_Recipt_True)){
+			level = MsgLevel.Level_1;
+		}
+		return level;
+	}
 }

@@ -291,7 +291,7 @@ angular.module('message.services', [])
             },function (err) {
               // alert(err+"sendmistake");
             });
-            alert("发送消息"+content);
+            // alert("发送消息"+content);
           }
           $rootScope.firstSendId=messageDetail.sessionid;
           // alert("发送消息时对方id"+$rootScope.firstSendId);

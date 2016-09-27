@@ -29,6 +29,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     });
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出
+
     $ionicPlatform.registerBackButtonAction(function(e) {
       if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/tab/message///'||$location.path() == '/welcome'||$location.path() == '/newspage'){
         if (backButtonPressedOnceToExit) {
@@ -47,7 +48,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       e.preventDefault();
       return false;
     }, 501);
-
     /*//主页面显示退出提示框
     $ionicPlatform.registerBackButtonAction(function (e) {
 
