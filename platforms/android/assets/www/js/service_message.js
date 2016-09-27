@@ -334,9 +334,9 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         // alert("发送者id"+localuserId);
         var progress = '0';
-        if (picPath != undefined && picPath != null && picPath != '') {
+        /*if (picPath != undefined && picPath != null && picPath != '') {
           messageDetail.message = picPath;
-        }
+        }*/
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
         $rootScope.$broadcast('msgs.update');
@@ -428,7 +428,7 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          alert("接受消息对方id"+arriveMessage.message);
+          // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
 
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
@@ -469,13 +469,13 @@ angular.module('message.services', [])
               arriveMessage.message = '';
               danliao.push(arriveMessage);
               $rootScope.$broadcast('msgs.update');
-              $api.getFile(objectTP,newMessage,'120',function (data) {
+              $api.getFile(objectTP,newMessage,'100',function (data) {
                 // alert("图片下载成功");
                 // arriveMessage.message = data;
                 if (data === '100') {
                   arriveMessage.message = newMessage;
                   $rootScope.$broadcast('msgs.update');
-                  alert(newMessage);
+                  // alert(newMessage);
                 }
                 $greendao.saveObj('MessagesService',arriveMessage,function (data) {
                 },function (err) {

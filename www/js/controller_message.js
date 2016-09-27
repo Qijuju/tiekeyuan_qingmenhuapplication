@@ -195,7 +195,7 @@ angular.module('message.controllers', [])
           if (type === 'image') {
             fileType = 'Image';
           }
-          alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
           $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
           $scope.send_content = "";
           keepKeyboardOpen();

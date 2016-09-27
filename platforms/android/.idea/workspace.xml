@@ -9,7 +9,38 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="9.27commit:图片和文件" />
+    <list default="true" readonly="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="9.27commit:图片和文件">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePicture.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePictureDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/FilePictureService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/controller_fileandpicture.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/group-file.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/group-picture.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger4757515201026969875.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/person-file.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/person-picture.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/build/intermediates/assets/" />
@@ -58,44 +89,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2179" column="0" selection-start-line="2179" selection-start-column="0" selection-end-line="2179" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.15034169">
+              <caret line="1937" column="12" selection-start-line="1937" selection-start-column="12" selection-end-line="1937" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="250" column="59" selection-start-line="250" selection-start-column="59" selection-end-line="250" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MimeTypeConstants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MimeTypeConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DaoSession.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoSession.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3321739">
-              <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -144,18 +145,11 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="398" column="16" selection-start-line="398" selection-start-column="16" selection-end-line="398" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="131" selection-start-line="68" selection-start-column="131" selection-end-line="68" selection-end-column="131" />
-              <folding />
+              <caret line="234" column="28" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="28" />
+              <folding>
+                <element signature="e#14569#17244#0" expanded="true" />
+                <element signature="e#17243#17244#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1390,7 +1384,7 @@
         <entry key="$USER_HOME$/AndroidStudioProjects/ConstructOrganition" value="2906169040645" />
         <entry key="C:\Users\Administrator\webstormproject\im\platforms\android" value="5875942965181" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
-        <entry key="D:\impro\IM\platforms\android" value="5890012409210" />
+        <entry key="D:\impro\IM\platforms\android" value="5890030107598" />
         <entry key="D:\workspace\IM\platforms\android" value="5885402048367" />
       </map>
     </option>
@@ -1860,7 +1854,6 @@
         <option value="$PROJECT_DIR$/res/layout/item_docs_manager.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/DocsManagerActivity.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/constant/ImageTypeConstants.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/DocFileReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
@@ -1872,6 +1865,7 @@
         <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MimeTypeConstants.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -2595,13 +2589,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47951272" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47951272" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.427464" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2609,7 +2603,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32890365" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3107,14 +3101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42889908">
-          <caret line="18" column="62" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3200,18 +3186,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="398" column="16" selection-start-line="398" selection-start-column="16" selection-end-line="398" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="122" column="22" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3082569">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22684085">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MimeTypeConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -3224,29 +3226,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2179" column="0" selection-start-line="2179" selection-start-column="0" selection-end-line="2179" selection-end-column="0" />
+          <caret line="234" column="28" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#14569#17244#0" expanded="true" />
+            <element signature="e#17243#17244#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MimeTypeConstants.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321739">
-          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-          <folding />
+        <state vertical-scroll-proportion="0.15034169">
+          <caret line="1937" column="12" selection-start-line="1937" selection-start-column="12" selection-end-line="1937" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
