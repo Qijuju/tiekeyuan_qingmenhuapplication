@@ -288,9 +288,7 @@ angular.module('im.routes', [])
       .state('localContacts', {
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
-        controller: 'LocalContactCtrl',
-        cache:false
-
+        controller: 'LocalContactCtrl'
       })
 
       .state('tab.chats', {

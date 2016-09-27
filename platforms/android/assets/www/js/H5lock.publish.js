@@ -58,7 +58,7 @@
 
             var n = this.chooseType;
             var count = 0;
-            this.r = this.ctx.canvas.width / (2 + 4 * n);// 公式计算
+            this.r = this.ctx.canvas.width / (1 + 4 * n);// 公式计算 圆半径
             this.lastPoint = [];
             this.arr = [];
             this.restPoint = [];
@@ -134,7 +134,7 @@
         }
         H5lock.prototype.initDom = function(){
             var wrap = document.getElementById(this.container);
-            var str = '<canvas id="canvas" width="300" height="300" style="background-color: #ffffff;display: inline-block;margin-top: 15px;"></canvas>';
+            var str = '<canvas id="canvas" width="380" height="380" style="background-color: #ffffff;display: inline-block;margin-top: 15px;margin-left: -10%"></canvas>';
             // wrap.setAttribute('style','position: absolute;top:0;left:0;right:0;bottom:0;');
             wrap.innerHTML = str;
             // document.body.appendChild(wrap);

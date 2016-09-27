@@ -275,8 +275,8 @@ angular.module('login.controllers', [])
     var method=function () {
       var secondopt = {
         chooseType: 3,
-        width: 350,
-        height: 350,
+        width: 400,
+        height: 400,
         container: 'element',
         inputEnd: function(psw){
           if(psw==password){
@@ -333,8 +333,8 @@ angular.module('login.controllers', [])
 
     var firstopt = {
       chooseType: 3,
-      width: 350,
-      height: 350,
+      width: 400,
+      height: 400,
       container: 'element',
       inputEnd: function(psw){
         if(psw==password){
