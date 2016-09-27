@@ -236,9 +236,19 @@ angular.module('message.controllers', [])
       if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
         return 'img/ems_file.png';
       }
+      return $scope.getFileTypeImgByFileName(msg);
+    };
+
+    //根据相关文件类型对应的类型图片（根据文件名）
+    $scope.getFileTypeImgByFileName = function (msg) {
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
       if (lastIndex === '.m4a' || lastIndex === '.mp3' || lastIndex === '.mid' || lastIndex === '.xmf' || lastIndex === '.ogg' || lastIndex === '.wav' || lastIndex === '.flac' || lastIndex === '.amr') {
-        return 'img/ems_video.png';
-      } else if (lastIndex === '.3gp' || lastIndex === '.mp4') {
+        return 'img/ems_audio.png';
+      } else if (lastIndex === '.3gp' || lastIndex === '.mp4' || lastIndex === 'rm' || lastIndex === 'rmvb' || lastIndex === 'avi') {
         return 'img/ems_video.png';
       } else if (lastIndex === '.jpg' || lastIndex === '.gif' || lastIndex === '.png' || lastIndex === '.jpeg' || lastIndex === '.bmp') {
         return 'img/ems_photo.png';
