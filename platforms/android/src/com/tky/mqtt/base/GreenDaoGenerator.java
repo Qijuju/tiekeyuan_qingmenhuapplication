@@ -28,8 +28,10 @@ public class GreenDaoGenerator {
         addSearchMsgHistory(schema);
         addLocalPhone(schema);
         addNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "E:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+        addFielandPic(schema);
+        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
     }
+
 
 
     //常用联系人表
@@ -183,4 +185,32 @@ public class GreenDaoGenerator {
     localPhone.addStringProperty("phonenumber");
     localPhone.addStringProperty("pinyinname");
   }
+
+
+    //图片和文件查看的列表
+
+    private static void addFielandPic(Schema schema) {
+
+        Entity fileandpic=schema.addEntity("FilePicture");
+
+        fileandpic.addStringProperty("filepicid").primaryKey();//
+        fileandpic.addStringProperty("from");//代表是谁发的   true代表的我发的  或者 false
+        fileandpic.addStringProperty("sessionid");//会话id
+        fileandpic.addStringProperty("fromname");//发送者的名字
+        fileandpic.addStringProperty("toname");//接收者的名字
+        fileandpic.addStringProperty("smallurl");//小图url
+        fileandpic.addStringProperty("bigurl");//大图的url
+        fileandpic.addStringProperty("bytesize");//大小byte
+        fileandpic.addStringProperty("megabyte");//Mb
+        fileandpic.addStringProperty("filename");//文件或者图片的名字
+        fileandpic.addStringProperty("type");//类型    File表示文件  Image表示图片
+        fileandpic.addLongProperty("when");//时间
+
+
+    }
+
+
+
+
+
 }
