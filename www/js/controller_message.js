@@ -1081,11 +1081,11 @@ angular.module('message.controllers', [])
     $scope.saoyisao = function () {
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
-        $ToastUtils.showToast(imageData.text);
+        // $ToastUtils.showToast(imageData.text);
         $api.qrcodeLogin(imageData.text,function (msg) {
-          $ToastUtils.showToast(msg)
+          // $ToastUtils.showToast(msg)
         },function (msg) {
-          $ToastUtils.showToast(msg)
+          // $ToastUtils.showToast(msg)
         });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);

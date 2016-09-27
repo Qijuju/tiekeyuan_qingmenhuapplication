@@ -164,7 +164,7 @@ angular.module('login.controllers', [])
     };
     $scope.goGestureLogin = function() {
       $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-        if(pwd==null||pwd==""||pwd.length==0){
+        if(pwd==null||pwd==""||pwd.length==0||pwd==undefined){
           $ToastUtils.showToast("还未设置手势密码");
         }else {
           $state.go('gesturelogin');
