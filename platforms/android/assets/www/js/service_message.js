@@ -287,7 +287,7 @@ angular.module('message.services', [])
             },function (err) {
               // alert(err+"sendmistake");
             });
-            alert("发送消息"+content);
+            // alert("发送消息"+content);
           }
           $rootScope.firstSendId=messageDetail.sessionid;
           // alert("发送消息时对方id"+$rootScope.firstSendId);
@@ -472,7 +472,7 @@ angular.module('message.services', [])
                 // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
               }
             }else{
-              alert("收到群组信息增该");
+              // alert("收到群组信息增该");
               $greendao.saveObj('MessagesService',arriveMessage,function (data) {
               },function (err) {
               });

@@ -120,7 +120,7 @@ angular.module('message.controllers', [])
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
         // console.log($stateParams.conversationType + '--' + imageURI);
-        alert(imageURI)
+        // alert(imageURI)
         var picPath = imageURI;
         console.log("getPicture:" + picPath);
         // if(isIOS){
@@ -1089,7 +1089,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
     // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -1836,7 +1836,7 @@ angular.module('message.controllers', [])
     };
 
     $scope.backAny = function () {
-      alert("返回聊天界面"+$scope.groupName);
+      // alert("返回聊天界面"+$scope.groupName);
       $state.go('messageGroup',{
         "id":$scope.groupId,
         "chatName":$scope.groupName,
@@ -1991,14 +1991,41 @@ angular.module('message.controllers', [])
         long=e.point.lng;
       })
 
-      // // 创建地理编码实例
-      // var myGeo = new BMap.Geocoder();
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
       // // 根据坐标得到地址描述
       // myGeo.getLocation(new BMap.Point(long, lat), function(result){
       //   if (result){
       //     alert(result.address);
       //   }
       // });
+      //查询功能
+      // var local = new BMap.LocalSearch(map, {
+      //   renderOptions: {map: map, panel: "results"},
+      //   pageCapacity: 10
+      // });
+      // local.searchInBounds(" ", map.getBounds());
+      var mOption = {
+        poiRadius : 100,           //半径为1000米内的POI,默认100米
+        numPois : 5                //列举出50个POI,默认10个
+      }
+      $scope.weizhis=[];
+      // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      myGeo.getLocation(point,
+        function mCallback(rs){
+          var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+          for(var i=0;i<allPois.length;i++){
+            // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+            map.addOverlay(new BMap.Marker(allPois[i].point));
+
+            $scope.$apply(function () {
+              $scope.weizhis.push(allPois[i].address);
+            });
+
+
+          }
+        },mOption
+      );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");

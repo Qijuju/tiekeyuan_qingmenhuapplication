@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProtocolNode {
-		
+
 	private String _name;
 	private int _length;
 	private boolean isFixed;
 	private String _type;
 	private List<String> _values = null;
-	
+	private String _dependency = null;
+
 	public ProtocolNode(String node, int length){
-		this(node, length, true);
+		this(node, length, true, "");
 	}
-	
-	public ProtocolNode(String node, int length, boolean isFixed){
+
+	public ProtocolNode(String node, int length, boolean isFixed, String dependency){
 		this._name = node;
 		this._length = length;
 		this.isFixed = isFixed;
 		this._type = IMPFields.DT_String;
+		this._dependency = dependency;
 	}
 
 	public String getNodeName() {
@@ -60,5 +62,13 @@ public class ProtocolNode {
 		for(String vlu : valueArray){
 			this._values.add(vlu);
 		}
-	} 
+	}
+
+	public String get_dependency() {
+		return _dependency==null||_dependency.isEmpty()?null:_dependency;
+	}
+
+	public void set_dependency(String _dependency) {
+		this._dependency = _dependency;
+	}
 }

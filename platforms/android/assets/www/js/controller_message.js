@@ -120,7 +120,7 @@ angular.module('message.controllers', [])
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
         // console.log($stateParams.conversationType + '--' + imageURI);
-        alert(imageURI)
+        // alert(imageURI)
         var picPath = imageURI;
         console.log("getPicture:" + picPath);
         // if(isIOS){
@@ -1089,7 +1089,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
     // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -1311,7 +1311,7 @@ angular.module('message.controllers', [])
             // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
-          alert("进来群聊id"+$scope.receiverssid);
+          // alert("进来群聊id"+$scope.receiverssid);
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
           /**
            * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
@@ -1367,14 +1367,14 @@ angular.module('message.controllers', [])
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
-              alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
+              // alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
               $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
               /**
                * 当群已经存在时，必须重新取一次群名称，不然会报错
                */
               $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
                 $rootScope.groupName=data[0].groupName;
-                alert("能拿到数据吗?"+$rootScope.groupName);
+                // alert("能拿到数据吗?"+$rootScope.groupName);
               },function (err) {
 
               });
@@ -1386,10 +1386,10 @@ angular.module('message.controllers', [])
                 chatitem.id = data[0].id;
                 if($rootScope.groupName === '' || $rootScope.groupName === undefined){
                     chatitem.chatName =$rootScope.groupName;
-                    alert("群名称："+chatitem.chatName);
+                    // alert("群名称："+chatitem.chatName);
                 }else{
                   chatitem.chatName =data[0].chatName ;
-                  alert("群名称2222"+chatitem.chatName);
+                  // alert("群名称2222"+chatitem.chatName);
                 }
                 // $ToastUtils.showToast("第一次创建会话时保存的群聊名称"+chatitem.chatName);
                 chatitem.imgSrc = data[0].imgSrc;
@@ -1836,7 +1836,7 @@ angular.module('message.controllers', [])
     };
 
     $scope.backAny = function () {
-      alert("返回聊天界面"+$scope.groupName);
+      // alert("返回聊天界面"+$scope.groupName);
       $state.go('messageGroup',{
         "id":$scope.groupId,
         "chatName":$scope.groupName,
@@ -1991,14 +1991,41 @@ angular.module('message.controllers', [])
         long=e.point.lng;
       })
 
-      // // 创建地理编码实例
-      // var myGeo = new BMap.Geocoder();
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
       // // 根据坐标得到地址描述
       // myGeo.getLocation(new BMap.Point(long, lat), function(result){
       //   if (result){
       //     alert(result.address);
       //   }
       // });
+      //查询功能
+      // var local = new BMap.LocalSearch(map, {
+      //   renderOptions: {map: map, panel: "results"},
+      //   pageCapacity: 10
+      // });
+      // local.searchInBounds(" ", map.getBounds());
+      var mOption = {
+        poiRadius : 100,           //半径为1000米内的POI,默认100米
+        numPois : 5                //列举出50个POI,默认10个
+      }
+      $scope.weizhis=[];
+      // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      myGeo.getLocation(point,
+        function mCallback(rs){
+          var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+          for(var i=0;i<allPois.length;i++){
+            // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+            map.addOverlay(new BMap.Marker(allPois[i].point));
+
+            $scope.$apply(function () {
+              $scope.weizhis.push(allPois[i].address);
+            });
+
+
+          }
+        },mOption
+      );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");

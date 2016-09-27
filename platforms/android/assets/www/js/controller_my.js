@@ -558,7 +558,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
           // alert(result.address);
-          $scope.geolocation=result.address;
+          $scope.$apply(function () {
+            $scope.geolocation=result.address;
+          });
         }
       });
 

@@ -6,6 +6,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -20,15 +21,20 @@ public class ProtocolUtil {
 	private static ProtocolUtil config = null;
 
 	private static Map<String, Protocol> protocolList = new HashMap<String, Protocol>();
+	private static Map<String, Dependency> dependencyList = new HashMap<String, Dependency>();
 
 	private final String configFile = "Protocol.xml";
 
-	//	private final String XmlNode_Protocol = "Protocol";
-//	private final String XmlNode_Node = "Node";
+	private final String XmlNode_Protocol = "Protocol";
+	private final String XmlNode_Dependencies = "Dependencies";
+	private final String XmlNode_Dependency = "Dependency";
+	private final String XmlNode_Dependency_dProtocol = "dProtocol";
+	//	private final String XmlNode_Node = "Node";
 	private final String XmlNode_Node_Length = "nLength";
 	private final String XmlNode_Node_Fixed = "nFixed";
 	private final String XmlNode_Node_Type = "nType";
 	private final String XmlNode_Node_Value = "nValue";
+	private final String XmlNode_Node_Dependency = "nDependency";
 
 	public static ProtocolUtil getInstance(){
 		if(config == null){
@@ -46,36 +52,67 @@ public class ProtocolUtil {
 			Element root = doc.getRootElement();
 			List<Element> protocols = root.elements();
 			for (Element protl : protocols) {
-				Protocol ptl = new Protocol(protl.attributeValue("id"));
-				List<Element> nodes = protl.elements();
-				for(Element nd : nodes){
-					Element ndChild = null;
-					ProtocolNode ptlNode = null;
-
-					if((ndChild = nd.element(XmlNode_Node_Length))!=null){
-						ptlNode = new ProtocolNode(nd.attributeValue("id"), Integer.parseInt(ndChild.getText().trim()));
-					} else {
-						ptlNode = new ProtocolNode(nd.attributeValue("id"), 0);
-					}
-
-					if((ndChild = nd.element(XmlNode_Node_Fixed))!=null){
-						ptlNode.setFixed(ndChild.getTextTrim().equals("true"));
-					}
-
-					if((ndChild = nd.element(XmlNode_Node_Type))!=null){
-						ptlNode.set_type(ndChild.getTextTrim());
-					}
-
-					if((ndChild = nd.element(XmlNode_Node_Value))!=null){
-						ptlNode.set_values(ndChild.getTextTrim());
-					}
-
-					ptl.addNode(ptlNode);
+				if(XmlNode_Protocol.equals(protl.getName())){
+					initProtocol(protl);
+				} else if(XmlNode_Dependencies.equals(protl.getName())){
+					initDependencies(protl);
 				}
-				protocolList.put(ptl.getName(), ptl);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	private void initProtocol(Element protl){
+		Protocol ptl = new Protocol(protl.attributeValue("id"));
+		List<Element> nodes = protl.elements();
+		for(Element nd : nodes){
+			Element ndChild = null;
+			ProtocolNode ptlNode = null;
+
+			if((ndChild = nd.element(XmlNode_Node_Length))!=null){
+				ptlNode = new ProtocolNode(nd.attributeValue("id"), Integer.parseInt(ndChild.getText().trim()));
+			} else {
+				ptlNode = new ProtocolNode(nd.attributeValue("id"), 0);
+			}
+
+			if((ndChild = nd.element(XmlNode_Node_Fixed))!=null){
+				ptlNode.setFixed(ndChild.getTextTrim().equals("true"));
+			}
+
+			if((ndChild = nd.element(XmlNode_Node_Type))!=null){
+				ptlNode.set_type(ndChild.getTextTrim());
+			}
+
+			if((ndChild = nd.element(XmlNode_Node_Value))!=null){
+				ptlNode.set_values(ndChild.getTextTrim());
+			}
+
+			if((ndChild = nd.element(XmlNode_Node_Dependency))!=null){
+				ptlNode.set_dependency(ndChild.getTextTrim());
+			}
+
+			ptl.addNode(ptlNode);
+		}
+		protocolList.put(ptl.getName(), ptl);
+	}
+
+	private void initDependencies(Element protl){
+		List<Element> dependElems = protl.elements();
+		for(Element dp : dependElems){
+			Dependency depy = new Dependency(dp.attributeValue("id"));	//Dependency
+			List<Element> childDP = dp.elements();
+			for(Element child : childDP){
+				if(XmlNode_Dependency_dProtocol.equals(child.getName())){
+					String value = child.attributeValue("value");
+					if(value == null){
+						depy.setCommonObject(child.getTextTrim());
+					} else if(!value.isEmpty()){
+						depy.add_relation(value, child.getTextTrim());
+					}
+				}
+
+			}
+			dependencyList.put(depy.getName(), depy);
 		}
 	}
 
@@ -154,7 +191,13 @@ public class ProtocolUtil {
 		}
 		String sendStr = "";
 		for(ProtocolNode node : ptl.getProtocolNodes()){
-			String nodeValue = sendNotify.get(node.getNodeName())==null ? "" : sendNotify.get(node.getNodeName()).toString();
+			String nodeValue = null;
+			//判断是否需要使用下一级解析
+			if(node.get_dependency() != null){
+				nodeValue = doDependency(sendNotify, node);
+			} else {
+				nodeValue = sendNotify.get(node.getNodeName())==null ? "" : sendNotify.get(node.getNodeName()).toString();
+			}
 			int nodeLength = node.getNodeLength();
 			if(nodeValue != null){
 				if(node.get_type().equals(IMPFields.DT_String_CN)){
@@ -226,12 +269,57 @@ public class ProtocolUtil {
 			}
 
 			try {
-				result.put(node.getNodeName(), convertData(value, node.get_type()));
+				//判断是否需要使用下一级解析
+				if(node.get_dependency() != null){
+					unDependency(value, node, result);
+				}else{
+					result.put(node.getNodeName(), convertData(value, node.get_type()));
+				}
 			} catch (UnsupportedEncodingException e) {
 				throw new IMPException(IMPException.Err_Format, node.getNodeName());
 			}
 		}
 		return result;
+	}
+
+	public static String doDependency(Map<String,Object> sendNotify, ProtocolNode node) throws IMPException{
+		Dependency dp = dependencyList.get(node.get_dependency());	//获取依赖的协议
+		if(dp == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency not find:"+node.get_dependency());
+		}
+		Object dpNode = sendNotify.get(dp.getName());				//获取依赖的条件值
+		if(dpNode == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's value not find:"+dp.getName());
+		}
+		String dpProtocolName = dp.getObject(dpNode.toString());	//获取该条件值对应的协议名称
+		if(dpProtocolName == null || dpProtocolName.isEmpty()){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's ProtocolName not find:"+dpNode);
+		}
+		Protocol dpProtocol = protocolList.get(dpProtocolName);		//获取该条件值对应的协议实体
+		if(dpProtocol == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's Protocol not find:"+dpProtocolName);
+		}
+		return doProtocol(sendNotify, dpProtocol);
+	}
+
+	public static void unDependency(String notifyStr, ProtocolNode node, Map<String,Object> result) throws IMPException{
+		Dependency dp = dependencyList.get(node.get_dependency());	//获取依赖的协议
+		if(dp == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency not find:"+node.get_dependency());
+		}
+		Object dpNode = result.get(dp.getName());				//获取依赖的条件值
+		if(dpNode == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's value not find:"+dp.getName());
+		}
+		String dpProtocolName = dp.getObject(dpNode.toString());	//获取该条件值对应的协议名称
+		if(dpProtocolName == null || dpProtocolName.isEmpty()){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's ProtocolName not find:"+dpNode);
+		}
+		Protocol dpProtocol = protocolList.get(dpProtocolName);		//获取该条件值对应的协议实体
+		if(dpProtocol == null){
+			throw new IMPException(IMPException.Err_Unknown, node.getNodeName()+",Dependency's Protocol not find:"+dpProtocolName);
+		}
+		result.putAll(unProtocol(notifyStr, dpProtocol));
 	}
 
 	private static Object convertData(String data, String dataTP) throws UnsupportedEncodingException{
@@ -254,5 +342,9 @@ public class ProtocolUtil {
 			return URLDecoder.decode(data, "UTF-8");
 		}
 		return data;
+	}
+
+	public static void main(String[] args) {
+		ProtocolUtil.getInstance();
 	}
 }
