@@ -792,8 +792,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     });
     var firstopt2 = {
       chooseType: 3,
-      width: 350,
-      height: 350,
+      width: 400,
+      height: 400,
       container: 'element',
       inputEnd: function(psw){
         if(psw==password){
@@ -830,8 +830,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         });
         var checkoldopt = {
           chooseType: 3,
-          width: 350,
-          height: 350,
+          width: 400,
+          height: 400,
           container: 'element',
           inputEnd: function(psw){
             if(psw==password){
@@ -866,8 +866,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var newmethod=function () {
     var setopt = {
       chooseType: 3, // 3 , 4 , 5,
-      width: 350, // lock wrap width
-      height: 350, // lock wrap height
+      width: 400, // lock wrap width
+      height: 400, // lock wrap height
       container: 'element', // the id attribute of element
       inputEnd: function(psw){
         // alert(psw)
@@ -880,8 +880,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         var checkopt = {
           chooseType: 3, // 3 , 4 , 5,
-          width: 350, // lock wrap width
-          height: 350, // lock wrap height
+          width: 400, // lock wrap width
+          height: 400, // lock wrap height
           container: 'element', // the id attribute of element
           inputEnd: function(psw){
             // alert(psw)
