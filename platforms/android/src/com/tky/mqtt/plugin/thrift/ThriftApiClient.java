@@ -1715,12 +1715,12 @@ public class ThriftApiClient extends CordovaPlugin {
 
             FileInputStream in = new FileInputStream(file);
             int available = in.available();
-            ByteBuffer fileByte = ByteBuffer.allocate(200 * 1024);
+            ByteBuffer fileByte = ByteBuffer.allocate(20 * 1024);
             in.getChannel().read(fileByte);
             in.close();
             fileByte.flip();
             boolean isFinish = false;
-            if (available > 200 * 1024) {
+            if (available > 20 * 1024) {
                 isFinish = false;
             } else {
                 isFinish = true;
@@ -1768,6 +1768,8 @@ public class ThriftApiClient extends CordovaPlugin {
         offset = offset + length;
         String fileId = result.getObjID();
         String type = result.getObjType();
+        File file = new File(filePath);
+        final long fileSize = file.length();
         FileInputStream in;
         in = new FileInputStream(filePath);
         try{
@@ -1775,14 +1777,14 @@ public class ThriftApiClient extends CordovaPlugin {
         } catch(IOException e){
             return;
         }
-        byte[] sendByte = new byte[200*1024];
+        byte[] sendByte = new byte[20*1024];
         boolean isFinish = false;
         int sendLength =0;
         ByteBuffer fileByte = null;
         sendLength = in.read(sendByte);
         if(sendLength <= 0){
             String objID = result.getObjID();
-            JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "']");
+            JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "','1']");
             setResult(retObj, PluginResult.Status.OK, callbackContext);
             return;
         }
@@ -1797,13 +1799,14 @@ public class ThriftApiClient extends CordovaPlugin {
             }
             long time = System.currentTimeMillis();
             RSTSendFile rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
-            System.out.println("第" + i +"次发送，用时：" + (System.currentTimeMillis() - time));
+//            System.out.println("第" + i +"次发送，用时：" + (System.currentTimeMillis() - time));
             i++;
+//            setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
             offset = rlt.getOffset() + rlt.getLength();
             fileByte.clear();
         }
         String objID = result.getObjID();
-        JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "']");
+        JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "','1']");
         setResult(retObj, PluginResult.Status.OK, callbackContext);
         in.close();
     }
@@ -1820,7 +1823,7 @@ public class ThriftApiClient extends CordovaPlugin {
             if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
                 objectID = null;
             }
-            final String filePath=args.getString(2);
+            final String filePath=args.getString(2).split("###")[0];//{{$}}
 
             FileInputStream fis = new FileInputStream(filePath);
 
@@ -1855,15 +1858,15 @@ public class ThriftApiClient extends CordovaPlugin {
             if (file == null || !file.exists()) {
                 return;
             }
-
+            final long fileSize = file.length();
             FileInputStream in = new FileInputStream(file);
             int available = in.available();
-            ByteBuffer fileByte = ByteBuffer.allocate(200 * 1024);
+            ByteBuffer fileByte = ByteBuffer.allocate(20 * 1024);
             in.getChannel().read(fileByte);
             in.close();
             fileByte.flip();
             boolean isFinish = false;
-            if (available > 200 * 1024) {
+            if (available > 20 * 1024) {
                 isFinish = false;
             } else {
                 isFinish = true;
@@ -1876,6 +1879,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         try {
                             RSTSendFile result = sendFile_call.getResult();
                             if (result.result) {
+                                setResult(new JSONArray("['" + filePath + "','" + result.getObjID() + "','" + String.valueOf(20 * 1024 * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
                                 sendFile(result, savePath, callbackContext);
                             } else {
                                 System.out.println("用户头像设置失败");
@@ -1893,14 +1897,33 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
-
+                    try {
+                        setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+                    } catch (JSONException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
         } catch (JSONException e) {
+            try {
+                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         } catch (TException e) {
+            try {
+                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         } catch (IOException e) {
+            try {
+                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         }
     }
@@ -1912,9 +1935,9 @@ public class ThriftApiClient extends CordovaPlugin {
 
         try {
             String objectTP=args.getString(0);
-            String objectID=args.getString(1);
+            final String objectID=args.getString(1);
             String picSize=args.getString(2);
-            SystemApi.getFile(getUserID(),objectTP, objectID,picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+            SystemApi.getFile(getUserID(),objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
                     if(arg0!=null){
@@ -1933,11 +1956,11 @@ public class ThriftApiClient extends CordovaPlugin {
                                 long offset = result.getOffset();
                                 String type = result.getObjectTP();
                                 tempPicName = "";
-                                if (type.equals("U") || type.equals("G") || type.equals("I")) {
-                                    tempPicName = tempUserPic + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
-                                } else {
-                                    tempPicName = tempUserPic + result.getObjectID();
-                                }
+                                /*if (type.equals("U") || type.equals("G") || type.equals("I")) {
+                                    tempPicName = tempUserPic + File.separator + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
+                                } else {*/
+                                    tempPicName = tempUserPic + File.separator + objectID.split("###")[4];//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+//                                }
                                 File tempFile = new File(tempPicName);
                                 if (!tempFile.exists())
                                     tempFile.createNewFile();
@@ -1970,7 +1993,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 System.out.println("获取我的头像失败");
                             }
                             setResult(tempPicName, PluginResult.Status.OK, callbackContext);
-                            System.out.println(result);
+                            setResult("100", PluginResult.Status.OK, callbackContext);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }catch(TException e){
@@ -2143,6 +2166,30 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 打开文件（各种类型）
+     *
+     */
+    public void openFileByPath(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String path = args.getString(0);
+            if (path != null && !"".equals(path)) {
+                boolean flag = UIUtils.openFile(path);
+                if (flag) {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
+                } else {
+                    setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
+                }
+            } else {
+                setResult("文件路径不能为空！", PluginResult.Status.ERROR, callbackContext);
+            }
+        } catch (JSONException e) {
+            setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 设置返回信息
      * @param result 返回结果数据

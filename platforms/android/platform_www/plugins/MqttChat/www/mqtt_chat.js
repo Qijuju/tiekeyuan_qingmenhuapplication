@@ -35,8 +35,8 @@ exports.getTopic = function(userID,type,success, error) {//获取当前登录用
 exports.getUserId = function(success, error) {//获取当前登录用户的topic
     exec(success, error, "MqttChat", "getUserId", []);
 };
-exports.openDocWindow = function(success, error) {//打开文件管理器
-    exec(success, error, "MqttChat", "openDocWindow", []);
+exports.openDocWindow = function(type, success, error) {//打开文件管理器  参数声明：type：打开查看的文件的类型 *或all：所有文件，video：视频文件，audio：音频文件
+    exec(success, error, "MqttChat", "openDocWindow", [type]);
 };
 
 });

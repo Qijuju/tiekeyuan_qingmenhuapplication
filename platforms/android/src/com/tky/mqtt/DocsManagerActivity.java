@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ionicframework.im366077.R;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.constant.ImageTypeConstants;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -124,7 +123,6 @@ public class DocsManagerActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        ToastUtil.showSafeToast("调用返回按钮~~~");
         return super.onKeyDown(keyCode, event);
     }
 }

@@ -3,10 +3,25 @@
  */
 angular.module('localphone.controllers', [])
 
-  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils) {
-    
+  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$ionicLoading,$timeout) {
+
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+
     $scope.goLocalSearch= function () {
       $state.go("searchlocal");
+    }
+
+    $scope.localgoDetail=function (id) {
+      $state.go("person", {
+        "userId": id,
+      });
     }
 
 
@@ -15,36 +30,42 @@ angular.module('localphone.controllers', [])
 
       $scope.$apply(function () {
 
-        $scope.contacts=localContact.getAllContacts();
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.contacts=localContact.getAllContacts();
 
-        $scope.contactsA=localContact.getA();
-        $scope.contactsB=localContact.getB();
-        $scope.contactsC=localContact.getC();
-        $scope.contactsD=localContact.getD();
-        $scope.contactsE=localContact.getE();
-        $scope.contactsF=localContact.getF();
-        $scope.contactsG=localContact.getG();
-        $scope.contactsH=localContact.getH();
-        $scope.contactsI=localContact.getI();
-        $scope.contactsJ=localContact.getJ();
-        $scope.contactsK=localContact.getK();
-        $scope.contactsL=localContact.getL();
-        $scope.contactsM=localContact.getM();
-        $scope.contactsN=localContact.getN();
-        $scope.contactsO=localContact.getO();
-        $scope.contactsP=localContact.getP();
-        $scope.contactsQ=localContact.getQ();
-        $scope.contactsR=localContact.getR();
-        $scope.contactsS=localContact.getS();
-        $scope.contactsT=localContact.getT();
-        $scope.contactsU=localContact.getU();
-        $scope.contactsV=localContact.getV();
-        $scope.contactsW=localContact.getW();
-        $scope.contactsX=localContact.getX();
-        $scope.contactsY=localContact.getY();
-        $scope.contactsZ=localContact.getZ();
-        $scope.contactsNoSuch=localContact.getNoSuch();
-        init();
+          $scope.contactsA=localContact.getA();
+          $scope.contactsB=localContact.getB();
+          $scope.contactsC=localContact.getC();
+          $scope.contactsD=localContact.getD();
+          $scope.contactsE=localContact.getE();
+          $scope.contactsF=localContact.getF();
+          $scope.contactsG=localContact.getG();
+          $scope.contactsH=localContact.getH();
+          $scope.contactsI=localContact.getI();
+          $scope.contactsJ=localContact.getJ();
+          $scope.contactsK=localContact.getK();
+          $scope.contactsL=localContact.getL();
+          $scope.contactsM=localContact.getM();
+          $scope.contactsN=localContact.getN();
+          $scope.contactsO=localContact.getO();
+          $scope.contactsP=localContact.getP();
+          $scope.contactsQ=localContact.getQ();
+          $scope.contactsR=localContact.getR();
+          $scope.contactsS=localContact.getS();
+          $scope.contactsT=localContact.getT();
+          $scope.contactsU=localContact.getU();
+          $scope.contactsV=localContact.getV();
+          $scope.contactsW=localContact.getW();
+          $scope.contactsX=localContact.getX();
+          $scope.contactsY=localContact.getY();
+          $scope.contactsZ=localContact.getZ();
+          $scope.contactsNoSuch=localContact.getNoSuch();
+          init();
+
+        });
+
+
       })
 
     });

@@ -302,7 +302,7 @@ angular.module('selectothergroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -771,7 +771,7 @@ angular.module('selectothergroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -1243,7 +1243,7 @@ angular.module('selectothergroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -1741,7 +1741,7 @@ angular.module('selectothergroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,

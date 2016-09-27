@@ -84,8 +84,6 @@ public class MqttMessageCallback implements MqttCallback {
             					//接收到消息时的铃声
             					ring();
             				}
-			//接收到消息时的铃声
-			ring();
 			final String username = (String) map.getUsername();
 			final String msgContent = (String) map.getMessage();
 			UIUtils.runInMainThread(new Runnable() {

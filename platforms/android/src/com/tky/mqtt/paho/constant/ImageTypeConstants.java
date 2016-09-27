@@ -17,7 +17,7 @@ public class ImageTypeConstants {
         mimeTypeMap.put("xmf", R.drawable.ems_file);
         mimeTypeMap.put("ogg", R.drawable.ems_file);
         mimeTypeMap.put("wav", R.drawable.ems_file);
-        mimeTypeMap.put("3gp", R.drawable.ems_file);
+        mimeTypeMap.put("3gp", R.drawable.ems_video);
         mimeTypeMap.put("mp4", R.drawable.ems_video);
         mimeTypeMap.put("jpg", R.drawable.ems_photo);
         mimeTypeMap.put("gif", R.drawable.gif);

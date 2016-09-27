@@ -120,6 +120,35 @@
   position: absolute;
   text-align: center;
 }
+.circle7{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle6.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle8{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle1.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
 .square1{
   /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu1.png);

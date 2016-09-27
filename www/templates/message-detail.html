@@ -19,7 +19,7 @@
 
   </ion-nav-bar>
 
-  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()" ng-click="zhiling()">
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll"  on-drag="onDrag()" ng-click="zhiling()" id="contentaa">
     <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
                    pulling-text="更多消息" id="refresh">
     </ion-refresher>
@@ -35,18 +35,35 @@
           <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
-          <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></p>
-          <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype != 'Image'">{{msgSingle.message}}</p>
+          <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" /></p>
+          <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</p>
+            <p  ng-if="msgSingle.messagetype === 'File'">
+            <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;margin-left: 14.5%;" class="yuanjiao" />
+            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
+              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1])">
+                <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{getFileName(msgSingle.message)}}<br />已接收</font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
+          </p>
           </span>
 
         </div>
-        <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true')">
+        <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
           <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
           <!--<img src="{{imgPath}}" />-->
-          <span class="rj-triangle-right" ng-if="msgSingle.messagetype != 'Image'"></span>
+          <span class="rj-triangle-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'"></span>
           <span>
           <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true'" ng-click="resendgroupshow(groupid,msgSingle.message,groupid,grouptype,localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></font><font class="rj-message-right" ng-if="msgSingle.messagetype != 'Image'">{{msgSingle.message}}</font></p>
+          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure && msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" /></font><font  ng-if="msgSingle.messagetype === 'File'">
+            <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" />
+            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
+              <a class="item item-icon-left" href="#">
+                <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}<br />{{msgSingle.message.split('###')[3]}}&nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span></font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
+          </font><font class="rj-message-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</font></p>
           </span>
           <!--<span class="rj-triangle-right"></span>-->
            <!--<span>-->
@@ -64,14 +81,15 @@
       <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
       </button>
     </div>
-    <div class="item-input rj-footer-btn-wrap" style="width: 75%" ng-click="zhiling()">
+    <div class="item-input rj-footer-btn-wrap" style="width: 72%" ng-click="zhiling()">
       <textarea msd-elastic ng-model="send_content" style="margin-right: 45px">
       </textarea>
     </div>
-    <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px;margin-left: 30px">
-      <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
-    </div>
-    <div class="rj-footer-btn-wrap" style="margin-top: 37px;margin-right: 10px">
+
+    <div class="rj-footer-btn-wrap" style="margin-left: 15px;margin-right: 5px">
+      <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px">
+        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+      </div>
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">
         </button>
@@ -82,8 +100,9 @@
       </div>
     </div>
     <br/>
-    <div ng-if="a==1" style="height:200px;margin-left: -95%;margin-top: 5px">
+    <div ng-if="a==1" style="height:200px;margin-left: -94%;margin-top: 5px">
       <div class="row" align="center">
+        <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 16px">-->
         <div class="col" ng-click="getPhoto('CAMERA',userId,send_content, userId,localusr,myUserID,_id)" align="center" style="padding: 15px">
           <a>
             <ul>
@@ -92,15 +111,16 @@
             </ul>
           </a>
         </div>
-        <div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">
+        <div id="butAlbum" ng-click="openDocumentWindow('image', userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">
+        <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">-->
           <a>
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">相册</li>
             </ul>
           </a>
         </div>
-        <div class="col" align="center" ng-click="openDocumentWindow(userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
+        <div class="col" align="center" ng-click="openDocumentWindow('*', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
               <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/wenjian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
@@ -108,7 +128,7 @@
             </ul>
           </a>
         </div>
-        <div class="col" align="center" style="padding: 15px">
+        <div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
               <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
@@ -118,7 +138,7 @@
         </div>
       </div>
       <div class="row" style="margin-top: -22%">
-        <div class="col" align="center" style="padding: 15px">
+        <div class="col" align="center" ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
               <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>

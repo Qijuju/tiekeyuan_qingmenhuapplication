@@ -18,7 +18,7 @@ public class DocFileReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ReceiverParams.DOC_FILE_GET.equals(intent.getAction())) {
             if (onScrachFilePathListener != null) {
-                onScrachFilePathListener.onScrachFilePath(intent.getStringExtra("filePath"));
+                onScrachFilePathListener.onScrachFilePath(intent.getStringExtra("filePath"), intent.getStringExtra("length"), intent.getStringExtra("formatSize"), intent.getStringExtra("fileName"));
             }
         }
     }
@@ -28,6 +28,6 @@ public class DocFileReceiver extends BroadcastReceiver {
     }
 
     public interface OnScrachFilePathListener {
-        public void onScrachFilePath(String path);
+        public void onScrachFilePath(String filePath, String length, String formatSize, String path);
     }
 }
