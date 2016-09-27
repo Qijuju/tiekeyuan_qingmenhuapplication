@@ -648,6 +648,7 @@ angular.module('message.controllers', [])
     $scope.chatname=$stateParams.chatName;
     $scope.grouptype=$stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+    // alert("新建群时"+$scope.groupid+$scope.chatname+$scope.ismygroup);
     /**
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
      * @type {string}
@@ -950,7 +951,7 @@ angular.module('message.controllers', [])
       $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
         // $ToastUtils.showToast(data.length+"收到消息时，查询chat表有无当前用户");
         if(data.length ===0){
-          // $ToastUtils.showToast("单聊没有该会话");
+         // alert("群聊没有该会话");
           $rootScope.isPersonSend='true';
           if ($rootScope.isPersonSend === 'true') {
             $chatarr.getIdChatName($scope.groupid,$scope.chatname);
@@ -967,33 +968,35 @@ angular.module('message.controllers', [])
       },function (err) {
         // $ToastUtils.showToast("收到未读消息时，查询chat列表"+err);
       });
+      // alert("进行返回时"+$scope.groupid);
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.groupid, function (data) {
         if (data.length === 0) {
-          // $ToastUtils.showToast("无数据返回主界面1");
-          if(data[0].messagetype === "Image"){
-            $scope.lastText = "[图片]";//最后一条消息内容
-          }else if(data[0].messagetype === "LOCATION"){
-            $scope.lastText = "[位置]";//最后一条消息内容
-          }else {
-            $scope.lastText = data[0].message;//最后一条消息内容
-          }
+          // alert("无数据返回主界面1");
+          $scope.lastText = '';//最后一条消息内容
           $scope.lastDate = 0;//最后一条消息的时间
           $scope.chatName = $scope.chatname;//对话框名称
           $scope.imgSrc = '';//最后一条消息的头像
           $scope.senderId='';//若没有最后一条消息，则将senderid=‘’
           $scope.senderName ='';//若没有最后一条数据，则将senderName=‘’
         } else {
-          $scope.lastText = data[0].message;//最后一条消息内容
+          if(data[0].messagetype === "Image"){
+            $scope.lastText = "[图片]";//最后一条消息内容
+          }else if(data[0].messagetype === "LOCATION"){
+            $scope.lastText = "[位置]";//最后一条消息内容
+          }else {
+            // alert("进来了吗？");
+            $scope.lastText = data[0].message;//最后一条消息内容
+          }
           $scope.lastDate = data[0].when;//最后一条消息的时间
           $scope.chatName = data[0].username;//对话框名称
           // alert("拿到消息"+$scope.chatName);
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
           $scope.senderId = data[0].senderid;
         }
-        // $ToastUtils.showToast("无参跳转用户名"+$scope.groupid);
+       // alert("无参跳转用户名");
         $greendao.queryData('ChatListService', 'where id=?',$scope.groupid, function (data) {
           $scope.groupCount=$mqtt.getMsgGroupCount();
-          // $ToastUtils.showToast("无参跳转查询消息列表"+data.length);
+          // alert("无参跳转查询消息列表"+data.length);
           var chatitem = {};
           chatitem.id = data[0].id;
           if(!($scope.chatname === data[0].chatName)){
@@ -1014,7 +1017,7 @@ angular.module('message.controllers', [])
           $greendao.saveObj('ChatListService', chatitem, function (data) {
             // $ToastUtils.showToast("save success");
             $greendao.queryByConditions('ChatListService', function (data) {
-              // $ToastUtils.showToast("加载成功");
+              // alert("加载成功");
               $state.go("tab.message", {
                 "id": $scope.groupid,
                 "sessionid": $scope.chatName,

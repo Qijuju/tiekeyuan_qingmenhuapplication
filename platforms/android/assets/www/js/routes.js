@@ -93,7 +93,7 @@ angular.module('im.routes', [])
           }
         }
       })
-      
+
       .state('tab.notifications', {
         url: '/notifications',
         cache:false,
@@ -104,7 +104,7 @@ angular.module('im.routes', [])
           }
         }
       })
-      
+
       .state('notificationDetail', {
         url: '/notificationDetail/:id/:name/:type',
         templateUrl: 'templates/notificationDetail.html',
@@ -288,9 +288,7 @@ angular.module('im.routes', [])
       .state('localContacts', {
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
-        controller: 'LocalContactCtrl',
-        cache:false
-
+        controller: 'LocalContactCtrl'
       })
 
       .state('tab.chats', {
