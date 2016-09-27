@@ -314,6 +314,102 @@ angular.module('message.services', [])
         });
         return "啥也不是";
       },
+      sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath) {
+        var messageDetail={};
+        messageDetail._id=sqlid;
+        messageDetail.sessionid=id;
+        messageDetail.type='User';
+        messageDetail.from='true';
+        if (messagetype === undefined || messagetype === null || messagetype === '') {
+          messagetype = 'normal';
+        }
+        messageDetail.message=content;
+        messageDetail.messagetype=messagetype;
+        messageDetail.platform='Windows';
+        messageDetail.when=new Date().getTime();
+        messageDetail.isFailure='false';
+        messageDetail.isDelete='false';
+        messageDetail.imgSrc='';
+        messageDetail.username=localuser;
+        messageDetail.senderid=localuserId;
+        // alert("发送者id"+localuserId);
+        var progress = '0';
+        /*if (picPath != undefined && picPath != null && picPath != '') {
+          messageDetail.message = picPath;
+        }*/
+        messageDetail.message = '' + '###' + content;
+        danliao.push(messageDetail);
+        $rootScope.$broadcast('msgs.update');
+        var sendType = 'F';
+        if (messagetype == 'Image') {
+          sendType = 'I';
+        }
+        $api.sendDocFile(sendType, null, fileContent, function (sdata) {
+          if (sdata[2] === '-1') {
+            /*$ToastUtils.showToast('文件发送失败！',function (msg) {
+            },function (err) {
+            });*/
+            messageDetail.isFailure='true';
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              if (data != 'success') {
+                messageDetail._id = data;
+              }
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+            return;
+          }
+          messageDetail.message = sdata[1] + '###' + content;
+          $rootScope.$broadcast('msgs.update');
+          if (sdata[2] != '1') {
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              messageDetail._id = data;
+              $rootScope.$broadcast('msgs.update');
+            },function (err) {
+            });
+          } else {
+            var myMsg = messageDetail.message.split('###');
+            var newMsg = messageDetail.message  ;
+            if (myMsg != undefined && myMsg != null && myMsg != '' && myMsg.length > 0) {
+              newMsg = '';
+              for (var i = 0; i < myMsg.length; i++) {
+                if (i === 0) {
+                  newMsg += myMsg[i];
+                } else if (i === 1) {
+                  newMsg += '###' + sdata[0];
+                } else {
+                  newMsg += '###' + myMsg[i];
+                }
+              }
+            }
+            messageDetail.message = newMsg;
+            mqtt.sendMsg(topic, messageDetail, function (message) {
+              /*if (picPath != undefined && picPath != null && picPath != '') {
+                messageDetail.message = picPath;
+              }*/
+              $rootScope.firstSendId=messageDetail.sessionid;
+              $rootScope.$broadcast('msgs.update');
+              return "成功";
+            },function (message) {
+              /*if (picPath != undefined && picPath != null && picPath != '') {
+                messageDetail.message = picPath;
+              }*/
+              messageDetail.isFailure='true';
+              danliao.push(messageDetail);
+              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+                $rootScope.$broadcast('msgs.error');
+                if (data != 'success') {
+                  messageDetail._id = data;
+                }
+              },function (err) {
+              });
+              return "失败";
+            });
+          }
+        }, function (err) {
+        });
+        return "啥也不是";
+      },
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
@@ -332,6 +428,7 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
+          // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
 
           if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
@@ -361,13 +458,29 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){//普通消息
-            if (message.messagetype === "Image") {   //文件或者图片
-              $api.getFile('I',arriveMessage.message,'00',function (data) {
+            if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
+              var objectTP = 'I';
+              if (message.messagetype === "Image") {
+                objectTP = 'I';
+              } else if(message.messagetype === "File") {
+                objectTP = 'F';
+              }
+              var newMessage = arriveMessage.message;
+              arriveMessage.message = '';
+              danliao.push(arriveMessage);
+              $rootScope.$broadcast('msgs.update');
+              $api.getFile(objectTP,newMessage,'100',function (data) {
                 // alert("图片下载成功");
-                arriveMessage.message = data;
+                // arriveMessage.message = data;
+                if (data === '100') {
+                  arriveMessage.message = newMessage;
+                  $rootScope.$broadcast('msgs.update');
+                  // alert(newMessage);
+                }
                 $greendao.saveObj('MessagesService',arriveMessage,function (data) {
                 },function (err) {
                 });
+                $rootScope.$broadcast('msgs.update');
                 if(message.type==="User"){
                   $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
                     if(data.length>0){
@@ -391,7 +504,6 @@ angular.module('message.services', [])
                   $rootScope.messagetype= arriveMessage.type;
                   $rootScope.$broadcast('msgs.update');
                   // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
-                  danliao.push(arriveMessage);
                 }else{
                   $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
                     if(data.length>0){
@@ -698,15 +810,17 @@ angular.module('message.services', [])
       isLogin:function () {
         return isLogin;
       },
-      openDocWindow:function(success, error) {//打开文件管理器
-        mqtt.openDocWindow(success, error);
-      },
-      openDocWindow:function(success, error) {//打开文件管理器
-        mqtt.openDocWindow(success, error);
+      openDocWindow:function(type, success, error) {//打开文件管理器
+        if (type === undefined) {
+          type = "*";
+        }
+        mqtt.openDocWindow(type, success, error);
       },
       getIconDir:function(success,error){
         mqtt.getIconDir(success,error);
       }
+
+
     };
   })
 

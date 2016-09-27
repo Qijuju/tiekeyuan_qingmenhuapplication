@@ -258,7 +258,10 @@ angular.module('common.services', [])
       },
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
-  }
+  },
+      openFileByPath:function (path, success, error) {//打开文件
+        api.openFileByPath(path, success, error);
+      }
     };
   })
 

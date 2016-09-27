@@ -160,13 +160,6 @@ angular.module('common.services', [])
                           // 错误
                           $mqtt.save('install_cancel', 'false');
                         });
-                        /*$cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
-
-                         // $mqtt.save('install_cancel_version', '');
-                         }, function (err) {
-
-                         // $mqtt.save('install_cancel_version', '');
-                         });*/
                       },function (msg) {
 
                         $ToastUtils.showToast(msg);
@@ -174,7 +167,7 @@ angular.module('common.services', [])
                     } else {
                       //取消更新
                       $mqtt.save('install_cancel', 'true');
-                      // $mqtt.save('install_cancel_version', versionName);
+                    
                     }
 
                   });
@@ -265,7 +258,10 @@ angular.module('common.services', [])
       },
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
-  }
+  },
+      openFileByPath:function (path, success, error) {//打开文件
+        api.openFileByPath(path, success, error);
+      }
     };
   })
 

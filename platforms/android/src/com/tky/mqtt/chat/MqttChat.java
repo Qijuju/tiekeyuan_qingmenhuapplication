@@ -399,8 +399,30 @@ public class MqttChat extends CordovaPlugin {
         UIUtils.runInMainThread(new Runnable() {
             @Override
             public void run() {
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                UIUtils.getContext().startActivity(intent);
+                /*Intent intent = new Intent(cordova.getActivity(), DocsManagerActivity.class);
+                cordova.getActivity().startActivityForResult(intent, FILE_SELECT_CODE);
+                if (docFileReceiver != null) {
+                    docFileReceiver.setOnScrachFilePathListener(new DocFileReceiver.OnScrachFilePathListener() {
+                        @Override
+                        public void onScrachFilePath(String path) {
+                            setResult(path, PluginResult.Status.OK, callbackContext);
+                        }
+                    });
+                }*/
+                //查看的文件类型，有 *（或者all）、video（视频）
+                String type = null;
+                try {
+                    type = args.getString(0);
+                } catch (JSONException e) {
+                    type = "*";
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
+                intent.setType((type == null || "".equals(type.trim()) || "all".equals(type) ? "*" : type) + "/*");
+//                Uri parse = Uri.parse(Environment.getExternalStorageDirectory().getPath());
+//                intent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory().getPath()), "audio/*");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
 
                 //显示文件管理器列表
@@ -412,8 +434,12 @@ public class MqttChat extends CordovaPlugin {
                 if (docFileReceiver != null) {
                     docFileReceiver.setOnScrachFilePathListener(new DocFileReceiver.OnScrachFilePathListener() {
                         @Override
-                        public void onScrachFilePath(String path) {
-                            setResult(path, PluginResult.Status.OK, callbackContext);
+                        public void onScrachFilePath(String filePath, String length, String formatSize, String fileName) {
+                            try {
+                                setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }
@@ -522,16 +548,15 @@ public class MqttChat extends CordovaPlugin {
         callbackContext.sendPluginResult(pluginResult);
     }
 
-    @Override
-    public void onDestroy() {
-        if (docFileReceiver != null) {
-            UIUtils.getContext().unregisterReceiver(docFileReceiver);
-            docFileReceiver = null;
-        }
-        cordova.getActivity().stopService(new Intent(cordova.getActivity(), MqttService.class));
-        cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
-        super.onDestroy();
+    /**
+     * 设置返回信息
+     * @param result 返回结果数据
+     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
     }
-
-
 }

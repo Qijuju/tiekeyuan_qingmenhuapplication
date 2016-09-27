@@ -520,11 +520,11 @@ public class GreenDaoPlugin extends CordovaPlugin {
             anInterface.saveObj(daoObj);
             if (daoObj instanceof Messages) {
                 String isFailure = jsonobj.getString("isFailure");
+                Messages msg = (Messages) daoObj;
                 if ("true".equals(isFailure)) {
-                    Messages msg = (Messages) daoObj;
                     setResult(msg.get_id(), PluginResult.Status.OK, callbackContext);
                 } else {
-                    setResult("success", PluginResult.Status.OK, callbackContext);
+                    setResult(msg.get_id(), PluginResult.Status.OK, callbackContext);
                 }
             } else {
                 setResult("success", PluginResult.Status.OK, callbackContext);
