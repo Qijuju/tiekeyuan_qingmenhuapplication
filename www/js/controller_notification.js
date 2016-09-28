@@ -498,4 +498,14 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
 
   })
 
+  .controller('newnotificationCtrl', function ($scope,$state) {
+    /**
+     * 1.收到通知时判断类型，然后根据紧急程度划分2个数组(类似群组和单聊、用两个count监听)service
+     * 2.根据时间判断，从紧急里面取时间数组，一般里面取时间数组(用两个count监听)
+     * 3.根据模块划分，从紧急里面取模块数组，一般里面取模块数组(用两个count监听)
+     * 4.从数据库取出紧急和一般的通知消息
+     */
+
+  })
+
 

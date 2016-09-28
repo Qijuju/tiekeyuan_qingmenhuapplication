@@ -153,6 +153,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setIsDelete(jsonobj.getString("isDelete"));
             systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
             systemMsg.setSenderid(jsonobj.getString("senderid"));
+            systemMsg.setMsglevel(jsonobj.getString("msglevel"));
             obj = systemMsg;
         }else if ("MsgHistoryService".equals(services)){
             MsgHistory msgHistory=new MsgHistory();
