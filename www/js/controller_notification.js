@@ -467,6 +467,19 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
       //第一个页面index=0,第二个页面index=0，第三个页面index=0
       if (index==1){//当选择第二个页面也就是时间页面的时候调用时间选择器
         $scope.openDatePicker();
+        document.getElementById("button1").style.backgroundColor="#ffffff";
+        document.getElementById("button2").style.backgroundColor="#6c9aff";
+        document.getElementById("button3").style.backgroundColor="#ffffff"
+      }
+      if(index==0){
+        document.getElementById("button1").style.backgroundColor="#6c9aff";
+        document.getElementById("button2").style.backgroundColor="#ffffff";
+        document.getElementById("button3").style.backgroundColor="#ffffff"
+      }
+      if(index==2){
+        document.getElementById("button1").style.backgroundColor="#ffffff";
+        document.getElementById("button2").style.backgroundColor="#ffffff";
+        document.getElementById("button3").style.backgroundColor="#6c9aff"
       }
     }
    //日期选择器
