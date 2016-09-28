@@ -458,7 +458,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
 
 })
 
-  .controller('notificationsCtrl', function ($scope,$state,$ToastUtils,$greendao,$ionicSlideBoxDelegate,ionicDatePicker) {
+  .controller('notificationsCtrl', function ($scope,$state,$ToastUtils,$ionicSlideBoxDelegate,ionicDatePicker,$mqtt,$greendao,$notifyarr,$rootScope,$slowarr) {
     $scope.index = 0;
     $scope.go = function(index){
       $ionicSlideBoxDelegate.slide(index);
@@ -466,13 +466,51 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
     $scope.go_changed=function(index){
       //第一个页面index=0,第二个页面index=0，第三个页面index=0
       if (index==1){//当选择第二个页面也就是时间页面的时候调用时间选择器
+        $scope.index =1;
         $scope.openDatePicker();
+        document.getElementById("button1").style.backgroundColor="#ffffff";
+        document.getElementById("button2").style.backgroundColor="#6c9aff";
+        document.getElementById("button3").style.backgroundColor="#ffffff"
+      }
+      if(index==0){
+        $scope.index =0;
+        document.getElementById("button1").style.backgroundColor="#6c9aff";
+        document.getElementById("button2").style.backgroundColor="#ffffff";
+        document.getElementById("button3").style.backgroundColor="#ffffff"
+      }
+      if(index==2){
+        $scope.index =2;
+        document.getElementById("button1").style.backgroundColor="#ffffff";
+        document.getElementById("button2").style.backgroundColor="#ffffff";
+        document.getElementById("button3").style.backgroundColor="#6c9aff"
       }
     }
+    $scope.timeaa = "";
    //日期选择器
     var ipObj1 = {
       callback: function (val) {  //Mandatory
-       alert(val)//点击set返回的日期 1439676000000这个格式的
+       // alert(val)//点击set返回的日期 1439676000000这个格式的
+        //根据时间划分
+        $greendao.queryDataByDate(val,'Level_1',function (data) {
+          // alert("紧急通知列表的长度"+data.length);
+          $notifyarr.setNotifyData(data);
+          $scope.fastlist=$notifyarr.getAllNotifyData();
+        },function (err) {
+          $ToastUtils.showToast("查询系统通知列表"+err);
+        });
+
+        /**
+         * 没有未读时从数据库取数据（一般通知）
+         */
+        $greendao.queryDataByDate(val,'Common',function (data) {
+          // alert("一般通知列表的长度"+data.length);
+          $slowarr.setNotifyData(data);
+          $scope.slowlist=$slowarr.getAllNotifyData();
+        },function (err) {
+          $ToastUtils.showToast("查询系统通知列表"+err);
+        });
+        $scope.timeaa=val;
+        $scope.go(0);
       },
       disabledDates: [            //Optional
         new Date(2016, 2, 16),
@@ -496,13 +534,6 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
       ionicDatePicker.openDatePicker(ipObj1);
     };
 
-  })
-
-
-  /**
-   * 新版通知界面的controller
-   */
-  .controller('newnotificationCtrl', function ($scope,$state,$mqtt,$greendao,$notifyarr,$rootScope,$slowarr) {
     /**
      * 1.收到通知时判断类型，然后根据紧急程度划分2个数组(类似群组和单聊、用两个count监听)service
      * 2.根据时间判断，从紧急里面取时间数组，一般里面取时间数组(用两个count监听)
@@ -512,24 +543,25 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
     /**
      * 没有未读时从数据库取数据（紧急通知）
      */
-    $greendao.queryData('NotifyListService','where chatType =? ','1',function (data) {
-      // alert("通知列表的长度"+data.length);
-      $notifyarr.setNotifyData(data);
-      $scope.fastlist=$notifyarr.getAllNotifyData();
-    },function (err) {
-      $ToastUtils.showToast("查询系统通知列表"+err);
-    });
+      //根据紧急程度划分
+      $greendao.queryData('NotifyListService','where CHAT_TYPE =? ','Level_1',function (data) {
+        // alert("紧急通知列表的长度"+data.length);
+        $notifyarr.setNotifyData(data);
+        $scope.fastlist=$notifyarr.getAllNotifyData();
+      },function (err) {
+        $ToastUtils.showToast("查询系统通知列表"+err);
+      });
 
-    /**
-     * 没有未读时从数据库取数据（一般通知）
-     */
-    $greendao.queryData('NotifyListService','where chatType =? ','0',function (data) {
-      // alert("通知列表的长度"+data.length);
-      $slowarr.setNotifyData(data);
-      $scope.slowlist=$slowarr.getAllNotifyData();
-    },function (err) {
-      $ToastUtils.showToast("查询系统通知列表"+err);
-    });
+      /**
+       * 没有未读时从数据库取数据（一般通知）
+       */
+      $greendao.queryData('NotifyListService','where CHAT_TYPE =? ','Common',function (data) {
+        // alert("一般通知列表的长度"+data.length);
+        $slowarr.setNotifyData(data);
+        $scope.slowlist=$slowarr.getAllNotifyData();
+      },function (err) {
+        $ToastUtils.showToast("查询系统通知列表"+err);
+      });
 
     //先监听未读通知消息
     $scope.$on('newnotify.update', function (event) {
@@ -539,8 +571,211 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
         $scope.id=$mqtt.getFirstReceiverSsid();
         $scope.alarmname=$mqtt.getFirstReceiverChatName();
         $scope.type=$mqtt.getMessageType();
+        if($scope.fastcount >0){
+          // alert("收到紧急系统通知并且保存成功"+$scope.fastcount+"消息类型"+$scope.type+$scope.id);
+          $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
+            // alert("系统通知会话列表长度"+data.length);
+            if(data.length === 0){
+              // alert("没有系统通知会话");
+              $notifyarr.getNotifyIdChatName($scope.id, $scope.alarmname);
+              $rootScope.isNotifySend ='true';
+              if($rootScope.isNotifySend === 'true'){
+                // alert("进入创建会话段");
+                $notifyarr.createNotifyData($rootScope.isNotifySend, $scope.type);
+                $scope.$on('notifyarr.update', function (event) {
+                  $scope.$apply(function () {
+                    $scope.fastlist=$notifyarr.getAllNotifyData();
+                    // alert("监听以后的长度"+$scope.syslist.length);
+                  });
+                });
+                $rootScope.isNotifySend = 'false';
+              }
+            }
+          },function (err) {
 
-        if(fastcount >0){
+          });
+
+          //取出与‘ppp’的聊天记录最后一条
+          $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.id, function (data) {
+            // alert("未读消息时取出消息表中最后一条数据"+data.length);
+            $scope.lastText = data[0].message;//最后一条消息内容
+            // alert("最后一条消息"+$scope.lastText);
+            $scope.lastDate = data[0].when;//最后一条消息的时间id
+            $scope.srcName = data[0].username;//消息来源人名字
+            $scope.srcId = data[0].senderid;//消息来源人id
+            // alert($scope.srcName + "用户名1"+$scope.srcId);
+            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            $scope.msglevel=data[0].msglevel;//紧急程度
+            //取出‘ppp’聊天对话的列表数据并进行数据库更新
+            $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
+              $scope.unread = $scope.fastcount;
+              // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+              var chatitem = {};
+              chatitem.id = data[0].id;
+              chatitem.chatName = data[0].chatName;
+              chatitem.imgSrc = $scope.imgSrc;
+              chatitem.lastText = $scope.lastText;
+              chatitem.count = $scope.unread;
+              chatitem.isDelete = data[0].isDelete;
+              chatitem.lastDate = $scope.lastDate;
+              chatitem.chatType = $scope.msglevel;
+              chatitem.senderId = $scope.srcId;
+              chatitem.senderName =$scope.srcName;
+              $greendao.saveObj('NotifyListService', chatitem, function (data) {
+                // alert("保存成功方法"+data.length);
+                $notifyarr.updatelastData(chatitem);
+                $rootScope.$broadcast('lastfastcount.update');
+              }, function (err) {
+                // $ToastUtils.showToast(err + "数据保存失败");
+              });
+            }, function (err) {
+              // $ToastUtils.showToast(err);
+            });
+          }, function (err) {
+            // $ToastUtils.showToast(err);
+          });
+        }else if($scope.slowcount >0){
+          // alert("收到一般系统通知并且保存成功"+$scope.slowcount+"消息类型"+$scope.type+$scope.id);
+          $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
+            // alert("系统通知会话列表长度"+data.length);
+            if(data.length === 0){
+              // alert("没有系统通知会话");
+              $slowarr.getNotifyIdChatName($scope.id, $scope.alarmname);
+              $rootScope.isNotifySend ='true';
+              if($rootScope.isNotifySend === 'true'){
+                // alert("进入创建会话段");
+                $slowarr.createNotifyData($rootScope.isNotifySend, $scope.type);
+                $scope.$on('slowarr.update', function (event) {
+                  $scope.$apply(function () {
+                    $scope.slowlist=$slowarr.getAllNotifyData();
+                    // alert("监听以后的长度"+$scope.syslist.length);
+                  });
+                });
+                $rootScope.isNotifySend = 'false';
+              }
+            }
+          },function (err) {
+
+          });
+
+          //取出与‘ppp’的聊天记录最后一条
+          $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.id, function (data) {
+            // alert("yiban未读消息时取出消息表中最后一条数据"+data.length);
+            $scope.lastText = data[0].message;//最后一条消息内容
+            // alert("最后一条消息"+$scope.lastText);
+            $scope.lastDate = data[0].when;//最后一条消息的时间id
+            $scope.srcName = data[0].username;//消息来源人名字
+            $scope.srcId = data[0].senderid;//消息来源人id
+            // alert($scope.srcName + "用户名1"+$scope.srcId);
+            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            $scope.msglevel=data[0].msglevel;//紧急程度
+            //取出‘ppp’聊天对话的列表数据并进行数据库更新
+            $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
+              $scope.unread = $scope.slowcount;
+             // alert("未读消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+              var chatitem = {};
+              chatitem.id = data[0].id;
+              chatitem.chatName = data[0].chatName;
+              chatitem.imgSrc = $scope.imgSrc;
+              chatitem.lastText = $scope.lastText;
+              chatitem.count = $scope.unread;
+              chatitem.isDelete = data[0].isDelete;
+              chatitem.lastDate = $scope.lastDate;
+              chatitem.chatType = $scope.msglevel;
+              chatitem.senderId = $scope.srcId;
+              chatitem.senderName =$scope.srcName;
+              $greendao.saveObj('NotifyListService', chatitem, function (data) {
+                // alert("保存成功方法"+data.length);
+                $slowarr.updatelastData(chatitem);
+                $rootScope.$broadcast('lastslowcount.update');
+              }, function (err) {
+                // $ToastUtils.showToast(err + "数据保存失败");
+              });
+            }, function (err) {
+              // $ToastUtils.showToast(err);
+            });
+          }, function (err) {
+            // $ToastUtils.showToast(err);
+          });
+        }
+      })
+    })
+
+    /**
+     * 通知最后一条信息展示完成以后在列表界面进行刷新
+     */
+    $scope.$on('lastfastcount.update', function (event) {
+      $scope.$apply(function () {
+        // alert("进来数据刷新");
+        $scope.fastlist=$notifyarr.getAllNotifyData();
+      });
+
+    });
+
+    /**
+     * 通知最后一条信息展示完成以后在列表界面进行刷新
+     */
+    $scope.$on('lastslowcount.update', function (event) {
+      $scope.$apply(function () {
+        // alert("一般进来数据刷新");
+        $scope.slowlist=$slowarr.getAllNotifyData();
+      });
+
+    });
+
+
+    //紧急通知进详情
+    $scope.gonewDetail = function (id,chatName,chatType) {
+      $state.go("notificationDetail",{
+        "id":id,
+        "name":chatName,
+        "type":chatType
+      });
+    }
+
+    //一般通知进详情
+    $scope.gocommonDetail = function (id,chatName,chatType) {
+      // alert("一般进了吗？");
+      $state.go("notificationDetail",{
+        "id":id,
+        "name":chatName,
+        "type":chatType
+      });
+    }
+
+      /**
+       * 公文处理跳转
+       */
+    $scope.gotozero=function () {
+      $scope.go(0);
+    }
+  })
+
+  //单个系统通知详情界面控制器
+  .controller('newnotificationDetailCtrl', function ($scope,$state,$greendao,$mqtt,$notifyarr,$rootScope,$stateParams,$ToastUtils,$timeout,$slowarr) {
+    /**
+     * 从通知会话列表跳转带参
+     */
+    $scope.id=$stateParams.id;
+    $scope.chatName=$stateParams.name;
+    $scope.chatType=$stateParams.type;
+    // alert("跳转界面"+$scope.id+$scope.chatName+$scope.chatType);
+    $greendao.queryNewNotifyChat($scope.chatType,$scope.id,function (data) {
+      // alert("进来通知详情界面"+data.length);
+      $scope.sysmsglist=data;
+    },function (err) {
+      $ToastUtils.showToast(err+"查询报警信息失败");
+    });
+    //监听系统通知和报警信息
+    $scope.$on('newnotify.update', function (event) {
+      $scope.$apply(function () {
+        $scope.fastcount=$mqtt.getFastcount();
+        $scope.slowcount=$mqtt.getSlowcount();
+        $scope.id=$mqtt.getFirstReceiverSsid();
+        $scope.alarmname=$mqtt.getFirstReceiverChatName();
+        $scope.type=$mqtt.getMessageType();
+
+        if($scope.fastcount >0){
           // alert("收到系统通知并且保存成功"+$scope.syscount+"消息类型"+$scope.type+$scope.id);
           $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
             // alert("系统通知会话列表长度"+data.length);
@@ -587,7 +822,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.count = $scope.unread;
               chatitem.isDelete = data[0].isDelete;
               chatitem.lastDate = $scope.lastDate;
-              chatitem.chatType = data[0].chatType;
+              chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
@@ -603,7 +838,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
           }, function (err) {
             // $ToastUtils.showToast(err);
           });
-        }else if(slowcount >0){
+        }else if($scope.slowcount >0){
           // alert("收到系统通知并且保存成功"+$scope.syscount+"消息类型"+$scope.type+$scope.id);
           $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
             // alert("系统通知会话列表长度"+data.length);
@@ -650,12 +885,12 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.count = $scope.unread;
               chatitem.isDelete = data[0].isDelete;
               chatitem.lastDate = $scope.lastDate;
-              chatitem.chatType = data[0].chatType;
+              chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
-                $notifyarr.updatelastData(chatitem);
+                $slowarr.updatelastData(chatitem);
                 $rootScope.$broadcast('lastslowcount.update');
               }, function (err) {
                 // $ToastUtils.showToast(err + "数据保存失败");
@@ -667,31 +902,74 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // $ToastUtils.showToast(err);
           });
         }
-      })
-    })
-
-    /**
-     * 通知最后一条信息展示完成以后在列表界面进行刷新
-     */
-    $scope.$on('lastfastcount.update', function (event) {
-      $scope.$apply(function () {
-        // alert("进来数据刷新");
-        $scope.fastlist=$notifyarr.getAllNotifyData();
+        //滑动到底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
       });
-
     });
-
-    /**
-     * 通知最后一条信息展示完成以后在列表界面进行刷新
-     */
-    $scope.$on('lastslowcount.update', function (event) {
-      $scope.$apply(function () {
-        // alert("进来数据刷新");
-        $scope.slowlist=$slowarr.getAllNotifyData();
+    $scope.goback = function () {
+      $mqtt.clearFastcount();
+      $mqtt.clearSlowcount();
+      // $ToastUtils.showToast("无参进来的userid"+$scope.userId);
+      // alert("id-======="+$scope.id);
+      $greendao.queryData('SystemMsgService', 'where sessionid =? order by "when" desc limit 0,1', $scope.id, function (data) {
+        if (data.length === 0) {
+          // alert("无数据返回主界面1");
+          $scope.lastText = '';//最后一条消息内容
+          $scope.lastDate = 0;//最后一条消息的时间
+          $scope.chatName = $scope.chatName;//对话框名称
+          $scope.imgSrc = '';//最后一条消息的头像
+          $scope.srcId='';//若没有最后一条消息，则将senderid=‘’
+          $scope.srcName ='';//若没有最后一条数据，则将senderName=‘’
+        } else {
+          // alert("有数据返回通知界面1");
+          $scope.lastText = data[0].message;//最后一条消息内容
+          $scope.lastDate = data[0].when;//最后一条消息的时间
+          $scope.chatName = data[0].chatName;//对话框名称
+          $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+          $scope.srcName = data[0].username;//消息来源人名字
+          $scope.srcId = data[0].senderid;//消息来源人id
+        }
+        // $ToastUtils.showToast("无参跳转用户名"+$scope.userId);
+        $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
+          // alert("跳转查询消息列表"+data.length);
+          var chatitem = {};
+          chatitem.id = data[0].id;
+          chatitem.chatName = data[0].chatName;
+          chatitem.imgSrc = $scope.imgSrc;
+          chatitem.lastText = $scope.lastText;
+          chatitem.count = $mqtt.getSyscount();
+          chatitem.isDelete = data[0].isDelete;
+          chatitem.lastDate = $scope.lastDate;
+          chatitem.chatType = data[0].chatType;
+          chatitem.senderId = $scope.srcId;
+          chatitem.senderName = $scope.srcName;
+          $greendao.saveObj('NotifyListService', chatitem, function (data) {
+            // alert("save success");
+            $greendao.queryByConditions('NotifyListService', function (data) {
+              // alert("加载成功");
+              $state.go("tab.notification", {
+                "id": $scope.id,
+                "name": $scope.chatName,
+                "type":$scope.chatType
+              });
+            }, function (err) {
+              // $ToastUtils.showToast(err + "加载全部数据失败");
+            });
+          }, function (err) {
+            // $ToastUtils.showToast(err + "数据保存失败");
+          });
+        }, function (err) {
+          // $ToastUtils.showToast(err + "查询聊天列表失败");
+        });
+      }, function (err) {
+        // $ToastUtils.showToast(err + "数据离开失败");
       });
-
-    });
+    }
 
   })
+
+
 
 

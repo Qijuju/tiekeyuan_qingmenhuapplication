@@ -18,7 +18,7 @@ public class IMMsgFactory {
 		Receipt,	//回执消息 C
 		Dept,		//部门消息 D
 		Alarm,		//警报消息 A
-		Platfrom	//各平台消息 P
+		Platform	//各平台消息 P
 	};
 	public enum MediaType{
 		Text,		//文本 T
@@ -145,6 +145,9 @@ public class IMMsgFactory {
 			case Alarm:
 				msgTypeStr = IMPFields.M_Type_Alarm;
 				break;
+			case Platform:
+				msgTypeStr = IMPFields.M_Type_Platform;
+				break;
 		}
 		return msgTypeStr;
 	}
@@ -222,6 +225,8 @@ public class IMMsgFactory {
 			msgTypeStr = MsgType.Receipt;
 		} else if(msgType.equals(IMPFields.M_Type_Alarm)){
 			msgTypeStr = MsgType.Alarm;
+		} else if(msgType.equals(IMPFields.M_Type_Platform)){
+			msgTypeStr = MsgType.Platform;
 		}
 		return msgTypeStr;
 	}
@@ -272,7 +277,7 @@ public class IMMsgFactory {
 		MsgLevel level = null;
 		if(rp.equals(IMPFields.M_MsgLevel_Common)){
 			level = MsgLevel.Common;
-		} else if(rp.equals(IMPFields.M_Recipt_True)){
+		} else if(rp.equals(IMPFields.M_MsgLevel_Level1)){
 			level = MsgLevel.Level_1;
 		}
 		return level;

@@ -570,6 +570,20 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     });
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
+    $scope.cunzai=0;
+    //初始化页面，第一次输入旧密码
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      // alert(pwd);
+      if(pwd==""||pwd==null||pwd.length==0||pwd==undefined){
+        $scope.cunzai=0;
+      }else {
+        $scope.cunzai=1;
+      }
+      // $ToastUtils.showToast("旧手势密码:"+pwd);
+    }, function (msg) {
+      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
+      $scope.cunzai=0;
+    });
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
@@ -691,12 +705,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
                 // $mqtt.getMqtt().getString();//取
-                $ToastUtils.showToast("两次输入一样,密码设置成功")
+                $ToastUtils.showToast("密码设置成功")
+                $state.go("accountsettion", {
+                  "UserIDset": $scope.UserID
+                });
                 $scope.$apply(function () {
                   $scope.a=3
                 })
                 $timeout(function () {
                   checklock.reset()
+
                 },300);
               }else {
                 checklock.drawStatusPoint('notright')
@@ -723,6 +741,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         height: 350, // lock wrap height
         container: 'element', // the id attribute of element
         inputEnd: function(psw){
+
           // alert(psw)
           password=psw;
           $scope.$apply(function () {
@@ -739,9 +758,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               // alert(psw)
               if (psw==password){
                 checklock.drawStatusPoint('right')
-                $ToastUtils.showToast("两次输入一样,密码设置成功")
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
+                $ToastUtils.showToast("密码设置成功")
+                $state.go("accountsettion", {
+                  "UserIDset": $scope.UserID
+                });
                 $scope.$apply(function () {
                   $scope.a=3
                 })
@@ -786,9 +808,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //初始化页面，第一次输入旧密码
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
       password=pwd;
-      $ToastUtils.showToast("旧手势密码:"+pwd);
+      // $ToastUtils.showToast("旧手势密码:"+pwd);
     }, function (msg) {
-      $ToastUtils.showToast("旧手势密码获取失败"+msg);
+      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
     });
     var firstopt2 = {
       chooseType: 3,
@@ -887,9 +909,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             // alert(psw)
             if (psw==password){
               checklock.drawStatusPoint('right')
-              $ToastUtils.showToast("两次输入一样,密码设置成功")
               $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea',  $scope.mymypersonname);
+              $ToastUtils.showToast("密码设置成功")
+              $state.go("accountsettion", {
+                "UserIDset": $scope.UserID
+              });
               $scope.$apply(function () {
                 $scope.a=4
               })

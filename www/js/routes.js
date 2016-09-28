@@ -109,7 +109,7 @@ angular.module('im.routes', [])
         url: '/notificationDetail/:id/:name/:type',
         templateUrl: 'templates/notificationDetail.html',
         cache:false,
-        controller: 'notificationDetailCtrl'
+        controller: 'newnotificationDetailCtrl'
       })
 
 
@@ -495,7 +495,7 @@ angular.module('im.routes', [])
         controller: 'grouppictureCtrl',
         cache:false
       })
-      
+
       .state('groupfile', {
         url: '/groupfile',
         templateUrl: 'templates/group-file.html',

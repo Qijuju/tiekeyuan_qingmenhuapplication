@@ -193,7 +193,7 @@ angular.module('message.services', [])
         for(var i=0;i<=notifylist.length-1;i++){
           // alert("data ===="+data.lastText+"数组长度"+notifylist.length);
           if( notifylist[i].id === data.id){
-            // alert("找出数组的被更改的数据了"+i);
+            // alert("yiban找出数组的被更改的数据了"+i);
             notifylist.splice(i,1);
           }
         }
@@ -406,11 +406,11 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
-          arriveMessage.msglevel='';
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
-
-          if(message.type === 'Platfrom'){
-            arriveMessage.msglevel=message.msglevel;
+          alert("进来了吗"+message.type);
+          if(message.type === 'Platform'){
+            alert("进来了吗紧急"+message.msgLevel);
+            arriveMessage.msglevel=message.msgLevel;
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
               alert("保存平台消息成功");
             },function (err) {
@@ -419,12 +419,12 @@ angular.module('message.services', [])
             /**
              * 判断未读数量
              */
-            if(message.msglevel === '1'){        //紧急消息
+            if(message.msgLevel === 'Level_1'){        //紧急消息
               fastarr.push(arriveMessage);
-              $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+              $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
                 if(data.length>0){
                   fastcount=data[0].count;
-                  // alert("有值"+syscount);
+                  alert("紧急count有值"+fastcount);
                   fastcount++;
                   $rootScope.$broadcast('newnotify.update');
                 }else{
@@ -432,17 +432,17 @@ angular.module('message.services', [])
                   // alert("接受群消息service"+data.length+arriveMessage.sessionid);
                   fastcount++;
                   $rootScope.$broadcast('newnotify.update');
-                  // alert("syscount"+syscount);
+                  alert("fastcount"+fastcount);
                 }
               },function (err) {
                 // alert(err);
               });
-            }else if (message.msglevel === '0'){    //一般消息
+            }else if (message.msgLevel === 'Common'){    //一般消息
               slowarr.push(arriveMessage);
-              $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+              $greendao.queryNotifyChat("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
                 if(data.length>0){
                   slowcount=data[0].count;
-                  // alert("一般有值"+syscount);
+                  alert("一般有值"+slowcount);
                   slowcount++;
                   $rootScope.$broadcast('newnotify.update');
                 }else{
@@ -450,7 +450,7 @@ angular.module('message.services', [])
                   // alert("接受群消息service"+data.length+arriveMessage.sessionid);
                   slowcount++;
                   $rootScope.$broadcast('newnotify.update');
-                  // alert("syscount"+syscount);
+                  alert("slowcount"+slowcount);
                 }
               },function (err) {
                 // alert(err);
@@ -458,8 +458,8 @@ angular.module('message.services', [])
             }
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
-            $rootScope.messagetype= arriveMessage.type;
-            // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
+            $rootScope.messagetype= arriveMessage.msglevel;
+            alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
               // alert(data.length+"收通知消息");
