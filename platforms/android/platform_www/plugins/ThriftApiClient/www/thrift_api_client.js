@@ -43,8 +43,8 @@ exports.setHeadPic = function(filePath,success, error) {
 exports.getVersionInfo = function(success, error) {
   exec(success, error, "ThriftApiClient", "getVersionInfo", []);
 };
-exports.getVersion = function(savePath, versionCode, success, error) {
-  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode]);
+exports.getVersion = function(savePath, versionCode,filesize,success, error) {
+  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode,filesize]);
 };
 exports.addAttention = function(membersArr, success, error) {
   exec(success, error, "ThriftApiClient", "addAttention", [membersArr]);

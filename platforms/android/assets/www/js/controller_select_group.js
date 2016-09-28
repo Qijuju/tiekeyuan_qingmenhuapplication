@@ -1357,7 +1357,7 @@ angular.module('selectgroup.controllers', [])
 
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     $scope.groupId=$stateParams.groupid;
-    var groupName=$stateParams.groupname;
+    $scope.groupName=$stateParams.groupname;
 
 
     $scope.saveName=function (name) {

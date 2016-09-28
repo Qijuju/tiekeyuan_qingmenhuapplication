@@ -19,6 +19,7 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
+import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -36,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -417,6 +419,15 @@ public class MqttChat extends CordovaPlugin {
                 }
             }
         });
+    }
+
+    public void getIconDir(final JSONArray args, final CallbackContext callbackContext) {
+        String dir = FileUtils.getIconDir() + "/screenshot";
+        File file=new File(dir);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        setResult(dir, PluginResult.Status.OK, callbackContext);
     }
 
     public static MType getType(String type) {

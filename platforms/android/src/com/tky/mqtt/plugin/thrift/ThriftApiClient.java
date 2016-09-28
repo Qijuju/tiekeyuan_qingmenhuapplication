@@ -14,6 +14,7 @@ import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
@@ -860,18 +861,21 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             savePath = args.getString(0);
             String versionCode = args.getString(1);
+            String filesize=args.getString(2);
             savePath = FileUtils.getDownloadDir() + File.separator + "apk";
             String userID = getUserID();
-            boolean success = SystemApi.getVersion(savePath, getUserID(), versionCode);
+            boolean success = SystemApi.getVersion(savePath, getUserID(), versionCode,cordova.getActivity(),filesize);
             String exePath = savePath + File.separator + "1000"/*apkVersion*/ + ".apk";
             setResult(success ? exePath : "更新失败！", success ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (TException e) {
+            ProgressDialogFactory.cancel();
             setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         } catch (IOException e) {
+            ProgressDialogFactory.cancel();
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }

@@ -64,7 +64,7 @@ angular.module('common.services', [])
 
   })
 
-  .factory('$api', function () {//系统接口。
+  .factory('$api', function ($ToastUtils) {//系统接口。
     var api;
     return {
       init: function () {
@@ -114,8 +114,8 @@ angular.module('common.services', [])
       getVersionInfo: function (success, error) {
         api.getVersionInfo(success, error);
       },
-      getVersion: function (savePath, success, error) {
-        api.getVersion(savePath, success, error);
+      getVersion: function (savePath,versionname,filesize, success, error) {
+        api.getVersion(savePath,versionname,filesize, success, error);
       },
       addAttention: function (membersArr, success, error) {
         api.addAttention(membersArr, success, error);
@@ -133,59 +133,59 @@ angular.module('common.services', [])
         api.install(targetPath, success, error);
       },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
-        api.getVersionInfo(function (msg) {
-          var versionName = msg.versionName;
-          var versionDesc = msg.versionDesc;
-          var targetPath = "";
-          api.needUpgrade(versionName, function (msg) {
-            if(msg == 'true') {
-              var confirmPopup = $ionicPopup.confirm({
-                title: '版本升级',
-                template: versionDesc, //从服务端获取更新的内容
-                cancelText: '取消',
-                okText: '升级'
-              });
-              confirmPopup.then(function (res) {
-                if(res) {
-                  var loading = $ionicLoading.show({
-                    template: "下载中..."//"已经下载：0%"
+        $mqtt.getMqtt().getString('install_cancel', function (msg) {
+          if (msg != 'true') {
+            api.getVersionInfo(function (msg) {
+              var versionName = msg.versionName;
+              var versionDesc = msg.versionDesc;
+              var filesize=msg.size;
+              var targetPath = "";
+              api.needUpgrade(versionName, function (msg) {
+                if(msg == 'true') {
+                  var confirmPopup = $ionicPopup.confirm({
+                    title: '版本升级',
+                    template: versionDesc, //从服务端获取更新的内容
+                    cancelText: '取消',
+                    okText: '升级'
                   });
-                  api.getVersion("", versionName, function (msg) {
-                    targetPath = msg;
-                    $ionicLoading.hide();
-                    api.installApk(targetPath, function (success) {
-                      // 成功
-                      $mqtt.save('install_cancel', 'false');
-                    }, function (err) {
-                      // 错误
-                      $mqtt.save('install_cancel', 'false');
-                    });
-                    /*$cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+                  confirmPopup.then(function (res) {
+                    if(res) {
 
-                      // $mqtt.save('install_cancel_version', '');
-                    }, function (err) {
+                      api.getVersion("", versionName,filesize, function (msg) {
+                        targetPath = msg;
+                        api.installApk(targetPath, function (success) {
+                          // 成功
+                          $mqtt.save('install_cancel', 'false');
+                        }, function (err) {
+                          // 错误
+                          $mqtt.save('install_cancel', 'false');
+                        });
+                      },function (msg) {
 
-                      // $mqtt.save('install_cancel_version', '');
-                    });*/
-                  },function (msg) {
-                    $ionicLoading.hide();
-                    alert(msg);
+                        $ToastUtils.showToast(msg);
+                      });
+                    } else {
+                      //取消更新
+                      $mqtt.save('install_cancel', 'true');
+                    
+                    }
+
                   });
-                } else {
-                  //取消更新
+                } else if(msg != 'false' && msg != '') {
                   $mqtt.save('install_cancel', 'true');
-                  // $mqtt.save('install_cancel_version', versionName);
+                  $ToastUtils.showToast(msg);
                 }
+              },function (msg) {
+                $ToastUtils.showToast(msg);
 
               });
-            } else if(msg != 'false') {
-              alert(msg);
-            }
-          },function (msg) {
-            alert("检查更新失败！");
-          });
-        }, function (msg) {
-          alert(msg);
+            }, function (msg) {
+              $ToastUtils.showToast(msg);
+
+            });
+          }
+        }, function (err) {
+          $ToastUtils.showToast(msg);
         });
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息

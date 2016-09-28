@@ -41,6 +41,7 @@ public class IMPFields {
 	public static final String M_MsgType_Emote = "E";
 	public static final String M_MsgType_Audio = "A";
 	public static final String M_MsgType_Vedio = "V";
+	public static final String M_MsgType_Position = "P";
 
 	public static final String Msg_platform = "platform";
 	public static final String M_Platform_And  = "A";
@@ -55,6 +56,10 @@ public class IMPFields {
 	public static final String Msg_from = "from";
 	public static final String Msg_message = "message";
 	public static final String Msg_fromName = "fromName";
+
+	public static final String Msg_msgLevel = "msgLevel";
+	public static final String M_MsgLevel_Common = "0";
+	public static final String M_MsgLevel_Level1 = "1";
 
 	public static final String Eventwhen = "when";
 	public static final String EventCode = "EventCode";
@@ -74,5 +79,6 @@ public class IMPFields {
 	public static final String E_Code_GRM ="GRM";
 	public static final String E_Code_RG0 ="RG0";
 	public static final String E_Code_GN0 ="GN0";
+
 
 }
