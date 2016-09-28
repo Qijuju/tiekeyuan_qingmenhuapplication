@@ -9,80 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5863f67d-9e10-4514-9a07-39740ee2996f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ChatList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ChatListDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/DaoMaster.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/DaoSession.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/FilePicture.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/FilePictureDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/GroupChats.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/GroupChatsDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/LocalPhone.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/LocalPhoneDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/Messages.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MessagesDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MsgHistory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MsgHistoryDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyListDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyMsg.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyMsgDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ParentDept.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ParentDeptDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SelectedId.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SelectedIdDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SubDept.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SubDeptDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SystemMsg.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SystemMsgDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/TopContacts.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/TopContactsDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8383589995308029070.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_0_0.xml" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_annotations_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_core_ui_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_core_utils_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_fragment_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_media_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\.idea\libraries\support_v4_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger6322836836773711783.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="5863f67d-9e10-4514-9a07-39740ee2996f" name="Default" comment="" />
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,20 +36,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LocalPhone.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatListService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChatListService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4836272">
+            <state vertical-scroll-proportion="0.0">
               <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -156,6 +73,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotifyListService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39863947">
+              <caret line="76" column="61" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -2069,36 +1996,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="base" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2408,7 +2305,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2427,7 +2324,7 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09460946" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2608,13 +2505,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/ProgressDialogFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttParams.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2976,14 +2866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDept.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3026,11 +2908,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4836272">
+        <state vertical-scroll-proportion="0.0">
           <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39863947">
+          <caret line="76" column="61" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>

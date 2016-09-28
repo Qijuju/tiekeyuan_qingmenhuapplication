@@ -97,11 +97,12 @@ angular.module('message.services', [])
           chatitem.lastDate=new Date().getTime();
           chatitem.senderId ='';
           chatitem.senderName ='';
-          if(messageType === 'System'){
-            chatitem.chatType='System';
-          }else if(messageType === 'Alarm'){
-            chatitem.chatType='Alarm';
-          }
+          chatitem.chatType='1';
+          // if(messageType === 'System'){
+          //   chatitem.chatType='System';
+          // }else if(messageType === 'Alarm'){
+          //   chatitem.chatType='Alarm';
+          // }
           notifylist.push(chatitem);
           // alert("进来会话列表了吗");
           $greendao.saveObj('NotifyListService',chatitem,function (data) {
@@ -113,9 +114,10 @@ angular.module('message.services', [])
         return notifylist;
       },
       setNotifyData:function (data) {
-        notifylist=new Array();
-        savenotifydata = data;
-        notifylist =savenotifydata;
+        notifylist =new Array();
+        for(var i=0;i<data.length;i++){
+          notifylist.unshift(data[i]);
+        }
       },
       updatelastData:function (data) {
         for(var i=0;i<=notifylist.length-1;i++){
@@ -140,6 +142,75 @@ angular.module('message.services', [])
     }
   })
 
+
+  .factory('$slowarr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
+    var notifylist =new Array();
+    var savenotifydata;
+    var id,chatname;
+    return{
+      createNotifyData:function (isNotifySend,messageType) {
+        if(isNotifySend === 'true'){
+          var chatitem={};
+          if(chatitem.id === undefined || chatitem.chatName === undefined){
+            chatitem.id=$rootScope.id;
+            chatitem.chatName=$rootScope.username;
+            // alert(chatitem.id+"监听消息来源"+chatitem.chatName);
+          }else{
+            chatitem.id=$stateParams.id;
+            chatitem.chatName=$stateParams.ssid;
+            // alert(chatitem.id+"监听消息来源222"+chatitem.chatName);
+          }
+          chatitem.imgSrc='';
+          chatitem.lastText='';
+          chatitem.count='';
+          chatitem.isDelete='false';
+          chatitem.lastDate=new Date().getTime();
+          chatitem.senderId ='';
+          chatitem.senderName ='';
+          chatitem.chatType='0';
+          // if(messageType === 'System'){
+          //   chatitem.chatType='System';
+          // }else if(messageType === 'Alarm'){
+          //   chatitem.chatType='Alarm';
+          // }
+          notifylist.push(chatitem);
+          // alert("进来会话列表了吗");
+          $greendao.saveObj('NotifyListService',chatitem,function (data) {
+            $rootScope.$broadcast('slowarr.update');
+            // alert("保存成功"+data.length)
+          },function (err) {
+          });
+        }
+        return notifylist;
+      },
+      setNotifyData:function (data) {
+        notifylist =new Array();
+        for(var i=0;i<data.length;i++){
+          notifylist.unshift(data[i]);
+        }
+      },
+      updatelastData:function (data) {
+        for(var i=0;i<=notifylist.length-1;i++){
+          // alert("data ===="+data.lastText+"数组长度"+notifylist.length);
+          if( notifylist[i].id === data.id){
+            // alert("找出数组的被更改的数据了"+i);
+            notifylist.splice(i,1);
+          }
+        }
+        notifylist.unshift(data);
+        // alert("push after"+notifylist[notifylist.length-1].lastText+"数组长度"+notifylist.length);
+      },
+      getAllNotifyData:function () {
+        // alert("service界面数组长度"+notifylist.length);
+        return notifylist;
+      },
+      getNotifyIdChatName:function (id,chatname) {
+        $rootScope.id=id;
+        $rootScope.username=chatname;
+        // alert("先收到"+$rootScope.id+$rootScope.username);
+      }
+    }
+  })
 
   //群组会话列表的数据保存
   // .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
@@ -214,11 +285,14 @@ angular.module('message.services', [])
     var msgs=new Array();
     var danliao=new Array();
     var qunliao=new Array();
-    var sysmsg=new Array();
+    var fastarr =new Array();
+    var slowarr =new Array();
     var size;
-    var count = 0;
-    var groupCount=0;
-    var syscount =0;
+    var count = 0;//单聊通知数量
+    var groupCount=0;//群聊通知数量
+    var syscount =0;//通用系统通知数量
+    var fastcount=0;//紧急通知数量
+    var slowcount=0;//一般通知数量
     var isLogin = false;
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -332,10 +406,61 @@ angular.module('message.services', [])
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
+          arriveMessage.msglevel='';
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
 
-          if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
+          if(message.type === 'Platfrom'){
+            arriveMessage.msglevel=message.msglevel;
+            $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
+              alert("保存平台消息成功");
+            },function (err) {
 
+            });
+            /**
+             * 判断未读数量
+             */
+            if(message.msglevel === '1'){        //紧急消息
+              fastarr.push(arriveMessage);
+              $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+                if(data.length>0){
+                  fastcount=data[0].count;
+                  // alert("有值"+syscount);
+                  fastcount++;
+                  $rootScope.$broadcast('newnotify.update');
+                }else{
+                  fastcount =0;
+                  // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                  fastcount++;
+                  $rootScope.$broadcast('newnotify.update');
+                  // alert("syscount"+syscount);
+                }
+              },function (err) {
+                // alert(err);
+              });
+            }else if (message.msglevel === '0'){    //一般消息
+              slowarr.push(arriveMessage);
+              $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+                if(data.length>0){
+                  slowcount=data[0].count;
+                  // alert("一般有值"+syscount);
+                  slowcount++;
+                  $rootScope.$broadcast('newnotify.update');
+                }else{
+                  slowcount =0;
+                  // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                  slowcount++;
+                  $rootScope.$broadcast('newnotify.update');
+                  // alert("syscount"+syscount);
+                }
+              },function (err) {
+                // alert(err);
+              });
+            }
+            $rootScope.firstSessionid=arriveMessage.sessionid;
+            $rootScope.firstUserName=arriveMessage.username;
+            $rootScope.messagetype= arriveMessage.type;
+            // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
+          }else if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
               // alert(data.length+"收通知消息");
             },function (err) {
@@ -553,8 +678,35 @@ angular.module('message.services', [])
       getQunliao:function () {
         return qunliao;
       },
-      getSysmsg:function () {
-        return sysmsg;
+      getFastmsg:function () {
+        return fastarr;
+      },
+      getSlowmsg:function () {
+        return slowarr;
+      },
+      setFastmsg:function (data) {
+        fastarr=new Array();
+        for(var i=0;i<data.length;i++){
+          fastarr.unshift(data[i]);
+        }
+      },
+      setSlowmsg:function (data) {
+        slowarr=new Array();
+        for(var i=0;i<data.length;i++){
+          slowarr.unshift(data[i]);
+        }
+      },
+      getFastcount:function () {
+        return fastcount;
+      },
+      getSlowcount:function () {
+        return slowcount;
+      },
+      clearFastcount:function () {
+        fastcount=0;
+      },
+      clearSlowcount:function () {
+        slowcount=0;
       },
       getMsgCount:function () {
         return count;
