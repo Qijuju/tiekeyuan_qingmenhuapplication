@@ -109,9 +109,9 @@ angular.module('message.controllers', [])
         sourceType = Camera.PictureSourceType.CAMERA;
       }
       var options = {
-        quality: 50,
-        targetWidth: 320,
-        targetHeight: 320,
+        quality: 100,
+        // targetWidth: 320,
+        // targetHeight: 320,
         saveToPhotoAlbum: false,
         sourceType: sourceType,
         // destinationType: Camera.DestinationType.DATA_URL
@@ -304,8 +304,9 @@ angular.module('message.controllers', [])
     };
 
     //打开文件
-    $scope.openAllFile = function (path) {
-      $api.openFileByPath(path, function (suc) {
+    $scope.openAllFile = function (path, imageID) {
+      alert(imageID);
+      $api.openFileByPath(path,imageID, function (suc) {
       },function (err) {
       });
     };
@@ -748,7 +749,7 @@ angular.module('message.controllers', [])
       $ScalePhoto.netScale(fileid,filename,samllfilepath,function (msg) {
 
       },function (err) {
-          
+
       })
 
     }

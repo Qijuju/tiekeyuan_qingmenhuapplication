@@ -555,14 +555,14 @@ angular.module('message.services', [])
                   // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
                   qunliao.push(arriveMessage);
                 }
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
               } else {
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
@@ -937,6 +937,9 @@ angular.module('message.services', [])
       },
       getIconDir:function(success,error){
         mqtt.getIconDir(success,error);
+      },
+      getFileContent:function (filePath, success, error) {
+        mqtt.getFileContent(filePath, success, error);
       }
 
 

@@ -2177,7 +2177,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void openFileByPath(final JSONArray args, final CallbackContext callbackContext) {
         try {
-            String path = args.getString(0);
+            final String path = args.getString(0);
             if (path != null && !"".equals(path)) {
                 File file = new File(path);
                 if (!file.exists()) {
@@ -2217,7 +2217,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 /*if (type.equals("U") || type.equals("G") || type.equals("I")) {
                                     tempPicName = tempUserPic + File.separator + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
                                 } else {*/
-                                            tempPicName = tempUserPic + File.separator + objectID.split("###")[4];//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+                                            tempPicName = tempUserPic + File.separator + path.substring(path.lastIndexOf("/") + 1);//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
 //                                }
                                             File tempFile = new File(tempPicName);
                                             if (!tempFile.exists())
