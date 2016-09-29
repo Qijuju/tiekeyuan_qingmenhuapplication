@@ -344,7 +344,35 @@ angular.module('message.services', [])
         if (messagetype == 'Image') {
           sendType = 'I';
         }
+
+
         $api.sendDocFile(sendType, null, fileContent, function (sdata) {
+
+          var savefilepic={};
+          savefilepic.filepicid=sdata[1];
+          savefilepic.from="true";
+          savefilepic.sessionid=id;
+          savefilepic.fromname=localuser;
+          savefilepic.toname="你好"
+          savefilepic.smallurl=sdata[0];
+          savefilepic.bigurl=sdata[0];
+          savefilepic.bytesize=content.split('###')[1];
+          savefilepic.megabyte=content.split('###')[2];
+          savefilepic.filename=content.split('###')[3];
+          if(sendType=="F"){
+            savefilepic.type="file";
+          }else if(sendType=="I"){
+            savefilepic.type="image";
+          }
+          savefilepic.when=0;
+
+          $greendao.saveObj("FilePictureService",savefilepic,function (data) {
+            alert("发送图片存储成功了")
+          },function (err) {
+
+          })
+
+
           if (sdata[2] === '-1') {
             /*$ToastUtils.showToast('文件发送失败！',function (msg) {
             },function (err) {
@@ -413,6 +441,7 @@ angular.module('message.services', [])
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
+          alert(message.message+"你好啊啊啊 啊 的地方是否")
           var arriveMessage={};
           arriveMessage._id='';
           arriveMessage.sessionid=message.sessionid;
@@ -477,6 +506,29 @@ angular.module('message.services', [])
                   $rootScope.$broadcast('msgs.update');
                   // alert(newMessage);
                 }
+                var savefilepic={};
+                savefilepic.filepicid=arriveMessage.message.split('###')[0];
+                savefilepic.from="false";
+                savefilepic.sessionid=arriveMessage.sessionid;
+                savefilepic.fromname=arriveMessage.username;
+                savefilepic.toname="";
+                savefilepic.smallurl=arriveMessage.message.split('###')[1];
+                savefilepic.bigurl="";
+                savefilepic.bytesize=arriveMessage.message.split('###')[2];
+                savefilepic.megabyte=arriveMessage.message.split('###')[3];
+                savefilepic.filename=arriveMessage.message.split('###')[4];
+                if(arriveMessage.messagetype=="Image"){
+                  savefilepic.type="image";
+                }else if(arriveMessage.messagetype=="File"){
+                  savefilepic.type="file";
+                }
+                savefilepic.when=0;
+
+                $greendao.saveObj("FilePictureService",savefilepic,function (data) {
+                  alert("接收图片存储成功了")
+                },function (err) {
+
+                })
                 $greendao.saveObj('MessagesService',arriveMessage,function (data) {
                 },function (err) {
                 });

@@ -99,6 +99,10 @@
                         {
                             "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ScalePhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.photo.ScalePhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -277,6 +281,9 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "ScalePhoto": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -612,6 +619,13 @@
             "merges": [
                 "navigator.screenshot"
             ]
+        },
+        {
+            "file": "plugins/ScalePhoto/www/scale_photo.js",
+            "id": "ScalePhoto.scale_photo",
+            "clobbers": [
+                "cordova.plugins.ScalePhoto"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -639,6 +653,7 @@
         "cordova-plugin-geolocation": "2.2.0",
         "com.spout.phonegap.plugins.baidulocation": "0.1.0",
         "phonegap-nfc": "0.6.6",
-        "com.darktalker.cordova.screenshot": "0.1.5"
+        "com.darktalker.cordova.screenshot": "0.1.5",
+        "ScalePhoto": "1.0.0"
     }
 }
