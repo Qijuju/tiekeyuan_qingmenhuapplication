@@ -129,8 +129,18 @@ angular.module('message.controllers', [])
         if(isAndroid){
           picPath = imageURI.substring(0, (imageURI.indexOf('?') != -1 ? imageURI.indexOf('?') : imageURI.length));
         }
+
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          $mqtt.getFileContent(picPath, function (fileData) {
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          },function (err) {
+          });
+        }, function (msg) {
+        });
         // alert(imageURI.indexOf('?') + "//ssss");
-        $api.sendFile('I',null,picPath,function (data) {
+        /*$api.sendFile('I',null,picPath,function (data) {
           $scope.imgPath=data[0];
           $scope.objID=data[1];
           // alert(data[0] + "::::" + data[1]);
@@ -147,7 +157,7 @@ angular.module('message.controllers', [])
 
         },function (err) {
           $ToastUtils.showToast(err+"上传图片失败",null,null);
-        });
+        });*/
         // RongCloudLibPlugin.sendImageMessage({
         //     conversationType: $stateParams.conversationType,
         //     targetId: $stateParams.targetId,

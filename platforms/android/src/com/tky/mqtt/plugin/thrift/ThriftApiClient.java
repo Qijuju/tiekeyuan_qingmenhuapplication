@@ -2179,11 +2179,118 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String path = args.getString(0);
             if (path != null && !"".equals(path)) {
-                boolean flag = UIUtils.openFile(path);
-                if (flag) {
-                    setResult("true", PluginResult.Status.OK, callbackContext);
+                File file = new File(path);
+                if (!file.exists()) {
+
+
+
+
+
+
+
+
+
+
+
+
+                    try {
+                        final String objectID=args.getString(1);
+                        SystemApi.getFile(getUserID(),"F", objectID.split("###")[0],"", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+                            @Override
+                            public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
+                                if(arg0!=null){
+                                    try {
+                                        RSTgetFile result = arg0.getResult();
+                                        String tempPicName = null;
+                                        if (result.result) {
+                                            System.out.println("获取图片成功");
+                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img";
+                                            RandomAccessFile baf = null;
+//						String dir = "./tempHeadPic/";
+                                            File directory = new File(tempUserPic);
+                                            if (!directory.exists()) {
+                                                directory.mkdirs();
+                                            }
+                                            long offset = result.getOffset();
+                                            String type = result.getObjectTP();
+                                            tempPicName = "";
+                                /*if (type.equals("U") || type.equals("G") || type.equals("I")) {
+                                    tempPicName = tempUserPic + File.separator + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
+                                } else {*/
+                                            tempPicName = tempUserPic + File.separator + objectID.split("###")[4];//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+//                                }
+                                            File tempFile = new File(tempPicName);
+                                            if (!tempFile.exists())
+                                                tempFile.createNewFile();
+                                            baf = new RandomAccessFile(tempFile, "rw");
+                                            baf.seek(offset);
+                                            while (true) {
+                                                int length = result.fileByte.limit() - result.fileByte.position();
+                                                baf.getChannel().write(result.fileByte);
+                                                if (result.isFinish) {
+                                                    System.out.println("文件下载完成。");
+                                                    break;
+                                                }
+                                                try {
+                                                    result = SystemApi.getFileSyncClient().getFileClient().GetFile(getUserID(), result.objectTP, result.getObjectID(),
+                                                            result.getPicSize(), result.getOffset() + length, 0);
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                if (!result.result) {
+                                                    System.out.println("本次请求失败，原因：" + result.getResultMsg());
+                                                    break;
+                                                }
+                                            }
+                                            try {
+                                                baf.close();
+                                            } catch (IOException ex) {
+
+                                            }
+
+                                            //打开文件
+                                            openFile(tempPicName, callbackContext);
+                                        } else {
+                                            System.out.println("获取我的头像失败");
+                                        }
+                                        setResult(tempPicName, PluginResult.Status.OK, callbackContext);
+                                        setResult("100", PluginResult.Status.OK, callbackContext);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }catch(TException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (TException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 } else {
-                    setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
+                    openFile(path, callbackContext);
                 }
             } else {
                 setResult("文件路径不能为空！", PluginResult.Status.ERROR, callbackContext);
@@ -2191,6 +2298,15 @@ public class ThriftApiClient extends CordovaPlugin {
         } catch (JSONException e) {
             setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+        }
+    }
+
+    private void openFile(String path, CallbackContext callbackContext) {
+        boolean flag = UIUtils.openFile(path);
+        if (flag) {
+            setResult("true", PluginResult.Status.OK, callbackContext);
+        } else {
+            setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
         }
     }
 

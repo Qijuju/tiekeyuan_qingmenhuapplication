@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -445,6 +446,35 @@ public class MqttChat extends CordovaPlugin {
                 }
             }
         });
+    }
+
+    /**
+     * 拍照后发送图片需要的数据
+     * @param args
+     * @param callbackContext
+     */
+    public void getFileContent(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String filePath = args.getString(0);
+            if (filePath.contains("file:///")) {
+                filePath = filePath.substring(7);
+            }
+            File file = new File(filePath);
+            if (!file.exists()) {
+                //图片不存在
+                setResult("-1", PluginResult.Status.ERROR, callbackContext);
+                return;
+            }
+            //文件的大小
+            long length = file.length();
+            //格式化文件大小
+            String formatSize = Formatter.formatFileSize(cordova.getActivity(), length);
+            setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + (filePath != null && !"".equals(filePath.trim()) ? filePath.substring(filePath.lastIndexOf("/") + 1) : "noname") + "'] "), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            //JSON解析异常
+            setResult("-1", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
     }
 
     public void getIconDir(final JSONArray args, final CallbackContext callbackContext) {

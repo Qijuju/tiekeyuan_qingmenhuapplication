@@ -40,5 +40,9 @@ exports.openDocWindow = function(type, success, error) {//打开文件管理器 
 };
 
 exports.getIconDir =function(success,error){
-exec(success, error, "MqttChat", "getIconDir", []);};
+exec(success, error, "MqttChat", "getIconDir", [])
+};
+exports.getFileContent =function(filePath, success,error){//拍照后发送图片需要的数据
+exec(success, error, "MqttChat", "getFileContent", [filePath])
+};
 });
