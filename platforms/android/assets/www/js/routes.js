@@ -495,7 +495,7 @@ angular.module('im.routes', [])
         controller: 'grouppictureCtrl',
         cache:false
       })
-      
+
       .state('groupfile', {
         url: '/groupfile',
         templateUrl: 'templates/group-file.html',

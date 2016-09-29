@@ -167,7 +167,7 @@ angular.module('common.services', [])
                     } else {
                       //取消更新
                       $mqtt.save('install_cancel', 'true');
-                    
+
                     }
 
                   });
@@ -275,6 +275,21 @@ angular.module('common.services', [])
         toast_utils.showToast(content,success,error);
       }
     }
+  })
+  .factory('$ScalePhoto',function () {//放大缩小图片的
+    var scalephoto;
+    document.addEventListener('deviceready',function () {
+      scalephoto = cordova.require('ScalePhoto.scale_photo');
+    });
+    return{
+      scale:function(filepath,success, error) {
+        scalephoto.scale(filepath,success,error)
+      },
+      netScale:function (fileid,imagename,smallfilepath, succsee, error) {
+        scalephoto.netScale(fileid,imagename,smallfilepath,succsee,error)
+      }
+    }
+
   })
 
 .factory('$saveMessageContacts',function ($greendao) {

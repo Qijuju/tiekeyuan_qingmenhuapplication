@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -735,6 +735,22 @@ angular.module('message.controllers', [])
         longitude:$scope.longitude,
         latitude:$scope.latitude
       });
+    }
+    //发送图片的时候打开图片查看大图
+    $scope.boostImage=function (filepath) {
+      $ScalePhoto.scale(filepath,function (msg) {
+
+      },function (error) {
+
+      })
+    }
+    $scope.netScaleImage=function (fileid,filename,samllfilepath) {
+      $ScalePhoto.netScale(fileid,filename,samllfilepath,function (msg) {
+
+      },function (err) {
+          
+      })
+
     }
 
     $scope.callperson=function () {
