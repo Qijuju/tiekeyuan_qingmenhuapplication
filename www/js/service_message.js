@@ -177,7 +177,7 @@ angular.module('message.services', [])
           // alert("进来会话列表了吗");
           $greendao.saveObj('NotifyListService',chatitem,function (data) {
             $rootScope.$broadcast('slowarr.update');
-            // alert("保存成功"+data.length)
+            alert("一般报警保存成功"+data.length)
           },function (err) {
           });
         }
@@ -424,7 +424,7 @@ angular.module('message.services', [])
               $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
                 if(data.length>0){
                   fastcount=data[0].count;
-                  alert("紧急count有值"+fastcount);
+                  // alert("紧急count有值"+fastcount);
                   fastcount++;
                   $rootScope.$broadcast('newnotify.update');
                 }else{
@@ -438,8 +438,10 @@ angular.module('message.services', [])
                 // alert(err);
               });
             }else if (message.msgLevel === 'Common'){    //一般消息
+              alert("一般有值进来了"+arriveMessage.sessionid);
               slowarr.push(arriveMessage);
-              $greendao.queryNotifyChat("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+              $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
+                alert("接受群消息service"+data.length+arriveMessage.sessionid);
                 if(data.length>0){
                   slowcount=data[0].count;
                   alert("一般有值"+slowcount);
@@ -447,7 +449,7 @@ angular.module('message.services', [])
                   $rootScope.$broadcast('newnotify.update');
                 }else{
                   slowcount =0;
-                  // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                  alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
                   slowcount++;
                   $rootScope.$broadcast('newnotify.update');
                   alert("slowcount"+slowcount);

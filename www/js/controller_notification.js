@@ -503,7 +503,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
          * 没有未读时从数据库取数据（一般通知）
          */
         $greendao.queryDataByDate(val,'Common',function (data) {
-          // alert("一般通知列表的长度"+data.length);
+          alert("一般通知列表的长度"+data.length);
           $slowarr.setNotifyData(data);
           $scope.slowlist=$slowarr.getAllNotifyData();
         },function (err) {
@@ -639,7 +639,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
           $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
             // alert("系统通知会话列表长度"+data.length);
             if(data.length === 0){
-              // alert("没有系统通知会话");
+              // alert("没有一般通知会话");
               $slowarr.getNotifyIdChatName($scope.id, $scope.alarmname);
               $rootScope.isNotifySend ='true';
               if($rootScope.isNotifySend === 'true'){

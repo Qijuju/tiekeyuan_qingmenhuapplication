@@ -9,7 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5863f67d-9e10-4514-9a07-39740ee2996f" name="Default" comment="">
+    <list default="true" id="5863f67d-9e10-4514-9a07-39740ee2996f" name="Default" comment="Merge branch 'xiao' of https://git.oschina.net/kittycheng/IM into chengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -21,42 +21,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/acount-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/myattention.css" afterPath="$PROJECT_DIR$/../../www/css/myattention.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -88,7 +58,7 @@
       <file leaf-file-name="SystemMsgService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.571429">
+            <state vertical-scroll-proportion="0.0">
               <caret line="128" column="3" selection-start-line="128" selection-start-column="3" selection-end-line="136" selection-end-column="5" />
               <folding />
             </state>
@@ -98,13 +68,9 @@
       <file leaf-file-name="ProtocolUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/ProtocolUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.428572">
+            <state vertical-scroll-proportion="0.0">
               <caret line="118" column="42" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="46" />
-              <folding>
-                <element signature="e#541#559#0" expanded="true" />
-                <element signature="e#631#651#0" expanded="true" />
-                <element signature="e#11987#11995#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,7 +78,7 @@
       <file leaf-file-name="IMMsgFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.142857">
+            <state vertical-scroll-proportion="0.0">
               <caret line="285" column="0" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
               <folding />
             </state>
@@ -122,7 +88,7 @@
       <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.724138">
+            <state vertical-scroll-proportion="0.0">
               <caret line="483" column="51" selection-start-line="483" selection-start-column="51" selection-end-line="483" selection-end-column="51" />
               <folding />
             </state>
@@ -132,8 +98,8 @@
       <file leaf-file-name="green_dao_plugin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69483566">
-              <caret line="64" column="57" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.15727699">
+              <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -142,7 +108,7 @@
       <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.428572">
+            <state vertical-scroll-proportion="0.0">
               <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
               <folding />
             </state>
@@ -152,7 +118,7 @@
       <file leaf-file-name="MessageOper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.071428">
+            <state vertical-scroll-proportion="0.0">
               <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
               <folding />
             </state>
@@ -162,7 +128,7 @@
       <file leaf-file-name="NotifyListService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.714285">
+            <state vertical-scroll-proportion="0.0">
               <caret line="130" column="56" selection-start-line="130" selection-start-column="52" selection-end-line="130" selection-end-column="56" />
               <folding>
                 <element signature="e#1400#1401#0" expanded="true" />
@@ -181,7 +147,7 @@
       <file leaf-file-name="NotifyList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.142857">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="21" />
               <folding />
             </state>
@@ -191,7 +157,7 @@
       <file leaf-file-name="IMPFields.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.892857">
+            <state vertical-scroll-proportion="0.0">
               <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
               <folding />
             </state>
@@ -1425,7 +1391,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="5892477165009" />
-        <entry key="D:\workspace\IM\platforms\android" value="5892672089487" />
+        <entry key="D:\workspace\IM\platforms\android" value="5892680495644" />
         <entry key="F:\Project\IM\platforms\android" value="5897658784929" />
       </map>
     </option>
@@ -1923,8 +1889,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2013,6 +1977,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -2024,6 +1989,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2271,33 +2237,33 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33663365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.013201321" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09460946" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09460946" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.013201321" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2307,11 +2273,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33663365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09460946" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2327,8 +2293,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -2573,7 +2539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="144" column="37" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2597,7 +2562,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2605,7 +2569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="71" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2613,7 +2576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2621,7 +2583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2629,7 +2590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2637,7 +2597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2645,7 +2604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2653,7 +2611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="71" selection-start-line="37" selection-start-column="71" selection-end-line="37" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2661,33 +2618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#6419#6420#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#6500#6501#0" expanded="true" />
-            <element signature="e#6536#6537#0" expanded="true" />
-            <element signature="e#6577#6578#0" expanded="true" />
-            <element signature="e#6610#6611#0" expanded="true" />
-            <element signature="e#6659#6660#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6773#6774#0" expanded="true" />
-            <element signature="e#6820#6821#0" expanded="true" />
-            <element signature="e#6856#6857#0" expanded="true" />
-            <element signature="e#6903#6904#0" expanded="true" />
-            <element signature="e#6939#6940#0" expanded="true" />
-            <element signature="e#6984#6985#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#7066#7067#0" expanded="true" />
-            <element signature="e#7102#7103#0" expanded="true" />
-            <element signature="e#7149#7150#0" expanded="true" />
-            <element signature="e#7185#7186#0" expanded="true" />
-            <element signature="e#7232#7233#0" expanded="true" />
-            <element signature="e#7268#7269#0" expanded="true" />
-            <element signature="e#7317#7318#0" expanded="true" />
-            <element signature="e#7354#7355#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2695,9 +2625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2705,7 +2632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2713,7 +2639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2721,10 +2646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="40" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#660#661#0" expanded="false" />
-            <element signature="e#702#703#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2732,7 +2653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2740,7 +2660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2748,7 +2667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2756,7 +2674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2764,7 +2681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2772,7 +2688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2780,7 +2695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2788,7 +2702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2796,9 +2709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2806,7 +2716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2814,7 +2723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.142857">
           <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2828,13 +2736,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/ProtocolUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.428572">
+        <state vertical-scroll-proportion="0.0">
           <caret line="118" column="42" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="46" />
-          <folding>
-            <element signature="e#541#559#0" expanded="true" />
-            <element signature="e#631#651#0" expanded="true" />
-            <element signature="e#11987#11995#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2842,69 +2746,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6153846">
           <caret line="134" column="33" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
-          <folding>
-            <element signature="e#1023#1024#0" expanded="false" />
-            <element signature="e#1049#1050#0" expanded="false" />
-            <element signature="e#1087#1088#0" expanded="false" />
-            <element signature="e#1117#1118#0" expanded="false" />
-            <element signature="e#1153#1154#0" expanded="false" />
-            <element signature="e#1185#1186#0" expanded="false" />
-            <element signature="e#1235#1236#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-            <element signature="e#1308#1309#0" expanded="false" />
-            <element signature="e#1335#1336#0" expanded="false" />
-            <element signature="e#1375#1376#0" expanded="false" />
-            <element signature="e#1407#1408#0" expanded="false" />
-            <element signature="e#1438#1439#0" expanded="false" />
-            <element signature="e#1465#1466#0" expanded="false" />
-            <element signature="e#1505#1506#0" expanded="false" />
-            <element signature="e#1537#1538#0" expanded="false" />
-            <element signature="e#1571#1572#0" expanded="false" />
-            <element signature="e#1601#1602#0" expanded="false" />
-            <element signature="e#1647#1648#0" expanded="false" />
-            <element signature="e#1685#1686#0" expanded="false" />
-            <element signature="e#1723#1724#0" expanded="false" />
-            <element signature="e#1757#1758#0" expanded="false" />
-            <element signature="e#1811#1812#0" expanded="false" />
-            <element signature="e#1857#1858#0" expanded="false" />
-            <element signature="e#1892#1893#0" expanded="false" />
-            <element signature="e#1923#1924#0" expanded="false" />
-            <element signature="e#1971#1972#0" expanded="false" />
-            <element signature="e#2011#2012#0" expanded="false" />
-            <element signature="e#2040#2041#0" expanded="false" />
-            <element signature="e#2067#2068#0" expanded="false" />
-            <element signature="e#2105#2106#0" expanded="false" />
-            <element signature="e#2137#2138#0" expanded="false" />
-            <element signature="e#2173#2174#0" expanded="false" />
-            <element signature="e#2205#2206#0" expanded="false" />
-            <element signature="e#2255#2256#0" expanded="false" />
-            <element signature="e#2297#2298#0" expanded="false" />
-            <element signature="e#2332#2333#0" expanded="false" />
-            <element signature="e#2363#2364#0" expanded="false" />
-            <element signature="e#2411#2412#0" expanded="false" />
-            <element signature="e#2451#2452#0" expanded="false" />
-            <element signature="e#2484#2485#0" expanded="false" />
-            <element signature="e#2513#2514#0" expanded="false" />
-            <element signature="e#2557#2558#0" expanded="false" />
-            <element signature="e#2593#2594#0" expanded="false" />
-            <element signature="e#2628#2629#0" expanded="false" />
-            <element signature="e#2659#2660#0" expanded="false" />
-            <element signature="e#2707#2708#0" expanded="false" />
-            <element signature="e#2747#2748#0" expanded="false" />
-            <element signature="e#2780#2781#0" expanded="false" />
-            <element signature="e#2811#2812#0" expanded="false" />
-            <element signature="e#2860#2861#0" expanded="false" />
-            <element signature="e#2900#2901#0" expanded="false" />
-            <element signature="e#2966#2967#0" expanded="false" />
-            <element signature="e#3014#3015#0" expanded="false" />
-            <element signature="e#3054#3055#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.892857">
+        <state vertical-scroll-proportion="0.0">
           <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
           <folding />
         </state>
@@ -2912,7 +2759,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.428572">
+        <state vertical-scroll-proportion="0.0">
           <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
           <folding />
         </state>
@@ -2920,7 +2767,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.071428">
+        <state vertical-scroll-proportion="0.0">
           <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
           <folding />
         </state>
@@ -2928,7 +2775,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.142857">
+        <state vertical-scroll-proportion="0.0">
           <caret line="285" column="0" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
           <folding />
         </state>
@@ -2936,7 +2783,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.571429">
+        <state vertical-scroll-proportion="0.0">
           <caret line="128" column="3" selection-start-line="128" selection-start-column="3" selection-end-line="136" selection-end-column="5" />
           <folding />
         </state>
@@ -2944,7 +2791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.142857">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="21" />
           <folding />
         </state>
@@ -2952,7 +2799,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.724138">
+        <state vertical-scroll-proportion="0.0">
           <caret line="483" column="51" selection-start-line="483" selection-start-column="51" selection-end-line="483" selection-end-column="51" />
           <folding />
         </state>
@@ -2960,7 +2807,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.714285">
+        <state vertical-scroll-proportion="0.0">
           <caret line="130" column="56" selection-start-line="130" selection-start-column="52" selection-end-line="130" selection-end-column="56" />
           <folding>
             <element signature="e#1400#1401#0" expanded="true" />
@@ -2977,8 +2824,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69483566">
-          <caret line="64" column="57" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.15727699">
+          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
           <folding />
         </state>
       </provider>

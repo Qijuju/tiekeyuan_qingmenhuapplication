@@ -503,7 +503,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
          * 没有未读时从数据库取数据（一般通知）
          */
         $greendao.queryDataByDate(val,'Common',function (data) {
-          // alert("一般通知列表的长度"+data.length);
+          alert("一般通知列表的长度"+data.length);
           $slowarr.setNotifyData(data);
           $scope.slowlist=$slowarr.getAllNotifyData();
         },function (err) {
@@ -556,7 +556,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
        * 没有未读时从数据库取数据（一般通知）
        */
       $greendao.queryData('NotifyListService','where CHAT_TYPE =? ','Common',function (data) {
-        // alert("一般通知列表的长度"+data.length);
+        alert("一般通知列表的长度"+data.length);
         $slowarr.setNotifyData(data);
         $scope.slowlist=$slowarr.getAllNotifyData();
       },function (err) {
@@ -635,11 +635,11 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // $ToastUtils.showToast(err);
           });
         }else if($scope.slowcount >0){
-          // alert("收到一般系统通知并且保存成功"+$scope.slowcount+"消息类型"+$scope.type+$scope.id);
+          alert("收到一般系统通知并且保存成功"+$scope.slowcount+"消息类型"+$scope.type+$scope.id);
           $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
-            // alert("系统通知会话列表长度"+data.length);
+            alert("系统通知会话列表长度"+data.length);
             if(data.length === 0){
-              // alert("没有系统通知会话");
+              alert("没有一般通知会话");
               $slowarr.getNotifyIdChatName($scope.id, $scope.alarmname);
               $rootScope.isNotifySend ='true';
               if($rootScope.isNotifySend === 'true'){
@@ -648,7 +648,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
                 $scope.$on('slowarr.update', function (event) {
                   $scope.$apply(function () {
                     $scope.slowlist=$slowarr.getAllNotifyData();
-                    // alert("监听以后的长度"+$scope.syslist.length);
+                    alert("监听以后的长度"+$scope.syslist.length);
                   });
                 });
                 $rootScope.isNotifySend = 'false';
@@ -685,7 +685,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
-                // alert("保存成功方法"+data.length);
+                alert("保存成功方法"+data.length);
                 $slowarr.updatelastData(chatitem);
                 $rootScope.$broadcast('lastslowcount.update');
               }, function (err) {
