@@ -38,6 +38,7 @@ public class MainActivity extends CordovaActivity
      * 打开文件管理器请求码
      */
     private int FILE_SELECT_CODE = 0x0111;
+    private int TAKE_PHOTO_CODE = 0x0104;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -68,6 +69,10 @@ public class MainActivity extends CordovaActivity
             receiverIntent.putExtra("formatSize", formatSize);
             receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
             sendBroadcast(receiverIntent);
+        } else if (requestCode == TAKE_PHOTO_CODE) {
+            if (intent != null) {
+                Uri uri = intent.getData();
+            }
         }
     }
 }

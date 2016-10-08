@@ -497,16 +497,38 @@ angular.module('message.services', [])
               danliao.push(arriveMessage);
               $rootScope.$broadcast('msgs.update');
               if (objectTP === 'F') {
+                alert("文件传输啊的的的大的的的的的的的")
+
                 arriveMessage.message = newMessage;
                 $rootScope.$broadcast('msgs.update');
                 $greendao.saveObj('MessagesService', arriveMessage, function (data) {
                 }, function (err) {
                 });
 
+                var arrivefile={};
+                arrivefile.filepicid=arriveMessage.message.split('###')[0];
+                arrivefile.from="false";
+                arrivefile.sessionid=arriveMessage.sessionid;
+                arrivefile.fromname=arriveMessage.username;
+                arrivefile.toname="";
+                arrivefile.smallurl=arriveMessage.message.split('###')[1];
+                arrivefile.bigurl=arriveMessage.message.split('###')[1];
+                arrivefile.bytesize=arriveMessage.message.split('###')[2];
+                arrivefile.megabyte=arriveMessage.message.split('###')[3];
+                arrivefile.filename=arriveMessage.message.split('###')[4];
+                if(arriveMessage.messagetype=="Image"){
+                  arrivefile.type="image";
+                }else if(arriveMessage.messagetype=="File"){
+                  arrivefile.type="file";
+                }
+                arrivefile.when=0;
 
+                $greendao.saveObj("FilePictureService",arrivefile,function (data) {
 
+                },function (err) {
 
-
+                });
+                
                 if (message.type === "User") {
                   $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
                     if (data.length > 0) {
@@ -555,42 +577,43 @@ angular.module('message.services', [])
                   // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
                   qunliao.push(arriveMessage);
                 }
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
               } else {
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
+                  alert("图片下载成功了啊的的的大的的的的的的的")
                   if (data === '100') {
                     arriveMessage.message = newMessage;
                     $rootScope.$broadcast('msgs.update');
                     // alert(newMessage);
                   }
-                  var savefilepic={};
-                  savefilepic.filepicid=arriveMessage.message.split('###')[0];
-                  savefilepic.from="false";
-                  savefilepic.sessionid=arriveMessage.sessionid;
-                  savefilepic.fromname=arriveMessage.username;
-                  savefilepic.toname="";
-                  savefilepic.smallurl=arriveMessage.message.split('###')[1];
-                  savefilepic.bigurl="";
-                  savefilepic.bytesize=arriveMessage.message.split('###')[2];
-                  savefilepic.megabyte=arriveMessage.message.split('###')[3];
-                  savefilepic.filename=arriveMessage.message.split('###')[4];
+                  var arrivepic={};
+                  arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                  arrivepic.from="false";
+                  arrivepic.sessionid=arriveMessage.sessionid;
+                  arrivepic.fromname=arriveMessage.username;
+                  arrivepic.toname="";
+                  arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                  arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                  arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                  arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                  arrivepic.filename=arriveMessage.message.split('###')[4];
                   if(arriveMessage.messagetype=="Image"){
-                    savefilepic.type="image";
+                    arrivepic.type="image";
                   }else if(arriveMessage.messagetype=="File"){
-                    savefilepic.type="file";
+                    arrivepic.type="file";
                   }
-                  savefilepic.when=0;
+                  arrivepic.when=0;
 
-                  $greendao.saveObj("FilePictureService",savefilepic,function (data) {
+                  $greendao.saveObj("FilePictureService",arrivepic,function (data) {
 
                   },function (err) {
 
@@ -937,6 +960,9 @@ angular.module('message.services', [])
       },
       getIconDir:function(success,error){
         mqtt.getIconDir(success,error);
+      },
+      getFileContent:function (filePath, success, error) {
+        mqtt.getFileContent(filePath, success, error);
       }
 
 

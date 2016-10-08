@@ -480,6 +480,28 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+    /**
+     * 根据ssid和 type查询数据库里面的信息
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByFilepic(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService filePictureService=FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=filePictureService.queryFilePic(ssid,type);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<FilePicture>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
+
 
     /**
      * 带参查询

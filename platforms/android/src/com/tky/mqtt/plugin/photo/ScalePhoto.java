@@ -1,12 +1,14 @@
 package com.tky.mqtt.plugin.photo;
 
-import android.content.BroadcastReceiver;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
-import com.tky.photohelper.MyReceiver;
 import com.tky.photohelper.PhotoScaleActivity;
 
 import org.apache.cordova.CallbackContext;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 import im.server.File.IMFile;
 import im.server.File.RSTgetFile;
@@ -34,7 +37,8 @@ import im.server.File.RSTgetFile;
  * 描述：
  */
 public class ScalePhoto extends CordovaPlugin {
-  
+
+    private int TAKE_PHOTO_CODE = 0x0104;
   
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -188,6 +192,33 @@ public class ScalePhoto extends CordovaPlugin {
 
 
 
+    }
+
+    public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {
+        String dir = FileUtils.getIconDir() + File.separator + "photo";
+        String filename = UUID.randomUUID().toString() + ".jpg";
+        String filePath = dir + filename;
+
+        // final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Log.d("test", "MediaStore.ACTION_IMAGE_CAPTURE"
+                + android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        final Intent intent = new Intent(
+                android.provider.MediaStore.ACTION_IMAGE_CAPTURE == null ? "android.media.action.IMAGE_CAPTURE"
+                        : android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        final File cameraDir = new File(dir);
+        if (!cameraDir.exists()) {
+            // return false;
+            cameraDir.mkdirs();
+        }
+
+        final File file = new File(filePath);
+        final Uri outputFileUri = Uri.fromFile(file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+        try {
+            cordova.getActivity().startActivityForResult(intent, TAKE_PHOTO_CODE);
+
+        } catch (final ActivityNotFoundException e) {
+        }
     }
     
     

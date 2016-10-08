@@ -120,7 +120,7 @@ exports.sendDocFile = function(objectTP,objectID,filePath, success, error) {//�
 exports.getFile = function(objectTP,objectID,picSize, success, error) {//图片上传接口
   exec(success, error, "ThriftApiClient", "getFile", [objectTP,objectID,picSize]);
 };
-exports.openFileByPath = function(path, success, error) {//打开文件
-  exec(success, error, "ThriftApiClient", "openFileByPath", [path]);
+exports.openFileByPath = function(path, imageID, success, error) {//打开文件
+  exec(success, error, "ThriftApiClient", "openFileByPath", [path,imageID]);
 };
 });

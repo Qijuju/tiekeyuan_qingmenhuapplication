@@ -58,6 +58,9 @@ angular.module('common.services', [])
       },
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
+      },
+      queryByFilepic:function (ssid,type,success,error) {
+        greendao.queryByFilepic(ssid,type,success,error);
       }
 
     };
@@ -259,8 +262,8 @@ angular.module('common.services', [])
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
   },
-      openFileByPath:function (path, success, error) {//打开文件
-        api.openFileByPath(path, success, error);
+      openFileByPath:function (path, imageID, success, error) {//打开文件
+        api.openFileByPath(path, imageID, success, error);
       }
     };
   })

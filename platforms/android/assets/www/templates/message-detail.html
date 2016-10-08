@@ -41,7 +41,7 @@
             <p  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;margin-left: 14.5%;" class="yuanjiao" />
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
-              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1])">
+              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle.message.split('###')[0])">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{getFileName(msgSingle.message)}}<br />已接收</font>
               </a>
             </div>
@@ -59,7 +59,7 @@
           <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure && msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
-              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1])">
+              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1],msgSingle.message.split('###')[0])">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}<br />{{msgSingle.message.split('###')[3]}}&nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span></font>
               </a>
             </div>
