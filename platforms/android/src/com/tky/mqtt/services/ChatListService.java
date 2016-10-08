@@ -7,9 +7,6 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.ChatListDao;
 import com.tky.mqtt.dao.DaoSession;
-import com.tky.mqtt.dao.SelectedId;
-import com.tky.mqtt.dao.SelectedIdDao;
-import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;

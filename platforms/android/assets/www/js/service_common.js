@@ -47,8 +47,8 @@ angular.module('common.services', [])
       querySearchDetail :function (name, message,success, error) {
         greendao.querySearchDetail (name, message,success, error);
       },
-      queryGroupOrSingleChat :function (type, sessionid,success, error) {
-        greendao.querySearchDetail (type, sessionid,success, error);
+      queryGroupOrSingleChat :function (type, sessionid,success, error) {//消息带2参数
+        greendao.queryGroupOrSingleChat (type, sessionid,success, error);
       },
       queryGroupIds:function (one,two,success,error) {
         greendao.queryGroupIds(one,two,success,error);
@@ -58,6 +58,15 @@ angular.module('common.services', [])
       },
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
+      },
+      queryNotifyChat:function (type, sessionid,success, error) {//新版通知==列表带2参数
+        greendao.queryNotifyChat (type, sessionid,success, error);
+      },
+      queryNewNotifyChat:function (type, sessionid,success, error) {//新版通知==消息带2参数
+        greendao.queryNewNotifyChat (type, sessionid,success, error);
+      },
+      queryDataByDate:function (date, type,success, error) {
+        greendao.queryDataByDate (date, type,success, error);
       }
 
     };
@@ -167,7 +176,7 @@ angular.module('common.services', [])
                     } else {
                       //取消更新
                       $mqtt.save('install_cancel', 'true');
-                    
+
                     }
 
                   });

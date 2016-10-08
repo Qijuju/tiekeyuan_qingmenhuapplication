@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table MESSAGES.
  */
-public class Messages extends BaseDao{
+public class Messages extends BaseDao {
 
     private String _id;
     private String sessionid;
