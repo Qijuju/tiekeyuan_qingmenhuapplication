@@ -87,4 +87,15 @@ public class FilePictureService implements BaseInterface<FilePicture>{
     public void deleteObj(FilePicture filePicture) {
         filePictureDao.delete(filePicture);
     }
+
+
+    public List<FilePicture> queryFilePic(String sessionid,String type){
+
+        return filePictureDao.queryBuilder()
+                .where(FilePictureDao.Properties.Sessionid.eq(sessionid))
+                .where(FilePictureDao.Properties.Type.eq(type))
+                .orderAsc(FilePictureDao.Properties.When)
+                .build()
+                .list();
+    }
 }

@@ -306,6 +306,7 @@ angular.module('message.controllers', [])
     //打开文件
     $scope.openAllFile = function (path, imageID) {
       alert(imageID);
+      alert(path)
       $api.openFileByPath(path,imageID, function (suc) {
       },function (err) {
       });

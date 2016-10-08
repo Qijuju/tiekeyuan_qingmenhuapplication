@@ -58,6 +58,9 @@ angular.module('common.services', [])
       },
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
+      },
+      queryByFilepic:function (ssid,type,success,error) {
+        greendao.queryByFilepic(ssid,type,success,error);
       }
 
     };

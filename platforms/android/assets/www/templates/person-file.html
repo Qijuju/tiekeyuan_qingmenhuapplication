@@ -8,47 +8,14 @@
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar ">
+      <ion-item class="item-remove-animate item-avatar " ng-repeat="item in filelist" ng-click="openFileDetail(item.smallurl,item.filepicid)">
         <div class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 15px;text-align: center;padding-top: 12px;z-index: 1">文件</div>
-        <h2>即时通整改意见.word</h2>
-        <p>宋亚 昨天19:55</p>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-      <ion-item class="item-remove-animate item-avatar ">
-        <div class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 15px;text-align: center;padding-top: 12px;z-index: 1">文件</div>
-        <h2>即时通整改意见.word</h2>
-        <p>宋亚 昨天19:55</p>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-      <ion-item class="item-remove-animate item-avatar ">
-        <div class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 15px;text-align: center;padding-top: 12px;z-index: 1">文件</div>
-        <h2>即时通整改意见.word</h2>
-        <p>宋亚 昨天19:55</p>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-      <ion-item class="item-remove-animate item-avatar ">
-        <div class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 15px;text-align: center;padding-top: 12px;z-index: 1">文件</div>
-        <h2>即时通整改意见.word</h2>
-        <p>宋亚 昨天19:55</p>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-      <ion-item class="item-remove-animate item-avatar ">
-        <div class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 15px;text-align: center;padding-top: 12px;z-index: 1">文件</div>
-        <h2>即时通整改意见.word</h2>
-        <p>宋亚 昨天19:55</p>
+        <h2>{{item.filename}}</h2>
+        <p>{{item.fromname}}   {{item.when | date:'MM-dd HH:mm'}}   {{item.megabyte}}</p>
         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
         </ion-option-button>
       </ion-item>
     </ion-list>
-
   </ion-content>
 </ion-view>

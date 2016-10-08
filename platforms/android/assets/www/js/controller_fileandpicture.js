@@ -12,7 +12,19 @@ angular.module('fileandpicture.controllers', [])
 
   })
 
-  .controller('personfileCtrl', function ($scope, $state,$ionicHistory) {
+  .controller('personfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api) {
+
+    $greendao.queryByFilepic("232102","file",function (msg) {
+        $scope.filelist=msg;
+    },function (err) {
+
+    });
+    $scope.openFileDetail=function (filepath,fileid) {
+      $api.openFileByPath(filepath,fileid, function (suc) {
+
+      },function (err) {
+      });
+    }
 
     $scope.backAny=function () {
       $ionicHistory.goBack();
