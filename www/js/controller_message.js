@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -109,9 +109,9 @@ angular.module('message.controllers', [])
         sourceType = Camera.PictureSourceType.CAMERA;
       }
       var options = {
-        quality: 50,
-        targetWidth: 320,
-        targetHeight: 320,
+        quality: 100,
+        // targetWidth: 320,
+        // targetHeight: 320,
         saveToPhotoAlbum: false,
         sourceType: sourceType,
         // destinationType: Camera.DestinationType.DATA_URL
@@ -127,16 +127,28 @@ angular.module('message.controllers', [])
         //   picPath = imageURI.replace('file://','');
         // }
         if(isAndroid){
-          picPath = imageURI.substring(0, imageURI.indexOf('?'));
+          picPath = imageURI.substring(0, (imageURI.indexOf('?') != -1 ? imageURI.indexOf('?') : imageURI.length));
         }
-        // alert(picPath + "//ssss");
-        $api.sendFile('I',null,picPath,function (data) {
+
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          $mqtt.getFileContent(picPath, function (fileData) {
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          },function (err) {
+          });
+        }, function (msg) {
+        });
+        // alert(imageURI.indexOf('?') + "//ssss");
+        /*$api.sendFile('I',null,picPath,function (data) {
           $scope.imgPath=data[0];
           $scope.objID=data[1];
           // alert(data[0] + "::::" + data[1]);
 
           $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
             // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+            // sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, "File", fileData[0]);
+            // topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath
             $scope.suc = $mqtt.sendMsg(userTopic, $scope.objID, id,localuser,localuserId,sqlid, "Image",$scope.imgPath);
             $scope.send_content = "";
             keepKeyboardOpen();
@@ -145,7 +157,7 @@ angular.module('message.controllers', [])
 
         },function (err) {
           $ToastUtils.showToast(err+"上传图片失败",null,null);
-        });
+        });*/
         // RongCloudLibPlugin.sendImageMessage({
         //     conversationType: $stateParams.conversationType,
         //     targetId: $stateParams.targetId,
@@ -178,10 +190,27 @@ angular.module('message.controllers', [])
       });
     };
 
-    $scope.openDocumentWindow = function (topic, content, id,localuser,localuserId,sqlid) {
-      $mqtt.openDocWindow(function (filePath) {
-        // alert(filePath);
-        $api.sendDocFile('F', null, filePath, function (data) {
+    $scope.openDocumentWindow = function (type, topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.openDocWindow(type, function (fileData) {
+        /*$mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          $scope.suc = $mqtt.sendDocFileMsg(userTopic, 'none' + "###" + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, "File", fileData[0], '0');
+          $scope.send_content = "";
+          keepKeyboardOpen();
+        });*/
+        // alert(fileData[0]);
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'File';
+          if (type === 'image') {
+            fileType = 'Image';
+          }
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
+          $scope.send_content = "";
+          keepKeyboardOpen();
+        });
+        /*$api.sendDocFile('F', null, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], function (data) {
           // alert(filePath);
           // alert(filePath);
           $scope.filePath=data[0];
@@ -189,15 +218,102 @@ angular.module('message.controllers', [])
 
           $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
             // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.fileObjID, id, localuser, localuserId, sqlid, "File", $scope.filePath);
+            alert(fileData[3]);
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], $scope.fileObjID + "###" + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, "File", fileData[0]);
             $scope.send_content = "";
             keepKeyboardOpen();
           });
 
 
-        });
+        });*/
       }, function (err) {
       });
+    };
+
+    //判断文件是否是图片
+    $scope.getFileType = function (message) {
+      var msg = message.split('###')[1];
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      return lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif';
+    };
+
+    //获取文件类型对应的图片路径
+    $scope.getFileTypeImg = function (message) {
+      var msg = message.split('###')[1];
+      if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
+          return 'img/ems_file.png';
+      }
+
+      // var fileSplit = message.split('###');
+      // alert(fileSplit[0] + ";;" + message);
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      return $scope.getFileTypeImgByFileName(msg);
+    };
+
+    //根据相关文件类型对应的类型图片（根据文件名）
+    $scope.getFileTypeImgByFileName = function (msg) {
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      if (lastIndex === '.m4a' || lastIndex === '.mp3' || lastIndex === '.mid' || lastIndex === '.xmf' || lastIndex === '.ogg' || lastIndex === '.wav' || lastIndex === '.flac' || lastIndex === '.amr') {
+        return 'img/ems_audio.png';
+      } else if (lastIndex === '.3gp' || lastIndex === '.mp4' || lastIndex === 'rm' || lastIndex === 'rmvb' || lastIndex === 'avi') {
+        return 'img/ems_video.png';
+      } else if (lastIndex === '.jpg' || lastIndex === '.gif' || lastIndex === '.png' || lastIndex === '.jpeg' || lastIndex === '.bmp') {
+        return 'img/ems_photo.png';
+      } else if (lastIndex === '.apk') {
+        return 'img/ems_apk.png';
+      } else if (lastIndex === '.ppt' || lastIndex === '.pptx' || lastIndex === '.ppsx') {
+        return 'img/explorer_ppt.png';
+      } else if (lastIndex === '.xls' || lastIndex === '.xlsx') {
+        return 'img/explorer_xls.png';
+      } else if (lastIndex === '.doc' || lastIndex === '.docx') {
+        return 'img/explorer_file_doc.png';
+      } else if (lastIndex === '.pdf') {
+        return 'img/explorer_pdf.png';
+      } else if (lastIndex === '.chm') {
+        return 'img/explorer_file_archive.png';
+      } else if (lastIndex === '.txt') {
+        return 'img/explorer_txt.png';
+      } else if (lastIndex === '.htm' || lastIndex === '.html') {
+        return 'img/explorer_html.png';
+      } else if (lastIndex === '.xml') {
+        return 'img/explorer_xml.png';
+      } else {
+        return 'img/ems_file.png';
+      }
+    };
+
+    //获取文件名
+    $scope.getFileName = function (message) {
+      var msg = message.split('###')[1];
+      var lastindex = msg.lastIndexOf("\/");
+      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+    };
+
+    $scope.getFilePath = function (message) {
+      var filePath = message.split("###")[1];
+      return filePath;
+    };
+
+    //打开文件
+    $scope.openAllFile = function (path, imageID) {
+      alert(imageID);
+      alert(path)
+      $api.openFileByPath(path,imageID, function (suc) {
+      },function (err) {
+      });
+    };
+    //弹出测试
+    $scope.alertMsg = function (message) {
+      alert(message);
     };
 
     /*$("#butAlbum").bind('click', function() {
@@ -621,6 +737,22 @@ angular.module('message.controllers', [])
         longitude:$scope.longitude,
         latitude:$scope.latitude
       });
+    }
+    //发送图片的时候打开图片查看大图
+    $scope.boostImage=function (filepath) {
+      $ScalePhoto.scale(filepath,function (msg) {
+
+      },function (error) {
+
+      })
+    }
+    $scope.netScaleImage=function (fileid,filename,samllfilepath) {
+      $ScalePhoto.netScale(fileid,filename,samllfilepath,function (msg) {
+
+      },function (err) {
+
+      })
+
     }
 
     $scope.callperson=function () {

@@ -59,6 +59,9 @@ angular.module('common.services', [])
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
       },
+      queryByFilepic:function (ssid,type,success,error) {
+        greendao.queryByFilepic(ssid,type,success,error);
+      },
       queryNotifyChat:function (type, sessionid,success, error) {//新版通知==列表带2参数
         greendao.queryNotifyChat (type, sessionid,success, error);
       },
@@ -267,7 +270,10 @@ angular.module('common.services', [])
       },
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
-  }
+  },
+      openFileByPath:function (path, imageID, success, error) {//打开文件
+        api.openFileByPath(path, imageID, success, error);
+      }
     };
   })
 
@@ -281,6 +287,21 @@ angular.module('common.services', [])
         toast_utils.showToast(content,success,error);
       }
     }
+  })
+  .factory('$ScalePhoto',function () {//放大缩小图片的
+    var scalephoto;
+    document.addEventListener('deviceready',function () {
+      scalephoto = cordova.require('ScalePhoto.scale_photo');
+    });
+    return{
+      scale:function(filepath,success, error) {
+        scalephoto.scale(filepath,success,error)
+      },
+      netScale:function (fileid,imagename,smallfilepath, succsee, error) {
+        scalephoto.netScale(fileid,imagename,smallfilepath,succsee,error)
+      }
+    }
+
   })
 
 .factory('$saveMessageContacts',function ($greendao) {

@@ -330,6 +330,13 @@ module.exports = [
         "merges": [
             "navigator.screenshot"
         ]
+    },
+    {
+        "file": "plugins/ScalePhoto/www/scale_photo.js",
+        "id": "ScalePhoto.scale_photo",
+        "clobbers": [
+            "cordova.plugins.ScalePhoto"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -359,7 +366,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.2.0",
     "com.spout.phonegap.plugins.baidulocation": "0.1.0",
     "phonegap-nfc": "0.6.6",
-    "com.darktalker.cordova.screenshot": "0.1.5"
+    "com.darktalker.cordova.screenshot": "0.1.5",
+    "ScalePhoto": "1.0.0"
 };
 // BOTTOM OF METADATA
 });
