@@ -528,7 +528,7 @@ angular.module('message.services', [])
                 },function (err) {
 
                 });
-                
+
                 if (message.type === "User") {
                   $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
                     if (data.length > 0) {
@@ -589,10 +589,13 @@ angular.module('message.services', [])
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
-                  alert("图片下载成功了啊的的的大的的的的的的的")
+                  // alert("图片下载成功了啊的的的大的的的的的的的")
                   if (data === '100') {
                     arriveMessage.message = newMessage;
                     $rootScope.$broadcast('msgs.update');
+                    $greendao.saveObj('MessagesService', arriveMessage, function (data) {
+                    }, function (err) {
+                    });
                     // alert(newMessage);
                   }
                   var arrivepic={};
@@ -617,9 +620,6 @@ angular.module('message.services', [])
 
                   },function (err) {
 
-                  });
-                  $greendao.saveObj('MessagesService', arriveMessage, function (data) {
-                  }, function (err) {
                   });
                   $rootScope.$broadcast('msgs.update');
                   if (message.type === "User") {
