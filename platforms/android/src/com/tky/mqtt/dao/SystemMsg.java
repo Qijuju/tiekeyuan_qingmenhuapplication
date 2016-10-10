@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table SYSTEM_MSG.
  */
-public class SystemMsg extends BaseDao{
+public class SystemMsg extends BaseDao {
 
     private String _id;
     private String sessionid;
@@ -22,6 +22,7 @@ public class SystemMsg extends BaseDao{
     private String imgSrc;
     private String username;
     private String senderid;
+    private String msglevel;
 
     public SystemMsg() {
     }
@@ -30,7 +31,7 @@ public class SystemMsg extends BaseDao{
         this._id = _id;
     }
 
-    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid) {
+    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String msglevel) {
         this._id = _id;
         this.sessionid = sessionid;
         this.type = type;
@@ -44,6 +45,7 @@ public class SystemMsg extends BaseDao{
         this.imgSrc = imgSrc;
         this.username = username;
         this.senderid = senderid;
+        this.msglevel = msglevel;
     }
 
     public String get_id() {
@@ -148,6 +150,14 @@ public class SystemMsg extends BaseDao{
 
     public void setSenderid(String senderid) {
         this.senderid = senderid;
+    }
+
+    public String getMsglevel() {
+        return msglevel;
+    }
+
+    public void setMsglevel(String msglevel) {
+        this.msglevel = msglevel;
     }
 
 }

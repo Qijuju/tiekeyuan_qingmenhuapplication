@@ -4,9 +4,9 @@
   </ion-nav-bar>
   <ion-content>
     <div class="button-bar">
-      <a class="button" ng-click="go(0)">程度</a>
-      <a class="button" ng-click="go(1)">时间</a>
-      <a class="button" ng-click="go(2)">模块</a>
+      <a class="button" id="button1" ng-click="go(0)" style="background-color: #6c9aff">程度</a>
+      <a class="button" id="button2" ng-click="go(1)">时间</a>
+      <a class="button" id="button3" ng-click="go(2)">模块</a>
     </div>
     <div style="width: 100%; height: 1px; background-color: #8c8c8c"></div>
   </ion-content>
@@ -14,161 +14,77 @@
 
     <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false" pager-click="go(index)" on-slide-changed="go_changed(index)">
       <!-- ion-slide house each page's content -->
-      <ion-slide >
-        <div >
-            <ion-content style="height: 230px;width: 20%;margin-top: 25%" align="center">
+      <ion-slide>
+
+            <ion-content overflow-scroll="false" style="height:20px;width: 20%;margin-top: 30%;z-index: 3;background-color: #fffeff"" align="center">
               <font style="align-content: center">紧急</font>
             </ion-content>
-          <ion-content style="height: 150px;width: 1px; background-color: #8c8c8c;margin-left: 19%;margin-top: 40px">
+          <ion-content overflow-scroll="false" style="height: 30%;width: 1px; background-color: #8c8c8c;margin-left: 19%;margin-top: 15%;z-index: 3">
           </ion-content>
             <!--<div style="width: 1px; height: 100%; background-color: #8c8c8c;"></div>-->
-            <ion-content overflow-scroll="false" style="height: 230px;margin-left: 20%">
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
 
-              <div class="row" >
+            <ion-content overflow-scroll="false" style="height: 50%;margin-left: 20%;z-index: 3;background-color: #fffeff">
+              <div class="row" style="z-index: 3" ng-repeat="item in fastlist" ng-click="gonewDetail(item.id,item.chatName,item.chatType);" >
                 <div class="col-20" align="center">
                   <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
                 </div>
                 <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
+                  <span class="rj-sm-red-icon11" style="float: right;color: #ffffff;margin-top: 27px" ng-if="item.count>0"><p>{{item.count}}</p></span>
+                  <span  style="float: right;color: #8c8c8c;font-size: 13px;margin-right: -15px" ng-if="item.count>0">{{item.lastDate  | date:'HH:mm:ss' }}</span>
+                  <span  style="float: right;color: #8c8c8c;font-size: 13px" ng-if="item.count==0||item.count==null||item.count==undefined">{{item.lastDate  | date:'HH:mm:ss' }}</span>
+                  <h4 style="margin-top: 3px;">{{item.chatName}}</h4>
+                  <p >{{item.lastText.length > 18 ? (item.lastText.substring(0,18)+"...") : item.lastText}}</p>
+
                   <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
                 </div>
               </div>
             </ion-content>
-          <ion-content style="width: 100%; height: 1px; background-color: #8c8c8c;margin-top: 229px">
-          </ion-content>
-            <ion-content style="height: 50%;width: 20%;margin-top: 100%" align="center">
-                <font style="align-content: center">一般</font>
-            </ion-content>
-          <ion-content style="height: 150px;width: 1px; background-color: #8c8c8c;margin-left: 19%;margin-top: 270px">
-          </ion-content>
-            <ion-content overflow-scroll="false" style="margin-top: 230px;height: 50%;margin-left: 20%">
+
+          <!--<div class="col" >-->
+
+            <!--<ion-content style="width: 100%; height: 1px; background-color: #8c8c8c">-->
+              <!--&lt;!&ndash;<div style="height: 50%;margin-left: 20%">1</div>&ndash;&gt;-->
+
+            <!--</ion-content>-->
+          <!--</div>-->
+        <ion-content style="background-color: #fffeff;z-index: 2;height: 51%;width: 100%" overflow-scroll="false">
+          <div style="height: 99%;z-index: 2"></div>
+          <div style="width: 100%; height: 1px; background-color: #8c8c8c;z-index: 2"></div>
+        </ion-content>
+        <ion-content style="height: 49%;width: 20%;margin-top: 100%;z-index: 1" align="center" overflow-scroll="false">
+          <font style="align-content: center">一般</font>
+        </ion-content>
+            <ion-content overflow-scroll="false" style="height: 100%;margin-left: 20%;z-index: 1">
+              <div style="height: 52%;margin-left: 20%;z-index: 1"></div>
               <!--ng-repeat="msgSingle in msgs"-->
-              <div class="row" >
+              <div class="row" style="z-index: 1" ng-repeat="slowitem in slowlist"  ng-click="gocommonDetail(slowitem.id,slowitem.chatName,slowitem.chatType);" >
                 <div class="col-20" align="center">
                   <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
                 </div>
                 <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
+                  <span class="rj-sm-red-icon11" style="float: right;color: #ffffff;margin-top: 27px" ng-if="slowitem.count>0"><p>{{slowitem.count}}</p></span>
+                  <span  style="float: right;color: #8c8c8c;font-size: 13px;margin-right: -15px" ng-if="slowitem.count>0">{{slowitem.lastDate  | date:'HH:mm:ss' }}</span>
+                  <span  style="float: right;color: #8c8c8c;font-size: 13px" ng-if="slowitem.count==0||slowitem.count==null||slowitem.count==undefined">{{slowitem.lastDate  | date:'HH:mm:ss' }}</span>
+                  <h4 style="margin-top: 3px;">{{slowitem.chatName}}</h4>
+                  <p >{{slowitem.lastText.length > 18 ? (slowitem.lastText.substring(0,18)+"...") : slowitem.lastText}}</p>
 
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
                   <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
                 </div>
               </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              <div class="row" >
-                <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
-                </div>
-                <div class="col-80" align="left">
-                  <span class="rj-sm-red-icon"><p>3</p></span>
-                  <h4 style="margin-top: 3px">小明</h4>
-                  <p > 你好啊啊啊</p>
-                  <span class="rj-push-right" >2016:11:!2123123213</span>
-                  <div style="height: 1px;width: 100%; background-color: #8c8c8c"></div>
-                </div>
-              </div>
-              </ion-content>
-
-        </div>
+            </ion-content>
+          <ion-content overflow-scroll="false" style="height: 30%;width: 1px; background-color: #8c8c8c;margin-left: 19%;margin-top: 83%">
+          </ion-content>
       </ion-slide>
 
       <ion-slide>
-        <div >2
+        <div >
 
         </div>
       </ion-slide>
 
       <ion-slide>
         <div class="row" style="background: #ffffff;">
-          <div class="col" align="center">
+          <div class="col" align="center" ng-click="gotozero()">
             <a>
               <ul>
                 <li><img  src="img/oa.png" width="45" height="45">

@@ -32,6 +32,7 @@ public class IMPFields {
 	public static final String M_Type_Radio = "R";
 	public static final String M_Type_Recipt = "C";
 	public static final String M_Type_Alarm = "A";
+	public static final String M_Type_Platform = "P";
 
 	public static final String Msg_mediaType = "mediaType";
 	public static final String M_MsgType_Text  = "T";

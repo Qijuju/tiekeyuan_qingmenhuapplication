@@ -61,6 +61,15 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
     exports.qureyHistoryMsg = function (type,success, error) {
                 exec(success, error, "GreenDaoPlugin", "qureyHistoryMsg", [type]);
          };
+    exports.queryNotifyChat = function (type, sessionid,success, error) {//新版通知==列表带2参数
+            exec(success, error, "GreenDaoPlugin", "queryNotifyChat", [type, sessionid]);
+          },
+          exports.queryNewNotifyChat=function (type, sessionid,success, error) {//新版通知==消息带2参数
+            exec(success, error, "GreenDaoPlugin", "queryNewNotifyChat", [type, sessionid]);
+          };
+    exports.queryDataByDate=function (date, type,success, error) {//日期查询
+       exec(success, error, "GreenDaoPlugin", "queryDataByDate", [date, type]);
+    }
 
     exports.queryByFilepic = function (ssid,type,success, error) {
                 exec(success, error, "GreenDaoPlugin", "queryByFilepic", [ssid,type]);

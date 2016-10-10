@@ -10,14 +10,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="9.27commit:图片和文件">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ChatList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ChatListDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/DaoMaster.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/DaoSession.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/FilePicture.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/FilePictureDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/GroupChats.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/GroupChatsDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/LocalPhone.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/LocalPhoneDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/Messages.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MessagesDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MsgHistory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/MsgHistoryDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyListDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyMsg.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/NotifyMsgDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ParentDept.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/ParentDeptDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SelectedId.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SelectedIdDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SubDept.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SubDeptDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SystemMsg.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/SystemMsgDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/TopContacts.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/tky/mqtt/dao/TopContactsDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8383589995308029070.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/factory/IMMsgFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" afterPath="$PROJECT_DIR$/src/com/tky/protocol/model/IMPFields.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/bean/MessageBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/NotifyListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/SystemMsgService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/acount-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/ionic-datepicker.bundle.min.js" afterPath="$PROJECT_DIR$/../../www/js/ionic-datepicker.bundle.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/myattention.css" afterPath="$PROJECT_DIR$/../../www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/../../www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/rj.css" afterPath="$PROJECT_DIR$/assets/www/css/rj.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/rj.css" afterPath="$PROJECT_DIR$/../../www/css/rj.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-account.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -71,8 +156,8 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="132" column="76" selection-start-line="132" selection-start-column="76" selection-end-line="132" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.64845604">
+              <caret line="145" column="73" selection-start-line="145" selection-start-column="73" selection-end-line="145" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,8 +171,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
               <folding>
-                <element signature="e#1670#1671#0" expanded="true" />
-                <element signature="e#1716#1717#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -118,7 +202,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="457" column="0" selection-start-line="457" selection-start-column="0" selection-end-line="457" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,7 +214,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="41" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,7 +236,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -158,7 +248,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="60" column="48" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="55" />
-              <folding />
+              <folding>
+                <element signature="e#0#3169#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,7 +261,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="207" column="16" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#819#820#0" expanded="false" />
+                <element signature="e#848#849#0" expanded="false" />
+                <element signature="e#884#885#0" expanded="false" />
+                <element signature="e#912#913#0" expanded="false" />
+                <element signature="e#952#953#0" expanded="false" />
+                <element signature="e#984#985#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2159,24 +2260,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform_www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -2447,7 +2530,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2468,7 +2551,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.4946581" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2554,43 +2637,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>442</line>
+          <line>501</line>
           <properties />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>443</line>
+          <line>502</line>
           <properties />
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>444</line>
+          <line>503</line>
           <properties />
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>445</line>
+          <line>504</line>
           <properties />
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>446</line>
+          <line>505</line>
           <properties />
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>447</line>
+          <line>506</line>
           <properties />
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java</url>
-          <line>450</line>
+          <line>509</line>
           <properties />
           <option name="timeStamp" value="153" />
         </line-breakpoint>
@@ -3015,8 +3098,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
           <folding>
-            <element signature="e#1670#1671#0" expanded="true" />
-            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3033,7 +3115,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3041,7 +3125,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="457" column="0" selection-start-line="457" selection-start-column="0" selection-end-line="457" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3049,7 +3135,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3057,7 +3145,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="48" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="55" />
-          <folding />
+          <folding>
+            <element signature="e#0#3169#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3065,14 +3156,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="207" column="16" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#819#820#0" expanded="false" />
+            <element signature="e#848#849#0" expanded="false" />
+            <element signature="e#884#885#0" expanded="false" />
+            <element signature="e#912#913#0" expanded="false" />
+            <element signature="e#952#953#0" expanded="false" />
+            <element signature="e#984#985#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="76" selection-start-line="132" selection-start-column="76" selection-end-line="132" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.64845604">
+          <caret line="145" column="73" selection-start-line="145" selection-start-column="73" selection-end-line="145" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

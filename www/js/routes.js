@@ -89,7 +89,7 @@ angular.module('im.routes', [])
         views: {
           'tab-notification': {
             templateUrl: 'templates/tab-notification.html',
-            controller: 'notificationCtrl'
+            controller: 'newnotificationCtrl'
           }
         }
       })
@@ -109,7 +109,7 @@ angular.module('im.routes', [])
         url: '/notificationDetail/:id/:name/:type',
         templateUrl: 'templates/notificationDetail.html',
         cache:false,
-        controller: 'notificationDetailCtrl'
+        controller: 'newnotificationDetailCtrl'
       })
 
 

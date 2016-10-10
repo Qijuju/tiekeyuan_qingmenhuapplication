@@ -153,6 +153,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setIsDelete(jsonobj.getString("isDelete"));
             systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
             systemMsg.setSenderid(jsonobj.getString("senderid"));
+            systemMsg.setMsglevel(jsonobj.getString("msglevel"));
             obj = systemMsg;
         }else if ("MsgHistoryService".equals(services)){
             MsgHistory msgHistory=new MsgHistory();
@@ -429,8 +430,66 @@ public class GreenDaoPlugin extends CordovaPlugin {
             e.printStackTrace();
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
+    }
+
+    /**
+     * 带两个参数查询(SystemMsgService)
+     */
+    public void queryNewNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SystemMsg> list=service.queryNewNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 带两个参数查询(NotifyListService)
+     */
+    public void queryNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        NotifyListService service = NotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<NotifyList> list=service.queryNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
 
 
+    /**
+     * 根据新版日期查询
+     * @param args
+     * @param callbackContext
+     */
+    public void queryDataByDate(final JSONArray args,final CallbackContext callbackContext){
+        NotifyListService service = NotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<NotifyList> list=service.queryDataByDate(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
     }
 
     public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){

@@ -137,14 +137,14 @@ public class SystemMsgService implements BaseInterface<SystemMsg> {
     }
 
     /**
-     * 区分群聊和单聊的信息
+     * 区分紧急程度的信息
      */
-    public List<SystemMsg>  queryGroupOrSingleChat(String type,String sessionid){
+    public List<SystemMsg>  queryNewNotifyChat(String type,String sessionid){
 
         return systemMsgDao.queryBuilder()
                 .orderDesc(SystemMsgDao.Properties.When)
-                .where(SystemMsgDao.Properties.Type.eq(type))
-                .where(SystemMsgDao.Properties.Sessionid.like(sessionid))
+                .where(SystemMsgDao.Properties.Msglevel.eq(type))
+                .where(SystemMsgDao.Properties.Sessionid.eq(sessionid))
                 .build()
                 .list();
     }

@@ -9,6 +9,8 @@ import com.tky.mqtt.dao.ChatListDao;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.NotifyListDao;
+import com.tky.mqtt.dao.SystemMsg;
+import com.tky.mqtt.dao.SystemMsgDao;
 import com.tky.mqtt.paho.BaseApplication;
 
 import java.util.List;
@@ -106,5 +108,33 @@ public class NotifyListService implements BaseInterface<NotifyList>{
         List<NotifyList> notifyLists=qb.list();
         return notifyLists;
 
+    }
+
+
+    /**
+     * 区分紧急和一般的信息
+     */
+    public List<NotifyList>  queryNotifyChat(String type,String sessionid){
+
+        return notifyListDao.queryBuilder()
+                .orderDesc(NotifyListDao.Properties.LastDate)
+                .where(NotifyListDao.Properties.ChatType.eq(type))
+                .where(NotifyListDao.Properties.Id.eq(sessionid))
+                .build()
+                .list();
+    }
+
+
+    /**
+     * 按时间划分数据
+     */
+    public List<NotifyList>  queryDataByDate(String date,String type){
+
+        return notifyListDao.queryBuilder()
+                .orderDesc(NotifyListDao.Properties.LastDate)
+                .where(NotifyListDao.Properties.LastDate.gt(date))
+                .where(NotifyListDao.Properties.ChatType.like(type))
+                .build()
+                .list();
     }
 }

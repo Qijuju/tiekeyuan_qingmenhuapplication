@@ -23,6 +23,10 @@ public class MessageBean extends MessageTypeBean {
      * 是否是我自己发送的，不管是客户端还是手机端
      */
     private boolean isFromMe;
+    /**
+     * 消息的紧急程度
+     */
+    private String msgLevel;
 
     public String get_id() {
         return _id;
@@ -126,5 +130,13 @@ public class MessageBean extends MessageTypeBean {
 
     public void setIsFromMe(boolean isFromMe) {
         this.isFromMe = isFromMe;
+    }
+
+    public String getMsgLevel() {
+        return msgLevel;
+    }
+
+    public void setMsgLevel(String msgLevel) {
+        this.msgLevel = msgLevel;
     }
 }

@@ -552,7 +552,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid,msgSingle) {
       // $scope.msgs.remove(msgSingle);
       // $ToastUtils.showToast(msgSingle);
       // 显示操作表
@@ -567,7 +567,6 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           if (index === 0) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            alert($mqtt.getDanliao().length);
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
@@ -576,7 +575,19 @@ angular.module('message.controllers', [])
                 break;
               }
             }
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              },function (err) {
+              });
+            }, function (msg) {
+            });
           } else if (index === 1) {
 
           }
@@ -1275,11 +1286,11 @@ angular.module('message.controllers', [])
     $scope.saoyisao = function () {
       $scope.a=false
       $cordovaBarcodeScanner.scan().then(function(imageData) {
-        $ToastUtils.showToast(imageData.text);
+        // $ToastUtils.showToast(imageData.text);
         $api.qrcodeLogin(imageData.text,function (msg) {
-          $ToastUtils.showToast(msg)
+          // $ToastUtils.showToast(msg)
         },function (msg) {
-          $ToastUtils.showToast(msg)
+          // $ToastUtils.showToast(msg)
         });
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
