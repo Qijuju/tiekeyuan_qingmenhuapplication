@@ -60,7 +60,6 @@
           <p style="float: right">
 
             <font  ng-if="msgSingle.messagetype === 'Image'"><img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
-            <img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
               <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1],msgSingle.message.split('###')[0])">

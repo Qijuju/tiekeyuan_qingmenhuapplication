@@ -2109,7 +2109,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt) {
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2133,11 +2133,11 @@ angular.module('message.controllers', [])
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
       map.addControl(new BMap.OverviewMapControl());
-      map.addControl(new BMap.MapTypeControl());
+      // map.addControl(new BMap.MapTypeControl());
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
@@ -2199,6 +2199,17 @@ angular.module('message.controllers', [])
 
     //发送
     $scope.sendgeloction=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      // $scope.$apply(function () {
+        $ionicNavBarDelegate.showBar(false);
+      // });
+
       // alert("有没有进来发送方法"+$scope.topic+$scope.grouptype);
       // var path;
       // $mqtt.getIconDir(function (data) {
@@ -2208,31 +2219,38 @@ angular.module('message.controllers', [])
       //
       // });
       var url = new Date().getTime()+"";
-      navigator.screenshot.save(function(error,res){
-        // alert("进不进截屏");
-        if(error){
-          console.error(error);
-        }else{
-          // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
-          $scope.screenpath=res.filePath;
-          $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
-            // alert("单聊topic"+userTopic+$scope.grouptype);
-            $scope.content=long+","+lat+","+$scope.screenpath;
-            // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
-            $scope.send_content = "";
-            keepKeyboardOpen();
-          }, function (msg) {
-          });
-        }
-      },'jpg',100,url);
-      $state.go('messageDetail', {
-        id: $scope.userId,
-        ssid:$scope.userName,
-        grouptype:$scope.groupType,
-        longitude:long,
-        latitude:lat
-      });
+      $timeout(function () {
+        $ionicLoading.hide();
+      },1000);
+
+      $timeout(function () {
+        navigator.screenshot.save(function(error,res){
+          // alert("进不进截屏");
+          if(error){
+            console.error(error);
+          }else{
+            // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
+            $scope.screenpath=res.filePath;
+            $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
+              // alert("单聊topic"+userTopic+$scope.grouptype);
+              $scope.content=long+","+lat+","+$scope.screenpath;
+              // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+              $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
+          }
+        },'jpg',100,url);
+        $state.go('messageDetail', {
+          id: $scope.userId,
+          ssid:$scope.userName,
+          grouptype:$scope.groupType,
+          longitude:long,
+          latitude:lat
+        });
+      },1050);
+
     }
 
   })
