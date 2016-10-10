@@ -53,10 +53,13 @@
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
           <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
           <!--<img src="{{imgPath}}" />-->
+
           <span class="rj-triangle-right" ng-if="msgSingle.messagetype === 'Text' || msgSingle.messagetype === 'normal'"></span>
           <span>
           <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure && msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
+          <p style="float: right">
+
+            <font  ng-if="msgSingle.messagetype === 'Image'"><img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
               <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1],msgSingle.message.split('###')[0])">
@@ -64,8 +67,8 @@
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
-          </font></font>
-            <font  ng-if="msgSingle.messagetype === 'LOCATION'" >
+          </font>
+            <font  ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
               <img src="{{msgSingle.message.substring(msgSingle.message.lastIndexOf(',') + 1, msgSingle.message.length)}}" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))" />
               <!--<script type="text/javascript">-->
                 <!--var locationvalue=document.getElementById("msg").innerText;-->
@@ -79,7 +82,9 @@
 
             <!--</div>-->
             <!--<div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>-->
-            </font><!--<font id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="height:200px;width: 110px;"></font>--><font class="rj-message-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</font></p>
+            </font><!--<font id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="height:200px;width: 110px;"></font>-->
+            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'"> <img style="background-color: transparent;margin-left: -24px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)">{{msgSingle.message}}</font>
+          </p>
           </span>
           <!--<span class="rj-triangle-right"></span>-->
            <!--<span>-->

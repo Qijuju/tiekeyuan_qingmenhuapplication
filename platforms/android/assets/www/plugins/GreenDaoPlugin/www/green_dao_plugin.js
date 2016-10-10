@@ -70,4 +70,9 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
     exports.queryDataByDate=function (date, type,success, error) {//日期查询
        exec(success, error, "GreenDaoPlugin", "queryDataByDate", [date, type]);
     }
+
+    exports.queryByFilepic = function (ssid,type,success, error) {
+                exec(success, error, "GreenDaoPlugin", "queryByFilepic", [ssid,type]);
+         };
+
 });

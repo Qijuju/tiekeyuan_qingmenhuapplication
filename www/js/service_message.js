@@ -563,7 +563,7 @@ angular.module('message.services', [])
               });
             }else if (message.msgLevel === 'Common'){    //一般消息
               slowarr.push(arriveMessage);
-              $greendao.queryNotifyChat("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
+              $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
                 if(data.length>0){
                   slowcount=data[0].count;
                   // alert("一般有值"+slowcount);
@@ -653,7 +653,7 @@ angular.module('message.services', [])
                 },function (err) {
 
                 });
-                
+
                 if (message.type === "User") {
                   $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
                     if (data.length > 0) {
@@ -702,15 +702,7 @@ angular.module('message.services', [])
                   // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
                   qunliao.push(arriveMessage);
                 }
-
-
-
-
-
-
-
-
-              } else {
+            } else {
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
