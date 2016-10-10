@@ -2239,6 +2239,12 @@ angular.module('message.controllers', [])
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
+              // alert("单聊topic"+userTopic+$scope.grouptype);
+              $scope.content=long+","+lat+","+$scope.screenpath;
+              // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+              $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
+              $scope.send_content = "";
+              keepKeyboardOpen();
             });
           }
         },'jpg',100,url);

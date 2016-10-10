@@ -68,7 +68,7 @@
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
           </font>
-            <font  ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
+            <font  ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;"><img style="background-color: transparent;margin-left: -24px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)">
               <img src="{{msgSingle.message.substring(msgSingle.message.lastIndexOf(',') + 1, msgSingle.message.length)}}" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))" />
               <!--<script type="text/javascript">-->
                 <!--var locationvalue=document.getElementById("msg").innerText;-->

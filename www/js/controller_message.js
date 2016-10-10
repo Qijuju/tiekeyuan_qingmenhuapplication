@@ -2239,6 +2239,7 @@ angular.module('message.controllers', [])
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
+
             });
           }
         },'jpg',100,url);
