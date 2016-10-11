@@ -76,11 +76,9 @@ angular.module('search.controllers', [])
             $timeout(function () {
               $ionicLoading.hide();
               $scope.persons=$search111.getPersons().searchResult;
-              alert($scope.persons.length+",长度")
               if ($scope.persons.length>=15){
                 $scope.hasmore=true
                 $scope.page++
-                alert($scope.page+",页数")
               }else {
                 $scope.hasmore=false
               }
