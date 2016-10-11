@@ -350,6 +350,15 @@ angular.module('message.services', [])
           messageDetail.message=longt+","+lat;
         }
         mqtt.sendMsg(topic, messageDetail, function (message) {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for(var i=0;i<danliao.length;i++){
+              if(danliao[i]._id === sqlid){
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
           }
@@ -371,6 +380,15 @@ angular.module('message.services', [])
           // alert("发送消息时对方id"+$rootScope.firstSendId);
           return "成功";
         },function (message) {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for(var i=0;i<danliao.length;i++){
+              if(danliao[i]._id === sqlid){
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
           }
@@ -419,8 +437,6 @@ angular.module('message.services', [])
           sendType = 'I';
         }
 
-        alert("传进来的地址：" + fileContent);
-
         $api.sendDocFile(sendType, null, fileContent, function (sdata) {
 
           var savefilepic={};
@@ -461,8 +477,16 @@ angular.module('message.services', [])
             });
             return;
           }
+          /*if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for(var i=0;i<danliao.length;i++){
+              if(danliao[i]._id === sqlid){
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }*/
           messageDetail.message = sdata[1] + '###' + content;
-          alert("最起初显示的地址：" + messageDetail.message);
           $rootScope.$broadcast('msgs.update');
           if (sdata[2] != '1') {
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -486,7 +510,6 @@ angular.module('message.services', [])
               }
             }
             messageDetail.message = newMsg;
-            alert("保存的地址：" + newMsg);
             mqtt.sendMsg(topic, messageDetail, function (message) {
               /*if (picPath != undefined && picPath != null && picPath != '') {
                 messageDetail.message = picPath;
@@ -1010,6 +1033,15 @@ angular.module('message.services', [])
         messageReal.senderid=localuserId;
         // alert(localuser+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for(var i=0;i<danliao.length;i++){
+              if(danliao[i]._id === sqlid){
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
           qunliao.push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             $rootScope.$broadcast('msgs.update');
@@ -1019,6 +1051,15 @@ angular.module('message.services', [])
           });
           return "成功";
         },function (message) {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for(var i=0;i<danliao.length;i++){
+              if(danliao[i]._id === sqlid){
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
           messageReal.isFailure='true';
           qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {

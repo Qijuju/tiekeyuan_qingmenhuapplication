@@ -1359,7 +1359,6 @@ angular.module('selectgroup.controllers', [])
     $scope.groupId=$stateParams.groupid;
     $scope.groupName=$stateParams.groupname;
 
-    alert($scope.groupId+"进入界面"+$scope.groupName);
 
     $scope.saveName=function (name) {
       if(name==""){

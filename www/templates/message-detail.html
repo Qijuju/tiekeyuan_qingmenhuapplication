@@ -71,7 +71,7 @@
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
           </font>
-            <font  ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
+            <font  ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;"><img style="background-color: transparent;margin-left: -24px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)">
               <img src="{{msgSingle.message.substring(msgSingle.message.lastIndexOf(',') + 1, msgSingle.message.length)}}" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))" />
               <!--<script type="text/javascript">-->
                 <!--var locationvalue=document.getElementById("msg").innerText;-->
@@ -131,7 +131,7 @@
         <div class="col" ng-click="getPhoto('CAMERA',userId,send_content, userId,localusr,myUserID,_id)" align="center" style="padding: 15px">
           <a>
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/paizhao.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">拍照</li>
             </ul>
           </a>
@@ -140,7 +140,7 @@
           <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">-->
           <a>
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">相册</li>
             </ul>
           </a>
@@ -156,7 +156,7 @@
         <div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/yinpin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">音频</li>
             </ul>
           </a>
@@ -166,7 +166,7 @@
         <div class="col" align="center" ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
           <a>
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/shipin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
               <li style="color: #848484;font-size: 10px">视频</li>
             </ul>
           </a>

@@ -3,6 +3,7 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -74,7 +75,7 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast(err);
     });
 
-    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 
@@ -568,20 +569,30 @@ angular.module('message.controllers', [])
         // titleText: 'Modify your album',
         cancelText: '取消',
         buttonClicked: function (index) {
-          if (index === 0) {
+          if (index === 1) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }*/
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
                 // alert("后"+$mqtt.getDanliao()[i]._id);
                 $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
                 break;
               }
             }
-          }
-          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
-            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
               $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
                 $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
@@ -592,7 +603,20 @@ angular.module('message.controllers', [])
             }, function (msg) {
             });
           } else if (index === 1) {
-
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getDanliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
           }
           return true;
         }
@@ -1826,7 +1850,10 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory,$timeout,$ionicScrollDelegate) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('historyScroll');
+    // var footerBar = document.body.querySelector('#historyMessage .bar-footer');
+    // var txtInput = angular.element(footerBar.querySelector('textarea'));
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
@@ -1836,6 +1863,9 @@ angular.module('message.controllers', [])
     },function (msg) {
 
     });
+    $timeout(function () {
+      viewScroll.scrollBottom();
+    }, 100);
     $scope.goSetting = function () {
       $ionicHistory.goBack();
       /**
@@ -1880,31 +1910,39 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
       })
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
 
     //下一页
     $scope.nextpage=function () {
+
       if ($scope.dangqianpage<$scope.totalpage){
         $scope.dangqianpage++;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
       }else {
         $ToastUtils.showToast("已经到最后一页了")
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
     //上一页
     $scope.backpage=function () {
+
       if($scope.dangqianpage>1){
         $scope.dangqianpage--;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
@@ -1912,6 +1950,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
 
   })
@@ -2265,6 +2306,7 @@ angular.module('message.controllers', [])
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
+
             });
           }
         },'jpg',100,url);

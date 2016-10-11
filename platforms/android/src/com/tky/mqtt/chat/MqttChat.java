@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
+import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttTopicRW;
@@ -314,6 +315,7 @@ public class MqttChat extends CordovaPlugin {
                     try {
                         RST result = cancelUser_call.getResult();
                         if (result.result) {
+                            MqttNotification.cancelAll();
                             setResult("success", PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
