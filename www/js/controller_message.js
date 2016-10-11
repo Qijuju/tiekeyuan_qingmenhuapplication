@@ -3,6 +3,7 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -32,6 +33,7 @@ angular.module('message.controllers', [])
     // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
+    $scope.sessionid=$stateParams.sessionid;
     //对话框名称
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;//当前用户id
@@ -73,7 +75,7 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast(err);
     });
 
-    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 
@@ -110,12 +112,13 @@ angular.module('message.controllers', [])
       }
       var options = {
         quality: 100,
-        // targetWidth: 320,
-        // targetHeight: 320,
-        saveToPhotoAlbum: false,
+        targetWidth: 1080,
+        targetHeight: 1920,
+        saveToPhotoAlbum: true,
         sourceType: sourceType,
         // destinationType: Camera.DestinationType.DATA_URL
-        destinationType: Camera.DestinationType.FILE_URI
+        destinationType: Camera.DestinationType.FILE_URI,
+        correctOrientation: true,
       };
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
@@ -132,6 +135,7 @@ angular.module('message.controllers', [])
 
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
           $mqtt.getFileContent(picPath, function (fileData) {
+            // alert("chunachuanchuan:" + fileData);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
             $scope.send_content = "";
             keepKeyboardOpen();
@@ -552,7 +556,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid,msgSingle) {
       // $scope.msgs.remove(msgSingle);
       // $ToastUtils.showToast(msgSingle);
       // 显示操作表
@@ -565,20 +569,54 @@ angular.module('message.controllers', [])
         // titleText: 'Modify your album',
         cancelText: '取消',
         buttonClicked: function (index) {
-          if (index === 0) {
+          if (index === 1) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            alert($mqtt.getDanliao().length);
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }*/
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
                 // alert("后"+$mqtt.getDanliao()[i]._id);
                 $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
                 break;
               }
             }
-            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              },function (err) {
+              });
+            }, function (msg) {
+            });
           } else if (index === 1) {
-
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getDanliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
           }
           return true;
         }
@@ -688,7 +726,8 @@ angular.module('message.controllers', [])
     $scope.personalSetting = function () {
       $state.go('personalSetting', {
         id: $scope.userId,
-        ssid:$scope.viewtitle
+        ssid:$scope.viewtitle,
+        sessionid:$scope.sessionid
       });
     };
 
@@ -1592,7 +1631,7 @@ angular.module('message.controllers', [])
           {
             "id": id,
             "ssid": ssid,
-            "grouptype":chatType
+            "grouptype":chatType,
           });
 
       }else if(chatType === "Dept"){
@@ -1685,7 +1724,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto) {
 
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
@@ -1793,12 +1832,21 @@ angular.module('message.controllers', [])
 
     //个人图片
     $scope.perosnPicture=function () {
-      $state.go('personpicture');
+      $GridPhoto.queryPhoto($scope.userId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
+      //$state.go('personpicture');
+
 
     }
     //个人文件
     $scope.personFile=function () {
-      $state.go('personfile');
+      $state.go('personfile',{
+        "sessionid":$scope.userId
+      });
 
     }
 
@@ -1837,7 +1885,10 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory,$timeout,$ionicScrollDelegate) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('historyScroll');
+    // var footerBar = document.body.querySelector('#historyMessage .bar-footer');
+    // var txtInput = angular.element(footerBar.querySelector('textarea'));
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
@@ -1847,6 +1898,9 @@ angular.module('message.controllers', [])
     },function (msg) {
 
     });
+    $timeout(function () {
+      viewScroll.scrollBottom();
+    }, 100);
     $scope.goSetting = function () {
       $ionicHistory.goBack();
       /**
@@ -1891,31 +1945,39 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
       })
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
 
     //下一页
     $scope.nextpage=function () {
+
       if ($scope.dangqianpage<$scope.totalpage){
         $scope.dangqianpage++;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
       }else {
         $ToastUtils.showToast("已经到最后一页了")
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
     //上一页
     $scope.backpage=function () {
+
       if($scope.dangqianpage>1){
         $scope.dangqianpage--;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
@@ -1923,6 +1985,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
 
   })
@@ -2046,6 +2111,7 @@ angular.module('message.controllers', [])
     //打开群文件界面
     $scope.groupFile=function () {
       $state.go('groupfile');
+
     }
 
 
@@ -2066,7 +2132,7 @@ angular.module('message.controllers', [])
      * 删除群聊天记录与会话
      */
     $scope.clearGroupRS=function (id,name) {
-      alert("进来群记录删除方法了吗？");
+      // alert("进来群记录删除方法了吗？");
       $ionicActionSheet.show({
         buttons: [
           {text: '清空群聊天记录'}
@@ -2198,7 +2264,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt) {
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2222,11 +2288,11 @@ angular.module('message.controllers', [])
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
       map.addControl(new BMap.OverviewMapControl());
-      map.addControl(new BMap.MapTypeControl());
+      // map.addControl(new BMap.MapTypeControl());
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
@@ -2288,6 +2354,17 @@ angular.module('message.controllers', [])
 
     //发送
     $scope.sendgeloction=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      // $scope.$apply(function () {
+        $ionicNavBarDelegate.showBar(false);
+      // });
+
       // alert("有没有进来发送方法"+$scope.topic+$scope.grouptype);
       // var path;
       // $mqtt.getIconDir(function (data) {
@@ -2297,31 +2374,39 @@ angular.module('message.controllers', [])
       //
       // });
       var url = new Date().getTime()+"";
-      navigator.screenshot.save(function(error,res){
-        // alert("进不进截屏");
-        if(error){
-          console.error(error);
-        }else{
-          // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
-          $scope.screenpath=res.filePath;
-          $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
-            // alert("单聊topic"+userTopic+$scope.grouptype);
-            $scope.content=long+","+lat+","+$scope.screenpath;
-            // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
-            $scope.send_content = "";
-            keepKeyboardOpen();
-          }, function (msg) {
-          });
-        }
-      },'jpg',100,url);
-      $state.go('messageDetail', {
-        id: $scope.userId,
-        ssid:$scope.userName,
-        grouptype:$scope.groupType,
-        longitude:long,
-        latitude:lat
-      });
+      $timeout(function () {
+        $ionicLoading.hide();
+      },1000);
+
+      $timeout(function () {
+        navigator.screenshot.save(function(error,res){
+          // alert("进不进截屏");
+          if(error){
+            console.error(error);
+          }else{
+            // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
+            $scope.screenpath=res.filePath;
+            $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
+              // alert("单聊topic"+userTopic+$scope.grouptype);
+              $scope.content=long+","+lat+","+$scope.screenpath;
+              // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+              $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+
+            });
+          }
+        },'jpg',100,url);
+        $state.go('messageDetail', {
+          id: $scope.userId,
+          ssid:$scope.userName,
+          grouptype:$scope.groupType,
+          longitude:long,
+          latitude:lat
+        });
+      },1050);
+
     }
 
   })

@@ -2,6 +2,8 @@ package com.tky.photohelper;
 
 import android.app.Activity;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -23,8 +25,21 @@ public class PhotoScaleActivity extends Activity  {
         setContentView(R.layout.activity_photo);
 
         photoView = (PhotoView) findViewById(R.id.pv_scale);
-        String filePath = getIntent().getStringExtra("filePath");
-        photoView.setImageURI(Uri.fromFile(new File(filePath)));
+        final String filePath = getIntent().getStringExtra("filePath");
+
+        File file= new File(filePath);
+        long filesize=file.length();
+
+        if(filesize>1024*1024*2){
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inSampleSize = 2;
+            Bitmap bitmap = BitmapFactory.decodeFile(filePath, opts);
+            photoView.setImageBitmap(bitmap);
+        }else {
+            photoView.setImageURI(Uri.fromFile(new File(filePath)));
+        }
+
+
 
 
         IntentFilter filter = new IntentFilter("com.tky.updatefilepath");
@@ -33,7 +48,16 @@ public class PhotoScaleActivity extends Activity  {
         receiver.setUpdateListener(new MyReceiver.UpdateListener() {
             @Override
             public void updatepath(String filepath) {
-                photoView.setImageURI(Uri.fromFile(new File(filepath)));
+                File file2=new File(filepath);
+                long file2size=file2.length();
+                if(file2size>1024*1024*2){
+                    BitmapFactory.Options opts = new BitmapFactory.Options();
+                    opts.inSampleSize = 2;
+                    Bitmap bitmap = BitmapFactory.decodeFile(filepath, opts);
+                    photoView.setImageBitmap(bitmap);
+                }else {
+                    photoView.setImageURI(Uri.fromFile(new File(filepath)));
+                }
             }
         });
     }

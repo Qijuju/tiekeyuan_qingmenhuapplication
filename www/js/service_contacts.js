@@ -951,6 +951,7 @@ angular.module('contacts.services', [])
         $api.addAttention(membersAerr,function (msg) {
           addwancheng=true;
           $rootScope.$broadcast('attention.add');
+          $ToastUtils.showToast("添加关注成功")
         },function (msg) {
           $ToastUtils.showToast("添加关注失败")
           $rootScope.$broadcast('attention.add');
@@ -960,6 +961,7 @@ angular.module('contacts.services', [])
         $api.removeAttention(membersAerr,function (msg) {
           addwancheng=false;
           $rootScope.$broadcast('attention.delete');
+          $ToastUtils.showToast("取消关注成功")
         },function (msg) {
           $timeout(function () {
             $rootScope.$broadcast('attention.delete');

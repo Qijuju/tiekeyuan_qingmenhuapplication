@@ -309,6 +309,21 @@ angular.module('common.services', [])
 
   })
 
+  .factory('$GridPhoto',function () {
+    var gridPhoto;
+    document.addEventListener('deviceready',function () {
+      gridPhoto = cordova.require('GridPhoto.grid_photo');
+    });
+
+    return{
+      queryPhoto:function (sessionid, type, success, error) {
+        gridPhoto.queryPhoto(sessionid, type, success, error)
+
+      }
+    }
+
+  })
+
 .factory('$saveMessageContacts',function ($greendao) {
 
   return{

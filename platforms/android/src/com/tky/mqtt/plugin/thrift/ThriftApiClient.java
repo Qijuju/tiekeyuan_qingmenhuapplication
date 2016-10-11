@@ -1271,7 +1271,9 @@ public class ThriftApiClient extends CordovaPlugin {
             String groupType = args.getString(0);
             String groupID = args.getString(1);
             String groupName = args.getString(2);
+            groupName = ("null".equals(groupName) ? null : groupName);
             String groupText = args.getString(3);
+            groupText = ("null".equals(groupText) ? null : groupText);
             SystemApi.modifyGroup(getUserID(), getType(groupType), groupID, groupName, groupText, new AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call>() {
                 @Override
                 public void onComplete(IMGroup.AsyncClient.ModifyGroup_call modifyGroup_call) {

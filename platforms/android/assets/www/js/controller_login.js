@@ -28,7 +28,7 @@ angular.module('login.controllers', [])
       }, function (msg) {
       });
       if ($mqtt.isLogin()) {
-        alert($mqtt.isLogin());
+        // alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           $api.getAllGroupIds(function (groups) {
             if (msg != null && msg != '') {
@@ -71,9 +71,14 @@ angular.module('login.controllers', [])
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
         if (pwd === '' || pwd === 'false') {
-          $scope.remPwd = 'true';
+          $scope.$apply(function () {
+            $scope.remPwd = 'true';
+          })
+
         } else {
-          $scope.remPwd = 'false';
+          $scope.$apply(function () {
+            $scope.remPwd = 'false';
+          })
         }
       }, function (msg) {
       });
@@ -81,7 +86,7 @@ angular.module('login.controllers', [])
 
     $scope.login = function (name, password) {
       if (name == '' || password == '') {
-        alert('用户名或密码不能为空！');
+        $ToastUtils.showToast('用户名或密码不能为空！');
         return;
       }
       $scope.name = name;
@@ -99,13 +104,13 @@ angular.module('login.controllers', [])
           $api.activeUser(message.userID, function (message) {
             loginM();
           }, function (message) {
-            alert(message);
+            $ToastUtils.showToast(message);
           });
         } else {
           loginM();
         }
       }, function (message) {
-        alert(message);
+        $ToastUtils.showToast(message);
         $ionicLoading.hide();
         // $state.go('tab.message');
       });
@@ -126,7 +131,7 @@ angular.module('login.controllers', [])
       //调用保存用户名方法
       $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
       }, function (message) {
-        alert(message);
+        $ToastUtils.showToast(message);
       });
       $mqtt.getMqtt().getMyTopic(function (msg) {
         $api.getAllGroupIds(function (groups) {
@@ -147,7 +152,7 @@ angular.module('login.controllers', [])
           });
         });
       }, function (err) {
-        alert(message);
+        $ToastUtils.showToast(message);
         $ionicLoading.hide();
       });
     }
@@ -206,29 +211,42 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newspageCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout,$interval,$mqtt) {
-    $mqtt.getMqtt().getString('pwdgesture', function (message) {
-      $scope.pwdgesturea = message;
-    });
-    $mqtt.getMqtt().getString('namegesture', function (message) {
-      $scope.namegesturea = message;
-    });
-    $scope.goLogin = function() {
-      $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-        if(pwd==null||pwd==""||pwd.length==0|| $scope.pwdgesturea==""|| $scope.pwdgesturea.length==0|| $scope.pwdgesturea==null|| $scope.namegesturea==""|| $scope.namegesturea.length==0|| $scope.namegesturea==null){
-          $state.go('login');
-        }else {
-          $state.go('gesturelogin');
-        }
-        $ToastUtils.showToast("手势密码:"+pwd);
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
+    var passworda="";
+    document.addEventListener('deviceready',function () {
+      mqtt = cordova.require('MqttChat.mqtt_chat');
+      mqtt.getString('gesturePwd', function (pwd) {
+        passworda=pwd;
       }, function (msg) {
-        $state.go('login');
-        $ToastUtils.showToast("手势密码获取失败"+msg);
+        $ToastUtils.showToast("还未设置手势密码");
       });
+    });
 
+    $scope.startgogogo = function() {
+      if(passworda==null||passworda==""||passworda.length==0){
+        $scope.timea=0;
+        $state.go('login');
+      }else {
+        $scope.timea=0;
+        $state.go('gesturelogin');
+      }
     };
+    //倒计时
+    $scope.timea = 3;
+    var timer = null;
+    timer = $interval(function(){
+      $scope.timea = $scope.timea - 1;
+      // $scope.codetime = $scope.timea+"秒后跳转";
+      if($scope.timea == 0) {
+          if(passworda==null||passworda==""||passworda.length==0){
+            $state.go('login');
+          }else {
+            $state.go('gesturelogin');
+          }
+      }
+    }, 1000);
 
-    $scope.myActiveSlide = 0;
+
   })
   .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
     $mqtt.setLogin(false);
@@ -258,7 +276,7 @@ angular.module('login.controllers', [])
     // })
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
       password=pwd;
-      $ToastUtils.showToast("手势密码:"+pwd);
+      // $ToastUtils.showToast("手势密码:"+pwd);
     }, function (msg) {
       $ToastUtils.showToast("手势密码获取失败"+msg);
     });
