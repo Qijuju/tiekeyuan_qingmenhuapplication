@@ -15,8 +15,11 @@ public class MimeTypeConstants {
         mimeTypeMap.put("xmf", "audio/*");
         mimeTypeMap.put("ogg", "audio/*");
         mimeTypeMap.put("wav", "audio/*");
-        mimeTypeMap.put("3gp", "audio/*");
-        mimeTypeMap.put("mp4", "audio/*");
+        mimeTypeMap.put("3gp", "video/*");
+        mimeTypeMap.put("mp4", "video/*");
+        mimeTypeMap.put("rm", "video/*");
+        mimeTypeMap.put("rmvb", "video/*");
+        mimeTypeMap.put("avi", "video/*");
         mimeTypeMap.put("jpg", "image/*");
         mimeTypeMap.put("gif", "image/*");
         mimeTypeMap.put("png", "image/*");

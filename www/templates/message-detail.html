@@ -35,9 +35,18 @@
           <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></p>
+            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
             <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img src="img/mapdefault.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)" /></p>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'LOCATION'">{{msgSingle.message}}</p>
+            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</p>
+            <p  ng-if="msgSingle.messagetype === 'File'">
+            <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;margin-left: 14.5%;" class="yuanjiao" />
+            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
+              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle.message.split('###')[0])">
+                <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{getFileName(msgSingle.message)}}<br />已接收</font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
+            </p>
           </span>
 
         </div>
@@ -47,7 +56,15 @@
           <span class="rj-triangle-right" ng-if="msgSingle.messagetype === 'Text' || msgSingle.messagetype === 'normal'"></span>
           <span>
           <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message}}" style="width: 110px;" class="yuanjiao" /></font></font>
+          <p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msgSingle.isFailure)==='true' && msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"><font  ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
+            <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
+            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
+              <a class="item item-icon-left" ng-click="openAllFile(msgSingle.message.split('###')[1],msgSingle.message.split('###')[0])">
+                <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}<br />{{msgSingle.message.split('###')[3]}}&nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span></font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
+          </font></font>
             <font  ng-if="msgSingle.messagetype === 'LOCATION'" >
               <img src="{{msgSingle.message.substring(msgSingle.message.lastIndexOf(',') + 1, msgSingle.message.length)}}" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))" />
               <!--<script type="text/javascript">-->
@@ -62,7 +79,7 @@
 
             <!--</div>-->
             <!--<div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>-->
-            </font><!--<font id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="height:200px;width: 110px;"></font>--><font class="rj-message-right" ng-if="msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'LOCATION'">{{msgSingle.message}}</font></p>
+            </font><!--<font id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="height:200px;width: 110px;"></font>--><font class="rj-message-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</font></p>
           </span>
           <!--<span class="rj-triangle-right"></span>-->
            <!--<span>-->
@@ -100,7 +117,100 @@
     </div>
     <br/>
     <div ng-if="a==1" style="height:200px;margin-left: -94%;margin-top: 5px">
+
       <div class="row" align="center">
+        <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 16px">-->
+        <div class="col" ng-click="getPhoto('CAMERA',userId,send_content, userId,localusr,myUserID,_id)" align="center" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">拍照</li>
+            </ul>
+          </a>
+        </div>
+        <div id="butAlbum" ng-click="openDocumentWindow('image', userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">
+          <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">-->
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">相册</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center" ng-click="openDocumentWindow('*', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/wenjian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">文件</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">音频</li>
+            </ul>
+          </a>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -22%">
+        <div class="col" align="center" ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/tupian.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">视频</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center" style="padding: 15px" ng-click="gogelocation('LOCATION',userId,send_content, userId,localusr,myUserID,_id,groupType)">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">定位</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center"> </li>
+              <li style="color: #848484;font-size: 10px"> </li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center"> </li>
+              <li style="color: #848484;font-size: 10px"> </li>
+            </ul>
+          </a>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--<div class="row" align="center">
         <div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 16px">
           <a>
             <ul>
@@ -124,7 +234,7 @@
               <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
-        </div>
+        </div>-->
         <!--<div class="col" align="center" style="padding: 15px">-->
           <!--<a>-->
             <!--<ul>-->

@@ -29,6 +29,8 @@ public class GreenDaoGenerator {
         addLocalPhone(schema);
         addNotifyLists(schema);
         addFielandPic(schema);
+        addModuleCount(schema);
+        addSlowNotifyLists(schema);
         new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
@@ -132,7 +134,22 @@ public class GreenDaoGenerator {
     //通知列表
     private  static  void addNotifyLists(Schema schema){
         Entity chatitem=schema.addEntity("NotifyList");
-        chatitem.addStringProperty("id").primaryKey();//接收者id、群组id
+        chatitem.addStringProperty("id").primaryKey();//主键id(uuid)
+        chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
+        chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)
+        chatitem.addStringProperty("imgSrc");//聊天图片来源
+        chatitem.addStringProperty("lastText");//当前会话的最后一条消息内容
+        chatitem.addStringProperty("count");//群聊or单聊未读消息数
+        chatitem.addLongProperty("lastDate");//最后一条消息的时间
+        chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
+        chatitem.addStringProperty("senderId");//消息来源人id
+        chatitem.addStringProperty("senderName");//消息来源人的名字
+    }
+
+    //一般通知
+    private  static  void addSlowNotifyLists(Schema schema){
+        Entity chatitem=schema.addEntity("SlowNotifyList");
+        chatitem.addStringProperty("id").primaryKey();//主键id(uuid)
         chatitem.addStringProperty("chatName");//对话名称(单聊：接收者名字；群聊：群名称)
         chatitem.addStringProperty("isDelete");//是否删除(记录该会话窗口的状态)
         chatitem.addStringProperty("imgSrc");//聊天图片来源
@@ -211,7 +228,20 @@ public class GreenDaoGenerator {
     }
 
 
-
+    /**
+     *  记录应用模块的count值
+     * @param schema
+     */
+    private static void addModuleCount(Schema schema) {
+        Entity msgHistory=schema.addEntity("ModuleCount");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("name");//应用名
+        msgHistory.addLongProperty("count1");//应用1未读通知数
+        msgHistory.addLongProperty("count2");//应用2未读通知数
+        msgHistory.addLongProperty("count3");//应用3未读通知数
+        msgHistory.addLongProperty("count4");//应用4未读通知数
+        msgHistory.addStringProperty("type");//通知类型
+    }
 
 
 }
