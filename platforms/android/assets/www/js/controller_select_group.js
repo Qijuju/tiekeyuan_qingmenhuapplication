@@ -1366,7 +1366,7 @@ angular.module('selectgroup.controllers', [])
       }else if (name==undefined){
         $ionicHistory.goBack();
       }else {
-        $api.modifyGroup("Group",$scope.groupId,name,null,function (msg) {
+        $api.modifyGroup("Group",$scope.groupId,name,"null",function (msg) {
           var groupEntity={};
           groupEntity.id=$scope.groupId;
           groupEntity.groupName=name;
