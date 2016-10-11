@@ -233,6 +233,7 @@ public class MqttConnection {
                         Intent intent = new Intent();
                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                         context.sendBroadcast(intent);
+                        ToastUtil.showSafeToast("发送失败_测试1！");
                     }
                 });
             } catch (Exception e) {
@@ -240,7 +241,7 @@ public class MqttConnection {
                 Intent intent = new Intent();
                 intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                 context.sendBroadcast(intent);
-                ToastUtil.showSafeToast("发送失败！");
+                ToastUtil.showSafeToast("发送失败_测试2！");
             }
         }
     }
