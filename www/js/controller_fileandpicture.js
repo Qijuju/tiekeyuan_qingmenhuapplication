@@ -3,7 +3,8 @@
  */
 angular.module('fileandpicture.controllers', [])
 
-  .controller('personpictureCtrl', function ($scope, $state,$ionicHistory) {
+  .controller('personpictureCtrl', function ($scope, $state,$ionicHistory,$GridPhoto) {
+    
 
     $scope.backAny=function () {
       $ionicHistory.goBack();
@@ -12,9 +13,10 @@ angular.module('fileandpicture.controllers', [])
 
   })
 
-  .controller('personfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api) {
+  .controller('personfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams) {
 
-    $greendao.queryByFilepic("232102","file",function (msg) {
+    $scope.ssionid=$stateParams.sessionid;
+    $greendao.queryByFilepic($scope.ssionid,"file",function (msg) {
         $scope.filelist=msg;
     },function (err) {
 

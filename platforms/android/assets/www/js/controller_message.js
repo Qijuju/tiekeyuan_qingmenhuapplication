@@ -32,6 +32,7 @@ angular.module('message.controllers', [])
     // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
+    $scope.sessionid=$stateParams.sessionid;
     //对话框名称
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;//当前用户id
@@ -110,12 +111,13 @@ angular.module('message.controllers', [])
       }
       var options = {
         quality: 100,
-        // targetWidth: 320,
-        // targetHeight: 320,
-        saveToPhotoAlbum: false,
+        targetWidth: 1080,
+        targetHeight: 1920,
+        saveToPhotoAlbum: true,
         sourceType: sourceType,
         // destinationType: Camera.DestinationType.DATA_URL
-        destinationType: Camera.DestinationType.FILE_URI
+        destinationType: Camera.DestinationType.FILE_URI,
+        correctOrientation: true,
       };
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
@@ -132,6 +134,7 @@ angular.module('message.controllers', [])
 
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
           $mqtt.getFileContent(picPath, function (fileData) {
+            alert("chunachuanchuan:" + fileData);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
             $scope.send_content = "";
             keepKeyboardOpen();
@@ -688,7 +691,8 @@ angular.module('message.controllers', [])
     $scope.personalSetting = function () {
       $state.go('personalSetting', {
         id: $scope.userId,
-        ssid:$scope.viewtitle
+        ssid:$scope.viewtitle,
+        sessionid:$scope.sessionid
       });
     };
 
@@ -1593,7 +1597,7 @@ angular.module('message.controllers', [])
           {
             "id": id,
             "ssid": ssid,
-            "grouptype":chatType
+            "grouptype":chatType,
           });
 
       }else if(chatType === "Dept"){
@@ -1673,7 +1677,8 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$GridPhoto) {
+
 
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
@@ -1757,12 +1762,21 @@ angular.module('message.controllers', [])
 
     //个人图片
     $scope.perosnPicture=function () {
-      $state.go('personpicture');
+      $GridPhoto.queryPhoto($scope.userId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
+      //$state.go('personpicture');
+
 
     }
     //个人文件
     $scope.personFile=function () {
-      $state.go('personfile');
+      $state.go('personfile',{
+        "sessionid":$scope.userId
+      });
 
     }
 
@@ -2010,6 +2024,7 @@ angular.module('message.controllers', [])
     //打开群文件界面
     $scope.groupFile=function () {
       $state.go('groupfile');
+
     }
 
 

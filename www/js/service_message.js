@@ -419,6 +419,7 @@ angular.module('message.services', [])
           sendType = 'I';
         }
 
+        alert("传进来的地址：" + fileContent);
 
         $api.sendDocFile(sendType, null, fileContent, function (sdata) {
 
@@ -461,6 +462,7 @@ angular.module('message.services', [])
             return;
           }
           messageDetail.message = sdata[1] + '###' + content;
+          alert("最起初显示的地址：" + messageDetail.message);
           $rootScope.$broadcast('msgs.update');
           if (sdata[2] != '1') {
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -484,6 +486,7 @@ angular.module('message.services', [])
               }
             }
             messageDetail.message = newMsg;
+            alert("保存的地址：" + newMsg);
             mqtt.sendMsg(topic, messageDetail, function (message) {
               /*if (picPath != undefined && picPath != null && picPath != '') {
                 messageDetail.message = picPath;
@@ -653,7 +656,7 @@ angular.module('message.services', [])
                 },function (err) {
 
                 });
-                
+
                 if (message.type === "User") {
                   $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
                     if (data.length > 0) {
