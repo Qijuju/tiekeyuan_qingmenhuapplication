@@ -3,6 +3,7 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
 
@@ -74,7 +75,7 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast(err);
     });
 
-    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 
@@ -1849,7 +1850,10 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+  .controller('historyMessageCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory,$timeout,$ionicScrollDelegate) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('historyScroll');
+    // var footerBar = document.body.querySelector('#historyMessage .bar-footer');
+    // var txtInput = angular.element(footerBar.querySelector('textarea'));
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
@@ -1859,6 +1863,9 @@ angular.module('message.controllers', [])
     },function (msg) {
 
     });
+    $timeout(function () {
+      viewScroll.scrollBottom();
+    }, 100);
     $scope.goSetting = function () {
       $ionicHistory.goBack();
       /**
@@ -1903,31 +1910,39 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
       })
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
 
     //下一页
     $scope.nextpage=function () {
+
       if ($scope.dangqianpage<$scope.totalpage){
         $scope.dangqianpage++;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
       }else {
         $ToastUtils.showToast("已经到最后一页了")
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
     //上一页
     $scope.backpage=function () {
+
       if($scope.dangqianpage>1){
         $scope.dangqianpage--;
         $historyduifang.getHistoryduifanga("U",$scope.id,$scope.dangqianpage,"10");
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
           })
         });
 
@@ -1935,6 +1950,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     }
 
   })
@@ -2288,6 +2306,7 @@ angular.module('message.controllers', [])
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
+
             });
           }
         },'jpg',100,url);

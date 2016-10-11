@@ -270,7 +270,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           });
         } else {
           // $ToastUtils.showToast('不确定');
-          $ToastUtils.showToast("退出登录失败")
+          // $ToastUtils.showToast("退出登录失败")
         }
       });
     };
@@ -481,7 +481,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.updateinformation = function () {
       $scope.data = {};
       var myPopup = $ionicPopup.show({
-        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改邮箱" ng-model="data.email"></label>',
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="text" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
         scope: $scope,
@@ -606,11 +606,15 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             type: 'button-positive',
             onTap: function (e) {
               //       $ToastUtils.showToast("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
-              $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
-                $ToastUtils.showToast("修改密码成功")
-              }, function (msg) {
-                $ToastUtils.showToast(msg)
-              })
+              if($scope.data.newpassword==""||$scope.data.newpassword==undefined||$scope.data.newpassword.length==0){
+                $ToastUtils.showToast("密码不能为空")
+              }else {
+                $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
+                  $ToastUtils.showToast("修改密码成功")
+                }, function (msg) {
+                  $ToastUtils.showToast("修改密码失败")
+                })
+              }
             }
           },
         ]
