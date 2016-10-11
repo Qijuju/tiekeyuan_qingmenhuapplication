@@ -568,20 +568,30 @@ angular.module('message.controllers', [])
         // titleText: 'Modify your album',
         cancelText: '取消',
         buttonClicked: function (index) {
-          if (index === 0) {
+          if (index === 1) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }*/
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
                 // alert("后"+$mqtt.getDanliao()[i]._id);
                 $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
                 break;
               }
             }
-          }
-          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
-            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
               $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
                 $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
@@ -592,7 +602,20 @@ angular.module('message.controllers', [])
             }, function (msg) {
             });
           } else if (index === 1) {
-
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getDanliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
           }
           return true;
         }

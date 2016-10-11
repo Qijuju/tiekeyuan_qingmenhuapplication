@@ -28,7 +28,7 @@ angular.module('login.controllers', [])
       }, function (msg) {
       });
       if ($mqtt.isLogin()) {
-        alert($mqtt.isLogin());
+        // alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           $api.getAllGroupIds(function (groups) {
             if (msg != null && msg != '') {
@@ -81,7 +81,7 @@ angular.module('login.controllers', [])
 
     $scope.login = function (name, password) {
       if (name == '' || password == '') {
-        alert('用户名或密码不能为空！');
+        $ToastUtils.showToast('用户名或密码不能为空！');
         return;
       }
       $scope.name = name;
@@ -99,13 +99,13 @@ angular.module('login.controllers', [])
           $api.activeUser(message.userID, function (message) {
             loginM();
           }, function (message) {
-            alert(message);
+            $ToastUtils.showToast(message);
           });
         } else {
           loginM();
         }
       }, function (message) {
-        alert(message);
+        $ToastUtils.showToast(message);
         $ionicLoading.hide();
         // $state.go('tab.message');
       });
@@ -126,7 +126,7 @@ angular.module('login.controllers', [])
       //调用保存用户名方法
       $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
       }, function (message) {
-        alert(message);
+        $ToastUtils.showToast(message);
       });
       $mqtt.getMqtt().getMyTopic(function (msg) {
         $api.getAllGroupIds(function (groups) {
@@ -147,7 +147,7 @@ angular.module('login.controllers', [])
           });
         });
       }, function (err) {
-        alert(message);
+        $ToastUtils.showToast(message);
         $ionicLoading.hide();
       });
     }
