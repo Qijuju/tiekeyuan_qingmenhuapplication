@@ -102,8 +102,19 @@ public class MqttConnection {
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
                                 message.setQos(1);
                                 try {
+                                    if (!isConnected()) {
+                                        Intent intent = new Intent();
+                                        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                                        context.sendBroadcast(intent);
+                                        ToastUtil.showSafeToast("发送失败_测试4！");
+                                        return;
+                                    }
                                     MqttConnection.this.publish(topic, message);
                                 } catch (MqttException e) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                                    context.sendBroadcast(intent);
+                                    ToastUtil.showSafeToast("发送失败_测试3！");
                                     e.printStackTrace();
                                 }
 //								Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
