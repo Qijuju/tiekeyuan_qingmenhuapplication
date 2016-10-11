@@ -2005,6 +2005,7 @@ angular.module('message.controllers', [])
 
     //修改群名称
     $scope.goGroupName=function (id,name) {
+      alert(id+"哒哒哒     "+name)
       $state.go('groupModifyName',{
         "groupid":id,
         "groupname":name

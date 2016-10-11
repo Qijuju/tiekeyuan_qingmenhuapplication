@@ -1359,6 +1359,7 @@ angular.module('selectgroup.controllers', [])
     $scope.groupId=$stateParams.groupid;
     $scope.groupName=$stateParams.groupname;
 
+    alert($scope.groupId+"进入界面"+$scope.groupName);
 
     $scope.saveName=function (name) {
       if(name==""){
@@ -1399,7 +1400,7 @@ angular.module('selectgroup.controllers', [])
 
     $scope.$on('$ionicView.enter', function () {
 
-      document.getElementById('nameId').value=groupName;
+      document.getElementById('nameId').value=$scope.groupName;
       keyboard.show();
       document.getElementById('nameId').focus();
 
@@ -1409,7 +1410,7 @@ angular.module('selectgroup.controllers', [])
     $scope.backNameModify=function () {
       $state.go('groupSetting',{
         'groupid':$scope.groupId,
-        'chatname':groupName,
+        'chatname':$scope.groupName,
         'grouptype':"Group",
         'ismygroup':true
       });
@@ -1615,7 +1616,11 @@ angular.module('selectgroup.controllers', [])
     }
 
 
-
+    $scope.goPersonDetail=function (id) {
+      $state.go('person',{
+        'userId':id
+      });
+    }
 
 
 
