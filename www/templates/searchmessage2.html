@@ -20,10 +20,15 @@
             <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==4||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
             <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==5||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
           </div>
-          <div class="col-80 text-center" align="left" ng-click="">
-            <h3 style="font-size: 15px;position: absolute;left: 72px;top: 20%">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</h3>
-            <h3 style="font-size: 15px;position: absolute;left: 72px;top: 50%">{{messageaname.username}}</h3>
-            <h3  style="font-size: 15px;position: absolute;left: 110px;top: 50%">{{messageaname.message.length>13?messageaname.message.substring(0,13)+'...':messageaname.message}}</h3>
+          <div class="col-80" align="left" ng-click="">
+            <span style="font-size: 15px;position: absolute;left: 80px;top: 20% ">{{messageaname.username}}</span>
+            <p style="font-size: 15px;margin-top: 12px" > {{messageaname.message.length>18?messageaname.message.substring(0,18)+'...':messageaname.message}}</p>
+            <span class="rj-push-right" ng-if="item.lastDate != 0" style="font-size: 15px">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+
+            <!--<h3 style="font-size: 15px;position: absolute;left: 72px;top: 20%">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</h3>-->
+            <!--<h3 style="font-size: 15px;position: absolute;left: 72px;top: 50%">{{messageaname.username}}</h3>-->
+            <!--<h3  style="font-size: 15px;position: absolute;left: 110px;top: 50%">{{messageaname.message.length>13?messageaname.message.substring(0,13)+'...':messageaname.message}}</h3>-->
 
           </div>
         </div>
