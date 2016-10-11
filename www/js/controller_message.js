@@ -2128,6 +2128,14 @@ angular.module('message.controllers', [])
   })
 
   .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+    document.getElementById("container").style.height=(window.screen.height-120)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2159,47 +2167,81 @@ angular.module('message.controllers', [])
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
+      var myGeo = new BMap.Geocoder();
+      $timeout(function () {
+        // $ToastUtils.showToast("网络超时")
+        $ionicLoading.hide();
+      },5000);
+      // // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          $scope.$apply(function () {
+            $timeout(function () {
+              $ionicLoading.hide();
+              $scope.weizhiss=result.address;
+            });
+          });
+        }
+      });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         lat=e.point.lat;
         long=e.point.lng;
+        // 创建地理编码实例
+        var myGeo = new BMap.Geocoder();
+        $timeout(function () {
+          // $ToastUtils.showToast("网络超时")
+          $ionicLoading.hide();
+        },5000);
+        // // 根据坐标得到地址描述
+        myGeo.getLocation(new BMap.Point(long, lat), function(result){
+          if (result){
+            $scope.$apply(function () {
+              $timeout(function () {
+                $ionicLoading.hide();
+                $scope.weizhiss=result.address;
+              });
+            });
+          }
+        });
       })
 
-      // 创建地理编码实例
-      var myGeo = new BMap.Geocoder();
-      // // 根据坐标得到地址描述
-      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
-      //   if (result){
-      //     alert(result.address);
-      //   }
-      // });
+
       //查询功能
       // var local = new BMap.LocalSearch(map, {
       //   renderOptions: {map: map, panel: "results"},
       //   pageCapacity: 10
       // });
       // local.searchInBounds(" ", map.getBounds());
-      var mOption = {
-        poiRadius : 100,           //半径为1000米内的POI,默认100米
-        numPois : 5                //列举出50个POI,默认10个
-      }
-      $scope.weizhis=[];
-      // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
-      myGeo.getLocation(point,
-        function mCallback(rs){
-          var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
-          for(var i=0;i<allPois.length;i++){
-            // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
-            map.addOverlay(new BMap.Marker(allPois[i].point));
-
-            $scope.$apply(function () {
-              $scope.weizhis.push(allPois[i].address);
-            });
-
-
-          }
-        },mOption
-      );
+      //多地理位置代码
+      // var mOption = {
+      //   poiRadius : 100,           //半径为1000米内的POI,默认100米
+      //   numPois : 5                //列举出50个POI,默认10个
+      // }
+      // $scope.weizhis=[];
+      // // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      // myGeo.getLocation(point,
+      //   function mCallback(rs){
+      //     var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+      //     for(var i=0;i<allPois.length;i++){
+      //       // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+      //       map.addOverlay(new BMap.Marker(allPois[i].point));
+      //
+      //       $scope.$apply(function () {
+      //         $scope.weizhis.push(allPois[i].address);
+      //       });
+      //
+      //
+      //     }
+      //   },mOption
+      // );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");
@@ -2239,7 +2281,8 @@ angular.module('message.controllers', [])
       var url = new Date().getTime()+"";
       $timeout(function () {
         $ionicLoading.hide();
-      },1000);
+        document.getElementById("container").style.height=(window.screen.height-80)+'px';
+      },800);
 
       $timeout(function () {
         navigator.screenshot.save(function(error,res){
@@ -2268,53 +2311,132 @@ angular.module('message.controllers', [])
           longitude:long,
           latitude:lat
         });
-      },1050);
+      },900);
 
     }
 
   })
 
-  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams) {
+  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$ionicLoading,$timeout) {
     $scope.latitude=$stateParams.latitude;
     $scope.longitude=$stateParams.longitude;
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方用户名
     $scope.grouptype=$stateParams.grouptype;//grouptype
-    // alert("取到经纬度"+$scope.latitude+"==="+$scope.longitude);
-    // var lat="";
-    // var long="";
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    //取出聊天界面带过来的id和ssid
+    // $scope.topic=$stateParams.topic;
+    // $scope.userId=$stateParams.id;//对方用户id
+    // $scope.userName=$stateParams.ssid;//对方用户名
+    // $scope.localuser=$stateParams.localuser;//当前用户名
+    // $scope.localuserId=$stateParams.localuserId;//当前用户id
+    // $scope.sqlid=$stateParams.sqlid;//itemid
+    // $scope.grouptype=$stateParams.grouptype;//grouptype
+    // $scope.messagetype=$stateParams.messagetype;//消息类型
+    // alert("拿到的数据"+$scope.userId+$scope.userName+$scope.localuser+$scope.localuserId+$scope.sqlid+$scope.grouptype+$scope.messagetype);
+
+    var lat="";
+    var long="";
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      // lat  = position.coords.latitude+0.006954;//   39.952728
-      // long = position.coords.longitude+0.012647;//  116.329102
+      lat  = $scope.latitude;//   39.952728
+      long = $scope.longitude;//  116.329102
       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       var map = new BMap.Map("container"); // 创建地图实例
-      var point = new BMap.Point($scope.longitude, $scope.latitude); // 创建点坐标
+      var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
       map.addControl(new BMap.OverviewMapControl());
-      map.addControl(new BMap.MapTypeControl());
+      // map.addControl(new BMap.MapTypeControl());
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
+      var myGeo = new BMap.Geocoder();
+      $timeout(function () {
+        // $ToastUtils.showToast("网络超时")
+        $ionicLoading.hide();
+      },5000);
+      // // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          $scope.$apply(function () {
+            $timeout(function () {
+              $ionicLoading.hide();
+              $scope.weizhiss=result.address;
+            });
+          });
+        }
+      });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         lat=e.point.lat;
         long=e.point.lng;
+        // 创建地理编码实例
+        var myGeo = new BMap.Geocoder();
+        $timeout(function () {
+          // $ToastUtils.showToast("网络超时")
+          $ionicLoading.hide();
+        },5000);
+        // // 根据坐标得到地址描述
+        myGeo.getLocation(new BMap.Point(long, lat), function(result){
+          if (result){
+            $scope.$apply(function () {
+              $timeout(function () {
+                $ionicLoading.hide();
+                $scope.weizhiss=result.address;
+              });
+            });
+          }
+        });
       })
 
-      // // 创建地理编码实例
-      // var myGeo = new BMap.Geocoder();
-      // // 根据坐标得到地址描述
-      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
-      //   if (result){
-      //     alert(result.address);
-      //   }
+
+      //查询功能
+      // var local = new BMap.LocalSearch(map, {
+      //   renderOptions: {map: map, panel: "results"},
+      //   pageCapacity: 10
       // });
+      // local.searchInBounds(" ", map.getBounds());
+      //多地理位置代码
+      // var mOption = {
+      //   poiRadius : 100,           //半径为1000米内的POI,默认100米
+      //   numPois : 5                //列举出50个POI,默认10个
+      // }
+      // $scope.weizhis=[];
+      // // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      // myGeo.getLocation(point,
+      //   function mCallback(rs){
+      //     var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+      //     for(var i=0;i<allPois.length;i++){
+      //       // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+      //       map.addOverlay(new BMap.Marker(allPois[i].point));
+      //
+      //       $scope.$apply(function () {
+      //         $scope.weizhis.push(allPois[i].address);
+      //       });
+      //
+      //
+      //     }
+      //   },mOption
+      // );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");
