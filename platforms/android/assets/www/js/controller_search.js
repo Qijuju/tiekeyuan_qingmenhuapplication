@@ -76,25 +76,30 @@ angular.module('search.controllers', [])
             $timeout(function () {
               $ionicLoading.hide();
               $scope.persons=$search111.getPersons().searchResult;
+              alert($scope.persons.length+",长度")
+              if ($scope.persons.length>=15){
+                $scope.hasmore=true
+                $scope.page++
+                alert($scope.page+",页数")
+              }else {
+                $scope.hasmore=false
+              }
+              $scope.$broadcast('scroll.infiniteScrollComplete');
             });
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-            if ($scope.persons.length>=15){
-              $scope.hasmore=true
-              $scope.page++
-            }else {
-              $scope.hasmore=false
-            }
           })
-
         });
       }else {
+        $scope.hasmore=true;
+        $scope.page =1;
+        $scope.persons=[];
+        $scope.query1 =query;
         $scope.persons=[];
         $search111.getHistorymsg("person");
       }
     }
 
 //上拉加载
-    $scope.loadMore = function(){
+    $scope.loadMoreaa = function(){
       if ($scope.page<2||!$scope.hasmore){
         $scope.$broadcast('scroll.infiniteScrollComplete');
         return;

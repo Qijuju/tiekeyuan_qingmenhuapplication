@@ -35,10 +35,23 @@ angular.module('im.routes', [])
         templateUrl: 'templates/welcome.html',
         controller: 'welcomeCtrl'
       })
-      .state('newspage', {
-        url: '/newspage',
+      .state('newsPage', {
+        url: '/newsPage',
+        cache: false,
         templateUrl: 'templates/newsPage.html',
-        controller: 'newspageCtrl'
+        controller: 'newsPageCtrl'
+      })
+      .state('login', {
+        url: '/login',
+        cache: false,
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl',
+      })
+      .state('gesturelogin', {
+        url: '/gesturelogin',
+        cache: false,
+        templateUrl: 'templates/gesturelogin.html',
+        controller: 'gestureloginCtrl'
       })
       .state('datapicture', {
         url: '/datapicture',
@@ -311,18 +324,7 @@ angular.module('im.routes', [])
         }
       })
 
-      .state('login', {
-        url: '/login',
-        cache: false,
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
-      })
-      .state('gesturelogin', {
-        url: '/gesturelogin',
-        cache: false,
-        templateUrl: 'templates/gesturelogin.html',
-        controller: 'gestureloginCtrl'
-      })
+
 
       .state('tab.account', {
         url: '/account',
@@ -514,6 +516,7 @@ angular.module('im.routes', [])
     // if none of the above states are matched, use this as the fallback
     //入口
     // $urlRouterProvider.otherwise('/welcome');
-    $urlRouterProvider.otherwise('/login');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/newsPage');
 
   });

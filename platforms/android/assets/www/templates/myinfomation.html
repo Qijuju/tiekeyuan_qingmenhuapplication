@@ -41,7 +41,8 @@
               <h2 style="position: absolute;left: 5%;top: 32%">职务</h2>
             </div>
             <div class="col-70" align="left">
-              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.Duty}}</h2>
+              <h2 style="position: absolute;left: 20%;top: 32%">{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</h2>
+
             </div>
           </div>
         </li>
