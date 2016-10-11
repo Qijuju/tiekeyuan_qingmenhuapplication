@@ -555,7 +555,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid,msgSingle) {
       // $scope.msgs.remove(msgSingle);
       // $ToastUtils.showToast(msgSingle);
       // 显示操作表
@@ -570,7 +570,6 @@ angular.module('message.controllers', [])
         buttonClicked: function (index) {
           if (index === 0) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            alert($mqtt.getDanliao().length);
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
@@ -579,7 +578,19 @@ angular.module('message.controllers', [])
                 break;
               }
             }
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              },function (err) {
+              });
+            }, function (msg) {
+            });
           } else if (index === 1) {
 
           }
@@ -2124,7 +2135,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt) {
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2148,11 +2159,11 @@ angular.module('message.controllers', [])
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
       map.addControl(new BMap.OverviewMapControl());
-      map.addControl(new BMap.MapTypeControl());
+      // map.addControl(new BMap.MapTypeControl());
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
@@ -2214,6 +2225,17 @@ angular.module('message.controllers', [])
 
     //发送
     $scope.sendgeloction=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      // $scope.$apply(function () {
+        $ionicNavBarDelegate.showBar(false);
+      // });
+
       // alert("有没有进来发送方法"+$scope.topic+$scope.grouptype);
       // var path;
       // $mqtt.getIconDir(function (data) {
@@ -2223,31 +2245,38 @@ angular.module('message.controllers', [])
       //
       // });
       var url = new Date().getTime()+"";
-      navigator.screenshot.save(function(error,res){
-        // alert("进不进截屏");
-        if(error){
-          console.error(error);
-        }else{
-          // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
-          $scope.screenpath=res.filePath;
-          $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
-            // alert("单聊topic"+userTopic+$scope.grouptype);
-            $scope.content=long+","+lat+","+$scope.screenpath;
-            // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-            $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
-            $scope.send_content = "";
-            keepKeyboardOpen();
-          }, function (msg) {
-          });
-        }
-      },'jpg',100,url);
-      $state.go('messageDetail', {
-        id: $scope.userId,
-        ssid:$scope.userName,
-        grouptype:$scope.groupType,
-        longitude:long,
-        latitude:lat
-      });
+      $timeout(function () {
+        $ionicLoading.hide();
+      },1000);
+
+      $timeout(function () {
+        navigator.screenshot.save(function(error,res){
+          // alert("进不进截屏");
+          if(error){
+            console.error(error);
+          }else{
+            // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
+            $scope.screenpath=res.filePath;
+            $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
+              // alert("单聊topic"+userTopic+$scope.grouptype);
+              $scope.content=long+","+lat+","+$scope.screenpath;
+              // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+              $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
+          }
+        },'jpg',100,url);
+        $state.go('messageDetail', {
+          id: $scope.userId,
+          ssid:$scope.userName,
+          grouptype:$scope.groupType,
+          longitude:long,
+          latitude:lat
+        });
+      },1050);
+
     }
 
   })
