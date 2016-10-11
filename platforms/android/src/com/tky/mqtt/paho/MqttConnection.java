@@ -106,7 +106,6 @@ public class MqttConnection {
                                         Intent intent = new Intent();
                                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                         context.sendBroadcast(intent);
-                                        ToastUtil.showSafeToast("发送失败_测试4！");
                                         return;
                                     }
                                     MqttConnection.this.publish(topic, message);
@@ -114,7 +113,6 @@ public class MqttConnection {
                                     Intent intent = new Intent();
                                     intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                     context.sendBroadcast(intent);
-                                    ToastUtil.showSafeToast("发送失败_测试3！");
                                     e.printStackTrace();
                                 }
 //								Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
@@ -244,7 +242,6 @@ public class MqttConnection {
                         Intent intent = new Intent();
                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                         context.sendBroadcast(intent);
-                        ToastUtil.showSafeToast("发送失败_测试1！");
                     }
                 });
             } catch (Exception e) {
@@ -252,7 +249,6 @@ public class MqttConnection {
                 Intent intent = new Intent();
                 intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                 context.sendBroadcast(intent);
-                ToastUtil.showSafeToast("发送失败_测试2！");
             }
         }
     }
