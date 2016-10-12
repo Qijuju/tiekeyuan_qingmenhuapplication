@@ -3,21 +3,31 @@ package com.tky.mqtt.base;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
+import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.ModuleCount;
 import com.tky.mqtt.dao.MsgHistory;
+import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SelectedId;
+import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.FilePictureService;
 import com.tky.mqtt.services.GroupChatsService;
+import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.ModuleCountService;
 import com.tky.mqtt.services.MsgHistoryService;
+import com.tky.mqtt.services.NotifyListService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SelectIdService;
+import com.tky.mqtt.services.SlowNotifyListService;
 import com.tky.mqtt.services.SubDeptService;
 import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
@@ -59,7 +69,6 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }else{
                 message.set_id(jsonobj.getString("_id"));
             }
-
             message.setSessionid(jsonobj.getString("sessionid"));
             message.setType(jsonobj.getString("type"));
             message.setFrom(jsonobj.getString("from"));
@@ -147,6 +156,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setIsDelete(jsonobj.getString("isDelete"));
             systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
             systemMsg.setSenderid(jsonobj.getString("senderid"));
+            systemMsg.setMsglevel(jsonobj.getString("msglevel"));
             obj = systemMsg;
         }else if ("MsgHistoryService".equals(services)){
             MsgHistory msgHistory=new MsgHistory();
@@ -155,6 +165,78 @@ public class GreenDaoPlugin extends CordovaPlugin {
             msgHistory.setType(jsonobj.getString("type"));
             msgHistory.setWhen(System.currentTimeMillis());
             obj=msgHistory;
+        }else if("NotifyListService".equals(services)){
+            NotifyList notifyList = new NotifyList();
+            notifyList.setId(jsonobj.getString("id"));
+            notifyList.setChatName(jsonobj.getString("chatName"));
+            notifyList.setImgSrc(jsonobj.getString("imgSrc"));
+            notifyList.setCount(jsonobj.getString("count"));
+            notifyList.setIsDelete(jsonobj.getString("isDelete"));
+            notifyList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                notifyList.setLastDate(0L);
+            }else{
+                notifyList.setLastDate(System.currentTimeMillis());
+            }
+            notifyList.setLastText(jsonobj.getString("lastText"));
+            notifyList.setChatType(jsonobj.getString("chatType"));
+            notifyList.setSenderId(jsonobj.getString("senderId"));
+            notifyList.setSenderName(jsonobj.getString("senderName"));
+            obj = notifyList;
+        }else if ("LocalPhoneService".equals(services)){
+            LocalPhone localPhone=new LocalPhone();
+            localPhone.setId(jsonobj.getString("id"));
+            localPhone.setPlatformid(jsonobj.getString("platformid"));
+            localPhone.setIsplatform(jsonobj.getBoolean("isplatform"));
+            localPhone.setName(jsonobj.getString("name"));
+            localPhone.setPhonenumber(jsonobj.getString("phonenumber"));
+            localPhone.setPinyinname(jsonobj.getString("pinyinname"));
+            obj=localPhone;
+        }else if("FilePictureService".equals(services)){
+            FilePicture filePicture=new FilePicture();
+            filePicture.setFilepicid(jsonobj.getString("filepicid"));
+            filePicture.setFrom(jsonobj.getString("from"));
+            filePicture.setSessionid(jsonobj.getString("sessionid"));
+            filePicture.setFromname(jsonobj.getString("fromname"));
+            filePicture.setToname(jsonobj.getString("toname"));
+            filePicture.setSmallurl(jsonobj.getString("smallurl"));
+            filePicture.setBigurl(jsonobj.getString("bigurl"));
+            filePicture.setBytesize(jsonobj.getString("bytesize"));
+            filePicture.setMegabyte(jsonobj.getString("megabyte"));
+            filePicture.setFilename(jsonobj.getString("filename"));
+            filePicture.setType(jsonobj.getString("type"));
+            filePicture.setWhen(System.currentTimeMillis());
+            obj=filePicture;
+        }else if("ModuleCountService".equals(services)){
+            ModuleCount moduleCount=new ModuleCount();
+            moduleCount.setId(jsonobj.getString("id"));
+            moduleCount.setName(jsonobj.getString("name"));
+            moduleCount.setCount1(jsonobj.getLong("count1"));
+            moduleCount.setCount2(jsonobj.getLong("count2"));
+            moduleCount.setCount3(jsonobj.getLong("count3"));
+            moduleCount.setCount4(jsonobj.getLong("count4"));
+            moduleCount.setType(jsonobj.getString("type"));
+            obj=moduleCount;
+        }else if("SlowNotifyListService".equals(services)){
+            SlowNotifyList notifyList = new SlowNotifyList();
+            notifyList.setId(jsonobj.getString("id"));
+            notifyList.setChatName(jsonobj.getString("chatName"));
+            notifyList.setImgSrc(jsonobj.getString("imgSrc"));
+            notifyList.setCount(jsonobj.getString("count"));
+            notifyList.setIsDelete(jsonobj.getString("isDelete"));
+            notifyList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                notifyList.setLastDate(0L);
+            }else{
+                notifyList.setLastDate(System.currentTimeMillis());
+            }
+            notifyList.setLastText(jsonobj.getString("lastText"));
+            notifyList.setChatType(jsonobj.getString("chatType"));
+            notifyList.setSenderId(jsonobj.getString("senderId"));
+            notifyList.setSenderName(jsonobj.getString("senderName"));
+            obj = notifyList;
         }
         return obj;
     }
@@ -204,6 +286,10 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
         }else if ("MsgHistoryService".equals(services)){
 
+        }else if("LocalPhoneService".equals(services)){
+
+        }else if("FilePictureService".equals(services)){
+
         }
         return obj;
     }
@@ -234,6 +320,16 @@ public class GreenDaoPlugin extends CordovaPlugin {
           baseInterface = SystemMsgService.getInstance(UIUtils.getContext());
         }else if ("MsgHistoryService".equals(services)) {
             baseInterface= MsgHistoryService.getInstance(UIUtils.getContext());
+        }else if("NotifyListService".equals(services)){
+            baseInterface= NotifyListService.getInstance(UIUtils.getContext());
+        }else if ("LocalPhoneService".equals(services)){
+            baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
+        }else if ("FilePictureService".equals(services)){
+            baseInterface= FilePictureService.getInstance(UIUtils.getContext());
+        }else if("ModuleCountService".equals(services)){
+            baseInterface= ModuleCountService.getInstance(UIUtils.getContext());
+        }else if("SlowNotifyListService".equals(services)){
+            baseInterface= SlowNotifyListService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -370,9 +466,105 @@ public class GreenDaoPlugin extends CordovaPlugin {
             e.printStackTrace();
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
-
-
     }
+
+    /**
+     * 带两个参数查询(SystemMsgService)
+     */
+    public void queryNewNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SystemMsg> list=service.queryNewNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 带两个参数查询(NotifyListService)
+     */
+    public void queryNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        NotifyListService service = NotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<NotifyList> list=service.queryNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+
+    /**
+     * 带两个参数查询(SlowNotifyListService)
+     * @param args
+     * @param callbackContext
+     */
+    public void querySlowNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        SlowNotifyListService service = SlowNotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SlowNotifyList> list=service.querySlowNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 根据新版日期查询
+     * @param args
+     * @param callbackContext
+     */
+    public void queryDataByDate(final JSONArray args,final CallbackContext callbackContext){
+        NotifyListService service = NotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<NotifyList> list=service.queryDataByDate(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    public void querySlowDataByDate(final JSONArray args,final CallbackContext callbackContext){
+        SlowNotifyListService service = SlowNotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SlowNotifyList> list=service.querySlowDataByDate(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
 
     public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){
       SelectIdService selectIdService=SelectIdService.getInstance(UIUtils.getContext());
@@ -393,8 +585,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
     public void qureyHistoryMsg(JSONArray args,CallbackContext callbackContext){
         MsgHistoryService  service=MsgHistoryService.getInstance(UIUtils.getContext());
         try {
-            String type=args.getString(0);
-            List<MsgHistory> list=service.queryMsg(type);
+            String type =args.getString(0);
+            List<MsgHistory> list = service.queryMsg(type);
             Gson gson=new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<MsgHistory>>() {
             }.getType());
@@ -412,6 +604,28 @@ public class GreenDaoPlugin extends CordovaPlugin {
             List<ChatList> list=chatListService.queryByType(one, two);
             Gson gson=new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<ChatList>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
+
+    /**
+     * 根据ssid和 type查询数据库里面的信息
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByFilepic(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService filePictureService=FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=filePictureService.queryFilePic(ssid, type);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<FilePicture>>() {
             }.getType());
             setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
@@ -461,11 +675,11 @@ public class GreenDaoPlugin extends CordovaPlugin {
             anInterface.saveObj(daoObj);
             if (daoObj instanceof Messages) {
                 String isFailure = jsonobj.getString("isFailure");
+                Messages msg = (Messages) daoObj;
                 if ("true".equals(isFailure)) {
-                    Messages msg = (Messages) daoObj;
                     setResult(msg.get_id(), PluginResult.Status.OK, callbackContext);
                 } else {
-                    setResult("success", PluginResult.Status.OK, callbackContext);
+                    setResult(msg.get_id(), PluginResult.Status.OK, callbackContext);
                 }
             } else {
                 setResult("success", PluginResult.Status.OK, callbackContext);

@@ -18,18 +18,19 @@
       <button class="button button-block button-positive" ng-click="login(name,password)">
         <i class="icon ion-log-in"></i>&nbsp;登录
       </button>
-    <div><input type="checkbox" ng-checked="remPwd === 'true'" checked style="margin-left: 10px" ng-click="rememberPwd()">
-      记住密码
+    <div style="font-size: 16px"><input type="checkbox" ng-checked="remPwd === 'true'" checked style="margin-left: 10px;width: 20px;height: 20px" ng-click="rememberPwd()">
+      <span style="font-size: 16px;margin-bottom: -10px">记住密码</span>
+      <font style="float: right;font-size: 16px" ng-click="goGestureLogin()">切换登录方式</font>
       </div>
 
 
-      <div style="text-align: center;margin-top: 40px;font-size: 14px">
+      <div style="text-align: center;margin-top: 40px;font-size: 15px">
         中国铁路总公司
       </div>
     </div>
     <div>
-      <button class="button" ng-click="meizuo()" style="height: 10px;;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;left: 3%;bottom: 2%" >找回密码</button>
-      <button class="button" ng-click="goGestureLogin()" style="height: 10px;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;right: 3%;bottom: 2%" >切换登陆方式</button>
+      <!--<button class="button" ng-click="meizuo()" style="height: 10px;;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;left: 3%;bottom: 2%" >找回密码</button>-->
+      <!--<button class="button" ng-click="goGestureLogin()" style="height: 10px;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;right: 3%;bottom: 2%" >切换登陆方式</button>-->
     </div>
    </ion-content>
 </ion-view>

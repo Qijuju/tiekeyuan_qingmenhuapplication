@@ -64,7 +64,18 @@ public class MessageOper {
 			bean.set_id(fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from"));
 			boolean flag = "User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
 					|| "Alarm".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+					|| "Platform".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
 					|| "System".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+
+
+			String type = getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"));
+			if ("Platform".equals(type)) {
+				bean.setMsgLevel(getMsgLevel((IMMsgFactory.MsgLevel) msgMap.get("msgLevel")));
+			} else {
+				bean.setMsgLevel("");
+			}
+
+
 			bean.setSessionid((flag) ? (fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from")) : (String) msgMap.get("to"));
 			bean.setType(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
 			bean.setFrom(fromMe ? "true" : "false");
@@ -92,6 +103,21 @@ public class MessageOper {
 	}
 
 	/**
+	 * 获取消息紧急程度
+	 * @param level
+	 * @return
+	 */
+	private static String getMsgLevel(IMMsgFactory.MsgLevel level) {
+		String levelStr = "Common";
+		if (IMMsgFactory.MsgLevel.Common.equals(level)) {
+			levelStr = "Common";
+		} else if (IMMsgFactory.MsgLevel.Level_1.equals(level)) {
+			levelStr = "Level_1";
+		}
+		return levelStr;
+	}
+
+	/**
 	 * 消息类型转换
 	 * @param type
 	 * @return
@@ -110,6 +136,8 @@ public class MessageOper {
 			msgType = IMMsgFactory.MsgType.Receipt;
 		} else if ("System".equals(type)) {
 			msgType = IMMsgFactory.MsgType.System;
+		} else if ("Platform".equals(type)) {
+			msgType = IMMsgFactory.MsgType.Platform;
 		} else {
 			msgType = IMMsgFactory.MsgType.User;
 		}
@@ -137,6 +165,8 @@ public class MessageOper {
 			msgType = "System";
 		} else if (IMMsgFactory.MsgType.Alarm.equals(type)) {
 			msgType = "Alarm";
+		} else if (IMMsgFactory.MsgType.Platform.equals(type)) {
+			msgType = "Platform";
 		}
 		return msgType;
 	}
@@ -162,6 +192,8 @@ public class MessageOper {
 			mediaType = IMMsgFactory.MediaType.Text;
 		} else if ("Vedio".equals(type)) {
 			mediaType = IMMsgFactory.MediaType.Vedio;
+		} else if ("LOCATION".equals(type)) {
+			mediaType = IMMsgFactory.MediaType.Position;
 		} else {
 			mediaType = IMMsgFactory.MediaType.Text;
 		}
@@ -189,6 +221,10 @@ public class MessageOper {
 			mediaType = "Text";
 		} else if (IMMsgFactory.MediaType.Vedio.equals(type)) {
 			mediaType = "Vedio";
+		} else if (IMMsgFactory.MediaType.Position.equals(type)) {
+			mediaType = "LOCATION";
+		} else {
+			mediaType = "Text";
 		}
 		return mediaType;
 	}

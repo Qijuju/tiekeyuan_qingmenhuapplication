@@ -1,35 +1,35 @@
-.spinner svg {
-  width: 50px;
-  height: 50px;
-  border: 6px solid;
-  border-top-color: hsl(112, 100%, 88%);
-  border-left-color: hsl(142, 100%, 89%);
-  border-bottom-color: hsl(156, 100%, 86%);
-  border-right-color: hsl(200, 100%, 87%);
-  border-radius: 50%;
-  transform: rotate(45deg);
-  margin: 20px -10px -33px 8px;//上，右，下，左
-  /*color: #ffffff;*/
-  /*background-color: #ffffff;*/
+/*.spinner svg {*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*border: 6px solid;*/
+  /*border-top-color: hsl(112, 100%, 88%);*/
+  /*border-left-color: hsl(142, 100%, 89%);*/
+  /*border-bottom-color: hsl(156, 100%, 86%);*/
+  /*border-right-color: hsl(200, 100%, 87%);*/
+  /*border-radius: 50%;*/
+  /*transform: rotate(45deg);*/
+  /*margin: 20px -10px -33px 8px;//上，右，下，左*/
+  /*!*color: #ffffff;*!*/
+  /*!*background-color: #ffffff;*!*/
 
-  display: inline-block;
-  /* The background is used to specify the border background */
-  background: linear-gradient(90deg, hsla(212,67%,36%,0) 0%,
-  hsla(207,69%,51%,0) 76%,
-  hsla(0,0%,100%,1) 85%,
-  hsla(0,0%,100%,1) 100%); /* W3C */
-  /* Background origin is the padding box by default.
-  Override to make the background cover the border as well. */
-  -moz-background-origin: border;
-  background-origin: border-box;
-  /* A transparent border determines the width */
-  box-shadow: inset -999px 0 0 #fff; /* The background color */
-  animation: loading 1s linear infinite;
-}
-@keyframes loading {
-  0% { transform: translate(-9px, -25px) rotate(0deg); }
-  100% { transform: translate(-9px, -25px) rotate(360deg); }
-}
+  /*display: inline-block;*/
+  /*!* The background is used to specify the border background *!*/
+  /*background: linear-gradient(90deg, hsla(212,67%,36%,0) 0%,*/
+  /*hsla(207,69%,51%,0) 76%,*/
+  /*hsla(0,0%,100%,1) 85%,*/
+  /*hsla(0,0%,100%,1) 100%); !* W3C *!*/
+  /*!* Background origin is the padding box by default.*/
+  /*Override to make the background cover the border as well. *!*/
+  /*-moz-background-origin: border;*/
+  /*background-origin: border-box;*/
+  /*!* A transparent border determines the width *!*/
+  /*box-shadow: inset -999px 0 0 #fff; !* The background color *!*/
+  /*animation: loading 1s linear infinite;*/
+/*}*/
+/*@keyframes loading {*/
+  /*0% { transform: translate(-9px, -25px) rotate(0deg); }*/
+  /*100% { transform: translate(-9px, -25px) rotate(360deg); }*/
+/*}*/
 
 .circle1 {
   /*background: none repeat scroll 0 0 #02b5bb;*/
@@ -120,6 +120,50 @@
   position: absolute;
   text-align: center;
 }
+.circlered{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle_red.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 15px;
+  height: 15px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle7{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle6.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle8{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle1.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
 .square1{
   /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu1.png);
@@ -153,8 +197,8 @@
   background-image:url(../img/quntu3.png);
   border-radius: 30%;
   color: #FFFFFF;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;

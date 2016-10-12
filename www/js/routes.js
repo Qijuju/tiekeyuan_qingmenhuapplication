@@ -35,10 +35,23 @@ angular.module('im.routes', [])
         templateUrl: 'templates/welcome.html',
         controller: 'welcomeCtrl'
       })
-      .state('newspage', {
-        url: '/newspage',
+      .state('newsPage', {
+        url: '/newsPage',
+        cache: false,
         templateUrl: 'templates/newsPage.html',
-        controller: 'newspageCtrl'
+        controller: 'newsPageCtrl'
+      })
+      .state('login', {
+        url: '/login',
+        cache: false,
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl',
+      })
+      .state('gesturelogin', {
+        url: '/gesturelogin',
+        cache: false,
+        templateUrl: 'templates/gesturelogin.html',
+        controller: 'gestureloginCtrl'
       })
       .state('datapicture', {
         url: '/datapicture',
@@ -89,20 +102,32 @@ angular.module('im.routes', [])
         views: {
           'tab-notification': {
             templateUrl: 'templates/tab-notification.html',
-            controller: 'notificationCtrl'
+            controller: 'newnotificationCtrl'
           }
         }
       })
+
+      .state('tab.notifications', {
+        url: '/notifications',
+        cache:false,
+        views: {
+          'tab-notifications': {
+            templateUrl: 'templates/tab-notifications.html',
+            controller: 'notificationsCtrl'
+          }
+        }
+      })
+
       .state('notificationDetail', {
         url: '/notificationDetail/:id/:name/:type',
         templateUrl: 'templates/notificationDetail.html',
         cache:false,
-        controller: 'notificationDetailCtrl'
+        controller: 'newnotificationDetailCtrl'
       })
 
 
       .state('messageDetail', {
-        url: '/messageDetail/:id/:ssid/:grouptype',
+        url: '/messageDetail/:id/:ssid/:grouptype/:longitude/:latitude',
         templateUrl: 'templates/message-detail.html',
         cache:false,
         controller: 'MessageDetailCtrl'
@@ -139,7 +164,7 @@ angular.module('im.routes', [])
 
 
       .state('personalSetting', {
-        url: '/personalSetting/:id/:ssid',
+        url: '/personalSetting/:id/:ssid/:sessionid',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
@@ -276,9 +301,7 @@ angular.module('im.routes', [])
       .state('localContacts', {
         url: '/localContacts',
         templateUrl: 'templates/contact-local.html',
-        controller: 'LocalContactCtrl',
-        cache:false
-
+        controller: 'LocalContactCtrl'
       })
 
       .state('tab.chats', {
@@ -301,18 +324,7 @@ angular.module('im.routes', [])
         }
       })
 
-      .state('login', {
-        url: '/login',
-        cache: false,
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
-      })
-      .state('gesturelogin', {
-        url: '/gesturelogin',
-        cache: false,
-        templateUrl: 'templates/gesturelogin.html',
-        controller: 'gestureloginCtrl'
-      })
+
 
       .state('tab.account', {
         url: '/account',
@@ -452,7 +464,59 @@ angular.module('im.routes', [])
         controller: 'aboutoursCtrl',
         cache:false
       })
+      .state('sendGelocation', {
+        url: '/sendGelocation/:topic/:id/:ssid/:localuser/:localuserId/:sqlid/:grouptype/:messagetype',
+        templateUrl: 'templates/sendGelocation.html',
+        controller: 'sendGelocationCtrl',
+        cache:false
+      })
+      .state('mapdetail', {
+        url: '/mapdetail/:id/:ssid/:grouptype/:longitude/:latitude',
+        templateUrl: 'templates/mapdetail.html',
+        controller: 'mapdetailCtrl',
+        cache:false
+      })
+
+      .state('personpicture', {
+        url: '/personpicture',
+        templateUrl: 'templates/person-picture.html',
+        controller: 'personpictureCtrl',
+        cache:false
+      })
+
+      .state('personfile', {
+        url: '/personfile/:sessionid',
+        templateUrl: 'templates/person-file.html',
+        controller: 'personfileCtrl',
+        cache:false
+      })
+
+      .state('grouppicture', {
+        url: '/grouppicture',
+        templateUrl: 'templates/group-picture.html',
+        controller: 'grouppictureCtrl',
+        cache:false
+      })
+
+      .state('groupfile', {
+        url: '/groupfile',
+        templateUrl: 'templates/group-file.html',
+        controller: 'groupfileCtrl',
+        cache:false
+      })
+
+
+
+
+
+
+
+
+
     // if none of the above states are matched, use this as the fallback
+    //入口
+    // $urlRouterProvider.otherwise('/welcome');
     // $urlRouterProvider.otherwise('/login');
-    $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/newsPage');
+
   });

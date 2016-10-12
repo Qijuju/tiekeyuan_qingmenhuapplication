@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2016/8/14.
  */
-angular.module('my.controllers', [])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$grouparr,$ionicPlatform,$location) {
+angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap'])
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation) {
 
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
@@ -11,11 +11,35 @@ angular.module('my.controllers', [])
       if ($scope.mymypersonname.length>2){
         $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
       }else {
-        $scope.jiename=$scope.mymypersonname
+        $scope.jiename=$scope.mymypersonname;
       }
     }, function (msg) {
       // $ToastUtils.showToast(msg)
     });
+
+    var lat="";
+    var long="";
+    var locationaaa="";
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    // alert("进来了")
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      lat  = position.coords.latitude+0.006954;//   39.952728
+      long = position.coords.longitude+0.012647;//  116.329102
+      locationaaa=long+","+lat;
+      $http.get("http://api.map.baidu.com/telematics/v3/weather?location="+locationaaa+"&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+        .success(function(response) {
+          $scope.pm25aa="pm2.5 : "+response.results[0].pm25;
+          $scope.currentcity=response.results[0].currentCity;
+          $scope.weathdate=response.results[0].weather_data[0].date.substring(11,response.results[0].weather_data[0].date.length-1);
+          $scope.weatherzhen=response.results[0].weather_data[0].weather;
+
+        });
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+    });
+
+
 
     // $ionicPlatform.registerBackButtonAction(function(e) {
     //   if ($location.path() == '/account'){
@@ -67,6 +91,7 @@ angular.module('my.controllers', [])
         // "youmeiyou":$scope.youmeiyou,
       });
     }
+    var isAndroid = ionic.Platform.isAndroid();
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({
@@ -107,85 +132,98 @@ angular.module('my.controllers', [])
         quality: 100,                                            //相片质量0-100
         destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
         sourceType: Camera.PictureSourceType.CAMERA,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,                                        //在选择之前允许修改截图
-        encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-        // targetWidth: 200,                                        //照片宽度
-        // targetHeight: 200,                                       //照片高度
-        mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
-        cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true                                   //保存进手机相册
+        // allowEdit: true,                                        //在选择之前允许修改截图
+        // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        targetWidth: 70,                                        //照片宽度
+        targetHeight: 70,                                       //照片高度
+        // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        // popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false                                   //保存进手机相册
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
+        alert(imageData)
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
         // image.src=imageData;
         //image.src = "data:image/jpeg;base64," + imageData;
-        $api.setHeadPic(imageData, function (msg) {
-          // $ToastUtils.showToast("成功")
+        // if(isAndroid){
+        var picPath = imageData.substring(0, imageData.indexOf('?'));
+        alert(picPath)
+        // }
+        $api.setHeadPic(picPath, function (msg) {
+          $ToastUtils.showToast("成功")
         }, function (msg) {
           $ToastUtils.showToast("失败")
         });
       }, function (err) {
         // error
-        // $ToastUtils.showToast(err);
+        $ToastUtils.showToast(err);
       });
 
     };
-    //image picker
-    $scope.selectphoto = function() {
-      var options = {
-        maximumImagesCount: 1,
-        // width: 800,
-        // height: 800,
-        quality: 100
-      };
-
-      $cordovaImagePicker.getPictures(options)
-        .then(function (results) {
-          // $scope.images_list.push(results[0]);
-          $api.setHeadPic(results[0], function (msg) {
-                  // $ToastUtils.showToast("成功")
-                }, function (msg) {
-                  $ToastUtils.showToast("失败")
-                });
-        }, function (error) {
-          // error getting photos
-        });
-    }
-    // //选相册
-    // $scope.selectphoto = function () {
+    // //image picker
+    // $scope.selectphoto = function() {
     //   var options = {
-    //     //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
-    //     quality: 100,                                            //相片质量0-100
-    //     destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
-    //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
-    //     allowEdit: false,                                       //在选择之前允许修改截图
-    //     encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-    //     // targetWidth: 200,                                        //照片宽度
-    //     // targetHeight: 200,                                       //照片高度
-    //     mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
-    //     cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
-    //     popoverOptions: CameraPopoverOptions,
-    //     saveToPhotoAlbum: true                                   //保存进手机相册
+    //     maximumImagesCount: 1,
+    //     // width: 800,
+    //     // height: 800,
+    //     quality: 100
     //   };
-    //   $cordovaCamera.getPicture(options).then(function (imageData) {
-    //     $ToastUtils.showToast(imageData);
-    //     $api.setHeadPic(imageData, function (msg) {
-    //       $ToastUtils.showToast("成功")
-    //     }, function (msg) {
-    //       $ToastUtils.showToast("失败")
-    //     });
-    //     // var image = document.getElementById('myImage');
-    //     // image.src=imageData;
-    //     //image.src = "data:image/jpeg;base64," + imageData;
-    //   }, function (err) {
-    //     // error
-    //     $ToastUtils.showToast(err);
-    //   });
     //
-    // };
+    //   $cordovaImagePicker.getPictures(options)
+    //     .then(function (results) {
+    //       // $scope.images_list.push(results[0]);
+    //       $api.setHeadPic(results[0], function (msg) {
+    //               // $ToastUtils.showToast("成功")
+    //             }, function (msg) {
+    //               $ToastUtils.showToast("失败")
+    //             });
+    //     }, function (error) {
+    //       // error getting photos
+    //     });
+    // }
+    //选相册
+    $scope.selectphoto = function () {
+      var options = {
+        quality: 100,
+        // targetWidth: 320,
+        // targetHeight: 320,
+        // saveToPhotoAlbum: false,
+        // //这些参数可能要配合着使用，比如选择了sourcetype是0，destinationtype要相应的设置
+        // quality: 100,                                            //相片质量0-100
+        destinationType: Camera.DestinationType.FILE_URI,        //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI (例如，資產庫)
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
+        // allowEdit: false,                                       //在选择之前允许修改截图
+        // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
+        targetWidth: 70,                                        //照片宽度
+        targetHeight: 70,                                       //照片高度
+        // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
+        // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
+        // popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false                                   //保存进手机相册
+      };
+      $cordovaCamera.getPicture(options).then(function (imageData) {
+        alert(imageData);
+        // if(isAndroid){
+        var picPath = imageData.substring(0, imageData.indexOf('?'));
+        alert(picPath)
+        // }
+        $api.setHeadPic(picPath, function (msg) {
+          $ToastUtils.showToast("成功")
+        }, function (msg) {
+          $ToastUtils.showToast("失败")
+        });
+        // var image = document.getElementById('myImage');
+        // image.src=imageData;
+        //image.src = "data:image/jpeg;base64," + imageData;
+      }, function (err) {
+        // error
+        $ToastUtils.showToast(err);
+      });
+
+    };
 
 
     // document.addEventListener('deviceready', function () {
@@ -232,7 +270,7 @@ angular.module('my.controllers', [])
           });
         } else {
           // $ToastUtils.showToast('不确定');
-          $ToastUtils.showToast("退出登录失败")
+          // $ToastUtils.showToast("退出登录失败")
         }
       });
     };
@@ -241,58 +279,40 @@ angular.module('my.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        $scope.danliaomsg = $mqtt.getDanliao();
-        $scope.qunliaomsg = $mqtt.getQunliao();
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
         // 当群未读消息lastGroupCount数变化的时候
         $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-
-        //获取登录进来就有会话窗口的，监听到未读消息时，取出当前消息的来源
+        // alert("是不是先拿到这个值"+$scope.lastGroupCount);
         $scope.firstUserId = $mqtt.getFirstReceiverSsid();
         $scope.receiverssid = $scope.firstUserId;
         $scope.chatName = $mqtt.getFirstReceiverChatName();
         $scope.firstmessageType = $mqtt.getMessageType();
-        // $ToastUtils.showToast("未读消息singlecount值"+$scope.lastCount+"未读群聊count"+$scope.lastGroupCount+$scope.firstUserId+$scope.chatName+$scope.firstmessageType);
-        // if ($scope.userId === '') {
-
-        // $ToastUtils.showToast("first login"+$scope.receiverssid+$scope.firstmessageType);
-        // } else if ($scope.userId != $scope.firstUserId) {
-        /**
-         *  如果其他用户给当前用户发信息，则在会话列表添加item
-         *  判断信息过来的接收者id是否跟本机用户相等
-         */
-        // $scope.receiverssid = $scope.firstUserId;
-        // $scope.chatName = $mqtt.getFirstReceiverChatName();
-        //   $ToastUtils.showToast("有正常的用户名后" + $scope.receiverssid + $scope.chatName);
-        // } else {
-        //   $scope.receiverssid = $scope.userId;
-        // }
-
 
         /**
          * 判断是单聊未读还是群聊未读
          */
-        if ($scope.lastCount > 0) {
+        if ($scope.lastCount > 0 && $scope.firstmessageType ==='User') {
+          // alert("进来单聊");
           //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
           // 接收者id
           // $scope.receiverssid=$mqtt.getFirstReceiverSsid();
           //收到消息时先判断会话列表有没有这个用户
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
-            // $ToastUtils.showToast(data.length + "收到geren消息时，查询chat表有无当前用户");
+            // $ToastUtils.showToast(data.length + "收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // $ToastUtils.showToast("没有该danren会话");
+              // $ToastUtils.showToast("没有该会话");
               $rootScope.isPersonSend = 'true';
               if ($rootScope.isPersonSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
-                // $ToastUtils.showToast("会话列表聊天类型" + $scope.messageType);
+                // alert("会话列表聊天类型" + $scope.messageType);
                 //往service里面传值，为了创建会话
                 $chatarr.getIdChatName($scope.receiverssid, $scope.chatName);
-                $scope.items = $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
+                $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
                 // $ToastUtils.showToast($scope.items.length + "长度");
                 $scope.$on('chatarr.update', function (event) {
                   $scope.$apply(function () {
-                    $scope.items = $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
+                    $scope.items = $chatarr.getAllData();
                   });
                 });
                 $rootScope.isPersonSend = 'false';
@@ -304,10 +324,19 @@ angular.module('my.controllers', [])
           //取出与‘ppp’的聊天记录最后一条
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
             // $ToastUtils.showToast("未读消息时取出消息表中最后一条数据"+data.length);
-            $scope.lastText = data[0].message;//最后一条消息内容
+            if(data[0].messagetype === "Image"){
+              $scope.lastText = "[图片]";//最后一条消息内容
+            }else if(data[0].messagetype === "LOCATION"){
+              $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
+            }else {
+              $scope.lastText = data[0].message;//最后一条消息内容
+            }
             $scope.lastDate = data[0].when;//最后一条消息的时间
-            $scope.chatName = data[0].username;//对话框名称
             // $ToastUtils.showToast($scope.chatName + "用户名1");
+            $scope.srcName = data[0].username;//消息来源人名字
+            $scope.srcId = data[0].senderid;//消息来源人id
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('ChatListService', 'where id=?', $scope.receiverssid, function (data) {
@@ -322,15 +351,11 @@ angular.module('my.controllers', [])
               chatitem.isDelete = data[0].isDelete;
               chatitem.lastDate = $scope.lastDate;
               chatitem.chatType = data[0].chatType;
-              chatitem.senderId = '',
-                chatitem.senderName = '';
+              chatitem.senderId = $scope.srcId;
+              chatitem.senderName = $scope.srcName;
               $greendao.saveObj('ChatListService', chatitem, function (data) {
-                $greendao.queryByConditions('ChatListService', function (data) {
-                  $chatarr.setData(data);
-                  $rootScope.$broadcast('lastcount.update');
-                }, function (err) {
-
-                });
+                $chatarr.updatechatdata(chatitem);
+                $rootScope.$broadcast('lastcount.update');
               }, function (err) {
                 // $ToastUtils.showToast(err + "数据保存失败");
               });
@@ -341,6 +366,7 @@ angular.module('my.controllers', [])
             // $ToastUtils.showToast(err);
           });
         } else if ($scope.lastGroupCount > 0) {
+          // alert("进来群聊id"+$scope.receiverssid);
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
           /**
            * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
@@ -350,69 +376,65 @@ angular.module('my.controllers', [])
            * 5.数据刷新(chatListService)按时间降序排列展示
            */
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
-            // $ToastUtils.showToast(data.length+"收到qunzu消息时，查询chat表有无当前用户");
+            // alert(data.length+"收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
-              // $ToastUtils.showToast("没有该会话");
-              $rootScope.isGroupSend = 'true';
-              if ($rootScope.isGroupSend === 'true') {
+              // alert("群聊主界面没有该会话");
+              $rootScope.isPersonSend = 'true';
+              if ($rootScope.isPersonSend === 'true') {
                 $scope.messageType = $mqtt.getMessageType();
                 //获取消息来源人
                 $scope.chatName = $mqtt.getFirstReceiverChatName();//取到消息来源人，准备赋值，保存chat表
-                // $ToastUtils.showToast("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
+                // alert("群组会话列表聊天类型"+$scope.messageType+$scope.chatName);
                 //根据群组id获取群名称
                 $greendao.queryData('GroupChatsService', 'where id =?', $scope.receiverssid, function (data) {
-                  // $ToastUtils.showToast(data[0].groupName);
+                  // alert(data[0].groupName);
                   $rootScope.groupName = data[0].groupName;
                   //往service里面传值，为了创建会话
-                  $grouparr.getGroupIdChatName($scope.receiverssid, $scope.groupName);
-                  $scope.items = $grouparr.getAllGroupList($rootScope.isGroupSend, $scope.messageType);
-                  // $ToastUtils.showToast($scope.items.length + "长度");
-                  $scope.$on('groupchatarr.update', function (event) {
+                  $chatarr.getIdChatName($scope.receiverssid, $scope.groupName);
+                  $chatarr.getAll($rootScope.isPersonSend, $scope.messageType);
+                  // alert($scope.items.length + "长度");
+                  $scope.$on('chatarr.update', function (event) {
                     $scope.$apply(function () {
-                      // $ToastUtils.showToast("my group监听");
+                      $scope.items=$chatarr.getAllData();
                       /**
                        *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
                        *
                        */
-                      $scope.savemymsg();
+                      // $ToastUtils.showToast("群组长度" + $scope.items.length);
+                      $scope.savemylastmsg();
                     });
                   });
-                  $rootScope.isGroupSend = 'false';
+                  $rootScope.isPersonSend = 'false';
                 }, function (err) {
                   // $ToastUtils.showToast(err + "查询群组对应关系");
                 });
               }
             }else{
-              // $ToastUtils.showToast("有会话的时候");
-              $scope.savemymsg();
+              $scope.savemylastmsg();
             }
           }, function (err) {
             // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
-
-          $scope.savemymsg=function () {
-            /**
-             *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
-             *
-             */
-            // $ToastUtils.showToast("群组长度" +$scope.receiverssid);
+          $scope.savemylastmsg=function () {
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
               $scope.lastText = data[0].message;//最后一条消息内容
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
-              // $ToastUtils.showToast($scope.srcName + "群组消息来源人" + $scope.srcId + $scope.lastText);
+              // alert($scope.srcName + "消息来源人" + $scope.srcId + $scope.lastText);
               $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
               //取出id聊天对话的列表数据并进行数据库更新
               $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
                 $scope.unread = $scope.lastGroupCount;
-                // $ToastUtils.showToast("未读群组消息时取出消息表中最后一条数据" + data.length + $scope.unread);
+                // alert("未读群消息时取出消息表中最后一条数据" + data.length + $scope.unread);
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 if($rootScope.groupName === '' || $rootScope.groupName === undefined){
-                  chatitem.chatName =data[0].chatName ;
-                }else{
                   chatitem.chatName =$rootScope.groupName;
+                  // alert("群名称："+chatitem.chatName);
+                }else{
+                  chatitem.chatName =data[0].chatName ;
+                  // alert("群名称2222"+chatitem.chatName);
                 }
                 // $ToastUtils.showToast("第一次创建会话时保存的群聊名称"+chatitem.chatName);
                 chatitem.imgSrc = data[0].imgSrc;
@@ -424,12 +446,8 @@ angular.module('my.controllers', [])
                 chatitem.senderId = $scope.srcId;
                 chatitem.senderName = $scope.srcName;
                 $greendao.saveObj('ChatListService', chatitem, function (data) {
-                  $greendao.queryByConditions('ChatListService', function (data) {
-                    $grouparr.setData(data);
-                    $rootScope.$broadcast('lastgroupcount.update');
-                  }, function (err) {
-                    // $ToastUtils.showToast(err);
-                  });
+                  $chatarr.updatechatdata(chatitem);
+                  $rootScope.$broadcast('lastcount.update');
                 }, function (err) {
                   // $ToastUtils.showToast(err + "数据保存失败");
                 });
@@ -440,17 +458,16 @@ angular.module('my.controllers', [])
               // $ToastUtils.showToast(err);
             });
           }
-
         }
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
       })
-      //加滑动底部
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
     });
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation) {
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -466,7 +483,7 @@ angular.module('my.controllers', [])
     $scope.updateinformation = function () {
       $scope.data = {};
       var myPopup = $ionicPopup.show({
-        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="修改邮箱" ng-model="data.email"></label>',
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="text" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
         scope: $scope,
@@ -500,13 +517,13 @@ angular.module('my.controllers', [])
                 arr.EM = string3;
               }
               $api.updateUserInfo(arr,function (msg) {
-                $ToastUtils.showToast("修改个人资料成功")
+                $ToastUtils.showToast("修改个人资料成功");
                 $searchdatadianji.personDetaildianji($scope.UserIDforhou);
               },function (msg) {
                 $ToastUtils.showToast(msg)
               })
             }
-          },
+          }
         ]
       });
       myPopup.then(function (res) {
@@ -515,8 +532,60 @@ angular.module('my.controllers', [])
 
       // myPopup.close(); //关闭
     };
+    //地理位置
+    //获取定位的经纬度
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      var lat  = position.coords.latitude+0.006954;//   39.952728
+      var long = position.coords.longitude+0.012647;//  116.329102
+      // $ToastUtils.showToast("经度"+lat+"纬度"+long);
+      // var map = new BMap.Map("container"); // 创建地图实例
+      // var point = new BMap.Point(long, lat); // 创建点坐标
+      // map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.OverviewMapControl());
+      // map.addControl(new BMap.MapTypeControl());
+      // var marker = new BMap.Marker(point); // 创建标注
+      // map.addOverlay(marker); // 将标注添加到地图中
+      // marker.enableDragging();
+      // marker.addEventListener("dragend", function(e){
+      //   alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+      // })
+
+      // 创建地理编码实例
+      var myGeo = new BMap.Geocoder();
+      // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          // alert(result.address);
+          $scope.$apply(function () {
+            $scope.geolocation=result.address;
+          });
+        }
+      });
+
+    }, function(err) {
+      $ToastUtils.showToast("请开启定位功能");
+      // error
+    });
   })
   .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
+    $scope.cunzai=0;
+    //初始化页面，第一次输入旧密码
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      // alert(pwd);
+      if(pwd==""||pwd==null||pwd.length==0||pwd==undefined){
+        $scope.cunzai=0;
+      }else {
+        $scope.cunzai=1;
+      }
+      // $ToastUtils.showToast("旧手势密码:"+pwd);
+    }, function (msg) {
+      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
+      $scope.cunzai=0;
+    });
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
@@ -539,11 +608,15 @@ angular.module('my.controllers', [])
             type: 'button-positive',
             onTap: function (e) {
               //       $ToastUtils.showToast("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
-              $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
-                $ToastUtils.showToast("修改密码成功")
-              }, function (msg) {
-                $ToastUtils.showToast(msg)
-              })
+              if($scope.data.newpassword==""||$scope.data.newpassword==undefined||$scope.data.newpassword.length==0){
+                $ToastUtils.showToast("密码不能为空")
+              }else {
+                $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
+                  $ToastUtils.showToast("修改密码成功")
+                }, function (msg) {
+                  $ToastUtils.showToast("修改密码失败")
+                })
+              }
             }
           },
         ]
@@ -555,6 +628,7 @@ angular.module('my.controllers', [])
     };
     //在线升级
     $scope.zaixianshengji = function () {
+      $mqtt.save('install_cancel', 'false');
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
     //扫一扫
@@ -637,12 +711,16 @@ angular.module('my.controllers', [])
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
                 // $mqtt.getMqtt().getString();//取
-                $ToastUtils.showToast("两次输入一样,密码设置成功")
+                $ToastUtils.showToast("密码设置成功")
+                $state.go("accountsettion", {
+                  "UserIDset": $scope.UserID
+                });
                 $scope.$apply(function () {
                   $scope.a=3
                 })
                 $timeout(function () {
                   checklock.reset()
+
                 },300);
               }else {
                 checklock.drawStatusPoint('notright')
@@ -662,13 +740,14 @@ angular.module('my.controllers', [])
       var setlock = new H5lock(setopt);
       setlock.init();
     }
-      $scope.a=1
+      $scope.a=1;
       var setopt = {
         chooseType: 3, // 3 , 4 , 5,
         width: 350, // lock wrap width
         height: 350, // lock wrap height
         container: 'element', // the id attribute of element
         inputEnd: function(psw){
+
           // alert(psw)
           password=psw;
           $scope.$apply(function () {
@@ -685,9 +764,12 @@ angular.module('my.controllers', [])
               // alert(psw)
               if (psw==password){
                 checklock.drawStatusPoint('right')
-                $ToastUtils.showToast("两次输入一样,密码设置成功")
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
+                $ToastUtils.showToast("密码设置成功")
+                $state.go("accountsettion", {
+                  "UserIDset": $scope.UserID
+                });
                 $scope.$apply(function () {
                   $scope.a=3
                 })
@@ -732,14 +814,14 @@ angular.module('my.controllers', [])
     //初始化页面，第一次输入旧密码
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
       password=pwd;
-      $ToastUtils.showToast("旧手势密码:"+pwd);
+      // $ToastUtils.showToast("旧手势密码:"+pwd);
     }, function (msg) {
-      $ToastUtils.showToast("旧手势密码获取失败"+msg);
+      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
     });
     var firstopt2 = {
       chooseType: 3,
-      width: 350,
-      height: 350,
+      width: 400,
+      height: 400,
       container: 'element',
       inputEnd: function(psw){
         if(psw==password){
@@ -776,8 +858,8 @@ angular.module('my.controllers', [])
         });
         var checkoldopt = {
           chooseType: 3,
-          width: 350,
-          height: 350,
+          width: 400,
+          height: 400,
           container: 'element',
           inputEnd: function(psw){
             if(psw==password){
@@ -812,8 +894,8 @@ angular.module('my.controllers', [])
     var newmethod=function () {
     var setopt = {
       chooseType: 3, // 3 , 4 , 5,
-      width: 350, // lock wrap width
-      height: 350, // lock wrap height
+      width: 400, // lock wrap width
+      height: 400, // lock wrap height
       container: 'element', // the id attribute of element
       inputEnd: function(psw){
         // alert(psw)
@@ -826,16 +908,19 @@ angular.module('my.controllers', [])
 
         var checkopt = {
           chooseType: 3, // 3 , 4 , 5,
-          width: 350, // lock wrap width
-          height: 350, // lock wrap height
+          width: 400, // lock wrap width
+          height: 400, // lock wrap height
           container: 'element', // the id attribute of element
           inputEnd: function(psw){
             // alert(psw)
             if (psw==password){
               checklock.drawStatusPoint('right')
-              $ToastUtils.showToast("两次输入一样,密码设置成功")
               $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea',  $scope.mymypersonname);
+              $ToastUtils.showToast("密码设置成功")
+              $state.go("accountsettion", {
+                "UserIDset": $scope.UserID
+              });
               $scope.$apply(function () {
                 $scope.a=4
               })

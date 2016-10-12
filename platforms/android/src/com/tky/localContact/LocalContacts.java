@@ -11,6 +11,12 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.dao.LocalPhone;
+import com.tky.mqtt.dao.LocalPhoneDao;
+import com.tky.mqtt.paho.BaseApplication;
+import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.services.LocalPhoneService;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -28,6 +34,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2016/7/13.
@@ -35,11 +42,14 @@ import java.util.List;
 public class LocalContacts extends CordovaPlugin {
 
     PinyinComparator pinyinComparator = new PinyinComparator();
+    private DaoSession mDaoSession;
+    private LocalPhoneDao localPhoneDao;
+    private static LocalPhoneService instance;
 
-
-    @Override
+  @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+
     }
 
     @Override
@@ -66,6 +76,10 @@ public class LocalContacts extends CordovaPlugin {
 
 
     public void getLocalContactsInfos(JSONArray args, CallbackContext callbackContext) {
+      instance= LocalPhoneService.getInstance(UIUtils.getContext());
+      mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
+      localPhoneDao=mDaoSession.getLocalPhoneDao();
+      localPhoneDao.deleteAll();
         ContentResolver cr = cordova.getActivity().getContentResolver();
         String str[] = {ContactsContract.CommonDataKinds.Phone.CONTACT_ID, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
         Cursor cur = cr.query(
@@ -227,11 +241,20 @@ public class LocalContacts extends CordovaPlugin {
     }
 
     private void initSortLetters(List<Friend> allContacts) {
+
         CharacterParser characterParser=CharacterParser.getInstance();
         for (Friend friend : allContacts) {
                 String nickname = friend.getNickname();
                 if (nickname != null && nickname.length() > 0) {
                     friend.setSortLetters(characterParser.getSelling(nickname).toUpperCase());
+                  LocalPhone localPhone=new LocalPhone();
+                  localPhone.setId(friend.getMobile()+"");
+                  localPhone.setPlatformid("");
+                  localPhone.setIsplatform(false);
+                  localPhone.setName(friend.getNickname());
+                  localPhone.setPhonenumber(friend.getMobile());
+                  localPhone.setPinyinname(friend.getSortLetters());
+                  localPhoneDao.insertOrReplace(localPhone);
             }
         }
     }

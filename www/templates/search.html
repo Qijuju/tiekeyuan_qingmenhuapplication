@@ -1,5 +1,5 @@
 <ion-view  view-title="搜索">
-  <ion-content overflow-scroll="false" on-drag="onDrag()">
+  <ion-content>
 
         <div id="search-bar" class="bar bar-header item-input-inset" style="height: 50px;">
           <label class="item-input-wrapper" id="search-input">
@@ -10,7 +10,16 @@
           </label>
           <button class="button button-clear" style="color: #49B746;" ng-click="searchBack()" >取消</button>
         </div>
-
+    <div ng-if="(persons=='')||(persons.length==0)||(persons==null)">
+      <div style="text-align: center;background-color: rgba(222, 222, 222, 0.79);width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae">历史搜索记录</div>
+      <div ng-repeat="historymsg in historymsgs">
+      <div style="width: auto;margin-left: 10px;padding-top: 20px;font-size: 20px" ng-click="dosearch(historymsg.msg)">
+        <i class="ion-ios-search"></i>
+        {{historymsg.msg}}
+      </div>
+      </div>
+      <div style="text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #0a80ff" ng-click="deletehistory()">清空历史记录</div>
+    </div>
     <ion-list>
       <ion-item ng-repeat="persondetail1 in persons" style="height: 60px" >
         <div class="row" >
@@ -34,7 +43,7 @@
         <!--<img src="img/icon_org.png"  style="display: inline;width: 27px;height: 27px" ng-click="tanchuangsearch(persondetail1.UserID)">&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>-->
       <!--</ion-item>-->
     </ion-list>
-    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMoreaa()" distance="1%"></ion-infinite-scroll>
     <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
   </ion-content>
 </ion-view>

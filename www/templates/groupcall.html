@@ -7,9 +7,13 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
-    <div>
-      <div id="mapholder"></div>
-    </div>
+
+    <div id="container"></div>
+    <ion-list>
+      <ion-item  ng-repeat="weizhia in weizhis">
+       <h2>{{weizhia}}</h2>
+      </ion-item>
+    </ion-list>
     <!--<script id="popup-template.html" type="text/ng-template">-->
     <!--<input ng-model="data.wifi" type="text" placeholder="Password">-->
     <!--</script>-->

@@ -91,6 +91,22 @@
                         {
                             "xml": "<feature name=\"BaiduLocation\"><param name=\"android-package\" value=\"com.spout.phonegap.plugins.baidulocation.BaiduLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NfcPlugin\"><param name=\"android-package\" value=\"com.chariotsolutions.nfc.plugin.NfcPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ScalePhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.photo.ScalePhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GridPhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.gridphoto.GridPhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -126,7 +142,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 4
+                            "count": 5
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -180,6 +196,14 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.NFC\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.nfc\" android:required=\"false\" />",
                             "count": 1
                         }
                     ]
@@ -255,6 +279,18 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "com.spout.phonegap.plugins.baidulocation": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "phonegap-nfc": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "ScalePhoto": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "GridPhoto": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -578,6 +614,32 @@
             "clobbers": [
                 "window.baiduLocation"
             ]
+        },
+        {
+            "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+            "id": "phonegap-nfc.NFC",
+            "runs": true
+        },
+        {
+            "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+            "id": "com.darktalker.cordova.screenshot.screenshot",
+            "merges": [
+                "navigator.screenshot"
+            ]
+        },
+        {
+            "file": "plugins/ScalePhoto/www/scale_photo.js",
+            "id": "ScalePhoto.scale_photo",
+            "clobbers": [
+                "cordova.plugins.ScalePhoto"
+            ]
+        },
+        {
+            "file": "plugins/GridPhoto/www/grid_photo.js",
+            "id": "GridPhoto.grid_photo",
+            "clobbers": [
+                "cordova.plugins.GridPhoto"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -603,6 +665,10 @@
         "cordova-plugin-file-transfer": "1.5.2-dev",
         "phonegap-plugin-barcodescanner": "6.0.1",
         "cordova-plugin-geolocation": "2.2.0",
-        "com.spout.phonegap.plugins.baidulocation": "0.1.0"
+        "com.spout.phonegap.plugins.baidulocation": "0.1.0",
+        "phonegap-nfc": "0.6.6",
+        "com.darktalker.cordova.screenshot": "0.1.5",
+        "ScalePhoto": "1.0.0",
+        "GridPhoto": "1.0.0"
     }
 }

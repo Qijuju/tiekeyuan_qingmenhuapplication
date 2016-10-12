@@ -84,8 +84,6 @@ public class MqttMessageCallback implements MqttCallback {
             					//接收到消息时的铃声
             					ring();
             				}
-			//接收到消息时的铃声
-			ring();
 			final String username = (String) map.getUsername();
 			final String msgContent = (String) map.getMessage();
 			UIUtils.runInMainThread(new Runnable() {
@@ -186,9 +184,9 @@ public class MqttMessageCallback implements MqttCallback {
 		} else if ("YAM".equals(eventCode)) {//你被群组添加为成员
 			message = "你被群组添加为成员";
 		} else if ("GN0".equals(eventCode)) {//群组名称增、改
-			message = "群组名称增、改";
+			message = "群组名称修改";
 		} else if ("G00".equals(eventCode)) {//群组信息增、改
-			message = "群组信息增、改";
+			message = "群公告变更";
 		} else if ("YRA".equals(eventCode)) {//你被移除管理员
 			message = "你被移除管理员";
 		} else if ("YRM".equals(eventCode)) {//你被移除出群组

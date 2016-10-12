@@ -7,6 +7,8 @@ import com.tky.protocol.model.ProtocolUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class IMMsgFactory {
 	public enum MsgType{
 		User,		//用户 U
@@ -15,7 +17,8 @@ public class IMMsgFactory {
 		Radio,		//广播消息 R
 		Receipt,	//回执消息 C
 		Dept,		//部门消息 D
-		Alarm		//警报消息 A
+		Alarm,		//警报消息 A
+		Platform	//各平台消息 P
 	};
 	public enum MediaType{
 		Text,		//文本 T
@@ -24,7 +27,8 @@ public class IMMsgFactory {
 		Shake,		//抖动 S
 		Emote,		//表情 E
 		Audio,		//声音 A
-		Vedio		//声音 V
+		Vedio,		//声音 V
+		Position	//定位 P
 	};
 	public enum PlatType{
 		Window,		//PC  W
@@ -34,10 +38,14 @@ public class IMMsgFactory {
 		True,		//需要回执
 		False		//不需要回执
 	};
+	public enum MsgLevel{
+		Common,		//普通 0
+		Level_1		//紧急 1
+	};
 
 	//需要添加发送人名
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
-								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException{
+								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException {
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
 		msgMap.put(IMPFields.Msg_type, getMsgType(msType));
@@ -84,6 +92,8 @@ public class IMMsgFactory {
 		msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
 		msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
 		msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
+		if(msgMap.containsKey(IMPFields.Msg_msgLevel))
+			msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
 		return msgMap;
 	}
 
@@ -106,6 +116,8 @@ public class IMMsgFactory {
 			msgMap.put(IMPFields.Msg_from, msgMap.get(IMPFields.Msg_from));
 			msgMap.put(IMPFields.Msg_message, msgMap.get(IMPFields.Msg_message));
 			msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
+			if(msgMap.containsKey(IMPFields.Msg_msgLevel))
+				msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
 		}
 		return msgMap;
 	}
@@ -129,6 +141,12 @@ public class IMMsgFactory {
 				break;
 			case Receipt:
 				msgTypeStr = IMPFields.M_Type_Recipt;
+				break;
+			case Alarm:
+				msgTypeStr = IMPFields.M_Type_Alarm;
+				break;
+			case Platform:
+				msgTypeStr = IMPFields.M_Type_Platform;
 				break;
 		}
 		return msgTypeStr;
@@ -157,6 +175,9 @@ public class IMMsgFactory {
 				break;
 			case Vedio:
 				mediaType = IMPFields.M_MsgType_Vedio;
+				break;
+			case Position:
+				mediaType = IMPFields.M_MsgType_Position;
 				break;
 		}
 		return mediaType;
@@ -194,8 +215,6 @@ public class IMMsgFactory {
 			msgTypeStr = MsgType.User;
 		} else if(msgType.equals(IMPFields.M_Type_Dept)){
 			msgTypeStr = MsgType.Dept;
-		} else if(msgType.equals(IMPFields.M_Type_Dept)){
-			msgTypeStr = MsgType.Dept;
 		} else if(msgType.equals(IMPFields.M_Type_Group)){
 			msgTypeStr = MsgType.Group;
 		} else if(msgType.equals(IMPFields.M_Type_Sys)){
@@ -206,6 +225,8 @@ public class IMMsgFactory {
 			msgTypeStr = MsgType.Receipt;
 		} else if(msgType.equals(IMPFields.M_Type_Alarm)){
 			msgTypeStr = MsgType.Alarm;
+		} else if(msgType.equals(IMPFields.M_Type_Platform)){
+			msgTypeStr = MsgType.Platform;
 		}
 		return msgTypeStr;
 	}
@@ -226,6 +247,8 @@ public class IMMsgFactory {
 			mediaType = MediaType.Audio;
 		} else if(mdType.equals(IMPFields.M_MsgType_Vedio)){
 			mediaType = MediaType.Vedio;
+		} else if(mdType.equals(IMPFields.M_MsgType_Position)){
+			mediaType = MediaType.Position;
 		}
 		return mediaType;
 	}
@@ -244,10 +267,19 @@ public class IMMsgFactory {
 		Receipt receipt = null;
 		if(rp.equals(IMPFields.M_Recipt_False)){
 			receipt = Receipt.False;
-		} else if(rp.equals(IMPFields.M_Platform_Win)){
+		} else if(rp.equals(IMPFields.M_Recipt_True)){
 			receipt = Receipt.True;
 		}
 		return receipt;
 	}
 
+	private static MsgLevel getMsgLevel(String rp){
+		MsgLevel level = null;
+		if(rp.equals(IMPFields.M_MsgLevel_Common)){
+			level = MsgLevel.Common;
+		} else if(rp.equals(IMPFields.M_MsgLevel_Level1)){
+			level = MsgLevel.Level_1;
+		}
+		return level;
+	}
 }

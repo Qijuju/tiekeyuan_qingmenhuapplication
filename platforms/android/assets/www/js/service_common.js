@@ -47,8 +47,8 @@ angular.module('common.services', [])
       querySearchDetail :function (name, message,success, error) {
         greendao.querySearchDetail (name, message,success, error);
       },
-      queryGroupOrSingleChat :function (type, sessionid,success, error) {
-        greendao.querySearchDetail (type, sessionid,success, error);
+      queryGroupOrSingleChat :function (type, sessionid,success, error) {//消息带2参数
+        greendao.queryGroupOrSingleChat (type, sessionid,success, error);
       },
       queryGroupIds:function (one,two,success,error) {
         greendao.queryGroupIds(one,two,success,error);
@@ -58,13 +58,30 @@ angular.module('common.services', [])
       },
       qureyHistoryMsg:function (type,success,error) {
         greendao.qureyHistoryMsg(type,success,error);
-      }
-      
+      },
+      queryByFilepic:function (ssid,type,success,error) {
+        greendao.queryByFilepic(ssid,type,success,error);
+      },
+      queryNotifyChat:function (type, sessionid,success, error) {//新版通知==列表带2参数
+        greendao.queryNotifyChat (type, sessionid,success, error);
+      },
+      queryNewNotifyChat:function (type, sessionid,success, error) {//新版通知==消息带2参数
+        greendao.queryNewNotifyChat (type, sessionid,success, error);
+      },
+      queryDataByDate:function (date, type,success, error) {
+        greendao.queryDataByDate (date, type,success, error);
+      },
+      querySlowNotifyChat:function (type, sessionid,success, error) {//新版一般通知==列表带2参数
+        greendao.querySlowNotifyChat (type, sessionid,success, error);
+      },
+      querySlowDataByDate:function (date, type,success, error) {
+        greendao.querySlowDataByDate (date, type,success, error);
+      },
     };
 
   })
 
-  .factory('$api', function () {//系统接口。
+  .factory('$api', function ($ToastUtils) {//系统接口。
     var api;
     return {
       init: function () {
@@ -114,8 +131,8 @@ angular.module('common.services', [])
       getVersionInfo: function (success, error) {
         api.getVersionInfo(success, error);
       },
-      getVersion: function (savePath, success, error) {
-        api.getVersion(savePath, success, error);
+      getVersion: function (savePath,versionname,filesize, success, error) {
+        api.getVersion(savePath,versionname,filesize, success, error);
       },
       addAttention: function (membersArr, success, error) {
         api.addAttention(membersArr, success, error);
@@ -133,59 +150,59 @@ angular.module('common.services', [])
         api.install(targetPath, success, error);
       },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
-        api.getVersionInfo(function (msg) {
-          var versionName = msg.versionName;
-          var versionDesc = msg.versionDesc;
-          var targetPath = "";
-          api.needUpgrade(versionName, function (msg) {
-            if(msg == 'true') {
-              var confirmPopup = $ionicPopup.confirm({
-                title: '版本升级',
-                template: versionDesc, //从服务端获取更新的内容
-                cancelText: '取消',
-                okText: '升级'
-              });
-              confirmPopup.then(function (res) {
-                if(res) {
-                  var loading = $ionicLoading.show({
-                    template: "下载中..."//"已经下载：0%"
+        $mqtt.getMqtt().getString('install_cancel', function (msg) {
+          if (msg != 'true') {
+            api.getVersionInfo(function (msg) {
+              var versionName = msg.versionName;
+              var versionDesc = msg.versionDesc;
+              var filesize=msg.size;
+              var targetPath = "";
+              api.needUpgrade(versionName, function (msg) {
+                if(msg == 'true') {
+                  var confirmPopup = $ionicPopup.confirm({
+                    title: '版本升级',
+                    template: versionDesc, //从服务端获取更新的内容
+                    cancelText: '取消',
+                    okText: '升级'
                   });
-                  api.getVersion("", versionName, function (msg) {
-                    targetPath = msg;
-                    $ionicLoading.hide();
-                    api.installApk(targetPath, function (success) {
-                      // 成功
-                      $mqtt.save('install_cancel', 'false');
-                    }, function (err) {
-                      // 错误
-                      $mqtt.save('install_cancel', 'false');
-                    });
-                    /*$cordovaFileOpener2.open(targetPath, 'application/vnd.android.package-archive').then(function () {
+                  confirmPopup.then(function (res) {
+                    if(res) {
 
-                      // $mqtt.save('install_cancel_version', '');
-                    }, function (err) {
+                      api.getVersion("", versionName,filesize, function (msg) {
+                        targetPath = msg;
+                        api.installApk(targetPath, function (success) {
+                          // 成功
+                          $mqtt.save('install_cancel', 'false');
+                        }, function (err) {
+                          // 错误
+                          $mqtt.save('install_cancel', 'false');
+                        });
+                      },function (msg) {
 
-                      // $mqtt.save('install_cancel_version', '');
-                    });*/
-                  },function (msg) {
-                    $ionicLoading.hide();
-                    alert(msg);
+                        $ToastUtils.showToast(msg);
+                      });
+                    } else {
+                      //取消更新
+                      $mqtt.save('install_cancel', 'true');
+
+                    }
+
                   });
-                } else {
-                  //取消更新
+                } else if(msg != 'false' && msg != '') {
                   $mqtt.save('install_cancel', 'true');
-                  // $mqtt.save('install_cancel_version', versionName);
+                  $ToastUtils.showToast(msg);
                 }
+              },function (msg) {
+                $ToastUtils.showToast(msg);
 
               });
-            } else if(msg != 'false') {
-              alert(msg);
-            }
-          },function (msg) {
-            alert("检查更新失败！");
-          });
-        }, function (msg) {
-          alert(msg);
+            }, function (msg) {
+              $ToastUtils.showToast(msg);
+
+            });
+          }
+        }, function (err) {
+          $ToastUtils.showToast(msg);
         });
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
@@ -255,6 +272,12 @@ angular.module('common.services', [])
       },
       getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
        api.getFile(objectTP,objectID,picSize, success, error);
+      },
+      checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
+        api.checkLocalUser(userMBList, success, error);
+  },
+      openFileByPath:function (path, imageID, success, error) {//打开文件
+        api.openFileByPath(path, imageID, success, error);
       }
     };
   })
@@ -269,6 +292,36 @@ angular.module('common.services', [])
         toast_utils.showToast(content,success,error);
       }
     }
+  })
+  .factory('$ScalePhoto',function () {//放大缩小图片的
+    var scalephoto;
+    document.addEventListener('deviceready',function () {
+      scalephoto = cordova.require('ScalePhoto.scale_photo');
+    });
+    return{
+      scale:function(filepath,success, error) {
+        scalephoto.scale(filepath,success,error)
+      },
+      netScale:function (fileid,imagename,smallfilepath, succsee, error) {
+        scalephoto.netScale(fileid,imagename,smallfilepath,succsee,error)
+      }
+    }
+
+  })
+
+  .factory('$GridPhoto',function () {
+    var gridPhoto;
+    document.addEventListener('deviceready',function () {
+      gridPhoto = cordova.require('GridPhoto.grid_photo');
+    });
+
+    return{
+      queryPhoto:function (sessionid, type, success, error) {
+        gridPhoto.queryPhoto(sessionid, type, success, error)
+
+      }
+    }
+
   })
 
 .factory('$saveMessageContacts',function ($greendao) {

@@ -305,7 +305,7 @@ angular.module('selectgroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -812,7 +812,7 @@ angular.module('selectgroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -1259,7 +1259,7 @@ angular.module('selectgroup.controllers', [])
                       obj.groupType='Group'
                       obj.ismygroup=true
                       $greendao.saveObj('GroupChatsService',obj,function (msg) {
-                        $rootScope.isGroupSend ='true'
+                        $rootScope.isPersonSend === 'true'
                         //跳转群聊天界面
                         $state.go('messageGroup',{
                           "id":obj.id,
@@ -1357,7 +1357,7 @@ angular.module('selectgroup.controllers', [])
 
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     $scope.groupId=$stateParams.groupid;
-    var groupName=$stateParams.groupname;
+    $scope.groupName=$stateParams.groupname;
 
 
     $scope.saveName=function (name) {
@@ -1366,7 +1366,7 @@ angular.module('selectgroup.controllers', [])
       }else if (name==undefined){
         $ionicHistory.goBack();
       }else {
-        $api.modifyGroup("Group",$scope.groupId,name,null,function (msg) {
+        $api.modifyGroup("Group",$scope.groupId,name,"null",function (msg) {
           var groupEntity={};
           groupEntity.id=$scope.groupId;
           groupEntity.groupName=name;
@@ -1399,7 +1399,7 @@ angular.module('selectgroup.controllers', [])
 
     $scope.$on('$ionicView.enter', function () {
 
-      document.getElementById('nameId').value=groupName;
+      document.getElementById('nameId').value=$scope.groupName;
       keyboard.show();
       document.getElementById('nameId').focus();
 
@@ -1409,7 +1409,7 @@ angular.module('selectgroup.controllers', [])
     $scope.backNameModify=function () {
       $state.go('groupSetting',{
         'groupid':$scope.groupId,
-        'chatname':groupName,
+        'chatname':$scope.groupName,
         'grouptype':"Group",
         'ismygroup':true
       });
@@ -1615,7 +1615,11 @@ angular.module('selectgroup.controllers', [])
     }
 
 
-
+    $scope.goPersonDetail=function (id) {
+      $state.go('person',{
+        'userId':id
+      });
+    }
 
 
 

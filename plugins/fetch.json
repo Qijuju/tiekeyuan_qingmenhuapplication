@@ -195,5 +195,38 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "phonegap-nfc": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-nfc"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.darktalker.cordova.screenshot": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gitawego/cordova-screenshot.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "ScalePhoto": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Administrator\\Desktop\\scale_photo"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "GridPhoto": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Administrator\\Desktop\\grid_photo"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

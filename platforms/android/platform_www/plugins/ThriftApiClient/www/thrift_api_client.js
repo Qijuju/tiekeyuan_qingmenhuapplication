@@ -25,6 +25,9 @@ exports.getUserRoot = function(success, error) {
 exports.getUser = function(userID, success, error) {
   exec(success, error, "ThriftApiClient", "getUser", [userID]);
 };
+exports.checkLocalUser = function(userMBObj, success, error) {
+  exec(success, error, "ThriftApiClient", "checkLocalUser", [userMBObj]);
+};
 exports.updatePwd = function(oldPWD, newPWD, confirmPWD, success, error) {
   exec(success, error, "ThriftApiClient", "updatePwd", [oldPWD, newPWD, confirmPWD]);
 };
@@ -40,8 +43,8 @@ exports.setHeadPic = function(filePath,success, error) {
 exports.getVersionInfo = function(success, error) {
   exec(success, error, "ThriftApiClient", "getVersionInfo", []);
 };
-exports.getVersion = function(savePath, versionCode, success, error) {
-  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode]);
+exports.getVersion = function(savePath, versionCode,filesize,success, error) {
+  exec(success, error, "ThriftApiClient", "getVersion", [savePath,versionCode,filesize]);
 };
 exports.addAttention = function(membersArr, success, error) {
   exec(success, error, "ThriftApiClient", "addAttention", [membersArr]);
@@ -116,5 +119,8 @@ exports.sendDocFile = function(objectTP,objectID,filePath, success, error) {//�
 };
 exports.getFile = function(objectTP,objectID,picSize, success, error) {//图片上传接口
   exec(success, error, "ThriftApiClient", "getFile", [objectTP,objectID,picSize]);
+};
+exports.openFileByPath = function(path, imageID, success, error) {//打开文件
+  exec(success, error, "ThriftApiClient", "openFileByPath", [path,imageID]);
 };
 });
