@@ -64,7 +64,7 @@
         </activity>
         <activity android:name="com.tky.mqtt.DocsManagerActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.photohelper.PhotoScaleActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity android:name="com.tky.grid.GridActivity" />
+        <activity android:name="com.tky.grid.GridActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />

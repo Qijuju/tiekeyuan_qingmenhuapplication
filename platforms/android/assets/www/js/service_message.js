@@ -56,10 +56,22 @@ angular.module('message.services', [])
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
           mainlist.splice(i,1);
+          break;
         }
       }
       mainlist.unshift(data);
       // alert("建群时消息"+data.lastText);
+    },
+    deletechatdata:function (data) {
+      for(var i=0;i<=mainlist.length-1;i++){
+        // alert("找出chat数组"+mainlist[i].id+"==="+data);
+        if( mainlist[i].id === data){
+          // alert("找出chat数组的要删除的数据"+i);
+          mainlist.splice(i,1);
+          break;
+        }
+      }
+      // alert("看看长度"+mainlist.length);
     },
     getAllData:function () {
       // alert("service界面数组长度"+mainlist.length);
@@ -97,7 +109,7 @@ angular.module('message.services', [])
           chatitem.lastDate=new Date().getTime();
           chatitem.senderId ='';
           chatitem.senderName ='';
-          chatitem.chatType='1';
+          chatitem.chatType='Level_1';
           // if(messageType === 'System'){
           //   chatitem.chatType='System';
           // }else if(messageType === 'Alarm'){
@@ -167,7 +179,7 @@ angular.module('message.services', [])
           chatitem.lastDate=new Date().getTime();
           chatitem.senderId ='';
           chatitem.senderName ='';
-          chatitem.chatType='0';
+          chatitem.chatType='Common';
           // if(messageType === 'System'){
           //   chatitem.chatType='System';
           // }else if(messageType === 'Alarm'){
@@ -175,9 +187,9 @@ angular.module('message.services', [])
           // }
           notifylist.push(chatitem);
           // alert("进来会话列表了吗");
-          $greendao.saveObj('NotifyListService',chatitem,function (data) {
+          $greendao.saveObj('SlowNotifyListService',chatitem,function (data) {
             $rootScope.$broadcast('slowarr.update');
-            // alert("保存成功"+data.length)
+            // alert("一般报警保存成功"+data.length)
           },function (err) {
           });
         }
@@ -293,7 +305,12 @@ angular.module('message.services', [])
     var syscount =0;//通用系统通知数量
     var fastcount=0;//紧急通知数量
     var slowcount=0;//一般通知数量
+    var oacount=0;//公文处理通知数量
+    var bhzcount=0;//拌合站通知数量
+    var sycount=0;//试验室通知数量
+    var cjgccount=0;//沉降观测通知数量
     var isLogin = false;
+
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
     });
@@ -439,31 +456,17 @@ angular.module('message.services', [])
 
         $api.sendDocFile(sendType, null, fileContent, function (sdata) {
 
-          var savefilepic={};
-          savefilepic.filepicid=sdata[1];
-          savefilepic.from="true";
-          savefilepic.sessionid=id;
-          savefilepic.fromname=localuser;
-          savefilepic.toname="你好"
-          savefilepic.smallurl=sdata[0];
-          savefilepic.bigurl=sdata[0];
-          savefilepic.bytesize=content.split('###')[1];
-          savefilepic.megabyte=content.split('###')[2];
-          savefilepic.filename=content.split('###')[3];
-          if(sendType=="F"){
-            savefilepic.type="file";
-          }else if(sendType=="I"){
-            savefilepic.type="image";
-          }
-          savefilepic.when=0;
-
-          $greendao.saveObj("FilePictureService",savefilepic,function (data) {
-          },function (err) {
-
-          })
 
 
           if (sdata[2] === '-1') {
+            // alert("估计就将计就计")
+
+
+            $greendao.deleteDataByArg('FilePictureService',sdata[1],function (msg) {
+              // alert("清除数据成功")
+            },function (err) {
+
+            });
             /*$ToastUtils.showToast('文件发送失败！',function (msg) {
             },function (err) {
             });*/
@@ -514,6 +517,32 @@ angular.module('message.services', [])
               /*if (picPath != undefined && picPath != null && picPath != '') {
                 messageDetail.message = picPath;
               }*/
+
+              var savefilepic={};
+              savefilepic.filepicid=sdata[1];
+              savefilepic.from="true";
+              savefilepic.sessionid=id;
+              savefilepic.fromname=localuser;
+              savefilepic.toname="你好"
+              savefilepic.smallurl=sdata[0];
+              savefilepic.bigurl=sdata[0];
+              savefilepic.bytesize=content.split('###')[1];
+              savefilepic.megabyte=content.split('###')[2];
+              savefilepic.filename=content.split('###')[3];
+              if(sendType=="F"){
+                savefilepic.type="file";
+              }else if(sendType=="I"){
+                savefilepic.type="image";
+              }
+              savefilepic.when=0;
+
+              $greendao.saveObj("FilePictureService",savefilepic,function (data) {
+              },function (err) {
+
+              })
+
+
+
               $rootScope.firstSendId=messageDetail.sessionid;
               $rootScope.$broadcast('msgs.update');
               return "成功";
@@ -521,6 +550,10 @@ angular.module('message.services', [])
               /*if (picPath != undefined && picPath != null && picPath != '') {
                 messageDetail.message = picPath;
               }*/
+
+
+
+
               messageDetail.isFailure='true';
               danliao.push(messageDetail);
               $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -534,6 +567,7 @@ angular.module('message.services', [])
             });
           }
         }, function (err) {
+
         });
         return "啥也不是";
       },
@@ -569,43 +603,46 @@ angular.module('message.services', [])
             /**
              * 判断未读数量
              */
-            if(message.msgLevel === 'Level_1'){        //紧急消息
-              fastarr.push(arriveMessage);
-              $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
-                if(data.length>0){
-                  fastcount=data[0].count;
-                  // alert("紧急count有值"+fastcount);
-                  fastcount++;
-                  $rootScope.$broadcast('newnotify.update');
-                }else{
-                  fastcount =0;
-                  // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                  fastcount++;
-                  $rootScope.$broadcast('newnotify.update');
-                  // alert("fastcount"+fastcount);
-                }
-              },function (err) {
-                // alert(err);
-              });
-            }else if (message.msgLevel === 'Common'){    //一般消息
-              slowarr.push(arriveMessage);
-              $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
-                if(data.length>0){
-                  slowcount=data[0].count;
-                  // alert("一般有值"+slowcount);
-                  slowcount++;
-                  $rootScope.$broadcast('newnotify.update');
-                }else{
-                  slowcount =0;
-                  // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                  slowcount++;
-                  $rootScope.$broadcast('newnotify.update');
-                  // alert("slowcount"+slowcount);
-                }
-              },function (err) {
-                // alert(err);
-              });
-            }
+              if(message.msgLevel === 'Level_1'){        //紧急消息
+                // alert("通知进入紧急选择段");
+                fastarr.push(arriveMessage);
+                $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
+                  if(data.length>0){
+                    fastcount=data[0].count;
+                    // alert("紧急count有值"+fastcount);
+                    fastcount++;
+                    $rootScope.$broadcast('newnotify.update');
+                  }else{
+                    fastcount =0;
+                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                    fastcount++;
+                    $rootScope.$broadcast('newnotify.update');
+                    // alert("fastcount"+fastcount);
+                  }
+                },function (err) {
+                  // alert(err);
+                });
+              }else if (message.msgLevel === 'Common'){    //一般消息
+                // alert("通知进入一般选择段");
+                slowarr.push(arriveMessage);
+                $greendao.querySlowNotifyChat(message.msgLevel,message.sessionid,function (data) {
+                  if(data.length>0){
+                    slowcount=data[0].count;
+                    // alert("一般有值"+slowcount);
+                    slowcount++;
+                    $rootScope.$broadcast('newnotify.update');
+                  }else{
+                    slowcount =0;
+                    // alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
+                    slowcount++;
+                    $rootScope.$broadcast('newnotify.update');
+                    // alert("slowcount"+slowcount);
+                  }
+                },function (err) {
+                  // alert(err);
+                });
+              }
+
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.msglevel;
@@ -648,7 +685,7 @@ angular.module('message.services', [])
               danliao.push(arriveMessage);
               $rootScope.$broadcast('msgs.update');
               if (objectTP === 'F') {
-                alert("文件传输啊的的的大的的的的的的的")
+                // alert("文件传输啊的的的大的的的的的的的")
 
                 arriveMessage.message = newMessage;
                 $rootScope.$broadcast('msgs.update');
@@ -972,7 +1009,44 @@ angular.module('message.services', [])
         return fastcount;
       },
       getSlowcount:function () {
+        // alert("靠"+slowcount);
         return slowcount;
+      },
+      getOaCount:function () {
+        return oacount;
+      },
+      getBhzCount:function () {
+        return bhzcount;
+      },
+      getSyCount:function () {
+        return sycount;
+      },
+      getCjgcCount:function () {
+        return cjgccount;
+      },
+      setOaCount:function (count) {
+        oacount=count;
+      },
+      setBhzCount:function (count) {
+        bhzcount=count;
+      },
+      setSyCount:function (count) {
+        sycount=count;
+      },
+      setCjgcCount:function (count) {
+        cjgccount=count;
+      },
+      clearOaCount:function () {
+        oacount=0;
+      },
+      clearBhzCount:function () {
+        bhzcount=0;
+      },
+      clearSyCount:function () {
+        sycount=0;
+      },
+      clearCjgcCount:function () {
+        cjgccount=0;
       },
       clearFastcount:function () {
         fastcount=0;
@@ -1047,7 +1121,7 @@ angular.module('message.services', [])
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
           },function (err) {
-            alert("群组消息保存失败");
+            // alert("群组消息保存失败");
           });
           return "成功";
         },function (message) {

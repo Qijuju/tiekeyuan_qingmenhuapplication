@@ -180,6 +180,8 @@ angular.module('contacts.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }

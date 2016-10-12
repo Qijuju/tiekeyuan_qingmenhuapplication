@@ -74,5 +74,12 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
     exports.queryByFilepic = function (ssid,type,success, error) {
                 exec(success, error, "GreenDaoPlugin", "queryByFilepic", [ssid,type]);
          };
+    exports.querySlowNotifyChat = function(type, sessionid,success, error){//一般通知
+           exec(success, error, "GreenDaoPlugin", "querySlowNotifyChat", [type, sessionid]);
+    };
+
+    exports.querySlowDataByDate=function (date, type,success, error) {//日期查询
+           exec(success, error, "GreenDaoPlugin", "querySlowDataByDate", [date, type]);
+        }
 
 });

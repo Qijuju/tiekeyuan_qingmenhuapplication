@@ -110,13 +110,16 @@ angular.module('localphone.controllers', [])
         buttonClicked: function(index) {
           if(index==0){
             if (phonenumber!=""){
-              $phonepluin.call(0, phonenumber, name,0);
+              var newphone=$scope.trimkong(phonenumber,"g");
+              $phonepluin.call(0,  newphone, name,0);
             }else {
               $ToastUtils.showToast("电话号码为空");
             }
           }else {
             if (phonenumber!=""){
-              $phonepluin.sms(0,phonenumber, name, 0);
+              var newphone=$scope.trimkong(phonenumber,"g");
+
+              $phonepluin.sms(0,newphone, name, 0);
             }else {
               $ToastUtils.showToast("电话号码为空");
             }
@@ -127,5 +130,18 @@ angular.module('localphone.controllers', [])
       });
 
     };
+
+
+
+    $scope.trimkong=function(number,is_global)
+    {
+
+      var newresult = number.replace(/(^\s+)|(\s+$)/g,"");
+      if(is_global.toLowerCase()=="g")
+      {
+        newresult= newresult.replace(/\s/g,"");
+      }
+      return newresult;
+    }
   })
 
