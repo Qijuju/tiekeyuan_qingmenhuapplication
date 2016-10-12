@@ -61,7 +61,7 @@
 
             <font  ng-if="msgSingle.messagetype === 'Image'"><img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" /></font><font  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
-            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right;">
+            <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: right">
               <a class="item item-icon-left" ng-if="msgSingle.isFailure != 'true'" ng-click="openAllFile(msgSingle.message.split('###')[1],msgSingle.message.split('###')[0])">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}" style="width: 35px;padding-top: 10px;padding-bottom: 10px;" /><font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}<br />{{msgSingle.message.split('###')[3]}}&nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送成功！</span></font>
               </a>
@@ -102,17 +102,18 @@
 
   <ion-footer-bar  class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
-      </button>
+      <!--<button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">-->
+      <!--</button>-->
     </div>
+
     <div class="item-input rj-footer-btn-wrap" style="width: 72%" ng-click="zhiling()">
       <textarea msd-elastic ng-model="send_content" style="margin-right: 45px">
       </textarea>
     </div>
 
-    <div class="rj-footer-btn-wrap" style="margin-left: 15px;margin-right: 5px">
+    <div class="rj-footer-btn-wrap" ><!--style="margin-left: 15px;margin-right: 5px"-->
       <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+        <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
       </div>
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">

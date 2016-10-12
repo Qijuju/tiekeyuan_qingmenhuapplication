@@ -179,6 +179,16 @@ angular.module('login.controllers', [])
       });
 
     };
+
+    $scope.chaname = function() {
+      document.getElementById("nameabc").value="";
+      $scope.name="";
+    };
+    $scope.chapassword = function() {
+      document.getElementById("passwordabc").value="";
+      $scope.password="";
+    };
+
   })
   .controller('welcomeCtrl', function ($scope, $http, $state, $stateParams,$ionicSlideBoxDelegate,$timeout) {
     $scope.startApp = function() {
@@ -225,11 +235,11 @@ angular.module('login.controllers', [])
 
     $scope.startgogogo = function() {
       if(passworda==null||passworda==""||passworda.length==0){
-        $scope.timea=0;
         $state.go('login');
+        // $scope.timea=0;
       }else {
-        $scope.timea=0;
         $state.go('gesturelogin');
+        // $scope.timea=0;
       }
     };
     //倒计时
