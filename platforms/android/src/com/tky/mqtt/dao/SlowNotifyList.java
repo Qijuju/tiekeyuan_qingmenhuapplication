@@ -5,9 +5,9 @@ package com.tky.mqtt.dao;
 import com.tky.mqtt.base.BaseDao;
 
 /**
- * Entity mapped to table NOTIFY_LIST.
+ * Entity mapped to table SLOW_NOTIFY_LIST.
  */
-public class NotifyList extends BaseDao{
+public class SlowNotifyList extends BaseDao{
 
     private String id;
     private String chatName;
@@ -20,14 +20,14 @@ public class NotifyList extends BaseDao{
     private String senderId;
     private String senderName;
 
-    public NotifyList() {
+    public SlowNotifyList() {
     }
 
-    public NotifyList(String id) {
+    public SlowNotifyList(String id) {
         this.id = id;
     }
 
-    public NotifyList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName) {
+    public SlowNotifyList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName) {
         this.id = id;
         this.chatName = chatName;
         this.isDelete = isDelete;

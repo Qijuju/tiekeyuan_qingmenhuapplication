@@ -26,7 +26,10 @@
             <ion-content overflow-scroll="false" style="height: 50%;margin-left: 20%;z-index: 3;background-color: #fffeff">
               <div class="row" style="z-index: 3" ng-repeat="item in fastlist" ng-click="gonewDetail(item.id,item.chatName,item.chatType);" >
                 <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
+                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="item.id === '1'">
+                  <img src="img/bhz.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="item.id === '15'">
+                  <img src="img/sys.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="item.id === '16'">
+                  <img src="img/cjgc.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="item.id === '17'">
                 </div>
                 <div class="col-80" align="left">
                   <span class="rj-sm-red-icon11" style="float: right;color: #ffffff;margin-top: 27px" ng-if="item.count>0"><p>{{item.count}}</p></span>
@@ -59,7 +62,10 @@
               <!--ng-repeat="msgSingle in msgs"-->
               <div class="row" style="z-index: 1" ng-repeat="slowitem in slowlist"  ng-click="gocommonDetail(slowitem.id,slowitem.chatName,slowitem.chatType);" >
                 <div class="col-20" align="center">
-                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10">
+                  <img src="img/oa.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="slowitem.id === '1'">
+                  <img src="img/bhz.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="slowitem.id === '15'">
+                  <img src="img/sys.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="slowitem.id === '16'">
+                  <img src="img/cjgc.png"  style="width: 55px;height: 55px" class="padding_10" ng-if="slowitem.id === '17'">
                 </div>
                 <div class="col-80" align="left">
                   <span class="rj-sm-red-icon11" style="float: right;color: #ffffff;margin-top: 27px" ng-if="slowitem.count>0"><p>{{slowitem.count}}</p></span>
@@ -83,48 +89,48 @@
       </ion-slide>
 
       <ion-slide>
-        <div class="row" style="background: #ffffff;">
-          <div class="col" align="center" ng-click="gotozero()">
+        <div class="row" style="background: #ffffff;" ng-repeat="appitem in applist">
+          <div class="col" align="center" ng-click="gotozero('1')">
             <a>
               <ul>
                 <li><img  src="img/oa.png" width="45" height="45">
 
                 </li>
-                <li style="color: #000000">办公系统</li>
-                <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px">3
+                <li style="color: #000000">公文处理</li>
+                <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px" ng-if="appitem.count1 >0">{{appitem.count1}}
 
                 </div>
               </ul>
             </a>
           </div>
-          <div class="col" align="center">
+          <div class="col" align="center" ng-click="gotozero('15')">
             <a>
               <ul>
                 <li><img  src="img/bhz.png" width="45" height="45"></li>
-                <li style="color: #000000">拌合站</li>
-                <div class="circlered" style="position: absolute;left: 42%;top: 7px;font-size: 10px">3
+                <li style="color: #000000">拌和站</li>
+                <div class="circlered" style="position: absolute;left: 42%;top: 7px;font-size: 10px" ng-if="appitem.count2>0">{{appitem.count2}}
 
                 </div>
               </ul>
             </a>
           </div>
-          <div class="col" align="center">
+          <div class="col" align="center" ng-click="gotozero('16')">
             <a>
               <ul>
-                <li><img src="img/jyp.png" width="45" height="45"></li>
-                <li style="color: #000000">检验批</li>
-                <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px">3
+                <li><img src="img/sys.png" width="45" height="45"></li>
+                <li style="color: #000000">试验室</li>
+                <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px" ng-if="appitem.count3>0">{{appitem.count3}}
 
                 </div>
               </ul>
             </a>
           </div>
-          <div class="col" align="center">
+          <div class="col" align="center" ng-click="gotozero('17')">
             <a>
               <ul>
-                <li><img src="img/lc.png" width="45" height="45"></li>
-                <li style="color: #000000">梁场</li>
-                <div class="circlered" style="position: absolute;left: 90%;top: 7px;font-size: 10px">3
+                <li><img src="img/cjgc.png" width="45" height="45"></li>
+                <li style="color: #000000">沉降观测</li>
+                <div class="circlered" style="position: absolute;left: 90%;top: 7px;font-size: 10px" ng-if="appitem.count4>0">{{appitem.count4}}
 
                 </div>
               </ul>

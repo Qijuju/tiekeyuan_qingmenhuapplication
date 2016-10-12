@@ -70,8 +70,13 @@ angular.module('common.services', [])
       },
       queryDataByDate:function (date, type,success, error) {
         greendao.queryDataByDate (date, type,success, error);
-      }
-
+      },
+      querySlowNotifyChat:function (type, sessionid,success, error) {//新版一般通知==列表带2参数
+        greendao.querySlowNotifyChat (type, sessionid,success, error);
+      },
+      querySlowDataByDate:function (date, type,success, error) {
+        greendao.querySlowDataByDate (date, type,success, error);
+      },
     };
 
   })

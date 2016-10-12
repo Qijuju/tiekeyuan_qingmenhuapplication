@@ -135,7 +135,7 @@ angular.module('message.controllers', [])
 
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
           $mqtt.getFileContent(picPath, function (fileData) {
-            alert("chunachuanchuan:" + fileData);
+            // alert("chunachuanchuan:" + fileData);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
             $scope.send_content = "";
             keepKeyboardOpen();
@@ -915,7 +915,6 @@ angular.module('message.controllers', [])
 
     }
 
-    // $mqtt.arriveMsg("cll");
     //在联系人界面时进行消息监听，确保人员收到消息
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
@@ -1269,7 +1268,6 @@ angular.module('message.controllers', [])
       });
     }
 
-
   })
 
 
@@ -1293,7 +1291,8 @@ angular.module('message.controllers', [])
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
       selectInfo.isselected=true;
-      selectInfo.type='user'
+      selectInfo.type='user';
+      selectInfo.parentid=$scope.departmentId;
       $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
       },function (err) {
@@ -1612,6 +1611,7 @@ angular.module('message.controllers', [])
       });
     });
 
+
     // $scope.$on('lastgroupcount.update', function (event) {
     //   $scope.$apply(function () {
     //     // $ToastUtils.showToast("响应数据刷新监听");
@@ -1707,13 +1707,25 @@ angular.module('message.controllers', [])
           })
         })
       });
+
+
+        /**
+         * 滑动删除会话项
+         */
+      $scope.removechat=function (id,name) {
+        $greendao.deleteDataByArg('ChatListService',id,function (data) {
+          // alert("删除会话id"+id);
+          $chatarr.deletechatdata(id);
+          $rootScope.$broadcast('lastcount.update');
+        },function (err) {
+        });
+      }
     });
 
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$GridPhoto) {
-
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto) {
 
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
@@ -1772,27 +1784,51 @@ angular.module('message.controllers', [])
 
     //清空聊天记录
     $scope.clearMsg=function (id,ssid) {
-      //查询消息记录list
-      // $greendao.deleteAllData('MessagesService',function (data) {
-      //   $ToastUtils.showToast(data);
-      // },function (err) {
-      //   $ToastUtils.showToast(err);
-      // });
-      $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
-        $ToastUtils.showToast("删除成功");
-        // $ToastUtils.showToast(data.length+"查询消息记录长度");
-        for(var i=0;i<data.length;i++){
-          var key=data[i]._id;
-          // $ToastUtils.showToast("消息对象"+key);
-          $greendao.deleteDataByArg('MessagesService',key,function (data) {
-          },function (err) {
-            // $ToastUtils.showToast(err+清空消息记录失败);
-          });
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '清空聊天记录'}
+        ],
+        // destructiveText: '重新发送',
+        // titleText: 'Modify your album',
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert("清空记录");
+            $greendao.queryData('MessagesService','where sessionid =?',id,function (data) {
+              // $ToastUtils.showToast("删除成功");
+              for(var i=0;i<data.length;i++){
+                var key=data[i]._id;
+                $greendao.deleteDataByArg('MessagesService',key,function (data) {
+                  $greendao.queryData('ChatListService','where id =?',id,function (data) {
+                      for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                        // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                        if( $chatarr.getAllData()[i].id === data[0].id){
+                          // alert("找出chat数组的要删除的数据"+i);
+                          var key=$chatarr.getAllData()[i].id;
+                          $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                            $state.go('tab.message',{
+                              "id":id,
+                              "sessionid":ssid,
+                              "grouptype":"User"
+                            });
+                          },function (err) {
+                          });
+                          break;
+                        }
+                      }
+                  },function (err) {
+                  });
+                },function (err) {
+                });
+              }
+            },function (err) {
+              // $ToastUtils.showToast(err+"查询所有记录失败");
+            });
+          }
+          return true;
         }
-      },function (err) {
-        // $ToastUtils.showToast(err+"查询所有记录失败");
       });
-
     };
 
     //个人图片
@@ -1957,7 +1993,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -2092,6 +2128,59 @@ angular.module('message.controllers', [])
 
     }
 
+
+    /**
+     * 删除群聊天记录与会话
+     */
+    $scope.clearGroupRS=function (id,name) {
+      // alert("进来群记录删除方法了吗？");
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '清空群聊天记录'}
+        ],
+        // destructiveText: '重新发送',
+        // titleText: 'Modify your album',
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert("清空记录");
+            $greendao.queryData('MessagesService','where sessionid =?',id,function (data) {
+              // $ToastUtils.showToast("删除成功");
+              for(var i=0;i<data.length;i++){
+                var key=data[i]._id;
+                $greendao.deleteDataByArg('MessagesService',key,function (data) {
+                  $greendao.queryData('ChatListService','where id =?',id,function (data) {
+                    for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                      // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                      if( $chatarr.getAllData()[i].id === data[0].id){
+                        // alert("找出chat数组的要删除的数据"+i);
+                        var key=$chatarr.getAllData()[i].id;
+                        $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                          $state.go('tab.message',{
+                            "id":id,
+                            "sessionid":name,
+                            "grouptype":"Group"
+                          });
+                        },function (err) {
+                        });
+                        break;
+                      }
+                    }
+                  },function (err) {
+                  });
+                },function (err) {
+                });
+              }
+            },function (err) {
+              // $ToastUtils.showToast(err+"查询所有记录失败");
+            });
+          }
+          return true;
+        }
+      });
+    }
+
   })
 
   .controller('historymessagegroupCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
@@ -2177,6 +2266,14 @@ angular.module('message.controllers', [])
   })
 
   .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+    document.getElementById("container").style.height=(window.screen.height-120)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2208,47 +2305,81 @@ angular.module('message.controllers', [])
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
+      var myGeo = new BMap.Geocoder();
+      $timeout(function () {
+        // $ToastUtils.showToast("网络超时")
+        $ionicLoading.hide();
+      },5000);
+      // // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          $scope.$apply(function () {
+            $timeout(function () {
+              $ionicLoading.hide();
+              $scope.weizhiss=result.address;
+            });
+          });
+        }
+      });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         lat=e.point.lat;
         long=e.point.lng;
+        // 创建地理编码实例
+        var myGeo = new BMap.Geocoder();
+        $timeout(function () {
+          // $ToastUtils.showToast("网络超时")
+          $ionicLoading.hide();
+        },5000);
+        // // 根据坐标得到地址描述
+        myGeo.getLocation(new BMap.Point(long, lat), function(result){
+          if (result){
+            $scope.$apply(function () {
+              $timeout(function () {
+                $ionicLoading.hide();
+                $scope.weizhiss=result.address;
+              });
+            });
+          }
+        });
       })
 
-      // 创建地理编码实例
-      var myGeo = new BMap.Geocoder();
-      // // 根据坐标得到地址描述
-      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
-      //   if (result){
-      //     alert(result.address);
-      //   }
-      // });
+
       //查询功能
       // var local = new BMap.LocalSearch(map, {
       //   renderOptions: {map: map, panel: "results"},
       //   pageCapacity: 10
       // });
       // local.searchInBounds(" ", map.getBounds());
-      var mOption = {
-        poiRadius : 100,           //半径为1000米内的POI,默认100米
-        numPois : 5                //列举出50个POI,默认10个
-      }
-      $scope.weizhis=[];
-      // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
-      myGeo.getLocation(point,
-        function mCallback(rs){
-          var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
-          for(var i=0;i<allPois.length;i++){
-            // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
-            map.addOverlay(new BMap.Marker(allPois[i].point));
-
-            $scope.$apply(function () {
-              $scope.weizhis.push(allPois[i].address);
-            });
-
-
-          }
-        },mOption
-      );
+      //多地理位置代码
+      // var mOption = {
+      //   poiRadius : 100,           //半径为1000米内的POI,默认100米
+      //   numPois : 5                //列举出50个POI,默认10个
+      // }
+      // $scope.weizhis=[];
+      // // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      // myGeo.getLocation(point,
+      //   function mCallback(rs){
+      //     var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+      //     for(var i=0;i<allPois.length;i++){
+      //       // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+      //       map.addOverlay(new BMap.Marker(allPois[i].point));
+      //
+      //       $scope.$apply(function () {
+      //         $scope.weizhis.push(allPois[i].address);
+      //       });
+      //
+      //
+      //     }
+      //   },mOption
+      // );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");
@@ -2288,7 +2419,8 @@ angular.module('message.controllers', [])
       var url = new Date().getTime()+"";
       $timeout(function () {
         $ionicLoading.hide();
-      },1000);
+        document.getElementById("container").style.height=(window.screen.height-80)+'px';
+      },800);
 
       $timeout(function () {
         navigator.screenshot.save(function(error,res){
@@ -2317,53 +2449,132 @@ angular.module('message.controllers', [])
           longitude:long,
           latitude:lat
         });
-      },1050);
+      },900);
 
     }
 
   })
 
-  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams) {
+  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$ionicLoading,$timeout) {
     $scope.latitude=$stateParams.latitude;
     $scope.longitude=$stateParams.longitude;
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方用户名
     $scope.grouptype=$stateParams.grouptype;//grouptype
-    // alert("取到经纬度"+$scope.latitude+"==="+$scope.longitude);
-    // var lat="";
-    // var long="";
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    //取出聊天界面带过来的id和ssid
+    // $scope.topic=$stateParams.topic;
+    // $scope.userId=$stateParams.id;//对方用户id
+    // $scope.userName=$stateParams.ssid;//对方用户名
+    // $scope.localuser=$stateParams.localuser;//当前用户名
+    // $scope.localuserId=$stateParams.localuserId;//当前用户id
+    // $scope.sqlid=$stateParams.sqlid;//itemid
+    // $scope.grouptype=$stateParams.grouptype;//grouptype
+    // $scope.messagetype=$stateParams.messagetype;//消息类型
+    // alert("拿到的数据"+$scope.userId+$scope.userName+$scope.localuser+$scope.localuserId+$scope.sqlid+$scope.grouptype+$scope.messagetype);
+
+    var lat="";
+    var long="";
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      // lat  = position.coords.latitude+0.006954;//   39.952728
-      // long = position.coords.longitude+0.012647;//  116.329102
+      lat  = $scope.latitude;//   39.952728
+      long = $scope.longitude;//  116.329102
       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       var map = new BMap.Map("container"); // 创建地图实例
-      var point = new BMap.Point($scope.longitude, $scope.latitude); // 创建点坐标
+      var point = new BMap.Point(long, lat); // 创建点坐标
       map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.NavigationControl());
-      map.addControl(new BMap.ScaleControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.NavigationControl());
+      // map.addControl(new BMap.ScaleControl());
       map.addControl(new BMap.OverviewMapControl());
-      map.addControl(new BMap.MapTypeControl());
+      // map.addControl(new BMap.MapTypeControl());
       var marker = new BMap.Marker(point); // 创建标注
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
+      var myGeo = new BMap.Geocoder();
+      $timeout(function () {
+        // $ToastUtils.showToast("网络超时")
+        $ionicLoading.hide();
+      },5000);
+      // // 根据坐标得到地址描述
+      myGeo.getLocation(new BMap.Point(long, lat), function(result){
+        if (result){
+          $scope.$apply(function () {
+            $timeout(function () {
+              $ionicLoading.hide();
+              $scope.weizhiss=result.address;
+            });
+          });
+        }
+      });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         lat=e.point.lat;
         long=e.point.lng;
+        // 创建地理编码实例
+        var myGeo = new BMap.Geocoder();
+        $timeout(function () {
+          // $ToastUtils.showToast("网络超时")
+          $ionicLoading.hide();
+        },5000);
+        // // 根据坐标得到地址描述
+        myGeo.getLocation(new BMap.Point(long, lat), function(result){
+          if (result){
+            $scope.$apply(function () {
+              $timeout(function () {
+                $ionicLoading.hide();
+                $scope.weizhiss=result.address;
+              });
+            });
+          }
+        });
       })
 
-      // // 创建地理编码实例
-      // var myGeo = new BMap.Geocoder();
-      // // 根据坐标得到地址描述
-      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
-      //   if (result){
-      //     alert(result.address);
-      //   }
+
+      //查询功能
+      // var local = new BMap.LocalSearch(map, {
+      //   renderOptions: {map: map, panel: "results"},
+      //   pageCapacity: 10
       // });
+      // local.searchInBounds(" ", map.getBounds());
+      //多地理位置代码
+      // var mOption = {
+      //   poiRadius : 100,           //半径为1000米内的POI,默认100米
+      //   numPois : 5                //列举出50个POI,默认10个
+      // }
+      // $scope.weizhis=[];
+      // // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
+      // myGeo.getLocation(point,
+      //   function mCallback(rs){
+      //     var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
+      //     for(var i=0;i<allPois.length;i++){
+      //       // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+      //       map.addOverlay(new BMap.Marker(allPois[i].point));
+      //
+      //       $scope.$apply(function () {
+      //         $scope.weizhis.push(allPois[i].address);
+      //       });
+      //
+      //
+      //     }
+      //   },mOption
+      // );
 
     }, function(err) {
       $ToastUtils.showToast("请开启定位功能");
