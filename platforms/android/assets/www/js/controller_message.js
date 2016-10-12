@@ -309,8 +309,8 @@ angular.module('message.controllers', [])
 
     //打开文件
     $scope.openAllFile = function (path, imageID) {
-      alert(imageID);
-      alert(path)
+      /*alert(imageID);
+      alert(path)*/
       $api.openFileByPath(path,imageID, function (suc) {
       },function (err) {
       });
@@ -411,6 +411,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -666,6 +668,8 @@ angular.module('message.controllers', [])
             $scope.lastText = "[图片]";//最后一条消息内容
           }else if(data[0].messagetype === "LOCATION"){
             $scope.lastText = "[位置]";//最后一条消息内容
+          }else if(data[0].messagetype === "File"){
+            $scope.lastText = "[文件]";//最后一条消息内容
           }else {
             $scope.lastText = data[0].message;//最后一条消息内容
           }
@@ -968,6 +972,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1153,6 +1159,8 @@ angular.module('message.controllers', [])
             $scope.lastText = "[图片]";//最后一条消息内容
           }else if(data[0].messagetype === "LOCATION"){
             $scope.lastText = "[位置]";//最后一条消息内容
+          }else if(data[0].messagetype === "File"){
+            $scope.lastText = "[文件]";//最后一条消息内容
           }else {
             // alert("进来了吗？");
             $scope.lastText = data[0].message;//最后一条消息内容
@@ -1456,6 +1464,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -2273,7 +2283,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2309,7 +2319,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2337,7 +2347,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){
@@ -2419,7 +2429,7 @@ angular.module('message.controllers', [])
       var url = new Date().getTime()+"";
       $timeout(function () {
         $ionicLoading.hide();
-        document.getElementById("container").style.height=(window.screen.height-80)+'px';
+        document.getElementById("container").style.height=(window.screen.height-95)+'px';
       },800);
 
       $timeout(function () {
@@ -2468,7 +2478,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     // $scope.topic=$stateParams.topic;
     // $scope.userId=$stateParams.id;//对方用户id
@@ -2504,7 +2514,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2532,7 +2542,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){

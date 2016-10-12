@@ -165,6 +165,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -512,20 +514,20 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
         $scope.timeaa=val;
         $scope.go(0);
       },
-      disabledDates: [            //Optional
-        new Date(2016, 2, 16),
-        new Date(2015, 3, 16),
-        new Date(2015, 4, 16),
-        new Date(2015, 5, 16),
-        new Date('Wednesday, August 12, 2015'),
-        new Date("08-16-2016"),
-        new Date(1439676000000)
+      disabledDates: [            //不可点击日期
+        // new Date(2016, 2, 16),
+        // new Date(2015, 3, 16),
+        // new Date(2015, 4, 16),
+        // new Date(2015, 5, 16),
+        // new Date('Wednesday, August 12, 2015'),
+        // new Date("08-16-2016"),
+        // new Date(1439676000000)
       ],
       from: new Date(2012, 1, 1), //日期的范围从什么什么时候开始
-      to: new Date(2020, 10, 30), //日期的范围从什么什么时候结束
-      inputDate: new Date(),      //Optional
-      mondayFirst: true,          //Optional
-      disableWeekdays: [0],       //Optional
+      to: new Date(), //日期的范围从什么什么时候结束
+      inputDate: new Date(),      //当前选中日期
+      mondayFirst: false,          //周一是第一天？
+      // disableWeekdays: [0],       //每个星期不可点击的某个星期几【0】代表周日
       closeOnSelect: false,       //Optional
       templateType: 'popup'       //Optional
     };
@@ -627,6 +629,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1373,6 +1377,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
                 $scope.lastText = "[图片]";//最后一条消息内容
               }else if(data[0].messagetype === "LOCATION"){
                 $scope.lastText = "[位置]";//最后一条消息内容
+              }else if(data[0].messagetype === "File"){
+                $scope.lastText = "[文件]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }

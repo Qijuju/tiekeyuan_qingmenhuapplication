@@ -61,7 +61,9 @@ public class MessageOper {
             			String from = (String) msgMap.get("from");
             			//如果平台是PC（Windows）并且from是自己，则返回true，否则返回false，该判断用于数据的转换
             			boolean fromMe = getUserID().equals(from) && ("Windows".equals(platform));
-			bean.set_id(fromMe ? (String) msgMap.get("to") : (String) msgMap.get("from"));
+//			boolean isGroupOrDept = "Group".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"))) || "Dept".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
+			bean.set_id((String) msgMap.get("from"));
+//			bean.set_id((fromMe) ? (String) msgMap.get("to") : (String) msgMap.get("from"));
 			boolean flag = "User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
 					|| "Alarm".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
 					|| "Platform".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
@@ -87,7 +89,8 @@ public class MessageOper {
 			bean.setIsDelete("");
 			bean.setImgSrc("");
 			bean.setUsername((String) msgMap.get("fromName"));
-			bean.setIsFromMe(getUserID().equals(from));
+			bean.setIsFromMe(fromMe);
+//			bean.setIsFromMe(getUserID().equals(from));
 			msgBean = bean;
 		} else if (notifyType != null && notifyType.equals(IMPFields.N_Type_Event)) {
 			EventMessageBean bean = new EventMessageBean();
