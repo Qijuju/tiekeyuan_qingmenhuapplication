@@ -7,10 +7,12 @@ import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.ModuleCount;
 import com.tky.mqtt.dao.MsgHistory;
 import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SelectedId;
+import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
@@ -20,10 +22,12 @@ import com.tky.mqtt.services.FilePictureService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.ModuleCountService;
 import com.tky.mqtt.services.MsgHistoryService;
 import com.tky.mqtt.services.NotifyListService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SelectIdService;
+import com.tky.mqtt.services.SlowNotifyListService;
 import com.tky.mqtt.services.SubDeptService;
 import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
@@ -65,7 +69,6 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }else{
                 message.set_id(jsonobj.getString("_id"));
             }
-
             message.setSessionid(jsonobj.getString("sessionid"));
             message.setType(jsonobj.getString("type"));
             message.setFrom(jsonobj.getString("from"));
@@ -205,6 +208,35 @@ public class GreenDaoPlugin extends CordovaPlugin {
             filePicture.setType(jsonobj.getString("type"));
             filePicture.setWhen(System.currentTimeMillis());
             obj=filePicture;
+        }else if("ModuleCountService".equals(services)){
+            ModuleCount moduleCount=new ModuleCount();
+            moduleCount.setId(jsonobj.getString("id"));
+            moduleCount.setName(jsonobj.getString("name"));
+            moduleCount.setCount1(jsonobj.getLong("count1"));
+            moduleCount.setCount2(jsonobj.getLong("count2"));
+            moduleCount.setCount3(jsonobj.getLong("count3"));
+            moduleCount.setCount4(jsonobj.getLong("count4"));
+            moduleCount.setType(jsonobj.getString("type"));
+            obj=moduleCount;
+        }else if("SlowNotifyListService".equals(services)){
+            SlowNotifyList notifyList = new SlowNotifyList();
+            notifyList.setId(jsonobj.getString("id"));
+            notifyList.setChatName(jsonobj.getString("chatName"));
+            notifyList.setImgSrc(jsonobj.getString("imgSrc"));
+            notifyList.setCount(jsonobj.getString("count"));
+            notifyList.setIsDelete(jsonobj.getString("isDelete"));
+            notifyList.setLastDate(jsonobj.getLong("lastDate"));
+            System.out.println(jsonobj.getLong("lastDate") + "");
+            if(jsonobj.getLong("lastDate")== 0){
+                notifyList.setLastDate(0L);
+            }else{
+                notifyList.setLastDate(System.currentTimeMillis());
+            }
+            notifyList.setLastText(jsonobj.getString("lastText"));
+            notifyList.setChatType(jsonobj.getString("chatType"));
+            notifyList.setSenderId(jsonobj.getString("senderId"));
+            notifyList.setSenderName(jsonobj.getString("senderName"));
+            obj = notifyList;
         }
         return obj;
     }
@@ -294,6 +326,10 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= LocalPhoneService.getInstance(UIUtils.getContext());
         }else if ("FilePictureService".equals(services)){
             baseInterface= FilePictureService.getInstance(UIUtils.getContext());
+        }else if("ModuleCountService".equals(services)){
+            baseInterface= ModuleCountService.getInstance(UIUtils.getContext());
+        }else if("SlowNotifyListService".equals(services)){
+            baseInterface= SlowNotifyListService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
@@ -472,6 +508,27 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
 
     /**
+     * 带两个参数查询(SlowNotifyListService)
+     * @param args
+     * @param callbackContext
+     */
+    public void querySlowNotifyChat(final JSONArray args,final CallbackContext callbackContext){
+        SlowNotifyListService service = SlowNotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SlowNotifyList> list=service.querySlowNotifyChat(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
      * 根据新版日期查询
      * @param args
      * @param callbackContext
@@ -491,6 +548,23 @@ public class GreenDaoPlugin extends CordovaPlugin {
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+    public void querySlowDataByDate(final JSONArray args,final CallbackContext callbackContext){
+        SlowNotifyListService service = SlowNotifyListService.getInstance(UIUtils.getContext());
+        try {
+            String type = args.getString(0);
+            String sessionid = args.getString(1);
+            List<SlowNotifyList> list=service.querySlowDataByDate(type, sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
 
     public void queryGroupIds(final JSONArray args,final CallbackContext callbackContext){
       SelectIdService selectIdService=SelectIdService.getInstance(UIUtils.getContext());
@@ -549,7 +623,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         try {
             String ssid=args.getString(0);
             String type=args.getString(1);
-            List<FilePicture> list=filePictureService.queryFilePic(ssid,type);
+            List<FilePicture> list=filePictureService.queryFilePic(ssid, type);
             Gson gson=new Gson();
             String jsonStr = gson.toJson(list, new TypeToken<List<FilePicture>>() {
             }.getType());

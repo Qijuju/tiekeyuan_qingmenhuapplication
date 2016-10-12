@@ -337,6 +337,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.ScalePhoto"
         ]
+    },
+    {
+        "file": "plugins/GridPhoto/www/grid_photo.js",
+        "id": "GridPhoto.grid_photo",
+        "clobbers": [
+            "cordova.plugins.GridPhoto"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -367,7 +374,8 @@ module.exports.metadata =
     "com.spout.phonegap.plugins.baidulocation": "0.1.0",
     "phonegap-nfc": "0.6.6",
     "com.darktalker.cordova.screenshot": "0.1.5",
-    "ScalePhoto": "1.0.0"
+    "ScalePhoto": "1.0.0",
+    "GridPhoto": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
+import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttTopicRW;
@@ -39,6 +40,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -310,6 +315,7 @@ public class MqttChat extends CordovaPlugin {
                     try {
                         RST result = cancelUser_call.getResult();
                         if (result.result) {
+                            MqttNotification.cancelAll();
                             setResult("success", PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
@@ -465,11 +471,48 @@ public class MqttChat extends CordovaPlugin {
                 setResult("-1", PluginResult.Status.ERROR, callbackContext);
                 return;
             }
+            String cacheDir = FileUtils.getIconDir() + File.separator + "cache";
+            File cacheFile = new File(cacheDir);
+            if (!cacheFile.exists()) {
+                cacheFile.mkdirs();
+            }
+            FileInputStream fst = null;
+            FileOutputStream fost = null;
+            File cacheFileDoc = new File(cacheFile, file.getName());
+            try {
+                fst = new FileInputStream(file);
+                fost = new FileOutputStream(cacheFileDoc);
+                byte[] buf = new byte[1024*10];
+                int len = 0;
+                while ((len = fst.read(buf)) != -1) {
+                    fost.write(buf, 0, len);
+                    fost.flush();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fst != null) {
+                    try {
+                        fst.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fost != null) {
+                    try {
+                        fost.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             //文件的大小
             long length = file.length();
             //格式化文件大小
             String formatSize = Formatter.formatFileSize(cordova.getActivity(), length);
-            setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + (filePath != null && !"".equals(filePath.trim()) ? filePath.substring(filePath.lastIndexOf("/") + 1) : "noname") + "'] "), PluginResult.Status.OK, callbackContext);
+            setResult(new JSONArray("['" + cacheFileDoc.getAbsolutePath().toString() + "','" + length + "','" + formatSize + "','" + (filePath != null && !"".equals(filePath.trim()) ? filePath.substring(filePath.lastIndexOf("/") + 1) : "noname") + "'] "), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             //JSON解析异常
             setResult("-1", PluginResult.Status.ERROR, callbackContext);

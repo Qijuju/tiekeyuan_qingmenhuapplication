@@ -103,6 +103,10 @@
                         {
                             "xml": "<feature name=\"ScalePhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.photo.ScalePhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GridPhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.gridphoto.GridPhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -284,6 +288,9 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "ScalePhoto": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "GridPhoto": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -626,6 +633,13 @@
             "clobbers": [
                 "cordova.plugins.ScalePhoto"
             ]
+        },
+        {
+            "file": "plugins/GridPhoto/www/grid_photo.js",
+            "id": "GridPhoto.grid_photo",
+            "clobbers": [
+                "cordova.plugins.GridPhoto"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -654,6 +668,7 @@
         "com.spout.phonegap.plugins.baidulocation": "0.1.0",
         "phonegap-nfc": "0.6.6",
         "com.darktalker.cordova.screenshot": "0.1.5",
-        "ScalePhoto": "1.0.0"
+        "ScalePhoto": "1.0.0",
+        "GridPhoto": "1.0.0"
     }
 }

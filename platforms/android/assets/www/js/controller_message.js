@@ -33,6 +33,7 @@ angular.module('message.controllers', [])
     // alert("单聊对方id"+$scope.userId);
     $scope.viewtitle = $stateParams.ssid;//接收方姓名
     $scope.groupType = $stateParams.grouptype;//聊天类型
+    $scope.sessionid=$stateParams.sessionid;
     //对话框名称
     $scope._id='';
     $scope.myUserID = $rootScope.rootUserId;//当前用户id
@@ -111,12 +112,13 @@ angular.module('message.controllers', [])
       }
       var options = {
         quality: 100,
-        // targetWidth: 320,
-        // targetHeight: 320,
-        saveToPhotoAlbum: false,
+        targetWidth: 1080,
+        targetHeight: 1920,
+        saveToPhotoAlbum: true,
         sourceType: sourceType,
         // destinationType: Camera.DestinationType.DATA_URL
-        destinationType: Camera.DestinationType.FILE_URI
+        destinationType: Camera.DestinationType.FILE_URI,
+        correctOrientation: true,
       };
 
       $cordovaCamera.getPicture(options).then(function(imageURI) {
@@ -133,6 +135,7 @@ angular.module('message.controllers', [])
 
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
           $mqtt.getFileContent(picPath, function (fileData) {
+            // alert("chunachuanchuan:" + fileData);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
             $scope.send_content = "";
             keepKeyboardOpen();
@@ -408,6 +411,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -553,7 +558,7 @@ angular.module('message.controllers', [])
     });
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid) {
+    $scope.resendshow = function (topic, content, id,localuser,localuserId,sqlid,msgSingle) {
       // $scope.msgs.remove(msgSingle);
       // $ToastUtils.showToast(msgSingle);
       // 显示操作表
@@ -566,20 +571,54 @@ angular.module('message.controllers', [])
         // titleText: 'Modify your album',
         cancelText: '取消',
         buttonClicked: function (index) {
-          if (index === 0) {
+          if (index === 1) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            alert($mqtt.getDanliao().length);
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }*/
+          }
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
+            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
                 // alert("后"+$mqtt.getDanliao()[i]._id);
                 $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
                 break;
               }
             }
-            $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              },function (err) {
+              });
+            }, function (msg) {
+            });
           } else if (index === 1) {
-
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getDanliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
           }
           return true;
         }
@@ -629,6 +668,8 @@ angular.module('message.controllers', [])
             $scope.lastText = "[图片]";//最后一条消息内容
           }else if(data[0].messagetype === "LOCATION"){
             $scope.lastText = "[位置]";//最后一条消息内容
+          }else if(data[0].messagetype === "File"){
+            $scope.lastText = "[文件]";//最后一条消息内容
           }else {
             $scope.lastText = data[0].message;//最后一条消息内容
           }
@@ -689,7 +730,8 @@ angular.module('message.controllers', [])
     $scope.personalSetting = function () {
       $state.go('personalSetting', {
         id: $scope.userId,
-        ssid:$scope.viewtitle
+        ssid:$scope.viewtitle,
+        sessionid:$scope.sessionid
       });
     };
 
@@ -877,7 +919,6 @@ angular.module('message.controllers', [])
 
     }
 
-    // $mqtt.arriveMsg("cll");
     //在联系人界面时进行消息监听，确保人员收到消息
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
@@ -931,6 +972,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1116,6 +1159,8 @@ angular.module('message.controllers', [])
             $scope.lastText = "[图片]";//最后一条消息内容
           }else if(data[0].messagetype === "LOCATION"){
             $scope.lastText = "[位置]";//最后一条消息内容
+          }else if(data[0].messagetype === "File"){
+            $scope.lastText = "[文件]";//最后一条消息内容
           }else {
             // alert("进来了吗？");
             $scope.lastText = data[0].message;//最后一条消息内容
@@ -1230,7 +1275,6 @@ angular.module('message.controllers', [])
         'userId':userid
       });
     }
-
 
   })
 
@@ -1419,6 +1463,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
+            }else if(data[0].messagetype === "File"){
+              $scope.lastText = "[文件]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1574,6 +1620,7 @@ angular.module('message.controllers', [])
       });
     });
 
+
     // $scope.$on('lastgroupcount.update', function (event) {
     //   $scope.$apply(function () {
     //     // $ToastUtils.showToast("响应数据刷新监听");
@@ -1594,7 +1641,7 @@ angular.module('message.controllers', [])
           {
             "id": id,
             "ssid": ssid,
-            "grouptype":chatType
+            "grouptype":chatType,
           });
 
       }else if(chatType === "Dept"){
@@ -1669,12 +1716,25 @@ angular.module('message.controllers', [])
           })
         })
       });
+
+
+        /**
+         * 滑动删除会话项
+         */
+      $scope.removechat=function (id,name) {
+        $greendao.deleteDataByArg('ChatListService',id,function (data) {
+          // alert("删除会话id"+id);
+          $chatarr.deletechatdata(id);
+          $rootScope.$broadcast('lastcount.update');
+        },function (err) {
+        });
+      }
     });
 
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto) {
 
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
@@ -1733,37 +1793,70 @@ angular.module('message.controllers', [])
 
     //清空聊天记录
     $scope.clearMsg=function (id,ssid) {
-      //查询消息记录list
-      // $greendao.deleteAllData('MessagesService',function (data) {
-      //   $ToastUtils.showToast(data);
-      // },function (err) {
-      //   $ToastUtils.showToast(err);
-      // });
-      $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
-        $ToastUtils.showToast("删除成功");
-        // $ToastUtils.showToast(data.length+"查询消息记录长度");
-        for(var i=0;i<data.length;i++){
-          var key=data[i]._id;
-          // $ToastUtils.showToast("消息对象"+key);
-          $greendao.deleteDataByArg('MessagesService',key,function (data) {
-          },function (err) {
-            // $ToastUtils.showToast(err+清空消息记录失败);
-          });
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '清空聊天记录'}
+        ],
+        // destructiveText: '重新发送',
+        // titleText: 'Modify your album',
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert("清空记录");
+            $greendao.queryData('MessagesService','where sessionid =?',id,function (data) {
+              // $ToastUtils.showToast("删除成功");
+              for(var i=0;i<data.length;i++){
+                var key=data[i]._id;
+                $greendao.deleteDataByArg('MessagesService',key,function (data) {
+                  $greendao.queryData('ChatListService','where id =?',id,function (data) {
+                      for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                        // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                        if( $chatarr.getAllData()[i].id === data[0].id){
+                          // alert("找出chat数组的要删除的数据"+i);
+                          var key=$chatarr.getAllData()[i].id;
+                          $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                            $state.go('tab.message',{
+                              "id":id,
+                              "sessionid":ssid,
+                              "grouptype":"User"
+                            });
+                          },function (err) {
+                          });
+                          break;
+                        }
+                      }
+                  },function (err) {
+                  });
+                },function (err) {
+                });
+              }
+            },function (err) {
+              // $ToastUtils.showToast(err+"查询所有记录失败");
+            });
+          }
+          return true;
         }
-      },function (err) {
-        // $ToastUtils.showToast(err+"查询所有记录失败");
       });
-
     };
 
     //个人图片
     $scope.perosnPicture=function () {
-      $state.go('personpicture');
+      $GridPhoto.queryPhoto($scope.userId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
+      //$state.go('personpicture');
+
 
     }
     //个人文件
     $scope.personFile=function () {
-      $state.go('personfile');
+      $state.go('personfile',{
+        "sessionid":$scope.userId
+      });
 
     }
 
@@ -1909,7 +2002,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -2028,6 +2121,7 @@ angular.module('message.controllers', [])
     //打开群文件界面
     $scope.groupFile=function () {
       $state.go('groupfile');
+
     }
 
 
@@ -2041,6 +2135,59 @@ angular.module('message.controllers', [])
         "ismygroup":$scope.ismygroup,
       });
 
+    }
+
+
+    /**
+     * 删除群聊天记录与会话
+     */
+    $scope.clearGroupRS=function (id,name) {
+      // alert("进来群记录删除方法了吗？");
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '清空群聊天记录'}
+        ],
+        // destructiveText: '重新发送',
+        // titleText: 'Modify your album',
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert("清空记录");
+            $greendao.queryData('MessagesService','where sessionid =?',id,function (data) {
+              // $ToastUtils.showToast("删除成功");
+              for(var i=0;i<data.length;i++){
+                var key=data[i]._id;
+                $greendao.deleteDataByArg('MessagesService',key,function (data) {
+                  $greendao.queryData('ChatListService','where id =?',id,function (data) {
+                    for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                      // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                      if( $chatarr.getAllData()[i].id === data[0].id){
+                        // alert("找出chat数组的要删除的数据"+i);
+                        var key=$chatarr.getAllData()[i].id;
+                        $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                          $state.go('tab.message',{
+                            "id":id,
+                            "sessionid":name,
+                            "grouptype":"Group"
+                          });
+                        },function (err) {
+                        });
+                        break;
+                      }
+                    }
+                  },function (err) {
+                  });
+                },function (err) {
+                });
+              }
+            },function (err) {
+              // $ToastUtils.showToast(err+"查询所有记录失败");
+            });
+          }
+          return true;
+        }
+      });
     }
 
   })
@@ -2135,7 +2282,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2171,7 +2318,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2199,7 +2346,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){
@@ -2281,7 +2428,7 @@ angular.module('message.controllers', [])
       var url = new Date().getTime()+"";
       $timeout(function () {
         $ionicLoading.hide();
-        document.getElementById("container").style.height=(window.screen.height-80)+'px';
+        document.getElementById("container").style.height=(window.screen.height-95)+'px';
       },800);
 
       $timeout(function () {
@@ -2330,7 +2477,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     // $scope.topic=$stateParams.topic;
     // $scope.userId=$stateParams.id;//对方用户id
@@ -2366,7 +2513,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2394,7 +2541,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){

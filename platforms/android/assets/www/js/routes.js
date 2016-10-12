@@ -164,7 +164,7 @@ angular.module('im.routes', [])
 
 
       .state('personalSetting', {
-        url: '/personalSetting/:id/:ssid',
+        url: '/personalSetting/:id/:ssid/:sessionid',
         templateUrl: 'templates/personal-setting.html',
         controller: 'SettingAccountCtrl'
       })
@@ -485,7 +485,7 @@ angular.module('im.routes', [])
       })
 
       .state('personfile', {
-        url: '/personfile',
+        url: '/personfile/:sessionid',
         templateUrl: 'templates/person-file.html',
         controller: 'personfileCtrl',
         cache:false

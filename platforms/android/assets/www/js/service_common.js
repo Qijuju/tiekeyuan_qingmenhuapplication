@@ -70,8 +70,13 @@ angular.module('common.services', [])
       },
       queryDataByDate:function (date, type,success, error) {
         greendao.queryDataByDate (date, type,success, error);
-      }
-
+      },
+      querySlowNotifyChat:function (type, sessionid,success, error) {//新版一般通知==列表带2参数
+        greendao.querySlowNotifyChat (type, sessionid,success, error);
+      },
+      querySlowDataByDate:function (date, type,success, error) {
+        greendao.querySlowDataByDate (date, type,success, error);
+      },
     };
 
   })
@@ -299,6 +304,21 @@ angular.module('common.services', [])
       },
       netScale:function (fileid,imagename,smallfilepath, succsee, error) {
         scalephoto.netScale(fileid,imagename,smallfilepath,succsee,error)
+      }
+    }
+
+  })
+
+  .factory('$GridPhoto',function () {
+    var gridPhoto;
+    document.addEventListener('deviceready',function () {
+      gridPhoto = cordova.require('GridPhoto.grid_photo');
+    });
+
+    return{
+      queryPhoto:function (sessionid, type, success, error) {
+        gridPhoto.queryPhoto(sessionid, type, success, error)
+
       }
     }
 
