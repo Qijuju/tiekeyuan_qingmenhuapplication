@@ -683,7 +683,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else if ("1000".equals(result.getResultCode())) {
                                     setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                    setResult("未知原因！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         }

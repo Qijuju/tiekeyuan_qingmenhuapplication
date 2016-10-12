@@ -614,7 +614,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
                   $ToastUtils.showToast("修改密码成功")
                 }, function (msg) {
-                  $ToastUtils.showToast("修改密码失败")
+                  $ToastUtils.showToast(msg);
                 })
               }
             }
