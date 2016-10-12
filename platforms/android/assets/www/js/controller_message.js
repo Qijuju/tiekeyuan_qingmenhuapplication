@@ -1349,7 +1349,8 @@ angular.module('message.controllers', [])
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
       selectInfo.isselected=true;
-      selectInfo.type='user'
+      selectInfo.type='user';
+      selectInfo.parentid=$scope.departmentId;
       $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
       },function (err) {
@@ -2332,7 +2333,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
     $scope.userId=$stateParams.id;//对方用户id
@@ -2368,7 +2369,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2396,7 +2397,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){
@@ -2478,7 +2479,7 @@ angular.module('message.controllers', [])
       var url = new Date().getTime()+"";
       $timeout(function () {
         $ionicLoading.hide();
-        document.getElementById("container").style.height=(window.screen.height-80)+'px';
+        document.getElementById("container").style.height=(window.screen.height-95)+'px';
       },800);
 
       $timeout(function () {
@@ -2527,7 +2528,7 @@ angular.module('message.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    document.getElementById("container").style.height=(window.screen.height-120)+'px';
+    document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     // $scope.topic=$stateParams.topic;
     // $scope.userId=$stateParams.id;//对方用户id
@@ -2563,7 +2564,7 @@ angular.module('message.controllers', [])
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
-      },5000);
+      },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
@@ -2591,7 +2592,7 @@ angular.module('message.controllers', [])
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
-        },5000);
+        },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){

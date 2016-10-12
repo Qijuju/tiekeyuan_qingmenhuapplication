@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table TOP_CONTACTS.
  */
-public class TopContacts extends BaseDao {
+public class TopContacts extends BaseDao{
 
     private String _id;
     private String name;

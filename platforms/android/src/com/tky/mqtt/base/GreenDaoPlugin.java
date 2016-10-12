@@ -135,6 +135,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
           selectedId.setGrade(jsonobj.getString("grade"));
           selectedId.setIsselected(jsonobj.getBoolean("isselected"));
           selectedId.setType(jsonobj.getString("type"));
+          selectedId.setParentid(jsonobj.getString("parentid"));
           obj=selectedId;
         }else if("SystemMsgService".equals(services)){
             SystemMsg systemMsg = new SystemMsg();
