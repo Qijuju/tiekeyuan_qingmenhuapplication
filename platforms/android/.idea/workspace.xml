@@ -10,76 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/chacha.png" />
-      <change type="DELETED" beforePath="D:\workspace\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger115917164487191098.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCount.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistory.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_search.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_search.js" afterPath="$PROJECT_DIR$/../../www/js/controller_search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/login.html" afterPath="$PROJECT_DIR$/assets/www/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/login.html" afterPath="$PROJECT_DIR$/../../www/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/newsPage.html" afterPath="$PROJECT_DIR$/assets/www/templates/newsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/newsPage.html" afterPath="$PROJECT_DIR$/../../www/templates/newsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchLocal.html" afterPath="$PROJECT_DIR$/../../www/templates/searchLocal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -159,21 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseApplication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BaseApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.47931525">
+              <caret line="22" column="12" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessagesService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MessagesService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39657632">
-              <caret line="133" column="64" selection-start-line="133" selection-start-column="64" selection-end-line="133" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -3025,18 +2956,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+          <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39657632">
-          <caret line="133" column="64" selection-start-line="133" selection-start-column="64" selection-end-line="133" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.47931525">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="12" />
           <folding />
         </state>
       </provider>
