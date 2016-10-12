@@ -665,7 +665,6 @@ angular.module('message.services', [])
               danliao.push(arriveMessage);
               $rootScope.$broadcast('msgs.update');
               if (objectTP === 'F') {
-                alert("文件传输啊的的的大的的的的的的的")
 
                 arriveMessage.message = newMessage;
                 $rootScope.$broadcast('msgs.update');
@@ -1064,7 +1063,7 @@ angular.module('message.services', [])
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
           },function (err) {
-            alert("群组消息保存失败");
+            //alert("群组消息保存失败");
           });
           return "成功";
         },function (message) {
