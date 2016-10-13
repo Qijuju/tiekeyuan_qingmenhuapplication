@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -90,19 +91,31 @@ public class MqttConnection {
                         receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
                             @Override
                             public void onSend(String topic, String content) {
+                                boolean errState = true;
+                                if (content == null) {
+                                    errState = false;
+                                }
                                 MqttMessage message = new MqttMessage();
                                 try {
                                     String msg = new String(MessageOper.packData(content));
                                     message.setPayload(MessageOper.packData(content));
                                 } catch (JSONException e) {
+                                    errState = false;
                                     e.printStackTrace();
                                 } catch (IMPException e) {
+                                    errState = false;
                                     e.printStackTrace();
+                                }
+                                if (!errState) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                                    context.sendBroadcast(intent);
+                                    return;
                                 }
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
                                 message.setQos(1);
                                 try {
-                                    if (!isConnected()) {
+                                    if (!isConnected() || !NetUtils.isConnect(context)) {
                                         Intent intent = new Intent();
                                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                         context.sendBroadcast(intent);

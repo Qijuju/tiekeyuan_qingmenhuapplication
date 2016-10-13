@@ -1608,12 +1608,20 @@ angular.module('contacts.controllers', [])
       });
     }
     $scope.createGroupChats=function () {
+
+      $greendao.deleteAllData("SelectIdService",function (msg) {
+
+      },function (err) {
+        
+      })
+
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
       selectInfo.grade="0";
       selectInfo.isselected=true;
-      selectInfo.type='user'
+      selectInfo.type='user';
+      selectInfo.parentid=$scope.depid;
       $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
       },function (err) {
@@ -1669,8 +1677,7 @@ angular.module('contacts.controllers', [])
             $ToastUtils.showToast("当前用户信息不全");
           }else if($scope.myid==id){
             $ToastUtils.showToast("无法对自己进行该项操作");
-          }
-          else{
+          }else{
             $state.go('messageDetail',{
               "id":id,
               "ssid":name,

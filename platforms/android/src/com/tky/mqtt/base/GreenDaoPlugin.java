@@ -111,12 +111,11 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setImgSrc(jsonobj.getString("imgSrc"));
             chatList.setCount(jsonobj.getString("count"));
             chatList.setIsDelete(jsonobj.getString("isDelete"));
-            chatList.setLastDate(jsonobj.getLong("lastDate"));
             System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 chatList.setLastDate(0L);
             }else{
-                chatList.setLastDate(System.currentTimeMillis());
+                chatList.setLastDate(jsonobj.getLong("lastDate"));
             }
             chatList.setLastText(jsonobj.getString("lastText"));
             chatList.setChatType(jsonobj.getString("chatType"));
@@ -136,6 +135,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
           selectedId.setGrade(jsonobj.getString("grade"));
           selectedId.setIsselected(jsonobj.getBoolean("isselected"));
           selectedId.setType(jsonobj.getString("type"));
+          selectedId.setParentid(jsonobj.getString("parentid"));
           obj=selectedId;
         }else if("SystemMsgService".equals(services)){
             SystemMsg systemMsg = new SystemMsg();

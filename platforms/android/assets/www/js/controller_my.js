@@ -264,6 +264,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $mqtt.disconnect(function (message) {
               $state.go("login");
             }, function (message) {
+              $ToastUtils.showToast(message);
             });
           }, function (message) {
             $ToastUtils.showToast(message);
