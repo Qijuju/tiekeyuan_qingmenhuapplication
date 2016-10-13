@@ -483,7 +483,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.updateinformation = function () {
       $scope.data = {};
       var myPopup = $ionicPopup.show({
-        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="text" placeholder="修改邮箱" ng-model="data.email"></label>',
+        template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="email" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
         scope: $scope,
@@ -614,7 +614,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
                   $ToastUtils.showToast("修改密码成功")
                 }, function (msg) {
-                  $ToastUtils.showToast("修改密码失败")
+                  $ToastUtils.showToast(msg);
                 })
               }
             }
@@ -710,6 +710,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 checklock.drawStatusPoint('right')
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
+                $mqtt.save('loginpage', "gesturelogin");
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
@@ -766,6 +767,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 checklock.drawStatusPoint('right')
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
+                $mqtt.save('loginpage', "gesturelogin");
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
                   "UserIDset": $scope.UserID
@@ -917,7 +919,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               checklock.drawStatusPoint('right')
               $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea',  $scope.mymypersonname);
-              $ToastUtils.showToast("密码设置成功")
+              $ToastUtils.showToast("密码修改成功")
               $state.go("accountsettion", {
                 "UserIDset": $scope.UserID
               });

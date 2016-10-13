@@ -662,7 +662,29 @@ public class ThriftApiClient extends CordovaPlugin {
                                     e.printStackTrace();
                                 }
                             } else {
-                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                if ("521".equals(result.getResultCode())) {
+                                    setResult("密码修改失败", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("522".equals(result.getResultCode())) {
+                                    setResult("密码修改失败", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("523".equals(result.getResultCode())) {
+                                    setResult("原密码验证错误", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("524".equals(result.getResultCode())) {
+                                    setResult("原密码与新密码相同", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("525".equals(result.getResultCode())) {
+                                    setResult("密码不符合规范", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("526".equals(result.getResultCode())) {
+                                    setResult("确认密码和新密码不一致", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("997".equals(result.getResultCode())) {
+                                    setResult("操作过程发生异常", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("998".equals(result.getResultCode())) {
+                                    setResult("调用接口的参数格式错误", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("999".equals(result.getResultCode())) {
+                                    setResult("调用接口的用户不存在或未激活", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("1000".equals(result.getResultCode())) {
+                                    setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
+                                } else {
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
+                                }
                             }
                         }
                     } catch (TException e) {
@@ -714,7 +736,21 @@ public class ThriftApiClient extends CordovaPlugin {
                                     e.printStackTrace();
                                 }
                             } else {
-                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                if ("501".equals(result.getResultCode())) {
+                                    setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("502".equals(result.getResultCode())) {
+                                    setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
+                                }else if ("997".equals(result.getResultCode())) {
+                                    setResult("操作过程发生异常", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("998".equals(result.getResultCode())) {
+                                    setResult("调用接口的参数格式错误", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("999".equals(result.getResultCode())) {
+                                    setResult("调用接口的用户不存在或未激活", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("1000".equals(result.getResultCode())) {
+                                    setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
+                                }else {
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
+                                }
                             }
                         }
                     } catch (TException e) {

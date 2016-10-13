@@ -13,6 +13,7 @@ public class SelectedId extends BaseDao {
     private String grade;
     private Boolean isselected;
     private String type;
+    private String parentid;
 
     public SelectedId() {
     }
@@ -21,11 +22,12 @@ public class SelectedId extends BaseDao {
         this.id = id;
     }
 
-    public SelectedId(String id, String grade, Boolean isselected, String type) {
+    public SelectedId(String id, String grade, Boolean isselected, String type, String parentid) {
         this.id = id;
         this.grade = grade;
         this.isselected = isselected;
         this.type = type;
+        this.parentid = parentid;
     }
 
     public String getId() {
@@ -58,6 +60,14 @@ public class SelectedId extends BaseDao {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(String parentid) {
+        this.parentid = parentid;
     }
 
 }

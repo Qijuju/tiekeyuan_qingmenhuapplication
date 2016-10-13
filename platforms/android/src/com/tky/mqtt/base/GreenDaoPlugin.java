@@ -111,12 +111,11 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setImgSrc(jsonobj.getString("imgSrc"));
             chatList.setCount(jsonobj.getString("count"));
             chatList.setIsDelete(jsonobj.getString("isDelete"));
-            chatList.setLastDate(jsonobj.getLong("lastDate"));
             System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 chatList.setLastDate(0L);
             }else{
-                chatList.setLastDate(System.currentTimeMillis());
+                chatList.setLastDate(jsonobj.getLong("lastDate"));
             }
             chatList.setLastText(jsonobj.getString("lastText"));
             chatList.setChatType(jsonobj.getString("chatType"));
@@ -136,6 +135,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
           selectedId.setGrade(jsonobj.getString("grade"));
           selectedId.setIsselected(jsonobj.getBoolean("isselected"));
           selectedId.setType(jsonobj.getString("type"));
+          selectedId.setParentid(jsonobj.getString("parentid"));
           obj=selectedId;
         }else if("SystemMsgService".equals(services)){
             SystemMsg systemMsg = new SystemMsg();
@@ -613,6 +613,25 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+
+    /**
+     * 历史消息记录搜索
+     */
+    public void queryDataByquery(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String one=args.getString(0);
+            List<Messages> list=messagesService.queryDataByquery(one);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<Messages>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
     /**
      * 根据ssid和 type查询数据库里面的信息
      * @param args
