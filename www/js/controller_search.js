@@ -222,7 +222,7 @@ angular.module('search.controllers', [])
 
     //当点击取消时候执行
     $scope.searchBack=function () {
-      $ionicHistory.goBack();
+      $state.go("tab.contacts");
     };
 
 

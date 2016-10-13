@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table SLOW_NOTIFY_LIST.
  */
-public class SlowNotifyList extends BaseDao {
+public class SlowNotifyList extends BaseDao{
 
     private String id;
     private String chatName;

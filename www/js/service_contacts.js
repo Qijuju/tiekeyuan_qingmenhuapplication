@@ -248,7 +248,7 @@ angular.module('contacts.services', [])
           $timeout(function () {
             rootList = null;
             $rootScope.$broadcast('first.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
 
@@ -287,7 +287,7 @@ angular.module('contacts.services', [])
             firstname = null;
             deptSecondInfo=null;
             $rootScope.$broadcast('second.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
 
         });
@@ -340,7 +340,7 @@ angular.module('contacts.services', [])
             secondname = null;
             deptThirdInfo=null;
             $rootScope.$broadcast('third.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
 
         });
@@ -388,7 +388,7 @@ angular.module('contacts.services', [])
             thirdname = null;
             deptForthInfo=null;
             $rootScope.$broadcast('forth.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
 
@@ -439,7 +439,7 @@ angular.module('contacts.services', [])
             forthname = null;
             deptFifhtInfo=null;
             $rootScope.$broadcast('fifth.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
 
@@ -492,7 +492,7 @@ angular.module('contacts.services', [])
             fifthname = null;
             deptSixthInfo=null;
             $rootScope.$broadcast('sixth.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
 
         });
@@ -545,7 +545,7 @@ angular.module('contacts.services', [])
             sixthname = null;
             deptSeventhInfo=null;
             $rootScope.$broadcast('seventh.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
 
@@ -595,7 +595,7 @@ angular.module('contacts.services', [])
             seventhname = null;
             deptEighthInfo=null;
             $rootScope.$broadcast('eighth.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
 
@@ -653,7 +653,7 @@ angular.module('contacts.services', [])
           $timeout(function () {
             persondetail = null;
             $rootScope.$broadcast('personDetail.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("获取数据失败")
           },5000);
         });
       },
@@ -931,7 +931,7 @@ angular.module('contacts.services', [])
           $timeout(function () {
             attentionList=null;
             $rootScope.$broadcast('attention.update');
-            $ToastUtils.showToast("获取数据失败")
+            // $ToastUtils.showToast("请选择联系人进行关注")
           },5000);
         });
       },
@@ -984,11 +984,11 @@ angular.module('contacts.services', [])
         $greendao.queryData('MessagesService', 'where MESSAGE LIKE ?', quey, function (data) {
           messagesss=data;
           if(messagesss==null||messagesss.length==0||messagesss==""){
-            $ToastUtils.showToast("无该搜素数据")
+            $ToastUtils.showToast("无该搜索数据")
           }
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
-          $ToastUtils.showToast("无该搜素数据")
+          $ToastUtils.showToast("无该搜索数据")
           $timeout(function () {
             $ionicLoading.hide();
           },5000);

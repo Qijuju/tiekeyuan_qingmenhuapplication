@@ -31,7 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -180,7 +180,8 @@ public class GreenDaoGenerator {
     groupIds.addStringProperty("id").primaryKey();//选中人或者部门的id
     groupIds.addStringProperty("grade");//选中的的在哪个级别
     groupIds.addBooleanProperty("isselected");//是否被选中
-    groupIds.addStringProperty("type");
+    groupIds.addStringProperty("type");//选中的类型
+      groupIds.addStringProperty("parentid");
   }
     //添加搜素消息记录的表
 

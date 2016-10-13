@@ -910,45 +910,58 @@ angular.module('message.services', [])
                 // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
               }
             }else{
-              // alert("收到群组信息增该");
               $greendao.saveObj('MessagesService',arriveMessage,function (data) {
+                if(message.type==="User"){
+                  danliao.push(arriveMessage);
+                  count++;
+                  // $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
+                  //   if(data.length>0){
+                  //     count=data[0].count;
+                  //     // alert("有值"+groupCount);
+                  //
+                  //     $rootScope.$broadcast('msgs.update');
+                  //   }else{
+                  //     count =0;
+                  //     // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                  //     count++;
+                  //     $rootScope.$broadcast('msgs.update');
+                  //     // alert("groupCount"+groupCount);
+                  //   }
+                  // },function (err) {
+                  //   // alert(err);
+                  // });
+                  $rootScope.firstSessionid=arriveMessage.sessionid;
+                  $rootScope.firstUserName=arriveMessage.username;
+                  $rootScope.messagetype= arriveMessage.type;
+                  $rootScope.$broadcast('msgs.update');
+                  // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
+                }else{
+                  qunliao.push(arriveMessage);
+                  $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
+                    if(data.length>0){
+                      groupCount=data[0].count;
+                      // alert("有值"+groupCount);
+                      groupCount++;
+                      $rootScope.$broadcast('msgs.update');
+                    }else{
+                      groupCount =0;
+                      // alert("接受群消息service"+data.length+arriveMessage.sessionid);
+                      groupCount++;
+                      $rootScope.$broadcast('msgs.update');
+                      // alert("groupCount"+groupCount);
+                    }
+                  },function (err) {
+                    // alert(err);
+                  });
+                  // alert("测测是不是先出来");
+
+                  $rootScope.firstSessionid=arriveMessage.sessionid;
+                  $rootScope.firstUserName=arriveMessage.username;
+                  $rootScope.messagetype= arriveMessage.type;
+                  // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+                }
               },function (err) {
               });
-              if(message.type==="User"){
-                danliao.push(arriveMessage);
-                // alert("jinlailema");
-                count++;
-                // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
-                $rootScope.firstSessionid=arriveMessage.sessionid;
-                $rootScope.firstUserName=arriveMessage.username;
-                $rootScope.messagetype= arriveMessage.type;
-                $rootScope.$broadcast('msgs.update');
-                // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
-              }else{
-                qunliao.push(arriveMessage);
-                $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
-                  if(data.length>0){
-                    groupCount=data[0].count;
-                    // alert("有值"+groupCount);
-                    groupCount++;
-                    $rootScope.$broadcast('msgs.update');
-                  }else{
-                    groupCount =0;
-                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                    groupCount++;
-                    $rootScope.$broadcast('msgs.update');
-                    // alert("groupCount"+groupCount);
-                  }
-                },function (err) {
-                  // alert(err);
-                });
-                // alert("测测是不是先出来");
-
-                $rootScope.firstSessionid=arriveMessage.sessionid;
-                $rootScope.firstUserName=arriveMessage.username;
-                $rootScope.messagetype= arriveMessage.type;
-                // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
-              }
             }
           }
           return size;
@@ -1005,19 +1018,24 @@ angular.module('message.services', [])
           slowarr.unshift(data[i]);
         }
       },
+      //紧急count值
       getFastcount:function () {
         return fastcount;
       },
+      //一般count值
       getSlowcount:function () {
         // alert("靠"+slowcount);
         return slowcount;
       },
+      //公文处理count值
       getOaCount:function () {
         return oacount;
       },
+      //拌合站count值
       getBhzCount:function () {
         return bhzcount;
       },
+      //试验室count值
       getSyCount:function () {
         return sycount;
       },
