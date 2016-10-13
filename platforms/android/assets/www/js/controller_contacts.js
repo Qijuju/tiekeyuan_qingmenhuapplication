@@ -1677,8 +1677,7 @@ angular.module('contacts.controllers', [])
             $ToastUtils.showToast("当前用户信息不全");
           }else if($scope.myid==id){
             $ToastUtils.showToast("无法对自己进行该项操作");
-          }
-          else{
+          }else{
             $state.go('messageDetail',{
               "id":id,
               "ssid":name,
