@@ -1687,6 +1687,14 @@ angular.module('message.controllers', [])
 
 
     $scope.$on('$ionicView.enter', function () {
+
+      //进入界面先清除数据库表
+      $greendao.deleteAllData('SelectIdService',function (data) {
+
+      },function (err) {
+
+      });
+
       $contacts.loginInfo();
       $scope.$on('login.update', function (event) {
         $scope.$apply(function () {
@@ -1735,19 +1743,20 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto) {
-
-    //进入界面先清除数据库表
-    $greendao.deleteAllData('SelectIdService',function (data) {
-
-    },function (err) {
-
-    })
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout) {
 
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方名字
-
+    alert("你好")
+    $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
+    $scope.$on('personDetail.update', function (event) {
+      $scope.$apply(function () {
+        alert("进来了没有")
+        $scope.persondsfs = $contacts.getPersonDetail();
+        $scope.parentiddd=$contacts.getPersonDetail().DeptID;
+      })
+    });
 
     $scope.godetailaa=function () {
       $state.go('person',{
@@ -1863,8 +1872,20 @@ angular.module('message.controllers', [])
 
     //添加人员功能
     $scope.addNewPerson=function () {
-      $scope.addList=[];
+      //进入界面先清除数据库表
+      $greendao.deleteAllData('SelectIdService',function (data) {
 
+      },function (err) {
+
+      });
+
+
+
+
+      $scope.addList=[];
+      $scope.addParentid=[];
+      $scope.addParentid.push($scope.depid);
+      $scope.addParentid.push($scope.parentiddd);
       $scope.addList.push($scope.loginId);
       $scope.addList.push($scope.userId);
 
@@ -1874,7 +1895,8 @@ angular.module('message.controllers', [])
         selectInfo.id=$scope.addList[i];
         selectInfo.grade="0";
         selectInfo.isselected=true;
-        selectInfo.type='user'
+        selectInfo.type='user';
+        selectInfo.parentid=$scope.addParentid[i];
         $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
         },function (err) {

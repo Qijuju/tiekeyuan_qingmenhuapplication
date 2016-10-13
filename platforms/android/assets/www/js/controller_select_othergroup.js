@@ -753,7 +753,9 @@ angular.module('selectothergroup.controllers', [])
                   // 查询数据库把不等于3这个级别的所有数据拿出来
                   $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
 
+
                     for(var i=0;i<data.length;i++){
+                      if(data)
                       if(data[i].type=='user'){
 
                         $scope.sixthUserIds.push(data[i].id)
@@ -1628,7 +1630,7 @@ angular.module('selectothergroup.controllers', [])
                   },function (err) {
 
                   });
-                  
+
                 }
               }
             }

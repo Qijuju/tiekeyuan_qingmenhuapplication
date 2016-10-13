@@ -166,7 +166,8 @@ angular.module('im.routes', [])
       .state('personalSetting', {
         url: '/personalSetting/:id/:ssid/:sessionid',
         templateUrl: 'templates/personal-setting.html',
-        controller: 'SettingAccountCtrl'
+        controller: 'SettingAccountCtrl',
+        cache:false
       })
 
       .state('groupSetting', {
