@@ -27,6 +27,7 @@ public class SelectedIdDao extends AbstractDao<SelectedId, String> {
         public final static Property Grade = new Property(1, String.class, "grade", false, "GRADE");
         public final static Property Isselected = new Property(2, Boolean.class, "isselected", false, "ISSELECTED");
         public final static Property Type = new Property(3, String.class, "type", false, "TYPE");
+        public final static Property Parentid = new Property(4, String.class, "parentid", false, "PARENTID");
     };
 
 
@@ -45,7 +46,8 @@ public class SelectedIdDao extends AbstractDao<SelectedId, String> {
                 "'ID' TEXT PRIMARY KEY NOT NULL ," + // 0: id
                 "'GRADE' TEXT," + // 1: grade
                 "'ISSELECTED' INTEGER," + // 2: isselected
-                "'TYPE' TEXT);"); // 3: type
+                "'TYPE' TEXT," + // 3: type
+                "'PARENTID' TEXT);"); // 4: parentid
     }
 
     /** Drops the underlying database table. */
@@ -78,6 +80,11 @@ public class SelectedIdDao extends AbstractDao<SelectedId, String> {
         if (type != null) {
             stmt.bindString(4, type);
         }
+ 
+        String parentid = entity.getParentid();
+        if (parentid != null) {
+            stmt.bindString(5, parentid);
+        }
     }
 
     /** @inheritdoc */
@@ -93,7 +100,8 @@ public class SelectedIdDao extends AbstractDao<SelectedId, String> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // grade
             cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0, // isselected
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // type
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // type
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // parentid
         );
         return entity;
     }
@@ -105,6 +113,7 @@ public class SelectedIdDao extends AbstractDao<SelectedId, String> {
         entity.setGrade(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setIsselected(cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0);
         entity.setType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setParentid(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
     
     /** @inheritdoc */

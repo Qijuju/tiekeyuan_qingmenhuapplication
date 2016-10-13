@@ -1737,6 +1737,14 @@ angular.module('message.controllers', [])
 
 
     $scope.$on('$ionicView.enter', function () {
+
+      //进入界面先清除数据库表
+      $greendao.deleteAllData('SelectIdService',function (data) {
+
+      },function (err) {
+
+      })
+
       $contacts.loginInfo();
       $scope.$on('login.update', function (event) {
         $scope.$apply(function () {
@@ -1785,18 +1793,20 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout) {
 
-    //进入界面先清除数据库表
-    $greendao.deleteAllData('SelectIdService',function (data) {
 
-    },function (err) {
-
-    })
 
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方名字
+
+    $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
+    $scope.$on('personDetail.update', function (event) {
+      $scope.$apply(function () {
+          $scope.persondsfs = $contacts.getPersonDetail().DeptID;
+      })
+    });
 
 
     $scope.godetailaa=function () {
@@ -1913,18 +1923,29 @@ angular.module('message.controllers', [])
 
     //添加人员功能
     $scope.addNewPerson=function () {
-      $scope.addList=[];
 
+      //进入界面先清除数据库表
+      $greendao.deleteAllData('SelectIdService',function (data) {
+
+      },function (err) {
+
+      })
+
+
+      $scope.addList=[];
+      $scope.addParentid=[];
       $scope.addList.push($scope.loginId);
       $scope.addList.push($scope.userId);
-
+      $scope.addParentid.push($scope.depid);
+      $scope.addParentid.push($scope.persondsfs)
       for(var i=0;i<$scope.addList.length;i++){
         //当创建群聊的时候先把登录的id和信息  存到数据库上面
         var selectInfo={};
         selectInfo.id=$scope.addList[i];
         selectInfo.grade="0";
         selectInfo.isselected=true;
-        selectInfo.type='user'
+        selectInfo.type='user';
+        selectInfo.parentid=$scope.addParentid[i]
         $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
 
         },function (err) {
@@ -2351,8 +2372,10 @@ angular.module('message.controllers', [])
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      lat  = position.coords.latitude+0.006954;//   39.952728
-      long = position.coords.longitude+0.012647;//  116.329102
+      lat  = position.coords.latitude+0.006954;//   当前位置
+      long = position.coords.longitude+0.012647;//  当前位置 116.329102
+      // lat  = 39.9124;//   铁路总公司位置
+      // long = 116.333233;//  铁路总公司位置
       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标
@@ -2382,7 +2405,7 @@ angular.module('message.controllers', [])
         }
       });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
-        // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
+        alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
         $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',

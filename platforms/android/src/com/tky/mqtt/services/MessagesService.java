@@ -7,6 +7,8 @@ import com.tky.mqtt.base.BaseInterface;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.MessagesDao;
+import com.tky.mqtt.dao.MsgHistory;
+import com.tky.mqtt.dao.MsgHistoryDao;
 import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
@@ -150,4 +152,13 @@ public class MessagesService implements BaseInterface<Messages>{
                 .list();
     }
 
+    public List<Messages>  queryDataByquery(String query){
+
+        return messagesDao.queryBuilder()
+                .orderDesc(MessagesDao.Properties.When)
+                .where(MessagesDao.Properties.Message.like(query))
+                .where(MessagesDao.Properties.Username.like(query))
+                .build()
+                .list();
+    }
 }

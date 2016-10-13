@@ -613,6 +613,25 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+
+    /**
+     * 历史消息记录搜索
+     */
+    public void queryDataByquery(final JSONArray args,final CallbackContext callbackContext){
+        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String one=args.getString(0);
+            List<Messages> list=messagesService.queryDataByquery(one);
+            Gson gson=new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<Messages>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
     /**
      * 根据ssid和 type查询数据库里面的信息
      * @param args

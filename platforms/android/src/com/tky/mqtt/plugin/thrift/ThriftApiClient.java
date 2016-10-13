@@ -683,7 +683,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else if ("1000".equals(result.getResultCode())) {
                                     setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult("未知原因！", PluginResult.Status.ERROR, callbackContext);
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         }
@@ -736,7 +736,21 @@ public class ThriftApiClient extends CordovaPlugin {
                                     e.printStackTrace();
                                 }
                             } else {
-                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                if ("501".equals(result.getResultCode())) {
+                                    setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("502".equals(result.getResultCode())) {
+                                    setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
+                                }else if ("997".equals(result.getResultCode())) {
+                                    setResult("操作过程发生异常", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("998".equals(result.getResultCode())) {
+                                    setResult("调用接口的参数格式错误", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("999".equals(result.getResultCode())) {
+                                    setResult("调用接口的用户不存在或未激活", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("1000".equals(result.getResultCode())) {
+                                    setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
+                                }else {
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
+                                }
                             }
                         }
                     } catch (TException e) {
