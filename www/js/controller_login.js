@@ -395,7 +395,7 @@ angular.module('login.controllers', [])
           });
 
           firstlock.drawStatusPoint('right')
-          $ToastUtils.showToast("输入密码正确,logining...")
+          // $ToastUtils.showToast("输入密码正确,logining...")
           $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
