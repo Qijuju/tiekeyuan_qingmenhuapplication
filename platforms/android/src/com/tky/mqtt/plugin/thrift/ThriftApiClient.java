@@ -2066,7 +2066,8 @@ public class ThriftApiClient extends CordovaPlugin {
     public void qrcodeLogin(final JSONArray args, final CallbackContext callbackContext){
         try {
             String qrcode = args.getString(0);
-            String url = "http://ssl.r93535.com/loginservicetest/qrcode/setUser/" + qrcode + "/" + getUserID();
+            String url = "http://61.237.239.105:9500/loginservicetest/qrcode/setUser/" + qrcode + "/" + getUserID();
+//            String url = "http://ssl.r93535.com/loginservicetest/qrcode/setUser/" + qrcode + "/" + getUserID();
 //            String url = "http://www.r93535.cn/servicesapitest/qrcode/setUser/" + qrcode + "/" + getUserID();
             OKSyncGetClient client = new OKSyncGetClient();
             String data = client.okSyncGet(url);
