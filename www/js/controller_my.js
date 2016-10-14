@@ -416,6 +416,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
           $scope.savemylastmsg=function () {
+
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
               $scope.lastText = data[0].message;//最后一条消息内容
               $scope.lastDate = data[0].when;//最后一条消息的时间
