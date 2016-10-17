@@ -77,6 +77,9 @@ angular.module('common.services', [])
       querySlowDataByDate:function (date, type,success, error) {
         greendao.querySlowDataByDate (date, type,success, error);
       },
+    queryDataByquery:function (query,success, error) {
+      greendao.queryDataByquery (query,success, error);
+    },
     };
 
   })

@@ -67,34 +67,29 @@ angular.module('search.controllers', [])
         $scope.persons=[];
         $scope.query1 =query;
         $search111.search1111($scope.id,$scope.page,$scope.count,query);
-        $scope.$on('persons.update',function (event) {
-          $scope.$apply(function () {
-            $scope.hasmore=true;
-            $scope.page =1;
-            $scope.persons=[];
-            $scope.query1 =query;
-            $timeout(function () {
-              $ionicLoading.hide();
-              $scope.persons=$search111.getPersons().searchResult;
-              if ($scope.persons.length>=15){
-                $scope.hasmore=true
-                $scope.page++
-              }else {
-                $scope.hasmore=false
-              }
-              $scope.$broadcast('scroll.infiniteScrollComplete');
-            });
-          })
-        });
       }else {
         $scope.hasmore=true;
         $scope.page =1;
         $scope.persons=[];
         $scope.query1 =query;
-        $scope.persons=[];
         $search111.getHistorymsg("person");
       }
     }
+    $scope.$on('persons.update',function (event) {
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $scope.persons=$search111.getPersons().searchResult;
+          if ($scope.persons.length>=15){
+            $scope.hasmore=true
+            $scope.page++
+          }else {
+            $scope.hasmore=false
+          }
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+      })
+    });
 
 //上拉加载
     $scope.loadMoreaa = function(){
@@ -304,13 +299,7 @@ angular.module('search.controllers', [])
 
     // 点击按钮触发，或一些其他的触发条件
     $scope.tanchuanglocal = function(phonenumber,name) {
-      //打电话
-      $scope.call = function(phonenumber,name) {
-        $phonepluin.call(phonenumber,name);
-      };
-      $scope.sms = function(phonenumber) {
-        $phonepluin.sms(phonenumber);
-      };
+
       // 显示操作表
       $ionicActionSheet.show({
         buttons: [
@@ -321,9 +310,17 @@ angular.module('search.controllers', [])
         cancelText: '取消',
         buttonClicked: function(index) {
           if(index==0){
-            $scope.call(phonenumber);
+            if (phonenumber!=""){
+              $phonepluin.call(0,phonenumber, name, 0);
+            }else {
+              $ToastUtils.showToast("电话号码为空");
+            }
           }else {
-            $scope.sms(phonenumber);
+            if (phonenumber!=""){
+              $phonepluin.sms(0,phonenumber, name, 0);
+            }else {
+              $ToastUtils.showToast("电话号码为空");
+            }
           }
           return true;
         }

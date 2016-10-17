@@ -305,6 +305,7 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
+        ToastUtil.showSafeToast(UIUtils.isRunInMainThread() ? "主线程" : "子线程");
         if (!NetUtils.isConnect(cordova.getActivity())) {
             setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
             return;

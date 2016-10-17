@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table SELECTED_ID.
  */
-public class SelectedId extends BaseDao{
+public class SelectedId extends BaseDao {
 
     private String id;
     private String grade;

@@ -56,7 +56,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       mainlist.unshift(data);
@@ -68,7 +67,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data){
           // alert("找出chat数组的要删除的数据"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       // alert("看看长度"+mainlist.length);
