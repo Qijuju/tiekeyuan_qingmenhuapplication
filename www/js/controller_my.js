@@ -36,7 +36,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         });
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
     });
 
 
@@ -264,6 +264,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $mqtt.disconnect(function (message) {
               $state.go("login");
             }, function (message) {
+              $ToastUtils.showToast(message);
             });
           }, function (message) {
             $ToastUtils.showToast(message);
@@ -518,7 +519,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 arr.EM = string3;
               }
               $api.updateUserInfo(arr,function (msg) {
-                $ToastUtils.showToast("修改个人资料成功");
+                // $ToastUtils.showToast("修改个人资料成功");
                 $searchdatadianji.personDetaildianji($scope.UserIDforhou);
               },function (msg) {
                 $ToastUtils.showToast(msg)
@@ -568,7 +569,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
       // error
     });
   })
@@ -698,7 +699,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.$apply(function () {
             $scope.a=2
           })
-          $ToastUtils.showToast("请再输入一次")
+          // $ToastUtils.showToast("请再输入一次")
           setlock.reset();
           var checkopt = {
             chooseType: 3, // 3 , 4 , 5,
@@ -755,7 +756,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.$apply(function () {
             $scope.a=2
           })
-          $ToastUtils.showToast("请再输入一次")
+          // $ToastUtils.showToast("请再输入一次")
           setlock.reset();
           var checkopt = {
             chooseType: 3, // 3 , 4 , 5,

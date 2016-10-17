@@ -56,7 +56,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       mainlist.unshift(data);
@@ -68,7 +67,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data){
           // alert("找出chat数组的要删除的数据"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       // alert("看看长度"+mainlist.length);
@@ -1126,9 +1124,9 @@ angular.module('message.services', [])
         // alert(localuser+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
-            for(var i=0;i<danliao.length;i++){
-              if(danliao[i]._id === sqlid){
-                danliao.splice(i, 1);
+            for(var i=0;i<qunliao.length;i++){
+              if(qunliao[i]._id === sqlid){
+                qunliao.splice(i, 1);
                 $rootScope.$broadcast('msgs.update');
                 break;
               }
@@ -1144,9 +1142,9 @@ angular.module('message.services', [])
           return "成功";
         },function (message) {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
-            for(var i=0;i<danliao.length;i++){
-              if(danliao[i]._id === sqlid){
-                danliao.splice(i, 1);
+            for(var i=0;i<qunliao.length;i++){
+              if(qunliao[i]._id === sqlid){
+                qunliao.splice(i, 1);
                 $rootScope.$broadcast('msgs.update');
                 break;
               }
@@ -1155,6 +1153,10 @@ angular.module('message.services', [])
           messageReal.isFailure='true';
           qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
+            if (data != 'success') {
+              messageReal._id = data;
+              // alert(messageDetail._id+"消息失败id"+data);
+            }
             $rootScope.$broadcast('msgs.error');
             // alert(data);
           },function (err) {

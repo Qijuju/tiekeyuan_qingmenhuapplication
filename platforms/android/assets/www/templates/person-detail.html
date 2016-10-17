@@ -43,7 +43,8 @@
         </li>
         <li class="item item-button-right">
           <p>职位</p>
-          <h2>{{persondsfs.Duty}}</h2>
+          <h2>{{(persondsfs.Duty==0||persondsfs.Duty==""||persondsfs.Duty==undefined) ? "未填写":persondsfs.Duty}}</h2>
+
         </li>
 
       </ul>

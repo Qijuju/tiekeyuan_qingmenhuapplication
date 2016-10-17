@@ -104,13 +104,13 @@ angular.module('login.controllers', [])
           $api.activeUser(message.userID, function (message) {
             loginM();
           }, function (message) {
-            $ToastUtils.showToast(message);
+            // $ToastUtils.showToast(message);
           });
         } else {
           loginM();
         }
       }, function (message) {
-        $ToastUtils.showToast(message);
+        // $ToastUtils.showToast(message);
         $ionicLoading.hide();
         // $state.go('tab.message');
       });
@@ -131,7 +131,7 @@ angular.module('login.controllers', [])
       //调用保存用户名方法
       $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
       }, function (message) {
-        $ToastUtils.showToast(message);
+        // $ToastUtils.showToast(message);
       });
       $mqtt.getMqtt().getMyTopic(function (msg) {
         $api.getAllGroupIds(function (groups) {
@@ -152,7 +152,7 @@ angular.module('login.controllers', [])
           });
         });
       }, function (err) {
-        $ToastUtils.showToast(message);
+        // $ToastUtils.showToast(message);
         $ionicLoading.hide();
       });
     }
@@ -288,9 +288,9 @@ angular.module('login.controllers', [])
     $scope.goLogin = function() {
       $state.go('login');
     };
-    $scope.meizuo = function() {
-      $ToastUtils.showToast("此功能暂未开发");
-    };
+    // $scope.meizuo = function() {
+    //   $ToastUtils.showToast("此功能暂未开发");
+    // };
     var password="";
     var count=6;
     // $scope.$apply(function () {
@@ -300,7 +300,7 @@ angular.module('login.controllers', [])
       password=pwd;
       // $ToastUtils.showToast("手势密码:"+pwd);
     }, function (msg) {
-      $ToastUtils.showToast("手势密码获取失败"+msg);
+      // $ToastUtils.showToast("手势密码获取失败"+msg);
     });
 
 
@@ -327,13 +327,13 @@ angular.module('login.controllers', [])
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
-                  $ToastUtils.showToast(message);
+                  // $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
               }
             }, function (message) {
-              $ToastUtils.showToast(message);
+              // $ToastUtils.showToast(message);
             });
 
             secondlock.drawStatusPoint('right')
@@ -385,17 +385,17 @@ angular.module('login.controllers', [])
               $api.activeUser(message.userID, function (message) {
                 loginM();
               }, function (message) {
-                $ToastUtils.showToast(message);
+                // $ToastUtils.showToast(message);
               });
             } else {
               loginM();
             }
           }, function (message) {
-            $ToastUtils.showToast(message);
+            // $ToastUtils.showToast(message);
           });
 
           firstlock.drawStatusPoint('right')
-          $ToastUtils.showToast("输入密码正确,logining...")
+          // $ToastUtils.showToast("输入密码正确,logining...")
           $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',

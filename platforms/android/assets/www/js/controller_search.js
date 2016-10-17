@@ -17,9 +17,9 @@ angular.module('search.controllers', [])
           // $ToastUtils.showToast("消息对象"+key);
           $greendao.deleteDataByArg('MsgHistoryService',key,function (data) {
             $search111.getHistorymsg("person");
-            $ToastUtils.showToast("清空搜索记录成功");
+            // $ToastUtils.showToast("清空搜索记录成功");
           },function (err) {
-            $ToastUtils.showToast("清空消息记录失败");
+            // $ToastUtils.showToast("清空消息记录失败");
           });
         }
       },function (msg) {
@@ -368,9 +368,9 @@ angular.module('search.controllers', [])
           // $ToastUtils.showToast("消息对象"+key);
           $greendao.deleteDataByArg('MsgHistoryService',key,function (data) {
             $search111.getHistorymsg("message");
-            $ToastUtils.showToast("清空搜索记录成功");
+            // $ToastUtils.showToast("清空搜索记录成功");
           },function (err) {
-            $ToastUtils.showToast("清空消息记录失败");
+            // $ToastUtils.showToast("清空消息记录失败");
           });
         }
       },function (msg) {
