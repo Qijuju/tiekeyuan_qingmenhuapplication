@@ -6,9 +6,16 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.dao.FilePicture;
+import com.tky.mqtt.dao.FilePictureDao;
+import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
+import com.tky.mqtt.services.FilePictureService;
 import com.tky.photohelper.PhotoScaleActivity;
 
 import org.apache.cordova.CallbackContext;
@@ -91,8 +98,34 @@ public class ScalePhoto extends CordovaPlugin {
             final String imagename=args.getString(1);
             final String samllfilepath=args.getString(2);
 
+            FilePictureService instance=FilePictureService.getInstance(UIUtils.getContext());
+            DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
+            final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
+            final FilePicture firstFilePic=filePictureDao.load(imageid);
+
             File testFile = new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+
+
+
             if(testFile .exists()){
+
+                FilePicture thirdFilePic=new FilePicture();
+                thirdFilePic.setFilepicid(firstFilePic.getFilepicid());
+                thirdFilePic.setFrom(firstFilePic.getFrom());
+                thirdFilePic.setSessionid(firstFilePic.getSessionid());
+                thirdFilePic.setFromname(firstFilePic.getFromname());
+                thirdFilePic.setToname(firstFilePic.getToname());
+                thirdFilePic.setSmallurl(firstFilePic.getSmallurl());
+                thirdFilePic.setBigurl(testFile.getAbsolutePath());
+                thirdFilePic.setBytesize(firstFilePic.getBytesize());
+                thirdFilePic.setMegabyte(firstFilePic.getMegabyte());
+                thirdFilePic.setFilename(firstFilePic.getFilename());
+                thirdFilePic.setType(firstFilePic.getType());
+                thirdFilePic.setWhen(System.currentTimeMillis());
+
+                filePictureDao.insertOrReplace(thirdFilePic);
+
+
                 final Intent intent3=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
                 intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                 cordova.getActivity().startActivity(intent3);
@@ -157,8 +190,27 @@ public class ScalePhoto extends CordovaPlugin {
                                 Intent intent1=new Intent();
                                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent1.setAction("com.tky.updatefilepath");
-                                intent1.putExtra("filepath",tempPicName);
+                                intent1.putExtra("filepath", tempPicName);
                                 cordova.getActivity().sendBroadcast(intent1);
+
+
+                                FilePicture secondFilePic=new FilePicture();
+                                secondFilePic.setFilepicid(firstFilePic.getFilepicid());
+                                secondFilePic.setFrom(firstFilePic.getFrom());
+                                secondFilePic.setSessionid(firstFilePic.getSessionid());
+                                secondFilePic.setFromname(firstFilePic.getFromname());
+                                secondFilePic.setToname(firstFilePic.getToname());
+                                secondFilePic.setSmallurl(firstFilePic.getSmallurl());
+                                secondFilePic.setBigurl(tempPicName);
+                                secondFilePic.setBytesize(firstFilePic.getBytesize());
+                                secondFilePic.setMegabyte(firstFilePic.getMegabyte());
+                                secondFilePic.setFilename(firstFilePic.getFilename());
+                                secondFilePic.setType(firstFilePic.getType());
+                                secondFilePic.setWhen(System.currentTimeMillis());
+
+                                filePictureDao.insertOrReplace(secondFilePic);
+
+
 
 
 

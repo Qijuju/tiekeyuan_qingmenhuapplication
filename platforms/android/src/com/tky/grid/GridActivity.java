@@ -63,7 +63,7 @@ public class GridActivity extends Activity {
         String[] IMAGES_PATHs = new String[filePictures.size()];
 
         for(int i=0;i<filePictures.size();i++){
-            IMAGES_PATHs[i]=filePictures.get(i).getSmallurl();
+            IMAGES_PATHs[i]=filePictures.get(i).getBigurl();
         }
 
         IMAGES_PATH = IMAGES_PATHs;

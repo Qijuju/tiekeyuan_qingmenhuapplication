@@ -10,6 +10,203 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7c0e41f-fd99-468f-9016-a82ae2e2ac9c" name="Default" comment="9.27commit:图片和文件">
+      <change type="DELETED" beforePath="D:\impro\final1\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger5492904818204332854.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\impro\final1\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger8773948311526573191.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ConfigXmlParser.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ConfigXmlParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaArgs.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaArgs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaBridge.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaBridge.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPlugin.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPlugin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/LOG.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/LOG.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult$Status.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult$Status.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ResumeCallback.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ResumeCallback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemCookieManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemCookieManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist$URLPattern.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist$URLPattern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/androidTest/debug/org/apache/cordova/test/BuildConfig.java" afterPath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/androidTest/debug/org/apache/cordova/test/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/debug/org/apache/cordova/BuildConfig.java" afterPath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/debug/org/apache/cordova/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/release/org/apache/cordova/BuildConfig.java" afterPath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/release/org/apache/cordova/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/grid/GridActivity.java" afterPath="$PROJECT_DIR$/src/com/tky/grid/GridActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MessagesDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MessagesDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/services/MessagesService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.json" afterPath="$PROJECT_DIR$/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/apppreferences.xml" afterPath="$PROJECT_DIR$/res/values/apppreferences.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/apppreferences.xml" afterPath="$PROJECT_DIR$/res/xml/apppreferences.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_application.js" afterPath="$PROJECT_DIR$/../../www/js/controller_application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/assets/www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" afterPath="$PROJECT_DIR$/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/service_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/service_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -67,7 +264,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="541" column="22" selection-start-line="541" selection-start-column="22" selection-end-line="541" selection-end-column="22" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,14 +304,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9036697">
+            <state vertical-scroll-proportion="0.0">
               <caret line="46" column="43" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="43" />
-              <folding>
-                <element signature="e#3693#3717#0" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3853211">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1383,6 +1600,7 @@
         <entry key="C:\Users\Administrator\webstormproject\im\platforms\android" value="5875942965181" />
         <entry key="$PROJECT_DIR$" value="5885070755643" />
         <entry key="D:\impro\IM\platforms\android" value="5893651637449" />
+        <entry key="D:\impro\final1\IM\platforms\android" value="5907441112703" />
         <entry key="D:\workspace\IM\platforms\android" value="5885402048367" />
       </map>
     </option>
@@ -1845,14 +2063,12 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/DocsManagerActivity.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/constant/ImageTypeConstants.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/DocFileReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/UIUtils.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MimeTypeConstants.java" />
         <option value="$PROJECT_DIR$/res/layout/progress.xml" />
         <option value="$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
@@ -1864,6 +2080,8 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/PhotoFileReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
       </list>
     </option>
   </component>
@@ -1935,18 +2153,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2269,7 +2478,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2279,7 +2497,7 @@
     <property name="android.project.structure.last.selected" value="Project" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="aca83410" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="DLQ0216510003198" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="FullScreen" value="false" />
@@ -2536,7 +2754,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2556,7 +2774,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.4946581" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2572,11 +2790,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6423034" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37152392" sideWeight="0.5063966" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2593,8 +2811,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.4978678" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -2987,7 +3205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2996,32 +3213,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1113#1114#0" expanded="false" />
-            <element signature="e#1134#1135#0" expanded="false" />
-            <element signature="e#1173#1174#0" expanded="false" />
-            <element signature="e#1199#1200#0" expanded="false" />
-            <element signature="e#1239#1240#0" expanded="false" />
-            <element signature="e#1263#1264#0" expanded="false" />
-            <element signature="e#1301#1302#0" expanded="false" />
-            <element signature="e#1322#1323#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#3056#4481#0" expanded="false" />
-            <element signature="e#4480#4481#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3030,9 +3227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="83" selection-start-line="49" selection-start-column="83" selection-end-line="49" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3070,21 +3264,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="43" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#12060#12069#0" expanded="false" />
-            <element signature="e#12174#12184#0" expanded="false" />
-            <element signature="e#16491#17112#0" expanded="false" />
-            <element signature="e#17111#17112#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3099,11 +3278,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1572#1573#0" expanded="false" />
-            <element signature="e#1612#1613#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3111,9 +3285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#53026#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3121,15 +3292,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="48" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#819#820#0" expanded="false" />
-            <element signature="e#848#849#0" expanded="false" />
-            <element signature="e#884#885#0" expanded="false" />
-            <element signature="e#912#913#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-            <element signature="e#984#985#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3137,9 +3299,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0114679">
           <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3147,9 +3306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="99" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3157,7 +3313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3186,7 +3341,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="541" column="22" selection-start-line="541" selection-start-column="22" selection-end-line="541" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3229,9 +3386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17676143">
           <caret line="248" column="35" selection-start-line="248" selection-start-column="35" selection-end-line="248" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#858#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3239,7 +3393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04816514">
           <caret line="1" column="33" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3247,7 +3400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3255,7 +3407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3263,7 +3414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3277,11 +3427,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9036697">
+        <state vertical-scroll-proportion="0.0">
           <caret line="46" column="43" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="43" />
-          <folding>
-            <element signature="e#3693#3717#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3853211">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
