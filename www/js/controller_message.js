@@ -467,7 +467,8 @@ angular.module('message.controllers', [])
     //       // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
     //       /**
     //        * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
-    //        * 2.查出当前群聊的最后一条聊天记录(messageService)
+    //        * 2.查出当前群聊的最后一条聊天记录(
+        // Service)
     //        * 3.查出会话列表的该条会话，将取出的数据进行赋值(chatListService)
     //        * 4.保存数据(chatListService)
     //        * 5.数据刷新(chatListService)按时间降序排列展示
@@ -1579,6 +1580,43 @@ angular.module('message.controllers', [])
         "groupname":''
       });
     }
+    //刚开始进来先拿到部门的id
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+
+        //部门id
+        $scope.loginId=$contacts.getLoignInfo().userID;
+        $scope.departmentId=$contacts.getLoignInfo().deptID;
+        $greendao.queryData("GroupChatsService",'where id =?',$scope.departmentId,function (msg) {
+          if(msg.length==0){
+            $contacts.loginDeptInfo($scope.departmentId);
+          }
+
+        },function (err) {
+
+        });
+      })
+    });
+
+
+    $scope.$on('logindept.update', function (event) {
+      $scope.$apply(function () {
+        //部门id
+        $scope.deptname = $contacts.getloginDeptInfo();
+        var deptobj={};
+        deptobj.id=$scope.departmentId;
+        deptobj.groupName=$scope.deptname;
+        deptobj.groupType='Dept';
+        deptobj.ismygroup=false;
+        $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
+
+        },function (err) {
+        });
+      })
+    });
+
+
 
 
 
@@ -1972,39 +2010,7 @@ angular.module('message.controllers', [])
 
       })
 
-      $contacts.loginInfo();
-      $scope.$on('login.update', function (event) {
-        $scope.$apply(function () {
-
-          //部门id
-          $scope.loginId=$contacts.getLoignInfo().userID;
-          $scope.depid=$contacts.getLoignInfo();
-          $scope.departmentId=$contacts.getLoignInfo().deptID;
-          $contacts.loginDeptInfo($scope.departmentId);
-        })
-      });
-
-      $scope.$on('logindept.update', function (event) {
-        $scope.$apply(function () {
-
-          //部门id
-          $scope.deptinfo = $contacts.getloginDeptInfo();
-          //部门群的信息会被放入
-          var deptobj={};
-          deptobj.id=$scope.departmentId;
-          deptobj.groupName=$scope.deptinfo;
-          deptobj.groupType='Dept';
-          deptobj.ismygroup=false;
-          $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
-
-          },function (err) {
-            // $ToastUtils.showToast(err);
-          })
-        })
-      });
-
-
-        /**
+       /**
          * 滑动删除会话项
          */
       $scope.removechat=function (id,name) {

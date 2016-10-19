@@ -342,7 +342,7 @@ angular.module('common.services', [])
           //取到值后再重新存一次
           var queryTopContact = {};
           queryTopContact._id = msg[0]._id;
-          queryTopContact.phone = msg[0].phone;
+          queryTopContact.phone = phone;
           queryTopContact.name = msg[0].name;
           queryTopContact.type = msg[0].type;
           queryTopContact.count = messageCount + 1;

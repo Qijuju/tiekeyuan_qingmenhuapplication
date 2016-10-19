@@ -780,31 +780,33 @@ angular.module('message.services', [])
                     $greendao.saveObj('MessagesService', arriveMessage, function (data) {
                     }, function (err) {
                     });
-                    // alert(newMessage);
+
+                    var arrivepic={};
+                    arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                    arrivepic.from="false";
+                    arrivepic.sessionid=arriveMessage.sessionid;
+                    arrivepic.fromname=arriveMessage.username;
+                    arrivepic.toname="";
+                    arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                    arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                    arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                    arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                    arrivepic.filename=arriveMessage.message.split('###')[4];
+                    if(arriveMessage.messagetype=="Image"){
+                      arrivepic.type="image";
+                    }else if(arriveMessage.messagetype=="File"){
+                      arrivepic.type="file";
+                    }
+                    arrivepic.when=0;
+
+                    $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                    },function (err) {
+
+                    });
                   }
-                  var arrivepic={};
-                  arrivepic.filepicid=arriveMessage.message.split('###')[0];
-                  arrivepic.from="false";
-                  arrivepic.sessionid=arriveMessage.sessionid;
-                  arrivepic.fromname=arriveMessage.username;
-                  arrivepic.toname="";
-                  arrivepic.smallurl=arriveMessage.message.split('###')[1];
-                  arrivepic.bigurl=arriveMessage.message.split('###')[1];
-                  arrivepic.bytesize=arriveMessage.message.split('###')[2];
-                  arrivepic.megabyte=arriveMessage.message.split('###')[3];
-                  arrivepic.filename=arriveMessage.message.split('###')[4];
-                  if(arriveMessage.messagetype=="Image"){
-                    arrivepic.type="image";
-                  }else if(arriveMessage.messagetype=="File"){
-                    arrivepic.type="file";
-                  }
-                  arrivepic.when=0;
 
-                  $greendao.saveObj("FilePictureService",arrivepic,function (data) {
 
-                  },function (err) {
-
-                  });
                   $rootScope.$broadcast('msgs.update');
                   if (message.type === "User") {
                     $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
