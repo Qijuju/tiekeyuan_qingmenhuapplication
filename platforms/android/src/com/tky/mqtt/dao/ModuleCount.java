@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table MODULE_COUNT.
  */
-public class ModuleCount extends BaseDao{
+public class ModuleCount extends BaseDao {
 
     private String id;
     private String name;

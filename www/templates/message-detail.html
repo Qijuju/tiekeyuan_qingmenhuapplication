@@ -36,7 +36,7 @@
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
             <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img src="img/mapdefault.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)" /></p>
+            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)" /></p>
             <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</p>
             <p  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;margin-left: 14.5%;" class="yuanjiao" />

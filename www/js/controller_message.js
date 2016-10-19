@@ -314,8 +314,6 @@ angular.module('message.controllers', [])
 
     //打开文件
     $scope.openAllFile = function (path, imageID) {
-      // alert(imageID);
-      // alert(path)
       $api.openFileByPath(path,imageID, function (suc) {
       },function (err) {
       });
@@ -609,6 +607,8 @@ angular.module('message.controllers', [])
               });
             }, function (msg) {
             });
+          } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
+            $scope.suc = $mqtt.sendMsg(userTopic, msgSingle.message, id,localuser,localuserId,sqlid,msgSingle.messagetype,'');
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
@@ -650,7 +650,7 @@ angular.module('message.controllers', [])
                 //往service里面传值，为了创建会话
                 $chatarr.getIdChatName($scope.userId,$scope.viewtitle);
                 $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
-                // $ToastUtils.showToast($scope.items.length + "单聊长度");
+                // alert($scope.items.length + "单聊长度");
                 $scope.$on('chatarr.update', function (event) {
                   $scope.$apply(function () {
                     $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
@@ -704,6 +704,7 @@ angular.module('message.controllers', [])
               chatitem.isDelete = data[0].isDelete;
               chatitem.lastDate = $scope.lastDate;
               chatitem.chatType = data[0].chatType;
+              // alert("chatype"+chatitem.chatType);
               chatitem.senderId = $scope.srcId;
               chatitem.senderName = $scope.srcName;
               $greendao.saveObj('ChatListService', chatitem, function (data) {
@@ -1278,7 +1279,7 @@ angular.module('message.controllers', [])
 
 
     // 点击按钮触发，或一些其他的触发条件
-    $scope.resendgroupshow = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+    $scope.resendgroupshow = function (topic, content, id,grouptype,localuser,localuserId,sqlid,msgSingle) {
 
       // 显示操作表
       $ionicActionSheet.show({
@@ -1294,17 +1295,30 @@ angular.module('message.controllers', [])
           if (index === 0) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
             // alert($mqtt.getQunliao().length);
-            for(var i=0;i<$mqtt.getQunliao().length;i++){
+            /*for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getQunliao()[i]._id === sqlid){
                 // alert("后"+$mqtt.getQunliao()[i]._id);
                 $mqtt.getQunliao().splice(i, 1);
                 break;
               }
-            }
+            }*/
             $scope.sendSingleGroupMsg(topic, content, id,grouptype,localuser,localuserId,sqlid);
           } else if (index === 1) {
-
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getQunliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
           }
           return true;
         }
@@ -1363,6 +1377,43 @@ angular.module('message.controllers', [])
         "groupname":''
       });
     }
+    //刚开始进来先拿到部门的id
+    $contacts.loginInfo();
+    $scope.$on('login.update', function (event) {
+      $scope.$apply(function () {
+
+        //部门id
+        $scope.loginId=$contacts.getLoignInfo().userID;
+        $scope.departmentId=$contacts.getLoignInfo().deptID;
+        $greendao.queryData("GroupChatsService",'where id =?',$scope.departmentId,function (msg) {
+          if(msg.length==0){
+            $contacts.loginDeptInfo($scope.departmentId);
+          }
+
+        },function (err) {
+
+        });
+      })
+    });
+
+
+    $scope.$on('logindept.update', function (event) {
+      $scope.$apply(function () {
+        //部门id
+        $scope.deptname = $contacts.getloginDeptInfo();
+        var deptobj={};
+        deptobj.id=$scope.departmentId;
+        deptobj.groupName=$scope.deptname;
+        deptobj.groupType='Dept';
+        deptobj.ismygroup=false;
+        $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
+
+        },function (err) {
+        });
+      })
+    });
+
+
 
 
 
@@ -1745,39 +1796,7 @@ angular.module('message.controllers', [])
 
       })
 
-      $contacts.loginInfo();
-      $scope.$on('login.update', function (event) {
-        $scope.$apply(function () {
-
-          //部门id
-          $scope.loginId=$contacts.getLoignInfo().userID;
-          $scope.depid=$contacts.getLoignInfo();
-          $scope.departmentId=$contacts.getLoignInfo().deptID;
-          $contacts.loginDeptInfo($scope.departmentId);
-        })
-      });
-
-      $scope.$on('logindept.update', function (event) {
-        $scope.$apply(function () {
-
-          //部门id
-          $scope.deptinfo = $contacts.getloginDeptInfo();
-          //部门群的信息会被放入
-          var deptobj={};
-          deptobj.id=$scope.departmentId;
-          deptobj.groupName=$scope.deptinfo;
-          deptobj.groupType='Dept';
-          deptobj.ismygroup=false;
-          $greendao.saveObj("GroupChatsService",deptobj,function (msg) {
-
-          },function (err) {
-            // $ToastUtils.showToast(err);
-          })
-        })
-      });
-
-
-        /**
+       /**
          * 滑动删除会话项
          */
       $scope.removechat=function (id,name) {
@@ -2372,8 +2391,10 @@ angular.module('message.controllers', [])
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      lat  = position.coords.latitude+0.006954;//   39.952728
-      long = position.coords.longitude+0.012647;//  116.329102
+      lat  = position.coords.latitude+0.006954;//   当前位置
+      long = position.coords.longitude+0.012647;//  当前位置 116.329102
+      // lat  = 39.9124;//   铁路总公司位置
+      // long = 116.333233;//  铁路总公司位置
       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       var map = new BMap.Map("container"); // 创建地图实例
       var point = new BMap.Point(long, lat); // 创建点坐标

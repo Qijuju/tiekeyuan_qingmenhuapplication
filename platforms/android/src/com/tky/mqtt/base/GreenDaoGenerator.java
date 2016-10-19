@@ -31,7 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "F:/xiao/dpan/WindowsApps/IM/platforms/android/src");//项目绝对路径
     }
 
 

@@ -10,6 +10,7 @@ public class MsgHistory {
     private String msg;
     private Long when;
     private String type;
+    private String personname;
 
     public MsgHistory() {
     }
@@ -18,11 +19,12 @@ public class MsgHistory {
         this._id = _id;
     }
 
-    public MsgHistory(String _id, String msg, Long when, String type) {
+    public MsgHistory(String _id, String msg, Long when, String type, String personname) {
         this._id = _id;
         this.msg = msg;
         this.when = when;
         this.type = type;
+        this.personname = personname;
     }
 
     public String get_id() {
@@ -55,6 +57,14 @@ public class MsgHistory {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPersonname() {
+        return personname;
+    }
+
+    public void setPersonname(String personname) {
+        this.personname = personname;
     }
 
 }

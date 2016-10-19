@@ -305,6 +305,10 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
+        if (!NetUtils.isConnect(cordova.getActivity())) {
+            setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
+            return;
+        }
         hasLogin = false;
         MqttOper.closeMqttConnection();
         UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));

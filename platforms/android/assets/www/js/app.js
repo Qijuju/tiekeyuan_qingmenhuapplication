@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     //登陆界面直接退出
 
     $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/tab/message///'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
+      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notifications'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
         if (backButtonPressedOnceToExit) {
           ionic.Platform.exitApp();
         } else {
@@ -41,7 +41,12 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
+      }else if ($location.path() == '/tab/message///'){
+        $ToastUtils.showToast('bukaixin');
+
       }else {
+        $ToastUtils.showToast('正常的返回');
+
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }

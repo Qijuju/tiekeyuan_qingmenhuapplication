@@ -77,6 +77,9 @@ angular.module('common.services', [])
       querySlowDataByDate:function (date, type,success, error) {
         greendao.querySlowDataByDate (date, type,success, error);
       },
+    queryDataByquery:function (query,success, error) {
+      greendao.queryDataByquery (query,success, error);
+    },
     };
 
   })
@@ -336,7 +339,7 @@ angular.module('common.services', [])
           //取到值后再重新存一次
           var queryTopContact = {};
           queryTopContact._id = msg[0]._id;
-          queryTopContact.phone = msg[0].phone;
+          queryTopContact.phone = phone;
           queryTopContact.name = msg[0].name;
           queryTopContact.type = msg[0].type;
           queryTopContact.count = messageCount + 1;

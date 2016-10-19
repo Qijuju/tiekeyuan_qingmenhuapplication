@@ -1612,7 +1612,7 @@ angular.module('contacts.controllers', [])
       $greendao.deleteAllData("SelectIdService",function (msg) {
 
       },function (err) {
-        
+
       })
 
       var selectInfo={};

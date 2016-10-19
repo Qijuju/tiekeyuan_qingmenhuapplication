@@ -90,16 +90,21 @@ public class MqttMessageCallback implements MqttCallback {
 
 				@Override
 				public void run() {
+					String messagetype = map.getMessagetype();
+					String tip = msgContent;
+					tip = "File".equals(messagetype) ? "【文件】" : tip;
+					tip = "Image".equals(messagetype) ? "【图片】" : tip;
+					tip = "LOCATION".equals(messagetype) ? "【定位】" : tip;
 					GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
 					if (fromUserId != null && !map.isFromMe()) {
 					if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
 						List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
 						if(groupChatsList.size() !=0){
 							String chatname = groupChatsList.get(0).getGroupName();
-							MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, msgContent, new Intent(context, MainActivity.class));
+							MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, tip, new Intent(context, MainActivity.class));
 						}
 					} else {
-						MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, msgContent, new Intent(context, MainActivity.class));
+						MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, tip, new Intent(context, MainActivity.class));
 					}
 					}
 					Intent intent = new Intent();

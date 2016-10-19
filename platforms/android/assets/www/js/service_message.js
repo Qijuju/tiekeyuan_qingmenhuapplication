@@ -56,7 +56,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       mainlist.unshift(data);
@@ -68,7 +67,6 @@ angular.module('message.services', [])
         if( mainlist[i].id === data){
           // alert("找出chat数组的要删除的数据"+i);
           mainlist.splice(i,1);
-          break;
         }
       }
       // alert("看看长度"+mainlist.length);
@@ -776,31 +774,33 @@ angular.module('message.services', [])
                     $greendao.saveObj('MessagesService', arriveMessage, function (data) {
                     }, function (err) {
                     });
-                    // alert(newMessage);
+
+                    var arrivepic={};
+                    arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                    arrivepic.from="false";
+                    arrivepic.sessionid=arriveMessage.sessionid;
+                    arrivepic.fromname=arriveMessage.username;
+                    arrivepic.toname="";
+                    arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                    arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                    arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                    arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                    arrivepic.filename=arriveMessage.message.split('###')[4];
+                    if(arriveMessage.messagetype=="Image"){
+                      arrivepic.type="image";
+                    }else if(arriveMessage.messagetype=="File"){
+                      arrivepic.type="file";
+                    }
+                    arrivepic.when=0;
+
+                    $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                    },function (err) {
+
+                    });
                   }
-                  var arrivepic={};
-                  arrivepic.filepicid=arriveMessage.message.split('###')[0];
-                  arrivepic.from="false";
-                  arrivepic.sessionid=arriveMessage.sessionid;
-                  arrivepic.fromname=arriveMessage.username;
-                  arrivepic.toname="";
-                  arrivepic.smallurl=arriveMessage.message.split('###')[1];
-                  arrivepic.bigurl=arriveMessage.message.split('###')[1];
-                  arrivepic.bytesize=arriveMessage.message.split('###')[2];
-                  arrivepic.megabyte=arriveMessage.message.split('###')[3];
-                  arrivepic.filename=arriveMessage.message.split('###')[4];
-                  if(arriveMessage.messagetype=="Image"){
-                    arrivepic.type="image";
-                  }else if(arriveMessage.messagetype=="File"){
-                    arrivepic.type="file";
-                  }
-                  arrivepic.when=0;
 
-                  $greendao.saveObj("FilePictureService",arrivepic,function (data) {
 
-                  },function (err) {
-
-                  });
                   $rootScope.$broadcast('msgs.update');
                   if (message.type === "User") {
                     $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
@@ -1126,9 +1126,9 @@ angular.module('message.services', [])
         // alert(localuser+"ssss");
         mqtt.sendMsg(topic, messageReal, function (message) {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
-            for(var i=0;i<danliao.length;i++){
-              if(danliao[i]._id === sqlid){
-                danliao.splice(i, 1);
+            for(var i=0;i<qunliao.length;i++){
+              if(qunliao[i]._id === sqlid){
+                qunliao.splice(i, 1);
                 $rootScope.$broadcast('msgs.update');
                 break;
               }
@@ -1144,9 +1144,9 @@ angular.module('message.services', [])
           return "成功";
         },function (message) {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
-            for(var i=0;i<danliao.length;i++){
-              if(danliao[i]._id === sqlid){
-                danliao.splice(i, 1);
+            for(var i=0;i<qunliao.length;i++){
+              if(qunliao[i]._id === sqlid){
+                qunliao.splice(i, 1);
                 $rootScope.$broadcast('msgs.update');
                 break;
               }
@@ -1155,6 +1155,10 @@ angular.module('message.services', [])
           messageReal.isFailure='true';
           qunliao .push(messageReal);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
+            if (data != 'success') {
+              messageReal._id = data;
+              // alert(messageDetail._id+"消息失败id"+data);
+            }
             $rootScope.$broadcast('msgs.error');
             // alert(data);
           },function (err) {
