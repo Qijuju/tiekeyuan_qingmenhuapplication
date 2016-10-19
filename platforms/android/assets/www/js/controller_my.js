@@ -36,7 +36,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         });
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
     });
 
 
@@ -417,6 +417,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             // $ToastUtils.showToast("收到群组未读消息时，查询chat列表" + err);
           });
           $scope.savemylastmsg=function () {
+
             $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.receiverssid, function (data) {
               $scope.lastText = data[0].message;//最后一条消息内容
               $scope.lastDate = data[0].when;//最后一条消息的时间
@@ -518,7 +519,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 arr.EM = string3;
               }
               $api.updateUserInfo(arr,function (msg) {
-                $ToastUtils.showToast("修改个人资料成功");
+                // $ToastUtils.showToast("修改个人资料成功");
                 $searchdatadianji.personDetaildianji($scope.UserIDforhou);
               },function (msg) {
                 $ToastUtils.showToast(msg)
@@ -568,7 +569,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
       // error
     });
   })
@@ -698,7 +699,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.$apply(function () {
             $scope.a=2
           })
-          $ToastUtils.showToast("请再输入一次")
+          // $ToastUtils.showToast("请再输入一次")
           setlock.reset();
           var checkopt = {
             chooseType: 3, // 3 , 4 , 5,
@@ -755,7 +756,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.$apply(function () {
             $scope.a=2
           })
-          $ToastUtils.showToast("请再输入一次")
+          // $ToastUtils.showToast("请再输入一次")
           setlock.reset();
           var checkopt = {
             chooseType: 3, // 3 , 4 , 5,

@@ -445,7 +445,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
 
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
       });
 
 

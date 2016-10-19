@@ -1365,6 +1365,11 @@ angular.module('message.controllers', [])
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
     // alert($location.path());
+    $mqtt.getUserInfo(function (msg) {
+      $mqtt.save('userNamea',  msg.userName);
+    }, function (msg) {
+    });
+
     $scope.a=false
     $scope.popadd=function () {
       if (!$scope.a){
@@ -2055,7 +2060,7 @@ angular.module('message.controllers', [])
       // $scope.totalpage=msg/10+1   ;
       // $ToastUtils.showToast($scope.totalpage)
     },function (msg) {
-      $ToastUtils.showToast("失败");
+      // $ToastUtils.showToast("失败");
     });
     $historyduifang.getHistoryduifanga("U",$scope.id,1,10);
     $scope.$on('historymsg.duifang',function (event) {
@@ -2500,7 +2505,7 @@ angular.module('message.controllers', [])
       // );
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
     });
 
     //返回
@@ -2620,7 +2625,7 @@ angular.module('message.controllers', [])
       marker.enableDragging();
       var myGeo = new BMap.Geocoder();
       $timeout(function () {
-        // $ToastUtils.showToast("网络超时")
+        $ToastUtils.showToast("网络超时")
         $ionicLoading.hide();
       },7000);
       // // 根据坐标得到地址描述
@@ -2648,7 +2653,7 @@ angular.module('message.controllers', [])
         // 创建地理编码实例
         var myGeo = new BMap.Geocoder();
         $timeout(function () {
-          // $ToastUtils.showToast("网络超时")
+          $ToastUtils.showToast("网络超时")
           $ionicLoading.hide();
         },7000);
         // // 根据坐标得到地址描述
@@ -2695,7 +2700,7 @@ angular.module('message.controllers', [])
       // );
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
     });
 
     //返回
