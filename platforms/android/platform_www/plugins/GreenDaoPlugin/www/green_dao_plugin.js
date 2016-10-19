@@ -86,4 +86,8 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
            exec(success, error, "GreenDaoPlugin", "queryDataByquery", [query]);
         }
 
+        exports.queryDataByIdAndIsread = function(sessionid,isread,success, error){//一般通知
+                   exec(success, error, "GreenDaoPlugin", "queryDataByIdAndIsread", [sessionid,isread]);
+            };
+
 });

@@ -161,4 +161,16 @@ public class MessagesService implements BaseInterface<Messages>{
                 .build()
                 .list();
     }
+
+    /**
+     * 根据对话框id+isread状态取出对应的messagelist
+     */
+
+    public List<Messages> queryDataByIdAndIsread(String sessionid,String isread){
+        return messagesDao.queryBuilder().orderDesc(MessagesDao.Properties.When)
+                .where(MessagesDao.Properties.Sessionid.eq(sessionid))
+                .where(MessagesDao.Properties.Isread.eq(isread))
+                .build()
+                .list();
+    }
 }

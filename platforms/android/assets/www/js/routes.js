@@ -28,7 +28,9 @@ angular.module('im.routes', [])
       .state('tab', {
         url: '/tab',
         abstract: true,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/tabs.html',
+        controller: 'tabsCtrl'
+
       })
       .state('welcome', {
         url: '/welcome',

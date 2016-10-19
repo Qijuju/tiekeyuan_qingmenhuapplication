@@ -22,6 +22,7 @@ public class Messages extends BaseDao {
     private String imgSrc;
     private String username;
     private String senderid;
+    private String isread;
 
     public Messages() {
     }
@@ -30,7 +31,7 @@ public class Messages extends BaseDao {
         this._id = _id;
     }
 
-    public Messages(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid) {
+    public Messages(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String isread) {
         this._id = _id;
         this.sessionid = sessionid;
         this.type = type;
@@ -44,6 +45,7 @@ public class Messages extends BaseDao {
         this.imgSrc = imgSrc;
         this.username = username;
         this.senderid = senderid;
+        this.isread = isread;
     }
 
     public String get_id() {
@@ -148,6 +150,14 @@ public class Messages extends BaseDao {
 
     public void setSenderid(String senderid) {
         this.senderid = senderid;
+    }
+
+    public String getIsread() {
+        return isread;
+    }
+
+    public void setIsread(String isread) {
+        this.isread = isread;
     }
 
 }
