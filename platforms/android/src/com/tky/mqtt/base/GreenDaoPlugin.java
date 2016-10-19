@@ -81,6 +81,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setIsDelete(jsonobj.getString("isDelete"));
             message.setImgSrc(jsonobj.getString("imgSrc"));
             message.setSenderid(jsonobj.getString("senderid"));
+            message.setIsread(jsonobj.getString("isread"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();
@@ -111,7 +112,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setImgSrc(jsonobj.getString("imgSrc"));
             chatList.setCount(jsonobj.getString("count"));
             chatList.setIsDelete(jsonobj.getString("isDelete"));
-            System.out.println(jsonobj.getLong("lastDate") + "");
+//            System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 chatList.setLastDate(0L);
             }else{
@@ -173,7 +174,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setCount(jsonobj.getString("count"));
             notifyList.setIsDelete(jsonobj.getString("isDelete"));
             notifyList.setLastDate(jsonobj.getLong("lastDate"));
-            System.out.println(jsonobj.getLong("lastDate") + "");
+//            System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 notifyList.setLastDate(0L);
             }else{
@@ -226,7 +227,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setCount(jsonobj.getString("count"));
             notifyList.setIsDelete(jsonobj.getString("isDelete"));
             notifyList.setLastDate(jsonobj.getLong("lastDate"));
-            System.out.println(jsonobj.getLong("lastDate") + "");
+//            System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 notifyList.setLastDate(0L);
             }else{
@@ -650,6 +651,26 @@ public class GreenDaoPlugin extends CordovaPlugin {
         } catch (JSONException e) {
             e.printStackTrace();
             setResult("查询失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+    }
+
+
+    /**
+     * MessageService新增带两参查询方法
+     */
+    public void queryDataByIdAndIsread(final  JSONArray args,final  CallbackContext callbackContext){
+        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+        try {
+            String sessionid=args.getString(0);
+            String isread=args.getString(1);
+            List<Messages> messagesList=messagesService.queryDataByIdAndIsread(sessionid, isread);
+            Gson gson=new Gson();
+            String jsonstr = gson.toJson(messagesList,new TypeToken<List<Messages>>(){}.getType());
+            setResult(new JSONArray(jsonstr),PluginResult.Status.OK,callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("查询失败",PluginResult.Status.ERROR,callbackContext);
         }
 
     }

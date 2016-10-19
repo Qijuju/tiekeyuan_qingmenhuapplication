@@ -10,6 +10,8 @@ import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
@@ -18,6 +20,7 @@ import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
+import com.tky.mqtt.services.MessagesService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -25,6 +28,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MqttMessageCallback implements MqttCallback {
 
@@ -107,11 +111,95 @@ public class MqttMessageCallback implements MqttCallback {
 						MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, tip, new Intent(context, MainActivity.class));
 					}
 					}
+					//入库(MESSAGE和CHATLIST表)
+					//消息转化完毕就入库
+					int count=0;
+					Messages messages=new Messages();
+//					map.set_id("");
+					/*if("".equals(map.get_id())){
+						message.set_id(UUID.randomUUID().toString());
+					}else{
+						messages.set_id(map.get_id());
+					}*/
+					messages.set_id(UUID.randomUUID().toString());
+					messages.setSessionid(map.getSessionid());
+					messages.setType(map.getType());
+					messages.setFrom(map.getFrom());
+					messages.setMessage(map.getMessage());
+					System.out.println("群事件"+map.getMessage());
+					messages.setMessagetype(map.getMessagetype());
+					messages.setPlatform(map.getPlatform());
+					messages.setWhen(map.getWhen());
+					messages.setIsFailure(map.getIsFailure());
+					messages.setIsDelete(map.getIsDelete());
+					messages.setImgSrc(map.getImgSrc());
+					messages.setUsername(map.getUsername());
+					messages.setSenderid(map.get_id());
+					messages.setIsread("0");
+					MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+					messagesService.saveObj(messages);
+					//统计未读数量
+					List<Messages> messagesList=messagesService.queryData("where sessionid =?", map.getSessionid());
+					for(int i =0;i<messagesList.size();i++){
+						messages=messagesList.get(i);
+						if("0".equals(messages.getIsread())){
+							count ++;
+						}
+					}
+					Messages lastmessages=messagesList.get(messagesList.size() - 1);
+					//将对话最后一条入库到chat表
+					/**
+					 * 1.先从数据库查询是否存在当前会话列表
+					 * 2.如果没有该会话，创建会话
+					 * 3.如果有该会话，则保存最后一条消息到chat表
+					 */
+					ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+					List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
+					ChatList chatList=new ChatList();
+					chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+					if(lastmessages.getType() == "Image"){
+						// alert("返回即时通");
+						chatList.setLastText("图片");//从数据库里取最后一条消息
+					}else if(lastmessages.getType() == "LOCATION"){
+						chatList.setLastText("位置");//从数据库里取最后一条消息
+					}else if(lastmessages.getType() ==  "File"){
+						chatList.setLastText("文件");//从数据库里取最后一条消息
+					}else {
+						chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+					}
+					chatList.setCount(count + "");//将统计的count未读数量存进去
+					chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+					chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+					chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+					if (chatLists.size() > 0) {
+						chatList.setId(chatLists.get(0).getId());
+						if(lastmessages.getType() == "User"){
+							chatList.setChatName(chatLists.get(0).getChatName());
+						}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+							GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+							List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+							chatList.setChatName(groupChatsList.get(0).getGroupName());
+						}
+						chatList.setIsDelete(chatLists.get(0).getIsDelete());
+						chatList.setChatType(chatLists.get(0).getChatType());
+					}else{
+						chatList.setId(lastmessages.getSessionid());
+						if(lastmessages.getType() == "User"){
+							chatList.setChatName(lastmessages.getUsername());
+						}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+							GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+							List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+							chatList.setChatName(groupChatsList.get(0).getGroupName());
+						}
+						chatList.setIsDelete(lastmessages.getIsDelete());
+						chatList.setChatType(lastmessages.getType());
+					}
+					chatListService.saveObj(chatList);//保存chatlist对象
 					Intent intent = new Intent();
 					intent.setAction(ReceiverParams.MESSAGEARRIVED);
 					intent.putExtra("topic", topic);
 					String json = GsonUtils.toJson(map, MessageBean.class);
-					System.out.println("完整的数据格式"+json);
+					System.out.println("完整的数据格式" + json);
 					intent.putExtra("content", json);
 					intent.putExtra("qos", msg.getQos());
 					msg.clearPayload();
@@ -164,6 +252,92 @@ public class MqttMessageCallback implements MqttCallback {
 
 			//处理特殊业务（例如：注销topic，注册topic等）
 			doDelTopic(groupID, eventMsgBean.getEventCode());
+			//入库(MESSAGE和CHATLIST表)
+			//消息转化完毕就入库
+			int count=0;
+			Messages messages=new Messages();
+//					map.set_id("");
+					/*if("".equals(map.get_id())){
+						message.set_id(UUID.randomUUID().toString());
+					}else{
+						messages.set_id(map.get_id());
+					}*/
+			messages.set_id(UUID.randomUUID().toString());
+			messages.setSessionid(eventBean.getSessionid());
+			messages.setType(eventBean.getType());
+			messages.setFrom(eventBean.getFrom());
+			messages.setMessage(eventBean.getMessage());
+			System.out.println("群事件"+eventBean.getMessage());
+			messages.setMessagetype(eventBean.getMessagetype());
+			messages.setPlatform(eventBean.getPlatform());
+			messages.setWhen(eventBean.getWhen());
+			messages.setIsFailure(eventBean.getIsFailure());
+			messages.setIsDelete(eventBean.getIsDelete());
+			messages.setImgSrc(eventBean.getImgSrc());
+			messages.setUsername(eventBean.getUsername());
+			messages.setSenderid(eventBean.get_id());
+			messages.setIsread("0");
+			MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+			messagesService.saveObj(messages);
+			//统计未读数量
+			List<Messages> messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
+			for(int i =0;i<messagesList.size();i++){
+				messages=messagesList.get(i);
+				if("0".equals(messages.getIsread())){
+					count ++;
+				}
+			}
+			Messages lastmessages=messagesList.get(messagesList.size() - 1);
+			//将对话最后一条入库到chat表
+			/**
+			 * 1.先从数据库查询是否存在当前会话列表
+			 * 2.如果没有该会话，创建会话
+			 * 3.如果有该会话，则保存最后一条消息到chat表
+			 */
+			ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+			List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
+			ChatList chatList=new ChatList();
+			chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+			System.out.println("消息类型"+lastmessages.getType());
+			if(lastmessages.getType() == "Image"){
+				// alert("返回即时通");
+				chatList.setLastText("图片");//从数据库里取最后一条消息
+				System.out.println("是不是图片");
+			}else if(lastmessages.getType() == "LOCATION"){
+				chatList.setLastText("位置");//从数据库里取最后一条消息
+			}else if(lastmessages.getType() ==  "File"){
+				chatList.setLastText("文件");//从数据库里取最后一条消息
+			}else {
+				chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+			}
+			chatList.setCount(count + "");//将统计的count未读数量存进去
+			chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+			chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+			chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+			if (chatLists.size() > 0) {
+				chatList.setId(chatLists.get(0).getId());
+				if(lastmessages.getType() == "User"){
+					chatList.setChatName(chatLists.get(0).getChatName());
+				}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+					GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+					List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+					chatList.setChatName(groupChatsList.get(0).getGroupName());
+				}
+				chatList.setIsDelete(chatLists.get(0).getIsDelete());
+				chatList.setChatType(chatLists.get(0).getChatType());
+			}else{
+				chatList.setId(lastmessages.getSessionid());
+				if(lastmessages.getType() == "User"){
+					chatList.setChatName(lastmessages.getUsername());
+				}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+					GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+					List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+					chatList.setChatName(groupChatsList.get(0).getGroupName());
+				}
+				chatList.setIsDelete(lastmessages.getIsDelete());
+				chatList.setChatType(lastmessages.getType());
+			}
+			chatListService.saveObj(chatList);//保存chatlist对象
 			Intent intent = new Intent();
 			intent.setAction(ReceiverParams.MESSAGEARRIVED);
 			intent.putExtra("topic", topic);
