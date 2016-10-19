@@ -42,4 +42,8 @@ public class ReceiverParams {
 	 * 打开文件管理器获取文件之后
 	 */
 	public static final String DOC_FILE_GET = "com.tky.mqtt.mqttserverdemo.doc_file_get";
+	/**
+	 * 拍照后获取到图片
+	 */
+	public static final String PHOTO_FILE_GET = "com.tky.mqtt.mqttserverdemo.photo_file_get";
 }

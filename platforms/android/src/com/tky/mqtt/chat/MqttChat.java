@@ -21,9 +21,11 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
+import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.paho.utils.PhotoUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.protocol.model.IMPException;
@@ -63,6 +65,7 @@ public class MqttChat extends CordovaPlugin {
      */
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
+    private PhotoFileReceiver photoFileReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -71,6 +74,11 @@ public class MqttChat extends CordovaPlugin {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ReceiverParams.DOC_FILE_GET);
         UIUtils.getContext().registerReceiver(docFileReceiver, filter);
+        //拍照后的图片广播
+        photoFileReceiver = new PhotoFileReceiver();
+        IntentFilter photoFilter = new IntentFilter();
+        photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
+        UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
     }
 
     @Override
@@ -523,6 +531,25 @@ public class MqttChat extends CordovaPlugin {
             setResult("-1", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 拍照
+     * @param args
+     * @param callbackContext
+     */
+    public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {
+        PhotoUtils.takePhoto(cordova.getActivity());
+        photoFileReceiver.setOnPhotoGetListener(new PhotoFileReceiver.OnPhotoGetListener() {
+            @Override
+            public void getPhoto(String filePath, String length, String formatSize, String fileName) {
+                try {
+                    setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void getIconDir(final JSONArray args, final CallbackContext callbackContext) {

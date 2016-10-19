@@ -199,6 +199,25 @@ angular.module('message.controllers', [])
       });
     };
 
+    $scope.takePhoto = function (topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.takePhoto(function (fileData) {
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'Image';
+          /*if (type === 'image') {
+            fileType = 'Image';
+          }*/
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
+          $scope.send_content = "";
+          keepKeyboardOpen();
+        });
+      }, function (err) {
+
+      });
+    };
+
     $scope.openDocumentWindow = function (type, topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(type, function (fileData) {
         /*$mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
@@ -952,6 +971,7 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
+
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
         // 当群未读消息lastGroupCount数变化的时候
@@ -1479,6 +1499,7 @@ angular.module('message.controllers', [])
      */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
+        alert("jinlaizhujiemian");
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         $scope.lastCount = $mqtt.getMsgCount();
         // 当群未读消息lastGroupCount数变化的时候
