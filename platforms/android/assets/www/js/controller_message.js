@@ -218,6 +218,7 @@ angular.module('message.controllers', [])
       });
     };
 
+
     $scope.openDocumentWindow = function (type, topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.openDocWindow(type, function (fileData) {
         /*$mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
@@ -644,7 +645,7 @@ angular.module('message.controllers', [])
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
-                // alert("后"+$mqtt.getDanliao()[i]._id);
+                alert("后"+ msgSingle._id);
                 $greendao.deleteObj('MessagesService',msgSingle,function (data) {
                   $mqtt.getDanliao().splice(i, 1);
                   $rootScope.$broadcast('msgs.update');
@@ -661,6 +662,11 @@ angular.module('message.controllers', [])
       });
 
     };
+
+    $scope.$on('sendFileProgress.update', function (event) {
+      $scope.$apply(function () {
+      });
+    });
 
     $scope.backFirstMenu = function () {
       // $mqtt.clearMsgCount();

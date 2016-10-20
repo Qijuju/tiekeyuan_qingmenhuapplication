@@ -11,7 +11,6 @@ import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
@@ -122,6 +121,7 @@ public class MqttMessageCallback implements MqttCallback {
 						messages.set_id(map.get_id());
 					}*/
 					messages.set_id(UUID.randomUUID().toString());
+					map.setId(messages.get_id());
 					messages.setSessionid(map.getSessionid());
 					messages.setType(map.getType());
 					messages.setFrom(map.getFrom());
@@ -263,6 +263,7 @@ public class MqttMessageCallback implements MqttCallback {
 						messages.set_id(map.get_id());
 					}*/
 			messages.set_id(UUID.randomUUID().toString());
+			eventBean.setId(messages.get_id());
 			messages.setSessionid(eventBean.getSessionid());
 			messages.setType(eventBean.getType());
 			messages.setFrom(eventBean.getFrom());

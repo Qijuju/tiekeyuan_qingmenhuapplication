@@ -45,3 +45,14 @@
   translateX(-50%);
   translateY(-50%)
 }
+.outbar{
+  border:1px solid #dedede;
+  background:#fff;
+  height:10px;
+  width:80%;
+  float:left;
+}
+.inbar{
+  height:9px;
+  display:block;
+}

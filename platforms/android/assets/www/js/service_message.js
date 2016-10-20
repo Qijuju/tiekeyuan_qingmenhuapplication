@@ -352,6 +352,16 @@ angular.module('message.services', [])
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
+        alert("测试：" + content);
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          for(var i=0;i<danliao.length;i++){
+            if(danliao[i]._id === sqlid){
+              danliao.splice(i, 1);
+              $rootScope.$broadcast('msgs.update');
+              break;
+            }
+          }
+        }
         //判断是不是位置
         if(messagetype === 'LOCATION'){
           // alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
@@ -366,15 +376,6 @@ angular.module('message.services', [])
           messageDetail.message=longt+","+lat;
         }
         mqtt.sendMsg(topic, messageDetail, function (message) {
-          if (sqlid != undefined && sqlid != null && sqlid != '') {
-            for(var i=0;i<danliao.length;i++){
-              if(danliao[i]._id === sqlid){
-                danliao.splice(i, 1);
-                $rootScope.$broadcast('msgs.update');
-                break;
-              }
-            }
-          }
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
           }
@@ -411,13 +412,14 @@ angular.module('message.services', [])
             messageDetail.message = picPath;
           }
           messageDetail.isFailure='true';
-          danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
-            $rootScope.$broadcast('msgs.error');
+            alert("data：" + data + "===" + messageDetail._id)
             if (data != 'success') {
               messageDetail._id = data;
+              danliao.push(messageDetail);
               // alert(messageDetail._id+"消息失败id"+data);
             }
+            $rootScope.$broadcast('msgs.error');
           },function (err) {
           });
           return "失败";
@@ -492,6 +494,13 @@ angular.module('message.services', [])
             }
           }*/
           messageDetail.message = sdata[1] + '###' + content;
+          //更新进度
+          if (!isNaN(sdata[2])) {
+            var sendProgress = parseInt(parseFloat(sdata[2])*100+'');
+            messageDetail.sendProgress = sendProgress === '-1' ? messageDetail.sendProgress : sendProgress;
+            // alert("发送进度：" + messageDetail.sendProgress);
+            $rootScope.$broadcast('sendFileProgress.update');
+          }
           $rootScope.$broadcast('msgs.update');
           if (sdata[2] != '1') {
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -577,7 +586,7 @@ angular.module('message.services', [])
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
-          arriveMessage._id='';
+          arriveMessage._id=message.id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
           // alert("监听消息类型"+arriveMessage.type);

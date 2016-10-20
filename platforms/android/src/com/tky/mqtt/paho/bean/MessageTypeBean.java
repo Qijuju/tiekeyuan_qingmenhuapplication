@@ -9,4 +9,16 @@ import java.io.Serializable;
  * 描述：
  */
 public class MessageTypeBean implements Serializable {
+    /**
+     * 消息的ID
+     */
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

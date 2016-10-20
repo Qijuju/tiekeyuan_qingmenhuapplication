@@ -3,6 +3,8 @@ package com.tky.mqtt.paho;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
@@ -115,6 +117,16 @@ public class MqttConnection {
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
                                 message.setQos(1);
                                 try {
+                                    WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                                    WifiInfo connInfo = wifiManager.getConnectionInfo();
+                                    int rssi= connInfo.getRssi();
+                                    ToastUtil.showSafeToast("信号强度值2：" + rssi + "===" + isConnected() + "===" + !NetUtils.isConnect(context));
+                                    if (rssi == -200) {
+                                        Intent intent = new Intent();
+                                        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                                        context.sendBroadcast(intent);
+                                        return;
+                                    }
                                     if (!isConnected() || !NetUtils.isConnect(context)) {
                                         Intent intent = new Intent();
                                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
