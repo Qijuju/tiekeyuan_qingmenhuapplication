@@ -697,7 +697,7 @@ angular.module('message.controllers', [])
 
     $scope.backFirstMenu = function (groupType) {
 
-      // alert("没有该人的会话11111"+$scope.userId+groupType);
+      // alert("没有该人的会话11111"+$scope.userId+$scope.groupType);
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
         if(data.length === 0){  //如果没有该会话，则先判断message表有无数据，有保存返回，没有直接返回
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId,function (data) {
@@ -791,11 +791,11 @@ angular.module('message.controllers', [])
                 // $ToastUtils.showToast("长度");
                 //往service里面传值，为了创建会话
                 $chatarr.getIdChatName($scope.userId,$scope.viewtitle);
-                $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
+                $scope.items = $chatarr.getAll($rootScope.isPersonSend,'User');
                 // alert($scope.items.length + "单聊长度");
                 $scope.$on('chatarr.update', function (event) {
                   $scope.$apply(function () {
-                    $scope.items = $chatarr.getAll($rootScope.isPersonSend,groupType);
+                    $scope.items = $chatarr.getAll($rootScope.isPersonSend,'User');
                     // alert("入完数据库了吗？");
                     $scope.saveUsrLastMsg();
                   });
