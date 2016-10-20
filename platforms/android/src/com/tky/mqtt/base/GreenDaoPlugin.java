@@ -75,7 +75,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setMessage(jsonobj.getString("message"));
             message.setMessagetype(jsonobj.getString("messagetype"));
             message.setPlatform(jsonobj.getString("platform"));
-            message.setWhen(System.currentTimeMillis());
+            if(jsonobj.getLong("when")== 0){
+                message.setWhen(0L);
+            }else{
+                message.setWhen(jsonobj.getLong("when"));
+            }
+            System.out.println(jsonobj.getLong("when") + "入库的时间");
             message.setIsFailure(jsonobj.getString("isFailure"));
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
@@ -112,7 +117,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setImgSrc(jsonobj.getString("imgSrc"));
             chatList.setCount(jsonobj.getString("count"));
             chatList.setIsDelete(jsonobj.getString("isDelete"));
-//            System.out.println(jsonobj.getLong("lastDate") + "");
+            System.out.println(jsonobj.getLong("lastDate") + "");
             if(jsonobj.getLong("lastDate")== 0){
                 chatList.setLastDate(0L);
             }else{
@@ -142,7 +147,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             SystemMsg systemMsg = new SystemMsg();
             if("".equals(jsonobj.getString("_id"))){
                 systemMsg.set_id(UUID.randomUUID().toString());
-            }else{
+            } else {
                 systemMsg.set_id(jsonobj.getString("_id"));
             }
             systemMsg.setSessionid(jsonobj.getString("sessionid"));
@@ -151,7 +156,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setMessage(jsonobj.getString("message"));
             systemMsg.setMessagetype(jsonobj.getString("messagetype"));
             systemMsg.setPlatform(jsonobj.getString("platform"));
-            systemMsg.setWhen(System.currentTimeMillis());
+//            systemMsg.setWhen(System.currentTimeMillis());
+            if(jsonobj.getLong("when")== 0){
+                systemMsg.setWhen(0L);
+            }else{
+                systemMsg.setWhen(jsonobj.getLong("when"));
+            }
             systemMsg.setIsFailure(jsonobj.getString("isFailure"));
             systemMsg.setUsername(jsonobj.getString("username"));
             systemMsg.setIsDelete(jsonobj.getString("isDelete"));
@@ -178,7 +188,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             if(jsonobj.getLong("lastDate")== 0){
                 notifyList.setLastDate(0L);
             }else{
-                notifyList.setLastDate(System.currentTimeMillis());
+                notifyList.setLastDate(jsonobj.getLong("lastDate"));
             }
             notifyList.setLastText(jsonobj.getString("lastText"));
             notifyList.setChatType(jsonobj.getString("chatType"));
@@ -231,7 +241,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             if(jsonobj.getLong("lastDate")== 0){
                 notifyList.setLastDate(0L);
             }else{
-                notifyList.setLastDate(System.currentTimeMillis());
+                notifyList.setLastDate(jsonobj.getLong("lastDate"));
             }
             notifyList.setLastText(jsonobj.getString("lastText"));
             notifyList.setChatType(jsonobj.getString("chatType"));

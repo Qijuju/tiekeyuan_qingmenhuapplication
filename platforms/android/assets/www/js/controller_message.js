@@ -821,7 +821,7 @@ angular.module('message.controllers', [])
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId,function (data) {
 
             if(data[0].messagetype === "Image"){
-              alert("返回即时通");
+              // alert("返回即时通");
               $scope.lastText = "[图片]";//最后一条消息内容
             }else if(data[0].messagetype === "LOCATION"){
               $scope.lastText = "[位置]";//最后一条消息内容
