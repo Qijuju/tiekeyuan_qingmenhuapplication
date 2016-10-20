@@ -918,10 +918,16 @@ angular.module('message.services', [])
             }else{
               if(message.type==="User"){
                 danliao.push(arriveMessage);
+                $rootScope.$broadcast('msgs.update');
               }else if(message.type ==="Group" || message.type ==="Dept"){
                 qunliao.push(arriveMessage);
+                $rootScope.$broadcast('msgs.update');
               }
-              $rootScope.$broadcast('msgs.update');
+              $rootScope.firstSessionid=arriveMessage.sessionid;
+              $rootScope.firstUserName=arriveMessage.username;
+              $rootScope.messagetype= arriveMessage.type;
+              // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+
               // $greendao.saveObj('MessagesService',arriveMessage,function (data) {
               //   if(message.type==="User"){
               //     danliao.push(arriveMessage);
