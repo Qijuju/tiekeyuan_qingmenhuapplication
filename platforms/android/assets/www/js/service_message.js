@@ -343,7 +343,8 @@ angular.module('message.services', [])
           messagetype = 'normal';
         }
         messageDetail.message=content;
-        messageDetail.messagetype='normal';
+        messageDetail.messagetype=messagetype;
+        // alert("发送的类型"+messagetype);
         messageDetail.platform='Windows';
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
@@ -357,6 +358,9 @@ angular.module('message.services', [])
           // alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              if (data != 'success') {
+                messageDetail._id = data;
+              }
               $rootScope.$broadcast('msgs.update');
             },function (err) {
             });
@@ -380,13 +384,16 @@ angular.module('message.services', [])
           }
           if(messagetype === 'LOCATION'){
             messageDetail.message=content;
-            // alert("发送出去后的类型"+messageDetail.messagetype);
+            // alert("发送过去的定位内容"+messageDetail.message);
           }
           //判断是不是位置
           if(!(messagetype === 'LOCATION')){
             // alert("进来保存信息了吗");
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              if (data != 'success') {
+                messageDetail._id = data;
+              }
               // alert("进来保存信息了吗"+data.length);
               $rootScope.$broadcast('msgs.update');
             },function (err) {
@@ -596,7 +603,7 @@ angular.module('message.services', [])
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
           // alert("进来了吗"+message.type);
-          if(message.type === 'Platform'){
+          if(message.type === 'Platform'){             //当消息为系统通知时
             // alert("进来了吗紧急"+message.msgLevel);
             arriveMessage.msglevel=message.msgLevel;
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
@@ -651,7 +658,7 @@ angular.module('message.services', [])
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.msglevel;
             // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
-          }else if (message.type === "Alarm" || message.type === "System") {   //文件或者图片
+          } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
               // alert(data.length+"收通知消息");
             },function (err) {
@@ -676,7 +683,7 @@ angular.module('message.services', [])
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
-          }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){//普通消息
+          }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){       //消息模块
             if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
               var objectTP = 'I';
               if (message.messagetype === "Image") {
@@ -688,14 +695,17 @@ angular.module('message.services', [])
               arriveMessage.message = '';
               danliao.push(arriveMessage);
               $rootScope.$broadcast('msgs.update');
-              if (objectTP === 'F') {
+              if (objectTP === 'F') {             //当发送消息的为图片时
                 // alert("文件传输啊的的的大的的的的的的的")
-
                 arriveMessage.message = newMessage;
-                $rootScope.$broadcast('msgs.update');
-                $greendao.saveObj('MessagesService', arriveMessage, function (data) {
-                }, function (err) {
-                });
+                //当文件下载完了，入数组，无需入库(因为在java后端已经入库了)
+                if(message.type==="User"){
+                  danliao.push(arriveMessage);
+                  $rootScope.$broadcast('msgs.update');
+                }else if(message.type ==="Group" || message.type ==="Dept"){
+                  qunliao.push(arriveMessage);
+                  $rootScope.$broadcast('msgs.update');
+                }
 
                 var arrivefile={};
                 arrivefile.filepicid=arriveMessage.message.split('###')[0];
@@ -721,65 +731,29 @@ angular.module('message.services', [])
 
                 });
 
-                if (message.type === "User") {
-                  $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
-                    if (data.length > 0) {
-                      count = data[0].count;
-                      // alert("有值"+groupCount);
-                      count++;
-                      $rootScope.$broadcast('msgs.update');
-                    } else {
-                      count = 0;
-                      // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                      count++;
-                      $rootScope.$broadcast('msgs.update');
-                      // alert("groupCount"+groupCount);
-                    }
-                  }, function (err) {
-                    // alert(err);
-                  });
-                  // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
-                  $rootScope.firstSessionid = arriveMessage.sessionid;
-                  $rootScope.firstUserName = arriveMessage.username;
-                  $rootScope.messagetype = arriveMessage.type;
+                if(message.type==="User"){
+                  danliao.push(arriveMessage);
                   $rootScope.$broadcast('msgs.update');
-                  // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
-                } else {
-                  $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
-                    if (data.length > 0) {
-                      groupCount = data[0].count;
-                      // alert("有值"+groupCount);
-                      groupCount++;
-                      $rootScope.$broadcast('msgs.update');
-                    } else {
-                      groupCount = 0;
-                      // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                      groupCount++;
-                      $rootScope.$broadcast('msgs.update');
-                      // alert("groupCount"+groupCount);
-                    }
-                  }, function (err) {
-                    // alert(err);
-                  });
-                  // alert("测测是不是先出来");
-
-                  $rootScope.firstSessionid = arriveMessage.sessionid;
-                  $rootScope.firstUserName = arriveMessage.username;
-                  $rootScope.messagetype = arriveMessage.type;
-                  // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+                }else if(message.type ==="Group" || message.type ==="Dept"){
                   qunliao.push(arriveMessage);
+                  $rootScope.$broadcast('msgs.update');
                 }
-            } else {
+
+            } else if(objectTP === 'I'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
                   // alert("图片下载成功了啊的的的大的的的的的的的")
                   if (data === '100') {
                     arriveMessage.message = newMessage;
-                    $rootScope.$broadcast('msgs.update');
-                    $greendao.saveObj('MessagesService', arriveMessage, function (data) {
-                    }, function (err) {
-                    });
+                    //当图片下载完了，入数组，无需入库(因为在java后端已经入库了)
+                    if(message.type==="User"){
+                      danliao.push(arriveMessage);
+                      $rootScope.$broadcast('msgs.update');
+                    }else if(message.type ==="Group" || message.type ==="Dept"){
+                      qunliao.push(arriveMessage);
+                      $rootScope.$broadcast('msgs.update');
+                    }
 
                     var arrivepic={};
                     arrivepic.filepicid=arriveMessage.message.split('###')[0];
@@ -806,116 +780,21 @@ angular.module('message.services', [])
                     });
                   }
 
-
-                  $rootScope.$broadcast('msgs.update');
-                  if (message.type === "User") {
-                    $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
-                      if (data.length > 0) {
-                        count = data[0].count;
-                        // alert("有值"+groupCount);
-                        count++;
-                        $rootScope.$broadcast('msgs.update');
-                      } else {
-                        count = 0;
-                        // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                        count++;
-                        $rootScope.$broadcast('msgs.update');
-                        // alert("groupCount"+groupCount);
-                      }
-                    }, function (err) {
-                      // alert(err);
-                    });
-                    // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
-                    $rootScope.firstSessionid = arriveMessage.sessionid;
-                    $rootScope.firstUserName = arriveMessage.username;
-                    $rootScope.messagetype = arriveMessage.type;
-                    $rootScope.$broadcast('msgs.update');
-                    // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
-                  } else {
-                    $greendao.queryData("ChatListService", "where id =?", arriveMessage.sessionid, function (data) {
-                      if (data.length > 0) {
-                        groupCount = data[0].count;
-                        // alert("有值"+groupCount);
-                        groupCount++;
-                        $rootScope.$broadcast('msgs.update');
-                      } else {
-                        groupCount = 0;
-                        // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                        groupCount++;
-                        $rootScope.$broadcast('msgs.update');
-                        // alert("groupCount"+groupCount);
-                      }
-                    }, function (err) {
-                      // alert(err);
-                    });
-                    // alert("测测是不是先出来");
-
-                    $rootScope.firstSessionid = arriveMessage.sessionid;
-                    $rootScope.firstUserName = arriveMessage.username;
-                    $rootScope.messagetype = arriveMessage.type;
-                    // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
-                    qunliao.push(arriveMessage);
-                  }
-
                 }, function (err) {
                   $ToastUtils.showToast("图片下载失败" + err);
                 });
               }
 
-            }else if(message.messagetype === "LOCATION"){
-              $greendao.saveObj('MessagesService',arriveMessage,function (data) {
-              },function (err) {
-              });
+            }else if(message.messagetype === "LOCATION"){         //当消息为定位时
               if(message.type==="User"){
-                $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
-                  if(data.length>0){
-                    count=data[0].count;
-                    // alert("有值"+groupCount);
-                    count++;
-                    $rootScope.$broadcast('msgs.update');
-                  }else{
-                    count =0;
-                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                    count++;
-                    $rootScope.$broadcast('msgs.update');
-                    // alert("groupCount"+groupCount);
-                  }
-                },function (err) {
-                  // alert(err);
-                });
-                // alert("接受消息的sessionid"+arriveMessage.sessionid+arriveMessage.username);
-                $rootScope.firstSessionid=arriveMessage.sessionid;
-                $rootScope.firstUserName=arriveMessage.username;
-                $rootScope.messagetype= arriveMessage.type;
-                $rootScope.$broadcast('msgs.update');
-                // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype);
                 danliao.push(arriveMessage);
-              }else{
+                $rootScope.$broadcast('msgs.update');
+              }else if(message.type ==="Group" || message.type ==="Dept"){
                 qunliao.push(arriveMessage);
-                $greendao.queryData("ChatListService","where id =?",arriveMessage.sessionid,function (data) {
-                  if(data.length>0){
-                    groupCount=data[0].count;
-                    // alert("有值"+groupCount);
-                    groupCount++;
-                    $rootScope.$broadcast('msgs.update');
-                  }else{
-                    groupCount =0;
-                    // alert("接受群消息service"+data.length+arriveMessage.sessionid);
-                    groupCount++;
-                    $rootScope.$broadcast('msgs.update');
-                    // alert("groupCount"+groupCount);
-                  }
-                },function (err) {
-                  // alert(err);
-                });
-                // alert("测测是不是先出来");
-
-                $rootScope.firstSessionid=arriveMessage.sessionid;
-                $rootScope.firstUserName=arriveMessage.username;
-                $rootScope.messagetype= arriveMessage.type;
-                // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
+                $rootScope.$broadcast('msgs.update');
               }
-            }else{
+
+            }else{       //当消息为文本时
               if(message.type==="User"){
                 danliao.push(arriveMessage);
                 $rootScope.$broadcast('msgs.update');
