@@ -1832,7 +1832,7 @@ angular.module('message.controllers', [])
      */
     $scope.$on('leave.update',function (event) {
       // $scope.$apply(function () {
-        alert("单聊离开界面时");
+      //   alert("单聊离开界面时");
 
       // alert("没有该人的会话11111"+$scope.userId+groupType);
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
