@@ -693,7 +693,10 @@ angular.module('message.services', [])
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
+              // danliao.push(arriveMessage);
+              // $rootScope.$broadcast('msgs.update');
               if (objectTP === 'F') {             //当发送消息的为图片时
+                // alert("文件传输啊的的的大的的的的的的的")
                 arriveMessage.message = newMessage;
                 //当文件下载完了，入数组，无需入库(因为在java后端已经入库了)
                 if(message.type==="User"){

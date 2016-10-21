@@ -5244,10 +5244,10 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   position: absolute;
   top: 4%;
   right: 33%;
-  right: calc(50% - 26px);
+  right: calc(50% - 28px);
   padding: 1px 6px;
   height: auto;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 16px; }
 
 /* Navigational tab */

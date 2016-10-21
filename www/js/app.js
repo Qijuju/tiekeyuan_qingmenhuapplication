@@ -8,7 +8,7 @@
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
   'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
   'my.controllers','search.controllers','selectgroup.controllers','notification.controllers','common.services','contacts.services',
-  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers'])
+  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers'])
 
 /*'im.controllers', 'starter.services',*/
   .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     //登陆界面直接退出
 
     $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notifications'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
+      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notifications'||$location.path() == '/tab/message///'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
         if (backButtonPressedOnceToExit) {
           ionic.Platform.exitApp();
         } else {
@@ -48,31 +48,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       e.preventDefault();
       return false;
     }, 501);
-    /*//主页面显示退出提示框
-    $ionicPlatform.registerBackButtonAction(function (e) {
-
-      e.preventDefault();
-      // Is there a page to go back to?
-      if ($location.path() == '/messageDetail' ) {
-
-        $mqtt.clearMsgCount();
-        $state.go('tab.message');
-
-
-      } else if($location.path() == '/messageGroup'){
-        $mqtt.clearGroupMsgCount();
-        $state.go('tab.message');
-      } else if ($ionicHistory.backView()) {
-        $ionicHistory.goBack();
-      }
-
-      return false;
-    }, 101);*/
-
-
-
-
-
 
 
   });

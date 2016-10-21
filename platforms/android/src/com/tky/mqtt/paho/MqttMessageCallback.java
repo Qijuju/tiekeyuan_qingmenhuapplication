@@ -144,6 +144,7 @@ public class MqttMessageCallback implements MqttCallback {
 						messages=messagesList.get(i);
 						if("0".equals(messages.getIsread())){
 							count ++;
+							System.out.println("sfss"+count);
 						}
 					}
 					Messages lastmessages=messagesList.get(messagesList.size() - 1);

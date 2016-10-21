@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory) {
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
@@ -650,14 +650,17 @@ angular.module('message.controllers', [])
     };
 
     $scope.backFirstMenu = function (groupType) {
+      $ionicHistory.nextViewOptions({
+       disableBack: true
+       });
 
-      alert("没有该人的会话11111"+$scope.userId+groupType);
+      // alert("没有该人的会话11111"+$scope.userId+groupType);
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
         if(data.length === 0){  //如果没有该会话，则先判断message表有无数据，有保存返回，没有直接返回
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.userId,function (data) {
             //保存最后一条消息(公有方法)，先初始化
             $scope.saveUsrLastMsg=function () {
-              alert("进来最后一条消息保存");
+              // alert("进来最后一条消息保存");
               //没有会话，但是该聊天列表有消息，则创建会话列表，并保存最后一条消息
 
               if(data[0].messagetype === "Image"){
@@ -691,19 +694,19 @@ angular.module('message.controllers', [])
                 chatitem.chatType = data[0].chatType;
                 chatitem.senderId = $scope.srcId;//发送者id
                 chatitem.senderName = $scope.srcName;//发送者名字
-                alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
+                // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 // //保存到数据库chat表
                 $greendao.saveObj('ChatListService',chatitem,function (data) {
-                  alert("进来最后一条数据chat表保存啦");
+                  // alert("进来最后一条数据chat表保存啦");
                   $greendao.queryDataByIdAndIsread($scope.userId,'0',function (data) {
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
-                        alert("进入for循环的长度"+data.length);
+                        // alert("进入for循环的长度"+data.length);
                         var messaegeitem={};
                         messaegeitem._id=data[i]._id;
                         messaegeitem.sessionid=data[i].sessionid;
                         messaegeitem.type=data[i].type;
-                        alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+                        // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
                         messaegeitem.from=data[i].from;
                         messaegeitem.message=data[i].message;
                         messaegeitem.messagetype=data[i].messagetype;
@@ -715,12 +718,12 @@ angular.module('message.controllers', [])
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
                         if(data[i].isread ==='0'){
-                          alert("拿到库里的消息阅读状态"+data[i].isread);
+                          // alert("拿到库里的消息阅读状态"+data[i].isread);
                           data[i].isread ='1';
                           messaegeitem.isread=data[i].isread;
-                          alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                            alert("保存成功");
+                            // alert("保存成功");
                             $state.go("tab.message", {
                               "id": $scope.userId,
                               "sessionid": $scope.chatName,
@@ -758,7 +761,7 @@ angular.module('message.controllers', [])
                 $scope.$on('chatarr.update', function (event) {
                   $scope.$apply(function () {
                     $scope.items = $chatarr.getAll($rootScope.isPersonSend,'User');
-                    alert("入完数据库了吗？");
+                    // alert("入完数据库了吗？");
                     $scope.saveUsrLastMsg();
                   });
                 });
@@ -807,19 +810,19 @@ angular.module('message.controllers', [])
               chatitem.chatType = data[0].chatType;
               chatitem.senderId = $scope.srcId;//发送者id
               chatitem.senderName = $scope.srcName;//发送者名字
-              alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
+              // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               //保存到数据库chat表
               $greendao.saveObj('ChatListService',chatitem,function (data) {
-                alert("进来最后一条数据chat表保存啦");
+                // alert("进来最后一条数据chat表保存啦");
                 $greendao.queryDataByIdAndIsread($scope.userId,'0',function (data) {
                   if(data.length>0){
                     for(var i=0;i<data.length;i++){
-                      alert("进入for循环的长度"+data.length);
+                      // alert("进入for循环的长度"+data.length);
                       var messaegeitem={};
                       messaegeitem._id=data[i]._id;
                       messaegeitem.sessionid=data[i].sessionid;
                       messaegeitem.type=data[i].type;
-                      alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+                      // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
                       messaegeitem.from=data[i].from;
                       messaegeitem.message=data[i].message;
                       messaegeitem.messagetype=data[i].messagetype;
@@ -836,7 +839,7 @@ angular.module('message.controllers', [])
                         messaegeitem.isread=data[i].isread;
                         // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                         $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                          alert("保存成功");
+                          // alert("保存成功");
                           //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                           $state.go("tab.message", {
                             "id": $scope.userId,
@@ -1029,24 +1032,34 @@ angular.module('message.controllers', [])
       })
     });
 
-    $scope.$on('leave.update',function (event) {
-      // $scope.$apply(function () {
-        alert("单聊离开界面时");
-        $scope.backFirstMenu('User');
-      // })
+    $scope.$on('$ionicView.afterLeave', function () {
+      // alert("单聊after离开");
+      $rootScope.$broadcast('noread.update');
+
     });
 
-    /**
-     * 当离开界面时将最后一条消息显示在chat表上
-     */
-    $scope.$on('$ionicView.afterLeave',function () {
-      $rootScope.$broadcast('leave.update');
-    });
+    // $scope.$on('leave.update',function (event) {
+    //   // $scope.$apply(function () {
+    //     alert("单聊离开界面时");
+    //     $scope.backFirstMenu('User');
+    //   // })
+    // });
+    //
+    // /**
+    //  * 当离开界面时将最后一条消息显示在chat表上
+    //  */
+    // $scope.$on('$ionicView.leave',function () {
+    //   $rootScope.$broadcast('leave.update');
+    // });
 
   })
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils) {
+
+
+
+
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
     /**
      * 从其他应用界面跳转带参赋值
      */
@@ -1054,6 +1067,8 @@ angular.module('message.controllers', [])
     $scope.chatname=$stateParams.chatName;
     $scope.grouptype=$stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+
     // alert("新建群时"+$scope.groupid+$scope.chatname+$scope.ismygroup);
     /**
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
@@ -1416,8 +1431,11 @@ angular.module('message.controllers', [])
     });
 
     $scope.backSecondMenu = function (grouptype) {
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
 
-      alert("没有该人的会话11111"+$scope.groupid+grouptype);
+      // alert("没有该人的会话11111"+$scope.groupid+grouptype);
       $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
         if(data.length === 0){  //如果没有该会话，则先判断message表有无数据，有保存返回，没有直接返回
           $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,1', $scope.groupid,function (data) {
@@ -1495,7 +1513,7 @@ angular.module('message.controllers', [])
                   //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                   $state.go("tab.message", {
                     "id": $scope.groupid,
-                    "sessionid": $scope.chatName,
+                    "sessionid": $scope.chatname,
                     "grouptype":$scope.grouptype
                   });
                 },function (err) {
@@ -1523,7 +1541,7 @@ angular.module('message.controllers', [])
             }else{
               $state.go("tab.message", {
                 "id": $scope.groupid,
-                "sessionid": $scope.chatName,
+                "sessionid":$scope.chatname,
                 "grouptype":$scope.grouptype
               });
             }
@@ -1601,7 +1619,7 @@ angular.module('message.controllers', [])
                 //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                 $state.go("tab.message", {
                   "id": $scope.groupid,
-                  "sessionid": $scope.chatName,
+                  "sessionid":$scope.chatname,
                   "grouptype":$scope.grouptype
                 });
               },function (err) {
@@ -1785,14 +1803,20 @@ angular.module('message.controllers', [])
       });
     }
 
+    $scope.$on('$ionicView.afterLeave', function () {
+      // alert("群组after离开");
+      $rootScope.$broadcast('noread.update');
+
+    });
+
 
       /**
        * 当离开界面时将最后一条消息显示在chat表上
        */
-    $scope.$on('$ionicView.afterLeave',function () {
-      alert("离开界面时");
-      $scope.backSecondMenu($scope.grouptype);
-    });
+    // $scope.$on('$ionicView.leave',function () {
+    //   // alert("离开界面时");
+    //   $scope.backSecondMenu($scope.grouptype);
+    // });
 
   })
 
@@ -1914,7 +1938,7 @@ angular.module('message.controllers', [])
 
     //如果不是创建聊天，就直接从数据库里取列表数据
     $greendao.queryByConditions('ChatListService',function (data) {
-      alert("创建群成功以后，有没有走这个方法"+data.length);
+      // alert("创建群成功以后，有没有走这个方法"+data.length);
       $chatarr.setData(data);
       $scope.items=$chatarr.getAllData();
       // $ToastUtils.showToast($scope.items.length+"聊天列表长度");
@@ -2310,7 +2334,7 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("进入群聊界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-        $greendao.queryData('GroupChatsService','where id =?',id,function (data) {
+        $greendao.queryData('GroupChatsService','where id =?',id,function (dataa) {
           $greendao.queryData('ChatListService','where id =?',id,function (data) {
             if(data.length>0){
               // alert("进来查询了吗？"+data.length);
@@ -2361,9 +2385,9 @@ angular.module('message.controllers', [])
                 });
                 $state.go('messageGroup',{
                   "id":id,
-                  "chatName":ssid,
-                  "grouptype":chatType,
-                  "ismygroup":data[0].ismygroup,
+                  "chatName":dataa[0].groupName,
+                  "grouptype":dataa[0].groupType,
+                  "ismygroup":dataa[0].ismygroup,
                 });
               },function (err) {
 
@@ -2372,9 +2396,9 @@ angular.module('message.controllers', [])
               // alert("是不是没有数据");
               $state.go('messageGroup',{
                 "id":id,
-                "chatName":ssid,
-                "grouptype":chatType,
-                "ismygroup":data[0].ismygroup,
+                "chatName":dataa[0].groupName,
+                "grouptype":dataa[0].groupType,
+                "ismygroup":dataa[0].ismygroup,
               });
             }
           },function (err) {
@@ -2425,7 +2449,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory) {
 
 
 
@@ -2498,10 +2522,15 @@ angular.module('message.controllers', [])
     //返回到聊天记录界面
     $scope.gobackmsgdetail=function (id,ssid) {
       // $ToastUtils.showToast("返回聊天界面"+id+ssid);
-      $state.go('messageDetail',{
-        id:id,
-        ssid:ssid
-      });
+      /*$ionicHistory.nextViewOptions({
+       disableBack: true
+       });
+       $state.go('messageDetail',{
+       id:id,
+       ssid:ssid
+       });*/
+
+      $ionicHistory.goBack();
     };
 
     //清空聊天记录
