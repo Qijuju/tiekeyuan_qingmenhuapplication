@@ -693,8 +693,8 @@ angular.module('message.services', [])
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
-              danliao.push(arriveMessage);
-              $rootScope.$broadcast('msgs.update');
+              // danliao.push(arriveMessage);
+              // $rootScope.$broadcast('msgs.update');
               if (objectTP === 'F') {             //当发送消息的为图片时
                 // alert("文件传输啊的的的大的的的的的的的")
                 arriveMessage.message = newMessage;
@@ -730,15 +730,6 @@ angular.module('message.services', [])
                 },function (err) {
 
                 });
-
-                if(message.type==="User"){
-                  danliao.push(arriveMessage);
-                  $rootScope.$broadcast('msgs.update');
-                }else if(message.type ==="Group" || message.type ==="Dept"){
-                  qunliao.push(arriveMessage);
-                  $rootScope.$broadcast('msgs.update');
-                }
-
             } else if(objectTP === 'I'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");

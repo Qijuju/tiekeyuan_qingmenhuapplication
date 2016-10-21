@@ -1179,14 +1179,16 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
     /**
      * 从其他应用界面跳转带参赋值
      */
     $scope.groupid=$stateParams.id;
-    $scope.chatname=$stateParams.chatName;
+    $scope.groupName=$stateParams.chatName;
     $scope.grouptype=$stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+
     // alert("新建群时"+$scope.groupid+$scope.chatname+$scope.ismygroup);
     /**
      * 全局的当前用户和id进行赋值，并且将发送消息的id置为‘’
@@ -1549,6 +1551,9 @@ angular.module('message.controllers', [])
     });
 
     $scope.backSecondMenu = function (grouptype) {
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
 
       // alert("没有该人的会话11111"+$scope.groupid+grouptype);
       $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -1626,6 +1631,7 @@ angular.module('message.controllers', [])
                   },function (err) {
                   });
                   //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
+                  alert($scope.groupid+$scope.chatName+$scope.grouptype)
                   $state.go("tab.message", {
                     "id": $scope.groupid,
                     "sessionid": $scope.chatName,
@@ -2442,7 +2448,7 @@ angular.module('message.controllers', [])
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid,chatType) {
       $scope.a=false;
-      // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
+      //$ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
       $mqtt.clearMsgGroupCount();
       if(chatType === "User"){
@@ -2593,10 +2599,10 @@ angular.module('message.controllers', [])
         });
 
       }else if(chatType === "Group"){
-        // $ToastUtils.showToast("进入群聊界面");
+        //$ToastUtils.showToast("进入群聊界面");
         // $mqtt.clearMsgGroupCount();
         // $scope.lastGroupCount = $mqtt.getMsgGroupCount();
-        $greendao.queryData('GroupChatsService','where id =?',id,function (data) {
+        $greendao.queryData('GroupChatsService','where id =?',id,function (dataa) {
           $greendao.queryData('ChatListService','where id =?',id,function (data) {
             if(data.length>0){
               // alert("进来查询了吗？"+data.length);
@@ -2647,9 +2653,9 @@ angular.module('message.controllers', [])
                 });
                 $state.go('messageGroup',{
                   "id":id,
-                  "chatName":ssid,
-                  "grouptype":chatType,
-                  "ismygroup":data[0].ismygroup,
+                  "chatName":dataa[0].groupName,
+                  "grouptype":dataa[0].groupType,
+                  "ismygroup":dataa[0].ismygroup,
                 });
               },function (err) {
 
@@ -2658,9 +2664,9 @@ angular.module('message.controllers', [])
               // alert("是不是没有数据");
               $state.go('messageGroup',{
                 "id":id,
-                "chatName":ssid,
-                "grouptype":chatType,
-                "ismygroup":data[0].ismygroup,
+                "chatName":dataa[0].groupName,
+                "grouptype":dataa[0].groupType,
+                "ismygroup":dataa[0].ismygroup,
               });
             }
           },function (err) {
@@ -2693,7 +2699,24 @@ angular.module('message.controllers', [])
 
       },function (err) {
 
-      })
+      });
+      //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
        /**
          * 滑动删除会话项
@@ -2711,7 +2734,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory) {
 
 
 
@@ -2784,10 +2807,15 @@ angular.module('message.controllers', [])
     //返回到聊天记录界面
     $scope.gobackmsgdetail=function (id,ssid) {
       // $ToastUtils.showToast("返回聊天界面"+id+ssid);
+      /*$ionicHistory.nextViewOptions({
+        disableBack: true
+      });
       $state.go('messageDetail',{
         id:id,
         ssid:ssid
-      });
+      });*/
+
+      $ionicHistory.goBack();
     };
 
     //清空聊天记录

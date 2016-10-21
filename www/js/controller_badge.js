@@ -16,7 +16,6 @@ angular.module('badge.controllers',[])
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         $scope.allNoRead=0;
-
         $greendao.loadAllData('ChatListService',function (msg) {
 
           if (msg.length>0){
