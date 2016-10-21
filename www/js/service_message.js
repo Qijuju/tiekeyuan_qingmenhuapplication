@@ -79,6 +79,9 @@ angular.module('message.services', [])
       $rootScope.id=id;
       $rootScope.username=chatname;
       // alert("先收到"+$rootScope.id+$rootScope.username);
+    },
+    setIdToMc:function (id) {
+      return id;
     }
   }
 })

@@ -1035,15 +1035,11 @@ angular.module('message.controllers', [])
     $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
+      $rootScope.$broadcast('leave.update');
 
     });
 
-    // $scope.$on('leave.update',function (event) {
-    //   // $scope.$apply(function () {
-    //     alert("单聊离开界面时");
-    //     $scope.backFirstMenu('User');
-    //   // })
-    // });
+
     //
     // /**
     //  * 当离开界面时将最后一条消息显示在chat表上
@@ -1874,6 +1870,15 @@ angular.module('message.controllers', [])
       })
     });
 
+    /**
+     * 监听聊天界面返回
+     */
+    $scope.$on('leave.update',function (event) {
+      // $scope.$apply(function () {
+        alert("单聊离开界面时");
+        // $scope.backFirstMenu('User');
+      // })
+    });
 
     $scope.$on('logindept.update', function (event) {
       $scope.$apply(function () {
