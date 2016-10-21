@@ -45,4 +45,7 @@ exec(success, error, "MqttChat", "getIconDir", [])
 exports.getFileContent =function(filePath, success,error){//拍照后发送图片需要的数据
 exec(success, error, "MqttChat", "getFileContent", [filePath])
 };
+exports.takePhoto =function(success,error){//拍照
+exec(success, error, "MqttChat", "takePhoto", [])
+};
 });

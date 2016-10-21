@@ -1137,6 +1137,9 @@ angular.module('message.services', [])
       },
       getFileContent:function (filePath, success, error) {
         mqtt.getFileContent(filePath, success, error);
+      },
+      takePhoto:function (success, error) {//拍照方法
+        mqtt.takePhoto(success, error);
       }
 
 
