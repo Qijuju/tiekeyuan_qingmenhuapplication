@@ -193,6 +193,25 @@ angular.module('message.controllers', [])
       });
     };
 
+    $scope.takePhoto = function (topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.takePhoto(function (fileData) {
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'Image';
+          /*if (type === 'image') {
+           fileType = 'Image';
+           }*/
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
+          $scope.send_content = "";
+          keepKeyboardOpen();
+        });
+      }, function (err) {
+
+      });
+    };
+
     //判断文件是否是图片
     $scope.getFileType = function (message) {
       var msg = message.split('###')[1];
