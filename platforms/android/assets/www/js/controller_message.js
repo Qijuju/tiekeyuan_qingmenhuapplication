@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading) {
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
@@ -64,6 +64,35 @@ angular.module('message.controllers', [])
         }, function (err) {
         });
     }
+
+
+
+      //触发函数
+      $scope.bindbadge= function () {
+        alert("jinlaima");
+        //弹出缓冲提示
+        $scope.showLoadingToast();
+        //这里使用定时器是为了缓存一下加载过程，防止加载过快
+        $timeout(function () {
+          //停止缓冲提示
+          $scope.hideLoadingToast();
+        }, 1500);
+      };
+
+      $scope.showLoadingToast = function () {
+        // Setup the loader
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 10,
+          showDelay: 0
+        });
+      }
+      $scope.hideLoadingToast = function () {
+        $ionicLoading.hide();
+      }
+
     // $ToastUtils.showToast($scope.viewtitle+"抬头"+$scope.myUserID);
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.userId, function (data) {
       //根据不同用户，显示聊天记录，查询数据库以后，不论有没有数据，都要清楚之前数组里面的数据
@@ -1775,6 +1804,9 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
+
+    //一进来就检查网络是否连接
+    $scope.isConnect='false';
     // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -1832,7 +1864,7 @@ angular.module('message.controllers', [])
      */
     $scope.$on('leave.update',function (event) {
       // $scope.$apply(function () {
-        alert("单聊离开界面时");
+      //   alert("单聊离开界面时");
 
       // alert("没有该人的会话11111"+$scope.userId+groupType);
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
