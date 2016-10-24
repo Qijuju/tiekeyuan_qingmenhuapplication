@@ -28,7 +28,9 @@ angular.module('im.routes', [])
       .state('tab', {
         url: '/tab',
         abstract: true,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/tabs.html',
+        controller: 'tabsCtrl'
+
       })
       .state('welcome', {
         url: '/welcome',
@@ -166,7 +168,8 @@ angular.module('im.routes', [])
       .state('personalSetting', {
         url: '/personalSetting/:id/:ssid/:sessionid',
         templateUrl: 'templates/personal-setting.html',
-        controller: 'SettingAccountCtrl'
+        controller: 'SettingAccountCtrl',
+        cache:false
       })
 
       .state('groupSetting', {

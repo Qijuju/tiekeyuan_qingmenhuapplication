@@ -8,6 +8,8 @@ import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.MessagesDao;
 import com.tky.mqtt.dao.MsgHistory;
 import com.tky.mqtt.dao.MsgHistoryDao;
+import com.tky.mqtt.dao.NotifyList;
+import com.tky.mqtt.dao.NotifyListDao;
 import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
 
@@ -104,4 +106,7 @@ public class MsgHistoryService implements BaseInterface<MsgHistory>{
                 .build()
                 .list();
     }
+
+
+
 }

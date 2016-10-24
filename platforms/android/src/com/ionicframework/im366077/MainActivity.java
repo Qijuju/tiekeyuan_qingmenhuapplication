@@ -20,13 +20,17 @@
 package com.ionicframework.im366077;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.format.Formatter;
 
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
+import com.tky.mqtt.paho.utils.ImageTools;
+import com.tky.mqtt.paho.utils.PhotoUtils;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -69,10 +73,34 @@ public class MainActivity extends CordovaActivity
             receiverIntent.putExtra("formatSize", formatSize);
             receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
             sendBroadcast(receiverIntent);
-        } else if (requestCode == TAKE_PHOTO_CODE) {
-            if (intent != null) {
-                Uri uri = intent.getData();
-            }
+        }else if (requestCode == TAKE_PHOTO_CODE) {
+//            photo.jpg
+            final Bitmap smallBitmap = PhotoUtils.getSmallBitmap(Environment.getExternalStorageDirectory() + "/photo.jpg");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "cache";
+                    String fileName = String.valueOf(System.currentTimeMillis());
+                    ImageTools.savePhotoToSDCard(smallBitmap, filePath, fileName);
+                    final String path = filePath + File.separator + fileName + ".jpg";
+                    File file = new File(filePath, fileName + ".jpg");
+                    final long length = file.length();
+                    final String formatSize = Formatter.formatFileSize(MainActivity.this, length);
+                    UIUtils.runInMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent receiverIntent = new Intent();
+                            receiverIntent.setAction(ReceiverParams.PHOTO_FILE_GET);
+                            receiverIntent.putExtra("filePath", path);
+                            receiverIntent.putExtra("length", String.valueOf(length));
+                            receiverIntent.putExtra("formatSize", formatSize);
+                            receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
+                            sendBroadcast(receiverIntent);
+                        }
+                    });
+                }
+            }).start();
         }
+
     }
 }

@@ -27,6 +27,7 @@ public class MsgHistoryDao extends AbstractDao<MsgHistory, String> {
         public final static Property Msg = new Property(1, String.class, "msg", false, "MSG");
         public final static Property When = new Property(2, Long.class, "when", false, "WHEN");
         public final static Property Type = new Property(3, String.class, "type", false, "TYPE");
+        public final static Property Personname = new Property(4, String.class, "personname", false, "PERSONNAME");
     };
 
 
@@ -45,7 +46,8 @@ public class MsgHistoryDao extends AbstractDao<MsgHistory, String> {
                 "'_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: _id
                 "'MSG' TEXT," + // 1: msg
                 "'WHEN' INTEGER," + // 2: when
-                "'TYPE' TEXT);"); // 3: type
+                "'TYPE' TEXT," + // 3: type
+                "'PERSONNAME' TEXT);"); // 4: personname
     }
 
     /** Drops the underlying database table. */
@@ -78,6 +80,11 @@ public class MsgHistoryDao extends AbstractDao<MsgHistory, String> {
         if (type != null) {
             stmt.bindString(4, type);
         }
+ 
+        String personname = entity.getPersonname();
+        if (personname != null) {
+            stmt.bindString(5, personname);
+        }
     }
 
     /** @inheritdoc */
@@ -93,7 +100,8 @@ public class MsgHistoryDao extends AbstractDao<MsgHistory, String> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // _id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // msg
             cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // when
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // type
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // type
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // personname
         );
         return entity;
     }
@@ -105,6 +113,7 @@ public class MsgHistoryDao extends AbstractDao<MsgHistory, String> {
         entity.setMsg(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setWhen(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
         entity.setType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setPersonname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
     
     /** @inheritdoc */

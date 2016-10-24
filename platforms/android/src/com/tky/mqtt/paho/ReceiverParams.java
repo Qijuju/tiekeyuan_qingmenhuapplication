@@ -30,6 +30,12 @@ public class ReceiverParams {
 	 * 消息发送失败
 	 */
 	public static final String SENDMESSAGE_ERROR="com.tky.mqtt.mqttserverdemo.sendmessageerror";
+
+	/**
+	 * 消息发送成功
+	 */
+	public static final String SENDMESSAGE_SUCCESS="com.tky.mqtt.mqttserverdemo.sendmessagesuccess";
+
 	/**
 	 * 由于网络断开而断开MQTT
 	 */
@@ -42,4 +48,21 @@ public class ReceiverParams {
 	 * 打开文件管理器获取文件之后
 	 */
 	public static final String DOC_FILE_GET = "com.tky.mqtt.mqttserverdemo.doc_file_get";
+	/**
+	 * 拍照后获取到图片
+	 */
+	public static final String PHOTO_FILE_GET = "com.tky.mqtt.mqttserverdemo.photo_file_get";
+	/**
+	 * MQTT启动
+	 */
+	public static final String MQTT_START = "com.tky.mqtt.mqttserverdemo.mqtt_start";
+	/**
+	 * 网络断开
+	 */
+	public static final String NET_DISCONNECTED = "com.sls.mqtt.netdisconnected";
+
+	/**
+	 * 网络连接上
+	 */
+	public static final String NET_CONNECTED = "com.sls.mqtt.netconnected";
 }

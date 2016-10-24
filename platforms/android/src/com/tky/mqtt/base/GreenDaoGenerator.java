@@ -31,7 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -66,6 +66,7 @@ public class GreenDaoGenerator {
         message.addStringProperty("imgSrc");//头像图片来源
         message.addStringProperty("username");//用户名
         message.addStringProperty("senderid");//用于群聊时判断消息来源人id
+        message.addStringProperty("isread");//消息阅读状态
     }
 
 

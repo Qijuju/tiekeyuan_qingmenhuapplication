@@ -80,6 +80,14 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
 
     exports.querySlowDataByDate=function (date, type,success, error) {//日期查询
            exec(success, error, "GreenDaoPlugin", "querySlowDataByDate", [date, type]);
+        };
+
+     exports.queryDataByquery=function (query,success, error) {//日期查询
+           exec(success, error, "GreenDaoPlugin", "queryDataByquery", [query]);
         }
+
+        exports.queryDataByIdAndIsread = function(sessionid,isread,success, error){//一般通知
+                   exec(success, error, "GreenDaoPlugin", "queryDataByIdAndIsread", [sessionid,isread]);
+            };
 
 });

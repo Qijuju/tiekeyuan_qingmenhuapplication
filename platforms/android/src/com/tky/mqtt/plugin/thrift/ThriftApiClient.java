@@ -7,6 +7,10 @@ import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.GroupChatsDao;
+import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -18,6 +22,7 @@ import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.TopContactsService;
 
@@ -683,7 +688,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else if ("1000".equals(result.getResultCode())) {
                                     setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
                                 } else {
-                                    setResult("未知原因！", PluginResult.Status.ERROR, callbackContext);
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
                                 }
                             }
                         }
@@ -736,7 +741,21 @@ public class ThriftApiClient extends CordovaPlugin {
                                     e.printStackTrace();
                                 }
                             } else {
-                                setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                if ("501".equals(result.getResultCode())) {
+                                    setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("502".equals(result.getResultCode())) {
+                                    setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("997".equals(result.getResultCode())) {
+                                    setResult("操作过程发生异常", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("998".equals(result.getResultCode())) {
+                                    setResult("调用接口的参数格式错误", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("999".equals(result.getResultCode())) {
+                                    setResult("调用接口的用户不存在或未激活", PluginResult.Status.ERROR, callbackContext);
+                                } else if ("1000".equals(result.getResultCode())) {
+                                    setResult("服务器异常", PluginResult.Status.ERROR, callbackContext);
+                                } else {
+                                    setResult("未知原因失败！", PluginResult.Status.ERROR, callbackContext);
+                                }
                             }
                         }
                     } catch (TException e) {
@@ -1667,8 +1686,19 @@ public class ThriftApiClient extends CordovaPlugin {
                                 List<Group> groupList = result.getGroupList();
                                 StringBuilder sb = new StringBuilder();
                                 sb.append("");
+                                GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+
                                 for (int i = 0; i < (groupList == null ? 0 : groupList.size()); i++) {
                                     Group group = groupList.get(i);
+                                    GroupChats groupChats=groupChatsService.loadDataByArg(groupList.get(i).getGroupID());
+                                    if(groupChats==null){
+                                        GroupChats groupChats1=new GroupChats();
+                                        groupChats1.setId(groupList.get(i).getGroupID());
+                                        groupChats1.setGroupName(groupList.get(i).getGroupName());
+                                        groupChats1.setGroupType("Group");
+                                        groupChats1.setIsmygroup(groupList.get(i).isIsMyGroup());
+                                        groupChatsService.saveObj(groupChats1);
+                                    }
                                     if (i != groupList.size() - 1) {
                                         sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID() + ",");
                                     } else {
@@ -2052,7 +2082,9 @@ public class ThriftApiClient extends CordovaPlugin {
     public void qrcodeLogin(final JSONArray args, final CallbackContext callbackContext){
         try {
             String qrcode = args.getString(0);
-            String url = "http://www.r93535.cn/servicesapitest/qrcode/setUser/" + qrcode + "/" + getUserID();
+            String url = "http://61.237.239.105:9500/loginservicetest/qrcode/setUser/" + qrcode + "/" + getUserID();
+//            String url = "http://ssl.r93535.com/loginservicetest/qrcode/setUser/" + qrcode + "/" + getUserID();
+//            String url = "http://www.r93535.cn/servicesapitest/qrcode/setUser/" + qrcode + "/" + getUserID();
             OKSyncGetClient client = new OKSyncGetClient();
             String data = client.okSyncGet(url);
             if ("1".equals(data.trim())) {//登录成功

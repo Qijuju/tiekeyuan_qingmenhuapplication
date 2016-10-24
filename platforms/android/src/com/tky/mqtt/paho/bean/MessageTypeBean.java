@@ -9,4 +9,13 @@ import java.io.Serializable;
  * 描述：
  */
 public class MessageTypeBean implements Serializable {
+    private String isread = "0";
+
+    public String getIsread() {
+        return "0";
+    }
+
+    public void setIsread(String isread) {
+        this.isread = isread;
+    }
 }

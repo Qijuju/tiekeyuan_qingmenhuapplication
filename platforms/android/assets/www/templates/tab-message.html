@@ -24,15 +24,17 @@
     </div>
   </ion-nav-bar>
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
-
-
-
-
     <div class="item-input-inset"  ng-click="goSearch()">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" placeholder="搜索" ng-model="query">
       </label>
+    </div>
+    <div style="background-color:#FFDFE0;height: 40px;">
+      <div style="text-align: center;padding-top: 12px;">
+        <img src="img/red.png" style="margin-right: 10px;margin-left: 10px;" ng-if="isConnect==='false'"/>
+        <span style="font-size: 16px;">当前网络不可用，请检查你的网络设置 </span>
+      </div>
     </div>
     <ion-list ng-click="shefalse()" >
       <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)" style="z-index: 1">
@@ -51,8 +53,8 @@
 
         <!--<img src={{item.imgSrc}} width="80px" height="80px">-->
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
-        <h2 >{{item.chatName}}</h2>
-        <p > {{item.lastText}}</p>
+        <h2>{{item.chatName}}</h2>
+        <p> {{item.lastText}}</p>
         <span class="rj-push-right" ng-if="item.lastDate != 0">{{ item.lastDate | date:'HH:mm:ss' }}</span>
         <span class="rj-push-right" ng-if="item.lastDate === 0"></span>
         <!--这个就是来了新消息, 头像上的小红数字-->

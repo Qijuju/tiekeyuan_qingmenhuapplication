@@ -189,7 +189,7 @@ angular.module('selectgroup.controllers', [])
           }
 
 
-          $scope.parentID = $contacts.getDeptInfo().deptID;
+          $scope.parentSecondID = $contacts.getDeptInfo().deptID;
 
 
           $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -278,7 +278,7 @@ angular.module('selectgroup.controllers', [])
                   $ToastUtils.showToast("群名称不能为空");
                 }else{
                   // 查询数据库把不等于3这个级别的所有数据拿出来
-                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentSecondID,function (data) {
 
                     for(var i=0;i<data.length;i++){
                       if(data[i].type=='user'){
@@ -334,7 +334,7 @@ angular.module('selectgroup.controllers', [])
         });
       }else {
         //如果是群组进来添加人员
-        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentSecondID,function (data) {
 
           if(data.length>0){
             for(var i=0;i<data.length;i++){
@@ -395,7 +395,7 @@ angular.module('selectgroup.controllers', [])
       $greendao.loadAllData('SelectIdService',function (msg) {
         if(msg.length>0){
           //查询级别等于2的值
-          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentID,function (data) {
+          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentSecondID,function (data) {
             if(data.length>0){
 
               //然后把等于2的都删除了
@@ -420,7 +420,7 @@ angular.module('selectgroup.controllers', [])
                   deptSaveId.grade='2';                        //二级代表是二级目录存下来的数据
                   deptSaveId.isselected=true;
                   deptSaveId.type='dept';
-                  deptSaveId.parentid=$scope.parentID;     //把父亲的id给存上去
+                  deptSaveId.parentid=$scope.parentSecondID;     //把父亲的id给存上去
                   $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
 
                   },function (err) {
@@ -441,7 +441,7 @@ angular.module('selectgroup.controllers', [])
                 userSaveId.grade='2';                        //二级代表是二级目录存下来的数据
                 userSaveId.isselected=true;
                 userSaveId.type='user';
-                userSaveId.parentid=$scope.parentID;
+                userSaveId.parentid=$scope.parentSecondID;
                 $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
 
                 },function (err) {
@@ -600,7 +600,7 @@ angular.module('selectgroup.controllers', [])
 
           }
 
-          $scope.parentID = $contacts.getDeptThirdInfo().deptID;
+          $scope.parentThirdID = $contacts.getDeptThirdInfo().deptID;
           $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
 
           $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
@@ -675,7 +675,7 @@ angular.module('selectgroup.controllers', [])
       $greendao.loadAllData('SelectIdService',function (msg) {
         if(msg.length>0){
           //先遍历拿出所有groud等于3的所有对象
-          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentID,function (data) {
+          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentThirdID,function (data) {
             if(data.length>0){
 
               //然后把等于3的都删除了
@@ -701,7 +701,7 @@ angular.module('selectgroup.controllers', [])
                     deptSaveId.grade='3';                        //二级代表是二级目录存下来的数据
                     deptSaveId.isselected=true;
                     deptSaveId.type='dept';
-                    deptSaveId.parentid=$scope.parentID;
+                    deptSaveId.parentid=$scope.parentThirdID;
                     $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
 
                     },function (err) {
@@ -721,7 +721,7 @@ angular.module('selectgroup.controllers', [])
                   userSaveId.grade='3';
                   userSaveId.isselected=true;
                   userSaveId.type='user';
-                  userSaveId.parentid=$scope.parentID;
+                  userSaveId.parentid=$scope.parentThirdID;
                   $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
 
                   },function (err) {
@@ -799,7 +799,7 @@ angular.module('selectgroup.controllers', [])
                   $ToastUtils.showToast("群名称不能为空");
                 }else{
                   // 查询数据库把不等于3这个级别的所有数据拿出来
-                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentThirdID,function (data) {
 
                     for(var i=0;i<data.length;i++){
                       if(data[i].type=='user'){
@@ -855,7 +855,7 @@ angular.module('selectgroup.controllers', [])
       }else {
         //当是从添加群组的联系人开始的时候
 
-        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentThirdID,function (data) {
 
           if(data.length>0){
             for(var i=0;i<data.length;i++){
@@ -1040,7 +1040,7 @@ angular.module('selectgroup.controllers', [])
 
           }
 
-          $scope.parentID = $contacts.getDeptForthInfo().deptID;
+          $scope.parentForthID = $contacts.getDeptForthInfo().deptID;
           $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
 
 
@@ -1128,7 +1128,7 @@ angular.module('selectgroup.controllers', [])
       $greendao.loadAllData('SelectIdService',function (msg) {
         if(msg.length>0){
           //先遍历拿出所有groud等于3的所有对象
-          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentID,function (data) {
+          $greendao.queryData("SelectIdService", 'where parentid =?', $scope.parentForthID,function (data) {
             if(data.length>0){
 
               //然后把等于3的都删除了
@@ -1155,7 +1155,7 @@ angular.module('selectgroup.controllers', [])
                   deptSaveId.grade='4';
                   deptSaveId.isselected=true;
                   deptSaveId.type='dept';
-                  deptSaveId.parentid=$scope.parentID;
+                  deptSaveId.parentid=$scope.parentForthID;
                   $greendao.saveObj('SelectIdService',deptSaveId,function (msg) {
 
                   },function (err) {
@@ -1177,7 +1177,7 @@ angular.module('selectgroup.controllers', [])
                 userSaveId.grade='4';
                 userSaveId.isselected=true;
                 userSaveId.type='user';
-                userSaveId.parentid=$scope.parentID;
+                userSaveId.parentid=$scope.parentForthID;
                 $greendao.saveObj('SelectIdService',userSaveId,function (msg) {
 
                 },function (err) {
@@ -1247,7 +1247,7 @@ angular.module('selectgroup.controllers', [])
                   $ToastUtils.showToast("群名称不能为空");
                 }else{
                   // 查询数据库把不等于3这个级别的所有数据拿出来
-                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+                  $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentForthID,function (data) {
 
                     for(var i=0;i<data.length;i++){
                       if(data[i].type=='user'){
@@ -1307,7 +1307,7 @@ angular.module('selectgroup.controllers', [])
       }else {
         //当是从添加群组的联系人开始的时候
 
-        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentID,function (data) {
+        $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentForthID,function (data) {
 
           if(data.length>0){
             for(var i=0;i<data.length;i++){

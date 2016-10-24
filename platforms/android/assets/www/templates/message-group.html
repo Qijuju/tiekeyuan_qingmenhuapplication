@@ -2,7 +2,7 @@
   <ion-nav-bar align-title="center">
 
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecondMenu()">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecondMenu(grouptype)">
         即时通
       </button>
     </ion-nav-buttons>
@@ -46,7 +46,7 @@
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
              <p style="margin-right: 10.5%"><font class="rj-message-right">{{msg.message}}</font></p>
-             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)">
+             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id,msg)">
           </span>
           <!--<img src="img/ben.png" class="rj-head-pic-right">-->
           <!--<span class="rj-triangle-right"></span>-->

@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table LOCAL_PHONE.
  */
-public class LocalPhone extends BaseDao{
+public class LocalPhone extends BaseDao {
 
     private String id;
     private Boolean isplatform;

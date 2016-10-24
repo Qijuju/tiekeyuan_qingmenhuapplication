@@ -2,10 +2,7 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
-import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.SwitchLocal;
-
-import org.eclipse.paho.client.mqttv3.MqttTopic;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +24,16 @@ public class MqttTopicRW {
 		topicsAndQoss = topicsAndQoss.substring(0, topicsAndQoss.length() - 1);
 		SPUtils.save(key, topicsAndQoss);
 	}
-	
+
+	/**
+	 * 获取启动MQTT需要的TOPICs
+	 * @return
+	 */
+	public static String getStartTopicsAndQoss() {
+		String topicsAndQoss = SPUtils.getString(key, "");
+		return topicsAndQoss.replace(";", ",");
+	}
+
 	public static Map<String, Integer> getTopicsAndQoss() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String topicsAndQoss = SPUtils.getString(key, "");
@@ -69,7 +75,7 @@ public class MqttTopicRW {
 		String aTopic = SwitchLocal.getATopic(SwitchLocal.getType(type), from);
 		return getTopicsAndQoss().containsKey(aTopic);
 	}
-	
+
 	/**
 	 * 发布主题，必须是启动Mqtt之后
 	 * @param topic
