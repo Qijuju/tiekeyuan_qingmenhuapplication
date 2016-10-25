@@ -59,4 +59,14 @@ public class MqttOper {
         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
         UIUtils.getContext().sendBroadcast(intent);
     }
+
+    /**
+     * 发布MQTT启动成功或失败的消息
+     */
+    public static void publishStartStatus(boolean startSuccess) {
+        Intent intent=new Intent();
+        intent.putExtra(ReceiverParams.MQTT_START, startSuccess);
+        intent.setAction(ReceiverParams.MQTT_START);
+        UIUtils.getContext().sendBroadcast(intent);
+    }
 }

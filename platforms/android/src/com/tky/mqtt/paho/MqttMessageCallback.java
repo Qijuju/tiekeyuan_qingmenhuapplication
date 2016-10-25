@@ -11,10 +11,10 @@ import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -42,6 +42,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
+		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
 		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));

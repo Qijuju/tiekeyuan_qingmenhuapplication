@@ -17,7 +17,7 @@ public class MqttReceiver extends BroadcastReceiver {
 	private OnNetUpListener onNetUpListener;
 	private OnMqttStopListener onMqttStopListener;
 	private OnConnectionDownListener onConnectionDownListener;
-	private OnMqttSendErrorListener onMqttSendErrorListener;
+//	private OnMqttSendErrorListener onMqttSendErrorListener;
 	private OnNetDownListener onNetDownListener;
 	private OnFreezeMqttListener onFreezeMqttListener;
 
@@ -71,10 +71,6 @@ public class MqttReceiver extends BroadcastReceiver {
 			if (onConnectionDownListener != null) {
 				onConnectionDownListener.onConnectionDown();
 			}
-		}else if(ReceiverParams.SENDMESSAGE_ERROR.equals(intent.getAction())){//发送消息中断网，回调
-			if(onMqttSendErrorListener !=null){
-				onMqttSendErrorListener.onMqttSendError();
-			}
 		} else if (ReceiverParams.NET_DOWN_MQTT.equals(intent.getAction())) {//由于网络断开而断开MQTT的监听回调
 			if (onNetDownListener != null) {
 				onNetDownListener.onNetDown();
@@ -103,9 +99,10 @@ public class MqttReceiver extends BroadcastReceiver {
 	}
 
 
-	public interface OnMqttSendErrorListener{
+/*	public interface OnMqttSendErrorListener{
+		public void onMqttSendSuccess();
 		public void onMqttSendError();
-	}
+	}*/
 
 	/**
 	 * 网络连接后的回调监听
@@ -161,11 +158,11 @@ public class MqttReceiver extends BroadcastReceiver {
 		this.onConnectionDownListener = onConnectionDownListener;
 	}
 
-	public void setOnMqttSendErrorListener(OnMqttSendErrorListener onMqttSendErrorListener) {
+/*	public void setOnMqttSendErrorListener(OnMqttSendErrorListener onMqttSendErrorListener) {
 		if (this.onMqttSendErrorListener == null) {
 			this.onMqttSendErrorListener = onMqttSendErrorListener;
 		}
-	}
+	}*/
 
 	public void setOnNetDownListener(OnNetDownListener onNetDownListener) {
 		this.onNetDownListener = onNetDownListener;

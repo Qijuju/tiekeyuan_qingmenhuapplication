@@ -372,7 +372,7 @@ angular.module('message.services', [])
           var lat = arrs[1];
           messageDetail.message=longt+","+lat;
         }
-        mqtt.sendMsg(topic, messageDetail, function (message) {
+        mqtt.sendMsg(topic, messageDetail, function (msg) {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
             for(var i=0;i<danliao.length;i++){
               if(danliao[i]._id === sqlid){

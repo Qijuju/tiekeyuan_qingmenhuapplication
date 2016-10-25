@@ -21,6 +21,8 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
+import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
+import com.tky.mqtt.paho.receiver.NetStatusChangeReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -66,6 +68,8 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
+    private NetStatusChangeReceiver netStatusChangeReceiver;
+    private MqttSendMsgReceiver topicReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -79,6 +83,19 @@ public class MqttChat extends CordovaPlugin {
         IntentFilter photoFilter = new IntentFilter();
         photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
         UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
+
+        netStatusChangeReceiver = new NetStatusChangeReceiver();
+        IntentFilter netStatusChangeFilter = new IntentFilter();
+        netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
+        netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
+        UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);
+
+        //发布消息的广播
+        topicReceiver = new MqttSendMsgReceiver();
+        IntentFilter topicFilter = new IntentFilter();
+        topicFilter.addAction(ReceiverParams.SENDMESSAGE_ERROR);
+        topicFilter.addAction(ReceiverParams.SENDMESSAGE_SUCCESS);
+        UIUtils.getContext().registerReceiver(topicReceiver, topicFilter);
     }
 
     @Override
@@ -236,7 +253,7 @@ public class MqttChat extends CordovaPlugin {
 
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
-        String message = args.getString(1);
+        final String message = args.getString(1);
         if (tosb == null || "".equals(tosb)){
             ToastUtil.showSafeToast("接收者未知！");
             return ;
@@ -265,23 +282,25 @@ public class MqttChat extends CordovaPlugin {
         try {
             MessageOper.sendMsg(tosb, message);
         } catch (IMPException e) {
+            setResult("failure", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+            return;
         }
-        //发布消息的广播
-        MqttReceiver topicReceiver = MqttReceiver.getInstance();
-        IntentFilter topicFilter = new IntentFilter();
-        topicFilter.addAction(ReceiverParams.SENDMESSAGE_ERROR);
-        cordova.getActivity().registerReceiver(topicReceiver, topicFilter);
         //消息发送过程中，网络信号减弱，数据回调
-        topicReceiver.setOnMqttSendErrorListener(new MqttReceiver.OnMqttSendErrorListener() {
+        topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
+            @Override
+            public void onMqttSendSuccess() {
+                setResult("success", PluginResult.Status.OK, callbackContext);
+            }
+
             @Override
             public void onMqttSendError() {
-                setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                setResult("error", PluginResult.Status.ERROR, callbackContext);
             }
         });
-        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
-        pluginResult.setKeepCallback(true);
-        callbackContext.sendPluginResult(pluginResult);
+//        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
+//        pluginResult.setKeepCallback(true);
+//        callbackContext.sendPluginResult(pluginResult);
     }
 
     public void getChats(final JSONArray args, final CallbackContext callbackContext) {
@@ -559,6 +578,27 @@ public class MqttChat extends CordovaPlugin {
             file.mkdirs();
         }
         setResult(dir, PluginResult.Status.OK, callbackContext);
+    }
+
+    /**
+     * 设置网络监听（返回true：连接上网；返回false：网络断开了）
+     * @param args
+     * @param callbackContext
+     */
+    public void setOnNetStatusChangeListener(final JSONArray args, final CallbackContext callbackContext) {
+        if (netStatusChangeReceiver != null) {
+            netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
+                @Override
+                public void doNetDisconnect() {
+                    setResult("false", PluginResult.Status.OK, callbackContext);
+                }
+
+                @Override
+                public void doNetConnect() {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
+                }
+            });
+        }
     }
 
     public static MType getType(String type) {
