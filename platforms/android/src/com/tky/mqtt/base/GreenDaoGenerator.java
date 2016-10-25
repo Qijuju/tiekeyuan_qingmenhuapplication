@@ -67,6 +67,7 @@ public class GreenDaoGenerator {
         message.addStringProperty("username");//用户名
         message.addStringProperty("senderid");//用于群聊时判断消息来源人id
         message.addStringProperty("isread");//消息阅读状态
+        message.addStringProperty("isSuccess");//消息是否成功发送状态
     }
 
 

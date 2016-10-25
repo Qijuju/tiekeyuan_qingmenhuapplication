@@ -91,8 +91,9 @@
               <!--<div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>-->
             </font><!--<font id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="height:200px;width: 110px;"></font>-->
             <font class="rj-message-right" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
-              <img style="background-color: transparent;margin-left: -24px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)" />
-              <ion-spinner icon="ios-small"  style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"  ng-if="msgSingle.isFailure === 'false' "></ion-spinner>
+              <img style="background-color: transparent;margin-left: -24px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File') && (msgSingle.isSuccess === 'false')"  ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)" />
+              <ion-spinner icon="ios-small"  style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
+                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
               {{msgSingle.message}}
             </font>
           </p>

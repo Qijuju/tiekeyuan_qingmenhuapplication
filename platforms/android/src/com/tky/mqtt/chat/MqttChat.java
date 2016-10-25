@@ -298,6 +298,7 @@ public class MqttChat extends CordovaPlugin {
                 setResult("error", PluginResult.Status.ERROR, callbackContext);
             }
         });
+//        while ()
 //        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
 //        pluginResult.setKeepCallback(true);
 //        callbackContext.sendPluginResult(pluginResult);
@@ -590,13 +591,13 @@ public class MqttChat extends CordovaPlugin {
             netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
                 @Override
                 public void doNetDisconnect() {
-//                    ToastUtil.showSafeToast("lianjieshiBai");
+                    ToastUtil.showSafeToast("lianjieshiBai");
                     setResult("false", PluginResult.Status.ERROR, callbackContext);
                 }
 
                 @Override
                 public void doNetConnect() {
-//                    ToastUtil.showSafeToast("lianjiechenggong");
+                    ToastUtil.showSafeToast("lianjiechenggong");
                     setResult("true", PluginResult.Status.OK, callbackContext);
                 }
             });

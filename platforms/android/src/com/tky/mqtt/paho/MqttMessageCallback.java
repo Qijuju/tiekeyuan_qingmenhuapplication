@@ -127,7 +127,7 @@ public class MqttMessageCallback implements MqttCallback {
 					messages.setType(map.getType());
 					messages.setFrom(map.getFrom());
 					messages.setMessage(map.getMessage());
-					System.out.println("群事件"+map.getMessage());
+					System.out.println("群事件" + map.getMessage());
 					messages.setMessagetype(map.getMessagetype());
 					messages.setPlatform(map.getPlatform());
 					messages.setWhen(map.getWhen());
@@ -137,6 +137,7 @@ public class MqttMessageCallback implements MqttCallback {
 					messages.setUsername(map.getUsername());
 					messages.setSenderid(map.get_id());
 					messages.setIsread("0");
+					messages.setIsSuccess("true");
 					MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
 					messagesService.saveObj(messages);
 					//统计未读数量
@@ -271,7 +272,7 @@ public class MqttMessageCallback implements MqttCallback {
 			messages.setType(eventBean.getType());
 			messages.setFrom(eventBean.getFrom());
 			messages.setMessage(eventBean.getMessage());
-			System.out.println("群事件"+eventBean.getMessage());
+			System.out.println("群事件" + eventBean.getMessage());
 			messages.setMessagetype(eventBean.getMessagetype());
 			messages.setPlatform(eventBean.getPlatform());
 			messages.setWhen(eventBean.getWhen());
@@ -281,6 +282,7 @@ public class MqttMessageCallback implements MqttCallback {
 			messages.setUsername(eventBean.getUsername());
 			messages.setSenderid(eventBean.get_id());
 			messages.setIsread("0");
+			messages.setIsSuccess("true");
 			MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
 			messagesService.saveObj(messages);
 			//统计未读数量

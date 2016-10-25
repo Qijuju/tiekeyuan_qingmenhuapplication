@@ -10,6 +10,7 @@ import android.net.wifi.WifiManager;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.paho.utils.NetUtils;
 
 /**
  * 作者：
@@ -22,7 +23,7 @@ public class NetStatusReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             NetworkInfo info = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-            if (info.getState().equals(NetworkInfo.State.CONNECTED)) {
+            if (info.getState().equals(NetworkInfo.State.CONNECTED) && NetUtils.isConnect(context)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_CONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);

@@ -25,16 +25,16 @@ angular.module('message.controllers', [])
     };
 
 
-    /*//一进来就检查网络是否连接
+    //一进来就检查网络是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
-      $scope.netStatus = 'true';
-      // alert("网成功时"+$scope.netStatus);
-      $rootScope.$broadcast('netstatus.update');
+      $rootScope.netStatus = 'true';
+      // alert("网成功时"+$rootScope.netStatus);
+      // $rootScope.$broadcast('netstatus.update');
     },function (err) {
-      $scope.netStatus='false';
-      // alert("网断时"+$scope.netStatus);
-      $rootScope.$broadcast('netstatus.update');
-    });*/
+      $rootScope.netStatus='false';
+      // alert("网断时"+$rootScope.netStatus);
+      // $rootScope.$broadcast('netstatus.update');
+    });
 
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
@@ -382,6 +382,7 @@ angular.module('message.controllers', [])
            * 当在当前界面收到消息时，及时将count=0，并且将该条数据未读状态置为已读，并保存
            */
           // alert("用户id"+$scope.userId);
+
           $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
             if(data[0].count>0){
               // alert("进来查询了吗？"+data.length);
@@ -1037,12 +1038,12 @@ angular.module('message.controllers', [])
     $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
-      $rootScope.$broadcast('leave.update');
+      $rootScope.$broadcast('netstatus.update');
       $chatarr.setIdToMc($scope.userId);
     });
 
 
-    //
+
     // /**
     //  * 当离开界面时将最后一条消息显示在chat表上
     //  */
@@ -1835,26 +1836,26 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
-
-    //中间转换变量
-    $scope.netStatus = 'true';
-    //监听网络状态的变化
-    $scope.$on('netstatus.update', function (event) {
-      $scope.$apply(function () {
-        // alert("关网时走不走"+$scope.netStatus);
-        $scope.isConnect=$rootScope.netStatus;
-      })
-    });
     //一进来就检查网络是否连接
-    /*$mqtt.setOnNetStatusChangeListener(function (succ) {
-      $scope.netStatus = 'true';
-      // alert("网成功时"+$scope.netStatus);
+    $mqtt.setOnNetStatusChangeListener(function (succ) {
+      $rootScope.netStatus = 'true';
+      // alert("网成功时"+$rootScope.netStatus);
       $rootScope.$broadcast('netstatus.update');
     },function (err) {
-      $scope.netStatus='false';
-      // alert("网断时"+$scope.netStatus);
+      $rootScope.netStatus='false';
+      // alert("网断时"+$rootScope.netStatus);
       $rootScope.$broadcast('netstatus.update');
-    });*/
+    });
+    //监听网络状态的变化
+    $scope.$on('netstatus.update', function (event) {
+      // $scope.$apply(function () {
+      //   alert("哈哈哈哈哈啊哈哈哈哈");
+      //   alert("关网时走不走"+$rootScope.netStatus);
+        $scope.isConnect=$rootScope.netStatus;
+        alert("切换网络时"+$scope.isConnect);
+      // })
+    });
+
     // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
