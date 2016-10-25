@@ -23,6 +23,15 @@ angular.module('message.controllers', [])
       document.getElementById("contentaa").style.marginBottom='0px';
       $scope.a=0;
     };
+
+
+    //一进来就检查网络是否连接
+    $mqtt.setOnNetStatusChangeListener(function (succ) {
+      $rootScope.netStatus = 'true';
+    },function (err) {
+      $rootScope.netStatus='false';
+    });
+
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -369,6 +378,7 @@ angular.module('message.controllers', [])
            * 当在当前界面收到消息时，及时将count=0，并且将该条数据未读状态置为已读，并保存
            */
           // alert("用户id"+$scope.userId);
+
           $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
             if(data[0].count>0){
               // alert("进来查询了吗？"+data.length);
@@ -403,6 +413,7 @@ angular.module('message.controllers', [])
                     messaegeitem.imgSrc=data[i].imgSrc;
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
+                    messaegeitem.isSuccess=data[i].isSuccess;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
@@ -765,6 +776,7 @@ angular.module('message.controllers', [])
                         messaegeitem.imgSrc=data[i].imgSrc;
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
+                        messaegeitem.isSuccess=data[i].isSuccess;
                         if(data[i].isread ==='0'){
                           // alert("拿到库里的消息阅读状态"+data[i].isread);
                           data[i].isread ='1';
@@ -881,6 +893,7 @@ angular.module('message.controllers', [])
                       messaegeitem.imgSrc=data[i].imgSrc;
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
+                      messaegeitem.isSuccess=data[i].isSuccess;
                       if(data[i].isread ==='0'){
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
                         data[i].isread ='1';
@@ -1021,12 +1034,12 @@ angular.module('message.controllers', [])
     $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
-      $rootScope.$broadcast('leave.update');
+      $rootScope.$broadcast('netstatus.update');
       $chatarr.setIdToMc($scope.userId);
     });
 
 
-    //
+
     // /**
     //  * 当离开界面时将最后一条消息显示在chat表上
     //  */
@@ -1062,6 +1075,14 @@ angular.module('message.controllers', [])
     $scope.myUserID = $rootScope.rootUserId;
 
     // $ToastUtils.showToast("跳进群组详聊"+$scope.groupid+$scope.chatname+$scope.grouptype+$scope.ismygroup);
+
+    //一进来就检查网络是否连接
+    $mqtt.setOnNetStatusChangeListener(function (succ) {
+      $rootScope.netStatus = 'true';
+    },function (err) {
+      $rootScope.netStatus='false';
+    });
+
 
     if ($rootScope.isPersonSend === 'true') {
       $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
@@ -1192,6 +1213,7 @@ angular.module('message.controllers', [])
                   messaegeitem.imgSrc=data[i].imgSrc;
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
+                  messaegeitem.isSuccess=data[i].isSuccess;
                   if(data[i].isread ==='0'){
                     // alert("拿到库里的消息阅读状态"+data[i].isread);
                     data[i].isread ='1';
@@ -1479,6 +1501,7 @@ angular.module('message.controllers', [])
                       messaegeitem.imgSrc=data[i].imgSrc;
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
+                      messaegeitem.isSuccess=data[i].isSuccess;
                       if(data[i].isread ==='0'){
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
                         data[i].isread ='1';
@@ -1585,6 +1608,7 @@ angular.module('message.controllers', [])
                     messaegeitem.imgSrc=data[i].imgSrc;
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
+                    messaegeitem.isSuccess=data[i].isSuccess;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
@@ -1788,7 +1812,7 @@ angular.module('message.controllers', [])
     $scope.$on('$ionicView.afterLeave', function () {
       // alert("群组after离开");
       $rootScope.$broadcast('noread.update');
-
+      $rootScope.$broadcast('netstatus.update');
     });
 
 
@@ -1804,9 +1828,26 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,   $location,$api) {
-
     //一进来就检查网络是否连接
-    $scope.isConnect='false';
+    $mqtt.setOnNetStatusChangeListener(function (succ) {
+      $rootScope.netStatus = 'true';
+      // alert("网成功时"+$rootScope.netStatus);
+      $rootScope.$broadcast('netstatus.update');
+    },function (err) {
+      $rootScope.netStatus='false';
+      // alert("网断时"+$rootScope.netStatus);
+      $rootScope.$broadcast('netstatus.update');
+    });
+    //监听网络状态的变化
+    $scope.$on('netstatus.update', function (event) {
+      // $scope.$apply(function () {
+      //   alert("哈哈哈哈哈啊哈哈哈哈");
+      //   alert("关网时走不走"+$rootScope.netStatus);
+        $rootScope.isConnect=$rootScope.netStatus;
+        // alert("切换网络时"+$scope.isConnect);
+      // })
+    });
+
     // alert($location.path());
     $scope.a=false
     $scope.popadd=function () {
@@ -1929,6 +1970,7 @@ angular.module('message.controllers', [])
                         messaegeitem.imgSrc=data[i].imgSrc;
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
+                        messaegeitem.isSuccess=data[i].isSuccess;
                         if(data[i].isread ==='0'){
                           // alert("拿到库里的消息阅读状态"+data[i].isread);
                           data[i].isread ='1';
@@ -2045,6 +2087,7 @@ angular.module('message.controllers', [])
                       messaegeitem.imgSrc=data[i].imgSrc;
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
+                      messaegeitem.isSuccess=data[i].isSuccess;
                       if(data[i].isread ==='0'){
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
                         data[i].isread ='1';
@@ -2432,6 +2475,7 @@ angular.module('message.controllers', [])
                   messaegeitem.imgSrc=data[i].imgSrc;
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
+                  messaegeitem.isSuccess=data[i].isSuccess;
                   if(data[i].isread ==='0'){
                     // alert("拿到库里的消息阅读状态"+data[i].isread);
                     data[i].isread ='1';
@@ -2506,6 +2550,7 @@ angular.module('message.controllers', [])
                   messaegeitem.imgSrc=data[i].imgSrc;
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
+                  messaegeitem.isSuccess=data[i].isSuccess;
                   if(data[i].isread ==='0'){
                     // alert("拿到库里的消息阅读状态"+data[i].isread);
                     data[i].isread ='1';
@@ -2581,6 +2626,7 @@ angular.module('message.controllers', [])
                     messaegeitem.imgSrc=data[i].imgSrc;
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
+                    messaegeitem.isSuccess=data[i].isSuccess;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
