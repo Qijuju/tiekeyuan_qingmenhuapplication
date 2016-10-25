@@ -69,6 +69,7 @@ public class MqttConnection {
 
         @Override
         public void onSuccess(IMqttToken arg0) {
+            MqttRobot.setIsStarted(true);
             /*try {
                 reconnect();
 			} catch (MqttException e) {

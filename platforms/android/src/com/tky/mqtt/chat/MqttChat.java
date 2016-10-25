@@ -335,6 +335,7 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
+        MqttRobot.setIsStarted(false);
         if (!NetUtils.isConnect(cordova.getActivity())) {
             setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
             return;
