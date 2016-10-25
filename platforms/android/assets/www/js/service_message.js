@@ -356,6 +356,7 @@ angular.module('message.services', [])
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
+        messageDetail.isSuccess='false';
         //判断是不是位置
         if(messagetype === 'LOCATION'){
           // alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
@@ -372,7 +373,10 @@ angular.module('message.services', [])
           var lat = arrs[1];
           messageDetail.message=longt+","+lat;
         }
+        alert("临门打印数据"+messageDetail.isSuccess+messageDetail.isFailure);
         mqtt.sendMsg(topic, messageDetail, function (msg) {
+          alert("没网时进来了吗？");
+          messageDetail.isSuccess='true';
           if (sqlid != undefined && sqlid != null && sqlid != '') {
             for(var i=0;i<danliao.length;i++){
               if(danliao[i]._id === sqlid){
@@ -408,6 +412,9 @@ angular.module('message.services', [])
           // alert("发送消息时对方id"+$rootScope.firstSendId);
           return "成功";
         },function (err) {
+          alert("没网时进来失败方法了吗？");
+          messageDetail.isFailure='true';
+          danliao.push(messageDetail);
           if (sqlid != undefined && sqlid != null && sqlid != '') {
             for(var i=0;i<danliao.length;i++){
               if(danliao[i]._id === sqlid){
@@ -420,8 +427,6 @@ angular.module('message.services', [])
           if (picPath != undefined && picPath != null && picPath != '') {
             messageDetail.message = picPath;
           }
-          messageDetail.isFailure='true';
-          danliao.push(messageDetail);
           $greendao.saveObj('MessagesService',messageDetail,function (data) {
             $rootScope.$broadcast('msgs.error');
             if (data != 'success') {
@@ -598,6 +603,7 @@ angular.module('message.services', [])
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
           arriveMessage.isread=message.isread;
+          arriveMessage.isSuccess='true';
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
@@ -1139,6 +1145,9 @@ angular.module('message.services', [])
       },
       takePhoto:function (success, error) {//拍照方法
         mqtt.takePhoto(success, error);
+      },
+      setOnNetStatusChangeListener:function(success,error) {//网络监听
+        mqtt.setOnNetStatusChangeListener(success,error);
       }
 
 

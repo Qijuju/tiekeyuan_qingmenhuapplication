@@ -26,6 +26,17 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
         StatusBar.styleDefault();
       }
 
+      //一进来就检查网络是否连接
+      /*$mqtt.setOnNetStatusChangeListener(function (succ) {
+        $rootScope.netStatus = 'true';
+        // alert("网成功时"+$scope.netStatus);
+        $rootScope.$broadcast('netstatus.update');
+      },function (err) {
+        $rootScope.netStatus='false';
+        // alert("网断时"+$scope.netStatus);
+        $rootScope.$broadcast('netstatus.update');
+      });*/
+
     });
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出

@@ -30,9 +30,9 @@
         <input type="search" placeholder="搜索" ng-model="query">
       </label>
     </div>
-    <div style="background-color:#FFDFE0;height: 40px;">
+    <div style="background-color:#FFDFE0;height: 40px;" ng-if="isConnect==='false'">
       <div style="text-align: center;padding-top: 12px;">
-        <img src="img/red.png" style="margin-right: 10px;margin-left: 10px;" ng-if="isConnect==='false'"/>
+        <img src="img/red.png" style="margin-right: 10px;margin-left: 10px;" />
         <span style="font-size: 16px;">当前网络不可用，请检查你的网络设置 </span>
       </div>
     </div>

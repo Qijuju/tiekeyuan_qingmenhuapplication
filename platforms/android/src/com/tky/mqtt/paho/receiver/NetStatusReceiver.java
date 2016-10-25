@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 
 /**
@@ -24,12 +25,12 @@ public class NetStatusReceiver extends BroadcastReceiver {
             if (info.getState().equals(NetworkInfo.State.CONNECTED)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_CONNECTED);
-                context.sendBroadcast(netIntent);
+                UIUtils.getContext().sendBroadcast(netIntent);
                 MqttOper.resetMqtt();
             } else if (info.getState().equals(NetworkInfo.State.DISCONNECTED)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_DISCONNECTED);
-                context.sendBroadcast(netIntent);
+                UIUtils.getContext().sendBroadcast(netIntent);
                 MqttOper.cutMqttWithNoting();
             }
         }
