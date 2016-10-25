@@ -298,6 +298,7 @@ public class MqttChat extends CordovaPlugin {
                 setResult("error", PluginResult.Status.ERROR, callbackContext);
             }
         });
+//        while ()
 //        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
 //        pluginResult.setKeepCallback(true);
 //        callbackContext.sendPluginResult(pluginResult);

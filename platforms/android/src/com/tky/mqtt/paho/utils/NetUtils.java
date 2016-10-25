@@ -5,9 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import java.util.Collection;
-import java.util.Collections;
-
 /**
  * 作者：SLS
  * 包名：com.tky.mqtt.paho.utils
@@ -15,8 +12,10 @@ import java.util.Collections;
  * 描述：联网工具类
  */
 public class NetUtils {
+
     /**
      * 是否已经联网
+     *
      * @param context
      * @return
      */
@@ -31,7 +30,7 @@ public class NetUtils {
                 if (info != null && info.isConnected()) {
                     // 判断当前网络是否已经连接
                     if (info.getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
+                        return info.isAvailable() && info.isConnected();
                     }
                 }
             }
@@ -41,5 +40,4 @@ public class NetUtils {
         }
         return false;
     }
-
 }
