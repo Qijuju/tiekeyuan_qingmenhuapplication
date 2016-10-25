@@ -1139,6 +1139,9 @@ angular.module('message.services', [])
       },
       takePhoto:function (success, error) {//拍照方法
         mqtt.takePhoto(success, error);
+      },
+      setOnNetStatusChangeListener:function(success,error) {//网络监听
+        mqtt.setOnNetStatusChangeListener(success,error);
       }
 
 
