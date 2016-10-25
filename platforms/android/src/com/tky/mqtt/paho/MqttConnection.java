@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.receiver.MqttStartReceiver;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
@@ -100,12 +101,12 @@ public class MqttConnection {
                         //发消息的回调
                         receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
                             @Override
-                            public void onSend(String topic, String content) {
+                            public void onSend(final String topic, String content) {
                                 boolean errState = true;
                                 if (content == null) {
                                     errState = false;
                                 }
-                                MqttMessage message = new MqttMessage();
+                                final MqttMessage message = new MqttMessage();
                                 try {
                                     String msg = new String(MessageOper.packData(content));
                                     message.setPayload(MessageOper.packData(content));
@@ -125,13 +126,36 @@ public class MqttConnection {
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
                                 message.setQos(1);
                                 try {
+                                    //多余的判断，其实这里不需要判断
                                     if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                                         Intent intent = new Intent();
                                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                         context.sendBroadcast(intent);
                                         return;
                                     }
-                                    if (!isConnected() || !NetUtils.isConnect(context)) {
+                                    //如果有网MQTT却挂掉了，就重新启动MQTT并发送消息
+                                    if (!isConnected() && NetUtils.isConnect(context)) {
+                                        MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
+                                            @Override
+                                            public void onSuccess() {
+                                                try {
+                                                    MqttConnection.this.publish(topic, message);
+                                                } catch (MqttException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFalure() {
+                                                Intent intent = new Intent();
+                                                intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                                                context.sendBroadcast(intent);
+                                            }
+                                        });
+                                        return;
+                                    }
+                                    //没网并且没连接MQTT
+                                    if (!isConnected() && !NetUtils.isConnect(context)) {
                                         Intent intent = new Intent();
                                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                         context.sendBroadcast(intent);

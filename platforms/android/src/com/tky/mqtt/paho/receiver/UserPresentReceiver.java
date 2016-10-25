@@ -18,7 +18,9 @@ import com.tky.mqtt.paho.main.MqttRobot;
 public class UserPresentReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if ("android.intent.action.USER_PRESENT".equals(intent.getAction())) {
+        if ("android.intent.action.USER_PRESENT".equals(intent.getAction())
+                || "android.intent.action.SCREEN_ON".equals(intent.getAction())
+                || "android.intent.action.SCREEN_OFF".equals(intent.getAction())) {
             if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                 if (MqttStatus.OPEN != MqttRobot.getMqttStatus()) {
                     MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {

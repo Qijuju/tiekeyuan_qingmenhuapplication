@@ -1142,6 +1142,9 @@ angular.module('message.services', [])
       },
       setOnNetStatusChangeListener:function(success,error) {//网络监听
         mqtt.setOnNetStatusChangeListener(success,error);
+      },
+      getMqttStatus:function(success) {//MQTT连接状态获取
+        mqtt.getMqttStatus(success);
       }
 
 

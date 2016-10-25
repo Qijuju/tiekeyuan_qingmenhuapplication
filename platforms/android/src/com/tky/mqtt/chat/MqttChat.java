@@ -15,11 +15,13 @@ import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.NetStatusChangeReceiver;
@@ -599,6 +601,19 @@ public class MqttChat extends CordovaPlugin {
                     setResult("true", PluginResult.Status.OK, callbackContext);
                 }
             });
+        }
+    }
+
+    /**
+     * 获取MQTT连接状态
+     * @param args
+     * @param callbackContext
+     */
+    public void getMqttStatus(final JSONArray args, final CallbackContext callbackContext) {
+        if (!NetUtils.isConnect(cordova.getActivity()) || MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+            setResult("false", PluginResult.Status.OK, callbackContext);
+        } else {
+            setResult("true", PluginResult.Status.OK, callbackContext);
         }
     }
 
