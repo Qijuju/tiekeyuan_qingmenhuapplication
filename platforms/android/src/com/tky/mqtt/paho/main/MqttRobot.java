@@ -23,6 +23,7 @@ public class MqttRobot {
      */
     private static MqttStatus mqttStatus = MqttStatus.CLOSE;
     private static MqttStartReceiver mReceiver;
+    private static IntentFilter filter;
 
     /**
      * 开启MQTT
@@ -43,27 +44,27 @@ public class MqttRobot {
                     //启动广播接手者，接收MQTT启动状态消息，并注册回调
                     if (mReceiver == null) {
                         mReceiver = new MqttStartReceiver();
-                        IntentFilter filter = new IntentFilter();
+                        filter = new IntentFilter();
                         filter.addAction(ReceiverParams.MQTT_START);
                         context.registerReceiver(mReceiver, filter);
-                        mReceiver.setOnMqttStartListener(new MqttStartReceiver.OnMqttStartListener() {
-                            @Override
-                            public void onSuccess() {
-                                if (onMqttStartListener != null) {
-                                    onMqttStartListener.onSuccess();
-                                }
-                            }
-
-                            @Override
-                            public void onFalure() {
-                                if (onMqttStartListener != null) {
-                                    onMqttStartListener.onFalure();
-                                    context.unregisterReceiver(mReceiver);
-                                    mReceiver = null;
-                                }
-                            }
-                        });
                     }
+                    mReceiver.setOnMqttStartListener(new MqttStartReceiver.OnMqttStartListener() {
+                        @Override
+                        public void onSuccess() {
+                            if (onMqttStartListener != null) {
+                                onMqttStartListener.onSuccess();
+                            }
+                        }
+
+                        @Override
+                        public void onFalure() {
+                            if (onMqttStartListener != null) {
+                                onMqttStartListener.onFalure();
+                                context.unregisterReceiver(mReceiver);
+                                mReceiver = null;
+                            }
+                        }
+                    });
                 }
             });
         }
