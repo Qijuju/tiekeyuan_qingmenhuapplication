@@ -42,6 +42,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
+		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");

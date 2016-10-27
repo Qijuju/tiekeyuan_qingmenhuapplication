@@ -27,9 +27,12 @@ public class MqttConnection {
     private MqttAsyncClient mqttAsyncClient;
     private Context context;
     private MqttReceiver receiver;
-    private ConnectionType connectionType;
+    private ConnectionType connectionType = ConnectionType.MODE_NONE;
 
     public void connect(Context context) throws MqttException {
+        if (!MqttRobot.isStarted()) {
+            return;
+        }
         this.context = context;
         //MQTT启动中...
         MqttRobot.setMqttStatus(MqttStatus.LOADING);
@@ -54,8 +57,14 @@ public class MqttConnection {
      * @throws MqttException
      */
     public void reconnect() throws MqttException {
-        closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
-        connect(context);
+        if (!MqttRobot.isStarted()) {
+            return;
+        }
+        if (!isConnected()) {
+            MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+            closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+            connect(context);
+        }
     }
 
     public class MqttActionListener implements IMqttActionListener {
@@ -69,7 +78,6 @@ public class MqttConnection {
 
         @Override
         public void onSuccess(IMqttToken arg0) {
-            MqttRobot.setIsStarted(true);
             /*try {
                 reconnect();
 			} catch (MqttException e) {
@@ -339,6 +347,7 @@ public class MqttConnection {
      */
     public void closeConnection(ConnectionType modeConnectionDownManual) throws MqttException {
         this.connectionType = modeConnectionDownManual;
+        MqttRobot.setConnectionType(this.connectionType);
         if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
             mqttAsyncClient.disconnectForcibly();
             if (mqttAsyncClient != null) {

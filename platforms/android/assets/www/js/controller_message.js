@@ -108,8 +108,8 @@ angular.module('message.controllers', [])
       // for (var j = 0; j <= $mqtt.getDanliao().length-1; j++) {
       //   $mqtt.getDanliao().splice(j, $mqtt.getDanliao().length);//清除之前数组里存的数据
       // }
-      // for (var i = 1; i <= data.length; i++) {
-      //   $mqtt.getDanliao().push(data[data.length - i]);
+      // for (var i = 0; i <= data.length; i++) {
+      //   alert("进入聊天界面看消息"+data[i].message);
       // }
       $mqtt.setDanliao(data);
       $scope.msgs = $mqtt.getDanliao();
@@ -347,9 +347,13 @@ angular.module('message.controllers', [])
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, $scope.groupType, function (userTopic) {
         // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
-        $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid);
-        $scope.send_content = "";
-        keepKeyboardOpen();
+        $greendao.getUUID(function (data) {
+          sqlid=data;
+          // alert("改造时拿到的id"+data);
+          $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid);
+          $scope.send_content = "";
+          keepKeyboardOpen();
+        });
       }, function (msg) {
       });
     };

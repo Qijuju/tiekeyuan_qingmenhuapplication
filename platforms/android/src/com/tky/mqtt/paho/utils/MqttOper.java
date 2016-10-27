@@ -3,8 +3,10 @@ package com.tky.mqtt.paho.utils;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 
 /**
  * 作者：
@@ -20,6 +22,30 @@ public class MqttOper {
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
+        final long time = System.currentTimeMillis();
+        new Thread(new Runnable() {
+            boolean flag = true;
+            @Override
+            public void run() {
+                if (!MqttRobot.isStarted()) {
+                    return;
+                }
+                while (flag) {
+                    if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+                        flag = false;
+                    } else if (System.currentTimeMillis() - time > 5000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+                        flag = false;
+                        UIUtils.runInMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+                                UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
     /**

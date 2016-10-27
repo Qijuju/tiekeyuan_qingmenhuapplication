@@ -339,6 +339,7 @@ angular.module('message.services', [])
       sendMsg:function (topic, content, id,localuser,localuserId,sqlid,messagetype,picPath) {
         var messageDetail={};
         messageDetail._id=sqlid;
+        // alert("改造后的id"+sqlid);
         messageDetail.sessionid=id;
         messageDetail.type='User';
         messageDetail.from='true';
@@ -373,9 +374,13 @@ angular.module('message.services', [])
           var lat = arrs[1];
           messageDetail.message=longt+","+lat;
         }
-        // alert("临门打印数据"+messageDetail.isSuccess+messageDetail.isFailure);
-        mqtt.getMqttStatus(function (succ) {
-          if(succ === 'true'){
+
+            //发送消息前先展示在界面上
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.update');
+            },function (err) {
+            });
             mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("没网时进来了吗？");
               messageDetail.isSuccess='true';
@@ -398,12 +403,11 @@ angular.module('message.services', [])
               //判断是不是位置
               if(!(messagetype === 'LOCATION')){
                 // alert("进来保存信息了吗");
+                //当消息从未成功到成功的这个状态时，先删除群组之前那个状态保存的数据
+                mqtt.updateDanliao(messageDetail);
+                //然后再入库成功状态的消息
                 danliao.push(messageDetail);
                 $greendao.saveObj('MessagesService',messageDetail,function (data) {
-                  if (data != 'success') {
-                    messageDetail._id = data;
-                  }
-                  // alert("进来保存信息了吗"+data.length);
                   $rootScope.$broadcast('msgs.update');
                 },function (err) {
                   // alert(err+"sendmistake");
@@ -431,18 +435,11 @@ angular.module('message.services', [])
               }
               $greendao.saveObj('MessagesService',messageDetail,function (data) {
                 $rootScope.$broadcast('msgs.error');
-                if (data != 'success') {
-                  messageDetail._id = data;
-                  // alert(messageDetail._id+"消息失败id"+data);
-                }
               },function (err) {
               });
               return "失败";
             });
-          }else{
-            $ToastUtils.showToast('网络异常，请重新登录');
-          }
-        });
+
         return "啥也不是";
       },
       sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath) {
@@ -894,6 +891,14 @@ angular.module('message.services', [])
         danliao =new Array();
         for(var i=0;i<data.length;i++){
           danliao.unshift(data[i]);
+        }
+      },
+      updateDanliao:function (data) {
+        for(var i=0;i<=danliao.length-1;i++){
+          if( danliao[i].id === data.id && danliao[i].isSuccess === 'false'){
+            alert("找出chat数组的被更改的数据了"+i);
+            danliao.splice(i,1);
+          }
         }
       },
       adddanliaodata:function (data) {

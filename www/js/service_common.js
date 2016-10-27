@@ -83,6 +83,9 @@ angular.module('common.services', [])
       queryDataByIdAndIsread:function (sessionid,isread,success, error) {
         greendao.queryDataByIdAndIsread (sessionid,isread,success, error);
       },
+      getUUID:function(success){//获取UUID码
+      greendao.getUUID(success);
+      }
   };
 
   })
