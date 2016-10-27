@@ -15,6 +15,7 @@ import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.http.OKSyncGetClient;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -133,6 +134,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
                             } else {
                                 if ("100".equals(result.getResultCode())) {
+                                    MqttRobot.setIsStarted(true);
                                     Gson gson = new Gson();
                                     String json = gson.toJson(result, RSTlogin.class);
                                     JSONObject newUserObj = new JSONObject(json);

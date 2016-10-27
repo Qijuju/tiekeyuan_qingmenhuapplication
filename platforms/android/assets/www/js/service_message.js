@@ -339,6 +339,7 @@ angular.module('message.services', [])
       sendMsg:function (topic, content, id,localuser,localuserId,sqlid,messagetype,picPath) {
         var messageDetail={};
         messageDetail._id=sqlid;
+        alert("改造后的id"+sqlid);
         messageDetail.sessionid=id;
         messageDetail.type='User';
         messageDetail.from='true';
@@ -374,8 +375,12 @@ angular.module('message.services', [])
           messageDetail.message=longt+","+lat;
         }
         // alert("临门打印数据"+messageDetail.isSuccess+messageDetail.isFailure);
-        mqtt.getMqttStatus(function (succ) {
-          if(succ === 'true'){
+        // mqtt.getMqttStatus(function (succ) {
+        //   if(succ === 'true'){
+
+            //发送消息前先展示在界面上
+            danliao.push(messageDetail);
+            $rootScope.$broadcast('msgs.update');
             mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("没网时进来了吗？");
               messageDetail.isSuccess='true';
@@ -439,10 +444,10 @@ angular.module('message.services', [])
               });
               return "失败";
             });
-          }else{
-            $ToastUtils.showToast('网络异常，请重新登录');
-          }
-        });
+          // }else{
+          //   $ToastUtils.showToast('网络异常，请重新登录');
+          // }
+        // });
         return "啥也不是";
       },
       sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath) {

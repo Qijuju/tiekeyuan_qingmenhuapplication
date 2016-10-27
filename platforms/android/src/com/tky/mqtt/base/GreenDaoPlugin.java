@@ -64,11 +64,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         BaseDao obj = null;
         if ("MessagesService".equals(services)) {
             Messages message = new Messages();
-            if("".equals(jsonobj.getString("_id"))){
-                message.set_id(UUID.randomUUID().toString());
-            }else{
-                message.set_id(jsonobj.getString("_id"));
-            }
+            message.set_id(jsonobj.getString("_id"));
             message.setSessionid(jsonobj.getString("sessionid"));
             message.setType(jsonobj.getString("type"));
             message.setFrom(jsonobj.getString("from"));
@@ -832,6 +828,14 @@ public class GreenDaoPlugin extends CordovaPlugin {
     }
 
     /**
+     * 获取uuid码
+     * @return
+     */
+    public void getUUID(final JSONArray args, final CallbackContext callbackContext){
+        setResult(UUID.randomUUID().toString(),PluginResult.Status.OK,callbackContext);
+    }
+
+    /**
      * 设置返回信息
      *
      * @param result          返回结果数据
@@ -869,7 +873,6 @@ public class GreenDaoPlugin extends CordovaPlugin {
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
     }
-
 
 }
 

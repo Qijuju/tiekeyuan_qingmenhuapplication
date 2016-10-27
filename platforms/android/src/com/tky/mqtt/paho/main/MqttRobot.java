@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.MqttTopicRW;
@@ -28,13 +29,14 @@ public class MqttRobot {
      * MQTT是否启动过（登录后才会启动）
      */
     private static boolean isStarted = false;
+    private static ConnectionType connectionType = ConnectionType.MODE_NONE;
 
     /**
      * 开启MQTT
      * @param topics
      */
     public static void startMqtt(final Context context, String topics, final MqttStartReceiver.OnMqttStartListener onMqttStartListener) {
-        if (mqttStatus == MqttStatus.CLOSE) {
+        if (mqttStatus == MqttStatus.CLOSE && MqttRobot.isStarted()) {
             String[] topicsSplt = topics.split(",");
             int[] qoss = new int[topicsSplt.length];
             for (int i = 0; i < topicsSplt.length; i++) {
@@ -92,5 +94,21 @@ public class MqttRobot {
 
     public static void setIsStarted(boolean isStarted) {
         MqttRobot.isStarted = isStarted;
+    }
+
+    /**
+     * 设置MQTT断开方式
+     * @param connectionType
+     */
+    public static void setConnectionType(ConnectionType connectionType) {
+        MqttRobot.connectionType = connectionType;
+    }
+
+    /**
+     * 获取MQTT断开的方式
+     * @return
+     */
+    public static ConnectionType getConnectionType() {
+        return connectionType;
     }
 }

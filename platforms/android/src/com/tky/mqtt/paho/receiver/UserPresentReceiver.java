@@ -9,6 +9,7 @@ import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.utils.MqttOper;
 
 /**
  * 作者：
@@ -25,22 +26,23 @@ public class UserPresentReceiver extends BroadcastReceiver {
             if (!MqttRobot.isStarted()) {
                 return;
             }
-            ToastUtil.showSafeToast("屏幕梁咩");
-            if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
-                if (MqttStatus.OPEN != MqttRobot.getMqttStatus()) {
-                    MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
-                        @Override
-                        public void onSuccess() {
-                            MqttRobot.setMqttStatus(MqttStatus.OPEN);
-                        }
+            ToastUtil.showSafeToast("测试~~~");
+//            if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+//                ToastUtil.showSafeToast("屏幕梁咩");
+            MqttOper.resetMqtt();
+                /*MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
+                    @Override
+                    public void onSuccess() {
+                        ToastUtil.showSafeToast("测试成功");
+                        MqttRobot.setMqttStatus(MqttStatus.OPEN);
+                    }
 
-                        @Override
-                        public void onFalure() {
-                            MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-                        }
-                    });
-                }
-            }
+                    @Override
+                    public void onFalure() {
+                        MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+                    }
+                });*/
+//            }
         }
     }
 }
