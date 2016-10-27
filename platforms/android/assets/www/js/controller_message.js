@@ -178,10 +178,13 @@ angular.module('message.controllers', [])
 
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
           $mqtt.getFileContent(picPath, function (fileData) {
-            // alert("chunachuanchuan:" + fileData);
-            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0]);
-            $scope.send_content = "";
-            keepKeyboardOpen();
+            $greendao.getUUID(function (data) {
+              sqlid=data;
+              // alert("图片传进去的id"+sqlid);
+              $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0],$mqtt);
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            });
           },function (err) {
           });
         }, function (msg) {
@@ -206,10 +209,14 @@ angular.module('message.controllers', [])
           if (type === 'image') {
             fileType = 'Image';
           }
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          })
           // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
-          $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
-          $scope.send_content = "";
-          keepKeyboardOpen();
         });
         /*$api.sendDocFile('F', null, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], function (data) {
           // alert(filePath);
@@ -241,9 +248,13 @@ angular.module('message.controllers', [])
            fileType = 'Image';
            }*/
           // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
-          $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0]);
-          $scope.send_content = "";
-          keepKeyboardOpen();
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          });
         });
       }, function (err) {
 
@@ -349,8 +360,8 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
         $greendao.getUUID(function (data) {
           sqlid=data;
-          alert("改造时拿到的id"+data);
-          $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid);
+          // alert("改造时拿到的id"+data);
+          $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid,'','',$mqtt);
           $scope.send_content = "";
           keepKeyboardOpen();
         });
@@ -382,7 +393,8 @@ angular.module('message.controllers', [])
            * 当在当前界面收到消息时，及时将count=0，并且将该条数据未读状态置为已读，并保存
            */
           // alert("用户id"+$scope.userId);
-
+          $scope.msgs=$mqtt.getDanliao();
+          // alert("长度啊更新方法"+$scope.msgs.length);
           $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
             if(data[0].count>0){
               // alert("进来查询了吗？"+data.length);
@@ -632,12 +644,18 @@ angular.module('message.controllers', [])
     //     }, 100);
     //   })
     // });
-    // $scope.$on('msgs.error', function (event) {
-    //   $scope.$apply(function () {
-    //     $scope.msgs = $mqtt.getDanliao();
-    //     $timeout(function () {
-    //       viewScroll.scrollBottom();
-    //     }, 100);
+
+      })
+    });
+
+    //文字或者图片发送失败
+    $scope.$on('msgs.error', function (event) {
+      $scope.$apply(function () {
+        $scope.msgs = $mqtt.getDanliao();
+        // alert("发送失败数组长度"+$scope.msgs.length);
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
       })
     });
 
@@ -681,7 +699,7 @@ angular.module('message.controllers', [])
             }
             $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
               $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
-                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0]);
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0],$mqtt);
                 $scope.send_content = "";
                 keepKeyboardOpen();
               },function (err) {
@@ -1041,6 +1059,7 @@ angular.module('message.controllers', [])
       $rootScope.$broadcast('netstatus.update');
       $chatarr.setIdToMc($scope.userId);
     });
+
 
 
 

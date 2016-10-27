@@ -53,6 +53,7 @@
         <receiver android:name="com.tky.mqtt.paho.receiver.AlarmRecevier">
             <intent-filter>
                 <action android:name="sendbroadcast.action" />
+                <action android:name="release_alarm_lock.action" />
             </intent-filter>
         </receiver>
         <activity android:name="me.apla.cordova.AppPreferencesActivity" />

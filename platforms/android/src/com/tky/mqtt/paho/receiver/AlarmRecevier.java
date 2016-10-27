@@ -26,9 +26,9 @@ public class AlarmRecevier extends BroadcastReceiver{
 	private static String TAG="AlarmRecevier";
 	private PowerManager pm;
 	private PowerManager.WakeLock wakelock;
-	private WifiManager  wifiManager;
-	private WifiManager.WifiLock wifiLock;
-	private Vibrator mVibrator01;  //声明一个振动器对象
+//	private WifiManager  wifiManager;
+//	private WifiManager.WifiLock wifiLock;
+//	private Vibrator mVibrator01;  //声明一个振动器对象
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
@@ -64,9 +64,9 @@ public class AlarmRecevier extends BroadcastReceiver{
 				wifiLock.acquire();
 				wifiLock.release();*/
 				Log.i(TAG, "wifi已经加锁");
-				mVibrator01 = ( Vibrator )context.getSystemService(Service.VIBRATOR_SERVICE);
-				mVibrator01.vibrate( new long[]{100,10,100,1000},-1);
-				Log.i(TAG, "手机震动了！!");
+//				mVibrator01 = ( Vibrator )context.getSystemService(Service.VIBRATOR_SERVICE);
+//				mVibrator01.vibrate( new long[]{100,10,100,1000},-1);
+//				Log.i(TAG, "手机震动了！!");
 				//初始化键盘锁
 //	    		  kl=km.newKeyguardLock("My KEYLOCK.");
 				//禁止显示键盘锁
@@ -83,6 +83,11 @@ public class AlarmRecevier extends BroadcastReceiver{
 //				   wakelock.acquire(10*1000);
 //				   Log.v(TAG, "屏幕点亮了！!");
 //			   }
+		} else if(intent.getAction().equals("release_alarm_lock.action")){
+			if (wakelock != null) {
+				wakelock.release();
+				wakelock = null;
+			}
 		}
 	}
 
