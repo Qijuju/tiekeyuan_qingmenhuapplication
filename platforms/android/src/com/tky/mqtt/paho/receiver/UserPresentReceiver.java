@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.MqttTopicRW;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 
@@ -18,9 +19,13 @@ import com.tky.mqtt.paho.main.MqttRobot;
 public class UserPresentReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if ("android.intent.action.USER_PRESENT".equals(intent.getAction())
-                || "android.intent.action.SCREEN_ON".equals(intent.getAction())
-                || "android.intent.action.SCREEN_OFF".equals(intent.getAction())) {
+        if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())
+                || Intent.ACTION_SCREEN_ON.equals(intent.getAction())
+                || Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
+            if (!MqttRobot.isStarted()) {
+                return;
+            }
+            ToastUtil.showSafeToast("屏幕梁咩");
             if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                 if (MqttStatus.OPEN != MqttRobot.getMqttStatus()) {
                     MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {

@@ -24,6 +24,10 @@ public class MqttRobot {
     private static MqttStatus mqttStatus = MqttStatus.CLOSE;
     private static MqttStartReceiver mReceiver;
     private static IntentFilter filter;
+    /**
+     * MQTT是否启动过（登录后才会启动）
+     */
+    private static boolean isStarted = false;
 
     /**
      * 开启MQTT
@@ -80,5 +84,13 @@ public class MqttRobot {
 
     public static MqttStatus getMqttStatus() {
         return mqttStatus;
+    }
+
+    public static boolean isStarted() {
+        return isStarted;
+    }
+
+    public static void setIsStarted(boolean isStarted) {
+        MqttRobot.isStarted = isStarted;
     }
 }
