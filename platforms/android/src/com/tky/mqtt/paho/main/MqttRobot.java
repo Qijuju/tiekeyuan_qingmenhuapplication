@@ -93,4 +93,8 @@ public class MqttRobot {
     public static void setIsStarted(boolean isStarted) {
         MqttRobot.isStarted = isStarted;
     }
+
+    public interface OnDetectMqttStatusListener {
+
+    }
 }

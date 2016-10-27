@@ -25,7 +25,6 @@ public class UserPresentReceiver extends BroadcastReceiver {
             if (!MqttRobot.isStarted()) {
                 return;
             }
-            ToastUtil.showSafeToast("屏幕梁咩");
             if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                 if (MqttStatus.OPEN != MqttRobot.getMqttStatus()) {
                     MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {

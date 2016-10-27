@@ -1,10 +1,14 @@
 package com.tky.mqtt.paho;
 
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 
 import com.ionicframework.im366077.R;
@@ -16,6 +20,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttService extends Service {
 
 	protected MqttConnection mqttConnection;
+	private KeyguardManager.KeyguardLock klock;
+	private PowerManager.WakeLock wakeLock;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -59,6 +65,7 @@ public class MqttService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		//************************** 让Service成为前台服务 **************************
 		//使用兼容版本
 		NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
 		//设置状态栏的通知图标
@@ -77,11 +84,32 @@ public class MqttService extends Service {
 		Notification notification = builder.build();
 		//设置为前台服务
 		startForeground(0x0010,notification);
+
+		//************************** 设置电源管理，防止应用休眠 **************************
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
+			if (!wakeLock.isHeld()) {
+				wakeLock.acquire();
+			}
+			klock = km.newKeyguardLock("tag");
+			klock.reenableKeyguard();
+		}
 		return super.onStartCommand(intent, START_STICKY, startId);
 	}
 
 	@Override
 	public void onDestroy() {
+		if (null != wakeLock) {
+			wakeLock.release();
+			wakeLock = null;
+		}
+		if (null != klock) {
+			klock.disableKeyguard();
+			klock.reenableKeyguard();
+			klock = null;
+		}
 		stopForeground(true);
 		if (mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			startService(new Intent(getBaseContext(), MqttService.class));
