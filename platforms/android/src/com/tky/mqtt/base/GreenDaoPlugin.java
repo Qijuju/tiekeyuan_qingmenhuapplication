@@ -17,6 +17,7 @@ import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.FilePictureService;
 import com.tky.mqtt.services.GroupChatsService;
@@ -168,6 +169,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setImgSrc(jsonobj.getString("imgSrc"));
             systemMsg.setSenderid(jsonobj.getString("senderid"));
             systemMsg.setMsglevel(jsonobj.getString("msglevel"));
+            systemMsg.setIstop(jsonobj.getInt("istop"));
+            systemMsg.setIsread(jsonobj.getString("isread"));
+            systemMsg.setIsfocus(jsonobj.getString("isfocus"));
             obj = systemMsg;
         }else if ("MsgHistoryService".equals(services)){
             MsgHistory msgHistory=new MsgHistory();
@@ -382,6 +386,17 @@ public class GreenDaoPlugin extends CordovaPlugin {
      * @param callbackContext 插件回调
      */
     public void loadDataByArg(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String services = args.getString(0);
+            String key=args.getString(1);
+            BaseInterface anInterface = getInterface(services);
+            SystemMsg obj = (SystemMsg) anInterface.loadDataByArg(key);
+            String ss=GsonUtils.toJson(obj, SystemMsg.class);
+            setResult(new JSONObject(ss), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("load by key failure",PluginResult.Status.ERROR,callbackContext);
+        }
 
     }
 

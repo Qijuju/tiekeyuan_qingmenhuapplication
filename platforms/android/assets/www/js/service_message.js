@@ -603,19 +603,21 @@ angular.module('message.services', [])
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
           // alert("进来了吗"+message.type);
-          if(message.type === 'Platform'){             //当消息为系统通知时
-            // alert("进来了吗紧急"+message.msgLevel);
+          if(message.type === 'Platform'){
+            $rootScope.$broadcast('newnotify.update');
+            /*//当消息为系统通知时
+           /!* //alert("进来了吗紧急"+message.msgLevel);
             arriveMessage.msglevel=message.msgLevel;
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              // alert("保存平台消息成功");
+               //alert("保存平台消息成功");
             },function (err) {
 
-            });
-            /**
+            });*!/
+            /!**
              * 判断未读数量
-             */
+             *!/
               if(message.msgLevel === 'Level_1'){        //紧急消息
-                // alert("通知进入紧急选择段");
+                //alert("通知进入紧急选择段");
                 fastarr.push(arriveMessage);
                 $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
                   if(data.length>0){
@@ -634,20 +636,20 @@ angular.module('message.services', [])
                   // alert(err);
                 });
               }else if (message.msgLevel === 'Common'){    //一般消息
-                // alert("通知进入一般选择段");
+                //alert("通知进入一般选择段");
                 slowarr.push(arriveMessage);
                 $greendao.querySlowNotifyChat(message.msgLevel,message.sessionid,function (data) {
                   if(data.length>0){
                     slowcount=data[0].count;
-                    // alert("一般有值"+slowcount);
+                     //alert("一般有值"+slowcount);
                     slowcount++;
                     $rootScope.$broadcast('newnotify.update');
                   }else{
                     slowcount =0;
-                    // alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
+                    //alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
                     slowcount++;
                     $rootScope.$broadcast('newnotify.update');
-                    // alert("slowcount"+slowcount);
+                     //alert("slowcount"+slowcount);
                   }
                 },function (err) {
                   // alert(err);
@@ -657,10 +659,10 @@ angular.module('message.services', [])
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.msglevel;
-            // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
+            // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);*/
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              // alert(data.length+"收通知消息");
+              alert(data.length+"收通知消息");
             },function (err) {
             });
             $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {

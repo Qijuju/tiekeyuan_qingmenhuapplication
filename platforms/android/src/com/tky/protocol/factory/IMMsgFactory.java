@@ -7,8 +7,6 @@ import com.tky.protocol.model.ProtocolUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class IMMsgFactory {
 	public enum MsgType{
 		User,		//用户 U
@@ -40,7 +38,9 @@ public class IMMsgFactory {
 	};
 	public enum MsgLevel{
 		Common,		//普通 0
-		Level_1		//紧急 1
+		Level_1,	//紧急 1
+		Level_2,	//紧急 1
+		Level_3,	//紧急 1
 	};
 
 	//需要添加发送人名
@@ -279,6 +279,10 @@ public class IMMsgFactory {
 			level = MsgLevel.Common;
 		} else if(rp.equals(IMPFields.M_MsgLevel_Level1)){
 			level = MsgLevel.Level_1;
+		} else if(rp.equals(IMPFields.M_MsgLevel_Level2)){
+			level = MsgLevel.Level_2;
+		} else if(rp.equals(IMPFields.M_MsgLevel_Level3)){
+			level = MsgLevel.Level_3;
 		}
 		return level;
 	}
