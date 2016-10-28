@@ -3,8 +3,11 @@ package com.tky.mqtt.paho.utils;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 
 /**
  * 作者：
@@ -17,9 +20,36 @@ public class MqttOper {
      * 重启MQTT
      */
     public static void resetMqtt() {
+        if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
+            return;
+        }
+        ToastUtil.showSafeToast("MQTT重启即将开始...");
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
+        final long time = System.currentTimeMillis();
+        new Thread(new Runnable() {
+            boolean flag = true;
+            @Override
+            public void run() {
+                if (!MqttRobot.isStarted()) {
+                    return;
+                }
+                while (flag) {
+                    if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+                        flag = false;
+                    } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+                        flag = false;
+                        UIUtils.runInMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
     /**
@@ -36,7 +66,7 @@ public class MqttOper {
      */
     public static void freeMqtt() {
         Intent intent = new Intent();
-        intent.setAction(ReceiverParams.FREEZE_MQTT);
+        intent.setAction(ReceiverParams.CONNECTION_DOWN_MQTT);
         UIUtils.getContext().sendBroadcast(intent);
     }
 
@@ -57,6 +87,16 @@ public class MqttOper {
         //发送中，消息发送失败，回调
         Intent intent=new Intent();
         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+        UIUtils.getContext().sendBroadcast(intent);
+    }
+
+    /**
+     * 发布MQTT启动成功或失败的消息
+     */
+    public static void publishStartStatus(boolean startSuccess) {
+        Intent intent=new Intent();
+        intent.putExtra(ReceiverParams.MQTT_START, startSuccess);
+        intent.setAction(ReceiverParams.MQTT_START);
         UIUtils.getContext().sendBroadcast(intent);
     }
 }

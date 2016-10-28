@@ -37,6 +37,7 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         public final static Property Username = new Property(11, String.class, "username", false, "USERNAME");
         public final static Property Senderid = new Property(12, String.class, "senderid", false, "SENDERID");
         public final static Property Isread = new Property(13, String.class, "isread", false, "ISREAD");
+        public final static Property IsSuccess = new Property(14, String.class, "isSuccess", false, "IS_SUCCESS");
     };
 
 
@@ -65,7 +66,8 @@ public class MessagesDao extends AbstractDao<Messages, String> {
                 "'IMG_SRC' TEXT," + // 10: imgSrc
                 "'USERNAME' TEXT," + // 11: username
                 "'SENDERID' TEXT," + // 12: senderid
-                "'ISREAD' TEXT);"); // 13: isread
+                "'ISREAD' TEXT," + // 13: isread
+                "'IS_SUCCESS' TEXT);"); // 14: isSuccess
     }
 
     /** Drops the underlying database table. */
@@ -148,6 +150,11 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         if (isread != null) {
             stmt.bindString(14, isread);
         }
+ 
+        String isSuccess = entity.getIsSuccess();
+        if (isSuccess != null) {
+            stmt.bindString(15, isSuccess);
+        }
     }
 
     /** @inheritdoc */
@@ -173,7 +180,8 @@ public class MessagesDao extends AbstractDao<Messages, String> {
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // imgSrc
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // username
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // senderid
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // isread
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // isread
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // isSuccess
         );
         return entity;
     }
@@ -195,6 +203,7 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         entity.setUsername(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setSenderid(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
         entity.setIsread(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setIsSuccess(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
      }
     
     /** @inheritdoc */

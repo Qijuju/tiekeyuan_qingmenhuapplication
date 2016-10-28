@@ -48,4 +48,10 @@ exec(success, error, "MqttChat", "getFileContent", [filePath])
 exports.takePhoto =function(success,error){//拍照
 exec(success, error, "MqttChat", "takePhoto", [])
 };
+exports.setOnNetStatusChangeListener =function(success,error){//网络监听
+exec(success, error, "MqttChat", "setOnNetStatusChangeListener", [])
+};
+exports.getMqttStatus =function(success){//MQTT连接状态获取
+exec(success, null, "MqttChat", "getMqttStatus", [])
+};
 });

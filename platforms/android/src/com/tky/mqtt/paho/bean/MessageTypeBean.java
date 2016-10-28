@@ -10,6 +10,15 @@ import java.io.Serializable;
  */
 public class MessageTypeBean implements Serializable {
     private String isread = "0";
+    private String isSuccess = "false";
+
+    public String getIsSuccess() {
+        return "false";
+    }
+
+    public void setIsSuccess(String isSuccess) {
+        this.isSuccess = isSuccess;
+    }
 
     public String getIsread() {
         return "0";

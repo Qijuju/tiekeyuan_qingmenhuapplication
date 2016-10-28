@@ -123,4 +123,7 @@ exports.getFile = function(objectTP,objectID,picSize, success, error) {//图片�
 exports.openFileByPath = function(path, imageID, success, error) {//打开文件
   exec(success, error, "ThriftApiClient", "openFileByPath", [path,imageID]);
 };
+exports.SetDeptInfo = function(success, error) {//登录成功将部门信息入库
+  exec(success, error, "ThriftApiClient", "SetDeptInfo", []);
+};
 });

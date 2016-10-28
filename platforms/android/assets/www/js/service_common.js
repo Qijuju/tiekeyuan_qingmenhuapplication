@@ -83,6 +83,9 @@ angular.module('common.services', [])
       queryDataByIdAndIsread:function (sessionid,isread,success, error) {
         greendao.queryDataByIdAndIsread (sessionid,isread,success, error);
       },
+      getUUID:function(success){//获取UUID码
+      greendao.getUUID(success);
+      }
   };
 
   })
@@ -284,6 +287,9 @@ angular.module('common.services', [])
   },
       openFileByPath:function (path, imageID, success, error) {//打开文件
         api.openFileByPath(path, imageID, success, error);
+      },
+      SetDeptInfo:function(success, error) {//登录成功将部门信息入库
+        api.SetDeptInfo(success,error);
       }
     };
   })
