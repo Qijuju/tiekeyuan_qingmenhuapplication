@@ -42,6 +42,7 @@ public class SystemMsgService implements BaseInterface<SystemMsg> {
         return systemMsgDao.load(arg);
     }
 
+
     @Override
     public List<SystemMsg> loadAllData() {
         return systemMsgDao.loadAll();
@@ -65,6 +66,7 @@ public class SystemMsgService implements BaseInterface<SystemMsg> {
     @Override
     public List<SystemMsg> queryByConditions() {
         return systemMsgDao.queryBuilder()
+                .orderDesc(SystemMsgDao.Properties.Istop)
                 .orderDesc(SystemMsgDao.Properties.When)
                 .build()
                 .list();

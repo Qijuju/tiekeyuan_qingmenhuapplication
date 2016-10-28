@@ -2315,11 +2315,11 @@ angular.module('message.controllers', [])
      */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        // alert("进来主界面吗？");
+        //alert("进来主界面吗？");
         $greendao.queryByConditions('ChatListService',function (data) {
           $chatarr.setData(data);
           $scope.items=data;
-          // alert("数组的长度"+data.length);
+           //alert("数组的长度"+data.length);
         },function (err) {
 
         });
