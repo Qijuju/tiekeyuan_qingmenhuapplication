@@ -926,6 +926,16 @@ angular.module('message.services', [])
       getQunliao:function () {
         return qunliao;
       },
+      updateQunliao:function (data) {
+        for(var i=0;i<qunliao.length;i++){
+          // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
+          if( qunliao[i]._id === data._id && qunliao[i].isSuccess === 'false'){
+            alert("找出chat数组的被更改的数据了"+i);
+            qunliao.splice(i,1);
+            break;
+          }
+        }
+      },
       getFastmsg:function () {
         return fastarr;
       },
@@ -1033,7 +1043,7 @@ angular.module('message.services', [])
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt) {
         // alert("发送群消息"+sqlid+localuserId+grouptype);
         var messageReal={};
         messageReal._id=sqlid;
@@ -1052,55 +1062,68 @@ angular.module('message.services', [])
         messageReal.isread='1';
         messageReal.isSuccess='false';
 
-        //获取mqtt的状态，当mqtt状态为连接时，发送消息；mqtt断开时，提示用户并且不能发送消息
-        mqtt.getMqttStatus(function (succ) {
-          if(succ === 'true'){
-            mqtt.sendMsg(topic, messageReal, function (message) {
-              messageReal.isSuccess='true';
-              qunliao.push(messageReal);
-              if (sqlid != undefined && sqlid != null && sqlid != '') {
-                for(var i=0;i<qunliao.length;i++){
-                  if(qunliao[i]._id === sqlid){
-                    qunliao.splice(i, 1);
-                    $rootScope.$broadcast('msgs.update');
-                    break;
-                  }
-                }
-              }
-              $greendao.saveObj('MessagesService',messageReal,function (data) {
-                $rootScope.$broadcast('msgs.update');
-                // alert("群组消息保存成功");
-              },function (err) {
-                // alert("群组消息保存失败");
-              });
-              return "成功";
-            },function (message) {
-              messageReal.isFailure='true';
-              qunliao .push(messageReal);
-              if (sqlid != undefined && sqlid != null && sqlid != '') {
-                for(var i=0;i<qunliao.length;i++){
-                  if(qunliao[i]._id === sqlid){
-                    qunliao.splice(i, 1);
-                    $rootScope.$broadcast('msgs.update');
-                    break;
-                  }
-                }
-              }
-              $greendao.saveObj('MessagesService',messageReal,function (data) {
-                if (data != 'success') {
-                  messageReal._id = data;
-                  // alert(messageDetail._id+"消息失败id"+data);
-                }
-                $rootScope.$broadcast('msgs.error');
-                // alert(data);
-              },function (err) {
-                // alert(err+"msgerr");
-              });
-              return "失败";
+
+          /**
+           *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
+           */
+          alert("成功前长度"+qunliao.length);
+          qunliao.push(messageReal);
+          alert("成功后长度"+qunliao.length);
+          $greendao.saveObj('MessagesService',messageReal,function (data) {
+            $rootScope.$broadcast('msgs.update');
+            // alert("群组消息保存成功");
+          },function (err) {
+            // alert("群组消息保存失败");
+          });
+
+          /**
+           * 消息发送成功/失败的回调
+           */
+          mqtt.sendMsg(topic, messageReal, function (message) {
+            //改变状态前，删除数据
+            alert("成功发送前长度"+qunliao.length);
+            $mqtt.updateQunliao(messageReal);
+            messageReal.isSuccess='true';
+            qunliao.push(messageReal);
+            alert("成功发送hou长度"+qunliao.length);
+            // if (sqlid != undefined && sqlid != null && sqlid != '') {
+            //   for(var i=0;i<qunliao.length;i++){
+            //     if(qunliao[i]._id === sqlid){
+            //       qunliao.splice(i, 1);
+            //       $rootScope.$broadcast('msgs.update');
+            //       break;
+            //     }
+            //   }
+            // }
+            $greendao.saveObj('MessagesService',messageReal,function (data) {
+              $rootScope.$broadcast('msgs.update');
+              // alert("群组消息保存成功");
+            },function (err) {
+              // alert("群组消息保存失败");
             });
-          }else {
-            $ToastUtils.showToast('网络异常，请重新登录');
-          }
+            return "成功";
+          },function (message) {
+            alert("发送失败前长度"+qunliao.length);
+            $mqtt.updateQunliao(messageReal);
+            messageReal.isFailure='true';
+            qunliao.push(messageReal);
+            alert("发送失败后长度"+qunliao.length);
+            // if (sqlid != undefined && sqlid != null && sqlid != '') {
+            //   for(var i=0;i<qunliao.length;i++){
+            //     if(qunliao[i]._id === sqlid){
+            //       qunliao.splice(i, 1);
+            //       $rootScope.$broadcast('msgs.update');
+            //       break;
+            //     }
+            //   }
+            // }
+            $greendao.saveObj('MessagesService',messageReal,function (data) {
+              $rootScope.$broadcast('msgs.error');
+              // alert(data);
+            },function (err) {
+              // alert(err+"msgerr");
+            });
+          return "失败";
 
         });
 

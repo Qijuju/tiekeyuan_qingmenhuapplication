@@ -1178,9 +1178,12 @@ angular.module('message.controllers', [])
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
-        $mqtt.sendGroupMsg(userTopic, content, id,grouptype,localuser,localuserId,sqlid);
-        $scope.send_content = ""
-        keepKeyboardOpen();
+        $greendao.getUUID(function (data) {
+          sqlid=data;
+          $scope.msg=$mqtt.sendGroupMsg(userTopic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt);
+          $scope.send_content = ""
+          keepKeyboardOpen();
+        });
       });
     };
     function keepKeyboardOpen() {
@@ -1202,6 +1205,7 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         // alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
+        $scope.groupmsgs=$mqtt.getQunliao();
         $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
           if(data[0].count>0){
             // alert("进来查询了吗？"+data.length);
