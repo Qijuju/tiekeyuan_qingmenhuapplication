@@ -6,7 +6,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.MqttOper;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -24,6 +23,7 @@ public class ProtectService extends Service {
         if(MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL){
             startService(new Intent(getBaseContext(), MqttService.class));
         }
+        startService(new Intent(getBaseContext(), ProtectService.class));
         super.onDestroy();
     }
 }
