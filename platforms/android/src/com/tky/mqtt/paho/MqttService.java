@@ -1,5 +1,6 @@
 package com.tky.mqtt.paho;
 
+import android.animation.AnimatorSet;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -95,9 +96,9 @@ public class MqttService extends Service {
         long fristtume= SystemClock.elapsedRealtime();
         //得到全局定时器
         AlarmManager am=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, 5*1000L, sender);
-        } else {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+            am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, 5*1000, sender);
+        }else{
             //毎30秒发个广播
             am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5*1000, sender);
         }
@@ -106,13 +107,22 @@ public class MqttService extends Service {
 
     @Override
     public void onDestroy() {
+        //释放CPU锁
+        Intent alarmReleaseLockIntent = new Intent();
+        alarmReleaseLockIntent.setAction("release_alarm_lock.action");
+        sendBroadcast(alarmReleaseLockIntent);
+
+        //设置当前MQTT的状态
         MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+        //停止前台Service
         stopForeground(true);
+        //要死时把自己救回来
         if (mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
             startService(new Intent(getBaseContext(), MqttService.class));
         } else {
             MqttOper.freeMqtt();
         }
+        //要死时把保护该Service的服务起来
         startService(new Intent(getBaseContext(), ProtectService.class));
         super.onDestroy();
     }

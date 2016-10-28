@@ -19,6 +19,9 @@ public class MqttOper {
      * 重启MQTT
      */
     public static void resetMqtt() {
+        if (!NetUtils.isConnect(UIUtils.getContext())) {
+            return;
+        }
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
@@ -33,7 +36,7 @@ public class MqttOper {
                 while (flag) {
                     if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
                         flag = false;
-                    } else if (System.currentTimeMillis() - time > 5000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+                    } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                         flag = false;
                         UIUtils.runInMainThread(new Runnable() {
                             @Override

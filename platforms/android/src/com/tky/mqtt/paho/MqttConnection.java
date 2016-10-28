@@ -78,11 +78,7 @@ public class MqttConnection {
 
         @Override
         public void onSuccess(IMqttToken arg0) {
-            /*try {
-                reconnect();
-			} catch (MqttException e) {
-				e.printStackTrace();
-			}*/
+
             UIUtils.runInMainThread(new Runnable() {
                 @Override
                 public void run() {
