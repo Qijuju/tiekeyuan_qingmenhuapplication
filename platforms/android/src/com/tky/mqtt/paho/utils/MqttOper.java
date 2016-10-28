@@ -41,7 +41,6 @@ public class MqttOper {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
                                 UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
                             }
                         });

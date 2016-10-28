@@ -118,7 +118,7 @@ public class MqttService extends Service {
         //停止前台Service
         stopForeground(true);
         //要死时把自己救回来
-        if (mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+        if (mqttConnection != null && mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
             startService(new Intent(getBaseContext(), MqttService.class));
         } else {
             MqttOper.freeMqtt();

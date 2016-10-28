@@ -3385,7 +3385,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading) {
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading,$greendao) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -3554,11 +3554,15 @@ angular.module('message.controllers', [])
             $scope.screenpath=res.filePath;
             $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
               // alert("单聊topic"+userTopic+$scope.grouptype);
-              $scope.content=long+","+lat+","+$scope.screenpath;
-              // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-              $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'');
-              $scope.send_content = "";
-              keepKeyboardOpen();
+              $greendao.getUUID(function (data) {
+                $scope.sqlid=data;
+                $scope.content=long+","+lat+","+$scope.screenpath;
+                // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+                $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              });
+
             }, function (msg) {
 
             });

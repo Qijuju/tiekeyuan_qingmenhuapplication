@@ -396,6 +396,9 @@ angular.module('message.services', [])
               //   messageDetail.message = picPath;
               // }
               if(messagetype === 'LOCATION'){
+                // alert("成功发送定位qian长度"+danliao.length);
+                // $mqtt.updateDanliao(messageDetail);
+                // alert("成功发送定位后长度"+danliao.length);
                 messageDetail.message=content;
                 // alert("发送过去的定位内容"+messageDetail.message);
                 danliao.push(messageDetail);
@@ -930,7 +933,7 @@ angular.module('message.services', [])
         for(var i=0;i<qunliao.length;i++){
           // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
           if( qunliao[i]._id === data._id && qunliao[i].isSuccess === 'false'){
-            alert("找出chat数组的被更改的数据了"+i);
+            // alert("找出chat数组的被更改的数据了"+i);
             qunliao.splice(i,1);
             break;
           }
@@ -1066,9 +1069,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          alert("成功前长度"+qunliao.length);
+          // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          alert("成功后长度"+qunliao.length);
+          // alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
@@ -1081,11 +1084,11 @@ angular.module('message.services', [])
            */
           mqtt.sendMsg(topic, messageReal, function (message) {
             //改变状态前，删除数据
-            alert("成功发送前长度"+qunliao.length);
+            // alert("成功发送前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isSuccess='true';
             qunliao.push(messageReal);
-            alert("成功发送hou长度"+qunliao.length);
+            // alert("成功发送hou长度"+qunliao.length);
             // if (sqlid != undefined && sqlid != null && sqlid != '') {
             //   for(var i=0;i<qunliao.length;i++){
             //     if(qunliao[i]._id === sqlid){
@@ -1103,11 +1106,11 @@ angular.module('message.services', [])
             });
             return "成功";
           },function (message) {
-            alert("发送失败前长度"+qunliao.length);
+            // alert("发送失败前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isFailure='true';
             qunliao.push(messageReal);
-            alert("发送失败后长度"+qunliao.length);
+            // alert("发送失败后长度"+qunliao.length);
             // if (sqlid != undefined && sqlid != null && sqlid != '') {
             //   for(var i=0;i<qunliao.length;i++){
             //     if(qunliao[i]._id === sqlid){
