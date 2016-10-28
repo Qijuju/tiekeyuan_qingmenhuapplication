@@ -4,10 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tky.mqtt.paho.MqttStatus;
-import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
 
@@ -29,7 +26,9 @@ public class UserPresentReceiver extends BroadcastReceiver {
 //            if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
 //                ToastUtil.showSafeToast("屏幕梁咩");
             ToastUtil.showSafeToast("程序锁解锁成功...");
-            MqttOper.resetMqtt();
+            if (MqttRobot.isStarted()) {
+                MqttOper.resetMqtt();
+            }
                 /*MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
                     @Override
                     public void onSuccess() {
