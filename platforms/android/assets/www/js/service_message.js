@@ -394,19 +394,20 @@ angular.module('message.services', [])
           /**
            * 转圈是监听网络状态，若失败，则显示消息发送失败
            */
-          $mqtt.setOnNetStatusChangeListener(function (succ) {
-            if(succ === 'false'){
-              alert("切网时，走不走");
-              $mqtt.updateDanliao(messageDetail);
-              messageDetail.isFailure='true';
-              danliao.push(messageDetail);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
-                $rootScope.$broadcast('msgs.error');
-              },function (err) {
-              });
-            }
-          },function (err) {
-          });
+          // $mqtt.setOnNetStatusChangeListener(function (succ) {
+          //   alert("切网时，走不走");
+          //   if(succ === 'false'){
+          //     alert("切网时，走不走");
+          //     $mqtt.updateDanliao(messageDetail);
+          //     messageDetail.isFailure='true';
+          //     danliao.push(messageDetail);
+          //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+          //       $rootScope.$broadcast('msgs.error');
+          //     },function (err) {
+          //     });
+          //   }
+          // },function (err) {
+          // });
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
@@ -506,18 +507,18 @@ angular.module('message.services', [])
         /**
          * 转圈是监听网络状态，若失败，则显示消息发送失败
          */
-        $mqtt.setOnNetStatusChangeListener(function (succ) {
-          if(succ === 'false'){
-            $mqtt.updateDanliao(messageDetail);
-            messageDetail.isFailure='true';
-            danliao.push(messageDetail);
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
-              $rootScope.$broadcast('msgs.error');
-            },function (err) {
-            });
-          }
-        },function (err) {
-        });
+        // $mqtt.setOnNetStatusChangeListener(function (succ) {
+        //   if(succ === 'false'){
+        //     $mqtt.updateDanliao(messageDetail);
+        //     messageDetail.isFailure='true';
+        //     danliao.push(messageDetail);
+        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+        //       $rootScope.$broadcast('msgs.error');
+        //     },function (err) {
+        //     });
+        //   }
+        // },function (err) {
+        // });
 
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
@@ -1127,18 +1128,18 @@ angular.module('message.services', [])
         /**
          * 转圈是监听网络状态，若失败，则显示消息发送失败
          */
-        $mqtt.setOnNetStatusChangeListener(function (succ) {
-          if(succ === 'false'){
-            $mqtt.updateDanliao(messageDetail);
-            messageDetail.isFailure='true';
-            danliao.push(messageDetail);
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
-              $rootScope.$broadcast('msgs.error');
-            },function (err) {
-            });
-          }
-        },function (err) {
-        });
+        // $mqtt.setOnNetStatusChangeListener(function (succ) {
+        //   if(succ === 'false'){
+        //     $mqtt.updateDanliao(messageDetail);
+        //     messageDetail.isFailure='true';
+        //     danliao.push(messageDetail);
+        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+        //       $rootScope.$broadcast('msgs.error');
+        //     },function (err) {
+        //     });
+        //   }
+        // },function (err) {
+        // });
 
           /**
            * 消息发送成功/失败的回调
@@ -1268,6 +1269,7 @@ angular.module('message.services', [])
         mqtt.takePhoto(success, error);
       },
       setOnNetStatusChangeListener:function(success,error) {//网络监听
+        // alert("走监听事件了吗");
         mqtt.setOnNetStatusChangeListener(success,error);
       },
       getMqttStatus:function(success) {//MQTT连接状态获取
