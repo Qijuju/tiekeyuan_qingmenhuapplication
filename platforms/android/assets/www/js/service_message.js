@@ -948,6 +948,22 @@ angular.module('message.services', [])
           }
         }
       },
+      detaildanliaoupdate:function () {
+        // alert("进来改数组");
+        for(var i = 0;i<danliao.length;i++){
+          if(danliao[i].isSuccess === 'false'){
+            danliao[i].isFailure='true';
+          }
+        }
+      },
+      detailqunliaoupdate:function () {
+        // alert("进来改数组");
+        for(var i = 0;i<qunliao.length;i++){
+          if(qunliao[i].isSuccess === 'false'){
+            qunliao[i].isFailure='true';
+          }
+        }
+      },
       adddanliaodata:function (data) {
         // for(var i=0;i<=danliao.length-1;i++){
         //   if( danliao[i].id === data.id){
