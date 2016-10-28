@@ -421,17 +421,37 @@ public class MqttMessageCallback implements MqttCallback {
 		}
 	}
 
+	private long start = 0;
 	private void ring() {
-
-		MediaPlayer mp = new MediaPlayer();
-		try {
-
-			mp.setDataSource(context, RingtoneManager
-					.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-			mp.prepare();
-			mp.start();
-		} catch (Exception e) {
-			e.printStackTrace();
+		//************* 判断是否需要响铃 START *************
+		RingStatus ringStaus = RingStatus.NO_RING;
+		if (start == 0) {
+			start = System.currentTimeMillis();
+			ringStaus = RingStatus.RING;
 		}
+		ringStaus = ( ringStaus == RingStatus.RING ? ringStaus :
+				( (System.currentTimeMillis() - start > 5) ? RingStatus.RING :
+						RingStatus.NO_RING ) );
+		//************* 判断是否需要响铃 END *************
+		if (ringStaus != RingStatus.NO_RING) {
+			MediaPlayer mp = new MediaPlayer();
+			try {
+
+				mp.setDataSource(context, RingtoneManager
+						.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+				mp.prepare();
+				mp.start();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			start = System.currentTimeMillis();
+		}
+	}
+
+	/**
+	 * 响铃状态
+	 */
+	private enum RingStatus {
+		RING/**需要响铃*/,NO_RING/**不需要响铃*/
 	}
 }

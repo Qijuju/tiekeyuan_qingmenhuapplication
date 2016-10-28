@@ -1,26 +1,13 @@
 package com.tky.mqtt.paho.receiver;
 
-import android.app.ActivityManager;
-import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiManager;
 import android.os.PowerManager;
-import android.os.Vibrator;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
-import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.MqttStatus;
-import com.tky.mqtt.paho.MqttTopicRW;
-import com.tky.mqtt.paho.ProtectService;
-import com.tky.mqtt.paho.UIUtils;
-import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
-
-import java.util.List;
 
 public class AlarmRecevier extends BroadcastReceiver{
 	private static String TAG="AlarmRecevier";

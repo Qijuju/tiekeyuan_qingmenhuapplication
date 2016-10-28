@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;

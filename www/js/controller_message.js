@@ -78,7 +78,7 @@ angular.module('message.controllers', [])
 
       //触发函数
       $scope.bindbadge= function () {
-        alert("jinlaima");
+        // alert("jinlaima");
         //弹出缓冲提示
         $scope.showLoadingToast();
         //这里使用定时器是为了缓存一下加载过程，防止加载过快
@@ -357,14 +357,19 @@ angular.module('message.controllers', [])
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, $scope.groupType, function (userTopic) {
-        // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
-        $greendao.getUUID(function (data) {
-          sqlid=data;
-          // alert("改造时拿到的id"+data);
-          $scope.suc = $mqtt.sendMsg(userTopic, content, id,localuser,localuserId,sqlid,'','',$mqtt);
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
           $scope.send_content = "";
           keepKeyboardOpen();
-        });
+        } else {
+          $greendao.getUUID(function (data) {
+            sqlid = data;
+            // alert("改造时拿到的id"+data);
+            $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
+            $scope.send_content = "";
+            keepKeyboardOpen();
+          });
+        }
       }, function (msg) {
       });
     };
@@ -1178,12 +1183,18 @@ angular.module('message.controllers', [])
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
       $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
-        $greendao.getUUID(function (data) {
-          sqlid=data;
-          $scope.msg=$mqtt.sendGroupMsg(userTopic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt);
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid, $mqtt);
           $scope.send_content = ""
           keepKeyboardOpen();
-        });
+        } else {
+          $greendao.getUUID(function (data) {
+            sqlid = data;
+            $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid, $mqtt);
+            $scope.send_content = ""
+            keepKeyboardOpen();
+          });
+        }
       });
     };
     function keepKeyboardOpen() {

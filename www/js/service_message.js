@@ -358,6 +358,17 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          // alert("SQLID不为空：" + sqlid)
+          for(var i=0;i<danliao.length;i++){
+            if(danliao[i]._id === sqlid){
+              // alert("SQLID已经找到：" + sqlid)
+              danliao.splice(i, 1);
+              $rootScope.$broadcast('msgs.update');
+              break;
+            }
+          }
+        }
         //判断是不是位置
         if(messagetype === 'LOCATION'){
           // alert("添加定位之前"+danliao.length+messageDetail.message+messagetype);
@@ -383,15 +394,6 @@ angular.module('message.services', [])
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
               $mqtt.updateDanliao(messageDetail);
               messageDetail.isSuccess='true';
-              /*if (sqlid != undefined && sqlid != null && sqlid != '') {
-                for(var i=0;i<danliao.length;i++){
-                  if(danliao[i]._id === sqlid){
-                    danliao.splice(i, 1);
-                    $rootScope.$broadcast('msgs.update');
-                    break;
-                  }
-                }
-              }*/
               // if (picPath != undefined && picPath != null && picPath != '') {
               //   messageDetail.message = picPath;
               // }
@@ -430,15 +432,6 @@ angular.module('message.services', [])
               $mqtt.updateDanliao(messageDetail);
               messageDetail.isFailure='true';
               danliao.push(messageDetail);
-              /*if (sqlid != undefined && sqlid != null && sqlid != '') {
-                for(var i=0;i<danliao.length;i++){
-                  if(danliao[i]._id === sqlid){
-                    danliao.splice(i, 1);
-                    $rootScope.$broadcast('msgs.update');
-                    break;
-                  }
-                }
-              }*/
               if (picPath != undefined && picPath != null && picPath != '') {
                 messageDetail.message = picPath;
               }
@@ -473,6 +466,15 @@ angular.module('message.services', [])
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
         // alert("发送者id"+localuserId);
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          for(var i=0;i<danliao.length;i++){
+            if(danliao[i]._id === sqlid){
+              danliao.splice(i, 1);
+              $rootScope.$broadcast('msgs.update');
+              break;
+            }
+          }
+        }
         var progress = '0';
         /*if (picPath != undefined && picPath != null && picPath != '') {
           messageDetail.message = picPath;
@@ -903,7 +905,7 @@ angular.module('message.services', [])
       updateDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
           // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
-          if( danliao[i]._id === data._id && danliao[i].isSuccess === 'false'){
+          if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1);
             break;
@@ -932,7 +934,7 @@ angular.module('message.services', [])
       updateQunliao:function (data) {
         for(var i=0;i<qunliao.length;i++){
           // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
-          if( qunliao[i]._id === data._id && qunliao[i].isSuccess === 'false'){
+          if( qunliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             qunliao.splice(i,1);
             break;
@@ -1064,7 +1066,15 @@ angular.module('message.services', [])
         messageReal.senderid=localuserId;
         messageReal.isread='1';
         messageReal.isSuccess='false';
-
+        if (sqlid != undefined && sqlid != null && sqlid != '') {
+          for(var i=0;i<qunliao.length;i++){
+            if(qunliao[i]._id === sqlid){
+              qunliao.splice(i, 1);
+              $rootScope.$broadcast('msgs.update');
+              break;
+            }
+          }
+        }
 
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
@@ -1098,6 +1108,7 @@ angular.module('message.services', [])
             //     }
             //   }
             // }
+            // alert("成功发送hou长度"+qunliao.length);
             $greendao.saveObj('MessagesService',messageReal,function (data) {
               $rootScope.$broadcast('msgs.update');
               // alert("群组消息保存成功");
