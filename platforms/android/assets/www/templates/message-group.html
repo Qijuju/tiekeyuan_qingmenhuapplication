@@ -45,8 +45,13 @@
           <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="margin-right: 10.5%"><font class="rj-message-right">{{msg.message}}</font></p>
-             <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id,msg)">
+             <p style="margin-right: 10.5%">
+               <font class="rj-message-right">
+                 <ion-spinner icon="ios-small"  style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+                 </ion-spinner>
+                 {{msg.message}}
+               </font></p>
+              <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true') && (msg.isSuccess === 'false')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id,msg)" />
           </span>
           <!--<img src="img/ben.png" class="rj-head-pic-right">-->
           <!--<span class="rj-triangle-right"></span>-->

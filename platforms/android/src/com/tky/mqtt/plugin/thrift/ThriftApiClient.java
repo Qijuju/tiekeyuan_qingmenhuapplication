@@ -154,11 +154,44 @@ public class ThriftApiClient extends CordovaPlugin {
                                     }
                                     //保存登录信息
                                     SPUtils.save("login_info", json);
-                                    try {
-                                        setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+                                    //登录成功以后，将部门群消息入库，群组消息在登录成功以后就入库
+                                    SystemApi.getDeparment(getUserID(), getDeptID(), new AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call>() {
+                                        @Override
+                                        public void onComplete(IMDepartment.AsyncClient.GetDeparment_call getDeparment_call) {
+                                            if (getDeparment_call != null) {
+                                                try {
+                                                    RSTgetDept result = getDeparment_call.getResult();
+                                                    if (result == null) {
+                                                        setResult("获取部门信息失败！", PluginResult.Status.ERROR, callbackContext);
+                                                    } else {
+//                                                      String json = GsonUtils.toJson(result, RSTgetDept.class);
+                                                        if (result.result) {
+                                                            GroupChats groupChats = new GroupChats();
+                                                            groupChats.setId(result.getDeptInfo().getDeptID());
+                                                            groupChats.setGroupName(result.getDeptInfo().getDeptName());
+                                                            groupChats.setIsmygroup(false);
+                                                            groupChats.setGroupType("Dept");
+                                                            GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+                                                            groupChatsService.saveObj(groupChats);
+                                                            setResult("success", PluginResult.Status.OK, callbackContext);
+                                                        } else {
+                                                            setResult(result.getResultMsg(), PluginResult.Status.ERROR, callbackContext);
+                                                        }
+                                                    }
+                                                } catch (TException e) {
+                                                    setResult("获取部门信息失败！", PluginResult.Status.ERROR, callbackContext);
+                                                    e.printStackTrace();
+                                                }
+                                            } else {
+                                                setResult("获取部门信息失败！", PluginResult.Status.ERROR, callbackContext);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(Exception e) {
+                                            setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
+                                        }
+                                    });
                                 } else if ("104".equals(result.getResultCode())) {
                                     setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                                 } else if ("105".equals(result.getResultCode())) {
@@ -171,6 +204,10 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
                             e.printStackTrace();
                         } catch (JSONException e) {
+                            setResult("JSON数据解析出错！", PluginResult.Status.ERROR, callbackContext);
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
                             e.printStackTrace();
                         }
                     }
@@ -2184,6 +2221,16 @@ public class ThriftApiClient extends CordovaPlugin {
             map.put(key, value);
         }
         return map;
+    }
+
+    /**
+     * 获取当前登录用户的deptID
+     * @return
+     * @throws JSONException
+     */
+    public String getDeptID() throws JSONException {
+        JSONObject userInfo = getUserInfo();
+        return userInfo.getString("deptID");
     }
 
     /**

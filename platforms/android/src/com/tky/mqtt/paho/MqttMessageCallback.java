@@ -26,6 +26,8 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.UUID;
@@ -184,6 +186,9 @@ public class MqttMessageCallback implements MqttCallback {
 						}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
 							GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
 							List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+							/*if(){
+
+							}*/
 							chatList.setChatName(groupChatsList.get(0).getGroupName());
 						}
 						chatList.setIsDelete(chatLists.get(0).getIsDelete());
@@ -195,6 +200,11 @@ public class MqttMessageCallback implements MqttCallback {
 						}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
 							GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
 							List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+							try {
+								JSONObject userInfo = getUserInfo();
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
 							chatList.setChatName(groupChatsList.get(0).getGroupName());
 						}
 						chatList.setIsDelete(lastmessages.getIsDelete());
@@ -356,6 +366,11 @@ public class MqttMessageCallback implements MqttCallback {
 
 			}
 		} catch (Exception e){}
+	}
+
+	public JSONObject getUserInfo() throws JSONException {
+		String login_info = SPUtils.getString("login_info", "");
+		return new JSONObject(login_info);
 	}
 
 	/**
