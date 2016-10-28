@@ -1,6 +1,5 @@
 package com.tky.mqtt.paho;
 
-import android.animation.AnimatorSet;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -35,6 +34,7 @@ public class MqttService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                ToastUtil.showSafeToast("服务启动了，服务正在启动MQTT...");
                 //如果当前已经登录了，才会启动MQTT，否则不启动
                 if (MqttRobot.isStarted()) {
                     mqttConnection = new MqttConnection();
@@ -85,7 +85,6 @@ public class MqttService extends Service {
         Notification notification = builder.build();
         //设置为前台服务
         startForeground(0x0010, notification);
-        ToastUtil.showSafeToast("count" + startId);
 
         //************** 启动AlarmReceiver，定时启动当前服务 **************
         Intent alarmIntent=new Intent(this,AlarmRecevier.class);
@@ -107,6 +106,7 @@ public class MqttService extends Service {
 
     @Override
     public void onDestroy() {
+        ToastUtil.showSafeToast("服务已经挂掉了...");
         //释放CPU锁
         Intent alarmReleaseLockIntent = new Intent();
         alarmReleaseLockIntent.setAction("release_alarm_lock.action");

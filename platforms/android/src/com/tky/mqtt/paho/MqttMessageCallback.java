@@ -44,6 +44,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
+		ToastUtil.showSafeToast("MQTT挂掉了...");
 		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 //        count++;
@@ -66,6 +67,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
+		ToastUtil.showSafeToast("MQTT消息接收成功...");
 		try {
 			Log.d("messageArrived", new String(msg.getPayload()));
 			if (msg == null) {

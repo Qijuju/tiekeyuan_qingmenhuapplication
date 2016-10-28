@@ -7,6 +7,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.utils.MqttOper;
 
 public class AlarmRecevier extends BroadcastReceiver{
@@ -43,6 +44,8 @@ public class AlarmRecevier extends BroadcastReceiver{
 				}
 
 				//重新启动MQTT
+
+				ToastUtil.showSafeToast("Alarm定时检查重启...");
 				MqttOper.resetMqtt();
 
 				Log.i(TAG, "屏幕点亮了！!");

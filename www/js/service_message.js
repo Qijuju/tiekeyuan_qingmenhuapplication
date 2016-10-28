@@ -390,7 +390,25 @@ angular.module('message.services', [])
               $rootScope.$broadcast('msgs.update');
             },function (err) {
             });
-            mqtt.sendMsg(topic, messageDetail, function (msg) {
+
+          /**
+           * 转圈是监听网络状态，若失败，则显示消息发送失败
+           */
+          $mqtt.setOnNetStatusChangeListener(function (succ) {
+            if(succ === 'false'){
+              alert("切网时，走不走");
+              $mqtt.updateDanliao(messageDetail);
+              messageDetail.isFailure='true';
+              danliao.push(messageDetail);
+              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+                $rootScope.$broadcast('msgs.error');
+              },function (err) {
+              });
+            }
+          },function (err) {
+          });
+
+          mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
               $mqtt.updateDanliao(messageDetail);
               messageDetail.isSuccess='true';
@@ -484,6 +502,23 @@ angular.module('message.services', [])
          * @type {string}
            */
         // alert("图片入数组前长度"+danliao.length);
+
+        /**
+         * 转圈是监听网络状态，若失败，则显示消息发送失败
+         */
+        $mqtt.setOnNetStatusChangeListener(function (succ) {
+          if(succ === 'false'){
+            $mqtt.updateDanliao(messageDetail);
+            messageDetail.isFailure='true';
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        },function (err) {
+        });
+
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
         // alert("图片入数组后长度"+danliao.length);
@@ -1089,6 +1124,22 @@ angular.module('message.services', [])
             // alert("群组消息保存失败");
           });
 
+        /**
+         * 转圈是监听网络状态，若失败，则显示消息发送失败
+         */
+        $mqtt.setOnNetStatusChangeListener(function (succ) {
+          if(succ === 'false'){
+            $mqtt.updateDanliao(messageDetail);
+            messageDetail.isFailure='true';
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        },function (err) {
+        });
+
           /**
            * 消息发送成功/失败的回调
            */
@@ -1098,16 +1149,6 @@ angular.module('message.services', [])
             $mqtt.updateQunliao(messageReal);
             messageReal.isSuccess='true';
             qunliao.push(messageReal);
-            // alert("成功发送hou长度"+qunliao.length);
-            // if (sqlid != undefined && sqlid != null && sqlid != '') {
-            //   for(var i=0;i<qunliao.length;i++){
-            //     if(qunliao[i]._id === sqlid){
-            //       qunliao.splice(i, 1);
-            //       $rootScope.$broadcast('msgs.update');
-            //       break;
-            //     }
-            //   }
-            // }
             // alert("成功发送hou长度"+qunliao.length);
             $greendao.saveObj('MessagesService',messageReal,function (data) {
               $rootScope.$broadcast('msgs.update');
