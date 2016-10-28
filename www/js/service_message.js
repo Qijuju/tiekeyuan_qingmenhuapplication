@@ -359,10 +359,10 @@ angular.module('message.services', [])
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
-          //alert("SQLID不为空：" + sqlid)
+          // alert("SQLID不为空：" + sqlid)
           for(var i=0;i<danliao.length;i++){
             if(danliao[i]._id === sqlid){
-              //alert("SQLID已经找到：" + sqlid)
+              // alert("SQLID已经找到：" + sqlid)
               danliao.splice(i, 1);
               $rootScope.$broadcast('msgs.update');
               break;
@@ -390,7 +390,25 @@ angular.module('message.services', [])
               $rootScope.$broadcast('msgs.update');
             },function (err) {
             });
-            mqtt.sendMsg(topic, messageDetail, function (msg) {
+
+          /**
+           * 转圈是监听网络状态，若失败，则显示消息发送失败
+           */
+          $mqtt.setOnNetStatusChangeListener(function (succ) {
+            if(succ === 'false'){
+              alert("切网时，走不走");
+              $mqtt.updateDanliao(messageDetail);
+              messageDetail.isFailure='true';
+              danliao.push(messageDetail);
+              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+                $rootScope.$broadcast('msgs.error');
+              },function (err) {
+              });
+            }
+          },function (err) {
+          });
+
+          mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
               $mqtt.updateDanliao(messageDetail);
               messageDetail.isSuccess='true';
@@ -398,6 +416,9 @@ angular.module('message.services', [])
               //   messageDetail.message = picPath;
               // }
               if(messagetype === 'LOCATION'){
+                // alert("成功发送定位qian长度"+danliao.length);
+                // $mqtt.updateDanliao(messageDetail);
+                // alert("成功发送定位后长度"+danliao.length);
                 messageDetail.message=content;
                 // alert("发送过去的定位内容"+messageDetail.message);
                 danliao.push(messageDetail);
@@ -481,6 +502,23 @@ angular.module('message.services', [])
          * @type {string}
            */
         // alert("图片入数组前长度"+danliao.length);
+
+        /**
+         * 转圈是监听网络状态，若失败，则显示消息发送失败
+         */
+        $mqtt.setOnNetStatusChangeListener(function (succ) {
+          if(succ === 'false'){
+            $mqtt.updateDanliao(messageDetail);
+            messageDetail.isFailure='true';
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        },function (err) {
+        });
+
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
         // alert("图片入数组后长度"+danliao.length);
@@ -902,7 +940,7 @@ angular.module('message.services', [])
       updateDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
           // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
-          if( danliao[i]._id === data._id && danliao[i].isSuccess === 'false'){
+          if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1);
             break;
@@ -931,8 +969,8 @@ angular.module('message.services', [])
       updateQunliao:function (data) {
         for(var i=0;i<qunliao.length;i++){
           // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
-          if( qunliao[i]._id === data._id && qunliao[i].isSuccess === 'false'){
-            alert("找出chat数组的被更改的数据了"+i);
+          if( qunliao[i]._id === data._id){
+            // alert("找出chat数组的被更改的数据了"+i);
             qunliao.splice(i,1);
             break;
           }
@@ -1066,7 +1104,6 @@ angular.module('message.services', [])
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           for(var i=0;i<qunliao.length;i++){
             if(qunliao[i]._id === sqlid){
-              alert('jinlaile')
               qunliao.splice(i, 1);
               $rootScope.$broadcast('msgs.update');
               break;
@@ -1077,9 +1114,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          //alert("成功前长度"+qunliao.length);
+          // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          //alert("成功后长度"+qunliao.length);
+          // alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
@@ -1087,12 +1124,28 @@ angular.module('message.services', [])
             // alert("群组消息保存失败");
           });
 
+        /**
+         * 转圈是监听网络状态，若失败，则显示消息发送失败
+         */
+        $mqtt.setOnNetStatusChangeListener(function (succ) {
+          if(succ === 'false'){
+            $mqtt.updateDanliao(messageDetail);
+            messageDetail.isFailure='true';
+            danliao.push(messageDetail);
+            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        },function (err) {
+        });
+
           /**
            * 消息发送成功/失败的回调
            */
           mqtt.sendMsg(topic, messageReal, function (message) {
             //改变状态前，删除数据
-            //alert("成功发送前长度"+qunliao.length);
+            // alert("成功发送前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isSuccess='true';
             qunliao.push(messageReal);
@@ -1105,11 +1158,11 @@ angular.module('message.services', [])
             });
             return "成功";
           },function (message) {
-            //alert("发送失败前长度"+qunliao.length);
+            // alert("发送失败前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isFailure='true';
             qunliao.push(messageReal);
-            //alert("发送失败后长度"+qunliao.length);
+            // alert("发送失败后长度"+qunliao.length);
             // if (sqlid != undefined && sqlid != null && sqlid != '') {
             //   for(var i=0;i<qunliao.length;i++){
             //     if(qunliao[i]._id === sqlid){

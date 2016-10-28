@@ -118,42 +118,45 @@ angular.module('login.controllers', [])
     };
     //获取当前用户的id
     var loginM = function () {
-      $mqtt.getMqtt().getUserId(function (userID) {
-        $rootScope.rootUserId = userID;
-        // alert("当前用户的id"+userID);
-      }, function (err) {
-
-      });
-      // alert(message.toString());
-      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
-      $scope.names = [];
-      $ionicLoading.hide();
-      //调用保存用户名方法
-      $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
-      }, function (message) {
-        $ToastUtils.showToast(message);
-      });
-      $mqtt.getMqtt().getMyTopic(function (msg) {
-        $api.getAllGroupIds(function (groups) {
-          //是否保存密码
-          $mqtt.save('remPwd', $scope.remPwd);
-          if ($scope.remPwd === 'true') {//如果需要保存密码，将密码保存到SP中
-            $mqtt.save('pwd', $scope.password);
-          } else {
-            $mqtt.save('pwd', '');
-          }
-          $mqtt.startMqttChat(msg + ',' + groups);
-          $mqtt.setLogin(true);
-          $scope.getUserName();
-          $state.go('tab.message');
+      $api.SetDeptInfo(function (msg) {
+        $mqtt.getMqtt().getUserId(function (userID) {
+          $rootScope.rootUserId = userID;
+          // alert("当前用户的id"+userID);
         }, function (err) {
-          $ToastUtils.showToast(err,function (success) {
-          },function (err) {
+
+        });
+        // alert(message.toString());
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+        $scope.names = [];
+        $ionicLoading.hide();
+        //调用保存用户名方法
+        $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
+        }, function (message) {
+          $ToastUtils.showToast(message);
+        });
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $api.getAllGroupIds(function (groups) {
+            //是否保存密码
+            $mqtt.save('remPwd', $scope.remPwd);
+            if ($scope.remPwd === 'true') {//如果需要保存密码，将密码保存到SP中
+              $mqtt.save('pwd', $scope.password);
+            } else {
+              $mqtt.save('pwd', '');
+            }
+            $mqtt.startMqttChat(msg + ',' + groups);
+            $mqtt.setLogin(true);
+            $scope.getUserName();
+            $state.go('tab.message');
+          }, function (err) {
+            $ToastUtils.showToast(err,function (success) {
+            },function (err) {
+            });
           });
+        }, function (err) {
+          $ToastUtils.showToast(message);
+          $ionicLoading.hide();
         });
       }, function (err) {
-        $ToastUtils.showToast(message);
-        $ionicLoading.hide();
       });
     }
 

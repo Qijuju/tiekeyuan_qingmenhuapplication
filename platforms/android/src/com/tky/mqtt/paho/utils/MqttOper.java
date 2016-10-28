@@ -43,7 +43,6 @@ public class MqttOper {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
                                 UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
                             }
                         });
@@ -67,7 +66,7 @@ public class MqttOper {
      */
     public static void freeMqtt() {
         Intent intent = new Intent();
-        intent.setAction(ReceiverParams.FREEZE_MQTT);
+        intent.setAction(ReceiverParams.CONNECTION_DOWN_MQTT);
         UIUtils.getContext().sendBroadcast(intent);
     }
 

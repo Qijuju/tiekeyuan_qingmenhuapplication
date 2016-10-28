@@ -50,7 +50,7 @@ public class MqttMessageCallback implements MqttCallback {
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
 		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
-		if (NetUtils.isConnect(context) && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
 //                SPUtils.save("count", "第" + count + "次重联");
@@ -432,7 +432,7 @@ public class MqttMessageCallback implements MqttCallback {
 			ringStaus = RingStatus.RING;
 		}
 		ringStaus = ( ringStaus == RingStatus.RING ? ringStaus :
-				( (System.currentTimeMillis() - start > 10) ? RingStatus.RING :
+				( (System.currentTimeMillis() - start > 5) ? RingStatus.RING :
 						RingStatus.NO_RING ) );
 		//************* 判断是否需要响铃 END *************
 		if (ringStaus != RingStatus.NO_RING) {

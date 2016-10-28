@@ -4,11 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
-import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.paho.utils.NetUtils;
 
 public class AlarmRecevier extends BroadcastReceiver{
 	private static String TAG="AlarmRecevier";
@@ -46,14 +48,14 @@ public class AlarmRecevier extends BroadcastReceiver{
 				//重新启动MQTT
 
 				ToastUtil.showSafeToast("Alarm定时检查重启...");
-				MqttOper.resetMqtt();
+				if (NetUtils.isConnect(UIUtils.getContext()) && MqttRobot.isStarted()) {
+					MqttOper.resetMqtt();
+				}
 
-				Log.i(TAG, "屏幕点亮了！!");
 				/*wifiManager=(WifiManager)context.getSystemService(context.WIFI_SERVICE);
 				wifiLock = wifiManager.createWifiLock(1,"mywifilock");
 				wifiLock.acquire();
 				wifiLock.release();*/
-				Log.i(TAG, "wifi已经加锁");
 //				mVibrator01 = ( Vibrator )context.getSystemService(Service.VIBRATOR_SERVICE);
 //				mVibrator01.vibrate( new long[]{100,10,100,1000},-1);
 //				Log.i(TAG, "手机震动了！!");

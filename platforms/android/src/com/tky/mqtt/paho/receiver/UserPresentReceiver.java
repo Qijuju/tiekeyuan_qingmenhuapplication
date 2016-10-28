@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.paho.utils.NetUtils;
 
 /**
  * 作者：
@@ -20,15 +21,13 @@ public class UserPresentReceiver extends BroadcastReceiver {
         if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())
                 || Intent.ACTION_SCREEN_ON.equals(intent.getAction())
                 || Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-            if (!MqttRobot.isStarted()) {
+            if (!MqttRobot.isStarted() || !NetUtils.isConnect(context)) {
                 return;
             }
 //            if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
 //                ToastUtil.showSafeToast("屏幕梁咩");
             ToastUtil.showSafeToast("程序锁解锁成功...");
-            if (MqttRobot.isStarted()) {
-                MqttOper.resetMqtt();
-            }
+            MqttOper.resetMqtt();
                 /*MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
                     @Override
                     public void onSuccess() {
