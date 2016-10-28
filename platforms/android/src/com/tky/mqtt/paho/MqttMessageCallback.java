@@ -50,7 +50,7 @@ public class MqttMessageCallback implements MqttCallback {
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
 		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
-		if (NetUtils.isConnect(context) && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
 //                SPUtils.save("count", "第" + count + "次重联");

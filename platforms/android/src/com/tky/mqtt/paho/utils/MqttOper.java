@@ -20,11 +20,10 @@ public class MqttOper {
      * 重启MQTT
      */
     public static void resetMqtt() {
-
-        ToastUtil.showSafeToast("MQTT重启即将开始...");
-        if (!NetUtils.isConnect(UIUtils.getContext())) {
+        if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
             return;
         }
+        ToastUtil.showSafeToast("MQTT重启即将开始...");
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
@@ -67,7 +66,7 @@ public class MqttOper {
      */
     public static void freeMqtt() {
         Intent intent = new Intent();
-        intent.setAction(ReceiverParams.FREEZE_MQTT);
+        intent.setAction(ReceiverParams.CONNECTION_DOWN_MQTT);
         UIUtils.getContext().sendBroadcast(intent);
     }
 

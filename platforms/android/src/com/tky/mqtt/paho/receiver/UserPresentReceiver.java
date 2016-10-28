@@ -4,12 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tky.mqtt.paho.MqttStatus;
-import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.paho.utils.NetUtils;
 
 /**
  * 作者：
@@ -23,7 +21,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
         if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())
                 || Intent.ACTION_SCREEN_ON.equals(intent.getAction())
                 || Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-            if (!MqttRobot.isStarted()) {
+            if (!MqttRobot.isStarted() || !NetUtils.isConnect(context)) {
                 return;
             }
 //            if (MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
