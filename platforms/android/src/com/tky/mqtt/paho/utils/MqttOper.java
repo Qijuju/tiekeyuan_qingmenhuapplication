@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 
@@ -19,6 +20,8 @@ public class MqttOper {
      * 重启MQTT
      */
     public static void resetMqtt() {
+
+        ToastUtil.showSafeToast("MQTT重启即将开始...");
         if (!NetUtils.isConnect(UIUtils.getContext())) {
             return;
         }

@@ -359,10 +359,10 @@ angular.module('message.services', [])
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
-          alert("SQLID不为空：" + sqlid)
+          //alert("SQLID不为空：" + sqlid)
           for(var i=0;i<danliao.length;i++){
             if(danliao[i]._id === sqlid){
-              alert("SQLID已经找到：" + sqlid)
+              //alert("SQLID已经找到：" + sqlid)
               danliao.splice(i, 1);
               $rootScope.$broadcast('msgs.update');
               break;
@@ -1066,6 +1066,7 @@ angular.module('message.services', [])
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           for(var i=0;i<qunliao.length;i++){
             if(qunliao[i]._id === sqlid){
+              alert('jinlaile')
               qunliao.splice(i, 1);
               $rootScope.$broadcast('msgs.update');
               break;
@@ -1091,7 +1092,7 @@ angular.module('message.services', [])
            */
           mqtt.sendMsg(topic, messageReal, function (message) {
             //改变状态前，删除数据
-            alert("成功发送前长度"+qunliao.length);
+            //alert("成功发送前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isSuccess='true';
             qunliao.push(messageReal);
@@ -1104,11 +1105,11 @@ angular.module('message.services', [])
             });
             return "成功";
           },function (message) {
-            alert("发送失败前长度"+qunliao.length);
+            //alert("发送失败前长度"+qunliao.length);
             $mqtt.updateQunliao(messageReal);
             messageReal.isFailure='true';
             qunliao.push(messageReal);
-            alert("发送失败后长度"+qunliao.length);
+            //alert("发送失败后长度"+qunliao.length);
             // if (sqlid != undefined && sqlid != null && sqlid != '') {
             //   for(var i=0;i<qunliao.length;i++){
             //     if(qunliao[i]._id === sqlid){
