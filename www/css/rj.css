@@ -5,6 +5,20 @@
   color: #8c8c8c;
   font-size: 13px;
 }
+.rj-push-rightright {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  color: #8c8c8c;
+  font-size: 13px;
+}
+.rj-push-rightdown {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  color: #8c8c8c;
+  font-size: 16px;
+}
 .rj-stable-content {
   background-color: #EAEAEA;
 }

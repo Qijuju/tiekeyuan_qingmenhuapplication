@@ -4,7 +4,7 @@
 angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
 
 
-  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope,$chatarr) {
+/*  .controller('notificationCtrl', function ($scope,$state,$mqtt,$ToastUtils,$mqtt,$notifyarr,$greendao,$rootScope,$chatarr) {
     //如果不是监听未读通知，就查询数据库展示通知列表
     $greendao.queryByConditions('NotifyListService',function (data) {
       // alert("通知列表的长度"+data.length);
@@ -21,9 +21,9 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
         $scope.id=$mqtt.getFirstReceiverSsid();
         $scope.alarmname=$mqtt.getFirstReceiverChatName();
         $scope.type=$mqtt.getMessageType();
-        /**
+        /!**
          * 先判断有没有该会话，没有就创建
-         */
+         *!/
         if($scope.syscount >0){
           // alert("收到系统通知并且保存成功"+$scope.syscount+"消息类型"+$scope.type+$scope.id);
           $greendao.queryData('NotifyListService','where id =?',$scope.id,function (data) {
@@ -102,9 +102,9 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
     }
 
 
-    /**
+    /!**
      * 通知最后一条信息展示完成以后在列表界面进行刷新
-     */
+     *!/
     $scope.$on('lastsyscount.update', function (event) {
       $scope.$apply(function () {
         // alert("进来数据刷新");
@@ -126,9 +126,9 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
         $scope.chatName = $mqtt.getFirstReceiverChatName();
         $scope.firstmessageType = $mqtt.getMessageType();
 
-        /**
+        /!**
          * 判断是单聊未读还是群聊未读
-         */
+         *!/
         if ($scope.lastCount > 0 && $scope.firstmessageType ==='User') {
           // alert("进来单聊");
           //当监听到有消息接收的时候，去判断会话列表有无这条记录，有就将消息直接展示在界面上；无就创建会话列表
@@ -205,13 +205,13 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
         } else if ($scope.lastGroupCount > 0) {
           // alert("进来群聊id"+$scope.receiverssid);
           // $ToastUtils.showToast("监听群未读消息数量"+$scope.lastGroupCount+$scope.receiverssid);
-          /**
+          /!**
            * 1.首先查询会话列表是否有该会话(chatListService)，若无，创建会话；若有进行第2步
            * 2.查出当前群聊的最后一条聊天记录(messageService)
            * 3.查出会话列表的该条会话，将取出的数据进行赋值(chatListService)
            * 4.保存数据(chatListService)
            * 5.数据刷新(chatListService)按时间降序排列展示
-           */
+           *!/
           $greendao.queryData('ChatListService', 'where id =?', $scope.receiverssid, function (data) {
             // alert(data.length+"收到消息时，查询chat表有无当前用户");
             if (data.length === 0) {
@@ -233,10 +233,10 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
                   $scope.$on('chatarr.update', function (event) {
                     $scope.$apply(function () {
                       $scope.items=$chatarr.getAllData();
-                      /**
+                      /!**
                        *  若会话列表有该群聊，取出该会话最后一条消息，并显示在会话列表上
                        *
-                       */
+                       *!/
                       // $ToastUtils.showToast("群组长度" + $scope.items.length);
                       $scope.savenotifylastmsg();
                     });
@@ -307,9 +307,9 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
 
   //单个系统通知详情界面控制器
 .controller('notificationDetailCtrl', function ($scope,$state,$greendao,$mqtt,$notifyarr,$rootScope,$stateParams) {
-  /**
+  /!**
    * 从通知会话列表跳转带参
-   */
+   *!/
   $scope.id=$stateParams.id;
   $scope.chatName=$stateParams.name;
   $scope.chatType=$stateParams.type;
@@ -328,9 +328,9 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
       $scope.alarmname=$mqtt.getFirstReceiverChatName();
       // alert("msg界面"+$scope.fisrtid+$scope.alarmname);
       $scope.type=$mqtt.getMessageType();
-      /**
+      /!**
        * 先判断有没有该会话，没有就创建
-       */
+       *!/
       if($scope.syscount >0){
         $greendao.queryData('NotifyListService','where id =?',$scope.fisrtid,function (data) {
           // alert("系统通知会话列表长度"+data.length);
@@ -458,7 +458,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
     });
   }
 
-})
+})*/
 
   .controller('notificationsCtrl', function ($scope,$state,$ToastUtils,$ionicSlideBoxDelegate,ionicDatePicker,$mqtt,$greendao,$notifyarr,$rootScope,$slowarr) {
     $scope.index = 0;
@@ -715,6 +715,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               // alert("沉降观测count"+$scope.cjgccount);
               $rootScope.$broadcast('appnotify.update');
             },function (err) {
+              
             });
           },function (err) {
           });

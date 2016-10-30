@@ -23,6 +23,9 @@ public class SystemMsg extends BaseDao {
     private String username;
     private String senderid;
     private String msglevel;
+    private String isread;
+    private String isfocus;
+    private Integer istop;
 
     public SystemMsg() {
     }
@@ -31,7 +34,7 @@ public class SystemMsg extends BaseDao {
         this._id = _id;
     }
 
-    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String msglevel) {
+    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String msglevel, String isread, String isfocus, Integer istop) {
         this._id = _id;
         this.sessionid = sessionid;
         this.type = type;
@@ -46,6 +49,9 @@ public class SystemMsg extends BaseDao {
         this.username = username;
         this.senderid = senderid;
         this.msglevel = msglevel;
+        this.isread = isread;
+        this.isfocus = isfocus;
+        this.istop = istop;
     }
 
     public String get_id() {
@@ -158,6 +164,30 @@ public class SystemMsg extends BaseDao {
 
     public void setMsglevel(String msglevel) {
         this.msglevel = msglevel;
+    }
+
+    public String getIsread() {
+        return isread;
+    }
+
+    public void setIsread(String isread) {
+        this.isread = isread;
+    }
+
+    public String getIsfocus() {
+        return isfocus;
+    }
+
+    public void setIsfocus(String isfocus) {
+        this.isfocus = isfocus;
+    }
+
+    public Integer getIstop() {
+        return istop;
+    }
+
+    public void setIstop(Integer istop) {
+        this.istop = istop;
     }
 
 }

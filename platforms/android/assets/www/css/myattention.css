@@ -248,6 +248,55 @@
   position: absolute;
   text-align: center;
 }
+.square7{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/zuiji.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 42px;
+  height: 42px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square8{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/erji.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 42px;
+  height: 42px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.square9{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/huangse.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 42px;
+  height: 42px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+
+
+
+
+
 .squareliao1{
   /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 30%;

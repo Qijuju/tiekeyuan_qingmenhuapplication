@@ -31,7 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "D:/workspace/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -88,6 +88,10 @@ public class GreenDaoGenerator {
         message.addStringProperty("username");//用户名
         message.addStringProperty("senderid");//用于群聊时判断消息来源人id
         message.addStringProperty("msglevel");//用于区分紧急程度(紧急：0,一般：1)
+        message.addStringProperty("isread");//未读和已读    false代表未读    true 代表已读
+        message.addStringProperty("isfocus");//是否关注     false 代表未关注   true 代表关注
+        message.addIntProperty("istop");//是否置顶  0表示没有置顶  100 表示已经置顶
+
     }
 
     //部门表（1：n）

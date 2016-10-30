@@ -37,6 +37,9 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         public final static Property Username = new Property(11, String.class, "username", false, "USERNAME");
         public final static Property Senderid = new Property(12, String.class, "senderid", false, "SENDERID");
         public final static Property Msglevel = new Property(13, String.class, "msglevel", false, "MSGLEVEL");
+        public final static Property Isread = new Property(14, String.class, "isread", false, "ISREAD");
+        public final static Property Isfocus = new Property(15, String.class, "isfocus", false, "ISFOCUS");
+        public final static Property Istop = new Property(16, Integer.class, "istop", false, "ISTOP");
     };
 
 
@@ -65,7 +68,10 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
                 "'IMG_SRC' TEXT," + // 10: imgSrc
                 "'USERNAME' TEXT," + // 11: username
                 "'SENDERID' TEXT," + // 12: senderid
-                "'MSGLEVEL' TEXT);"); // 13: msglevel
+                "'MSGLEVEL' TEXT," + // 13: msglevel
+                "'ISREAD' TEXT," + // 14: isread
+                "'ISFOCUS' TEXT," + // 15: isfocus
+                "'ISTOP' INTEGER);"); // 16: istop
     }
 
     /** Drops the underlying database table. */
@@ -148,6 +154,21 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         if (msglevel != null) {
             stmt.bindString(14, msglevel);
         }
+ 
+        String isread = entity.getIsread();
+        if (isread != null) {
+            stmt.bindString(15, isread);
+        }
+ 
+        String isfocus = entity.getIsfocus();
+        if (isfocus != null) {
+            stmt.bindString(16, isfocus);
+        }
+ 
+        Integer istop = entity.getIstop();
+        if (istop != null) {
+            stmt.bindLong(17, istop);
+        }
     }
 
     /** @inheritdoc */
@@ -173,7 +194,10 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // imgSrc
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // username
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // senderid
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // msglevel
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // msglevel
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // isread
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // isfocus
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16) // istop
         );
         return entity;
     }
@@ -195,6 +219,9 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         entity.setUsername(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setSenderid(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
         entity.setMsglevel(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setIsread(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setIsfocus(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setIstop(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
      }
     
     /** @inheritdoc */
