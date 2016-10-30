@@ -82,7 +82,7 @@
         <activity android:name="com.tky.mqtt.DocsManagerActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.photohelper.PhotoScaleActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.grid.GridActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity android:name=".OnePxActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:launchMode="singleTop" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:process=":newtask_onepx" />
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:launchMode="singleTop" android:name=".OnePxActivity" android:process=":newtask_onepx" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
