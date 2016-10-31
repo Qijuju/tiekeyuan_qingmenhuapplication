@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
@@ -19,6 +20,9 @@ import com.tky.mqtt.paho.utils.NetUtils;
  * 描述：
  */
 public class NetStatusReceiver extends BroadcastReceiver {
+
+    private static int count = 0;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
@@ -28,6 +32,7 @@ public class NetStatusReceiver extends BroadcastReceiver {
                 netIntent.setAction(ReceiverParams.NET_CONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);
                 MqttOper.resetMqtt();
+                Log.d("NetStatusReceiver", "网络连接检查MQTT第" + (++count) + "次");
             } else if (info.getState().equals(NetworkInfo.State.DISCONNECTED)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_DISCONNECTED);

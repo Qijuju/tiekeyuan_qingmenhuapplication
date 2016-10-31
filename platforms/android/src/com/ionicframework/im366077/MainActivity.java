@@ -30,6 +30,7 @@ import android.text.format.Formatter;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
@@ -55,6 +56,7 @@ public class MainActivity extends CordovaActivity
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        MqttRobot.setIsStarted(false);
 
         //注册屏幕开关广播
         receiver = new UserPresentReceiver();

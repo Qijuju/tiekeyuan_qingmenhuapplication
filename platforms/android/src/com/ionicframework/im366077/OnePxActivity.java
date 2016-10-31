@@ -25,13 +25,13 @@ public class OnePxActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_px);
-        if (getIntent().getBooleanExtra("backgroud", false)) {
+        /*if (getIntent().getBooleanExtra("backgroud", false)) {
             //让应用进入后台运行
             Intent i= new Intent(Intent.ACTION_MAIN);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.addCategory(Intent.CATEGORY_HOME);
             startActivity(i);
-        }
+        }*/
         receiver = new CloseOnePxReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.tky.close_one_px_activity");
@@ -54,7 +54,6 @@ public class OnePxActivity extends Activity {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                ToastUtil.showSafeToast("cccc");
                                 /*Intent i= new Intent(Intent.ACTION_MAIN);
 
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //android123提示如果是服务里调用，必须加入new task标识
