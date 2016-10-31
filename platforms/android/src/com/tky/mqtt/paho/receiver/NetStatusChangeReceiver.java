@@ -6,11 +6,13 @@ import android.content.Intent;
 
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.main.MqttRobot;
 
 public class NetStatusChangeReceiver extends BroadcastReceiver {
     private OnNetListener onNetListener;
     @Override
     public void onReceive(Context context, Intent intent) {
+        ToastUtil.showSafeToast("网络断开~~~" + MqttRobot.isStarted());
         if (ReceiverParams.NET_DISCONNECTED.equals(intent.getAction())) {//网络断开
             ToastUtil.showSafeToast("网络断开...");
             if (onNetListener != null) {

@@ -203,7 +203,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
 						Messages messages=new Messages();
-						messages.set_id(map.get_id());
+						messages.set_id(UUID.randomUUID().toString());
 						messages.setSessionid(map.getSessionid());
 						messages.setType(map.getType());
 						messages.setFrom(map.getFrom());
@@ -352,7 +352,7 @@ public class MqttMessageCallback implements MqttCallback {
 			//消息转化完毕就入库
 			int count=0;
 			Messages messages=new Messages();
-			messages.set_id(eventBean.get_id());
+			messages.set_id(UUID.randomUUID().toString());
 			messages.setSessionid(eventBean.getSessionid());
 			messages.setType(eventBean.getType());
 			messages.setFrom(eventBean.getFrom());

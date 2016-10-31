@@ -7,10 +7,7 @@ import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.GroupChats;
-import com.tky.mqtt.dao.GroupChatsDao;
-import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;

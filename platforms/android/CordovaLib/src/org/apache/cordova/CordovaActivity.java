@@ -132,14 +132,14 @@ public class CordovaActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         //******************* 自己添加的代码 *******************
-        final Window win=getWindow();
+        /*final Window win=getWindow();
         win.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         win.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);*/
         //******************* 自己添加的代码 *******************
 
         cordovaInterface = makeCordovaInterface();

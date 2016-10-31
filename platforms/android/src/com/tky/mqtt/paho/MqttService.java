@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
@@ -22,6 +23,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttService extends Service {
 
     protected MqttConnection mqttConnection;
+    private static int count = 0;
+    private static int count1 = 0;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -31,6 +34,7 @@ public class MqttService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("MqttService", "MqttService第" + (++count1) + "次启动");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -106,6 +110,7 @@ public class MqttService extends Service {
 
     @Override
     public void onDestroy() {
+        Log.d("MqttService", "MqttService第" + (++count) + "次死");
         ToastUtil.showSafeToast("服务已经挂掉了...");
         //释放CPU锁
         Intent alarmReleaseLockIntent = new Intent();
