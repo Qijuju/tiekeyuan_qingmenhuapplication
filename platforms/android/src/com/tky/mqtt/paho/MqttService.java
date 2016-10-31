@@ -99,12 +99,12 @@ public class MqttService extends Service {
         long fristtume= SystemClock.elapsedRealtime();
         //得到全局定时器
         AlarmManager am=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+        /*if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
             am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, 5*1000, sender);
         }else{
-            //毎30秒发个广播
-            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5*1000, sender);
-        }
+        }*/
+        //毎30秒发个广播
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5*1000, sender);
         return super.onStartCommand(intent, START_STICKY, startId);
     }
 

@@ -45,6 +45,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             closeOnePxIntent.setAction("com.tky.close_one_px_activity");
             context.sendBroadcast(closeOnePxIntent);
             ToastUtil.showSafeToast("程序锁解锁成功...");*/
+            ToastUtil.showSafeToast("程序锁解锁成功...");
             MqttOper.resetMqtt();
         }
     }
