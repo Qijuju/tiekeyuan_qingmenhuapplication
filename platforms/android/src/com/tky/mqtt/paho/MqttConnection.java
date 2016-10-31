@@ -10,6 +10,7 @@ import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
 
+import org.apache.cordova.LOG;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
@@ -78,7 +79,8 @@ public class MqttConnection {
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
-            ToastUtil.showSafeToast("MQTT启动失败...");
+            LOG.d("mqtt fail ----------------",arg1.getMessage());
+            ToastUtil.showSafeToast("MQTT启动失败..."+arg1.getMessage());
         }
 
         @Override

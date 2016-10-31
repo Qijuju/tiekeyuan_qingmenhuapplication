@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.synconset.FakeR;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
@@ -276,18 +278,6 @@ public class MqttChat extends CordovaPlugin {
         if (msg == null || "".equals(msg.trim())) {
             return ;
         }
-        //消息发送失败，数据回调，然后结束(断网，失去连接)
-        if(!NetUtils.isConnect(cordova.getActivity())){
-            setResult("failure",PluginResult.Status.ERROR,callbackContext);
-            return ;
-        }
-        try {
-            MessageOper.sendMsg(tosb, message);
-        } catch (IMPException e) {
-            setResult("failure", PluginResult.Status.ERROR, callbackContext);
-            e.printStackTrace();
-            return;
-        }
         //消息发送过程中，网络信号减弱，数据回调
         topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
             @Override
@@ -300,6 +290,40 @@ public class MqttChat extends CordovaPlugin {
                 setResult("error", PluginResult.Status.ERROR, callbackContext);
             }
         });
+        //消息回执状态，默认false
+        boolean flag=false;
+        //消息发送失败，数据回调，然后结束(断网，失去连接)
+        if(!NetUtils.isConnect(cordova.getActivity())){
+            flag=true;
+            /**
+             * 若断网，则在20s内不断发送消息，并且实时启动mqtt
+             */
+            while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
+                SystemClock.sleep(10);
+                try {
+                    if(MqttRobot.getMqttStatus() != MqttStatus.OPEN){
+                        MqttOper.resetMqtt();
+                    }else{
+                        MessageOper.sendMsg(tosb, message);
+                        break;
+                    }
+                } catch (IMPException e) {
+                    setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
+        try {
+            if(!flag){
+                MessageOper.sendMsg(tosb, message);
+            }
+        } catch (IMPException e) {
+            setResult("failure", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+            return;
+        }
+
 //        while ()
 //        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
 //        pluginResult.setKeepCallback(true);
