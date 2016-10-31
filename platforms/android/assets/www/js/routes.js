@@ -100,7 +100,6 @@ angular.module('im.routes', [])
 
       .state('tab.notification', {
         url: '/notification',
-        cache:false,
         views: {
           'tab-notification': {
             templateUrl: 'templates/tab-notification.html',
@@ -125,6 +124,20 @@ angular.module('im.routes', [])
         templateUrl: 'templates/notificationDetail.html',
         cache:false,
         controller: 'newnotificationDetailCtrl'
+      })
+
+      .state('notifyDetail', {
+        url: '/notifyDetail/:id',
+        templateUrl: 'templates/notifyDetail.html',
+        cache:false,
+        controller: 'notifyDetailCtrl'
+      })
+
+      .state('notifyApplication', {
+        url: '/notifyApplication/:id',
+        templateUrl: 'templates/notifyApplication.html',
+        cache:false,
+        controller: 'notifyApplicationCtrl'
       })
 
 

@@ -116,6 +116,10 @@ public class MessageOper {
 			levelStr = "Common";
 		} else if (IMMsgFactory.MsgLevel.Level_1.equals(level)) {
 			levelStr = "Level_1";
+		} else if (IMMsgFactory.MsgLevel.Level_2.equals(level)) {
+			levelStr = "Level_2";
+		} else if (IMMsgFactory.MsgLevel.Level_3.equals(level)) {
+			levelStr = "Level_3";
 		}
 		return levelStr;
 	}

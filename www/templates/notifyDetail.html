@@ -1,0 +1,34 @@
+<ion-view view-title={{allDetail.username}}>
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backNotify()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false" class="rj-stable-content">
+    <div>
+      <p style="text-align: center;padding: 20px">{{allDetail.when | date:'MM-dd HH:mm' }}</p>
+      <div class="rj-message-wrap">
+          <span>
+          <p class="rj-notification" style="padding: 10px">{{allDetail.message}}</p>
+          </span>
+      </div>
+      <div style="margin-top: 5px;">
+        <ul>
+          <Li>
+            <ion-toggle  ng-checked="isTopStatus" ng-click="notifyTop()">
+              通知置顶
+            </ion-toggle>
+          </Li>
+          <Li>
+            <ion-toggle  ng-checked="isFoucStatus" ng-click="notifyFocus()">
+              添加关注
+            </ion-toggle>
+          </Li>
+        </ul>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

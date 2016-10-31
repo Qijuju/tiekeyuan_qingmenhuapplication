@@ -394,19 +394,20 @@ angular.module('message.services', [])
           /**
            * 转圈是监听网络状态，若失败，则显示消息发送失败
            */
-          $mqtt.setOnNetStatusChangeListener(function (succ) {
-            if(succ === 'false'){
-              alert("切网时，走不走");
-              $mqtt.updateDanliao(messageDetail);
-              messageDetail.isFailure='true';
-              danliao.push(messageDetail);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
-                $rootScope.$broadcast('msgs.error');
-              },function (err) {
-              });
-            }
-          },function (err) {
-          });
+          // $mqtt.setOnNetStatusChangeListener(function (succ) {
+          //   alert("切网时，走不走");
+          //   if(succ === 'false'){
+          //     alert("切网时，走不走");
+          //     $mqtt.updateDanliao(messageDetail);
+          //     messageDetail.isFailure='true';
+          //     danliao.push(messageDetail);
+          //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+          //       $rootScope.$broadcast('msgs.error');
+          //     },function (err) {
+          //     });
+          //   }
+          // },function (err) {
+          // });
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
@@ -506,18 +507,18 @@ angular.module('message.services', [])
         /**
          * 转圈是监听网络状态，若失败，则显示消息发送失败
          */
-        $mqtt.setOnNetStatusChangeListener(function (succ) {
-          if(succ === 'false'){
-            $mqtt.updateDanliao(messageDetail);
-            messageDetail.isFailure='true';
-            danliao.push(messageDetail);
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
-              $rootScope.$broadcast('msgs.error');
-            },function (err) {
-            });
-          }
-        },function (err) {
-        });
+        // $mqtt.setOnNetStatusChangeListener(function (succ) {
+        //   if(succ === 'false'){
+        //     $mqtt.updateDanliao(messageDetail);
+        //     messageDetail.isFailure='true';
+        //     danliao.push(messageDetail);
+        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+        //       $rootScope.$broadcast('msgs.error');
+        //     },function (err) {
+        //     });
+        //   }
+        // },function (err) {
+        // });
 
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
@@ -670,19 +671,21 @@ angular.module('message.services', [])
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
           // alert("进来了吗"+message.type);
-          if(message.type === 'Platform'){             //当消息为系统通知时
-            // alert("进来了吗紧急"+message.msgLevel);
+          if(message.type === 'Platform'){
+            $rootScope.$broadcast('newnotify.update');
+            /*//当消息为系统通知时
+           /!* //alert("进来了吗紧急"+message.msgLevel);
             arriveMessage.msglevel=message.msgLevel;
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              // alert("保存平台消息成功");
+               //alert("保存平台消息成功");
             },function (err) {
 
-            });
-            /**
+            });*!/
+            /!**
              * 判断未读数量
-             */
+             *!/
               if(message.msgLevel === 'Level_1'){        //紧急消息
-                // alert("通知进入紧急选择段");
+                //alert("通知进入紧急选择段");
                 fastarr.push(arriveMessage);
                 $greendao.queryNotifyChat(message.msgLevel,message.sessionid,function (data) {
                   if(data.length>0){
@@ -701,20 +704,20 @@ angular.module('message.services', [])
                   // alert(err);
                 });
               }else if (message.msgLevel === 'Common'){    //一般消息
-                // alert("通知进入一般选择段");
+                //alert("通知进入一般选择段");
                 slowarr.push(arriveMessage);
                 $greendao.querySlowNotifyChat(message.msgLevel,message.sessionid,function (data) {
                   if(data.length>0){
                     slowcount=data[0].count;
-                    // alert("一般有值"+slowcount);
+                     //alert("一般有值"+slowcount);
                     slowcount++;
                     $rootScope.$broadcast('newnotify.update');
                   }else{
                     slowcount =0;
-                    // alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
+                    //alert("接受群消息service2222"+data.length+arriveMessage.sessionid);
                     slowcount++;
                     $rootScope.$broadcast('newnotify.update');
-                    // alert("slowcount"+slowcount);
+                     //alert("slowcount"+slowcount);
                   }
                 },function (err) {
                   // alert(err);
@@ -724,10 +727,10 @@ angular.module('message.services', [])
             $rootScope.firstSessionid=arriveMessage.sessionid;
             $rootScope.firstUserName=arriveMessage.username;
             $rootScope.messagetype= arriveMessage.msglevel;
-            // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
+            // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);*/
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              // alert(data.length+"收通知消息");
+              alert(data.length+"收通知消息");
             },function (err) {
             });
             $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
@@ -947,6 +950,22 @@ angular.module('message.services', [])
           }
         }
       },
+      detaildanliaoupdate:function () {
+        // alert("进来改数组");
+        for(var i = 0;i<danliao.length;i++){
+          if(danliao[i].isSuccess === 'false'){
+            danliao[i].isFailure='true';
+          }
+        }
+      },
+      detailqunliaoupdate:function () {
+        // alert("进来改数组");
+        for(var i = 0;i<qunliao.length;i++){
+          if(qunliao[i].isSuccess === 'false'){
+            qunliao[i].isFailure='true';
+          }
+        }
+      },
       adddanliaodata:function (data) {
         // for(var i=0;i<=danliao.length-1;i++){
         //   if( danliao[i].id === data.id){
@@ -1127,18 +1146,18 @@ angular.module('message.services', [])
         /**
          * 转圈是监听网络状态，若失败，则显示消息发送失败
          */
-        $mqtt.setOnNetStatusChangeListener(function (succ) {
-          if(succ === 'false'){
-            $mqtt.updateDanliao(messageDetail);
-            messageDetail.isFailure='true';
-            danliao.push(messageDetail);
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
-              $rootScope.$broadcast('msgs.error');
-            },function (err) {
-            });
-          }
-        },function (err) {
-        });
+        // $mqtt.setOnNetStatusChangeListener(function (succ) {
+        //   if(succ === 'false'){
+        //     $mqtt.updateDanliao(messageDetail);
+        //     messageDetail.isFailure='true';
+        //     danliao.push(messageDetail);
+        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
+        //       $rootScope.$broadcast('msgs.error');
+        //     },function (err) {
+        //     });
+        //   }
+        // },function (err) {
+        // });
 
           /**
            * 消息发送成功/失败的回调
@@ -1268,6 +1287,7 @@ angular.module('message.services', [])
         mqtt.takePhoto(success, error);
       },
       setOnNetStatusChangeListener:function(success,error) {//网络监听
+        // alert("走监听事件了吗");
         mqtt.setOnNetStatusChangeListener(success,error);
       },
       getMqttStatus:function(success) {//MQTT连接状态获取

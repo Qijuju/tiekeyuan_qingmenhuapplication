@@ -1,0 +1,36 @@
+<ion-view view-title={{appname}}>
+  <ion-nav-bar align-title="center" class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backApp()" >
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="false" class="rj-stable-content">
+    <ion-list>
+      <ion-item  class="item-remove-animate item-avatar " ng-repeat="item in appmsg |filter:{'username':appname}" style="height: 60px;padding-top: -15px;" ng-click="appGoNotifyDetail(item._id)" >
+        <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+        <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+        <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+        <div ng-if="item.msglevel=='Common'" class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+
+        <h3>{{item.username}} {{item.when | date:'MM-dd HH:mm'}}</h3>
+        <p>{{item.message}}</p>
+        <!--<span class="rj-push-rightright" >{{item.when | date:'MM-dd HH:mm'}}</span>-->
+        <img class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+        <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue">未读</span>
+        <span class="rj-push-right" ng-if="item.isread=='true'" >已读</span>
+        <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red">!!!</span>
+        <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange">!!</span>
+        <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a">!</span>
+        <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'"></span>
+        <!--<ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
+          删 除
+        </ion-option-button>-->
+
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>
+
