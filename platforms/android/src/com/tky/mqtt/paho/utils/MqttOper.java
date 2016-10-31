@@ -1,6 +1,7 @@
 package com.tky.mqtt.paho.utils;
 
 import android.content.Intent;
+import android.os.SystemClock;
 
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
@@ -36,6 +37,7 @@ public class MqttOper {
                     return;
                 }
                 while (flag) {
+                    SystemClock.sleep(10);
                     if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
                         flag = false;
                     } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {

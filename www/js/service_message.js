@@ -386,28 +386,18 @@ angular.module('message.services', [])
             //发送消息前先展示在界面上
             // alert("数组长度前"+danliao.length);
             danliao.push(messageDetail);
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
-              $rootScope.$broadcast('msgs.update');
-            },function (err) {
-            });
+            $rootScope.$broadcast('msgs.update');
+            // $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            //
+            // },function (err) {
+            // });
 
           /**
            * 转圈是监听网络状态，若失败，则显示消息发送失败
            */
-          // $mqtt.setOnNetStatusChangeListener(function (succ) {
-          //   alert("切网时，走不走");
-          //   if(succ === 'false'){
-          //     alert("切网时，走不走");
-          //     $mqtt.updateDanliao(messageDetail);
-          //     messageDetail.isFailure='true';
-          //     danliao.push(messageDetail);
-          //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
-          //       $rootScope.$broadcast('msgs.error');
-          //     },function (err) {
-          //     });
-          //   }
-          // },function (err) {
-          // });
+          if(new Date().getTime()-messageDetail.when < 20 * 1000){
+
+          }
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
@@ -522,11 +512,11 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         danliao.push(messageDetail);
+        $rootScope.$broadcast('msgs.update');
         // alert("图片入数组后长度"+danliao.length);
-        $greendao.saveObj('MessagesService',messageDetail,function (data) {
-          $rootScope.$broadcast('msgs.update');
-        },function (err) {
-        });
+        // $greendao.saveObj('MessagesService',messageDetail,function (data) {
+        // },function (err) {
+        // });
         var sendType = 'F';
         if (messagetype == 'Image') {
           sendType = 'I';
@@ -651,7 +641,7 @@ angular.module('message.services', [])
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
-          arriveMessage._id='';
+          arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
           // alert("监听消息类型"+arriveMessage.type);
@@ -1135,13 +1125,14 @@ angular.module('message.services', [])
            */
           // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
+          $rootScope.$broadcast('msgs.update');
           // alert("成功后长度"+qunliao.length);
-          $greendao.saveObj('MessagesService',messageReal,function (data) {
-            $rootScope.$broadcast('msgs.update');
-            // alert("群组消息保存成功");
-          },function (err) {
-            // alert("群组消息保存失败");
-          });
+          // $greendao.saveObj('MessagesService',messageReal,function (data) {
+          //
+          //   // alert("群组消息保存成功");
+          // },function (err) {
+          //   // alert("群组消息保存失败");
+          // });
 
         /**
          * 转圈是监听网络状态，若失败，则显示消息发送失败
