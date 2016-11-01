@@ -482,8 +482,10 @@ angular.module('message.controllers', [])
                     }
                   }
                 },function (err) {
-
                 });
+                $timeout(function () {
+                  viewScroll.scrollBottom();
+                }, 100);
               },function (err) {
 
               });
@@ -491,9 +493,7 @@ angular.module('message.controllers', [])
           },function (err) {
 
           });
-          $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
+
         // $scope.msgs=$mqtt.getDanliao();
         // alert("发送定位之后"+$scope.msgs.length+$scope.msgs[$scope.msgs.length-1].message);
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
@@ -1353,6 +1353,9 @@ angular.module('message.controllers', [])
               },function (err) {
 
               });
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 100);
             },function (err) {
 
             });
@@ -1360,9 +1363,6 @@ angular.module('message.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
         // //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         // $scope.lastCount = $mqtt.getMsgCount();
         // // 当群未读消息lastGroupCount数变化的时候

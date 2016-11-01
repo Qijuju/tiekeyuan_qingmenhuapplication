@@ -391,6 +391,10 @@ angular.module('message.controllers', [])
     });
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
+      if(content === undefined || content === null || trim(content) == ''){
+        $scope.send_content = "";
+        return;
+      }
       $mqtt.getMqtt().getTopic(topic, $scope.groupType, function (userTopic) {
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
@@ -482,8 +486,10 @@ angular.module('message.controllers', [])
                     }
                   }
                 },function (err) {
-
                 });
+                $timeout(function () {
+                  viewScroll.scrollBottom();
+                }, 100);
               },function (err) {
 
               });
@@ -491,9 +497,7 @@ angular.module('message.controllers', [])
           },function (err) {
 
           });
-          $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
+
         // $scope.msgs=$mqtt.getDanliao();
         // alert("发送定位之后"+$scope.msgs.length+$scope.msgs[$scope.msgs.length-1].message);
         //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
@@ -1268,6 +1272,10 @@ angular.module('message.controllers', [])
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+      if(content === undefined || content === null || trim(content) == ''){
+        $scope.send_content = "";
+        return;
+      }
       $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
         if (sqlid != undefined && sqlid != null && sqlid != '') {
@@ -1353,6 +1361,9 @@ angular.module('message.controllers', [])
               },function (err) {
 
               });
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 100);
             },function (err) {
 
             });
@@ -1360,9 +1371,6 @@ angular.module('message.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
         // //当lastcount值变化的时候，进行数据库更新：将更改后的count的值赋值与unread，并将该条对象插入数据库并更新
         // $scope.lastCount = $mqtt.getMsgCount();
         // // 当群未读消息lastGroupCount数变化的时候

@@ -395,20 +395,9 @@ angular.module('message.services', [])
           /**
            * 转圈是监听网络状态，若失败，则显示消息发送失败
            */
-          // $mqtt.setOnNetStatusChangeListener(function (succ) {
-          //   alert("切网时，走不走");
-          //   if(succ === 'false'){
-          //     alert("切网时，走不走");
-          //     $mqtt.updateDanliao(messageDetail);
-          //     messageDetail.isFailure='true';
-          //     danliao.push(messageDetail);
-          //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
-          //       $rootScope.$broadcast('msgs.error');
-          //     },function (err) {
-          //     });
-          //   }
-          // },function (err) {
-          // });
+          if(new Date().getTime()-messageDetail.when < 20 * 1000){
+
+          }
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
               // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
