@@ -345,6 +345,7 @@ public class MqttChat extends CordovaPlugin {
                 }
             }
         });
+
         if (isConnect(cordova.getActivity().getBaseContext())) {
 
             return;
