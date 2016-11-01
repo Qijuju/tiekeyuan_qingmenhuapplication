@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
 
+import com.igexin.sdk.PushManager;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
@@ -56,6 +57,9 @@ public class MainActivity extends CordovaActivity
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        //个推初始化
+        PushManager.getInstance().initialize(this.getApplicationContext());
+
         MqttRobot.setIsStarted(false);
 
         //注册屏幕开关广播

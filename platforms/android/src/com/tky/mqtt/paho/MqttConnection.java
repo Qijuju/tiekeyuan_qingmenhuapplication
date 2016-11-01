@@ -10,7 +10,6 @@ import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
 
-import org.apache.cordova.LOG;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
@@ -25,13 +24,16 @@ import java.util.Map;
 public class MqttConnection {
 
     private MqttParams params;
-    private MqttAsyncClient mqttAsyncClient;
+    /**
+     * MqttAsyncClient写成静态（static）的，所有对象共享该对象，
+     * 则不会造成重复创建对象
+     */
+    private static MqttAsyncClient mqttAsyncClient;
     private Context context;
     private MqttReceiver receiver;
     private ConnectionType connectionType = ConnectionType.MODE_NONE;
 
     public void connect(Context context) throws MqttException {
-        ToastUtil.showSafeToast("MQTT正在启动...");
         if (!MqttRobot.isStarted()) {
             return;
         }
@@ -59,16 +61,15 @@ public class MqttConnection {
      * @throws MqttException
      */
     public void reconnect() throws MqttException {
-        ToastUtil.showSafeToast("MQTT即将重启...");
         if (!MqttRobot.isStarted()) {
+            MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+            closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
             return;
         }
         if (!isConnected()) {
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
             connect(context);
-        } else {
-            ToastUtil.showSafeToast("MQTT未断开，无需重新连接~~~");
         }
     }
 
@@ -79,14 +80,15 @@ public class MqttConnection {
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
-            LOG.d("mqtt fail ----------------",arg1.getMessage());
-            ToastUtil.showSafeToast("MQTT启动失败..."+arg1.getMessage());
+            try {
+                reconnect();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void onSuccess(IMqttToken arg0) {
-            ToastUtil.showSafeToast("MQTT启动成功...");
-
             UIUtils.runInMainThread(new Runnable() {
                 @Override
                 public void run() {
@@ -185,7 +187,6 @@ public class MqttConnection {
                                     context.sendBroadcast(intent);
                                     e.printStackTrace();
                                 }
-//								Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -298,21 +299,17 @@ public class MqttConnection {
      * @throws MqttException
      */
     public void publish(String topic, MqttMessage message) throws MqttException {
-        ToastUtil.showSafeToast("MQTT消息开始发送...");
         if (mqttAsyncClient != null) {
             try {
                 mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
                         if (iMqttToken.isComplete()) {
-                            ToastUtil.showSafeToast("MQTT消息发送成功...");
-//                            ToastUtil.showSafeToast("cccccccc");
                             //发送中，消息发送成功，回调
                             Intent intent = new Intent();
                             intent.setAction(ReceiverParams.SENDMESSAGE_SUCCESS);
                             context.sendBroadcast(intent);
                         } else {
-                            ToastUtil.showSafeToast("MQTT发送失败...");
                             //发送中，消息发送失败，回调
                             Intent intent = new Intent();
                             intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
@@ -322,7 +319,6 @@ public class MqttConnection {
 
                     @Override
                     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-                        ToastUtil.showSafeToast("MQTT发送失败...");
                         //发送中，消息发送失败，回调
                         Intent intent = new Intent();
                         intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
@@ -330,7 +326,6 @@ public class MqttConnection {
                     }
                 });
             } catch (Exception e) {
-                ToastUtil.showSafeToast("MQTT发送失败...");
                 //发送中，消息发送失败，回调
                 Intent intent = new Intent();
                 intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
@@ -366,12 +361,8 @@ public class MqttConnection {
             if (mqttAsyncClient != null) {
                 mqttAsyncClient = null;
             }
-            ToastUtil.showSafeToast("MQTT关闭成功...");
         } else if (mqttAsyncClient != null) {
             mqttAsyncClient = null;
-        }
-        if (receiver != null) {
-//            context.unregisterReceiver(receiver);
         }
     }
 

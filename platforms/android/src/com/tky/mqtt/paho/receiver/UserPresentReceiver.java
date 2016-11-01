@@ -5,11 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import com.ionicframework.im366077.OnePxActivity;
-import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 
@@ -22,9 +18,6 @@ import java.util.List;
  * 描述：
  */
 public class UserPresentReceiver extends BroadcastReceiver {
-    private boolean isStarted = false;
-    private static int count = 0;
-
     @Override
     public void onReceive(Context context, Intent intent) {
         /*if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
@@ -40,12 +33,10 @@ public class UserPresentReceiver extends BroadcastReceiver {
             if (!NetUtils.isConnect(context)) {
                 return;
             }
-            Log.d("UserPresentReceiver", "解锁第" + (++count) + "次");
             /*Intent closeOnePxIntent = new Intent();
             closeOnePxIntent.setAction("com.tky.close_one_px_activity");
             context.sendBroadcast(closeOnePxIntent);
             ToastUtil.showSafeToast("程序锁解锁成功...");*/
-            ToastUtil.showSafeToast("程序锁解锁成功...");
             MqttOper.resetMqtt();
         }
     }

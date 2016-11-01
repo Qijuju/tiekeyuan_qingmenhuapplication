@@ -24,7 +24,6 @@ public class MqttOper {
         if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
             return;
         }
-        ToastUtil.showSafeToast("MQTT重启即将开始...");
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
@@ -38,7 +37,7 @@ public class MqttOper {
                 }
                 while (flag) {
                     SystemClock.sleep(10);
-                    if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+                        if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
                         flag = false;
                     } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                         flag = false;
