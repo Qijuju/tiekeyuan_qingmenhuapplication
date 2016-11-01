@@ -3,6 +3,7 @@ package com.tky.mqtt.paho;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.SystemClock;
 
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.MqttStartReceiver;
@@ -57,7 +58,7 @@ public class MqttConnection {
      *
      * @throws MqttException
      */
-    public void reconnect() throws MqttException {
+    public synchronized void reconnect() throws MqttException {
         ToastUtil.showSafeToast("MQTT即将重启...");
         if (!MqttRobot.isStarted()) {
             return;
@@ -150,7 +151,7 @@ public class MqttConnection {
                                     }
                                     //如果有网MQTT却挂掉了，就重新启动MQTT并发送消息
                                     if (!isConnected() && NetUtils.isConnect(context)) {
-                                        MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
+                                        /*MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
                                             @Override
                                             public void onSuccess() {
                                                 try {
@@ -166,7 +167,55 @@ public class MqttConnection {
                                                 intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                                 context.sendBroadcast(intent);
                                             }
-                                        });
+                                        });*/
+
+                                        new Thread(new Runnable() {
+                                            private long start = 0;
+                                            boolean hasExecute = false;
+                                            @Override
+                                            public void run() {
+                                                start = System.currentTimeMillis();
+                                                while (System.currentTimeMillis() - start < 20 * 1000) {
+                                                    if (!NetUtils.isConnect(UIUtils.getContext())) {
+                                                        SystemClock.sleep(100);
+                                                        start = System.currentTimeMillis();
+                                                        continue;
+                                                    }
+                                                    if (isConnected()) {
+                                                        hasExecute = true;
+                                                        try {
+                                                            publish(topic, message);
+                                                        } catch (MqttException e) {
+                                                            MqttOper.sendErrNotify();
+                                                            e.printStackTrace();
+                                                        }
+                                                        break;
+                                                    }
+                                                    try {
+                                                        reconnect();
+                                                    } catch (MqttException e) {
+                                                        hasExecute = true;
+                                                        MqttOper.sendErrNotify();
+                                                        e.printStackTrace();
+                                                        break;
+                                                    }
+                                                    SystemClock.sleep(100);
+                                                    start = System.currentTimeMillis();
+                                                }
+                                                if (!hasExecute) {
+                                                    if (NetUtils.isConnect(UIUtils.getContext()) && isConnected()) {
+                                                        try {
+                                                            publish(topic, message);
+                                                        } catch (MqttException e) {
+                                                            MqttOper.sendErrNotify();
+                                                            e.printStackTrace();
+                                                        }
+                                                    } else {
+                                                        MqttOper.sendErrNotify();
+                                                    }
+                                                }
+                                            }
+                                        }).start();
                                         return;
                                     }
                                     //没网并且没连接MQTT

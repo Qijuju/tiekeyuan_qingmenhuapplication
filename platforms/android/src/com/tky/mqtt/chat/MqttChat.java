@@ -290,14 +290,14 @@ public class MqttChat extends CordovaPlugin {
                 setResult("error", PluginResult.Status.ERROR, callbackContext);
             }
         });
-        //消息回执状态，默认false
+        /*//消息回执状态，默认false
         boolean flag=false;
         //消息发送失败，数据回调，然后结束(断网，失去连接)
         if(!NetUtils.isConnect(cordova.getActivity())){
             flag=true;
-            /**
+            *//**
              * 若断网，则在20s内不断发送消息，并且实时启动mqtt
-             */
+             *//*
             while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
                 SystemClock.sleep(10);
                 try {
@@ -313,11 +313,11 @@ public class MqttChat extends CordovaPlugin {
                     return;
                 }
             }
-        }
+        }*/
         try {
-            if(!flag){
+//            if(!flag){
                 MessageOper.sendMsg(tosb, message);
-            }
+//            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();

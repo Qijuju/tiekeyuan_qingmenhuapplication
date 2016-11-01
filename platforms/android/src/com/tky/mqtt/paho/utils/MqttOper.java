@@ -83,13 +83,33 @@ public class MqttOper {
     }
 
     /**
+     * 消息发送成功后反馈给用户
+     */
+    public static void sendSuccNotify() {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送成功，回调
+                Intent intent = new Intent();
+                intent.setAction(ReceiverParams.SENDMESSAGE_SUCCESS);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
+    }
+
+    /**
      * 消息发送失败后反馈给用户
      */
     public static void sendErrNotify() {
-        //发送中，消息发送失败，回调
-        Intent intent=new Intent();
-        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-        UIUtils.getContext().sendBroadcast(intent);
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送失败，回调
+                Intent intent = new Intent();
+                intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
     }
 
     /**
