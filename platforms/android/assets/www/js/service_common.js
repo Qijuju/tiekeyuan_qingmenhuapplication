@@ -290,6 +290,9 @@ angular.module('common.services', [])
       },
       SetDeptInfo:function(success, error) {//登录成功将部门信息入库
         api.SetDeptInfo(success,error);
+      },
+      readMessage:function(sessionType, sessionID, sendWhen, success, error) {//确认消息回复
+        api.readMessage(sessionType, sessionID, sendWhen, success, error);
       }
     };
   })

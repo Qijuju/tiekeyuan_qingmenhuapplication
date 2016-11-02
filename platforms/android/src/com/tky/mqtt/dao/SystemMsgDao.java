@@ -40,6 +40,7 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         public final static Property Isread = new Property(14, String.class, "isread", false, "ISREAD");
         public final static Property Isfocus = new Property(15, String.class, "isfocus", false, "ISFOCUS");
         public final static Property Istop = new Property(16, Integer.class, "istop", false, "ISTOP");
+        public final static Property Isconfirm = new Property(17, String.class, "isconfirm", false, "ISCONFIRM");
     };
 
 
@@ -71,7 +72,8 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
                 "'MSGLEVEL' TEXT," + // 13: msglevel
                 "'ISREAD' TEXT," + // 14: isread
                 "'ISFOCUS' TEXT," + // 15: isfocus
-                "'ISTOP' INTEGER);"); // 16: istop
+                "'ISTOP' INTEGER," + // 16: istop
+                "'ISCONFIRM' TEXT);"); // 17: isconfirm
     }
 
     /** Drops the underlying database table. */
@@ -169,6 +171,11 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         if (istop != null) {
             stmt.bindLong(17, istop);
         }
+ 
+        String isconfirm = entity.getIsconfirm();
+        if (isconfirm != null) {
+            stmt.bindString(18, isconfirm);
+        }
     }
 
     /** @inheritdoc */
@@ -197,7 +204,8 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // msglevel
             cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // isread
             cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // isfocus
-            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16) // istop
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // istop
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17) // isconfirm
         );
         return entity;
     }
@@ -222,6 +230,7 @@ public class SystemMsgDao extends AbstractDao<SystemMsg, String> {
         entity.setIsread(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
         entity.setIsfocus(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
         entity.setIstop(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setIsconfirm(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
      }
     
     /** @inheritdoc */

@@ -678,4 +678,19 @@ public class SystemApi {
         client.GetAllGroup(ID, callback);
     }
 
+    /**
+     * 确认消息回复
+     * @param ID 被激活用户的ID
+     * @param sessionType 会话类型(U:个人，D：部门，G：群组)
+     * @param sessionID 会话ID(U:对方ID，D&G:部门&群组ID)
+     * @param sendWhen 消息发送时间when
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void readMessage(String ID, String sessionType, String sessionID, long sendWhen, AsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call> callback) throws IOException, TException {
+      IMMessage.AsyncClient client = getMsgClient();
+      client.ReadMessage(ID, sessionType, sessionID, sendWhen, callback);
+    }
+
 }

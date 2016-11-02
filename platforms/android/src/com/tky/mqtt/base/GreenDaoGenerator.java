@@ -91,6 +91,8 @@ public class GreenDaoGenerator {
         message.addStringProperty("isread");//未读和已读    false代表未读    true 代表已读
         message.addStringProperty("isfocus");//是否关注     false 代表未关注   true 代表关注
         message.addIntProperty("istop");//是否置顶  0表示没有置顶  100 表示已经置顶
+        message.addStringProperty("isconfirm");//是否已经确认过了  falser 代表没有确认   true 代表已经确认
+
 
     }
 

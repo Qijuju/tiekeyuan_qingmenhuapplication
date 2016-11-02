@@ -14,10 +14,10 @@ angular.module('badge.controllers',[])
 
 
     $scope.$on('msgs.update', function (event) {
-      $scope.$apply(function () {
-        $scope.allNoRead=0;
-        $greendao.loadAllData('ChatListService',function (msg) {
 
+      $scope.$apply(function () {
+        $greendao.loadAllData('ChatListService',function (msg) {
+          $scope.allNoRead=0;
           if (msg.length>0){
             for(var i=0;i<msg.length;i++){
               $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
@@ -32,8 +32,8 @@ angular.module('badge.controllers',[])
     $scope.$on('noread.update', function (event) {
 
 
-        $scope.allNoRead=0;
         $greendao.loadAllData('ChatListService',function (msg) {
+          $scope.allNoRead=0;
 
           if (msg.length>0){
             for(var i=0;i<msg.length;i++){
@@ -48,9 +48,8 @@ angular.module('badge.controllers',[])
 
     $scope.onTabSelected=function () {
 
-      $scope.allNoRead=0;
       $greendao.loadAllData('ChatListService',function (msg) {
-
+        $scope.allNoRead=0;
         if (msg.length>0){
           for(var i=0;i<msg.length;i++){
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
@@ -61,6 +60,80 @@ angular.module('badge.controllers',[])
 
       })
     };
+
+
+
+    $scope.notifyNoRead=0;
+
+    $scope.notifyBadge=function () {
+
+      return $scope.notifyNoRead;
+    }
+
+    $scope.$on('newnotify.update', function (event) {
+
+      $scope.$apply(function () {
+
+        $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
+          $scope.notifyNoRead=0;
+
+          if (msg.length>0){
+              $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+          }
+
+        },function (msg) {
+
+        });
+
+
+
+
+      })
+    });
+
+
+
+    $scope.onNotifyTabSelected=function () {
+
+      $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
+        $scope.notifyNoRead=0;
+
+        if (msg.length>0){
+          $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+        }
+
+      },function (msg) {
+
+      });
+    };
+
+    $scope.$on('second.notify', function (event) {
+      
+      $scope.$apply(function () {
+
+        $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
+          $scope.notifyNoRead=0;
+
+          if (msg.length>0){
+            $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+          }
+
+        },function (msg) {
+
+        });
+        
+      })
+    });
+
+
+
+
+
+
+
+
+
+
 
 
   })

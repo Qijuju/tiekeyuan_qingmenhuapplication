@@ -74,6 +74,7 @@ import im.server.Group.RSTgetGroupUpdate;
 import im.server.Message.IMMessage;
 import im.server.Message.RSTgetMsg;
 import im.server.Message.RSTgetMsgCount;
+import im.server.Message.RSTreadMsg;
 import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
@@ -1150,6 +1151,53 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
+    }
+
+  /**
+   * 确认消息回复
+   * @param args
+   * @param callbackContext
+     */
+    public void readMessage(final JSONArray args, final CallbackContext callbackContext){
+      try {
+        String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
+        String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
+        final long sendWhen = args.getLong(2);//消息发送时间when
+        SystemApi.readMessage(getUserID(), getType(sessionType), sessionID, sendWhen, new AsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call>() {
+          @Override
+          public void onComplete(IMMessage.AsyncClient.ReadMessage_call getHistoryMsg_call) {
+            try {
+              RSTreadMsg result = getHistoryMsg_call.getResult();
+              if (result != null && result.result) {
+                String json = GsonUtils.toJson(result, RSTreadMsg.class);
+                setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+              } else {
+                setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+              }
+            } catch (TException e) {
+              setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            } catch (JSONException e) {
+              setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            }
+          }
+
+          @Override
+          public void onError(Exception e) {
+            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+          }
+        });
+      } catch (JSONException e) {
+        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (TException e) {
+        setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (IOException e) {
+        setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
     }
 
     /**
@@ -2495,8 +2543,10 @@ public class ThriftApiClient extends CordovaPlugin {
         return "G";
       } else if ("Dept".equals(type)) {
         return "D";
-      } else {
-        return "U";
+      } else if ("Platform".equals(type)){
+        return "P";
+      }else {
+          return "U";
       }
     }
 

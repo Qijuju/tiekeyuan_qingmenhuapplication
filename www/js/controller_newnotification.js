@@ -4,7 +4,7 @@
 angular.module('newnotification.controllers', [])
 
 
-  .controller('newnotificationCtrl', function ($scope,$state,$ionicSlideBoxDelegate,$greendao,$ionicLoading,$timeout) {
+  .controller('newnotificationCtrl', function ($scope,$state,$ionicSlideBoxDelegate,$greendao,$ionicLoading,$timeout,$rootScope) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -57,18 +57,30 @@ angular.module('newnotification.controllers', [])
     $scope.$on('$ionicView.enter', function () {
       $ionicSlideBoxDelegate.enableSlide(false);
       $timeout(function () {
-        $greendao.loadAllData('ModuleCountService',function (data) {
-          $scope.applist=data[0];
-        },function (err) {
-
-        });
         $greendao.queryByConditions("SystemMsgService",function (msg) {
+          if(msg.length==0){
+            $ionicLoading.hide();
+          }
           $ionicLoading.hide();
           $scope.allin=msg;
+
         },function (err) {
+          $ionicLoading.hide();
 
         });
+
+        $greendao.loadAllData('ModuleCountService',function (data) {
+
+            $scope.applist=data[0];
+
+        },function (err) {
+          $ionicLoading.hide();
+
+        });
+
       });
+      $rootScope.$broadcast('second.notify');
+
 
 
 
@@ -122,6 +134,7 @@ angular.module('newnotification.controllers', [])
 
     //跳转到默认的全部  index 是0；
     $scope.goAll=function (index) {
+
       $scope.appstatus=false;
       $scope.startA=false;
       $scope.newdex=0;
@@ -229,6 +242,7 @@ angular.module('newnotification.controllers', [])
           $greendao.queryByConditions("SystemMsgService",function (msg) {
             $ionicLoading.hide();
             $scope.allin=msg;
+            $rootScope.$broadcast('second.notify');
 
           },function (err) {
 
@@ -239,104 +253,118 @@ angular.module('newnotification.controllers', [])
       });
 
 
+
     }
 
-    $scope.gotoFocus=function (id) {
-      switch (id){
-        case '1':
-          $greendao.loadAllData('ModuleCountService',function (data) {
-            var newMsg={};
-            newMsg.id=data[0].id;
-            newMsg.name=data[0].name;
-            newMsg.count1=0;
-            newMsg.count2=data[0].count2;
-            newMsg.count3=data[0].count3;
-            newMsg.count4=data[0].count4;
-            newMsg.type=data[0].type;
+    $scope.gotoFocus=function (id,isfirm) {
+      if(isfirm==0){
+        switch (id){
+          case '1':
+            $greendao.loadAllData('ModuleCountService',function (data) {
+              var newMsg={};
+              newMsg.id=data[0].id;
+              newMsg.name=data[0].name;
+              newMsg.count1=0;
+              newMsg.count2=data[0].count2;
+              newMsg.count3=data[0].count3;
+              newMsg.count4=data[0].count4;
+              newMsg.type=data[0].type;
 
-            $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-              $state.go("notifyApplication",{
-                id:id
-              })
+              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
+                $state.go("notifyApplication",{
+                  id:id,
+                  isfirm:isfirm
+                })
+              },function (err) {
+
+              });
+
             },function (err) {
 
             });
+            break;
+          case '15':
+            $greendao.loadAllData('ModuleCountService',function (data) {
+              var newMsg={};
+              newMsg.id=data[0].id;
+              newMsg.name=data[0].name;
+              newMsg.count1=data[0].count1;
+              newMsg.count2=0;
+              newMsg.count3=data[0].count3;
+              newMsg.count4=data[0].count4;
+              newMsg.type=data[0].type;
 
-          },function (err) {
+              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
+                $state.go("notifyApplication",{
+                  id:id,
+                  isfirm:isfirm
+                })
+              },function (err) {
 
-          });
-          break;
-        case '15':
-          $greendao.loadAllData('ModuleCountService',function (data) {
-            var newMsg={};
-            newMsg.id=data[0].id;
-            newMsg.name=data[0].name;
-            newMsg.count1=data[0].count1;
-            newMsg.count2=0;
-            newMsg.count3=data[0].count3;
-            newMsg.count4=data[0].count4;
-            newMsg.type=data[0].type;
+              });
 
-            $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-              $state.go("notifyApplication",{
-                id:id
-              })
             },function (err) {
 
             });
+            break;
+          case '16':
+            $greendao.loadAllData('ModuleCountService',function (data) {
+              var newMsg={};
+              newMsg.id=data[0].id;
+              newMsg.name=data[0].name;
+              newMsg.count1=data[0].count1;
+              newMsg.count2=data[0].count2;
+              newMsg.count3=0;
+              newMsg.count4=data[0].count4;
+              newMsg.type=data[0].type;
 
-          },function (err) {
+              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
+                $state.go("notifyApplication",{
+                  id:id,
+                  isfirm:isfirm
+                })
+              },function (err) {
 
-          });
-          break;
-        case '16':
-          $greendao.loadAllData('ModuleCountService',function (data) {
-            var newMsg={};
-            newMsg.id=data[0].id;
-            newMsg.name=data[0].name;
-            newMsg.count1=data[0].count1;
-            newMsg.count2=data[0].count2;
-            newMsg.count3=0;
-            newMsg.count4=data[0].count4;
-            newMsg.type=data[0].type;
+              });
 
-            $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-              $state.go("notifyApplication",{
-                id:id
-              })
             },function (err) {
 
             });
+            break;
+          case '18':
+            $greendao.loadAllData('ModuleCountService',function (data) {
+              var newMsg={};
+              newMsg.id=data[0].id;
+              newMsg.name=data[0].name;
+              newMsg.count1=data[0].count1;
+              newMsg.count2=data[0].count2;
+              newMsg.count3=data[0].count3;
+              newMsg.count4=0;
+              newMsg.type=data[0].type;
 
-          },function (err) {
+              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
+                $state.go("notifyApplication",{
+                  id:id,
+                  isfirm:isfirm
+                })
+              },function (err) {
 
-          });
-          break;
-        case '18':
-          $greendao.loadAllData('ModuleCountService',function (data) {
-            var newMsg={};
-            newMsg.id=data[0].id;
-            newMsg.name=data[0].name;
-            newMsg.count1=data[0].count1;
-            newMsg.count2=data[0].count2;
-            newMsg.count3=data[0].count3;
-            newMsg.count4=0;
-            newMsg.type=data[0].type;
+              });
 
-            $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-              $state.go("notifyApplication",{
-                id:id
-              })
             },function (err) {
 
             });
+            break;
 
-          },function (err) {
-
-          });
-          break;
-
+        }
+      }else {
+        $state.go("notifyApplication",{
+          
+          id:id,
+          isfirm:isfirm
+        })
       }
+
     }
 
   })
@@ -345,13 +373,19 @@ angular.module('newnotification.controllers', [])
 
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao) {
+  .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao,$api,$timeout,$ionicLoading) {
+
+
+
+
 
     $scope.id=$stateParams.id;
+
 
     $greendao.loadDataByArg("SystemMsgService",$scope.id,function (msg) {
 
         $scope.allDetail=msg;
+
         if(msg.istop==0){
           $scope.isTopStatus=false;
 
@@ -364,6 +398,18 @@ angular.module('newnotification.controllers', [])
           $scope.isFoucStatus=true;
 
         }
+
+        if(msg.msglevel=="Level_3"){
+          $scope.levelName="超级紧急";
+        }else if(msg.msglevel=="Level_2"){
+          $scope.levelName="非常紧急";
+        }else if(msg.msglevel=="Level_1"){
+          $scope.levelName="紧急";
+        }else {
+          $scope.levelName="一般";
+        }
+
+
 
     },function (err) {
 
@@ -390,6 +436,83 @@ angular.module('newnotification.controllers', [])
     }
 
 
+    //详情确认
+    $scope.confirmDetail=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      //调用接口确认回复详情
+      $timeout(function () {
+        $api.readMessage($scope.allDetail.type,$scope.allDetail.sessionid,$scope.allDetail.when,function (suc) {
+
+
+
+
+
+          $scope.lastDetail=suc;
+
+          var confirmD={};
+          confirmD._id=$scope.allDetail._id;
+          confirmD.sessionid=$scope.allDetail.sessionid;
+          confirmD.type=$scope.allDetail.type;
+          confirmD.from=$scope.allDetail.from;
+          confirmD.message=$scope.allDetail.message;
+          confirmD.messagetype=$scope.allDetail.messagetype;
+          confirmD.platform=$scope.allDetail.platform;
+          confirmD.when=suc.sendWhen;
+          confirmD.isFailure=$scope.allDetail.isFailure;
+          confirmD.isDelete=$scope.allDetail.isDelete;
+          confirmD.imgSrc=$scope.allDetail.imgSrc;
+          confirmD.username=$scope.allDetail.username;
+          confirmD.senderid=$scope.allDetail.senderid;
+          confirmD.msglevel=$scope.allDetail.msglevel;
+          confirmD.isread="true";
+          confirmD.isconfirm="true";
+
+          if($scope.isFoucStatus){
+            confirmD.isfocus="true";
+
+          }else {
+            confirmD.isfocus="false";
+
+          }
+
+          if($scope.isTopStatus){
+            confirmD.istop=100;
+          }else {
+            confirmD.istop=0;
+          }
+          $greendao.saveObj("SystemMsgService",confirmD,function (suc) {
+
+            $ionicLoading.hide();
+            $scope.allDetail=confirmD;
+          },function (err) {
+
+            $ionicLoading.hide();
+
+          })
+        },function (err) {
+
+          $ionicLoading.hide();
+
+        })
+
+      })
+
+
+    };
+
+
+
+
+
+
+
+
     $scope.$on('$ionicView.leave', function () {
 
       $greendao.loadDataByArg("SystemMsgService",$scope.id,function (message) {
@@ -410,6 +533,9 @@ angular.module('newnotification.controllers', [])
         newNotify.senderid=message.senderid;
         newNotify.msglevel=message.msglevel;
         newNotify.isread="true";
+        newNotify.isconfirm=message.isconfirm;
+
+
 
         if($scope.isFoucStatus){
           newNotify.isfocus="true";
@@ -455,6 +581,10 @@ angular.module('newnotification.controllers', [])
   //应用列表的详情
 
   .controller('notifyApplicationCtrl', function ($scope,$stateParams,$greendao,$state,$ionicLoading,$timeout,$ionicHistory) {
+
+    $scope.hahaha=$stateParams.isfirm;
+
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',

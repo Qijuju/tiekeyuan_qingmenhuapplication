@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table SYSTEM_MSG.
  */
-public class SystemMsg extends BaseDao {
+public class SystemMsg extends BaseDao{
 
     private String _id;
     private String sessionid;
@@ -26,6 +26,7 @@ public class SystemMsg extends BaseDao {
     private String isread;
     private String isfocus;
     private Integer istop;
+    private String isconfirm;
 
     public SystemMsg() {
     }
@@ -34,7 +35,7 @@ public class SystemMsg extends BaseDao {
         this._id = _id;
     }
 
-    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String msglevel, String isread, String isfocus, Integer istop) {
+    public SystemMsg(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String msglevel, String isread, String isfocus, Integer istop, String isconfirm) {
         this._id = _id;
         this.sessionid = sessionid;
         this.type = type;
@@ -52,6 +53,7 @@ public class SystemMsg extends BaseDao {
         this.isread = isread;
         this.isfocus = isfocus;
         this.istop = istop;
+        this.isconfirm = isconfirm;
     }
 
     public String get_id() {
@@ -188,6 +190,14 @@ public class SystemMsg extends BaseDao {
 
     public void setIstop(Integer istop) {
         this.istop = istop;
+    }
+
+    public String getIsconfirm() {
+        return isconfirm;
+    }
+
+    public void setIsconfirm(String isconfirm) {
+        this.isconfirm = isconfirm;
     }
 
 }

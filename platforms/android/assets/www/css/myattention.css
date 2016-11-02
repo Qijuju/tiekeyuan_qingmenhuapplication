@@ -253,8 +253,8 @@
   background-image:url(../img/zuiji.png);
   border-radius: 30%;
   color: #FFFFFF;
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -267,8 +267,8 @@
   background-image:url(../img/erji.png);
   border-radius: 30%;
   color: #FFFFFF;
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -282,8 +282,22 @@
   background-image:url(../img/huangse.png);
   border-radius: 30%;
   color: #FFFFFF;
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+.square10{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/quntu3.png);
+  border-radius: 30%;
+  color: #FFFFFF;
+  width: 35px;
+  height: 35px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -426,8 +440,8 @@
 }
 .rj-message-wrap .rj-notification{
 
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 1%;
+  margin-right: 1%;
   background-color: #fff;
 
 }

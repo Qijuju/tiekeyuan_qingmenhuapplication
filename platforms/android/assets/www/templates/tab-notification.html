@@ -37,28 +37,32 @@
 
 
   </ion-nav-bar>
-  <ion-content overflow-scroll="false" ng-click="clickAny()" on-drag="clickAny()">
+  <ion-content overflow-scroll="false" ng-click="clickAny()" on-drag="clickAny()" style="background: gainsboro">
     <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
-                   pager-click="go(index)" on-slide-changed="go_changed(index)">
-      <ion-slide >
+                   pager-click="go(index)" on-slide-changed="go_changed(index)" >
+      <ion-slide style="background: gainsboro" >
         <div>
-           <ion-list>
-            <ion-item  class="item-remove-animate item-avatar " ng-repeat="item in allin" style="height: 60px;padding-top: -15px;" ng-click="goNotifyDetail(item._id)" >
-              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Common'" class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+           <ion-list >
+            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in allin"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
 
-              <h3>{{item.username}} {{item.when | date:'MM-dd HH:mm'}}</h3>
-              <p>{{item.message}}</p>
-              <!--<span class="rj-push-rightright" >{{item.when | date:'MM-dd HH:mm'}}</span>-->
-              <img class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
-              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue">未读</span>
-              <span class="rj-push-right" ng-if="item.isread=='true'" >已读</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red">!!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange">!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a">!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'"></span>
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>
+
+
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
@@ -70,13 +74,36 @@
       </ion-slide>
       <ion-slide>
         <div>
-          <P>全部已经确认1</P>
+          <ion-list >
+            <ion-item   class="item-remove-animate item-avatar rj-notify-bg" ng-repeat="item in allin |filter:{'isconfirm':'true'}"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
+                删 除
+              </ion-option-button>
+
+            </ion-item>
+          </ion-list>
         </div>
       </ion-slide>
 
       <ion-slide>
-        <div class="row" style="background: #ffffff;">
-          <div class="col" align="center" ng-click="gotoFocus('1')" >
+        <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
+          <div class="col" align="center" ng-click="gotoFocus('1',0)" >
             <a>
               <ul>
                 <li><img  src="img/oa.png" width="45" height="45">
@@ -87,7 +114,7 @@
               </ul>
             </a>
           </div>
-          <div class="col" align="center" ng-click="gotoFocus('15')">
+          <div class="col" align="center" ng-click="gotoFocus('15',0)">
             <a>
               <ul>
                 <li><img  src="img/bhz.png" width="45" height="45"></li>
@@ -98,7 +125,7 @@
               </ul>
             </a>
           </div>
-          <div class="col" align="center" ng-click="gotoFocus('16')">
+          <div class="col" align="center" ng-click="gotoFocus('16',0)">
             <a>
               <ul>
                 <li><img src="img/sys.png" width="45" height="45"></li>
@@ -110,7 +137,7 @@
               </ul>
             </a>
           </div>
-          <div class="col" align="center" ng-click="gotoFocus('18')">
+          <div class="col" align="center" ng-click="gotoFocus('18',0)">
             <a>
               <ul>
                 <li><img src="img/cjgc.png" width="45" height="45"></li>
@@ -124,29 +151,65 @@
         </div>
       </ion-slide>
       <ion-slide>
-        <div>
-          <P>按照应用已经确认3</P>
+        <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
+          <div class="col" align="center" ng-click="gotoFocus('1',1)" >
+            <a>
+              <ul>
+                <li><img  src="img/oa.png" width="45" height="45">
+
+                </li>
+                <li style="color: #000000">公文处理</li>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center" ng-click="gotoFocus('15',1)">
+            <a>
+              <ul>
+                <li><img  src="img/bhz.png" width="45" height="45"></li>
+                <li style="color: #000000">拌和站</li>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center" ng-click="gotoFocus('16',1)">
+            <a>
+              <ul>
+                <li><img src="img/sys.png" width="45" height="45"></li>
+                <li style="color: #000000">试验室</li>
+              </ul>
+            </a>
+          </div>
+          <div class="col" align="center" ng-click="gotoFocus('18',1)">
+            <a>
+              <ul>
+                <li><img src="img/cjgc.png" width="45" height="45"></li>
+                <li style="color: #000000">围岩量测</li>
+              </ul>
+            </a>
+          </div>
         </div>
       </ion-slide>
 
       <ion-slide>
         <div>
-          <ion-list>
-            <ion-item  class="item-remove-animate item-avatar " ng-repeat="item in allin |filter:{'isfocus':'true'}" style="height: 60px;padding-top: -15px;" ng-click="goNotifyDetail(item._id)" >
-              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Common'" class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 12px;z-index: 1">通知</div>
+          <ion-list >
+            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in allin |filter:{'isfocus':'true'}"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
 
-              <h3>{{item.username}} {{item.when | date:'MM-dd HH:mm'}}</h3>
-              <p>{{item.message}}</p>
-              <img class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
-              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue">未读</span>
-              <span class="rj-push-right" ng-if="item.isread=='true'" >已读</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red">!!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange">!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a">!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'"></span>
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
@@ -158,7 +221,32 @@
       </ion-slide>
       <ion-slide>
         <div>
-          <P>我的关注已经确认5</P>
+          <ion-list >
+            <ion-item   class="item-remove-animate item-avatar rj-notify-bg" ng-repeat="item in allin |filter:{'isfocus':'true'}|filter:{'isconfirm':'true'}"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <!--<span class="rj-push-rightright" >{{item.when | date:'MM-dd HH:mm'}}</span>-->
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
+                删 除
+              </ion-option-button>
+
+            </ion-item>
+
+          </ion-list>
         </div>
       </ion-slide>
 

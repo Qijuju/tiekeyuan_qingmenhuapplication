@@ -126,4 +126,7 @@ exports.openFileByPath = function(path, imageID, success, error) {//打开文件
 exports.SetDeptInfo = function(success, error) {//登录成功将部门信息入库
   exec(success, error, "ThriftApiClient", "SetDeptInfo", []);
 };
+exports.readMessage = function(sessionType, sessionID, sendWhen, success, error) {//确认消息回复
+  exec(success, error, "ThriftApiClient", "readMessage", [sessionType,sessionID,sendWhen]);
+};
 });

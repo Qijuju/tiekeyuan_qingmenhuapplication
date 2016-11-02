@@ -1,4 +1,4 @@
-<ion-view view-title={{allDetail.username}}>
+<ion-view view-title={{levelName}}>
   <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backNotify()">
@@ -8,13 +8,23 @@
   </ion-nav-bar>
   <ion-content overflow-scroll="false" class="rj-stable-content">
     <div>
-      <p style="text-align: center;padding: 20px">{{allDetail.when | date:'MM-dd HH:mm' }}</p>
+      <p style="text-align: center;font-size: 16px;padding: 13px;color:#2c2c2c;margin-top: 5px">{{allDetail.when | date:'yyyy-MM-dd HH:mm' }}&nbsp;&nbsp;来自&nbsp;&nbsp;<span style="color: teal;font-size: 17px">{{allDetail.username}}</span></p>
       <div class="rj-message-wrap">
-          <span>
-          <p class="rj-notification" style="padding: 10px">{{allDetail.message}}</p>
-          </span>
+        <ul>
+          <li>
+             <span>
+              <p class="rj-notification" style="padding: 5px;border-radius:5px;font-size: 15px;color: #515151"><span style="font-size: 17px;color: black">通知内容：</span>&nbsp;{{allDetail.message}}</p>
+             </span>
+          </li>
+          <li >
+            <button ng-click="confirmDetail()" ng-if="allDetail.isconfirm=='false' " class="button button-block button-stable" style="color: teal">详情确认</button>
+            <button ng-if="allDetail.isconfirm=='true' " class="button button-block button-stable" style="color: #e98f36">已经确认</button>
+          </li>
+        </ul>
+
+
       </div>
-      <div style="margin-top: 5px;">
+      <div >
         <ul>
           <Li>
             <ion-toggle  ng-checked="isTopStatus" ng-click="notifyTop()">

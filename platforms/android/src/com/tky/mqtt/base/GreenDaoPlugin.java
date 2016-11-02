@@ -169,6 +169,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             systemMsg.setIstop(jsonobj.getInt("istop"));
             systemMsg.setIsread(jsonobj.getString("isread"));
             systemMsg.setIsfocus(jsonobj.getString("isfocus"));
+            systemMsg.setIsconfirm(jsonobj.getString("isconfirm"));
             obj = systemMsg;
         }else if ("MsgHistoryService".equals(services)){
             MsgHistory msgHistory=new MsgHistory();

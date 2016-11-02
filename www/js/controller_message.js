@@ -24,14 +24,6 @@ angular.module('message.controllers', [])
       $scope.a=0;
     };
 
-
-    //一进来就检查网络是否连接
-    $mqtt.setOnNetStatusChangeListener(function (succ) {
-      $rootScope.netStatus = 'true';
-    },function (err) {
-      $rootScope.netStatus='false';
-    });
-
     //清表数据
     // $greendao.deleteAllData('MessagesService',function (data) {
     //   $ToastUtils.showToast(data);
@@ -53,6 +45,50 @@ angular.module('message.controllers', [])
     // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
+
+
+    //一进来就检查网络是否连接
+    $mqtt.setOnNetStatusChangeListener(function (succ) {
+      $rootScope.netStatus = 'true';
+    },function (err) {
+      $rootScope.netStatus='false';
+      // alert("切换网络失败时");
+      $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
+        // alert("切换网络时"+data.length);
+        $mqtt.detaildanliaoupdate();
+        $rootScope.$broadcast('msgs.error');
+        for(var i=0;i<data.length-1;i++){
+          var messaegeitem={};
+          messaegeitem._id=data[i]._id;
+          messaegeitem.sessionid=data[i].sessionid;
+          messaegeitem.type=data[i].type;
+          // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+          messaegeitem.from=data[i].from;
+          messaegeitem.message=data[i].message;
+          messaegeitem.messagetype=data[i].messagetype;
+          messaegeitem.platform=data[i].platform;
+          messaegeitem.when=data[i].when;
+          messaegeitem.isDelete=data[i].isDelete;
+          messaegeitem.imgSrc=data[i].imgSrc;
+          messaegeitem.username=data[i].username;
+          messaegeitem.senderid=data[i].senderid;
+          messaegeitem.isSuccess=data[i].isSuccess;
+          messaegeitem.isread='1';
+          if(data[i].isSuccess === 'false'){
+            // alert("发送失败的状态有数据啦");
+            messaegeitem.isFailure='true';
+            $greendao.saveObj('MessagesService',messaegeitem,function (success) {
+              // alert("状态改变成功");
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        }
+      },function (err) {
+      });
+    });
+
+
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
     if ($rootScope.isPersonSend === 'true') {
       // alert("长度");
@@ -657,7 +693,7 @@ angular.module('message.controllers', [])
     $scope.$on('msgs.error', function (event) {
       $scope.$apply(function () {
         $scope.msgs = $mqtt.getDanliao();
-        // alert("发送失败数组长度"+$scope.msgs.length);
+        // alert("切网发送失败"+$scope.msgs.length);
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
@@ -1109,6 +1145,40 @@ angular.module('message.controllers', [])
       $rootScope.netStatus = 'true';
     },function (err) {
       $rootScope.netStatus='false';
+      // alert("切换网络失败时");
+      $greendao.queryData('MessagesService','where sessionid =?',$scope.groupid,function (data) {
+        // alert("切换网络时"+data.length);
+        $mqtt.detailqunliaoupdate();
+        // $rootScope.$broadcast('msgs.error');
+        for(var i=0;i<data.length-1;i++){
+          var messaegeitem={};
+          messaegeitem._id=data[i]._id;
+          messaegeitem.sessionid=data[i].sessionid;
+          messaegeitem.type=data[i].type;
+          // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+          messaegeitem.from=data[i].from;
+          messaegeitem.message=data[i].message;
+          messaegeitem.messagetype=data[i].messagetype;
+          messaegeitem.platform=data[i].platform;
+          messaegeitem.when=data[i].when;
+          messaegeitem.isDelete=data[i].isDelete;
+          messaegeitem.imgSrc=data[i].imgSrc;
+          messaegeitem.username=data[i].username;
+          messaegeitem.senderid=data[i].senderid;
+          messaegeitem.isSuccess=data[i].isSuccess;
+          messaegeitem.isread='1';
+          if(data[i].isSuccess === 'false'){
+            // alert("发送失败的状态有数据啦");
+            messaegeitem.isFailure='true';
+            $greendao.saveObj('MessagesService',messaegeitem,function (success) {
+              // alert("状态改变成功");
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+          }
+        }
+      },function (err) {
+      });
     });
 
 

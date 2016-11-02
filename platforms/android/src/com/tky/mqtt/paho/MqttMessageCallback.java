@@ -144,6 +144,7 @@ public class MqttMessageCallback implements MqttCallback {
 						systemMsg.setIsfocus("false");
 						systemMsg.setIsread("false");
 						systemMsg.setIstop(0);
+						systemMsg.setIsconfirm("false");
 						SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
 						systemMsgService.saveObj(systemMsg);
 
