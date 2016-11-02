@@ -281,13 +281,21 @@ public class MqttChat extends CordovaPlugin {
         //消息发送过程中，网络信号减弱，数据回调
         topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
             @Override
-            public void onMqttSendSuccess() {
-                setResult("success", PluginResult.Status.OK, callbackContext);
+            public void onMqttSendSuccess(String msg) {
+                try {
+                    setResult(new JSONObject(msg), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onMqttSendError() {
-                setResult("error", PluginResult.Status.ERROR, callbackContext);
+            public void onMqttSendError(String msg) {
+                try {
+                    setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         /*//消息回执状态，默认false

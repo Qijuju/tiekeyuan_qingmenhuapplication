@@ -39,11 +39,9 @@ public class AlarmRecevier extends BroadcastReceiver{
 					// 说明系统中不存在这个activity
 					context.startActivity(mainIntent);
 				}
-				//重新启动MQTT
-				ToastUtil.showSafeToast("Alarm定时检查重启...");
 			}
-			Log.d("AlarmRecevier", "Alarm定时检查MQTT第" + (++count) + "次");
 			if (NetUtils.isConnect(UIUtils.getContext()) && MqttRobot.isStarted()) {
+				//重新启动MQTT
 				MqttOper.resetMqtt();
 			}
 		} else if(intent.getAction().equals("release_alarm_lock.action")){

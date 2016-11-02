@@ -7,6 +7,8 @@ import android.content.Intent;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 
+import org.json.JSONException;
+
 /**
  * 作者：
  * 包名：com.tky.mqtt.paho.receiver
@@ -18,14 +20,12 @@ public class MqttSendMsgReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if(ReceiverParams.SENDMESSAGE_ERROR.equals(intent.getAction())){//发送消息中断网，回调
-            ToastUtil.showSafeToast("MQTT消息发送失败...");
             if(onMqttSendErrorListener !=null){
-                onMqttSendErrorListener.onMqttSendError();
+                onMqttSendErrorListener.onMqttSendError(intent.getStringExtra("msg"));
             }
         }else if(ReceiverParams.SENDMESSAGE_SUCCESS.equals(intent.getAction())){//发送消息成功，回调
-            ToastUtil.showSafeToast("MQTT消息发送成功...");
             if(onMqttSendErrorListener !=null){
-                onMqttSendErrorListener.onMqttSendSuccess();
+                onMqttSendErrorListener.onMqttSendSuccess(intent.getStringExtra("msg"));
             }
         }
     }
@@ -35,7 +35,7 @@ public class MqttSendMsgReceiver extends BroadcastReceiver {
     }
 
     public interface OnMqttSendErrorListener{
-        public void onMqttSendSuccess();
-        public void onMqttSendError();
+        public void onMqttSendSuccess(String msg);
+        public void onMqttSendError(String msg);
     }
 }

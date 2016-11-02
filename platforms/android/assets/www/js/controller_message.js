@@ -391,6 +391,10 @@ angular.module('message.controllers', [])
     });
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
+      if(content === undefined || content === null || content.trim() === ''){
+        $scope.send_content = "";
+        return;
+      }
       $mqtt.getMqtt().getTopic(topic, $scope.groupType, function (userTopic) {
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
@@ -1161,41 +1165,41 @@ angular.module('message.controllers', [])
     },function (err) {
       $rootScope.netStatus='false';
       // alert("切换网络失败时");
-      $greendao.queryData('MessagesService','where sessionid =?',$scope.groupid,function (data) {
-        alert("切换网络时"+data.length);
-
-        // $rootScope.$broadcast('msgs.error');
-        for(var i=0;i<data.length;i++){
-          var messaegeitem={};
-          messaegeitem._id=data[i]._id;
-          messaegeitem.sessionid=data[i].sessionid;
-          messaegeitem.type=data[i].type;
-          // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
-          messaegeitem.from=data[i].from;
-          messaegeitem.message=data[i].message;
-          messaegeitem.messagetype=data[i].messagetype;
-          messaegeitem.platform=data[i].platform;
-          messaegeitem.when=data[i].when;
-          messaegeitem.isDelete=data[i].isDelete;
-          messaegeitem.imgSrc=data[i].imgSrc;
-          messaegeitem.username=data[i].username;
-          messaegeitem.senderid=data[i].senderid;
-          messaegeitem.isSuccess=data[i].isSuccess;
-          messaegeitem.isread='1';
-          if(data[i].isSuccess === 'false'){
-            alert("发送失败的状态有数据啦");
-            messaegeitem.isFailure='true';
-            $greendao.saveObj('MessagesService',messaegeitem,function (success) {
-              alert("状态改变成功");
-              $mqtt.detailqunliaoupdate();
-              $rootScope.$broadcast('msgs.error');
-            },function (err) {
-            });
-          }else{
-          }
-        }
-      },function (err) {
-      });
+      // $greendao.queryData('MessagesService','where sessionid =?',$scope.groupid,function (data) {
+      //   // alert("切换网络时"+data.length);
+      //
+      //   // $rootScope.$broadcast('msgs.error');
+      //   for(var i=0;i<data.length;i++){
+      //     var messaegeitem={};
+      //     messaegeitem._id=data[i]._id;
+      //     messaegeitem.sessionid=data[i].sessionid;
+      //     messaegeitem.type=data[i].type;
+      //     // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+      //     messaegeitem.from=data[i].from;
+      //     messaegeitem.message=data[i].message;
+      //     messaegeitem.messagetype=data[i].messagetype;
+      //     messaegeitem.platform=data[i].platform;
+      //     messaegeitem.when=data[i].when;
+      //     messaegeitem.isDelete=data[i].isDelete;
+      //     messaegeitem.imgSrc=data[i].imgSrc;
+      //     messaegeitem.username=data[i].username;
+      //     messaegeitem.senderid=data[i].senderid;
+      //     messaegeitem.isSuccess=data[i].isSuccess;
+      //     messaegeitem.isread='1';
+      //     if(data[i].isSuccess === 'false'){
+      //       // alert("发送失败的状态有数据啦");
+      //       messaegeitem.isFailure='true';
+      //       $greendao.saveObj('MessagesService',messaegeitem,function (success) {
+      //         // alert("状态改变成功");
+      //         $mqtt.detailqunliaoupdate();
+      //         $rootScope.$broadcast('msgs.error');
+      //       },function (err) {
+      //       });
+      //     }else{
+      //     }
+      //   }
+      // },function (err) {
+      // });
     });
 
 
@@ -1268,6 +1272,10 @@ angular.module('message.controllers', [])
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid) {
+      if(content === undefined || content === null || content.trim() === ''){
+        $scope.send_content = "";
+        return;
+      }
       $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
         if (sqlid != undefined && sqlid != null && sqlid != '') {

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
-import android.util.Log;
-
 import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
@@ -48,12 +46,10 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
-		ToastUtil.showSafeToast("MQTT挂掉了...");
 		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
-		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
 		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
@@ -71,9 +67,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
-		ToastUtil.showSafeToast("MQTT消息接收成功...");
 		try {
-			Log.d("messageArrived", new String(msg.getPayload()));
 			if (msg == null) {
 				return;
 			}
@@ -505,7 +499,7 @@ public class MqttMessageCallback implements MqttCallback {
 			ringStaus = RingStatus.RING;
 		}
 		ringStaus = ( ringStaus == RingStatus.RING ? ringStaus :
-				( (System.currentTimeMillis() - start > 5) ? RingStatus.RING :
+				( (System.currentTimeMillis() - start > 30) ? RingStatus.RING :
 						RingStatus.NO_RING ) );
 		//************* 判断是否需要响铃 END *************
 		if (ringStaus != RingStatus.NO_RING) {

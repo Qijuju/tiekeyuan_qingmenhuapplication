@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -23,13 +22,16 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.front" android:required="false" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="getui.permission.GetuiService.com.ionicframework.im366077" />
+    <permission android:name="getui.permission.GetuiService.com.ionicframework.im366077" android:protectionLevel="normal">
+    </permission>
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name" android:name="com.tky.mqtt.paho.BaseApplication" android:persistent="true" android:supportsRtl="true">
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
             <intent-filter android:label="@string/launcher_name">
@@ -51,12 +53,6 @@
                 <action android:name="android.intent.action.SCREEN_ON" />
                 <action android:name="android.intent.action.SCREEN_OFF" />
                 <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.tky.mqtt.paho.receiver.AlarmRecevier">
-            <intent-filter>
-                <action android:name="sendbroadcast.action" />
-                <action android:name="release_alarm_lock.action" />
             </intent-filter>
         </receiver>
         <activity android:name="me.apla.cordova.AppPreferencesActivity" />
@@ -84,6 +80,52 @@
         <activity android:name="com.tky.grid.GridActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name=".OnePxActivity" android:process=":newtask_onepx" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
+        <receiver android:exported="false" android:name="com.tky.getpush.PushDemoReceive">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="PUSH_APPID" android:value="${GETUI_APP_ID}" />
+        <meta-data android:name="PUSH_APPKEY" android:value="${GETUI_APP_KEY}" />
+        <meta-data android:name="PUSH_APPSECRET" android:value="${GETUI_APP_SECRET}" />
+        <service android:exported="true" android:label="NotificationCenter" android:name="com.igexin.sdk.PushService" android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.service.message" />
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:label="NotificationCenterUser" android:name="com.igexin.sdk.PushServiceUser">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.user.message" />
+            </intent-filter>
+        </service>
+        <receiver android:name="com.igexin.sdk.PushReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.igexin.sdk.PushManagerReceiver">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.igexin.sdk.PushActivity" android:process=":pushservice" android:taskAffinity="com.igexin.sdk.PushActivityTask" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.igexin.sdk.GActivity" android:process=":pushservice" android:taskAffinity="com.igexin.sdk.PushActivityTask" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <service android:name="com.igexin.download.DownloadService" android:process=":pushservice" />
+        <receiver android:name="com.igexin.download.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="downloads.${PACKAGE_NAME}" android:exported="true" android:name="com.igexin.download.DownloadProvider" android:process=":pushservice" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
