@@ -399,6 +399,9 @@ angular.module('message.controllers', [])
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
           $scope.send_content = "";
+          $timeout(function () {
+            viewScroll.scrollBottom();
+          }, 100);
           keepKeyboardOpen();
         } else {
           $greendao.getUUID(function (data) {
@@ -406,6 +409,9 @@ angular.module('message.controllers', [])
             // alert("改造时拿到的id"+data);
             $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
             $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
             keepKeyboardOpen();
           });
         }
@@ -1280,13 +1286,19 @@ angular.module('message.controllers', [])
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid, $mqtt);
-          $scope.send_content = ""
+          $scope.send_content = "";
+          $timeout(function () {
+            viewScroll.scrollBottom();
+          }, 100);
           keepKeyboardOpen();
         } else {
           $greendao.getUUID(function (data) {
             sqlid = data;
             $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid, $mqtt);
-            $scope.send_content = ""
+            $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
             keepKeyboardOpen();
           });
         }
