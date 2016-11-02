@@ -159,7 +159,9 @@ angular.module('message.controllers', [])
 
     $scope.$on('$ionicView.enter', function () {
 
-      viewScroll.scrollBottom();
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
 
     });
     $scope.doRefresh = function () {
@@ -218,6 +220,9 @@ angular.module('message.controllers', [])
               // alert("图片传进去的id"+sqlid);
               $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, 'Image', fileData[0],$mqtt);
               $scope.send_content = "";
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 100);
               keepKeyboardOpen();
             });
           },function (err) {
@@ -249,6 +254,9 @@ angular.module('message.controllers', [])
             // alert("图片传进去的id"+sqlid);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt);
             $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
             keepKeyboardOpen();
           })
           // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
@@ -288,6 +296,9 @@ angular.module('message.controllers', [])
             // alert("图片传进去的id"+sqlid);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt);
             $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
             keepKeyboardOpen();
           });
         });
@@ -3678,6 +3689,9 @@ angular.module('message.controllers', [])
                 // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
                 $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
                 $scope.send_content = "";
+                // $timeout(function () {
+                //   viewScroll.scrollBottom();
+                // }, 100);
                 keepKeyboardOpen();
               });
 

@@ -384,7 +384,7 @@ angular.module('message.services', [])
         }
 
             //发送消息前先展示在界面上
-            // alert("数组长度前"+danliao.length);
+            // alert("数组长度前"+danliao.length+messageDetail.message);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
@@ -409,10 +409,11 @@ angular.module('message.services', [])
                 // alert("成功发送定位qian长度"+danliao.length);
                 // $mqtt.updateDanliao(messageDetail);
                 // alert("成功发送定位后长度"+danliao.length);
-                messageDetail.message=content;
+                msg.message=content;
                 // alert("发送过去的定位内容"+messageDetail.message);
                 // danliao.push(msg);
                 // alert("数组正确后"+danliao.length+danliao[danliao.length-1].isSuccess);
+                // alert("发送成功后的位置"+msg.message);
                 $greendao.saveObj('MessagesService',msg,function (data) {
                   $rootScope.$broadcast('msgs.update');
                 },function (err) {
@@ -539,7 +540,7 @@ angular.module('message.services', [])
              * @type {string}
                */
             // alert("图片上传过程中失败入数组前长度"+danliao.length);
-            $mqtt.updateDanliao(messageDetail);
+            $mqtt.updateImgFileDanliao(messageDetail);
             // alert("图片上传过程中失败入数组后长度"+danliao.length);
             messageDetail.isFailure='true';
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -619,7 +620,7 @@ angular.module('message.services', [])
               return "成功";
             },function (message) {
               // alert("发送图片直接失败前数组长度"+danliao.length);
-              $mqtt.updateDanliao(messageDetail);
+              $mqtt.updateImgFileDanliao(messageDetail);
               messageDetail.isFailure='true';
               danliao.push(messageDetail);
               // alert("发送图片直接失败后数组长度"+danliao.length);
@@ -928,6 +929,16 @@ angular.module('message.services', [])
         danliao =new Array();
         for(var i=0;i<data.length;i++){
           danliao.unshift(data[i]);
+        }
+      },
+      updateImgFileDanliao:function (data) {
+        for(var i=0;i<danliao.length;i++){
+          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
+          if( danliao[i]._id === data._id){
+            // alert("找出chat数组的被更改的数据了"+i);
+            danliao.splice(i,1);
+            break;
+          }
         }
       },
       updateDanliao:function (data) {
