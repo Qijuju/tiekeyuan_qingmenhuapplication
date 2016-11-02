@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.SystemClock;
 
 import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
@@ -21,13 +20,29 @@ public class MqttOper {
      * 重启MQTT
      */
     public static void resetMqtt() {
-        if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
-            return;
-        }
-        Intent netIntent = new Intent();
-        netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
-        UIUtils.getContext().sendBroadcast(netIntent);
-        final long time = System.currentTimeMillis();
+        new Thread(new Runnable() {
+            private int count = 0;
+            @Override
+            public void run() {
+                while ((++count) < 5){
+                    SystemClock.sleep(10);
+                    UIUtils.runInMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
+                                ToastUtil.showSafeToast("没网");
+                                return;
+                            }
+                            Intent netIntent = new Intent();
+                            netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
+                            UIUtils.getContext().sendBroadcast(netIntent);
+                        }
+                    });
+                }
+            }
+        }).start();
+
+        /*final long time = System.currentTimeMillis();
         new Thread(new Runnable() {
             boolean flag = true;
             @Override
@@ -37,9 +52,9 @@ public class MqttOper {
                 }
                 while (flag) {
                     SystemClock.sleep(10);
-                        if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+                    if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
                         flag = false;
-                    } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+                    } else if (System.currentTimeMillis() - time > 15000) {
                         flag = false;
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
@@ -50,7 +65,7 @@ public class MqttOper {
                     }
                 }
             }
-        }).start();
+        }).start();*/
     }
 
     /**

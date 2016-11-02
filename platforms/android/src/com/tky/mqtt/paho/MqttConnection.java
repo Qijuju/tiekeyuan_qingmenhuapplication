@@ -77,6 +77,7 @@ public class MqttConnection {
 
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
+            ToastUtil.showSafeToast("tttttttt");
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
