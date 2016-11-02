@@ -1,20 +1,14 @@
 package com.tky.mqtt.paho;
 
-import android.app.AlarmManager;
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.MqttOper;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -22,7 +16,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttService extends Service {
 
     protected MqttConnection mqttConnection;
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -87,7 +80,7 @@ public class MqttService extends Service {
         startForeground(0x0010, notification);
 
         //************** 启动AlarmReceiver，定时启动当前服务 **************
-        Intent alarmIntent=new Intent(this,AlarmRecevier.class);
+        /*Intent alarmIntent=new Intent(this,AlarmRecevier.class);
         alarmIntent.setAction("sendbroadcast.action");
         sendBroadcast(alarmIntent);
         PendingIntent sender= PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
@@ -95,18 +88,17 @@ public class MqttService extends Service {
         long fristtume= SystemClock.elapsedRealtime();
         //得到全局定时器
         AlarmManager am=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+        *//*if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
             am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, 5*1000, sender);
         }else{
-            //毎30秒发个广播
-            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5*1000, sender);
-        }
+        }*//*
+        //毎30秒发个广播
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 20*60*1000, sender);*/
         return super.onStartCommand(intent, START_STICKY, startId);
     }
 
     @Override
     public void onDestroy() {
-        ToastUtil.showSafeToast("服务已经挂掉了...");
         //释放CPU锁
         Intent alarmReleaseLockIntent = new Intent();
         alarmReleaseLockIntent.setAction("release_alarm_lock.action");

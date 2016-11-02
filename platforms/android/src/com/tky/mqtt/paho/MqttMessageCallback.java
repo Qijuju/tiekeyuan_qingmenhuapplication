@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
-import android.util.Log;
-
 import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
@@ -48,12 +46,10 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
-		ToastUtil.showSafeToast("MQTT挂掉了...");
 		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
-		Log.d("reconnect", "MQTT断掉了~~~" + (mqttAsyncClient == null ? "nullllll" : "notnulll"));
 		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
@@ -71,9 +67,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void messageArrived(final String topic, final MqttMessage msg) throws Exception {
-		ToastUtil.showSafeToast("MQTT消息接收成功...");
 		try {
-			Log.d("messageArrived", new String(msg.getPayload()));
 			if (msg == null) {
 				return;
 			}
@@ -204,12 +198,6 @@ public class MqttMessageCallback implements MqttCallback {
 
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
 						Messages messages=new Messages();
-//					map.set_id("");
-					/*if("".equals(map.get_id())){
-						message.set_id(UUID.randomUUID().toString());
-					}else{
-						messages.set_id(map.get_id());
-					}*/
 						messages.set_id(UUID.randomUUID().toString());
 						messages.setSessionid(map.getSessionid());
 						messages.setType(map.getType());
@@ -358,92 +346,84 @@ public class MqttMessageCallback implements MqttCallback {
 			//入库(MESSAGE和CHATLIST表)
 			//消息转化完毕就入库
 			int count=0;
-
-
-				Messages messages=new Messages();
-//					map.set_id("");
-					/*if("".equals(map.get_id())){
-						message.set_id(UUID.randomUUID().toString());
-					}else{
-						messages.set_id(map.get_id());
-					}*/
-				messages.set_id(UUID.randomUUID().toString());
-				messages.setSessionid(eventBean.getSessionid());
-				messages.setType(eventBean.getType());
-				messages.setFrom(eventBean.getFrom());
-				messages.setMessage(eventBean.getMessage());
-				System.out.println("群事件" + eventBean.getMessage());
-				messages.setMessagetype(eventBean.getMessagetype());
-				messages.setPlatform(eventBean.getPlatform());
-				messages.setWhen(eventBean.getWhen());
-				messages.setIsFailure(eventBean.getIsFailure());
-				messages.setIsDelete(eventBean.getIsDelete());
-				messages.setImgSrc(eventBean.getImgSrc());
-				messages.setUsername(eventBean.getUsername());
-				messages.setSenderid(eventBean.get_id());
-				messages.setIsread("0");
-				messages.setIsSuccess("true");
-				MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-				messagesService.saveObj(messages);
-				//统计未读数量
-				List<Messages> messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
-				for(int i =0;i<messagesList.size();i++){
-					messages=messagesList.get(i);
-					if("0".equals(messages.getIsread())){
-						count ++;
-					}
+			Messages messages=new Messages();
+			messages.set_id(UUID.randomUUID().toString());
+			messages.setSessionid(eventBean.getSessionid());
+			messages.setType(eventBean.getType());
+			messages.setFrom(eventBean.getFrom());
+			messages.setMessage(eventBean.getMessage());
+			System.out.println("群事件" + eventBean.getMessage());
+			messages.setMessagetype(eventBean.getMessagetype());
+			messages.setPlatform(eventBean.getPlatform());
+			messages.setWhen(eventBean.getWhen());
+			messages.setIsFailure(eventBean.getIsFailure());
+			messages.setIsDelete(eventBean.getIsDelete());
+			messages.setImgSrc(eventBean.getImgSrc());
+			messages.setUsername(eventBean.getUsername());
+			messages.setSenderid(eventBean.get_id());
+			messages.setIsread("0");
+			messages.setIsSuccess("true");
+			MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+			messagesService.saveObj(messages);
+			//统计未读数量
+			List<Messages> messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
+			for(int i =0;i<messagesList.size();i++){
+				messages=messagesList.get(i);
+				if("0".equals(messages.getIsread())){
+					count ++;
 				}
-				Messages lastmessages=messagesList.get(messagesList.size() - 1);
-				//将对话最后一条入库到chat表
-				/**
-				 * 1.先从数据库查询是否存在当前会话列表
-				 * 2.如果没有该会话，创建会话
-				 * 3.如果有该会话，则保存最后一条消息到chat表
-				 */
-				ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
-				List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
-				ChatList chatList=new ChatList();
-				chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-				System.out.println("消息类型"+lastmessages.getType());
-				if(lastmessages.getMessagetype() == "Image"){
-					// alert("返回即时通");
-					chatList.setLastText("[图片]");//从数据库里取最后一条消息
-					System.out.println("是不是图片");
-				}else if(lastmessages.getMessagetype() == "LOCATION"){
-					chatList.setLastText("[位置]");//从数据库里取最后一条消息
-				}else if(lastmessages.getMessagetype() ==  "File"){
-					chatList.setLastText("[文件]");//从数据库里取最后一条消息
-				}else {
-					chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+			}
+			Messages lastmessages=messagesList.get(messagesList.size() - 1);
+			//将对话最后一条入库到chat表
+			/**
+			 * 1.先从数据库查询是否存在当前会话列表
+			 * 2.如果没有该会话，创建会话
+			 * 3.如果有该会话，则保存最后一条消息到chat表
+			 */
+			ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+			List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
+			ChatList chatList=new ChatList();
+			chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+			System.out.println("消息类型"+lastmessages.getType());
+			if(lastmessages.getMessagetype() == "Image"){
+				// alert("返回即时通");
+				chatList.setLastText("[图片]");//从数据库里取最后一条消息
+				System.out.println("是不是图片");
+			}else if(lastmessages.getMessagetype() == "LOCATION"){
+				chatList.setLastText("[位置]");//从数据库里取最后一条消息
+			}else if(lastmessages.getMessagetype() ==  "File"){
+				chatList.setLastText("[文件]");//从数据库里取最后一条消息
+			}else {
+				chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+			}
+			chatList.setCount(count + "");//将统计的count未读数量存进去
+			chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+			chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+			chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+			if (chatLists.size() > 0) {
+				chatList.setId(chatLists.get(0).getId());
+				if(lastmessages.getType() == "User"){
+					chatList.setChatName(chatLists.get(0).getChatName());
+				}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+					GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+					List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+					chatList.setChatName(groupChatsList.get(0).getGroupName());
 				}
-				chatList.setCount(count + "");//将统计的count未读数量存进去
-				chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
-				chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
-				chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
-				if (chatLists.size() > 0) {
-					chatList.setId(chatLists.get(0).getId());
-					if(lastmessages.getType() == "User"){
-						chatList.setChatName(chatLists.get(0).getChatName());
-					}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
-						GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
-						List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-						chatList.setChatName(groupChatsList.get(0).getGroupName());
-					}
-					chatList.setIsDelete(chatLists.get(0).getIsDelete());
-					chatList.setChatType(chatLists.get(0).getChatType());
-				}else{
-					chatList.setId(lastmessages.getSessionid());
-					if(lastmessages.getType() == "User"){
-						chatList.setChatName(lastmessages.getUsername());
-					}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
-						GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
-						List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-						chatList.setChatName(groupChatsList.get(0).getGroupName());
-					}
-					chatList.setIsDelete(lastmessages.getIsDelete());
-					chatList.setChatType(lastmessages.getType());
+				chatList.setIsDelete(chatLists.get(0).getIsDelete());
+				chatList.setChatType(chatLists.get(0).getChatType());
+			}else{
+				chatList.setId(lastmessages.getSessionid());
+				if(lastmessages.getType() == "User"){
+					chatList.setChatName(lastmessages.getUsername());
+				}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+					GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+					List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+					chatList.setChatName(groupChatsList.get(0).getGroupName());
 				}
-				chatListService.saveObj(chatList);//保存chatlist对象
+				chatList.setIsDelete(lastmessages.getIsDelete());
+				chatList.setChatType(lastmessages.getType());
+			}
+			chatListService.saveObj(chatList);//保存chatlist对象
 
 			Intent intent = new Intent();
 			intent.setAction(ReceiverParams.MESSAGEARRIVED);
@@ -520,7 +500,7 @@ public class MqttMessageCallback implements MqttCallback {
 			ringStaus = RingStatus.RING;
 		}
 		ringStaus = ( ringStaus == RingStatus.RING ? ringStaus :
-				( (System.currentTimeMillis() - start > 5) ? RingStatus.RING :
+				( (System.currentTimeMillis() - start > 30) ? RingStatus.RING :
 						RingStatus.NO_RING ) );
 		//************* 判断是否需要响铃 END *************
 		if (ringStaus != RingStatus.NO_RING) {

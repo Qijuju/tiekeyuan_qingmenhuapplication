@@ -359,6 +359,7 @@ angular.module('newnotification.controllers', [])
         }
       }else {
         $state.go("notifyApplication",{
+          
           id:id,
           isfirm:isfirm
         })
@@ -583,7 +584,6 @@ angular.module('newnotification.controllers', [])
 
     $scope.hahaha=$stateParams.isfirm;
 
-    alert($scope.hahaha+"点点滴滴")
 
     $ionicLoading.show({
       content: 'Loading',

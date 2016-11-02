@@ -173,6 +173,18 @@ android {
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
+        //个推添加
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+        }
+
+        //个推参数说明
+        manifestPlaceholders = [
+                GETUI_APP_ID : "CX3SXQ0dfd9uo1LccDnVf4",//APP_ID
+                GETUI_APP_KEY : "Y2Z98IjDgb9LMxU7XjFCi1",//APP_KEY
+                GETUI_APP_SECRET : "KRByipYvHt7UMchgMnKD05",//AppSecret
+                PACKAGE_NAME : "com.ionicframework.im366077"//应用标识
+        ]
     }
 
     lintOptions {
@@ -232,6 +244,10 @@ android {
         buildTypes {
             release {
                 signingConfig signingConfigs.release
+                minifyEnabled true // 是否开启混淆
+                //混淆代码的文件   加载混淆配置文件
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'some-other-rules.txt'
+                //proguardFile 'some-other-rules.txt'  配置单个文件这样
             }
         }
         addSigningProps(cdvReleaseSigningPropertiesFile, signingConfigs.release)
@@ -263,6 +279,7 @@ dependencies {
     //    compile files('libs/okhttp-2.6.0.jar')
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
     compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/GetuiSDK2.9.0.0.jar')
 }
 
 def promptForReleaseKeyPassword() {

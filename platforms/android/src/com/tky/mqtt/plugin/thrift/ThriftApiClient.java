@@ -7,10 +7,7 @@ import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.GroupChats;
-import com.tky.mqtt.dao.GroupChatsDao;
-import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -45,6 +42,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -1903,10 +1901,30 @@ public class ThriftApiClient extends CordovaPlugin {
                 isFinish = true;
             }
             long time = System.currentTimeMillis();
-            RSTSendFile rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
+            RSTSendFile rlt = null;
+            boolean flag = true;
+            int count = 0;
+            while(flag) {
+                try {
+                    rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
+                    flag = false;
+                } catch (SocketTimeoutException e) {
+                    count++;
+                    if (count > 50) {
+//                        flag = false;
+                        setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(-1) + "']"), PluginResult.Status.OK, callbackContext);
+                        break;
+                    } else {
+                        flag = true;
+                    }
+                }
+                if (count > 50) {
+                    return;
+                }
+            }
+            setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
 //            System.out.println("第" + i +"次发送，用时：" + (System.currentTimeMillis() - time));
             i++;
-//            setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
             offset = rlt.getOffset() + rlt.getLength();
             fileByte.clear();
         }

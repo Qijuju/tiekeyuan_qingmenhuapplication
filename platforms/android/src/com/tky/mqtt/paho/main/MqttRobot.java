@@ -9,6 +9,8 @@ import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.receiver.MqttStartReceiver;
 
@@ -25,10 +27,6 @@ public class MqttRobot {
     private static MqttStatus mqttStatus = MqttStatus.CLOSE;
     private static MqttStartReceiver mReceiver;
     private static IntentFilter filter;
-    /**
-     * MQTT是否启动过（登录后才会启动）
-     */
-    private static boolean isStarted = false;
     private static ConnectionType connectionType = ConnectionType.MODE_NONE;
 
     /**
@@ -89,11 +87,11 @@ public class MqttRobot {
     }
 
     public static boolean isStarted() {
-        return isStarted;
+        return SPUtils.getBoolean("is_started", false);
     }
 
     public static void setIsStarted(boolean isStarted) {
-        MqttRobot.isStarted = isStarted;
+        SPUtils.save("is_started", isStarted);
     }
 
     /**

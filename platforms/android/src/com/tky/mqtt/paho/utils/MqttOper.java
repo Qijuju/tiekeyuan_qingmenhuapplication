@@ -1,6 +1,7 @@
 package com.tky.mqtt.paho.utils;
 
 import android.content.Intent;
+import android.os.SystemClock;
 
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
@@ -23,7 +24,6 @@ public class MqttOper {
         if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
             return;
         }
-        ToastUtil.showSafeToast("MQTT重启即将开始...");
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.RECONNECT_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
@@ -36,14 +36,15 @@ public class MqttOper {
                     return;
                 }
                 while (flag) {
-                    if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+                    SystemClock.sleep(10);
+                        if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
                         flag = false;
                     } else if (System.currentTimeMillis() - time > 15000 && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
                         flag = false;
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
+                                //UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
                             }
                         });
                     }
@@ -81,13 +82,35 @@ public class MqttOper {
     }
 
     /**
+     * 消息发送成功后反馈给用户
+     */
+    public static void sendSuccNotify(final String msg) {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送成功，回调
+                Intent intent = new Intent();
+                intent.putExtra("msg", msg);
+                intent.setAction(ReceiverParams.SENDMESSAGE_SUCCESS);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
+    }
+
+    /**
      * 消息发送失败后反馈给用户
      */
-    public static void sendErrNotify() {
-        //发送中，消息发送失败，回调
-        Intent intent=new Intent();
-        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-        UIUtils.getContext().sendBroadcast(intent);
+    public static void sendErrNotify(final String msg) {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送失败，回调
+                Intent intent = new Intent();
+                intent.putExtra("msg", msg);
+                intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
     }
 
     /**

@@ -26,7 +26,8 @@ public class MqttReceiver extends BroadcastReceiver {
 	private MqttReceiver(){}
 
 	public synchronized static MqttReceiver getInstance() {
-		return INSTANCE == null ? new MqttReceiver() : INSTANCE;
+//		return INSTANCE == null ? new MqttReceiver() : INSTANCE;
+		return INSTANCE;
 	}
 
 	@Override

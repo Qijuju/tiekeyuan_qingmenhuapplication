@@ -20,22 +20,29 @@
 package com.ionicframework.im366077;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
 
+import com.igexin.sdk.PushManager;
+import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.services.MessagesService;
 
 import org.apache.cordova.CordovaActivity;
 
 import java.io.File;
+import java.util.List;
 
 public class MainActivity extends CordovaActivity
 {
@@ -44,6 +51,8 @@ public class MainActivity extends CordovaActivity
      */
     private int FILE_SELECT_CODE = 0x0111;
     private int TAKE_PHOTO_CODE = 0x0104;
+    private UserPresentReceiver receiver;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -51,6 +60,27 @@ public class MainActivity extends CordovaActivity
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+
+        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+        List<Messages> messagesList=messagesService.queryData("where IS_SUCCESS =?", "false");
+        for(int i=0;i<messagesList.size();i++){
+            Messages messages=new Messages();
+            messages=messagesList.get(i);
+            messages.setIsFailure("true");
+            messagesService.saveObj(messages);
+        }
+
+        //个推初始化
+        PushManager.getInstance().initialize(this.getApplicationContext());
+
+        MqttRobot.setIsStarted(false);
+
+        //注册屏幕开关广播
+        receiver = new UserPresentReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(receiver, filter);
 //        ToastUtil.showSafeToast(SPUtils.getString("connectionLost", "m") + "===" + SPUtils.getString("count", "m"));
     }
 
@@ -104,5 +134,14 @@ public class MainActivity extends CordovaActivity
             }).start();
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
+        }
+        super.onDestroy();
     }
 }
