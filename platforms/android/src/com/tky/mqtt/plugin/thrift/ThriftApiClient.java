@@ -1908,7 +1908,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 try {
                     rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
                     flag = false;
-                } catch (SocketTimeoutException e) {
+                } catch (Exception e) {
                     count++;
                     if (count > 50) {
 //                        flag = false;
