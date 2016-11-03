@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.main.MqttRobot;
 
 public class NetStatusChangeReceiver extends BroadcastReceiver {
     private OnNetListener onNetListener;

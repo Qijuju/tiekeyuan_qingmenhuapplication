@@ -31,6 +31,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,11 +48,19 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
-		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+		/*MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SPUtils.save("connectionLost", format.format(new Date()) + arg0.getMessage());*/
+//		SPUtils.save("netstate", NetUtils.isConnect(context));
+//		SPUtils.save("isStated", MqttRobot.isStarted());
+//		SPUtils.save("closeStyle", mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
+		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+			SPUtils.save("reconnect", true);
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
 //                SPUtils.save("count", "第" + count + "次重联");

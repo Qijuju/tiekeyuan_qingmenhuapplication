@@ -27,7 +27,6 @@ public class MqttService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ToastUtil.showSafeToast("服务启动了，服务正在启动MQTT...");
                 //如果当前已经登录了，才会启动MQTT，否则不启动
                 if (MqttRobot.isStarted()) {
                     mqttConnection = new MqttConnection();

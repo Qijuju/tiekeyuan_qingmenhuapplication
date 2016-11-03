@@ -281,23 +281,31 @@ public class MqttChat extends CordovaPlugin {
         //消息发送过程中，网络信号减弱，数据回调
         topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
             @Override
-            public void onMqttSendSuccess() {
-                setResult("success", PluginResult.Status.OK, callbackContext);
+            public void onMqttSendSuccess(String msg) {
+                try {
+                    setResult(new JSONObject(msg), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onMqttSendError() {
-                setResult("error", PluginResult.Status.ERROR, callbackContext);
+            public void onMqttSendError(String msg) {
+                try {
+                    setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        //消息回执状态，默认false
+        /*//消息回执状态，默认false
         boolean flag=false;
         //消息发送失败，数据回调，然后结束(断网，失去连接)
         if(!NetUtils.isConnect(cordova.getActivity())){
             flag=true;
-            /**
+            *//**
              * 若断网，则在20s内不断发送消息，并且实时启动mqtt
-             */
+             *//*
             while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
                 SystemClock.sleep(10);
                 try {
@@ -313,11 +321,11 @@ public class MqttChat extends CordovaPlugin {
                     return;
                 }
             }
-        }
+        }*/
         try {
-            if(!flag){
+//            if(!flag){
                 MessageOper.sendMsg(tosb, message);
-            }
+//            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
@@ -619,13 +627,11 @@ public class MqttChat extends CordovaPlugin {
             netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
                 @Override
                 public void doNetDisconnect() {
-//                    ToastUtil.showSafeToast("lianjieshiBai");
                     setResult("false", PluginResult.Status.ERROR, callbackContext);
                 }
 
                 @Override
                 public void doNetConnect() {
-//                    ToastUtil.showSafeToast("lianjiechenggong");
                     setResult("true", PluginResult.Status.OK, callbackContext);
                 }
             });

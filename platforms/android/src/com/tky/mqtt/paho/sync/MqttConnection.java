@@ -263,7 +263,7 @@ public class MqttConnection {
             try {
                 client.publish(topic, message);
             } catch (Exception e) {
-                MqttOper.sendErrNotify();
+                MqttOper.sendErrNotify("");
                 e.printStackTrace();
             }
         }

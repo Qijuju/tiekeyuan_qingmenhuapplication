@@ -3,9 +3,11 @@ package com.tky.mqtt.paho;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.SystemClock;
 
+import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.receiver.MqttStartReceiver;
+import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.protocol.model.IMPException;
@@ -18,6 +20,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -49,27 +53,45 @@ public class MqttConnection {
 //        params.getPingSender().start();
         IMqttActionListener callback = new MqttActionListener();
         mqttAsyncClient.connect(params.getOptions(), null, callback);
+        mqttAsyncClient.checkPing(null, new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken iMqttToken) {
+
+            }
+
+            @Override
+            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+
+            }
+        });
 
         MqttCallback mqttCallback = new MqttMessageCallback(context, this);
 
         mqttAsyncClient.setCallback(mqttCallback);
     }
 
+    private boolean testFlag = true;
     /**
      * 重新连接
      *
      * @throws MqttException
      */
     public void reconnect() throws MqttException {
-        if (!MqttRobot.isStarted()) {
-            MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+        SPUtils.save("reconnect1", true);
+        if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+            if (!MqttRobot.isStarted()) {
+                MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+                closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+                return;
+            }
             closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
-            return;
-        }
-        if (!isConnected()) {
-            MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-            closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
-            connect(context);
+            if (!isConnected()) {
+                SPUtils.save("reconnect2", true);
+                MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+                MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+//                mqttAsyncClient.close();
+                connect(context);
+            }
         }
     }
 
@@ -77,7 +99,8 @@ public class MqttConnection {
 
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
-            ToastUtil.showSafeToast("tttttttt");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SPUtils.save("mqttFailure", format.format(new Date()));
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
@@ -98,12 +121,15 @@ public class MqttConnection {
                     MqttOper.publishStartStatus(true);
                     try {
 //						if (!isReconnect) {
-                        Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
-                        Iterator<String> it = topicsAndQoss.keySet().iterator();
-                        while (it.hasNext()) {
-                            String key = it.next();
-                            Integer value = topicsAndQoss.get(key);
-                            subscribe(key, value);
+                        if (!MqttReceiver.hasRegister) {
+                            MqttReceiver.hasRegister = true;
+                            Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
+                            Iterator<String> it = topicsAndQoss.keySet().iterator();
+                            while (it.hasNext()) {
+                                String key = it.next();
+                                Integer value = topicsAndQoss.get(key);
+                                subscribe(key, value);
+                            }
                         }
 //						}
                         receiver = MqttReceiver.getInstance();
@@ -117,7 +143,12 @@ public class MqttConnection {
                         //发消息的回调
                         receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
                             @Override
-                            public void onSend(final String topic, String content) {
+                            public void onSend(final String topic, final String content) {
+                                if (isConnected()) {
+                                    MqttRobot.setMqttStatus(MqttStatus.OPEN);
+                                    MqttOper.publishStartStatus(true);
+                                    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+                                }
                                 boolean errState = true;
                                 if (content == null) {
                                     errState = false;
@@ -154,8 +185,8 @@ public class MqttConnection {
                                         MqttRobot.setMqttStatus(MqttStatus.OPEN);
                                     }
                                     //如果有网MQTT却挂掉了，就重新启动MQTT并发送消息
-                                    if (!isConnected() && NetUtils.isConnect(context)) {
-                                        MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
+                                    if (!isConnected()) {
+                                        /*MqttRobot.startMqtt(UIUtils.getContext(), MqttTopicRW.getStartTopicsAndQoss(), new MqttStartReceiver.OnMqttStartListener() {
                                             @Override
                                             public void onSuccess() {
                                                 try {
@@ -171,21 +202,69 @@ public class MqttConnection {
                                                 intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
                                                 context.sendBroadcast(intent);
                                             }
-                                        });
+                                        });*/
+
+                                        new Thread(new Runnable() {
+                                            long start = 0;
+                                            boolean hasExecute = false;
+                                            @Override
+                                            public void run() {
+                                                start = System.currentTimeMillis();
+                                                while (System.currentTimeMillis() - start < 20 * 1000) {
+                                                    if (!NetUtils.isConnect(UIUtils.getContext())) {
+                                                        SystemClock.sleep(100);
+                                                        continue;
+                                                    }
+                                                    if (isConnected()) {
+                                                        hasExecute = true;
+                                                        try {
+                                                            publish(content, topic, message);
+                                                        } catch (MqttException e) {
+                                                            String swithedMsg = switchMsg(content, false);
+                                                            MqttOper.sendErrNotify(swithedMsg);
+                                                            e.printStackTrace();
+                                                        }
+                                                        break;
+                                                    }
+                                                    try {
+                                                        reconnect();
+                                                    } catch (MqttException e) {
+                                                        hasExecute = true;
+                                                        String swithedMsg = switchMsg(content, false);
+                                                        MqttOper.sendErrNotify(swithedMsg);
+                                                        e.printStackTrace();
+                                                        break;
+                                                    }
+                                                    SystemClock.sleep(100);
+                                                }
+                                                if (!hasExecute) {
+                                                    if (NetUtils.isConnect(UIUtils.getContext()) && isConnected()) {
+                                                        try {
+                                                            publish(content, topic, message);
+                                                        } catch (MqttException e) {
+                                                            String swithedMsg = switchMsg(content, false);
+                                                            MqttOper.sendErrNotify(swithedMsg);
+                                                            e.printStackTrace();
+                                                        }
+                                                    } else {
+                                                        String swithedMsg = switchMsg(content, false);
+                                                        MqttOper.sendErrNotify(swithedMsg);
+                                                    }
+                                                }
+                                            }
+                                        }).start();
                                         return;
                                     }
                                     //没网并且没连接MQTT
                                     if (!isConnected() && !NetUtils.isConnect(context)) {
-                                        Intent intent = new Intent();
-                                        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-                                        context.sendBroadcast(intent);
+                                        String swithedMsg = switchMsg(content, false);
+                                        MqttOper.sendErrNotify(swithedMsg);
                                         return;
                                     }
-                                    MqttConnection.this.publish(topic, message);
+                                    MqttConnection.this.publish(content, topic, message);
                                 } catch (MqttException e) {
-                                    Intent intent = new Intent();
-                                    intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-                                    context.sendBroadcast(intent);
+                                    String swithedMsg = switchMsg(content, false);
+                                    MqttOper.sendErrNotify(swithedMsg);
                                     e.printStackTrace();
                                 }
                             }
@@ -250,6 +329,20 @@ public class MqttConnection {
         }
     }
 
+    /**
+     * 转换消息
+     * @param msg
+     * @param sendStatus
+     * @return
+     */
+    private String switchMsg(String msg, boolean sendStatus) {
+        Messages messages = GsonUtils.fromJson(msg, Messages.class);
+        messages.setIsFailure(sendStatus ? "false" : "true");
+        messages.setIsSuccess(sendStatus ? "true" : "false");
+        return GsonUtils.toJson(messages, Messages.class);
+
+    }
+
     public void subscribe(String topic, int qos) throws MqttException {
         if (mqttAsyncClient != null) {
             mqttAsyncClient.subscribe(topic, qos);
@@ -299,7 +392,7 @@ public class MqttConnection {
      * @param message
      * @throws MqttException
      */
-    public void publish(String topic, MqttMessage message) throws MqttException {
+    public void publish(final String content, String topic, final MqttMessage message) throws MqttException {
         if (mqttAsyncClient != null) {
             try {
                 mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
@@ -307,30 +400,26 @@ public class MqttConnection {
                     public void onSuccess(IMqttToken iMqttToken) {
                         if (iMqttToken.isComplete()) {
                             //发送中，消息发送成功，回调
-                            Intent intent = new Intent();
-                            intent.setAction(ReceiverParams.SENDMESSAGE_SUCCESS);
-                            context.sendBroadcast(intent);
+                            String swithedMsg = switchMsg(content, true);
+                            MqttOper.sendSuccNotify(swithedMsg);
                         } else {
                             //发送中，消息发送失败，回调
-                            Intent intent = new Intent();
-                            intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-                            context.sendBroadcast(intent);
+                            String swithedMsg = switchMsg(content, false);
+                            MqttOper.sendErrNotify(swithedMsg);
                         }
                     }
 
                     @Override
                     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
                         //发送中，消息发送失败，回调
-                        Intent intent = new Intent();
-                        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-                        context.sendBroadcast(intent);
+                        String swithedMsg = switchMsg(content, false);
+                        MqttOper.sendErrNotify(swithedMsg);
                     }
                 });
             } catch (Exception e) {
                 //发送中，消息发送失败，回调
-                Intent intent = new Intent();
-                intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-                context.sendBroadcast(intent);
+                String swithedMsg = switchMsg(content, false);
+                MqttOper.sendErrNotify(swithedMsg);
             }
         }
     }
@@ -359,6 +448,7 @@ public class MqttConnection {
         MqttRobot.setConnectionType(this.connectionType);
         if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
             mqttAsyncClient.disconnectForcibly();
+            mqttAsyncClient.close();
             if (mqttAsyncClient != null) {
                 mqttAsyncClient = null;
             }

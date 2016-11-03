@@ -28,6 +28,8 @@ import android.os.Environment;
 import android.text.format.Formatter;
 
 import com.igexin.sdk.PushManager;
+import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
@@ -36,10 +38,12 @@ import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.services.MessagesService;
 
 import org.apache.cordova.CordovaActivity;
 
 import java.io.File;
+import java.util.List;
 
 public class MainActivity extends CordovaActivity
 {
@@ -57,6 +61,16 @@ public class MainActivity extends CordovaActivity
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+
+        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+        List<Messages> messagesList=messagesService.queryData("where IS_SUCCESS =?", "false");
+        for(int i=0;i<messagesList.size();i++){
+            Messages messages=new Messages();
+            messages=messagesList.get(i);
+            messages.setIsFailure("true");
+            messagesService.saveObj(messages);
+        }
+
         //个推初始化
         PushManager.getInstance().initialize(this.getApplicationContext());
 

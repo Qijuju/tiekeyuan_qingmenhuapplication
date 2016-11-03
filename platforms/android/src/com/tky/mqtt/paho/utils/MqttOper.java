@@ -5,7 +5,6 @@ import android.os.SystemClock;
 
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 
@@ -30,7 +29,6 @@ public class MqttOper {
                         @Override
                         public void run() {
                             if (!NetUtils.isConnect(UIUtils.getContext()) || !MqttRobot.isStarted()) {
-                                ToastUtil.showSafeToast("没网");
                                 return;
                             }
                             Intent netIntent = new Intent();
@@ -97,13 +95,35 @@ public class MqttOper {
     }
 
     /**
+     * 消息发送成功后反馈给用户
+     */
+    public static void sendSuccNotify(final String msg) {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送成功，回调
+                Intent intent = new Intent();
+                intent.putExtra("msg", msg);
+                intent.setAction(ReceiverParams.SENDMESSAGE_SUCCESS);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
+    }
+
+    /**
      * 消息发送失败后反馈给用户
      */
-    public static void sendErrNotify() {
-        //发送中，消息发送失败，回调
-        Intent intent=new Intent();
-        intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
-        UIUtils.getContext().sendBroadcast(intent);
+    public static void sendErrNotify(final String msg) {
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //发送中，消息发送失败，回调
+                Intent intent = new Intent();
+                intent.putExtra("msg", msg);
+                intent.setAction(ReceiverParams.SENDMESSAGE_ERROR);
+                UIUtils.getContext().sendBroadcast(intent);
+            }
+        });
     }
 
     /**
