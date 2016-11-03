@@ -3,6 +3,7 @@ package com.tky.mqtt.paho;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -12,6 +13,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttReceiver extends BroadcastReceiver {
 
 	public static boolean hasRegister = false;
+	private static boolean flag = false;
 	private OnMessageArrivedListener onMessageArrivedListener;
 	private OnMessageSendListener onMessageSendListener;
 	private OnTopicSubscribeListener onTopicSubscribeListener;
@@ -24,7 +26,8 @@ public class MqttReceiver extends BroadcastReceiver {
 
 	private static MqttReceiver INSTANCE = new MqttReceiver();
 
-	private MqttReceiver(){}
+	private MqttReceiver(){
+	}
 
 	public static void unregister() {
 		if (INSTANCE != null) {
@@ -34,6 +37,16 @@ public class MqttReceiver extends BroadcastReceiver {
 	}
 
 	public synchronized static MqttReceiver getInstance() {
+		if (!flag) {
+			flag = true;
+			IntentFilter filter = new IntentFilter();
+			filter.addAction(ReceiverParams.SENDMESSAGE);
+			filter.addAction(ReceiverParams.RECONNECT_MQTT);
+			filter.addAction(ReceiverParams.NET_DOWN_MQTT);
+			filter.addAction(ReceiverParams.CONNECTION_DOWN_MQTT);
+			filter.addAction(ReceiverParams.SUBSCRIBE);
+			UIUtils.getContext().registerReceiver(INSTANCE, filter);
+		}
 //		return INSTANCE == null ? INSTANCE = new MqttReceiver() : INSTANCE;
 		return INSTANCE;
 	}
