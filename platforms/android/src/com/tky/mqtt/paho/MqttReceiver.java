@@ -11,6 +11,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
  */
 public class MqttReceiver extends BroadcastReceiver {
 
+	public static boolean hasRegister = false;
 	private OnMessageArrivedListener onMessageArrivedListener;
 	private OnMessageSendListener onMessageSendListener;
 	private OnTopicSubscribeListener onTopicSubscribeListener;
@@ -21,12 +22,19 @@ public class MqttReceiver extends BroadcastReceiver {
 	private OnNetDownListener onNetDownListener;
 	private OnFreezeMqttListener onFreezeMqttListener;
 
-	private static final MqttReceiver INSTANCE = new MqttReceiver();
+	private static MqttReceiver INSTANCE = new MqttReceiver();
 
 	private MqttReceiver(){}
 
+	public static void unregister() {
+		if (INSTANCE != null) {
+			UIUtils.getContext().unregisterReceiver(INSTANCE);
+			INSTANCE = null;
+		}
+	}
+
 	public synchronized static MqttReceiver getInstance() {
-//		return INSTANCE == null ? new MqttReceiver() : INSTANCE;
+//		return INSTANCE == null ? INSTANCE = new MqttReceiver() : INSTANCE;
 		return INSTANCE;
 	}
 

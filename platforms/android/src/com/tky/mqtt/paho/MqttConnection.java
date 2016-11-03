@@ -7,7 +7,6 @@ import android.os.SystemClock;
 
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.receiver.MqttStartReceiver;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -20,8 +19,9 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -53,27 +53,43 @@ public class MqttConnection {
 //        params.getPingSender().start();
         IMqttActionListener callback = new MqttActionListener();
         mqttAsyncClient.connect(params.getOptions(), null, callback);
+        mqttAsyncClient.checkPing(null, new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken iMqttToken) {
+
+            }
+
+            @Override
+            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+
+            }
+        });
 
         MqttCallback mqttCallback = new MqttMessageCallback(context, this);
 
         mqttAsyncClient.setCallback(mqttCallback);
     }
 
+    private boolean testFlag = true;
     /**
      * 重新连接
      *
      * @throws MqttException
      */
     public void reconnect() throws MqttException {
+        SPUtils.save("reconnect1", true);
         if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
             if (!MqttRobot.isStarted()) {
                 MqttRobot.setMqttStatus(MqttStatus.CLOSE);
                 closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
                 return;
             }
+            closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
             if (!isConnected()) {
+                SPUtils.save("reconnect2", true);
                 MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-                closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+                MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+//                mqttAsyncClient.close();
                 connect(context);
             }
         }
@@ -83,6 +99,8 @@ public class MqttConnection {
 
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SPUtils.save("mqttFailure", format.format(new Date()));
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
@@ -103,12 +121,15 @@ public class MqttConnection {
                     MqttOper.publishStartStatus(true);
                     try {
 //						if (!isReconnect) {
-                        Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
-                        Iterator<String> it = topicsAndQoss.keySet().iterator();
-                        while (it.hasNext()) {
-                            String key = it.next();
-                            Integer value = topicsAndQoss.get(key);
-                            subscribe(key, value);
+                        if (!MqttReceiver.hasRegister) {
+                            MqttReceiver.hasRegister = true;
+                            Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
+                            Iterator<String> it = topicsAndQoss.keySet().iterator();
+                            while (it.hasNext()) {
+                                String key = it.next();
+                                Integer value = topicsAndQoss.get(key);
+                                subscribe(key, value);
+                            }
                         }
 //						}
                         receiver = MqttReceiver.getInstance();
@@ -123,6 +144,11 @@ public class MqttConnection {
                         receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
                             @Override
                             public void onSend(final String topic, final String content) {
+                                if (isConnected()) {
+                                    MqttRobot.setMqttStatus(MqttStatus.OPEN);
+                                    MqttOper.publishStartStatus(true);
+                                    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+                                }
                                 boolean errState = true;
                                 if (content == null) {
                                     errState = false;
@@ -181,7 +207,6 @@ public class MqttConnection {
                                         new Thread(new Runnable() {
                                             long start = 0;
                                             boolean hasExecute = false;
-
                                             @Override
                                             public void run() {
                                                 start = System.currentTimeMillis();
@@ -190,9 +215,7 @@ public class MqttConnection {
                                                         SystemClock.sleep(100);
                                                         continue;
                                                     }
-                                                    ToastUtil.showSafeToast("fffffff");
                                                     if (isConnected()) {
-                                                        ToastUtil.showSafeToast("ccccc");
                                                         hasExecute = true;
                                                         try {
                                                             publish(content, topic, message);
@@ -375,7 +398,6 @@ public class MqttConnection {
                 mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
-//                        ToastUtil.showSafeToast("最后：" + new String(message.getPayload()));
                         if (iMqttToken.isComplete()) {
                             //发送中，消息发送成功，回调
                             String swithedMsg = switchMsg(content, true);
@@ -426,6 +448,7 @@ public class MqttConnection {
         MqttRobot.setConnectionType(this.connectionType);
         if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
             mqttAsyncClient.disconnectForcibly();
+            mqttAsyncClient.close();
             if (mqttAsyncClient != null) {
                 mqttAsyncClient = null;
             }

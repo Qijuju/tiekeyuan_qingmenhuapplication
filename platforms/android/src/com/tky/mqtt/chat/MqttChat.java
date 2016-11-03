@@ -627,13 +627,11 @@ public class MqttChat extends CordovaPlugin {
             netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
                 @Override
                 public void doNetDisconnect() {
-//                    ToastUtil.showSafeToast("lianjieshiBai");
                     setResult("false", PluginResult.Status.ERROR, callbackContext);
                 }
 
                 @Override
                 public void doNetConnect() {
-//                    ToastUtil.showSafeToast("lianjiechenggong");
                     setResult("true", PluginResult.Status.OK, callbackContext);
                 }
             });

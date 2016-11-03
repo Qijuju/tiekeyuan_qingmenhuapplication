@@ -3322,13 +3322,17 @@ angular.module('message.controllers', [])
     //打开群公告界面
     $scope.groupNotice=function () {
 
-      $state.go('groupNotice',{
-        "groupid":$scope.groupId,
-        "grouptype":$scope.groupType,
-        "groupname":$scope.groupName,
-        "ismygroup":$scope.ismygroup,
-      });
+      if($scope.groupType=="Group"){
+        $state.go('groupNotice',{
+          "groupid":$scope.groupId,
+          "grouptype":$scope.groupType,
+          "groupname":$scope.groupName,
+          "ismygroup":$scope.ismygroup,
+        });
 
+      }else{
+        $ToastUtils.showToast("部门群不支持群公告")
+      }
     }
 
 
