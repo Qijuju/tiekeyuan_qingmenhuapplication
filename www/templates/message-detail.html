@@ -35,9 +35,19 @@
           <div ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)" /></p>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</p>
+            <!---接收图片ui--->
+            <p class="rj-message" style="margin-left: 14.5%;background-color: rgba(10, 128, 255, 0)" ng-if="msgSingle.messagetype === 'Image'">
+              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/>
+            </p>
+            <!---接收位置ui--->
+            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'">
+              <img src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)" />
+            </p>
+            <!---接收文字ui--->
+            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
+              {{msgSingle.message}}
+            </p>
+            <!---接收文件ui--->
             <p  ng-if="msgSingle.messagetype === 'File'">
             <img ng-src="{{msgSingle.message.split('###')[1]}}" ng-if="msgSingle.messagetype === 'File' && getFileType(msgSingle.message)" style="width: 110px;margin-left: 14.5%;" class="yuanjiao" />
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
@@ -47,6 +57,7 @@
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
             </p>
+
           </span>
 
         </div>
@@ -60,7 +71,7 @@
           <p style="float: right">
             <!---发送图片的ui--->
             <font  ng-if="msgSingle.messagetype === 'Image'">
-              <img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,              msgSingle)" />
+              <img style="background-color: transparent;margin-left: -30px" src="img/red.png"  ng-if="msgSingle.isFailure ==='true'" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)" />
               <ion-spinner icon="ios-small"  style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
               <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="boostImage(msgSingle.message.split('###')[1])" />
