@@ -357,7 +357,7 @@ angular.module('im.routes', [])
         url: '/search',
         templateUrl: 'templates/search.html',
         controller: 'searchCtrl',
-        cache:false
+        cache:true
       })
 
       .state('searchmessage', {
