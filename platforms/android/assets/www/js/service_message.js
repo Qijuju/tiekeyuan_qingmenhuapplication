@@ -586,8 +586,8 @@ angular.module('message.services', [])
             messageDetail.message = newMsg;
             mqtt.sendMsg(topic, messageDetail, function (message) {
               // alert("发送图片成功前数组长度"+danliao.length);
-              $mqtt.updateDanliao(messageDetail);
-              messageDetail.isSuccess='true';
+              $mqtt.updateDanliao(message);
+              // message.isSuccess='true';
 
               var savefilepic={};
               savefilepic.filepicid=sdata[1];
@@ -606,9 +606,9 @@ angular.module('message.services', [])
                 savefilepic.type="image";
               }
               savefilepic.when=0;
-              danliao.push(messageDetail);
+              // danliao.push(message);
               // alert("发送图片成功后数组长度"+danliao.length);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
               },function (err) {
               });
@@ -616,15 +616,15 @@ angular.module('message.services', [])
               $greendao.saveObj("FilePictureService",savefilepic,function (data) {
               },function (err) {
               })
-              $rootScope.firstSendId=messageDetail.sessionid;
+              $rootScope.firstSendId=message.sessionid;
               return "成功";
             },function (message) {
               // alert("发送图片直接失败前数组长度"+danliao.length);
-              $mqtt.updateImgFileDanliao(messageDetail);
-              messageDetail.isFailure='true';
-              danliao.push(messageDetail);
+              $mqtt.updateDanliao(message);
+              // message.isFailure='true';
+              // danliao.push(message);
               // alert("发送图片直接失败后数组长度"+danliao.length);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.error');
               },function (err) {
               });
