@@ -27,9 +27,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
 
-import com.igexin.sdk.PushManager;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
@@ -70,9 +68,6 @@ public class MainActivity extends CordovaActivity
             messages.setIsFailure("true");
             messagesService.saveObj(messages);
         }
-
-        //个推初始化
-        PushManager.getInstance().initialize(this.getApplicationContext());
 
         MqttRobot.setIsStarted(false);
 
