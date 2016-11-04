@@ -9,6 +9,11 @@ import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.SystemMsgDao;
 import com.tky.mqtt.paho.BaseApplication;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -150,4 +155,104 @@ public class SystemMsgService implements BaseInterface<SystemMsg> {
                 .build()
                 .list();
     }
+
+
+    /**
+     * 查询今天的
+     */
+    public List<SystemMsg>  queryByToday(){
+
+
+        Calendar calendar=Calendar.getInstance();
+
+        int year=calendar.get(Calendar.YEAR);
+        int month=calendar.get(Calendar.MONTH)+1;
+        int day=calendar.get(Calendar.DAY_OF_MONTH);
+
+        String syear=year+"";
+        String smonth=month+"";
+        String sday=day+"";
+
+        List<SystemMsg> list=new ArrayList<SystemMsg>();
+        if(day<10){
+            sday=0+sday;
+        }
+
+        String start=syear+smonth+sday+"000000";
+        String end=syear+smonth+sday+"235959";
+
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+
+        try {
+            long stmill=formatter.parse(start).getTime();
+            long etmill=formatter.parse(end).getTime();
+
+            //gt大于  lt小于
+            list= systemMsgDao.queryBuilder()
+                    .where(SystemMsgDao.Properties.When.gt(stmill))
+                    .orderDesc(SystemMsgDao.Properties.Istop)
+                    .orderDesc(SystemMsgDao.Properties.When)
+                    .build().list();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
+
+
+    public List<SystemMsg>  queryByYesterday(){
+
+
+        Calendar calendar=Calendar.getInstance();
+
+        int year=calendar.get(Calendar.YEAR);
+        int month=calendar.get(Calendar.MONTH)+1;
+        int day=calendar.get(Calendar.DAY_OF_MONTH);
+
+        String syear=year+"";
+        String smonth=month+"";
+        String sday=day+"";
+
+        List<SystemMsg> list=new ArrayList<SystemMsg>();
+        if(day<10){
+            sday=0+sday;
+        }
+
+        String start=syear+smonth+sday+"000000";
+        String end=syear+smonth+sday+"235959";
+
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+
+        try {
+            long stmill=formatter.parse(start).getTime();
+            long etmill=formatter.parse(end).getTime();
+
+            //gt大于  lt小于
+            list= systemMsgDao.queryBuilder()
+                    .where(SystemMsgDao.Properties.When.lt(stmill))
+                    .orderDesc(SystemMsgDao.Properties.Istop)
+                    .orderDesc(SystemMsgDao.Properties.When)
+                    .build().list();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

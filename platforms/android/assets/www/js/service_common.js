@@ -85,7 +85,13 @@ angular.module('common.services', [])
       },
       getUUID:function(success){//获取UUID码
       greendao.getUUID(success);
-      }
+      },
+      queryByToday:function (success, error) {
+        greendao.queryByToday (success, error);
+      },
+      queryByYesterday:function (success, error) {
+        greendao.queryByYesterday (success, error);
+      },
   };
 
   })

@@ -14,6 +14,34 @@ angular.module('newnotification.controllers', [])
     });
 
 
+
+    $scope.initstate=false;
+
+
+    $scope.openagain=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      $timeout(function () {
+        if(!$scope.initstate){
+          $scope.initstate=true
+        }else {
+          $scope.initstate=false;
+
+        }
+        $ionicLoading.hide();
+
+      },400)
+
+
+    }
+
+
+
     //初始状态
     $scope.startA=false;
     $scope.titleAll=['全部','应用','关注'];
@@ -55,13 +83,15 @@ angular.module('newnotification.controllers', [])
 
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
+
       $ionicSlideBoxDelegate.enableSlide(false);
       $timeout(function () {
+
         $greendao.queryByConditions("SystemMsgService",function (msg) {
-          if(msg.length==0){
-            $ionicLoading.hide();
-          }
-          $ionicLoading.hide();
+            if(msg.length==0){
+              $ionicLoading.hide();
+           }
+           //$ionicLoading.hide();
           $scope.allin=msg;
 
         },function (err) {
@@ -69,9 +99,25 @@ angular.module('newnotification.controllers', [])
 
         });
 
+        $greendao.queryByToday(function (msg) {
+
+          $scope.todayTime=msg;
+          $greendao.queryByYesterday(function (msg) {
+            $scope.otherDay=msg;
+            $ionicLoading.hide();
+
+          },function (err) {
+            $ionicLoading.hide();
+
+          });
+
+        },function (err) {
+          $ionicLoading.hide();
+
+        });
         $greendao.loadAllData('ModuleCountService',function (data) {
 
-            $scope.applist=data[0];
+          $scope.applist=data[0];
 
         },function (err) {
           $ionicLoading.hide();
@@ -215,6 +261,22 @@ angular.module('newnotification.controllers', [])
 
         });
 
+        $greendao.queryByToday(function (msg) {
+
+          $scope.todayTime=msg;
+          $greendao.queryByYesterday(function (msg) {
+            $scope.otherDay=msg;
+
+          },function (err) {
+
+          });
+
+        },function (err) {
+
+        });
+
+
+
         $greendao.loadAllData('ModuleCountService',function (data) {
           // alert("模块应用列表的长度"+data.length);
           $scope.applist=data[0];
@@ -233,16 +295,31 @@ angular.module('newnotification.controllers', [])
         "id":id,
       });
     };
-
+    
     //删除一条通知
     $scope.deleteNotify=function (id) {
+
 
       $timeout(function () {
         $greendao.deleteDataByArg("SystemMsgService",id,function (msg) {
           $greendao.queryByConditions("SystemMsgService",function (msg) {
-            $ionicLoading.hide();
             $scope.allin=msg;
-            $rootScope.$broadcast('second.notify');
+            $greendao.queryByToday(function (msg) {
+              $ionicLoading.hide();
+              $scope.todayTime=msg;
+              $greendao.queryByYesterday(function (msg) {
+                $scope.otherDay=msg;
+                $rootScope.$broadcast('second.notify');
+
+              },function (err) {
+
+              });
+
+            },function (err) {
+
+            });
+
+
 
           },function (err) {
 
@@ -359,7 +436,7 @@ angular.module('newnotification.controllers', [])
         }
       }else {
         $state.go("notifyApplication",{
-          
+
           id:id,
           isfirm:isfirm
         })
