@@ -44,7 +44,7 @@ angular.module('newnotification.controllers', [])
 
     //初始状态
     $scope.startA=false;
-    $scope.titleAll=['全部','应用','关注'];
+    $scope.titleAll=['通知','应用','关注'];
     $scope.newdex=0;
     //滑块的状态
     $scope.appstatus=false;
