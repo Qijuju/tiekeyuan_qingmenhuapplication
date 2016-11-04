@@ -7,9 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+
 import java.util.List;
 
 /**
@@ -34,7 +35,8 @@ public class UserPresentReceiver extends BroadcastReceiver {
                 return;
             }
 //            MqttOper.resetMqtt();
-            if (MqttRobot.isStarted()) {
+            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+//            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 context.stopService(new Intent(context, MqttService.class));
                 context.startService(new Intent(context, MqttService.class));
             }

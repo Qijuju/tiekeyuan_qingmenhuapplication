@@ -36,7 +36,7 @@
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
             <!---接收图片ui--->
-            <p class="rj-message" style="margin-left: 14.5%;background-color: rgba(10, 128, 255, 0)" ng-if="msgSingle.messagetype === 'Image'">
+            <p class="rj-message" style="margin-left: 14.5%;background-color: transparent;" ng-if="msgSingle.messagetype === 'Image'">
               <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/>
             </p>
             <!---接收位置ui--->
