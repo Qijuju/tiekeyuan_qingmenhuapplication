@@ -295,7 +295,7 @@ angular.module('newnotification.controllers', [])
         "id":id,
       });
     };
-    
+
     //删除一条通知
     $scope.deleteNotify=function (id) {
 
