@@ -502,12 +502,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
 
   })
-  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils) {
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils,$mqtt,$api,$ionicPopup,$ionicLoading,$cordovaFileOpener2) {
     $scope.UserIDabouthou = $stateParams.UserIDabout;
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
-
+    //在线升级
+    $scope.zaixianshengji = function () {
+      $mqtt.save('install_cancel', 'false');
+      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    }
   })
   .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout,$rootScope) {
     $mqtt.getUserInfo(function (msg) {

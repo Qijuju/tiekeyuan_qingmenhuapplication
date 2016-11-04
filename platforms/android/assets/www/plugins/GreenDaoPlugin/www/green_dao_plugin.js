@@ -92,4 +92,12 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
         exports.getUUID = function(success){//一般通知
                            exec(success, null,"GreenDaoPlugin", "getUUID",[]);
                     };
+
+        exports.queryByToday = function(success,error){//今天
+                      exec(success, error,"GreenDaoPlugin", "queryByToday",[]);
+                };
+         exports.queryByYesterday = function(success,error){//昨天
+                        exec(success, error,"GreenDaoPlugin", "queryByYesterday",[]);
+                };
+
 });
