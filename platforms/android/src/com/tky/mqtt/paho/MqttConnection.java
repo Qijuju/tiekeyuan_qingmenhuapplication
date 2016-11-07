@@ -2,12 +2,10 @@ package com.tky.mqtt.paho;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.SystemClock;
 
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -21,8 +19,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,17 +53,6 @@ public class MqttConnection {
 //        params.getPingSender().start();
         IMqttActionListener callback = new MqttActionListener();
         mqttAsyncClient.connect(params.getOptions(), null, callback);
-        mqttAsyncClient.checkPing(null, new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken iMqttToken) {
-
-            }
-
-            @Override
-            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-
-            }
-        });
 
         MqttCallback mqttCallback = new MqttMessageCallback(context, this);
 
@@ -438,7 +423,7 @@ public class MqttConnection {
      * @param text
      * @throws IOException
      */
-    private void saveToFile(String text) throws IOException {
+    /*private void saveToFile(String text) throws IOException {
         File file = new File(FileUtils.getDownloadDir() + File.separator + "publisherror.txt");
         if (!file.exists()) {
             file.createNewFile();
@@ -446,7 +431,7 @@ public class MqttConnection {
         FileOutputStream fos = new FileOutputStream(file, true);
         fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
         fos.flush();
-    }
+    }*/
 
     /**
      * 获取MQTT连接所需参数（Get the params of the mqtt connection that we'll need）

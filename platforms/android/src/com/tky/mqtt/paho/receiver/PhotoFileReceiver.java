@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.tky.mqtt.paho.ReceiverParams;
+
 /**
  * 作者：
  * 包名：com.tky.mqtt.paho.receiver
@@ -16,9 +18,11 @@ public class PhotoFileReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent != null) {
-            if (onPhotoGetListener != null) {
-                onPhotoGetListener.getPhoto(intent.getStringExtra("filePath"), intent.getStringExtra("length"), intent.getStringExtra("formatSize"), intent.getStringExtra("fileName"));
+        if (ReceiverParams.PHOTO_FILE_GET.equals(intent.getAction())) {
+            if (intent != null) {
+                if (onPhotoGetListener != null) {
+                    onPhotoGetListener.getPhoto(intent.getStringExtra("filePath"), intent.getStringExtra("length"), intent.getStringExtra("formatSize"), intent.getStringExtra("fileName"));
+                }
             }
         }
     }
