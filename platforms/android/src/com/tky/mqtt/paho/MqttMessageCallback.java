@@ -246,7 +246,7 @@ public class MqttMessageCallback implements MqttCallback {
 						List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
 						ChatList chatList=new ChatList();
 						chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-						System.out.println("消息类型" + lastmessages.getMessagetype());
+//						System.out.println("消息类型" + lastmessages.getMessagetype());
 						if(lastmessages.getMessagetype() == "Image"){
 							// alert("返回即时通");
 							chatList.setLastText("[图片]");//从数据库里取最后一条消息

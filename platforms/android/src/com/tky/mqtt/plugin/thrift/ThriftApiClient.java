@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -153,6 +154,16 @@ public class ThriftApiClient extends CordovaPlugin {
                                     }
                                     //保存登录信息
                                     SPUtils.save("login_info", loginJson);
+
+                                    MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+                                    List<Messages> messagesList=messagesService.queryData("where IS_SUCCESS =?", "false");
+                                    for(int i=0;i<messagesList.size();i++){
+                                        Messages messages=new Messages();
+                                        messages=messagesList.get(i);
+                                        messages.setIsFailure("true");
+                                        messagesService.saveObj(messages);
+                                    }
+
                                     setResult(new JSONObject(loginJson),PluginResult.Status.OK,callbackContext);
                                 } else if ("104".equals(result.getResultCode())) {
                                     setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
@@ -1908,7 +1919,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 try {
                     rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
                     flag = false;
-                } catch (SocketTimeoutException e) {
+                } catch (Exception e) {
                     count++;
                     if (count > 50) {
 //                        flag = false;

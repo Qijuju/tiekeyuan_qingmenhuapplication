@@ -7,9 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+
 import java.util.List;
 
 /**
@@ -33,24 +34,9 @@ public class UserPresentReceiver extends BroadcastReceiver {
             if (!NetUtils.isConnect(context)) {
                 return;
             }
-            MqttOper.resetMqtt();
-            /*ProgressDialog dialog = new ProgressDialog(context);
-            dialog.setTitle("test");
-            String mqttFailure = SPUtils.getString("mqttFailure", "mqttFailure");
-            String mqttOffScreen = SPUtils.getString("mqttOffScreen", "mqttOffScreen");
-            String connectionLost = SPUtils.getString("connectionLost", "connectionLost");
-            boolean reconnect = SPUtils.getBoolean("reconnect", false);
-            boolean reconnect1 = SPUtils.getBoolean("reconnect1", false);
-            boolean reconnect2 = SPUtils.getBoolean("reconnect2", false);
-            Spanned spanned = Html.fromHtml("mqttOffScreen：" + mqttOffScreen + "<br />" +
-                    "mqttFailure：" + mqttFailure + "<br />" +
-                    "connectionLost：" + connectionLost + "<br />" +
-                    "reconnect：" + reconnect + "<br />" +
-                    "reconnect1：" + reconnect1 + "<br />" +
-                    "reconnect2：" + reconnect2);
-            dialog.setMessage(spanned);
-            dialog.show();*/
-            if (MqttRobot.isStarted()) {
+//            MqttOper.resetMqtt();
+            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+//            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 context.stopService(new Intent(context, MqttService.class));
                 context.startService(new Intent(context, MqttService.class));
             }
@@ -60,7 +46,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             if (!NetUtils.isConnect(context)) {
                 return;
             }
-            MqttOper.resetMqtt();
+//            MqttOper.resetMqtt();
             /*Intent closeOnePxIntent = new Intent();
             closeOnePxIntent.setAction("com.tky.close_one_px_activity");
             context.sendBroadcast(closeOnePxIntent);*/

@@ -60,15 +60,6 @@ public class MainActivity extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
 
-        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-        List<Messages> messagesList=messagesService.queryData("where IS_SUCCESS =?", "false");
-        for(int i=0;i<messagesList.size();i++){
-            Messages messages=new Messages();
-            messages=messagesList.get(i);
-            messages.setIsFailure("true");
-            messagesService.saveObj(messages);
-        }
-
         MqttRobot.setIsStarted(false);
 
         //注册屏幕开关广播

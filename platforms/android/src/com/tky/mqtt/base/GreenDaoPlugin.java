@@ -77,7 +77,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }else{
                 message.setWhen(jsonobj.getLong("when"));
             }
-            System.out.println(jsonobj.getLong("when") + "入库的时间");
+//            System.out.println(jsonobj.getLong("when") + "入库的时间");
             message.setIsFailure(jsonobj.getString("isFailure"));
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
