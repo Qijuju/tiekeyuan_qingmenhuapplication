@@ -1220,6 +1220,18 @@ angular.module('message.controllers', [])
     });
 
 
+    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+    var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
+    var txtInput = angular.element(footerBar.querySelector('textarea'));
+
+    $scope.$on('$ionicView.enter', function () {
+
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
+
+    });
+
     if ($rootScope.isPersonSend === 'true') {
       $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
         if(data.length>0){
@@ -1256,10 +1268,6 @@ angular.module('message.controllers', [])
       // $ToastUtils.showToast(err);
     });
 
-
-    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
-    var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
-    var txtInput = angular.element(footerBar.querySelector('textarea'));
 
     //获取更多数据
     $scope.doRefresh = function () {

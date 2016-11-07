@@ -35,7 +35,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
                 return;
             }
 //            MqttOper.resetMqtt();
-            if (MqttRobot.isStarted()) {
+            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
 //            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 context.stopService(new Intent(context, MqttService.class));
                 context.startService(new Intent(context, MqttService.class));

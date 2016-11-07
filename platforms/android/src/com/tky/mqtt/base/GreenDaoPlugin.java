@@ -77,7 +77,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }else{
                 message.setWhen(jsonobj.getLong("when"));
             }
-            System.out.println(jsonobj.getLong("when") + "入库的时间");
+//            System.out.println(jsonobj.getLong("when") + "入库的时间");
             message.setIsFailure(jsonobj.getString("isFailure"));
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
@@ -510,6 +510,49 @@ public class GreenDaoPlugin extends CordovaPlugin {
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+
+    /**
+     * 查询今天的
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByToday(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByToday();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查询以前的
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByYesterday(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByYesterday();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+
 
     /**
      * 带两个参数查询(NotifyListService)

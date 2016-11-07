@@ -585,6 +585,7 @@ angular.module('message.services', [])
             }
             messageDetail.message = newMsg;
             mqtt.sendMsg(topic, messageDetail, function (message) {
+              // alert("发了几次是几次");
               // alert("发送图片成功前数组长度"+danliao.length);
               $mqtt.updateDanliao(message);
               // message.isSuccess='true';
@@ -721,7 +722,7 @@ angular.module('message.services', [])
             // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);*/
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              alert(data.length+"收通知消息");
+              // alert(data.length+"收通知消息");
             },function (err) {
             });
             $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
