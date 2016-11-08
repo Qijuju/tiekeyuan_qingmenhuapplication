@@ -454,8 +454,25 @@ angular.module('message.controllers', [])
            * 当在当前界面收到消息时，及时将count=0，并且将该条数据未读状态置为已读，并保存
            */
           // alert("用户id"+$scope.userId);
+          //获取当天日期
+          var myDate = new Date();//
+          myDate.toLocaleDateString();//可以获取当前日期
+          // alert("获取当前日期"+myDate.toLocaleDateString());
+          myDate.toLocaleTimeString(); //可以获取当前时间
+          // alert("获取当前时间"+myDate.toLocaleTimeString());
+
+          var year=myDate.getFullYear();//获取年份
+          var month=myDate.getMonth();//获取月份
+          var day=myDate.getDate();//获取日期
+          // alert("获取当前年月日"+year+month+day);
+
+          var millions=Math.round(new Date(year,month,day,0,0,1).getTime()/1000);
+          // alert("最低毫秒值"+millions);
+          var maxmillions=Math.round(new Date(year,month,day,23,59,59).getTime()/1000);
+          // alert("最高毫秒值"+millions);
           $scope.msgs=$mqtt.getDanliao();
-          // alert("长度啊更新方法"+$scope.msgs.length);
+          $scope.timegap=$mqtt.getDanliao()[$scope.msgs.length-1].when-$mqtt.getDanliao()[$scope.msgs.length-2].when;
+          // alert("时间戳"+$scope.timegap);
           $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
             if(data[0].count>0){
               // alert("进来查询了吗？"+data.length);
@@ -1155,6 +1172,26 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+    $scope.bgroup=0;
+    $scope.gengduogropu=function () {
+
+      if ($scope.bgroup==0){
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+        document.getElementById("contentbb").style.marginBottom='165px';
+        $scope.bgroup=1;
+      }else {
+        document.getElementById("contentbb").style.marginBottom='0px';
+        $scope.bgroup=0;
+      }
+    };
+    $scope.zhilinggroup=function () {
+      document.getElementById("contentbb").style.marginBottom='0px';
+      $scope.bgroup=0;
+    };
     /**
      * 从其他应用界面跳转带参赋值
      */
@@ -1220,7 +1257,7 @@ angular.module('message.controllers', [])
     });
 
 
-    var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
+    // var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     var footerBar = document.body.querySelector('#messageGroupDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
 

@@ -27,6 +27,11 @@
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">更多消息请在历史消息中查阅</p>
     <div>
       <div ng-repeat="msgSingle in msgs">
+        <!---时间戳--->
+        <div>
+          <p ng-if="timegap > 600000 &&  timegap < 3600000 " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm:ss'}}</p>
+          <!--<p ng-if="timegap > '60*60*1000' && timegap < '120*60*1000'" style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm:ss'}}</p>-->
+        </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
           <div
@@ -368,8 +373,8 @@
     <!--</ul>-->
     <!--</a>-->
     <!--</div>-->
-    </div>
-    </div>
+    <!--</div>-->
+    <!--</div>-->
   </ion-footer-bar>
   <!--ion-image-->
 
