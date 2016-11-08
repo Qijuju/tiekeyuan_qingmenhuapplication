@@ -143,14 +143,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        alert(imageData)
+        alert(imageData);
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
         // image.src=imageData;
         //image.src = "data:image/jpeg;base64," + imageData;
         // if(isAndroid){
         var picPath = imageData.substring(0, imageData.indexOf('?'));
-        alert(picPath)
+        alert(picPath);
         // }
         $api.setHeadPic(picPath, function (msg) {
           $ToastUtils.showToast("成功")
@@ -479,11 +479,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
       // myPopup.close(); //关闭
     };
-    //在线升级
-    $scope.zaixianshengji = function () {
-      $mqtt.save('install_cancel', 'false');
-      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
-    }
+    // //在线升级
+    // $scope.zaixianshengji = function () {
+    //   $mqtt.save('install_cancel', 'false');
+    //   $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    // }
     //扫一扫
     $scope.scanCode = function () {
       $cordovaBarcodeScanner.scan().then(function(imageData) {
@@ -680,7 +680,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var password="";
     $scope.count=6;
     $mqtt.getUserInfo(function (msg) {
-      $scope.UserID = msg.userID
+      $scope.UserID = msg.userID;
       $scope.mymypersonname=msg.userName
     }, function (msg) {
     });
@@ -844,5 +844,27 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }, 100);
       })
     });
+
+  })
+
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count) {
+    $scope.indicators = Indicators.all();
+
+    $scope.indicatorId = Indicators.getId($stateParams.indicatorId);
+
+
+    $scope.projects = Projects.all();
+
+    $scope.counts = Count.all();
+
+
+
+    $scope.openUrl=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://172.25.26.77:8080/html5/src/gouzhuwu.html","_self","location=no")
+    }
 
   })
