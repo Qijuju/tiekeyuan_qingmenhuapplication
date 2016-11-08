@@ -1155,6 +1155,26 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
+    $scope.showModule=0;
+    $scope.showMore=function () {
+      alert('沙伯i撒旦法');
+      if ($scope.showModule==0){
+        //加滑动底部
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+        //document.getElementById("contentaa").style.marginBottom='165px';
+        $scope.showModule=1;
+      }else {
+        //document.getElementById("contentaa").style.marginBottom='0px';
+        $scope.showModule=0;
+      }
+    };
+
+    $scope.zhiling=function () {
+      document.getElementById("contentaa").style.marginBottom='0px';
+      $scope.showModule=0;
+    };
     /**
      * 从其他应用界面跳转带参赋值
      */

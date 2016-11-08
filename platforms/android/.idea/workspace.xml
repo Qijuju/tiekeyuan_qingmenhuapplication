@@ -9,7 +9,168 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92f51ef1-fef8-4d68-acbd-d7003b2d6b5c" name="Default" comment="" />
+    <list default="true" id="92f51ef1-fef8-4d68-acbd-d7003b2d6b5c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/styles.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" />
+      <change type="DELETED" beforePath="D:\impro\final4\IM\platforms\android\.idea\libraries\support_annotations_24_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\impro\final4\IM\platforms\android\.idea\libraries\support_v4_24_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\impro\final4\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger4468319445258761138.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\impro\final4\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger822952407669165994.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\impro\final4\IM\platforms\android\CordovaLib\build\intermediates\mockable-android-23.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ConfigXmlParser.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ConfigXmlParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaArgs.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaArgs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaBridge.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaBridge.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPlugin.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPlugin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/LOG.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/LOG.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult$Status.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult$Status.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ResumeCallback.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ResumeCallback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemCookieManager.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemCookieManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist$URLPattern.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist$URLPattern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +197,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserPresentReceiver.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserPresentReceiver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.8442211">
+              <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -49,8 +210,8 @@
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="616" column="27" selection-start-line="616" selection-start-column="27" selection-end-line="616" selection-end-column="27" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="616" column="22" selection-start-line="616" selection-start-column="19" selection-end-line="617" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,18 +223,10 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/PhotoUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1721" column="11" selection-start-line="1721" selection-start-column="11" selection-end-line="1721" selection-end-column="11" />
-              <folding />
+              <caret line="37" column="50" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,41 +235,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#6247#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PhotoFileReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/PhotoFileReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MqttChatPingSender.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttChatPingSender.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding>
-                <element signature="e#2250#2251#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MqttConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+              <caret line="86" column="26" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,27 +243,72 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19266056">
+            <state vertical-scroll-proportion="0.0">
               <caret line="87" column="79" selection-start-line="87" selection-start-column="79" selection-end-line="87" selection-end-column="79" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#4870#12825#0" expanded="false" />
+                <element signature="e#12824#12825#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.24731183">
+              <caret line="2444" column="13" selection-start-line="2444" selection-start-column="13" selection-end-line="2444" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScalePhoto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java">
+      <file leaf-file-name="OnePxActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.066667">
+              <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.733334">
+              <caret line="75" column="192" selection-start-line="75" selection-start-column="192" selection-end-line="75" selection-end-column="192" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwitchLocal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+              <caret line="25" column="43" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="valueResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -339,6 +503,11 @@
                 <option name="name" value="compileReleaseUnitTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'android'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Installs and runs instrumentation tests for all flavors on connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="connectedAndroidTest" />
@@ -352,6 +521,16 @@
                 <option name="description" value="Installs and runs the tests for debug on connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="connectedDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'android'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'android'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Installs and runs instrumentation tests using all Device Providers." />
@@ -436,6 +615,16 @@
                 <option name="name" value="generateReleaseSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Installs the Debug build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="installDebug" />
@@ -501,6 +690,11 @@
                 <option name="description" value="Creates a version of android.jar that's suitable for unit tests." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="mockableAndroidJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'android'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="model" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -635,6 +829,16 @@
                 <option name="name" value="processReleaseUnitTestJavaRes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'android'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'android'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Displays the signing info for each variant." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="signingReport" />
@@ -643,6 +847,11 @@
                 <option name="description" value="Prints out all the source sets defined in this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="sourceSets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'android' (some of the displayed tasks may belong to subprojects)." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="tasks" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Run unit tests for all variants." />
@@ -940,6 +1149,11 @@
                 <option name="name" value="compileReleaseUnitTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by project ':CordovaLib'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Installs and runs instrumentation tests for all flavors on connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="connectedAndroidTest" />
@@ -961,6 +1175,16 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="copyReleaseLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in project ':CordovaLib'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in project ':CordovaLib'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Installs and runs instrumentation tests using all Device Providers." />
@@ -1037,6 +1261,11 @@
                 <option name="name" value="generateReleaseSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Installs the android (on device) tests for the Debug build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="installDebugAndroidTest" />
@@ -1084,6 +1313,11 @@
                 <option name="description" value="Creates a version of android.jar that's suitable for unit tests." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="mockableAndroidJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of project ':CordovaLib'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="model" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
@@ -1230,6 +1464,16 @@
                 <option name="name" value="processReleaseUnitTestJavaRes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of project ':CordovaLib'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of project ':CordovaLib'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Displays the signing info for each variant." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="signingReport" />
@@ -1238,6 +1482,11 @@
                 <option name="description" value="Prints out all the source sets defined in this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
                 <option name="name" value="sourceSets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from project ':CordovaLib'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+                <option name="name" value="tasks" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Run unit tests for all variants." />
@@ -1275,7 +1524,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\impro\final4\IM\platforms\android" value="5912687151632" />
+        <entry key="D:\impro\final4\IM\platforms\android" value="5913512113990" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1578,108 +1827,117 @@
               <option name="name" value="CordovaLib" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/announce" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/antlr" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/base-services" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/base-services-groovy" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/build-comparison" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/build-init" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/cli" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/code-quality" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/core" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/cunit" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/dependency-management" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/diagnostics" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/ear" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/ide" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/ide-native" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/internal-integ-testing" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/internal-testing" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/ivy" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/jacoco" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/javascript" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/jetty" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/language-groovy" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/language-java" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/language-jvm" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/language-native" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/launcher" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/maven" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/messaging" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/model-core" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/model-groovy" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/native" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/open-api" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/osgi" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/platform-base" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/platform-jvm" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/platform-native" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/plugin-development" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/plugin-use" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/plugins" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/publish" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/reporting" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/resources" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/resources-http" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/scala" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/signing" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/sonar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/tooling-api" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/ui" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/src/wrapper" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/ant-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/ant-launcher-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-base-services-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-base-services-groovy-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-cli-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-core-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-docs-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-launcher-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-messaging-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-model-core-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-model-groovy-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-native-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-open-api-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-resources-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-tooling-api-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-ui-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/gradle-wrapper-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/groovy-all-2.3.6.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/ant-antlr-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-announce-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-antlr-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-build-comparison-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-build-init-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-code-quality-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-cunit-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-dependency-management-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-diagnostics-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-ear-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-ide-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-ide-native-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-ivy-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-jacoco-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-javascript-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-jetty-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-language-groovy-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-language-java-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-language-jvm-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-language-native-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-maven-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-osgi-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-platform-base-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-platform-jvm-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-platform-native-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-plugin-development-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-plugin-use-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-plugins-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-publish-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-reporting-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-resources-http-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-scala-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-signing-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/gradle-sonar-2.2.1.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.2.1-all/5qsup9soslr7wk0t6dtlfiiz/gradle-2.2.1/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/announce" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/antlr" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/base-services" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/base-services-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/build-comparison" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/build-init" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/cli" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/code-quality" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/dependency-management" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/diagnostics" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/ear" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/ide" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/ide-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/internal-integ-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/internal-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/ivy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/jacoco" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/javascript" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/jetty" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/language-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/language-java" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/language-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/language-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/language-scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/launcher" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/maven" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/messaging" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/model-core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/model-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/open-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/osgi" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/platform-base" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/platform-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/platform-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/platform-play" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/plugin-development" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/plugin-use" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/plugins" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/publish" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/reporting" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/resources" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/resources-http" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/resources-s3" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/resources-sftp" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/signing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/sonar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/testing-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/tooling-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/tooling-api-builders" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/ui" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/src/wrapper" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/ant-1.9.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/ant-launcher-1.9.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-base-services-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-base-services-groovy-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-cli-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-core-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-docs-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-launcher-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-messaging-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-model-core-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-model-groovy-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-native-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-open-api-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-resources-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-tooling-api-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-ui-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/gradle-wrapper-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/groovy-all-2.3.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-announce-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-antlr-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-build-comparison-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-build-init-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-code-quality-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-dependency-management-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-diagnostics-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-ear-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-ide-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-ide-native-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-ivy-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-jacoco-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-javascript-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-jetty-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-language-groovy-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-language-java-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-language-jvm-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-language-native-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-language-scala-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-maven-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-osgi-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-platform-base-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-platform-jvm-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-platform-native-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-platform-play-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-plugin-development-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-plugin-use-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-plugins-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-publish-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-reporting-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-resources-http-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-resources-s3-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-resources-sftp-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-scala-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-signing-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-sonar-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-testing-native-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/gradle-tooling-api-builders-2.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.4-all/6r4uqcc6ovnq6ac6s0txzcpc0/gradle-2.4/lib/plugins/ivy-2.2.0.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -1697,14 +1955,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/PhotoFileReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttChatPingSender.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/Bea.java" />
+        <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/build/intermediates/exploded-aar/barcodescanner/res/values/values.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java" />
       </list>
     </option>
   </component>
@@ -1731,7 +1994,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -1747,7 +2010,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1876,10 +2141,184 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intermediates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intermediates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exploded-aar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intermediates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exploded-aar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="barcodescanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intermediates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exploded-aar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="barcodescanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intermediates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exploded-aar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="barcodescanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1900,7 +2339,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="D:/soft/androidStudio/allsdk/sdk" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="DLQ0216510003198" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="1e3a116a" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="wvga" />
     <property name="FullScreen" value="false" />
   </component>
@@ -1912,6 +2351,37 @@
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
@@ -1970,6 +2440,11 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -2076,27 +2551,27 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52491695" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.52491695" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977852" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977852" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2133,17 +2608,142 @@
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>128</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>1732</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>1736</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>2447</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
+          <line>2450</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1721" column="11" selection-start-line="1721" selection-start-column="11" selection-end-line="1721" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/PhotoFileReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttChatPingSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#516#517#0" expanded="false" />
+            <element signature="e#530#531#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3575#16290#0" expanded="false" />
+            <element signature="e#5112#13850#0" expanded="false" />
+            <element signature="e#13849#13850#0" expanded="false" />
+            <element signature="e#13997#14417#0" expanded="false" />
+            <element signature="e#14416#14417#0" expanded="false" />
+            <element signature="e#14575#15061#0" expanded="false" />
+            <element signature="e#15060#15061#0" expanded="false" />
+            <element signature="e#15119#15589#0" expanded="false" />
+            <element signature="e#15588#15589#0" expanded="false" />
+            <element signature="e#15844#16141#0" expanded="false" />
+            <element signature="e#16140#16141#0" expanded="false" />
+            <element signature="e#16289#16290#0" expanded="false" />
+            <element signature="e#20013#20014#0" expanded="false" />
+            <element signature="e#20042#20043#0" expanded="false" />
+            <element signature="e#20093#20094#0" expanded="false" />
+            <element signature="e#20131#20132#0" expanded="false" />
+            <element signature="e#21224#21225#0" expanded="false" />
+            <element signature="e#21261#21262#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="87" column="79" selection-start-line="87" selection-start-column="79" selection-end-line="87" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4870#12825#0" expanded="false" />
+            <element signature="e#12824#12825#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="13" selection-start-line="37" selection-start-column="12" selection-end-line="41" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2161,7 +2761,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2178,7 +2780,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#6247#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2187,7 +2789,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2196,7 +2800,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="74" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="74" />
           <folding>
-            <element signature="e#2250#2251#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#516#517#0" expanded="false" />
+            <element signature="e#530#531#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2206,7 +2812,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
-            <element signature="e#2009#2010#0" expanded="true" />
+            <element signature="e#2009#2010#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2215,7 +2821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2223,7 +2828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2238,7 +2842,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="88" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="88" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2264,7 +2870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2273,7 +2878,25 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="179" column="46" selection-start-line="179" selection-start-column="46" selection-end-line="179" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3575#16290#0" expanded="false" />
+            <element signature="e#5112#13850#0" expanded="false" />
+            <element signature="e#13849#13850#0" expanded="false" />
+            <element signature="e#13997#14417#0" expanded="false" />
+            <element signature="e#14416#14417#0" expanded="false" />
+            <element signature="e#14575#15061#0" expanded="false" />
+            <element signature="e#15060#15061#0" expanded="false" />
+            <element signature="e#15119#15589#0" expanded="false" />
+            <element signature="e#15588#15589#0" expanded="false" />
+            <element signature="e#15844#16141#0" expanded="false" />
+            <element signature="e#16140#16141#0" expanded="false" />
+            <element signature="e#16289#16290#0" expanded="false" />
+            <element signature="e#20013#20014#0" expanded="false" />
+            <element signature="e#20042#20043#0" expanded="false" />
+            <element signature="e#20093#20094#0" expanded="false" />
+            <element signature="e#20131#20132#0" expanded="false" />
+            <element signature="e#21224#21225#0" expanded="false" />
+            <element signature="e#21261#21262#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2282,9 +2905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="49" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2299,7 +2919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2307,9 +2926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="49" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2317,7 +2933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="33" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2361,7 +2976,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
-            <element signature="e#2009#2010#0" expanded="true" />
+            <element signature="e#2009#2010#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2370,7 +2985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2378,7 +2992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2390,55 +3003,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1721" column="11" selection-start-line="1721" selection-start-column="11" selection-end-line="1721" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/PhotoUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="616" column="27" selection-start-line="616" selection-start-column="27" selection-end-line="616" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#6247#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/PhotoFileReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2447,7 +3018,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
           <folding>
-            <element signature="e#2250#2251#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#516#517#0" expanded="false" />
+            <element signature="e#530#531#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2457,15 +3030,123 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3575#16290#0" expanded="false" />
+            <element signature="e#5112#13850#0" expanded="false" />
+            <element signature="e#13849#13850#0" expanded="false" />
+            <element signature="e#13997#14417#0" expanded="false" />
+            <element signature="e#14416#14417#0" expanded="false" />
+            <element signature="e#14575#15061#0" expanded="false" />
+            <element signature="e#15060#15061#0" expanded="false" />
+            <element signature="e#15119#15589#0" expanded="false" />
+            <element signature="e#15588#15589#0" expanded="false" />
+            <element signature="e#15844#16141#0" expanded="false" />
+            <element signature="e#16140#16141#0" expanded="false" />
+            <element signature="e#16289#16290#0" expanded="false" />
+            <element signature="e#20013#20014#0" expanded="false" />
+            <element signature="e#20042#20043#0" expanded="false" />
+            <element signature="e#20093#20094#0" expanded="false" />
+            <element signature="e#20131#20132#0" expanded="false" />
+            <element signature="e#21224#21225#0" expanded="false" />
+            <element signature="e#21261#21262#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19266056">
+        <state vertical-scroll-proportion="0.0">
           <caret line="87" column="79" selection-start-line="87" selection-start-column="79" selection-end-line="87" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4870#12825#0" expanded="false" />
+            <element signature="e#12824#12825#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="616" column="22" selection-start-line="616" selection-start-column="19" selection-end-line="617" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/PhotoUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="50" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="26" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.24731183">
+          <caret line="2444" column="13" selection-start-line="2444" selection-start-column="13" selection-end-line="2444" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/intermediates/exploded-aar/barcodescanner/res/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6090425">
+          <caret line="220" column="6" selection-start-line="220" selection-start-column="6" selection-end-line="220" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15517241">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.733334">
+          <caret line="75" column="192" selection-start-line="75" selection-start-column="192" selection-end-line="75" selection-end-column="192" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.066667">
+          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8442211">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding />
         </state>
       </provider>
