@@ -236,10 +236,12 @@ public class MqttMessageCallback implements MqttCallback {
 						moduleCount.setCount4(long4);
 						moduleCount.setType("notify");
 						moduleCountService.saveObj(moduleCount);
-
-
-
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
+//						if(){
+//
+//						}else if(){
+//
+//						}
 						Messages messages=new Messages();
 						messages.set_id(UUID.randomUUID().toString());
 						messages.setSessionid(map.getSessionid());

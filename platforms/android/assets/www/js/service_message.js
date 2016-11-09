@@ -453,12 +453,15 @@ angular.module('message.services', [])
 
         return "啥也不是";
       },
-      sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt) {
+      sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type) {
+        if (type === undefined || type === null || type === '') {
+          type = 'User';
+        }
         var messageDetail={};
         messageDetail._id=sqlid;
         // alert("service拿到的id"+messageDetail._id);
         messageDetail.sessionid=id;
-        messageDetail.type='User';
+        messageDetail.type=type;
         messageDetail.from='true';
         if (messagetype === undefined || messagetype === null || messagetype === '') {
           messagetype = 'normal';
@@ -474,13 +477,25 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
-        // alert("发送者id"+localuserId);
-        if (sqlid != undefined && sqlid != null && sqlid != '') {
-          for(var i=0;i<danliao.length;i++){
-            if(danliao[i]._id === sqlid){
-              danliao.splice(i, 1);
-              $rootScope.$broadcast('msgs.update');
-              break;
+        alert("发送者id"+localuserId);
+        if (type === 'User') {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for (var i = 0; i < danliao.length; i++) {
+              if (danliao[i]._id === sqlid) {
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
+        } else {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for (var i = 0; i < qunliao.length; i++) {
+              if (qunliao[i]._id === sqlid) {
+                qunliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
             }
           }
         }
@@ -511,7 +526,12 @@ angular.module('message.services', [])
         // });
 
         messageDetail.message = '' + '###' + content;
-        danliao.push(messageDetail);
+        alert("图片类型"+type);
+        if (type === 'User') {
+          danliao.push(messageDetail);
+        } else {
+          qunliao.push(messageDetail);
+        }
         // alert("图片入数组后长度"+danliao.length);
         $greendao.saveObj('MessagesService',messageDetail,function (data) {
           $rootScope.$broadcast('msgs.update');
@@ -540,7 +560,11 @@ angular.module('message.services', [])
              * @type {string}
                */
             // alert("图片上传过程中失败入数组前长度"+danliao.length);
-            $mqtt.updateImgFileDanliao(messageDetail);
+            if (type === 'User') {
+              $mqtt.updateImgFileDanliao(messageDetail);
+            } else {
+              $mqtt.updateImgFileQunliao(messageDetail);
+            }
             // alert("图片上传过程中失败入数组后长度"+danliao.length);
             messageDetail.isFailure='true';
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
@@ -587,7 +611,7 @@ angular.module('message.services', [])
             mqtt.sendMsg(topic, messageDetail, function (message) {
               // alert("发了几次是几次");
               // alert("发送图片成功前数组长度"+danliao.length);
-              $mqtt.updateDanliao(message);
+              $mqtt.updateQunliao(message);
               // message.isSuccess='true';
 
               var savefilepic={};
@@ -621,7 +645,11 @@ angular.module('message.services', [])
               return "成功";
             },function (message) {
               // alert("发送图片直接失败前数组长度"+danliao.length);
-              $mqtt.updateDanliao(message);
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
               // message.isFailure='true';
               // danliao.push(message);
               // alert("发送图片直接失败后数组长度"+danliao.length);
@@ -938,6 +966,16 @@ angular.module('message.services', [])
           if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1);
+            break;
+          }
+        }
+      },
+      updateImgFileQunliao:function (data) {
+        for(var i=0;i<qunliao.length;i++){
+          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
+          if( qunliao[i]._id === data._id){
+            // alert("找出chat数组的被更改的数据了"+i);
+            qunliao.splice(i,1);
             break;
           }
         }
