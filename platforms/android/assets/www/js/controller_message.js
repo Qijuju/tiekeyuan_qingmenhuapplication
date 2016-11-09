@@ -1171,7 +1171,7 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api) {
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.bgroup=0;
     $scope.gengduogropu=function () {
@@ -2101,6 +2101,111 @@ angular.module('message.controllers', [])
         sqlid:sqlid,
         grouptype:$scope.groupType,
         messagetype:messagetype
+      });
+    };
+
+
+    //判断文件是否是图片
+    $scope.getFileType = function (message) {
+      var msg = message.split('###')[1];
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      return lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif';
+    };
+
+    //获取文件类型对应的图片路径
+    $scope.getFileTypeImg = function (message) {
+      var msg = message.split('###')[1];
+      if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
+        return 'img/ems_file.png';
+      }
+
+      // var fileSplit = message.split('###');
+      // alert(fileSplit[0] + ";;" + message);
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      return $scope.getFileTypeImgByFileName(msg);
+    };
+
+    //根据相关文件类型对应的类型图片（根据文件名）
+    $scope.getFileTypeImgByFileName = function (msg) {
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      if (lastIndex === '.m4a' || lastIndex === '.mp3' || lastIndex === '.mid' || lastIndex === '.xmf' || lastIndex === '.ogg' || lastIndex === '.wav' || lastIndex === '.flac' || lastIndex === '.amr') {
+        return 'img/ems_audio.png';
+      } else if (lastIndex === '.3gp' || lastIndex === '.mp4' || lastIndex === 'rm' || lastIndex === 'rmvb' || lastIndex === 'avi') {
+        return 'img/ems_video.png';
+      } else if (lastIndex === '.jpg' || lastIndex === '.gif' || lastIndex === '.png' || lastIndex === '.jpeg' || lastIndex === '.bmp') {
+        return 'img/ems_photo.png';
+      } else if (lastIndex === '.apk') {
+        return 'img/ems_apk.png';
+      } else if (lastIndex === '.ppt' || lastIndex === '.pptx' || lastIndex === '.ppsx') {
+        return 'img/explorer_ppt.png';
+      } else if (lastIndex === '.xls' || lastIndex === '.xlsx') {
+        return 'img/explorer_xls.png';
+      } else if (lastIndex === '.doc' || lastIndex === '.docx') {
+        return 'img/explorer_file_doc.png';
+      } else if (lastIndex === '.pdf') {
+        return 'img/explorer_pdf.png';
+      } else if (lastIndex === '.chm') {
+        return 'img/explorer_file_archive.png';
+      } else if (lastIndex === '.txt') {
+        return 'img/explorer_txt.png';
+      } else if (lastIndex === '.htm' || lastIndex === '.html') {
+        return 'img/explorer_html.png';
+      } else if (lastIndex === '.xml') {
+        return 'img/explorer_xml.png';
+      } else {
+        return 'img/ems_file.png';
+      }
+    };
+
+    //获取文件名
+    $scope.getFileName = function (message) {
+      var msg = message.split('###')[1];
+      var lastindex = msg.lastIndexOf("\/");
+      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+    };
+
+    $scope.getFilePath = function (message) {
+      var filePath = message.split("###")[1];
+      return filePath;
+    };
+
+    //打开文件
+    $scope.openAllFile = function (path, imageID) {
+      $api.openFileByPath(path,imageID, function (suc) {
+      },function (err) {
+      });
+    };
+
+    //发送图片的时候打开图片查看大图
+    $scope.boostImage=function (filepath) {
+      $ScalePhoto.scale(filepath,function (msg) {
+
+      },function (error) {
+
+      })
+    }
+    $scope.netScaleImage=function (fileid,filename,samllfilepath) {
+      $ScalePhoto.netScale(fileid,filename,samllfilepath,function (msg) {
+
+      },function (err) {
+
+      })
+
+    }
+
+    //打开文件
+    $scope.openAllFile = function (path, imageID) {
+      $api.openFileByPath(path,imageID, function (suc) {
+      },function (err) {
       });
     };
 
