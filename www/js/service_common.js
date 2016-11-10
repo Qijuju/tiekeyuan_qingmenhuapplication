@@ -89,9 +89,29 @@ angular.module('common.services', [])
       queryByToday:function (success, error) {
         greendao.queryByToday (success, error);
       },
+      queryByWeek:function (success, error) {
+        greendao.queryByWeek (success, error);
+      },
       queryByYesterday:function (success, error) {
         greendao.queryByYesterday (success, error);
       },
+      queryNotifyCount:function (sessionid, success, error) {
+        greendao.queryNotifyCount(sessionid, success, error)
+      },
+      queryLongFile:function (ssid,type,success, error) {
+        greendao.queryLongFile (ssid,type,success, error);
+      },
+      queryWeekFile:function (ssid,type,success, error) {
+        greendao.queryWeekFile (ssid,type,success, error);
+      },
+      queryMonthFile:function (ssid,type,success, error) {
+        greendao.queryMonthFile (ssid,type,success, error);
+      },
+      queryTodayFile:function (ssid,type,success, error) {
+        greendao.queryTodayFile (ssid,type,success, error);
+      },
+
+
   };
 
   })

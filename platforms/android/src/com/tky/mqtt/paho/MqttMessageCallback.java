@@ -152,7 +152,7 @@ public class MqttMessageCallback implements MqttCallback {
 						SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
 						systemMsgService.saveObj(systemMsg);
 
-						ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
+						/*ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
 						List<ModuleCount> listModule = moduleCountService.loadAllData();
 						Long long1 = 0L;
 						Long long2 = 0L;
@@ -202,7 +202,7 @@ public class MqttMessageCallback implements MqttCallback {
 						moduleCount.setCount3(long3);
 						moduleCount.setCount4(long4);
 						moduleCount.setType("notify");
-						moduleCountService.saveObj(moduleCount);
+						moduleCountService.saveObj(moduleCount);*/
 
 
 
