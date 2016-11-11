@@ -358,6 +358,8 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
+        messageDetail.daytype='1';
+        messageDetail.istime='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           // alert("SQLID不为空：" + sqlid)
           for(var i=0;i<danliao.length;i++){
@@ -399,7 +401,6 @@ angular.module('message.services', [])
           }*/
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
-              // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
               $mqtt.updateDanliao(msg);
               // messageDetail.isSuccess=msg.isS;
               // if (picPath != undefined && picPath != null && picPath != '') {
@@ -428,6 +429,7 @@ angular.module('message.services', [])
                 // danliao.push(msg);
                 // alert("数组正确后"+danliao.length+danliao[danliao.length-1].isSuccess);
                 $greendao.saveObj('MessagesService',msg,function (data) {
+                  // alert("数组长度后"+danliao[danliao.length-1].message+danliao[danliao.length-1].isSuccess);
                   $rootScope.$broadcast('msgs.update');
                 },function (err) {
                   // alert(err+"sendmistake");
@@ -477,6 +479,8 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
+        messageDetail.daytype='1';
+        messageDetail.istime='false';
         alert("发送者id"+localuserId);
         if (type === 'User') {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
@@ -669,7 +673,6 @@ angular.module('message.services', [])
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
-
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
@@ -687,6 +690,8 @@ angular.module('message.services', [])
           arriveMessage.senderid=message._id;
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess='true';
+          arriveMessage.daytype=message.daytype;
+          arriveMessage.istime=message.istime;
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
@@ -880,6 +885,7 @@ angular.module('message.services', [])
               if(message.type==="User"){
                 danliao.push(arriveMessage);
                 $rootScope.$broadcast('msgs.update');
+                // alert('danliao.push(arriv');
               }else if(message.type ==="Group" || message.type ==="Dept"){
                 qunliao.push(arriveMessage);
                 $rootScope.$broadcast('msgs.update');
@@ -1160,6 +1166,8 @@ angular.module('message.services', [])
         messageReal.senderid=localuserId;
         messageReal.isread='1';
         messageReal.isSuccess='false';
+        messageReal.daytype='1';
+        messageReal.istime='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           for(var i=0;i<qunliao.length;i++){
             if(qunliao[i]._id === sqlid){
@@ -1178,6 +1186,7 @@ angular.module('message.services', [])
           $rootScope.$broadcast('msgs.update');
           // alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
+            $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
           },function (err) {

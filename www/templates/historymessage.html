@@ -9,11 +9,15 @@
 
 
 
-  <ion-content overflow-scroll="false" style="background-color: #ddf2f5" delegate-handle="historyScroll">
+  <ion-content overflow-scroll="false"  delegate-handle="historyScroll">
     <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
                    <!--pulling-text="更多消息" id="refresh">-->
     <!--</ion-refresher>-->
     <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefreshhis()">
+    </ion-refresher>
 
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
@@ -33,7 +37,7 @@
         <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <!--<span class="rj-triangle-right"></span>-->
         <span ng-if="historyduifangaaa.MsgType=='T'||historyduifangaaa.MsgType=='P'">
-        <p style="float: right;margin-right: 36px"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
+        <p style="float: right;margin-right: 36px;color: #ffffff"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
         </span>
       </div>
         <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->
@@ -56,23 +60,23 @@
 
 
 
-  <ion-footer-bar align="center" class="bar-light">
-    <div class="row" >
-      <div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">
-        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
-      </div>
-      <div class="col-10" align="center" ng-click="backpage()">
-        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>
-      </div>
-      <div class="col-10" align="center" ng-click="backpage()">
-        <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
-      </div>
-      <div class="col-10" align="center" ng-click="nextpage()">
-        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>
-      </div>
-      <div class="col-35" align="center"  ng-click="nextpage()">
-        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
-      </div>
-    </div>
-  </ion-footer-bar>
+  <!--<ion-footer-bar align="center" class="bar-light">-->
+    <!--<div class="row" >-->
+      <!--<div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">-->
+        <!--<button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="backpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="backpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="nextpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>-->
+      <!--</div>-->
+      <!--<div class="col-35" align="center"  ng-click="nextpage()">-->
+        <!--<button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ion-footer-bar>-->
 </ion-view>
