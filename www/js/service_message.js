@@ -649,7 +649,7 @@ angular.module('message.services', [])
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
-          // alert("监听消息类型"+arriveMessage.type);
+          // alert("监听消息类型"+message._id);
           arriveMessage.from=message.from;
           arriveMessage.message=message.message;
           arriveMessage.messagetype=message.messagetype;
@@ -661,7 +661,7 @@ angular.module('message.services', [])
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
           arriveMessage.isread=message.isread;
-          arriveMessage.isSuccess='true';
+          arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;
           arriveMessage.istime=message.istime;
           // arriveMessage.isread='0';
@@ -857,12 +857,13 @@ angular.module('message.services', [])
               if(message.type==="User"){
                 danliao.push(arriveMessage);
                 $rootScope.$broadcast('msgs.update');
-                // alert('danliao.push(arriv');
               }else if(message.type ==="Group" || message.type ==="Dept"){
+                // alert("进群消息service---push前长度"+qunliao.length);
                 qunliao.push(arriveMessage);
+                // alert("进群消息service---push后长度"+qunliao.length);
                 $rootScope.$broadcast('msgs.update');
-              }
-              // $rootScope.firstSessionid=arriveMessage.sessionid;
+            }
+            // $rootScope.firstSessionid=arriveMessage.sessionid;
               // $rootScope.firstUserName=arriveMessage.username;
               // $rootScope.messagetype= arriveMessage.type;
               // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);

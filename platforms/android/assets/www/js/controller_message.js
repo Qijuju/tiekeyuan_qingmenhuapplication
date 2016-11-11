@@ -175,7 +175,7 @@ angular.module('message.controllers', [])
       $scope.msgs = $mqtt.getDanliao();
       // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
       if($scope.msgs.length>0 && $mqtt.getDanliao()[$scope.msgs.length-1].when< millions){
-        alert("改昨天单聊进来了吗");
+        // alert("改昨天单聊进来了吗");
         for(var i=0;i<data.length;i++){
           if(data[i].istime  === 'true'){
             var messaegeitem={};
@@ -503,6 +503,9 @@ angular.module('message.controllers', [])
            */
           // alert("用户id"+$scope.userId);
           $scope.msgs=$mqtt.getDanliao();
+          $timeout(function () {
+            viewScroll.scrollBottom();
+          }, 100);
           // 获取当天日期
           var myDate = new Date();//
           myDate.toLocaleDateString();//可以获取当前日期
@@ -610,9 +613,6 @@ angular.module('message.controllers', [])
                   }
                 },function (err) {
                 });
-                $timeout(function () {
-                  viewScroll.scrollBottom();
-                }, 100);
               },function (err) {
 
               });
@@ -1416,7 +1416,7 @@ angular.module('message.controllers', [])
       $scope.groupmsgs = $mqtt.getQunliao();
       // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
       if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
-        alert("群聊改时间进来了吗");
+        // alert("群聊改时间进来了吗");
         for(var i=0;i<data.length;i++){
           if(data[i].istime  === 'true'){
             var messaegeitem={};
@@ -1522,10 +1522,13 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        // alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+        // alert("进来群聊界面吗？长度"+$mqtt.getQunliao()[$scope.groupmsgs.length-1].istime);
         // 获取当天日期
         var myDate = new Date();//
         myDate.toLocaleDateString();//可以获取当前日期
@@ -1548,9 +1551,9 @@ angular.module('message.controllers', [])
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
         // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
         //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions &&$scope.timegap > 60000 && $scope.timegap < 3600000){
+        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 60000 && $scope.timegap < 3600000){
           $scope.i=$scope.i+1;
-          alert("进来群间隔吗？"+$scope.timegap);
+          // alert("进来群间隔吗？"+$scope.timegap);
           var messaegeitem={};
           messaegeitem._id=lastgroupmsg._id;
           messaegeitem.sessionid=lastgroupmsg.sessionid;
@@ -1629,9 +1632,6 @@ angular.module('message.controllers', [])
               },function (err) {
 
               });
-              $timeout(function () {
-                viewScroll.scrollBottom();
-              }, 100);
             },function (err) {
 
             });

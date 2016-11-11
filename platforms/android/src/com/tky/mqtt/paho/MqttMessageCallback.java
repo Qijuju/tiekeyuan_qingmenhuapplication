@@ -95,6 +95,7 @@ public class MqttMessageCallback implements MqttCallback {
             // 开始播放
             mPlayer.start();*/
  		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
 			final String fromUserId = map.get_id();
@@ -267,6 +268,10 @@ public class MqttMessageCallback implements MqttCallback {
 								}
 							}
 
+
+							/**
+							 * 接收消息时做的间隔判断
+							 */
 //							if(map.getWhen()>stmill && map.getWhen() <etmill){}      //存消息
 							messages=new Messages();
 							messages.set_id(UUID.randomUUID().toString());
@@ -284,12 +289,17 @@ public class MqttMessageCallback implements MqttCallback {
 							messages.setPlatform(map.getPlatform());
 							messages.setWhen(map.getWhen());
 							messages.setIsread("0");
+							map.setIsread("0");
 							messages.setIsSuccess("true");
-							messages.setDaytype((map.getWhen()>stmill && map.getWhen() <etmill) ? "1" : "0");
-							if (messagesList != null && messagesList.size() > 0 &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>10000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
+							map.setIsSuccess("true");
+							messages.setDaytype((map.getWhen() > stmill && map.getWhen() < etmill) ? "1" : "0");
+							map.setDaytype((map.getWhen()>stmill && map.getWhen() <etmill) ? "1" : "0");
+							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>10000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
 								messages.setIstime("true");
+								map.setIstime("true");
 							}else{
 								messages.setIstime("false");
+								map.setIstime("false");
 							}
 							//MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
 							messagesService.saveObj(messages);
