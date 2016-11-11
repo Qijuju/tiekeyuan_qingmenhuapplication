@@ -544,12 +544,12 @@ angular.module('message.controllers', [])
             messaegeitem.imgSrc=lastmsg.imgSrc;
             messaegeitem.username=lastmsg.username;
             messaegeitem.senderid=lastmsg.senderid;
-            // alert("走么"+$scope.i);
+            //alert("走么"+$scope.i);
             if($scope.i === 2){
               messaegeitem.isSuccess='true';
               $scope.i=0;
             }else{
-              // alert("走么2222"+i);
+              //alert("走么2222"+i);
               messaegeitem.isSuccess=lastmsg.isSuccess;
             }
             messaegeitem.istime='true';
@@ -1419,7 +1419,7 @@ angular.module('message.controllers', [])
       $scope.groupmsgs = $mqtt.getQunliao();
       // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
       if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
-        alert("群聊改时间进来了吗");
+        //alert("群聊改时间进来了吗");
         for(var i=0;i<data.length;i++){
           if(data[i].istime  === 'true'){
             var messaegeitem={};
@@ -1525,7 +1525,7 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        alert("进来群聊界面吗？");
+        //alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
@@ -1552,7 +1552,7 @@ angular.module('message.controllers', [])
         //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
         if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions &&$scope.timegap > 60000 && $scope.timegap < 3600000){
           $scope.i=$scope.i+1;
-          alert("进来群间隔吗？"+$scope.timegap);
+          //alert("进来群间隔吗？"+$scope.timegap);
           var messaegeitem={};
           messaegeitem._id=lastgroupmsg._id;
           messaegeitem.sessionid=lastgroupmsg.sessionid;
@@ -1578,13 +1578,13 @@ angular.module('message.controllers', [])
           messaegeitem.isread='1';
           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
             $mqtt.updateQunliao(messaegeitem);
-            alert("存储成功");
+            //alert("存储成功");
           },function (err) {
           });
         }
         $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
           if(data[0].count>0){
-            alert("进来查询了吗？"+data.length);
+            //alert("进来查询了吗？"+data.length);
             var chatitem = {};
             chatitem.id = data[0].id;
             chatitem.chatName = data[0].chatName;
@@ -1623,7 +1623,7 @@ angular.module('message.controllers', [])
                     messaegeitem.isread=data[i].isread;
                     // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                     $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                      alert("保存成功");
+                      //alert("保存成功");
                     },function (err) {
                     });
                   }

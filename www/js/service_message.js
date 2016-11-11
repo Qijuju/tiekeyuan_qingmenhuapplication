@@ -481,7 +481,7 @@ angular.module('message.services', [])
         messageDetail.isSuccess='false';
         messageDetail.daytype='1';
         messageDetail.istime='false';
-        alert("发送者id"+localuserId);
+        //alert("发送者id"+localuserId);
         if (type === 'User') {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
             for (var i = 0; i < danliao.length; i++) {
@@ -530,7 +530,7 @@ angular.module('message.services', [])
         // });
 
         messageDetail.message = '' + '###' + content;
-        alert("图片类型"+type);
+        //alert("图片类型"+type);
         if (type === 'User') {
           danliao.push(messageDetail);
         } else {
@@ -615,7 +615,11 @@ angular.module('message.services', [])
             mqtt.sendMsg(topic, messageDetail, function (message) {
               // alert("发了几次是几次");
               // alert("发送图片成功前数组长度"+danliao.length);
-              $mqtt.updateQunliao(message);
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
               // message.isSuccess='true';
 
               var savefilepic={};
