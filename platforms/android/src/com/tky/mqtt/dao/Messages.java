@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table MESSAGES.
  */
-public class Messages extends BaseDao{
+public class Messages extends BaseDao {
 
     private String _id;
     private String sessionid;
@@ -24,6 +24,8 @@ public class Messages extends BaseDao{
     private String senderid;
     private String isread;
     private String isSuccess;
+    private String daytype;
+    private String istime;
 
     public Messages() {
     }
@@ -32,7 +34,7 @@ public class Messages extends BaseDao{
         this._id = _id;
     }
 
-    public Messages(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String isread, String isSuccess) {
+    public Messages(String _id, String sessionid, String type, String from, String message, String messagetype, String platform, String isFailure, Long when, String isDelete, String imgSrc, String username, String senderid, String isread, String isSuccess, String daytype, String istime) {
         this._id = _id;
         this.sessionid = sessionid;
         this.type = type;
@@ -48,6 +50,8 @@ public class Messages extends BaseDao{
         this.senderid = senderid;
         this.isread = isread;
         this.isSuccess = isSuccess;
+        this.daytype = daytype;
+        this.istime = istime;
     }
 
     public String get_id() {
@@ -168,6 +172,22 @@ public class Messages extends BaseDao{
 
     public void setIsSuccess(String isSuccess) {
         this.isSuccess = isSuccess;
+    }
+
+    public String getDaytype() {
+        return daytype;
+    }
+
+    public void setDaytype(String daytype) {
+        this.daytype = daytype;
+    }
+
+    public String getIstime() {
+        return istime;
+    }
+
+    public void setIstime(String istime) {
+        this.istime = istime;
     }
 
 }

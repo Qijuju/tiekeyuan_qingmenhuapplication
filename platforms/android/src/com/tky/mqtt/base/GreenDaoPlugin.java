@@ -85,6 +85,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setSenderid(jsonobj.getString("senderid"));
             message.setIsread(jsonobj.getString("isread"));
             message.setIsSuccess(jsonobj.getString("isSuccess"));
+            message.setDaytype(jsonobj.getString("daytype"));
+            message.setIstime(jsonobj.getString("istime"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();

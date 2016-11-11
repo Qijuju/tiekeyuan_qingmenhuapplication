@@ -87,6 +87,11 @@ angular.module('message.controllers', [])
       // });
     });
 
+    $scope.$on('$ionicView.enter', function () {
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
+    });
 
     //在个人详情界面点击创建聊天时，在聊天详情界面，创建chatitem
     if ($rootScope.isPersonSend === 'true') {
@@ -137,6 +142,9 @@ angular.module('message.controllers', [])
         $ionicLoading.hide();
       }
 
+
+
+
     // $ToastUtils.showToast($scope.viewtitle+"抬头"+$scope.myUserID);
     $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,10', $scope.userId, function (data) {
       //根据不同用户，显示聊天记录，查询数据库以后，不论有没有数据，都要清楚之前数组里面的数据
@@ -146,8 +154,55 @@ angular.module('message.controllers', [])
       // for (var i = 0; i <= data.length; i++) {
       //   alert("进入聊天界面看消息"+data[i].message);
       // }
+      // 获取当天日期
+      var myDate = new Date();
+      myDate.toLocaleDateString();//可以获取当前日期
+      // alert("获取当前日期"+myDate.toLocaleDateString());
+      myDate.toLocaleTimeString(); //可以获取当前时间
+      // alert("获取当前时间"+myDate.toLocaleTimeString());
+
+      var year=myDate.getFullYear();//获取年份
+      var month=myDate.getMonth()+1;//获取月份
+      var day=myDate.getDate();//获取日期
+      // alert("获取当前年月日"+year+month+day);
+
+      var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+      // alert("最低毫秒值"+millions);
+
+      var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+      // alert("最高毫秒值"+millions);
       $mqtt.setDanliao(data);
       $scope.msgs = $mqtt.getDanliao();
+      // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
+      if($scope.msgs.length>0 && $mqtt.getDanliao()[$scope.msgs.length-1].when< millions){
+        alert("改昨天单聊进来了吗");
+        for(var i=0;i<data.length;i++){
+          if(data[i].istime  === 'true'){
+            var messaegeitem={};
+            messaegeitem._id=data[i]._id;
+            messaegeitem.sessionid=data[i].sessionid;
+            messaegeitem.type=data[i].type;
+            messaegeitem.from=data[i].from;
+            messaegeitem.message=data[i].message;
+            messaegeitem.messagetype=data[i].messagetype;
+            messaegeitem.platform=data[i].platform;
+            messaegeitem.when=data[i].when;
+            messaegeitem.isFailure=data[i].isFailure;
+            messaegeitem.isDelete=data[i].isDelete;
+            messaegeitem.imgSrc=data[i].imgSrc;
+            messaegeitem.username=data[i].username;
+            messaegeitem.senderid=data[i].senderid;
+            messaegeitem.isSuccess=data[i].isSuccess;
+            messaegeitem.istime=data[i].istime;
+            messaegeitem.daytype='0';
+            messaegeitem.isread=data[i].isread;
+            $mqtt.updateDanliao(messaegeitem);
+            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+            },function (err) {
+            });
+          }
+        }
+      }
       //$ToastUtils.showToast($scope.msgs[$scope.msgs.length - 1]._id+"asdgf" + $scope.msgs[$scope.msgs.length - 1].message);
     }, function (err) {
       // $ToastUtils.showToast(err);
@@ -156,14 +211,6 @@ angular.module('message.controllers', [])
 
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
-
-    $scope.$on('$ionicView.enter', function () {
-
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
-
-    });
     $scope.doRefresh = function () {
       $greendao.queryData('MessagesService', 'where sessionid =? order by "when" desc limit 0,' + ($mqtt.getDanliao().length + 10), $scope.userId, function (data) {
         if ($scope.msgs.length < 50) {
@@ -442,6 +489,7 @@ angular.module('message.controllers', [])
 
     }
 
+    $scope.i=0;
     //在联系人界面时进行消息监听，确保人员收到消息
     //收到消息时，创建对话聊天(cahtitem)
     /**
@@ -454,7 +502,8 @@ angular.module('message.controllers', [])
            * 当在当前界面收到消息时，及时将count=0，并且将该条数据未读状态置为已读，并保存
            */
           // alert("用户id"+$scope.userId);
-          //获取当天日期
+          $scope.msgs=$mqtt.getDanliao();
+          // 获取当天日期
           var myDate = new Date();//
           myDate.toLocaleDateString();//可以获取当前日期
           // alert("获取当前日期"+myDate.toLocaleDateString());
@@ -462,16 +511,53 @@ angular.module('message.controllers', [])
           // alert("获取当前时间"+myDate.toLocaleTimeString());
 
           var year=myDate.getFullYear();//获取年份
-          var month=myDate.getMonth();//获取月份
+          var month=myDate.getMonth()+1;//获取月份
           var day=myDate.getDate();//获取日期
           // alert("获取当前年月日"+year+month+day);
 
-          var millions=Math.round(new Date(year,month,day,0,0,1).getTime()/1000);
+          var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
           // alert("最低毫秒值"+millions);
-          var maxmillions=Math.round(new Date(year,month,day,23,59,59).getTime()/1000);
-          // alert("最高毫秒值"+millions);
-          $scope.msgs=$mqtt.getDanliao();
+
+          var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+          // alert("最高毫秒值"+maxmillions);
           $scope.timegap=$mqtt.getDanliao()[$scope.msgs.length-1].when-$mqtt.getDanliao()[$scope.msgs.length-2].when;
+          var lastmsg= $mqtt.getDanliao()[$scope.msgs.length-1];
+          // alert("最后一条数据："+lastmsg.message+$mqtt.getDanliao()[$scope.msgs.length-1].when);
+          //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
+          if($mqtt.getDanliao()[$scope.msgs.length-1].when > millions && $mqtt.getDanliao()[$scope.msgs.length-1].from === 'true'&& $scope.timegap > 60000 && $scope.timegap < 3600000){
+            $scope.i=$scope.i+1;
+            // alert("进来间隔吗？"+$scope.timegap);
+            var messaegeitem={};
+            messaegeitem._id=lastmsg._id;
+            messaegeitem.sessionid=lastmsg.sessionid;
+            messaegeitem.type=lastmsg.type;
+            messaegeitem.from=lastmsg.from;
+            messaegeitem.message=lastmsg.message;
+            messaegeitem.messagetype=lastmsg.messagetype;
+            messaegeitem.platform=lastmsg.platform;
+            messaegeitem.when=lastmsg.when;
+            messaegeitem.isFailure=lastmsg.isFailure;
+            messaegeitem.isDelete=lastmsg.isDelete;
+            messaegeitem.imgSrc=lastmsg.imgSrc;
+            messaegeitem.username=lastmsg.username;
+            messaegeitem.senderid=lastmsg.senderid;
+            // alert("走么"+$scope.i);
+            if($scope.i === 2){
+              messaegeitem.isSuccess='true';
+              $scope.i=0;
+            }else{
+              // alert("走么2222"+i);
+              messaegeitem.isSuccess=lastmsg.isSuccess;
+            }
+            messaegeitem.istime='true';
+            messaegeitem.daytype=lastmsg.daytype;
+            messaegeitem.isread='1';
+            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+              $mqtt.updateDanliao(messaegeitem);
+              // alert("存储成功");
+            },function (err) {
+            });
+          }
           // alert("时间戳"+$scope.timegap);
           $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
             if(data[0].count>0){
@@ -508,10 +594,13 @@ angular.module('message.controllers', [])
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
                     messaegeitem.isSuccess=data[i].isSuccess;
+                    messaegeitem.istime=data[i].istime;
+                    messaegeitem.daytype=data[i].daytype;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
                       messaegeitem.isread=data[i].isread;
+                      // alert('hellonihaozhoujielun' + messaegeitem._id);
                       // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                       $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                         // alert("保存成功");
@@ -877,6 +966,8 @@ angular.module('message.controllers', [])
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
                         messaegeitem.isSuccess=data[i].isSuccess;
+                        messaegeitem.daytype=data[i].daytype;
+                        messaegeitem.istime=data[i].istime;
                         if(data[i].isread ==='0'){
                           // alert("拿到库里的消息阅读状态"+data[i].isread);
                           data[i].isread ='1';
@@ -994,6 +1085,8 @@ angular.module('message.controllers', [])
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
+                      messaegeitem.daytype=data[i].daytype;
+                      messaegeitem.istime=data[i].istime;
                       if(data[i].isread ==='0'){
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
                         data[i].isread ='1';
@@ -1299,8 +1392,58 @@ angular.module('message.controllers', [])
       // for (var i = 1; i <= data.length; i++) {
       //   $mqtt.getQunliao().push(data[data.length - i]);
       // }
+
+
+
+
+      var myDate = new Date();
+      myDate.toLocaleDateString();//可以获取当前日期
+      // alert("获取当前日期"+myDate.toLocaleDateString());
+      myDate.toLocaleTimeString(); //可以获取当前时间
+      // alert("获取当前时间"+myDate.toLocaleTimeString());
+
+      var year=myDate.getFullYear();//获取年份
+      var month=myDate.getMonth()+1;//获取月份
+      var day=myDate.getDate();//获取日期
+      // alert("获取当前年月日"+year+month+day);
+
+      var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+      // alert("最低毫秒值"+millions);
+
+      var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+      // alert("最高毫秒值"+millions);
       $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
+      // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
+      if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
+        alert("群聊改时间进来了吗");
+        for(var i=0;i<data.length;i++){
+          if(data[i].istime  === 'true'){
+            var messaegeitem={};
+            messaegeitem._id=data[i]._id;
+            messaegeitem.sessionid=data[i].sessionid;
+            messaegeitem.type=data[i].type;
+            messaegeitem.from=data[i].from;
+            messaegeitem.message=data[i].message;
+            messaegeitem.messagetype=data[i].messagetype;
+            messaegeitem.platform=data[i].platform;
+            messaegeitem.when=data[i].when;
+            messaegeitem.isFailure=data[i].isFailure;
+            messaegeitem.isDelete=data[i].isDelete;
+            messaegeitem.imgSrc=data[i].imgSrc;
+            messaegeitem.username=data[i].username;
+            messaegeitem.senderid=data[i].senderid;
+            messaegeitem.isSuccess=data[i].isSuccess;
+            messaegeitem.istime=data[i].istime;
+            messaegeitem.daytype='0';
+            messaegeitem.isread=data[i].isread;
+            $mqtt.updateQunliao(messaegeitem);
+            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+            },function (err) {
+            });
+          }
+        }
+      }
     }, function (err) {
       // $ToastUtils.showToast(err);
     });
@@ -1373,13 +1516,70 @@ angular.module('message.controllers', [])
 
     }
 
+
+    $scope.i=0;
     //在联系人界面时进行消息监听，确保人员收到消息
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         // alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
+
         $scope.groupmsgs=$mqtt.getQunliao();
+        // 获取当天日期
+        var myDate = new Date();//
+        myDate.toLocaleDateString();//可以获取当前日期
+        // alert("获取当前日期"+myDate.toLocaleDateString());
+        myDate.toLocaleTimeString(); //可以获取当前时间
+        // alert("获取当前时间"+myDate.toLocaleTimeString());
+
+        var year=myDate.getFullYear();//获取年份
+        var month=myDate.getMonth()+1;//获取月份
+        var day=myDate.getDate();//获取日期
+        // alert("获取当前年月日"+year+month+day);
+
+        var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+        // alert("最低毫秒值"+millions);
+
+        var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+        // alert("最高毫秒值"+millions);
+        $scope.groupmsgs=$mqtt.getQunliao();
+        $scope.timegap=$mqtt.getQunliao()[$scope.groupmsgs.length-1].when-$mqtt.getQunliao()[$scope.groupmsgs.length-2].when;
+        var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
+        // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
+        //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
+        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions &&$scope.timegap > 60000 && $scope.timegap < 3600000){
+          $scope.i=$scope.i+1;
+          alert("进来群间隔吗？"+$scope.timegap);
+          var messaegeitem={};
+          messaegeitem._id=lastgroupmsg._id;
+          messaegeitem.sessionid=lastgroupmsg.sessionid;
+          messaegeitem.type=lastgroupmsg.type;
+          messaegeitem.from=lastgroupmsg.from;
+          messaegeitem.message=lastgroupmsg.message;
+          messaegeitem.messagetype=lastgroupmsg.messagetype;
+          messaegeitem.platform=lastgroupmsg.platform;
+          messaegeitem.when=lastgroupmsg.when;
+          messaegeitem.isFailure=lastgroupmsg.isFailure;
+          messaegeitem.isDelete=lastgroupmsg.isDelete;
+          messaegeitem.imgSrc=lastgroupmsg.imgSrc;
+          messaegeitem.username=lastgroupmsg.username;
+          messaegeitem.senderid=lastgroupmsg.senderid;
+          if($scope.i === 2){
+            messaegeitem.isSuccess='true';
+            $scope.i=0;
+          }else{
+            messaegeitem.isSuccess=lastgroupmsg.isSuccess;
+          }
+          messaegeitem.istime='true';
+          messaegeitem.daytype=lastgroupmsg.daytype;
+          messaegeitem.isread='1';
+          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+            $mqtt.updateQunliao(messaegeitem);
+            // alert("存储成功");
+          },function (err) {
+          });
+        }
         $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
           if(data[0].count>0){
             // alert("进来查询了吗？"+data.length);
@@ -1703,6 +1903,8 @@ angular.module('message.controllers', [])
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
+                      messaegeitem.daytype=data[i].daytype;
+                      messaegeitem.istime=data[i].istime;
                       if(data[i].isread ==='0'){
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
                         data[i].isread ='1';
@@ -1810,6 +2012,8 @@ angular.module('message.controllers', [])
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
                     messaegeitem.isSuccess=data[i].isSuccess;
+                    messaegeitem.daytype=data[i].daytype;
+                    messaegeitem.istime=data[i].istime;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
@@ -2677,6 +2881,8 @@ angular.module('message.controllers', [])
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
                   messaegeitem.isSuccess=data[i].isSuccess;
+                  messaegeitem.daytype=data[i].daytype;
+                  messaegeitem.istime=data[i].istime;
                   if(data[i].isread ==='0'){
                     // alert("拿到库里的消息阅读状态"+data[i].isread);
                     data[i].isread ='1';
@@ -2752,6 +2958,8 @@ angular.module('message.controllers', [])
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
                   messaegeitem.isSuccess=data[i].isSuccess;
+                  messaegeitem.daytype=data[i].daytype;
+                  messaegeitem.istime=data[i].istime;
                   if(data[i].isread ==='0'){
                     // alert("拿到库里的消息阅读状态"+data[i].isread);
                     data[i].isread ='1';
@@ -2828,6 +3036,8 @@ angular.module('message.controllers', [])
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
                     messaegeitem.isSuccess=data[i].isSuccess;
+                    messaegeitem.daytype=data[i].daytype;
+                    messaegeitem.istime=data[i].istime;
                     if(data[i].isread ==='0'){
                       // alert("拿到库里的消息阅读状态"+data[i].isread);
                       data[i].isread ='1';
@@ -3195,9 +3405,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到最后一页了")
       }
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
+      // $timeout(function () {
+      //   viewScroll.scrollBottom();
+      // }, 100);
     }
     //上一页
     $scope.backpage=function () {
@@ -3215,9 +3425,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
+      // $timeout(function () {
+      //   viewScroll.scrollBottom();
+      // }, 100);
     }
 
     /**
@@ -3233,11 +3443,33 @@ angular.module('message.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
+        // $timeout(function () {
+        //   viewScroll.scrollBottom();
+        // }, 100);
       })
     });
+
+    //获取更多数据
+    $scope.doRefreshhis = function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        var lengthabc=$scope.dangqianpage*10;
+        $historyduifang.getHistoryduifanga("U",$scope.id,"1",lengthabc);
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+            $scope.$broadcast('scroll.refreshComplete');
+            $timeout(function () {
+              viewScroll.scrollTop();
+            }, 100);
+          })
+        });
+
+      }else {
+        $ToastUtils.showToast("已经到最后一页了")
+      }
+
+    }
 
   })
 
