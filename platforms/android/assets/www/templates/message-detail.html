@@ -69,8 +69,8 @@
             <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'Image'"><img
               src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
               ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img
-              src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/></p>
+            <!--<p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img
+              src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/></p>-->
             <p class="rj-message" style="margin-left: 14.5%"
                ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}</p>
             <p ng-if="msgSingle.messagetype === 'File'">
@@ -87,6 +87,19 @@
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
+            </p>
+            <!--LOCATION RECEIVE-->
+            <p ng-if="msgSingle.messagetype === 'LOCATION'">
+            <div class="list" ng-if="msgSingle.messagetype === 'LOCATION'"
+                 style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
+              <a class="item item-icon-left"
+                 ng-click="entermap(msgSingle.message)">
+                <img class="icon" ng-src="{{getFileTypeImg('location')}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/><font
+                style="font-size: 10px;border: none;">{{msgSingle.message.split(',')[2]}}<br/>已接收</font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>
             </p>
           </span>
 
@@ -142,8 +155,34 @@
             </div>
           </font>
 
+            <!--LOCATION-->
+            <font ng-if="msgSingle.messagetype === 'LOCATION'">
+            <div class="list" ng-if="msgSingle.messagetype === 'LOCATION'"
+                 style="width: 210px;background-color: #888888;float: right">
+              <a class="item item-icon-left" ng-if="msgSingle.isFailure != 'true'"
+                 ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))">
+                <img class="icon" ng-src="{{getFileTypeImg('location')}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
+                <font style="font-size: 10px;border: none;margin-left: 5px;">{{msgSingle.message.split(',')[2]}}
+                  <br/>点击查看
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送成功！</span>
+                </font>
+              </a>
+              <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"
+                 ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,                     msgSingle)">
+                <img class="icon" ng-src="{{getFileTypeImg('location')}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
+                <font style="font-size: 10px;border: none;margin-left: 5px;">{{msgSingle.message.split(',')[2]}}
+                  <br/>点击查看
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span>
+                </font>
+              </a>
+            </div>
+            <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
+            </div>
+          </font>
             <!----发送位置的ui-->
-            <font ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
+            <!--<font ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
               <img style="background-color: transparent;margin-left: -24px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File')"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id)"/>
@@ -154,19 +193,19 @@
                 src="{{msgSingle.message.substring(msgSingle.message.lastIndexOf(',') + 1, msgSingle.message.length)}}"
                 style="width: 110px;" class="yuanjiao"
                 ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))"/>
-              <!--<script type="text/javascript">-->
-              <!--var locationvalue=document.getElementById("msg").innerText;-->
-              <!--alert("sdasfdsdf"+locationvalue);-->
-              <!--var map = new BMap.Map("container"); // 创建地图实例-->
-              <!--var point = new BMap.Point(locationvalue.substring(0,(locationvalue).indexOf(',')), locationvalue.substring((locationvalue).indexOf(',')+1,locationvalue.length)); // 创建点坐标-->
-              <!--map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别-->
-              <!--</script>-->
+              &lt;!&ndash;<script type="text/javascript">&ndash;&gt;
+              &lt;!&ndash;var locationvalue=document.getElementById("msg").innerText;&ndash;&gt;
+              &lt;!&ndash;alert("sdasfdsdf"+locationvalue);&ndash;&gt;
+              &lt;!&ndash;var map = new BMap.Map("container"); // 创建地图实例&ndash;&gt;
+              &lt;!&ndash;var point = new BMap.Point(locationvalue.substring(0,(locationvalue).indexOf(',')), locationvalue.substring((locationvalue).indexOf(',')+1,locationvalue.length)); // 创建点坐标&ndash;&gt;
+              &lt;!&ndash;map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别&ndash;&gt;
+              &lt;!&ndash;</script>&ndash;&gt;
 
-              <!--<div id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="width: 210px;float:right;">-->
+              &lt;!&ndash;<div id="container" ng-if="msgSingle.messagetype === 'LOCATION'" style="width: 210px;float:right;">&ndash;&gt;
 
-              <!--</div>-->
-              <!--<div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>-->
-            </font>
+              &lt;!&ndash;</div>&ndash;&gt;
+              &lt;!&ndash;<div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>&ndash;&gt;
+            </font>-->
 
             <!---发送文本的ui--->
             <font class="rj-message-right"

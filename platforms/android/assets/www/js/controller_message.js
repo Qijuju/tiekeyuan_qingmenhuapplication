@@ -317,6 +317,9 @@ angular.module('message.controllers', [])
 
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
+      if (message === 'location') {
+        return 'img/location.png';
+      }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
           return 'img/ems_file.png';
@@ -1063,7 +1066,7 @@ angular.module('message.controllers', [])
         localuser:localuser,
         localuserId:localuserId,
         sqlid:sqlid,
-        grouptype:$scope.groupType,
+        grouptype:groupType,
         messagetype:messagetype
       });
     };
@@ -1089,8 +1092,8 @@ angular.module('message.controllers', [])
     }
 
     $scope.entermap=function (content) {
-      $scope.longitude=content.substring(0,(content).indexOf(','));
-      $scope.latitude=content.substring((content).indexOf(',')+1,content.length);
+      $scope.longitude=content.split(",")[0];//content.substring(0,(content).indexOf(','));
+      $scope.latitude=content.split(",")[1];//content.substring((content).indexOf(',')+1,content.length);
       // alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
       $state.go('mapdetail', {
         id: $scope.userId,
@@ -2099,7 +2102,7 @@ angular.module('message.controllers', [])
         localuser:localuser,
         localuserId:localuserId,
         sqlid:sqlid,
-        grouptype:$scope.groupType,
+        grouptype:groupType,
         messagetype:messagetype
       });
     };
@@ -2115,6 +2118,9 @@ angular.module('message.controllers', [])
 
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
+      if (message === 'location') {
+        return 'img/location.png';
+      }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
         return 'img/ems_file.png';
@@ -3927,14 +3933,28 @@ angular.module('message.controllers', [])
               // alert("单聊topic"+userTopic+$scope.grouptype);
               $greendao.getUUID(function (data) {
                 $scope.sqlid=data;
-                $scope.content=long+","+lat+","+$scope.screenpath;
-                // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-                $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
-                $scope.send_content = "";
-                // $timeout(function () {
-                //   viewScroll.scrollBottom();
-                // }, 100);
-                keepKeyboardOpen();
+
+
+                //发送开始
+                var myGeo = new BMap.Geocoder();
+                myGeo.getLocation(new BMap.Point(long, lat), function(result){
+                  if (result){
+                    $scope.$apply(function () {
+                      $timeout(function () {
+                        $scope.content=long+","+lat+","+result.address;
+                        // $scope.content=long+","+lat+","+$scope.screenpath;
+                        // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+                        $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
+                        $scope.send_content = "";
+                        // $timeout(function () {
+                        //   viewScroll.scrollBottom();
+                        // }, 100);
+                        keepKeyboardOpen();
+                      });
+                    });
+                  }
+                });
+                //发送结束
               });
 
             }, function (msg) {
@@ -3942,7 +3962,8 @@ angular.module('message.controllers', [])
             });
           }
         },'jpg',100,url);
-        $state.go('messageDetail', {
+        alert(($scope.groupType === 'User') ? 'messageDetail' : 'messageGroup');
+        $state.go(($scope.groupType === 'User') ? 'messageDetail' : 'messageGroup', {
           id: $scope.userId,
           ssid:$scope.userName,
           grouptype:$scope.groupType,

@@ -51,7 +51,6 @@ public class MqttChatPingSender extends TimerPingSender{
 	public void stop() {
 		super.stop();
 		if (MqttRobot.isStarted()) {
-			UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
 			UIUtils.getContext().startService(new Intent(UIUtils.getContext(), MqttService.class));
 		}
 	}

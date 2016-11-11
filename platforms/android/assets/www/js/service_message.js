@@ -380,7 +380,7 @@ angular.module('message.services', [])
           var arrs = content.split(',');
           var longt = arrs[0];
           var lat = arrs[1];
-          messageDetail.message=longt+","+lat;
+          messageDetail.message=longt+","+lat + "," + arrs[2];
         }
 
             //发送消息前先展示在界面上
