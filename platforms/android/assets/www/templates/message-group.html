@@ -8,26 +8,63 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-people-outline" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"
+      <button class="button button-icon icon ion-ios-people-outline"
+              ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"
               style="margin-right: 5px"></button>
     </ion-nav-buttons>
 
   </ion-nav-bar>
 
-  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()" ng-click="zhilinggroup()" id="contentbb">
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()"
+               ng-click="zhilinggroup()" id="contentbb">
     <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
                    pulling-text="更多消息" id="refresh">
     </ion-refresher>
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipgroupmessagebox()">更多消息请在历史消息中查阅</p>
-    <div>
+    <div style="margin-bottom: 10px;">
       <!--<p class="rj-message-time">5月27日 16:33</p>-->
 
       <div ng-repeat="msg in groupmsgs">
-        <!---当前后消息发送时间>10分钟时就展示，昨天展示日期，今天展示时分秒--->
         <div >
           <p ng-if="msg.istime === 'true' && msg.daytype ==='1' " style="margin-top: 5px;" align="center">{{msg.when | date:'HH:mm:ss'}}</p>
           <p ng-if="msg.istime === 'true' && msg.daytype ==='0' " style="margin-top: 5px;" align="center">{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
+        <!--<div class="rj-message-wrap" ng-if="(msg.from==='false') && (msg.sessionid === groupid) &&(!(msg.messagetype.substr(0,5)==='Event'))">-->
+          <!--<div-->
+            <!--ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9"-->
+            <!--class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"-->
+            <!--ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ?-->
+            <!--msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}{{msg.username+msg.username+msg.username}}-->
+          <!--</div>-->
+          <!--<div-->
+            <!--ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8"-->
+            <!--class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"-->
+            <!--ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ?-->
+            <!--msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}-->
+          <!--</div>-->
+          <!--<div-->
+            <!--ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7"-->
+            <!--class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"-->
+            <!--ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ?-->
+            <!--msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}-->
+          <!--</div>-->
+          <!--<div-->
+            <!--ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6"-->
+            <!--class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"-->
+            <!--ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ?-->
+            <!--msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}-->
+          <!--</div>-->
+          <!--<div-->
+            <!--ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0"-->
+            <!--class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"-->
+            <!--ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ?-->
+            <!--msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}-->
+          <!--</div>-->
+        <!---当前后消息发送时间>10分钟时就展示，昨天展示日期，今天展示时分秒--->
+        <!--<div >
+          <p ng-if="msg.istime === 'true' && msg.daytype ==='1' " style="margin-top: 5px;" align="center">{{msg.when | date:'HH:mm:ss'}}</p>
+          <p ng-if="msg.istime === 'true' && msg.daytype ==='0' " style="margin-top: 5px;" align="center">{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
+        </div>-->
         <div class="rj-message-wrap" ng-if="(msg.from==='false') && (msg.sessionid === groupid) &&(!(msg.messagetype.substr(0,5)==='Event'))">
           <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
           <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
@@ -36,40 +73,133 @@
           <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0" class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
-          <p class="rj-message" style="margin-left: 14.5%">{{msg.message}}</p>
+          <!--<p class="rj-message" style="margin-left: 14.5%">{{msg.message}}</p>-->
+          <p class="rj-message">
+            <span>
+            <p class="rj-message" style="background-color: rgba(255, 255, 255, 0)" ng-if="msg.messagetype === 'Image'">
+            <img src="{{msg.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+              ng-click="netScaleImage(msg.message.split('###')[0],msg.message.split('###')[4],msg.message.split('###')[1])"/></p>
+            <p class="rj-message" style="" ng-if="msg.messagetype === 'LOCATION'"><img
+              src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msg.message)"/></p>
+            <p class="rj-message" style=""
+               ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">{{msg.message}}</p>
+            <p ng-if="msg.messagetype === 'File'">
+            <img ng-src="{{msg.message.split('###')[1]}}"
+                 ng-if="msg.messagetype === 'File' && getFileType(msg.message)"
+                 style="width: 110px;" class="yuanjiao"/>
+            <div class="list" ng-if="msg.messagetype === 'File' && !getFileType(msg.message)"
+                 style="width: 210px;background-color: #888888;float: left;margin-left: 5%;">
+              <a class="item item-icon-left"
+                 ng-click="openAllFile(msg.message.split('###')[1], msg.message.split('###')[0])">
+                <img class="icon" ng-src="{{getFileTypeImg(msg.message)}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/><font
+                style="font-size: 10px;border: none;">{{getFileName(msg.message)}}<br/>已接收</font>
+              </a>
+            </div>
+            <div ng-if="msg.messagetype === 'File' && !getFileType(msg.message)" style="float: none;"></div>
+            </p>
+          </span>
+          </p>
           </span>
         </div>
 
 
+        <!--发送消息-->
         <div class="rj-message-wrap" ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)">
-          <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
+          <span class="rj-triangle-right"
+                ng-if="msg.messagetype === 'Text' || msg.messagetype === 'normal'"></span>
+          <div class="circle6"
+               style=" position: absolute;left: 86%;top: 10px;font-size: 14px;text-align: center;padding-top: 9px;">
+            {{msg.username.length > 2 ?
+            msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}
+          </div>
            <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
-             <p style="margin-right: 10.5%">
-               <font class="rj-message-right" style="color: #ffffff">
-                 <ion-spinner icon="ios-small"  style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+             <p style="margin-right: 14.5%;float: right;">
+               <!-- 文件、图片、地图展示 开始 -->
+               <font ng-if="msg.messagetype === 'Image'">
+              <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
+                   ng-if="msg.isFailure ==='true'"
+                   ng-click="resendshow(userId,msg.message, userId, localusr,myUserID,msg._id,msg)"/>
+              <ion-spinner icon="ios-small"
+                           style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
+                           ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' "></ion-spinner>
+              <img src="{{msg.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+                   ng-click="boostImage(msg.message.split('###')[1])"/>
+            </font>
+               <!---发送文件的ui--->
+            <font ng-if="msg.messagetype === 'File'">
+            <img ng-src="{{msg.message.split('###')[1]}}"
+                 ng-if="msg.messagetype === 'File' && getFileType(msg.message)" style="width: 110px;"
+                 class="yuanjiao" ng-click="boostImage(msg.message.split('###')[1])"/>
+            <div class="list" ng-if="msg.messagetype === 'File' && !getFileType(msg.message)"
+                 style="width: 210px;background-color: #888888;float: right">
+              <a class="item item-icon-left" ng-if="msg.isFailure != 'true'"
+                 ng-click="openAllFile(msg.message.split('###')[1],msg.message.split('###')[0])">
+                <img class="icon" ng-src="{{getFileTypeImg(msg.message)}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
+                <font style="font-size: 10px;border: none;">{{msg.message.split('###')[4]}}
+                  <br/>{{msg.message.split('###')[3]}}
+                  &nbsp;&nbsp;<span ng-if="msg.isFailure === 'true'" style="color: #ee0500;">发送成功！</span>
+                </font>
+              </a>
+              <a class="item item-icon-left" ng-if="msg.isFailure === 'true'"
+                 ng-click="resendshow(userId,msg.message, userId, localusr,myUserID,msg._id,msg)">
+                <img class="icon" ng-src="{{getFileTypeImg(msg.message)}}"
+                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
+                <font style="font-size: 10px;border: none;">{{msg.message.split('###')[4]}}
+                  <br/>{{msg.message.split('###')[3]}}
+                  &nbsp;&nbsp;<span ng-if="msg.isFailure === 'true'" style="color: #ee0500;">发送失败！</span>
+                </font>
+              </a>
+            </div>
+            <div ng-if="msg.messagetype === 'File' && !getFileType(msg.message)" style="float: none;">
+            </div>
+          </font>
+
+               <!----发送位置的ui-->
+            <font ng-if="msg.messagetype === 'LOCATION'" style="float:right;">
+              <img style="background-color: transparent;margin-left: -24px" src="img/red.png"
+                   ng-if="msg.isFailure ==='true' &&(msg.messagetype != 'Image' && msg.messagetype != 'File')"
+                   ng-click="resendshow(userId,msg.message, userId, localusr,myUserID,msg._id)"/>
+              <ion-spinner icon="ios-small"
+                           style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
+                           ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' "></ion-spinner>
+              <img
+                src="{{msg.message.substring(msg.message.lastIndexOf(',') + 1, msg.message.length)}}"
+                style="width: 110px;" class="yuanjiao"
+                ng-click="entermap(msg.message.substring(0, msg.message.lastIndexOf(',')))"/>
+            </font>
+               <!-- 文件、图片、地图展示完成 -->
+               <font class="rj-message-right" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'" style="color: #ffffff">
+                 <ion-spinner icon="ios-small"
+                              style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
+                              ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
                  </ion-spinner>
                  {{msg.message}}
-               </font></p>
-              <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png" ng-if="(msg.isFailure === 'true') && (msg.isSuccess === 'false')"  ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id,msg)" />
+               </font>
+             </p>
+              <img class="rj-message-right" style="margin-right: -2%;background-color: transparent" src="img/red.png"
+                   ng-if="(msg.isFailure === 'true') && (msg.isSuccess === 'false')"
+                   ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id,msg)"/>
           </span>
           <!--<img src="img/ben.png" class="rj-head-pic-right">-->
           <!--<span class="rj-triangle-right"></span>-->
           <!--<span>-->
-             <!--&lt;!&ndash;<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">&ndash;&gt;-->
-             <!--<p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>-->
+          <!--&lt;!&ndash;<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">&ndash;&gt;-->
+          <!--<p style="float: right;"><img style="vertical-align: middle;" src="img/red.png" ng-if="(msg.isFailure)==='true'" ng-click="resendgroupshow(groupid,msg.message,groupid,grouptype,localusr,myUserID,msg._id)"><font class="rj-message-right">{{msg.message}}</font></p>-->
           <!--</span>-->
         </div>
         <!--<div>-->
-          <!--<p ng-if="msg.messagetype.substr(0,5)==='Event'" style="margin-top: 5px;" align="center">{{msg.message}}</p>-->
+        <!--<p ng-if="msg.messagetype.substr(0,5)==='Event'" style="margin-top: 5px;" align="center">{{msg.message}}</p>-->
         <!--</div>-->
         <div>
-          <p ng-if="msg.messagetype.substr(0,5)==='Event' && (msg.sessionid === groupid) " style="margin-top: 5px;" align="center">{{msg.message}}</p>
+          <p ng-if="msg.messagetype.substr(0,5)==='Event' && (msg.sessionid === groupid) " style="margin-top: 5px;"
+             align="center">{{msg.message}}</p>
         </div>
       </div>
-
-    </div>
-
+</div>
+    <!--</div>-->
 
   </ion-content>
 
@@ -101,7 +231,8 @@
 
       <div class="row" align="center">
         <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 16px">-->
-        <div class="col" align="center"
+        <div class="col" ng-click="takeGroupPhoto(groupid,send_content, groupid,localusr,myUserID,_id, grouptype)"
+             align="center"
              style="padding: 15px">
           <!--<div class="col" ng-click="getPhoto('CAMERA',userId,send_content, userId,localusr,myUserID,_id)" align="center" style="padding: 15px">-->
           <a>
@@ -114,6 +245,7 @@
           </a>
         </div>
         <div id="butAlbum"
+             ng-click="openGroupDocumentWindow('image', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)"
              class="col" align="center" style="padding: 15px">
           <!--<div id="butAlbum" ng-click="getPhoto('PHOTOLIBRARY',userId,send_content, userId,localusr,myUserID,_id)" class="col" align="center" style="padding: 15px">-->
           <a>
@@ -126,7 +258,7 @@
           </a>
         </div>
         <div class="col" align="center"
-
+             ng-click="openGroupDocumentWindow('*', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)"
              style="padding: 15px">
           <a>
             <ul>
@@ -137,8 +269,9 @@
             </ul>
           </a>
         </div>
-        <div class="col" align="center" style="padding: 15px"
-             >
+        <!--<div class="col" align="center" style="padding: 15px"
+             ng-click="gogegrouplocation('LOCATION',groupid,send_content, groupid,localusr,myUserID,_id,grouptype)"
+        >
           <a>
             <ul>
               <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/dingwei.png"
@@ -147,7 +280,7 @@
               <li style="color: #848484;font-size: 10px">定位</li>
             </ul>
           </a>
-        </div>
+        </div>-->
 
       </div>
       <!--<div class="row" style="margin-top: -22%">-->

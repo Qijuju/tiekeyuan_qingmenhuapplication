@@ -15,6 +15,7 @@ import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -31,6 +32,9 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +76,30 @@ public class MqttMessageCallback implements MqttCallback {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * 获取当前时间
+	 * @return
+	 */
+	private String getDateTime() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(new Date());
+	}
+
+	/**
+	 * 将收到的消息写到文件中
+	 * @param text
+	 * @throws IOException
+	 */
+	private void saveToFile(String text) throws IOException {
+		File file = new File(FileUtils.getDownloadDir() + File.separator + "MqttChatPingSender.txt");
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		FileOutputStream fos = new FileOutputStream(file, true);
+		fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
+		fos.flush();
 	}
 
 	@Override
@@ -156,7 +184,7 @@ public class MqttMessageCallback implements MqttCallback {
 						SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
 						systemMsgService.saveObj(systemMsg);
 
-						ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
+						/*ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
 						List<ModuleCount> listModule = moduleCountService.loadAllData();
 						Long long1 = 0L;
 						Long long2 = 0L;
@@ -206,7 +234,10 @@ public class MqttMessageCallback implements MqttCallback {
 						moduleCount.setCount3(long3);
 						moduleCount.setCount4(long4);
 						moduleCount.setType("notify");
-						moduleCountService.saveObj(moduleCount);
+						moduleCountService.saveObj(moduleCount);*/
+
+
+
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
 						Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
 						String year = c.get(Calendar.YEAR)+"";
@@ -294,7 +325,7 @@ public class MqttMessageCallback implements MqttCallback {
 							map.setIsSuccess("true");
 							messages.setDaytype((map.getWhen() > stmill && map.getWhen() < etmill) ? "1" : "0");
 							map.setDaytype((map.getWhen()>stmill && map.getWhen() <etmill) ? "1" : "0");
-							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>10000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
+							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
 								messages.setIstime("true");
 								map.setIstime("true");
 							}else{

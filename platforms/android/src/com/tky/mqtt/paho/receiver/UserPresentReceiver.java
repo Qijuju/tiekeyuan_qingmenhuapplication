@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ionicframework.im366077.OnePxActivity;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.main.MqttRobot;
@@ -30,7 +31,13 @@ public class UserPresentReceiver extends BroadcastReceiver {
             onePxIntent.putExtra("backgroud", isApplicationBroughtToBackground(context));
             context.startActivity(onePxIntent);
         }*/
-        if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
+        if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
+//            isStarted = MqttRobot.isStarted();
+            Intent onePxIntent = new Intent(context, OnePxActivity.class);
+            onePxIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            onePxIntent.putExtra("backgroud", isApplicationBroughtToBackground(context));
+            context.startActivity(onePxIntent);
+        }else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
             if (!NetUtils.isConnect(context)) {
                 return;
             }
@@ -47,9 +54,9 @@ public class UserPresentReceiver extends BroadcastReceiver {
                 return;
             }
 //            MqttOper.resetMqtt();
-            /*Intent closeOnePxIntent = new Intent();
+            Intent closeOnePxIntent = new Intent();
             closeOnePxIntent.setAction("com.tky.close_one_px_activity");
-            context.sendBroadcast(closeOnePxIntent);*/
+            context.sendBroadcast(closeOnePxIntent);
         }
     }
 

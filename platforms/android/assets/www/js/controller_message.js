@@ -364,6 +364,9 @@ angular.module('message.controllers', [])
 
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
+      if (message === 'location') {
+        return 'img/location.png';
+      }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
           return 'img/ems_file.png';
@@ -527,7 +530,7 @@ angular.module('message.controllers', [])
           var lastmsg= $mqtt.getDanliao()[$scope.msgs.length-1];
           // alert("最后一条数据："+lastmsg.message+$mqtt.getDanliao()[$scope.msgs.length-1].when);
           //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-          if($mqtt.getDanliao()[$scope.msgs.length-1].when > millions && $mqtt.getDanliao()[$scope.msgs.length-1].from === 'true'&& $scope.timegap > 60000 && $scope.timegap < 3600000){
+          if($mqtt.getDanliao()[$scope.msgs.length-1].when > millions && $mqtt.getDanliao()[$scope.msgs.length-1].from === 'true'&& $scope.timegap > 900000 && $scope.timegap < 3600000){
             $scope.i=$scope.i+1;
             // alert("进来间隔吗？"+$scope.timegap);
             var messaegeitem={};
@@ -544,12 +547,12 @@ angular.module('message.controllers', [])
             messaegeitem.imgSrc=lastmsg.imgSrc;
             messaegeitem.username=lastmsg.username;
             messaegeitem.senderid=lastmsg.senderid;
-            // alert("走么"+$scope.i);
+            //alert("走么"+$scope.i);
             if($scope.i === 2){
               messaegeitem.isSuccess='true';
               $scope.i=0;
             }else{
-              // alert("走么2222"+i);
+              //alert("走么2222"+i);
               messaegeitem.isSuccess=lastmsg.isSuccess;
             }
             messaegeitem.istime='true';
@@ -1156,7 +1159,7 @@ angular.module('message.controllers', [])
         localuser:localuser,
         localuserId:localuserId,
         sqlid:sqlid,
-        grouptype:$scope.groupType,
+        grouptype:groupType,
         messagetype:messagetype
       });
     };
@@ -1182,8 +1185,8 @@ angular.module('message.controllers', [])
     }
 
     $scope.entermap=function (content) {
-      $scope.longitude=content.substring(0,(content).indexOf(','));
-      $scope.latitude=content.substring((content).indexOf(',')+1,content.length);
+      $scope.longitude=content.split(",")[0];//content.substring(0,(content).indexOf(','));
+      $scope.latitude=content.split(",")[1];//content.substring((content).indexOf(',')+1,content.length);
       // alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
       $state.go('mapdetail', {
         id: $scope.userId,
@@ -1264,7 +1267,7 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api) {
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.bgroup=0;
     $scope.gengduogropu=function () {
@@ -1522,6 +1525,7 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
+        // alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
@@ -1546,12 +1550,11 @@ angular.module('message.controllers', [])
 
         var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
         // alert("最高毫秒值"+millions);
-        $scope.groupmsgs=$mqtt.getQunliao();
         $scope.timegap=$mqtt.getQunliao()[$scope.groupmsgs.length-1].when-$mqtt.getQunliao()[$scope.groupmsgs.length-2].when;
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
         // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
         //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 60000 && $scope.timegap < 3600000){
+        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 900000 && $scope.timegap < 3600000){
           $scope.i=$scope.i+1;
           // alert("进来群间隔吗？"+$scope.timegap);
           var messaegeitem={};
@@ -2219,6 +2222,202 @@ angular.module('message.controllers', [])
       $rootScope.$broadcast('noread.update');
       $rootScope.$broadcast('netstatus.update');
     });
+
+    $scope.takeGroupPhoto = function (topic, content, id,localuser,localuserId,sqlid, type) {
+      $mqtt.takePhoto(function (fileData) {
+        $mqtt.getMqtt().getTopic(topic, type, function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'Image';
+          /*if (type === 'image') {
+           fileType = 'Image';
+           }*/
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
+            alert('takeGroupPhoto');
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt,type);
+            $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
+            keepKeyboardOpen();
+          });
+        });
+      }, function (err) {
+
+      });
+    };
+
+    $scope.openGroupDocumentWindow = function (type, topic, content, id,localuser,localuserId,sqlid, picType) {
+      $mqtt.openDocWindow(type, function (fileData) {
+        /*$mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+         $scope.suc = $mqtt.sendDocFileMsg(userTopic, 'none' + "###" + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, "File", fileData[0], '0');
+         $scope.send_content = "";
+         keepKeyboardOpen();
+         });*/
+        // alert(fileData[0]);
+        $mqtt.getMqtt().getTopic(topic, picType, function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'File';
+          if (type === 'image') {
+            fileType = 'Image';
+          }
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt, picType);
+            $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
+            keepKeyboardOpen();
+          })
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+        });
+        /*$api.sendDocFile('F', null, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], function (data) {
+         // alert(filePath);
+         // alert(filePath);
+         $scope.filePath=data[0];
+         $scope.fileObjID=data[1];
+
+         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+         // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+         alert(fileData[3]);
+         $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], $scope.fileObjID + "###" + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, "File", fileData[0]);
+         $scope.send_content = "";
+         keepKeyboardOpen();
+         });
+
+
+         });*/
+      }, function (err) {
+      });
+    };
+
+    //点击定位，跳转查询位置界面
+    $scope.gogegrouplocation = function (messagetype,topic, content, id,localuser,localuserId,sqlid,groupType) {
+      $state.go('sendGelocation', {
+        topic:topic,
+        id: id,
+        ssid:$scope.viewtitle,
+        localuser:localuser,
+        localuserId:localuserId,
+        sqlid:sqlid,
+        grouptype:groupType,
+        messagetype:messagetype
+      });
+    };
+
+
+    //判断文件是否是图片
+    $scope.getFileType = function (message) {
+      var msg = message.split('###')[1];
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      return lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif';
+    };
+
+    //获取文件类型对应的图片路径
+    $scope.getFileTypeImg = function (message) {
+      if (message === 'location') {
+        return 'img/location.png';
+      }
+      var msg = message.split('###')[1];
+      if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
+        return 'img/ems_file.png';
+      }
+
+      // var fileSplit = message.split('###');
+      // alert(fileSplit[0] + ";;" + message);
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      return $scope.getFileTypeImgByFileName(msg);
+    };
+
+    //根据相关文件类型对应的类型图片（根据文件名）
+    $scope.getFileTypeImgByFileName = function (msg) {
+      var suffix = msg.lastIndexOf("\.");
+      var lastIndex = msg.substr(suffix, msg.length);
+      if (lastIndex === undefined || lastIndex === null || lastIndex === '') {
+        return 'img/ems_file.png';
+      }
+      if (lastIndex === '.m4a' || lastIndex === '.mp3' || lastIndex === '.mid' || lastIndex === '.xmf' || lastIndex === '.ogg' || lastIndex === '.wav' || lastIndex === '.flac' || lastIndex === '.amr') {
+        return 'img/ems_audio.png';
+      } else if (lastIndex === '.3gp' || lastIndex === '.mp4' || lastIndex === 'rm' || lastIndex === 'rmvb' || lastIndex === 'avi') {
+        return 'img/ems_video.png';
+      } else if (lastIndex === '.jpg' || lastIndex === '.gif' || lastIndex === '.png' || lastIndex === '.jpeg' || lastIndex === '.bmp') {
+        return 'img/ems_photo.png';
+      } else if (lastIndex === '.apk') {
+        return 'img/ems_apk.png';
+      } else if (lastIndex === '.ppt' || lastIndex === '.pptx' || lastIndex === '.ppsx') {
+        return 'img/explorer_ppt.png';
+      } else if (lastIndex === '.xls' || lastIndex === '.xlsx') {
+        return 'img/explorer_xls.png';
+      } else if (lastIndex === '.doc' || lastIndex === '.docx') {
+        return 'img/explorer_file_doc.png';
+      } else if (lastIndex === '.pdf') {
+        return 'img/explorer_pdf.png';
+      } else if (lastIndex === '.chm') {
+        return 'img/explorer_file_archive.png';
+      } else if (lastIndex === '.txt') {
+        return 'img/explorer_txt.png';
+      } else if (lastIndex === '.htm' || lastIndex === '.html') {
+        return 'img/explorer_html.png';
+      } else if (lastIndex === '.xml') {
+        return 'img/explorer_xml.png';
+      } else {
+        return 'img/ems_file.png';
+      }
+    };
+
+    //获取文件名
+    $scope.getFileName = function (message) {
+      var msg = message.split('###')[1];
+      var lastindex = msg.lastIndexOf("\/");
+      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+    };
+
+    $scope.getFilePath = function (message) {
+      var filePath = message.split("###")[1];
+      return filePath;
+    };
+
+    //打开文件
+    $scope.openAllFile = function (path, imageID) {
+      $api.openFileByPath(path,imageID, function (suc) {
+      },function (err) {
+      });
+    };
+
+    //发送图片的时候打开图片查看大图
+    $scope.boostImage=function (filepath) {
+      $ScalePhoto.scale(filepath,function (msg) {
+
+      },function (error) {
+
+      })
+    }
+    $scope.netScaleImage=function (fileid,filename,samllfilepath) {
+      $ScalePhoto.netScale(fileid,filename,samllfilepath,function (msg) {
+
+      },function (err) {
+
+      })
+
+    }
+
+    //打开文件
+    $scope.openAllFile = function (path, imageID) {
+      $api.openFileByPath(path,imageID, function (suc) {
+      },function (err) {
+      });
+    };
 
 
       /**
@@ -3923,7 +4122,7 @@ angular.module('message.controllers', [])
       $state.go('messageDetail', {
         id: $scope.userId,
         ssid:$scope.userName,
-        grouptype:$scope.groupType,
+        grouptype:$scope.grouptype,
       });
     }
 
@@ -3966,14 +4165,28 @@ angular.module('message.controllers', [])
               // alert("单聊topic"+userTopic+$scope.grouptype);
               $greendao.getUUID(function (data) {
                 $scope.sqlid=data;
-                $scope.content=long+","+lat+","+$scope.screenpath;
-                // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
-                $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
-                $scope.send_content = "";
-                // $timeout(function () {
-                //   viewScroll.scrollBottom();
-                // }, 100);
-                keepKeyboardOpen();
+
+
+                //发送开始
+                var myGeo = new BMap.Geocoder();
+                myGeo.getLocation(new BMap.Point(long, lat), function(result){
+                  if (result){
+                    $scope.$apply(function () {
+                      $timeout(function () {
+                        $scope.content=long+","+lat+","+result.address;
+                        // $scope.content=long+","+lat+","+$scope.screenpath;
+                        // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+                        $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
+                        $scope.send_content = "";
+                        // $timeout(function () {
+                        //   viewScroll.scrollBottom();
+                        // }, 100);
+                        keepKeyboardOpen();
+                      });
+                    });
+                  }
+                });
+                //发送结束
               });
 
             }, function (msg) {
@@ -3981,10 +4194,11 @@ angular.module('message.controllers', [])
             });
           }
         },'jpg',100,url);
-        $state.go('messageDetail', {
+        alert(($scope.grouptype === 'User') ? 'messageDetail' : 'messageGroup');
+        $state.go(($scope.grouptype === 'User') ? 'messageDetail' : 'messageGroup', {
           id: $scope.userId,
           ssid:$scope.userName,
-          grouptype:$scope.groupType,
+          grouptype:$scope.grouptype,
           longitude:long,
           latitude:lat
         });
