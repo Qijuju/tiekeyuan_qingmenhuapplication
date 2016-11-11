@@ -61,11 +61,6 @@ public class MqttMessageCallback implements MqttCallback {
 //		SPUtils.save("closeStyle", mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
 //        count++;
 //        SPUtils.save("connectionLost", "第" + count + "次失联");
-		try {
-			saveToFile("MQTT ---> connectionLost" + getDateTime());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
@@ -85,7 +80,7 @@ public class MqttMessageCallback implements MqttCallback {
 	 * @return
 	 */
 	private String getDateTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return format.format(new Date());
 	}
 
@@ -185,7 +180,7 @@ public class MqttMessageCallback implements MqttCallback {
 						SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
 						systemMsgService.saveObj(systemMsg);
 
-						ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
+						/*ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
 						List<ModuleCount> listModule = moduleCountService.loadAllData();
 						Long long1 = 0L;
 						Long long2 = 0L;
@@ -235,13 +230,11 @@ public class MqttMessageCallback implements MqttCallback {
 						moduleCount.setCount3(long3);
 						moduleCount.setCount4(long4);
 						moduleCount.setType("notify");
-						moduleCountService.saveObj(moduleCount);
+						moduleCountService.saveObj(moduleCount);*/
+
+
+
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
-//						if(){
-//
-//						}else if(){
-//
-//						}
 						Messages messages=new Messages();
 						messages.set_id(UUID.randomUUID().toString());
 						messages.setSessionid(map.getSessionid());

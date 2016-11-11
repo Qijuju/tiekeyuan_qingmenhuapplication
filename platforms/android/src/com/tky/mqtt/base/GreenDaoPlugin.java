@@ -472,6 +472,24 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+    public void queryNotifyCount(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+            String sessionid = args.getString(0);
+            List<SystemMsg> list=service.queryNotifyCount(sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
+
+
 
     /**
      * 带两个参数查询(messageservice)
@@ -533,6 +551,26 @@ public class GreenDaoPlugin extends CordovaPlugin {
     }
 
     /**
+     *
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByWeek(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByWeek();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
      * 查询以前的
      * @param args
      * @param callbackContext
@@ -551,6 +589,93 @@ public class GreenDaoPlugin extends CordovaPlugin {
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+    /**
+     * 查找今天的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryTodayFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryTodayFile(ssid, type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找本周的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryWeekFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryWeekFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找本月的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryMonthFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryMonthFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找以前的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryLongFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryLongFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+
+
 
 
 
