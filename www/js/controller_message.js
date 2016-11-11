@@ -1525,7 +1525,7 @@ angular.module('message.controllers', [])
     //收到消息时，创建对话聊天(cahtitem)
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        // alert("进来群聊界面吗？");
+        alert("进来群聊界面吗？");
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
@@ -1546,7 +1546,6 @@ angular.module('message.controllers', [])
 
         var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
         // alert("最高毫秒值"+millions);
-        $scope.groupmsgs=$mqtt.getQunliao();
         $scope.timegap=$mqtt.getQunliao()[$scope.groupmsgs.length-1].when-$mqtt.getQunliao()[$scope.groupmsgs.length-2].when;
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
         // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
@@ -1579,13 +1578,13 @@ angular.module('message.controllers', [])
           messaegeitem.isread='1';
           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
             $mqtt.updateQunliao(messaegeitem);
-            // alert("存储成功");
+            alert("存储成功");
           },function (err) {
           });
         }
         $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
           if(data[0].count>0){
-            // alert("进来查询了吗？"+data.length);
+            alert("进来查询了吗？"+data.length);
             var chatitem = {};
             chatitem.id = data[0].id;
             chatitem.chatName = data[0].chatName;
@@ -1624,7 +1623,7 @@ angular.module('message.controllers', [])
                     messaegeitem.isread=data[i].isread;
                     // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                     $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                      // alert("保存成功");
+                      alert("保存成功");
                     },function (err) {
                     });
                   }
@@ -4122,7 +4121,7 @@ angular.module('message.controllers', [])
       $state.go('messageDetail', {
         id: $scope.userId,
         ssid:$scope.userName,
-        grouptype:$scope.groupType,
+        grouptype:$scope.grouptype,
       });
     }
 
@@ -4194,11 +4193,11 @@ angular.module('message.controllers', [])
             });
           }
         },'jpg',100,url);
-        alert(($scope.groupType === 'User') ? 'messageDetail' : 'messageGroup');
-        $state.go(($scope.groupType === 'User') ? 'messageDetail' : 'messageGroup', {
+        alert(($scope.grouptype === 'User') ? 'messageDetail' : 'messageGroup');
+        $state.go(($scope.grouptype === 'User') ? 'messageDetail' : 'messageGroup', {
           id: $scope.userId,
           ssid:$scope.userName,
-          grouptype:$scope.groupType,
+          grouptype:$scope.grouptype,
           longitude:long,
           latitude:lat
         });

@@ -1149,7 +1149,7 @@ angular.module('message.services', [])
       },
 
       sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt) {
-        // alert("发送群消息"+sqlid+localuserId+grouptype);
+        alert("发送群消息"+sqlid+localuserId+grouptype);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
@@ -1184,7 +1184,7 @@ angular.module('message.services', [])
           // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
           $rootScope.$broadcast('msgs.update');
-          // alert("成功后长度"+qunliao.length);
+          alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
