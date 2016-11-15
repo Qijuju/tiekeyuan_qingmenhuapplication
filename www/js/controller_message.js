@@ -3150,9 +3150,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到最后一页了")
       }
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
+      // $timeout(function () {
+      //   viewScroll.scrollBottom();
+      // }, 100);
     }
     //上一页
     $scope.backpage=function () {
@@ -3170,9 +3170,9 @@ angular.module('message.controllers', [])
       }else {
         $ToastUtils.showToast("已经到第一页了");
       }
-      $timeout(function () {
-        viewScroll.scrollBottom();
-      }, 100);
+      // $timeout(function () {
+      //   viewScroll.scrollBottom();
+      // }, 100);
     }
 
     /**
@@ -3188,12 +3188,32 @@ angular.module('message.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
+        // $timeout(function () {
+        //   viewScroll.scrollBottom();
+        // }, 100);
       })
     });
+    //获取更多数据
+    $scope.doRefreshhis = function () {
+      if ($scope.dangqianpage<$scope.totalpage){
+        $scope.dangqianpage++;
+        var lengthabc=$scope.dangqianpage*10;
+        $historyduifang.getHistoryduifanga("U",$scope.id,"1",lengthabc);
+        $scope.$on('historymsg.duifang',function (event) {
+          $scope.$apply(function () {
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+            $scope.$broadcast('scroll.refreshComplete');
+            $timeout(function () {
+              viewScroll.scrollTop();
+            }, 100);
+          })
+        });
 
+      }else {
+        $ToastUtils.showToast("已经到最后一页了")
+      }
+
+    }
   })
 
   .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {

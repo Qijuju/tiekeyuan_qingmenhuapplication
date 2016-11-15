@@ -369,7 +369,7 @@ angular.module('im.routes', [])
         url: '/search',
         templateUrl: 'templates/search.html',
         controller: 'searchCtrl',
-        cache:true
+        cache:false
       })
 
       .state('searchmessage', {

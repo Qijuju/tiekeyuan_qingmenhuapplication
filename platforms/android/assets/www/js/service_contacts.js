@@ -837,7 +837,12 @@ angular.module('contacts.services', [])
           },function (msgaaa) {
             // $rootScope.$broadcast('persons.history');
           });
-          persons=msg;
+          if(query.length==0||query==""){
+            persons=new Array();
+          }else {
+            persons=msg;
+          }
+
           if(msg.searchResult==null||msg.searchResult.length==0||msg.searchResult==""){
             $ToastUtils.showToast("无该搜索数据")
           }

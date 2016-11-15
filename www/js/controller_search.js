@@ -54,7 +54,16 @@ angular.module('search.controllers', [])
     $scope.query = "";
     $scope.query1=""
     $scope.dosearch = function(query) {
-      if (query!=""&&query.length>0){
+      $scope.query = "";
+      $scope.query=query;
+      document.getElementById("searchdata").value=query;
+      if(query.length==0||query==null||query==""||$scope.query.length==0||$scope.query==null||$scope.query==""){
+        $scope.hasmore=true;
+        $scope.page =1;
+        $scope.persons=[];
+        $scope.query1 =query;
+        $search111.getHistorymsg("person");
+      }else {
         $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',
@@ -67,13 +76,8 @@ angular.module('search.controllers', [])
         $scope.persons=[];
         $scope.query1 =query;
         $search111.search1111($scope.id,$scope.page,$scope.count,query);
-      }else {
-        $scope.hasmore=true;
-        $scope.page =1;
-        $scope.persons=[];
-        $scope.query1 =query;
-        $search111.getHistorymsg("person");
       }
+
     }
     $scope.$on('persons.update',function (event) {
       $scope.$apply(function () {

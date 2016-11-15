@@ -50,6 +50,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import im.model.Group;
 import im.model.Msg;
@@ -153,7 +154,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                     }
                                     //保存登录信息
                                     SPUtils.save("login_info", loginJson);
-                                    setResult(new JSONObject(loginJson),PluginResult.Status.OK,callbackContext);
+                                    setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
                                 } else if ("104".equals(result.getResultCode())) {
                                     setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                                 } else if ("105".equals(result.getResultCode())) {
@@ -809,8 +810,32 @@ public class ThriftApiClient extends CordovaPlugin {
     public void setHeadPic(final JSONArray args, final CallbackContext callbackContext){
         try {
             String filePath = args.getString(0);//FileUtils.getIconDir() + File.separator + "head" + File.separator + "149435120.jpg";
+            if (filePath.contains("file:///")) {
+                filePath = filePath.substring(7);
+            }
             File file=new File(filePath);
             boolean exists = file.exists();
+            if (!exists) {
+                setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
+                return;
+            }
+            FileInputStream fis = new FileInputStream(file);
+            File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
+            if (!fosDir.exists()) {
+                fosDir.mkdirs();
+            }
+            final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".png");
+            if (fosFile.exists()) {
+                fosFile.delete();
+            }
+            fosFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(fosFile);
+            byte[] bys = new byte[1024*10];
+            int len = 0;
+            while ((len = fis.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+                fos.flush();
+            }
 
             SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
                 @Override
@@ -818,7 +843,11 @@ public class ThriftApiClient extends CordovaPlugin {
                     try {
                         RST result = setHeadPic_call.getResult();
                         if (result != null && result.result) {
-                            setResult("success", PluginResult.Status.OK, callbackContext);
+                            String absolutePath = fosFile.getAbsolutePath();
+                            if (absolutePath.contains("file:///")) {
+                                absolutePath = absolutePath.substring(7);
+                            }
+                            setResult(absolutePath, PluginResult.Status.OK, callbackContext);
                         } else {
                             setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
                         }
