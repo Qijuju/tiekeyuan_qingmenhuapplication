@@ -3,6 +3,12 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading) {
+    $scope.$on('sendprogress.update', function (event) {
+      $scope.$apply(function () {
+        // $ToastUtils.showToast("进度进行中~~~",null,null);
+        $scope.msgs=$mqtt.getDanliao();
+      });
+    });
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {

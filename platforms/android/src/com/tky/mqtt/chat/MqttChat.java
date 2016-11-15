@@ -72,10 +72,16 @@ public class MqttChat extends CordovaPlugin {
     private PhotoFileReceiver photoFileReceiver;
     private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttSendMsgReceiver topicReceiver;
+    private MqttReceiver mqttReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        mqttReceiver = MqttReceiver.getInstance();
+        IntentFilter mqttFilter = new IntentFilter();
+        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
+        cordova.getActivity().registerReceiver(mqttReceiver, mqttFilter);
+
         docFileReceiver = new DocFileReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ReceiverParams.DOC_FILE_GET);
@@ -359,11 +365,7 @@ public class MqttChat extends CordovaPlugin {
     }
 
     public void getChats(final JSONArray args, final CallbackContext callbackContext) {
-        MqttReceiver receiver = MqttReceiver.getInstance();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ReceiverParams.MESSAGEARRIVED);
-        cordova.getActivity().registerReceiver(receiver, filter);
-        receiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
+        mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
             @Override
             public void messageArrived(String topic, String content, int qos) {
                 try {
@@ -773,5 +775,30 @@ public class MqttChat extends CordovaPlugin {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mqttReceiver != null) {
+            cordova.getActivity().unregisterReceiver(mqttReceiver);
+            mqttReceiver = null;
+        }
+        if (docFileReceiver != null) {
+            cordova.getActivity().unregisterReceiver(docFileReceiver);
+            docFileReceiver = null;
+        }
+        if (photoFileReceiver != null) {
+            cordova.getActivity().unregisterReceiver(photoFileReceiver);
+            photoFileReceiver = null;
+        }
+        if (netStatusChangeReceiver != null) {
+            cordova.getActivity().unregisterReceiver(netStatusChangeReceiver);
+            netStatusChangeReceiver = null;
+        }
+        if (topicReceiver != null) {
+            cordova.getActivity().unregisterReceiver(topicReceiver);
+            topicReceiver = null;
+        }
+        super.onDestroy();
     }
 }

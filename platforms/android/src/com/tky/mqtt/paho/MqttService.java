@@ -1,14 +1,20 @@
 package com.tky.mqtt.paho;
 
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.MqttOper;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -79,7 +85,7 @@ public class MqttService extends Service {
         startForeground(0x0010, notification);
 
         //************** 启动AlarmReceiver，定时启动当前服务 **************
-        /*Intent alarmIntent=new Intent(this,AlarmRecevier.class);
+        Intent alarmIntent=new Intent(this,AlarmRecevier.class);
         alarmIntent.setAction("sendbroadcast.action");
         sendBroadcast(alarmIntent);
         PendingIntent sender= PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
@@ -87,12 +93,13 @@ public class MqttService extends Service {
         long fristtume= SystemClock.elapsedRealtime();
         //得到全局定时器
         AlarmManager am=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        *//*if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
-            am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, 5*1000, sender);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+            am.setExact(AlarmManager.RTC_WAKEUP, 5*1000, sender);//ELAPSED_REALTIME_WAKEUP
         }else{
-        }*//*
+        }
         //毎30秒发个广播
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 20*60*1000, sender);*/
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5000, sender);
+//        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 20*60*1000, sender);
         return super.onStartCommand(intent, START_STICKY, startId);
     }
 

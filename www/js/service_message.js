@@ -545,12 +545,18 @@ angular.module('message.services', [])
         if (messagetype == 'Image') {
           sendType = 'I';
         }
-
-        $api.sendDocFile(sendType, null, fileContent, function (sdata) {
-
-
+        /*if (type === 'User') {
+          msgDetail = danliao[danliao.length - 1];
+        } else {
+          msgDetail = qunliao[qunliao.length - 1];
+        }*/
+        $api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
+          var msgDetail = sdata[3];
+          msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
           if (sdata[2] === '-1') {
+            msgDetail.message = msgDetail.message + "###-1";
+            // msgDetail.message = msgDetail.message.substring(0, msgDetail.message.lastIndexOf('###') - 1) + "###-1";
             // alert("估计就将计就计")
 
 
@@ -565,13 +571,13 @@ angular.module('message.services', [])
                */
             // alert("图片上传过程中失败入数组前长度"+danliao.length);
             if (type === 'User') {
-              $mqtt.updateImgFileDanliao(messageDetail);
+              $mqtt.updateImgFileDanliao(msgDetail);
             } else {
-              $mqtt.updateImgFileQunliao(messageDetail);
+              $mqtt.updateImgFileQunliao(msgDetail);
             }
             // alert("图片上传过程中失败入数组后长度"+danliao.length);
-            messageDetail.isFailure='true';
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            msgDetail.isFailure='true';
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
               $rootScope.$broadcast('msgs.error');
             },function (err) {
             });
@@ -589,16 +595,28 @@ angular.module('message.services', [])
           //   }
           // }
           //为了让用户能立即看到图片，并发送监听
-          messageDetail.message = sdata[1] + '###' + content;
+
           // $rootScope.$broadcast('msgs.update');
           //图片没发完
+          if (!isNaN(sdata[2])) {
+            var sendProgress = parseInt(parseFloat(sdata[2])*100+'');
+            msgDetail.message = msgDetail.message + "###" + sendProgress;
+          }
           if (sdata[2] != '1') {
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
+              // msgDetail.sendProgress = sdata[2];
+              if (type === 'User') {
+                $mqtt.updateDanliao(msgDetail);
+              } else {
+                $mqtt.updateQunliao(msgDetail);
+              }
+              $rootScope.$broadcast('sendprogress.update');
             },function (err) {
             });
           } else {
-            var myMsg = messageDetail.message.split('###');
-            var newMsg = messageDetail.message  ;
+            // msgDetail.sendProgress = sdata[2];
+            var myMsg = msgDetail.message.split('###');
+            var newMsg = msgDetail.message  ;
             if (myMsg != undefined && myMsg != null && myMsg != '' && myMsg.length > 0) {
               newMsg = '';
               for (var i = 0; i < myMsg.length; i++) {
@@ -611,8 +629,8 @@ angular.module('message.services', [])
                 }
               }
             }
-            messageDetail.message = newMsg;
-            mqtt.sendMsg(topic, messageDetail, function (message) {
+            msgDetail.message = newMsg;
+            mqtt.sendMsg(topic, msgDetail, function (message) {
               // alert("发了几次是几次");
               // alert("发送图片成功前数组长度"+danliao.length);
               if (type === 'User') {
