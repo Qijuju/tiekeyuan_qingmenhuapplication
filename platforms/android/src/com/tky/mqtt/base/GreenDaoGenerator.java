@@ -138,6 +138,8 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
         chatitem.addStringProperty("senderId");//消息来源人id
         chatitem.addStringProperty("senderName");//消息来源人的名字
+        chatitem.addStringProperty("isSuccess");//消息成功与否状态
+        chatitem.addStringProperty("daytype");//最后一条消息的日期类型
     }
 
 

@@ -325,7 +325,7 @@ public class MqttMessageCallback implements MqttCallback {
 							map.setIsSuccess("true");
 							messages.setDaytype((map.getWhen() > stmill && map.getWhen() < etmill) ? "1" : "0");
 							map.setDaytype((map.getWhen()>stmill && map.getWhen() <etmill) ? "1" : "0");
-							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
+							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<etmill)){
 								messages.setIstime("true");
 								map.setIstime("true");
 							}else{
@@ -399,6 +399,8 @@ public class MqttMessageCallback implements MqttCallback {
 								}
 								chatList.setIsDelete(chatLists.get(0).getIsDelete());
 								chatList.setChatType(chatLists.get(0).getChatType());
+								chatList.setDaytype(chatLists.get(0).getDaytype());
+								chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
 							}else{
 								chatList.setId(lastmessages.getSessionid());
 								if(lastmessages.getType() == "User"){
@@ -415,6 +417,8 @@ public class MqttMessageCallback implements MqttCallback {
 								}
 								chatList.setIsDelete(lastmessages.getIsDelete());
 								chatList.setChatType(lastmessages.getType());
+								chatList.setDaytype(lastmessages.getDaytype());
+								chatList.setIsSuccess(lastmessages.getIsSuccess());
 							}
 							chatListService.saveObj(chatList);//保存chatlist对象
 						} catch (ParseException e) {
@@ -607,6 +611,8 @@ public class MqttMessageCallback implements MqttCallback {
 				}
 				chatList.setIsDelete(chatLists.get(0).getIsDelete());
 				chatList.setChatType(chatLists.get(0).getChatType());
+				chatList.setDaytype(chatLists.get(0).getDaytype());
+				chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
 			}else{
 				chatList.setId(lastmessages.getSessionid());
 				if(lastmessages.getType() == "User"){
@@ -618,6 +624,8 @@ public class MqttMessageCallback implements MqttCallback {
 				}
 				chatList.setIsDelete(lastmessages.getIsDelete());
 				chatList.setChatType(lastmessages.getType());
+				chatList.setDaytype(lastmessages.getDaytype());
+				chatList.setIsSuccess(lastmessages.getIsSuccess());
 			}
 			chatListService.saveObj(chatList);//保存chatlist对象
 

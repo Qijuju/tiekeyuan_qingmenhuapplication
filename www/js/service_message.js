@@ -29,6 +29,8 @@ angular.module('message.services', [])
         chatitem.lastDate=new Date().getTime();
         chatitem.senderId ='';
         chatitem.senderName ='';
+        chatitem.isSuccess='';
+        chatitem.daytype='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }else if(messageType === 'Dept'){
@@ -1153,15 +1155,15 @@ angular.module('message.services', [])
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt) {
-        // alert("发送群消息"+sqlid+localuserId+grouptype);
+      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype,$mqtt) {
+        // alert("发送群消息"+sqlid+localuserId+grouptype+messagetype);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
         messageReal.type=grouptype;
         messageReal.from='true';
         messageReal.message=content;
-        messageReal.messagetype='normal';
+        messageReal.messagetype=messagetype;
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
@@ -1183,53 +1185,66 @@ angular.module('message.services', [])
           }
         }
 
+        //判断是不是位置
+        if( messagetype === 'LOCATION'){
+          // alert("添加定位之前"+qunliao.length+messageReal.message+messageReal.messagetype);
+          //   danliao.push(messageDetail);
+          //   $greendao.saveObj('MessagesService',messageDetail,function (data) {
+          //     $rootScope.$broadcast('msgs.update');
+          //   },function (err) {
+          //   });
+          var arrs = content.split(',');
+          var longt = arrs[0];
+          var lat = arrs[1];
+          messageReal.message=longt+","+lat + "," + arrs[2];
+        }
+
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
           // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          $rootScope.$broadcast('msgs.update');
           // alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
-            $mqtt.updateQunliao(messageReal);
+            // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
           },function (err) {
             // alert("群组消息保存失败");
           });
 
-        /**
-         * 转圈是监听网络状态，若失败，则显示消息发送失败
-         */
-        // $mqtt.setOnNetStatusChangeListener(function (succ) {
-        //   if(succ === 'false'){
-        //     $mqtt.updateDanliao(messageDetail);
-        //     messageDetail.isFailure='true';
-        //     danliao.push(messageDetail);
-        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
-        //       $rootScope.$broadcast('msgs.error');
-        //     },function (err) {
-        //     });
-        //   }
-        // },function (err) {
-        // });
-
           /**
            * 消息发送成功/失败的回调
            */
           mqtt.sendMsg(topic, messageReal, function (message) {
             //改变状态前，删除数据
-            // alert("成功发送前长度"+qunliao.length);
+            // alert("成功发送后长度"+qunliao.length);
             $mqtt.updateQunliao(message);
             // messageReal.isSuccess='true';
             // qunliao.push(message);
             // alert("成功发送hou长度"+qunliao.length);
-            $greendao.saveObj('MessagesService',message,function (data) {
-              $rootScope.$broadcast('msgs.update');
-              // alert("群组消息保存成功");
-            },function (err) {
-              // alert("群组消息保存失败");
-            });
+
+            if(messagetype === 'LOCATION') {
+              // alert("成功发送定位qian长度"+danliao.length);
+              // $mqtt.updateDanliao(messageDetail);
+              // alert("成功发送定位后长度"+danliao.length);
+              message.message = content;
+              // alert("发送过去的定位内容"+messageDetail.message);
+              // danliao.push(msg);
+              // alert("数组正确后"+danliao.length+danliao[danliao.length-1].isSuccess);
+              // alert("发送成功后的位置"+message.message);
+              $greendao.saveObj('MessagesService', message, function (data) {
+                $rootScope.$broadcast('msgs.update');
+              }, function (err) {
+              });
+            }else{
+              $greendao.saveObj('MessagesService',message,function (data) {
+                $rootScope.$broadcast('msgs.update');
+                // alert("群组消息保存成功");
+              },function (err) {
+                // alert("群组消息保存失败");
+              });
+            }
             return "成功";
           },function (message) {
             // alert("发送失败前长度"+qunliao.length);

@@ -715,7 +715,7 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               // alert("沉降观测count"+$scope.cjgccount);
               $rootScope.$broadcast('appnotify.update');
             },function (err) {
-              
+
             });
           },function (err) {
           });
@@ -767,6 +767,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // alert($scope.srcName + "用户名1"+$scope.srcId);
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             $scope.msglevel=data[0].msglevel;//紧急程度
+            $scope.daytype=data[0].daytype;
+            $scope.isSuccess=data[0].isSuccess;
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
               $scope.unread = $scope.fastcount;
@@ -782,6 +784,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
+              chatitem.isSuccess=$scope.isSuccess;
+              chatitem.daytype=$scope.daytype;
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
                 $notifyarr.updatelastData(chatitem);
@@ -831,6 +835,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // alert($scope.srcName + "用户名1"+$scope.srcId);
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             $scope.msglevel=data[0].msglevel;//紧急程度
+            $scope.daytype=data[0].daytype;
+            $scope.isSuccess=data[0].isSuccess;
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('SlowNotifyListService', 'where id=?', $scope.id, function (data) {
               $scope.unread = $scope.slowcount;
@@ -846,6 +852,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
+              chatitem.isSuccess=$scope.isSuccess;
+              chatitem.daytype=$scope.daytype;
               $greendao.saveObj('SlowNotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
                 $slowarr.updatelastData(chatitem);
@@ -1317,6 +1325,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // alert($scope.srcName + "用户名1"+$scope.srcId);
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             $scope.msglevel=data[0].msglevel;//紧急程度
+            $scope.daytype=data[0].daytype;
+            $scope.isSuccess=data[0].isSuccess;
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('NotifyListService', 'where id=?', $scope.id, function (data) {
               $scope.unread = $scope.fastcount;
@@ -1332,6 +1342,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
+              chatitem.isSuccess=$scope.isSuccess;
+              chatitem.daytype=$scope.daytype;
               $greendao.saveObj('NotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
                 $notifyarr.updatelastData(chatitem);
@@ -1381,6 +1393,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             // alert($scope.srcName + "用户名1"+$scope.srcId);
             $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
             $scope.msglevel=data[0].msglevel;//紧急程度
+            $scope.daytype=data[0].daytype;
+            $scope.isSuccess=data[0].isSuccess;
             //取出‘ppp’聊天对话的列表数据并进行数据库更新
             $greendao.queryData('SlowNotifyListService', 'where id=?', $scope.id, function (data) {
               $scope.unread = $scope.slowcount;
@@ -1396,6 +1410,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
               chatitem.chatType = $scope.msglevel;
               chatitem.senderId = $scope.srcId;
               chatitem.senderName =$scope.srcName;
+              chatitem.isSuccess=$scope.isSuccess;
+              chatitem.daytype=$scope.daytype;
               $greendao.saveObj('SlowNotifyListService', chatitem, function (data) {
                 // alert("保存成功方法"+data.length);
                 $slowarr.updatelastData(chatitem);
@@ -1519,6 +1535,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
           $scope.imgSrc = '';//最后一条消息的头像
           $scope.srcId='';//若没有最后一条消息，则将senderid=‘’
           $scope.srcName ='';//若没有最后一条数据，则将senderName=‘’
+          $scope.daytype='';
+          $scope.isSuccess='';
         } else {
           // alert("有数据返回通知界面1");
           $scope.lastText = data[0].message;//最后一条消息内容
@@ -1527,6 +1545,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
           $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
           $scope.srcName = data[0].username;//消息来源人名字
           $scope.srcId = data[0].senderid;//消息来源人id
+          $scope.daytype=data[0].daytype;
+          $scope.isSuccess=data[0].isSuccess;
         }
         // $ToastUtils.showToast("无参跳转用户名"+$scope.userId);
         if(chatType === 'Level_1'){
@@ -1543,6 +1563,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             chatitem.chatType = chatType;
             chatitem.senderId = $scope.srcId;
             chatitem.senderName = $scope.srcName;
+            chatitem.isSuccess=$scope.isSuccess;
+            chatitem.daytype=$scope.daytype;
             $greendao.saveObj('NotifyListService', chatitem, function (data) {
               // alert("save success");
               $scope.sendAPPDetailCount(id);
@@ -1578,6 +1600,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
             chatitem.chatType = chatType;
             chatitem.senderId = $scope.srcId;
             chatitem.senderName = $scope.srcName;
+            chatitem.isSuccess=$scope.isSuccess;
+            chatitem.daytype=$scope.daytype;
             $greendao.saveObj('SlowNotifyListService', chatitem, function (data) {
               // alert("save success");
               $scope.sendAPPDetailCount(id);

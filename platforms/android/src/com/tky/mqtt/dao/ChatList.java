@@ -19,6 +19,8 @@ public class ChatList extends BaseDao{
     private String chatType;
     private String senderId;
     private String senderName;
+    private String isSuccess;
+    private String daytype;
 
     public ChatList() {
     }
@@ -27,7 +29,7 @@ public class ChatList extends BaseDao{
         this.id = id;
     }
 
-    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName) {
+    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName, String isSuccess, String daytype) {
         this.id = id;
         this.chatName = chatName;
         this.isDelete = isDelete;
@@ -38,6 +40,8 @@ public class ChatList extends BaseDao{
         this.chatType = chatType;
         this.senderId = senderId;
         this.senderName = senderName;
+        this.isSuccess = isSuccess;
+        this.daytype = daytype;
     }
 
     public String getId() {
@@ -118,6 +122,22 @@ public class ChatList extends BaseDao{
 
     public void setSenderName(String senderName) {
         this.senderName = senderName;
+    }
+
+    public String getIsSuccess() {
+        return isSuccess;
+    }
+
+    public void setIsSuccess(String isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    public String getDaytype() {
+        return daytype;
+    }
+
+    public void setDaytype(String daytype) {
+        this.daytype = daytype;
     }
 
 }
