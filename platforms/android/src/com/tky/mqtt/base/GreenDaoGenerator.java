@@ -31,6 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
+        addTestData(schema);
         new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
     }
 
@@ -256,5 +257,15 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("type");//通知类型
     }
 
+
+    /**
+     *   为了测试在线升级
+     */
+
+    private static void addTestData(Schema schema) {
+        Entity msgHistory=schema.addEntity("TestData");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("name");//应用名
+    }
 
 }
