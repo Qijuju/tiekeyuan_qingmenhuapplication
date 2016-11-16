@@ -25,14 +25,14 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
-      
+
 
     });
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出
 
     $ionicPlatform.registerBackButtonAction(function(e) {
-      if ($location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notifications'||$location.path() == '/tab/message///'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
+      if ($location.path() == '/login'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
         if (backButtonPressedOnceToExit) {
           ionic.Platform.exitApp();
         } else {
@@ -42,7 +42,8 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
-      }else {
+
+      } else {
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }

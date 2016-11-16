@@ -1377,7 +1377,6 @@ angular.module('contacts.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-
     // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
 
 
@@ -1469,6 +1468,7 @@ angular.module('contacts.controllers', [])
           $ToastUtils.showToast("当前用户信息不全")
         } else {
           $saveMessageContacts.saveMessageContacts(id, phone, name);
+          //$ionicHistory.clearHistory();
           $state.go('messageDetail', {
             "id": id,
             "ssid": name,
