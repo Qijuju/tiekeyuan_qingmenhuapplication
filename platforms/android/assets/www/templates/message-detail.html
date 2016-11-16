@@ -90,10 +90,10 @@
             <div class="list" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)"
                  style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
               <a class="item item-icon-left"
-                 ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle.message.split('###')[0])">
+                 ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle)">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/><font
-                style="font-size: 10px;border: none;">{{getFileName(msgSingle.message)}}<br/>已接收</font>
+                style="font-size: 10px;border: none;">{{getFileName(msgSingle.message)}}<br/><div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span><span ng-show="msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;">已下载</span><span ng-show="msgSingle.message.split('###')[5] === '0'">未下载</span><span ng-show="msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;">下载失败！</span></font>
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>

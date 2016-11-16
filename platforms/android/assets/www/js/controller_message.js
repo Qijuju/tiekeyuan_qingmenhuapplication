@@ -437,9 +437,15 @@ angular.module('message.controllers', [])
     };
 
     //打开文件
-    $scope.openAllFile = function (path, imageID) {
-      $api.openFileByPath(path,imageID, function (suc) {
+    $scope.openAllFile = function (path, msg) {
+      $api.openFileByPath(path,msg, function (message) {
+        $greendao.saveObj('MessagesService',message,function (data) {
+          $mqtt.updateDanliao(message);
+          $rootScope.$broadcast('sendprogress.update');
+        },function (err) {
+        });
       },function (err) {
+        $ToastUtils.showToast("参数错误！", null, null);
       });
     };
     //弹出测试
@@ -1286,6 +1292,12 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api) {
+    $scope.$on('sendprogress.update', function (event) {
+      $scope.$apply(function () {
+        $ToastUtils.showToast("进度进行中~~~",null,null);
+        $scope.msg=$mqtt.getQunliao();
+      });
+    });
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.bgroup=0;
     $scope.gengduogropu=function () {
@@ -2161,9 +2173,16 @@ angular.module('message.controllers', [])
     };
 
     //打开文件
-    $scope.openAllFile = function (path, imageID) {
-      $api.openFileByPath(path,imageID, function (suc) {
+    $scope.openGroupAllFile = function (path, msg) {
+      $api.openFileByPath(path,msg, function (message) {
+        $greendao.saveObj('MessagesService',message,function (data) {
+          $ToastUtils.showToast("进来啦。。。。");
+          $mqtt.updateQunliao(message);
+          $rootScope.$broadcast('sendprogress.update');
+        },function (err) {
+        });
       },function (err) {
+        $ToastUtils.showToast("参数错误！", null, null);
       });
     };
 
@@ -2185,9 +2204,15 @@ angular.module('message.controllers', [])
     }
 
     //打开文件
-    $scope.openAllFile = function (path, imageID) {
-      $api.openFileByPath(path,imageID, function (suc) {
+    $scope.openAllFile = function (path, msg) {
+      $api.openFileByPath(path,msg, function (message) {
+        $greendao.saveObj('MessagesService',message,function (data) {
+          $mqtt.updateDanliao(message);
+          $rootScope.$broadcast('sendprogress.update');
+        },function (err) {
+        });
       },function (err) {
+        $ToastUtils.showToast("参数错误！", null, null);
       });
     };
 
