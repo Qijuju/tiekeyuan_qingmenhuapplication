@@ -12,22 +12,14 @@
     <list default="true" id="92f51ef1-fef8-4d68-acbd-d7003b2d6b5c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -81,12 +73,9 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0191083">
-              <caret line="1912" column="31" selection-start-line="1912" selection-start-column="31" selection-end-line="1912" selection-end-column="31" />
-              <folding>
-                <element signature="e#103438#103446#0" expanded="true" />
-                <element signature="e#103838#103854#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.28899083">
+              <caret line="1921" column="25" selection-start-line="1921" selection-start-column="25" selection-end-line="1921" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -146,27 +135,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3575#16290#0" expanded="false" />
-                <element signature="e#5112#13850#0" expanded="false" />
-                <element signature="e#13849#13850#0" expanded="false" />
-                <element signature="e#13997#14417#0" expanded="false" />
-                <element signature="e#14416#14417#0" expanded="false" />
-                <element signature="e#14575#15061#0" expanded="false" />
-                <element signature="e#15060#15061#0" expanded="false" />
-                <element signature="e#15119#15589#0" expanded="false" />
-                <element signature="e#15588#15589#0" expanded="false" />
-                <element signature="e#15844#16141#0" expanded="false" />
-                <element signature="e#16140#16141#0" expanded="false" />
-                <element signature="e#16289#16290#0" expanded="false" />
-                <element signature="e#20013#20014#0" expanded="false" />
-                <element signature="e#20042#20043#0" expanded="false" />
-                <element signature="e#20093#20094#0" expanded="false" />
-                <element signature="e#20131#20132#0" expanded="false" />
-                <element signature="e#21224#21225#0" expanded="false" />
-                <element signature="e#21261#21262#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -176,13 +145,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#760#761#0" expanded="false" />
-                <element signature="e#787#788#0" expanded="false" />
-                <element signature="e#878#1344#0" expanded="false" />
-                <element signature="e#1343#1344#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1414,7 +1377,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\impro\final4\IM\platforms\android" value="5915026512846" />
+        <entry key="D:\impro\final4\IM\platforms\android" value="5915032530225" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1909,6 +1872,18 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2176,18 +2151,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2410,7 +2373,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7220377" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7220377" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977852" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2537,13 +2500,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#760#761#0" expanded="false" />
-            <element signature="e#787#788#0" expanded="false" />
-            <element signature="e#878#1344#0" expanded="false" />
-            <element signature="e#1343#1344#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2613,10 +2570,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1900" column="9" selection-start-line="1900" selection-start-column="9" selection-end-line="1900" selection-end-column="9" />
-          <folding>
-            <element signature="e#103438#103446#0" expanded="true" />
-            <element signature="e#103838#103854#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2639,27 +2593,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="179" column="46" selection-start-line="179" selection-start-column="46" selection-end-line="179" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3575#16290#0" expanded="false" />
-            <element signature="e#5112#13850#0" expanded="false" />
-            <element signature="e#13849#13850#0" expanded="false" />
-            <element signature="e#13997#14417#0" expanded="false" />
-            <element signature="e#14416#14417#0" expanded="false" />
-            <element signature="e#14575#15061#0" expanded="false" />
-            <element signature="e#15060#15061#0" expanded="false" />
-            <element signature="e#15119#15589#0" expanded="false" />
-            <element signature="e#15588#15589#0" expanded="false" />
-            <element signature="e#15844#16141#0" expanded="false" />
-            <element signature="e#16140#16141#0" expanded="false" />
-            <element signature="e#16289#16290#0" expanded="false" />
-            <element signature="e#20013#20014#0" expanded="false" />
-            <element signature="e#20042#20043#0" expanded="false" />
-            <element signature="e#20093#20094#0" expanded="false" />
-            <element signature="e#20131#20132#0" expanded="false" />
-            <element signature="e#21224#21225#0" expanded="false" />
-            <element signature="e#21261#21262#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2865,7 +2799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="117" column="71" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2873,13 +2806,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#760#761#0" expanded="false" />
-            <element signature="e#787#788#0" expanded="false" />
-            <element signature="e#878#1344#0" expanded="false" />
-            <element signature="e#1343#1344#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2887,27 +2814,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3575#16290#0" expanded="false" />
-            <element signature="e#5112#13850#0" expanded="false" />
-            <element signature="e#13849#13850#0" expanded="false" />
-            <element signature="e#13997#14417#0" expanded="false" />
-            <element signature="e#14416#14417#0" expanded="false" />
-            <element signature="e#14575#15061#0" expanded="false" />
-            <element signature="e#15060#15061#0" expanded="false" />
-            <element signature="e#15119#15589#0" expanded="false" />
-            <element signature="e#15588#15589#0" expanded="false" />
-            <element signature="e#15844#16141#0" expanded="false" />
-            <element signature="e#16140#16141#0" expanded="false" />
-            <element signature="e#16289#16290#0" expanded="false" />
-            <element signature="e#20013#20014#0" expanded="false" />
-            <element signature="e#20042#20043#0" expanded="false" />
-            <element signature="e#20093#20094#0" expanded="false" />
-            <element signature="e#20131#20132#0" expanded="false" />
-            <element signature="e#21224#21225#0" expanded="false" />
-            <element signature="e#21261#21262#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2971,12 +2878,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0191083">
-          <caret line="1912" column="31" selection-start-line="1912" selection-start-column="31" selection-end-line="1912" selection-end-column="31" />
-          <folding>
-            <element signature="e#103438#103446#0" expanded="true" />
-            <element signature="e#103838#103854#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.28899083">
+          <caret line="1921" column="25" selection-start-line="1921" selection-start-column="25" selection-end-line="1921" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
