@@ -29,7 +29,8 @@
       <div ng-repeat="msgSingle in msgs">
         <!---时间戳--->
         <div >
-          <p style="height:20px;width:50px;background-color:#c2ccd1;margin-left: 45%;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm'}}</p>                                                                                               <p style="height:20px;width:100px;background-color: #c2ccd1;text-align: center;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+          <p style="height:20px;width:50px;background-color:#c2ccd1;margin-left: 45%;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+          <p style="height:20px;width:150px;background-color: #c2ccd1;margin-left: 45%;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
