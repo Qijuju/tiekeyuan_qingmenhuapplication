@@ -1927,7 +1927,7 @@ angular.module('message.controllers', [])
 
       var year=myDate.getFullYear();//获取年份
       var month=myDate.getMonth()+1;//获取月份
-      var day=myDate.getDate()+1;//获取日期
+      var day=myDate.getDate();//获取日期
       // alert("获取当前年月日"+year+month+day);
 
       var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();

@@ -1927,7 +1927,7 @@ angular.module('message.controllers', [])
 
       var year=myDate.getFullYear();//获取年份
       var month=myDate.getMonth()+1;//获取月份
-      var day=myDate.getDate()+1;//获取日期
+      var day=myDate.getDate();//获取日期
       // alert("获取当前年月日"+year+month+day);
 
       var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
@@ -2914,7 +2914,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$ionicHistory,$location,$api,$ionicPlatform) {
 
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;

@@ -398,7 +398,7 @@ angular.module('message.services', [])
         }
 
             //发送消息前先展示在界面上
-            alert("数组长度前"+danliao.length+messageDetail.message);
+            // alert("数组长度前"+danliao.length+messageDetail.message);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
@@ -730,7 +730,7 @@ angular.module('message.services', [])
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
-          alert("进来了吗"+message.istime+message.daytype+message.isSuccess);
+          // alert("进来了吗"+message.istime+message.daytype+message.isSuccess);
           if(message.type === 'Platform'){
             $rootScope.$broadcast('newnotify.update');
             /*//当消息为系统通知时
