@@ -235,10 +235,7 @@ angular.module('login.controllers', [])
     var pwdgesturea=""
     var namegesturea=""
     document.addEventListener('deviceready',function () {
-      $ToastUtils.showToast("tusisisi",null,null);
-      alert('addEventListener');
       mqtt = cordova.require('MqttChat.mqtt_chat');
-       toast_utils = cordova.require('ToastUtils.toast_utils');
       mqtt.getString('gesturePwd', function (pwd) {
         passworda=pwd;
       }, function (msg) {
@@ -284,8 +281,8 @@ angular.module('login.controllers', [])
           $ToastUtils.showToast(message);
         });
       }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
-        alert("1")
-        // $ToastUtils.showToast("密码已修改,请重新登陆");
+        // alert("1")
+        $ToastUtils.showToast("密码已修改,请重新登陆");
         $state.go('login');
       }else if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"){
         $state.go('login');
@@ -318,8 +315,8 @@ angular.module('login.controllers', [])
           });
 
         }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
-          alert("1")
-          // $ToastUtils.showToast("密码已修改,请重新登陆");
+          // alert("1")
+          $ToastUtils.showToast("密码已修改,请重新登陆");
           $state.go('login');
         }else if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"&&passlogin=="0"){
           $state.go('login');

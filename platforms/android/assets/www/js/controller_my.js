@@ -25,7 +25,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // })
       },function (error) {
         $scope.picyoumeiyou=false;
-        alert("没有")
+        // alert("没有")
       })
 
     }, function (msg) {
@@ -160,7 +160,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
 
-
+        alert(imageData)
         // alert(imageData);
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
@@ -179,7 +179,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // alert(picPath);
         // }
         $api.setHeadPic(picPath, function (msg) {
-          // alert(msg)
+
+          alert(msg)
           $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -189,7 +190,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           });
           $timeout(function () {
             $scope.$apply(function () {
+              $scope.picyoumeiyou=true;
               $scope.securlpic=msg;
+              alert($scope.picyoumeiyou)
             })
             $ionicLoading.hide();
           });
@@ -288,7 +291,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $timeout(function () {
 
             $scope.$apply(function () {
+              $scope.picyoumeiyou=true;
               $scope.securlpic=msg;
+
             })
             $ionicLoading.hide();
           });
