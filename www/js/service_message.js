@@ -54,6 +54,7 @@ angular.module('message.services', [])
       mainlist =savedata;
     },
     updatechatdata:function (data) {
+      // alert("被更新的数据的id"+data.id);
       for(var i=0;i<=mainlist.length-1;i++){
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
@@ -62,6 +63,15 @@ angular.module('message.services', [])
       }
       mainlist.unshift(data);
       // alert("建群时消息"+data.lastText);
+    },
+    updatedatanosort:function (data) {
+      // alert("被更新的数据的id"+data.id);
+      for(var i=0;i<=mainlist.length-1;i++){
+        if( mainlist[i].id === data.id){
+          // alert("找出chat数组的被更改的数据了"+i);
+          mainlist.splice(i,1,data);
+        }
+      }
     },
     deletechatdata:function (data) {
       for(var i=0;i<=mainlist.length-1;i++){
@@ -74,7 +84,7 @@ angular.module('message.services', [])
       // alert("看看长度"+mainlist.length);
     },
     getAllData:function () {
-      // alert("service界面数组长度"+mainlist.length);
+      // alert("service最后一条数据消息"+mainlist[mainlist.length-1].lastText);
       return mainlist;
     },
     getIdChatName:function (id,chatname) {
