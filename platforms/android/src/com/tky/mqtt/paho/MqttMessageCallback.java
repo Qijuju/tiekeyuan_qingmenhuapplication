@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
+
 import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.dao.ModuleCount;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -22,7 +22,6 @@ import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
-import com.tky.mqtt.services.ModuleCountService;
 import com.tky.mqtt.services.SystemMsgService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -126,6 +125,10 @@ public class MqttMessageCallback implements MqttCallback {
 
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
+			if ("File".equals(map.getMessagetype()) || "Image".equals(map.getMessagetype())) {
+				String message = map.getMessage().substring(0, map.getMessage().lastIndexOf("###"));
+				map.setMessage(message + "###0");
+			}
 			final String fromUserId = map.get_id();
 			if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId) && "Android".equals(map.getPlatform())) {
 				return;
