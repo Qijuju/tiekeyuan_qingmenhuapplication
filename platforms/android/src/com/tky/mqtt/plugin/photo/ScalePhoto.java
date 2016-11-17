@@ -80,6 +80,8 @@ public class ScalePhoto extends CordovaPlugin {
             Intent intent =new Intent(cordova.getActivity(), PhotoScaleActivity.class);
             intent.putExtra("filePath",filepath);
             intent.putExtra("fromwhere","local");
+            intent.putExtra("filefactsize",0);
+            intent.putExtra("bigfilepath",filepath);
             cordova.getActivity().startActivity(intent);
             setResult("加载成功！", PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
@@ -141,7 +143,8 @@ public class ScalePhoto extends CordovaPlugin {
                             public void run() {
                                 final Intent intent3=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
                                 intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
-                                //intent3.putExtra("filefactsize",testFile.length());
+                                intent3.putExtra("filefactsize",factsize);
+                                intent3.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 cordova.getActivity().startActivity(intent3);
                             }
                         });
@@ -151,8 +154,12 @@ public class ScalePhoto extends CordovaPlugin {
                             @Override
                             public void run() {
                                 final Intent intent=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                //传入的是小图路径
                                 intent.putExtra("filePath", samllfilepath);
+                                intent.putExtra("filefactsize",factsize);
 
+                                //传入的是大图路径
+                                intent.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 cordova.getActivity().startActivity(intent);
                             }
                         });
@@ -166,12 +173,6 @@ public class ScalePhoto extends CordovaPlugin {
                         if(filenew.exists()){
                             filenew.delete();
                         }
-
-
-
-
-
-
                         SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                             @Override
                             public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {

@@ -31,6 +31,8 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出
 
+
+
     $ionicPlatform.registerBackButtonAction(function(e) {
       if ($location.path() == '/login'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){
         if (backButtonPressedOnceToExit) {
@@ -50,6 +52,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       e.preventDefault();
       return false;
     }, 501);
+
 
 
   });

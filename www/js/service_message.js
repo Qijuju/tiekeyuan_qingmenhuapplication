@@ -706,6 +706,7 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
+        // alert('arriveMsg');
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
           arriveMessage._id=message._id;
@@ -729,7 +730,7 @@ angular.module('message.services', [])
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
-          // alert("进来了吗"+message.type);
+          // alert("进来了吗"+message.istime+message.daytype);
           if(message.type === 'Platform'){
             $rootScope.$broadcast('newnotify.update');
             /*//当消息为系统通知时

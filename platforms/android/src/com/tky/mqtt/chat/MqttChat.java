@@ -80,7 +80,7 @@ public class MqttChat extends CordovaPlugin {
         mqttReceiver = MqttReceiver.getInstance();
         IntentFilter mqttFilter = new IntentFilter();
         mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
-        cordova.getActivity().registerReceiver(mqttReceiver, mqttFilter);
+        UIUtils.getContext().registerReceiver(mqttReceiver, mqttFilter);
 
         docFileReceiver = new DocFileReceiver();
         IntentFilter filter = new IntentFilter();

@@ -78,6 +78,9 @@ public class GridActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent =new Intent(GridActivity.this, PhotoScaleActivity.class);
                 intent.putExtra("filePath",IMAGES_PATH[i]);
+                intent.putExtra("fromwhere","local");
+                intent.putExtra("filefactsize",0);
+                intent.putExtra("bigfilepath",IMAGES_PATH[i]);
                 startActivity(intent);
             }
         });
