@@ -730,7 +730,7 @@ angular.module('message.services', [])
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
-          // alert("进来了吗"+message.istime+message.daytype);
+          // alert("进来了吗"+message.istime+message.daytype+message.isSuccess);
           if(message.type === 'Platform'){
             $rootScope.$broadcast('newnotify.update');
             /*//当消息为系统通知时

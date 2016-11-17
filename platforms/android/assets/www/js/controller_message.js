@@ -3130,7 +3130,7 @@ angular.module('message.controllers', [])
         chatitem.isSuccess=data[i].isSuccess;
         if(data[i].lastDate<millions){
           chatitem.daytype='0';
-          alert("日期变小了");
+          // alert("日期变小了");
         }else{
           chatitem.daytype=data[i].daytype;
         }
@@ -3153,7 +3153,7 @@ angular.module('message.controllers', [])
         $greendao.queryByConditions('ChatListService',function (data) {
           $chatarr.setData(data);
           $scope.items=data;
-           alert("数组的长度"+data.length);
+           // alert("数组的长度"+data.length);
         },function (err) {
 
         });
