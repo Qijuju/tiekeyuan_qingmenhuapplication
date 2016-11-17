@@ -92,4 +92,29 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
         exports.getUUID = function(success){//一般通知
                            exec(success, null,"GreenDaoPlugin", "getUUID",[]);
                     };
+
+        exports.queryByToday = function(success,error){//今天
+                      exec(success, error,"GreenDaoPlugin", "queryByToday",[]);
+                };
+         exports.queryByWeek = function(success,error){//今天
+                               exec(success, error,"GreenDaoPlugin", "queryByWeek",[]);
+                         };
+         exports.queryByYesterday = function(success,error){//昨天
+                        exec(success, error,"GreenDaoPlugin", "queryByYesterday",[]);
+                };
+         exports.queryNotifyCount=function(sessionid,success,error){//
+                        exec(success, error,"GreenDaoPlugin", "queryNotifyCount",[sessionid]);
+         };
+         exports.queryWeekFile=function(ssid,type,success,error){//查找本周文件
+                       exec(success, error,"GreenDaoPlugin", "queryWeekFile",[ssid,type]);
+                  };
+         exports.queryMonthFile=function(ssid,type,success,error){//查找本月的文件
+                       exec(success, error,"GreenDaoPlugin", "queryMonthFile",[ssid,type]);
+                  };
+         exports.queryLongFile=function(ssid,type,success,error){//查找以前的文件
+                       exec(success, error,"GreenDaoPlugin", "queryLongFile",[ssid,type]);
+                  };
+         exports.queryTodayFile=function(ssid,type,success,error){//查找今天的文件
+                       exec(success, error,"GreenDaoPlugin", "queryTodayFile",[ssid,type]);
+                  };
 });

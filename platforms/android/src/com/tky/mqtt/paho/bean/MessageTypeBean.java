@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class MessageTypeBean implements Serializable {
     private String isread = "0";
     private String isSuccess = "false";
+    private String daytype="1";
+    private String istime = "false";
 
     public String getIsSuccess() {
         return "false";
@@ -26,5 +28,21 @@ public class MessageTypeBean implements Serializable {
 
     public void setIsread(String isread) {
         this.isread = isread;
+    }
+
+    public String getDaytype() {
+        return daytype;
+    }
+
+    public void setDaytype(String daytype) {
+        this.daytype = daytype;
+    }
+
+    public String getIstime() {
+        return istime;
+    }
+
+    public void setIstime(String istime) {
+        this.istime = istime;
     }
 }

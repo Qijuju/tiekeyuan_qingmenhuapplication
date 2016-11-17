@@ -625,7 +625,6 @@ angular.module('contacts.services', [])
 
         $api.getDeparment(deptId, function (msg) {
           logindeptname = msg.deptInfo.DeptName
-
           $rootScope.$broadcast('logindept.update');
 
         }, function (msg) {

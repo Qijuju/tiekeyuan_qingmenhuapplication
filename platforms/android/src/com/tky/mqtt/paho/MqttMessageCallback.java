@@ -15,6 +15,7 @@ import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
@@ -31,7 +32,13 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -71,6 +78,30 @@ public class MqttMessageCallback implements MqttCallback {
 		}
 	}
 
+	/**
+	 * 获取当前时间
+	 * @return
+	 */
+	private String getDateTime() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(new Date());
+	}
+
+	/**
+	 * 将收到的消息写到文件中
+	 * @param text
+	 * @throws IOException
+	 */
+	private void saveToFile(String text) throws IOException {
+		File file = new File(FileUtils.getDownloadDir() + File.separator + "MqttChatPingSender.txt");
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		FileOutputStream fos = new FileOutputStream(file, true);
+		fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
+		fos.flush();
+	}
+
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken arg0) {
 	}
@@ -92,6 +123,7 @@ public class MqttMessageCallback implements MqttCallback {
             // 开始播放
             mPlayer.start();*/
  		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
 			final String fromUserId = map.get_id();
@@ -152,7 +184,7 @@ public class MqttMessageCallback implements MqttCallback {
 						SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
 						systemMsgService.saveObj(systemMsg);
 
-						ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
+						/*ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
 						List<ModuleCount> listModule = moduleCountService.loadAllData();
 						Long long1 = 0L;
 						Long long2 = 0L;
@@ -202,98 +234,197 @@ public class MqttMessageCallback implements MqttCallback {
 						moduleCount.setCount3(long3);
 						moduleCount.setCount4(long4);
 						moduleCount.setType("notify");
-						moduleCountService.saveObj(moduleCount);
+						moduleCountService.saveObj(moduleCount);*/
 
 
 
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
-						Messages messages=new Messages();
-						messages.set_id(UUID.randomUUID().toString());
-						messages.setSessionid(map.getSessionid());
-						messages.setType(map.getType());
-						messages.setFrom(map.getFrom());
-						messages.setMessage(map.getMessage());
-						System.out.println("群事件" + map.getMessage());
-						messages.setMessagetype(map.getMessagetype());
-						messages.setPlatform(map.getPlatform());
-						messages.setWhen(map.getWhen());
-						messages.setIsFailure(map.getIsFailure());
-						messages.setIsDelete(map.getIsDelete());
-						messages.setImgSrc(map.getImgSrc());
-						messages.setUsername(map.getUsername());
-						messages.setSenderid(map.get_id());
-						messages.setIsread("0");
-						messages.setIsSuccess("true");
-						MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-						messagesService.saveObj(messages);
-						//统计未读数量
-						List<Messages> messagesList=messagesService.queryData("where sessionid =?", map.getSessionid());
-						for(int i =0;i<messagesList.size();i++){
-							messages=messagesList.get(i);
-							if("0".equals(messages.getIsread())){
-								count ++;
-								System.out.println("sfss"+count);
-							}
-						}
-						Messages lastmessages=messagesList.get(messagesList.size() - 1);
-						//将对话最后一条入库到chat表
-						/**
-						 * 1.先从数据库查询是否存在当前会话列表
-						 * 2.如果没有该会话，创建会话
-						 * 3.如果有该会话，则保存最后一条消息到chat表
-						 */
-						ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
-						List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
-						ChatList chatList=new ChatList();
-						chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-						System.out.println("消息类型" + lastmessages.getMessagetype());
-						if(lastmessages.getMessagetype() == "Image"){
-							// alert("返回即时通");
-							chatList.setLastText("[图片]");//从数据库里取最后一条消息
-						}else if(lastmessages.getMessagetype() == "LOCATION"){
-							chatList.setLastText("[位置]");//从数据库里取最后一条消息
-							System.out.println("消息类型weizhi");
-						}else if(lastmessages.getMessagetype() ==  "File"){
-							chatList.setLastText("[文件]");//从数据库里取最后一条消息
-						}else {
-							chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
-						}
-						chatList.setCount(count + "");//将统计的count未读数量存进去
-						chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
-						chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
-						chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
-						if (chatLists.size() > 0) {
-							chatList.setId(chatLists.get(0).getId());
-							if(lastmessages.getType() == "User"){
-								chatList.setChatName(chatLists.get(0).getChatName());
-							}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
-								GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
-								List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-							/*if(){
-
-							}*/
-								chatList.setChatName(groupChatsList.get(0).getGroupName());
-							}
-							chatList.setIsDelete(chatLists.get(0).getIsDelete());
-							chatList.setChatType(chatLists.get(0).getChatType());
+						Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+						String year = c.get(Calendar.YEAR)+"";
+						String month = c.get(Calendar.MONTH)+1+"";
+						String day="";
+						if(c.get(Calendar.DAY_OF_MONTH)<10){
+							day="0"+c.get(Calendar.DAY_OF_MONTH)+"";
 						}else{
-							chatList.setId(lastmessages.getSessionid());
-							if(lastmessages.getType() == "User"){
-								chatList.setChatName(lastmessages.getUsername());
-							}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
-								GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
-								List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-								try {
-									JSONObject userInfo = getUserInfo();
-								} catch (JSONException e) {
-									e.printStackTrace();
-								}
-								chatList.setChatName(groupChatsList.get(0).getGroupName());
-							}
-							chatList.setIsDelete(lastmessages.getIsDelete());
-							chatList.setChatType(lastmessages.getType());
+							day=c.get(Calendar.DAY_OF_MONTH)+"";
 						}
-						chatListService.saveObj(chatList);//保存chatlist对象
+						String hour = c.get(Calendar.HOUR_OF_DAY)+"";
+						String minute = c.get(Calendar.MINUTE)+"";
+						String second = c.get(Calendar.SECOND)+"";
+						System.out.println(year + "/" + month + "/" + day + " " +hour + ":" +minute + ":" + second);
+						String start=year+month+day+"000000";
+						String end=year+month+day+"235959";
+						DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+						try {
+							long stmill=formatter.parse(start).getTime();
+							long etmill=formatter.parse(end).getTime();
+							System.out.println("单聊时间："+stmill + "/" +etmill);
+							/**
+							 * 根据sessionid取出该对话的聊天列表
+							 */
+							MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+							List<Messages> messagesList=messagesService.queryData("where sessionid =?", map.getSessionid());
+							System.out.println("查询聊天记录条数"+messagesList.size());
+							Messages messages=new Messages();
+							//取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将istime为true的数据的daytype置为"0"
+							if(messagesList.size()>0){
+								if(messagesList.get(messagesList.size()-1).getWhen()<stmill){
+									for(int i=0;i<messagesList.size();i++){
+										messages=messagesList.get(i);
+//										ToastUtil.showToast("确定有数据进来吗？"+messages.getIstime()+messages.getMessage());
+										if(messages.getIstime().equals("true")){
+//											ToastUtil.showToast("确定有数据进来吗？");
+											Messages updateMsg=new Messages();
+											updateMsg.set_id(messages.get_id());
+											updateMsg.setSessionid(messages.getSessionid());
+											updateMsg.setType(messages.getType());
+											updateMsg.setFrom(messages.getFrom());
+											updateMsg.setMessage(messages.getMessage());
+											System.out.println("群事件" + messages.getMessage());
+											updateMsg.setMessagetype(messages.getMessagetype());
+											updateMsg.setPlatform(messages.getPlatform());
+											updateMsg.setWhen(messages.getWhen());
+											updateMsg.setIsFailure(messages.getIsFailure());
+											updateMsg.setIsDelete(messages.getIsDelete());
+											updateMsg.setImgSrc(messages.getImgSrc());
+											updateMsg.setUsername(messages.getUsername());
+											updateMsg.setSenderid(messages.getSenderid());
+											updateMsg.setIsread(messages.getIsread());
+											updateMsg.setIsSuccess(messages.getIsSuccess());
+											updateMsg.setDaytype("0");
+											updateMsg.setIstime(messages.getIstime());
+											messagesService.saveObj(updateMsg);
+										}
+									}
+								}
+							}
+
+
+							/**
+							 * 接收消息时做的间隔判断
+							 */
+//							if(map.getWhen()>stmill && map.getWhen() <etmill){}      //存消息
+							messages=new Messages();
+							messages.set_id(UUID.randomUUID().toString());
+							messages.setSessionid(map.getSessionid());
+							messages.setType(map.getType());
+							messages.setFrom(map.getFrom());
+							messages.setMessage(map.getMessage());
+//							ToastUtil.showSafeToast("单聊" + map.getMessage());
+							messages.setMessagetype(map.getMessagetype());
+							messages.setIsFailure(map.getIsFailure());
+							messages.setIsDelete(map.getIsDelete());
+							messages.setImgSrc(map.getImgSrc());
+							messages.setUsername(map.getUsername());
+							messages.setSenderid(map.get_id());
+							messages.setPlatform(map.getPlatform());
+							messages.setWhen(map.getWhen());
+							messages.setIsread("0");
+							map.setIsread("0");
+							messages.setIsSuccess("true");
+							map.setIsSuccess("true");
+							messages.setDaytype((map.getWhen() > stmill && map.getWhen() < etmill) ? "1" : "0");
+							map.setDaytype((map.getWhen()>stmill && map.getWhen() <etmill) ? "1" : "0");
+							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<etmill)){
+								messages.setIstime("true");
+								map.setIstime("true");
+							}else{
+								messages.setIstime("false");
+								map.setIstime("false");
+							}
+							//MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+							messagesService.saveObj(messages);
+//							messages.set_id(UUID.randomUUID().toString());
+//							messages.setSessionid(map.getSessionid());
+//							messages.setType(map.getType());
+//							messages.setFrom(map.getFrom());
+//							messages.setMessage(map.getMessage());
+//							System.out.println("群事件" + map.getMessage());
+//							messages.setMessagetype(map.getMessagetype());
+//							messages.setPlatform(map.getPlatform());
+//							messages.setWhen(map.getWhen());
+//							messages.setIsFailure(map.getIsFailure());
+//							messages.setIsDelete(map.getIsDelete());
+//							messages.setImgSrc(map.getImgSrc());
+//							messages.setUsername(map.getUsername());
+//							messages.setSenderid(map.get_id());
+//							messages.setIsread("0");
+//							messages.setIsSuccess("true");
+////						MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+//							messagesService.saveObj(messages);
+							//统计未读数量
+							messagesList=messagesService.queryData("where sessionid =?", map.getSessionid());
+							for(int i =0;i<messagesList.size();i++){
+								messages=messagesList.get(i);
+								if("0".equals(messages.getIsread())){
+									count ++;
+									System.out.println("sfss"+count);
+								}
+							}
+							Messages lastmessages=messagesList.get(messagesList.size() - 1);
+							//将对话最后一条入库到chat表
+							/**
+							 * 1.先从数据库查询是否存在当前会话列表
+							 * 2.如果没有该会话，创建会话
+							 * 3.如果有该会话，则保存最后一条消息到chat表
+							 */
+							ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+							List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
+							ChatList chatList=new ChatList();
+							chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+							System.out.println("消息类型" + lastmessages.getMessagetype());
+							if(lastmessages.getMessagetype() == "Image"){
+								// alert("返回即时通");
+								chatList.setLastText("[图片]");//从数据库里取最后一条消息
+							}else if(lastmessages.getMessagetype() == "LOCATION"){
+								chatList.setLastText("[位置]");//从数据库里取最后一条消息
+								System.out.println("消息类型weizhi");
+							}else if(lastmessages.getMessagetype() ==  "File"){
+								chatList.setLastText("[文件]");//从数据库里取最后一条消息
+							}else {
+								chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+							}
+							chatList.setCount(count + "");//将统计的count未读数量存进去
+							chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+							chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+							chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+							if (chatLists.size() > 0) {
+								chatList.setId(chatLists.get(0).getId());
+								if(lastmessages.getType() == "User"){
+									chatList.setChatName(chatLists.get(0).getChatName());
+								}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+									GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+									List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+									chatList.setChatName(groupChatsList.get(0).getGroupName());
+								}
+								chatList.setIsDelete(chatLists.get(0).getIsDelete());
+								chatList.setChatType(chatLists.get(0).getChatType());
+								chatList.setDaytype(chatLists.get(0).getDaytype());
+								chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+							}else{
+								chatList.setId(lastmessages.getSessionid());
+								if(lastmessages.getType() == "User"){
+									chatList.setChatName(lastmessages.getUsername());
+								}else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+									GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+									List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+									try {
+										JSONObject userInfo = getUserInfo();
+									} catch (JSONException e) {
+										e.printStackTrace();
+									}
+									chatList.setChatName(groupChatsList.get(0).getGroupName());
+								}
+								chatList.setIsDelete(lastmessages.getIsDelete());
+								chatList.setChatType(lastmessages.getType());
+								chatList.setDaytype(lastmessages.getDaytype());
+								chatList.setIsSuccess(lastmessages.getIsSuccess());
+							}
+							chatListService.saveObj(chatList);//保存chatlist对象
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+
 					}
 
 					Intent intent = new Intent();
@@ -356,27 +487,86 @@ public class MqttMessageCallback implements MqttCallback {
 			//入库(MESSAGE和CHATLIST表)
 			//消息转化完毕就入库
 			int count=0;
-			Messages messages=new Messages();
-			messages.set_id(UUID.randomUUID().toString());
-			messages.setSessionid(eventBean.getSessionid());
-			messages.setType(eventBean.getType());
-			messages.setFrom(eventBean.getFrom());
-			messages.setMessage(eventBean.getMessage());
-			System.out.println("群事件" + eventBean.getMessage());
-			messages.setMessagetype(eventBean.getMessagetype());
-			messages.setPlatform(eventBean.getPlatform());
-			messages.setWhen(eventBean.getWhen());
-			messages.setIsFailure(eventBean.getIsFailure());
-			messages.setIsDelete(eventBean.getIsDelete());
-			messages.setImgSrc(eventBean.getImgSrc());
-			messages.setUsername(eventBean.getUsername());
-			messages.setSenderid(eventBean.get_id());
-			messages.setIsread("0");
-			messages.setIsSuccess("true");
+			Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+			String year = c.get(Calendar.YEAR)+"";
+			String month = c.get(Calendar.MONTH)+1+"";
+			String day=c.get(Calendar.DAY_OF_MONTH)+"";
+			String hour = c.get(Calendar.HOUR_OF_DAY)+"";
+			String minute = c.get(Calendar.MINUTE)+"";
+			String second = c.get(Calendar.SECOND)+"";
+			System.out.println(year + "/" + month + "/" + day + " " +hour + ":" +minute + ":" + second);
+			String start=year+month+day+"000000";
+			String end=year+month+day+"235959";
+			DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
+
+			long stmill=formatter.parse(start).getTime();
+			long etmill=formatter.parse(end).getTime();
+			System.out.println("群聊时间："+stmill + "/" +etmill);
+			/**
+			 * 根据sessionid取出该对话的聊天列表
+			 */
 			MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-			messagesService.saveObj(messages);
-			//统计未读数量
 			List<Messages> messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
+//			System.out.println("群聊存消息前长度："+messagesList.size());
+			Messages messages=new Messages();
+			//取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将messagetype为TIME的数据的daytype置为"0"
+			if(messagesList.get(messagesList.size()-1).getWhen()<stmill){
+				for(int i=0;i<messagesList.size();i++){
+					messages=messagesList.get(i);
+					if(messages.getIstime().equals("true")){
+						Messages updateMsg=new Messages();
+						updateMsg.set_id(messages.get_id());
+						updateMsg.setSessionid(messages.getSessionid());
+						updateMsg.setType(messages.getType());
+						updateMsg.setFrom(messages.getFrom());
+						updateMsg.setMessage(messages.getMessage());
+//						System.out.println("群事件" + messages.getMessage());
+						updateMsg.setMessagetype(messages.getMessagetype());
+						updateMsg.setPlatform(messages.getPlatform());
+						updateMsg.setWhen(messages.getWhen());
+						updateMsg.setIsFailure(messages.getIsFailure());
+						updateMsg.setIsDelete(messages.getIsDelete());
+						updateMsg.setImgSrc(messages.getImgSrc());
+						updateMsg.setUsername(messages.getUsername());
+						updateMsg.setSenderid(messages.getSenderid());
+						updateMsg.setIsread(messages.getIsread());
+						updateMsg.setIsSuccess(messages.getIsSuccess());
+						updateMsg.setDaytype("0");
+						updateMsg.setIstime(messages.getIstime());
+						messagesService.saveObj(updateMsg);
+//						System.out.println("修改昨天消息的状态保存成功");
+					}
+				}
+			}
+			//若是当前日期收到的群消息，存消息
+//			if(eventBean.getWhen()>stmill && eventBean.getWhen() <etmill){
+				messages=new Messages();
+				messages.set_id(UUID.randomUUID().toString());
+				messages.setSessionid(eventBean.getSessionid());
+				messages.setType(eventBean.getType());
+				messages.setFrom(eventBean.getFrom());
+				messages.setMessage(eventBean.getMessage());
+				System.out.println("群事件" + eventBean.getMessage());
+				messages.setMessagetype(eventBean.getMessagetype());
+				messages.setPlatform(eventBean.getPlatform());
+				messages.setWhen(eventBean.getWhen());
+				messages.setIsFailure(eventBean.getIsFailure());
+				messages.setIsDelete(eventBean.getIsDelete());
+				messages.setImgSrc(eventBean.getImgSrc());
+				messages.setUsername(eventBean.getUsername());
+				messages.setSenderid(eventBean.get_id());
+				messages.setIsread("0");
+				messages.setIsSuccess("true");
+				messages.setDaytype((eventBean.getWhen()>stmill && eventBean.getWhen() <etmill) ? "1" : "0");
+				if (messagesList != null && messagesList.size() > 0 &&  (eventBean.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>600000) && (eventBean.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
+					messages.setIstime("true");//设置标志位
+				}else{
+					messages.setIstime("false");//设置标志位
+				}
+				messagesService.saveObj(messages);
+//			}
+			//统计未读数量
+			messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
 			for(int i =0;i<messagesList.size();i++){
 				messages=messagesList.get(i);
 				if("0".equals(messages.getIsread())){
@@ -421,6 +611,8 @@ public class MqttMessageCallback implements MqttCallback {
 				}
 				chatList.setIsDelete(chatLists.get(0).getIsDelete());
 				chatList.setChatType(chatLists.get(0).getChatType());
+				chatList.setDaytype(chatLists.get(0).getDaytype());
+				chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
 			}else{
 				chatList.setId(lastmessages.getSessionid());
 				if(lastmessages.getType() == "User"){
@@ -432,6 +624,8 @@ public class MqttMessageCallback implements MqttCallback {
 				}
 				chatList.setIsDelete(lastmessages.getIsDelete());
 				chatList.setChatType(lastmessages.getType());
+				chatList.setDaytype(lastmessages.getDaytype());
+				chatList.setIsSuccess(lastmessages.getIsSuccess());
 			}
 			chatListService.saveObj(chatList);//保存chatlist对象
 
@@ -527,6 +721,7 @@ public class MqttMessageCallback implements MqttCallback {
 			start = System.currentTimeMillis();
 		}
 	}
+
 
 	/**
 	 * 响铃状态

@@ -9,7 +9,7 @@
 
 
 
-  <ion-content overflow-scroll="false" delegate-handle="historyScroll" >
+  <ion-content overflow-scroll="false"  delegate-handle="historyScroll">
     <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
                    <!--pulling-text="更多消息" id="refresh">-->
     <!--</ion-refresher>-->
@@ -18,9 +18,7 @@
       pulling-text="下拉刷新..."
       on-refresh="doRefreshhis()">
     </ion-refresher>
-    <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefreshhis()" refreshing-text="获取数据中..."-->
-                   <!--pulling-text="更多消息" id="refresh">-->
-    <!--</ion-refresher>-->
+
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
       <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID==id && (historyduifangaaa.MsgType=='T'||historyduifangaaa.MsgType=='P')" >
@@ -39,7 +37,7 @@
         <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <!--<span class="rj-triangle-right"></span>-->
         <span ng-if="historyduifangaaa.MsgType=='T'||historyduifangaaa.MsgType=='P'">
-        <p style="float: right;margin-right: 36px"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
+        <p style="float: right;margin-right: 36px;color: #ffffff"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
         </span>
       </div>
         <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->

@@ -375,7 +375,7 @@ angular.module('im.routes', [])
       .state('searchmessage', {
         url: '/searchmessage/:UserIDSM/:UserNameSM',
         templateUrl: 'templates/searchmessage.html',
-        controller: 'searchmessageCtrl',
+        controller: 'searchCtrl',
         cache:false
       })
       .state('searchmessage22', {
@@ -385,12 +385,6 @@ angular.module('im.routes', [])
         cache:false
       })
 
-      .state('searchdetail', {
-        url: '/searchdetail/:UserID',
-        templateUrl: 'templates/searchDetail.html',
-        controller: 'searchDetailCtrl',
-        cache:false
-      })
 
       .state('addnewpersonfirst', {
         url: '/addnewpersonfirst/:createtype/:groupid/:groupname',
@@ -494,13 +488,13 @@ angular.module('im.routes', [])
         cache:false
       })
       .state('sendGelocation', {
-        url: '/sendGelocation/:topic/:id/:ssid/:localuser/:localuserId/:sqlid/:grouptype/:messagetype',
+        url: '/sendGelocation/:topic/:id/:ssid/:localuser/:localuserId/:sqlid/:grouptype/:messagetype/:ismygroup/:chatname',
         templateUrl: 'templates/sendGelocation.html',
         controller: 'sendGelocationCtrl',
         cache:false
       })
       .state('mapdetail', {
-        url: '/mapdetail/:id/:ssid/:grouptype/:longitude/:latitude',
+        url: '/mapdetail/:id/:ssid/:grouptype/:longitude/:latitude/:ismygroup',
         templateUrl: 'templates/mapdetail.html',
         controller: 'mapdetailCtrl',
         cache:false

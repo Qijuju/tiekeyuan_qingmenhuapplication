@@ -2,7 +2,6 @@ package com.tky.mqtt.paho;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.SystemClock;
 
 import com.tky.mqtt.dao.Messages;
@@ -20,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -53,17 +53,6 @@ public class MqttConnection {
 //        params.getPingSender().start();
         IMqttActionListener callback = new MqttActionListener();
         mqttAsyncClient.connect(params.getOptions(), null, callback);
-        mqttAsyncClient.checkPing(null, new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken iMqttToken) {
-
-            }
-
-            @Override
-            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-
-            }
-        });
 
         MqttCallback mqttCallback = new MqttMessageCallback(context, this);
 
@@ -133,13 +122,13 @@ public class MqttConnection {
                         }
 //						}
                         receiver = MqttReceiver.getInstance();
-                        IntentFilter filter = new IntentFilter();
+                        /*IntentFilter filter = new IntentFilter();
                         filter.addAction(ReceiverParams.SENDMESSAGE);
                         filter.addAction(ReceiverParams.RECONNECT_MQTT);
                         filter.addAction(ReceiverParams.NET_DOWN_MQTT);
                         filter.addAction(ReceiverParams.CONNECTION_DOWN_MQTT);
                         filter.addAction(ReceiverParams.SUBSCRIBE);
-                        context.registerReceiver(receiver, filter);
+                        context.registerReceiver(receiver, filter);*/
                         //发消息的回调
                         receiver.setOnMessageSendListener(new MqttReceiver.OnMessageSendListener() {
                             @Override
@@ -172,6 +161,11 @@ public class MqttConnection {
                                 }
 //								message.setQos(topic.equals("zhuanjiazu") ? 0 : 2);
                                 message.setQos(1);
+                                /*try {
+                                    saveToFile(content);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }*/
                                 try {
                                     //多余的判断，其实这里不需要判断
                                     /*if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
@@ -423,6 +417,21 @@ public class MqttConnection {
             }
         }
     }
+
+    /**
+     * 将收到的消息写到文件中
+     * @param text
+     * @throws IOException
+     */
+    /*private void saveToFile(String text) throws IOException {
+        File file = new File(FileUtils.getDownloadDir() + File.separator + "publisherror.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream fos = new FileOutputStream(file, true);
+        fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
+        fos.flush();
+    }*/
 
     /**
      * 获取MQTT连接所需参数（Get the params of the mqtt connection that we'll need）

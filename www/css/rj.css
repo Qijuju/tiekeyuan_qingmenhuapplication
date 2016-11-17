@@ -27,6 +27,13 @@
   color: #8c8c8c;
   font-size: 12px;
 }
+.rj-push-uuu {
+  position: absolute;
+  right: 8px;
+  top: 40px;
+  color: #8c8c8c;
+  font-size: 13px;
+}
 
 .rj-stable-content {
   background-color: #EAEAEA;
@@ -177,7 +184,7 @@
 }
 
 .rj-footer-btn-wrap .rj-send-button{
-  background-color: #1BBB37;
+  background-color: #38ADFF;
   color: #FFF;
   height: 30px;
   line-height: 30px;
@@ -286,6 +293,17 @@
   margin-right: 3px;
   margin-top: 7px;
   margin-bottom: 7px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-notify-bgg{
+  border-radius: 6px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   height: 85px;
   padding-top: -15px;
 

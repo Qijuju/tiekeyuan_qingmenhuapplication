@@ -38,6 +38,8 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         public final static Property Senderid = new Property(12, String.class, "senderid", false, "SENDERID");
         public final static Property Isread = new Property(13, String.class, "isread", false, "ISREAD");
         public final static Property IsSuccess = new Property(14, String.class, "isSuccess", false, "IS_SUCCESS");
+        public final static Property Daytype = new Property(15, String.class, "daytype", false, "DAYTYPE");
+        public final static Property Istime = new Property(16, String.class, "istime", false, "ISTIME");
     };
 
 
@@ -67,7 +69,9 @@ public class MessagesDao extends AbstractDao<Messages, String> {
                 "'USERNAME' TEXT," + // 11: username
                 "'SENDERID' TEXT," + // 12: senderid
                 "'ISREAD' TEXT," + // 13: isread
-                "'IS_SUCCESS' TEXT);"); // 14: isSuccess
+                "'IS_SUCCESS' TEXT," + // 14: isSuccess
+                "'DAYTYPE' TEXT," + // 15: daytype
+                "'ISTIME' TEXT);"); // 16: istime
     }
 
     /** Drops the underlying database table. */
@@ -155,6 +159,16 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         if (isSuccess != null) {
             stmt.bindString(15, isSuccess);
         }
+ 
+        String daytype = entity.getDaytype();
+        if (daytype != null) {
+            stmt.bindString(16, daytype);
+        }
+ 
+        String istime = entity.getIstime();
+        if (istime != null) {
+            stmt.bindString(17, istime);
+        }
     }
 
     /** @inheritdoc */
@@ -181,7 +195,9 @@ public class MessagesDao extends AbstractDao<Messages, String> {
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // username
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // senderid
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // isread
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // isSuccess
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // isSuccess
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // daytype
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16) // istime
         );
         return entity;
     }
@@ -204,6 +220,8 @@ public class MessagesDao extends AbstractDao<Messages, String> {
         entity.setSenderid(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
         entity.setIsread(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
         entity.setIsSuccess(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setDaytype(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setIstime(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
      }
     
     /** @inheritdoc */

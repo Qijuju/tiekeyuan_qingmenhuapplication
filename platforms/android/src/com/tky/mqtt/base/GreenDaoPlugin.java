@@ -77,7 +77,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
             }else{
                 message.setWhen(jsonobj.getLong("when"));
             }
-            System.out.println(jsonobj.getLong("when") + "入库的时间");
+//            System.out.println(jsonobj.getLong("when") + "入库的时间");
             message.setIsFailure(jsonobj.getString("isFailure"));
             message.setUsername(jsonobj.getString("username"));
             message.setIsDelete(jsonobj.getString("isDelete"));
@@ -85,6 +85,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             message.setSenderid(jsonobj.getString("senderid"));
             message.setIsread(jsonobj.getString("isread"));
             message.setIsSuccess(jsonobj.getString("isSuccess"));
+            message.setDaytype(jsonobj.getString("daytype"));
+            message.setIstime(jsonobj.getString("istime"));
             obj = message;
         } else if ("ParentDeptService".equals(services)) {
             obj = new ParentDept();
@@ -125,6 +127,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setChatType(jsonobj.getString("chatType"));
             chatList.setSenderId(jsonobj.getString("senderId"));
             chatList.setSenderName(jsonobj.getString("senderName"));
+            chatList.setDaytype(jsonobj.getString("daytype"));
+            chatList.setIsSuccess(jsonobj.getString("isSuccess"));
             obj = chatList;
         }else if("GroupChatsService".equals(services)){
           GroupChats groupChats=new GroupChats();
@@ -472,6 +476,24 @@ public class GreenDaoPlugin extends CordovaPlugin {
 
     }
 
+    public void queryNotifyCount(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+            String sessionid = args.getString(0);
+            List<SystemMsg> list=service.queryNotifyCount(sessionid);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+
+
+    }
+
+
 
     /**
      * 带两个参数查询(messageservice)
@@ -510,6 +532,156 @@ public class GreenDaoPlugin extends CordovaPlugin {
             setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+
+    /**
+     * 查询今天的
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByToday(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByToday();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     *
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByWeek(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByWeek();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查询以前的
+     * @param args
+     * @param callbackContext
+     */
+    public void queryByYesterday(final JSONArray args,final CallbackContext callbackContext){
+        SystemMsgService service = SystemMsgService.getInstance(UIUtils.getContext());
+        try {
+
+            List<SystemMsg> list=service.queryByYesterday();
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找今天的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryTodayFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryTodayFile(ssid, type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找本周的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryWeekFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryWeekFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找本月的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryMonthFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryMonthFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+    /**
+     * 查找以前的文件
+     * @param args
+     * @param callbackContext
+     */
+    public void queryLongFile(final JSONArray args,final CallbackContext callbackContext){
+        FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+        try {
+            String ssid=args.getString(0);
+            String type=args.getString(1);
+            List<FilePicture> list=service.queryLongFile(ssid,type);
+            Gson gson = new Gson();
+            String jsonStr = gson.toJson(list, new TypeToken<List<BaseDao>>() {
+            }.getType());
+            setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            setResult("加载失败", PluginResult.Status.ERROR, callbackContext);
+        }
+    }
+
+
+
+
+
 
     /**
      * 带两个参数查询(NotifyListService)

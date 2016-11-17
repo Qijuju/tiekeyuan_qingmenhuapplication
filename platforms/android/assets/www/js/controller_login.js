@@ -97,8 +97,7 @@ angular.module('login.controllers', [])
         template: '登录中...'
       });
       $api.login($scope.name, $scope.password, function (message) {
-        $mqtt.save('pwdgesture', $scope.password);
-        $mqtt.save('namegesture', $scope.name);
+
         //alert(message.toJSONString());
         if (message.isActive === false) {
           $api.activeUser(message.userID, function (message) {
@@ -146,6 +145,9 @@ angular.module('login.controllers', [])
             $mqtt.startMqttChat(msg + ',' + groups);
             $mqtt.setLogin(true);
             $scope.getUserName();
+            $mqtt.save('passlogin', "1");
+            $mqtt.save('pwdgesture', $scope.password);
+            $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
             $ToastUtils.showToast(err,function (success) {
@@ -229,8 +231,14 @@ angular.module('login.controllers', [])
     document.getElementById("imgaaa").style.height=(window.screen.height)+'px';
     var passworda="";
     var loginpageaa=""
+    var passlogin=""
+    var pwdgesturea=""
+    var namegesturea=""
     document.addEventListener('deviceready',function () {
+      $ToastUtils.showToast("tusisisi",null,null);
+      alert('addEventListener');
       mqtt = cordova.require('MqttChat.mqtt_chat');
+       toast_utils = cordova.require('ToastUtils.toast_utils');
       mqtt.getString('gesturePwd', function (pwd) {
         passworda=pwd;
       }, function (msg) {
@@ -241,10 +249,45 @@ angular.module('login.controllers', [])
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
+      mqtt.getString('passlogin', function (passlogina) {
+        passlogin=passlogina;
+      }, function (msg) {
+        // $ToastUtils.showToast("还未设置手势密码");
+      });
+      mqtt.getString('pwdgesture', function (pwdgesture) {
+        pwdgesturea=pwdgesture;
+      }, function (msg) {
+        // $ToastUtils.showToast("还未设置手势密码");
+      });
+      mqtt.getString('namegesture', function (namegesture) {
+        namegesturea=namegesture;
+      }, function (msg) {
+        // $ToastUtils.showToast("还未设置手势密码");
+      });
+
     });
 
     $scope.startgogogo = function() {
-      if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"){
+      if(passlogin=="1"){
+        $api.login(namegesturea, pwdgesturea, function (message) {
+
+          if (message.isActive === false) {
+            $api.activeUser(message.userID, function (message) {
+              loginM();
+            }, function (message) {
+              $ToastUtils.showToast(message);
+            });
+          } else {
+            loginM();
+          }
+        }, function (message) {
+          $ToastUtils.showToast(message);
+        });
+      }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
+        alert("1")
+        // $ToastUtils.showToast("密码已修改,请重新登陆");
+        $state.go('login');
+      }else if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"){
         $state.go('login');
       }else if(passworda.length>0&&loginpageaa=="gesturelogin"){
         $state.go('gesturelogin');
@@ -259,7 +302,26 @@ angular.module('login.controllers', [])
       $scope.timea = $scope.timea - 1;
       // $scope.codetime = $scope.timea+"秒后跳转";
       if($scope.timea == 0) {
-        if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"){
+        if(passlogin=="1"){
+          $api.login(namegesturea, pwdgesturea, function (message) {
+            if (message.isActive === false) {
+              $api.activeUser(message.userID, function (message) {
+                loginM();
+              }, function (message) {
+                $ToastUtils.showToast(message);
+              });
+            } else {
+              loginM();
+            }
+          }, function (message) {
+            $ToastUtils.showToast(message);
+          });
+
+        }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
+          alert("1")
+          // $ToastUtils.showToast("密码已修改,请重新登陆");
+          $state.go('login');
+        }else if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"&&passlogin=="0"){
           $state.go('login');
         }else if(passworda.length>0&&loginpageaa=="gesturelogin"){
           $state.go('gesturelogin');
@@ -269,7 +331,59 @@ angular.module('login.controllers', [])
       }
     }, 1000);
 
+    //获取当前用户的id
+    var loginM = function () {
 
+      $api.SetDeptInfo(function (msg) {
+
+        mqtt.getUserId(function (userID) {
+
+          $rootScope.rootUserId = userID;
+          // alert("当前用户的id"+userID);
+        }, function (err) {
+
+        });
+        // alert(message.toString());
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+
+        //调用保存用户名方法
+        mqtt.saveLogin('name', namegesturea, function (message) {
+        }, function (message) {
+          $ToastUtils.showToast(message);
+        });
+        mqtt.getMyTopic(function (msg) {
+
+          $api.getAllGroupIds(function (groups) {
+
+            $mqtt.startMqttChat(msg + ',' + groups);
+            $mqtt.setLogin(true);
+            $scope.getUserName();
+            $mqtt.save('passlogin', "1");
+            $mqtt.save('pwdgesture', pwdgesturea);
+            $mqtt.save('namegesture',namegesturea);
+            $state.go('tab.message');
+          }, function (err) {
+
+            $ToastUtils.showToast(err,function (success) {
+            },function (err) {
+            });
+          });
+        }, function (err) {
+
+          $ToastUtils.showToast(err);
+          $ionicLoading.hide();
+        });
+      }, function (err) {
+
+      });
+    }
+    //登录成功之后获取用户姓名（昵称）
+    $scope.getUserName = function () {
+      $mqtt.getUserInfo(function (userInfo) {
+        $rootScope.userName = userInfo.userName;
+      },function (err) {
+      });
+    };
   })
   .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
     $mqtt.save('loginpage', "gesturelogin");

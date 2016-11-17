@@ -7,7 +7,7 @@ import com.tky.mqtt.base.BaseDao;
 /**
  * Entity mapped to table FILE_PICTURE.
  */
-public class FilePicture extends BaseDao{
+public class FilePicture extends BaseDao {
 
     private String filepicid;
     private String from;

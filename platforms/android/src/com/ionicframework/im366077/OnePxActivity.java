@@ -6,10 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.SystemClock;
-
-import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.UIUtils;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * 作者：
@@ -24,7 +23,15 @@ public class OnePxActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_one_px);
+//        setContentView(R.layout.activity_one_px);
+        Window window = getWindow();
+        window.setGravity(Gravity.LEFT | Gravity.TOP);
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.x = 0;
+        params.y = 0;
+        params.width = 1;
+        params.height = 1;
+        window.setAttributes(params);
         /*if (getIntent().getBooleanExtra("backgroud", false)) {
             //让应用进入后台运行
             Intent i= new Intent(Intent.ACTION_MAIN);
@@ -47,25 +54,7 @@ public class OnePxActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if ("com.tky.close_one_px_activity".equals(intent.getAction())) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SystemClock.sleep(1000);
-                        UIUtils.runInMainThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                /*Intent i= new Intent(Intent.ACTION_MAIN);
-
-                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //android123提示如果是服务里调用，必须加入new task标识
-
-                                i.addCategory(Intent.CATEGORY_HOME);
-
-                                startActivity(i);*/
-                                OnePxActivity.this.finish();
-                            }
-                        });
-                    }
-                }).start();
+                OnePxActivity.this.finish();
             }
         }
     }

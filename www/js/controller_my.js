@@ -355,6 +355,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
+              $mqtt.save('passlogin', "0");
               $state.go("login");
             }, function (message) {
               $ToastUtils.showToast(message);
@@ -517,7 +518,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
 
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
     $scope.cunzai=0;
     //初始化页面，第一次输入旧密码
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
@@ -559,7 +560,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               }else {
                 $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
                   $ToastUtils.showToast("修改密码成功")
+                  $mqtt.save('passlogin', "2");
+                  $mqtt.save('pwdgesture', $scope.data.newpassword);
                 }, function (msg) {
+                  $ToastUtils.showToast("222")
                   $ToastUtils.showToast(msg);
                 })
               }

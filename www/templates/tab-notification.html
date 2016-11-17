@@ -42,8 +42,80 @@
                    pager-click="go(index)" on-slide-changed="go_changed(index)" >
       <ion-slide style="background: gainsboro" >
         <div>
-           <ion-list >
-            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in allin"  ng-click="goNotifyDetail(item._id)" >
+          <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;">
+            今天
+            <i class="icon ion-android-arrow-dropdown" ng-if="false"></i>
+          </div>
+          <ion-list >
+            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in todayTime"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>
+
+
+              <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
+                删 除
+              </ion-option-button>
+
+            </ion-item>
+
+          </ion-list>
+
+          <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;" ng-if="weektimeday.length>0" ng-click="openweeknotify()">
+            本周
+            <i class="icon ion-android-arrow-dropdown" ng-if="!initweekstate"></i>
+            <i class="icon ion-android-arrow-dropup" ng-if="initweekstate"></i>
+          </div>
+          <ion-list ng-if="initweekstate" >
+            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in weektimeday"  ng-click="goNotifyDetail(item._id)" >
+              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+
+              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+              <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
+              <span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>
+              <span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>
+
+
+              <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
+                删 除
+              </ion-option-button>
+
+            </ion-item>
+
+          </ion-list>
+          <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;"  ng-if="otherDay.length>0" ng-click="openagain()">
+            以前
+            <i class="icon ion-android-arrow-dropdown" ng-if="!initstate"></i>
+            <i class="icon ion-android-arrow-dropup" ng-if="initstate"></i>
+
+          </div>
+          <ion-list ng-if="initstate">
+            <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in otherDay"  ng-click="goNotifyDetail(item._id)" >
               <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
@@ -110,7 +182,7 @@
 
                 </li>
                 <li style="color: #000000">公文处理</li>
-                <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px" ng-if="applist.count1>0" >{{applist.count1}}</div>
+                <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px" ng-if="gongwen>0" >{{gongwen}}</div>
               </ul>
             </a>
           </div>
@@ -119,8 +191,8 @@
               <ul>
                 <li><img  src="img/bhz.png" width="45" height="45"></li>
                 <li style="color: #000000">拌和站</li>
-                <div class="circlered" style="position: absolute;left: 42%;top: 7px;font-size: 10px" ng-if="applist.count2>0">
-                  {{applist.count2}}
+                <div class="circlered" style="position: absolute;left: 42%;top: 7px;font-size: 10px" ng-if="banhezhan>0">
+                  {{banhezhan}}
                 </div>
               </ul>
             </a>
@@ -130,8 +202,8 @@
               <ul>
                 <li><img src="img/sys.png" width="45" height="45"></li>
                 <li style="color: #000000">试验室</li>
-                <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px" ng-if="applist.count3>0" >
-                  {{applist.count3}}
+                <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px" ng-if="shiyanshi>0" >
+                  {{shiyanshi}}
 
                 </div>
               </ul>
@@ -142,8 +214,8 @@
               <ul>
                 <li><img src="img/cjgc.png" width="45" height="45"></li>
                 <li style="color: #000000">围岩量测</li>
-                <div class="circlered" style="position: absolute;left: 90%;top: 7px;font-size: 10px" ng-if="applist.count4>0" >
-                  {{applist.count4}}
+                <div class="circlered" style="position: absolute;left: 90%;top: 7px;font-size: 10px" ng-if="weiyan>0" >
+                  {{weiyan}}
                 </div>
               </ul>
             </a>

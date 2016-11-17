@@ -31,7 +31,7 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "F:/Project/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -68,6 +68,8 @@ public class GreenDaoGenerator {
         message.addStringProperty("senderid");//用于群聊时判断消息来源人id
         message.addStringProperty("isread");//消息阅读状态
         message.addStringProperty("isSuccess");//消息是否成功发送状态
+        message.addStringProperty("daytype");//昨天为：“0” 今天为：“1”
+        message.addStringProperty("istime");//如果前后两条消息间隔10分钟，则为true，否则为false
     }
 
 
@@ -136,6 +138,8 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
         chatitem.addStringProperty("senderId");//消息来源人id
         chatitem.addStringProperty("senderName");//消息来源人的名字
+        chatitem.addStringProperty("isSuccess");//消息成功与否状态
+        chatitem.addStringProperty("daytype");//最后一条消息的日期类型
     }
 
 

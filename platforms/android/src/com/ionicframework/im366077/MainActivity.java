@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
 
-import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
@@ -36,12 +35,10 @@ import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
 import com.tky.mqtt.paho.utils.PhotoUtils;
-import com.tky.mqtt.services.MessagesService;
 
 import org.apache.cordova.CordovaActivity;
 
 import java.io.File;
-import java.util.List;
 
 public class MainActivity extends CordovaActivity
 {
@@ -60,15 +57,6 @@ public class MainActivity extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
 
-        MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
-        List<Messages> messagesList=messagesService.queryData("where IS_SUCCESS =?", "false");
-        for(int i=0;i<messagesList.size();i++){
-            Messages messages=new Messages();
-            messages=messagesList.get(i);
-            messages.setIsFailure("true");
-            messagesService.saveObj(messages);
-        }
-
         MqttRobot.setIsStarted(false);
 
         //注册屏幕开关广播
@@ -83,7 +71,7 @@ public class MainActivity extends CordovaActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == FILE_SELECT_CODE && intent != null) {
+        if (resultCode == -1 && requestCode == FILE_SELECT_CODE && intent != null) {
             /*String filePath = intent.getStringExtra("filePath");
             Intent receiverIntent = new Intent();
             receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
@@ -101,7 +89,7 @@ public class MainActivity extends CordovaActivity
             receiverIntent.putExtra("formatSize", formatSize);
             receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
             sendBroadcast(receiverIntent);
-        }else if (requestCode == TAKE_PHOTO_CODE) {
+        }else if (resultCode == -1 && requestCode == TAKE_PHOTO_CODE) {
 //            photo.jpg
             final Bitmap smallBitmap = PhotoUtils.getSmallBitmap(Environment.getExternalStorageDirectory() + "/photo.jpg");
             new Thread(new Runnable() {

@@ -14,6 +14,55 @@ angular.module('newnotification.controllers', [])
     });
 
 
+
+    $scope.initstate=false;
+    $scope.openagain=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      $timeout(function () {
+        if(!$scope.initstate){
+          $scope.initstate=true
+        }else {
+          $scope.initstate=false;
+
+        }
+        $ionicLoading.hide();
+
+      },400)
+
+
+    }
+
+    $scope.initweekstate=false;
+    $scope.openweeknotify=function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      $timeout(function () {
+        if(!$scope.initweekstate){
+          $scope.initweekstate=true
+        }else {
+          $scope.initweekstate=false;
+
+        }
+        $ionicLoading.hide();
+
+      },400)
+
+
+    }
+
+
+
     //初始状态
     $scope.startA=false;
     $scope.titleAll=['通知','应用','关注'];
@@ -53,15 +102,18 @@ angular.module('newnotification.controllers', [])
       }
     }
 
+
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
+
       $ionicSlideBoxDelegate.enableSlide(false);
       $timeout(function () {
+
         $greendao.queryByConditions("SystemMsgService",function (msg) {
-          if(msg.length==0){
-            $ionicLoading.hide();
-          }
-          $ionicLoading.hide();
+            if(msg.length==0){
+              $ionicLoading.hide();
+           }
+           //$ionicLoading.hide();
           $scope.allin=msg;
 
         },function (err) {
@@ -69,14 +121,51 @@ angular.module('newnotification.controllers', [])
 
         });
 
-        $greendao.loadAllData('ModuleCountService',function (data) {
+        $greendao.queryByToday(function (msg) {
 
-            $scope.applist=data[0];
+          $scope.todayTime=msg;
+          $greendao.queryByWeek(function (msg) {
+            $scope.weektimeday=msg;
+            $greendao.queryByYesterday(function (msg) {
+              $scope.otherDay=msg;
+              $ionicLoading.hide();
+            },function (err) {
+              $ionicLoading.hide();
+            })
+          },function (err) {
+            $ionicLoading.hide();
+
+          });
 
         },function (err) {
           $ionicLoading.hide();
 
         });
+
+        $greendao.queryNotifyCount("1",function (msg) {
+          $scope.gongwen=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("15",function (msg) {
+          $scope.banhezhan=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("16",function (msg) {
+          $scope.shiyanshi=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("18",function (msg) {
+          $scope.weiyan=msg.length;
+
+        },function (err) {
+
+        })
 
       });
       $rootScope.$broadcast('second.notify');
@@ -215,12 +304,58 @@ angular.module('newnotification.controllers', [])
 
         });
 
-        $greendao.loadAllData('ModuleCountService',function (data) {
-          // alert("模块应用列表的长度"+data.length);
-          $scope.applist=data[0];
+        $greendao.queryByToday(function (msg) {
+
+          $scope.todayTime=msg;
+          $greendao.queryByWeek(function (msg) {
+            $scope.weektimeday=msg;
+            $greendao.queryByYesterday(function (msg) {
+              $scope.otherDay=msg;
+
+            },function (err) {
+
+            })
+
+          },function (err) {
+
+          });
+
         },function (err) {
 
         });
+
+
+        //应用列表的展示
+        $greendao.queryNotifyCount("1",function (msg) {
+          $scope.gongwen=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("15",function (msg) {
+          $scope.banhezhan=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("16",function (msg) {
+          $scope.shiyanshi=msg.length;
+
+        },function (err) {
+
+        })
+        $greendao.queryNotifyCount("18",function (msg) {
+          $scope.weiyan=msg.length;
+
+        },function (err) {
+
+        })
+
+
+
+
+
+
 
       })
     });
@@ -236,17 +371,74 @@ angular.module('newnotification.controllers', [])
 
     //删除一条通知
     $scope.deleteNotify=function (id) {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
 
       $timeout(function () {
         $greendao.deleteDataByArg("SystemMsgService",id,function (msg) {
           $greendao.queryByConditions("SystemMsgService",function (msg) {
-            $ionicLoading.hide();
             $scope.allin=msg;
-            $rootScope.$broadcast('second.notify');
+            $greendao.queryByToday(function (msg) {
+              $ionicLoading.hide();
+              $scope.todayTime=msg;
+              $greendao.queryByWeek(function (msg) {
+                $scope.weektimeday=msg;
+                $greendao.queryByYesterday(function (msg) {
+                  $scope.otherDay=msg;
+                  $rootScope.$broadcast('second.notify');
+
+                },function (err) {
+
+                })
+
+              },function (err) {
+
+              });
+
+            },function (err) {
+
+            });
+
+
 
           },function (err) {
 
           });
+
+          $greendao.queryNotifyCount("1",function (msg) {
+            $scope.gongwen=msg.length;
+
+          },function (err) {
+
+          })
+          $greendao.queryNotifyCount("15",function (msg) {
+            $scope.banhezhan=msg.length;
+
+          },function (err) {
+
+          })
+          $greendao.queryNotifyCount("16",function (msg) {
+            $scope.shiyanshi=msg.length;
+
+          },function (err) {
+
+          })
+          $greendao.queryNotifyCount("18",function (msg) {
+            $scope.weiyan=msg.length;
+
+          },function (err) {
+
+          })
+
+
+
+
+
         },function (err) {
 
         })
@@ -260,100 +452,31 @@ angular.module('newnotification.controllers', [])
       if(isfirm==0){
         switch (id){
           case '1':
-            $greendao.loadAllData('ModuleCountService',function (data) {
-              var newMsg={};
-              newMsg.id=data[0].id;
-              newMsg.name=data[0].name;
-              newMsg.count1=0;
-              newMsg.count2=data[0].count2;
-              newMsg.count3=data[0].count3;
-              newMsg.count4=data[0].count4;
-              newMsg.type=data[0].type;
+            $state.go("notifyApplication",{
+              id:id,
+              isfirm:isfirm
+            })
 
-              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-                $state.go("notifyApplication",{
-                  id:id,
-                  isfirm:isfirm
-                })
-              },function (err) {
-
-              });
-
-            },function (err) {
-
-            });
             break;
           case '15':
-            $greendao.loadAllData('ModuleCountService',function (data) {
-              var newMsg={};
-              newMsg.id=data[0].id;
-              newMsg.name=data[0].name;
-              newMsg.count1=data[0].count1;
-              newMsg.count2=0;
-              newMsg.count3=data[0].count3;
-              newMsg.count4=data[0].count4;
-              newMsg.type=data[0].type;
+            $state.go("notifyApplication",{
+              id:id,
+              isfirm:isfirm
+            })
 
-              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-                $state.go("notifyApplication",{
-                  id:id,
-                  isfirm:isfirm
-                })
-              },function (err) {
 
-              });
-
-            },function (err) {
-
-            });
             break;
           case '16':
-            $greendao.loadAllData('ModuleCountService',function (data) {
-              var newMsg={};
-              newMsg.id=data[0].id;
-              newMsg.name=data[0].name;
-              newMsg.count1=data[0].count1;
-              newMsg.count2=data[0].count2;
-              newMsg.count3=0;
-              newMsg.count4=data[0].count4;
-              newMsg.type=data[0].type;
-
-              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-                $state.go("notifyApplication",{
-                  id:id,
-                  isfirm:isfirm
-                })
-              },function (err) {
-
-              });
-
-            },function (err) {
-
-            });
+            $state.go("notifyApplication",{
+              id:id,
+              isfirm:isfirm
+            })
             break;
           case '18':
-            $greendao.loadAllData('ModuleCountService',function (data) {
-              var newMsg={};
-              newMsg.id=data[0].id;
-              newMsg.name=data[0].name;
-              newMsg.count1=data[0].count1;
-              newMsg.count2=data[0].count2;
-              newMsg.count3=data[0].count3;
-              newMsg.count4=0;
-              newMsg.type=data[0].type;
-
-              $greendao.saveObj("ModuleCountService",newMsg,function (msg) {
-                $state.go("notifyApplication",{
-                  id:id,
-                  isfirm:isfirm
-                })
-              },function (err) {
-
-              });
-
-            },function (err) {
-
-            });
+            $state.go("notifyApplication",{
+              id:id,
+              isfirm:isfirm
+            })
             break;
 
         }
@@ -404,7 +527,7 @@ angular.module('newnotification.controllers', [])
         }else if(msg.msglevel=="Level_2"){
           $scope.levelName="非常紧急";
         }else if(msg.msglevel=="Level_1"){
-          $scope.levelName="紧急";
+          $scope.levelName="一般紧急";
         }else {
           $scope.levelName="一般";
         }
@@ -490,6 +613,8 @@ angular.module('newnotification.controllers', [])
 
             $ionicLoading.hide();
             $scope.allDetail=confirmD;
+
+
           },function (err) {
 
             $ionicLoading.hide();
@@ -513,7 +638,7 @@ angular.module('newnotification.controllers', [])
 
 
 
-    $scope.$on('$ionicView.leave', function () {
+    $scope.$on('$ionicView.beforeLeave', function () {
 
       $greendao.loadDataByArg("SystemMsgService",$scope.id,function (message) {
 
@@ -534,9 +659,6 @@ angular.module('newnotification.controllers', [])
         newNotify.msglevel=message.msglevel;
         newNotify.isread="true";
         newNotify.isconfirm=message.isconfirm;
-
-
-
         if($scope.isFoucStatus){
           newNotify.isfocus="true";
 
@@ -544,8 +666,6 @@ angular.module('newnotification.controllers', [])
           newNotify.isfocus="false";
 
         }
-
-
         if($scope.isTopStatus){
           newNotify.istop=100;
         }else {
@@ -602,7 +722,7 @@ angular.module('newnotification.controllers', [])
     }else if ($scope.ididididi==16){
       $scope.appname="试验室";
     }else if ($scope.ididididi==18){
-      $scope.appname="围岩量测";
+      $scope.appname="连续梁";
     }
 
     $scope.appGoNotifyDetail=function (nihao) {
@@ -614,12 +734,17 @@ angular.module('newnotification.controllers', [])
     //当进入页面以后执行的方法
 
 
-    $scope.$on('$ionicView.enter', function () {
+    $scope.$on('$ionicView.afterEnter', function () {
       $timeout(function () {
 
         $greendao.queryByConditions("SystemMsgService",function (msg) {
+          // alert("jinlaielbameiy"+msg.length)
           $ionicLoading.hide();
           $scope.appmsg=msg;
+          for (var i=0;i< $scope.appmsg.length;i++){
+
+            // alert( $scope.appmsg[i].isread+"到底读了没有啊啊")
+          }
         },function (err) {
 
         });

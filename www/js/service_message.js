@@ -29,6 +29,8 @@ angular.module('message.services', [])
         chatitem.lastDate=new Date().getTime();
         chatitem.senderId ='';
         chatitem.senderName ='';
+        chatitem.isSuccess='';
+        chatitem.daytype='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }else if(messageType === 'Dept'){
@@ -358,6 +360,8 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
+        messageDetail.daytype='1';
+        messageDetail.istime='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           // alert("SQLID不为空：" + sqlid)
           for(var i=0;i<danliao.length;i++){
@@ -380,7 +384,7 @@ angular.module('message.services', [])
           var arrs = content.split(',');
           var longt = arrs[0];
           var lat = arrs[1];
-          messageDetail.message=longt+","+lat;
+          messageDetail.message=longt+","+lat + "," + arrs[2];
         }
 
             //发送消息前先展示在界面上
@@ -399,7 +403,6 @@ angular.module('message.services', [])
           }*/
 
           mqtt.sendMsg(topic, messageDetail, function (msg) {
-              // alert("数组长度前"+danliao.length+danliao[danliao.length-1].isSuccess);
               $mqtt.updateDanliao(msg);
               // messageDetail.isSuccess=msg.isS;
               // if (picPath != undefined && picPath != null && picPath != '') {
@@ -428,6 +431,7 @@ angular.module('message.services', [])
                 // danliao.push(msg);
                 // alert("数组正确后"+danliao.length+danliao[danliao.length-1].isSuccess);
                 $greendao.saveObj('MessagesService',msg,function (data) {
+                  // alert("数组长度后"+danliao[danliao.length-1].message+danliao[danliao.length-1].isSuccess);
                   $rootScope.$broadcast('msgs.update');
                 },function (err) {
                   // alert(err+"sendmistake");
@@ -453,12 +457,15 @@ angular.module('message.services', [])
 
         return "啥也不是";
       },
-      sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt) {
+      sendDocFileMsg:function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type) {
+        if (type === undefined || type === null || type === '') {
+          type = 'User';
+        }
         var messageDetail={};
         messageDetail._id=sqlid;
         // alert("service拿到的id"+messageDetail._id);
         messageDetail.sessionid=id;
-        messageDetail.type='User';
+        messageDetail.type=type;
         messageDetail.from='true';
         if (messagetype === undefined || messagetype === null || messagetype === '') {
           messagetype = 'normal';
@@ -474,13 +481,27 @@ angular.module('message.services', [])
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
         messageDetail.isSuccess='false';
-        // alert("发送者id"+localuserId);
-        if (sqlid != undefined && sqlid != null && sqlid != '') {
-          for(var i=0;i<danliao.length;i++){
-            if(danliao[i]._id === sqlid){
-              danliao.splice(i, 1);
-              $rootScope.$broadcast('msgs.update');
-              break;
+        messageDetail.daytype='1';
+        messageDetail.istime='false';
+        //alert("发送者id"+localuserId);
+        if (type === 'User') {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for (var i = 0; i < danliao.length; i++) {
+              if (danliao[i]._id === sqlid) {
+                danliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+          }
+        } else {
+          if (sqlid != undefined && sqlid != null && sqlid != '') {
+            for (var i = 0; i < qunliao.length; i++) {
+              if (qunliao[i]._id === sqlid) {
+                qunliao.splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
             }
           }
         }
@@ -511,7 +532,12 @@ angular.module('message.services', [])
         // });
 
         messageDetail.message = '' + '###' + content;
-        danliao.push(messageDetail);
+        //alert("图片类型"+type);
+        if (type === 'User') {
+          danliao.push(messageDetail);
+        } else {
+          qunliao.push(messageDetail);
+        }
         // alert("图片入数组后长度"+danliao.length);
         $greendao.saveObj('MessagesService',messageDetail,function (data) {
           $rootScope.$broadcast('msgs.update');
@@ -521,12 +547,18 @@ angular.module('message.services', [])
         if (messagetype == 'Image') {
           sendType = 'I';
         }
-
-        $api.sendDocFile(sendType, null, fileContent, function (sdata) {
-
-
+        /*if (type === 'User') {
+          msgDetail = danliao[danliao.length - 1];
+        } else {
+          msgDetail = qunliao[qunliao.length - 1];
+        }*/
+        $api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
+          var msgDetail = sdata[3];
+          msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
           if (sdata[2] === '-1') {
+            msgDetail.message = msgDetail.message + "###-1";
+            // msgDetail.message = msgDetail.message.substring(0, msgDetail.message.lastIndexOf('###') - 1) + "###-1";
             // alert("估计就将计就计")
 
 
@@ -540,10 +572,14 @@ angular.module('message.services', [])
              * @type {string}
                */
             // alert("图片上传过程中失败入数组前长度"+danliao.length);
-            $mqtt.updateImgFileDanliao(messageDetail);
+            if (type === 'User') {
+              $mqtt.updateImgFileDanliao(msgDetail);
+            } else {
+              $mqtt.updateImgFileQunliao(msgDetail);
+            }
             // alert("图片上传过程中失败入数组后长度"+danliao.length);
-            messageDetail.isFailure='true';
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            msgDetail.isFailure='true';
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
               $rootScope.$broadcast('msgs.error');
             },function (err) {
             });
@@ -561,16 +597,28 @@ angular.module('message.services', [])
           //   }
           // }
           //为了让用户能立即看到图片，并发送监听
-          messageDetail.message = sdata[1] + '###' + content;
+
           // $rootScope.$broadcast('msgs.update');
           //图片没发完
+          if (!isNaN(sdata[2])) {
+            var sendProgress = parseInt(parseFloat(sdata[2])*100+'');
+            msgDetail.message = msgDetail.message + "###" + sendProgress;
+          }
           if (sdata[2] != '1') {
-            $greendao.saveObj('MessagesService',messageDetail,function (data) {
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
+              // msgDetail.sendProgress = sdata[2];
+              if (type === 'User') {
+                $mqtt.updateDanliao(msgDetail);
+              } else {
+                $mqtt.updateQunliao(msgDetail);
+              }
+              $rootScope.$broadcast('sendprogress.update');
             },function (err) {
             });
           } else {
-            var myMsg = messageDetail.message.split('###');
-            var newMsg = messageDetail.message  ;
+            // msgDetail.sendProgress = sdata[2];
+            var myMsg = msgDetail.message.split('###');
+            var newMsg = msgDetail.message  ;
             if (myMsg != undefined && myMsg != null && myMsg != '' && myMsg.length > 0) {
               newMsg = '';
               for (var i = 0; i < myMsg.length; i++) {
@@ -583,11 +631,16 @@ angular.module('message.services', [])
                 }
               }
             }
-            messageDetail.message = newMsg;
-            mqtt.sendMsg(topic, messageDetail, function (message) {
+            msgDetail.message = newMsg;
+            mqtt.sendMsg(topic, msgDetail, function (message) {
+              // alert("发了几次是几次");
               // alert("发送图片成功前数组长度"+danliao.length);
-              $mqtt.updateDanliao(messageDetail);
-              messageDetail.isSuccess='true';
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
+              // message.isSuccess='true';
 
               var savefilepic={};
               savefilepic.filepicid=sdata[1];
@@ -606,9 +659,9 @@ angular.module('message.services', [])
                 savefilepic.type="image";
               }
               savefilepic.when=0;
-              danliao.push(messageDetail);
+              // danliao.push(message);
               // alert("发送图片成功后数组长度"+danliao.length);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
               },function (err) {
               });
@@ -616,15 +669,19 @@ angular.module('message.services', [])
               $greendao.saveObj("FilePictureService",savefilepic,function (data) {
               },function (err) {
               })
-              $rootScope.firstSendId=messageDetail.sessionid;
+              $rootScope.firstSendId=message.sessionid;
               return "成功";
             },function (message) {
               // alert("发送图片直接失败前数组长度"+danliao.length);
-              $mqtt.updateImgFileDanliao(messageDetail);
-              messageDetail.isFailure='true';
-              danliao.push(messageDetail);
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
+              // message.isFailure='true';
+              // danliao.push(message);
               // alert("发送图片直接失败后数组长度"+danliao.length);
-              $greendao.saveObj('MessagesService',messageDetail,function (data) {
+              $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.error');
               },function (err) {
               });
@@ -640,12 +697,11 @@ angular.module('message.services', [])
 
       arriveMsg:function (topic) {
         mqtt.getChats(topic,function (message) {
-
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
-          // alert("监听消息类型"+arriveMessage.type);
+          // alert("监听消息类型"+message._id);
           arriveMessage.from=message.from;
           arriveMessage.message=message.message;
           arriveMessage.messagetype=message.messagetype;
@@ -657,7 +713,9 @@ angular.module('message.services', [])
           arriveMessage.username=message.username;
           arriveMessage.senderid=message._id;
           arriveMessage.isread=message.isread;
-          arriveMessage.isSuccess='true';
+          arriveMessage.isSuccess=message.isSuccess;
+          arriveMessage.daytype=message.daytype;
+          arriveMessage.istime=message.istime;
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
@@ -721,7 +779,7 @@ angular.module('message.services', [])
             // alert("新版通知存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);*/
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
-              alert(data.length+"收通知消息");
+              // alert(data.length+"收通知消息");
             },function (err) {
             });
             $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
@@ -852,10 +910,12 @@ angular.module('message.services', [])
                 danliao.push(arriveMessage);
                 $rootScope.$broadcast('msgs.update');
               }else if(message.type ==="Group" || message.type ==="Dept"){
+                // alert("进群消息service---push前长度"+qunliao.length);
                 qunliao.push(arriveMessage);
+                // alert("进群消息service---push后长度"+qunliao.length);
                 $rootScope.$broadcast('msgs.update');
-              }
-              // $rootScope.firstSessionid=arriveMessage.sessionid;
+            }
+            // $rootScope.firstSessionid=arriveMessage.sessionid;
               // $rootScope.firstUserName=arriveMessage.username;
               // $rootScope.messagetype= arriveMessage.type;
               // alert("群组存的对不对"+$rootScope.firstSessionid+$rootScope.firstUserName+$rootScope.messagetype);
@@ -937,6 +997,16 @@ angular.module('message.services', [])
           if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1);
+            break;
+          }
+        }
+      },
+      updateImgFileQunliao:function (data) {
+        for(var i=0;i<qunliao.length;i++){
+          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
+          if( qunliao[i]._id === data._id){
+            // alert("找出chat数组的被更改的数据了"+i);
+            qunliao.splice(i,1);
             break;
           }
         }
@@ -1103,15 +1173,15 @@ angular.module('message.services', [])
         return $rootScope.firstSendId;
       },
 
-      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,$mqtt) {
-        // alert("发送群消息"+sqlid+localuserId+grouptype);
+      sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype,$mqtt) {
+        // alert("发送群消息"+sqlid+localuserId+grouptype+messagetype);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
         messageReal.type=grouptype;
         messageReal.from='true';
         messageReal.message=content;
-        messageReal.messagetype='normal';
+        messageReal.messagetype=messagetype;
         messageReal.platform='Windows';
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
@@ -1121,6 +1191,8 @@ angular.module('message.services', [])
         messageReal.senderid=localuserId;
         messageReal.isread='1';
         messageReal.isSuccess='false';
+        messageReal.daytype='1';
+        messageReal.istime='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           for(var i=0;i<qunliao.length;i++){
             if(qunliao[i]._id === sqlid){
@@ -1131,52 +1203,66 @@ angular.module('message.services', [])
           }
         }
 
+        //判断是不是位置
+        if( messagetype === 'LOCATION'){
+          // alert("添加定位之前"+qunliao.length+messageReal.message+messageReal.messagetype);
+          //   danliao.push(messageDetail);
+          //   $greendao.saveObj('MessagesService',messageDetail,function (data) {
+          //     $rootScope.$broadcast('msgs.update');
+          //   },function (err) {
+          //   });
+          var arrs = content.split(',');
+          var longt = arrs[0];
+          var lat = arrs[1];
+          messageReal.message=longt+","+lat + "," + arrs[2];
+        }
+
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
           // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          $rootScope.$broadcast('msgs.update');
           // alert("成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
+            // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
             // alert("群组消息保存成功");
           },function (err) {
             // alert("群组消息保存失败");
           });
 
-        /**
-         * 转圈是监听网络状态，若失败，则显示消息发送失败
-         */
-        // $mqtt.setOnNetStatusChangeListener(function (succ) {
-        //   if(succ === 'false'){
-        //     $mqtt.updateDanliao(messageDetail);
-        //     messageDetail.isFailure='true';
-        //     danliao.push(messageDetail);
-        //     $greendao.saveObj('MessagesService',messageDetail,function (data) {
-        //       $rootScope.$broadcast('msgs.error');
-        //     },function (err) {
-        //     });
-        //   }
-        // },function (err) {
-        // });
-
           /**
            * 消息发送成功/失败的回调
            */
           mqtt.sendMsg(topic, messageReal, function (message) {
             //改变状态前，删除数据
-            // alert("成功发送前长度"+qunliao.length);
+            // alert("成功发送后长度"+qunliao.length);
             $mqtt.updateQunliao(message);
             // messageReal.isSuccess='true';
             // qunliao.push(message);
             // alert("成功发送hou长度"+qunliao.length);
-            $greendao.saveObj('MessagesService',message,function (data) {
-              $rootScope.$broadcast('msgs.update');
-              // alert("群组消息保存成功");
-            },function (err) {
-              // alert("群组消息保存失败");
-            });
+
+            if(messagetype === 'LOCATION') {
+              // alert("成功发送定位qian长度"+danliao.length);
+              // $mqtt.updateDanliao(messageDetail);
+              // alert("成功发送定位后长度"+danliao.length);
+              message.message = content;
+              // alert("发送过去的定位内容"+messageDetail.message);
+              // danliao.push(msg);
+              // alert("数组正确后"+danliao.length+danliao[danliao.length-1].isSuccess);
+              // alert("发送成功后的位置"+message.message);
+              $greendao.saveObj('MessagesService', message, function (data) {
+                $rootScope.$broadcast('msgs.update');
+              }, function (err) {
+              });
+            }else{
+              $greendao.saveObj('MessagesService',message,function (data) {
+                $rootScope.$broadcast('msgs.update');
+                // alert("群组消息保存成功");
+              },function (err) {
+                // alert("群组消息保存失败");
+              });
+            }
             return "成功";
           },function (message) {
             // alert("发送失败前长度"+qunliao.length);

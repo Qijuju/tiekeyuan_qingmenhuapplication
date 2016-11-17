@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.SystemClock;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.synconset.FakeR;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
@@ -74,10 +72,16 @@ public class MqttChat extends CordovaPlugin {
     private PhotoFileReceiver photoFileReceiver;
     private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttSendMsgReceiver topicReceiver;
+    private MqttReceiver mqttReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        mqttReceiver = MqttReceiver.getInstance();
+        IntentFilter mqttFilter = new IntentFilter();
+        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
+        cordova.getActivity().registerReceiver(mqttReceiver, mqttFilter);
+
         docFileReceiver = new DocFileReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ReceiverParams.DOC_FILE_GET);
@@ -278,6 +282,12 @@ public class MqttChat extends CordovaPlugin {
         if (msg == null || "".equals(msg.trim())) {
             return ;
         }
+        /*try {
+            //收集发送出去的消息，判断多发消息是哪出错了
+            saveToFile(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         //消息发送过程中，网络信号减弱，数据回调
         topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
             @Override
@@ -324,6 +334,7 @@ public class MqttChat extends CordovaPlugin {
         }*/
         try {
 //            if(!flag){
+
                 MessageOper.sendMsg(tosb, message);
 //            }
         } catch (IMPException e) {
@@ -338,12 +349,23 @@ public class MqttChat extends CordovaPlugin {
 //        callbackContext.sendPluginResult(pluginResult);
     }
 
+    /**
+     * 将收到的消息写到文件中
+     * @param text
+     * @throws IOException
+     */
+    private void saveToFile(String text) throws IOException {
+        File file = new File(FileUtils.getDownloadDir() + File.separator + "senderror.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream fos = new FileOutputStream(file, true);
+        fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
+        fos.flush();
+    }
+
     public void getChats(final JSONArray args, final CallbackContext callbackContext) {
-        MqttReceiver receiver = MqttReceiver.getInstance();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ReceiverParams.MESSAGEARRIVED);
-        cordova.getActivity().registerReceiver(receiver, filter);
-        receiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
+        mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
             @Override
             public void messageArrived(String topic, String content, int qos) {
                 try {
@@ -753,5 +775,30 @@ public class MqttChat extends CordovaPlugin {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mqttReceiver != null) {
+            cordova.getActivity().unregisterReceiver(mqttReceiver);
+            mqttReceiver = null;
+        }
+        if (docFileReceiver != null) {
+            cordova.getActivity().unregisterReceiver(docFileReceiver);
+            docFileReceiver = null;
+        }
+        if (photoFileReceiver != null) {
+            cordova.getActivity().unregisterReceiver(photoFileReceiver);
+            photoFileReceiver = null;
+        }
+        if (netStatusChangeReceiver != null) {
+            cordova.getActivity().unregisterReceiver(netStatusChangeReceiver);
+            netStatusChangeReceiver = null;
+        }
+        if (topicReceiver != null) {
+            cordova.getActivity().unregisterReceiver(topicReceiver);
+            topicReceiver = null;
+        }
+        super.onDestroy();
     }
 }

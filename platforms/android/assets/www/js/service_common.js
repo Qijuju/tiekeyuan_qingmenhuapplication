@@ -85,7 +85,33 @@ angular.module('common.services', [])
       },
       getUUID:function(success){//获取UUID码
       greendao.getUUID(success);
-      }
+      },
+      queryByToday:function (success, error) {
+        greendao.queryByToday (success, error);
+      },
+      queryByWeek:function (success, error) {
+        greendao.queryByWeek (success, error);
+      },
+      queryByYesterday:function (success, error) {
+        greendao.queryByYesterday (success, error);
+      },
+      queryNotifyCount:function (sessionid, success, error) {
+        greendao.queryNotifyCount(sessionid, success, error)
+      },
+      queryLongFile:function (ssid,type,success, error) {
+        greendao.queryLongFile (ssid,type,success, error);
+      },
+      queryWeekFile:function (ssid,type,success, error) {
+        greendao.queryWeekFile (ssid,type,success, error);
+      },
+      queryMonthFile:function (ssid,type,success, error) {
+        greendao.queryMonthFile (ssid,type,success, error);
+      },
+      queryTodayFile:function (ssid,type,success, error) {
+        greendao.queryTodayFile (ssid,type,success, error);
+      },
+
+
   };
 
   })
@@ -276,8 +302,8 @@ angular.module('common.services', [])
         api.sendFile(objectTP,objectID,filePath, success, error);
       },
       //文件发送接口
-      sendDocFile:function (objectTP,objectID,filePath, success, error) {
-        api.sendDocFile(objectTP,objectID,filePath, success, error);
+      sendDocFile:function (messageDetail,objectTP,objectID,filePath, success, error) {
+        api.sendDocFile(messageDetail,objectTP,objectID,filePath, success, error);
       },
       getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
        api.getFile(objectTP,objectID,picSize, success, error);
