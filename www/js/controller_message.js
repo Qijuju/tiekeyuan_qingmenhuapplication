@@ -2919,7 +2919,7 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
-    /*if ($mqtt.isLogin()) {
+    if ($mqtt.isLogin()) {
       // alert($mqtt.isLogin());
       $mqtt.getMqtt().getMyTopic(function (msg) {
         $api.getAllGroupIds(function (groups) {
@@ -2936,11 +2936,12 @@ angular.module('message.controllers', [])
         });
       }, function (msg) {
       });
-    }*/
+    }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){
         if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
         } else {
           backButtonPressedOnceToExit = true;
