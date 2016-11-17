@@ -1,0 +1,102 @@
+<ion-view  view-title="工作">
+  <ion-nav-bar align-title="center" class="bar-stable">
+  </ion-nav-bar>
+    <ion-content>
+      <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="false"
+                     pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
+        <ion-slide ng-repeat="idts in indicators">
+          <div>
+            <img style="width: 100%" ng-src="{{idts.url}}">
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+
+      <!--项目列表-->
+      <h5 style="background-color: #dddddd;padding: 6px">项目列表</h5>
+      <!--<button ng-click="openUrl()">跳转</button>-->
+      <ion-list>
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects"
+                  ng-click="openUrl()">
+          <img ng-src="img/adam.jpg">
+          <h2>{{project.projectName}}</h2>
+          <p style="size: 12px">{{project.kzgsName}}</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+      <div align="center" style="padding: 5px"><a>more....</a></div>
+
+      <!--统计（做成动态-->
+      <h5 style="background-color: #dddddd;padding: 6px">统计</h5>
+
+
+
+
+
+      <div class="row" style="background: #ffffff;">
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/icon_question.png" width="45" height="45"></li>
+              <li>问题</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a >
+            <ul>
+              <li><img src="img/icon_progress.png" width="45" height="45"></li>
+              <li>进度</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a >
+            <ul>
+              <li><img src="img/icon_money.png" width="45" height="45"></li>
+              <li>投资</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/icon_new.png" width="45" height="45"></li>
+              <li>新开工</li>
+            </ul>
+          </a>
+        </div>
+      </div>
+
+      <!--工作-->
+      <h5 style="background-color: #dddddd;padding: 6px">工作</h5>
+      <div class="row" style="background: #ffffff;">
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/icon_question.png" width="45" height="45"></li>
+              <li>待办</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/icon_progress.png" width="45" height="45"></li>
+              <li>消息</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/icon_money.png" width="45" height="45"></li>
+              <li>周报</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+        </div>
+      </div>
+    </ion-content>
+
+</ion-view>
