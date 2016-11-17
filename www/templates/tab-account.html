@@ -4,9 +4,9 @@
   <ion-content overflow-scroll="false">
     <div>
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
-
-        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{jiename}}</div>
+        <img ng-if="picyoumeiyou" class="yuanjiao1" id="myImage" src="{{securlpic}}" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
+        <img ng-if="!picyoumeiyou" src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
+        <div ng-if="!picyoumeiyou" class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="setpic()">{{jiename}}</div>
         <P style="font-size: 18px;color: #ffffff">{{mymypersonname}}</P>
         <div  style="position: absolute;right: 50px;top: 37px;font-size: 15px;color: #ffffff">{{currentcity}}</div>
         <div  style="position: absolute;right: 50px;top: 57px;font-size: 15px;color: #ffffff">{{weatherzhen}}</div>
