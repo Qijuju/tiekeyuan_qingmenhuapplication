@@ -536,6 +536,13 @@ angular.module('message.services', [])
         if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
           messageDetail.message = messageDetail.message + '###0';
         }
+        if (messageDetail.messagetype === 'File') {
+          var msg = messageDetail.message.split('###')[1];
+          var suffix = msg.lastIndexOf("\.");
+          var lastIndex = msg.substr(suffix, msg.length);
+          var fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
+          messageDetail.messagetype = fileIsImage ? "Image" : "File";
+        }
         if (type === 'User') {
           danliao.push(messageDetail);
         } else {
