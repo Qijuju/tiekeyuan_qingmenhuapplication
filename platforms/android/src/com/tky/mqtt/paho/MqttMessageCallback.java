@@ -17,6 +17,7 @@ import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.services.ChatListService;
@@ -54,51 +55,18 @@ public class MqttMessageCallback implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable arg0) {
-		/*MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
-		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SPUtils.save("connectionLost", format.format(new Date()) + arg0.getMessage());*/
-//		SPUtils.save("netstate", NetUtils.isConnect(context));
-//		SPUtils.save("isStated", MqttRobot.isStarted());
-//		SPUtils.save("closeStyle", mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-//        count++;
-//        SPUtils.save("connectionLost", "第" + count + "次失联");
 		MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 		MqttRobot.setMqttStatus(MqttStatus.CLOSE);
+		MqttOper.tellMqttStatus(false);
 		if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
 			SPUtils.save("reconnect", true);
 			mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
 			try {
-//                SPUtils.save("count", "第" + count + "次重联");
 				mqttAsyncClient.reconnect();
 			} catch (MqttException e) {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	/**
-	 * 获取当前时间
-	 * @return
-	 */
-	private String getDateTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return format.format(new Date());
-	}
-
-	/**
-	 * 将收到的消息写到文件中
-	 * @param text
-	 * @throws IOException
-	 */
-	private void saveToFile(String text) throws IOException {
-		File file = new File(FileUtils.getDownloadDir() + File.separator + "MqttChatPingSender.txt");
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-		FileOutputStream fos = new FileOutputStream(file, true);
-		fos.write(((text == null || "".equals(text.trim())) ? "\r\nnotext" : "\r\n" + text).getBytes());
-		fos.flush();
 	}
 
 	@Override
