@@ -1927,7 +1927,7 @@ angular.module('message.controllers', [])
 
       var year=myDate.getFullYear();//获取年份
       var month=myDate.getMonth()+1;//获取月份
-      var day=myDate.getDate();//获取日期
+      var day=myDate.getDate()+1;//获取日期
       // alert("获取当前年月日"+year+month+day);
 
       var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
@@ -2074,7 +2074,7 @@ angular.module('message.controllers', [])
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
         // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
         //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 900000 && $scope.timegap < maxmillions){
+        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 1000 && $scope.timegap < maxmillions){
           $scope.i=$scope.i+1;
           // alert("进来群间隔吗？"+$scope.timegap);
           var messaegeitem={};
@@ -3113,7 +3113,7 @@ angular.module('message.controllers', [])
         chatitem.isSuccess=data[i].isSuccess;
         if(data[i].lastDate<millions){
           chatitem.daytype='0';
-          alert("日期变小了");
+          // alert("日期变小了");
         }else{
           chatitem.daytype=data[i].daytype;
         }
@@ -3136,7 +3136,7 @@ angular.module('message.controllers', [])
         $greendao.queryByConditions('ChatListService',function (data) {
           $chatarr.setData(data);
           $scope.items=data;
-           alert("数组的长度"+data.length);
+           // alert("数组的长度"+data.length);
         },function (err) {
 
         });
