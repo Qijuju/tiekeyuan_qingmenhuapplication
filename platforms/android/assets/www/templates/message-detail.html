@@ -178,7 +178,7 @@
                      style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;margin-left: 5px;">{{msgSingle.message.split(',')[2]}}
                   <br/>点击查看
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送成功！</span>
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'false'" style="color: #ee0500;">发送成功！</span>
                 </font>
               </a>
               <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"

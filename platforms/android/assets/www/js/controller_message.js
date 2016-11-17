@@ -2452,7 +2452,7 @@ angular.module('message.controllers', [])
              }
              }*/
           }
-          alert('msgSingle.messagetype' + msgSingle);
+          // alert('msgSingle.messagetype' + msgSingle);
           if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleGroupMsg(topic, content, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
           } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
@@ -2810,7 +2810,7 @@ angular.module('message.controllers', [])
           $greendao.getUUID(function (data) {
             sqlid=data;
             // alert("图片传进去的id"+sqlid);
-            alert('takeGroupPhoto');
+            // alert('takeGroupPhoto');
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt,type);
             $scope.send_content = "";
             $timeout(function () {

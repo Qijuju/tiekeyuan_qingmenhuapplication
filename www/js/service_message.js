@@ -546,12 +546,14 @@ angular.module('message.services', [])
         if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
           messageDetail.message = messageDetail.message + '###0';
         }
+        var fileIsImage = "File";
         if (messageDetail.messagetype === 'File') {
           var msg = messageDetail.message.split('###')[1];
           var suffix = msg.lastIndexOf("\.");
           var lastIndex = msg.substr(suffix, msg.length);
-          var fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
+          fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
           messageDetail.messagetype = fileIsImage ? "Image" : "File";
+          messagetype = 'Image';
         }
         if (type === 'User') {
           danliao.push(messageDetail);
@@ -1241,9 +1243,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          alert("成功前长度"+qunliao.length);
+          // alert("成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          alert("成功后长度"+qunliao.length+messageReal.message);
+          // alert("成功后长度"+qunliao.length+messageReal.message);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
