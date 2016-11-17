@@ -2919,7 +2919,24 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
-
+    if ($mqtt.isLogin()) {
+      // alert($mqtt.isLogin());
+      $mqtt.getMqtt().getMyTopic(function (msg) {
+        $api.getAllGroupIds(function (groups) {
+          if (msg != null && msg != '') {
+            $mqtt.startMqttChat(msg + ',' + groups);
+            $mqtt.setLogin(true);
+            // $state.go('tab.message');
+            return;
+          }
+        },function (err) {
+          $ToastUtils.showToast(err, function (success) {
+          },function (err) {
+          })
+        });
+      }, function (msg) {
+      });
+    }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){

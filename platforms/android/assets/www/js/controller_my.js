@@ -160,7 +160,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
 
-        alert(imageData)
+        // alert(imageData)
         // alert(imageData);
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
@@ -180,7 +180,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // }
         $api.setHeadPic(picPath, function (msg) {
 
-          alert(msg)
+          // alert(msg)
           $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -192,7 +192,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $scope.$apply(function () {
               $scope.picyoumeiyou=true;
               $scope.securlpic=msg;
-              alert($scope.picyoumeiyou)
+              // alert($scope.picyoumeiyou)
             })
             $ionicLoading.hide();
           });
@@ -568,7 +568,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                   $mqtt.save('passlogin', "2");
                   $mqtt.save('pwdgesture', $scope.data.newpassword);
                 }, function (msg) {
-                  $ToastUtils.showToast("222")
+                  // $ToastUtils.showToast("222")
                   $ToastUtils.showToast(msg);
                 })
               }

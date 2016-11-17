@@ -261,13 +261,36 @@ angular.module('login.controllers', [])
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
-
+      if ($mqtt.isLogin()) {
+        // alert($mqtt.isLogin());
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $api.getAllGroupIds(function (groups) {
+            if (msg != null && msg != '') {
+              $mqtt.startMqttChat(msg + ',' + groups);
+              $mqtt.setLogin(true);
+              // $state.go('tab.message');
+              return;
+            }
+          },function (err) {
+            $ToastUtils.showToast(err, function (success) {
+            },function (err) {
+            })
+          });
+        }, function (msg) {
+        });
+      }
     });
 
     $scope.startgogogo = function() {
       if(passlogin=="1"){
         $api.login(namegesturea, pwdgesturea, function (message) {
-
+          $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 100,
+            showDelay: 0
+          });
           if (message.isActive === false) {
             $api.activeUser(message.userID, function (message) {
               loginM();
@@ -301,6 +324,13 @@ angular.module('login.controllers', [])
       if($scope.timea == 0) {
         if(passlogin=="1"){
           $api.login(namegesturea, pwdgesturea, function (message) {
+            $ionicLoading.show({
+              content: 'Loading',
+              animation: 'fade-in',
+              showBackdrop: false,
+              maxWidth: 100,
+              showDelay: 0
+            });
             if (message.isActive === false) {
               $api.activeUser(message.userID, function (message) {
                 loginM();
@@ -351,18 +381,24 @@ angular.module('login.controllers', [])
         mqtt.getMyTopic(function (msg) {
 
           $api.getAllGroupIds(function (groups) {
+            $timeout(function () {
+              $mqtt.startMqttChat(msg + ',' + groups);
+              $mqtt.setLogin(true);
+              $scope.getUserName();
+              $mqtt.save('passlogin', "1");
+              $mqtt.save('pwdgesture', pwdgesturea);
+              $mqtt.save('namegesture',namegesturea);
+              $state.go('tab.message');
+              $ionicLoading.hide();
+            });
 
-            $mqtt.startMqttChat(msg + ',' + groups);
-            $mqtt.setLogin(true);
-            $scope.getUserName();
-            $mqtt.save('passlogin', "1");
-            $mqtt.save('pwdgesture', pwdgesturea);
-            $mqtt.save('namegesture',namegesturea);
-            $state.go('tab.message');
+
           }, function (err) {
-
+            $ionicLoading.hide()
             $ToastUtils.showToast(err,function (success) {
+              $ionicLoading.hide()
             },function (err) {
+              $ionicLoading.hide()
             });
           });
         }, function (err) {
@@ -371,7 +407,7 @@ angular.module('login.controllers', [])
           $ionicLoading.hide();
         });
       }, function (err) {
-
+        $ionicLoading.hide()
       });
     }
     //登录成功之后获取用户姓名（昵称）
