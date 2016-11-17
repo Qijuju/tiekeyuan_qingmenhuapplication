@@ -11,11 +11,13 @@ import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
@@ -1973,6 +1975,7 @@ public class ThriftApiClient extends CordovaPlugin {
             if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
                 objectID = null;
             }
+
             final String filePath=args.getString(3).split("###")[0];//{{$}}
 
             FileInputStream fis = new FileInputStream(filePath);
@@ -2022,6 +2025,16 @@ public class ThriftApiClient extends CordovaPlugin {
                 isFinish = true;
             }
 
+            if (!NetUtils.isConnect(UIUtils.getContext())) {
+                JSONArray retnObj = new JSONArray("['" + savePath + "','" + objectID + "','" + String.valueOf(-1) + "']");
+                if (messageDetail != null) {
+                    retnObj.put(messageDetail);
+                }
+                setResult(retnObj, PluginResult.Status.OK, callbackContext);
+                return;
+            }
+
+            final String finalObjectID = objectID;
             SystemApi.sendFile(getUserID(), objectTP, objectID, fileByte, 0, isFinish, new AsyncMethodCallback<IMFile.AsyncClient.SendFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.SendFile_call sendFile_call) {
@@ -2034,14 +2047,23 @@ public class ThriftApiClient extends CordovaPlugin {
 //                                setResult(retObj, PluginResult.Status.OK, callbackContext);
                                 sendFile(messageDetail, result, savePath, callbackContext);
                             } else {
-                                System.out.println("用户头像设置失败");
+                                JSONArray retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
+                                if (messageDetail != null) {
+                                    retnObj.put(messageDetail);
+                                }
+                                setResult(retnObj, PluginResult.Status.OK, callbackContext);
                             }
-                            System.out.println(result);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (TException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
+                            JSONArray retnObj = null;
+                            try {
+                                retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
+                            } catch (JSONException e1) {
+                                e1.printStackTrace();
+                            }
+                            if (messageDetail != null) {
+                                retnObj.put(messageDetail);
+                            }
+                            setResult(retnObj, PluginResult.Status.OK, callbackContext);
                             e.printStackTrace();
                         }
                     }
@@ -2049,33 +2071,33 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
+                    JSONArray retnObj = null;
                     try {
-                        setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+                        retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
+                    if (messageDetail != null) {
+                        retnObj.put(messageDetail);
+                    }
+                    setResult(retnObj, PluginResult.Status.OK, callbackContext);
                 }
             });
-        } catch (JSONException e) {
+        } catch (IOException e) {
+            /*JSONArray retnObj = null;
             try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+                retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
+            if (messageDetail != null) {
+                retnObj.put(messageDetail);
+            }
+            setResult(retnObj, PluginResult.Status.OK, callbackContext);*/
             e.printStackTrace();
         } catch (TException e) {
-            try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
             e.printStackTrace();
-        } catch (IOException e) {
-            try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

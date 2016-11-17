@@ -65,4 +65,13 @@ public class ReceiverParams {
 	 * 网络连接上
 	 */
 	public static final String NET_CONNECTED = "com.sls.mqtt.netconnected";
+	/**
+	 * mqtt连接
+	 */
+	public static final String RECEIVER_MQTT_STARTED ="com.sls.mqtt.receivermqttstarted" ;
+
+	/**
+	 * mqtt断开连接
+	 */
+	public static final String RECEIVER_MQTT_CLOSED ="com.sls.mqtt.receivermqttclosed" ;
 }

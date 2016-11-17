@@ -579,7 +579,14 @@ angular.module('message.services', [])
           msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
           if (sdata[2] === '-1') {
+            //如果图片发送失败，就更新数组(界面根据-1去展示叹号)
             msgDetail.message = msgDetail.message + "###-1";
+            if (type === 'User') {
+              $mqtt.updateDanliao(msgDetail);
+            } else {
+              $mqtt.updateQunliao(msgDetail);
+            }
+            $rootScope.$broadcast('sendprogress.update');
             // msgDetail.message = msgDetail.message.substring(0, msgDetail.message.lastIndexOf('###') - 1) + "###-1";
             // alert("估计就将计就计")
 
@@ -589,17 +596,6 @@ angular.module('message.services', [])
             },function (err) {
 
             });
-            /**
-             * 在发送过程中上传图片失败时，先将数组里之前的isSuccess=‘false’的数据删了将isFailure状态置为‘true’
-             * @type {string}
-               */
-            // alert("图片上传过程中失败入数组前长度"+danliao.length);
-            if (type === 'User') {
-              $mqtt.updateImgFileDanliao(msgDetail);
-            } else {
-              $mqtt.updateImgFileQunliao(msgDetail);
-            }
-            // alert("图片上传过程中失败入数组后长度"+danliao.length);
             msgDetail.isFailure='true';
             $greendao.saveObj('MessagesService',msgDetail,function (data) {
               $rootScope.$broadcast('msgs.error');
