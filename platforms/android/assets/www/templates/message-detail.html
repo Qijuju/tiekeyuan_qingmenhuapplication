@@ -29,8 +29,7 @@
       <div ng-repeat="msgSingle in msgs">
         <!---时间戳--->
         <div >
-          <p ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm:ss'}}</p>
-          <p ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+          <p style="height:20px;width:50px;background-color:#c2ccd1;margin-left: 45%;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'HH:mm'}}</p>                                                                                               <p style="height:20px;width:100px;background-color: #c2ccd1;text-align: center;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " style="margin-top: 5px;" align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
@@ -75,9 +74,9 @@
               <!--ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/>-->
             </p>
             <!---接收位置ui--->
-            <p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img
-              src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/>
-            </p>
+            <!--<p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img-->
+              <!--src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/>-->
+            <!--</p>-->
             <!---接收文本ui--->
             <p class="rj-message" style="margin-left: 14.5%"
                ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">{{msgSingle.message}}
@@ -114,6 +113,9 @@
           </span>
 
         </div>
+
+
+
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
           <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
           <!--<img src="{{imgPath}}" />-->
@@ -147,12 +149,12 @@
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}
-                  <br/>{{msgSingle.message.split('###')[3]}}
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送成功！</span>
+                  <br/><!--{{msgSingle.message.split('###')[3]}}--> <!--{{msgSingle.message.split('###')[5]}}--><div ng-show="msgSingle.message.split('###')[5] != '100'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '100'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span>
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true' && msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;">发送失败！</span><span ng-if="msgSingle.isFailure === 'false' && msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;">发送成功！</span>
                 </font>
               </a>
               <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"
-                 ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,                     msgSingle)">
+                 ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}

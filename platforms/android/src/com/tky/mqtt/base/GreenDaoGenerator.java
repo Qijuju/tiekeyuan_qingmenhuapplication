@@ -31,7 +31,8 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
+        //addTestData(schema);
+        new DaoGenerator().generateAll(schema,  "E:/jishitong/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -138,6 +139,8 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("chatType");//当前会话是单聊还是群聊
         chatitem.addStringProperty("senderId");//消息来源人id
         chatitem.addStringProperty("senderName");//消息来源人的名字
+        chatitem.addStringProperty("isSuccess");//消息成功与否状态
+        chatitem.addStringProperty("daytype");//最后一条消息的日期类型
     }
 
 
@@ -254,5 +257,15 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("type");//通知类型
     }
 
+
+    /**
+     *   为了测试在线升级
+     */
+
+    private static void addTestData(Schema schema) {
+        Entity msgHistory=schema.addEntity("TestData");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("name");//应用名
+    }
 
 }

@@ -302,8 +302,8 @@ angular.module('common.services', [])
         api.sendFile(objectTP,objectID,filePath, success, error);
       },
       //文件发送接口
-      sendDocFile:function (objectTP,objectID,filePath, success, error) {
-        api.sendDocFile(objectTP,objectID,filePath, success, error);
+      sendDocFile:function (messageDetail,objectTP,objectID,filePath, success, error) {
+        api.sendDocFile(messageDetail,objectTP,objectID,filePath, success, error);
       },
       getFile:function(objectTP,objectID,picSize, success, error) {//图片下载接口
        api.getFile(objectTP,objectID,picSize, success, error);

@@ -4,10 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
-import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -48,6 +46,7 @@ public class AlarmRecevier extends BroadcastReceiver{
 			if (wakelock != null) {
 				wakelock.release();
 				wakelock = null;
+				context.unregisterReceiver(this);
 			}
 		}
 	}

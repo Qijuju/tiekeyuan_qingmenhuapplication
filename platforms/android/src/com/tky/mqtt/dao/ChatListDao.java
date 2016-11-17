@@ -33,6 +33,8 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         public final static Property ChatType = new Property(7, String.class, "chatType", false, "CHAT_TYPE");
         public final static Property SenderId = new Property(8, String.class, "senderId", false, "SENDER_ID");
         public final static Property SenderName = new Property(9, String.class, "senderName", false, "SENDER_NAME");
+        public final static Property IsSuccess = new Property(10, String.class, "isSuccess", false, "IS_SUCCESS");
+        public final static Property Daytype = new Property(11, String.class, "daytype", false, "DAYTYPE");
     };
 
 
@@ -57,7 +59,9 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
                 "'LAST_DATE' INTEGER," + // 6: lastDate
                 "'CHAT_TYPE' TEXT," + // 7: chatType
                 "'SENDER_ID' TEXT," + // 8: senderId
-                "'SENDER_NAME' TEXT);"); // 9: senderName
+                "'SENDER_NAME' TEXT," + // 9: senderName
+                "'IS_SUCCESS' TEXT," + // 10: isSuccess
+                "'DAYTYPE' TEXT);"); // 11: daytype
     }
 
     /** Drops the underlying database table. */
@@ -120,6 +124,16 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         if (senderName != null) {
             stmt.bindString(10, senderName);
         }
+ 
+        String isSuccess = entity.getIsSuccess();
+        if (isSuccess != null) {
+            stmt.bindString(11, isSuccess);
+        }
+ 
+        String daytype = entity.getDaytype();
+        if (daytype != null) {
+            stmt.bindString(12, daytype);
+        }
     }
 
     /** @inheritdoc */
@@ -141,7 +155,9 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
             cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // lastDate
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // chatType
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // senderId
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // senderName
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // senderName
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // isSuccess
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // daytype
         );
         return entity;
     }
@@ -159,6 +175,8 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         entity.setChatType(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setSenderId(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setSenderName(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setIsSuccess(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setDaytype(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     /** @inheritdoc */
