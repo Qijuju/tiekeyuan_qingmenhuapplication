@@ -9,54 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5766bd7-e1f1-4852-8549-dfc06aa23798" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_next_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_next_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_next_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_next_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_previous_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_previous_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_previous_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_previous_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_remove.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_remove.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_remove.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_remove.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_db.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_message.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_money.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_progress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_question.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/icon_weekly.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/jiantou.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/leftjiantou.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/location.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/inappbrowser/InAppBrowser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/inappbrowser/InAppBrowserDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/apache/cordova/inappbrowser/InAppChromeClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform_www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger3737470340207414266.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/tab-webpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/plugins/MqttChat/www/mqtt_chat.js" afterPath="$PROJECT_DIR$/assets/www/plugins/MqttChat/www/mqtt_chat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" afterPath="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c5766bd7-e1f1-4852-8549-dfc06aa23798" name="Default" comment="" />
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -2439,6 +2392,13 @@
       <option name="number" value="Default" />
       <updated>1478160971114</updated>
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1479391889149</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1479391889149</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2452,7 +2412,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2473,7 +2433,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18496802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18481848" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2494,6 +2454,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
