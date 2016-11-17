@@ -1166,6 +1166,7 @@ angular.module('message.controllers', [])
 
     //点击小头像，跳转到聊天设置界面
     $scope.personalSetting = function () {
+      alert("pp"+$scope.sessionid);
       $state.go('personalSetting', {
         id: $scope.userId,
         ssid:$scope.viewtitle,
@@ -1294,7 +1295,6 @@ angular.module('message.controllers', [])
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api) {
     $scope.$on('sendprogress.update', function (event) {
       $scope.$apply(function () {
-        $ToastUtils.showToast("进度进行中~~~",null,null);
         $scope.msg=$mqtt.getQunliao();
       });
     });
@@ -1523,7 +1523,7 @@ angular.module('message.controllers', [])
         $scope.send_content = "";
         return;
       }
-      $mqtt.getMqtt().getTopic(topic, $scope.grouptype, function (userTopic) {
+      $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid,messagetype, $mqtt);
@@ -1939,8 +1939,6 @@ angular.module('message.controllers', [])
 
     // 点击按钮触发，或一些其他的触发条件
     $scope.resendgroupshow = function (topic, content, id,grouptype,localuser,localuserId,sqlid,msgSingle) {
-
-      // 显示操作表
       $ionicActionSheet.show({
         buttons: [
           {text: '重新发送'},
@@ -1950,19 +1948,42 @@ angular.module('message.controllers', [])
         // titleText: 'Modify your album',
         cancelText: '取消',
         buttonClicked: function (index) {
-          // $ToastUtils.showToast(index);
-          if (index === 0) {
+          if (index === 1) {
             //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
-            // alert($mqtt.getQunliao().length);
-            /*for(var i=0;i<$mqtt.getQunliao().length;i++){
+            /*for(var i=0;i<$mqtt.getDanliao().length;i++){
+             // alert(sqlid+i+"来了" );
+             if($mqtt.getDanliao()[i]._id === sqlid){
+             // alert("后"+$mqtt.getDanliao()[i]._id);
+             $mqtt.getDanliao().splice(i, 1);
+             $rootScope.$broadcast('msgs.update');
+             break;
+             }
+             }*/
+          }
+          alert('msgSingle.messagetype' + msgSingle);
+          if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
+            $scope.sendSingleGroupMsg(topic, content, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getQunliao()[i]._id === sqlid){
-                // alert("后"+$mqtt.getQunliao()[i]._id);
+                // alert("后"+$mqtt.getDanliao()[i]._id);
                 $mqtt.getQunliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
                 break;
               }
-            }*/
-            $scope.sendSingleGroupMsg(topic, content, id,grouptype,localuser,localuserId,sqlid);
+            }
+            $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
+              $mqtt.getFileContent(msgSingle.message.split('###')[1], function (fileData) {
+                $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, msgSingle.messagetype, fileData[0],$mqtt, grouptype);
+                $scope.send_content = "";
+                keepKeyboardOpen();
+              },function (err) {
+              });
+            }, function (msg) {
+            });
+          } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
+            $scope.sendSingleGroupMsg(userTopic, msgSingle.message, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
@@ -1982,6 +2003,67 @@ angular.module('message.controllers', [])
           return true;
         }
       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /*$ToastUtils.showToast("群组重发~~~" + grouptype,null, null);
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '重新发送'},
+          {text: '删除'},
+        ],
+        // destructiveText: '重新发送',
+        // titleText: 'Modify your album',
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          // $ToastUtils.showToast(index);
+          if (index === 0) {
+            //消息发送失败重新发送成功时，页面上找出那条带叹号的message并删除，未能正确取值。
+            // alert($mqtt.getQunliao().length);
+            /!*for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getQunliao()[i]._id);
+                $mqtt.getQunliao().splice(i, 1);
+                break;
+              }
+            }*!/
+            $scope.sendSingleGroupMsg(topic, content, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
+          } else if (index === 1) {
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $greendao.deleteObj('MessagesService',msgSingle,function (data) {
+                  $mqtt.getQunliao().splice(i, 1);
+                  $rootScope.$broadcast('msgs.update');
+                },function (err) {
+                  // alert(err+"sendmistake");
+                });
+                break;
+              }
+            }
+            //$rootScope.$broadcast('msgs.update');
+          }
+          return true;
+        }
+      });*/
 
     };
     //:groupid/:chatname/:grouptype
@@ -2176,7 +2258,6 @@ angular.module('message.controllers', [])
     $scope.openGroupAllFile = function (path, msg) {
       $api.openFileByPath(path,msg, function (message) {
         $greendao.saveObj('MessagesService',message,function (data) {
-          $ToastUtils.showToast("进来啦。。。。");
           $mqtt.updateQunliao(message);
           $rootScope.$broadcast('sendprogress.update');
         },function (err) {

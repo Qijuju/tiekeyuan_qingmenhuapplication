@@ -2348,7 +2348,7 @@ public class ThriftApiClient extends CordovaPlugin {
                     progress = Integer.parseInt(objectID.split("###")[5]);
                 } catch (Exception e) {
                 }
-                if (progress > 0 && progress < 100) {
+                if (progress > 0 && progress < 100 || progress == -1) {
                     file.delete();
                 }
                 if (!file.exists()) {

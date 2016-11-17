@@ -533,6 +533,9 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         //alert("图片类型"+type);
+        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
+          messageDetail.message = messageDetail.message + '###0';
+        }
         if (type === 'User') {
           danliao.push(messageDetail);
         } else {
