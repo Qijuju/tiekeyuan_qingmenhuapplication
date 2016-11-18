@@ -426,9 +426,9 @@ angular.module('message.controllers', [])
 
     //获取文件名
     $scope.getFileName = function (message) {
-      var msg = message.split('###')[1];
-      var lastindex = msg.lastIndexOf("\/");
-      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+      var msg = message.split('###')[4];
+      // var lastindex = msg.lastIndexOf("\/");
+      return msg;//lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
     };
 
     $scope.getFilePath = function (message) {
@@ -447,6 +447,7 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+
     };
     //弹出测试
     $scope.alertMsg = function (message) {
@@ -1293,7 +1294,7 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api) {
-    $scope.$on('sendprogress.update', function (event) {
+    $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
       });
@@ -2244,9 +2245,9 @@ angular.module('message.controllers', [])
 
     //获取文件名
     $scope.getFileName = function (message) {
-      var msg = message.split('###')[1];
-      var lastindex = msg.lastIndexOf("\/");
-      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+      var msg = message.split('###')[4];
+      // var lastindex = msg.lastIndexOf("\/");
+      return msg;//lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
     };
 
     $scope.getFilePath = function (message) {
@@ -2257,11 +2258,13 @@ angular.module('message.controllers', [])
     //打开文件
     $scope.openGroupAllFile = function (path, msg) {
       $api.openFileByPath(path,msg, function (message) {
-        $greendao.saveObj('MessagesService',message,function (data) {
+        $mqtt.updateQunliao(message);
+        $rootScope.$broadcast('sendgroupprogress.update');
+        /*$greendao.saveObj('MessagesService',message,function (data) {
           $mqtt.updateQunliao(message);
-          $rootScope.$broadcast('sendprogress.update');
+          $rootScope.$broadcast('sendgroupprogress.update');
         },function (err) {
-        });
+        });*/
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
@@ -2295,6 +2298,7 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+
     };
 
 

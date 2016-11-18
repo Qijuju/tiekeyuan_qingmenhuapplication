@@ -536,12 +536,14 @@ angular.module('message.services', [])
         if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
           messageDetail.message = messageDetail.message + '###0';
         }
+        var fileIsImage = "File";
         if (messageDetail.messagetype === 'File') {
           var msg = messageDetail.message.split('###')[1];
           var suffix = msg.lastIndexOf("\.");
           var lastIndex = msg.substr(suffix, msg.length);
-          var fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
+          fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
           messageDetail.messagetype = fileIsImage ? "Image" : "File";
+          messagetype = messageDetail.messagetype;
         }
         if (type === 'User') {
           danliao.push(messageDetail);
@@ -619,10 +621,11 @@ angular.module('message.services', [])
               // msgDetail.sendProgress = sdata[2];
               if (type === 'User') {
                 $mqtt.updateDanliao(msgDetail);
+                $rootScope.$broadcast('sendprogress.update');
               } else {
                 $mqtt.updateQunliao(msgDetail);
+                $rootScope.$broadcast('sendgroupprogress.update');
               }
-              $rootScope.$broadcast('sendprogress.update');
             },function (err) {
             });
           } else {
@@ -867,6 +870,7 @@ angular.module('message.services', [])
                   // alert("图片下载成功了啊的的的大的的的的的的的")
                   if (data === '100') {
                     arriveMessage.message = newMessage;
+                    alert(arriveMessage.message);
                     //当图片下载完了，入数组，无需入库(因为在java后端已经入库了)
                     if(message.type==="User"){
                       danliao.push(arriveMessage);
