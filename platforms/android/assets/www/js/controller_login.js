@@ -227,7 +227,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
-   
+
     document.getElementById("imgaaa").style.height=(window.screen.height)+'px';
     var passworda="";
     var loginpageaa=""
@@ -259,9 +259,12 @@ angular.module('login.controllers', [])
           $scope.timea = 3;
           var timer = null;
           timer = $interval(function(){
-            $scope.timea = $scope.timea - 1;
+            if($scope.timea>-1&&$scope.timea<4){
+              $scope.timea = $scope.timea - 1;
+            }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if($scope.timea == 0) {
+              $scope.timea = "0"
               ifyuju();
             }
           }, 1000);

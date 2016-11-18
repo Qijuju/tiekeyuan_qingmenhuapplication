@@ -50,12 +50,12 @@
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==4||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==5||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
           </div>
-          <!--<div class="col-80" align="left" ng-click="goPersonDetail(persondetail1.UserID)">-->
-          <!--<span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>-->
-          <!--</div>-->
-          <div class="col-80" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
-            <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>
+          <div class="col-80" align="left" ng-click="goPersonDetail(persondetail1.UserID)">
+          <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>
           </div>
+          <!--<div class="col-80" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">-->
+            <!--<span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>-->
+          <!--</div>-->
         </div>
       </ion-item>
       <!--<ion-option-button class="button-assertive" ng-click="removeattention(item.UserID)">-->
