@@ -10,6 +10,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
@@ -27,6 +28,7 @@ import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
+import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
@@ -279,13 +281,6 @@ public class MqttChat extends CordovaPlugin {
         }
         JSONObject obj = new JSONObject(message);
         String msg = obj.getString("message");
-        if ("Group".equals(obj.getString("type"))) {
-            boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
-            if (!fromMe){
-                setResult("failure", PluginResult.Status.ERROR, callbackContext);
-                return;
-            }
-        }
         if (msg == null || "".equals(msg.trim())) {
             return ;
         }
@@ -315,6 +310,15 @@ public class MqttChat extends CordovaPlugin {
                 }
             }
         });
+        if ("Group".equals(obj.getString("type"))) {
+            boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
+            if (!fromMe){
+                String errMSG = switchMsg(message, false);
+                MqttOper.sendErrNotify(errMSG);
+                //setResult(jsonObject, PluginResult.Status.ERROR, callbackContext);
+                return;
+            }
+        }
         /*//消息回执状态，默认false
         boolean flag=false;
         //消息发送失败，数据回调，然后结束(断网，失去连接)
@@ -354,6 +358,14 @@ public class MqttChat extends CordovaPlugin {
 //        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
 //        pluginResult.setKeepCallback(true);
 //        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    private String switchMsg(String msg, boolean sendStatus) {
+        Messages messages = GsonUtils.fromJson(msg, Messages.class);
+        messages.setIsFailure(sendStatus ? "false" : "true");
+        messages.setIsSuccess(sendStatus ? "true" : "false");
+        return GsonUtils.toJson(messages, Messages.class);
+
     }
 
     /**

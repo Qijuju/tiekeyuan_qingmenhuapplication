@@ -1286,6 +1286,7 @@ angular.module('message.services', [])
           },function (message) {
             // alert("发送失败前长度"+qunliao.length);
             $mqtt.updateQunliao(message);
+            alert('err.isFailure');
             // messageReal.isFailure='true';
             // qunliao.push(message);
             // alert("发送失败后长度"+qunliao.length);

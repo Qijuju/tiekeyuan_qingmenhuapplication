@@ -1591,6 +1591,8 @@ angular.module('message.controllers', [])
      */
     $scope.groupid=$stateParams.id;
     $scope.chatname=$stateParams.chatName;
+    //alert("你好群id"+$scope.groupid+$scope.chatname);
+
     // alert("chatName"+$scope.chatname + 'ccccc' + ($scope.chatname != undefined));
     if($scope.chatname != undefined && $scope.chatname != null && $scope.chatname !=''){
       $scope.grouptype=$stateParams.grouptype;
@@ -3044,7 +3046,7 @@ angular.module('message.controllers', [])
     }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){
+      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -4363,7 +4365,7 @@ angular.module('message.controllers', [])
   })
 
   .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
-
+    //群设置
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -4375,6 +4377,8 @@ angular.module('message.controllers', [])
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+    //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];

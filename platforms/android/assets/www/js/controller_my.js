@@ -2,7 +2,19 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap','ngCordova'])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation,$stateParams) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation,$ionicHistory) {
+
+
+    /*$scope.$on('$ionicView.enter', function () {
+      /!*$ionicHistory.nextViewOptions({
+        disableBack: true
+      });*!/
+      $ionicHistory.clearHistory();
+    });*/
+
+
+
+
     var isAndroid = ionic.Platform.isAndroid();
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
@@ -397,12 +409,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading,$mqtt) {
 
 
 
     $scope.UserIDforhou = $stateParams.UserIDfor;
-
+    var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/myinformation/'+$scope.UserIDforhou)){
         if(isopen){
@@ -410,6 +422,17 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           isopen=false;
         }else {
           $state.go("tab.account");
+        }
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
         }
       }else {
         $ionicHistory.goBack();
@@ -551,7 +574,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     $scope.UserIDsethou = $stateParams.UserIDset;
 
-
+    var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/accountsettion/'+$scope.UserIDsethou)){
         if(isopen){
@@ -560,7 +583,18 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }else {
           $state.go("tab.account");
         }
-      }else {
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
+      }else  {
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }

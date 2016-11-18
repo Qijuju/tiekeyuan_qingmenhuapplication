@@ -105,7 +105,38 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location) {
+
+    /*var backButtonPressedOnceToExit=false;
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()== '/tab/contacts'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+
+    },501)*/
+
+
+
+
+
+
+
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',

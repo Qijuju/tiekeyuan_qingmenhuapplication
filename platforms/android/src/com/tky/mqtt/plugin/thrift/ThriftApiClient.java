@@ -1496,7 +1496,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             }.getType());
                             setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
                         } else {
-                            setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                            setResult("群已经被解散", PluginResult.Status.ERROR, callbackContext);
                         }
                     } catch (TException e) {
                         setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
@@ -1508,7 +1508,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
-                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
                 }
             });
         } catch (JSONException e) {
