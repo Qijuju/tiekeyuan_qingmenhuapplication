@@ -55,9 +55,9 @@
         <span class="rj-sm-red-icon" ng-if="item.count > 0"><p>{{item.count}}</p></span>
         <h2>{{item.chatName}}</h2>
         <p>
-          <font style="padding-bottom: 1px;"><img style="background-color: transparent;padding-right: 5px" src="img/leftjiantou.png" ng-if="item.isSuccess === 'false'"/>{{item.lastText}}</font>
+          <font style="padding-bottom: 1px;"><img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false'"/>{{item.lastText}}</font>
         </p>
-        <span class="rj-push-right" ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd HH:mm' }}</span>
+        <span class="rj-push-right" ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd' }}</span>
         <span class="rj-push-right" ng-if="item.lastDate != 0 && item.daytype === '1'">{{ item.lastDate | date:'HH:mm' }}</span>
         <span class="rj-push-right" ng-if="item.lastDate === 0"></span>
         <!--这个就是来了新消息, 头像上的小红数字-->

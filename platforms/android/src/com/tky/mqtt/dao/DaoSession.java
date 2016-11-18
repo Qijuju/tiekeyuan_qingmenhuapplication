@@ -139,6 +139,7 @@ public class DaoSession extends AbstractDaoSession {
         moduleCountDao = new ModuleCountDao(moduleCountDaoConfig, this);
         slowNotifyListDao = new SlowNotifyListDao(slowNotifyListDaoConfig, this);
 
+
         registerDao(Messages.class, messagesDao);
         registerDao(ParentDept.class, parentDeptDao);
         registerDao(SubDept.class, subDeptDao);
@@ -153,6 +154,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(FilePicture.class, filePictureDao);
         registerDao(ModuleCount.class, moduleCountDao);
         registerDao(SlowNotifyList.class, slowNotifyListDao);
+
     }
     
     public void clear() {
@@ -227,5 +229,6 @@ public class DaoSession extends AbstractDaoSession {
     public SlowNotifyListDao getSlowNotifyListDao() {
         return slowNotifyListDao;
     }
+
 
 }

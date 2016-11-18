@@ -54,6 +54,7 @@ angular.module('message.services', [])
       mainlist =savedata;
     },
     updatechatdata:function (data) {
+      // alert("被更新的数据的id"+data.id);
       for(var i=0;i<=mainlist.length-1;i++){
         if( mainlist[i].id === data.id){
           // alert("找出chat数组的被更改的数据了"+i);
@@ -62,6 +63,15 @@ angular.module('message.services', [])
       }
       mainlist.unshift(data);
       // alert("建群时消息"+data.lastText);
+    },
+    updatedatanosort:function (data) {
+      // alert("被更新的数据的id"+data.id);
+      for(var i=0;i<=mainlist.length-1;i++){
+        if( mainlist[i].id === data.id){
+          // alert("找出chat数组的被更改的数据了"+i);
+          mainlist.splice(i,1,data);
+        }
+      }
     },
     deletechatdata:function (data) {
       for(var i=0;i<=mainlist.length-1;i++){
@@ -74,7 +84,7 @@ angular.module('message.services', [])
       // alert("看看长度"+mainlist.length);
     },
     getAllData:function () {
-      // alert("service界面数组长度"+mainlist.length);
+      // alert("service最后一条数据消息"+mainlist[mainlist.length-1].lastText);
       return mainlist;
     },
     getIdChatName:function (id,chatname) {
@@ -388,9 +398,8 @@ angular.module('message.services', [])
         }
 
             //发送消息前先展示在界面上
-            alert("单聊数组长度前"+danliao.length+messageDetail.message);
+            alert("数组长度前"+danliao.length+messageDetail.message);
             danliao.push(messageDetail);
-            alert("单聊数组长度后"+danliao.length+messageDetail.message);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
             },function (err) {
@@ -570,7 +579,14 @@ angular.module('message.services', [])
           msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
           if (sdata[2] === '-1') {
+            //如果图片发送失败，就更新数组(界面根据-1去展示叹号)
             msgDetail.message = msgDetail.message + "###-1";
+            if (type === 'User') {
+              $mqtt.updateDanliao(msgDetail);
+            } else {
+              $mqtt.updateQunliao(msgDetail);
+            }
+            $rootScope.$broadcast('sendprogress.update');
             // msgDetail.message = msgDetail.message.substring(0, msgDetail.message.lastIndexOf('###') - 1) + "###-1";
             // alert("估计就将计就计")
 
@@ -580,17 +596,6 @@ angular.module('message.services', [])
             },function (err) {
 
             });
-            /**
-             * 在发送过程中上传图片失败时，先将数组里之前的isSuccess=‘false’的数据删了将isFailure状态置为‘true’
-             * @type {string}
-               */
-            // alert("图片上传过程中失败入数组前长度"+danliao.length);
-            if (type === 'User') {
-              $mqtt.updateImgFileDanliao(msgDetail);
-            } else {
-              $mqtt.updateImgFileQunliao(msgDetail);
-            }
-            // alert("图片上传过程中失败入数组后长度"+danliao.length);
             msgDetail.isFailure='true';
             $greendao.saveObj('MessagesService',msgDetail,function (data) {
               $rootScope.$broadcast('msgs.error');
@@ -710,6 +715,7 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
+        // alert('arriveMsg');
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
           arriveMessage._id=message._id;
@@ -733,7 +739,7 @@ angular.module('message.services', [])
           // arriveMessage.isread='0';
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
-          // alert("进来了吗"+message.type);
+          // alert("进来了吗"+message.istime+message.daytype+message.isSuccess);
           if(message.type === 'Platform'){
             $rootScope.$broadcast('newnotify.update');
             /*//当消息为系统通知时
@@ -871,7 +877,6 @@ angular.module('message.services', [])
                   // alert("图片下载成功了啊的的的大的的的的的的的")
                   if (data === '100') {
                     arriveMessage.message = newMessage;
-                    alert(arriveMessage.message);
                     //当图片下载完了，入数组，无需入库(因为在java后端已经入库了)
                     if(message.type==="User"){
                       danliao.push(arriveMessage);
@@ -1189,7 +1194,7 @@ angular.module('message.services', [])
       },
 
       sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype,$mqtt) {
-        // alert("发送群消息"+sqlid+localuserId+grouptype+messagetype);
+        alert("发送群消息"+content);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
@@ -1235,9 +1240,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          alert("群聊数组成功前长度"+qunliao.length);
+          alert("qunliao成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          alert("群聊数组成功后长度"+qunliao.length);
+          alert("qunliao成功后长度"+qunliao.length+messageReal.message);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
