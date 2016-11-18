@@ -23,8 +23,8 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
+import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
-import com.tky.mqtt.paho.receiver.NetStatusChangeReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -70,7 +70,8 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
-    private NetStatusChangeReceiver netStatusChangeReceiver;
+//    private NetStatusChangeReceiver netStatusChangeReceiver;
+    private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
     private MqttReceiver mqttReceiver;
 
@@ -92,11 +93,17 @@ public class MqttChat extends CordovaPlugin {
         photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
         UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
 
-        netStatusChangeReceiver = new NetStatusChangeReceiver();
+        /*netStatusChangeReceiver = new NetStatusChangeReceiver();
         IntentFilter netStatusChangeFilter = new IntentFilter();
         netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
         netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
-        UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);
+        UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);*/
+
+        mqttConnectReceiver=new MqttConnectReceiver();
+        IntentFilter mqttConnectFilter=new IntentFilter();
+        mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_STARTED);
+        mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_CLOSED);
+        UIUtils.getContext().registerReceiver(mqttConnectReceiver,mqttConnectFilter);
 
         //发布消息的广播
         topicReceiver = new MqttSendMsgReceiver();
@@ -656,17 +663,18 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void setOnNetStatusChangeListener(final JSONArray args, final CallbackContext callbackContext) {
-        if (netStatusChangeReceiver != null) {
-            netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
+        if (mqttConnectReceiver != null) {
+            mqttConnectReceiver.setOnMqttStatusChangeListener(new MqttConnectReceiver.OnMqttStatusChangeListener() {
                 @Override
-                public void doNetDisconnect() {
-                    setResult("false", PluginResult.Status.ERROR, callbackContext);
+                public void onMqttStarted() {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
                 }
 
                 @Override
-                public void doNetConnect() {
-                    setResult("true", PluginResult.Status.OK, callbackContext);
+                public void onMqttClosed() {
+                    setResult("false", PluginResult.Status.ERROR, callbackContext);
                 }
+
             });
         }
     }
@@ -802,9 +810,9 @@ public class MqttChat extends CordovaPlugin {
             cordova.getActivity().unregisterReceiver(photoFileReceiver);
             photoFileReceiver = null;
         }
-        if (netStatusChangeReceiver != null) {
-            cordova.getActivity().unregisterReceiver(netStatusChangeReceiver);
-            netStatusChangeReceiver = null;
+        if (mqttConnectReceiver != null) {
+            cordova.getActivity().unregisterReceiver(mqttConnectReceiver);
+            mqttConnectReceiver = null;
         }
         if (topicReceiver != null) {
             cordova.getActivity().unregisterReceiver(topicReceiver);

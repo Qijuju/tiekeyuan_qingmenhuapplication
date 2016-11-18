@@ -80,7 +80,7 @@ public class ScalePhoto extends CordovaPlugin {
             Intent intent =new Intent(cordova.getActivity(), PhotoScaleActivity.class);
             intent.putExtra("filePath",filepath);
             intent.putExtra("fromwhere","local");
-            intent.putExtra("filefactsize",0);
+            intent.putExtra("filefactsize",0l);
             intent.putExtra("bigfilepath",filepath);
             cordova.getActivity().startActivity(intent);
             setResult("加载成功！", PluginResult.Status.OK, callbackContext);

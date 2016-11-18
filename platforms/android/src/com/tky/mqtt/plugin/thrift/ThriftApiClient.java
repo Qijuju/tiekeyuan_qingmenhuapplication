@@ -10,11 +10,13 @@ import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
@@ -22,6 +24,7 @@ import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
@@ -92,7 +95,6 @@ import im.server.attention.RSTgetAttention;
  */
 public class ThriftApiClient extends CordovaPlugin {
 
-
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         cordova.getThreadPool().execute(new Runnable() {
@@ -147,6 +149,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                         ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                                         TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+                                        SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                                         topContactsService.deleteAllData();
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();
@@ -1865,7 +1868,7 @@ public class ThriftApiClient extends CordovaPlugin {
                         try {
                             RSTSendFile result = sendFile_call.getResult();
                             if (result.result) {
-                                sendFile(result, savePath, callbackContext);
+                                sendFile(null, result, savePath, callbackContext);
                             } else {
                                 System.out.println("用户头像设置失败");
                             }
@@ -1894,7 +1897,7 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
-    private void sendFile(RSTSendFile result, String filePath, CallbackContext callbackContext) throws IOException, TException, JSONException {
+    private void sendFile(JSONObject messageDetail, RSTSendFile result, String filePath, CallbackContext callbackContext) throws IOException, TException, JSONException {
         int length = result.getLength();
         long offset = result.getOffset();
         offset = offset + length;
@@ -1917,6 +1920,9 @@ public class ThriftApiClient extends CordovaPlugin {
         if(sendLength <= 0){
             String objID = result.getObjID();
             JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "','1']");
+            if (messageDetail != null) {
+                retObj.put(messageDetail);
+            }
             setResult(retObj, PluginResult.Status.OK, callbackContext);
             return;
         }
@@ -1937,11 +1943,15 @@ public class ThriftApiClient extends CordovaPlugin {
                 try {
                     rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
                     flag = false;
-                } catch (SocketTimeoutException e) {
+                } catch (Exception e) {
                     count++;
                     if (count > 50) {
 //                        flag = false;
-                        setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(-1) + "']"), PluginResult.Status.OK, callbackContext);
+                        JSONArray retnObj = new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(-1) + "']");
+                        if (messageDetail != null) {
+                            retnObj.put(messageDetail);
+                        }
+                        setResult(retnObj, PluginResult.Status.OK, callbackContext);
                         break;
                     } else {
                         flag = true;
@@ -1951,14 +1961,21 @@ public class ThriftApiClient extends CordovaPlugin {
                     return;
                 }
             }
-            setResult(new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
+            JSONArray retnObj = new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']");
+            if (messageDetail != null) {
+                retnObj.put(messageDetail);
+            }
+            setResult(retnObj, PluginResult.Status.OK, callbackContext);
 //            System.out.println("第" + i +"次发送，用时：" + (System.currentTimeMillis() - time));
             i++;
             offset = rlt.getOffset() + rlt.getLength();
             fileByte.clear();
         }
         String objID = result.getObjID();
-        JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "','1']");
+        JSONArray retObj = new JSONArray("['" + filePath + "','" + objID + "','1'" + "]");
+        if (messageDetail != null) {
+            retObj.put(messageDetail);
+        }
         setResult(retObj, PluginResult.Status.OK, callbackContext);
         in.close();
     }
@@ -1970,12 +1987,14 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void sendDocFile(final JSONArray args, final CallbackContext callbackContext){
         try {
-            String objectTP = args.getString(0);
-            String objectID = args.getString(1);
+            final JSONObject messageDetail = args.getJSONObject(0);
+            String objectTP = args.getString(1);
+            String objectID = args.getString(2);
             if (objectID != null && ("null".equals(objectID.trim()) || "".equals(objectID.trim()))) {
                 objectID = null;
             }
-            final String filePath=args.getString(2).split("###")[0];//{{$}}
+
+            final String filePath=args.getString(3).split("###")[0];//{{$}}
 
             FileInputStream fis = new FileInputStream(filePath);
 
@@ -2024,6 +2043,16 @@ public class ThriftApiClient extends CordovaPlugin {
                 isFinish = true;
             }
 
+            if (!NetUtils.isConnect(UIUtils.getContext())) {
+                JSONArray retnObj = new JSONArray("['" + savePath + "','" + objectID + "','" + String.valueOf(-1) + "']");
+                if (messageDetail != null) {
+                    retnObj.put(messageDetail);
+                }
+                setResult(retnObj, PluginResult.Status.OK, callbackContext);
+                return;
+            }
+
+            final String finalObjectID = objectID;
             SystemApi.sendFile(getUserID(), objectTP, objectID, fileByte, 0, isFinish, new AsyncMethodCallback<IMFile.AsyncClient.SendFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.SendFile_call sendFile_call) {
@@ -2031,17 +2060,28 @@ public class ThriftApiClient extends CordovaPlugin {
                         try {
                             RSTSendFile result = sendFile_call.getResult();
                             if (result.result) {
-                                setResult(new JSONArray("['" + filePath + "','" + result.getObjID() + "','" + String.valueOf(20 * 1024 * 1.0f / fileSize) + "']"), PluginResult.Status.OK, callbackContext);
-                                sendFile(result, savePath, callbackContext);
+//                                JSONArray retObj = new JSONArray("['" + filePath + "','" + result.getObjID() + "','" + String.valueOf(20 * 1024 * 1.0f / fileSize) + "','" + messageDetail + "']");
+//                                retObj.put(messageDetail);
+//                                setResult(retObj, PluginResult.Status.OK, callbackContext);
+                                sendFile(messageDetail, result, savePath, callbackContext);
                             } else {
-                                System.out.println("用户头像设置失败");
+                                JSONArray retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
+                                if (messageDetail != null) {
+                                    retnObj.put(messageDetail);
+                                }
+                                setResult(retnObj, PluginResult.Status.OK, callbackContext);
                             }
-                            System.out.println(result);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (TException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
+                            JSONArray retnObj = null;
+                            try {
+                                retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
+                            } catch (JSONException e1) {
+                                e1.printStackTrace();
+                            }
+                            if (messageDetail != null) {
+                                retnObj.put(messageDetail);
+                            }
+                            setResult(retnObj, PluginResult.Status.OK, callbackContext);
                             e.printStackTrace();
                         }
                     }
@@ -2049,33 +2089,33 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onError(Exception e) {
+                    JSONArray retnObj = null;
                     try {
-                        setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+                        retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
+                    if (messageDetail != null) {
+                        retnObj.put(messageDetail);
+                    }
+                    setResult(retnObj, PluginResult.Status.OK, callbackContext);
                 }
             });
-        } catch (JSONException e) {
+        } catch (IOException e) {
+            /*JSONArray retnObj = null;
             try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
+                retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(-1) + "']");
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
+            if (messageDetail != null) {
+                retnObj.put(messageDetail);
+            }
+            setResult(retnObj, PluginResult.Status.OK, callbackContext);*/
             e.printStackTrace();
         } catch (TException e) {
-            try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
             e.printStackTrace();
-        } catch (IOException e) {
-            try {
-                setResult(new JSONArray("['-1','-1','-1']"), PluginResult.Status.OK, callbackContext);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -2338,23 +2378,21 @@ public class ThriftApiClient extends CordovaPlugin {
     public void openFileByPath(final JSONArray args, final CallbackContext callbackContext) {
         try {
             final String path = args.getString(0);
-            if (path != null && !"".equals(path)) {
-                File file = new File(path);
+            final JSONObject msg = args.getJSONObject(1);
+            File file = new File(path);
+            final String objectID=msg.getString("message");
+            final String message = objectID.substring(0, objectID.lastIndexOf("###"));
+            if (path != null && !"".equals(path.trim())) {
+                int progress = 0;
+                try {
+                    progress = Integer.parseInt(objectID.split("###")[5]);
+                } catch (Exception e) {
+                }
+                if (progress > 0 && progress < 100 || progress == -1) {
+                    file.delete();
+                }
                 if (!file.exists()) {
-
-
-
-
-
-
-
-
-
-
-
-
                     try {
-                        final String objectID=args.getString(1);
                         SystemApi.getFile(getUserID(),"F", objectID.split("###")[0],"", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                             @Override
                             public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
@@ -2366,19 +2404,13 @@ public class ThriftApiClient extends CordovaPlugin {
                                             System.out.println("获取图片成功");
                                             String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img";
                                             RandomAccessFile baf = null;
-//						String dir = "./tempHeadPic/";
                                             File directory = new File(tempUserPic);
                                             if (!directory.exists()) {
                                                 directory.mkdirs();
                                             }
                                             long offset = result.getOffset();
-                                            String type = result.getObjectTP();
-                                            tempPicName = "";
-                                /*if (type.equals("U") || type.equals("G") || type.equals("I")) {
-                                    tempPicName = tempUserPic + File.separator + result.getObjectID() + "_" + type + "_" + result.picSize + ".jpg";
-                                } else {*/
+                                            long fileSize = Long.valueOf(objectID.split("###")[2]);
                                             tempPicName = tempUserPic + File.separator + path.substring(path.lastIndexOf("/") + 1);//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
-//                                }
                                             File tempFile = new File(tempPicName);
                                             if (!tempFile.exists())
                                                 tempFile.createNewFile();
@@ -2388,7 +2420,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                                 int length = result.fileByte.limit() - result.fileByte.position();
                                                 baf.getChannel().write(result.fileByte);
                                                 if (result.isFinish) {
-                                                    System.out.println("文件下载完成。");
+                                                    msg.put("message", message + "###" + 100);
+                                                    setResult(msg, PluginResult.Status.OK, callbackContext);
                                                     break;
                                                 }
                                                 try {
@@ -2398,9 +2431,12 @@ public class ThriftApiClient extends CordovaPlugin {
                                                     e.printStackTrace();
                                                 }
                                                 if (!result.result) {
-                                                    System.out.println("本次请求失败，原因：" + result.getResultMsg());
                                                     break;
                                                 }
+                                                float progressF = (result.getOffset()) * 1.0f / fileSize * 100;
+                                                int progress = Math.round(progressF);
+                                                msg.put("message", message + "###" + progress);
+                                                setResult(msg, PluginResult.Status.OK, callbackContext);
                                             }
                                             try {
                                                 baf.close();
@@ -2413,11 +2449,15 @@ public class ThriftApiClient extends CordovaPlugin {
                                         } else {
                                             System.out.println("获取我的头像失败");
                                         }
-                                        setResult(tempPicName, PluginResult.Status.OK, callbackContext);
-                                        setResult("100", PluginResult.Status.OK, callbackContext);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }catch(TException e){
+                                        //setResult(tempPicName, PluginResult.Status.OK, callbackContext);
+//                                        setResult(msg, PluginResult.Status.OK, callbackContext);
+                                    } catch (Exception e) {
+                                        try {
+                                            msg.put("message", message + "###" + (-1));
+                                        } catch (JSONException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                        setResult(msg, PluginResult.Status.OK, callbackContext);
                                         e.printStackTrace();
                                     }
                                 }
@@ -2425,21 +2465,27 @@ public class ThriftApiClient extends CordovaPlugin {
 
                             @Override
                             public void onError(Exception e) {
-
+                                try {
+                                    msg.put("message", message + "###" + (-1));
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                                setResult(msg, PluginResult.Status.OK, callbackContext);
                             }
                         });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (TException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
+                        msg.put("message", message + "###" + (-1));
+                        setResult(msg, PluginResult.Status.OK, callbackContext);
                         e.printStackTrace();
                     }
                 } else {
+                    msg.put("message", message + "###" + 100);
+                    setResult(msg, PluginResult.Status.OK, callbackContext);
                     openFile(path, callbackContext);
                 }
             } else {
-                setResult("文件路径不能为空！", PluginResult.Status.ERROR, callbackContext);
+                msg.put("message", message + "###" + (-1));
+                setResult(msg, PluginResult.Status.OK, callbackContext);
             }
         } catch (JSONException e) {
             setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
