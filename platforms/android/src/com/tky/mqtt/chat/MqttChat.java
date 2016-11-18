@@ -428,6 +428,17 @@ public class MqttChat extends CordovaPlugin {
     }
 
     /**
+     * 退出应用
+     * @param args
+     * @param callbackContext
+     */
+    public void setExitStartedStatus(final JSONArray args, final CallbackContext callbackContext) {
+        MqttOper.closeMqttConnection();
+        UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
+        MqttRobot.setIsStarted(false);
+    }
+
+    /**
      * 获取用户信息
      * @param args
      * @param callbackContext

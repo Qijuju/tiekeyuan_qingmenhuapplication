@@ -251,13 +251,23 @@ angular.module('login.controllers', [])
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
-      mqtt.getString('pwdgesture', function (pwdgesture) {
-        pwdgesturea=pwdgesture;
-      }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
-      });
       mqtt.getString('namegesture', function (namegesture) {
         namegesturea=namegesture;
+        mqtt.getString('pwdgesture', function (pwdgesture) {
+          pwdgesturea=pwdgesture;
+          //倒计时
+          $scope.timea = 3;
+          var timer = null;
+          timer = $interval(function(){
+            $scope.timea = $scope.timea - 1;
+            // $scope.codetime = $scope.timea+"秒后跳转";
+            if($scope.timea == 0) {
+              ifyuju();
+            }
+          }, 1000);
+        }, function (msg) {
+          // $ToastUtils.showToast("还未设置手势密码");
+        });
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
@@ -280,8 +290,11 @@ angular.module('login.controllers', [])
         });
       }
     });
-
     $scope.startgogogo = function() {
+      ifyuju();
+    };
+
+    var ifyuju =function () {
       if(passlogin=="1"){
         $api.login(namegesturea, pwdgesturea, function (message) {
           $ionicLoading.show({
@@ -314,49 +327,7 @@ angular.module('login.controllers', [])
       }else {
         $state.go('login');
       }
-    };
-    //倒计时
-    $scope.timea = 3;
-    var timer = null;
-    timer = $interval(function(){
-      $scope.timea = $scope.timea - 1;
-      // $scope.codetime = $scope.timea+"秒后跳转";
-      if($scope.timea == 0) {
-        if(passlogin=="1"){
-          $api.login(namegesturea, pwdgesturea, function (message) {
-            $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: false,
-              maxWidth: 100,
-              showDelay: 0
-            });
-            if (message.isActive === false) {
-              $api.activeUser(message.userID, function (message) {
-                loginM();
-              }, function (message) {
-                $ToastUtils.showToast(message);
-              });
-            } else {
-              loginM();
-            }
-          }, function (message) {
-            $ToastUtils.showToast(message);
-          });
-
-        }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
-          // alert("1")
-          $ToastUtils.showToast("密码已修改,请重新登陆");
-          $state.go('login');
-        }else if((passworda==null||passworda==""||passworda.length==0)&&loginpageaa=="passwordlogin"&&passlogin=="0"){
-          $state.go('login');
-        }else if(passworda.length>0&&loginpageaa=="gesturelogin"){
-          $state.go('gesturelogin');
-        }else {
-          $state.go('login');
-        }
-      }
-    }, 1000);
+    }
 
     //获取当前用户的id
     var loginM = function () {
@@ -604,3 +575,4 @@ angular.module('login.controllers', [])
     }
 
   })
+

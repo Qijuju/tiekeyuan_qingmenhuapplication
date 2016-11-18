@@ -1391,6 +1391,9 @@ angular.module('message.services', [])
       },
       getMqttStatus:function(success) {//MQTT连接状态获取
         mqtt.getMqttStatus(success);
+      },
+      setExitStartedStatus:function() {//改变登录状态为未登录
+        mqtt.setExitStartedStatus();
       }
 
 

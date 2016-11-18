@@ -54,4 +54,7 @@ exec(success, error, "MqttChat", "setOnNetStatusChangeListener", [])
 exports.getMqttStatus =function(success){//MQTT连接状态获取
 exec(success, null, "MqttChat", "getMqttStatus", [])
 };
+exports.setExitStartedStatus =function(){//改变登录状态为未登录
+exec(null, null, "MqttChat", "setExitStartedStatus", [])
+};
 });

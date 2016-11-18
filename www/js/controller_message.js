@@ -2939,8 +2939,9 @@ angular.module('message.controllers', [])
     }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){
+      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){
         if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
         } else {
           backButtonPressedOnceToExit = true;
