@@ -350,7 +350,7 @@ angular.module('message.services', [])
         }
         messageDetail.message=content;
         messageDetail.messagetype=messagetype;
-        // alert("发送的类型"+messagetype);
+        alert("发送的类型"+messagetype);
         messageDetail.platform='Windows';
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
@@ -388,8 +388,9 @@ angular.module('message.services', [])
         }
 
             //发送消息前先展示在界面上
-            // alert("数组长度前"+danliao.length+messageDetail.message);
+            alert("单聊数组长度前"+danliao.length+messageDetail.message);
             danliao.push(messageDetail);
+            alert("单聊数组长度后"+danliao.length+messageDetail.message);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
             },function (err) {
@@ -1027,7 +1028,7 @@ angular.module('message.services', [])
       },
       updateDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
-          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
+          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess+"消息"+danliao[i].message  );
           if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1,data);
@@ -1072,7 +1073,7 @@ angular.module('message.services', [])
       },
       updateQunliao:function (data) {
         for(var i=0;i<qunliao.length;i++){
-          // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
+          // alert("进来群组删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess+"群消息"+qunliao[i].message);
           if( qunliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             qunliao.splice(i,1,data);
@@ -1234,9 +1235,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          // alert("成功前长度"+qunliao.length);
+          alert("群聊数组成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          // alert("成功后长度"+qunliao.length);
+          alert("群聊数组成功后长度"+qunliao.length);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');

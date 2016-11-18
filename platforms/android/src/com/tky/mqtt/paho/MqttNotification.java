@@ -6,10 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat.Builder;
 
-import com.ionicframework.im366077.R;
+import com.tky.mqtt.paho.utils.BadgeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +49,8 @@ public class MqttNotification {
 			.setLargeIcon(BitmapFactory.decodeResource(UIUtils.getResources(), imgRes));
 		Notification notification = notificationCompat.build();
 		manager.notify(addAndGetNotification(userID), notification);
+//		BadgeUtil.resetBadgeCount(notification, UIUtils.getContext());
+		BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 0);
 	}
 
 	/**

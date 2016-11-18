@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
-      
+
 
     });
     var backButtonPressedOnceToExit=false;

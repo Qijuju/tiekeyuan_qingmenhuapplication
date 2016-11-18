@@ -15,7 +15,6 @@ import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -32,14 +31,10 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -281,7 +276,7 @@ public class MqttMessageCallback implements MqttCallback {
 							messages.setType(map.getType());
 							messages.setFrom(map.getFrom());
 							messages.setMessage(map.getMessage());
-//							ToastUtil.showSafeToast("单聊" + map.getMessage());
+							ToastUtil.showSafeToast("单聊" + map.getMessage());
 							messages.setMessagetype(map.getMessagetype());
 							messages.setIsFailure(map.getIsFailure());
 							messages.setIsDelete(map.getIsDelete());
@@ -517,7 +512,7 @@ public class MqttMessageCallback implements MqttCallback {
 				messages.setType(eventBean.getType());
 				messages.setFrom(eventBean.getFrom());
 				messages.setMessage(eventBean.getMessage());
-				System.out.println("群事件" + eventBean.getMessage());
+				ToastUtil.showSafeToast("单聊" + eventBean.getMessage());
 				messages.setMessagetype(eventBean.getMessagetype());
 				messages.setPlatform(eventBean.getPlatform());
 				messages.setWhen(eventBean.getWhen());

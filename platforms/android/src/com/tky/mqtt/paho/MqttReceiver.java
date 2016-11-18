@@ -45,6 +45,7 @@ public class MqttReceiver extends BroadcastReceiver {
 			filter.addAction(ReceiverParams.NET_DOWN_MQTT);
 			filter.addAction(ReceiverParams.CONNECTION_DOWN_MQTT);
 			filter.addAction(ReceiverParams.SUBSCRIBE);
+			filter.addAction(ReceiverParams.MESSAGEARRIVED);
 			UIUtils.getContext().registerReceiver(INSTANCE, filter);
 		}
 //		return INSTANCE == null ? INSTANCE = new MqttReceiver() : INSTANCE;

@@ -480,7 +480,7 @@ angular.module('message.controllers', [])
         } else {
           $greendao.getUUID(function (data) {
             sqlid = data;
-            // alert("改造时拿到的id"+data);
+            alert("改造时拿到的id"+data);
             $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
             $scope.send_content = "";
             $timeout(function () {
@@ -1526,6 +1526,7 @@ angular.module('message.controllers', [])
       }
       $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
+        alert("sqlid:" + sqlid);
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid,messagetype, $mqtt);
           $scope.send_content = "";
@@ -2258,13 +2259,11 @@ angular.module('message.controllers', [])
     //打开文件
     $scope.openGroupAllFile = function (path, msg) {
       $api.openFileByPath(path,msg, function (message) {
-        $mqtt.updateQunliao(message);
-        $rootScope.$broadcast('sendgroupprogress.update');
-        /*$greendao.saveObj('MessagesService',message,function (data) {
+        $greendao.saveObj('MessagesService',message,function (data) {
           $mqtt.updateQunliao(message);
           $rootScope.$broadcast('sendgroupprogress.update');
         },function (err) {
-        });*/
+        });
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });

@@ -480,7 +480,7 @@ angular.module('message.controllers', [])
         } else {
           $greendao.getUUID(function (data) {
             sqlid = data;
-            // alert("改造时拿到的id"+data);
+            alert("改造时拿到的id"+data);
             $scope.suc = $mqtt.sendMsg(userTopic, content, id, localuser, localuserId, sqlid, '', '', $mqtt);
             $scope.send_content = "";
             $timeout(function () {
@@ -1212,7 +1212,7 @@ angular.module('message.controllers', [])
     $scope.entermap=function (content) {
       $scope.longitude=content.split(",")[0];//content.substring(0,(content).indexOf(','));
       $scope.latitude=content.split(",")[1];//content.substring((content).indexOf(',')+1,content.length);
-      alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
+      // alert("发送经纬度"+content+"sdfs"+$scope.longitude+"-----------"+$scope.latitude);
       $state.go('mapdetail', {
         id: $scope.userId,
         ssid:$scope.viewtitle,
@@ -1526,6 +1526,7 @@ angular.module('message.controllers', [])
       }
       $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
         // $ToastUtils.showToast("群聊topic"+userTopic+$scope.grouptype);
+        alert("sqlid:" + sqlid);
         if (sqlid != undefined && sqlid != null && sqlid != '') {
           $scope.msg = $mqtt.sendGroupMsg(userTopic, content, id, grouptype, localuser, localuserId, sqlid,messagetype, $mqtt);
           $scope.send_content = "";
