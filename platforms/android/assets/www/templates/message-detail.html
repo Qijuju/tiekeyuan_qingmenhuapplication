@@ -28,12 +28,17 @@
     <div>
       <div ng-repeat="msgSingle in msgs">
         <!---时间戳--->
-        <div >
-          <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
-          <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+        <div ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
+        <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+        <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
+          <!---时间戳--->
+          <div >
+            <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+            <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+          </div>
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9"
             class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
@@ -120,7 +125,6 @@
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
           <!--<div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 9px">{{msgSingle.username.length > 2 ? msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</div>-->
           <!--<img src="{{imgPath}}" />-->
-
           <span class="rj-triangle-right"
                 ng-if="msgSingle.messagetype === 'Text' || msgSingle.messagetype === 'normal'"></span>
           <span>

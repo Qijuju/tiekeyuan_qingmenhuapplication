@@ -786,7 +786,7 @@ angular.module('message.controllers', [])
           var lastmsg= $mqtt.getDanliao()[$scope.msgs.length-1];
           // alert("最后一条数据："+lastmsg.message+$mqtt.getDanliao()[$scope.msgs.length-1].when);
           //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-          if($mqtt.getDanliao()[$scope.msgs.length-1].when > millions && $mqtt.getDanliao()[$scope.msgs.length-1].from === 'true'&& $scope.timegap > 900000 && $scope.timegap < maxmillions){
+          if($mqtt.getDanliao()[$scope.msgs.length-1].when > millions && $mqtt.getDanliao()[$scope.msgs.length-1].from === 'true'&& $scope.timegap > 1000 && $scope.timegap < maxmillions){
             $scope.i=$scope.i+1;
             // alert("进来间隔吗？"+$scope.timegap);
             var messaegeitem={};
@@ -2085,7 +2085,7 @@ angular.module('message.controllers', [])
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
         // alert("最后一条数据："+lastmsg.message+lastmsg.istime+lastmsg.daytype);
         //如果发送前后消息间有间隔，则改变该条数据的两个状态并保存
-        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 900000 && $scope.timegap < maxmillions){
+        if($mqtt.getQunliao()[$scope.groupmsgs.length-1].when> millions && ($mqtt.getQunliao()[$scope.groupmsgs.length-1].from === 'true') && $scope.timegap > 1000 && $scope.timegap < maxmillions){
           $scope.i=$scope.i+1;
           // alert("进来群间隔吗？"+$scope.timegap);
           var messaegeitem={};
