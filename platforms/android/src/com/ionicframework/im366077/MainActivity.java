@@ -122,9 +122,12 @@ public class MainActivity extends CordovaActivity
 
     @Override
     public void onDestroy() {
-        if (receiver != null) {
-            unregisterReceiver(receiver);
-            receiver = null;
+        try {
+            if (receiver != null) {
+                unregisterReceiver(receiver);
+                receiver = null;
+            }
+        } catch (Exception e) {
         }
         super.onDestroy();
     }

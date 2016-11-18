@@ -553,7 +553,7 @@ angular.module('message.services', [])
           var lastIndex = msg.substr(suffix, msg.length);
           fileIsImage = (lastIndex === '.jpg' || lastIndex === '.jpeg' || lastIndex === '.png' || lastIndex === '.bmp' || lastIndex === '.gif' || lastIndex === 'tif');
           messageDetail.messagetype = fileIsImage ? "Image" : "File";
-          messagetype = 'Image';
+          messagetype = messageDetail.messagetype;
         }
         if (type === 'User') {
           danliao.push(messageDetail);
@@ -627,10 +627,11 @@ angular.module('message.services', [])
               // msgDetail.sendProgress = sdata[2];
               if (type === 'User') {
                 $mqtt.updateDanliao(msgDetail);
+                $rootScope.$broadcast('sendprogress.update');
               } else {
                 $mqtt.updateQunliao(msgDetail);
+                $rootScope.$broadcast('sendgroupprogress.update');
               }
-              $rootScope.$broadcast('sendprogress.update');
             },function (err) {
             });
           } else {
@@ -1032,7 +1033,7 @@ angular.module('message.services', [])
       },
       updateDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
-          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
+          // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess+"消息"+danliao[i].message  );
           if( danliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             danliao.splice(i,1,data);
@@ -1077,7 +1078,7 @@ angular.module('message.services', [])
       },
       updateQunliao:function (data) {
         for(var i=0;i<qunliao.length;i++){
-          // alert("进来删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess  );
+          // alert("进来群组删数组数据了吗"+qunliao.length+data._id+"数组id"+qunliao[i]._id+"数组状态"+qunliao[i].isSuccess+"群消息"+qunliao[i].message);
           if( qunliao[i]._id === data._id){
             // alert("找出chat数组的被更改的数据了"+i);
             qunliao.splice(i,1,data);
@@ -1193,7 +1194,7 @@ angular.module('message.services', [])
       },
 
       sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype,$mqtt) {
-        // alert("发送群消息"+sqlid+localuserId+grouptype+messagetype);
+        // alert("发送群消息"+content);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
@@ -1239,9 +1240,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          // alert("成功前长度"+qunliao.length);
+          // alert("qunliao成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          // alert("成功后长度"+qunliao.length+messageReal.message);
+          // alert("qunliao成功后长度"+qunliao.length+messageReal.message);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');

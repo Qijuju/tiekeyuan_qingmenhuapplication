@@ -81,9 +81,9 @@ public class MqttChat extends CordovaPlugin {
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         mqttReceiver = MqttReceiver.getInstance();
-        IntentFilter mqttFilter = new IntentFilter();
-        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
-        UIUtils.getContext().registerReceiver(mqttReceiver, mqttFilter);
+//        IntentFilter mqttFilter = new IntentFilter();
+//        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
+//        cordova.getActivity().registerReceiver(mqttReceiver, mqttFilter);
 
         docFileReceiver = new DocFileReceiver();
         IntentFilter filter = new IntentFilter();
@@ -810,25 +810,33 @@ public class MqttChat extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
-        if (mqttReceiver != null) {
-            cordova.getActivity().unregisterReceiver(mqttReceiver);
-            mqttReceiver = null;
+        try {
+            if (docFileReceiver != null) {
+                cordova.getActivity().unregisterReceiver(docFileReceiver);
+                docFileReceiver = null;
+            }
+        } catch (Exception e) {
         }
-        if (docFileReceiver != null) {
-            cordova.getActivity().unregisterReceiver(docFileReceiver);
-            docFileReceiver = null;
+        try {
+            if (photoFileReceiver != null) {
+                cordova.getActivity().unregisterReceiver(photoFileReceiver);
+                photoFileReceiver = null;
+            }
+        } catch (Exception e) {
         }
-        if (photoFileReceiver != null) {
-            cordova.getActivity().unregisterReceiver(photoFileReceiver);
-            photoFileReceiver = null;
+        try {
+            if (mqttConnectReceiver != null) {
+                cordova.getActivity().unregisterReceiver(mqttConnectReceiver);
+                mqttConnectReceiver = null;
+            }
+        } catch (Exception e) {
         }
-        if (mqttConnectReceiver != null) {
-            cordova.getActivity().unregisterReceiver(mqttConnectReceiver);
-            mqttConnectReceiver = null;
-        }
-        if (topicReceiver != null) {
-            cordova.getActivity().unregisterReceiver(topicReceiver);
-            topicReceiver = null;
+        try {
+            if (topicReceiver != null) {
+                cordova.getActivity().unregisterReceiver(topicReceiver);
+                topicReceiver = null;
+            }
+        } catch (Exception e) {
         }
         super.onDestroy();
     }

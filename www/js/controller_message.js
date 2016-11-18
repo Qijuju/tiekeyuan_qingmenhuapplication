@@ -670,9 +670,9 @@ angular.module('message.controllers', [])
 
     //获取文件名
     $scope.getFileName = function (message) {
-      var msg = message.split('###')[1];
-      var lastindex = msg.lastIndexOf("\/");
-      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+      var msg = message.split('###')[4];
+      // var lastindex = msg.lastIndexOf("\/");
+      return msg;//lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
     };
 
     $scope.getFilePath = function (message) {
@@ -691,6 +691,7 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+
     };
     //弹出测试
     $scope.alertMsg = function (message) {
@@ -705,6 +706,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
+      keepKeyboardOpen();
     });
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
@@ -1561,7 +1563,7 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform) {
-    $scope.$on('sendprogress.update', function (event) {
+    $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
       });
@@ -2010,6 +2012,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
+      keepKeyboardOpen();
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype) {
@@ -2956,9 +2959,9 @@ angular.module('message.controllers', [])
 
     //获取文件名
     $scope.getFileName = function (message) {
-      var msg = message.split('###')[1];
-      var lastindex = msg.lastIndexOf("\/");
-      return lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
+      var msg = message.split('###')[4];
+      // var lastindex = msg.lastIndexOf("\/");
+      return msg;//lastindex <= 0 ? msg : msg.substr(lastindex + 1, msg.length);
     };
 
     $scope.getFilePath = function (message) {
@@ -2971,7 +2974,7 @@ angular.module('message.controllers', [])
       $api.openFileByPath(path,msg, function (message) {
         $greendao.saveObj('MessagesService',message,function (data) {
           $mqtt.updateQunliao(message);
-          $rootScope.$broadcast('sendprogress.update');
+          $rootScope.$broadcast('sendgroupprogress.update');
         },function (err) {
         });
       },function (err) {
@@ -3007,6 +3010,7 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+
     };
 
 
@@ -4688,7 +4692,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading,$greendao) {
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$rootScope,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading,$greendao) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -4705,6 +4709,7 @@ angular.module('message.controllers', [])
     $scope.localuserId=$stateParams.localuserId;//当前用户id
     $scope.sqlid=$stateParams.sqlid;//itemid
     $scope.grouptype=$stateParams.grouptype;//grouptype
+    // alert("类型"+$scope.grouptype);
     $scope.messagetype=$stateParams.messagetype;//消息类型
     $scope.ismygroup=$stateParams.ismygroup;//群类型
     $scope.chatname=$stateParams.chatname;
@@ -4809,7 +4814,7 @@ angular.module('message.controllers', [])
       // );
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      $ToastUtils.showToast("定位失败");
     });
 
     //返回
@@ -4820,6 +4825,8 @@ angular.module('message.controllers', [])
           id: $scope.userId,
           ssid:$scope.userName,
           grouptype:$scope.grouptype,
+          longitude:$scope.longitude,
+          latitude:$scope.latitude
         });
       }else if($scope.grouptype === 'Dept'){
         $state.go('messageGroup', {
@@ -4881,8 +4888,9 @@ angular.module('message.controllers', [])
                   //发送开始
                   var myGeo = new BMap.Geocoder();
                   myGeo.getLocation(new BMap.Point(long, lat), function(result){
-                    if (result){
-                      $scope.$apply(function () {
+                    // alert("qunliaoresult"+result);
+                    // if (result){
+                      $rootScope.$apply(function () {
                         $timeout(function () {
                           $scope.content=long+","+lat+","+result.address;
                           // $scope.content=long+","+lat+","+$scope.screenpath;
@@ -4895,19 +4903,22 @@ angular.module('message.controllers', [])
                           keepKeyboardOpen();
                         });
                       });
-                    }
+                    // }
                   });
                   //发送结束
                 }else if($scope.grouptype === 'User'){
                   //发送开始
                   var myGeo = new BMap.Geocoder();
+                  // alert("danliaojinlailema"+myGeo);
                   myGeo.getLocation(new BMap.Point(long, lat), function(result){
-                    if (result){
-                      $scope.$apply(function () {
+                    // alert("danliaoresult11111"+result);
+                    // if (result){
+                      $rootScope.$apply(function () {
+                        // alert("danliaoresult"+result);
                         $timeout(function () {
                           $scope.content=long+","+lat+","+result.address;
-                          // $scope.content=long+","+lat+","+$scope.screenpath;
-                          // alert("1231321"+userTopic+$scope.grouptype+$scope.content);
+                         // alert("地理位置内容"+$scope.content);
+                         //  alert("1231321"+userTopic+$scope.grouptype+$scope.content);
                           $scope.suc = $mqtt.sendMsg(userTopic, $scope.content, $scope.userId,$scope.localuser,$scope.localuserId,$scope.sqlid,$scope.messagetype,'',$mqtt);
                           $scope.send_content = "";
                           // $timeout(function () {
@@ -4916,7 +4927,7 @@ angular.module('message.controllers', [])
                           keepKeyboardOpen();
                         });
                       });
-                    }
+                    // }
                   });
                   //发送结束
                 }
@@ -4957,6 +4968,11 @@ angular.module('message.controllers', [])
 
     }
 
+
+    $scope.$on('$ionicView.afterLeave', function () {
+      // alert("离开定位");
+      $scope.gobackmsg();
+    });
   })
 
   .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$ionicLoading,$timeout) {
@@ -4965,6 +4981,7 @@ angular.module('message.controllers', [])
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方用户名
     $scope.grouptype=$stateParams.grouptype;//grouptype
+    // alert("地图详情界面的grouptype"+$stateParams.grouptype);
     $scope.ismygroup=$stateParams.ismygroup;//是否为自建群
     // alert("地图界面详情信息"+$scope.userId+$scope.userName+$scope.grouptype);
     $ionicLoading.show({
@@ -5083,7 +5100,7 @@ angular.module('message.controllers', [])
       // );
 
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
+      $ToastUtils.showToast("定位失败");
     });
 
     /**
@@ -5112,21 +5129,23 @@ angular.module('message.controllers', [])
           $state.go('messageDetail', {
             id: $scope.userId,
             ssid:$scope.userName,
-            grouptype:$scope.groupType
+            grouptype:$stateParams.grouptype,
+            longitude:$scope.longitude,
+            latitude:$scope.latitude
           });
       }else if($scope.grouptype === 'Dept'){
           // alert("进来了吗？");
           $state.go('messageGroup', {
             id: $scope.userId,
             chatName:$scope.userName,
-            grouptype:$scope.groupType,
+            grouptype:$stateParams.grouptype,
             ismygroup:$scope.ismygroup
           });
       }else if($scope.grouptype === 'Group'){
           $state.go('messageGroup', {
             id: $scope.userId,
             chatName:$scope.userName,
-            grouptype:$scope.groupType,
+            grouptype:$stateParams.grouptype,
             ismygroup:$scope.ismygroup
           });
       }
