@@ -4484,11 +4484,13 @@ angular.module('message.controllers', [])
     }
     //打开群图片界面
     $scope.groupPicture=function () {
-      $state.go('personfile');
+      $ToastUtils.showToast("功能完善中...")
+      //$state.go('personfile');
     }
     //打开群文件界面
     $scope.groupFile=function () {
-      $state.go('groupfile');
+      $ToastUtils.showToast("功能完善中...")
+      //$state.go('groupfile');
 
     }
 

@@ -272,7 +272,9 @@ public class MqttMessageCallback implements MqttCallback {
 							 */
 //							if(map.getWhen()>stmill && map.getWhen() <etmill){}      //存消息
 							messages=new Messages();
-							messages.set_id(UUID.randomUUID().toString());
+							String id=UUID.randomUUID().toString();
+							messages.set_id(id);
+							map.set_id(id);
 							messages.setSessionid(map.getSessionid());
 							messages.setType(map.getType());
 							messages.setFrom(map.getFrom());
@@ -514,7 +516,9 @@ public class MqttMessageCallback implements MqttCallback {
 			//若是当前日期收到的群消息，存消息
 //			if(eventBean.getWhen()>stmill && eventBean.getWhen() <etmill){
 				messages=new Messages();
-				messages.set_id(UUID.randomUUID().toString());
+				String id=UUID.randomUUID().toString();
+				messages.set_id(id);
+				eventBean.set_id(id);
 				messages.setSessionid(eventBean.getSessionid());
 				messages.setType(eventBean.getType());
 				messages.setFrom(eventBean.getFrom());

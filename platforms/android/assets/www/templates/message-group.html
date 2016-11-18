@@ -133,8 +133,8 @@
                       <img class="icon" ng-src="{{getFileTypeImg(msg.message)}}"
                         style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
                       <font style="font-size: 10px;border: none;">{{msg.message.split('###')[4]}}
-                        <br/><div ng-show="msg.message.split('###')[5] != '100'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msg.message.split('###')[5] != '100'">&nbsp;&nbsp;{{msg.message.split('###')[5]}}%</span>
-                  &nbsp;&nbsp;<span ng-if="msg.isFailure === 'true' && msg.message.split('###')[5] === '-1'" style="color: #ee0500;">发送失败！</span><span ng-if="msg.isFailure === 'false' && msg.message.split('###')[5] === '100'" style="color: #5CB85C;">发送成功！</span>
+                        <br/><div ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msg.message.split('###')[5]}}%</span>
+                  &nbsp;&nbsp;<span ng-if="msg.isFailure === 'true' || msg.message.split('###')[5] === '-1'" style="color: #ee0500;">发送失败！</span><span ng-if="msg.isFailure === 'false' && msg.message.split('###')[5] === '100'" style="color: #5CB85C;">发送成功！</span>
                       </font>
                     </a>
                     <a class="item item-icon-left" ng-if="msg.isFailure === 'true'"
