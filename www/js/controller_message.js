@@ -705,6 +705,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
+      keepKeyboardOpen();
     });
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
@@ -2008,6 +2009,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
+      keepKeyboardOpen();
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype) {
