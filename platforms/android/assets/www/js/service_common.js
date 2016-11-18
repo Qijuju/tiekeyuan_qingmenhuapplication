@@ -311,8 +311,8 @@ angular.module('common.services', [])
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
   },
-      openFileByPath:function (path, imageID, success, error) {//打开文件
-        api.openFileByPath(path, imageID, success, error);
+      openFileByPath:function (path, msg, success, error) {//打开文件
+        api.openFileByPath(path, msg, success, error);
       },
       SetDeptInfo:function(success, error) {//登录成功将部门信息入库
         api.SetDeptInfo(success,error);

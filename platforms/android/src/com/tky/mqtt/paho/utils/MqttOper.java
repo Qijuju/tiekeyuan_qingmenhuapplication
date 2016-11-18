@@ -135,4 +135,15 @@ public class MqttOper {
         intent.setAction(ReceiverParams.MQTT_START);
         UIUtils.getContext().sendBroadcast(intent);
     }
+
+
+    /**
+     * 发布MQTT启动成功或失败的消息
+     */
+    public static void tellMqttStatus(boolean startSuccess) {
+        Intent intent=new Intent();
+        intent.setAction(startSuccess ? ReceiverParams.RECEIVER_MQTT_STARTED:ReceiverParams.RECEIVER_MQTT_CLOSED);
+        UIUtils.getContext().sendBroadcast(intent);
+    }
+
 }

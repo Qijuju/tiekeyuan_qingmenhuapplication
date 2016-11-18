@@ -93,6 +93,7 @@ public class MqttConnection {
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
+            MqttOper.tellMqttStatus(false);
             try {
                 reconnect();
             } catch (MqttException e) {
@@ -108,6 +109,7 @@ public class MqttConnection {
                     //启动成功，告诉启动者
                     MqttRobot.setMqttStatus(MqttStatus.OPEN);
                     MqttOper.publishStartStatus(true);
+                    MqttOper.tellMqttStatus(true);
                     try {
 //						if (!isReconnect) {
                         if (!MqttReceiver.hasRegister) {

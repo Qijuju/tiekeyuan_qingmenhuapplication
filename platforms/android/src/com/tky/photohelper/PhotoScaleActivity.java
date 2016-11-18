@@ -33,7 +33,7 @@ public class PhotoScaleActivity extends Activity  {
 
         final String filePath = getIntent().getStringExtra("filePath");
         final String fromwhere = getIntent().getStringExtra("fromwhere");
-        final long factsize=getIntent().getLongExtra("filefactsize", 0);
+        final long factsize=getIntent().getLongExtra("filefactsize", 0l);
 
         String bigfilepath=getIntent().getStringExtra("bigfilepath");
 
@@ -52,7 +52,17 @@ public class PhotoScaleActivity extends Activity  {
         //说明是从本地加载的照片 自己发送的直接展示就行
         if("local".equals(fromwhere)){
 
-            photoView.setImageURI(Uri.fromFile(new File(filePath)));
+            //photoView.setImageURI(Uri.fromFile(new File(filePath)));
+
+            if(filesize>1024*1024*2){
+                BitmapFactory.Options opts = new BitmapFactory.Options();
+                opts.inSampleSize = 2;
+                Bitmap bitmap = BitmapFactory.decodeFile(filePath, opts);
+                photoView.setImageBitmap(bitmap);
+
+            }else {
+                photoView.setImageURI(Uri.fromFile(new File(filePath)));
+            }
 
         }else {
 
