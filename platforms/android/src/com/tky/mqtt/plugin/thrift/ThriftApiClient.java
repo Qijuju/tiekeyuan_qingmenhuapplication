@@ -1949,7 +1949,7 @@ public class ThriftApiClient extends CordovaPlugin {
                     return;
                 }
             }
-            JSONArray retnObj = new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(offset * 1.0f / fileSize) + "']");
+            JSONArray retnObj = new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(rlt.getOffset() * 1.0f / fileSize) + "']");
             if (messageDetail != null) {
                 retnObj.put(messageDetail);
             }
