@@ -259,12 +259,11 @@ angular.module('login.controllers', [])
           $scope.timea = 3;
           var timer = null;
           timer = $interval(function(){
-            if($scope.timea>-1&&$scope.timea<4){
+            if($scope.timea>0&&$scope.timea<4){
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
-            if($scope.timea == 0) {
-              $scope.timea = "0"
+            if($scope.timea == 1) {
               ifyuju();
             }
           }, 1000);
