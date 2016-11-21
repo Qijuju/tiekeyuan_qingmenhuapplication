@@ -721,7 +721,6 @@ angular.module('message.services', [])
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
-          // alert("监听消息类型"+message._id);
           arriveMessage.from=message.from;
           arriveMessage.message=message.message;
           arriveMessage.messagetype=message.messagetype;
@@ -731,7 +730,8 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
-          arriveMessage.senderid=message._id;
+          arriveMessage.senderid=message.senderid;
+          // alert("监听消息类型"+arriveMessage.senderid);
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;

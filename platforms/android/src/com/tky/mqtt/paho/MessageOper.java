@@ -90,6 +90,7 @@ public class MessageOper {
 			bean.setImgSrc("");
 			bean.setUsername((String) msgMap.get("fromName"));
 			bean.setIsFromMe(fromMe);
+			bean.setSenderid((String) msgMap.get("from"));
 //			bean.setIsFromMe(getUserID().equals(from));
 			msgBean = bean;
 		} else if (notifyType != null && notifyType.equals(IMPFields.N_Type_Event)) {
@@ -100,6 +101,7 @@ public class MessageOper {
 			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
 			bean.setUserName((String) msgMap.get(IMPFields.E_UserName));
 			bean.setGroupName((String) msgMap.get(IMPFields.E_GroupName));
+			bean.setSenderid((String) msgMap.get("from"));
 			msgBean = bean;
 		}
 		return msgBean;

@@ -279,13 +279,14 @@ public class MqttMessageCallback implements MqttCallback {
 							messages.setType(map.getType());
 							messages.setFrom(map.getFrom());
 							messages.setMessage(map.getMessage());
-//							ToastUtil.showSafeToast("单聊" + map.getMessage());
+//							ToastUtil.showSafeToast("单聊" + map.get_id());
 							messages.setMessagetype(map.getMessagetype());
 							messages.setIsFailure(map.getIsFailure());
 							messages.setIsDelete(map.getIsDelete());
 							messages.setImgSrc(map.getImgSrc());
 							messages.setUsername(map.getUsername());
-							messages.setSenderid(map.get_id());
+							messages.setSenderid(map.getSenderid());
+							map.setSenderid(map.getSenderid());
 							messages.setPlatform(map.getPlatform());
 							messages.setWhen(map.getWhen());
 							messages.setIsread("0");
@@ -500,6 +501,7 @@ public class MqttMessageCallback implements MqttCallback {
 						updateMsg.setImgSrc(messages.getImgSrc());
 						updateMsg.setUsername(messages.getUsername());
 						updateMsg.setSenderid(messages.getSenderid());
+						eventBean.setSenderid(messages.getSenderid());
 						updateMsg.setIsread(messages.getIsread());
 						eventBean.setIsread(messages.getIsread());
 						updateMsg.setIsSuccess(messages.getIsSuccess());
@@ -531,7 +533,8 @@ public class MqttMessageCallback implements MqttCallback {
 				messages.setIsDelete(eventBean.getIsDelete());
 				messages.setImgSrc(eventBean.getImgSrc());
 				messages.setUsername(eventBean.getUsername());
-				messages.setSenderid(eventBean.get_id());
+				messages.setSenderid(eventBean.getSenderid());
+				eventBean.setSenderid(eventBean.getSenderid());
 				messages.setIsread("0");
 				eventBean.setIsread("0");
 				messages.setIsSuccess("true");
