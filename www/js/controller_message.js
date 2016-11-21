@@ -615,7 +615,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
@@ -2902,7 +2902,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {

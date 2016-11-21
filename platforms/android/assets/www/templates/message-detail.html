@@ -106,12 +106,12 @@
             <!--LOCATION RECEIVE-->
             <p ng-if="msgSingle.messagetype === 'LOCATION'">
             <div class="list" ng-if="msgSingle.messagetype === 'LOCATION'"
-                 style="width: 210px;background-color: #888888;float: left;margin-left: 14.5%;">
+                 style="width: 230px;background-color: #888888;float: left;margin-left: 14.5%;">
               <a class="item item-icon-left"
                  ng-click="entermap(msgSingle.message)">
                 <img class="icon" ng-src="{{getFileTypeImg('location')}}"
-                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/><font
-                style="font-size: 10px;border: none;">{{msgSingle.message.split(',')[2]}}<br/>已接收</font>
+                     style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/><font
+                style="font-size: 10px;border: none;margin-left: 20px;">{{msgSingle.message.split(',')[2]}}<br/><span style="margin-left: 20px;">已接收</span></font>
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>
@@ -154,8 +154,8 @@
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;">{{msgSingle.message.split('###')[4]}}
-                  <br/><!--{{msgSingle.message.split('###')[3]}}--> <!--{{msgSingle.message.split('###')[5]}}--><div ng-show="msgSingle.message.split('###')[5] != '100'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '100'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span>
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true' && msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;">发送失败！</span><span ng-if="msgSingle.isFailure === 'false' && msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;">发送成功！</span>
+                  <br/><!--{{msgSingle.message.split('###')[3]}}--> <!--{{msgSingle.message.split('###')[5]}}--><div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span>
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true' || msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;">发送失败！</span><span ng-if="msgSingle.isFailure === 'false' && msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;">发送成功！</span>
                 </font>
               </a>
               <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"
@@ -175,23 +175,23 @@
             <!--LOCATION-->
             <font ng-if="msgSingle.messagetype === 'LOCATION'">
             <div class="list" ng-if="msgSingle.messagetype === 'LOCATION'"
-                 style="width: 210px;background-color: #888888;float: right">
+                 style="width: 230px;background-color: #888888;float: right">
               <a class="item item-icon-left" ng-if="msgSingle.isFailure != 'true'"
                  ng-click="entermap(msgSingle.message.substring(0, msgSingle.message.lastIndexOf(',')))">
                 <img class="icon" ng-src="{{getFileTypeImg('location')}}"
-                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
-                <font style="font-size: 10px;border: none;margin-left: 5px;">{{msgSingle.message.split(',')[2]}}
-                  <br/>点击查看
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'false'" style="color: #ee0500;">发送成功！</span>
+                     style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/>
+                <font style="font-size: 10px;border: none;margin-left: 20px;">{{msgSingle.message.split(',')[2]}}
+                  <br/><span style="margin-left: 20px;">点击查看</span>
+                  &nbsp;&nbsp;<!--<span ng-if="msgSingle.isFailure === 'false'" style="color: #5cb85c;">发送成功！</span>-->
                 </font>
               </a>
               <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"
                  ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)">
                 <img class="icon" ng-src="{{getFileTypeImg('location')}}"
-                     style="width: 35px;padding-top: 10px;padding-bottom: 10px;"/>
+                     style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;margin-left: 5px;">{{msgSingle.message.split(',')[2]}}
-                  <br/>点击查看
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span>
+                  <br/><span style="margin-left: 20px;">点击查看</span>
+                  &nbsp;&nbsp;<!--<span ng-if="msgSingle.isFailure === 'true'" style="color: #ee0500;">发送失败！</span>-->
                 </font>
               </a>
             </div>
