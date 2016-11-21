@@ -398,6 +398,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
   .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation) {
+
+    $scope.$on('$ionicView.leave', function () {
+      if(isopen){
+        myPopup.close();
+      }
+
+    });
+
     $scope.UserIDforhou = $stateParams.UserIDfor;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -410,9 +418,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       })
     });
     // 修改个人资料
+    var isopen=false;
+    var myPopup;
     $scope.updateinformation = function () {
+      isopen=true;
       $scope.data = {};
-      var myPopup = $ionicPopup.show({
+       myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="email" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
@@ -457,7 +468,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         ]
       });
       myPopup.then(function (res) {
-
+          isopen=false;
       });
 
       // myPopup.close(); //关闭
