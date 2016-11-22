@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import im.server.File.IMFile;
@@ -46,7 +48,9 @@ import im.server.File.RSTgetFile;
 public class ScalePhoto extends CordovaPlugin {
 
     private int TAKE_PHOTO_CODE = 0x0104;
-    private boolean isDown = false;
+
+
+    private static final List<String> downList = new ArrayList<String>();
   
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -98,12 +102,33 @@ public class ScalePhoto extends CordovaPlugin {
     public void netScale(final JSONArray args, final CallbackContext callbackContext) {
     	//图片的id
         new Thread(new Runnable() {
+            String imageid=null;
             @Override
             public void run() {
                 try {
-                    String imageid = args.getString(0);
+                    imageid = args.getString(0);
                     final String imagename=args.getString(1);
                     final String samllfilepath=args.getString(2);
+
+                    if (downList.contains(imageid)) {
+
+                        UIUtils.runInMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final Intent intent4=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                //传入的是小图路径
+                                intent4.putExtra("filePath", samllfilepath);
+                                intent4.putExtra("filefactsize", 0);
+
+                                //传入的是大图路径
+                                intent4.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                                cordova.getActivity().startActivity(intent4);
+                            }
+                        });
+
+                        return;
+                    }
+                    downList.add(imageid);
 
                     DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
                     final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
@@ -120,8 +145,8 @@ public class ScalePhoto extends CordovaPlugin {
 
                     if(testFile .exists() && testFile.length()==factsize){
 
-
-                        FilePicture thirdFilePic=new FilePicture();
+                        downList.remove(imageid);
+                        FilePicture thirdFilePic = new FilePicture();
                         thirdFilePic.setFilepicid(firstFilePic.getFilepicid());
                         thirdFilePic.setFrom(firstFilePic.getFrom());
                         thirdFilePic.setSessionid(firstFilePic.getSessionid());
@@ -148,7 +173,15 @@ public class ScalePhoto extends CordovaPlugin {
                                 cordova.getActivity().startActivity(intent3);
                             }
                         });
+
+                        return;
                     }else {
+
+                        File filenew=new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+
+                        if(filenew.exists()){
+                            filenew.delete();
+                        }
 
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
@@ -166,17 +199,13 @@ public class ScalePhoto extends CordovaPlugin {
 
 
                         //将正在下载状态改为false
-                        isDown = false;
+                        //isDown = false;
 
-                        File filenew=new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
 
-                        if(filenew.exists()){
-                            filenew.delete();
-                        }
                         SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                             @Override
                             public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
-                                isDown = true;
+                                //isDown = true;
                                 if (arg0 != null) {
                                     try {
                                         RSTgetFile result = arg0.getResult();
@@ -199,7 +228,7 @@ public class ScalePhoto extends CordovaPlugin {
                                                 tempFile.createNewFile();
                                             baf = new RandomAccessFile(tempFile, "rw");
                                             baf.seek(offset);
-                                            while (isDown) {
+                                            while (true) {
                                                 int length = result.fileByte.limit() - result.fileByte.position();
                                                 baf.getChannel().write(result.fileByte);
                                                 if (result.isFinish) {
@@ -222,7 +251,11 @@ public class ScalePhoto extends CordovaPlugin {
                                             } catch (IOException ex) {
 
                                             }
+
+                                            downList.remove(imageid);
+
                                         } else {
+                                            downList.remove(imageid);
                                             System.out.println("获取我的头像失败");
                                         }
 
@@ -260,8 +293,10 @@ public class ScalePhoto extends CordovaPlugin {
                                         setResult(tempPicName, PluginResult.Status.OK, callbackContext);
                                         setResult("100", PluginResult.Status.OK, callbackContext);
                                     } catch (IOException e) {
+                                        downList.remove(imageid);
                                         e.printStackTrace();
                                     } catch (TException e) {
+                                        downList.remove(imageid);
                                         e.printStackTrace();
                                     }
                                 }
@@ -269,16 +304,26 @@ public class ScalePhoto extends CordovaPlugin {
 
                             @Override
                             public void onError(Exception e) {
+                                downList.remove(imageid);
 
                             }
                         });
 
                     }
                 } catch (IOException e) {
+                    if(imageid!=null){
+                        downList.remove(imageid);
+                    }
                     e.printStackTrace();
                 } catch (TException e) {
+                    if(imageid!=null){
+                        downList.remove(imageid);
+                    }
                     e.printStackTrace();
                 } catch (JSONException e) {
+                    if(imageid!=null){
+                        downList.remove(imageid);
+                    }
                     e.printStackTrace();
                 }
             }
