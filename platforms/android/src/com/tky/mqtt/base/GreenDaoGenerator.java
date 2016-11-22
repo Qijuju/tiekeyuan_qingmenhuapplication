@@ -31,8 +31,8 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
-        addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
+        //addTestData(schema);
+        new DaoGenerator().generateAll(schema,  "E:/jishitong/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -226,6 +226,7 @@ public class GreenDaoGenerator {
         Entity fileandpic=schema.addEntity("FilePicture");
 
         fileandpic.addStringProperty("filepicid").primaryKey();//
+        fileandpic.addStringProperty("_id");
         fileandpic.addStringProperty("from");//代表是谁发的   true代表的我发的  或者 false
         fileandpic.addStringProperty("sessionid");//会话id
         fileandpic.addStringProperty("fromname");//发送者的名字

@@ -13,6 +13,7 @@ public class MessageTypeBean implements Serializable {
     private String isSuccess = "false";
     private String daytype="1";
     private String istime = "false";
+    private String senderid;
 
     public String getIsSuccess() {
         return "false";
@@ -44,5 +45,13 @@ public class MessageTypeBean implements Serializable {
 
     public void setIstime(String istime) {
         this.istime = istime;
+    }
+
+    public String getSenderid() {
+        return senderid;
+    }
+
+    public void setSenderid(String senderid) {
+        this.senderid = senderid;
     }
 }

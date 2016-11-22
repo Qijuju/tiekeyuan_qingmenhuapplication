@@ -706,7 +706,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
-      keepKeyboardOpen();
+      // keepKeyboardOpen();
     });
 
     $scope.sendSingleMsg = function (topic, content, id,localuser,localuserId,sqlid) {
@@ -1593,6 +1593,8 @@ angular.module('message.controllers', [])
      */
     $scope.groupid=$stateParams.id;
     $scope.chatname=$stateParams.chatName;
+    //alert("你好群id"+$scope.groupid+$scope.chatname);
+
     // alert("chatName"+$scope.chatname + 'ccccc' + ($scope.chatname != undefined));
     if($scope.chatname != undefined && $scope.chatname != null && $scope.chatname !=''){
       $scope.grouptype=$stateParams.grouptype;
@@ -2010,7 +2012,7 @@ angular.module('message.controllers', [])
 
     window.addEventListener("native.keyboardshow", function (e) {
       viewScroll.scrollBottom();
-      keepKeyboardOpen();
+      // keepKeyboardOpen();
     });
 
     $scope.sendSingleGroupMsg = function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype) {
@@ -3023,16 +3025,34 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$ionicHistory,$location,$api,$ionicPlatform) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory) {
 
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
-
+    if ($mqtt.isLogin()) {
+      // alert($mqtt.isLogin());
+      $mqtt.getMqtt().getMyTopic(function (msg) {
+        $api.getAllGroupIds(function (groups) {
+          if (msg != null && msg != '') {
+            $mqtt.startMqttChat(msg + ',' + groups);
+            $mqtt.setLogin(true);
+            // $state.go('tab.message');
+            return;
+          }
+        },function (err) {
+          $ToastUtils.showToast(err, function (success) {
+          },function (err) {
+          })
+        });
+      }, function (msg) {
+      });
+    }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path() == '/login'||$location.path() == '/tab/chats'||$location.path() == '/tab/notification'||$location.path() == '/tab/account'||$location.path() == '/tab/contacts'){
+      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'){
         if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
         } else {
           backButtonPressedOnceToExit = true;
@@ -4348,8 +4368,8 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
-
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto) {
+    //群设置
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -4361,6 +4381,8 @@ angular.module('message.controllers', [])
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+    //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
@@ -4462,11 +4484,18 @@ angular.module('message.controllers', [])
     }
     //打开群图片界面
     $scope.groupPicture=function () {
-      $state.go('personfile');
+      $GridPhoto.queryPhoto($scope.groupId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
     }
     //打开群文件界面
     $scope.groupFile=function () {
-      $state.go('groupfile');
+      $state.go('personfile',{
+        sessionid:$scope.groupId
+      });
 
     }
 

@@ -30,7 +30,7 @@
         <!--<img src="img/mike.png" class="rj-head-pic">-->
         <!--<span class="rj-triangle-left" style="margin-left: -1%"></span>-->
         <!--<p class="rj-message" style="margin-left: 15%">{{historyduifangaaa.Msg}}</p>-->
-        <p class="rj-message" style="margin-left: 45px" >{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
+        <p class="rj-message" style="margin-left: 45px;color: #ffffff" >{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
       </div>
       <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID == UserID" >
         <!--<img src="img/circle6.png" class="rj-head-pic-right"><p class="rj-triangle-right" style="font-size: 13px;position: absolute;left: 5%;top: 23%;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}} </p>-->

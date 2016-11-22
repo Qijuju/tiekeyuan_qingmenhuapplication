@@ -836,14 +836,19 @@ angular.module('contacts.services', [])
           },function (msgaaa) {
             // $rootScope.$broadcast('persons.history');
           });
-          persons=msg;
+          if(query.length==0||query==""){
+            persons=new Array();
+          }else {
+            persons=msg;
+          }
+
           if(msg.searchResult==null||msg.searchResult.length==0||msg.searchResult==""){
-            $ToastUtils.showToast("无该搜索数据")
+            // $ToastUtils.showToast("无该搜索数据")
           }
           $rootScope.$broadcast('persons.update');
 
         },function (msg) {
-          $ToastUtils.showToast("无该搜索数据")
+          // $ToastUtils.showToast("无该搜索数据")
           $timeout(function () {
             $ionicLoading.hide();
           },5000);
@@ -987,11 +992,11 @@ angular.module('contacts.services', [])
           // }
           messagesss=data;
           if(messagesss==null||messagesss.length==0||messagesss==""){
-            $ToastUtils.showToast("无该搜索数据")
+            // $ToastUtils.showToast("无该搜索数据")
           }
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
-          $ToastUtils.showToast("无该搜索数据")
+          // $ToastUtils.showToast("无该搜索数据")
           $timeout(function () {
             $ionicLoading.hide();
           },5000);

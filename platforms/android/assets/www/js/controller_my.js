@@ -1,9 +1,21 @@
 /**
  * Created by Administrator on 2016/8/14.
  */
-angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap'])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation) {
+angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap','ngCordova'])
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation,$ionicHistory) {
 
+
+    /*$scope.$on('$ionicView.enter', function () {
+      /!*$ionicHistory.nextViewOptions({
+        disableBack: true
+      });*!/
+      $ionicHistory.clearHistory();
+    });*/
+
+
+
+
+    var isAndroid = ionic.Platform.isAndroid();
     $scope.name = "";
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID
@@ -13,6 +25,21 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       }else {
         $scope.jiename=$scope.mymypersonname;
       }
+
+      $api.getHeadPic($scope.UserID,"60",function (srcurl) {
+        $scope.picyoumeiyou=true;
+        // alert(srcurl)
+        $scope.$apply(function () {
+          $scope.securlpic=srcurl;
+        })
+        // $scope.$apply(function () {
+        //   document.getElementById('myImage').src=srcurl;
+        // })
+      },function (error) {
+        $scope.picyoumeiyou=false;
+        // alert("没有")
+      })
+
     }, function (msg) {
       // $ToastUtils.showToast(msg)
     });
@@ -91,7 +118,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // "youmeiyou":$scope.youmeiyou,
       });
     }
-    var isAndroid = ionic.Platform.isAndroid();
+    // var isAndroid = ionic.Platform.isAndroid();
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({
@@ -134,28 +161,65 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         sourceType: Camera.PictureSourceType.CAMERA,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
         // allowEdit: true,                                        //在选择之前允许修改截图
         // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-        targetWidth: 70,                                        //照片宽度
-        targetHeight: 70,                                       //照片高度
+        targetWidth: 1080,                                        //照片宽度
+        targetHeight: 1920,                                       //照片高度
         // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
         // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
         // popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false                                   //保存进手机相册
+        saveToPhotoAlbum: true,                                   //保存进手机相册
+        correctOrientation: true
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        alert(imageData)
+
+        // alert(imageData)
+        // alert(imageData);
         // $ToastUtils.showToast(imageData);
         // var image = document.getElementById('myImage');
         // image.src=imageData;
         //image.src = "data:image/jpeg;base64," + imageData;
         // if(isAndroid){
-        var picPath = imageData.substring(0, imageData.indexOf('?'));
-        alert(picPath)
+        var picPath = imageData;
+        if(isAndroid){
+          picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
+        }
+        // if(picPath.indexOf("file:///")==0){
+        //   picPath=picPath.substring(7,picPath.length)
+        // }
+        // alert(picPath)
+        //
+        // alert(picPath);
         // }
         $api.setHeadPic(picPath, function (msg) {
-          $ToastUtils.showToast("成功")
+
+          // alert(msg)
+          $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 100,
+            showDelay: 0
+          });
+          $timeout(function () {
+            $scope.$apply(function () {
+              $scope.picyoumeiyou=true;
+              $scope.securlpic=msg;
+              // alert($scope.picyoumeiyou)
+            })
+            $ionicLoading.hide();
+          });
+
+          // $ToastUtils.showToast("成功")
+          // $api.getHeadPic($scope.UserID,"60",function (srcurl) {
+          //   alert(srcurl)
+          //   $scope.$apply(function () {
+          //     $scope.securlpic=srcurl;
+          //   })
+          // },function (error) {
+          //   alert("没拿到")
+          // })
         }, function (msg) {
-          $ToastUtils.showToast("失败")
+          $ToastUtils.showToast("设置头像失败")
         });
       }, function (err) {
         // error
@@ -197,23 +261,69 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,             //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库  sourceType: Camera.PictureSourceType.CAMERA,
         // allowEdit: false,                                       //在选择之前允许修改截图
         // encodingType: Camera.EncodingType.JPEG,                   //保存的图片格式： JPEG = 0, PNG = 1
-        targetWidth: 70,                                        //照片宽度
-        targetHeight: 70,                                       //照片高度
+        targetWidth: 1080,                                        //照片宽度
+        targetHeight: 1920,                                       //照片高度
         // mediaType: 0,                                             //可选媒体类型：圖片=0，只允许选择图片將返回指定DestinationType的参数。 視頻格式=1，允许选择视频，最终返回 FILE_URI。ALLMEDIA= 2，允许所有媒体类型的选择。
         // cameraDirection: 0,                                       //枪后摄像头类型：Back= 0,Front-facing = 1
         // popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false                                   //保存进手机相册
+        saveToPhotoAlbum: true,                                   //保存进手机相册
+        correctOrientation: true
       };
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        alert(imageData);
+
+
+
+        // image.src = "data:image/jpeg;base64," + imageData;
+        // alert(imageData);
+
         // if(isAndroid){
-        var picPath = imageData.substring(0, imageData.indexOf('?'));
-        alert(picPath)
+        var picPath = imageData;
+        if(isAndroid){
+          picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
+        }
+
+        // if(picPath.indexOf("file:///")==0){
+        //   picPath=picPath.substring(7,picPath.length)
+        // }
+        // alert(picPath)
+        // $scope.$apply(function () {
+        //   $scope.securlpic=picPath;
+        // })
+        // alert(picPath)
         // }
         $api.setHeadPic(picPath, function (msg) {
-          $ToastUtils.showToast("成功")
+          // alert(msg)
+          $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 100,
+            showDelay: 0
+          });
+          $timeout(function () {
+
+            $scope.$apply(function () {
+              $scope.picyoumeiyou=true;
+              $scope.securlpic=msg;
+
+            })
+            $ionicLoading.hide();
+          });
+          // $scope.$apply(function () {
+          //
+          // })
+          // $api.getHeadPic($scope.UserID,"60",function (srcurl) {
+          //   alert(srcurl)
+          //
+          //   $scope.$apply(function () {
+          //     $scope.securlpic=srcurl;
+          //   })
+          // },function (error) {
+          //   alert("没拿到")
+          // })
+          // $ToastUtils.showToast("成功")
         }, function (msg) {
-          $ToastUtils.showToast("失败")
+          $ToastUtils.showToast("设置头像失败")
         });
         // var image = document.getElementById('myImage');
         // image.src=imageData;
@@ -262,6 +372,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
+              $mqtt.save('passlogin', "0");
               $state.go("login");
             }, function (message) {
               $ToastUtils.showToast(message);
@@ -298,8 +409,40 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading,$mqtt) {
+
+
+
     $scope.UserIDforhou = $stateParams.UserIDfor;
+    var backButtonPressedOnceToExit=false;
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/myinformation/'+$scope.UserIDforhou)){
+        if(isopen){
+          myPopup.close();
+          isopen=false;
+        }else {
+          $state.go("tab.account");
+        }
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+
+    },501)
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
@@ -311,9 +454,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       })
     });
     // 修改个人资料
+    var myPopup;
+    var isopen=false;
     $scope.updateinformation = function () {
+      isopen=true;
       $scope.data = {};
-      var myPopup = $ionicPopup.show({
+       myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="email" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
@@ -358,7 +504,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         ]
       });
       myPopup.then(function (res) {
-
+        isopen=false;
       });
 
       // myPopup.close(); //关闭
@@ -424,7 +570,41 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
 
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt,$ToastUtils,$cordovaBarcodeScanner) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt,$ToastUtils,$cordovaBarcodeScanner,$location,$ionicPlatform,$ionicHistory,$ionicLoading) {
+
+    $scope.UserIDsethou = $stateParams.UserIDset;
+
+    var backButtonPressedOnceToExit=false;
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/accountsettion/'+$scope.UserIDsethou)){
+        if(isopen){
+          myPopup.close();
+          isopen=false;
+        }else {
+          $state.go("tab.account");
+        }
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
+      }else  {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+
+    },501)
+
+
     $scope.cunzai=0;
     //初始化页面，第一次输入旧密码
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
@@ -442,14 +622,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.meizuo=function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
-    $scope.UserIDsethou = $stateParams.UserIDset;
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
     // 修改密码
+    var myPopup;
+    var isopen=false;
     $scope.showPopup = function () {
+      isopen=true;
       $scope.data = {}
-      var myPopup = $ionicPopup.show({
+       myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入原密码" ng-model="data.oldpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入新密码" ng-model="data.newpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请确认新密码" ng-model="data.enterpassword"></label>',
         title: '修改密码',
         subTitle: '区分大小写，请认真填写',
@@ -466,7 +648,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               }else {
                 $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
                   $ToastUtils.showToast("修改密码成功")
+                  $mqtt.save('passlogin', "2");
+                  $mqtt.save('pwdgesture', $scope.data.newpassword);
                 }, function (msg) {
+                  // $ToastUtils.showToast("222")
                   $ToastUtils.showToast(msg);
                 })
               }
@@ -475,15 +660,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         ]
       });
       myPopup.then(function (res) {
+        isopen=false;
 
       });
       // myPopup.close(); //关闭
     };
-    //在线升级
-    $scope.zaixianshengji = function () {
-      $mqtt.save('install_cancel', 'false');
-      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
-    }
+    // //在线升级
+    // $scope.zaixianshengji = function () {
+    //   $mqtt.save('install_cancel', 'false');
+    //   $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    // }
     //扫一扫
     $scope.scanCode = function () {
       $cordovaBarcodeScanner.scan().then(function(imageData) {
@@ -680,7 +866,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var password="";
     $scope.count=6;
     $mqtt.getUserInfo(function (msg) {
-      $scope.UserID = msg.userID
+      $scope.UserID = msg.userID;
       $scope.mymypersonname=msg.userName
     }, function (msg) {
     });
@@ -844,5 +1030,27 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }, 100);
       })
     });
+
+  })
+
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count) {
+    $scope.indicators = Indicators.all();
+
+    $scope.indicatorId = Indicators.getId($stateParams.indicatorId);
+
+
+    $scope.projects = Projects.all();
+
+    $scope.counts = Count.all();
+
+
+
+    $scope.openUrl=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://172.25.26.77:8080/html5/src/gouzhuwu.html","_self","location=no")
+    }
 
   })

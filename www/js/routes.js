@@ -35,7 +35,8 @@ angular.module('im.routes', [])
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'templates/welcome.html',
-        controller: 'welcomeCtrl'
+        controller: 'welcomeCtrl',
+        cache:false
       })
       .state('newsPage', {
         url: '/newsPage',
@@ -107,6 +108,16 @@ angular.module('im.routes', [])
           }
         }
       })
+      .state('tab.webpage', {
+        url: '/webpage',
+        cache:false,
+        views: {
+          'tab-webpage': {
+            templateUrl: 'templates/tab-webpage.html',
+            controller: 'webpageCtrl'
+          }
+        }
+      })
 
       .state('tab.notifications', {
         url: '/notifications',
@@ -134,7 +145,7 @@ angular.module('im.routes', [])
       })
 
       .state('notifyApplication', {
-        url: '/notifyApplication/:id/:isfirm',
+        url: '/notifyApplication/:id',
         templateUrl: 'templates/notifyApplication.html',
         cache:false,
         controller: 'notifyApplicationCtrl'
@@ -295,8 +306,8 @@ angular.module('im.routes', [])
       .state('mydepartment', {
         url: '/mydepartment',
         templateUrl: 'templates/my_department.html',
-        controller: 'MyDepartmentCtrl'
-
+        controller: 'MyDepartmentCtrl',
+        cache:false
       })
 
       .state('person', {
@@ -332,6 +343,7 @@ angular.module('im.routes', [])
       })
       .state('tab.chat-detail', {
         url: '/chats/:chatId',
+        cache:false,
         views: {
           'tab-chats': {
             templateUrl: 'templates/chat-detail.html',
@@ -357,13 +369,13 @@ angular.module('im.routes', [])
         url: '/search',
         templateUrl: 'templates/search.html',
         controller: 'searchCtrl',
-        cache:true
+        cache:false
       })
 
       .state('searchmessage', {
         url: '/searchmessage/:UserIDSM/:UserNameSM',
         templateUrl: 'templates/searchmessage.html',
-        controller: 'searchmessageCtrl',
+        controller: 'searchCtrl',
         cache:false
       })
       .state('searchmessage22', {
@@ -373,12 +385,6 @@ angular.module('im.routes', [])
         cache:false
       })
 
-      .state('searchdetail', {
-        url: '/searchdetail/:UserID',
-        templateUrl: 'templates/searchDetail.html',
-        controller: 'searchDetailCtrl',
-        cache:false
-      })
 
       .state('addnewpersonfirst', {
         url: '/addnewpersonfirst/:createtype/:groupid/:groupname',
@@ -441,6 +447,7 @@ angular.module('im.routes', [])
         url: '/searchlocal',
         templateUrl: 'templates/searchLocal.html',
         controller: 'searchLocalCtrl',
+        cache:false
       })
 
       .state('attentionDetail', {
@@ -515,11 +522,12 @@ angular.module('im.routes', [])
       })
 
       .state('groupfile', {
-        url: '/groupfile',
+        url: '/groupfile/:sessionid',
         templateUrl: 'templates/group-file.html',
         controller: 'groupfileCtrl',
         cache:false
       })
+
 
 
 

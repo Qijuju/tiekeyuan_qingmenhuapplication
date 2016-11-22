@@ -21,6 +21,7 @@
 
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()" ng-click="zhiling()"
                id="contentaa">
+
     <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."
                    pulling-text="更多消息" id="refresh">
     </ion-refresher>
@@ -39,36 +40,48 @@
             <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
             <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
           </div>
+
+
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9"
             class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
+
+
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8"
             class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
+
+
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7"
             class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
+
+
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6"
             class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
+
+
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0"
             class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
+
+
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
             <!---接收图片ui--->

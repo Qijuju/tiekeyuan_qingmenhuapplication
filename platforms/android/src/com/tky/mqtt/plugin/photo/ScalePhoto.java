@@ -46,6 +46,7 @@ import im.server.File.RSTgetFile;
 public class ScalePhoto extends CordovaPlugin {
 
     private int TAKE_PHOTO_CODE = 0x0104;
+    private boolean isDown = false;
   
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -78,6 +79,9 @@ public class ScalePhoto extends CordovaPlugin {
             String filepath = args.getString(0);
             Intent intent =new Intent(cordova.getActivity(), PhotoScaleActivity.class);
             intent.putExtra("filePath",filepath);
+            intent.putExtra("fromwhere","local");
+            intent.putExtra("filefactsize",0l);
+            intent.putExtra("bigfilepath",filepath);
             cordova.getActivity().startActivity(intent);
             setResult("加载成功！", PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
@@ -93,157 +97,192 @@ public class ScalePhoto extends CordovaPlugin {
      */
     public void netScale(final JSONArray args, final CallbackContext callbackContext) {
     	//图片的id
-        try {
-            String imageid = args.getString(0);
-            final String imagename=args.getString(1);
-            final String samllfilepath=args.getString(2);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String imageid = args.getString(0);
+                    final String imagename=args.getString(1);
+                    final String samllfilepath=args.getString(2);
 
-            FilePictureService instance=FilePictureService.getInstance(UIUtils.getContext());
-            DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
-            final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
-            final FilePicture firstFilePic=filePictureDao.load(imageid);
+                    DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
+                    final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
+                    final FilePicture firstFilePic=filePictureDao.load(imageid);
 
-            File testFile = new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                    //收到图片的真是大小
+                    String factStringSize=firstFilePic.getBytesize();
 
+                    final long factsize=Long.parseLong(factStringSize);
 
-
-            if(testFile .exists()){
-
-                FilePicture thirdFilePic=new FilePicture();
-                thirdFilePic.setFilepicid(firstFilePic.getFilepicid());
-                thirdFilePic.setFrom(firstFilePic.getFrom());
-                thirdFilePic.setSessionid(firstFilePic.getSessionid());
-                thirdFilePic.setFromname(firstFilePic.getFromname());
-                thirdFilePic.setToname(firstFilePic.getToname());
-                thirdFilePic.setSmallurl(firstFilePic.getSmallurl());
-                thirdFilePic.setBigurl(testFile.getAbsolutePath());
-                thirdFilePic.setBytesize(firstFilePic.getBytesize());
-                thirdFilePic.setMegabyte(firstFilePic.getMegabyte());
-                thirdFilePic.setFilename(firstFilePic.getFilename());
-                thirdFilePic.setType(firstFilePic.getType());
-                thirdFilePic.setWhen(System.currentTimeMillis());
-
-                filePictureDao.insertOrReplace(thirdFilePic);
-
-
-                final Intent intent3=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
-                intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
-                cordova.getActivity().startActivity(intent3);
-            }else {
-                final Intent intent=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
-                intent.putExtra("filePath", samllfilepath);
-                cordova.getActivity().startActivity(intent);
-
-
-                SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
-                    @Override
-                    public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
-                        if (arg0 != null) {
-                            try {
-                                RSTgetFile result = arg0.getResult();
-                                String tempPicName = null;
-                                if (result.result) {
-                                    System.out.println("获取图片成功");
-                                    String tempUserPic = FileUtils.getIconDir() + File.separator + "original";
-                                    RandomAccessFile baf = null;
-                                    File directory = new File(tempUserPic);
-                                    if (!directory.exists()) {
-                                        directory.mkdirs();
-                                    }
-                                    long offset = result.getOffset();
-                                    String type = result.getObjectTP();
-                                    tempPicName = "";
-                                    tempPicName = tempUserPic + File.separator + imagename;//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
-//                                }
-                                    File tempFile = new File(tempPicName);
-                                    if (!tempFile.exists())
-                                        tempFile.createNewFile();
-                                    baf = new RandomAccessFile(tempFile, "rw");
-                                    baf.seek(offset);
-                                    while (true) {
-                                        int length = result.fileByte.limit() - result.fileByte.position();
-                                        baf.getChannel().write(result.fileByte);
-                                        if (result.isFinish) {
-                                            System.out.println("文件下载完成。");
-                                            break;
-                                        }
-                                        try {
-                                            result = SystemApi.getFileSyncClient().getFileClient().GetFile(getUserID(), result.objectTP, result.getObjectID(),
-                                                    result.getPicSize(), result.getOffset() + length, 0);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        if (!result.result) {
-                                            System.out.println("本次请求失败，原因：" + result.getResultMsg());
-                                            break;
-                                        }
-                                    }
-                                    try {
-                                        baf.close();
-                                    } catch (IOException ex) {
-
-                                    }
-                                } else {
-                                    System.out.println("获取我的头像失败");
-                                }
-
-                                Intent intent1=new Intent();
-                                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent1.setAction("com.tky.updatefilepath");
-                                intent1.putExtra("filepath", tempPicName);
-                                cordova.getActivity().sendBroadcast(intent1);
-
-
-                                FilePicture secondFilePic=new FilePicture();
-                                secondFilePic.setFilepicid(firstFilePic.getFilepicid());
-                                secondFilePic.setFrom(firstFilePic.getFrom());
-                                secondFilePic.setSessionid(firstFilePic.getSessionid());
-                                secondFilePic.setFromname(firstFilePic.getFromname());
-                                secondFilePic.setToname(firstFilePic.getToname());
-                                secondFilePic.setSmallurl(firstFilePic.getSmallurl());
-                                secondFilePic.setBigurl(tempPicName);
-                                secondFilePic.setBytesize(firstFilePic.getBytesize());
-                                secondFilePic.setMegabyte(firstFilePic.getMegabyte());
-                                secondFilePic.setFilename(firstFilePic.getFilename());
-                                secondFilePic.setType(firstFilePic.getType());
-                                secondFilePic.setWhen(System.currentTimeMillis());
-
-                                filePictureDao.insertOrReplace(secondFilePic);
+                    final File testFile = new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
 
 
 
+                    if(testFile .exists() && testFile.length()==factsize){
 
 
-                                setResult(tempPicName, PluginResult.Status.OK, callbackContext);
-                                setResult("100", PluginResult.Status.OK, callbackContext);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (TException e) {
-                                e.printStackTrace();
+                        FilePicture thirdFilePic=new FilePicture();
+                        thirdFilePic.setFilepicid(firstFilePic.getFilepicid());
+                        thirdFilePic.setFrom(firstFilePic.getFrom());
+                        thirdFilePic.setSessionid(firstFilePic.getSessionid());
+                        thirdFilePic.setFromname(firstFilePic.getFromname());
+                        thirdFilePic.setToname(firstFilePic.getToname());
+                        thirdFilePic.setSmallurl(firstFilePic.getSmallurl());
+                        thirdFilePic.setBigurl(testFile.getAbsolutePath());
+                        thirdFilePic.setBytesize(firstFilePic.getBytesize());
+                        thirdFilePic.setMegabyte(firstFilePic.getMegabyte());
+                        thirdFilePic.setFilename(firstFilePic.getFilename());
+                        thirdFilePic.setType(firstFilePic.getType());
+                        thirdFilePic.setWhen(System.currentTimeMillis());
+
+                        filePictureDao.insertOrReplace(thirdFilePic);
+
+
+                        UIUtils.runInMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final Intent intent3=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                                intent3.putExtra("filefactsize",factsize);
+                                intent3.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                                cordova.getActivity().startActivity(intent3);
                             }
+                        });
+                    }else {
+
+                        UIUtils.runInMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final Intent intent=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                //传入的是小图路径
+                                intent.putExtra("filePath", samllfilepath);
+                                intent.putExtra("filefactsize",factsize);
+
+                                //传入的是大图路径
+                                intent.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                                cordova.getActivity().startActivity(intent);
+                            }
+                        });
+
+
+                        //将正在下载状态改为false
+                        isDown = false;
+
+                        File filenew=new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+
+                        if(filenew.exists()){
+                            filenew.delete();
                         }
+                        SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+                            @Override
+                            public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
+                                isDown = true;
+                                if (arg0 != null) {
+                                    try {
+                                        RSTgetFile result = arg0.getResult();
+                                        String tempPicName = null;
+                                        if (result.result) {
+                                            System.out.println("获取图片成功");
+                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "original";
+                                            RandomAccessFile baf = null;
+                                            File directory = new File(tempUserPic);
+                                            if (!directory.exists()) {
+                                                directory.mkdirs();
+                                            }
+                                            long offset = result.getOffset();
+                                            String type = result.getObjectTP();
+                                            tempPicName = "";
+                                            tempPicName = tempUserPic + File.separator + imagename;//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+//                                }
+                                            File tempFile = new File(tempPicName);
+                                            if (!tempFile.exists())
+                                                tempFile.createNewFile();
+                                            baf = new RandomAccessFile(tempFile, "rw");
+                                            baf.seek(offset);
+                                            while (isDown) {
+                                                int length = result.fileByte.limit() - result.fileByte.position();
+                                                baf.getChannel().write(result.fileByte);
+                                                if (result.isFinish) {
+                                                    System.out.println("文件下载完成。");
+                                                    break;
+                                                }
+                                                try {
+                                                    result = SystemApi.getFileSyncClient().getFileClient().GetFile(getUserID(), result.objectTP, result.getObjectID(),
+                                                            result.getPicSize(), result.getOffset() + length, 0);
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                if (!result.result) {
+                                                    System.out.println("本次请求失败，原因：" + result.getResultMsg());
+                                                    break;
+                                                }
+                                            }
+                                            try {
+                                                baf.close();
+                                            } catch (IOException ex) {
+
+                                            }
+                                        } else {
+                                            System.out.println("获取我的头像失败");
+                                        }
+
+                                        final String finalTempPicName = tempPicName;
+                                        UIUtils.runInMainThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                Intent intent1=new Intent();
+                                                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                intent1.setAction("com.tky.updatefilepath");
+                                                intent1.putExtra("filepath", finalTempPicName);
+                                                cordova.getActivity().sendBroadcast(intent1);
+                                            }
+                                        });
+
+
+                                        FilePicture secondFilePic = new FilePicture();
+                                        secondFilePic.setFilepicid(firstFilePic.getFilepicid());
+                                        secondFilePic.setFrom(firstFilePic.getFrom());
+                                        secondFilePic.setSessionid(firstFilePic.getSessionid());
+                                        secondFilePic.setFromname(firstFilePic.getFromname());
+                                        secondFilePic.setToname(firstFilePic.getToname());
+                                        secondFilePic.setSmallurl(firstFilePic.getSmallurl());
+                                        secondFilePic.setBigurl(tempPicName);
+                                        secondFilePic.setBytesize(firstFilePic.getBytesize());
+                                        secondFilePic.setMegabyte(firstFilePic.getMegabyte());
+                                        secondFilePic.setFilename(firstFilePic.getFilename());
+                                        secondFilePic.setType(firstFilePic.getType());
+                                        secondFilePic.setWhen(System.currentTimeMillis());
+
+                                        filePictureDao.insertOrReplace(secondFilePic);
+
+
+                                        setResult(tempPicName, PluginResult.Status.OK, callbackContext);
+                                        setResult("100", PluginResult.Status.OK, callbackContext);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (TException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+
+                            }
+                        });
+
                     }
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
-                });
-
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (TException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-
+        }).start();
     }
 
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {

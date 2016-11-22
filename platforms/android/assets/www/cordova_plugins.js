@@ -344,6 +344,14 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.GridPhoto"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -375,7 +383,8 @@ module.exports.metadata =
     "phonegap-nfc": "0.6.6",
     "com.darktalker.cordova.screenshot": "0.1.5",
     "ScalePhoto": "1.0.0",
-    "GridPhoto": "1.0.0"
+    "GridPhoto": "1.0.0",
+    "cordova-plugin-inappbrowser": "1.5.0"
 };
 // BOTTOM OF METADATA
 });

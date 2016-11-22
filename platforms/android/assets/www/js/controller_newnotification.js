@@ -5,6 +5,9 @@ angular.module('newnotification.controllers', [])
 
 
   .controller('newnotificationCtrl', function ($scope,$state,$ionicSlideBoxDelegate,$greendao,$ionicLoading,$timeout,$rootScope) {
+
+
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -496,7 +499,7 @@ angular.module('newnotification.controllers', [])
 
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao,$api,$timeout,$ionicLoading) {
+  .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao,$api,$timeout,$ionicLoading,$ToastUtils) {
 
 
 
@@ -621,6 +624,7 @@ angular.module('newnotification.controllers', [])
 
           })
         },function (err) {
+          $ToastUtils.showToast(err)
 
           $ionicLoading.hide();
 
