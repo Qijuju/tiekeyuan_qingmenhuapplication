@@ -101,7 +101,6 @@ public class MessageOper {
 			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
 			bean.setUserName((String) msgMap.get(IMPFields.E_UserName));
 			bean.setGroupName(msgMap.containsKey(IMPFields.E_GroupName) ? (String) msgMap.get(IMPFields.E_GroupName) : "");
-			ToastUtil.showSafeToast(msgMap.containsKey(IMPFields.E_GroupName) && msgMap.get("from") != null ? (String) msgMap.get("from") : "ddxxxxx");
 			bean.setSenderid(msgMap.containsKey(IMPFields.E_GroupName) && msgMap.get("from") != null ? (String) msgMap.get("from") : "");
 			msgBean = bean;
 		}

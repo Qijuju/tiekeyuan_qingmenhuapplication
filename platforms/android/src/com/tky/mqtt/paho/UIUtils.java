@@ -1,6 +1,8 @@
 package com.tky.mqtt.paho;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * 作者：SLS 包名：com.tky.frameplay.utils 日期：2016/1/11 描述：UI工具类
@@ -347,4 +350,21 @@ public class UIUtils {
 		return filePath.substring(filePath.lastIndexOf(".") + 1,
 				filePath.length());
 	}
+
+	/**
+	 *判断当前应用程序处于前台还是后台
+	 */
+	public static boolean isApplicationBroughtToBackground(final Context context) {
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+		if (!tasks.isEmpty()) {
+			ComponentName topActivity = tasks.get(0).topActivity;
+			if (!topActivity.getPackageName().equals(context.getPackageName())) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
 }

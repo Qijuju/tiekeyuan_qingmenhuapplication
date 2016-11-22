@@ -4368,7 +4368,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
     //群设置
     $ionicLoading.show({
       content: 'Loading',
@@ -4383,6 +4383,24 @@ angular.module('message.controllers', [])
     $scope.ismygroup=$stateParams.ismygroup;
 
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
+        $state.go('messageGroup',{
+          "id":$scope.groupId,
+          "chatName":$scope.groupName,
+          "grouptype":$scope.groupType,
+          "ismygroup":$scope.ismygroup,
+        });
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
+
+
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
