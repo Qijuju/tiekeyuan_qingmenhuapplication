@@ -154,7 +154,7 @@
                <!----发送位置的ui-->
               <font  ng-if="msg.messagetype === 'LOCATION'">
                 <div class="list" ng-if="msg.messagetype === 'LOCATION'"
-                  style="width: 210px;background-color: #888888;float: right;margin-right: 10px;">
+                  style="width: 230px;background-color: #888888;float: right;margin-right: 10px;">
                 <a class="item item-icon-left" ng-if="msg.isFailure != 'true'"
                   ng-click="entergroupmap(msg.message.substring(0, msg.message.lastIndexOf(',')))" >
                   <img class="icon" ng-src="{{getFileTypeImg('location')}}"

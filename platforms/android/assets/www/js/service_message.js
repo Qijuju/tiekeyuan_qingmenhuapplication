@@ -1194,7 +1194,7 @@ angular.module('message.services', [])
       },
 
       sendGroupMsg:function (topic, content, id,grouptype,localuser,localuserId,sqlid,messagetype,$mqtt) {
-        alert("发送群消息"+content);
+        //alert("发送群消息"+content);
         var messageReal={};
         messageReal._id=sqlid;
         messageReal.sessionid=id;
@@ -1240,9 +1240,9 @@ angular.module('message.services', [])
           /**
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
-          alert("qunliao成功前长度"+qunliao.length);
+          //alert("qunliao成功前长度"+qunliao.length);
           qunliao.push(messageReal);
-          alert("qunliao成功后长度"+qunliao.length+messageReal.message);
+          //alert("qunliao成功后长度"+qunliao.length+messageReal.message);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
