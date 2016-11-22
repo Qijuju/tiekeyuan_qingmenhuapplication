@@ -1,7 +1,9 @@
 package com.tky.mqtt.paho;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
@@ -20,7 +22,9 @@ public class BaseApplication extends Application {
 	private static DaoSession daoSession;
 	public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
 	+ File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
-//	public static final String DB_NAME= "KKK";//正式发布版本数据库路径
+	private boolean isInBackground;
+
+//		public static final String DB_NAME= "KKK";//正式发布版本数据库路径
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -35,6 +39,43 @@ public class BaseApplication extends Application {
 		if(mInstance == null){
 			mInstance = this;
 		}
+		registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+			@Override
+			public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+			}
+
+			@Override
+			public void onActivityStarted(Activity activity) {
+			}
+
+			@Override
+			public void onActivityResumed(Activity activity) {
+				if (isInBackground) {
+					MqttNotification.cancelAll();
+					isInBackground = false;
+				}
+			}
+
+			@Override
+			public void onActivityPaused(Activity activity) {
+			}
+
+			@Override
+			public void onActivityStopped(Activity activity) {
+				//判断应用是否进入后台
+				if (UIUtils.isApplicationBroughtToBackground(getApplicationContext())) {
+					isInBackground = true;
+				}
+			}
+
+			@Override
+			public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+			}
+
+			@Override
+			public void onActivityDestroyed(Activity activity) {
+			}
+		});
 	}
 	public static Context getContext() {
 		return context;
