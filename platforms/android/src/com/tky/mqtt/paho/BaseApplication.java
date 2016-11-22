@@ -62,6 +62,7 @@ public class BaseApplication extends Application {
 
 			@Override
 			public void onActivityStopped(Activity activity) {
+				//判断应用是否进入后台
 				if (UIUtils.isApplicationBroughtToBackground(getApplicationContext())) {
 					isInBackground = true;
 				}
