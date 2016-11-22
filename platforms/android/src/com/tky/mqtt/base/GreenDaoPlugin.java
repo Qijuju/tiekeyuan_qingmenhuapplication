@@ -213,6 +213,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
         }else if("FilePictureService".equals(services)){
             FilePicture filePicture=new FilePicture();
             filePicture.setFilepicid(jsonobj.getString("filepicid"));
+            filePicture.set_id(jsonobj.getString("_id"));
             filePicture.setFrom(jsonobj.getString("from"));
             filePicture.setSessionid(jsonobj.getString("sessionid"));
             filePicture.setFromname(jsonobj.getString("fromname"));

@@ -615,7 +615,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
@@ -2904,7 +2904,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
@@ -4368,7 +4368,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto) {
     //群设置
     $ionicLoading.show({
       content: 'Loading',
@@ -4484,13 +4484,18 @@ angular.module('message.controllers', [])
     }
     //打开群图片界面
     $scope.groupPicture=function () {
-      $ToastUtils.showToast("功能完善中...")
-      //$state.go('personfile');
+      $GridPhoto.queryPhoto($scope.groupId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
     }
     //打开群文件界面
     $scope.groupFile=function () {
-      $ToastUtils.showToast("功能完善中...")
-      //$state.go('groupfile');
+      $state.go('personfile',{
+        sessionid:$scope.groupId
+      });
 
     }
 

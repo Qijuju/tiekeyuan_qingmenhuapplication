@@ -10,6 +10,7 @@ import com.tky.mqtt.base.BaseDao;
 public class FilePicture extends BaseDao {
 
     private String filepicid;
+    private String _id;
     private String from;
     private String sessionid;
     private String fromname;
@@ -29,8 +30,9 @@ public class FilePicture extends BaseDao {
         this.filepicid = filepicid;
     }
 
-    public FilePicture(String filepicid, String from, String sessionid, String fromname, String toname, String smallurl, String bigurl, String bytesize, String megabyte, String filename, String type, Long when) {
+    public FilePicture(String filepicid, String _id, String from, String sessionid, String fromname, String toname, String smallurl, String bigurl, String bytesize, String megabyte, String filename, String type, Long when) {
         this.filepicid = filepicid;
+        this._id = _id;
         this.from = from;
         this.sessionid = sessionid;
         this.fromname = fromname;
@@ -50,6 +52,14 @@ public class FilePicture extends BaseDao {
 
     public void setFilepicid(String filepicid) {
         this.filepicid = filepicid;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getFrom() {

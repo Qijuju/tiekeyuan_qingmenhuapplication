@@ -661,8 +661,10 @@ angular.module('message.services', [])
               }
               // message.isSuccess='true';
               //alert("message"+message)
+
               var savefilepic={};
               savefilepic.filepicid=sdata[1];
+              savefilepic._id=msgDetail._id;
               savefilepic.from="true";
               savefilepic.sessionid=id;
               savefilepic.fromname=localuser;
@@ -848,6 +850,7 @@ angular.module('message.services', [])
 
                 var arrivefile={};
                 arrivefile.filepicid=arriveMessage.message.split('###')[0];
+                arrivefile._id=arriveMessage._id;
                 arrivefile.from="false";
                 arrivefile.sessionid=arriveMessage.sessionid;
                 arrivefile.fromname=arriveMessage.username;
@@ -888,6 +891,7 @@ angular.module('message.services', [])
 
                     var arrivepic={};
                     arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                    arrivepic._id=arriveMessage._id;
                     arrivepic.from="false";
                     arrivepic.sessionid=arriveMessage.sessionid;
                     arrivepic.fromname=arriveMessage.username;

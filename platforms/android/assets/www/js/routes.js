@@ -522,7 +522,7 @@ angular.module('im.routes', [])
       })
 
       .state('groupfile', {
-        url: '/groupfile',
+        url: '/groupfile/:sessionid',
         templateUrl: 'templates/group-file.html',
         controller: 'groupfileCtrl',
         cache:false

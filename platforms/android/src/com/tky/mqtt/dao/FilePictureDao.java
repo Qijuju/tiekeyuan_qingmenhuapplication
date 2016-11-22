@@ -24,17 +24,18 @@ public class FilePictureDao extends AbstractDao<FilePicture, String> {
     */
     public static class Properties {
         public final static Property Filepicid = new Property(0, String.class, "filepicid", true, "FILEPICID");
-        public final static Property From = new Property(1, String.class, "from", false, "FROM");
-        public final static Property Sessionid = new Property(2, String.class, "sessionid", false, "SESSIONID");
-        public final static Property Fromname = new Property(3, String.class, "fromname", false, "FROMNAME");
-        public final static Property Toname = new Property(4, String.class, "toname", false, "TONAME");
-        public final static Property Smallurl = new Property(5, String.class, "smallurl", false, "SMALLURL");
-        public final static Property Bigurl = new Property(6, String.class, "bigurl", false, "BIGURL");
-        public final static Property Bytesize = new Property(7, String.class, "bytesize", false, "BYTESIZE");
-        public final static Property Megabyte = new Property(8, String.class, "megabyte", false, "MEGABYTE");
-        public final static Property Filename = new Property(9, String.class, "filename", false, "FILENAME");
-        public final static Property Type = new Property(10, String.class, "type", false, "TYPE");
-        public final static Property When = new Property(11, Long.class, "when", false, "WHEN");
+        public final static Property _id = new Property(1, String.class, "_id", false, "_ID");
+        public final static Property From = new Property(2, String.class, "from", false, "FROM");
+        public final static Property Sessionid = new Property(3, String.class, "sessionid", false, "SESSIONID");
+        public final static Property Fromname = new Property(4, String.class, "fromname", false, "FROMNAME");
+        public final static Property Toname = new Property(5, String.class, "toname", false, "TONAME");
+        public final static Property Smallurl = new Property(6, String.class, "smallurl", false, "SMALLURL");
+        public final static Property Bigurl = new Property(7, String.class, "bigurl", false, "BIGURL");
+        public final static Property Bytesize = new Property(8, String.class, "bytesize", false, "BYTESIZE");
+        public final static Property Megabyte = new Property(9, String.class, "megabyte", false, "MEGABYTE");
+        public final static Property Filename = new Property(10, String.class, "filename", false, "FILENAME");
+        public final static Property Type = new Property(11, String.class, "type", false, "TYPE");
+        public final static Property When = new Property(12, Long.class, "when", false, "WHEN");
     };
 
 
@@ -51,17 +52,18 @@ public class FilePictureDao extends AbstractDao<FilePicture, String> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'FILE_PICTURE' (" + //
                 "'FILEPICID' TEXT PRIMARY KEY NOT NULL ," + // 0: filepicid
-                "'FROM' TEXT," + // 1: from
-                "'SESSIONID' TEXT," + // 2: sessionid
-                "'FROMNAME' TEXT," + // 3: fromname
-                "'TONAME' TEXT," + // 4: toname
-                "'SMALLURL' TEXT," + // 5: smallurl
-                "'BIGURL' TEXT," + // 6: bigurl
-                "'BYTESIZE' TEXT," + // 7: bytesize
-                "'MEGABYTE' TEXT," + // 8: megabyte
-                "'FILENAME' TEXT," + // 9: filename
-                "'TYPE' TEXT," + // 10: type
-                "'WHEN' INTEGER);"); // 11: when
+                "'_ID' TEXT," + // 1: _id
+                "'FROM' TEXT," + // 2: from
+                "'SESSIONID' TEXT," + // 3: sessionid
+                "'FROMNAME' TEXT," + // 4: fromname
+                "'TONAME' TEXT," + // 5: toname
+                "'SMALLURL' TEXT," + // 6: smallurl
+                "'BIGURL' TEXT," + // 7: bigurl
+                "'BYTESIZE' TEXT," + // 8: bytesize
+                "'MEGABYTE' TEXT," + // 9: megabyte
+                "'FILENAME' TEXT," + // 10: filename
+                "'TYPE' TEXT," + // 11: type
+                "'WHEN' INTEGER);"); // 12: when
     }
 
     /** Drops the underlying database table. */
@@ -80,59 +82,64 @@ public class FilePictureDao extends AbstractDao<FilePicture, String> {
             stmt.bindString(1, filepicid);
         }
  
+        String _id = entity.get_id();
+        if (_id != null) {
+            stmt.bindString(2, _id);
+        }
+ 
         String from = entity.getFrom();
         if (from != null) {
-            stmt.bindString(2, from);
+            stmt.bindString(3, from);
         }
  
         String sessionid = entity.getSessionid();
         if (sessionid != null) {
-            stmt.bindString(3, sessionid);
+            stmt.bindString(4, sessionid);
         }
  
         String fromname = entity.getFromname();
         if (fromname != null) {
-            stmt.bindString(4, fromname);
+            stmt.bindString(5, fromname);
         }
  
         String toname = entity.getToname();
         if (toname != null) {
-            stmt.bindString(5, toname);
+            stmt.bindString(6, toname);
         }
  
         String smallurl = entity.getSmallurl();
         if (smallurl != null) {
-            stmt.bindString(6, smallurl);
+            stmt.bindString(7, smallurl);
         }
  
         String bigurl = entity.getBigurl();
         if (bigurl != null) {
-            stmt.bindString(7, bigurl);
+            stmt.bindString(8, bigurl);
         }
  
         String bytesize = entity.getBytesize();
         if (bytesize != null) {
-            stmt.bindString(8, bytesize);
+            stmt.bindString(9, bytesize);
         }
  
         String megabyte = entity.getMegabyte();
         if (megabyte != null) {
-            stmt.bindString(9, megabyte);
+            stmt.bindString(10, megabyte);
         }
  
         String filename = entity.getFilename();
         if (filename != null) {
-            stmt.bindString(10, filename);
+            stmt.bindString(11, filename);
         }
  
         String type = entity.getType();
         if (type != null) {
-            stmt.bindString(11, type);
+            stmt.bindString(12, type);
         }
  
         Long when = entity.getWhen();
         if (when != null) {
-            stmt.bindLong(12, when);
+            stmt.bindLong(13, when);
         }
     }
 
@@ -147,17 +154,18 @@ public class FilePictureDao extends AbstractDao<FilePicture, String> {
     public FilePicture readEntity(Cursor cursor, int offset) {
         FilePicture entity = new FilePicture( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // filepicid
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // from
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sessionid
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // fromname
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // toname
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // smallurl
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // bigurl
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // bytesize
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // megabyte
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // filename
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // type
-            cursor.isNull(offset + 11) ? null : cursor.getLong(offset + 11) // when
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // _id
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // from
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // sessionid
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // fromname
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // toname
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // smallurl
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // bigurl
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // bytesize
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // megabyte
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // filename
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // type
+            cursor.isNull(offset + 12) ? null : cursor.getLong(offset + 12) // when
         );
         return entity;
     }
@@ -166,17 +174,18 @@ public class FilePictureDao extends AbstractDao<FilePicture, String> {
     @Override
     public void readEntity(Cursor cursor, FilePicture entity, int offset) {
         entity.setFilepicid(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setFrom(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setSessionid(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setFromname(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setToname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setSmallurl(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setBigurl(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setBytesize(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setMegabyte(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setFilename(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setType(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setWhen(cursor.isNull(offset + 11) ? null : cursor.getLong(offset + 11));
+        entity.set_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setFrom(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSessionid(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setFromname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setToname(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setSmallurl(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setBigurl(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setBytesize(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setMegabyte(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setFilename(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setType(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setWhen(cursor.isNull(offset + 12) ? null : cursor.getLong(offset + 12));
      }
     
     /** @inheritdoc */
