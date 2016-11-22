@@ -36,6 +36,9 @@ public class MqttNotification {
 			manager = (NotificationManager) UIUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		}*/
 		manager.cancel(calcMsgID(userID));
+		if (!UIUtils.isApplicationBroughtToBackground(UIUtils.getContext())) {
+			return;
+		}
 		Builder notificationCompat = new Builder(UIUtils.getContext());
 		PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent,  0);
 		long when = System.currentTimeMillis();
@@ -51,7 +54,6 @@ public class MqttNotification {
 		manager.notify(addAndGetNotification(userID), notification);
 //		BadgeUtil.resetBadgeCount(notification, UIUtils.getContext());
 		BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 0);
-//		ToastUtil.showSafeToast(UIUtils.isApplicationBroughtToBackground(UIUtils.getContext()) ? "后台应用" : "前台应用");
 	}
 
 	/**
