@@ -51,6 +51,7 @@ public class MqttNotification {
 		manager.notify(addAndGetNotification(userID), notification);
 //		BadgeUtil.resetBadgeCount(notification, UIUtils.getContext());
 		BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 0);
+//		ToastUtil.showSafeToast(UIUtils.isApplicationBroughtToBackground(UIUtils.getContext()) ? "后台应用" : "前台应用");
 	}
 
 	/**

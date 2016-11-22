@@ -360,7 +360,7 @@ angular.module('message.services', [])
         }
         messageDetail.message=content;
         messageDetail.messagetype=messagetype;
-        alert("发送的类型"+messagetype);
+        // alert("发送的类型"+messagetype);
         messageDetail.platform='Windows';
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
@@ -398,7 +398,7 @@ angular.module('message.services', [])
         }
 
             //发送消息前先展示在界面上
-            alert("数组长度前"+danliao.length+messageDetail.message);
+            // alert("数组长度前"+danliao.length+messageDetail.message);
             danliao.push(messageDetail);
             $greendao.saveObj('MessagesService',messageDetail,function (data) {
               $rootScope.$broadcast('msgs.update');
@@ -660,9 +660,11 @@ angular.module('message.services', [])
                 $mqtt.updateQunliao(message);
               }
               // message.isSuccess='true';
+              //alert("message"+message)
 
               var savefilepic={};
               savefilepic.filepicid=sdata[1];
+              savefilepic._id=msgDetail._id;
               savefilepic.from="true";
               savefilepic.sessionid=id;
               savefilepic.fromname=localuser;
@@ -721,7 +723,6 @@ angular.module('message.services', [])
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
           arriveMessage.type=message.type;
-          // alert("监听消息类型"+message._id);
           arriveMessage.from=message.from;
           arriveMessage.message=message.message;
           arriveMessage.messagetype=message.messagetype;
@@ -731,7 +732,8 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
-          arriveMessage.senderid=message._id;
+          arriveMessage.senderid=message.senderid;
+          // alert("监听消息类型"+arriveMessage.senderid);
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;
@@ -848,6 +850,7 @@ angular.module('message.services', [])
 
                 var arrivefile={};
                 arrivefile.filepicid=arriveMessage.message.split('###')[0];
+                arrivefile._id=arriveMessage._id;
                 arrivefile.from="false";
                 arrivefile.sessionid=arriveMessage.sessionid;
                 arrivefile.fromname=arriveMessage.username;
@@ -888,6 +891,7 @@ angular.module('message.services', [])
 
                     var arrivepic={};
                     arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                    arrivepic._id=arriveMessage._id;
                     arrivepic.from="false";
                     arrivepic.sessionid=arriveMessage.sessionid;
                     arrivepic.fromname=arriveMessage.username;
@@ -1241,8 +1245,10 @@ angular.module('message.services', [])
            *  当消息还未发送成功或者失败时，先展示在界面上，入库并发送监听
            */
           //alert("qunliao成功前长度"+qunliao.length);
+          // alert("qunliao成功前长度"+qunliao.length);
           qunliao.push(messageReal);
           //alert("qunliao成功后长度"+qunliao.length+messageReal.message);
+          // alert("qunliao成功后长度"+qunliao.length+messageReal.message);
           $greendao.saveObj('MessagesService',messageReal,function (data) {
             // $mqtt.updateQunliao(messageReal);
             $rootScope.$broadcast('msgs.update');
@@ -1287,6 +1293,7 @@ angular.module('message.services', [])
           },function (message) {
             // alert("发送失败前长度"+qunliao.length);
             $mqtt.updateQunliao(message);
+            //alert('err.isFailure');
             // messageReal.isFailure='true';
             // qunliao.push(message);
             // alert("发送失败后长度"+qunliao.length);
@@ -1400,6 +1407,9 @@ angular.module('message.services', [])
       },
       getMqttStatus:function(success) {//MQTT连接状态获取
         mqtt.getMqttStatus(success);
+      },
+      setExitStartedStatus:function() {//改变登录状态为未登录
+        mqtt.setExitStartedStatus();
       }
 
 

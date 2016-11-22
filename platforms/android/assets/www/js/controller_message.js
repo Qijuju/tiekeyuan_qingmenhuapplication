@@ -764,9 +764,6 @@ angular.module('message.controllers', [])
            */
           // alert("用户id"+$scope.userId);
           $scope.msgs=$mqtt.getDanliao();
-          $timeout(function () {
-            viewScroll.scrollBottom();
-          }, 100);
           // 获取当天日期
           var myDate = new Date();//
           myDate.toLocaleDateString();//可以获取当前日期
@@ -872,6 +869,9 @@ angular.module('message.controllers', [])
                       // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                       $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                         // alert("保存成功");
+                        $timeout(function () {
+                          viewScroll.scrollBottom();
+                        }, 100);
                       },function (err) {
                       });
                     }
@@ -2065,9 +2065,6 @@ angular.module('message.controllers', [])
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
         // alert("进来群聊界面吗？长度"+$mqtt.getQunliao()[$scope.groupmsgs.length-1].istime);
         // 获取当天日期
         var myDate = new Date();//
@@ -2168,6 +2165,9 @@ angular.module('message.controllers', [])
                     // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                     $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                       // alert("保存成功");
+                      $timeout(function () {
+                        viewScroll.scrollBottom();
+                      }, 100);
                     },function (err) {
                     });
                   }
