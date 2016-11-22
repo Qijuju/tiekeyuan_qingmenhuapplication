@@ -764,9 +764,6 @@ angular.module('message.controllers', [])
            */
           // alert("用户id"+$scope.userId);
           $scope.msgs=$mqtt.getDanliao();
-          $timeout(function () {
-            viewScroll.scrollBottom();
-          }, 100);
           // 获取当天日期
           var myDate = new Date();//
           myDate.toLocaleDateString();//可以获取当前日期
@@ -872,6 +869,9 @@ angular.module('message.controllers', [])
                       // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                       $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                         // alert("保存成功");
+                        $timeout(function () {
+                          viewScroll.scrollBottom();
+                        }, 100);
                       },function (err) {
                       });
                     }
@@ -2065,9 +2065,6 @@ angular.module('message.controllers', [])
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
         // alert("进来群聊界面吗？长度"+$mqtt.getQunliao()[$scope.groupmsgs.length-1].istime);
         // 获取当天日期
         var myDate = new Date();//
@@ -2168,6 +2165,9 @@ angular.module('message.controllers', [])
                     // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                     $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                       // alert("保存成功");
+                      $timeout(function () {
+                        viewScroll.scrollBottom();
+                      }, 100);
                     },function (err) {
                     });
                   }
@@ -4368,7 +4368,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
     //群设置
     $ionicLoading.show({
       content: 'Loading',
@@ -4383,6 +4383,24 @@ angular.module('message.controllers', [])
     $scope.ismygroup=$stateParams.ismygroup;
 
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
+        $state.go('messageGroup',{
+          "id":$scope.groupId,
+          "chatName":$scope.groupName,
+          "grouptype":$scope.groupType,
+          "ismygroup":$scope.ismygroup,
+        });
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
+
+
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];

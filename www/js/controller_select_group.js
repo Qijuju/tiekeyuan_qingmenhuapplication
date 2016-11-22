@@ -1437,7 +1437,7 @@ angular.module('selectgroup.controllers', [])
 
 
   //普通群的展示
-  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao,$contacts,$ionicLoading,$timeout) {
+  .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao,$contacts,$ionicLoading,$timeout,$location,$ionicPlatform) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -1456,6 +1456,25 @@ angular.module('selectgroup.controllers', [])
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+    ///groupMember/:groupid/:chatname/:grouptype/:ismygroup
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/groupMember/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
+        $state.go('groupSetting',{
+          'groupid':$scope.groupId,
+          'chatname':$scope.groupName,
+          'grouptype':$scope.groupType,
+          'ismygroup':$scope.ismygroup
+        });
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
+
 
 
     $contacts.loginInfo();
