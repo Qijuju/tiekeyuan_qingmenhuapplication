@@ -630,7 +630,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 			}
 		} catch (Exception e){
-			ToastUtil.showSafeToast(e.getMessage());
+			//ToastUtil.showSafeToast(e.getMessage());
 		}
 	}
 
