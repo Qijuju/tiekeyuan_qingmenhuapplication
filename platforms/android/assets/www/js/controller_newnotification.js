@@ -6,8 +6,6 @@ angular.module('newnotification.controllers', [])
 
   .controller('newnotificationCtrl', function ($scope,$state,$ionicSlideBoxDelegate,$greendao,$ionicLoading,$timeout,$rootScope) {
 
-
-
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -707,6 +705,7 @@ angular.module('newnotification.controllers', [])
   .controller('notifyApplicationCtrl', function ($scope,$stateParams,$greendao,$state,$ionicLoading,$timeout,$ionicHistory) {
 
     $scope.hahaha=$stateParams.isfirm;
+    alert("哈哈哈哈"+$scope.hahaha)
 
 
     $ionicLoading.show({
@@ -738,17 +737,18 @@ angular.module('newnotification.controllers', [])
     //当进入页面以后执行的方法
 
 
-    $scope.$on('$ionicView.afterEnter', function () {
+    $scope.$on('$ionicView.enter', function () {
       $timeout(function () {
 
         $greendao.queryByConditions("SystemMsgService",function (msg) {
           // alert("jinlaielbameiy"+msg.length)
           $ionicLoading.hide();
           $scope.appmsg=msg;
-          for (var i=0;i< $scope.appmsg.length;i++){
+          alert($scope.appmsg+"长度是多少")
+          /*for (var i=0;i< $scope.appmsg.length;i++){
 
             // alert( $scope.appmsg[i].isread+"到底读了没有啊啊")
-          }
+          }*/
         },function (err) {
 
         });
