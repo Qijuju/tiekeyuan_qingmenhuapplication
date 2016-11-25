@@ -40,6 +40,8 @@ import im.server.attention.IMAttention;
  */
 public class SystemApi {
 
+    private static final String url = "immobile.r93535.com";
+
     /**
      * 获取一个AsyncClient对象
      * @return
@@ -47,7 +49,8 @@ public class SystemApi {
      */
     private static IMSystem.AsyncClient getSystemClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 5000);
+//        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -60,7 +63,7 @@ public class SystemApi {
      */
     private static IMDepartment.AsyncClient getDeptClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6002, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -73,7 +76,7 @@ public class SystemApi {
      */
     private static IMUser.AsyncClient getUserClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6003, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -86,14 +89,14 @@ public class SystemApi {
      */
     private static IMFile.AsyncClient getFileAsyncClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6006, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMFile.AsyncClient asyncClient = new IMFile.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
     }
 
     public static FileSyncClient getFileSyncClient() throws IOException{
-        TTransport transport2 = new TFramedTransport(new TSocket("61.237.239.152", 6006, 5000));
+        TTransport transport2 = new TFramedTransport(new TSocket(url, 6006, 5000));
         TProtocol protocol2 = new TCompactProtocol(transport2);
         IMFile.Client fileClient = new IMFile.Client(protocol2);
         try {
@@ -111,7 +114,7 @@ public class SystemApi {
      */
     private static IMAttention.AsyncClient getAttentionClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6007, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -124,7 +127,7 @@ public class SystemApi {
      */
     private static IMMessage.AsyncClient getMsgClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6005, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
         return asyncClient;
@@ -137,7 +140,7 @@ public class SystemApi {
      */
     private static IMGroup.AsyncClient getGroupClient() throws IOException {
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
-        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6004, 5000);
+        TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMGroup.AsyncClient asyncClient = new IMGroup.AsyncClient(protocol, clientManager, transport);
         return asyncClient;

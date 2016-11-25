@@ -246,7 +246,7 @@ public class MqttMessageCallback implements MqttCallback {
 											updateMsg.setType(messages.getType());
 											updateMsg.setFrom(messages.getFrom());
 											updateMsg.setMessage(messages.getMessage());
-											System.out.println("群事件" + messages.getMessage());
+//											System.out.println("群事件" + messages.getMessage());
 											updateMsg.setMessagetype(messages.getMessagetype());
 											updateMsg.setPlatform(messages.getPlatform());
 											updateMsg.setWhen(messages.getWhen());
@@ -429,6 +429,7 @@ public class MqttMessageCallback implements MqttCallback {
 			eventBean.setPlatform("Android");
 			eventBean.setType("Group");
 			eventBean.setIsDelete("false");
+			eventBean.setSenderid(eventMsgBean.getSenderid());
 
 			//如果是被添加群成员，数据需要入库
 			if ("YAM".equals(eventMsgBean.getEventCode())) {
@@ -479,42 +480,44 @@ public class MqttMessageCallback implements MqttCallback {
 			 */
 			MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
 			List<Messages> messagesList=messagesService.queryData("where sessionid =?", eventBean.getSessionid());
-//			System.out.println("群聊存消息前长度："+messagesList.size());
 			Messages messages=new Messages();
-			//取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将messagetype为TIME的数据的daytype置为"0"
-			if(messagesList.get(messagesList.size()-1).getWhen()<stmill){
-				for(int i=0;i<messagesList.size();i++){
-					messages=messagesList.get(i);
-					if(messages.getIstime().equals("true")){
-						Messages updateMsg=new Messages();
-						updateMsg.set_id(messages.get_id());
-						updateMsg.setSessionid(messages.getSessionid());
-						updateMsg.setType(messages.getType());
-						updateMsg.setFrom(messages.getFrom());
-						updateMsg.setMessage(messages.getMessage());
+			if(messagesList.size()>0){
+				//取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将messagetype为TIME的数据的daytype置为"0"
+				if(messagesList.get(messagesList.size()-1).getWhen()<stmill){
+					for(int i=0;i<messagesList.size();i++){
+						messages=messagesList.get(i);
+						if(messages.getIstime().equals("true")){
+							Messages updateMsg=new Messages();
+							updateMsg.set_id(messages.get_id());
+							updateMsg.setSessionid(messages.getSessionid());
+							updateMsg.setType(messages.getType());
+							updateMsg.setFrom(messages.getFrom());
+							updateMsg.setMessage(messages.getMessage());
 //						System.out.println("群事件" + messages.getMessage());
-						updateMsg.setMessagetype(messages.getMessagetype());
-						updateMsg.setPlatform(messages.getPlatform());
-						updateMsg.setWhen(messages.getWhen());
-						updateMsg.setIsFailure(messages.getIsFailure());
-						updateMsg.setIsDelete(messages.getIsDelete());
-						updateMsg.setImgSrc(messages.getImgSrc());
-						updateMsg.setUsername(messages.getUsername());
-						updateMsg.setSenderid(messages.getSenderid());
-						eventBean.setSenderid(messages.getSenderid());
-						updateMsg.setIsread(messages.getIsread());
-						eventBean.setIsread(messages.getIsread());
-						updateMsg.setIsSuccess(messages.getIsSuccess());
-						eventBean.setIsSuccess(messages.getIsSuccess());
-						updateMsg.setDaytype("0");
-						eventBean.setDaytype("0");
-						updateMsg.setIstime(messages.getIstime());
-						eventBean.setIstime(messages.getIstime());
-						messagesService.saveObj(updateMsg);
+							updateMsg.setMessagetype(messages.getMessagetype());
+							updateMsg.setPlatform(messages.getPlatform());
+							updateMsg.setWhen(messages.getWhen());
+							updateMsg.setIsFailure(messages.getIsFailure());
+							updateMsg.setIsDelete(messages.getIsDelete());
+							updateMsg.setImgSrc(messages.getImgSrc());
+							updateMsg.setUsername(messages.getUsername());
+							updateMsg.setSenderid(messages.getSenderid());
+							eventBean.setSenderid(messages.getSenderid());
+							updateMsg.setIsread(messages.getIsread());
+							eventBean.setIsread(messages.getIsread());
+							updateMsg.setIsSuccess(messages.getIsSuccess());
+							eventBean.setIsSuccess(messages.getIsSuccess());
+							updateMsg.setDaytype("0");
+							eventBean.setDaytype("0");
+							updateMsg.setIstime(messages.getIstime());
+							eventBean.setIstime(messages.getIstime());
+							messagesService.saveObj(updateMsg);
 //						System.out.println("修改昨天消息的状态保存成功");
+						}
 					}
 				}
 			}
+
 			//若是当前日期收到的群消息，存消息
 //			if(eventBean.getWhen()>stmill && eventBean.getWhen() <etmill){
 				messages=new Messages();
@@ -534,7 +537,7 @@ public class MqttMessageCallback implements MqttCallback {
 				messages.setImgSrc(eventBean.getImgSrc());
 				messages.setUsername(eventBean.getUsername());
 				messages.setSenderid(eventBean.getSenderid());
-				eventBean.setSenderid(eventBean.getSenderid());
+//				ToastUtil.showSafeToast("qun聊senderid" + eventBean.getSenderid());
 				messages.setIsread("0");
 				eventBean.setIsread("0");
 				messages.setIsSuccess("true");
@@ -626,7 +629,9 @@ public class MqttMessageCallback implements MqttCallback {
 			context.sendBroadcast(intent);
 
 			}
-		} catch (Exception e){}
+		} catch (Exception e){
+			//ToastUtil.showSafeToast(e.getMessage());
+		}
 	}
 
 	public JSONObject getUserInfo() throws JSONException {

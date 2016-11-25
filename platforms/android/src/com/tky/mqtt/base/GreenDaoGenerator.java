@@ -226,6 +226,7 @@ public class GreenDaoGenerator {
         Entity fileandpic=schema.addEntity("FilePicture");
 
         fileandpic.addStringProperty("filepicid").primaryKey();//
+        fileandpic.addStringProperty("_id");
         fileandpic.addStringProperty("from");//代表是谁发的   true代表的我发的  或者 false
         fileandpic.addStringProperty("sessionid");//会话id
         fileandpic.addStringProperty("fromname");//发送者的名字

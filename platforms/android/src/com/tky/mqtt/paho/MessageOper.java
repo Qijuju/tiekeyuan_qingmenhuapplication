@@ -100,8 +100,8 @@ public class MessageOper {
 			bean.setWhen((Long) msgMap.get(IMPFields.Eventwhen));
 			bean.setGroupID((String) msgMap.get(IMPFields.E_GroupID));
 			bean.setUserName((String) msgMap.get(IMPFields.E_UserName));
-			bean.setGroupName((String) msgMap.get(IMPFields.E_GroupName));
-			bean.setSenderid((String) msgMap.get("from"));
+			bean.setGroupName(msgMap.containsKey(IMPFields.E_GroupName) ? (String) msgMap.get(IMPFields.E_GroupName) : "");
+			bean.setSenderid(msgMap.containsKey(IMPFields.E_GroupName) && msgMap.get("from") != null ? (String) msgMap.get("from") : "");
 			msgBean = bean;
 		}
 		return msgBean;

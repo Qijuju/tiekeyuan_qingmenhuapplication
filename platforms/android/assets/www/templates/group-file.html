@@ -7,7 +7,68 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
+    <ion-content  style="background-color:#e5e5e5 " >
+      <div class="item item-divider" style="text-align:center;color: black;font-size: 19px;">
+        今天
+        <i class="icon ion-android-arrow-dropdown" ng-if="false"></i>
+      </div>
+      <ion-list >
+        <ion-item  class="item-remove-animate item-avatar rj-notify-bgg " ng-repeat="item in todayday"  ng-click="openFileDetail(item.smallurl,item._id)"style="height: 68px" >
+          <div  class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 10px;z-index: 1">文件</div>
 
+          <h3 style="margin-left: -12px">{{item.filename}}</h3>
+          <p style=" margin-top: 10px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.fromname}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.megabyte}}</p>
+          <span class="rj-push-uuu"  style="margin-top: 2px;">{{item.when | date:'MM-dd HH:mm'}}</span>
+
+        </ion-item>
+      </ion-list >
+      <div class="item item-divider" style="text-align:center;color: black;font-size: 19px;" ng-if="weekday.length>0" ng-click="openWeek()">
+        本周
+        <i class="icon ion-android-arrow-dropdown" ng-if="!weekInit"></i>
+        <i class="icon ion-android-arrow-dropup" ng-if="weekInit"></i>
+      </div>
+      <ion-list ng-if="weekInit">
+        <ion-item  class="item-remove-animate item-avatar rj-notify-bgg " ng-repeat="item in weekday"  ng-click="openFileDetail(item.smallurl,item.filepicid)"style="height: 68px" >
+          <div  class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 10px;z-index: 1">文件</div>
+
+          <h3 style="margin-left: -12px">{{item.filename}}</h3>
+          <p style=" margin-top: 10px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.fromname}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.megabyte}}</p>
+          <span class="rj-push-uuu"  style="margin-top: 2px;">{{item.when | date:'MM-dd HH:mm'}}</span>
+
+        </ion-item>
+      </ion-list>
+      <div class="item item-divider" style="text-align:center;color: black;font-size: 19px;"ng-if="monthday.length>0" ng-click="openMonth()">
+        本月
+        <i class="icon ion-android-arrow-dropdown" ng-if="!monthInit"></i>
+        <i class="icon ion-android-arrow-dropup" ng-if="monthInit"></i>
+      </div>
+      <ion-list ng-if="monthInit">
+        <ion-item  class="item-remove-animate item-avatar rj-notify-bgg " ng-repeat="item in monthday"  ng-click="openFileDetail(item.smallurl,item.filepicid)"style="height: 68px" >
+          <div  class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 10px;z-index: 1">文件</div>
+
+          <h3 style="margin-left: -12px">{{item.filename}}</h3>
+          <p style=" margin-top: 10px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.fromname}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.megabyte}}</p>
+          <span class="rj-push-uuu"  style="margin-top: 2px;">{{item.when | date:'MM-dd HH:mm'}}</span>
+
+        </ion-item>
+      </ion-list>
+
+      <div class="item item-divider" style="text-align:center;color: black;font-size: 19px;" ng-if="longday.length>0" ng-click="openLong()">
+        以前
+        <i class="icon ion-android-arrow-dropdown" ng-if="!longInit"></i>
+        <i class="icon ion-android-arrow-dropup" ng-if="longInit"></i>
+      </div>
+      <ion-list ng-if="longInit">
+        <ion-item  class="item-remove-animate item-avatar rj-notify-bgg " ng-repeat="item in longday"  ng-click="openFileDetail(item.smallurl,item.filepicid)" style="height: 68px">
+          <div  class="center square3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 10px;z-index: 1">文件</div>
+
+          <h3 style="margin-left: -12px">{{item.filename}}</h3>
+          <p style=" margin-top: 10px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.fromname}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.megabyte}}</p>
+          <span class="rj-push-uuu"  style="margin-top: 2px;">{{item.when | date:'MM-dd HH:mm'}}</span>
+
+        </ion-item>
+      </ion-list>
+    </ion-content>
 
   </ion-content>
 </ion-view>

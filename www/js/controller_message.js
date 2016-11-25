@@ -615,7 +615,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
@@ -764,9 +764,6 @@ angular.module('message.controllers', [])
            */
           // alert("用户id"+$scope.userId);
           $scope.msgs=$mqtt.getDanliao();
-          $timeout(function () {
-            viewScroll.scrollBottom();
-          }, 100);
           // 获取当天日期
           var myDate = new Date();//
           myDate.toLocaleDateString();//可以获取当前日期
@@ -872,6 +869,9 @@ angular.module('message.controllers', [])
                       // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                       $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                         // alert("保存成功");
+                        $timeout(function () {
+                          viewScroll.scrollBottom();
+                        }, 100);
                       },function (err) {
                       });
                     }
@@ -2065,9 +2065,6 @@ angular.module('message.controllers', [])
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
         // alert("进来群聊界面吗？长度"+$mqtt.getQunliao()[$scope.groupmsgs.length-1].istime);
         // 获取当天日期
         var myDate = new Date();//
@@ -2168,6 +2165,9 @@ angular.module('message.controllers', [])
                     // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                     $greendao.saveObj('MessagesService',messaegeitem,function (data) {
                       // alert("保存成功");
+                      $timeout(function () {
+                        viewScroll.scrollBottom();
+                      }, 100);
                     },function (err) {
                     });
                   }
@@ -2904,7 +2904,7 @@ angular.module('message.controllers', [])
     //获取文件类型对应的图片路径
     $scope.getFileTypeImg = function (message) {
       if (message === 'location') {
-        return 'img/location.png';
+        return 'img/location.jpg';
       }
       var msg = message.split('###')[1];
       if (message === undefined || message === null || message === '' || msg === undefined || msg === null || msg === '') {
@@ -3050,7 +3050,7 @@ angular.module('message.controllers', [])
     }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'){
+      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -4376,7 +4376,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
     //群设置
     $ionicLoading.show({
       content: 'Loading',
@@ -4391,6 +4391,24 @@ angular.module('message.controllers', [])
     $scope.ismygroup=$stateParams.ismygroup;
     // alert($scope.groupType)
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
+        $state.go('messageGroup',{
+          "id":$scope.groupId,
+          "chatName":$scope.groupName,
+          "grouptype":$scope.groupType,
+          "ismygroup":$scope.ismygroup,
+        });
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
+
+
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
@@ -4499,13 +4517,18 @@ angular.module('message.controllers', [])
     }
     //打开群图片界面
     $scope.groupPicture=function () {
-      $ToastUtils.showToast("功能完善中...")
-      //$state.go('personfile');
+      $GridPhoto.queryPhoto($scope.groupId,"image",function (msg) {
+
+      },function (err) {
+
+      })
+
     }
     //打开群文件界面
     $scope.groupFile=function () {
-      $ToastUtils.showToast("功能完善中...")
-      //$state.go('groupfile');
+      $state.go('personfile',{
+        sessionid:$scope.groupId
+      });
 
     }
 

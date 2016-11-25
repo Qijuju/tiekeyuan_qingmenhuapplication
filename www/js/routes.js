@@ -145,7 +145,7 @@ angular.module('im.routes', [])
       })
 
       .state('notifyApplication', {
-        url: '/notifyApplication/:id',
+        url: '/notifyApplication/:id/:isfirm',
         templateUrl: 'templates/notifyApplication.html',
         cache:false,
         controller: 'notifyApplicationCtrl'
@@ -522,7 +522,7 @@ angular.module('im.routes', [])
       })
 
       .state('groupfile', {
-        url: '/groupfile',
+        url: '/groupfile/:sessionid',
         templateUrl: 'templates/group-file.html',
         controller: 'groupfileCtrl',
         cache:false
