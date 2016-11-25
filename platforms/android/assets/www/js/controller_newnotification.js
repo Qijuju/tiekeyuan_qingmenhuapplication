@@ -5,6 +5,9 @@ angular.module('newnotification.controllers', [])
 
 
   .controller('newnotificationCtrl', function ($scope,$state,$ionicSlideBoxDelegate,$greendao,$ionicLoading,$timeout,$rootScope) {
+
+
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',

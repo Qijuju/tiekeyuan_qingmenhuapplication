@@ -15,7 +15,6 @@ import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -32,14 +31,10 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -263,6 +258,7 @@ public class MqttMessageCallback implements MqttCallback {
 											updateMsg.setIsread(messages.getIsread());
 											updateMsg.setIsSuccess(messages.getIsSuccess());
 											updateMsg.setDaytype("0");
+											map.setDaytype("0");
 											updateMsg.setIstime(messages.getIstime());
 											messagesService.saveObj(updateMsg);
 										}
@@ -276,18 +272,21 @@ public class MqttMessageCallback implements MqttCallback {
 							 */
 //							if(map.getWhen()>stmill && map.getWhen() <etmill){}      //存消息
 							messages=new Messages();
-							messages.set_id(UUID.randomUUID().toString());
+							String id=UUID.randomUUID().toString();
+							messages.set_id(id);
+							map.set_id(id);
 							messages.setSessionid(map.getSessionid());
 							messages.setType(map.getType());
 							messages.setFrom(map.getFrom());
 							messages.setMessage(map.getMessage());
-//							ToastUtil.showSafeToast("单聊" + map.getMessage());
+//							ToastUtil.showSafeToast("单聊" + map.get_id());
 							messages.setMessagetype(map.getMessagetype());
 							messages.setIsFailure(map.getIsFailure());
 							messages.setIsDelete(map.getIsDelete());
 							messages.setImgSrc(map.getImgSrc());
 							messages.setUsername(map.getUsername());
-							messages.setSenderid(map.get_id());
+							messages.setSenderid(map.getSenderid());
+							map.setSenderid(map.getSenderid());
 							messages.setPlatform(map.getPlatform());
 							messages.setWhen(map.getWhen());
 							messages.setIsread("0");
@@ -299,7 +298,9 @@ public class MqttMessageCallback implements MqttCallback {
 							if (messagesList != null && messagesList.size() > 0 && (map.getFrom()=="false") &&  (map.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (map.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<etmill)){
 								messages.setIstime("true");
 								map.setIstime("true");
+//								ToastUtil.showSafeToast("时间戳");
 							}else{
+//								ToastUtil.showSafeToast("时间不戳");
 								messages.setIstime("false");
 								map.setIstime("false");
 							}
@@ -500,10 +501,15 @@ public class MqttMessageCallback implements MqttCallback {
 						updateMsg.setImgSrc(messages.getImgSrc());
 						updateMsg.setUsername(messages.getUsername());
 						updateMsg.setSenderid(messages.getSenderid());
+						eventBean.setSenderid(messages.getSenderid());
 						updateMsg.setIsread(messages.getIsread());
+						eventBean.setIsread(messages.getIsread());
 						updateMsg.setIsSuccess(messages.getIsSuccess());
+						eventBean.setIsSuccess(messages.getIsSuccess());
 						updateMsg.setDaytype("0");
+						eventBean.setDaytype("0");
 						updateMsg.setIstime(messages.getIstime());
+						eventBean.setIstime(messages.getIstime());
 						messagesService.saveObj(updateMsg);
 //						System.out.println("修改昨天消息的状态保存成功");
 					}
@@ -512,12 +518,14 @@ public class MqttMessageCallback implements MqttCallback {
 			//若是当前日期收到的群消息，存消息
 //			if(eventBean.getWhen()>stmill && eventBean.getWhen() <etmill){
 				messages=new Messages();
-				messages.set_id(UUID.randomUUID().toString());
+				String id=UUID.randomUUID().toString();
+				messages.set_id(id);
+				eventBean.set_id(id);
 				messages.setSessionid(eventBean.getSessionid());
 				messages.setType(eventBean.getType());
 				messages.setFrom(eventBean.getFrom());
 				messages.setMessage(eventBean.getMessage());
-				System.out.println("群事件" + eventBean.getMessage());
+//				ToastUtil.showSafeToast("qun聊" + eventBean.getMessage());
 				messages.setMessagetype(eventBean.getMessagetype());
 				messages.setPlatform(eventBean.getPlatform());
 				messages.setWhen(eventBean.getWhen());
@@ -525,14 +533,22 @@ public class MqttMessageCallback implements MqttCallback {
 				messages.setIsDelete(eventBean.getIsDelete());
 				messages.setImgSrc(eventBean.getImgSrc());
 				messages.setUsername(eventBean.getUsername());
-				messages.setSenderid(eventBean.get_id());
+				messages.setSenderid(eventBean.getSenderid());
+				eventBean.setSenderid(eventBean.getSenderid());
 				messages.setIsread("0");
+				eventBean.setIsread("0");
 				messages.setIsSuccess("true");
-				messages.setDaytype((eventBean.getWhen()>stmill && eventBean.getWhen() <etmill) ? "1" : "0");
-				if (messagesList != null && messagesList.size() > 0 &&  (eventBean.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>600000) && (eventBean.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
+				eventBean.setIsSuccess("true");
+				messages.setDaytype((eventBean.getWhen() > stmill && eventBean.getWhen() < etmill) ? "1" : "0");
+				eventBean.setDaytype((eventBean.getWhen()>stmill && eventBean.getWhen() <etmill) ? "1" : "0");
+				if (messagesList != null && messagesList.size() > 0 &&  (eventBean.getWhen() - messagesList.get(messagesList.size() - 1).getWhen()>900000) && (eventBean.getWhen()-messagesList.get(messagesList.size() -1).getWhen()<3600000)){
 					messages.setIstime("true");//设置标志位
+					eventBean.setIstime("true");
+//					ToastUtil.showSafeToast("时间戳");
 				}else{
+//					ToastUtil.showSafeToast("时间不戳");
 					messages.setIstime("false");//设置标志位
+					eventBean.setIstime("false");
 				}
 				messagesService.saveObj(messages);
 //			}

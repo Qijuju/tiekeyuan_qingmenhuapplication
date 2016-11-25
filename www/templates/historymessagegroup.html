@@ -9,15 +9,18 @@
 
 
 
-  <ion-content overflow-scroll="false" style="background-color: #ddf2f5">
+  <ion-content overflow-scroll="false" delegate-handle="historyGroupScroll">
     <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
     <!--pulling-text="更多消息" id="refresh">-->
     <!--</ion-refresher>-->
     <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
-
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      on-refresh="doRefreshhisGro()">
+    </ion-refresher>
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
-      <div class="rj-message-wrap" ng-if="!(historyduifangaaa.FromID == UserID)">
+      <div class="rj-message-wrap" ng-if="!(historyduifangaaa.FromID == UserID)&&(historyduifangaaa.MsgType=='T')">
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==3||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==7" class=" circle3" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
@@ -26,14 +29,14 @@
         <!--<img src="img/mike.png" class="rj-head-pic">-->
         <!--<span class="rj-triangle-left" style="margin-left: -1%"></span>-->
         <!--<p class="rj-message" style="margin-left: 15%">{{historyduifangaaa.Msg}}</p>-->
-        <p class="rj-message" style="margin-left: 45px">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
+        <p class="rj-message" style="margin-left: 45px;background-color: #38ADFF;color: #ffffff">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{historyduifangaaa.Msg}}</p>
       </div>
-      <div class="rj-message-wrap" ng-if="historyduifangaaa.FromID == UserID">
+      <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID == UserID)&&(historyduifangaaa.MsgType=='T')">
         <!--<img src="img/circle6.png" class="rj-head-pic-right"><p class="rj-triangle-right" style="font-size: 13px;position: absolute;left: 5%;top: 23%;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}} </p>-->
         <div class="circle6" style=" position: absolute;left: 86%;top: 17px;font-size: 14px;text-align: center;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <!--<span class="rj-triangle-right"></span>-->
-        <span>
-        <p style="float: right;margin-right: 36px"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
+        <span >
+        <p style="float: right;margin-right: 36px;color: #ffffff"><font class="rj-message-right">{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}<br />{{ historyduifangaaa.Msg}}</font></p>
         </span>
       </div>
       <!--<div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)">-->
@@ -56,23 +59,23 @@
 
 
 
-  <ion-footer-bar align="center" class="bar-light">
-    <div class="row" >
-      <div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">
-        <button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>
-      </div>
-      <div class="col-10" align="center" ng-click="backpage()">
-        <div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>
-      </div>
-      <div class="col-10" align="center" ng-click="backpage()">
-        <div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>
-      </div>
-      <div class="col-10" align="center" ng-click="nextpage()">
-        <div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>
-      </div>
-      <div class="col-35" align="center"  ng-click="nextpage()">
-        <button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>
-      </div>
-    </div>
-  </ion-footer-bar>
+  <!--<ion-footer-bar align="center" class="bar-light">-->
+    <!--<div class="row" >-->
+      <!--<div class="col-35" align="center" ng-click="backpage()" style="vertical-align: middle">-->
+        <!--<button class="button button-icon icon ion-chevron-left col-center" style="height: 50%;width: 47%;margin-bottom: 5px;position: absolute;vertical-align: middle" ></button>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="backpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 63%;position: absolute;vertical-align: middle"> {{dangqianpage}} </div>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="backpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 70%;position: absolute;vertical-align: middle"> / </div>-->
+      <!--</div>-->
+      <!--<div class="col-10" align="center" ng-click="nextpage()">-->
+        <!--<div style="font-size: 20px ;height: 50%;width: 77%;position: absolute;vertical-align: middle">{{totalpage}}</div>-->
+      <!--</div>-->
+      <!--<div class="col-35" align="center"  ng-click="nextpage()">-->
+        <!--<button class="button button-icon icon ion-chevron-right col-center" style="height: 50%;width: 78%;margin-bottom: 5px;position: absolute;vertical-align: middle"></button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ion-footer-bar>-->
 </ion-view>

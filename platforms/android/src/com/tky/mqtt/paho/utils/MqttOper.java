@@ -146,4 +146,13 @@ public class MqttOper {
         UIUtils.getContext().sendBroadcast(intent);
     }
 
+    /**
+     * MQTT自动连接失败，重启MqttService
+     */
+    public static void restartService() {
+        Intent intent=new Intent();
+        intent.setAction(ReceiverParams.RESTARTSERVICE);
+        UIUtils.getContext().sendBroadcast(intent);
+    }
+
 }

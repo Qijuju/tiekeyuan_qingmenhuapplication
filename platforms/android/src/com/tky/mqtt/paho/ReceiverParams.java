@@ -74,4 +74,9 @@ public class ReceiverParams {
 	 * mqtt断开连接
 	 */
 	public static final String RECEIVER_MQTT_CLOSED ="com.sls.mqtt.receivermqttclosed" ;
+
+	/**
+	 * 重启service
+	 */
+	public static final String RESTARTSERVICE = "com.sls.mqtt.restartservice";
 }

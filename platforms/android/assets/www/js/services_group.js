@@ -41,7 +41,7 @@ angular.module('group.services', [])
         $timeout(function () {
           groupDetails = null;
           $rootScope.$broadcast('groupdetail.update');
-          $ToastUtils.showToast("获取数据失败")
+          $ToastUtils.showToast(err)
         },5000);
 
       })

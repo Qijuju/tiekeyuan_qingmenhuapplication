@@ -88,17 +88,24 @@ public class MqttConnection {
 
         @Override
         public void onFailure(IMqttToken arg0, Throwable arg1) {
+            UIUtils.runInMainThread(new Runnable() {
+                @Override
+                public void run() {
+                    //MQTT启动失败，重新通过启动MqttService的方法启动MQTT
+                    MqttOper.restartService();
+                }
+            });
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SPUtils.save("mqttFailure", format.format(new Date()));
             //启动失败，告诉启动者
             MqttRobot.setMqttStatus(MqttStatus.CLOSE);
             MqttOper.publishStartStatus(false);
             MqttOper.tellMqttStatus(false);
-            try {
+            /*try {
                 reconnect();
             } catch (MqttException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         @Override
