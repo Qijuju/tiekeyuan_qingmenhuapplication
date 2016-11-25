@@ -51,6 +51,10 @@ angular.module('message.controllers', [])
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
 
+    //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isYuYin='false';
+    //默认不展示语音居中框
+    $scope.isShow='false';
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -1306,7 +1310,167 @@ angular.module('message.controllers', [])
       })
     });
 
-    $scope.$on('$ionicView.afterLeave', function () {
+
+      /**
+       * 点击语音按钮触发事件
+       */
+      $scope.clickOn=function () {
+        $scope.isYuYin="true";
+      }
+
+      /**
+       * 点击键盘触发事件
+       */
+      $scope.clickOnChange=function () {
+        $scope.isYuYin="false";
+        $scope.isShow='false';
+      }
+
+
+
+    var MIN_SOUND_TIME = 800;
+    var recorder = null;
+    var startTimestamp = null;
+    var stopTimestamp = null;
+    var stopTimer = null;
+    var recordCancel = false;
+
+    var soundAlert = document.getElementById("sound-alert");
+    var audioTips = document.getElementById("audio-tips");
+    // 控制录音弹出框是否播放
+    var setSoundAlertVisable=function(show){
+      if(show){
+        soundAlert.style.display = 'block';
+        soundAlert.style.opacity = 1;
+      }else{
+        soundAlert.style.opacity = 0;
+        //  完成再真正隐藏
+        setTimeout(function(){
+          soundAlert.style.display = 'none';
+        },200);
+      }
+    };
+
+
+
+    /**
+     * 录音语音文件转base64字符串
+     * @param {Object} path
+     */
+    $scope.Audio2dataURL =function(path) {
+      plus.io.resolveLocalFileSystemURL(path, function(entry){
+        entry.file(function(file){
+          var reader = new plus.io.FileReader();
+          reader.onloadend = function (e) {
+            console.log(e.target.result);
+          };
+          reader.readAsDataURL(file);
+        },function(e){
+          mui.toast("读写出现异常: " + e.message );
+        })
+      })
+    }
+
+    /**
+     * base64字符串转成语音文件(参考http://ask.dcloud.net.cn/question/16935)
+     * @param {Object} base64Str
+     * @param {Object} callback
+     */
+    $scope.dataURL2Audio =function (base64Str, callback) {
+      var base64Str = base64Str.replace('data:audio/amr;base64,','');
+      var audioName = (new Date()).valueOf() + '.amr';
+
+      plus.io.requestFileSystem(plus.io.PRIVATE_DOC,function(fs){
+        fs.root.getFile(audioName,{create:true},function(entry){
+          // 获得平台绝对路径
+          var fullPath = entry.fullPath;
+          if(mui.os.android){
+            // 读取音频
+            var Base64 = plus.android.importClass("android.util.Base64");
+            var FileOutputStream = plus.android.importClass("java.io.FileOutputStream");
+            try{
+              var out = new FileOutputStream(fullPath);
+              var bytes = Base64.decode(base64Str, Base64.DEFAULT);
+              out.write(bytes);
+              out.close();
+              // 回调
+              callback && callback(entry);
+            }catch(e){
+              console.log(e.message);
+            }
+          }else if(mui.os.ios){
+            var NSData = plus.ios.importClass('NSData');
+            var nsData = new NSData();
+            nsData = nsData.initWithBase64EncodedStringoptions(base64Str,0);
+            if (nsData) {
+              nsData.plusCallMethod({writeToFile: fullPath,atomically:true});
+              plus.ios.deleteObject(nsData);
+            }
+            // 回调
+            callback && callback(entry);
+          }
+        })
+      })
+    }
+
+
+
+      /**
+       * 长按语音按钮触发事件
+       */
+      $scope.showYuyin=function () {
+        $scope.isShow='true';
+        // alert("show"+$scope.isShow);
+        // recordCancel = false;
+        // if(stopTimer)clearTimeout(stopTimer);
+        //
+        // audioTips.innerHTML = "手指上划，取消发送";
+        // soundAlert.classList.remove('rprogress-sigh');
+        // setSoundAlertVisable(true);
+        //
+        // // 获取当前设备的录音对象
+        // recorder = plus.audio.getRecorder();
+        // startTimestamp = (new Date()).getTime();
+        //
+        // alert("supportedFormats:"+JSON.stringify(recorder.supportedFormats));
+        // recorder.record({
+        //   format: "amr",
+        //   filename: "_doc/audio/"
+        // }, function (path) {
+        //   if (recordCancel) return;
+        //   alert("path:"+path);
+        //   $scope.Audio2dataURL(path);
+        // }, function ( e ) {
+        //   mui.toast("录音出现异常: " + e.message );
+        // });
+      }
+
+    /**
+     * 松开语音按钮触发事件
+     */
+    $scope.releaseYuyin=function () {
+      $scope.isShow='false';
+      // if (audioTips.classList.contains("cancel")) {
+      //   audioTips.classList.remove("cancel");
+      //   audioTips.innerHTML = "手指上划，取消发送";
+      // }
+      // // 判断录音时间
+      // stopTimestamp = (new Date()).getTime();
+      // if (stopTimestamp - startTimestamp < 800) {
+      //   audioTips.innerHTML = "录音时间太短";
+      //   soundAlert.classList.add('rprogress-sigh');
+      //   recordCancel = true;
+      //   stopTimer=setTimeout(function(){
+      //     setSoundAlertVisable(false);
+      //   },800);
+      // }else{
+      //   setSoundAlertVisable(false);
+      // }
+      // recorder.stop();
+    }
+
+
+      $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
       /**
@@ -1618,6 +1782,11 @@ angular.module('message.controllers', [])
     $scope.localusr = $rootScope.userName;
     $scope.myUserID = $rootScope.rootUserId;
 
+
+    // //将是否为点击语音的动作初始化为false(键盘)
+    // $scope.isYuYin='false';
+    // //默认不展示语音居中框
+    // $scope.isShow='false';
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageGroup/'+$scope.groupid+'/'+$scope.chatname+'/'+$scope.grouptype+'/'+$scope.ismygroup)){
