@@ -1,6 +1,7 @@
 package com.tky.mqtt.paho.utils;
 
 import com.tky.mqtt.paho.MType;
+import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
 /**
  * 作者：
@@ -23,9 +24,9 @@ public class SwitchLocal {
         String localIp = "";
         //目前路内和路外localIp都是相同的
         if ("LW".equals(getLocal())) {
-            localIp = "tcp://61.237.239.152:1883";
+            localIp = "tcp://" + SystemApi.url + ":1883";
         } else {
-            localIp = "tcp://61.237.239.152:1883";
+            localIp = "tcp://" + SystemApi.url + ":1883";
         }
         return localIp;
     }
