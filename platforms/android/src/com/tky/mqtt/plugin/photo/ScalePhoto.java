@@ -148,6 +148,7 @@ public class ScalePhoto extends CordovaPlugin {
                         downList.remove(imageid);
                         FilePicture thirdFilePic = new FilePicture();
                         thirdFilePic.setFilepicid(firstFilePic.getFilepicid());
+                        thirdFilePic.set_id(firstFilePic.get_id());
                         thirdFilePic.setFrom(firstFilePic.getFrom());
                         thirdFilePic.setSessionid(firstFilePic.getSessionid());
                         thirdFilePic.setFromname(firstFilePic.getFromname());
@@ -275,6 +276,7 @@ public class ScalePhoto extends CordovaPlugin {
 
                                         FilePicture secondFilePic = new FilePicture();
                                         secondFilePic.setFilepicid(firstFilePic.getFilepicid());
+                                        secondFilePic.set_id(firstFilePic.get_id());
                                         secondFilePic.setFrom(firstFilePic.getFrom());
                                         secondFilePic.setSessionid(firstFilePic.getSessionid());
                                         secondFilePic.setFromname(firstFilePic.getFromname());

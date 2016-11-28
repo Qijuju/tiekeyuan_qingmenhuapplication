@@ -423,7 +423,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }else {
           $state.go("tab.account");
         }
-      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -583,7 +583,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }else {
           $state.go("tab.account");
         }
-      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -1050,7 +1050,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
-      window.open("http://172.25.26.77:8080/html5/src/gouzhuwu.html","_self","location=no")
+      window.open("http://61.237.239.152:8080/html5/src/gouzhuwu.html","_self","location=no")
     }
 
   })
