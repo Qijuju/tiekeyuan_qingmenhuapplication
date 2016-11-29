@@ -88,6 +88,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
+//			ToastUtil.showToast("收到消息"+map.getMessage());
 			if ("File".equals(map.getMessagetype()) || "Image".equals(map.getMessagetype())) {
 				String message = map.getMessage().substring(0, map.getMessage().lastIndexOf("###"));
 				map.setMessage(message + "###0");
