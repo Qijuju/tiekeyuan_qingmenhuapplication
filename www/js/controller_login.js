@@ -378,7 +378,6 @@ angular.module('login.controllers', [])
             });
           });
         }, function (err) {
-
           $ToastUtils.showToast(err);
           $ionicLoading.hide();
           $state.go('login');
