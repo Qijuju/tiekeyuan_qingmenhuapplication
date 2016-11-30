@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
@@ -127,6 +128,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void login(final JSONArray args, final CallbackContext callbackContext) {
         try {
+            MqttReceiver.hasRegister=false;
             String username = args.getString(0);
             String password = args.getString(1);
             String imCode = UIUtils.getDeviceId();

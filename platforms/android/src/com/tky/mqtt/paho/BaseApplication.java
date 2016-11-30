@@ -23,8 +23,7 @@ public class BaseApplication extends Application {
 	public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
 	+ File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
 	private boolean isInBackground;
-
-	//	public static final String DB_NAME= "KKK";//正式发布版本数据库路径
+//	public static final String DB_NAME= "KKK";//正式发布版本数据库路径
 	@Override
 	public void onCreate() {
 		super.onCreate();

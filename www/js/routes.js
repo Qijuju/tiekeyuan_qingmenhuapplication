@@ -40,7 +40,7 @@ angular.module('im.routes', [])
       })
       .state('newsPage', {
         url: '/newsPage',
-        cache: false,
+        cache: true,
         templateUrl: 'templates/newsPage.html',
         controller: 'newsPageCtrl'
       })
@@ -145,7 +145,7 @@ angular.module('im.routes', [])
       })
 
       .state('notifyApplication', {
-        url: '/notifyApplication/:id',
+        url: '/notifyApplication/:id/:isfirm',
         templateUrl: 'templates/notifyApplication.html',
         cache:false,
         controller: 'notifyApplicationCtrl'
@@ -529,9 +529,19 @@ angular.module('im.routes', [])
       })
 
 
+      .state('personlocation', {
+        url: '/personlocation/:id/:ssid',
+        templateUrl: 'templates/person-location.html',
+        controller: 'historyMessageCtrl',
+        cache:false
+      })
 
-
-
+      .state('grouplocation', {
+        url: '/grouplocation/:id/:grouptype',
+        templateUrl: 'templates/group-location.html',
+        controller: 'historymessagegroupCtrl',
+        cache:false
+      })
 
 
 

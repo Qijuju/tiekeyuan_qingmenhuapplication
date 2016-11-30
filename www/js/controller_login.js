@@ -311,12 +311,14 @@ angular.module('login.controllers', [])
               loginM();
             }, function (message) {
               $ToastUtils.showToast(message);
+              $state.go('login');
             });
           } else {
             loginM();
           }
         }, function (message) {
           $ToastUtils.showToast(message);
+          $state.go('login');
         });
       }else if((passworda==null||passworda==""||passworda.length==0)&&passlogin=="2"){
         // alert("1")
@@ -365,22 +367,25 @@ angular.module('login.controllers', [])
               $ionicLoading.hide();
             });
 
-
           }, function (err) {
             $ionicLoading.hide()
             $ToastUtils.showToast(err,function (success) {
               $ionicLoading.hide()
+              $state.go('login');
             },function (err) {
               $ionicLoading.hide()
+              $state.go('login');
             });
           });
         }, function (err) {
 
           $ToastUtils.showToast(err);
           $ionicLoading.hide();
+          $state.go('login');
         });
       }, function (err) {
         $ionicLoading.hide()
+        $state.go('login');
       });
     }
     //登录成功之后获取用户姓名（昵称）

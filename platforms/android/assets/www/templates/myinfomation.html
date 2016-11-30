@@ -8,13 +8,35 @@
   </ion-nav-bar>
 
   <ion-content overflow-scroll="false">
-    <div>
+    <!--<div style="height: 180px;width: 100%;background-color: #B0E0E6">-->
+      <!--<div style="float: left;height: 100%;width: 80px;text-align: center;align-content: center">-->
+        <!--<div style="background-color: #ffbfd3;width: 60px;height: 60px;margin-left: 50%;margin-top: 50%">-->
+          <!--<p style="align-content: center;text-align: center;padding-top: 20px;margin-top: 20px">公司简称</p>-->
+        <!--</div>-->
+
+      <!--</div>-->
+      <!--<div style="float: right;height: 100%;width: auto">-->
+        <!--<h3 style="margin-top: 5px">{{mypersons.UserName}}</h3>-->
+        <!--&lt;!&ndash;{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}&ndash;&gt;-->
+        <!--<h5>工程师</h5>-->
+        <!--<h6 style="margin-top: 5px">上海合合信息科技发展有限公司</h6>-->
+        <!--<h6>上海市杨浦区国定路335号三号湾七楼B区</h6>-->
+        <!--&lt;!&ndash;<h6>7B,Building 3,No.335 Guoding Road</h6>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h6>Shanghai 200433,China</h6>&ndash;&gt;-->
+        <!--<h6>T: {{mypersons.FixPhone}}</h6>-->
+        <!--<h6>M: {{mypersons.Mobile}}</h6>-->
+        <!--<h6>E: {{mypersons.Email}}</h6>-->
+      <!--</div>-->
+    <!--</div>-->
+
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
         <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="updateinformation()">
+        <!--235-->
+        <!--57-->
         <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="updateinformation()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
-        <P style="font-size: 18px;color: #ffffff" ng-click="updateinformation()">{{mypersons.UserName}}</P>
+        <P style="font-size: 18px;color: #000000" ng-click="updateinformation()">{{mypersons.UserName}}</P>
       </div>
-      <ul class="list">
+      <ul class="list" >
         <li class="item" style="height: 50px">
           <div class="row" ng-click="updateinformation()">
             <div class="col-30" align="center" >
@@ -105,7 +127,7 @@
           <!--</div>-->
         <!--</li>-->
       </ul>
+      <div style="height: 57px;background-color: transparent;color: transparent"></div>
 
-    </div>
   </ion-content>
 </ion-view>

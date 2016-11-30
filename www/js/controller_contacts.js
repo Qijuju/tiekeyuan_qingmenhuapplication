@@ -107,9 +107,9 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location) {
 
-    /*var backButtonPressedOnceToExit=false;
+    var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()== '/tab/contacts'){
+      if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -128,7 +128,7 @@ angular.module('contacts.controllers', [])
       return false;
 
 
-    },501)*/
+    },501)
 
 
 
@@ -279,7 +279,21 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+
+    $scope.contactId = $stateParams.contactId;//传过来的id；
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/second/'+$scope.contactId)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     $ionicLoading.show({
       content: 'Loading',
@@ -293,7 +307,7 @@ angular.module('contacts.controllers', [])
     $scope.userlist = [];
     $scope.secondStatus;
 
-    $scope.contactId = $stateParams.contactId;//传过来的id；
+
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
     $scope.$on('second.update', function (event) {
@@ -405,7 +419,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -423,6 +437,21 @@ angular.module('contacts.controllers', [])
     $scope.contactId = $stateParams.contactId;
     //一级的名字
     $scope.pppid = $stateParams.secondname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/third/'+$scope.contactId+'/'+$scope.pppid)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
+
+
+
 
     //根据id获取子部门的数据
     $contacts.deptThirdInfo($scope.contactId);
@@ -545,7 +574,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -564,6 +593,18 @@ angular.module('contacts.controllers', [])
     $scope.contactId = $stateParams.contactId;
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/forth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     //根据id获取子部门和人员信息
     $contacts.deptForthInfo($scope.contactId);
@@ -696,7 +737,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -714,6 +755,18 @@ angular.module('contacts.controllers', [])
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
     $scope.forthName = $stateParams.forthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/fifth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     //根据id获取子部门和人员信息
     $contacts.deptFifthInfo($scope.contactId);
@@ -859,7 +912,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -877,6 +930,18 @@ angular.module('contacts.controllers', [])
     $scope.thirdName = $stateParams.thirdname;
     $scope.forthName = $stateParams.forthname;
     $scope.fifthName = $stateParams.fifthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/sixth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
 
     //根据id获取子部门和人员信息
@@ -1037,7 +1102,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -1057,6 +1122,21 @@ angular.module('contacts.controllers', [])
     $scope.forthName = $stateParams.forthname;
     $scope.fifthName = $stateParams.fifthname;
     $scope.sixthName = $stateParams.sixthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/seventh/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName+'/'+$scope.sixthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
+
+
+
 
     //根据id获取子部门和人员信息
 
@@ -1215,7 +1295,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$location,$ionicPlatform) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -1238,6 +1318,18 @@ angular.module('contacts.controllers', [])
     $scope.fifthName = $stateParams.fifthname;
     $scope.sixthName = $stateParams.sixthname;
     $scope.seventhName = $stateParams.seventhname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/eighth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName+'/'+$scope.sixthName+'/'+$scope.seventhName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
 
     //根据id获取子部门和人员信息

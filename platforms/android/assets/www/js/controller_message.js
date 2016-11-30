@@ -3050,7 +3050,7 @@ angular.module('message.controllers', [])
     }
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'){
+      if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -4069,8 +4069,8 @@ angular.module('message.controllers', [])
     $scope.gohistoryMessage = function () {
       // $ToastUtils.showToast("要跳了")
       $state.go('historyMessage',{
-        id:$scope.userId,
-        ssid:$scope.userName
+        'id':$scope.userId,
+        'ssid':$scope.userName
       });
     }
     if ($scope.userName.length>2){
@@ -4173,6 +4173,13 @@ angular.module('message.controllers', [])
       });
 
     }
+    //定位
+    $scope.goLocation=function () {
+      $state.go('personlocation',{
+        'id':$scope.userId,
+        'ssid':$scope.userName
+      });
+    }
 
     //添加人员功能
     $scope.addNewPerson=function () {
@@ -4227,6 +4234,7 @@ angular.module('message.controllers', [])
     $scope.id = $stateParams.id;
     $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
+
     // $ToastUtils.showToast("从群聊界面跳转过来的"+$scope.grouptype);
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID= msg.userID
@@ -4273,7 +4281,7 @@ angular.module('message.controllers', [])
       // $scope.totalpage=msg/10+1   ;
       // $ToastUtils.showToast($scope.totalpage)
     },function (msg) {
-      $ToastUtils.showToast("失败");
+      $ToastUtils.showToast("获取总数失败");
     });
     $historyduifang.getHistoryduifanga("U",$scope.id,1,10);
     $scope.$on('historymsg.duifang',function (event) {
@@ -4368,7 +4376,7 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
     //群设置
     $ionicLoading.show({
       content: 'Loading',
@@ -4381,8 +4389,26 @@ angular.module('message.controllers', [])
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
-
+    // alert($scope.groupType)
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
+        $state.go('messageGroup',{
+          "id":$scope.groupId,
+          "chatName":$scope.groupName,
+          "grouptype":$scope.groupType,
+          "ismygroup":$scope.ismygroup,
+        });
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
+
+
 
     $scope.ismygroupaaa=$stateParams.ismygroup+"";
     $scope.listM=[];
@@ -4478,6 +4504,13 @@ angular.module('message.controllers', [])
     $scope.gohistoryMessagea = function () {
       // $ToastUtils.showToast("要跳了")
       $state.go('historymessagegroup',{
+        grouptype:$scope.groupType,
+        id:$scope.groupId
+      });
+    }
+    //群定位
+    $scope.gogroupLocation=function () {
+      $state.go('grouplocation',{
         grouptype:$scope.groupType,
         id:$scope.groupId
       });
@@ -4598,10 +4631,13 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('historymessagegroupCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory) {
+  .controller('historymessagegroupCtrl',function ($scope, $http, $state, $stateParams,$api,$historyduifang,$mqtt,$ToastUtils,$ionicHistory,$ionicScrollDelegate,$timeout) {
+    var viewScroll = $ionicScrollDelegate.$getByHandle('historyScroll');
     $scope.groupid = $stateParams.id;
     // $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
+    // alert($scope.groupid)
+    // alert($scope.grouptype)
     if($scope.grouptype=="Group"){
       $scope.grouptype="G"
     }
@@ -4636,7 +4672,7 @@ angular.module('message.controllers', [])
       // $scope.totalpage=msg/10+1   ;
       // $ToastUtils.showToast($scope.totalpage)
     },function (msg) {
-      $ToastUtils.showToast("失败");
+      $ToastUtils.showToast("获取总数失败");
     });
 
     $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,1,10);
@@ -4644,16 +4680,25 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
       })
+      $timeout(function () {
+        viewScroll.scrollBottom();
+      }, 100);
     });
 
     //下一页
-    $scope.nextpage=function () {
+    $scope.doRefreshhisGro=function () {
       if ($scope.dangqianpage<$scope.totalpage){
         $scope.dangqianpage++;
-        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+        // alert($scope.dangqianpage)
+        var lengthabc=$scope.dangqianpage*10;
+        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,"1",lengthabc);
         $scope.$on('historymsg.duifang',function (event) {
           $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+            $scope.historyduifangsss=$historyduifang.getHistoryduifangc();
+            $scope.$broadcast('scroll.refreshComplete');
+            $timeout(function () {
+              viewScroll.scrollTop();
+            }, 100);
           })
         });
 
@@ -4661,22 +4706,22 @@ angular.module('message.controllers', [])
         $ToastUtils.showToast("已经到最后一页了")
       }
     }
-    //上一页
-    $scope.backpage=function () {
-      if($scope.dangqianpage>1){
-        $scope.dangqianpage--;
-        $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
-        $scope.$on('historymsg.duifang',function (event) {
-          $scope.$apply(function () {
-            $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
-          })
-        });
-
-
-      }else {
-        $ToastUtils.showToast("已经到第一页了");
-      }
-    }
+    // //上一页
+    // $scope.backpage=function () {
+    //   if($scope.dangqianpage>1){
+    //     $scope.dangqianpage--;
+    //     $historyduifang.getHistoryduifanga($scope.grouptype,$scope.groupid,$scope.dangqianpage,"10");
+    //     $scope.$on('historymsg.duifang',function (event) {
+    //       $scope.$apply(function () {
+    //         $scope.historyduifangsss=$historyduifang.getHistoryduifangc().reverse();
+    //       })
+    //     });
+    //
+    //
+    //   }else {
+    //     $ToastUtils.showToast("已经到第一页了");
+    //   }
+    // }
 
     /**
      * 监听消息
