@@ -120,6 +120,7 @@ public class MqttConnection {
                     try {
 //						if (!isReconnect) {
                         if (!MqttReceiver.hasRegister) {
+//                            ToastUtil.showToast("jinbujin");
                             MqttReceiver.hasRegister = true;
                             Map<String, Integer> topicsAndQoss = MqttTopicRW.getTopicsAndQoss();
                             Iterator<String> it = topicsAndQoss.keySet().iterator();
@@ -127,6 +128,7 @@ public class MqttConnection {
                                 String key = it.next();
                                 Integer value = topicsAndQoss.get(key);
                                 subscribe(key, value);
+//                                ToastUtil.showSafeToast("while:subscribe-->" + key);
                             }
                         }
 //						}

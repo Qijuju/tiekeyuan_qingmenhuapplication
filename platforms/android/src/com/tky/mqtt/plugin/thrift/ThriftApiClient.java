@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
@@ -127,6 +128,7 @@ public class ThriftApiClient extends CordovaPlugin {
      */
     public void login(final JSONArray args, final CallbackContext callbackContext) {
         try {
+            MqttReceiver.hasRegister=false;
             String username = args.getString(0);
             String password = args.getString(1);
             String imCode = UIUtils.getDeviceId();
@@ -983,15 +985,32 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void needUpgrade(final JSONArray args, final CallbackContext callbackContext){
+
         try {
             String newVersion = args.getString(0);
-            String install_cancel = SPUtils.getString("install_cancel", "false");
-            if (install_cancel.equals("true")) {
+            //第一次就是本地的versionname
+            String install_cancel = SPUtils.getString("local_versionname", "");
+
+            //第一次进来的时候肯定进不来这边
+            if (install_cancel.equals(newVersion)) {
                 setResult("false", PluginResult.Status.OK, callbackContext);
                 return;
             }
+
             boolean needsUpgrade = isNeedsUpgrade(UIUtils.getVersion(), newVersion);
-            setResult(needsUpgrade ? "true" : "已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+
+
+            if(needsUpgrade){
+                //第一次肯定进不来这边
+                setResult("true", PluginResult.Status.OK, callbackContext);
+            }else {
+                //保存服务器的版本号到sp中
+                SPUtils.save("local_versionname",newVersion);
+
+                setResult("已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+            }
+
+
         } catch (JSONException e) {
             setResult("数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
