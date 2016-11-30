@@ -85,7 +85,7 @@ public class MqttMessageCallback implements MqttCallback {
             // 开始播放
             mPlayer.start();*/
  		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
-			ToastUtil.showSafeToast("收到消息的对象类型"+(bean instanceof MessageBean)+"群事件对象"+(bean instanceof EventMessageBean));
+//			ToastUtil.showSafeToast("收到消息的对象类型"+(bean instanceof MessageBean)+"群事件对象"+(bean instanceof EventMessageBean));
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
 //			ToastUtil.showToast("收到消息"+map.getMessage());
@@ -207,7 +207,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
-						ToastUtil.showSafeToast("文本消息"+map.getMessage()+map.getSessionid());
+//						ToastUtil.showSafeToast("文本消息"+map.getMessage()+map.getSessionid());
 						Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
 						String year = c.get(Calendar.YEAR)+"";
 						String month = c.get(Calendar.MONTH)+1+"";
@@ -433,7 +433,7 @@ public class MqttMessageCallback implements MqttCallback {
 			eventBean.setType("Group");
 			eventBean.setIsDelete("false");
 			eventBean.setSenderid(eventMsgBean.getSenderid());
-			ToastUtil.showSafeToast("群事件" + eventMsgBean.getEventCode() + eventMsgBean.getGroupID() + eventMsgBean.getGroupName());
+//			ToastUtil.showSafeToast("群事件" + eventMsgBean.getEventCode() + eventMsgBean.getGroupID() + eventMsgBean.getGroupName());
 			//如果是被添加群成员，数据需要入库
 			if ("YAM".equals(eventMsgBean.getEventCode())) {
 				GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
@@ -445,7 +445,7 @@ public class MqttMessageCallback implements MqttCallback {
 				groupChats.setIsmygroup(false);
 				groupChatsService.saveObj(groupChats);
 			} else if ("GN0".equals(eventMsgBean.getEventCode())) {
-				ToastUtil.showSafeToast("群名修改"+eventMsgBean.getGroupName());
+//				ToastUtil.showSafeToast("群名修改"+eventMsgBean.getGroupName());
 //				ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
 //				List<ChatList> chatLists=chatListService.queryData("where id =?", eventMsgBean.getGroupID());
 //				ChatList lastchat=chatLists.get(0);
