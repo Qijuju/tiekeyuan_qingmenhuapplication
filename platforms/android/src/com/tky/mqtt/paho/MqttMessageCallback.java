@@ -85,7 +85,7 @@ public class MqttMessageCallback implements MqttCallback {
             // 开始播放
             mPlayer.start();*/
  		final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
-
+//			ToastUtil.showSafeToast("收到消息的对象类型"+(bean instanceof MessageBean)+"群事件对象"+(bean instanceof EventMessageBean));
 		if (bean != null && bean instanceof MessageBean) {
 			final MessageBean map = (MessageBean) bean;
 //			ToastUtil.showToast("收到消息"+map.getMessage());
@@ -127,6 +127,7 @@ public class MqttMessageCallback implements MqttCallback {
 					//入库(MESSAGE和CHATLIST表)
 					//消息转化完毕就入库
 					int count=0;
+					ToastUtil.showSafeToast("消息类型"+map.getType());
 					if (map.getType() == "Platform") {
 						SystemMsg systemMsg = new SystemMsg();
 						systemMsg.set_id(UUID.randomUUID().toString());
@@ -206,6 +207,7 @@ public class MqttMessageCallback implements MqttCallback {
 
 
 					} else if (map.getType() == "User" || map.getType() == "Group" || map.getType() == "Dept") {
+//						ToastUtil.showSafeToast("文本消息"+map.getMessage()+map.getSessionid());
 						Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
 						String year = c.get(Calendar.YEAR)+"";
 						String month = c.get(Calendar.MONTH)+1+"";
@@ -431,27 +433,40 @@ public class MqttMessageCallback implements MqttCallback {
 			eventBean.setType("Group");
 			eventBean.setIsDelete("false");
 			eventBean.setSenderid(eventMsgBean.getSenderid());
-
+//			ToastUtil.showSafeToast("群事件" + eventMsgBean.getEventCode() + eventMsgBean.getGroupID() + eventMsgBean.getGroupName());
 			//如果是被添加群成员，数据需要入库
 			if ("YAM".equals(eventMsgBean.getEventCode())) {
 				GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
 				GroupChats groupChats = new GroupChats();
-				System.out.println("群组id"+eventMsgBean.getGroupID());
+//				System.out.println("群组id"+eventMsgBean.getGroupID());
 				groupChats.setId(eventMsgBean.getGroupID());
 				groupChats.setGroupName(eventMsgBean.getGroupName() == null ? "无群组名称" : eventMsgBean.getGroupName());
 				groupChats.setGroupType("Group");
 				groupChats.setIsmygroup(false);
 				groupChatsService.saveObj(groupChats);
 			} else if ("GN0".equals(eventMsgBean.getEventCode())) {
-				ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
-				List<ChatList> chatLists=chatListService.queryData("where id =?", eventMsgBean.getGroupID());
-				ChatList chatListobj=chatLists.get(0);
-				chatListobj.setChatName(eventMsgBean.getGroupName());
-				chatListService.saveObj(chatListobj);
+//				ToastUtil.showSafeToast("群名修改"+eventMsgBean.getGroupName());
+//				ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+//				List<ChatList> chatLists=chatListService.queryData("where id =?", eventMsgBean.getGroupID());
+//				ChatList lastchat=chatLists.get(0);
+//
+////				chatListobj.setId(eventMsgBean.getGroupID());
+//				ChatList chatListobj=new ChatList();
+//				chatListobj.setId(eventMsgBean.getGroupID());
+//				chatListobj.setIsSuccess(eventMsgBean.getIsSuccess());
+//				chatListobj.setDaytype(eventMsgBean.getDaytype());
+//				chatListobj.setChatName(eventMsgBean.getGroupName());
+//				chatListobj.setChatType(lastchat.getChatType());
+//				chatListobj.setCount(lastchat.getCount());
+//				chatListService.saveObj(chatListobj);
 
 				GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
 				List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", eventMsgBean.getGroupID());
-				GroupChats groupChatsObj=groupChatsList.get(0);
+				GroupChats lastGroupChat=groupChatsList.get(0);
+				GroupChats groupChatsObj=new GroupChats();
+				groupChatsObj.setId(lastGroupChat.getId());
+				groupChatsObj.setIsmygroup(lastGroupChat.getIsmygroup());
+				groupChatsObj.setGroupType(lastGroupChat.getGroupType());
 				groupChatsObj.setGroupName(eventMsgBean.getGroupName());
 				groupChatsService.saveObj(groupChatsObj);
 			}

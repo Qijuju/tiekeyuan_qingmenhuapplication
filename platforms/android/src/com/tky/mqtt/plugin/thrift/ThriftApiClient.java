@@ -4,10 +4,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.telecom.Call;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
+import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.SPUtils;
@@ -942,7 +945,7 @@ public class ThriftApiClient extends CordovaPlugin {
             String filesize=args.getString(2);
             savePath = FileUtils.getDownloadDir() + File.separator + "apk";
             String userID = getUserID();
-            boolean success = SystemApi.getVersion(savePath, getUserID(), versionCode,cordova.getActivity(),filesize);
+            boolean success = SystemApi.getVersion(savePath, getUserID(), versionCode, cordova.getActivity(), filesize);
             String exePath = savePath + File.separator + "1000"/*apkVersion*/ + ".apk";
             setResult(success ? exePath : "更新失败！", success ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
         } catch (JSONException e) {
@@ -985,15 +988,32 @@ public class ThriftApiClient extends CordovaPlugin {
      * @param callbackContext
      */
     public void needUpgrade(final JSONArray args, final CallbackContext callbackContext){
+
         try {
             String newVersion = args.getString(0);
-            String install_cancel = SPUtils.getString("install_cancel", "false");
-            if (install_cancel.equals("true")) {
+            //第一次就是本地的versionname
+            String install_cancel = SPUtils.getString("local_versionname", "");
+
+            //第一次进来的时候肯定进不来这边
+            if (install_cancel.equals(newVersion)) {
                 setResult("false", PluginResult.Status.OK, callbackContext);
                 return;
             }
+
             boolean needsUpgrade = isNeedsUpgrade(UIUtils.getVersion(), newVersion);
-            setResult(needsUpgrade ? "true" : "已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+
+
+            if(needsUpgrade){
+                //第一次肯定进不来这边
+                setResult("true", PluginResult.Status.OK, callbackContext);
+            }else {
+                //保存服务器的版本号到sp中
+                SPUtils.save("local_versionname",newVersion);
+
+                setResult("已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+            }
+
+
         } catch (JSONException e) {
             setResult("数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
@@ -1190,7 +1210,143 @@ public class ThriftApiClient extends CordovaPlugin {
         }
     }
 
-  /**
+
+
+
+    /**
+     * 将登录成功以后，订阅群组topic之前的历史消息入库并展示在界面上
+     */
+    public void getLatestMsg(final JSONArray args,final CallbackContext callbackContext){
+        try {
+            String groupID = args.getString(0);
+            long when =args.getLong(1);
+            SystemApi.getLatestMsg(getUserID(), "G", groupID, when, 0, new AsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call>() {
+                @Override
+                public void onComplete(IMMessage.AsyncClient.GetLatestMsg_call getLatestMsg_call) {
+                    if (getLatestMsg_call != null) {
+                        try {
+                            RSTgetMsg result = getLatestMsg_call.getResult();
+                            if (result == null) {
+                                setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+                            } else {
+                                if (result.result) {
+                                    MessagesService messagesService=MessagesService.getInstance(UIUtils.getContext());
+                                    List<Msg> messagesList=result.getMsglist();
+                                    for(int i=0;i<messagesList.size();i++){
+                                        Msg msg=messagesList.get(i);
+                                        Messages messages=new Messages();
+                                        String id=UUID.randomUUID().toString();
+                                        messages.set_id(id);
+                                        messages.setSessionid(result.getSessionID());
+                                        messages.setIstime("false");
+                                        messages.setDaytype("1");
+                                        messages.setMessage(msg.getMsg());
+                                        messages.setFrom("false");
+                                        messages.setImgSrc("");
+                                        messages.setIsDelete("false");
+                                        messages.setIsFailure("false");
+                                        messages.setIsread("0");
+                                        messages.setIsSuccess("true");
+                                        messages.setMessagetype(msg.getMsgType());
+                                        messages.setPlatform("Windows");
+                                        messages.setSenderid(msg.getFromID());
+                                        messages.setType("Group");
+                                        messages.setUsername(msg.getFromName());
+                                        messages.setWhen(msg.getMsgDate());
+                                        messagesService.saveObj(messages);
+                                    }
+                                    //取出消息表的最后一条数据保存在chat表里面
+                                    List<Messages> messagesLists=messagesService.queryData("where sessionid =?", result.getSessionID());
+                                    Messages lastmessages=messagesLists.get(messagesLists.size() - 1);
+                                    //将对话最后一条入库到chat表
+                                    /**s
+                                     * 1.先从数据库查询是否存在当前会话列表
+                                     * 2.如果没有该会话，创建会话
+                                     * 3.如果有该会话，则保存最后一条消息到chat表
+                                     */
+                                    ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+                                    List<ChatList> chatLists=chatListService.queryData("where id =?", lastmessages.getSessionid());
+                                    ChatList chatList=new ChatList();
+                                    chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+                                    System.out.println("消息类型" + lastmessages.getMessagetype());
+                                    if(lastmessages.getMessagetype() == "Image"){
+                                        // alert("返回即时通");
+                                        chatList.setLastText("[图片]");//从数据库里取最后一条消息
+                                    }else if(lastmessages.getMessagetype() == "LOCATION"){
+                                        chatList.setLastText("[位置]");//从数据库里取最后一条消息
+                                        System.out.println("消息类型weizhi");
+                                    }else if(lastmessages.getMessagetype() ==  "File"){
+                                        chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                                    }else {
+                                        chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+                                    }
+                                    chatList.setCount(result.getMsgCount() + "");//将统计的count未读数量存进去
+                                    chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+                                    chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+                                    chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+                                    if (chatLists.size() > 0) {
+                                        chatList.setId(chatLists.get(0).getId());
+                                        if(lastmessages.getType() == "User"){
+                                            chatList.setChatName(chatLists.get(0).getChatName());
+                                        }else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+                                            GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+                                            List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                                            chatList.setChatName(groupChatsList.get(0).getGroupName());
+                                        }
+                                        chatList.setIsDelete(chatLists.get(0).getIsDelete());
+                                        chatList.setChatType(chatLists.get(0).getChatType());
+                                        chatList.setDaytype(chatLists.get(0).getDaytype());
+                                        chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                                    }else{
+                                        chatList.setId(lastmessages.getSessionid());
+                                        if(lastmessages.getType() == "User"){
+                                            chatList.setChatName(lastmessages.getUsername());
+                                        }else if(lastmessages.getType() == "Group" || lastmessages.getType() == "Dept"){
+                                            GroupChatsService groupChatsSer=GroupChatsService.getInstance(UIUtils.getContext());
+                                            List<GroupChats> groupChatsList=groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                                            try {
+                                                JSONObject userInfo = getUserInfo();
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            chatList.setChatName(groupChatsList.get(0).getGroupName());
+                                        }
+                                        chatList.setIsDelete(lastmessages.getIsDelete());
+                                        chatList.setChatType(lastmessages.getType());
+                                        chatList.setDaytype(lastmessages.getDaytype());
+                                        chatList.setIsSuccess(lastmessages.getIsSuccess());
+                                    }
+                                    chatListService.saveObj(chatList);//保存chatlist对象
+                                }
+                            }
+                        } catch (TException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+//                        setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+//                    setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }catch (TException e) {
+//            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+//            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    /**
    * 确认消息回复
    * @param args
    * @param callbackContext
@@ -1201,29 +1357,29 @@ public class ThriftApiClient extends CordovaPlugin {
         String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
         final long sendWhen = args.getLong(2);//消息发送时间when
         SystemApi.readMessage(getUserID(), getType(sessionType), sessionID, sendWhen, new AsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call>() {
-          @Override
-          public void onComplete(IMMessage.AsyncClient.ReadMessage_call getHistoryMsg_call) {
-            try {
-              RSTreadMsg result = getHistoryMsg_call.getResult();
-              if (result != null && result.result) {
-                String json = GsonUtils.toJson(result, RSTreadMsg.class);
-                setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
-              } else {
-                setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
-              }
-            } catch (TException e) {
-              setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-              e.printStackTrace();
-            } catch (JSONException e) {
-              setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
-              e.printStackTrace();
+            @Override
+            public void onComplete(IMMessage.AsyncClient.ReadMessage_call getHistoryMsg_call) {
+                try {
+                    RSTreadMsg result = getHistoryMsg_call.getResult();
+                    if (result != null && result.result) {
+                        String json = GsonUtils.toJson(result, RSTreadMsg.class);
+                        setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+                    } else {
+                        setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+                    }
+                } catch (TException e) {
+                    setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+                    e.printStackTrace();
+                }
             }
-          }
 
-          @Override
-          public void onError(Exception e) {
-            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
-          }
+            @Override
+            public void onError(Exception e) {
+                setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+            }
         });
       } catch (JSONException e) {
         setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
@@ -2536,6 +2692,8 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+
 
 
     /***

@@ -128,7 +128,7 @@ public class MqttConnection {
                                 String key = it.next();
                                 Integer value = topicsAndQoss.get(key);
                                 subscribe(key, value);
-//                                ToastUtil.showSafeToast("while:subscribe-->" + key);
+                                ToastUtil.showSafeToast("while:subscribe-->" + key);
                             }
                         }
 //						}
