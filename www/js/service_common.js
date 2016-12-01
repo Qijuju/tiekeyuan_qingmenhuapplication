@@ -254,7 +254,7 @@ angular.module('common.services', [])
                 var confirmPopup = $ionicPopup.confirm({
                   title: '版本升级',
                   template: versionDesc, //从服务端获取更新的内容
-                  cancelText: '取消',
+                  cancelText: '忽略',
                   okText: '升级'
                 });
 
@@ -301,7 +301,7 @@ angular.module('common.services', [])
           },function (err) {
               //获取版本信息失败
           });
-        
+
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
         api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount, success, error);

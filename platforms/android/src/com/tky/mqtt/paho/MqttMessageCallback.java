@@ -711,7 +711,7 @@ public class MqttMessageCallback implements MqttCallback {
             ringStaus = RingStatus.RING;
         }
         ringStaus = (ringStaus == RingStatus.RING ? ringStaus :
-                ((System.currentTimeMillis() - start > 30) ? RingStatus.RING :
+                ((System.currentTimeMillis() - start > 100) ? RingStatus.RING :
                         RingStatus.NO_RING));
         //************* 判断是否需要响铃 END *************
         if (ringStaus != RingStatus.NO_RING) {

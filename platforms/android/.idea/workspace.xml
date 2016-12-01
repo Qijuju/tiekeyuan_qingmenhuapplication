@@ -6,12 +6,10 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bed7885a-dbab-4e26-bcbb-38d51cd2de2f" name="Default" comment="最新代码">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1460021501829795032.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger3423655001703367299.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -22,27 +20,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/config.xml" afterPath="$PROJECT_DIR$/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -84,18 +67,28 @@
       <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="483" column="63" selection-start-line="483" selection-start-column="63" selection-end-line="483" selection-end-column="63" />
+            <state vertical-scroll-proportion="-12.118644">
+              <caret line="709" column="47" selection-start-line="709" selection-start-column="47" selection-end-line="709" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40191388">
+              <caret line="14" column="70" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39291218">
-              <caret line="1312" column="71" selection-start-line="1311" selection-start-column="45" selection-end-line="1312" selection-end-column="71" />
+            <state vertical-scroll-proportion="-7.714286">
+              <caret line="1327" column="77" selection-start-line="1327" selection-start-column="77" selection-end-line="1327" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,19 +122,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="80" column="105" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="105" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatListService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
-              <folding>
-                <element signature="e#2609#2610#0" expanded="true" />
-                <element signature="e#2669#2670#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1401,7 +1381,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="5915280577011" />
-        <entry key="C:\Users\Administrator\gitlab\IM\platforms\android" value="5917338194125" />
+        <entry key="C:\Users\Administrator\gitlab\IM\platforms\android" value="5917430268699" />
         <entry key="D:\WebstormProjects\IM\platforms\android" value="5915184106160" />
         <entry key="E:\jishitong\IM\platforms\android" value="5915279246302" />
       </map>
@@ -1841,11 +1821,11 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1879,33 +1859,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1954,6 +1907,29 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2194,7 +2170,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17469205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20604703" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2559,14 +2535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/services/ChatListService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2641,21 +2609,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.714286">
+          <caret line="1327" column="77" selection-start-line="1327" selection-start-column="77" selection-end-line="1327" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="483" column="63" selection-start-line="483" selection-start-column="63" selection-end-line="483" selection-end-column="63" />
+        <state vertical-scroll-proportion="-12.118644">
+          <caret line="709" column="47" selection-start-line="709" selection-start-column="47" selection-end-line="709" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39291218">
-          <caret line="1312" column="71" selection-start-line="1311" selection-start-column="45" selection-end-line="1312" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.40191388">
+          <caret line="14" column="70" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
