@@ -1284,6 +1284,16 @@ public class ThriftApiClient extends CordovaPlugin {
 //                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
 //                                    String groupName=groupChatsList.get(0).getGroupName();
 //                                    ToastUtil.showSafeToast("最新群名"+groupName);
+                                    //统计未读数量
+                                    int count=0;
+                                   List<Messages> messagesList1 = messagesService.queryData("where sessionid =?", result.getSessionID());
+                                    for (int i = 0; i < messagesList.size(); i++) {
+                                        Messages messages = messagesList1.get(i);
+                                        if ("0".equals(messages.getIsread())) {
+                                            count++;
+                                        }
+                                    }
+
                                     //取出消息表的最后一条数据保存在chat表里面
                                     List<Messages> messagesLists = messagesService.queryData("where sessionid =?", result.getSessionID());
                                     Messages lastmessages = messagesLists.get(messagesLists.size() - 1);
@@ -1297,7 +1307,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                     List<ChatList> chatLists = chatListService.queryData("where id =?", lastmessages.getSessionid());
                                     ChatList chatList = new ChatList();
                                     chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-                                    System.out.println("消息类型" + lastmessages.getMessagetype());
+//                                    System.out.println("消息类型" + lastmessages.getMessagetype());
                                     if (lastmessages.getMessagetype() == "Image") {
                                         // alert("返回即时通");
                                         chatList.setLastText("[图片]");//从数据库里取最后一条消息
@@ -1309,7 +1319,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                     } else {
                                         chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                     }
-                                    chatList.setCount(result.getMsgCount() + "");//将统计的count未读数量存进去
+                                    chatList.setCount(count + "");//将统计的count未读数量存进去
+//                                    ToastUtil.showSafeToast("未读数"+count);
                                     chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
                                     chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
                                     chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
