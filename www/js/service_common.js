@@ -265,7 +265,8 @@ angular.module('common.services', [])
                       targetPath = msg;
                       api.installApk(targetPath, function (success) {
                         // 成功
-                        $mqtt.save('local_versionname', "");
+                        $mqtt.save('local_versionname', versionName);
+
                       }, function (err) {
                         // 错误
                         $mqtt.save('local_versionname', "");
