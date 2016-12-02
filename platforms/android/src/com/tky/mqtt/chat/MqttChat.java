@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -32,6 +33,7 @@ import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.paho.utils.SoundUtil;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.protocol.model.IMPException;
@@ -54,6 +56,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import im.model.RST;
 import im.server.System.IMSystem;
@@ -76,6 +81,16 @@ public class MqttChat extends CordovaPlugin {
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
     private MqttReceiver mqttReceiver;
+    private long mStartRecorderTime;
+    private SoundUtil mSoundUtil;
+    private String mRecordTime;
+    private Handler mHandler = new Handler();
+    private static final int POLL_INTERVAL = 300;
+    private ScheduledExecutorService mExecutor;
+    private int mRcdStartTime = 0;// 录制的开始时间
+    private VoiceRcdTimeTask mVoiceRcdTimeTask;
+    private int mRcdVoiceDelayTime = 1000;
+    private int mRcdVoiceStartDelayTime = 300;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -113,6 +128,8 @@ public class MqttChat extends CordovaPlugin {
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_ERROR);
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_SUCCESS);
         UIUtils.getContext().registerReceiver(topicReceiver, topicFilter);
+
+        mSoundUtil = SoundUtil.getInstance();
     }
 
     @Override
@@ -721,6 +738,196 @@ public class MqttChat extends CordovaPlugin {
         }
     }
 
+    /**
+     * 开始录音
+     * @param args
+     * @param callbackContext
+     */
+    public void startRecording(final JSONArray args, final CallbackContext callbackContext) {
+        mPollTask = new PollTask(callbackContext);
+        mStartRecorderTime = System.currentTimeMillis();
+        if (mSoundUtil != null) {
+            mRecordTime = mSoundUtil.getRecordFileName();
+            mSoundUtil.startRecord(cordova.getActivity(), mRecordTime);
+            mHandler.postDelayed(mPollTask, POLL_INTERVAL);
+
+            mVoiceRcdTimeTask = new VoiceRcdTimeTask(mRcdStartTime, callbackContext);
+
+            if (mExecutor == null) {
+                mExecutor = Executors.newSingleThreadScheduledExecutor();
+                mExecutor.scheduleAtFixedRate(mVoiceRcdTimeTask,
+                        mRcdVoiceStartDelayTime, mRcdVoiceDelayTime,
+                        TimeUnit.MILLISECONDS);
+            }
+
+        }
+    }
+
+    /**
+     * 录制语音计时器
+     *
+     * @desc:
+     * @author: pangzf
+     * @date: 2014年11月10日 下午3:46:46
+     */
+    private class VoiceRcdTimeTask implements Runnable {
+        private CallbackContext callbackContext;
+
+        public VoiceRcdTimeTask() {
+            super();
+        }
+        int time = 0;
+
+        public VoiceRcdTimeTask(int startTime,CallbackContext callbackContext) {
+            time = startTime;
+            this.callbackContext = callbackContext;
+        }
+
+        @Override
+        public void run() {
+            time++;
+
+            updateTimes(time, callbackContext);
+        }
+    }
+
+    /**
+     * 更新文本内容
+     * TODO 录制时间
+     * @param time
+     * @param callbackContext
+     */
+    public void updateTimes(final int time, final CallbackContext callbackContext) {
+        Log.e("fff", "时间:" + time);
+        UIUtils.runInMainThread(new Runnable() {
+            @Override
+            public void run() {
+                //录制的时间
+            setResult(time, PluginResult.Status.ERROR, callbackContext);
+            }
+        });
+
+    }
+
+    private Runnable mPollTask;
+
+    private class PollTask implements Runnable {
+        private CallbackContext callbackContext;
+
+        public PollTask(CallbackContext callbackContext){
+            super();
+            this.callbackContext = callbackContext;
+        }
+        public void run() {
+            double amp = mSoundUtil.getAmplitude();
+            Log.e("fff", "音量:" + amp);
+            updateDisplay(amp, callbackContext);
+            mHandler.postDelayed(mPollTask, POLL_INTERVAL);
+
+        }
+    }
+
+    /**
+     * 变换语音量的图片
+     * TODO 这里写改变语音图片的代码
+     * @param signalEMA
+     * @param callbackContext
+     */
+    private void updateDisplay(double signalEMA, CallbackContext callbackContext) {
+
+        switch ((int) signalEMA) {
+            case 0:
+            case 1:
+//                volume.setImageResource(R.drawable.amp1);
+                setResult("0", PluginResult.Status.OK, callbackContext);
+                break;
+            case 2:
+            case 3:
+//                volume.setImageResource(R.drawable.amp2);
+                setResult("1", PluginResult.Status.OK, callbackContext);
+                break;
+            case 4:
+            case 5:
+//                volume.setImageResource(R.drawable.amp3);
+                setResult("2", PluginResult.Status.OK, callbackContext);
+                break;
+            case 6:
+            case 7:
+//                volume.setImageResource(R.drawable.amp4);
+                setResult("2", PluginResult.Status.OK, callbackContext);
+                break;
+            case 8:
+            case 9:
+//                volume.setImageResource(R.drawable.amp5);
+                setResult("3", PluginResult.Status.OK, callbackContext);
+                break;
+            case 10:
+            case 11:
+//                volume.setImageResource(R.drawable.amp6);
+                setResult("4", PluginResult.Status.OK, callbackContext);
+                break;
+            default:
+//                volume.setImageResource(R.drawable.amp7);
+                setResult("0", PluginResult.Status.OK, callbackContext);
+                break;
+        }
+    }
+
+    /**
+     * 结束录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopRecording(final JSONArray args, final CallbackContext callbackContext) {
+        stopRecord();
+    }
+
+    /**
+     * 停止进行录音
+     */
+    private void stopRecord() {
+        mHandler.removeCallbacks(mSleepTask);
+        mHandler.removeCallbacks(mPollTask);
+
+//        volume.setImageResource(R.drawable.amp1);
+        if (mExecutor != null && !mExecutor.isShutdown()) {
+            mExecutor.shutdown();
+            mExecutor = null;
+        }
+        if (mSoundUtil != null) {
+            mSoundUtil.stopRecord();
+        }
+    }
+
+    /**
+     * 播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void playRecord(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String name = args.getString(0);
+            SoundUtil.getInstance().playRecorder(cordova.getActivity(), name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 停止播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopPlayRecord(final JSONArray args, final CallbackContext callbackContext) {
+        SoundUtil.getInstance().stopPlayRecord();
+    }
+
+    private Runnable mSleepTask = new Runnable() {
+        public void run() {
+            stopRecord();
+        }
+    };
+
     public static MType getType(String type) {
         if ("User".equals(type)) {
             return MType.U;
@@ -826,6 +1033,19 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);

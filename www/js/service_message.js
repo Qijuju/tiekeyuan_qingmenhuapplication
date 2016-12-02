@@ -1410,6 +1410,18 @@ angular.module('message.services', [])
       },
       setExitStartedStatus:function() {//改变登录状态为未登录
         mqtt.setExitStartedStatus();
+      },
+      startRecording:function(success, error) {//开始录音
+        mqtt.startRecording(success, error);
+      },
+      stopRecording:function(success, error) {//结束录音
+        mqtt.stopRecording(success, error);
+      },
+      playRecord:function(fileName,success, error) {//播放录音
+        mqtt.stopRecording(fileName,success, error);
+      },
+      stopPlayRecord:function(success, error) {//停止播放录音
+        mqtt.stopRecording(success, error);
       }
 
 
