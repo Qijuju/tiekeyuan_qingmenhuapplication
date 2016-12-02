@@ -301,7 +301,7 @@ angular.module('common.services', [])
           },function (err) {
               //获取版本信息失败
           });
-        
+
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
         api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount, success, error);

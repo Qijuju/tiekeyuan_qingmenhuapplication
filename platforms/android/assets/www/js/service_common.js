@@ -242,7 +242,6 @@ angular.module('common.services', [])
 
           //从网络请求数据  获取版本号和各种信息
           api.getVersionInfo(function (msg) {
-
             var versionName = msg.versionName;
             var versionDesc = msg.versionDesc;
             var filesize=msg.size;
@@ -302,9 +301,6 @@ angular.module('common.services', [])
           },function (err) {
               //获取版本信息失败
           });
-
-
-
 
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
