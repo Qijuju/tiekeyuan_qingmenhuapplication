@@ -72,7 +72,7 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
-//    private NetStatusChangeReceiver netStatusChangeReceiver;
+    //    private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
     private MqttReceiver mqttReceiver;
@@ -101,11 +101,11 @@ public class MqttChat extends CordovaPlugin {
         netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
         UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);*/
 
-        mqttConnectReceiver=new MqttConnectReceiver();
-        IntentFilter mqttConnectFilter=new IntentFilter();
+        mqttConnectReceiver = new MqttConnectReceiver();
+        IntentFilter mqttConnectFilter = new IntentFilter();
         mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_STARTED);
         mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_CLOSED);
-        UIUtils.getContext().registerReceiver(mqttConnectReceiver,mqttConnectFilter);
+        UIUtils.getContext().registerReceiver(mqttConnectReceiver, mqttConnectFilter);
 
         //发布消息的广播
         topicReceiver = new MqttSendMsgReceiver();
@@ -139,6 +139,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 保存数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -160,6 +161,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 保存登录的用户名
+     *
      * @param args
      * @param callbackContext
      */
@@ -169,7 +171,7 @@ public class MqttChat extends CordovaPlugin {
                 String key = args.getString(0);
                 String value = args.getString(1);
                 SPUtils.save(key, value);
-                if(value != null && !TextUtils.isEmpty(value.trim())) {
+                if (value != null && !TextUtils.isEmpty(value.trim())) {
                     SPUtils.save("historyusername", value);
                 }
                 setResult(key + "#" + value, PluginResult.Status.OK, callbackContext);
@@ -184,6 +186,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取保存的数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -254,6 +257,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 重启MQTT
+     *
      * @param args
      * @param callbackContext
      * @throws JSONException
@@ -265,24 +269,24 @@ public class MqttChat extends CordovaPlugin {
     /**
      * 停止MqttChat的服务
      */
-    public void stopMqttChat(){
+    public void stopMqttChat() {
     }
 
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
         final String message = args.getString(1);
-        if (tosb == null || "".equals(tosb)){
+        if (tosb == null || "".equals(tosb)) {
             ToastUtil.showSafeToast("接收者未知！");
-            return ;
+            return;
         }
         if (message == null || "".equals(message.trim())) {
             ToastUtil.showSafeToast("消息内容不能为空！");
-            return ;
+            return;
         }
         JSONObject obj = new JSONObject(message);
         String msg = obj.getString("message");
         if (msg == null || "".equals(msg.trim())) {
-            return ;
+            return;
         }
         /*try {
             //收集发送出去的消息，判断多发消息是哪出错了
@@ -312,7 +316,7 @@ public class MqttChat extends CordovaPlugin {
         });
         if ("Group".equals(obj.getString("type"))) {
             boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
-            if (!fromMe){
+            if (!fromMe) {
                 String errMSG = switchMsg(message, false);
                 MqttOper.sendErrNotify(errMSG);
                 //setResult(jsonObject, PluginResult.Status.ERROR, callbackContext);
@@ -325,8 +329,8 @@ public class MqttChat extends CordovaPlugin {
         if(!NetUtils.isConnect(cordova.getActivity())){
             flag=true;
             *//**
-             * 若断网，则在20s内不断发送消息，并且实时启动mqtt
-             *//*
+         * 若断网，则在20s内不断发送消息，并且实时启动mqtt
+         *//*
             while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
                 SystemClock.sleep(10);
                 try {
@@ -346,7 +350,7 @@ public class MqttChat extends CordovaPlugin {
         try {
 //            if(!flag){
 
-                MessageOper.sendMsg(tosb, message);
+            MessageOper.sendMsg(tosb, message);
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
@@ -370,6 +374,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 将收到的消息写到文件中
+     *
      * @param text
      * @throws IOException
      */
@@ -388,6 +393,7 @@ public class MqttChat extends CordovaPlugin {
             @Override
             public void messageArrived(String topic, String content, int qos) {
                 try {
+
                     setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -400,11 +406,12 @@ public class MqttChat extends CordovaPlugin {
             return;
         } else {
             callbackContext.error("Expected one non-empty string argument.");
-                }
+        }
     }
 
     /**
      * 断开MQTT连接并解除用户的绑定
+     *
      * @param args
      * @param callbackContext
      */
@@ -448,6 +455,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 退出应用
+     *
      * @param args
      * @param callbackContext
      */
@@ -459,6 +467,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取用户信息
+     *
      * @param args
      * @param callbackContext
      */
@@ -473,6 +482,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的topic
+     *
      * @param args
      * @param callbackContext
      */
@@ -488,6 +498,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的topic
+     *
      * @param args
      * @param callbackContext
      */
@@ -505,6 +516,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录的用户ID
+     *
      * @param args
      * @param callbackContext
      */
@@ -519,6 +531,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 打开文件管理器
+     *
      * @param args
      * @param callbackContext
      */
@@ -576,6 +589,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 拍照后发送图片需要的数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -602,7 +616,7 @@ public class MqttChat extends CordovaPlugin {
             try {
                 fst = new FileInputStream(file);
                 fost = new FileOutputStream(cacheFileDoc);
-                byte[] buf = new byte[1024*10];
+                byte[] buf = new byte[1024 * 10];
                 int len = 0;
                 while ((len = fst.read(buf)) != -1) {
                     fost.write(buf, 0, len);
@@ -642,6 +656,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 拍照
+     *
      * @param args
      * @param callbackContext
      */
@@ -662,8 +677,8 @@ public class MqttChat extends CordovaPlugin {
 
     public void getIconDir(final JSONArray args, final CallbackContext callbackContext) {
         String dir = FileUtils.getIconDir() + "/screenshot";
-        File file=new File(dir);
-        if(!file.exists()){
+        File file = new File(dir);
+        if (!file.exists()) {
             file.mkdirs();
         }
         setResult(dir, PluginResult.Status.OK, callbackContext);
@@ -671,6 +686,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置网络监听（返回true：连接上网；返回false：网络断开了）
+     *
      * @param args
      * @param callbackContext
      */
@@ -693,6 +709,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取MQTT连接状态
+     *
      * @param args
      * @param callbackContext
      */
@@ -718,6 +735,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录的用户ID
+     *
      * @return
      */
     public String getUserID() throws JSONException {
@@ -727,6 +745,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的deptID
+     *
      * @return
      * @throws JSONException
      */
@@ -742,6 +761,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取登录信息（JSONObject）
+     *
      * @return
      * @throws JSONException
      */
@@ -774,11 +794,12 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(String result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(String result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
@@ -786,11 +807,12 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
@@ -798,11 +820,12 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
