@@ -234,6 +234,15 @@ angular.module('login.controllers', [])
     var passlogin=""
     var pwdgesturea=""
     var namegesturea=""
+
+    $http.get('http://61.237.239.152:8080/Im_Interface/loginpic/download?Id=0').success(function (data) {
+      //业务处理
+     alert("成功")
+    }).error(function (error) {
+      //业务处理
+      alert("失败")
+    })
+
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
       mqtt.getString('gesturePwd', function (pwd) {

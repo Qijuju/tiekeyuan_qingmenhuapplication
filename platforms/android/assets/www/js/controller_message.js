@@ -4649,6 +4649,7 @@ angular.module('message.controllers', [])
     $scope.dangqianpage=1;
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID= msg.userID
+      // alert($scope.UserID)
     },function (msg) {
 
     });

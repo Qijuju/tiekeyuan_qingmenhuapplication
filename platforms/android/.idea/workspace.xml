@@ -10,11 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bed7885a-dbab-4e26-bcbb-38d51cd2de2f" name="Default" comment="最新代码">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/1.0.1128.1.apk" />
-      <change type="DELETED" beforePath="C:\Users\Administrator\gitlab\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger2465524568559429.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Administrator\gitlab\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger5447749204899024533.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Administrator\gitlab\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger8400037966824518507.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Administrator\gitlab\IM\platforms\android\CordovaLib\build\intermediates\manifest\tmp\manifestMerger1523980839636218680.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7426215875297555079.xml" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\BaiduLBS_Android.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\barcodescanner_.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\dom4j_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\freemarker_2_3_20.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\greendao_1_3_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\greendao_generator_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\gson_2_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\imApi2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\imDataCast.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\libthrift_0_9_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\locSDK_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\log4j_1_2_14.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\okhttp_2_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\okhttp_3_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\okio_1_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\slf4j_api_1_7_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\slf4j_log4j12_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\sqlite_connector.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\support_annotations_24_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\WebstormProjects\IM\platforms\android\.idea\libraries\support_v4_24_0_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -25,22 +41,23 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -73,9 +90,16 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2068#2069#0" expanded="false" />
+                <element signature="e#2089#2090#0" expanded="false" />
+                <element signature="e#2128#2129#0" expanded="false" />
+                <element signature="e#2154#2155#0" expanded="false" />
+                <element signature="e#2194#2195#0" expanded="false" />
+                <element signature="e#2218#2219#0" expanded="false" />
+                <element signature="e#2256#2257#0" expanded="false" />
+                <element signature="e#2277#2278#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -95,8 +119,12 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="93" column="49" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
-              <folding />
+              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3672#16680#0" expanded="false" />
+                <element signature="e#16679#16680#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,7 +134,64 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="e#1023#1024#0" expanded="false" />
+                <element signature="e#1049#1050#0" expanded="false" />
+                <element signature="e#1087#1088#0" expanded="false" />
+                <element signature="e#1117#1118#0" expanded="false" />
+                <element signature="e#1153#1154#0" expanded="false" />
+                <element signature="e#1185#1186#0" expanded="false" />
+                <element signature="e#1235#1236#0" expanded="false" />
+                <element signature="e#1277#1278#0" expanded="false" />
+                <element signature="e#1308#1309#0" expanded="false" />
+                <element signature="e#1335#1336#0" expanded="false" />
+                <element signature="e#1375#1376#0" expanded="false" />
+                <element signature="e#1407#1408#0" expanded="false" />
+                <element signature="e#1438#1439#0" expanded="false" />
+                <element signature="e#1465#1466#0" expanded="false" />
+                <element signature="e#1505#1506#0" expanded="false" />
+                <element signature="e#1537#1538#0" expanded="false" />
+                <element signature="e#1571#1572#0" expanded="false" />
+                <element signature="e#1601#1602#0" expanded="false" />
+                <element signature="e#1647#1648#0" expanded="false" />
+                <element signature="e#1685#1686#0" expanded="false" />
+                <element signature="e#1723#1724#0" expanded="false" />
+                <element signature="e#1757#1758#0" expanded="false" />
+                <element signature="e#1811#1812#0" expanded="false" />
+                <element signature="e#1857#1858#0" expanded="false" />
+                <element signature="e#1892#1893#0" expanded="false" />
+                <element signature="e#1923#1924#0" expanded="false" />
+                <element signature="e#1971#1972#0" expanded="false" />
+                <element signature="e#2011#2012#0" expanded="false" />
+                <element signature="e#2040#2041#0" expanded="false" />
+                <element signature="e#2067#2068#0" expanded="false" />
+                <element signature="e#2105#2106#0" expanded="false" />
+                <element signature="e#2137#2138#0" expanded="false" />
+                <element signature="e#2173#2174#0" expanded="false" />
+                <element signature="e#2205#2206#0" expanded="false" />
+                <element signature="e#2255#2256#0" expanded="false" />
+                <element signature="e#2297#2298#0" expanded="false" />
+                <element signature="e#2332#2333#0" expanded="false" />
+                <element signature="e#2363#2364#0" expanded="false" />
+                <element signature="e#2411#2412#0" expanded="false" />
+                <element signature="e#2451#2452#0" expanded="false" />
+                <element signature="e#2484#2485#0" expanded="false" />
+                <element signature="e#2513#2514#0" expanded="false" />
+                <element signature="e#2557#2558#0" expanded="false" />
+                <element signature="e#2593#2594#0" expanded="false" />
+                <element signature="e#2628#2629#0" expanded="false" />
+                <element signature="e#2659#2660#0" expanded="false" />
+                <element signature="e#2707#2708#0" expanded="false" />
+                <element signature="e#2747#2748#0" expanded="false" />
+                <element signature="e#2780#2781#0" expanded="false" />
+                <element signature="e#2811#2812#0" expanded="false" />
+                <element signature="e#2860#2861#0" expanded="false" />
+                <element signature="e#2900#2901#0" expanded="false" />
+                <element signature="e#2935#2936#0" expanded="false" />
+                <element signature="e#2966#2967#0" expanded="false" />
+                <element signature="e#3014#3015#0" expanded="false" />
+                <element signature="e#3054#3055#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,7 +200,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+              <caret line="158" column="23" selection-start-line="158" selection-start-column="23" selection-end-line="158" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -126,7 +211,78 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding />
+              <folding>
+                <element signature="e#781#782#0" expanded="false" />
+                <element signature="e#811#812#0" expanded="false" />
+                <element signature="e#1678#1679#0" expanded="false" />
+                <element signature="e#1704#1705#0" expanded="false" />
+                <element signature="e#1742#1743#0" expanded="false" />
+                <element signature="e#1772#1773#0" expanded="false" />
+                <element signature="e#1808#1809#0" expanded="false" />
+                <element signature="e#1840#1841#0" expanded="false" />
+                <element signature="e#1890#1891#0" expanded="false" />
+                <element signature="e#1932#1933#0" expanded="false" />
+                <element signature="e#1963#1964#0" expanded="false" />
+                <element signature="e#1990#1991#0" expanded="false" />
+                <element signature="e#2030#2031#0" expanded="false" />
+                <element signature="e#2062#2063#0" expanded="false" />
+                <element signature="e#2093#2094#0" expanded="false" />
+                <element signature="e#2120#2121#0" expanded="false" />
+                <element signature="e#2160#2161#0" expanded="false" />
+                <element signature="e#2192#2193#0" expanded="false" />
+                <element signature="e#2226#2227#0" expanded="false" />
+                <element signature="e#2256#2257#0" expanded="false" />
+                <element signature="e#2302#2303#0" expanded="false" />
+                <element signature="e#2340#2341#0" expanded="false" />
+                <element signature="e#2378#2379#0" expanded="false" />
+                <element signature="e#2412#2413#0" expanded="false" />
+                <element signature="e#2466#2467#0" expanded="false" />
+                <element signature="e#2512#2513#0" expanded="false" />
+                <element signature="e#2547#2548#0" expanded="false" />
+                <element signature="e#2578#2579#0" expanded="false" />
+                <element signature="e#2626#2627#0" expanded="false" />
+                <element signature="e#2666#2667#0" expanded="false" />
+                <element signature="e#2702#2703#0" expanded="false" />
+                <element signature="e#2734#2735#0" expanded="false" />
+                <element signature="e#2784#2785#0" expanded="false" />
+                <element signature="e#2826#2827#0" expanded="false" />
+                <element signature="e#2855#2856#0" expanded="false" />
+                <element signature="e#2882#2883#0" expanded="false" />
+                <element signature="e#2920#2921#0" expanded="false" />
+                <element signature="e#2952#2953#0" expanded="false" />
+                <element signature="e#2987#2988#0" expanded="false" />
+                <element signature="e#3018#3019#0" expanded="false" />
+                <element signature="e#3066#3067#0" expanded="false" />
+                <element signature="e#3106#3107#0" expanded="false" />
+                <element signature="e#3139#3140#0" expanded="false" />
+                <element signature="e#3168#3169#0" expanded="false" />
+                <element signature="e#3212#3213#0" expanded="false" />
+                <element signature="e#3248#3249#0" expanded="false" />
+                <element signature="e#3283#3284#0" expanded="false" />
+                <element signature="e#3314#3315#0" expanded="false" />
+                <element signature="e#3362#3363#0" expanded="false" />
+                <element signature="e#3402#3403#0" expanded="false" />
+                <element signature="e#3437#3438#0" expanded="false" />
+                <element signature="e#3468#3469#0" expanded="false" />
+                <element signature="e#3516#3517#0" expanded="false" />
+                <element signature="e#3556#3557#0" expanded="false" />
+                <element signature="e#3589#3590#0" expanded="false" />
+                <element signature="e#3618#3619#0" expanded="false" />
+                <element signature="e#3662#3663#0" expanded="false" />
+                <element signature="e#3698#3699#0" expanded="false" />
+                <element signature="e#3734#3735#0" expanded="false" />
+                <element signature="e#3766#3767#0" expanded="false" />
+                <element signature="e#3816#3817#0" expanded="false" />
+                <element signature="e#3858#3859#0" expanded="false" />
+                <element signature="e#3892#3893#0" expanded="false" />
+                <element signature="e#3922#3923#0" expanded="false" />
+                <element signature="e#3968#3969#0" expanded="false" />
+                <element signature="e#4006#4007#0" expanded="false" />
+                <element signature="e#4039#4040#0" expanded="false" />
+                <element signature="e#4068#4069#0" expanded="false" />
+                <element signature="e#4112#4113#0" expanded="false" />
+                <element signature="e#4148#4149#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,16 +292,67 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="21" column="28" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="28" />
-              <folding />
+              <folding>
+                <element signature="e#646#647#0" expanded="false" />
+                <element signature="e#674#675#0" expanded="false" />
+                <element signature="e#1315#1316#0" expanded="false" />
+                <element signature="e#1340#1341#0" expanded="false" />
+                <element signature="e#1376#1377#0" expanded="false" />
+                <element signature="e#1404#1405#0" expanded="false" />
+                <element signature="e#1439#1440#0" expanded="false" />
+                <element signature="e#1470#1471#0" expanded="false" />
+                <element signature="e#1518#1519#0" expanded="false" />
+                <element signature="e#1558#1559#0" expanded="false" />
+                <element signature="e#1593#1594#0" expanded="false" />
+                <element signature="e#1624#1625#0" expanded="false" />
+                <element signature="e#1672#1673#0" expanded="false" />
+                <element signature="e#1712#1713#0" expanded="false" />
+                <element signature="e#1745#1746#0" expanded="false" />
+                <element signature="e#1774#1775#0" expanded="false" />
+                <element signature="e#1818#1819#0" expanded="false" />
+                <element signature="e#1854#1855#0" expanded="false" />
+                <element signature="e#1889#1890#0" expanded="false" />
+                <element signature="e#1920#1921#0" expanded="false" />
+                <element signature="e#1968#1969#0" expanded="false" />
+                <element signature="e#2008#2009#0" expanded="false" />
+                <element signature="e#2040#2041#0" expanded="false" />
+                <element signature="e#2068#2069#0" expanded="false" />
+                <element signature="e#2110#2111#0" expanded="false" />
+                <element signature="e#2144#2145#0" expanded="false" />
+                <element signature="e#2177#2178#0" expanded="false" />
+                <element signature="e#2208#2209#0" expanded="false" />
+                <element signature="e#2254#2255#0" expanded="false" />
+                <element signature="e#2294#2295#0" expanded="false" />
+                <element signature="e#2329#2330#0" expanded="false" />
+                <element signature="e#2360#2361#0" expanded="false" />
+                <element signature="e#2408#2409#0" expanded="false" />
+                <element signature="e#2448#2449#0" expanded="false" />
+                <element signature="e#2483#2484#0" expanded="false" />
+                <element signature="e#2514#2515#0" expanded="false" />
+                <element signature="e#2562#2563#0" expanded="false" />
+                <element signature="e#2602#2603#0" expanded="false" />
+                <element signature="e#2639#2640#0" expanded="false" />
+                <element signature="e#2672#2673#0" expanded="false" />
+                <element signature="e#2724#2725#0" expanded="false" />
+                <element signature="e#2768#2769#0" expanded="false" />
+                <element signature="e#2804#2805#0" expanded="false" />
+                <element signature="e#2836#2837#0" expanded="false" />
+                <element signature="e#2886#2887#0" expanded="false" />
+                <element signature="e#2928#2929#0" expanded="false" />
+                <element signature="e#2962#2963#0" expanded="false" />
+                <element signature="e#2992#2993#0" expanded="false" />
+                <element signature="e#3038#3039#0" expanded="false" />
+                <element signature="e#3076#3077#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24844721">
-              <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="307" column="21" selection-start-line="307" selection-start-column="21" selection-end-line="307" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -154,18 +361,40 @@
       <file leaf-file-name="MqttConnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.169492">
-              <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3080#3295#0" expanded="false" />
+                <element signature="e#3294#3295#0" expanded="false" />
+                <element signature="e#3877#16793#0" expanded="false" />
+                <element signature="e#5615#14353#0" expanded="false" />
+                <element signature="e#14352#14353#0" expanded="false" />
+                <element signature="e#14500#14920#0" expanded="false" />
+                <element signature="e#14919#14920#0" expanded="false" />
+                <element signature="e#15078#15564#0" expanded="false" />
+                <element signature="e#15563#15564#0" expanded="false" />
+                <element signature="e#15622#16092#0" expanded="false" />
+                <element signature="e#16091#16092#0" expanded="false" />
+                <element signature="e#16347#16644#0" expanded="false" />
+                <element signature="e#16643#16644#0" expanded="false" />
+                <element signature="e#16792#16793#0" expanded="false" />
+                <element signature="e#20516#20517#0" expanded="false" />
+                <element signature="e#20545#20546#0" expanded="false" />
+                <element signature="e#20596#20597#0" expanded="false" />
+                <element signature="e#20634#20635#0" expanded="false" />
+                <element signature="e#21727#21728#0" expanded="false" />
+                <element signature="e#21764#21765#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3559322">
-              <caret line="130" column="42" selection-start-line="130" selection-start-column="37" selection-end-line="130" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.44014084">
+              <caret line="2545" column="13" selection-start-line="2545" selection-start-column="13" selection-end-line="2545" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1395,9 +1624,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5915280577011" />
         <entry key="C:\Users\Administrator\gitlab\IM\platforms\android" value="5916963231690" />
-        <entry key="D:\WebstormProjects\IM\platforms\android" value="5915184106160" />
+        <entry key="$PROJECT_DIR$" value="5915280577011" />
+        <entry key="D:\WebstormProjects\IM\platforms\android" value="5918170641391" />
         <entry key="E:\jishitong\IM\platforms\android" value="5915279246302" />
       </map>
     </option>
@@ -1413,7 +1642,7 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="D:/android-environment/sdk/extras/android/m2repository/com/android/support/support-v4/24.0.0/support-v4-24.0.0.aar" />
+                            <option value="F:/xiao/epan/sdk1/extras/android/m2repository/com/android/support/support-v4/24.0.0/support-v4-24.0.0.aar" />
                             <option value="$MODULE_DIR$/libs/barcodescanner.aar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
@@ -1427,7 +1656,7 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/5ad6bea46b5af666d88c260c8acc6a03408723c8/freemarker-2.3.20.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/fb6ec0fbaa0229088b0d3dfe3b1f9d24add3e775/okio-1.6.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.0.0/2943c74db6d4346ab8c6531adac91fa05c137c40/support-annotations-24.0.0.jar" />
+                            <option value="F:/xiao/epan/sdk1/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar" />
                             <option value="$MODULE_DIR$/libs/dom4j-1.6.1.jar" />
                             <option value="$MODULE_DIR$/libs/imApi2.0.jar" />
                             <option value="$MODULE_DIR$/libs/libthrift-0.9.3.jar" />
@@ -1526,7 +1755,7 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="D:/android-environment/sdk/extras/android/m2repository/com/android/support/support-v4/24.0.0/support-v4-24.0.0.aar" />
+                            <option value="F:/xiao/epan/sdk1/extras/android/m2repository/com/android/support/support-v4/24.0.0/support-v4-24.0.0.aar" />
                             <option value="$MODULE_DIR$/libs/barcodescanner.aar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
@@ -1540,7 +1769,7 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.20/5ad6bea46b5af666d88c260c8acc6a03408723c8/freemarker-2.3.20.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/fb6ec0fbaa0229088b0d3dfe3b1f9d24add3e775/okio-1.6.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.0.0/2943c74db6d4346ab8c6531adac91fa05c137c40/support-annotations-24.0.0.jar" />
+                            <option value="F:/xiao/epan/sdk1/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar" />
                             <option value="$MODULE_DIR$/libs/dom4j-1.6.1.jar" />
                             <option value="$MODULE_DIR$/libs/imApi2.0.jar" />
                             <option value="$MODULE_DIR$/libs/libthrift-0.9.3.jar" />
@@ -1628,68 +1857,68 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.5.0/c09c2bb916e2ae3d77da707f8b8ede15596603de/gradle-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.5.0/ca6476d93e374e70d0b7ca45ddc86151da840aa6/gradle-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/1.5.0/21320fa1ddc73d9ea3a8a3c6be6f53f91d203f4e/gradle-core-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/1.5.0/70915a3f0ef4243d4630ea23219f5445fac82700/gradle-core-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/1.5.0/3dc589ce9662a5757f31888fa31374596d0fe6d6/builder-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/1.5.0/1dcd59f6f3c90b2a8bc7156d091ad1b87a41beed/builder-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/24.5.0/d21d111e8024f8daea02966d764e00f190fccbce/lint-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/24.5.0/461d7d801b822cbeb7daf001924fe1c616ce9535/lint-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/1.5.0/8779ed1aac30111f70cd8b431301edbf709b7562/transform-api-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/1.5.0/90f914a7972579a4cc726c9e0022878f6c675e2/transform-api-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/1.0-rc5/5c59f043dcc2abf51416c04f34ec0b661e370270/compilerCommon-1.0-rc5-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/1.0-rc5/3152caf6b493a20e5b0d63bb36f5322dbce6d10f/compilerCommon-1.0-rc5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.4.201502262128/b6356a696e396a348a673237eee1f496ef75b4b1/org.jacoco.core-0.7.4.201502262128-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.4.201502262128/31482f50411a3a5769b6c78fa9b97ba731c205e7/org.jacoco.core-0.7.4.201502262128.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/1.5.0/ea5e6589157b4ea69055c079ed1ae07ece906b0e/builder-model-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/1.5.0/51a48a2f4c1da923b0b8bb174e57bc68ee040889/builder-model-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/1.5.0/870991f8c2c76e2fba26a0bb23adf1a5211926d9/builder-test-api-1.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/1.5.0/d9240c30b1bb243b4f57c48f734df2635fbd07e/builder-test-api-1.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/24.5.0/8b8bf6b868e3b37e1d477366ab109570b532030e/sdklib-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/24.5.0/473c60ca5786363b6b3ea944446cf41676207ca7/sdklib-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdk-common/24.5.0/a17e5dbd20801a0406a066be2efb01f1ecc2beaa/sdk-common-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdk-common/24.5.0/e9b9c057d8df82ee7bc682558fe21b2110b3e40a/sdk-common-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/24.5.0/de1b03779d5e91777885d8e77520d647aeb9e66/common-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/24.5.0/55436737b893bac95c978b184dd35c76002d2eef/common-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/24.5.0/7186423ffeef47083910f9b811e814d7ca72544/manifest-merger-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/24.5.0/dc521cf0bc3565f990d4da7fac4aabc73b6d62cf/manifest-merger-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/24.5.0/802eac78feed72e017dfea289e557c5179111335/ddmlib-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/24.5.0/d45670b5511da60d2939a1eece4c7c4407fee95b/ddmlib-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/5214ea45dd20d3a2e4caa6f1ad2248ad107e0daf/antlr-runtime-3.5.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/antlr/3.5.2/92c9bde32f0b1092507701b2b302af84534eb9b8/antlr-3.5.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/antlr/3.5.2/c4a65c950bfc3e7d04309c515b2177c00baf7764/antlr-3.5.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/24.5.0/fba7dd989b13a2bd293585f729665b0d62a7968b/lint-checks-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/24.5.0/dbdca0447c2333481823e088a356393e653276b4/lint-checks-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/24.5.0/f875c147378bd4c4a15cec061cb90928aca5a500/annotations-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/24.5.0/7f2bcdf40b008f15481324327b7f9e377b0b1697/annotations-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/1.0-rc5/297f975b63900bff85835c17e0882f074eb7e8af/baseLibrary-1.0-rc5-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/1.0-rc5/4d15bfec5956b906a26527dbde26a4fc84326611/baseLibrary-1.0-rc5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4/4.5/d61f0b719751a2823a1d4e2d206406488d52276d/antlr4-4.5-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4/4.5/a0e860e317147848e69ac145bc5196901a9993bf/antlr4-4.5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.juniversalchardet/juniversalchardet/1.0.3/77979eaa98f90806f984155f44f63cc1fb60ac25/juniversalchardet-1.0.3-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.juniversalchardet/juniversalchardet/1.0.3/cd49678784c46aa8789c060538e0154013bb421b/juniversalchardet-1.0.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/78ebb2694324283f3120aa3ed52465b22fab8a4a/asm-debug-all-5.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/f69b5f7d96cec0d448acf1c1a266584170c9643b/asm-debug-all-5.0.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/24.5.0/fdf53ecb8df079a0de5caad85d9e8ce39eecf380/layoutlib-api-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/24.5.0/387949832720a36855711d2033cd4122e945f36e/layoutlib-api-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/dvlib/24.5.0/195a7ca9238fa73a6aae8af586decb4d33d51fe1/dvlib-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/dvlib/24.5.0/bb3cda7db1fa6c9543e887a8c451d0449e76fa4/dvlib-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.0.8/6f23134f1c98dfce77f85defda31bfbce3e2a4ac/ST4-4.0.8-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.0.8/a1c55e974f8a94d78e2348fa6ff63f4fa1fae64/ST4-4.0.8.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/24.5.0/92e8494ee816573299c1d46e58e3a492a35b244e/lint-api-24.5.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/24.5.0/7d93eb96a2f07860ab8d9ae761ebe5c416777fcf/lint-api-24.5.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-runtime/4.5/61495cea98c9c63b16b87ae4e79b7e478405e40b/antlr4-runtime-4.5-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-runtime/4.5/5067478827a98f5ab77d9fc577903edc57af3da4/antlr4-runtime-4.5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-annotations/4.5/8d24c9255a970c3c85fc5c88dfe9d4e8627d56e2/antlr4-annotations-4.5-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-annotations/4.5/2c5996120a0ac690de575bd8ac36250e6720a6b8/antlr4-annotations-4.5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.1/6e1dd6f6efdb453c7b8ba35726c63fbf50cd7142/org.abego.treelayout.core-1.0.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.1/e31e79cba7a5414cf18fa69f3f0a2cf9ee997b61/org.abego.treelayout.core-1.0.1.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.5.0/c09c2bb916e2ae3d77da707f8b8ede15596603de/gradle-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.5.0/ca6476d93e374e70d0b7ca45ddc86151da840aa6/gradle-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/1.5.0/21320fa1ddc73d9ea3a8a3c6be6f53f91d203f4e/gradle-core-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/1.5.0/70915a3f0ef4243d4630ea23219f5445fac82700/gradle-core-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/1.5.0/3dc589ce9662a5757f31888fa31374596d0fe6d6/builder-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/1.5.0/1dcd59f6f3c90b2a8bc7156d091ad1b87a41beed/builder-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/24.5.0/d21d111e8024f8daea02966d764e00f190fccbce/lint-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/24.5.0/461d7d801b822cbeb7daf001924fe1c616ce9535/lint-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/1.5.0/8779ed1aac30111f70cd8b431301edbf709b7562/transform-api-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/1.5.0/90f914a7972579a4cc726c9e0022878f6c675e2/transform-api-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/1.0-rc5/5c59f043dcc2abf51416c04f34ec0b661e370270/compilerCommon-1.0-rc5-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/1.0-rc5/3152caf6b493a20e5b0d63bb36f5322dbce6d10f/compilerCommon-1.0-rc5.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.4.201502262128/b6356a696e396a348a673237eee1f496ef75b4b1/org.jacoco.core-0.7.4.201502262128-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.4.201502262128/31482f50411a3a5769b6c78fa9b97ba731c205e7/org.jacoco.core-0.7.4.201502262128.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/1.5.0/ea5e6589157b4ea69055c079ed1ae07ece906b0e/builder-model-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/1.5.0/51a48a2f4c1da923b0b8bb174e57bc68ee040889/builder-model-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/1.5.0/870991f8c2c76e2fba26a0bb23adf1a5211926d9/builder-test-api-1.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/1.5.0/d9240c30b1bb243b4f57c48f734df2635fbd07e/builder-test-api-1.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/24.5.0/8b8bf6b868e3b37e1d477366ab109570b532030e/sdklib-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/24.5.0/473c60ca5786363b6b3ea944446cf41676207ca7/sdklib-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/sdk-common/24.5.0/a17e5dbd20801a0406a066be2efb01f1ecc2beaa/sdk-common-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/sdk-common/24.5.0/e9b9c057d8df82ee7bc682558fe21b2110b3e40a/sdk-common-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/common/24.5.0/de1b03779d5e91777885d8e77520d647aeb9e66/common-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/common/24.5.0/55436737b893bac95c978b184dd35c76002d2eef/common-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/24.5.0/7186423ffeef47083910f9b811e814d7ca72544/manifest-merger-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/24.5.0/dc521cf0bc3565f990d4da7fac4aabc73b6d62cf/manifest-merger-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/24.5.0/802eac78feed72e017dfea289e557c5179111335/ddmlib-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/24.5.0/d45670b5511da60d2939a1eece4c7c4407fee95b/ddmlib-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/5214ea45dd20d3a2e4caa6f1ad2248ad107e0daf/antlr-runtime-3.5.2-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/antlr/3.5.2/92c9bde32f0b1092507701b2b302af84534eb9b8/antlr-3.5.2-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/antlr/3.5.2/c4a65c950bfc3e7d04309c515b2177c00baf7764/antlr-3.5.2.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/24.5.0/fba7dd989b13a2bd293585f729665b0d62a7968b/lint-checks-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/24.5.0/dbdca0447c2333481823e088a356393e653276b4/lint-checks-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/24.5.0/f875c147378bd4c4a15cec061cb90928aca5a500/annotations-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/24.5.0/7f2bcdf40b008f15481324327b7f9e377b0b1697/annotations-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/1.0-rc5/297f975b63900bff85835c17e0882f074eb7e8af/baseLibrary-1.0-rc5-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/1.0-rc5/4d15bfec5956b906a26527dbde26a4fc84326611/baseLibrary-1.0-rc5.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4/4.5/d61f0b719751a2823a1d4e2d206406488d52276d/antlr4-4.5-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4/4.5/a0e860e317147848e69ac145bc5196901a9993bf/antlr4-4.5.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.googlecode.juniversalchardet/juniversalchardet/1.0.3/77979eaa98f90806f984155f44f63cc1fb60ac25/juniversalchardet-1.0.3-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.googlecode.juniversalchardet/juniversalchardet/1.0.3/cd49678784c46aa8789c060538e0154013bb421b/juniversalchardet-1.0.3.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/78ebb2694324283f3120aa3ed52465b22fab8a4a/asm-debug-all-5.0.1-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/f69b5f7d96cec0d448acf1c1a266584170c9643b/asm-debug-all-5.0.1.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/24.5.0/fdf53ecb8df079a0de5caad85d9e8ce39eecf380/layoutlib-api-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/24.5.0/387949832720a36855711d2033cd4122e945f36e/layoutlib-api-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/dvlib/24.5.0/195a7ca9238fa73a6aae8af586decb4d33d51fe1/dvlib-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools/dvlib/24.5.0/bb3cda7db1fa6c9543e887a8c451d0449e76fa4/dvlib-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.0.8/6f23134f1c98dfce77f85defda31bfbce3e2a4ac/ST4-4.0.8-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.0.8/a1c55e974f8a94d78e2348fa6ff63f4fa1fae64/ST4-4.0.8.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/24.5.0/92e8494ee816573299c1d46e58e3a492a35b244e/lint-api-24.5.0-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/24.5.0/7d93eb96a2f07860ab8d9ae761ebe5c416777fcf/lint-api-24.5.0.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-runtime/4.5/61495cea98c9c63b16b87ae4e79b7e478405e40b/antlr4-runtime-4.5-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-runtime/4.5/5067478827a98f5ab77d9fc577903edc57af3da4/antlr4-runtime-4.5.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-annotations/4.5/8d24c9255a970c3c85fc5c88dfe9d4e8627d56e2/antlr4-annotations-4.5-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/com.tunnelvisionlabs/antlr4-annotations/4.5/2c5996120a0ac690de575bd8ac36250e6720a6b8/antlr4-annotations-4.5.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.1/6e1dd6f6efdb453c7b8ba35726c63fbf50cd7142/org.abego.treelayout.core-1.0.1-sources.jar" />
+                            <option value="C:/Users/xiao.ding/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.1/e31e79cba7a5414cf18fa69f3f0a2cf9ee997b61/org.abego.treelayout.core-1.0.1.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/CordovaLib" />
@@ -1834,13 +2063,13 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/UserPresentReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       </list>
     </option>
   </component>
@@ -1848,8 +2077,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1050" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1874,7 +2105,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1934,10 +2165,486 @@
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="saveLocal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="photohelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="photohelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrollerproxy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="photohelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thrift" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thrift" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gridphoto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="localContact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1949,7 +2656,7 @@
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="1e3a116a" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../lili.cheng/keystorefile/IM.jks" />
+    <property name="last_opened_file_path" value="D:/../lili.cheng/keystorefile/IM.jks" />
     <property name="ExportApk.ApkPath" value="C:\Users\Administrator\gitlab\IM\platforms\android" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="debug" />
@@ -2171,7 +2878,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1050" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2180,9 +2887,8 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13773796" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.058230683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6830907" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2190,15 +2896,16 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25215054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23964165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2521322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23964165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04730473" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.058230683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2223,235 +2930,235 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>816</line>
+          <line>818</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>817</line>
+          <line>819</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>818</line>
+          <line>820</line>
           <properties />
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>819</line>
+          <line>821</line>
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>820</line>
+          <line>822</line>
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>821</line>
+          <line>823</line>
           <properties />
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>822</line>
+          <line>824</line>
           <properties />
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>823</line>
+          <line>825</line>
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>824</line>
+          <line>826</line>
           <properties />
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>825</line>
+          <line>827</line>
           <properties />
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>826</line>
+          <line>828</line>
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>827</line>
+          <line>829</line>
           <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>828</line>
+          <line>830</line>
           <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>829</line>
+          <line>831</line>
           <properties />
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>830</line>
+          <line>832</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>832</line>
+          <line>834</line>
           <properties />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>831</line>
+          <line>833</line>
           <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>833</line>
+          <line>835</line>
           <properties />
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>835</line>
+          <line>837</line>
           <properties />
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>836</line>
+          <line>838</line>
           <properties />
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>838</line>
+          <line>840</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>837</line>
+          <line>839</line>
           <properties />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>844</line>
+          <line>846</line>
           <properties />
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>848</line>
+          <line>850</line>
           <properties />
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>849</line>
+          <line>851</line>
           <properties />
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>851</line>
+          <line>853</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>852</line>
+          <line>854</line>
           <properties />
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>854</line>
+          <line>856</line>
           <properties />
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>850</line>
+          <line>852</line>
           <properties />
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>856</line>
+          <line>858</line>
           <properties />
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>859</line>
+          <line>861</line>
           <properties />
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>866</line>
+          <line>868</line>
           <properties />
           <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>870</line>
+          <line>872</line>
           <properties />
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>873</line>
+          <line>875</line>
           <properties />
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>876</line>
+          <line>878</line>
           <properties />
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1494</line>
+          <line>1496</line>
           <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1487</line>
+          <line>1489</line>
           <properties />
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java</url>
-          <line>351</line>
+          <line>353</line>
           <properties />
           <option name="timeStamp" value="131" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java</url>
-          <line>329</line>
+          <line>331</line>
           <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
@@ -2706,7 +3413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2747,7 +3453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2759,19 +3464,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3559322">
-          <caret line="130" column="42" selection-start-line="130" selection-start-column="37" selection-end-line="130" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.169492">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3080#3295#0" expanded="false" />
+            <element signature="e#3294#3295#0" expanded="false" />
+            <element signature="e#3877#16793#0" expanded="false" />
+            <element signature="e#5615#14353#0" expanded="false" />
+            <element signature="e#14352#14353#0" expanded="false" />
+            <element signature="e#14500#14920#0" expanded="false" />
+            <element signature="e#14919#14920#0" expanded="false" />
+            <element signature="e#15078#15564#0" expanded="false" />
+            <element signature="e#15563#15564#0" expanded="false" />
+            <element signature="e#15622#16092#0" expanded="false" />
+            <element signature="e#16091#16092#0" expanded="false" />
+            <element signature="e#16347#16644#0" expanded="false" />
+            <element signature="e#16643#16644#0" expanded="false" />
+            <element signature="e#16792#16793#0" expanded="false" />
+            <element signature="e#20516#20517#0" expanded="false" />
+            <element signature="e#20545#20546#0" expanded="false" />
+            <element signature="e#20596#20597#0" expanded="false" />
+            <element signature="e#20634#20635#0" expanded="false" />
+            <element signature="e#21727#21728#0" expanded="false" />
+            <element signature="e#21764#21765#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2786,9 +3505,16 @@
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2068#2069#0" expanded="false" />
+            <element signature="e#2089#2090#0" expanded="false" />
+            <element signature="e#2128#2129#0" expanded="false" />
+            <element signature="e#2154#2155#0" expanded="false" />
+            <element signature="e#2194#2195#0" expanded="false" />
+            <element signature="e#2218#2219#0" expanded="false" />
+            <element signature="e#2256#2257#0" expanded="false" />
+            <element signature="e#2277#2278#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2796,8 +3522,12 @@
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="49" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
-          <folding />
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3672#16680#0" expanded="false" />
+            <element signature="e#16679#16680#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2805,15 +3535,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="e#1023#1024#0" expanded="false" />
+            <element signature="e#1049#1050#0" expanded="false" />
+            <element signature="e#1087#1088#0" expanded="false" />
+            <element signature="e#1117#1118#0" expanded="false" />
+            <element signature="e#1153#1154#0" expanded="false" />
+            <element signature="e#1185#1186#0" expanded="false" />
+            <element signature="e#1235#1236#0" expanded="false" />
+            <element signature="e#1277#1278#0" expanded="false" />
+            <element signature="e#1308#1309#0" expanded="false" />
+            <element signature="e#1335#1336#0" expanded="false" />
+            <element signature="e#1375#1376#0" expanded="false" />
+            <element signature="e#1407#1408#0" expanded="false" />
+            <element signature="e#1438#1439#0" expanded="false" />
+            <element signature="e#1465#1466#0" expanded="false" />
+            <element signature="e#1505#1506#0" expanded="false" />
+            <element signature="e#1537#1538#0" expanded="false" />
+            <element signature="e#1571#1572#0" expanded="false" />
+            <element signature="e#1601#1602#0" expanded="false" />
+            <element signature="e#1647#1648#0" expanded="false" />
+            <element signature="e#1685#1686#0" expanded="false" />
+            <element signature="e#1723#1724#0" expanded="false" />
+            <element signature="e#1757#1758#0" expanded="false" />
+            <element signature="e#1811#1812#0" expanded="false" />
+            <element signature="e#1857#1858#0" expanded="false" />
+            <element signature="e#1892#1893#0" expanded="false" />
+            <element signature="e#1923#1924#0" expanded="false" />
+            <element signature="e#1971#1972#0" expanded="false" />
+            <element signature="e#2011#2012#0" expanded="false" />
+            <element signature="e#2040#2041#0" expanded="false" />
+            <element signature="e#2067#2068#0" expanded="false" />
+            <element signature="e#2105#2106#0" expanded="false" />
+            <element signature="e#2137#2138#0" expanded="false" />
+            <element signature="e#2173#2174#0" expanded="false" />
+            <element signature="e#2205#2206#0" expanded="false" />
+            <element signature="e#2255#2256#0" expanded="false" />
+            <element signature="e#2297#2298#0" expanded="false" />
+            <element signature="e#2332#2333#0" expanded="false" />
+            <element signature="e#2363#2364#0" expanded="false" />
+            <element signature="e#2411#2412#0" expanded="false" />
+            <element signature="e#2451#2452#0" expanded="false" />
+            <element signature="e#2484#2485#0" expanded="false" />
+            <element signature="e#2513#2514#0" expanded="false" />
+            <element signature="e#2557#2558#0" expanded="false" />
+            <element signature="e#2593#2594#0" expanded="false" />
+            <element signature="e#2628#2629#0" expanded="false" />
+            <element signature="e#2659#2660#0" expanded="false" />
+            <element signature="e#2707#2708#0" expanded="false" />
+            <element signature="e#2747#2748#0" expanded="false" />
+            <element signature="e#2780#2781#0" expanded="false" />
+            <element signature="e#2811#2812#0" expanded="false" />
+            <element signature="e#2860#2861#0" expanded="false" />
+            <element signature="e#2900#2901#0" expanded="false" />
+            <element signature="e#2935#2936#0" expanded="false" />
+            <element signature="e#2966#2967#0" expanded="false" />
+            <element signature="e#3014#3015#0" expanded="false" />
+            <element signature="e#3054#3055#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2821,7 +3600,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#781#782#0" expanded="false" />
+            <element signature="e#811#812#0" expanded="false" />
+            <element signature="e#1678#1679#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1742#1743#0" expanded="false" />
+            <element signature="e#1772#1773#0" expanded="false" />
+            <element signature="e#1808#1809#0" expanded="false" />
+            <element signature="e#1840#1841#0" expanded="false" />
+            <element signature="e#1890#1891#0" expanded="false" />
+            <element signature="e#1932#1933#0" expanded="false" />
+            <element signature="e#1963#1964#0" expanded="false" />
+            <element signature="e#1990#1991#0" expanded="false" />
+            <element signature="e#2030#2031#0" expanded="false" />
+            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="e#2093#2094#0" expanded="false" />
+            <element signature="e#2120#2121#0" expanded="false" />
+            <element signature="e#2160#2161#0" expanded="false" />
+            <element signature="e#2192#2193#0" expanded="false" />
+            <element signature="e#2226#2227#0" expanded="false" />
+            <element signature="e#2256#2257#0" expanded="false" />
+            <element signature="e#2302#2303#0" expanded="false" />
+            <element signature="e#2340#2341#0" expanded="false" />
+            <element signature="e#2378#2379#0" expanded="false" />
+            <element signature="e#2412#2413#0" expanded="false" />
+            <element signature="e#2466#2467#0" expanded="false" />
+            <element signature="e#2512#2513#0" expanded="false" />
+            <element signature="e#2547#2548#0" expanded="false" />
+            <element signature="e#2578#2579#0" expanded="false" />
+            <element signature="e#2626#2627#0" expanded="false" />
+            <element signature="e#2666#2667#0" expanded="false" />
+            <element signature="e#2702#2703#0" expanded="false" />
+            <element signature="e#2734#2735#0" expanded="false" />
+            <element signature="e#2784#2785#0" expanded="false" />
+            <element signature="e#2826#2827#0" expanded="false" />
+            <element signature="e#2855#2856#0" expanded="false" />
+            <element signature="e#2882#2883#0" expanded="false" />
+            <element signature="e#2920#2921#0" expanded="false" />
+            <element signature="e#2952#2953#0" expanded="false" />
+            <element signature="e#2987#2988#0" expanded="false" />
+            <element signature="e#3018#3019#0" expanded="false" />
+            <element signature="e#3066#3067#0" expanded="false" />
+            <element signature="e#3106#3107#0" expanded="false" />
+            <element signature="e#3139#3140#0" expanded="false" />
+            <element signature="e#3168#3169#0" expanded="false" />
+            <element signature="e#3212#3213#0" expanded="false" />
+            <element signature="e#3248#3249#0" expanded="false" />
+            <element signature="e#3283#3284#0" expanded="false" />
+            <element signature="e#3314#3315#0" expanded="false" />
+            <element signature="e#3362#3363#0" expanded="false" />
+            <element signature="e#3402#3403#0" expanded="false" />
+            <element signature="e#3437#3438#0" expanded="false" />
+            <element signature="e#3468#3469#0" expanded="false" />
+            <element signature="e#3516#3517#0" expanded="false" />
+            <element signature="e#3556#3557#0" expanded="false" />
+            <element signature="e#3589#3590#0" expanded="false" />
+            <element signature="e#3618#3619#0" expanded="false" />
+            <element signature="e#3662#3663#0" expanded="false" />
+            <element signature="e#3698#3699#0" expanded="false" />
+            <element signature="e#3734#3735#0" expanded="false" />
+            <element signature="e#3766#3767#0" expanded="false" />
+            <element signature="e#3816#3817#0" expanded="false" />
+            <element signature="e#3858#3859#0" expanded="false" />
+            <element signature="e#3892#3893#0" expanded="false" />
+            <element signature="e#3922#3923#0" expanded="false" />
+            <element signature="e#3968#3969#0" expanded="false" />
+            <element signature="e#4006#4007#0" expanded="false" />
+            <element signature="e#4039#4040#0" expanded="false" />
+            <element signature="e#4068#4069#0" expanded="false" />
+            <element signature="e#4112#4113#0" expanded="false" />
+            <element signature="e#4148#4149#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2829,14 +3679,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="28" />
-          <folding />
+          <folding>
+            <element signature="e#646#647#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#1315#1316#0" expanded="false" />
+            <element signature="e#1340#1341#0" expanded="false" />
+            <element signature="e#1376#1377#0" expanded="false" />
+            <element signature="e#1404#1405#0" expanded="false" />
+            <element signature="e#1439#1440#0" expanded="false" />
+            <element signature="e#1470#1471#0" expanded="false" />
+            <element signature="e#1518#1519#0" expanded="false" />
+            <element signature="e#1558#1559#0" expanded="false" />
+            <element signature="e#1593#1594#0" expanded="false" />
+            <element signature="e#1624#1625#0" expanded="false" />
+            <element signature="e#1672#1673#0" expanded="false" />
+            <element signature="e#1712#1713#0" expanded="false" />
+            <element signature="e#1745#1746#0" expanded="false" />
+            <element signature="e#1774#1775#0" expanded="false" />
+            <element signature="e#1818#1819#0" expanded="false" />
+            <element signature="e#1854#1855#0" expanded="false" />
+            <element signature="e#1889#1890#0" expanded="false" />
+            <element signature="e#1920#1921#0" expanded="false" />
+            <element signature="e#1968#1969#0" expanded="false" />
+            <element signature="e#2008#2009#0" expanded="false" />
+            <element signature="e#2040#2041#0" expanded="false" />
+            <element signature="e#2068#2069#0" expanded="false" />
+            <element signature="e#2110#2111#0" expanded="false" />
+            <element signature="e#2144#2145#0" expanded="false" />
+            <element signature="e#2177#2178#0" expanded="false" />
+            <element signature="e#2208#2209#0" expanded="false" />
+            <element signature="e#2254#2255#0" expanded="false" />
+            <element signature="e#2294#2295#0" expanded="false" />
+            <element signature="e#2329#2330#0" expanded="false" />
+            <element signature="e#2360#2361#0" expanded="false" />
+            <element signature="e#2408#2409#0" expanded="false" />
+            <element signature="e#2448#2449#0" expanded="false" />
+            <element signature="e#2483#2484#0" expanded="false" />
+            <element signature="e#2514#2515#0" expanded="false" />
+            <element signature="e#2562#2563#0" expanded="false" />
+            <element signature="e#2602#2603#0" expanded="false" />
+            <element signature="e#2639#2640#0" expanded="false" />
+            <element signature="e#2672#2673#0" expanded="false" />
+            <element signature="e#2724#2725#0" expanded="false" />
+            <element signature="e#2768#2769#0" expanded="false" />
+            <element signature="e#2804#2805#0" expanded="false" />
+            <element signature="e#2836#2837#0" expanded="false" />
+            <element signature="e#2886#2887#0" expanded="false" />
+            <element signature="e#2928#2929#0" expanded="false" />
+            <element signature="e#2962#2963#0" expanded="false" />
+            <element signature="e#2992#2993#0" expanded="false" />
+            <element signature="e#3038#3039#0" expanded="false" />
+            <element signature="e#3076#3077#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24844721">
-          <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="307" column="21" selection-start-line="307" selection-start-column="21" selection-end-line="307" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="23" selection-start-line="158" selection-start-column="23" selection-end-line="158" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44014084">
+          <caret line="2545" column="13" selection-start-line="2545" selection-start-column="13" selection-end-line="2545" selection-end-column="13" />
           <folding />
         </state>
       </provider>

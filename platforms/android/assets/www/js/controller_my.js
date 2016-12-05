@@ -28,7 +28,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
       $api.getHeadPic($scope.UserID,"60",function (srcurl) {
         $scope.picyoumeiyou=true;
-        // alert(srcurl)
+        alert(srcurl)
         $scope.$apply(function () {
           $scope.securlpic=srcurl;
         })
