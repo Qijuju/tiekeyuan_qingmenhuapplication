@@ -346,7 +346,7 @@ public class RecorderManager {
      * 是否正在播放
      * @return
      */
-    public boolean isPlaying() {
+    public boolean isPlaying() {//
         return (player != null && player.isPlaying());
     }
 

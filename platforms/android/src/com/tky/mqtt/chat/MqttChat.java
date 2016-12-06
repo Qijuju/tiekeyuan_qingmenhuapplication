@@ -818,7 +818,7 @@ public class MqttChat extends CordovaPlugin {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);//
+                        RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
                     }
                 });
             } else {
