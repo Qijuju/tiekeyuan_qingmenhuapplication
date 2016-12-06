@@ -1,6 +1,5 @@
 package com.tky.mqtt.chat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -731,12 +730,14 @@ public class MqttChat extends CordovaPlugin {
      */
     public void startRecording(final JSONArray args, final CallbackContext callbackContext) {
         RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+        manager.startRecord(manager.createVoicePath(), 0);
         manager.setOnRecorderChangeListener(new RecorderManager.OnRecorderChangeListener() {
             @Override
             public void onTimeChange(String filePath, long interval, long recordTime) {
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", "timeChange");
+                    obj.put("filePath", filePath);
                     obj.put("recordTime", recordTime);
                     setResult(obj, PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {
@@ -749,6 +750,7 @@ public class MqttChat extends CordovaPlugin {
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", "timeout");
+                    obj.put("filePath", filePath);
                     obj.put("time", interval);
                     setResult(obj, PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {
@@ -761,6 +763,7 @@ public class MqttChat extends CordovaPlugin {
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", "rateChange");
+                    obj.put("filePath", filePath);
                     obj.put("rate", rate);
                     setResult(obj, PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {
@@ -773,6 +776,7 @@ public class MqttChat extends CordovaPlugin {
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", "error");
+                    obj.put("filePath", filePath);
                     obj.put("error", error);
                     setResult(obj, PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {
@@ -788,6 +792,17 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void stopRecording(final JSONArray args, final CallbackContext callbackContext) {
+        RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+        manager.stopRecord();
+        long duration = manager.getDuration();
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("filePath", manager.getRecordPath());
+            obj.put("duration", duration);
+            setResult(obj, PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static MType getType(String type) {

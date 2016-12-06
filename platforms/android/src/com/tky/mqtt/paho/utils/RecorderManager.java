@@ -5,7 +5,9 @@ import android.media.MediaRecorder;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +49,7 @@ public class RecorderManager {
      * 本类自己构造一个对象，供外界调用
      */
     private static final RecorderManager INSTANCE = new RecorderManager();
+    private String filePath;
 
     /**
      * 私有化构造器
@@ -64,12 +67,30 @@ public class RecorderManager {
     }
 
     /**
+     * 创建一个录音文件的存放位置（包含文件名）
+     * @return
+     */
+    public String createVoicePath() {
+        return FileUtils.getVoiceDir() + File.separator + UUID.randomUUID().toString() + ".aac";
+    }
+
+    /**
+     * 根据录音文件的名称获取它存放的路径（包含文件名）
+     * @param voiceName
+     * @return
+     */
+    public String getFilePathByVoiceName(String voiceName) {
+        return FileUtils.getVoiceDir() + File.separator + voiceName;
+    }
+
+    /**
      * 开始录音
      * @param filePath 录音文件存放路径（包含文件名）
      * @param interval 定时（默认是一分钟）
      * @throws RuntimeException
      */
     public void startRecord(final String filePath, long interval) {
+        this.filePath = filePath;
         interval = (interval <= 0 ? 59 * 1000 : interval);
         if (isRecording) {
             if (onRecorderChangeListener != null) {
@@ -116,6 +137,14 @@ public class RecorderManager {
     }
 
     /**
+     * 获取录制文件存放的路径
+     * @return
+     */
+    public String getRecordPath() {
+        return filePath;
+    }
+
+    /**
      * 停止录音
      * @throws Exception
      */
@@ -139,6 +168,14 @@ public class RecorderManager {
             handler.removeCallbacks(voicePollTask);
             voicePollTask = null;
         }
+    }
+
+    /**
+     * 获取已录制时长
+     * @return
+     */
+    public long getDuration() {
+        return System.currentTimeMillis() - startTime;
     }
 
     public void setOnRecorderChangeListener(OnRecorderChangeListener onRecorderChangeListener) {
