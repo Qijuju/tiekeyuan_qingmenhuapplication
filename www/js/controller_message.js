@@ -1420,6 +1420,21 @@ angular.module('message.controllers', [])
        */
       $scope.showYuyin=function () {
         $scope.isShow='true';
+        $mqtt.startRecording(function (succ) {
+          $scope.type=succ.type;
+          alert("type--->",type);
+          if($scope.type === "timeChange"){
+            $scope.recordTime=succ.recordTime;
+          }else if($scope.type === "timeout"){
+            $scope.time=succ.time;
+          }else if($scope.type === "rateChange"){
+            $scope.rate=succ.rate;
+          }else if($scope.type === "error"){
+            $scope.error=succ.error;
+          }
+        },function (err) {
+
+        });
         // alert("show"+$scope.isShow);
         // recordCancel = false;
         // if(stopTimer)clearTimeout(stopTimer);
