@@ -73,6 +73,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[位置]";//最后一条消息内容
                 }else if(data[0].messagetype === "File"){
                   $scope.lastText = "[文件]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Audio'){
+                  $scope.lastText = "[语音]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -196,6 +198,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -995,6 +999,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1117,6 +1123,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1464,15 +1472,33 @@ angular.module('message.controllers', [])
     /**
      * 松开语音按钮触发事件
      */
-    $scope.releaseYuyin=function () {
+    // 'Audio',userId,send_content, userId,localusr,myUserID,_id,groupType
+    $scope.releaseYuyin=function (messagetype,sqlid) {
+      // alert("松手后语音传参："+messagetype+$scope.userId+"======"+$scope.myUserID+"-----------"+$scope.localusr+$scope.groupType);
       $scope.isShow='false';
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
-      $scope.isyuyinshow="true";
+      // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
         $scope.duration=succ.duration;
+        if($scope.duration <1000){
+          $scope.isshowless='true';
+        }
         $scope.filepath=succ.filePath;
         // alert("秒："+$scope.duration);
+        //发送语音
+        // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+        $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
+            keepKeyboardOpen();
+          });
+        },function (err) {
+        });
       },function (err) {
 
       });
@@ -1535,6 +1561,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1658,6 +1686,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1841,6 +1871,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[位置]";//最后一条消息内容
                 }else if(data[0].messagetype === "File"){
                   $scope.lastText = "[文件]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Audio'){
+                  $scope.lastText = "[语音]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -1954,6 +1986,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2419,6 +2453,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2531,6 +2567,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -2806,6 +2844,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2919,6 +2959,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -3373,6 +3415,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -3495,6 +3539,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }

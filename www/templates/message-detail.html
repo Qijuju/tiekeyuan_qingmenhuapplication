@@ -21,7 +21,7 @@
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
     ng-if="isShow === 'true'">
     <!---若录音时间小于1s，则展示这个--->
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show= "duration <1000" src="img/chat_icon_voice_short.png"/>
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show= "isshowless ==='true'" src="img/chat_icon_voice_short.png"/>
 
     <!---分贝的六个等级--->
     <!--<img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===0" src="img/chat_icon_voice1.png" />-->
@@ -31,9 +31,9 @@
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===3"src="img/chat_icon_voice5.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===4 || rate ===5"src="img/chat_icon_voice6.png" />
     <br />
-    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-hide="duration <1000">手指上滑,取消发送</p>
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-hide="isshowless ==='true'">手指上滑,取消发送</p>
     <!---若录音时间小于1s，则展示这个--->
-    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show= "duration <1000">说话时间太短</p>
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show= "isshowless ==='true'">说话时间太短</p>
   </div>
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()" ng-click="zhiling()"
                id="contentaa">
@@ -146,7 +146,7 @@
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;width: 120px;" ng-if="msgSingle.messagetype != 'Audio'" >
+            <p class="rj-message" style="margin-left: 14.5%;width: 120px;" ng-if="msgSingle.messagetype === 'Audio'" >
               <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left"/>
             </p>
           </span>
@@ -232,14 +232,17 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font class="rj-message-right" ng-if="msgSingle.messagetype != 'Audio' && isyuyinshow === 'true'" style="width: 120px;">
+            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;">
               <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true'"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
               <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-click="showanimation();"/>
+              <font style="background-color: transparent;margin-left: -30px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
+              <!--<div style="width: 20px;height: 20px;">-->
+                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-click="showanimation();"/>
+              <!--</div>-->
               <div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">
                 {{no.no}}
                 <img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>
@@ -306,7 +309,7 @@
     </div>
 
     <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'"  >
-      <button style="margin-right: 45px;width:90%;height: 20px;" on-touch="showYuyin()" on-release="releaseYuyin()">
+      <button style="margin-right: 45px;width:90%;height: 20px;" on-touch="showYuyin()" on-release="releaseYuyin('Audio',_id)">
         按住请说话
       </button>
     </div>
