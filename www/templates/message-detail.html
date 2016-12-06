@@ -21,19 +21,19 @@
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
     ng-if="isShow === 'true'">
     <!---若录音时间小于1s，则展示这个--->
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice_short.png"/>
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show= "duration <1000" src="img/chat_icon_voice_short.png"/>
 
     <!---分贝的六个等级--->
-    <img style="padding-top:20px;width:100px;height: 100px;"  src="img/chat_icon_voice1.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice2.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice3.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice4.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice5.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" src="img/chat_icon_voice6.png" />
+    <!--<img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===0" src="img/chat_icon_voice1.png" />-->
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===0" src="img/chat_icon_voice2.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===1" src="img/chat_icon_voice3.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===2" src="img/chat_icon_voice4.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===3"src="img/chat_icon_voice5.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===4 || rate ===5"src="img/chat_icon_voice6.png" />
     <br />
-    <!--<p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" >手指上滑,取消发送</p>-->
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-hide="duration <1000">手指上滑,取消发送</p>
     <!---若录音时间小于1s，则展示这个--->
-    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center">说话时间太短</p>
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show= "duration <1000">说话时间太短</p>
   </div>
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()" ng-click="zhiling()"
                id="contentaa">

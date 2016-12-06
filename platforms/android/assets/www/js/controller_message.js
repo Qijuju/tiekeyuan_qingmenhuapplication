@@ -1420,6 +1420,22 @@ angular.module('message.controllers', [])
        */
       $scope.showYuyin=function () {
         $scope.isShow='true';
+        $mqtt.startRecording(function (succ) {
+          $scope.type=succ.type;
+          // alert("type--->"+$scope.type);
+          if($scope.type === "timeChange"){
+            $scope.recordTime=succ.recordTime;
+          }else if($scope.type === "timeout"){
+            $scope.ctime=succ.time;
+          }else if($scope.type === "rateChange"){
+            $scope.rate=succ.rate;
+            // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+          }else if($scope.type === "error"){
+            $scope.error=succ.error;
+          }
+        },function (err) {
+
+        });
         // alert("show"+$scope.isShow);
         // recordCancel = false;
         // if(stopTimer)clearTimeout(stopTimer);
@@ -1453,6 +1469,13 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       $scope.isyuyinshow="true";
+      $mqtt.stopRecording(function (succ) {
+        $scope.duration=succ.duration;
+        $scope.filepath=succ.filePath;
+        // alert("秒："+$scope.duration);
+      },function (err) {
+
+      });
       // if (audioTips.classList.contains("cancel")) {
       //   audioTips.classList.remove("cancel");
       //   audioTips.innerHTML = "手指上划，取消发送";
