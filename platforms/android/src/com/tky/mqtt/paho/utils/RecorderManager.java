@@ -1,9 +1,11 @@
 package com.tky.mqtt.paho.utils;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RecorderManager {
 
+    //********************* 录音相关参数开始 START *********************
     private static Activity context;
     private MediaRecorder recorder;
     private boolean isRecording = false;
@@ -45,11 +48,21 @@ public class RecorderManager {
     private ScheduledExecutorService executorService;
     private VoicePollTask voicePollTask;
 
+    private String filePath;
+    //********************* 录音相关参数结束 END *********************
+
+    //********************* 录音播放相关参数开始 START *********************
+    /**
+     * 是否正在播放
+     */
+//    private boolean isPlaying = false;
+    //********************* 录音播放相关参数结束 END *********************
     /**
      * 本类自己构造一个对象，供外界调用
      */
     private static final RecorderManager INSTANCE = new RecorderManager();
-    private String filePath;
+    private MediaPlayer player;
+    private String playVoiceName;
 
     /**
      * 私有化构造器
@@ -66,6 +79,7 @@ public class RecorderManager {
         return INSTANCE;
     }
 
+    //********************* 录音相关方法开始 START *********************
     /**
      * 创建一个录音文件的存放位置（包含文件名）
      * @return
@@ -290,4 +304,39 @@ public class RecorderManager {
             return 0;
         }
     }
+
+    //********************* 录音相关方法结束 END *********************
+
+    //********************* 录音播放相关方法开始 START *********************
+    /**
+     * 播放录音
+     * @param playVoiceName 录音文件的名称（仅仅是名称，具体路径在该方法中补全）
+     */
+    public void playRecord(String playVoiceName) {
+        this.playVoiceName = playVoiceName;
+        if (player == null) {
+            player = new MediaPlayer();
+        } else {
+            player.stop();
+            player.reset();
+        }
+        try {
+            player.setDataSource(getFilePathByVoiceName(playVoiceName));
+            player.prepare();
+            player.start();                                           // play the record
+//            isPlaying = true;
+        }catch (IOException e) {
+//            isPlaying = false;
+            Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    public void stopPlayRecord() {
+        if (player != null && player.isPlaying()) {
+
+        }
+    }
+
+    //********************* 录音播放相关方法结束 END *********************
 }
