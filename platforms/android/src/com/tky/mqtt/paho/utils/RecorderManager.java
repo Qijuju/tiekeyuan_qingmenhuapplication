@@ -104,6 +104,8 @@ public class RecorderManager {
      * @throws RuntimeException
      */
     public void startRecord(final String filePath, long interval) {
+        //先停止播放
+        stopPlayRecord();
         this.filePath = filePath;
         interval = (interval <= 0 ? 59 * 1000 : interval);
         if (isRecording) {
@@ -324,18 +326,28 @@ public class RecorderManager {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
             player.prepare();
             player.start();                                           // play the record
-//            isPlaying = true;
         }catch (IOException e) {
-//            isPlaying = false;
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
+    /**
+     * 停止播放
+     */
     public void stopPlayRecord() {
         if (player != null && player.isPlaying()) {
-
+            player.stop();
+            player.release();
         }
+    }
+
+    /**
+     * 是否正在播放
+     * @return
+     */
+    public boolean isPlaying() {
+        return (player != null && player.isPlaying());
     }
 
     //********************* 录音播放相关方法结束 END *********************
