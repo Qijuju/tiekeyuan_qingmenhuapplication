@@ -1450,6 +1450,9 @@ angular.module('message.controllers', [])
      */
     $scope.releaseYuyin=function () {
       $scope.isShow='false';
+      //若录取的时间小于1s
+      //当录取的时间大于1s小于60s时，给一个标志符
+      $scope.isyuyinshow="true";
       // if (audioTips.classList.contains("cancel")) {
       //   audioTips.classList.remove("cancel");
       //   audioTips.innerHTML = "手指上划，取消发送";
@@ -1469,6 +1472,15 @@ angular.module('message.controllers', [])
       // recorder.stop();
     }
 
+    /**
+     * 播放语音
+     */
+    $scope.showanimation=function () {
+      alert("进来语音了吗？");
+      $scope.isshowaudio='true';
+      $scope.numlist=[{no:1},{no:2},{no:3}];
+
+    }
 
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
