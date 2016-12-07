@@ -543,7 +543,7 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         //alert("图片类型"+type);
-        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
+        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio') {
           messageDetail.message = messageDetail.message + '###0';
         }
         var fileIsImage = "File";
@@ -829,12 +829,14 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){       //消息模块
-            if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
+            if (message.messagetype === "Image" || message.messagetype === "File" || message.messagetype === "Audio") {   //文件或者图片
               var objectTP = 'I';
               if (message.messagetype === "Image") {
                 objectTP = 'I';
               } else if(message.messagetype === "File") {
                 objectTP = 'F';
+              } else if (message.messagetype === "Audio") {
+                objectTP = 'A';
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
@@ -877,7 +879,7 @@ angular.module('message.services', [])
 
                 });
 
-            } else if(objectTP === 'I'){        //当发送消息的为图片时
+            } else if(objectTP === 'I' || objectTP === 'A'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
@@ -893,30 +895,32 @@ angular.module('message.services', [])
                       $rootScope.$broadcast('msgs.update');
                     }
 
-                    var arrivepic={};
-                    arrivepic.filepicid=arriveMessage.message.split('###')[0];
-                    arrivepic._id=arriveMessage._id;
-                    arrivepic.from="false";
-                    arrivepic.sessionid=arriveMessage.sessionid;
-                    arrivepic.fromname=arriveMessage.username;
-                    arrivepic.toname="";
-                    arrivepic.smallurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bigurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bytesize=arriveMessage.message.split('###')[2];
-                    arrivepic.megabyte=arriveMessage.message.split('###')[3];
-                    arrivepic.filename=arriveMessage.message.split('###')[4];
-                    if(arriveMessage.messagetype=="Image"){
-                      arrivepic.type="image";
-                    }else if(arriveMessage.messagetype=="File"){
-                      arrivepic.type="file";
+                    if (arriveMessage.messagetype!="Audio") {
+                      var arrivepic={};
+                      arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                      arrivepic._id=arriveMessage._id;
+                      arrivepic.from="false";
+                      arrivepic.sessionid=arriveMessage.sessionid;
+                      arrivepic.fromname=arriveMessage.username;
+                      arrivepic.toname="";
+                      arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                      arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                      arrivepic.filename=arriveMessage.message.split('###')[4];
+                      if(arriveMessage.messagetype=="Image"){
+                        arrivepic.type="image";
+                      }else if(arriveMessage.messagetype=="File"){
+                        arrivepic.type="file";
+                      }
+                      arrivepic.when=0;
+
+                      $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                      },function (err) {
+
+                      });
                     }
-                    arrivepic.when=0;
-
-                    $greendao.saveObj("FilePictureService",arrivepic,function (data) {
-
-                    },function (err) {
-
-                    });
                   }
 
                 }, function (err) {
@@ -1422,10 +1426,10 @@ angular.module('message.services', [])
         mqtt.stopRecording(success, error);
       },
       playRecord:function(fileName,success, error) {//播放录音
-        mqtt.stopRecording(fileName,success, error);
+        mqtt.playRecord(fileName,success, error);
       },
       stopPlayRecord:function(success, error) {//停止播放录音
-        mqtt.stopRecording(success, error);
+        mqtt.stopPlayRecord(success, error);
       }
 
 

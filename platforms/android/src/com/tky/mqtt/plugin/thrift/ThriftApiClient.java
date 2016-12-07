@@ -2375,10 +2375,10 @@ public class ThriftApiClient extends CordovaPlugin {
     public void getFile(final JSONArray args, final CallbackContext callbackContext){
 
         try {
-            String objectTP=args.getString(0);
+            final String objectTP=args.getString(0);
             final String objectID=args.getString(1);
             String picSize=args.getString(2);
-            SystemApi.getFile(getUserID(),objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+            SystemApi.getFile(getUserID(),"A".equals(objectTP) ? "F" : objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
                     if(arg0!=null){
@@ -2402,6 +2402,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else {*/
                                 String saveFilePath = objectID.split("###")[1];
                                     tempPicName = tempUserPic + File.separator + saveFilePath.substring(saveFilePath.lastIndexOf("/") + 1, saveFilePath.length());//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+                                if ("A".equals(objectTP)) {
+                                    tempPicName = objectID.split("###")[1];
+                                }
 //                                }
                                 File tempFile = new File(tempPicName);
                                 if (!tempFile.exists())

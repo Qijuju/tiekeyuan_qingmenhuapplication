@@ -342,8 +342,12 @@ public class RecorderManager {
         if (player == null) {
             player = new MediaPlayer();
         } else {
-            player.stop();
-            player.reset();
+            try {
+                player.stop();
+                player.reset();
+            } catch (Exception e) {
+                player = new MediaPlayer();
+            }
         }
         try {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
