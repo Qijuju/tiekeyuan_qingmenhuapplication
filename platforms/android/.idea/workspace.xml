@@ -14,6 +14,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -53,28 +54,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="817" column="7" selection-start-line="817" selection-start-column="7" selection-end-line="817" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.6989247">
+              <caret line="862" column="47" selection-start-line="862" selection-start-column="47" selection-end-line="862" selection-end-column="47" />
               <folding>
-                <element signature="e#30272#30869#0" expanded="true" />
-                <element signature="e#30868#30869#0" expanded="true" />
-                <element signature="e#31127#32126#0" expanded="true" />
-                <element signature="e#32125#32126#0" expanded="true" />
-                <element signature="e#33205#33451#0" expanded="true" />
-                <element signature="e#33450#33451#0" expanded="true" />
+                <element signature="e#30306#30903#0" expanded="true" />
+                <element signature="e#30902#30903#0" expanded="true" />
+                <element signature="e#31161#32160#0" expanded="true" />
+                <element signature="e#32159#32160#0" expanded="true" />
+                <element signature="e#32588#33195#0" expanded="true" />
+                <element signature="e#32853#33153#0" expanded="true" />
+                <element signature="e#33152#33153#0" expanded="true" />
+                <element signature="e#33194#33195#0" expanded="true" />
+                <element signature="e#33618#33864#0" expanded="true" />
+                <element signature="e#33863#33864#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecorderManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RecorderManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6698873">
-              <caret line="153" column="33" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="355" column="22" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1859,8 +1864,8 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SoundUtil.java" />
         <option value="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
       </list>
     </option>
   </component>
@@ -2918,27 +2923,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="817" column="7" selection-start-line="817" selection-start-column="7" selection-end-line="817" selection-end-column="7" />
+          <caret line="355" column="22" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
           <folding>
-            <element signature="e#30272#30869#0" expanded="true" />
-            <element signature="e#30868#30869#0" expanded="true" />
-            <element signature="e#31127#32126#0" expanded="true" />
-            <element signature="e#32125#32126#0" expanded="true" />
-            <element signature="e#33205#33451#0" expanded="true" />
-            <element signature="e#33450#33451#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6698873">
-          <caret line="153" column="33" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.6989247">
+          <caret line="862" column="47" selection-start-line="862" selection-start-column="47" selection-end-line="862" selection-end-column="47" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#30306#30903#0" expanded="true" />
+            <element signature="e#30902#30903#0" expanded="true" />
+            <element signature="e#31161#32160#0" expanded="true" />
+            <element signature="e#32159#32160#0" expanded="true" />
+            <element signature="e#32588#33195#0" expanded="true" />
+            <element signature="e#32853#33153#0" expanded="true" />
+            <element signature="e#33152#33153#0" expanded="true" />
+            <element signature="e#33194#33195#0" expanded="true" />
+            <element signature="e#33618#33864#0" expanded="true" />
+            <element signature="e#33863#33864#0" expanded="true" />
           </folding>
         </state>
       </provider>

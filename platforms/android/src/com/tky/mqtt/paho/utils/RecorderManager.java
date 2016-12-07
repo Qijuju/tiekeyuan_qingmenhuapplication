@@ -333,7 +333,7 @@ public class RecorderManager {
      * 播放录音
      * @param playVoiceName 录音文件的名称（仅仅是名称，具体路径在该方法中补全）
      */
-    public void playRecord(String playVoiceName) {
+    public MediaPlayer playRecord(String playVoiceName) {
         this.playVoiceName = playVoiceName;
         if (player == null) {
             player = new MediaPlayer();
@@ -353,6 +353,7 @@ public class RecorderManager {
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+        return player;
     }
 
     /**
