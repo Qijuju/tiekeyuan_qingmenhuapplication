@@ -3,7 +3,6 @@ package com.tky.mqtt.paho.utils;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
@@ -11,10 +10,6 @@ import com.tky.mqtt.paho.UIUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -44,7 +39,7 @@ public class RecorderManager {
     /**
      * 声音强度监测延时
      */
-    private static final long POLL_INTERAL = 300;
+    private static final long POLL_INTERAL = 200;
 //    private static Handler handler = new Handler();
 
     /**
@@ -112,7 +107,9 @@ public class RecorderManager {
      */
     public void startRecord(final String filePath, long interval) {
         //先停止播放
-        stopPlayRecord();
+        try {
+            stopPlayRecord();
+        } catch (Exception e){}
         this.filePath = filePath;
         interval = (interval <= 0 ? 59 * 1000 : interval);
         if (isRecording) {
@@ -246,12 +243,7 @@ public class RecorderManager {
         private String filePath;
         private long interval;
 
-        public VoiceScheduleTask(){
-            super();
-        }
-
         public VoiceScheduleTask(String filePath, long interval){
-            super();
             this.filePath = filePath;
             this.interval = interval;
         }
@@ -285,7 +277,6 @@ public class RecorderManager {
         private long interval;
 
         public VoicePollTask(String filePath, long interval) {
-            super();
             this.filePath = filePath;
             this.interval = interval;
         }
@@ -302,6 +293,7 @@ public class RecorderManager {
                         }
                     });
                 }
+                UIUtils.getHandler().removeCallbacks(voicePollTask);
                 UIUtils.getHandler().postDelayed(voicePollTask, POLL_INTERAL);
             }
         }
