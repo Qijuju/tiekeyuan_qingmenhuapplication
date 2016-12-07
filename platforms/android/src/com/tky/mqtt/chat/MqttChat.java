@@ -831,7 +831,7 @@ public class MqttChat extends CordovaPlugin {
                         try {
                             JSONObject obj = new JSONObject();
                             obj.put("filePath", manager.getRecordPath());
-                            obj.put("duration", duration);
+                            obj.put("duration", duration <= 59 * 1000 ? duration : 59 * 1000);
                             setResult(obj, PluginResult.Status.OK, callbackContext);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -875,7 +875,9 @@ public class MqttChat extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                try {
+                    RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                } catch (Exception e) {}
             }
         });
     }
