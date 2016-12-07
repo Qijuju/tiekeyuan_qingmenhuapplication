@@ -39,7 +39,7 @@ public class RecorderManager {
     /**
      * 声音强度监测延时
      */
-    private static final long POLL_INTERAL = 150;
+    private static final long POLL_INTERAL = 200;
 //    private static Handler handler = new Handler();
 
     /**
@@ -243,12 +243,7 @@ public class RecorderManager {
         private String filePath;
         private long interval;
 
-        public VoiceScheduleTask(){
-            super();
-        }
-
         public VoiceScheduleTask(String filePath, long interval){
-            super();
             this.filePath = filePath;
             this.interval = interval;
         }
@@ -282,7 +277,6 @@ public class RecorderManager {
         private long interval;
 
         public VoicePollTask(String filePath, long interval) {
-            super();
             this.filePath = filePath;
             this.interval = interval;
         }
@@ -299,6 +293,7 @@ public class RecorderManager {
                         }
                     });
                 }
+                UIUtils.getHandler().removeCallbacks(voicePollTask);
                 UIUtils.getHandler().postDelayed(voicePollTask, POLL_INTERAL);
             }
         }
