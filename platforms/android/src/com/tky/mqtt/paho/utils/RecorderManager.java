@@ -151,11 +151,15 @@ public class RecorderManager {
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                UIUtils.getHandler().postDelayed(voicePollTask, POLL_INTERAL);
+                UIUtils.getHandler().postDelayed(voicePollTask, 0);
             }
         });
         executorService = Executors.newSingleThreadScheduledExecutor();
         startTime = System.currentTimeMillis();
+        //初始化时间提示
+        if (onRecorderChangeListener != null) {
+            onRecorderChangeListener.onTimeChange(filePath, interval, 0);
+        }
         VoiceScheduleTask voiceScheduleTask = new VoiceScheduleTask(filePath, interval);
         executorService.scheduleAtFixedRate(voiceScheduleTask, SCHEDULE_DELAY, PERIOD, TimeUnit.MILLISECONDS);
 
