@@ -55,6 +55,7 @@ angular.module('message.controllers', [])
     $scope.isYuYin='false';
     //默认不展示语音居中框
     $scope.isShow='false';
+    $scope.isshowless ='false';
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -1428,6 +1429,7 @@ angular.module('message.controllers', [])
        */
       $scope.showYuyin=function () {
         $scope.isShow='true';
+        $scope.isshowless='false';
         $mqtt.startRecording(function (succ) {
           $scope.type=succ.type;
           // alert("type--->"+$scope.type);
@@ -1475,59 +1477,70 @@ angular.module('message.controllers', [])
     // 'Audio',userId,send_content, userId,localusr,myUserID,_id,groupType
     $scope.releaseYuyin=function (messagetype,sqlid) {
       // alert("松手后语音传参："+messagetype+$scope.userId+"======"+$scope.myUserID+"-----------"+$scope.localusr+$scope.groupType);
-      $scope.isShow='false';
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
+        $scope.rate=-1;
+        $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
         if($scope.duration <1000){
           $scope.isshowless='true';
-        }
-        $scope.filepath=succ.filePath;
-        // alert("秒："+$scope.duration);
-        //发送语音
-        // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
-        $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
-          $greendao.getUUID(function (data) {
-            sqlid=data;
-            $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
-            $timeout(function () {
-              viewScroll.scrollBottom();
-            }, 100);
-            keepKeyboardOpen();
+        }else{
+          $scope.isshowless='false';
+          // alert("秒："+$scope.duration);
+          //发送语音
+          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+          $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+            $greendao.getUUID(function (data) {
+              sqlid=data;
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 100);
+              keepKeyboardOpen();
+            });
+          },function (err) {
           });
-        },function (err) {
-        });
+        }
+        $timeout(function () {
+          $scope.isShow='false';
+          $scope.isshowless='false';
+        }, 1000);
       },function (err) {
 
       });
-      // if (audioTips.classList.contains("cancel")) {
-      //   audioTips.classList.remove("cancel");
-      //   audioTips.innerHTML = "手指上划，取消发送";
-      // }
-      // // 判断录音时间
-      // stopTimestamp = (new Date()).getTime();
-      // if (stopTimestamp - startTimestamp < 800) {
-      //   audioTips.innerHTML = "录音时间太短";
-      //   soundAlert.classList.add('rprogress-sigh');
-      //   recordCancel = true;
-      //   stopTimer=setTimeout(function(){
-      //     setSoundAlertVisable(false);
-      //   },800);
-      // }else{
-      //   setSoundAlertVisable(false);
-      // }
-      // recorder.stop();
     }
 
     /**
      * 播放语音
      */
-    $scope.showanimation=function () {
-      alert("进来语音了吗？");
-      $scope.isshowaudio='true';
-      $scope.numlist=[{no:1},{no:2},{no:3}];
+    $scope.islisten='false';
+    $scope.audioid='';
+    $scope.showanimation=function (filepath,sqlid) {
+      //判断id是否一致，若一致则判断标志位；若不一致，则播放
+      // alert("拿到的id"+sqlid);
+      if($scope.audioid != sqlid){
+        $scope.islisten='true';
+      }else{
+        if($scope.islisten === 'false'){
+          $scope.islisten= 'true';
+        }else{
+          $scope.islisten= 'false';
+        }
+      }
+      $scope.audioid=sqlid;
+      if($scope.islisten === 'true'){
+        // alert("播放语音啦");
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), null, null);
+      }else{
+        $mqtt.stopPlayRecord(function (data) {
+        },function (err) {
+        });
+      }
+
+      // $scope.isshowaudio='true';
+      // $scope.numlist=[{no:1},{no:2},{no:3}];
 
     }
 

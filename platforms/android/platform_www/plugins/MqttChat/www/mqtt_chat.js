@@ -63,8 +63,8 @@ exec(success, error, "MqttChat", "startRecording", [])
 exports.stopRecording =function(success, error){//停止录音
 exec(success, error, "MqttChat", "stopRecording", [])
 };
-exports.playRecord =function(fileName,success, error){//播放录音
-exec(success, error, "MqttChat", "playRecord", [fileName])
+exports.playRecord =function(playVoiceName,success, error){//播放录音
+exec(success, error, "MqttChat", "playRecord", [playVoiceName])
 };
 exports.stopPlayRecord =function(success, error){//停止播放录音
 exec(success, error, "MqttChat", "stopPlayRecord", [])

@@ -840,6 +840,44 @@ public class MqttChat extends CordovaPlugin {
         });
     }
 
+    /**
+     * 播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void playRecord(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            final String playVoiceName = args.getString(0);
+            File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
+            if (file.exists()) {
+                cordova.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                    }
+                });
+            } else {
+                setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 停止播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopPlayRecord(final JSONArray args, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+            }
+        });
+    }
+
     public static MType getType(String type) {
         if ("User".equals(type)) {
             return MType.U;
