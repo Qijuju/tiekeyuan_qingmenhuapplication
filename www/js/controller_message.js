@@ -1427,7 +1427,7 @@ angular.module('message.controllers', [])
       /**
        * 长按语音按钮触发事件
        */
-      $scope.showYuyin=function () {
+      $scope.showYuyin=function (messagetype,sqlid) {
         $scope.isShow='true';
         $scope.isshowless='false';
         $mqtt.startRecording(function (succ) {
@@ -1437,6 +1437,40 @@ angular.module('message.controllers', [])
             $scope.recordTime=succ.recordTime;
           }else if($scope.type === "timeout"){
             $scope.ctime=succ.time;
+            alert("超过59秒======》"+$scope.ctime);
+            $timeout(function () {
+              $scope.isShow='false';
+              // $scope.isshowless='false';
+            }, 1000);
+            // if($scope.ctime >59000){
+            //   alert("超过59秒");
+            //   $mqtt.stopRecording(function (succ) {
+            //     $scope.rate=-1;
+            //     $scope.filepath=succ.filePath;
+            //     $scope.duration=succ.duration;
+            //     if($scope.duration <1000){
+            //       $scope.isshowless='true';
+            //     }else{
+            //       $scope.isshowless='false';
+            //       // alert("秒："+$scope.duration);
+            //       //发送语音
+            //       // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+            //       $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+            //         $greendao.getUUID(function (data) {
+            //           sqlid=data;
+            //           $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+            //           $timeout(function () {
+            //             viewScroll.scrollBottom();
+            //           }, 100);
+            //           keepKeyboardOpen();
+            //         });
+            //       },function (err) {
+            //       });
+            //     }
+            //   },function (err) {
+            //
+            //   });
+            // }
           }else if($scope.type === "rateChange"){
             $scope.rate=succ.rate;
             // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
