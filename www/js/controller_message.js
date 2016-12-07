@@ -1548,8 +1548,15 @@ angular.module('message.controllers', [])
       }
       $scope.audioid=sqlid;
       if($scope.islisten === 'true'){
+        $scope.isshowgif='true';
         // alert("播放语音啦");
-        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), null, null);
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
+          $scope.isshowgif='false';
+          $scope.islisten='false';
+        }, function (err) {
+          $ToastUtils.showToast(err,null,null);
+        });
+
       }else{
         $mqtt.stopPlayRecord(function (data) {
         },function (err) {

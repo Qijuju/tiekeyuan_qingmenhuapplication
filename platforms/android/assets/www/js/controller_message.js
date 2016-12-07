@@ -1445,6 +1445,8 @@ angular.module('message.controllers', [])
               $scope.isShow='false';
               // $scope.isshowless='false';
             }, 100);
+            $scope.recordTime = 0;
+            $scope.rate = 0;
           }else if($scope.type === "rateChange"){
             $scope.rate=succ.rate;
             // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
@@ -1488,11 +1490,18 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
+      if ($scope.recordTime  <1000){
+        $scope.isshowless='true';
+        $scope.recordTime = 0;
+        $scope.rate = 0;
+      }
       $mqtt.stopRecording(function (succ) {
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
         if($scope.duration <1000){
+          $scope.recordTime = 0;
+          $scope.rate = 0;
           $scope.isshowless='true';
         }else{
           $scope.isshowless='false';
@@ -1539,8 +1548,15 @@ angular.module('message.controllers', [])
       }
       $scope.audioid=sqlid;
       if($scope.islisten === 'true'){
+        $scope.isshowgif='true';
         // alert("播放语音啦");
-        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), null, null);
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
+          $scope.isshowgif='false';
+          $scope.islisten='false';
+        }, function (err) {
+          $ToastUtils.showToast(err,null,null);
+        });
+
       }else{
         $mqtt.stopPlayRecord(function (data) {
         },function (err) {

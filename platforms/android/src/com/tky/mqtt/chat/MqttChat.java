@@ -3,6 +3,7 @@ package com.tky.mqtt.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -855,7 +856,13 @@ public class MqttChat extends CordovaPlugin {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                        MediaPlayer player = RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                setResult("true", PluginResult.Status.ERROR, callbackContext);
+                            }
+                        });
                     }
                 });
             } else {
