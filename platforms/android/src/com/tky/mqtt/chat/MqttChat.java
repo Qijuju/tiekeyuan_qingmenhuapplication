@@ -729,59 +729,84 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void startRecording(final JSONArray args, final CallbackContext callbackContext) {
-        RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
-        manager.startRecord(manager.createVoicePath(), 0);
+        final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                manager.startRecord(manager.createVoicePath(), 0);
+            }
+        });
         manager.setOnRecorderChangeListener(new RecorderManager.OnRecorderChangeListener() {
             @Override
-            public void onTimeChange(String filePath, long interval, long recordTime) {
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("type", "timeChange");
-                    obj.put("filePath", filePath);
-                    obj.put("recordTime", recordTime);
-                    setResult(obj, PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onTimeChange(final String filePath, long interval, final long recordTime) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeChange");
+                            obj.put("filePath", filePath);
+                            obj.put("recordTime", recordTime);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
 
             @Override
-            public void onTimeout(String filePath, long interval) {
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("type", "timeout");
-                    obj.put("filePath", filePath);
-                    obj.put("time", interval);
-                    setResult(obj, PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onTimeout(final String filePath, final long interval) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeout");
+                            obj.put("filePath", filePath);
+                            obj.put("time", interval);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
 
             @Override
-            public void onRateChange(String filePath, long interval, int rate) {
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("type", "rateChange");
-                    obj.put("filePath", filePath);
-                    obj.put("rate", rate);
-                    setResult(obj, PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onRateChange(final String filePath, long interval, final int rate) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "rateChange");
+                            obj.put("filePath", filePath);
+                            obj.put("rate", rate);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
 
             @Override
-            public void onError(String filePath, long interval, String error) {
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("type", "error");
-                    obj.put("filePath", filePath);
-                    obj.put("error", error);
-                    setResult(obj, PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onError(final String filePath, long interval, final String error) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "error");
+                            obj.put("filePath", filePath);
+                            obj.put("error", error);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }
@@ -792,17 +817,27 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void stopRecording(final JSONArray args, final CallbackContext callbackContext) {
-        RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
-        manager.stopRecord();
-        long duration = manager.getDuration();
-        try {
-            JSONObject obj = new JSONObject();
-            obj.put("filePath", manager.getRecordPath());
-            obj.put("duration", duration);
-            setResult(obj, PluginResult.Status.OK, callbackContext);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+                manager.stopRecord();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        long duration = manager.getDuration();
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("filePath", manager.getRecordPath());
+                            obj.put("duration", duration);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
     }
 
     /**

@@ -3,9 +3,10 @@ package com.tky.mqtt.paho.utils;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
+
+import com.tky.mqtt.paho.UIUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class RecorderManager {
      * 声音强度监测延时
      */
     private static final long POLL_INTERAL = 300;
-    private static Handler handler = new Handler();
+//    private static Handler handler = new Handler();
 
     /**
      * 录制开始时间
@@ -63,6 +64,7 @@ public class RecorderManager {
     private static final RecorderManager INSTANCE = new RecorderManager();
     private MediaPlayer player;
     private String playVoiceName;
+    private int[] amps;
 
     /**
      * 私有化构造器
@@ -144,7 +146,12 @@ public class RecorderManager {
         }
         recorder.start();
         voicePollTask = new VoicePollTask(filePath, interval);
-        handler.postDelayed(voicePollTask, POLL_INTERAL);
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                UIUtils.getHandler().postDelayed(voicePollTask, POLL_INTERAL);
+            }
+        });
         executorService = Executors.newSingleThreadScheduledExecutor();
         startTime = System.currentTimeMillis();
         VoiceScheduleTask voiceScheduleTask = new VoiceScheduleTask(filePath, interval);
@@ -181,7 +188,7 @@ public class RecorderManager {
             executorService = null;
         }
         if (voicePollTask != null) {
-            handler.removeCallbacks(voicePollTask);
+            UIUtils.getHandler().removeCallbacks(voicePollTask);
             voicePollTask = null;
         }
     }
@@ -282,7 +289,7 @@ public class RecorderManager {
             if (isRecording) {
                 double amp = getAmplitude();
                 if (onRecorderChangeListener != null) {
-                    final int rate = ((int) (amp / 2f));
+                    final int rate = getAmps()[(int)amp];//((int) (amp / 2f));
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -290,9 +297,20 @@ public class RecorderManager {
                         }
                     });
                 }
-                handler.postDelayed(voicePollTask, POLL_INTERAL);
+                UIUtils.getHandler().postDelayed(voicePollTask, POLL_INTERAL);
             }
         }
+    }
+
+    /**
+     * 获取声音频率标准
+     * @return
+     */
+    private int[] getAmps() {
+        if (amps == null || amps.length <= 0) {
+            amps = new int[]{0, 1, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5};
+        }
+        return amps;
     }
 
     /**

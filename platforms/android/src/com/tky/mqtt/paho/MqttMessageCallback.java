@@ -113,6 +113,7 @@ public class MqttMessageCallback implements MqttCallback {
                         tip = "File".equals(messagetype) ? "【文件】" : tip;
                         tip = "Image".equals(messagetype) ? "【图片】" : tip;
                         tip = "LOCATION".equals(messagetype) ? "【定位】" : tip;
+                        tip = "Audio" .equals(messagetype) ?"【语音】": tip;
                         GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
                         if (fromUserId != null && !map.isFromMe()) {
                             if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
@@ -356,7 +357,9 @@ public class MqttMessageCallback implements MqttCallback {
                                     System.out.println("消息类型weizhi");
                                 } else if (lastmessages.getMessagetype() == "File") {
                                     chatList.setLastText("[文件]");//从数据库里取最后一条消息
-                                } else {
+                                } else if(lastmessages.getMessagetype() == "Audio"){
+                                    chatList.setLastText("[语音]");//从数据库里取最后一条消息
+                                }else {
                                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                 }
                                 chatList.setCount(count + "");//将统计的count未读数量存进去
@@ -590,6 +593,8 @@ public class MqttMessageCallback implements MqttCallback {
                     chatList.setLastText("[位置]");//从数据库里取最后一条消息
                 } else if (lastmessages.getMessagetype() == "File") {
                     chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                }else if(lastmessages.getMessagetype() == "Audio"){
+                    chatList.setLastText("[语音]");//从数据库里取最后一条消息
                 } else {
                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                 }
@@ -711,7 +716,7 @@ public class MqttMessageCallback implements MqttCallback {
             ringStaus = RingStatus.RING;
         }
         ringStaus = (ringStaus == RingStatus.RING ? ringStaus :
-                ((System.currentTimeMillis() - start > 30) ? RingStatus.RING :
+                ((System.currentTimeMillis() - start > 100) ? RingStatus.RING :
                         RingStatus.NO_RING));
         //************* 判断是否需要响铃 END *************
         if (ringStaus != RingStatus.NO_RING) {
