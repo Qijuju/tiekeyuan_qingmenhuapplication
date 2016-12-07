@@ -107,7 +107,9 @@ public class RecorderManager {
      */
     public void startRecord(final String filePath, long interval) {
         //先停止播放
-        stopPlayRecord();
+        try {
+            stopPlayRecord();
+        } catch (Exception e){}
         this.filePath = filePath;
         interval = (interval <= 0 ? 59 * 1000 : interval);
         if (isRecording) {
@@ -337,8 +339,12 @@ public class RecorderManager {
         if (player == null) {
             player = new MediaPlayer();
         } else {
-            player.stop();
-            player.reset();
+            try {
+                player.stop();
+                player.reset();
+            } catch (Exception e) {
+                player = new MediaPlayer();
+            }
         }
         try {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));

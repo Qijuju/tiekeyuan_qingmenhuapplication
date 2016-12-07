@@ -821,7 +821,9 @@ public class MqttChat extends CordovaPlugin {
             @Override
             public void run() {
                 final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
-                manager.stopRecord();
+                try {
+                    manager.stopRecord();
+                } catch (Exception e){}
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
