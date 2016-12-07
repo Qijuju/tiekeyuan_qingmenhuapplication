@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92f51ef1-fef8-4d68-acbd-d7003b2d6b5c" name="Default" comment="Merge branch 'formalbranch' of http://192.168.100.25/jishitong/IM into libsunlinsong&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/misc.xml&#10;&#9;platforms/android/.idea/workspace.xml&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -57,19 +52,19 @@
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6989247">
-              <caret line="862" column="47" selection-start-line="862" selection-start-column="47" selection-end-line="862" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.58590853">
+              <caret line="885" column="60" selection-start-line="885" selection-start-column="60" selection-end-line="885" selection-end-column="60" />
               <folding>
                 <element signature="e#30306#30903#0" expanded="true" />
                 <element signature="e#30902#30903#0" expanded="true" />
                 <element signature="e#31161#32160#0" expanded="true" />
                 <element signature="e#32159#32160#0" expanded="true" />
-                <element signature="e#32588#33195#0" expanded="true" />
-                <element signature="e#32853#33153#0" expanded="true" />
-                <element signature="e#33152#33153#0" expanded="true" />
-                <element signature="e#33194#33195#0" expanded="true" />
-                <element signature="e#33618#33864#0" expanded="true" />
-                <element signature="e#33863#33864#0" expanded="true" />
+                <element signature="e#32588#33192#0" expanded="true" />
+                <element signature="e#32853#33150#0" expanded="true" />
+                <element signature="e#33149#33150#0" expanded="true" />
+                <element signature="e#33191#33192#0" expanded="true" />
+                <element signature="e#33615#33941#0" expanded="true" />
+                <element signature="e#33940#33941#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2379,7 +2374,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27796236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27796236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.019933555" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2935,19 +2930,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6989247">
-          <caret line="862" column="47" selection-start-line="862" selection-start-column="47" selection-end-line="862" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.58590853">
+          <caret line="885" column="60" selection-start-line="885" selection-start-column="60" selection-end-line="885" selection-end-column="60" />
           <folding>
             <element signature="e#30306#30903#0" expanded="true" />
             <element signature="e#30902#30903#0" expanded="true" />
             <element signature="e#31161#32160#0" expanded="true" />
             <element signature="e#32159#32160#0" expanded="true" />
-            <element signature="e#32588#33195#0" expanded="true" />
-            <element signature="e#32853#33153#0" expanded="true" />
-            <element signature="e#33152#33153#0" expanded="true" />
-            <element signature="e#33194#33195#0" expanded="true" />
-            <element signature="e#33618#33864#0" expanded="true" />
-            <element signature="e#33863#33864#0" expanded="true" />
+            <element signature="e#32588#33192#0" expanded="true" />
+            <element signature="e#32853#33150#0" expanded="true" />
+            <element signature="e#33149#33150#0" expanded="true" />
+            <element signature="e#33191#33192#0" expanded="true" />
+            <element signature="e#33615#33941#0" expanded="true" />
+            <element signature="e#33940#33941#0" expanded="true" />
           </folding>
         </state>
       </provider>
