@@ -51,6 +51,11 @@ angular.module('message.controllers', [])
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
 
+    //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isYuYin='false';
+    //默认不展示语音居中框
+    $scope.isShow='false';
+    $scope.isshowless ='false';
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -69,6 +74,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[位置]";//最后一条消息内容
                 }else if(data[0].messagetype === "File"){
                   $scope.lastText = "[文件]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Audio'){
+                  $scope.lastText = "[语音]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -192,6 +199,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -991,6 +1000,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1113,6 +1124,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1306,7 +1319,249 @@ angular.module('message.controllers', [])
       })
     });
 
-    $scope.$on('$ionicView.afterLeave', function () {
+
+      /**
+       * 点击语音按钮触发事件
+       */
+      $scope.clickOn=function () {
+        $scope.isYuYin="true";
+      }
+
+      /**
+       * 点击键盘触发事件
+       */
+      $scope.clickOnChange=function () {
+        $scope.isYuYin="false";
+        $scope.isShow='false';
+      }
+
+
+
+    var MIN_SOUND_TIME = 800;
+    var recorder = null;
+    var startTimestamp = null;
+    var stopTimestamp = null;
+    var stopTimer = null;
+    var recordCancel = false;
+
+    var soundAlert = document.getElementById("sound-alert");
+    var audioTips = document.getElementById("audio-tips");
+    // 控制录音弹出框是否播放
+    var setSoundAlertVisable=function(show){
+      if(show){
+        soundAlert.style.display = 'block';
+        soundAlert.style.opacity = 1;
+      }else{
+        soundAlert.style.opacity = 0;
+        //  完成再真正隐藏
+        setTimeout(function(){
+          soundAlert.style.display = 'none';
+        },200);
+      }
+    };
+
+
+
+    /**
+     * 录音语音文件转base64字符串
+     * @param {Object} path
+     */
+    $scope.Audio2dataURL =function(path) {
+      plus.io.resolveLocalFileSystemURL(path, function(entry){
+        entry.file(function(file){
+          var reader = new plus.io.FileReader();
+          reader.onloadend = function (e) {
+            console.log(e.target.result);
+          };
+          reader.readAsDataURL(file);
+        },function(e){
+          mui.toast("读写出现异常: " + e.message );
+        })
+      })
+    }
+
+    /**
+     * base64字符串转成语音文件(参考http://ask.dcloud.net.cn/question/16935)
+     * @param {Object} base64Str
+     * @param {Object} callback
+     */
+    $scope.dataURL2Audio =function (base64Str, callback) {
+      var base64Str = base64Str.replace('data:audio/amr;base64,','');
+      var audioName = (new Date()).valueOf() + '.amr';
+
+      plus.io.requestFileSystem(plus.io.PRIVATE_DOC,function(fs){
+        fs.root.getFile(audioName,{create:true},function(entry){
+          // 获得平台绝对路径
+          var fullPath = entry.fullPath;
+          if(mui.os.android){
+            // 读取音频
+            var Base64 = plus.android.importClass("android.util.Base64");
+            var FileOutputStream = plus.android.importClass("java.io.FileOutputStream");
+            try{
+              var out = new FileOutputStream(fullPath);
+              var bytes = Base64.decode(base64Str, Base64.DEFAULT);
+              out.write(bytes);
+              out.close();
+              // 回调
+              callback && callback(entry);
+            }catch(e){
+              console.log(e.message);
+            }
+          }else if(mui.os.ios){
+            var NSData = plus.ios.importClass('NSData');
+            var nsData = new NSData();
+            nsData = nsData.initWithBase64EncodedStringoptions(base64Str,0);
+            if (nsData) {
+              nsData.plusCallMethod({writeToFile: fullPath,atomically:true});
+              plus.ios.deleteObject(nsData);
+            }
+            // 回调
+            callback && callback(entry);
+          }
+        })
+      })
+    }
+
+
+
+      /**
+       * 长按语音按钮触发事件
+       */
+      $scope.showYuyin=function (messagetype,sqlid) {
+        $scope.isShow='true';
+        $scope.isshowless='false';
+        $scope.recordTime = 0;
+        $scope.ctime = 0;
+        $scope.rate = 0;
+        $mqtt.startRecording(function (succ) {
+          $scope.type=succ.type;
+          // alert("type--->"+$scope.type);
+          if($scope.type === "timeChange"){
+            $scope.recordTime=succ.recordTime;
+          }else if($scope.type === "timeout"){
+            $scope.ctime=succ.time;
+            // alert("超过59秒======》"+$scope.ctime);
+            $timeout(function () {
+              $scope.isShow='false';
+              // $scope.isshowless='false';
+            }, 100);
+            $scope.recordTime = 0;
+            $scope.rate = 0;
+          }else if($scope.type === "rateChange"){
+            $scope.rate=succ.rate;
+            // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+          }else if($scope.type === "error"){
+            $scope.error=succ.error;
+          }
+        },function (err) {
+
+        });
+        // alert("show"+$scope.isShow);
+        // recordCancel = false;
+        // if(stopTimer)clearTimeout(stopTimer);
+        //
+        // audioTips.innerHTML = "手指上划，取消发送";
+        // soundAlert.classList.remove('rprogress-sigh');
+        // setSoundAlertVisable(true);
+        //
+        // // 获取当前设备的录音对象
+        // recorder = plus.audio.getRecorder();
+        // startTimestamp = (new Date()).getTime();
+        //
+        // alert("supportedFormats:"+JSON.stringify(recorder.supportedFormats));
+        // recorder.record({
+        //   format: "amr",
+        //   filename: "_doc/audio/"
+        // }, function (path) {
+        //   if (recordCancel) return;
+        //   alert("path:"+path);
+        //   $scope.Audio2dataURL(path);
+        // }, function ( e ) {
+        //   mui.toast("录音出现异常: " + e.message );
+        // });
+      }
+
+    /**
+     * 松开语音按钮触发事件
+     */
+    // 'Audio',userId,send_content, userId,localusr,myUserID,_id,groupType
+    $scope.releaseYuyin=function (messagetype,sqlid) {
+      // alert("松手后语音传参："+messagetype+$scope.userId+"======"+$scope.myUserID+"-----------"+$scope.localusr+$scope.groupType);
+      //若录取的时间小于1s
+      //当录取的时间大于1s小于60s时，给一个标志符
+      // $scope.isyuyinshow="true";
+      if ($scope.recordTime  <1000){
+        $scope.isshowless='true';
+        $scope.recordTime = 0;
+        $scope.rate = 0;
+      }
+      $mqtt.stopRecording(function (succ) {
+        $scope.rate=-1;
+        $scope.filepath=succ.filePath;
+        $scope.duration=succ.duration;
+        if($scope.duration <1000){
+          $scope.recordTime = 0;
+          $scope.rate = 0;
+          $scope.isshowless='true';
+        }else{
+          $scope.isshowless='false';
+          // alert("秒："+$scope.duration);
+          //发送语音
+          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+          $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+            $greendao.getUUID(function (data) {
+              sqlid=data;
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 100);
+              keepKeyboardOpen();
+            });
+          },function (err) {
+          });
+        }
+        $timeout(function () {
+          $scope.isShow='false';
+          $scope.isshowless='false';
+        }, 1000);
+      },function (err) {
+
+      });
+    }
+
+    /**
+     * 播放语音
+     */
+    $scope.islisten='false';
+    $scope.audioid='';
+    $scope.showanimation=function (filepath,sqlid) {
+      //判断id是否一致，若一致则判断标志位；若不一致，则播放
+      // alert("拿到的id"+sqlid);
+      if($scope.audioid != sqlid){
+        $scope.islisten='true';
+      }else{
+        if($scope.islisten === 'false'){
+          $scope.islisten= 'true';
+        }else{
+          $scope.islisten= 'false';
+        }
+      }
+      $scope.audioid=sqlid;
+      if($scope.islisten === 'true'){
+        // alert("播放语音啦");
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), null, null);
+      }else{
+        $mqtt.stopPlayRecord(function (data) {
+        },function (err) {
+        });
+      }
+
+      // $scope.isshowaudio='true';
+      // $scope.numlist=[{no:1},{no:2},{no:3}];
+
+    }
+
+      $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
       /**
@@ -1336,6 +1591,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1459,6 +1716,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1619,6 +1878,11 @@ angular.module('message.controllers', [])
     $scope.myUserID = $rootScope.rootUserId;
 
 
+    // //将是否为点击语音的动作初始化为false(键盘)
+    // $scope.isYuYin='false';
+    // //默认不展示语音居中框
+    // $scope.isShow='false';
+
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageGroup/'+$scope.groupid+'/'+$scope.chatname+'/'+$scope.grouptype+'/'+$scope.ismygroup)){
         // alert("准备离开qun聊详情界面");
@@ -1637,6 +1901,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[位置]";//最后一条消息内容
                 }else if(data[0].messagetype === "File"){
                   $scope.lastText = "[文件]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Audio'){
+                  $scope.lastText = "[语音]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -1750,6 +2016,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2215,6 +2483,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2327,6 +2597,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -2602,6 +2874,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2715,6 +2989,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -3176,6 +3452,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[位置]";//最后一条消息内容
               }else if(data[0].messagetype === "File"){
                 $scope.lastText = "[文件]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Audio'){
+                $scope.lastText = "[语音]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -3298,6 +3576,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[位置]";//最后一条消息内容
             }else if(data[0].messagetype === "File"){
               $scope.lastText = "[文件]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Audio'){
+              $scope.lastText = "[语音]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }

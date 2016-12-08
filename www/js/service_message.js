@@ -543,7 +543,7 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         //alert("图片类型"+type);
-        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
+        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio') {
           messageDetail.message = messageDetail.message + '###0';
         }
         var fileIsImage = "File";
@@ -575,6 +575,7 @@ angular.module('message.services', [])
           msgDetail = qunliao[qunliao.length - 1];
         }*/
         $api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
+          // $ToastUtils.showToast(fileContent, null, null);
           var msgDetail = sdata[3];
           msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
@@ -653,7 +654,7 @@ angular.module('message.services', [])
             msgDetail.message = newMsg;
             mqtt.sendMsg(topic, msgDetail, function (message) {
               // alert("发了几次是几次");
-              // alert("发送图片成功前数组长度"+danliao.length);
+              // alert("发送图片成功前数组长度"+danliao.length+"========="+content);
               if (type === 'User') {
                 $mqtt.updateDanliao(message);
               } else {
@@ -662,24 +663,30 @@ angular.module('message.services', [])
               // message.isSuccess='true';
               //alert("message"+message)
 
-              var savefilepic={};
-              savefilepic.filepicid=sdata[1];
-              savefilepic._id=msgDetail._id;
-              savefilepic.from="true";
-              savefilepic.sessionid=id;
-              savefilepic.fromname=localuser;
-              savefilepic.toname="你好"
-              savefilepic.smallurl=sdata[0];
-              savefilepic.bigurl=sdata[0];
-              savefilepic.bytesize=content.split('###')[1];
-              savefilepic.megabyte=content.split('###')[2];
-              savefilepic.filename=content.split('###')[3];
-              if(sendType=="F"){
-                savefilepic.type="file";
-              }else if(sendType=="I"){
-                savefilepic.type="image";
+              if (msgDetail.messagetype != 'Audio') {
+                var savefilepic = {};
+                savefilepic.filepicid = sdata[1];
+                savefilepic._id = msgDetail._id;
+                savefilepic.from = "true";
+                savefilepic.sessionid = id;
+                savefilepic.fromname = localuser;
+                savefilepic.toname = "你好"
+                savefilepic.smallurl = sdata[0];
+                savefilepic.bigurl = sdata[0];
+                savefilepic.bytesize = content.split('###')[1];
+                savefilepic.megabyte = content.split('###')[2];
+                // alert("语音文件大小" + savefilepic.megabyte);
+                savefilepic.filename = content.split('###')[3];
+                if (sendType == "F") {
+                  savefilepic.type = "file";
+                } else if (sendType == "I") {
+                  savefilepic.type = "image";
+                }
+                savefilepic.when = 0;
+                $greendao.saveObj("FilePictureService", savefilepic, function (data) {
+                }, function (err) {
+                })
               }
-              savefilepic.when=0;
               // danliao.push(message);
               // alert("发送图片成功后数组长度"+danliao.length);
               $greendao.saveObj('MessagesService',message,function (data) {
@@ -687,9 +694,6 @@ angular.module('message.services', [])
               },function (err) {
               });
 
-              $greendao.saveObj("FilePictureService",savefilepic,function (data) {
-              },function (err) {
-              })
               $rootScope.firstSendId=message.sessionid;
               return "成功";
             },function (message) {
@@ -825,12 +829,14 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){       //消息模块
-            if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
+            if (message.messagetype === "Image" || message.messagetype === "File" || message.messagetype === "Audio") {   //文件或者图片
               var objectTP = 'I';
               if (message.messagetype === "Image") {
                 objectTP = 'I';
               } else if(message.messagetype === "File") {
                 objectTP = 'F';
+              } else if (message.messagetype === "Audio") {
+                objectTP = 'A';
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
@@ -873,7 +879,7 @@ angular.module('message.services', [])
 
                 });
 
-            } else if(objectTP === 'I'){        //当发送消息的为图片时
+            } else if(objectTP === 'I' || objectTP === 'A'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
@@ -889,30 +895,32 @@ angular.module('message.services', [])
                       $rootScope.$broadcast('msgs.update');
                     }
 
-                    var arrivepic={};
-                    arrivepic.filepicid=arriveMessage.message.split('###')[0];
-                    arrivepic._id=arriveMessage._id;
-                    arrivepic.from="false";
-                    arrivepic.sessionid=arriveMessage.sessionid;
-                    arrivepic.fromname=arriveMessage.username;
-                    arrivepic.toname="";
-                    arrivepic.smallurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bigurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bytesize=arriveMessage.message.split('###')[2];
-                    arrivepic.megabyte=arriveMessage.message.split('###')[3];
-                    arrivepic.filename=arriveMessage.message.split('###')[4];
-                    if(arriveMessage.messagetype=="Image"){
-                      arrivepic.type="image";
-                    }else if(arriveMessage.messagetype=="File"){
-                      arrivepic.type="file";
+                    if (arriveMessage.messagetype!="Audio") {
+                      var arrivepic={};
+                      arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                      arrivepic._id=arriveMessage._id;
+                      arrivepic.from="false";
+                      arrivepic.sessionid=arriveMessage.sessionid;
+                      arrivepic.fromname=arriveMessage.username;
+                      arrivepic.toname="";
+                      arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                      arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                      arrivepic.filename=arriveMessage.message.split('###')[4];
+                      if(arriveMessage.messagetype=="Image"){
+                        arrivepic.type="image";
+                      }else if(arriveMessage.messagetype=="File"){
+                        arrivepic.type="file";
+                      }
+                      arrivepic.when=0;
+
+                      $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                      },function (err) {
+
+                      });
                     }
-                    arrivepic.when=0;
-
-                    $greendao.saveObj("FilePictureService",arrivepic,function (data) {
-
-                    },function (err) {
-
-                    });
                   }
 
                 }, function (err) {
@@ -1410,6 +1418,18 @@ angular.module('message.services', [])
       },
       setExitStartedStatus:function() {//改变登录状态为未登录
         mqtt.setExitStartedStatus();
+      },
+      startRecording:function(success, error) {//开始录音
+        mqtt.startRecording(success, error);
+      },
+      stopRecording:function(success, error) {//结束录音
+        mqtt.stopRecording(success, error);
+      },
+      playRecord:function(fileName,success, error) {//播放录音
+        mqtt.playRecord(fileName,success, error);
+      },
+      stopPlayRecord:function(success, error) {//停止播放录音
+        mqtt.stopPlayRecord(success, error);
       }
 
 
