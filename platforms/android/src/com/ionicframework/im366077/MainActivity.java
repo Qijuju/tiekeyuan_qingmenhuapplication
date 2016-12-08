@@ -33,7 +33,7 @@ import android.text.format.Formatter;
 
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
@@ -64,6 +64,9 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        //默认是听筒模式
+        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+        UIUtils.switchEarphone(this, !proxyMode);
 
         //传感器
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

@@ -860,8 +860,8 @@ public class MqttChat extends CordovaPlugin {
         try {
             final String playVoiceName = args.getString(0);
             File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
-            //获取当前距离感应器设置信息
-            final boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", true);
+            //获取当前距离感应器设置信息（true为正常模式，false为听筒模式）
+            final boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
             if (file.exists()) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -939,7 +939,7 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
-        setResult(SPUtils.getBoolean("set_proxy_mode", true) ? 0 : 1, PluginResult.Status.OK, callbackContext);
+        setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
     }
 
     public static MType getType(String type) {
