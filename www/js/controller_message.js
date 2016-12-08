@@ -1580,6 +1580,29 @@ angular.module('message.controllers', [])
 
     }
 
+
+
+    /**
+     * 单聊扬声器和听筒模式切换
+     */
+    $scope.showsingletingtong='false';
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.showsingletingtong='true';
+      }else{
+        $scope.showsingletingtong='false';
+      }
+    })
+    $scope.openSingleYangshengqiMode=function () {
+      $mqtt.setProxyMode(0);
+      $scope.showsingleTingtong='true';
+    }
+
+    $scope.openSingleTingtongMode=function () {
+      $mqtt.setProxyMode(1);
+      $scope.showsingleTingtong ='false';
+    }
+
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
@@ -3323,6 +3346,28 @@ angular.module('message.controllers', [])
     }
 
 
+    $scope.showTingtong='false';
+    /**
+     * 扬声器与听筒模式切换
+     */
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.showTingtong='true';
+      }else{
+        $scope.showTingtong='false';
+      }
+    })
+
+    $scope.openYangshengqiMode=function () {
+      $mqtt.setProxyMode(0);
+      $scope.showTingtong='true';
+    }
+
+
+    $scope.openTingtongMode=function () {
+      $mqtt.setProxyMode(1);
+      $scope.showTingtong ='false';
+    }
 
 
     //点击定位，跳转查询位置界面

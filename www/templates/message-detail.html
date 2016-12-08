@@ -8,8 +8,8 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-volume-medium" ></button>
-      <!--<button class="button button-icon icon ion-headphone"></button>-->
+      <button class="button button-icon icon ion-volume-medium"  ng-show="showsingletingtong ==='false'" ng-click="openSingleYangshengqiMode();"></button>
+      <button class="button button-icon icon ion-headphone" ng-show="showsingletingtong !='false'" ng-click="openSingleTingtongMode();"></button>
       <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
     </ion-nav-buttons>
 
