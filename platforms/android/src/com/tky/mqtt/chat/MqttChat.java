@@ -860,6 +860,8 @@ public class MqttChat extends CordovaPlugin {
         try {
             final String playVoiceName = args.getString(0);
             File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
+            //获取当前距离感应器设置信息
+            final boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", true);
             if (file.exists()) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -874,16 +876,20 @@ public class MqttChat extends CordovaPlugin {
                         mSensorReceiver.setOnProxyChangeListener(new ProxySensorReceiver.OnProxyChangeListener() {
                             @Override
                             public void onEarphoneMode() {//由正常模式切换为听筒模式
-                                RecorderManager.getInstance(cordova.getActivity()).pause();
-                                UIUtils.switchEarphone(cordova.getActivity(), true);
-                                RecorderManager.getInstance(cordova.getActivity()).resume();
+                                if (proxyMode) {
+                                    RecorderManager.getInstance(cordova.getActivity()).pause();
+                                    UIUtils.switchEarphone(cordova.getActivity(), true);
+                                    RecorderManager.getInstance(cordova.getActivity()).resume();
+                                }
                             }
 
                             @Override
                             public void onNormalMode() {//由听筒模式切换为正常模式
-                                RecorderManager.getInstance(cordova.getActivity()).pause();
-                                UIUtils.switchEarphone(cordova.getActivity(), false);
-                                RecorderManager.getInstance(cordova.getActivity()).resume();
+                                if (proxyMode) {
+                                    RecorderManager.getInstance(cordova.getActivity()).pause();
+                                    UIUtils.switchEarphone(cordova.getActivity(), false);
+                                    RecorderManager.getInstance(cordova.getActivity()).resume();
+                                }
                             }
                         });
                     }
