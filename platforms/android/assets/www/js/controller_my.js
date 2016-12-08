@@ -28,7 +28,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
       $api.getHeadPic($scope.UserID,"60",function (srcurl) {
         $scope.picyoumeiyou=true;
-        alert(srcurl)
+        // alert(srcurl)
         $scope.$apply(function () {
           $scope.securlpic=srcurl;
         })
@@ -39,6 +39,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.picyoumeiyou=false;
         // alert("没有")
       })
+
+
 
     }, function (msg) {
       // $ToastUtils.showToast(msg)
@@ -372,7 +374,15 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
+              $mqtt.save('pwdgesture', "");
+              $mqtt.save('namegesture', "");
+              $mqtt.save('historyusername', "");
+              $mqtt.save('userNamea', "");
+              $mqtt.save('loginpage', "passwordlogin");
               $mqtt.save('passlogin', "0");
+              $mqtt.save('gesturePwd', "");//存
+              $mqtt.save('remPwd', "");
+              $mqtt.save('pwd', "");
               $state.go("login");
             }, function (message) {
               $ToastUtils.showToast(message);
@@ -695,7 +705,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
     //在线升级
     $scope.zaixianshengji = function () {
-      $mqtt.save('install_cancel', 'false');
+      $mqtt.save('local_versionname', '');
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
   })

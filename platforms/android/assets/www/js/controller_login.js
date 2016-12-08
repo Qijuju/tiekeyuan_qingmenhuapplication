@@ -227,7 +227,6 @@ angular.module('login.controllers', [])
   })
 
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
-
     document.getElementById("imgaaa").style.height=(window.screen.height)+'px';
     var passworda="";
     var loginpageaa=""
@@ -235,13 +234,6 @@ angular.module('login.controllers', [])
     var pwdgesturea=""
     var namegesturea=""
 
-    $http.get('http://61.237.239.152:8080/Im_Interface/loginpic/download?Id=0').success(function (data) {
-      //业务处理
-     alert("成功")
-    }).error(function (error) {
-      //业务处理
-      alert("失败")
-    })
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -250,6 +242,21 @@ angular.module('login.controllers', [])
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
+
+      mqtt.getString('welcomePic', function (picurl) {
+        if(picurl==""||picurl==null||picurl.length==0){
+          $scope.$apply(function () {
+            $scope.securlpic="img/im1.png";
+          })
+        }else {
+          $scope.$apply(function () {
+            $scope.securlpic=picurl;
+          })
+        }
+      }, function (msg) {
+        // $ToastUtils.showToast("还未设置手势密码");
+      });
+
       mqtt.getString('loginpage', function (loginpagea) {
         loginpageaa=loginpagea;
       }, function (msg) {
@@ -350,6 +357,7 @@ angular.module('login.controllers', [])
         mqtt.getUserId(function (userID) {
 
           $rootScope.rootUserId = userID;
+
           // alert("当前用户的id"+userID);
         }, function (err) {
 

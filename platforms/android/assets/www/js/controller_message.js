@@ -3030,6 +3030,13 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
+    $api.getWelcomePic($scope.ID,"960",function (srcurl) {
+      $mqtt.save('welcomePic', srcurl);
+      // $ToastUtils.showToast(srcurl)
+    },function (error) {
+      $ToastUtils.showToast(error)
+    })
+
     if ($mqtt.isLogin()) {
       // alert($mqtt.isLogin());
       $mqtt.getMqtt().getMyTopic(function (msg) {
@@ -4636,8 +4643,8 @@ angular.module('message.controllers', [])
     $scope.groupid = $stateParams.id;
     // $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
-    // alert($scope.groupid)
-    // alert($scope.grouptype)
+    alert($scope.groupid)
+    alert($scope.grouptype)
     if($scope.grouptype=="Group"){
       $scope.grouptype="G"
     }
