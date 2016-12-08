@@ -1512,15 +1512,13 @@ angular.module('message.controllers', [])
             $greendao.getUUID(function (data) {
               sqlid=data;
               $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
-              $timeout(function () {
-                viewScroll.scrollBottom();
-              }, 100);
               keepKeyboardOpen();
             });
           },function (err) {
           });
         }
         $timeout(function () {
+          viewScroll.scrollBottom();
           $scope.isShow='false';
           $scope.isshowless='false';
         }, 1000);
@@ -1534,32 +1532,46 @@ angular.module('message.controllers', [])
      */
     $scope.islisten='false';
     $scope.audioid='';
+    $scope.isshowgif='false';
     $scope.showanimation=function (filepath,sqlid) {
       //判断id是否一致，若一致则判断标志位；若不一致，则播放
       // alert("拿到的id"+sqlid);
       if($scope.audioid != sqlid){
+        $scope.isshowgif='true';
         $scope.islisten='true';
       }else{
         if($scope.islisten === 'false'){
+          $scope.isshowgif='true';
           $scope.islisten= 'true';
         }else{
+          $scope.isshowgif='false';
           $scope.islisten= 'false';
         }
       }
       $scope.audioid=sqlid;
       if($scope.islisten === 'true'){
-        $scope.isshowgif='true';
         // alert("播放语音啦");
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.audioid='';
         }, function (err) {
+          $scope.isshowgif='false';
+          $scope.islisten='false';
+          $scope.audioid='';
           $ToastUtils.showToast(err,null,null);
         });
 
       }else{
         $mqtt.stopPlayRecord(function (data) {
+          $scope.isshowgif='false';
+          $scope.islisten='false';
+          $scope.audioid='';
+          $scope.islisten='false';
         },function (err) {
+          $scope.isshowgif='false';
+          $scope.islisten='false';
+          $scope.audioid='';
         });
       }
 

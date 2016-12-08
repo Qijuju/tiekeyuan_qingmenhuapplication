@@ -860,7 +860,7 @@ public class MqttChat extends CordovaPlugin {
                         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
-                                setResult("true", PluginResult.Status.ERROR, callbackContext);
+                                setResult("true", PluginResult.Status.OK, callbackContext);
                             }
                         });
                     }
@@ -883,6 +883,7 @@ public class MqttChat extends CordovaPlugin {
             @Override
             public void run() {
                 try {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
                     RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
                 } catch (Exception e) {}
             }
