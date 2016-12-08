@@ -831,7 +831,8 @@ public class MqttChat extends CordovaPlugin {
                 final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
                 try {
                     manager.stopRecord();
-                } catch (Exception e){}
+                } catch (Exception e) {
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -910,6 +911,29 @@ public class MqttChat extends CordovaPlugin {
                 } catch (Exception e) {}
             }
         });
+    }
+
+    /**
+     * 设置距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void setProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            int proxyMode = args.getInt(0);
+            SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        setResult(SPUtils.getBoolean("set_proxy_mode", true) ? 0 : 1, PluginResult.Status.OK, callbackContext);
     }
 
     public static MType getType(String type) {
