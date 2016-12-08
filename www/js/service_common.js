@@ -254,7 +254,7 @@ angular.module('common.services', [])
                 var confirmPopup = $ionicPopup.confirm({
                   title: '版本升级',
                   template: versionDesc, //从服务端获取更新的内容
-                  cancelText: '取消',
+                  cancelText: '忽略',
                   okText: '升级'
                 });
 
@@ -265,7 +265,8 @@ angular.module('common.services', [])
                       targetPath = msg;
                       api.installApk(targetPath, function (success) {
                         // 成功
-                        $mqtt.save('local_versionname', "");
+                        $mqtt.save('local_versionname', versionName);
+
                       }, function (err) {
                         // 错误
                         $mqtt.save('local_versionname', "");
