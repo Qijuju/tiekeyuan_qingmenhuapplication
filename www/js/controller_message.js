@@ -1427,9 +1427,12 @@ angular.module('message.controllers', [])
       /**
        * 长按语音按钮触发事件
        */
-      $scope.showYuyin=function () {
+      $scope.showYuyin=function (messagetype,sqlid) {
         $scope.isShow='true';
         $scope.isshowless='false';
+        $scope.recordTime = 0;
+        $scope.ctime = 0;
+        $scope.rate = 0;
         $mqtt.startRecording(function (succ) {
           $scope.type=succ.type;
           // alert("type--->"+$scope.type);
@@ -1437,6 +1440,13 @@ angular.module('message.controllers', [])
             $scope.recordTime=succ.recordTime;
           }else if($scope.type === "timeout"){
             $scope.ctime=succ.time;
+            // alert("超过59秒======》"+$scope.ctime);
+            $timeout(function () {
+              $scope.isShow='false';
+              // $scope.isshowless='false';
+            }, 100);
+            $scope.recordTime = 0;
+            $scope.rate = 0;
           }else if($scope.type === "rateChange"){
             $scope.rate=succ.rate;
             // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
@@ -1480,11 +1490,18 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
+      if ($scope.recordTime  <1000){
+        $scope.isshowless='true';
+        $scope.recordTime = 0;
+        $scope.rate = 0;
+      }
       $mqtt.stopRecording(function (succ) {
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
         if($scope.duration <1000){
+          $scope.recordTime = 0;
+          $scope.rate = 0;
           $scope.isshowless='true';
         }else{
           $scope.isshowless='false';

@@ -65,6 +65,7 @@ public class RecorderManager {
     private MediaPlayer player;
     private String playVoiceName;
     private int[] amps;
+    private int currentPausePosition;
 
     /**
      * 私有化构造器
@@ -329,11 +330,23 @@ public class RecorderManager {
     //********************* 录音相关方法结束 END *********************
 
     //********************* 录音播放相关方法开始 START *********************
+
+    /**
+     * 播放之前要初始化播放器
+     */
+    public void initPlayer() {
+        //初始化currentPausePosition
+        currentPausePosition = 0;
+    }
+
     /**
      * 播放录音
      * @param playVoiceName 录音文件的名称（仅仅是名称，具体路径在该方法中补全）
      */
     public MediaPlayer playRecord(String playVoiceName) {
+        //初始化播放器
+        initPlayer();
+
         this.playVoiceName = playVoiceName;
         if (player == null) {
             player = new MediaPlayer();
@@ -354,6 +367,32 @@ public class RecorderManager {
             e.printStackTrace();
         }
         return player;
+    }
+
+    /**
+     * 暂停
+     */
+    public void pause() {
+        try {
+            if (player != null && player.isPlaying()) {
+                currentPausePosition = player.getCurrentPosition() - 100;
+                currentPausePosition = (currentPausePosition > 0 ? currentPausePosition : 0);
+                player.pause();
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 恢复播放
+     */
+    public void resume() {
+        try {
+            if (player != null && !player.isPlaying()) {
+                player.seekTo(currentPausePosition);
+                player.start();
+            }
+        } catch (Exception e){}
     }
 
     /**
