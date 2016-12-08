@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bed7885a-dbab-4e26-bcbb-38d51cd2de2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3">
-              <caret line="2870" column="13" selection-start-line="2870" selection-start-column="13" selection-end-line="2870" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.4125">
+              <caret line="2873" column="32" selection-start-line="2873" selection-start-column="32" selection-end-line="2873" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2426,7 +2425,13 @@
       <option name="project" value="LOCAL" />
       <updated>1481159282831</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="合并代码">
+      <created>1481159294084</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1481159294084</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3010,8 +3015,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3">
-          <caret line="2870" column="13" selection-start-line="2870" selection-start-column="13" selection-end-line="2870" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.4125">
+          <caret line="2873" column="32" selection-start-line="2873" selection-start-column="32" selection-end-line="2873" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
