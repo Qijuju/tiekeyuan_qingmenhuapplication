@@ -28,6 +28,7 @@ import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
+import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -78,6 +79,10 @@ public class MqttChat extends CordovaPlugin {
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
     private MqttReceiver mqttReceiver;
+    /**
+     * 距离传感器改变时收到的Receiver
+     */
+    private ProxySensorReceiver mSensorReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -116,6 +121,8 @@ public class MqttChat extends CordovaPlugin {
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_SUCCESS);
         UIUtils.getContext().registerReceiver(topicReceiver, topicFilter);
 
+        //距离传感器改变时收到的Receiver
+        mSensorReceiver = ProxySensorReceiver.getInstance();
     }
 
     @Override
@@ -824,7 +831,8 @@ public class MqttChat extends CordovaPlugin {
                 final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
                 try {
                     manager.stopRecord();
-                } catch (Exception e){}
+                } catch (Exception e) {
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -856,11 +864,26 @@ public class MqttChat extends CordovaPlugin {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        MediaPlayer player = RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                        final MediaPlayer player = RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
                         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
                                 setResult("true", PluginResult.Status.OK, callbackContext);
+                            }
+                        });
+                        mSensorReceiver.setOnProxyChangeListener(new ProxySensorReceiver.OnProxyChangeListener() {
+                            @Override
+                            public void onEarphoneMode() {//由正常模式切换为听筒模式
+                                RecorderManager.getInstance(cordova.getActivity()).pause();
+                                UIUtils.switchEarphone(cordova.getActivity(), true);
+                                RecorderManager.getInstance(cordova.getActivity()).resume();
+                            }
+
+                            @Override
+                            public void onNormalMode() {//由听筒模式切换为正常模式
+                                RecorderManager.getInstance(cordova.getActivity()).pause();
+                                UIUtils.switchEarphone(cordova.getActivity(), false);
+                                RecorderManager.getInstance(cordova.getActivity()).resume();
                             }
                         });
                     }
@@ -888,6 +911,29 @@ public class MqttChat extends CordovaPlugin {
                 } catch (Exception e) {}
             }
         });
+    }
+
+    /**
+     * 设置距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void setProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            int proxyMode = args.getInt(0);
+            SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        setResult(SPUtils.getBoolean("set_proxy_mode", true) ? 0 : 1, PluginResult.Status.OK, callbackContext);
     }
 
     public static MType getType(String type) {

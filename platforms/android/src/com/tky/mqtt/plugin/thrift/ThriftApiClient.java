@@ -2253,7 +2253,8 @@ public class ThriftApiClient extends CordovaPlugin {
                 if (dirFile != null && !dirFile.exists()) {
                     dirFile.mkdirs();
                 }
-                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+                nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
                 ;
                 file = new File(nowSavePath);
                 if (!file.exists()) {
@@ -2675,7 +2676,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         String tempPicName = null;
                                         if (result.result) {
                                             System.out.println("获取图片成功");
-                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img";
+                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img" + File.separator + UUID.randomUUID().toString();
                                             RandomAccessFile baf = null;
                                             File directory = new File(tempUserPic);
                                             if (!directory.exists()) {
@@ -2689,11 +2690,13 @@ public class ThriftApiClient extends CordovaPlugin {
                                                 tempFile.createNewFile();
                                             baf = new RandomAccessFile(tempFile, "rw");
                                             baf.seek(offset);
+                                            String finalMessage = message;
+                                            finalMessage = message.split("###")[0] + "###" + tempPicName + "###" + message.substring(message.indexOf("###", message.indexOf("###") + 1), message.length());
                                             while (true) {
                                                 int length = result.fileByte.limit() - result.fileByte.position();
                                                 baf.getChannel().write(result.fileByte);
                                                 if (result.isFinish) {
-                                                    msg.put("message", message + "###" + 100);
+                                                    msg.put("message", finalMessage + "###" + 100);
                                                     setResult(msg, PluginResult.Status.OK, callbackContext);
                                                     break;
                                                 }
@@ -2708,7 +2711,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                                 }
                                                 float progressF = (result.getOffset()) * 1.0f / fileSize * 100;
                                                 int progress = Math.round(progressF);
-                                                msg.put("message", message + "###" + progress);
+                                                msg.put("message", finalMessage + "###" + progress);
                                                 setResult(msg, PluginResult.Status.OK, callbackContext);
                                             }
                                             try {

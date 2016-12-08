@@ -22,6 +22,10 @@ package com.ionicframework.im366077;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,8 +33,10 @@ import android.text.format.Formatter;
 
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
+import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
@@ -40,7 +46,7 @@ import org.apache.cordova.CordovaActivity;
 
 import java.io.File;
 
-public class MainActivity extends CordovaActivity
+public class MainActivity extends CordovaActivity implements SensorEventListener
 {
     /**
      * 打开文件管理器请求码
@@ -48,6 +54,8 @@ public class MainActivity extends CordovaActivity
     private int FILE_SELECT_CODE = 0x0111;
     private int TAKE_PHOTO_CODE = 0x0104;
     private UserPresentReceiver receiver;
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -56,6 +64,13 @@ public class MainActivity extends CordovaActivity
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+
+        //传感器
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        //拿到距离感应器
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        //注册距离感应器
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         MqttRobot.setIsStarted(false);
 
@@ -121,6 +136,31 @@ public class MainActivity extends CordovaActivity
     }
 
     @Override
+    public void onSensorChanged(SensorEvent event) {
+        float range = event.values[0];
+        //进入正常模式
+        if (range == mSensor.getMaximumRange()) {
+            ProxySensorReceiver.sendProxyMode(true);
+        } else {//进入听筒模式
+            ProxySensorReceiver.sendProxyMode(false);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    protected void onStop() {
+        //注销距离感应器
+        if (mSensorManager != null) {
+            mSensorManager.unregisterListener(this);
+        }
+        super.onStop();
+    }
+
+    @Override
     public void onDestroy() {
         try {
             if (receiver != null) {
@@ -131,4 +171,5 @@ public class MainActivity extends CordovaActivity
         }
         super.onDestroy();
     }
+
 }
