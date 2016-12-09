@@ -8,6 +8,8 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
+      <button class="button button-icon icon ion-volume-medium"  ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></button>
+      <button class="button button-icon icon ion-headphone" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></button>
       <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
     </ion-nav-buttons>
 
@@ -146,11 +148,11 @@
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;width: 120px;" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
+            <p class="rj-message" style="margin-left: 14.5%;width: 120px;position:relative;" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
               <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid"/>
               <img src="img/video.gif" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
 
-            </p><span align="center" style="background-color: transparent;position:relative;padding-top: 35px;height: 300px;margin-top: 20px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
+            </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
           </span>
 
         </div>
@@ -240,8 +242,9 @@
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
               <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
-                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <font style="background-color: transparent;margin-left: -30px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
+                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
+              </ion-spinner>
+              <font style="background-color: transparent;margin-left: -35px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
               <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid"/>
               <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
               <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->

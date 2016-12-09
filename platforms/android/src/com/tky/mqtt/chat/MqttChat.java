@@ -928,6 +928,7 @@ public class MqttChat extends CordovaPlugin {
         try {
             int proxyMode = args.getInt(0);
             SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
+            UIUtils.switchEarphone(cordova.getActivity(), proxyMode == 1 ? true : false);
         } catch (JSONException e) {
             e.printStackTrace();
         }

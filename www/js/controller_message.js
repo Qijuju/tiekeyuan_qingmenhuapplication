@@ -1580,6 +1580,36 @@ angular.module('message.controllers', [])
 
     }
 
+
+
+    /**
+     * 单聊扬声器和听筒模式切换
+     */
+    $scope.showsingleTingtong='false';
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.proxyMode='false';
+      }else{
+        $scope.proxyMode='true';
+      }
+      $rootScope.$broadcast('change_proxy_mode.success');
+    })
+    $scope.openSingleYangshengqiMode=function () {
+      $scope.showsingleTingtong='true';
+      $mqtt.setProxyMode(0);
+    }
+
+    $scope.openSingleTingtongMode=function () {
+      $scope.showsingleTingtong ='false';
+      $mqtt.setProxyMode(1);
+    }
+
+    $scope.$on('change_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showsingleTingtong =$scope.proxyMode;
+      })
+    });
+
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
@@ -3170,6 +3200,190 @@ angular.module('message.controllers', [])
       }, function (err) {
       });
     };
+
+
+
+    //初始化
+    //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isGroupYuYin='false';
+    //默认不展示语音居中框
+    $scope.isGroupShow='false';
+    $scope.isGroupshowless ='false';
+
+
+    $scope.groupclickOn=function () {
+      $scope.isGroupYuYin="true";
+    }
+
+    $scope.groupclickOnChange=function () {
+      $scope.isGroupYuYin="false";
+      $scope.isGroupShow='false';
+    }
+
+
+
+    //群聊语音
+    $scope.showGroupYuyin=function (messagetype,sqlid) {
+      $scope.isGroupShow='true';
+      $scope.isGroupshowless='false';
+      $scope.grouprecordTime = 0;
+      $scope.groupctime = 0;
+      $scope.grouprate = 0;
+      $mqtt.startRecording(function (succ) {
+        $scope.type=succ.type;
+        // alert("type--->"+$scope.type);
+        if($scope.type === "timeChange"){
+          $scope.grouprecordTime=succ.recordTime;
+        }else if($scope.type === "timeout"){
+          $scope.groupctime=succ.time;
+          // alert("超过59秒======》"+$scope.ctime);
+          $timeout(function () {
+            $scope.isGroupShow='false';
+            // $scope.isshowless='false';
+          }, 100);
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+        }else if($scope.type === "rateChange"){
+          $scope.grouprate=succ.rate;
+          // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+        }else if($scope.type === "error"){
+          $scope.error=succ.error;
+        }
+      },function (err) {
+
+      });
+    }
+
+
+
+    //释放语音按钮
+    $scope.releaseGroupYuyin=function (messagetype,sqlid) {
+      // alert("松手后语音传参："+messagetype+$scope.groupid+"======"+$scope.myUserID+"-----------"+$scope.localusr+$scope.grouptype);
+      //若录取的时间小于1s
+      //当录取的时间大于1s小于60s时，给一个标志符
+      // $scope.isyuyinshow="true";
+      if ($scope.grouprecordTime  <1000){
+        $scope.isGroupshowless='true';
+        $scope.grouprecordTime = 0;
+        $scope.grouprate = 0;
+      }
+      $mqtt.stopRecording(function (succ) {
+        $scope.grouprate=-1;
+        $scope.filepath=succ.filePath;
+        $scope.duration=succ.duration;
+        if($scope.duration <1000){
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+          $scope.isGroupshowless='true';
+        }else{
+          $scope.isGroupshowless='false';
+          // alert("秒："+$scope.duration);
+          //发送语音
+          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+          $mqtt.getMqtt().getTopic($scope.groupid,$scope.grouptype,function (userTopic) {
+            $greendao.getUUID(function (data) {
+              sqlid=data;
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.groupid,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.grouptype);
+              keepKeyboardOpen();
+            });
+          },function (err) {
+          });
+        }
+        $timeout(function () {
+          viewScroll.scrollBottom();
+          $scope.isGroupShow='false';
+          $scope.isGroupshowless='false';
+        }, 1000);
+      },function (err) {
+
+      });
+    }
+
+
+    /**
+     * 播放语音
+     */
+    $scope.isGrouplisten='false';
+    $scope.groupaudioid='';
+    $scope.isshowGroupgif='false';
+    $scope.showgroupanimation=function (filepath,sqlid) {
+      //判断id是否一致，若一致则判断标志位；若不一致，则播放
+      // alert("拿到的id"+sqlid);
+      if($scope.groupaudioid != sqlid){
+        $scope.isshowGroupgif='true';
+        $scope.isGrouplisten='true';
+      }else{
+        if($scope.isGrouplisten === 'false'){
+          $scope.isshowGroupgif='true';
+          $scope.isGrouplisten= 'true';
+        }else{
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten= 'false';
+        }
+      }
+      $scope.groupaudioid=sqlid;
+      if($scope.isGrouplisten === 'true'){
+        // alert("播放语音啦");
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.groupaudioid='';
+        }, function (err) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.groupaudioid='';
+          $ToastUtils.showToast(err,null,null);
+        });
+
+      }else{
+        $mqtt.stopPlayRecord(function (data) {
+          $scope.isshowGroupgif='false';
+          $scope.groupaudioid='';
+          $scope.isGrouplisten='false';
+        },function (err) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.groupaudioid='';
+        });
+      }
+
+      // $scope.isshowaudio='true';
+      // $scope.numlist=[{no:1},{no:2},{no:3}];
+
+    }
+
+
+    $scope.showTingtong='false';
+    /**
+     * 扬声器与听筒模式切换
+     */
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.groupProxyMode='false';
+      }else{
+        $scope.groupProxyMode='true';
+      }
+      $rootScope.$broadcast('change_group_proxy_mode.success');
+    })
+
+    $scope.openYangshengqiMode=function () {
+      $mqtt.setProxyMode(0);
+      $scope.showTingtong='true';
+    }
+
+
+    $scope.openTingtongMode=function () {
+      $mqtt.setProxyMode(1);
+      $scope.showTingtong ='false';
+    }
+
+    $scope.$on('change_group_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showTingtong =$scope.groupProxyMode;
+      })
+    });
+
+
 
     //点击定位，跳转查询位置界面
     $scope.gogegrouplocation = function (messagetype,topic, chatname, id,localuser,localuserId,sqlid,groupType,ismygroup) {
