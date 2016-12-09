@@ -129,4 +129,7 @@ exports.SetDeptInfo = function(success, error) {//登录成功将部门信息入
 exports.readMessage = function(sessionType, sessionID, sendWhen, success, error) {//确认消息回复
   exec(success, error, "ThriftApiClient", "readMessage", [sessionType,sessionID,sendWhen]);
 };
+exports.getWelcomePic = function(picUserID, picSize, success, error) {
+  exec(success, error, "ThriftApiClient", "getWelcomePic", [picUserID, picSize]);
+};
 });

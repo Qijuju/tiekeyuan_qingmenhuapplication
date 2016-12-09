@@ -318,7 +318,6 @@ public class SystemApi {
         IMFile.AsyncClient fileClient = getFileAsyncClient();
         fileClient.GetHeadPic(ID, userID, picSize, callback);
     }
-
     /**
      * 上传头像
      * @param userID

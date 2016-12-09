@@ -3573,6 +3573,13 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
+    $api.getWelcomePic($scope.ID,"960",function (srcurl) {
+      $mqtt.save('welcomePic', srcurl);
+      // $ToastUtils.showToast(srcurl)
+    },function (error) {
+      $ToastUtils.showToast(error)
+    })
+
     if ($mqtt.isLogin()) {
       // alert($mqtt.isLogin());
       $mqtt.getMqtt().getMyTopic(function (msg) {
@@ -5196,6 +5203,7 @@ angular.module('message.controllers', [])
     $scope.dangqianpage=1;
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID= msg.userID
+      // alert($scope.UserID)
     },function (msg) {
 
     });

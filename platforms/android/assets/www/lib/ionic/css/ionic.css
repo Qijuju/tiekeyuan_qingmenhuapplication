@@ -2952,6 +2952,8 @@
   content: ""; }
 
 .ion-volume-mute:before {
+  height:32px;
+  width:32px;
   content: ""; }
 
 .ion-wand:before {
