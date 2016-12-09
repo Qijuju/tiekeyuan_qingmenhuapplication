@@ -1,6 +1,8 @@
 package com.tky.mqtt.paho.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
@@ -363,11 +365,25 @@ public class RecorderManager {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
             player.prepare();
             player.start();                                           // play the record
+            AudioManager audioManager = (AudioManager) UIUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
+            player.setVolume(currVolume, currVolume);
         }catch (IOException e) {
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         return player;
+    }
+
+    /**
+     * 设置播放声音大小
+     * @param volume
+     */
+    public void setVolume(int volume) {
+        if (player != null) {
+            player.setVolume(volume, volume);
+        }
     }
 
     /**
