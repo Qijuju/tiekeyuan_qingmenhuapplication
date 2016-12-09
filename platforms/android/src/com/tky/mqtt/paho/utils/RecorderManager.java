@@ -6,6 +6,7 @@ import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 
 import java.io.File;
@@ -399,9 +400,16 @@ public class RecorderManager {
      * 停止播放
      */
     public void stopPlayRecord() {
-        if (player != null && player.isPlaying()) {
-            player.stop();
-            player.release();
+        try {
+            if (player != null && player.isPlaying()) {
+                player.stop();
+                player.release();
+            }
+        } catch (Exception e) {
+        } finally {
+            //播放完成恢复距离感应器模式
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            UIUtils.switchEarphone(context, !proxyMode);
         }
     }
 
