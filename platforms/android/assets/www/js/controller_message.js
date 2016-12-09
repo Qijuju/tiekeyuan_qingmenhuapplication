@@ -968,7 +968,8 @@ angular.module('message.controllers', [])
               }
             }
             $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
-              $scope.suc=$mqtt.sendDocFileMsg(userTopic,msgSingle.message,msgSingle.message,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
