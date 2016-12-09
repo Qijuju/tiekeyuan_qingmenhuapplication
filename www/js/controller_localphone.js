@@ -3,7 +3,7 @@
  */
 angular.module('localphone.controllers', [])
 
-  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$ionicLoading,$timeout,$greendao) {
 
 
     $ionicLoading.show({
@@ -25,8 +25,140 @@ angular.module('localphone.controllers', [])
     }
 
 
-    localContact.getContact();
-    $scope.$on('im.back',function (event) {
+    $scope.contactsA=new Array();
+    $scope.contactsB=new Array();
+    $scope.contactsC=new Array();
+    $scope.contactsD=new Array();
+    $scope.contactsE=new Array();
+    $scope.contactsF=new Array();
+    $scope.contactsG=new Array();
+    $scope.contactsH=new Array();
+    $scope.contactsI=new Array();
+    $scope.contactsJ=new Array();
+    $scope.contactsK=new Array();
+    $scope.contactsL=new Array();
+    $scope.contactsM=new Array();
+    $scope.contactsN=new Array();
+    $scope.contactsO=new Array();
+    $scope.contactsP=new Array();
+    $scope.contactsQ=new Array();
+    $scope.contactsR=new Array();
+    $scope.contactsS=new Array();
+    $scope.contactsT=new Array();
+    $scope.contactsU=new Array();
+    $scope.contactsV=new Array();
+    $scope.contactsW=new Array();
+    $scope.contactsX=new Array();
+    $scope.contactsY=new Array();
+    $scope.contactsZ=new Array();
+    $scope.contactsNoSuch=new Array();
+
+
+
+      $greendao.queryByConditions("LocalPhoneService",function (message) {
+        $timeout(function () {
+        if(message!=null){
+
+          for(var i=0; i<message.length; i++){
+
+            if (message[i].pinyinname.substring(0,1)==="A"){
+              $scope.contactsA.push(message[i])
+            }else if (message[i].pinyinname.substring(0,1)==="B"){
+              $scope.contactsB.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="C"){
+              $scope.contactsC.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="D"){
+              $scope.contactsD.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="E"){
+              $scope.contactsE.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="F"){
+              $scope.contactsF.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="G"){
+              $scope.contactsG.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="H"){
+              $scope.contactsH.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="I"){
+              $scope.contactsI.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="J"){
+              $scope.contactsJ.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="K"){
+              $scope.contactsK.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="L"){
+              $scope.contactsL.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="M"){
+              $scope.contactsM.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="N"){
+              $scope.contactsN.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="O"){
+              $scope.contactsO.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="P"){
+              $scope.contactsP.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="Q"){
+              $scope.contactsQ.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="R"){
+              $scope.contactsR.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="S"){
+              $scope.contactsS.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="T"){
+              $scope.contactsT.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="U"){
+              $scope.contactsU.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="V"){
+              $scope.contactsV.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="W"){
+              $scope.contactsW.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="X"){
+              $scope.contactsX.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="Y"){
+              $scope.contactsY.push(message[i])
+
+            }else if (message[i].pinyinname.substring(0,1)==="Z"){
+              $scope.contactsZ.push(message[i])
+
+            }else {
+              $scope.contactsNoSuch.push(message[i])
+            }
+
+          }
+
+        }
+          $ionicLoading.hide();
+      });
+      },function (err) {
+
+      })
+
+
+
+
+
+
+
+    //localContact.getContact();
+    /*$scope.$on('im.back',function (event) {
 
       $scope.$apply(function () {
 
@@ -61,6 +193,8 @@ angular.module('localphone.controllers', [])
           $scope.contactsY=localContact.getY();
           $scope.contactsZ=localContact.getZ();
           $scope.contactsNoSuch=localContact.getNoSuch();
+
+
           init();
 
         });
@@ -68,7 +202,7 @@ angular.module('localphone.controllers', [])
 
       })
 
-    });
+    });*/
     function init(){
       var startY = 0;
       var lastY =  0;

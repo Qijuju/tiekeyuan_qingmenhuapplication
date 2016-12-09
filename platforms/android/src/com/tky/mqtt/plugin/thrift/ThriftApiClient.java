@@ -29,6 +29,7 @@ import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
+import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
@@ -166,6 +167,10 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatListService.deleteAllData();
 //                                        System.out.println("删除本地缓存成功");
                                     }
+
+                                    LocalPhoneService localPhoneService=LocalPhoneService.getInstance(UIUtils.getContext());
+                                    localPhoneService.deleteAllData();
+
                                     //保存登录信息
                                     SPUtils.save("login_info", loginJson);
                                     setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
@@ -1030,6 +1035,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             JSONArray membersArr = args.getJSONArray(0);
             List<String> members = jsonArray2List(membersArr);
+
             SystemApi.addAttention(getUserID(), members, new AsyncMethodCallback<IMAttention.AsyncClient.AddAttention_call>() {
                 @Override
                 public void onComplete(IMAttention.AsyncClient.AddAttention_call addAttention_call) {

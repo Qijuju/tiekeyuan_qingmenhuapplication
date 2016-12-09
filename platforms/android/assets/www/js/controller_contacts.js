@@ -105,7 +105,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
 
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
@@ -129,6 +129,59 @@ angular.module('contacts.controllers', [])
 
 
     },501)
+
+    $scope.goLocalContact=function () {
+
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+
+      $greendao.loadAllData('LocalPhoneService',function (msg) {
+
+        if(msg.length>0){
+          $ionicLoading.hide();
+          $state.go('localContacts');
+        }else {
+          localContact.getContact();
+        }
+
+      },function (err) {
+
+      });
+
+    }
+
+    $scope.$on('im.back',function (event) {
+
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $state.go('localContacts');
+        });
+      })
+
+    });
+
+    $scope.$on('im.wrong',function (event) {
+
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $ToastUtils.showToast("请求数据异常")
+          $greendao.deleteAllData('LocalPhoneService',function () {
+
+          },function () {
+
+          });
+
+        });
+      })
+
+    });
 
 
 
