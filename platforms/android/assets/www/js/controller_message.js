@@ -1580,6 +1580,36 @@ angular.module('message.controllers', [])
 
     }
 
+
+
+    /**
+     * 单聊扬声器和听筒模式切换
+     */
+    $scope.showsingleTingtong='false';
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.proxyMode='false';
+      }else{
+        $scope.proxyMode='true';
+      }
+      $rootScope.$broadcast('change_proxy_mode.success');
+    })
+    $scope.openSingleYangshengqiMode=function () {
+      $scope.showsingleTingtong='true';
+      $mqtt.setProxyMode(0);
+    }
+
+    $scope.openSingleTingtongMode=function () {
+      $scope.showsingleTingtong ='false';
+      $mqtt.setProxyMode(1);
+    }
+
+    $scope.$on('change_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showsingleTingtong =$scope.proxyMode;
+      })
+    });
+
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
@@ -3322,6 +3352,36 @@ angular.module('message.controllers', [])
 
     }
 
+
+    $scope.showTingtong='false';
+    /**
+     * 扬声器与听筒模式切换
+     */
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.groupProxyMode='false';
+      }else{
+        $scope.groupProxyMode='true';
+      }
+      $rootScope.$broadcast('change_group_proxy_mode.success');
+    })
+
+    $scope.openYangshengqiMode=function () {
+      $mqtt.setProxyMode(0);
+      $scope.showTingtong='true';
+    }
+
+
+    $scope.openTingtongMode=function () {
+      $mqtt.setProxyMode(1);
+      $scope.showTingtong ='false';
+    }
+
+    $scope.$on('change_group_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showTingtong =$scope.groupProxyMode;
+      })
+    });
 
 
 

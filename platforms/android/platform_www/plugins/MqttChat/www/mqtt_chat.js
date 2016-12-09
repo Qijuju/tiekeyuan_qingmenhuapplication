@@ -70,7 +70,7 @@ exports.stopPlayRecord =function(success, error){//停止播放录音
 exec(success, error, "MqttChat", "stopPlayRecord", [])
 };
 exports.setProxyMode =function(mode){//设置距离感应器模式（0为正常模式，1为听筒模式）
-exec(null, null, "MqttChat", "setProxyMode", [])
+exec(null, null, "MqttChat", "setProxyMode", [mode])
 };
 exports.getProxyMode =function(success){//获取距离感应器模式（0为正常模式，1为听筒模式）
 exec(success, null, "MqttChat", "getProxyMode", [])

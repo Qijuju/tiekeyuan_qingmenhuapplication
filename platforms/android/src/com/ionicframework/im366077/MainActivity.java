@@ -63,10 +63,11 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     {
         super.onCreate(savedInstanceState);
         startService(new Intent(this, ProtectService.class));
-        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
-        UIUtils.switchEarphone(this, !proxyMode);
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        //默认是听筒模式
+        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+        UIUtils.switchEarphone(this, !proxyMode);
 
         //传感器
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

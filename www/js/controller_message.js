@@ -1585,23 +1585,30 @@ angular.module('message.controllers', [])
     /**
      * 单聊扬声器和听筒模式切换
      */
-    $scope.showsingletingtong='false';
+    $scope.showsingleTingtong='false';
     $mqtt.getProxyMode(function (suc) {
       if(suc === 1){
-        $scope.showsingletingtong='true';
+        $scope.proxyMode='false';
       }else{
-        $scope.showsingletingtong='false';
+        $scope.proxyMode='true';
       }
+      $rootScope.$broadcast('change_proxy_mode.success');
     })
     $scope.openSingleYangshengqiMode=function () {
-      $mqtt.setProxyMode(0);
       $scope.showsingleTingtong='true';
+      $mqtt.setProxyMode(0);
     }
 
     $scope.openSingleTingtongMode=function () {
-      $mqtt.setProxyMode(1);
       $scope.showsingleTingtong ='false';
+      $mqtt.setProxyMode(1);
     }
+
+    $scope.$on('change_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showsingleTingtong =$scope.proxyMode;
+      })
+    });
 
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
@@ -3352,10 +3359,11 @@ angular.module('message.controllers', [])
      */
     $mqtt.getProxyMode(function (suc) {
       if(suc === 1){
-        $scope.showTingtong='true';
+        $scope.groupProxyMode='false';
       }else{
-        $scope.showTingtong='false';
+        $scope.groupProxyMode='true';
       }
+      $rootScope.$broadcast('change_group_proxy_mode.success');
     })
 
     $scope.openYangshengqiMode=function () {
@@ -3368,6 +3376,13 @@ angular.module('message.controllers', [])
       $mqtt.setProxyMode(1);
       $scope.showTingtong ='false';
     }
+
+    $scope.$on('change_group_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showTingtong =$scope.groupProxyMode;
+      })
+    });
+
 
 
     //点击定位，跳转查询位置界面

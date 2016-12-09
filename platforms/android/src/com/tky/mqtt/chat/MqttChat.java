@@ -860,7 +860,7 @@ public class MqttChat extends CordovaPlugin {
         try {
             final String playVoiceName = args.getString(0);
             File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
-            //获取当前距离感应器设置信息
+            //获取当前距离感应器设置信息（true为正常模式，false为听筒模式）
             final boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
             if (file.exists()) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
@@ -928,6 +928,7 @@ public class MqttChat extends CordovaPlugin {
         try {
             int proxyMode = args.getInt(0);
             SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
+            UIUtils.switchEarphone(cordova.getActivity(), proxyMode == 1 ? true : false);
         } catch (JSONException e) {
             e.printStackTrace();
         }
