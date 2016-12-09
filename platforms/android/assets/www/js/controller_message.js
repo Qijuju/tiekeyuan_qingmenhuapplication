@@ -957,6 +957,22 @@ angular.module('message.controllers', [])
             });
           } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
             $scope.suc = $mqtt.sendMsg(userTopic, msgSingle.message, id,localuser,localuserId,sqlid,msgSingle.messagetype,'');
+          } else if(index === 0 && msgSingle.messagetype === 'Audio') {
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,msgSingle.message,msgSingle.message,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
@@ -2802,6 +2818,23 @@ angular.module('message.controllers', [])
             });
           } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
             $scope.sendSingleGroupMsg(userTopic, msgSingle.message, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
+          } else if(index === 0 && msgSingle.messagetype === 'Audio') {
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getQunliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+            $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
+              var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,$scope.groupid,$scope.localusr,$scope.myUserID,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,$scope.grouptype);
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
