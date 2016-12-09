@@ -8,16 +8,17 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-volume-medium"  ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></button>
-      <button class="button button-icon icon ion-headphone" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></button>
-      <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
-    </ion-nav-buttons>
-
-    <ion-nav-buttons side="secondary">
+      <button class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></button>
+      <button class="icon ion-headphone" style="background-color: #FFFFFF;border: none;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></button>
+      <button class="button button-icon icon ion-ios-telephone" style="padding-right: 2px;" ng-click="callperson()"></button>
       <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
               style="margin-right: 5px"></button>
-
     </ion-nav-buttons>
+
+    <!--<ion-nav-buttons side="right">-->
+     <!---->
+
+    <!--</ion-nav-buttons>-->
 
   </ion-nav-bar>
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
