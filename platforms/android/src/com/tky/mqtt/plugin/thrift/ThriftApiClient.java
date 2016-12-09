@@ -2691,7 +2691,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                             baf = new RandomAccessFile(tempFile, "rw");
                                             baf.seek(offset);
                                             String finalMessage = message;
-                                            finalMessage = message.split("###")[0] + "###" + tempPicName + "###" + message.substring(message.indexOf("###", message.indexOf("###") + 1), message.length());
+                                            finalMessage = message.split("###")[0] + "###" + tempPicName + message.substring(message.indexOf("###", message.indexOf("###") + 1), message.length());
                                             while (true) {
                                                 int length = result.fileByte.limit() - result.fileByte.position();
                                                 baf.getChannel().write(result.fileByte);
