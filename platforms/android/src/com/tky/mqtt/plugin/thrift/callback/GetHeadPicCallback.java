@@ -35,20 +35,34 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
             try {
                 RSTgetPic result = getHeadPic_call.getResult();
                 if (result != null && result.result) {
-                    String iconDir = FileUtils.getIconDir() + File.separator + "/head";
+                    String iconDir = FileUtils.getIconDir() + File.separator + "/headpic";
                     File directory = new File(iconDir);
                     if (!directory.exists()) {
                         directory.mkdirs();
                     }
-                    String fileName = iconDir + File.separator + result.getUserID() + result.getPicSize() + ".jpg";
-                    File file = new File(fileName);
-                    if (!file.exists()) {
-                        file.createNewFile();
+                    String[] lista = directory.list();
+                    if(lista.length>0){
+                        String fileName = iconDir + File.separator +lista[0];
+                        File file = new File(fileName);
+                        if (!file.exists()) {
+                            file.createNewFile();
+                        }
+                        byte[] fileByte = result.getFileByte();
+                        fos = new FileOutputStream(file);
+                        fos.write(fileByte);
+                        setResult(fileName, PluginResult.Status.OK, callbackContext);
+                    }else {
+                        String fileName = iconDir + File.separator + result.getUserID() + result.getPicSize() + ".jpg";
+                        File file = new File(fileName);
+                        if (!file.exists()) {
+                            file.createNewFile();
+                        }
+                        byte[] fileByte = result.getFileByte();
+                        fos = new FileOutputStream(file);
+                        fos.write(fileByte);
+                        setResult(fileName, PluginResult.Status.OK, callbackContext);
                     }
-                    byte[] fileByte = result.getFileByte();
-                    fos = new FileOutputStream(file);
-                    fos.write(fileByte);
-                    setResult(fileName, PluginResult.Status.OK, callbackContext);
+
                 } else {
                     setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
                 }

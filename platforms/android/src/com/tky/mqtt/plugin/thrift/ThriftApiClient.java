@@ -840,10 +840,19 @@ public class ThriftApiClient extends CordovaPlugin {
             }
             FileInputStream fis = new FileInputStream(file);
             File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
+            String path =FileUtils.getIconDir() + File.separator + "headpic";
             if (!fosDir.exists()) {
                 fosDir.mkdirs();
             }
-            final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".png");
+            String[] listarr = fosDir.list();
+            if(listarr.length>0||listarr!=null){
+                for (int i = 0; i < listarr.length; i++) {
+                    File temp = new File(path + File.separator + listarr[i]);
+                    temp.delete();
+                }
+            }
+
+            final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
             if (fosFile.exists()) {
                 fosFile.delete();
             }

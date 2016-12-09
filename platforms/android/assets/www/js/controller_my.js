@@ -12,39 +12,39 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $ionicHistory.clearHistory();
     });*/
 
+    $scope.$on('$ionicView.enter', function () {
+      $mqtt.getUserInfo(function (msg) {
+        $scope.UserID = msg.userID
+        $scope.mymypersonname=msg.userName
+        if ($scope.mymypersonname.length>2){
+          $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
+        }else {
+          $scope.jiename=$scope.mymypersonname;
+        }
+        $api.getHeadPic($scope.UserID,"60",function (srcurl) {
+          $scope.picyoumeiyou=true;
+          // alert(srcurl+"id"+$scope.UserID)
+          $scope.$apply(function () {
+            $scope.securlpic=srcurl;
+          })
+          // $scope.$apply(function () {
+          //   document.getElementById('myImage').src=srcurl;
+          // })
+        },function (error) {
+          $scope.picyoumeiyou=false;
+          // alert("没有")
+        })
 
+      }, function (msg) {
+        // $ToastUtils.showToast(msg)
+      });
+
+    });
 
 
     var isAndroid = ionic.Platform.isAndroid();
     $scope.name = "";
-    $mqtt.getUserInfo(function (msg) {
-      $scope.UserID = msg.userID
-      $scope.mymypersonname=msg.userName
-      if ($scope.mymypersonname.length>2){
-        $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
-      }else {
-        $scope.jiename=$scope.mymypersonname;
-      }
 
-      $api.getHeadPic($scope.UserID,"60",function (srcurl) {
-        $scope.picyoumeiyou=true;
-        // alert(srcurl)
-        $scope.$apply(function () {
-          $scope.securlpic=srcurl;
-        })
-        // $scope.$apply(function () {
-        //   document.getElementById('myImage').src=srcurl;
-        // })
-      },function (error) {
-        $scope.picyoumeiyou=false;
-        // alert("没有")
-      })
-
-
-
-    }, function (msg) {
-      // $ToastUtils.showToast(msg)
-    });
 
     var lat="";
     var long="";
@@ -173,7 +173,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         // alert(imageData)
         // alert(imageData);
         // $ToastUtils.showToast(imageData);
@@ -195,13 +201,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $api.setHeadPic(picPath, function (msg) {
 
           // alert(msg)
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
+
           $timeout(function () {
             $scope.$apply(function () {
               $scope.picyoumeiyou=true;
@@ -273,7 +273,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
       $cordovaCamera.getPicture(options).then(function (imageData) {
 
-
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
 
         // image.src = "data:image/jpeg;base64," + imageData;
         // alert(imageData);
@@ -295,13 +301,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // }
         $api.setHeadPic(picPath, function (msg) {
           // alert(msg)
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
+
           $timeout(function () {
 
             $scope.$apply(function () {
@@ -423,21 +423,22 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
 
     var isAndroid = ionic.Platform.isAndroid();
-    $scope.UserIDforhou = $stateParams.UserIDfor;
-    $api.getHeadPic($scope.UserIDforhou,"60",function (srcurl) {
-      $scope.picyoumeiyou=true;
-      // alert(srcurl)
-      $scope.$apply(function () {
-        $scope.securlpic=srcurl;
+    $scope.$on('$ionicView.enter', function () {
+      $scope.UserIDforhou = $stateParams.UserIDfor;
+      $api.getHeadPic($scope.UserIDforhou,"60",function (srcurl) {
+        $scope.picyoumeiyou=true;
+        // alert(srcurl)
+        $scope.$apply(function () {
+          $scope.securlpic=srcurl;
+        })
+        // $scope.$apply(function () {
+        //   document.getElementById('myImage').src=srcurl;
+        // })
+      },function (error) {
+        $scope.picyoumeiyou=false;
+        // alert("没有")
       })
-      // $scope.$apply(function () {
-      //   document.getElementById('myImage').src=srcurl;
-      // })
-    },function (error) {
-      $scope.picyoumeiyou=false;
-      // alert("没有")
-    })
-
+    });
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({
@@ -477,7 +478,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         // alert(imageData)
         // alert(imageData);
         // $ToastUtils.showToast(imageData);
@@ -499,13 +506,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $api.setHeadPic(picPath, function (msg) {
 
           // alert(msg)
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
+
           $timeout(function () {
             $scope.$apply(function () {
               $scope.picyoumeiyou=true;
@@ -555,9 +556,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         correctOrientation: true
       };
       $cordovaCamera.getPicture(options).then(function (imageData) {
-
-
-
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: false,
+          maxWidth: 100,
+          showDelay: 0
+        });
         // image.src = "data:image/jpeg;base64," + imageData;
         // alert(imageData);
 
@@ -578,15 +583,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // }
         $api.setHeadPic(picPath, function (msg) {
           // alert(msg)
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
           $timeout(function () {
-
             $scope.$apply(function () {
               $scope.picyoumeiyou=true;
               $scope.securlpic=msg;
