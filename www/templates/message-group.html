@@ -190,7 +190,7 @@
                   </font>
                 </a>
                 <a class="item item-icon-left" ng-if="msg.isFailure === 'true'"
-                  ng-click="resendgroupshow(groupid,msg.message, groupid, localusr,myUserID,msg._id,msg)">
+                  ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)">
                   <img class="icon" ng-src="{{getFileTypeImg('location')}}"
                      style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/>
                   <font style="font-size: 10px;border: none;margin-left: 20px;">{{msg.message.split(',')[2]}}
@@ -208,7 +208,7 @@
                <font class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="width: 120px;"  ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
                 <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
                    ng-if="msg.isFailure ==='true'"
-                   ng-click="resendgroupshow(groupid,msg.message, groupid, localusr,myUserID,msg._id,msg)"/>
+                   ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)"/>
                 <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
