@@ -1078,6 +1078,11 @@ angular.module('message.controllers', [])
                           messaegeitem.isread=data[i].isread;
                           // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            //回到主界面时，检测关闭语音
+                            $mqtt.stopPlayRecord(function (success) {
+
+                            },function (err) {
+                            });
                             // alert("保存成功");
                             $state.go("tab.message", {
                               "id": $scope.userId,
@@ -1089,6 +1094,10 @@ angular.module('message.controllers', [])
                         }
                       }
                     }else{
+                      //回到主界面时，检测关闭语音
+                      $mqtt.stopPlayRecord(function (success) {
+                      },function (err) {
+                      });
                       //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                       $state.go("tab.message", {
                         "id": $scope.userId,
@@ -1123,6 +1132,11 @@ angular.module('message.controllers', [])
                 $rootScope.isPersonSend = 'false';
               }
             }else{
+              //回到主界面时，检测关闭语音
+              $mqtt.stopPlayRecord(function (success) {
+
+              },function (err) {
+              });
               $state.go("tab.message", {
                 "id": $scope.userId,
                 "sessionid": $scope.chatName,
@@ -1203,6 +1217,11 @@ angular.module('message.controllers', [])
                         messaegeitem.isread=data[i].isread;
                         // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                         $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                          //回到主界面时，检测关闭语音
+                          $mqtt.stopPlayRecord(function (success) {
+
+                          },function (err) {
+                          });
                           // alert("保存成功");
                           //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                           $state.go("tab.message", {
@@ -1215,6 +1234,11 @@ angular.module('message.controllers', [])
                       }
                     }
                   }else {
+                    //回到主界面时，检测关闭语音
+                    $mqtt.stopPlayRecord(function (success) {
+
+                    },function (err) {
+                    });
                     //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                     $state.go("tab.message", {
                       "id": $scope.userId,
@@ -2616,6 +2640,11 @@ angular.module('message.controllers', [])
                     }
                   },function (err) {
                   });
+                  //回到主界面时，检测关闭语音
+                  $mqtt.stopPlayRecord(function (success) {
+
+                  },function (err) {
+                  });
                   //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                   $state.go("tab.message", {
                     "id": $scope.groupid,
@@ -2645,6 +2674,11 @@ angular.module('message.controllers', [])
                 $rootScope.isPersonSend = 'false';
               }
             }else{
+              //回到主界面时，检测关闭语音
+              $mqtt.stopPlayRecord(function (success) {
+
+              },function (err) {
+              });
               $state.go("tab.message", {
                 "id": $scope.groupid,
                 "sessionid":$scope.chatname,
@@ -2728,6 +2762,11 @@ angular.module('message.controllers', [])
                       });
                     }
                   }
+                },function (err) {
+                });
+                //回到主界面时，检测关闭语音
+                $mqtt.stopPlayRecord(function (success) {
+
                 },function (err) {
                 });
                 //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
