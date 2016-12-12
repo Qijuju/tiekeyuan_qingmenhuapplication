@@ -41,6 +41,7 @@ import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.paho.utils.RecorderManager;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -65,6 +66,8 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         startService(new Intent(this, ProtectService.class));
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+        //初始化录音机
+        RecorderManager.getInstance(MainActivity.this).init();
         //默认是听筒模式
         boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
         UIUtils.switchEarphone(this, !proxyMode);
@@ -170,6 +173,8 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         if (mSensorManager != null) {
             mSensorManager.unregisterListener(this);
         }
+        //初始化录音机
+        RecorderManager.getInstance(MainActivity.this).init();
         super.onStop();
     }
 

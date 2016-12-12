@@ -8,8 +8,8 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></button>
-      <button class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;" ng-show="showTingtong !='false'" ng-click="openTingtongMode();"></button>
+      <md-icon class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></md-icon>
+      <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong !='false'" ng-click="openTingtongMode();"></md-icon>
       <button class="button button-icon icon ion-ios-people-outline"
               ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"
               style="margin-right: 5px"></button>
@@ -111,7 +111,7 @@
 
               <!---接收语音--->
             <p class="rj-message" style="margin-left: 14.5%;width: 120px;height:40px;position: relative;" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);" >
-              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid"/>
+              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
               <img src="img/video.gif" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;position: absolute;" class="yuanjiao" align="left" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
             </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msg.messagetype === 'Audio'">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</span>
           </span>
@@ -214,7 +214,7 @@
                            ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
                 </ion-spinner>
                 <font style="background-color: transparent;margin-left: -35px;">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</font>
-                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid"/>
+                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
                 <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
                  <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
                  <!--{{no.no}}-->
@@ -255,9 +255,9 @@
 
   <ion-footer-bar class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left" ng-hide="isGroupYuYin === 'true'" ng-click="groupclickOn()">
-      </button>
-      <img src="img/keybroad.png" class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" >
+      <md-icon class="icon ion-ios-mic-outline rj-footer-btn-left" style="border: none;background-color: #FFFFFF;font-size: 30px;line-height: 1;position:relative;bottom: 2px;left:10px;" ng-hide="isGroupYuYin === 'true'" ng-click="groupclickOn()">
+      </md-icon>
+      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" >
       </img>
     </div>
 

@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.tky.mqtt.paho.SPUtils;
@@ -42,7 +43,7 @@ public class RecorderManager {
     /**
      * 声音强度监测延时
      */
-    private static final long POLL_INTERAL = 200;
+    private static final long POLL_INTERAL = 250;
 //    private static Handler handler = new Handler();
 
     /**
@@ -53,6 +54,10 @@ public class RecorderManager {
     private VoicePollTask voicePollTask;
 
     private String filePath;
+    /**
+     * 录音参数
+     */
+    private int BASE_RATIO = 600;
     //********************* 录音相关参数结束 END *********************
 
     //********************* 录音播放相关参数开始 START *********************
@@ -83,6 +88,26 @@ public class RecorderManager {
     public static RecorderManager getInstance(@NonNull Activity context) {
         RecorderManager.context = context;
         return INSTANCE;
+    }
+
+    /**
+     * 对该类进行初始化
+     */
+    public void init() {
+        if (recorder != null) {
+            try {
+                recorder.stop();
+                recorder.release();
+                recorder = null;
+            } catch (Exception e) {}
+        }
+        if (player != null) {
+            try {
+                player.stop();
+                player.release();
+                player = null;
+            } catch (Exception e) {}
+        }
     }
 
     //********************* 录音相关方法开始 START *********************
@@ -134,6 +159,7 @@ public class RecorderManager {
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         recorder.setOutputFile(filePath);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        recorder.setMaxDuration((int) interval);
         try {
             recorder.prepare();
         } catch (IOException e) {
@@ -291,13 +317,14 @@ public class RecorderManager {
         @Override
         public void run() {
             if (isRecording) {
-                double amp = getAmplitude();
+                final int amp = getAmplitude();
                 if (onRecorderChangeListener != null) {
-                    final int rate = getAmps()[(int)amp];//((int) (amp / 2f));
+//                    final int rate = getAmps()[(int)amp];//((int) (amp / 2f));
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            onRecorderChangeListener.onRateChange(filePath, interval, rate > 5 ? 5 : rate);
+                            Log.d("rate", "rate:" + amp);
+                            onRecorderChangeListener.onRateChange(filePath, interval, amp > 5 ? 5 : amp);
                         }
                     });
                 }
@@ -322,9 +349,15 @@ public class RecorderManager {
      * 获取声音频率（0~11，每两个作为一个单位计量）
      * @return
      */
-    private double getAmplitude() {
+    private int getAmplitude() {
         if (recorder != null) {
-            return (recorder.getMaxAmplitude() / 2700.0d);
+            int ratio = recorder.getMaxAmplitude() / BASE_RATIO;
+            int amp = 0;
+            if (ratio > 1) {
+                amp = (int) (20 * Math.log10(ratio));
+            }
+            return amp / 4;
+//            return (recorder.getMaxAmplitude() / 2700.0d);
         } else {
             return 0;
         }
@@ -370,6 +403,9 @@ public class RecorderManager {
             int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
             player.setVolume(currVolume, currVolume);
         }catch (IOException e) {
+            player.stop();
+            player.release();
+            player = null;
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }

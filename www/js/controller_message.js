@@ -51,11 +51,7 @@ angular.module('message.controllers', [])
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
 
-    //将是否为点击语音的动作初始化为false(键盘)
-    $scope.isYuYin='false';
-    //默认不展示语音居中框
-    $scope.isShow='false';
-    $scope.isshowless ='false';
+
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -1361,22 +1357,6 @@ angular.module('message.controllers', [])
     });
 
 
-      /**
-       * 点击语音按钮触发事件
-       */
-      $scope.clickOn=function () {
-        $scope.isYuYin="true";
-      }
-
-      /**
-       * 点击键盘触发事件
-       */
-      $scope.clickOnChange=function () {
-        $scope.isYuYin="false";
-        $scope.isShow='false';
-      }
-
-
 
     var MIN_SOUND_TIME = 800;
     var recorder = null;
@@ -1464,6 +1444,27 @@ angular.module('message.controllers', [])
     }
 
 
+    // //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isYuYin='false';
+    //默认不展示语音居中框
+    $scope.isShow='false';
+    $scope.isshowless ='false';
+    $scope.isshowgPng = 'true';
+    /**
+     * 点击语音按钮触发事件
+     */
+    $scope.clickOn=function () {
+      $scope.isYuYin="true";
+    }
+
+    /**
+     * 点击键盘触发事件
+     */
+    $scope.clickOnChange=function () {
+      $scope.isYuYin="false";
+      $scope.isShow='false';
+    }
+
 
       /**
        * 长按语音按钮触发事件
@@ -1474,6 +1475,11 @@ angular.module('message.controllers', [])
         $scope.recordTime = 0;
         $scope.ctime = 0;
         $scope.rate = 0;
+        if($scope.isshowgif ==="true"){
+          $scope.isshowgPng="true";
+          $scope.isshowgif ="false"
+          // $ToastUtils.showToast("原本的语音在播放");
+        }
         $mqtt.startRecording(function (succ) {
           $scope.type=succ.type;
           // alert("type--->"+$scope.type);
@@ -1537,6 +1543,7 @@ angular.module('message.controllers', [])
         $scope.rate = 0;
       }
       $mqtt.stopRecording(function (succ) {
+        $scope.isshowgPng="true";
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
@@ -1544,7 +1551,13 @@ angular.module('message.controllers', [])
           $scope.recordTime = 0;
           $scope.rate = 0;
           $scope.isshowless='true';
+          $timeout(function () {
+            viewScroll.scrollBottom();
+            $scope.isShow='false';
+            $scope.isshowless='false';
+          }, 1000);
         }else{
+          $scope.isShow='false';
           $scope.isshowless='false';
           // alert("秒："+$scope.duration);
           //发送语音
@@ -1554,15 +1567,13 @@ angular.module('message.controllers', [])
               sqlid=data;
               $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
               keepKeyboardOpen();
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 1000);
             });
           },function (err) {
           });
         }
-        $timeout(function () {
-          viewScroll.scrollBottom();
-          $scope.isShow='false';
-          $scope.isshowless='false';
-        }, 1000);
       },function (err) {
 
       });
@@ -1580,13 +1591,16 @@ angular.module('message.controllers', [])
       if($scope.audioid != sqlid){
         $scope.isshowgif='true';
         $scope.islisten='true';
+        $scope.isshowgPng ='false';
       }else{
         if($scope.islisten === 'false'){
           $scope.isshowgif='true';
           $scope.islisten= 'true';
+          $scope.isshowgPng ='false';
         }else{
           $scope.isshowgif='false';
           $scope.islisten= 'false';
+          $scope.isshowgPng ='true';
         }
       }
       $scope.audioid=sqlid;
@@ -1594,11 +1608,13 @@ angular.module('message.controllers', [])
         // alert("播放语音啦");
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
           $scope.isshowgif='false';
+          $scope.isshowgPng ='true';
           $scope.islisten='false';
           $scope.audioid='';
         }, function (err) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
           $ToastUtils.showToast(err,null,null);
         });
@@ -1607,11 +1623,13 @@ angular.module('message.controllers', [])
         $mqtt.stopPlayRecord(function (data) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
           $scope.islisten='false';
         },function (err) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
         });
       }
@@ -3282,7 +3300,7 @@ angular.module('message.controllers', [])
     //默认不展示语音居中框
     $scope.isGroupShow='false';
     $scope.isGroupshowless ='false';
-
+    $scope.isshowgroupPng ='true';
 
     $scope.groupclickOn=function () {
       $scope.isGroupYuYin="true";
@@ -3302,6 +3320,11 @@ angular.module('message.controllers', [])
       $scope.grouprecordTime = 0;
       $scope.groupctime = 0;
       $scope.grouprate = 0;
+      if($scope.isshowGroupgif ==="true"){
+        $scope.isshowgroupPng="true";
+        $scope.isshowGroupgif ="false"
+        // $ToastUtils.showToast("原本的语音在播放");
+      }
       $mqtt.startRecording(function (succ) {
         $scope.type=succ.type;
         // alert("type--->"+$scope.type);
@@ -3341,6 +3364,7 @@ angular.module('message.controllers', [])
         $scope.grouprate = 0;
       }
       $mqtt.stopRecording(function (succ) {
+        $scope.isshowgroupPng='true';
         $scope.grouprate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
@@ -3348,8 +3372,15 @@ angular.module('message.controllers', [])
           $scope.grouprecordTime = 0;
           $scope.grouprate = 0;
           $scope.isGroupshowless='true';
+          $timeout(function () {
+            viewScroll.scrollBottom();
+            $scope.isGroupShow='false';
+            $scope.isGroupshowless='false';
+          }, 1000);
         }else{
+          $scope.isGroupShow='false';
           $scope.isGroupshowless='false';
+          // $scope.isGroupshowless='false';
           // alert("秒："+$scope.duration);
           //发送语音
           // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
@@ -3358,15 +3389,13 @@ angular.module('message.controllers', [])
               sqlid=data;
               $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.groupid,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.grouptype);
               keepKeyboardOpen();
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 1000);
             });
           },function (err) {
           });
         }
-        $timeout(function () {
-          viewScroll.scrollBottom();
-          $scope.isGroupShow='false';
-          $scope.isGroupshowless='false';
-        }, 1000);
       },function (err) {
 
       });
@@ -3385,13 +3414,16 @@ angular.module('message.controllers', [])
       if($scope.groupaudioid != sqlid){
         $scope.isshowGroupgif='true';
         $scope.isGrouplisten='true';
+        $scope.isshowgroupPng='false';
       }else{
         if($scope.isGrouplisten === 'false'){
           $scope.isshowGroupgif='true';
           $scope.isGrouplisten= 'true';
+          $scope.isshowgroupPng='false';
         }else{
           $scope.isshowGroupgif='false';
           $scope.isGrouplisten= 'false';
+          $scope.isshowgroupPng='true';
         }
       }
       $scope.groupaudioid=sqlid;
@@ -3400,10 +3432,12 @@ angular.module('message.controllers', [])
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
           $scope.isshowGroupgif='false';
           $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
           $scope.groupaudioid='';
         }, function (err) {
           $scope.isshowGroupgif='false';
           $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
           $scope.groupaudioid='';
           $ToastUtils.showToast(err,null,null);
         });
@@ -3413,9 +3447,11 @@ angular.module('message.controllers', [])
           $scope.isshowGroupgif='false';
           $scope.groupaudioid='';
           $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
         },function (err) {
           $scope.isshowGroupgif='false';
           $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
           $scope.groupaudioid='';
         });
       }

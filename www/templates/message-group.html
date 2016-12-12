@@ -111,7 +111,7 @@
 
               <!---接收语音--->
             <p class="rj-message" style="margin-left: 14.5%;width: 120px;height:40px;position: relative;" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);" >
-              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid"/>
+              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
               <img src="img/video.gif" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;position: absolute;" class="yuanjiao" align="left" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
             </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msg.messagetype === 'Audio'">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</span>
           </span>
@@ -214,7 +214,7 @@
                            ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
                 </ion-spinner>
                 <font style="background-color: transparent;margin-left: -35px;">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</font>
-                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid"/>
+                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
                 <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
                  <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
                  <!--{{no.no}}-->
