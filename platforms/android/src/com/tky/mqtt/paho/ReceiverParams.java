@@ -88,5 +88,5 @@ public class ReceiverParams {
 	/**
 	 * 声音变化的广播接收者
 	 */
-	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
+//	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
 }

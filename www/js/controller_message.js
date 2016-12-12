@@ -969,7 +969,7 @@ angular.module('message.controllers', [])
             }
             $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
               var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
-              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,id,localuser,localuserId,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,$scope.groupType);
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
@@ -2870,7 +2870,7 @@ angular.module('message.controllers', [])
             }
             $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
               var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
-              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,$scope.groupid,$scope.localusr,$scope.myUserID,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,$scope.grouptype);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,id,localuser,localuserId,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,grouptype);
               $scope.send_content = "";
               keepKeyboardOpen();
             }, function (msg) {
