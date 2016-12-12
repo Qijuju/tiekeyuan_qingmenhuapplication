@@ -1,11 +1,14 @@
 package com.tky.mqtt.paho.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 
 import java.io.File;
@@ -362,11 +365,25 @@ public class RecorderManager {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
             player.prepare();
             player.start();                                           // play the record
+            AudioManager audioManager = (AudioManager) UIUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
+            player.setVolume(currVolume, currVolume);
         }catch (IOException e) {
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         return player;
+    }
+
+    /**
+     * 设置播放声音大小
+     * @param volume
+     */
+    public void setVolume(int volume) {
+        if (player != null) {
+            player.setVolume(volume, volume);
+        }
     }
 
     /**
@@ -399,9 +416,16 @@ public class RecorderManager {
      * 停止播放
      */
     public void stopPlayRecord() {
-        if (player != null && player.isPlaying()) {
-            player.stop();
-            player.release();
+        try {
+            if (player != null && player.isPlaying()) {
+                player.stop();
+                player.release();
+            }
+        } catch (Exception e) {
+        } finally {
+            //播放完成恢复距离感应器模式
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            UIUtils.switchEarphone(context, !proxyMode);
         }
     }
 

@@ -237,7 +237,7 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;"  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;" >
               <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true'"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
@@ -246,8 +246,10 @@
                            ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
               </ion-spinner>
               <font style="background-color: transparent;margin-left: -35px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
-              <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid"/>
-              <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
+              <span style="width: 120px;"  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid" />
+              <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
+              </span>
               <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
                 <!--{{no.no}}-->
                 <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
@@ -325,7 +327,7 @@
 
     <div class="rj-footer-btn-wrap"><!--style="margin-left: 15px;margin-right: 5px"-->
       <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+        <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
       </div>
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">

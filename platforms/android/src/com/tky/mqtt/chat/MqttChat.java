@@ -29,6 +29,7 @@ import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
+import com.tky.mqtt.paho.receiver.VolumeChangeReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -123,6 +124,7 @@ public class MqttChat extends CordovaPlugin {
 
         //距离传感器改变时收到的Receiver
         mSensorReceiver = ProxySensorReceiver.getInstance();
+
     }
 
     @Override
@@ -870,6 +872,7 @@ public class MqttChat extends CordovaPlugin {
                         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
+                                RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
                                 setResult("true", PluginResult.Status.OK, callbackContext);
                             }
                         });
