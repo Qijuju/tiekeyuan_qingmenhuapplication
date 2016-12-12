@@ -4,11 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioManager;
 
-import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 
 /**
@@ -23,7 +19,7 @@ public class VolumeChangeReceiver extends BroadcastReceiver {
 
     private VolumeChangeReceiver() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ReceiverParams.VOLUME_CHANGED_ACTION);
+//        filter.addAction(ReceiverParams.VOLUME_CHANGED_ACTION);
         UIUtils.getContext().registerReceiver(this, filter);
     }
 
@@ -37,14 +33,14 @@ public class VolumeChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (ReceiverParams.VOLUME_CHANGED_ACTION.equals(intent.getAction())) {
+        /*if (ReceiverParams.VOLUME_CHANGED_ACTION.equals(intent.getAction())) {
             AudioManager audioManager = (AudioManager) UIUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
             boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
             int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
             if (onVolumeChangeListener != null) {
                 onVolumeChangeListener.onVolumeChange((proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL), currVolume);
             }
-        }
+        }*/
     }
 
     public void setOnVolumeChangeListener(OnVolumeChangeListener onVolumeChangeListener) {

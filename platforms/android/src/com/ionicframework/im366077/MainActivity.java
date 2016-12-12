@@ -38,11 +38,9 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
-import com.tky.mqtt.paho.receiver.VolumeChangeReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.ImageTools;
 import com.tky.mqtt.paho.utils.PhotoUtils;
-import com.tky.mqtt.paho.utils.RecorderManager;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -58,7 +56,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     private UserPresentReceiver receiver;
     private SensorManager mSensorManager;
     private Sensor mSensor;
-    private VolumeChangeReceiver volumeChangeReceiver;
+//    private VolumeChangeReceiver volumeChangeReceiver;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -88,13 +86,13 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         registerReceiver(receiver, filter);
 
         //声音大小监听
-        volumeChangeReceiver = VolumeChangeReceiver.getInstance();
+        /*volumeChangeReceiver = VolumeChangeReceiver.getInstance();
         volumeChangeReceiver.setOnVolumeChangeListener(new VolumeChangeReceiver.OnVolumeChangeListener() {
             @Override
             public void onVolumeChange(int mode, int volume) {
                 RecorderManager.getInstance(MainActivity.this).setVolume(volume);
             }
-        });
+        });*/
 //        ToastUtil.showSafeToast(SPUtils.getString("connectionLost", "m") + "===" + SPUtils.getString("count", "m"));
     }
 
@@ -182,9 +180,9 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
                 unregisterReceiver(receiver);
                 receiver = null;
             }
-            if (volumeChangeReceiver != null) {
+            /*if (volumeChangeReceiver != null) {
                 UIUtils.getContext().unregisterReceiver(volumeChangeReceiver);
-            }
+            }*/
         } catch (Exception e) {
         }
         super.onDestroy();
