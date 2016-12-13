@@ -1,5 +1,6 @@
 package com.tky.mqtt.chat;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -29,7 +30,6 @@ import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
-import com.tky.mqtt.paho.receiver.VolumeChangeReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -84,6 +84,7 @@ public class MqttChat extends CordovaPlugin {
      * 距离传感器改变时收到的Receiver
      */
     private ProxySensorReceiver mSensorReceiver;
+    private OnPlayStopReceiver onPlayStopReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -125,6 +126,11 @@ public class MqttChat extends CordovaPlugin {
         //距离传感器改变时收到的Receiver
         mSensorReceiver = ProxySensorReceiver.getInstance();
 
+        //特殊因素导致语音播放暂停的广播
+        onPlayStopReceiver = new OnPlayStopReceiver();
+        IntentFilter playStopFilter = new IntentFilter();
+        playStopFilter.addAction(ReceiverParams.RECEIVER_PLAY_STOP);
+        UIUtils.getContext().registerReceiver(onPlayStopReceiver, playStopFilter);
     }
 
     @Override
@@ -867,7 +873,6 @@ public class MqttChat extends CordovaPlugin {
             final String playVoiceName = args.getString(0);
             File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
             //获取当前距离感应器设置信息（true为正常模式，false为听筒模式）
-            final boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
             if (file.exists()) {
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -876,6 +881,7 @@ public class MqttChat extends CordovaPlugin {
                         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
+                                UIUtils.switchEarphone(cordova.getActivity(), false);
                                 RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
                                 setResult("true", PluginResult.Status.OK, callbackContext);
                             }
@@ -883,7 +889,9 @@ public class MqttChat extends CordovaPlugin {
                         mSensorReceiver.setOnProxyChangeListener(new ProxySensorReceiver.OnProxyChangeListener() {
                             @Override
                             public void onEarphoneMode() {//由正常模式切换为听筒模式
-                                if (proxyMode) {
+                                boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+                                Log.d("mode", "firing the hole:onEarphoneMode");
+                                if (proxyMode && RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
                                     RecorderManager.getInstance(cordova.getActivity()).pause();
                                     UIUtils.switchEarphone(cordova.getActivity(), true);
                                     RecorderManager.getInstance(cordova.getActivity()).resume();
@@ -892,11 +900,19 @@ public class MqttChat extends CordovaPlugin {
 
                             @Override
                             public void onNormalMode() {//由听筒模式切换为正常模式
-                                if (proxyMode) {
+                                boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+                                Log.d("mode", "firing the hole:onNormalMode");
+                                if (proxyMode && RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
                                     RecorderManager.getInstance(cordova.getActivity()).pause();
                                     UIUtils.switchEarphone(cordova.getActivity(), false);
                                     RecorderManager.getInstance(cordova.getActivity()).resume();
                                 }
+                            }
+                        });
+                        onPlayStopReceiver.setOnPlayStopListener(new OnPlayStopListener() {
+                            @Override
+                            public void onPlayStop() {
+                                setResult("true", PluginResult.Status.OK, callbackContext);
                             }
                         });
                     }
@@ -905,6 +921,7 @@ public class MqttChat extends CordovaPlugin {
                 setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
             }
         } catch (JSONException e) {
+            UIUtils.switchEarphone(cordova.getActivity(), false);
             e.printStackTrace();
         }
     }
@@ -1103,6 +1120,34 @@ public class MqttChat extends CordovaPlugin {
             }
         } catch (Exception e) {
         }
+        try {
+            if (onPlayStopReceiver != null) {
+                cordova.getActivity().unregisterReceiver(onPlayStopReceiver);
+                onPlayStopReceiver = null;
+            }
+        } catch (Exception e) {
+        }
         super.onDestroy();
+    }
+
+    private class OnPlayStopReceiver extends BroadcastReceiver {
+        private OnPlayStopListener onPlayStopListener;
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ReceiverParams.RECEIVER_PLAY_STOP.equals(intent.getAction())) {
+                if (onPlayStopListener != null) {
+                    onPlayStopListener.onPlayStop();
+                }
+            }
+        }
+
+        public void setOnPlayStopListener(OnPlayStopListener onPlayStopListener) {
+            this.onPlayStopListener = onPlayStopListener;
+        }
+
+    }
+
+    public interface OnPlayStopListener {
+        public void onPlayStop();
     }
 }
