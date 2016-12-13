@@ -8,7 +8,7 @@
           <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
         </form>
       </label>
-      <button class="button button-clear" style="color: #49B746;" ng-click="backSearchSM()" >取消</button>
+      <button class="button button-clear" style="color: #49B746;" ng-click="searchBack()" >取消</button>
     </div>
     <div ng-if="((lastMsg=='')||(lastMsg.length==0)||(lastMsg==null))&&((personsren=='')||(personsren.length==0)||(personsren==null))">
       <div style="text-align: center;background-color: rgba(222, 222, 222, 0.79);width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae">历史搜索记录</div>

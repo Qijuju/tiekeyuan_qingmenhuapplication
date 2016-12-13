@@ -79,4 +79,14 @@ public class ReceiverParams {
 	 * 重启service
 	 */
 	public static final String RESTARTSERVICE = "com.sls.mqtt.restartservice";
+
+	/**
+	 * 距离感应器的广播接收者ACTION
+	 */
+	public static final String RECEIVER_PROXY = "com.sls.mqtt.receiver_proxy";
+
+	/**
+	 * 声音变化的广播接收者
+	 */
+//	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
 }

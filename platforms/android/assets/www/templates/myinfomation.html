@@ -29,12 +29,15 @@
       <!--</div>-->
     <!--</div>-->
 
+
       <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
-        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="updateinformation()">
+        <img ng-if="!picyoumeiyou" src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
+        <img ng-if="picyoumeiyou" class="yuanjiao1" src="{{securlpic}}" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
         <!--235-->
         <!--57-->
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="updateinformation()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
-        <P style="font-size: 18px;color: #000000" ng-click="updateinformation()">{{mypersons.UserName}}</P>
+        <div ng-if="!picyoumeiyou" class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="setpic()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
+
+        <P style="font-size: 18px;color: #000000" >{{mypersons.UserName}}</P>
       </div>
       <ul class="list" >
         <li class="item" style="height: 50px">

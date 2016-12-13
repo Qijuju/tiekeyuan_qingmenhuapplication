@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
@@ -437,6 +438,20 @@ public class UIUtils {
 					}
 				}
 			}
+		}
+	}
+
+	/**
+	 * 切换听筒模式和正常模式
+	 * @param context
+	 * @param earphone
+	 */
+	public static void switchEarphone(Activity context, boolean earphone) {
+		AudioManager manager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+		manager.setSpeakerphoneOn(!earphone);
+		manager.setMode(earphone ? AudioManager.MODE_IN_COMMUNICATION : AudioManager.MODE_NORMAL);
+		if (context != null) {
+			context.setVolumeControlStream(earphone ? AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_MUSIC);
 		}
 	}
 }

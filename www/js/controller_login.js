@@ -227,13 +227,14 @@ angular.module('login.controllers', [])
   })
 
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
-
     document.getElementById("imgaaa").style.height=(window.screen.height)+'px';
     var passworda="";
     var loginpageaa=""
     var passlogin=""
     var pwdgesturea=""
     var namegesturea=""
+
+
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
       mqtt.getString('gesturePwd', function (pwd) {
@@ -241,6 +242,21 @@ angular.module('login.controllers', [])
       }, function (msg) {
         // $ToastUtils.showToast("还未设置手势密码");
       });
+
+      mqtt.getString('welcomePic', function (picurl) {
+        if(picurl==""||picurl==null||picurl.length==0){
+          $scope.$apply(function () {
+            $scope.securlpic="img/im1.png";
+          })
+        }else {
+          $scope.$apply(function () {
+            $scope.securlpic=picurl;
+          })
+        }
+      }, function (msg) {
+        // $ToastUtils.showToast("还未设置手势密码");
+      });
+
       mqtt.getString('loginpage', function (loginpagea) {
         loginpageaa=loginpagea;
       }, function (msg) {
@@ -341,6 +357,7 @@ angular.module('login.controllers', [])
         mqtt.getUserId(function (userID) {
 
           $rootScope.rootUserId = userID;
+
           // alert("当前用户的id"+userID);
         }, function (err) {
 
@@ -378,7 +395,6 @@ angular.module('login.controllers', [])
             });
           });
         }, function (err) {
-
           $ToastUtils.showToast(err);
           $ionicLoading.hide();
           $state.go('login');

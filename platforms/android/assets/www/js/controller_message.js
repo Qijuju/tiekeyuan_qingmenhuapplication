@@ -51,11 +51,7 @@ angular.module('message.controllers', [])
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
 
-    //将是否为点击语音的动作初始化为false(键盘)
-    $scope.isYuYin='false';
-    //默认不展示语音居中框
-    $scope.isShow='false';
-    $scope.isshowless ='false';
+
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -957,6 +953,23 @@ angular.module('message.controllers', [])
             });
           } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
             $scope.suc = $mqtt.sendMsg(userTopic, msgSingle.message, id,localuser,localuserId,sqlid,msgSingle.messagetype,'');
+          } else if(index === 0 && msgSingle.messagetype === 'Audio') {
+            for(var i=0;i<$mqtt.getDanliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getDanliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getDanliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+            $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+              var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,id,localuser,localuserId,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,$scope.groupType);
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
@@ -1061,6 +1074,11 @@ angular.module('message.controllers', [])
                           messaegeitem.isread=data[i].isread;
                           // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            //回到主界面时，检测关闭语音
+                            $mqtt.stopPlayRecord(function (success) {
+
+                            },function (err) {
+                            });
                             // alert("保存成功");
                             $state.go("tab.message", {
                               "id": $scope.userId,
@@ -1072,6 +1090,10 @@ angular.module('message.controllers', [])
                         }
                       }
                     }else{
+                      //回到主界面时，检测关闭语音
+                      $mqtt.stopPlayRecord(function (success) {
+                      },function (err) {
+                      });
                       //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                       $state.go("tab.message", {
                         "id": $scope.userId,
@@ -1106,6 +1128,11 @@ angular.module('message.controllers', [])
                 $rootScope.isPersonSend = 'false';
               }
             }else{
+              //回到主界面时，检测关闭语音
+              $mqtt.stopPlayRecord(function (success) {
+
+              },function (err) {
+              });
               $state.go("tab.message", {
                 "id": $scope.userId,
                 "sessionid": $scope.chatName,
@@ -1186,6 +1213,11 @@ angular.module('message.controllers', [])
                         messaegeitem.isread=data[i].isread;
                         // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                         $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                          //回到主界面时，检测关闭语音
+                          $mqtt.stopPlayRecord(function (success) {
+
+                          },function (err) {
+                          });
                           // alert("保存成功");
                           //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                           $state.go("tab.message", {
@@ -1198,6 +1230,11 @@ angular.module('message.controllers', [])
                       }
                     }
                   }else {
+                    //回到主界面时，检测关闭语音
+                    $mqtt.stopPlayRecord(function (success) {
+
+                    },function (err) {
+                    });
                     //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                     $state.go("tab.message", {
                       "id": $scope.userId,
@@ -1320,22 +1357,6 @@ angular.module('message.controllers', [])
     });
 
 
-      /**
-       * 点击语音按钮触发事件
-       */
-      $scope.clickOn=function () {
-        $scope.isYuYin="true";
-      }
-
-      /**
-       * 点击键盘触发事件
-       */
-      $scope.clickOnChange=function () {
-        $scope.isYuYin="false";
-        $scope.isShow='false';
-      }
-
-
 
     var MIN_SOUND_TIME = 800;
     var recorder = null;
@@ -1423,6 +1444,27 @@ angular.module('message.controllers', [])
     }
 
 
+    // //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isYuYin='false';
+    //默认不展示语音居中框
+    $scope.isShow='false';
+    $scope.isshowless ='false';
+    $scope.isshowgPng = 'true';
+    /**
+     * 点击语音按钮触发事件
+     */
+    $scope.clickOn=function () {
+      $scope.isYuYin="true";
+    }
+
+    /**
+     * 点击键盘触发事件
+     */
+    $scope.clickOnChange=function () {
+      $scope.isYuYin="false";
+      $scope.isShow='false';
+    }
+
 
       /**
        * 长按语音按钮触发事件
@@ -1433,6 +1475,11 @@ angular.module('message.controllers', [])
         $scope.recordTime = 0;
         $scope.ctime = 0;
         $scope.rate = 0;
+        if($scope.isshowgif ==="true"){
+          $scope.isshowgPng="true";
+          $scope.isshowgif ="false"
+          // $ToastUtils.showToast("原本的语音在播放");
+        }
         $mqtt.startRecording(function (succ) {
           $scope.type=succ.type;
           // alert("type--->"+$scope.type);
@@ -1496,6 +1543,7 @@ angular.module('message.controllers', [])
         $scope.rate = 0;
       }
       $mqtt.stopRecording(function (succ) {
+        $scope.isshowgPng="true";
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
@@ -1503,7 +1551,13 @@ angular.module('message.controllers', [])
           $scope.recordTime = 0;
           $scope.rate = 0;
           $scope.isshowless='true';
+          $timeout(function () {
+            viewScroll.scrollBottom();
+            $scope.isShow='false';
+            $scope.isshowless='false';
+          }, 1000);
         }else{
+          $scope.isShow='false';
           $scope.isshowless='false';
           // alert("秒："+$scope.duration);
           //发送语音
@@ -1513,15 +1567,13 @@ angular.module('message.controllers', [])
               sqlid=data;
               $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
               keepKeyboardOpen();
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 1000);
             });
           },function (err) {
           });
         }
-        $timeout(function () {
-          viewScroll.scrollBottom();
-          $scope.isShow='false';
-          $scope.isshowless='false';
-        }, 1000);
       },function (err) {
 
       });
@@ -1539,13 +1591,16 @@ angular.module('message.controllers', [])
       if($scope.audioid != sqlid){
         $scope.isshowgif='true';
         $scope.islisten='true';
+        $scope.isshowgPng ='false';
       }else{
         if($scope.islisten === 'false'){
           $scope.isshowgif='true';
           $scope.islisten= 'true';
+          $scope.isshowgPng ='false';
         }else{
           $scope.isshowgif='false';
           $scope.islisten= 'false';
+          $scope.isshowgPng ='true';
         }
       }
       $scope.audioid=sqlid;
@@ -1553,11 +1608,13 @@ angular.module('message.controllers', [])
         // alert("播放语音啦");
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
           $scope.isshowgif='false';
+          $scope.isshowgPng ='true';
           $scope.islisten='false';
           $scope.audioid='';
         }, function (err) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
           $ToastUtils.showToast(err,null,null);
         });
@@ -1566,11 +1623,13 @@ angular.module('message.controllers', [])
         $mqtt.stopPlayRecord(function (data) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
           $scope.islisten='false';
         },function (err) {
           $scope.isshowgif='false';
           $scope.islisten='false';
+          $scope.isshowgPng ='true';
           $scope.audioid='';
         });
       }
@@ -1579,6 +1638,36 @@ angular.module('message.controllers', [])
       // $scope.numlist=[{no:1},{no:2},{no:3}];
 
     }
+
+
+
+    /**
+     * 单聊扬声器和听筒模式切换
+     */
+    $scope.showsingleTingtong='false';
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.proxyMode='false';
+      }else{
+        $scope.proxyMode='true';
+      }
+      $rootScope.$broadcast('change_proxy_mode.success');
+    })
+    $scope.openSingleYangshengqiMode=function () {
+      $scope.showsingleTingtong='true';
+      $mqtt.setProxyMode(0);
+    }
+
+    $scope.openSingleTingtongMode=function () {
+      $scope.showsingleTingtong ='false';
+      $mqtt.setProxyMode(1);
+    }
+
+    $scope.$on('change_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showsingleTingtong =$scope.proxyMode;
+      })
+    });
 
       $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
@@ -2569,6 +2658,11 @@ angular.module('message.controllers', [])
                     }
                   },function (err) {
                   });
+                  //回到主界面时，检测关闭语音
+                  $mqtt.stopPlayRecord(function (success) {
+
+                  },function (err) {
+                  });
                   //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                   $state.go("tab.message", {
                     "id": $scope.groupid,
@@ -2598,6 +2692,11 @@ angular.module('message.controllers', [])
                 $rootScope.isPersonSend = 'false';
               }
             }else{
+              //回到主界面时，检测关闭语音
+              $mqtt.stopPlayRecord(function (success) {
+
+              },function (err) {
+              });
               $state.go("tab.message", {
                 "id": $scope.groupid,
                 "sessionid":$scope.chatname,
@@ -2681,6 +2780,11 @@ angular.module('message.controllers', [])
                       });
                     }
                   }
+                },function (err) {
+                });
+                //回到主界面时，检测关闭语音
+                $mqtt.stopPlayRecord(function (success) {
+
                 },function (err) {
                 });
                 //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
@@ -2772,6 +2876,23 @@ angular.module('message.controllers', [])
             });
           } else if (index === 0 && (msgSingle.messagetype === 'LOCATION')) {
             $scope.sendSingleGroupMsg(userTopic, msgSingle.message, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
+          } else if(index === 0 && msgSingle.messagetype === 'Audio') {
+            for(var i=0;i<$mqtt.getQunliao().length;i++){
+              // alert(sqlid+i+"来了" );
+              if($mqtt.getQunliao()[i]._id === sqlid){
+                // alert("后"+$mqtt.getDanliao()[i]._id);
+                $mqtt.getQunliao().splice(i, 1);
+                $rootScope.$broadcast('msgs.update');
+                break;
+              }
+            }
+            $mqtt.getMqtt().getTopic(topic, grouptype, function (userTopic) {
+              var mesgs = msgSingle.message.substring(msgSingle.message.indexOf("###") + 3);
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,mesgs,mesgs,id,localuser,localuserId,sqlid,msgSingle.messagetype,$scope.filepath,$mqtt,grouptype);
+              $scope.send_content = "";
+              keepKeyboardOpen();
+            }, function (msg) {
+            });
           } else if (index === 1) {
             for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
@@ -3171,6 +3292,208 @@ angular.module('message.controllers', [])
       });
     };
 
+
+
+    //初始化
+    //将是否为点击语音的动作初始化为false(键盘)
+    $scope.isGroupYuYin='false';
+    //默认不展示语音居中框
+    $scope.isGroupShow='false';
+    $scope.isGroupshowless ='false';
+    $scope.isshowgroupPng ='true';
+
+    $scope.groupclickOn=function () {
+      $scope.isGroupYuYin="true";
+    }
+
+    $scope.groupclickOnChange=function () {
+      $scope.isGroupYuYin="false";
+      $scope.isGroupShow='false';
+    }
+
+
+
+    //群聊语音
+    $scope.showGroupYuyin=function (messagetype,sqlid) {
+      $scope.isGroupShow='true';
+      $scope.isGroupshowless='false';
+      $scope.grouprecordTime = 0;
+      $scope.groupctime = 0;
+      $scope.grouprate = 0;
+      if($scope.isshowGroupgif ==="true"){
+        $scope.isshowgroupPng="true";
+        $scope.isshowGroupgif ="false"
+        // $ToastUtils.showToast("原本的语音在播放");
+      }
+      $mqtt.startRecording(function (succ) {
+        $scope.type=succ.type;
+        // alert("type--->"+$scope.type);
+        if($scope.type === "timeChange"){
+          $scope.grouprecordTime=succ.recordTime;
+        }else if($scope.type === "timeout"){
+          $scope.groupctime=succ.time;
+          // alert("超过59秒======》"+$scope.ctime);
+          $timeout(function () {
+            $scope.isGroupShow='false';
+            // $scope.isshowless='false';
+          }, 100);
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+        }else if($scope.type === "rateChange"){
+          $scope.grouprate=succ.rate;
+          // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+        }else if($scope.type === "error"){
+          $scope.error=succ.error;
+        }
+      },function (err) {
+
+      });
+    }
+
+
+
+    //释放语音按钮
+    $scope.releaseGroupYuyin=function (messagetype,sqlid) {
+      // alert("松手后语音传参："+messagetype+$scope.groupid+"======"+$scope.myUserID+"-----------"+$scope.localusr+$scope.grouptype);
+      //若录取的时间小于1s
+      //当录取的时间大于1s小于60s时，给一个标志符
+      // $scope.isyuyinshow="true";
+      if ($scope.grouprecordTime  <1000){
+        $scope.isGroupshowless='true';
+        $scope.grouprecordTime = 0;
+        $scope.grouprate = 0;
+      }
+      $mqtt.stopRecording(function (succ) {
+        $scope.isshowgroupPng='true';
+        $scope.grouprate=-1;
+        $scope.filepath=succ.filePath;
+        $scope.duration=succ.duration;
+        if($scope.duration <1000){
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+          $scope.isGroupshowless='true';
+          $timeout(function () {
+            viewScroll.scrollBottom();
+            $scope.isGroupShow='false';
+            $scope.isGroupshowless='false';
+          }, 1000);
+        }else{
+          $scope.isGroupShow='false';
+          $scope.isGroupshowless='false';
+          // $scope.isGroupshowless='false';
+          // alert("秒："+$scope.duration);
+          //发送语音
+          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+          $mqtt.getMqtt().getTopic($scope.groupid,$scope.grouptype,function (userTopic) {
+            $greendao.getUUID(function (data) {
+              sqlid=data;
+              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.groupid,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.grouptype);
+              keepKeyboardOpen();
+              $timeout(function () {
+                viewScroll.scrollBottom();
+              }, 1000);
+            });
+          },function (err) {
+          });
+        }
+      },function (err) {
+
+      });
+    }
+
+
+    /**
+     * 播放语音
+     */
+    $scope.isGrouplisten='false';
+    $scope.groupaudioid='';
+    $scope.isshowGroupgif='false';
+    $scope.showgroupanimation=function (filepath,sqlid) {
+      //判断id是否一致，若一致则判断标志位；若不一致，则播放
+      // alert("拿到的id"+sqlid);
+      if($scope.groupaudioid != sqlid){
+        $scope.isshowGroupgif='true';
+        $scope.isGrouplisten='true';
+        $scope.isshowgroupPng='false';
+      }else{
+        if($scope.isGrouplisten === 'false'){
+          $scope.isshowGroupgif='true';
+          $scope.isGrouplisten= 'true';
+          $scope.isshowgroupPng='false';
+        }else{
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten= 'false';
+          $scope.isshowgroupPng='true';
+        }
+      }
+      $scope.groupaudioid=sqlid;
+      if($scope.isGrouplisten === 'true'){
+        // alert("播放语音啦");
+        $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
+          $scope.groupaudioid='';
+        }, function (err) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
+          $scope.groupaudioid='';
+          $ToastUtils.showToast(err,null,null);
+        });
+
+      }else{
+        $mqtt.stopPlayRecord(function (data) {
+          $scope.isshowGroupgif='false';
+          $scope.groupaudioid='';
+          $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
+        },function (err) {
+          $scope.isshowGroupgif='false';
+          $scope.isGrouplisten='false';
+          $scope.isshowgroupPng='true';
+          $scope.groupaudioid='';
+        });
+      }
+
+      // $scope.isshowaudio='true';
+      // $scope.numlist=[{no:1},{no:2},{no:3}];
+
+    }
+
+
+    $scope.showTingtong='false';
+    /**
+     * 扬声器与听筒模式切换
+     */
+    $mqtt.getProxyMode(function (suc) {
+      if(suc === 1){
+        $scope.groupProxyMode='false';
+      }else{
+        $scope.groupProxyMode='true';
+      }
+      $rootScope.$broadcast('change_group_proxy_mode.success');
+    })
+
+    $scope.openYangshengqiMode=function () {
+      $mqtt.setProxyMode(0);
+      $scope.showTingtong='true';
+    }
+
+
+    $scope.openTingtongMode=function () {
+      $mqtt.setProxyMode(1);
+      $scope.showTingtong ='false';
+    }
+
+    $scope.$on('change_group_proxy_mode.success', function (event) {
+      $scope.$apply(function () {
+        $scope.showTingtong =$scope.groupProxyMode;
+      })
+    });
+
+
+
     //点击定位，跳转查询位置界面
     $scope.gogegrouplocation = function (messagetype,topic, chatname, id,localuser,localuserId,sqlid,groupType,ismygroup) {
       $state.go('sendGelocation', {
@@ -3325,6 +3648,13 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
+    $api.getWelcomePic($scope.ID,"960",function (srcurl) {
+      $mqtt.save('welcomePic', srcurl);
+      // $ToastUtils.showToast(srcurl)
+    },function (error) {
+      $ToastUtils.showToast(error)
+    })
+
     if ($mqtt.isLogin()) {
       // alert($mqtt.isLogin());
       $mqtt.getMqtt().getMyTopic(function (msg) {
@@ -4948,6 +5278,7 @@ angular.module('message.controllers', [])
     $scope.dangqianpage=1;
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID= msg.userID
+      // alert($scope.UserID)
     },function (msg) {
 
     });

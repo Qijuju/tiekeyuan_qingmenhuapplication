@@ -8,14 +8,17 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
-    </ion-nav-buttons>
-
-    <ion-nav-buttons side="secondary">
+      <md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
+      <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size:25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></md-icon>
+      <button class="button button-icon icon ion-ios-telephone" style="padding-right:0px;padding-left: 0px;" ng-click="callperson()"></button>
       <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
               style="margin-right: 5px"></button>
-
     </ion-nav-buttons>
+
+    <!--<ion-nav-buttons side="right">-->
+     <!---->
+
+    <!--</ion-nav-buttons>-->
 
   </ion-nav-bar>
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
@@ -146,11 +149,11 @@
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;width: 120px;" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
-              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid"/>
+            <p class="rj-message" style="margin-left: 14.5%;width: 120px;height:40px;position:relative;" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
+              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
               <img src="img/video.gif" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
 
-            </p><span align="center" style="background-color: transparent;position:relative;padding-top: 35px;height: 300px;margin-top: 20px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
+            </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
           </span>
 
         </div>
@@ -234,16 +237,19 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;"  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;" >
               <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true'"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
               <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
-                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <font style="background-color: transparent;margin-left: -30px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
-              <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid"/>
-              <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
+                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
+              </ion-spinner>
+              <font style="background-color: transparent;margin-left: -35px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
+              <span style="width: 120px;"  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />
+                <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
+              </span>
               <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
                 <!--{{no.no}}-->
                 <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
@@ -303,9 +309,9 @@
 
   <ion-footer-bar class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left" ng-hide="isYuYin === 'true'" ng-click="clickOn()">
-      </button>
-      <img src="img/keybroad.png" class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" >
+      <md-icon class="icon ion-ios-mic-outline rj-footer-btn-left" style="border: none;background-color: #FFFFFF;font-size: 30px;line-height: 1;position:relative;bottom: 2px;left:10px;"  ng-hide="isYuYin === 'true'" ng-click="clickOn()">
+      </md-icon>
+      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" >
       </img>
     </div>
 
@@ -321,7 +327,7 @@
 
     <div class="rj-footer-btn-wrap"><!--style="margin-left: 15px;margin-right: 5px"-->
       <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+        <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
       </div>
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">

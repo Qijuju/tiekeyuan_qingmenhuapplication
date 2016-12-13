@@ -184,6 +184,9 @@ angular.module('common.services', [])
       installApk:function(targetPath, success, error) {//安装应用
         api.install(targetPath, success, error);
       },
+      getWelcomePic: function (picUserID, picSize, success, error) {
+        api.getWelcomePic(picUserID, picSize, success, error);
+      },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
         /*$mqtt.getMqtt().getString('install_cancel', function (msg) {
           if (msg != 'true') {

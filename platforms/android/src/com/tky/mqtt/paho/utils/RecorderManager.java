@@ -1,11 +1,15 @@
 package com.tky.mqtt.paho.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 
 import java.io.File;
@@ -39,7 +43,7 @@ public class RecorderManager {
     /**
      * 声音强度监测延时
      */
-    private static final long POLL_INTERAL = 200;
+    private static final long POLL_INTERAL = 250;
 //    private static Handler handler = new Handler();
 
     /**
@@ -50,6 +54,10 @@ public class RecorderManager {
     private VoicePollTask voicePollTask;
 
     private String filePath;
+    /**
+     * 录音参数
+     */
+    private int BASE_RATIO = 600;
     //********************* 录音相关参数结束 END *********************
 
     //********************* 录音播放相关参数开始 START *********************
@@ -65,6 +73,7 @@ public class RecorderManager {
     private MediaPlayer player;
     private String playVoiceName;
     private int[] amps;
+    private int currentPausePosition;
 
     /**
      * 私有化构造器
@@ -79,6 +88,26 @@ public class RecorderManager {
     public static RecorderManager getInstance(@NonNull Activity context) {
         RecorderManager.context = context;
         return INSTANCE;
+    }
+
+    /**
+     * 对该类进行初始化
+     */
+    public void init() {
+        if (recorder != null) {
+            try {
+                recorder.stop();
+                recorder.release();
+                recorder = null;
+            } catch (Exception e) {}
+        }
+        if (player != null) {
+            try {
+                player.stop();
+                player.release();
+                player = null;
+            } catch (Exception e) {}
+        }
     }
 
     //********************* 录音相关方法开始 START *********************
@@ -130,6 +159,7 @@ public class RecorderManager {
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         recorder.setOutputFile(filePath);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        recorder.setMaxDuration((int) interval);
         try {
             recorder.prepare();
         } catch (IOException e) {
@@ -287,13 +317,14 @@ public class RecorderManager {
         @Override
         public void run() {
             if (isRecording) {
-                double amp = getAmplitude();
+                final int amp = getAmplitude();
                 if (onRecorderChangeListener != null) {
-                    final int rate = getAmps()[(int)amp];//((int) (amp / 2f));
+//                    final int rate = getAmps()[(int)amp];//((int) (amp / 2f));
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            onRecorderChangeListener.onRateChange(filePath, interval, rate > 5 ? 5 : rate);
+                            Log.d("rate", "rate:" + amp);
+                            onRecorderChangeListener.onRateChange(filePath, interval, amp > 5 ? 5 : amp);
                         }
                     });
                 }
@@ -318,9 +349,15 @@ public class RecorderManager {
      * 获取声音频率（0~11，每两个作为一个单位计量）
      * @return
      */
-    private double getAmplitude() {
+    private int getAmplitude() {
         if (recorder != null) {
-            return (recorder.getMaxAmplitude() / 2700.0d);
+            int ratio = recorder.getMaxAmplitude() / BASE_RATIO;
+            int amp = 0;
+            if (ratio > 1) {
+                amp = (int) (20 * Math.log10(ratio));
+            }
+            return amp / 4;
+//            return (recorder.getMaxAmplitude() / 2700.0d);
         } else {
             return 0;
         }
@@ -329,11 +366,23 @@ public class RecorderManager {
     //********************* 录音相关方法结束 END *********************
 
     //********************* 录音播放相关方法开始 START *********************
+
+    /**
+     * 播放之前要初始化播放器
+     */
+    public void initPlayer() {
+        //初始化currentPausePosition
+        currentPausePosition = 0;
+    }
+
     /**
      * 播放录音
      * @param playVoiceName 录音文件的名称（仅仅是名称，具体路径在该方法中补全）
      */
     public MediaPlayer playRecord(String playVoiceName) {
+        //初始化播放器
+        initPlayer();
+
         this.playVoiceName = playVoiceName;
         if (player == null) {
             player = new MediaPlayer();
@@ -349,7 +398,14 @@ public class RecorderManager {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
             player.prepare();
             player.start();                                           // play the record
+            AudioManager audioManager = (AudioManager) UIUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
+            player.setVolume(currVolume, currVolume);
         }catch (IOException e) {
+            player.stop();
+            player.release();
+            player = null;
             Toast.makeText(context, "播放失败！", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
@@ -357,12 +413,55 @@ public class RecorderManager {
     }
 
     /**
+     * 设置播放声音大小
+     * @param volume
+     */
+    public void setVolume(int volume) {
+        if (player != null) {
+            player.setVolume(volume, volume);
+        }
+    }
+
+    /**
+     * 暂停
+     */
+    public void pause() {
+        try {
+            if (player != null && player.isPlaying()) {
+                currentPausePosition = player.getCurrentPosition() - 100;
+                currentPausePosition = (currentPausePosition > 0 ? currentPausePosition : 0);
+                player.pause();
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 恢复播放
+     */
+    public void resume() {
+        try {
+            if (player != null && !player.isPlaying()) {
+                player.seekTo(currentPausePosition);
+                player.start();
+            }
+        } catch (Exception e){}
+    }
+
+    /**
      * 停止播放
      */
     public void stopPlayRecord() {
-        if (player != null && player.isPlaying()) {
-            player.stop();
-            player.release();
+        try {
+            if (player != null && player.isPlaying()) {
+                player.stop();
+                player.release();
+            }
+        } catch (Exception e) {
+        } finally {
+            //播放完成恢复距离感应器模式
+            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+            UIUtils.switchEarphone(context, !proxyMode);
         }
     }
 

@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,6 +53,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,6 +96,7 @@ import im.server.User.RSTCheckUser;
 import im.server.User.RSTgetUser;
 import im.server.attention.IMAttention;
 import im.server.attention.RSTgetAttention;
+import okhttp3.OkHttpClient;
 
 /**
  * 作者：
@@ -840,10 +845,19 @@ public class ThriftApiClient extends CordovaPlugin {
             }
             FileInputStream fis = new FileInputStream(file);
             File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
+            String path =FileUtils.getIconDir() + File.separator + "headpic";
             if (!fosDir.exists()) {
                 fosDir.mkdirs();
             }
-            final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".png");
+            String[] listarr = fosDir.list();
+            if(listarr.length>0||listarr!=null){
+                for (int i = 0; i < listarr.length; i++) {
+                    File temp = new File(path + File.separator + listarr[i]);
+                    temp.delete();
+                }
+            }
+
+            final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
             if (fosFile.exists()) {
                 fosFile.delete();
             }
@@ -2259,7 +2273,8 @@ public class ThriftApiClient extends CordovaPlugin {
                 if (dirFile != null && !dirFile.exists()) {
                     dirFile.mkdirs();
                 }
-                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+                nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
                 ;
                 file = new File(nowSavePath);
                 if (!file.exists()) {
@@ -2681,7 +2696,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         String tempPicName = null;
                                         if (result.result) {
                                             System.out.println("获取图片成功");
-                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img";
+                                            String tempUserPic = FileUtils.getIconDir() + File.separator + "chat_img" + File.separator + UUID.randomUUID().toString();
                                             RandomAccessFile baf = null;
                                             File directory = new File(tempUserPic);
                                             if (!directory.exists()) {
@@ -2695,11 +2710,13 @@ public class ThriftApiClient extends CordovaPlugin {
                                                 tempFile.createNewFile();
                                             baf = new RandomAccessFile(tempFile, "rw");
                                             baf.seek(offset);
+                                            String finalMessage = message;
+                                            finalMessage = message.split("###")[0] + "###" + tempPicName + message.substring(message.indexOf("###", message.indexOf("###") + 1), message.length());
                                             while (true) {
                                                 int length = result.fileByte.limit() - result.fileByte.position();
                                                 baf.getChannel().write(result.fileByte);
                                                 if (result.isFinish) {
-                                                    msg.put("message", message + "###" + 100);
+                                                    msg.put("message", finalMessage + "###" + 100);
                                                     setResult(msg, PluginResult.Status.OK, callbackContext);
                                                     break;
                                                 }
@@ -2714,7 +2731,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                                 }
                                                 float progressF = (result.getOffset()) * 1.0f / fileSize * 100;
                                                 int progress = Math.round(progressF);
-                                                msg.put("message", message + "###" + progress);
+                                                msg.put("message", finalMessage + "###" + progress);
                                                 setResult(msg, PluginResult.Status.OK, callbackContext);
                                             }
                                             try {
@@ -2844,6 +2861,68 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
         }
+    }
+
+    public void getWelcomePic(final JSONArray args, final CallbackContext callbackContext){
+
+        BufferedInputStream bis = null;
+        FileOutputStream fos = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            String picUserID = args.getString(0);//查询的是谁的图片
+            String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
+            URL url=new URL("http://61.237.239.152:8080/Im_Interface/loginpic/download?Id=0");
+            HttpURLConnection httpURLConnection= (HttpURLConnection) url.openConnection();
+            httpURLConnection.setDoInput(true);
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.connect();
+            if(httpURLConnection.getResponseCode()==200){
+                bis=new BufferedInputStream(httpURLConnection.getInputStream());
+                byte[] buffer = new byte[1024 * 8];
+
+                int c = 0;
+                while ((c = bis.read(buffer)) != -1) {
+
+                    baos.write(buffer, 0, c);
+
+                    baos.flush();
+
+                }
+                String iconDir = FileUtils.getIconDir() + File.separator + "/welcome";
+                File directory = new File(iconDir);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                String fileName = iconDir + File.separator + picUserID + picSize + ".jpg";
+                File file = new File(fileName);
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                byte[] fileByte = baos.toByteArray();
+                fos = new FileOutputStream(file);
+                fos.write(fileByte);
+                setResult(fileName, PluginResult.Status.OK, callbackContext);
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                    fos = null;
+                } catch (IOException e) {
+                    setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
     }
 
 

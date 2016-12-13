@@ -135,10 +135,14 @@ angular.module('badge.controllers',[])
 
         $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
           $scope.notifyNoRead=0;
-          alert("进来了没有啊3")
+          alert("进来了没有啊3"+msg.length)
 
           if (msg.length>0){
             $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+            alert($scope.notifyNoRead+"数字是多少")
+
+          }else {
+            $scope.notifyNoRead=0;
           }
 
         },function (msg) {

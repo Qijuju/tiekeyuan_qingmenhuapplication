@@ -1430,6 +1430,12 @@ angular.module('message.services', [])
       },
       stopPlayRecord:function(success, error) {//停止播放录音
         mqtt.stopPlayRecord(success, error);
+      },
+      setProxyMode:function(mode) {//设置距离感应器模式（0为正常模式，1为听筒模式）
+        mqtt.setProxyMode(mode);
+      },
+      getProxyMode:function(success) {//获取距离感应器模式（0为正常模式，1为听筒模式）
+        mqtt.getProxyMode(success);
       }
 
 
