@@ -237,26 +237,42 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font id="schangelength" class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" >
-              <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
-                   ng-if="msgSingle.isFailure ==='true'"
-                   ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
-              <ion-spinner icon="ios-small"
-                           style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
-                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
-              </ion-spinner>
-              <font style="background-color: transparent;margin-left: -35px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
-              <span style="width: 120px;"  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
-                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />
-                <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
-              </span>
-              <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
-                <!--{{no.no}}-->
-                <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
-                <!--&lt;!&ndash;<img ng-show="no.no === 1" src="img/voice_left2.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
+            <!---发送语音样式--->
+            <!--<div class="rj-message-right" style="width: 250px;" >-->
+              <div class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+                <img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />
+                <img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
               <!--</div>-->
-            </font>
+              </div>
+              <div class="rj-message-right"  ng-if="msgSingle.messagetype === 'Audio'" style="display: inline;background-color: transparent;padding-right: 0px;margin-right: 3px;">
+                <font style="float: right">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)                  /1000}}"
+                </font>
+                <ion-spinner icon="ios-small"
+                           style="vertical-align: middle"
+                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
+                </ion-spinner>
+                <img style="margin-right:3px;" src="img/red.png"
+                     ng-if="msgSingle.isFailure ==='true'"
+                     ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
+              </div>
+            <!--<p ng-if="msgSingle.messagetype === 'Audio'" class="rj-message-right" style="width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px">-->
+              <!--<img style="background-color: transparent;position:relative;margin-left: -45px;" src="img/red.png"-->
+                 <!--ng-if="msgSingle.isFailure ==='true'"-->
+                 <!--ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>-->
+              <!--<ion-spinner icon="ios-small"-->
+                           <!--style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"-->
+                           <!--ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">-->
+              <!--</ion-spinner>-->
+              <!--<font style="position: relative;background-color: transparent;margin-left: -5px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)                  /1000}}"-->
+              <!--</font>-->
+              <!--<span style="position:relative;background-color: #000000" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >-->
+              <!--&lt;!&ndash;<span style="width: 120px;"  >&ndash;&gt;-->
+                <!--<img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />-->
+                <!--<img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >-->
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+              <!--</span>-->
+            <!--</p>-->
+
             <!----发送位置的ui-->
             <!--<font ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
               <img style="background-color: transparent;margin-left: -24px" src="img/red.png"
