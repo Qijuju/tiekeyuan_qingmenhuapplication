@@ -1251,6 +1251,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if (result.result) {
                                     MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                     List<Msg> messagesList = result.getMsglist();
+                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
                                     for (int i = 0; i < messagesList.size(); i++) {
                                         Msg msg = messagesList.get(i);
                                         Messages messages = new Messages();
@@ -1336,6 +1337,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                         System.out.println("消息类型weizhi");
                                     } else if (lastmessages.getMessagetype() == "File") {
                                         chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                                    }else if(lastmessages.getMessagetype() == "Audio"){
+                                        chatList.setLastText("[语音]");//从数据库里取最后一条消息
                                     } else {
                                         chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                     }

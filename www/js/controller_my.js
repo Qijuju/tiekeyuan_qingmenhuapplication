@@ -423,7 +423,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
 
     var isAndroid = ionic.Platform.isAndroid();
-    $scope.$on('$ionicView.enter', function () {
       $scope.UserIDforhou = $stateParams.UserIDfor;
       $api.getHeadPic($scope.UserIDforhou,"60",function (srcurl) {
         $scope.picyoumeiyou=true;
@@ -438,7 +437,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.picyoumeiyou=false;
         // alert("没有")
       })
-    });
+
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({

@@ -298,7 +298,7 @@ angular.module('message.controllers', [])
       return false;
 
 
-    },501)
+    },501);
 
 
 
@@ -754,6 +754,12 @@ angular.module('message.controllers', [])
       };
 
     }
+
+    function keepKeyboardClose() {
+      var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+      keyboard.close();
+    }
+
 
     $scope.i=0;
     //在联系人界面时进行消息监听，确保人员收到消息
@@ -1443,7 +1449,6 @@ angular.module('message.controllers', [])
       })
     }
 
-
     // //将是否为点击语音的动作初始化为false(键盘)
     $scope.isYuYin='false';
     //默认不展示语音居中框
@@ -1455,6 +1460,7 @@ angular.module('message.controllers', [])
      */
     $scope.clickOn=function () {
       $scope.isYuYin="true";
+      keepKeyboardClose();
     }
 
     /**
@@ -1560,6 +1566,16 @@ angular.module('message.controllers', [])
           $scope.isShow='false';
           $scope.isshowless='false';
           // alert("秒："+$scope.duration);
+          // if($scope.duration > 1000 && $scope.duration < 10000){
+          //   $ToastUtils.showToast("10s====");
+          //   document.getElementById("schangelength").style.width ='60px';
+          // }else if($scope.duration > 10000 && $scope.duration < 30000){
+          //   $ToastUtils.showToast("30s====");
+          //   document.getElementById("schangelength").style.width ='120px';
+          // }else if($scope.duration > 30000 && $scope.duration < 60000){
+          //   $ToastUtils.showToast("60s====");
+          //   document.getElementById("schangelength").style.width ='180px';
+          // }
           //发送语音
           // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
           $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
@@ -3292,7 +3308,10 @@ angular.module('message.controllers', [])
       });
     };
 
-
+   /* function keepKeyboardClose() {
+      var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+      keyboard.close();
+    }*/
 
     //初始化
     //将是否为点击语音的动作初始化为false(键盘)
@@ -3304,6 +3323,7 @@ angular.module('message.controllers', [])
 
     $scope.groupclickOn=function () {
       $scope.isGroupYuYin="true";
+      keepKeyboardClose();
     }
 
     $scope.groupclickOnChange=function () {
@@ -4630,10 +4650,48 @@ angular.module('message.controllers', [])
          * 滑动删除会话项
          */
       $scope.removechat=function (id,name) {
-        $greendao.deleteDataByArg('ChatListService',id,function (data) {
-          // alert("删除会话id"+id);
-          $chatarr.deletechatdata(id);
-          $rootScope.$broadcast('lastcount.update');
+        //在删除该条记录时，将该条对话里所有未读消息的状态置为已读
+        $greendao.queryDataByIdAndIsread(id,'0',function (data) {
+          if(data.length>0){
+            for(var i=0;i<data.length;i++){
+              // alert("进入for循环的长度"+data.length);
+              var messaegeitem={};
+              messaegeitem._id=data[i]._id;
+              messaegeitem.sessionid=data[i].sessionid;
+              messaegeitem.type=data[i].type;
+              // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+              messaegeitem.from=data[i].from;
+              messaegeitem.message=data[i].message;
+              messaegeitem.messagetype=data[i].messagetype;
+              messaegeitem.platform=data[i].platform;
+              messaegeitem.when=data[i].when;
+              messaegeitem.isFailure=data[i].isFailure;
+              messaegeitem.isDelete=data[i].isDelete;
+              messaegeitem.imgSrc=data[i].imgSrc;
+              messaegeitem.username=data[i].username;
+              messaegeitem.senderid=data[i].senderid;
+              messaegeitem.isSuccess=data[i].isSuccess;
+              messaegeitem.daytype=data[i].daytype;
+              messaegeitem.istime=data[i].istime;
+              if(data[i].isread ==='0'){
+                // alert("拿到库里的消息阅读状态"+data[i].isread);
+                data[i].isread ='1';
+                messaegeitem.isread=data[i].isread;
+                // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                  // alert("保存成功");
+                },function (err) {
+                });
+              }
+            }
+          }
+          //删除记录
+          $greendao.deleteDataByArg('ChatListService',id,function (data) {
+            // alert("删除会话id"+id);
+            $chatarr.deletechatdata(id);
+            $rootScope.$broadcast('lastcount.update');
+          },function (err) {
+          });
         },function (err) {
         });
       }

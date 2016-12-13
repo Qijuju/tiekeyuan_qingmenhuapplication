@@ -42,7 +42,7 @@ public class RecorderManager {
     /**
      * 声音强度监测延时
      */
-    private static final long POLL_INTERAL = 250;
+    private static final long POLL_INTERAL = 50;
 //    private static Handler handler = new Handler();
 
     /**

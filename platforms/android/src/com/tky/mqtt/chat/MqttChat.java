@@ -713,12 +713,16 @@ public class MqttChat extends CordovaPlugin {
             mqttConnectReceiver.setOnMqttStatusChangeListener(new MqttConnectReceiver.OnMqttStatusChangeListener() {
                 @Override
                 public void onMqttStarted() {
-                    setResult("true", PluginResult.Status.OK, callbackContext);
+                    try {
+                        setResult("true", PluginResult.Status.OK, callbackContext);
+                    } catch (Exception e) {}
                 }
 
                 @Override
                 public void onMqttClosed() {
-                    setResult("false", PluginResult.Status.ERROR, callbackContext);
+                    try {
+                        setResult("false", PluginResult.Status.ERROR, callbackContext);
+                    } catch (Exception e) {}
                 }
 
             });
