@@ -33,6 +33,7 @@ import android.text.format.Formatter;
 
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
@@ -108,6 +109,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
             String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
             File file = new File(path);
             long length = file.length();
+            if (length <= 0) {
+                ToastUtil.showSafeToast("0B文件无法发送！");
+                return;
+            }
             String formatSize = Formatter.formatFileSize(MainActivity.this, length);
             Intent receiverIntent = new Intent();
             receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
@@ -128,6 +133,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
                     final String path = filePath + File.separator + fileName + ".jpg";
                     File file = new File(filePath, fileName + ".jpg");
                     final long length = file.length();
+                    if (length <= 0) {
+                        ToastUtil.showSafeToast("0B文件无法发送！");
+                        return;
+                    }
                     final String formatSize = Formatter.formatFileSize(MainActivity.this, length);
                     UIUtils.runInMainThread(new Runnable() {
                         @Override

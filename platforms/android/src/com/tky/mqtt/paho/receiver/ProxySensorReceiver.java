@@ -18,7 +18,6 @@ public class ProxySensorReceiver extends BroadcastReceiver {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ReceiverParams.RECEIVER_PROXY);
         UIUtils.getContext().registerReceiver(this, filter);
-        ToastUtil.showSafeToast("ProxySensorReceiver");
     }
 
     /**
