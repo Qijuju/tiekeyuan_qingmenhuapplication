@@ -206,8 +206,8 @@
 
                <!---发送语音--->
                <div class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
-                <img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != audioid || isshowgPng === 'true'" />
-                <img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msg._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
+                <img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
+                <img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
                  <!--</div>-->
               </div>
               <div class="rj-message-right"  ng-if="msg.messagetype === 'Audio'" style="display: inline;background-color: transparent;padding-right: 0px;margin-right: 3px;">
@@ -232,12 +232,12 @@
                 <!--<font style="background-color: transparent;margin-left: -35px;">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</font>-->
                 <!--<img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>-->
                 <!--<img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">-->
-                 <!--&lt;!&ndash;<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">&ndash;&gt;-->
-                 <!--&lt;!&ndash;{{no.no}}&ndash;&gt;-->
-                 <!--&lt;!&ndash;<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
-                 <!--&lt;!&ndash;&lt;!&ndash;<img ng-show="no.no === 1" src="img/voice_left2.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;&ndash;&gt;-->
-                 <!--&lt;!&ndash;&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;&ndash;&gt;-->
-                 <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                 <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
+                 <!--{{no.no}}-->
+                 <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
+                 <!--&lt;!&ndash;<img ng-show="no.no === 1" src="img/voice_left2.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
+                 <!--&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
+                 <!--</div>-->
               <!--</font>-->
 
 

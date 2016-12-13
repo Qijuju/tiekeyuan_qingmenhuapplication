@@ -108,7 +108,7 @@ angular.module('badge.controllers',[])
     };
 
     $scope.$on('second.notify', function (event) {
-      
+
       $scope.$apply(function () {
 
         $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
@@ -121,7 +121,24 @@ angular.module('badge.controllers',[])
         },function (msg) {
 
         });
-        
+
+      })
+    });
+
+    //删除成功
+    $scope.$on('lastcount.update', function (event) {
+
+      $scope.$apply(function () {
+        $greendao.loadAllData('ChatListService',function (msg) {
+          $scope.allNoRead=0;
+          if (msg.length>0){
+            for(var i=0;i<msg.length;i++){
+              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+            }
+          }
+        },function (err) {
+
+        })
       })
     });
 

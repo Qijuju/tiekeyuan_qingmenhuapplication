@@ -715,14 +715,16 @@ public class MqttChat extends CordovaPlugin {
                 public void onMqttStarted() {
                     try {
                         setResult("true", PluginResult.Status.OK, callbackContext);
-                    } catch (Exception e) {}
+                    } catch (Exception e) {
+                    }
                 }
 
                 @Override
                 public void onMqttClosed() {
                     try {
                         setResult("false", PluginResult.Status.ERROR, callbackContext);
-                    } catch (Exception e) {}
+                    } catch (Exception e) {
+                    }
                 }
 
             });
@@ -952,7 +954,9 @@ public class MqttChat extends CordovaPlugin {
         try {
             int proxyMode = args.getInt(0);
             SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
-            UIUtils.switchEarphone(cordova.getActivity(), proxyMode == 1 ? true : false);
+            if (RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
+                UIUtils.switchEarphone(cordova.getActivity(), proxyMode == 1 ? true : false);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
