@@ -57,4 +57,16 @@ exec(success, null, "MqttChat", "getMqttStatus", [])
 exports.setExitStartedStatus =function(){//改变登录状态为未登录
 exec(null, null, "MqttChat", "setExitStartedStatus", [])
 };
+exports.startRecording =function(success, error){//开始录音
+exec(success, error, "MqttChat", "startRecording", [])
+};
+exports.stopRecording =function(success, error){//停止录音
+exec(success, error, "MqttChat", "stopRecording", [])
+};
+exports.playRecord =function(playVoiceName,success, error){//播放录音
+exec(success, error, "MqttChat", "playRecord", [playVoiceName])
+};
+exports.stopPlayRecord =function(success, error){//停止播放录音
+exec(success, error, "MqttChat", "stopPlayRecord", [])
+};
 });

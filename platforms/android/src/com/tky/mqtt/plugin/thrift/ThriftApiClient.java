@@ -1290,6 +1290,16 @@ public class ThriftApiClient extends CordovaPlugin {
 //                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
 //                                    String groupName=groupChatsList.get(0).getGroupName();
 //                                    ToastUtil.showSafeToast("最新群名"+groupName);
+                                    //统计未读数量
+                                    int count=0;
+                                   List<Messages> messagesList1 = messagesService.queryData("where sessionid =?", result.getSessionID());
+                                    for (int i = 0; i < messagesList.size(); i++) {
+                                        Messages messages = messagesList1.get(i);
+                                        if ("0".equals(messages.getIsread())) {
+                                            count++;
+                                        }
+                                    }
+
                                     //取出消息表的最后一条数据保存在chat表里面
                                     List<Messages> messagesLists = messagesService.queryData("where sessionid =?", result.getSessionID());
                                     Messages lastmessages = messagesLists.get(messagesLists.size() - 1);
@@ -1303,7 +1313,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                     List<ChatList> chatLists = chatListService.queryData("where id =?", lastmessages.getSessionid());
                                     ChatList chatList = new ChatList();
                                     chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-                                    System.out.println("消息类型" + lastmessages.getMessagetype());
+//                                    System.out.println("消息类型" + lastmessages.getMessagetype());
                                     if (lastmessages.getMessagetype() == "Image") {
                                         // alert("返回即时通");
                                         chatList.setLastText("[图片]");//从数据库里取最后一条消息
@@ -1315,7 +1325,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                     } else {
                                         chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                     }
-                                    chatList.setCount(result.getMsgCount() + "");//将统计的count未读数量存进去
+                                    chatList.setCount(count + "");//将统计的count未读数量存进去
+//                                    ToastUtil.showSafeToast("未读数"+count);
                                     chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
                                     chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
                                     chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
@@ -2236,36 +2247,38 @@ public class ThriftApiClient extends CordovaPlugin {
                 objectID = null;
             }
 
+            String messagetype = messageDetail.getString("messagetype");
             final String filePath=args.getString(3).split("###")[0];//{{$}}
 
-            FileInputStream fis = new FileInputStream(filePath);
-
-
-
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(UIUtils.getContext().getContentResolver(), Uri.parse(filePath));
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-
-            final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
-            File dirFile = new File(dir);
-            if (dirFile != null && !dirFile.exists()) {
-                dirFile.mkdirs();
-            }
-            final String savePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());;
-//            File saveFile = new File(savePath);
-            File file = new File(savePath);
-            if (!file.exists()) {
-                FileOutputStream fos = new FileOutputStream(savePath);
-
-                byte[] bys = new byte[10 * 1024];
-                int len = 0;
-                while ((len = fis.read(bys)) != -1) {
-                    fos.write(bys, 0, len);
+            File file = null;
+            String nowSavePath = null;
+            if (!"Audio".equals(messagetype)) {
+                FileInputStream fis = new FileInputStream(filePath);
+                final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
+                File dirFile = new File(dir);
+                if (dirFile != null && !dirFile.exists()) {
+                    dirFile.mkdirs();
                 }
+                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+                ;
+                file = new File(nowSavePath);
+                if (!file.exists()) {
+                    FileOutputStream fos = new FileOutputStream(nowSavePath);
 
-                fos.close();
+                    byte[] bys = new byte[10 * 1024];
+                    int len = 0;
+                    while ((len = fis.read(bys)) != -1) {
+                        fos.write(bys, 0, len);
+                    }
+
+                    fos.close();
+                }
+            } else {
+                nowSavePath = filePath;
+                file = new File(filePath);
             }
+
+            final String savePath = nowSavePath;
 
 
             if (file == null || !file.exists()) {
@@ -2368,10 +2381,10 @@ public class ThriftApiClient extends CordovaPlugin {
     public void getFile(final JSONArray args, final CallbackContext callbackContext){
 
         try {
-            String objectTP=args.getString(0);
+            final String objectTP=args.getString(0);
             final String objectID=args.getString(1);
             String picSize=args.getString(2);
-            SystemApi.getFile(getUserID(),objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+            SystemApi.getFile(getUserID(),"A".equals(objectTP) ? "F" : objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
                     if(arg0!=null){
@@ -2395,6 +2408,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else {*/
                                 String saveFilePath = objectID.split("###")[1];
                                     tempPicName = tempUserPic + File.separator + saveFilePath.substring(saveFilePath.lastIndexOf("/") + 1, saveFilePath.length());//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
+                                if ("A".equals(objectTP)) {
+                                    tempPicName = objectID.split("###")[1];
+                                }
 //                                }
                                 File tempFile = new File(tempPicName);
                                 if (!tempFile.exists())

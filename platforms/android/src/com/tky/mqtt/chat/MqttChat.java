@@ -3,6 +3,7 @@ package com.tky.mqtt.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.protocol.model.IMPException;
@@ -113,6 +115,7 @@ public class MqttChat extends CordovaPlugin {
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_ERROR);
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_SUCCESS);
         UIUtils.getContext().registerReceiver(topicReceiver, topicFilter);
+
     }
 
     @Override
@@ -721,6 +724,172 @@ public class MqttChat extends CordovaPlugin {
         }
     }
 
+    /**
+     * 开始录音
+     * @param args
+     * @param callbackContext
+     */
+    public void startRecording(final JSONArray args, final CallbackContext callbackContext) {
+        final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                manager.startRecord(manager.createVoicePath(), 0);
+            }
+        });
+        manager.setOnRecorderChangeListener(new RecorderManager.OnRecorderChangeListener() {
+            @Override
+            public void onTimeChange(final String filePath, long interval, final long recordTime) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeChange");
+                            obj.put("filePath", filePath);
+                            obj.put("recordTime", recordTime);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onTimeout(final String filePath, final long interval) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeout");
+                            obj.put("filePath", filePath);
+                            obj.put("time", interval);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onRateChange(final String filePath, long interval, final int rate) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "rateChange");
+                            obj.put("filePath", filePath);
+                            obj.put("rate", rate);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onError(final String filePath, long interval, final String error) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "error");
+                            obj.put("filePath", filePath);
+                            obj.put("error", error);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+    }
+
+    /**
+     * 结束录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopRecording(final JSONArray args, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+                try {
+                    manager.stopRecord();
+                } catch (Exception e){}
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        long duration = manager.getDuration();
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("filePath", manager.getRecordPath());
+                            obj.put("duration", duration <= 59 * 1000 ? duration : 59 * 1000);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+    }
+
+    /**
+     * 播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void playRecord(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            final String playVoiceName = args.getString(0);
+            File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
+            if (file.exists()) {
+                cordova.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MediaPlayer player = RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                setResult("true", PluginResult.Status.OK, callbackContext);
+                            }
+                        });
+                    }
+                });
+            } else {
+                setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 停止播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopPlayRecord(final JSONArray args, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
+                    RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                } catch (Exception e) {}
+            }
+        });
+    }
+
     public static MType getType(String type) {
         if ("User".equals(type)) {
             return MType.U;
@@ -826,6 +995,19 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
