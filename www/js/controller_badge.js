@@ -125,10 +125,9 @@ angular.module('badge.controllers',[])
       })
     });
 
-    /*//删除成功
+    //删除成功
     $scope.$on('lastcount.update', function (event) {
 
-      alert("进来了没有啊")
       $scope.$apply(function () {
         $greendao.loadAllData('ChatListService',function (msg) {
           $scope.allNoRead=0;
@@ -141,7 +140,7 @@ angular.module('badge.controllers',[])
 
         })
       })
-    });*/
+    });
 
 
 

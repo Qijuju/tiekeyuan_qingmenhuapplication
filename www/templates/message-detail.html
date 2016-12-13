@@ -149,7 +149,7 @@
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;width: 120px;height:40px;position:relative;" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
+            <p class="rj-message" style="margin-left: 14.5%;height:40px;position:relative;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
               <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
               <img src="img/video.gif" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
 
@@ -237,7 +237,7 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;" >
+            <font id="schangelength" class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" >
               <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true'"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
