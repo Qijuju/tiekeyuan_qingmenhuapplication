@@ -33,7 +33,6 @@ import android.text.format.Formatter;
 
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
@@ -68,9 +67,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         loadUrl(launchUrl);
         //初始化录音机
         RecorderManager.getInstance(MainActivity.this).init();
-        //默认是听筒模式
-        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
-        UIUtils.switchEarphone(this, !proxyMode);
 
         //传感器
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -169,10 +165,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
     @Override
     protected void onStop() {
-        //注销距离感应器
-        if (mSensorManager != null) {
-            mSensorManager.unregisterListener(this);
-        }
+        //如果正在播放，告诉播放器停止播放
+        Intent intent = new Intent();
+        intent.setAction(ReceiverParams.RECEIVER_PLAY_STOP);
+        sendBroadcast(intent);
         //初始化录音机
         RecorderManager.getInstance(MainActivity.this).init();
         super.onStop();
@@ -188,6 +184,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
             /*if (volumeChangeReceiver != null) {
                 UIUtils.getContext().unregisterReceiver(volumeChangeReceiver);
             }*/
+            //注销距离感应器
+            if (mSensorManager != null) {
+                mSensorManager.unregisterListener(this);
+            }
         } catch (Exception e) {
         }
         super.onDestroy();

@@ -4,17 +4,21 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 
 public class ProxySensorReceiver extends BroadcastReceiver {
 
+    private static boolean isNormalMode;
     private OnProxyChangeListener onProxyChangeListener;
     private ProxySensorReceiver() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ReceiverParams.RECEIVER_PROXY);
         UIUtils.getContext().registerReceiver(this, filter);
+        ToastUtil.showSafeToast("ProxySensorReceiver");
     }
 
     /**
@@ -30,10 +34,14 @@ public class ProxySensorReceiver extends BroadcastReceiver {
      * @param isNormalMode 是否是正常模式（true：正常模式；false：听筒模式）
      */
     public static void sendProxyMode(boolean isNormalMode) {
-        Intent intent = new Intent();
-        intent.putExtra("proxy_mode", isNormalMode);
-        intent.setAction(ReceiverParams.RECEIVER_PROXY);
-        UIUtils.getContext().sendBroadcast(intent);
+        if (ProxySensorReceiver.isNormalMode != isNormalMode) {
+            ProxySensorReceiver.isNormalMode = isNormalMode;
+            Log.d("firing the send", "sendProxyMode");
+            Intent intent = new Intent();
+            intent.putExtra("proxy_mode", isNormalMode);
+            intent.setAction(ReceiverParams.RECEIVER_PROXY);
+            UIUtils.getContext().sendBroadcast(intent);
+        }
     }
 
     @Override
