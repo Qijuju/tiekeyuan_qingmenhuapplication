@@ -4650,10 +4650,48 @@ angular.module('message.controllers', [])
          * 滑动删除会话项
          */
       $scope.removechat=function (id,name) {
-        $greendao.deleteDataByArg('ChatListService',id,function (data) {
-          // alert("删除会话id"+id);
-          $chatarr.deletechatdata(id);
-          $rootScope.$broadcast('lastcount.update');
+        //在删除该条记录时，将该条对话里所有未读消息的状态置为已读
+        $greendao.queryDataByIdAndIsread(id,'0',function (data) {
+          if(data.length>0){
+            for(var i=0;i<data.length;i++){
+              // alert("进入for循环的长度"+data.length);
+              var messaegeitem={};
+              messaegeitem._id=data[i]._id;
+              messaegeitem.sessionid=data[i].sessionid;
+              messaegeitem.type=data[i].type;
+              // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+              messaegeitem.from=data[i].from;
+              messaegeitem.message=data[i].message;
+              messaegeitem.messagetype=data[i].messagetype;
+              messaegeitem.platform=data[i].platform;
+              messaegeitem.when=data[i].when;
+              messaegeitem.isFailure=data[i].isFailure;
+              messaegeitem.isDelete=data[i].isDelete;
+              messaegeitem.imgSrc=data[i].imgSrc;
+              messaegeitem.username=data[i].username;
+              messaegeitem.senderid=data[i].senderid;
+              messaegeitem.isSuccess=data[i].isSuccess;
+              messaegeitem.daytype=data[i].daytype;
+              messaegeitem.istime=data[i].istime;
+              if(data[i].isread ==='0'){
+                // alert("拿到库里的消息阅读状态"+data[i].isread);
+                data[i].isread ='1';
+                messaegeitem.isread=data[i].isread;
+                // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                  // alert("保存成功");
+                },function (err) {
+                });
+              }
+            }
+          }
+          //删除记录
+          $greendao.deleteDataByArg('ChatListService',id,function (data) {
+            // alert("删除会话id"+id);
+            $chatarr.deletechatdata(id);
+            $rootScope.$broadcast('lastcount.update');
+          },function (err) {
+          });
         },function (err) {
         });
       }
