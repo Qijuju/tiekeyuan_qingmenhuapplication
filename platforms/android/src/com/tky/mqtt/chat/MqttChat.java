@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -367,8 +368,15 @@ public class MqttChat extends CordovaPlugin {
         }*/
         try {
 //            if(!flag){
-
             MessageOper.sendMsg(tosb, message);
+            /*for (int i = 0; i < 1000; i++) {
+                MessageOper.sendMsg(tosb, message);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }*/
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
@@ -577,11 +585,13 @@ public class MqttChat extends CordovaPlugin {
                     type = "*";
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType((type == null || "".equals(type.trim()) || "all".equals(type) ? "*" : type) + "/*");
-//                Uri parse = Uri.parse(Environment.getExternalStorageDirectory().getPath());
-//                intent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory().getPath()), "audio/*");
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                Intent intent = new Intent("image".equals(type) ? Intent.ACTION_PICK : Intent.ACTION_GET_CONTENT, null);
+                if ("image".equals(type)) {
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                } else {
+                    intent.setType((type == null || "".equals(type.trim()) || "all".equals(type) ? "*" : type) + "/*");
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                }
 
                 //显示文件管理器列表
                 try {

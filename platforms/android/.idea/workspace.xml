@@ -14,8 +14,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -44,30 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BaseApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-              <folding>
-                <element signature="e#2068#2069#0" expanded="false" />
-                <element signature="e#2089#2090#0" expanded="false" />
-                <element signature="e#2128#2129#0" expanded="false" />
-                <element signature="e#2154#2155#0" expanded="false" />
-                <element signature="e#2194#2195#0" expanded="false" />
-                <element signature="e#2218#2219#0" expanded="false" />
-                <element signature="e#2256#2257#0" expanded="false" />
-                <element signature="e#2277#2278#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SystemApi.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="65" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="65" />
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,27 +57,43 @@
       <file leaf-file-name="ReceiverParams.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/ReceiverParams.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.066667">
+            <state vertical-scroll-proportion="0.0">
               <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="296" column="21" selection-start-line="296" selection-start-column="12" selection-end-line="296" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.69495416">
+              <caret line="378" column="15" selection-start-line="371" selection-start-column="12" selection-end-line="378" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#28220#28381#0" expanded="true" />
-                <element signature="e#28380#28381#0" expanded="true" />
-                <element signature="e#33550#34034#0" expanded="true" />
-                <element signature="e#34033#34034#0" expanded="true" />
-                <element signature="e#35743#36010#0" expanded="true" />
-                <element signature="e#36009#36010#0" expanded="true" />
+                <element signature="e#20612#23322#0" expanded="true" />
+                <element signature="e#23321#23322#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MediaStore.java" pinned="false" current-in-tab="false">
+        <entry file="file://D:/soft/androidStudio/studiov14/sdk/sources/android-23/android/provider/MediaStore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-154.87302">
+              <caret line="2175" column="42" selection-start-line="2175" selection-start-column="32" selection-end-line="2175" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PhotoUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/PhotoUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,24 +122,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProxySensorReceiver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProxySensorReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43462247">
+            <state vertical-scroll-proportion="0.0">
               <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VolumeChangeReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/VolumeChangeReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,9 +135,27 @@
       <file leaf-file-name="RecorderManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.9365077">
-              <caret line="405" column="51" selection-start-line="405" selection-start-column="51" selection-end-line="405" selection-end-column="51" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="404" column="32" selection-start-line="404" selection-start-column="32" selection-end-line="404" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3729#3964#0" expanded="false" />
+                <element signature="e#3963#3964#0" expanded="false" />
+                <element signature="e#4628#4871#0" expanded="false" />
+                <element signature="e#4870#4871#0" expanded="false" />
+                <element signature="e#5070#5232#0" expanded="false" />
+                <element signature="e#5231#5232#0" expanded="false" />
+                <element signature="e#5797#5798#0" expanded="false" />
+                <element signature="e#5828#5829#0" expanded="false" />
+                <element signature="e#6669#6670#0" expanded="false" />
+                <element signature="e#6730#6731#0" expanded="false" />
+                <element signature="e#8112#8817#0" expanded="false" />
+                <element signature="e#8816#8817#0" expanded="false" />
+                <element signature="e#9455#9703#0" expanded="false" />
+                <element signature="e#9702#9703#0" expanded="false" />
+                <element signature="e#13679#13680#0" expanded="false" />
+                <element signature="e#13742#13743#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,17 +164,17 @@
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="179" column="74" selection-start-line="179" selection-start-column="74" selection-end-line="179" selection-end-column="74" />
+              <caret line="182" column="74" selection-start-line="182" selection-start-column="74" selection-end-line="182" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="false" />
                 <element signature="e#3615#3623#0" expanded="false" />
                 <element signature="e#3813#4436#0" expanded="false" />
                 <element signature="e#4435#4436#0" expanded="false" />
-                <element signature="e#68426#68909#0" expanded="false" />
-                <element signature="e#68908#68909#0" expanded="false" />
-                <element signature="e#119551#119567#0" expanded="false" />
-                <element signature="e#120122#120130#0" expanded="false" />
-                <element signature="e#120522#120538#0" expanded="false" />
+                <element signature="e#68692#69175#0" expanded="false" />
+                <element signature="e#69174#69175#0" expanded="false" />
+                <element signature="e#119817#119833#0" expanded="false" />
+                <element signature="e#120388#120396#0" expanded="false" />
+                <element signature="e#120788#120804#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1880,15 +1883,15 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
         <option value="$PROJECT_DIR$/platform_www/plugins/MqttChat/www/mqtt_chat.js" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/VolumeChangeReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/ReceiverParams.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
         <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
       </list>
     </option>
   </component>
@@ -1924,6 +1927,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2045,8 +2050,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2055,9 +2058,9 @@
     <property name="android.project.structure.last.selected" value="Project" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="DLQ0216510003198" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="aca83410" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="D:/lili.cheng/keystorefile/IM.jks" />
+    <property name="last_opened_file_path" value="E:/testPro/SelectHead" />
     <property name="ExportApk.ApkPath" value="C:\Users\Administrator\gitlab\IM\platforms\android" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="debug" />
@@ -2289,7 +2292,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29457363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.69878185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2978959" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2544,13 +2547,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1506</line>
+          <line>1509</line>
           <properties />
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>1499</line>
+          <line>1502</line>
           <properties />
           <option name="timeStamp" value="108" />
         </line-breakpoint>
@@ -2574,7 +2577,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java</url>
-          <line>2391</line>
+          <line>2394</line>
           <properties />
           <option name="timeStamp" value="136" />
         </line-breakpoint>
@@ -2584,26 +2587,18 @@
           <properties />
           <option name="timeStamp" value="138" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java</url>
+          <line>587</line>
+          <properties />
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="139" />
+      <option name="time" value="140" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/callback/GetHeadPicCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.766666">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/MqttPluginResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.766666">
@@ -2874,16 +2869,17 @@
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
           <folding>
-            <element signature="e#2068#2069#0" expanded="false" />
-            <element signature="e#2089#2090#0" expanded="false" />
-            <element signature="e#2128#2129#0" expanded="false" />
-            <element signature="e#2154#2155#0" expanded="false" />
-            <element signature="e#2194#2195#0" expanded="false" />
-            <element signature="e#2218#2219#0" expanded="false" />
-            <element signature="e#2256#2257#0" expanded="false" />
-            <element signature="e#2277#2278#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2066#2067#0" expanded="false" />
+            <element signature="e#2087#2088#0" expanded="false" />
+            <element signature="e#2126#2127#0" expanded="false" />
+            <element signature="e#2152#2153#0" expanded="false" />
+            <element signature="e#2192#2193#0" expanded="false" />
+            <element signature="e#2216#2217#0" expanded="false" />
+            <element signature="e#2254#2255#0" expanded="false" />
+            <element signature="e#2275#2276#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2911,17 +2907,17 @@
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="179" column="74" selection-start-line="179" selection-start-column="74" selection-end-line="179" selection-end-column="74" />
+          <caret line="182" column="74" selection-start-line="182" selection-start-column="74" selection-end-line="182" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="false" />
             <element signature="e#3615#3623#0" expanded="false" />
             <element signature="e#3813#4436#0" expanded="false" />
             <element signature="e#4435#4436#0" expanded="false" />
-            <element signature="e#68426#68909#0" expanded="false" />
-            <element signature="e#68908#68909#0" expanded="false" />
-            <element signature="e#119551#119567#0" expanded="false" />
-            <element signature="e#120122#120130#0" expanded="false" />
-            <element signature="e#120522#120538#0" expanded="false" />
+            <element signature="e#68692#69175#0" expanded="false" />
+            <element signature="e#69174#69175#0" expanded="false" />
+            <element signature="e#119817#119833#0" expanded="false" />
+            <element signature="e#120388#120396#0" expanded="false" />
+            <element signature="e#120788#120804#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2933,25 +2929,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="65" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/RecorderManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9365077">
-          <caret line="405" column="51" selection-start-line="405" selection-start-column="51" selection-end-line="405" selection-end-column="51" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="404" column="32" selection-start-line="404" selection-start-column="32" selection-end-line="404" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3729#3964#0" expanded="false" />
+            <element signature="e#3963#3964#0" expanded="false" />
+            <element signature="e#4628#4871#0" expanded="false" />
+            <element signature="e#4870#4871#0" expanded="false" />
+            <element signature="e#5070#5232#0" expanded="false" />
+            <element signature="e#5231#5232#0" expanded="false" />
+            <element signature="e#5797#5798#0" expanded="false" />
+            <element signature="e#5828#5829#0" expanded="false" />
+            <element signature="e#6669#6670#0" expanded="false" />
+            <element signature="e#6730#6731#0" expanded="false" />
+            <element signature="e#8112#8817#0" expanded="false" />
+            <element signature="e#8816#8817#0" expanded="false" />
+            <element signature="e#9455#9703#0" expanded="false" />
+            <element signature="e#9702#9703#0" expanded="false" />
+            <element signature="e#13679#13680#0" expanded="false" />
+            <element signature="e#13742#13743#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/ReceiverParams.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.066667">
+        <state vertical-scroll-proportion="0.0">
           <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
           <folding />
         </state>
@@ -2967,27 +2973,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="296" column="21" selection-start-line="296" selection-start-column="12" selection-end-line="296" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#28220#28381#0" expanded="true" />
-            <element signature="e#28380#28381#0" expanded="true" />
-            <element signature="e#33550#34034#0" expanded="true" />
-            <element signature="e#34033#34034#0" expanded="true" />
-            <element signature="e#35743#36010#0" expanded="true" />
-            <element signature="e#36009#36010#0" expanded="true" />
-          </folding>
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/receiver/ProxySensorReceiver.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/PhotoUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43462247">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/soft/androidStudio/studiov14/sdk/sources/android-23/android/provider/MediaStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-154.87302">
+          <caret line="2175" column="42" selection-start-line="2175" selection-start-column="32" selection-end-line="2175" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69495416">
+          <caret line="378" column="15" selection-start-line="371" selection-start-column="12" selection-end-line="378" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#20612#23322#0" expanded="true" />
+            <element signature="e#23321#23322#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
