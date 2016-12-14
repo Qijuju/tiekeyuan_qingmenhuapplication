@@ -31,7 +31,7 @@
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===0" src="img/chat_icon_voice2.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===1" src="img/chat_icon_voice3.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===2" src="img/chat_icon_voice4.png" />
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===3"src="img/chat_icon_voice5.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===3" src="img/chat_icon_voice5.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="(isshowless === 'false')&& (rate ===4 || rate ===5)"src="img/chat_icon_voice6.png" />
     <br />
     <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show="isshowless ==='false' && (rate >= 0 && rate <=6)">手指上滑,取消发送</p>
@@ -325,10 +325,11 @@
 
   <ion-footer-bar class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <md-icon class="icon ion-ios-mic-outline rj-footer-btn-left" style="border: none;background-color: #FFFFFF;font-size: 30px;line-height: 1;position:relative;bottom: 2px;left:10px;"  ng-hide="isYuYin === 'true'" ng-click="clickOn()">
-      </md-icon>
-      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" >
-      </img>
+      <div ng-click="clickOn()" ng-hide="isYuYin === 'true'" style="float:left;height: 40px;width:40px;bottom:0px;position: absolute;" >
+        <md-icon class="icon ion-ios-mic-outline" style="border: none;background-color: #FFFFFF;font-size: 29px;line-height: 1;position:relative;bottom: 2px;left:10px;top: 7px;">
+        </md-icon>
+      </div>
+      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left " style="position: relative;left:4px;bottom: 1px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" />
     </div>
 
     <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'"  >

@@ -1177,6 +1177,7 @@ angular.module('message.controllers', [])
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
+              // $ToastUtils.showToast("存在该对话的单聊对话名称"+$scope.chatName);
               chatitem.imgSrc = $scope.imgSrc;
               chatitem.lastText = $scope.lastText;
               chatitem.count = '0';
