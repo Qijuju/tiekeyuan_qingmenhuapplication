@@ -379,7 +379,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               // $mqtt.save('historyusername', "");
               // $mqtt.save('userNamea', "");
               // $mqtt.save('loginpage', "passwordlogin");
-              // $mqtt.save('passlogin', "0");
+              $mqtt.save('passlogin', "0");
               // $mqtt.save('gesturePwd', "");//存
               // $mqtt.save('remPwd', "");
               // $mqtt.save('pwd', "");

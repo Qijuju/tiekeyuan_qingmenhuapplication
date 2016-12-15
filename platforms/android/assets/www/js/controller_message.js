@@ -1177,6 +1177,7 @@ angular.module('message.controllers', [])
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
+              // $ToastUtils.showToast("存在该对话的单聊对话名称"+$scope.chatName);
               chatitem.imgSrc = $scope.imgSrc;
               chatitem.lastText = $scope.lastText;
               chatitem.count = '0';
@@ -4674,12 +4675,12 @@ angular.module('message.controllers', [])
               messaegeitem.daytype=data[i].daytype;
               messaegeitem.istime=data[i].istime;
               if(data[i].isread ==='0'){
-                alert("拿到库里的消息阅读状态"+data[i].isread);
+                // alert("拿到库里的消息阅读状态"+data[i].isread);
                 data[i].isread ='1';
                 messaegeitem.isread=data[i].isread;
                 // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                 $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                  alert("保存成功");
+                  // alert("保存成功");
                 },function (err) {
                 });
               }
@@ -4687,7 +4688,7 @@ angular.module('message.controllers', [])
           }
           //删除记录
           $greendao.deleteDataByArg('ChatListService',id,function (data) {
-            alert("删除会话id"+id);
+            // alert("删除会话id"+id);
             $chatarr.deletechatdata(id);
             $rootScope.$broadcast('lastcount.update');
           },function (err) {

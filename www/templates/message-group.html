@@ -205,24 +205,40 @@
 
 
                <!---发送语音--->
-               <font class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px"  ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
-                <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
-                   ng-if="msg.isFailure ==='true'"
-                   ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)"/>
+               <div class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 5 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
+                <img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
+                <img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
+                 <!--</div>-->
+              </div>
+              <div class="rj-message-right"  ng-if="msg.messagetype === 'Audio'" style="display: inline;background-color: transparent;padding-right: 0px;margin-right: 3px;">
+                <font style="float: right">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"
+                </font>
                 <ion-spinner icon="ios-small"
-                           style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
-                           ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+                             style="vertical-align: middle"
+                             ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
                 </ion-spinner>
-                <font style="background-color: transparent;margin-left: -35px;">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</font>
-                <img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
-                <img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
+                <img style="margin-right:3px;" src="img/red.png"
+                     ng-if="msg.isFailure ==='true'"
+                     ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)"/>
+              </div>
+               <!--<font class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px"  ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">-->
+                <!--<img style="background-color: transparent;margin-left: -30px" src="img/red.png"-->
+                   <!--ng-if="msg.isFailure ==='true'"-->
+                   <!--ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)"/>-->
+                <!--<ion-spinner icon="ios-small"-->
+                           <!--style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"-->
+                           <!--ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">-->
+                <!--</ion-spinner>-->
+                <!--<font style="background-color: transparent;margin-left: -35px;">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</font>-->
+                <!--<img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>-->
+                <!--<img src="img/video.gif" style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">-->
                  <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
                  <!--{{no.no}}-->
                  <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
                  <!--&lt;!&ndash;<img ng-show="no.no === 1" src="img/voice_left2.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
                  <!--&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
                  <!--</div>-->
-              </font>
+              <!--</font>-->
 
 
                <!---发送文字ui--->
@@ -255,12 +271,12 @@
 
   <ion-footer-bar class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <md-icon class="icon ion-ios-mic-outline rj-footer-btn-left" style="border: none;background-color: #FFFFFF;font-size: 30px;line-height: 1;position:relative;bottom: 2px;left:10px;" ng-hide="isGroupYuYin === 'true'" ng-click="groupclickOn()">
-      </md-icon>
-      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" >
-      </img>
+      <div ng-hide="isGroupYuYin === 'true'" ng-click="groupclickOn()" style="float:left;height: 40px;width:40px;bottom:0px;position: absolute;" >
+        <md-icon class="icon ion-ios-mic-outline" style="border: none;background-color: #FFFFFF;font-size: 29px;line-height: 1;position:relative;bottom: 2px;left:10px;top: 7px;">
+        </md-icon>
+      </div>
+      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" />
     </div>
-
 
 
     <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isGroupYuYin === 'true'"  >

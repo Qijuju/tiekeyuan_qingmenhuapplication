@@ -90,7 +90,7 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      // alert("先收到"+$rootScope.id+$rootScope.username);
+      // alert("先收到无对话的单聊名称"+$rootScope.id+$rootScope.username);
     },
     setIdToMc:function (id) {
       return id;
