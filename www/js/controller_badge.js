@@ -8,7 +8,15 @@ angular.module('badge.controllers',[])
     $scope.allNoRead=0;
     $scope.badge=function () {
 
-      return $scope.allNoRead;
+
+      if($scope.allNoRead>99){
+        $scope.allNoRead=99+'+'
+        return $scope.allNoRead;
+      }else {
+        return $scope.allNoRead;
+      }
+
+
     }
 
 
