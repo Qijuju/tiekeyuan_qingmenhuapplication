@@ -5324,8 +5324,8 @@ angular.module('message.controllers', [])
     $scope.groupid = $stateParams.id;
     // $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
-    alert($scope.groupid)
-    alert($scope.grouptype)
+    // alert($scope.groupid)
+    // alert($scope.grouptype)
     if($scope.grouptype=="Group"){
       $scope.grouptype="G"
     }
