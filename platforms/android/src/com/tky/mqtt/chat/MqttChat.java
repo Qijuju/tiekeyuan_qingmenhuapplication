@@ -369,7 +369,7 @@ public class MqttChat extends CordovaPlugin {
         try {
 //            if(!flag){
             MessageOper.sendMsg(tosb, message);
-            /*for (int i = 0; i < 1000; i++) {
+            /*for (int i = 0; i < 200; i++) {
                 MessageOper.sendMsg(tosb, message);
                 try {
                     Thread.sleep(50);

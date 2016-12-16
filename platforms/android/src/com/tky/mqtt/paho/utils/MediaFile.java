@@ -140,6 +140,13 @@ public class MediaFile {
                 fileType <= LAST_IMAGE_FILE_TYPE);
     }
 
+    public static boolean isImageFileType(String path) {
+        MediaFileType fileTypeStr = getFileType(path);
+        int fileType = getFileType(fileTypeStr);
+        return (fileType >= FIRST_IMAGE_FILE_TYPE &&
+                fileType <= LAST_IMAGE_FILE_TYPE);
+    }
+
     public static boolean isPlayListFileType(int fileType) {
         return (fileType >= FIRST_PLAYLIST_FILE_TYPE &&
                 fileType <= LAST_PLAYLIST_FILE_TYPE);
@@ -174,7 +181,7 @@ public class MediaFile {
     }
 
     public static int getFileType(MediaFileType type) {
-        return type.fileType;
+        return type == null ? -1 : type.fileType;
     }
 
 }

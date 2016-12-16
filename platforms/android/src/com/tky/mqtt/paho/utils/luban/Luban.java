@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.tky.mqtt.paho.utils.FileUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,7 +65,9 @@ public class Luban {
      * @see #getPhotoCacheDir(Context)
      */
     private static File getPhotoCacheDir(Context context, String cacheName) {
-        File cacheDir = context.getCacheDir();
+        String saveDir = FileUtils.getIconDir() + File.separator + "chat_img";
+//        File cacheDir = context.getCacheDir();
+        File cacheDir = new File(saveDir);
         if (cacheDir != null) {
             File result = new File(cacheDir, cacheName);
             if (!result.mkdirs() && (!result.exists() || !result.isDirectory())) {
@@ -463,4 +467,6 @@ public class Luban {
 
         return new File(filePath);
     }
+
+//    public void set
 }

@@ -111,7 +111,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
 
 
-            if (MediaFile.isImageFileType(MediaFile.getFileType(MediaFile.getFileType(file.getAbsolutePath())))) {
+            if (MediaFile.isImageFileType(file.getAbsolutePath())) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
