@@ -924,6 +924,8 @@ public class MqttChat extends CordovaPlugin {
                         onPlayStopReceiver.setOnPlayStopListener(new OnPlayStopListener() {
                             @Override
                             public void onPlayStop() {
+                                RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                                UIUtils.switchEarphone(cordova.getActivity(), false);
                                 setResult("true", PluginResult.Status.OK, callbackContext);
                             }
                         });
