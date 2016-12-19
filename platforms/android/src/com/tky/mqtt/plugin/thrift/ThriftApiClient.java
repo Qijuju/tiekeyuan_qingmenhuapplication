@@ -22,6 +22,7 @@ import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -173,7 +174,7 @@ public class ThriftApiClient extends CordovaPlugin {
 //                                        System.out.println("删除本地缓存成功");
                                     }
 
-                                    LocalPhoneService localPhoneService=LocalPhoneService.getInstance(UIUtils.getContext());
+                                    LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
                                     localPhoneService.deleteAllData();
 
                                     //保存登录信息
@@ -2270,27 +2271,32 @@ public class ThriftApiClient extends CordovaPlugin {
             File file = null;
             String nowSavePath = null;
             if (!"Audio".equals(messagetype)) {
-                FileInputStream fis = new FileInputStream(filePath);
-                final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
-                File dirFile = new File(dir);
-                if (dirFile != null && !dirFile.exists()) {
-                    dirFile.mkdirs();
-                }
-//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
-                nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
-                ;
-                file = new File(nowSavePath);
-                if (!file.exists()) {
-                    FileOutputStream fos = new FileOutputStream(nowSavePath);
-
-                    byte[] bys = new byte[10 * 1024];
-                    int len = 0;
-                    while ((len = fis.read(bys)) != -1) {
-                        fos.write(bys, 0, len);
+                /*if (MediaFile.isImageFileType(filePath)) {
+                    nowSavePath = filePath;
+                    file = new File(nowSavePath);
+                } else {*/
+                    FileInputStream fis = new FileInputStream(filePath);
+                    final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
+                    File dirFile = new File(dir);
+                    if (dirFile != null && !dirFile.exists()) {
+                        dirFile.mkdirs();
                     }
+//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+                    nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
+                    ;
+                    file = new File(nowSavePath);
+                    if (!file.exists()) {
+                        FileOutputStream fos = new FileOutputStream(nowSavePath);
 
-                    fos.close();
-                }
+                        byte[] bys = new byte[10 * 1024];
+                        int len = 0;
+                        while ((len = fis.read(bys)) != -1) {
+                            fos.write(bys, 0, len);
+                        }
+
+                        fos.close();
+                    }
+//                }
             } else {
                 nowSavePath = filePath;
                 file = new File(filePath);

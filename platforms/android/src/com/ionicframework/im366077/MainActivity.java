@@ -21,7 +21,6 @@ package com.ionicframework.im366077;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -39,9 +38,10 @@ import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
-import com.tky.mqtt.paho.utils.ImageTools;
-import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.RecorderManager;
+import com.tky.mqtt.paho.utils.luban.Luban;
+import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 
 import org.apache.cordova.CordovaActivity;
 
@@ -106,50 +106,111 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
             receiverIntent.putExtra("filePath", filePath);
             sendBroadcast(receiverIntent);*/
             Uri uri = intent.getData();
-            String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
-            File file = new File(path);
-            long length = file.length();
-            if (length <= 0) {
-                ToastUtil.showSafeToast("0B文件无法发送！");
-                return;
+            final String path = FileUtils.getPathByUri4kitkat(UIUtils.getContext(), uri);
+            final File file = new File(path);
+
+
+
+            if (MediaFile.isImageFileType(file.getAbsolutePath())) {
+                long length = file.length();
+                if (length <= 0) {
+                    ToastUtil.showSafeToast("0B文件无法发送！");
+                    return;
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Luban.get(MainActivity.this)
+                                .load(file)
+                                .putGear(Luban.THIRD_GEAR)
+                                .setFilename(file.getName().substring(0, file.getName().lastIndexOf(".")))
+                                .setCompressListener(new OnCompressListener() {
+                                    @Override
+                                    public void onStart() {
+                                    }
+
+                                    @Override
+                                    public void onSuccess(final File file) {
+                                        long length = file.length();
+                                        String formatSize = Formatter.formatFileSize(MainActivity.this, length);
+                                        Intent receiverIntent = new Intent();
+                                        receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
+                                        receiverIntent.putExtra("filePath", file.getAbsolutePath());
+                                        receiverIntent.putExtra("length", String.valueOf(length));
+                                        receiverIntent.putExtra("formatSize", formatSize);
+                                        receiverIntent.putExtra("fileName", (file.getAbsolutePath() != null && !"".equals(file.getAbsolutePath().trim()) ? file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("/") + 1) : "noname"));
+                                        sendBroadcast(receiverIntent);
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                    }
+                                }).launch();
+                    }
+                }).start();
+            } else {
+                long length = file.length();
+                if (length <= 0) {
+                    ToastUtil.showSafeToast("0B文件无法发送！");
+                    return;
+                }
+                String formatSize = Formatter.formatFileSize(MainActivity.this, length);
+                Intent receiverIntent = new Intent();
+                receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
+                receiverIntent.putExtra("filePath", path);
+                receiverIntent.putExtra("length", String.valueOf(length));
+                receiverIntent.putExtra("formatSize", formatSize);
+                receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
+                sendBroadcast(receiverIntent);
             }
-            String formatSize = Formatter.formatFileSize(MainActivity.this, length);
-            Intent receiverIntent = new Intent();
-            receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);
-            receiverIntent.putExtra("filePath", path);
-            receiverIntent.putExtra("length", String.valueOf(length));
-            receiverIntent.putExtra("formatSize", formatSize);
-            receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
-            sendBroadcast(receiverIntent);
         }else if (resultCode == -1 && requestCode == TAKE_PHOTO_CODE) {
 //            photo.jpg
-            final Bitmap smallBitmap = PhotoUtils.getSmallBitmap(Environment.getExternalStorageDirectory() + "/photo.jpg");
+            //final Bitmap smallBitmap = PhotoUtils.getSmallBitmap(Environment.getExternalStorageDirectory() + "/photo.jpg");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "cache";
+                    /*String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "cache";
                     String fileName = String.valueOf(System.currentTimeMillis());
                     ImageTools.savePhotoToSDCard(smallBitmap, filePath, fileName);
                     final String path = filePath + File.separator + fileName + ".jpg";
-                    File file = new File(filePath, fileName + ".jpg");
-                    final long length = file.length();
-                    if (length <= 0) {
-                        ToastUtil.showSafeToast("0B文件无法发送！");
-                        return;
-                    }
-                    final String formatSize = Formatter.formatFileSize(MainActivity.this, length);
-                    UIUtils.runInMainThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent receiverIntent = new Intent();
-                            receiverIntent.setAction(ReceiverParams.PHOTO_FILE_GET);
-                            receiverIntent.putExtra("filePath", path);
-                            receiverIntent.putExtra("length", String.valueOf(length));
-                            receiverIntent.putExtra("formatSize", formatSize);
-                            receiverIntent.putExtra("fileName", (path != null && !"".equals(path.trim()) ? path.substring(path.lastIndexOf("/") + 1) : "noname"));
-                            sendBroadcast(receiverIntent);
-                        }
-                    });
+                    File file = new File(filePath, fileName + ".jpg");*/
+                    File file = new File(Environment.getExternalStorageDirectory() + "/photo.jpg");
+                    Luban.get(MainActivity.this)
+                            .load(file)
+                            .putGear(Luban.THIRD_GEAR)
+                            .setFilename(System.currentTimeMillis() + "")
+                            .setCompressListener(new OnCompressListener() {
+                                @Override
+                                public void onStart() {
+                                }
+
+                                @Override
+                                public void onSuccess(final File file) {
+//                                    ToastUtil.showSafeToast("luban onSuccess");
+                                    final long length = file.length();
+                                    if (length <= 0) {
+                                        ToastUtil.showSafeToast("0B文件无法发送！");
+                                        return;
+                                    }
+                                    final String formatSize = Formatter.formatFileSize(MainActivity.this, length);
+                                    UIUtils.runInMainThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent receiverIntent = new Intent();
+                                            receiverIntent.setAction(ReceiverParams.PHOTO_FILE_GET);
+                                            receiverIntent.putExtra("filePath", file.getAbsolutePath());
+                                            receiverIntent.putExtra("length", String.valueOf(length));
+                                            receiverIntent.putExtra("formatSize", formatSize);
+                                            receiverIntent.putExtra("fileName", (file.getAbsolutePath() != null && !"".equals(file.getAbsolutePath().trim()) ? file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("/") + 1) : "noname"));
+                                            sendBroadcast(receiverIntent);
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                }
+                            }).launch();
                 }
             }).start();
         }
