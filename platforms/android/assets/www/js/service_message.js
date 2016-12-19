@@ -323,6 +323,7 @@ angular.module('message.services', [])
     var sycount=0;//试验室通知数量
     var cjgccount=0;//沉降观测通知数量
     var isLogin = false;
+    var keyvalue;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -429,6 +430,9 @@ angular.module('message.services', [])
                 // alert("发送成功后的位置"+msg.message);
                 $greendao.saveObj('MessagesService',msg,function (data) {
                   $rootScope.$broadcast('msgs.update');
+                  //往消息主界面发送一个监听
+                  $mqtt.sendupdate(msg.sessionid,msg._id);
+                  $rootScope.$broadcast('sendsuccess.update');
                 },function (err) {
                 });
               }
@@ -443,6 +447,9 @@ angular.module('message.services', [])
                 $greendao.saveObj('MessagesService',msg,function (data) {
                   // alert("数组长度后"+danliao[danliao.length-1].message+danliao[danliao.length-1].isSuccess);
                   $rootScope.$broadcast('msgs.update');
+                  //往消息主界面发送一个监听
+                  $mqtt.sendupdate(msg.sessionid,msg._id);
+                  $rootScope.$broadcast('sendsuccess.update');
                 },function (err) {
                   // alert(err+"sendmistake");
                 });
@@ -691,6 +698,9 @@ angular.module('message.services', [])
               // alert("发送图片成功后数组长度"+danliao.length);
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               },function (err) {
               });
 
@@ -1023,6 +1033,13 @@ angular.module('message.services', [])
           danliao.unshift(data[i]);
         }
       },
+      sendupdate:function (sessionid,id) {
+        keyvalue=sessionid+","+id;
+        return keyvalue;
+      },
+      receiveupdate:function () {
+        return keyvalue;
+      },
       updateImgFileDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
           // alert("进来删数组数据了吗"+danliao.length+data._id+"数组id"+danliao[i]._id+"数组状态"+danliao[i].isSuccess  );
@@ -1287,12 +1304,18 @@ angular.module('message.services', [])
               // alert("发送成功后的位置"+message.message);
               $greendao.saveObj('MessagesService', message, function (data) {
                 $rootScope.$broadcast('msgs.update');
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               }, function (err) {
               });
             }else{
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
                 // alert("群组消息保存成功");
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               },function (err) {
                 // alert("群组消息保存失败");
               });

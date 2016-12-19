@@ -4085,8 +4085,35 @@ angular.module('message.controllers', [])
     });
 
 
+    /**
+     * 实现文件、图片、文字、语音发送成功以后的监听
+     */
+    $scope.$on('sendsuccess.update',function (event) {
+      var value=$mqtt.receiveupdate();
+      var id=value.split(',')[0];
+      var sessionid=value.split(',')[1];
+      $greendao.queryData('ChatListService','where id =?',id,function (data) {
+        var chatitem={};
+        chatitem.id=data[0].id;
+        chatitem.chatName=data[0].chatName;
+        chatitem.isDelete=data[0].isDelete;
+        chatitem.lastText=data[0].lastText;
+        chatitem.count=data[0].count;
+        chatitem.lastDate=data[0].lastDate;
+        chatitem.chatType=data[0].chatType;
+        chatitem.senderId=data[0].senderId;
+        chatitem.senderName=data[0].senderName;
+        chatitem.daytype=data[0].daytype;
+        chatitem.imgSrc=data[0].imgSrc;
+        chatitem.isSuccess='true';
+        $greendao.saveObj('ChatListService',chatitem,function (suc) {
+          $chatarr.updatedatanosort(chatitem);
+        },function (err) {
+        });
 
-
+      },function (err) {
+      });
+    });
 
 
     //扫一扫
