@@ -30,7 +30,7 @@ public class Luban {
     public static final int THIRD_GEAR = 3;
 
     private static final String TAG = "Luban";
-    private static String DEFAULT_DISK_CACHE_DIR = "luban_disk_cache";
+    private static String DEFAULT_DISK_CACHE_DIR = "";
 
     private static volatile Luban INSTANCE;
 

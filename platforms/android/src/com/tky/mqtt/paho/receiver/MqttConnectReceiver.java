@@ -22,11 +22,15 @@ public class MqttConnectReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if(ReceiverParams.RECEIVER_MQTT_STARTED.equals(intent.getAction())){
             if(onMqttStatusChangeListener != null){
-                onMqttStatusChangeListener.onMqttStarted();
+                try {
+                    onMqttStatusChangeListener.onMqttStarted();
+                } catch (Exception e) {}
             }
         }else if(ReceiverParams.RECEIVER_MQTT_CLOSED.equals(intent.getAction())){
             if(onMqttStatusChangeListener != null){
-                onMqttStatusChangeListener.onMqttClosed();
+                try {
+                    onMqttStatusChangeListener.onMqttClosed();
+                } catch (Exception e){}
             }
         }
     }

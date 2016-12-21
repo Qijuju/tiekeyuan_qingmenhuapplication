@@ -112,6 +112,11 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
 
             if (MediaFile.isImageFileType(file.getAbsolutePath())) {
+                long length = file.length();
+                if (length <= 0) {
+                    ToastUtil.showSafeToast("0B文件无法发送！");
+                    return;
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -127,10 +132,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
                                     @Override
                                     public void onSuccess(final File file) {
                                         long length = file.length();
-                                        if (length <= 0) {
-                                            ToastUtil.showSafeToast("0B文件无法发送！");
-                                            return;
-                                        }
                                         String formatSize = Formatter.formatFileSize(MainActivity.this, length);
                                         Intent receiverIntent = new Intent();
                                         receiverIntent.setAction(ReceiverParams.DOC_FILE_GET);

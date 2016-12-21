@@ -642,7 +642,7 @@ public class MqttMessageCallback implements MqttCallback {
                 intent.putExtra("qos", msg.getQos());
                 msg.clearPayload();
                 context.sendBroadcast(intent);
-
+//                ToastUtil.showSafeToast("name"+eventMsgBean.getGroupName());
                 //如果是被添加为群成员，应该去服务器获取群组消息
                 if ("YAM".equals(eventMsgBean.getEventCode())) {
                     ThriftApiClient.getLatestMsg(eventMsgBean.getGroupID(), eventMsgBean.getWhen(), eventMsgBean.getGroupName());

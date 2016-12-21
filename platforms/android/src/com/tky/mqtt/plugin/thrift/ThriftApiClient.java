@@ -1252,7 +1252,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if (result.result) {
                                     MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                     List<Msg> messagesList = result.getMsglist();
-                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
+//                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
                                     for (int i = 0; i < messagesList.size(); i++) {
                                         Msg msg = messagesList.get(i);
                                         Messages messages = new Messages();
@@ -1301,10 +1301,10 @@ public class ThriftApiClient extends CordovaPlugin {
                                         messageBean.setWhen(msg.getMsgDate());
                                         sendArriveMsgToFront(result.getSessionID(), messageBean);
                                     }
-//                                    //离线新建群，获取最新群名
-//                                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
-//                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
-//                                    String groupName=groupChatsList.get(0).getGroupName();
+                                    //离线新建群，获取最新群名
+                                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
+                                    String groupName=groupChatsList.get(0).getGroupName();
 //                                    ToastUtil.showSafeToast("最新群名"+groupName);
                                     //统计未读数量
                                     int count=0;
@@ -1335,7 +1335,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatList.setLastText("[图片]");//从数据库里取最后一条消息
                                     } else if (lastmessages.getMessagetype() == "LOCATION") {
                                         chatList.setLastText("[位置]");//从数据库里取最后一条消息
-                                        System.out.println("消息类型weizhi");
+//                                        System.out.println("消息类型weizhi");
                                     } else if (lastmessages.getMessagetype() == "File") {
                                         chatList.setLastText("[文件]");//从数据库里取最后一条消息
                                     }else if(lastmessages.getMessagetype() == "Audio"){
@@ -2271,10 +2271,10 @@ public class ThriftApiClient extends CordovaPlugin {
             File file = null;
             String nowSavePath = null;
             if (!"Audio".equals(messagetype)) {
-                if (MediaFile.isImageFileType(filePath)) {
+                /*if (MediaFile.isImageFileType(filePath)) {
                     nowSavePath = filePath;
                     file = new File(nowSavePath);
-                } else {
+                } else {*/
                     FileInputStream fis = new FileInputStream(filePath);
                     final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
                     File dirFile = new File(dir);
@@ -2296,7 +2296,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
                         fos.close();
                     }
-                }
+//                }
             } else {
                 nowSavePath = filePath;
                 file = new File(filePath);
