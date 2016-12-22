@@ -205,7 +205,7 @@
 
 
                <!---发送语音--->
-               <div class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 5 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
+               <div class="rj-message-right" ng-if="msg.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
                 <img  src="img/turnleftstatic.png" style="position:relative;height: 25px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
                 <img src="img/turnleft.gif" style="position:relative;background-color:transparent;height: 25px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
                  <!--</div>-->
