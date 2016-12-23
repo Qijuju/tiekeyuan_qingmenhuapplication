@@ -16,7 +16,7 @@ angular.module('message.controllers', [])
       if($scope.isYuYin === 'true'){
         $scope.isYuYin = 'false';
         // $scope.a =1;
-        alert("单聊a直===="+$scope.a);
+        // alert("单聊a直===="+$scope.a);
         keepKeyboardClose();
       }
       if ($scope.a==0){
@@ -1990,7 +1990,7 @@ angular.module('message.controllers', [])
       //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
       if($scope.isGroupYuYin === 'true'){
         $scope.isGroupYuYin = 'false';
-        alert("群bgroup直===="+$scope.bgroup);
+        // alert("群bgroup直===="+$scope.bgroup);
         keepKeyboardClose();
       }
       if ($scope.bgroup===0){
