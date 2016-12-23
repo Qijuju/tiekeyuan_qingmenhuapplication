@@ -504,14 +504,7 @@
       <workItem from="1482280756668" duration="30269000" />
       <workItem from="1482367399431" duration="30003000" />
       <workItem from="1482453407620" duration="2706000" />
-      <workItem from="1482456955598" duration="8773000" />
-    </task>
-    <task id="LOCAL-00054" summary="合并孙代码：文件图片样式失帧">
-      <created>1480497182837</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1480497182838</updated>
+      <workItem from="1482456955598" duration="8811000" />
     </task>
     <task id="LOCAL-00055" summary="。。。">
       <created>1480508137427</created>
@@ -849,11 +842,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482473248891</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="去掉接收数据的50ms休眠。">
+      <created>1482479707341</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1482479707342</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="840127000" />
+    <option name="totallyTimeSpent" value="840165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
@@ -910,7 +910,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.13commit:1.点击语音按钮关闭键盘&#10;2.根据语音时长改变语音展示长度" />
     <MESSAGE value="1.滑动删除时，将当前会话的所有未读消息的状态置为已读即置为1." />
     <MESSAGE value="发送语音点击事件范围扩大的样式修改。" />
     <MESSAGE value="拉取孙林松代码(文件bug、文件错误样式)" />
@@ -935,7 +934,8 @@
     <MESSAGE value="更改界面样式" />
     <MESSAGE value="拉取孙林松代码(完成图片单击返回，图片缓存展示过滤未下载的图片)" />
     <MESSAGE value="12.23commit合并完成，准备测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="12.23commit合并完成，准备测试" />
+    <MESSAGE value="去掉接收数据的50ms休眠。" />
+    <option name="LAST_COMMIT_MESSAGE" value="去掉接收数据的50ms休眠。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
