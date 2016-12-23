@@ -652,16 +652,6 @@ public class MqttMessageCallback implements MqttCallback {
         } catch (Exception e) {
             //ToastUtil.showSafeToast(e.getMessage());
         }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 
     public JSONObject getUserInfo() throws JSONException {
