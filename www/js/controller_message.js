@@ -12,7 +12,13 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
-
+      //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
+      if($scope.isYuYin === 'true'){
+        $scope.isYuYin = 'false';
+        // $scope.a =1;
+        alert("单聊a直===="+$scope.a);
+        keepKeyboardClose();
+      }
       if ($scope.a==0){
         //加滑动底部
         $timeout(function () {
@@ -1480,7 +1486,13 @@ angular.module('message.controllers', [])
      * 点击语音按钮触发事件
      */
     $scope.clickOn=function () {
-      $scope.isYuYin="true";
+      if($scope.a === 1){
+        // alert("进不进");
+        $scope.gengduo();
+      }
+      if($scope.isYuYin=== 'false'){
+        $scope.isYuYin="true";
+      }
       keepKeyboardClose();
     }
 
@@ -1975,15 +1987,22 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.bgroup=0;
     $scope.gengduogropu=function () {
-
-      if ($scope.bgroup==0){
+      //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
+      if($scope.isGroupYuYin === 'true'){
+        $scope.isGroupYuYin = 'false';
+        alert("群bgroup直===="+$scope.bgroup);
+        keepKeyboardClose();
+      }
+      if ($scope.bgroup===0){
         //加滑动底部
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
+        // alert("管不管");
         document.getElementById("contentbb").style.marginBottom='165px';
         $scope.bgroup=1;
       }else {
+        // alert("不管不管");
         document.getElementById("contentbb").style.marginBottom='0px';
         $scope.bgroup=0;
       }
@@ -3355,7 +3374,13 @@ angular.module('message.controllers', [])
     $scope.isshowgroupPng ='true';
 
     $scope.groupclickOn=function () {
-      $scope.isGroupYuYin="true";
+      if($scope.bgroup === 1){
+        // alert("进不进");
+        $scope.gengduogropu();
+      }
+      if($scope.isGroupYuYin=== 'false'){
+        $scope.isGroupYuYin="true";
+      }
       keepKeyboardClose();
     }
 

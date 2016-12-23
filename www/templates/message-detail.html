@@ -1,18 +1,21 @@
 <ion-view id="messageDetail" view-title={{viewtitle}}>
   <ion-nav-bar align-title="center">
 
-    <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">
-        即时通
-      </button>
+    <ion-nav-buttons side="left"">
+      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backFirstMenu(groupType)"/>
+      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">-->
+        <!--即时通-->
+      <!--</button>-->
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
       <md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
       <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size:25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></md-icon>
-      <button class="button button-icon icon ion-ios-telephone" style="padding-right:0px;padding-left: 0px;" ng-click="callperson()"></button>
-      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
-              style="margin-right: 5px"></button>
+      <!--<button class="button button-icon icon ion-ios-telephone" style="padding-right:0px;padding-left: 0px;" ng-click="callperson()"></button>-->
+      <img src="img/personal_phone.png" style="height:36px;width:36px;padding-right:0px;padding-left: 0px;" ng-click="callperson()" />
+      <img src="img/personal_setting.png" ng-click="personalSetting()" style="margin-right: 5px;height:36px;width:36px;" />
+      <!--<button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"-->
+              <!--style="margin-right: 5px"></button>-->
     </ion-nav-buttons>
 
     <!--<ion-nav-buttons side="right">-->
@@ -48,15 +51,15 @@
       <div ng-repeat="msgSingle in msgs">
         <!---时间戳--->
         <div ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
-        <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
-        <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+        <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+        <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
           <!---时间戳--->
           <div >
-            <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
-            <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+            <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+            <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
           </div>
 
 
@@ -104,7 +107,7 @@
           <span>
             <!---接收图片ui--->
             <p class="rj-message" style="margin-left: 14.5%;background-color: rgba(255, 255, 255, 0)" ng-if="msgSingle.messagetype === 'Image'">
-              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;border-radius: 10px;"
               ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
             <!--<p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img
               src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/></p>-->
@@ -177,7 +180,7 @@
               <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;border-radius: 10px;"
                    ng-click="boostImage(msgSingle.message.split('###')[1])"/>
             </font>
 
@@ -329,12 +332,13 @@
         <md-icon class="icon ion-ios-mic-outline" style="border: none;background-color: #FFFFFF;font-size: 29px;line-height: 1;position:relative;bottom: 2px;left:10px;top: 7px;">
         </md-icon>
       </div>
-      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left " style="position: relative;left:4px;bottom: 1px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" />
+      <img src="img/keyborad.png" class="icon ion-ios-mic-outline rj-footer-btn-left " style="position: relative;left:4px;bottom: 0px;width: 36px;height: 36px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" />
     </div>
 
-    <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'"  >
-      <button style="margin-right: 45px;width:100%;height: 20px;" on-touch="showYuyin('Audio',_id)" on-release="releaseYuyin('Audio',_id)">
-        按住请说话
+    <div style="width: 72%;margin-top: 1px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'"  >
+      <button style="margin-right: 45px;width:100%;height: 35px;background-color: #FFFFFF;border: none;border:1px solid #7D8790;border-radius: 5px
+     ;margin-bottom: 0px;padding-bottom: 0px;" on-touch="showYuyin('Audio',_id)" on-release="releaseYuyin('Audio',_id)">
+        <font style="font-size: 15px;">按住 说话</font>
       </button>
     </div>
     <div class="item-input rj-footer-btn-wrap" style="width: 72%" ng-show="isYuYin != 'true'" ng-click="zhiling()" >
