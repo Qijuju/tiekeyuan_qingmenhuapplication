@@ -2,50 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/default.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger2175352195184446524.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/fade_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/fade_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/magnify_fade_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/magnify_fade_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/magnify_left_top_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/magnify_right_top_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_down_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_down_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_left_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_left_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_right_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_right_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_up_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/push_up_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/rotate_fade_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/rotate_fade_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/shrink_fade_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/shrink_fade_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/shrink_left_bottom_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/shrink_right_bottom_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/succinct_animation.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/tran_next_enter.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/tran_next_exit.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/tran_pre_enter.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/tran_pre_exit.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/anim/tran_pre_scale_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/layout/activity_photo2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/AnimationUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/Info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoScaleActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/RotateGestureDetector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8511141795561479350.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/constant/ResumeParams.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger2175352195184446524.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/assets/default.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_fileandpicture.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_fileandpicture.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-file.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-file.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/person-file.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/person-file.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/MainActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/grid/GridActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/grid/GridActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/gridphoto/GridPhoto.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/gridphoto/GridPhoto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoScaleActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoScaleActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_fileandpicture.js" afterPath="$PROJECT_DIR$/www/js/controller_fileandpicture.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/group-file.html" afterPath="$PROJECT_DIR$/www/templates/group-file.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/person-file.html" afterPath="$PROJECT_DIR$/www/templates/person-file.html" />
     </list>
     <list id="43ed02b5-2044-4264-a46c-baa77f6af7ab" name="Failed commit: Default" comment="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <ignored path="IM.iws" />
@@ -69,21 +60,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120912">
-              <caret line="3664" column="21" selection-start-line="3664" selection-start-column="21" selection-end-line="3664" selection-end-column="21" />
+            <state relative-caret-position="-100">
+              <caret line="4444" column="30" selection-start-line="4444" selection-start-column="30" selection-end-line="4444" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service_common.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="service_common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="413" column="18" selection-start-line="413" selection-start-column="8" selection-end-line="413" selection-end-column="18" />
+            <state relative-caret-position="400">
+              <caret line="415" column="5" selection-start-line="415" selection-start-column="5" selection-end-line="415" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller_fileandpicture.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_fileandpicture.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group-file.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/group-file.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="61" column="150" selection-start-line="61" selection-start-column="150" selection-end-line="61" selection-end-column="150" />
+              <folding>
+                <element signature="n#style#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="person-file.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/person-file.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="60" column="148" selection-start-line="60" selection-start-column="148" selection-end-line="60" selection-end-column="148" />
               <folding />
             </state>
           </provider>
@@ -141,8 +164,8 @@
       <file leaf-file-name="tab-message.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2475">
-              <caret line="75" column="59" selection-start-line="75" selection-start-column="59" selection-end-line="75" selection-end-column="59" />
+            <state relative-caret-position="433">
+              <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#ul#0;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -153,26 +176,6 @@
                 <element signature="n#style#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller_badge.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/controller_badge.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myattention.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2772">
-              <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -192,16 +195,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1848">
               <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_items.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_items.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15576">
-              <caret line="472" column="1" selection-start-line="472" selection-start-column="1" selection-end-line="472" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -251,11 +244,14 @@
         <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
         <option value="$PROJECT_DIR$/www/templates/message-group.html" />
         <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
-        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
         <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
         <option value="$PROJECT_DIR$/www/js/controller_badge.js" />
         <option value="$PROJECT_DIR$/www/css/rj.css" />
         <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
+        <option value="$PROJECT_DIR$/www/templates/person-file.html" />
+        <option value="$PROJECT_DIR$/www/templates/group-file.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_fileandpicture.js" />
+        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
       </list>
     </option>
   </component>
@@ -346,7 +342,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,11 +360,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ionic" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -516,14 +508,7 @@
       <workItem from="1482301906445" duration="3455000" />
       <workItem from="1482367241971" duration="906000" />
       <workItem from="1482371571053" duration="1896000" />
-      <workItem from="1482453588939" duration="620000" />
-    </task>
-    <task id="LOCAL-00051" summary="commit">
-      <created>1480405283716</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1480405283716</updated>
+      <workItem from="1482453588939" duration="8585000" />
     </task>
     <task id="LOCAL-00052" summary="编写离线建群登陆成功以后拉取群消息的接口">
       <created>1480495880542</created>
@@ -861,23 +846,30 @@
       <option name="project" value="LOCAL" />
       <updated>1482371656779</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="commit">
+      <created>1482456338107</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1482456338107</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="737708000" />
+    <option name="totallyTimeSpent" value="745673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21548998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15700738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1006424" sideWeight="0.50316125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38650963" sideWeight="0.49683878" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27087796" sideWeight="0.49789253" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27301928" sideWeight="0.49789253" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3490364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -954,28 +946,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/aboutours.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="82" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/historymessage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -1254,23 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2475">
-          <caret line="75" column="59" selection-start-line="75" selection-start-column="59" selection-end-line="75" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#ul#0;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#1;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3531">
@@ -1308,18 +1261,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+    <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120912">
-          <caret line="3664" column="21" selection-start-line="3664" selection-start-column="21" selection-end-line="3664" selection-end-column="21" />
+        <state relative-caret-position="400">
+          <caret line="415" column="5" selection-start-line="415" selection-start-column="5" selection-end-line="415" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
+    <entry file="file://$PROJECT_DIR$/www/templates/person-file.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="413" column="18" selection-start-line="413" selection-start-column="8" selection-end-line="413" selection-end-column="18" />
+        <state relative-caret-position="302">
+          <caret line="60" column="148" selection-start-line="60" selection-start-column="148" selection-end-line="60" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/group-file.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="61" column="150" selection-start-line="61" selection-start-column="150" selection-end-line="61" selection-end-column="150" />
+          <folding>
+            <element signature="n#style#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_fileandpicture.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#ul#0;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#span#1;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#p#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="4444" column="30" selection-start-line="4444" selection-start-column="30" selection-end-line="4444" selection-end-column="30" />
           <folding />
         </state>
       </provider>

@@ -50,6 +50,7 @@ angular.module('fileandpicture.controllers', [])
     $scope.openFileDetail=function (filepath,id) {
       $greendao.queryData("MessagesService","where _id =?",id,function (suc) {
         var bigmsg=suc[0];
+
         $api.openFileByPath(filepath,bigmsg, function (message) {
 
         },function (err) {
@@ -165,7 +166,7 @@ angular.module('fileandpicture.controllers', [])
     }
 
   })
-  
+
   .controller('groupfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams,$ionicLoading,$timeout) {
 
     $scope.ssionid=$stateParams.sessionid;

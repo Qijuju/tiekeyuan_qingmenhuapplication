@@ -167,7 +167,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                         ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                                         TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
-                                        SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+//                                        SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                                         topContactsService.deleteAllData();
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();

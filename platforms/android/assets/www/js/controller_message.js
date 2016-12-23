@@ -4437,6 +4437,7 @@ angular.module('message.controllers', [])
     // });
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid,chatType) {
+      // alert("进去的数据对不对"+id+"ssid===="+ssid);
       $scope.a=false;
       // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();

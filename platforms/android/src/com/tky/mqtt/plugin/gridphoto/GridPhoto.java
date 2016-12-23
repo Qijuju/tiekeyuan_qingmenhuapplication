@@ -3,7 +3,7 @@ package com.tky.mqtt.plugin.gridphoto;
 import android.content.Intent;
 
 import com.tky.grid.GridActivity;
-import com.tky.photohelper.PhotoScaleActivity;
+import com.tky.mqtt.paho.utils.AnimationUtils;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -60,6 +60,7 @@ public class GridPhoto extends CordovaPlugin {
             intent.putExtra("sessionid",sessionid);
             intent.putExtra("type",type);
             cordova.getActivity().startActivity(intent);
+            AnimationUtils.execNextAnim(cordova.getActivity());
 
         } catch (JSONException e) {
             e.printStackTrace();

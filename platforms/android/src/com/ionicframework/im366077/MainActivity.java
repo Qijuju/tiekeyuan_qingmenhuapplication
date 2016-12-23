@@ -34,6 +34,7 @@ import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.constant.ResumeParams;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
@@ -98,10 +99,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
             }
         });*/
 //        ToastUtil.showSafeToast(SPUtils.getString("connectionLost", "m") + "===" + SPUtils.getString("count", "m"));
-        File file = new File(FileUtils.getIconDir() + File.separator + "default", "default.png");
-        if (file == null || !file.exists()) {
-            copyDefaultPng();
-        }
     }
 
     /**
@@ -152,7 +149,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     @Override
     protected void onResume() {
         super.onResume();
-        AnimationUtils.execShrinkAnim(this);
+        if (ResumeParams.IMG_RESUME) {
+            AnimationUtils.execShrinkAnim(this);
+            ResumeParams.IMG_RESUME = false;
+        }
     }
 
     @Override

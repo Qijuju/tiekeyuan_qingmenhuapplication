@@ -20,6 +20,7 @@ import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.FilePictureDao;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.constant.ResumeParams;
 import com.tky.mqtt.paho.utils.AnimationUtils;
 
 import java.io.File;
@@ -45,7 +46,7 @@ public class GridActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
 
-        AnimationUtils.execMagnifyAnim(this);
+        AnimationUtils.execNextAnim(this);
 
         mImageLoader = ImageLoader.getInstance(3, ImageLoader.Type.LIFO);
 
@@ -90,7 +91,10 @@ public class GridActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        AnimationUtils.execShrinkAnim(this);
+        if (ResumeParams.IMG_RESUME) {
+            AnimationUtils.execShrinkAnim(this);
+            ResumeParams.IMG_RESUME = false;
+        }
     }
 
     private void init() {
