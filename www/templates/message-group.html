@@ -2,17 +2,19 @@
   <ion-nav-bar align-title="center">
 
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecondMenu(grouptype)">
-        即时通
-      </button>
+      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backSecondMenu(grouptype)"/>
+      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecondMenu(grouptype)">-->
+        <!--即时通-->
+      <!--</button>-->
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
       <md-icon class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></md-icon>
       <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong !='false'" ng-click="openTingtongMode();"></md-icon>
-      <button class="button button-icon icon ion-ios-people-outline"
-              ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"
-              style="margin-right: 5px"></button>
+      <img src="img/group_setting.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)" style="margin-right: 5px;height:36px;width:36px;" />
+      <!--<button class="button button-icon icon ion-ios-people-outline"-->
+              <!--ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"-->
+              <!--style="margin-right: 5px"></button>-->
     </ion-nav-buttons>
 
   </ion-nav-bar>
@@ -44,8 +46,8 @@
 
       <div ng-repeat="msg in groupmsgs">
         <div ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)">
-          <p style="height:20px;width:50px;background-color:#c2ccd1;margin: 3px auto;" ng-if="msg.istime === 'true' && msg.daytype ==='1' " align="center" >{{msg.when | date:'HH:mm'}}</p>
-          <p style="height:20px;width:150px;background-color: #c2ccd1;margin:3px auto;" ng-if="msg.istime === 'true' && msg.daytype ==='0'" align="center" >{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
+          <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msg.istime === 'true' && msg.daytype ==='1' " align="center" >{{msg.when | date:'HH:mm'}}</p>
+          <p style="height:auto;width:150px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msg.istime === 'true' && msg.daytype ==='0'" align="center" >{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--<div >-->
           <!--<p ng-if="msg.istime === 'true' && msg.daytype ==='1' " style="margin-top: 5px;margin:0 auto;">{{msg.when | date:'HH:mm'}}</p>-->
@@ -54,8 +56,8 @@
 
         <div class="rj-message-wrap" ng-if="(msg.from==='false') && (msg.sessionid === groupid) &&(!(msg.messagetype.substr(0,5)==='Event'))">
           <div >
-            <p style="height:20px;width:50px;background-color:#c2ccd1;margin: 3px auto;" ng-if="msg.istime === 'true' && msg.daytype ==='1' " align="center" >{{msg.when | date:'HH:mm'}}</p>
-            <p style="height:20px;width:150px;background-color: #c2ccd1;margin:3px auto;" ng-if="msg.istime === 'true' && msg.daytype ==='0'" align="center" >{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
+            <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msg.istime === 'true' && msg.daytype ==='1' " align="center" >{{msg.when | date:'HH:mm'}}</p>
+            <p style="height:auto;width:150px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msg.istime === 'true' && msg.daytype ==='0'" align="center" >{{msg.when | date:'yyyy-MM-dd HH:mm'}}</p>
           </div>
           <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9" class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
           <div ng-if="msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8" class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-click="godetail(msg.senderid)">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</div>
@@ -66,7 +68,7 @@
             <span>
             <!---接收图片ui--->
             <p class="rj-message" style="margin-left: 12.5%;background-color: rgba(255, 255, 255, 0)" ng-if="msg.messagetype === 'Image'">
-                <img src="{{msg.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+                <img src="{{msg.message.split('###')[1]}}" style="width: 110px;border-radius: 10px;"
                   ng-click="netScaleImage(msg.message.split('###')[0],msg.message.split('###')[4],msg.message.split('###')[1])"/>
             </p>
             <!---接收地理位置ui--->
@@ -141,7 +143,7 @@
                 <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' "></ion-spinner>
-                <img src="{{msg.message.split('###')[1]}}" style="width: 110px;margin-right: 10px;" class="yuanjiao"
+                <img src="{{msg.message.split('###')[1]}}" style="width: 110px;margin-right: 10px;border-radius: 10px;"
                    ng-click="boostImage(msg.message.split('###')[1])"/>
                 </font>
 
@@ -275,13 +277,14 @@
         <md-icon class="icon ion-ios-mic-outline" style="border: none;background-color: #FFFFFF;font-size: 29px;line-height: 1;position:relative;bottom: 2px;left:10px;top: 7px;">
         </md-icon>
       </div>
-      <img src="img/keybroad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 1px;" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" />
+      <img src="img/keyborad.png" class="icon ion-ios-mic-outline rj-footer-btn-left" style="position: relative;left:4px;bottom: 0px;width: 36px;height: 36px;" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" />
     </div>
 
 
-    <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isGroupYuYin === 'true'"  >
-      <button style="margin-right: 45px;width:100%;height: 20px;" on-touch="showGroupYuyin('Audio',_id)" on-release="releaseGroupYuyin('Audio',_id)">
-        按住请说话
+    <div style="width: 72%;margin-top: 1px;position: relative;bottom: 0px;" ng-show="isGroupYuYin === 'true'"  >
+      <button style="margin-right: 45px;width:100%;height: 35px;padding-bottom: 2px;background-color: #FFFFFF;border: none;border: 0.1px solid #7D8790;border-radius: 5px
+     ;margin-bottom: 0px;padding-bottom: 0px;" on-touch="showGroupYuyin('Audio',_id)" on-release="releaseGroupYuyin('Audio',_id)">
+        <font style="font-size: 15px;">按住 说话</font>
       </button>
     </div>
     <div class="item-input rj-footer-btn-wrap" style="width: 72%"  ng-show="isGroupYuYin != 'true'" ng-click="zhilinggroup()">

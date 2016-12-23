@@ -1,9 +1,10 @@
 <ion-view view-title="群设置">
   <ion-nav-bar align-title="center" class="bar-stable">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">
-        返回
-      </button>
+      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backAny()"/>
+      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">-->
+        <!--返回-->
+      <!--</button>-->
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
@@ -12,7 +13,7 @@
       <P style="font-size: 18px">{{groupName}}</P>
 
     </div>
-    <div class="row" style=" background-color: #ffffff; height: 80px">
+    <div class="row" style="background-color: #ffffff; height: 80px">
 
       <!--<div class="col" align="center" ng-click="groupNotice()">-->
         <!--<a>-->
@@ -25,8 +26,8 @@
       <div class="col" align="center" ng-click="gohistoryMessagea()">
         <a >
           <ul>
-            <li><img src="img/message.png" width="40" height="40"></li>
-            <li>消息</li>
+            <li><img src="img/message.png" width="40" height="40" > </li>
+            <li style="color: #38ADFF;">消息</li>
           </ul>
         </a>
       </div>
@@ -34,7 +35,7 @@
         <a >
           <ul>
             <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
-            <li>图片</li>
+            <li style="color: #38ADFF;">图片</li>
           </ul>
         </a>
       </div>
@@ -42,7 +43,7 @@
         <a>
           <ul>
             <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
-            <li>文件</li>
+            <li style="color: #38ADFF;">文件</li>
           </ul>
         </a>
       </div>
@@ -50,7 +51,7 @@
         <a>
           <ul>
             <li><img src="img/dingwei2.png" width="40" height="40"></li>
-            <li>定位</li>
+            <li style="color: #38ADFF;">定位</li>
           </ul>
         </a>
       </div>
@@ -88,7 +89,7 @@
         </ion-toggle>
       </Li>-->
       <li class="item" ng-click="clearGroupRS(groupId,groupName)">
-        <a >清空聊天记录</a>
+        <a style="color: #38ADFF;">清空聊天记录</a>
       </li>
     </ul>
     <div style="margin-bottom: 10px" ng-if="ismygroupaaa=='true'" >
