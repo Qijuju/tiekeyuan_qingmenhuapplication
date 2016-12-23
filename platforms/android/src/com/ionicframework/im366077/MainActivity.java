@@ -37,6 +37,7 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
+import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.RecorderManager;
@@ -46,6 +47,9 @@ import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import org.apache.cordova.CordovaActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener
 {
@@ -94,6 +98,61 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
             }
         });*/
 //        ToastUtil.showSafeToast(SPUtils.getString("connectionLost", "m") + "===" + SPUtils.getString("count", "m"));
+        File file = new File(FileUtils.getIconDir() + File.separator + "default", "default.png");
+        if (file == null || !file.exists()) {
+            copyDefaultPng();
+        }
+    }
+
+    /**
+     * 把默认的图片拷贝到相关目录下
+     */
+    private void copyDefaultPng() {
+        InputStream open = null;
+        FileOutputStream fos = null;
+        try {
+            open = getAssets().open("default.png");
+            File dir = new File(FileUtils.getIconDir() + File.separator + "default");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File file = new File(dir, "default.png");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            fos = new FileOutputStream(file);
+            byte[] bys = new byte[1024];
+            int len = 0;
+            while((len = open.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+                fos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (open != null) {
+                try {
+                    open.close();
+                    open = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fos != null) {
+                try {
+                    fos.close();
+                    fos = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AnimationUtils.execShrinkAnim(this);
     }
 
     @Override
