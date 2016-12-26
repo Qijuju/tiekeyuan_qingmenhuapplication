@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.ionicframework.im366077.R;
+import com.tky.mqtt.paho.constant.ResumeParams;
 import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.photohelper.MyReceiver;
 
@@ -38,6 +39,7 @@ public class PhotoScaleActivity extends Activity {
             public void onClick(View v) {
                 finish();
                 AnimationUtils.execShrinkAnim(PhotoScaleActivity.this);
+                ResumeParams.IMG_RESUME = true;
             }
         });
         progressBar = (ProgressBar) findViewById(R.id.progress);
@@ -79,6 +81,15 @@ public class PhotoScaleActivity extends Activity {
             });
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {//按两次回退键退出应用（最大间隔是2秒）
+            ResumeParams.IMG_RESUME = true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

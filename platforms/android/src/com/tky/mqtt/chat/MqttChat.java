@@ -291,6 +291,7 @@ public class MqttChat extends CordovaPlugin {
     public void stopMqttChat() {
     }
 
+    int count = 0;
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
         final String message = args.getString(1);
@@ -326,6 +327,7 @@ public class MqttChat extends CordovaPlugin {
 
             @Override
             public void onMqttSendError(String msg) {
+                count++;
                 try {
                     setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
                 } catch (JSONException e) {
@@ -369,7 +371,7 @@ public class MqttChat extends CordovaPlugin {
         try {
 //            if(!flag){
             MessageOper.sendMsg(tosb, message);
-            /*for (int i = 0; i < 200; i++) {
+            /*for (int i = 0; i < 10000; i++) {
                 MessageOper.sendMsg(tosb, message);
                 try {
                     Thread.sleep(50);
@@ -377,6 +379,7 @@ public class MqttChat extends CordovaPlugin {
                     e.printStackTrace();
                 }
             }*/
+            count = 0;
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
@@ -417,13 +420,19 @@ public class MqttChat extends CordovaPlugin {
     public void getChats(final JSONArray args, final CallbackContext callbackContext) {
         mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
             @Override
-            public void messageArrived(String topic, String content, int qos) {
-                try {
+            public void messageArrived(String topic, final String content, int qos) {
 
-                    setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                cordova.getThreadPool().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
             }
         });
 
