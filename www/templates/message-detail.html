@@ -152,11 +152,12 @@
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;height:40px;position:relative;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >
+            <p class="rj-message" style="margin-left: 14.5%;height:40px;position:relative;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id,msgSingle.isread);" >
               <img src="img/turnrightstatic.jpg" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
               <img src="img/turnright.gif" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
-
-            </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
+            </p>
+            <img src="img/redpoint.png" style="height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>
+            <span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
           </span>
 
         </div>

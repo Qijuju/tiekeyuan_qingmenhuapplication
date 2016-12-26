@@ -133,23 +133,33 @@ angular.module('message.controllers', [])
                           messaegeitem.daytype=data[i].daytype;
                           messaegeitem.istime=data[i].istime;
                           if(data[i].isread ==='0'){
-                            // alert("拿到库里的消息阅读状态"+data[i].isread);
-                            data[i].isread ='1';
-                            messaegeitem.isread=data[i].isread;
-                            // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                              //回到主界面时，检测关闭语音
-                              $mqtt.stopPlayRecord(function (success) {
+                            if(data[i].messagetype != 'Audio'){
+                              // alert("拿到库里的消息阅读状态"+data[i].isread);
+                              data[i].isread ='1';
+                              messaegeitem.isread=data[i].isread;
+                              // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                              $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                                //回到主界面时，检测关闭语音
+                                $mqtt.stopPlayRecord(function (success) {
+
+                                },function (err) {
+                                });
+                                // alert("保存成功");
+                                $state.go("tab.message", {
+                                  "id": $scope.userId,
+                                  "sessionid": $scope.chatName,
+                                  "grouptype":"User"
+                                });
                               },function (err) {
                               });
-                              // alert("保存成功");
+                            }else{
+                              //为语音的时候直接返回到主界面，不改变isRead状态
                               $state.go("tab.message", {
                                 "id": $scope.userId,
                                 "sessionid": $scope.chatName,
                                 "grouptype":"User"
                               });
-                            },function (err) {
-                            });
+                            }
                           }
                         }
                       }else{
@@ -271,24 +281,33 @@ angular.module('message.controllers', [])
                         messaegeitem.daytype=data[i].daytype;
                         messaegeitem.istime=data[i].istime;
                         if(data[i].isread ==='0'){
-                          // alert("拿到库里的消息阅读状态"+data[i].isread);
-                          data[i].isread ='1';
-                          messaegeitem.isread=data[i].isread;
-                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                            //回到主界面时，检测关闭语音
-                            $mqtt.stopPlayRecord(function (success) {
+                          if(data[i].messagetype != 'Audio'){
+                            // alert("拿到库里的消息阅读状态"+data[i].isread);
+                            data[i].isread ='1';
+                            messaegeitem.isread=data[i].isread;
+                            // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                              //回到主界面时，检测关闭语音
+                              $mqtt.stopPlayRecord(function (success) {
+
+                              },function (err) {
+                              });
+                              // alert("保存成功");
+                              $state.go("tab.message", {
+                                "id": $scope.userId,
+                                "sessionid": $scope.chatName,
+                                "grouptype":"User"
+                              });
                             },function (err) {
                             });
-                            // alert("保存成功");
-                            //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
+                          }else{
+                            //为语音的时候直接返回到主界面，不改变isRead状态
                             $state.go("tab.message", {
                               "id": $scope.userId,
                               "sessionid": $scope.chatName,
                               "grouptype":"User"
                             });
-                          },function (err) {
-                          });
+                          }
                         }
                       }
                     }else {
@@ -899,18 +918,20 @@ angular.module('message.controllers', [])
                     messaegeitem.istime=data[i].istime;
                     messaegeitem.daytype=data[i].daytype;
                     if(data[i].isread ==='0'){
-                      // alert("拿到库里的消息阅读状态"+data[i].isread);
-                      data[i].isread ='1';
-                      messaegeitem.isread=data[i].isread;
-                      // alert('hellonihaozhoujielun' + messaegeitem._id);
-                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                        // alert("保存成功");
-                        $timeout(function () {
-                          viewScroll.scrollBottom();
-                        }, 100);
-                      },function (err) {
-                      });
+                      if(data[i].messagetype != 'Audio'){
+                        // alert("拿到库里的消息阅读状态"+data[i].isread);
+                        data[i].isread ='1';
+                        messaegeitem.isread=data[i].isread;
+                        // alert('hellonihaozhoujielun' + messaegeitem._id);
+                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                          // alert("保存成功");
+                          $timeout(function () {
+                            viewScroll.scrollBottom();
+                          }, 100);
+                        },function (err) {
+                        });
+                      }
                     }
                   }
                 },function (err) {
@@ -1101,24 +1122,34 @@ angular.module('message.controllers', [])
                         messaegeitem.daytype=data[i].daytype;
                         messaegeitem.istime=data[i].istime;
                         if(data[i].isread ==='0'){
-                          // alert("拿到库里的消息阅读状态"+data[i].isread);
-                          data[i].isread ='1';
-                          messaegeitem.isread=data[i].isread;
-                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                            //回到主界面时，检测关闭语音
-                            $mqtt.stopPlayRecord(function (success) {
+                          if(data[i].messagetype != 'Audio'){
+                            // alert("拿到库里的消息阅读状态"+data[i].isread);
+                            data[i].isread ='1';
+                            messaegeitem.isread=data[i].isread;
+                            // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                              //回到主界面时，检测关闭语音
+                              $mqtt.stopPlayRecord(function (success) {
 
+                              },function (err) {
+                              });
+                              // alert("保存成功");
+                              $state.go("tab.message", {
+                                "id": $scope.userId,
+                                "sessionid": $scope.chatName,
+                                "grouptype":"User"
+                              });
                             },function (err) {
                             });
-                            // alert("保存成功");
+                          }else{
+                            //为语音的时候直接返回到主界面，不改变isRead状态
                             $state.go("tab.message", {
                               "id": $scope.userId,
                               "sessionid": $scope.chatName,
                               "grouptype":"User"
                             });
-                          },function (err) {
-                          });
+                          }
+
                         }
                       }
                     }else{
@@ -1241,25 +1272,34 @@ angular.module('message.controllers', [])
                       messaegeitem.daytype=data[i].daytype;
                       messaegeitem.istime=data[i].istime;
                       if(data[i].isread ==='0'){
-                        // alert("拿到库里的消息阅读状态"+data[i].isread);
-                        data[i].isread ='1';
-                        messaegeitem.isread=data[i].isread;
-                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                          //回到主界面时，检测关闭语音
-                          $mqtt.stopPlayRecord(function (success) {
+                        if(data[i].messagetype != 'Audio'){
+                          // alert("拿到库里的消息阅读状态"+data[i].isread);
+                          data[i].isread ='1';
+                          messaegeitem.isread=data[i].isread;
+                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            //回到主界面时，检测关闭语音
+                            $mqtt.stopPlayRecord(function (success) {
 
+                            },function (err) {
+                            });
+                            // alert("保存成功");
+                            //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
+                            $state.go("tab.message", {
+                              "id": $scope.userId,
+                              "sessionid": $scope.chatName,
+                              "grouptype":"User"
+                            });
                           },function (err) {
                           });
-                          // alert("保存成功");
-                          //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
+                        }else{
                           $state.go("tab.message", {
                             "id": $scope.userId,
                             "sessionid": $scope.chatName,
                             "grouptype":"User"
                           });
-                        },function (err) {
-                        });
+                        }
+
                       }
                     }
                   }else {
@@ -1634,9 +1674,10 @@ angular.module('message.controllers', [])
     $scope.islisten='false';
     $scope.audioid='';
     $scope.isshowgif='false';
-    $scope.showanimation=function (filepath,sqlid) {
+    $scope.showanimation=function (filepath,sqlid,isRead) {
       //判断id是否一致，若一致则判断标志位；若不一致，则播放
       // alert("拿到的id"+sqlid);
+
       if($scope.audioid != sqlid){
         $scope.isshowgif='true';
         $scope.islisten='true';
@@ -1683,6 +1724,38 @@ angular.module('message.controllers', [])
         });
       }
 
+      //修改语音播放未读已读状态
+      if(isRead === '0'){
+        $greendao.queryData('MessagesService','where _id =?',sqlid,function (data) {
+          // alert("进来了吗");
+          var messaegeitem={};
+          messaegeitem._id=data[0]._id;
+          messaegeitem.sessionid=data[0].sessionid;
+          messaegeitem.type=data[0].type;
+          // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+          messaegeitem.from=data[0].from;
+          messaegeitem.message=data[0].message;
+          messaegeitem.messagetype=data[0].messagetype;
+          messaegeitem.platform=data[0].platform;
+          messaegeitem.when=data[0].when;
+          messaegeitem.isFailure=data[0].isFailure;
+          messaegeitem.isDelete=data[0].isDelete;
+          messaegeitem.imgSrc=data[0].imgSrc;
+          messaegeitem.username=data[0].username;
+          messaegeitem.senderid=data[0].senderid;
+          messaegeitem.isSuccess=data[0].isSuccess;
+          messaegeitem.daytype=data[0].daytype;
+          messaegeitem.istime=data[0].istime;
+          messaegeitem.isread='1';
+          $greendao.saveObj('MessagesService',messaegeitem,function (succ) {
+            $mqtt.updateDanliao(messaegeitem);
+            // alert("保存成功");
+          },function (err) {
+          });
+        },function (err) {
+
+        });
+      }
       // $scope.isshowaudio='true';
       // $scope.numlist=[{no:1},{no:2},{no:3}];
 
@@ -2121,14 +2194,16 @@ angular.module('message.controllers', [])
                         messaegeitem.daytype=data[i].daytype;
                         messaegeitem.istime=data[i].istime;
                         if(data[i].isread ==='0'){
-                          // alert("拿到库里的消息阅读状态"+data[i].isread);
-                          data[i].isread ='1';
-                          messaegeitem.isread=data[i].isread;
-                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                            // alert("保存成功");
-                          },function (err) {
-                          });
+                          if(data[i].messagetype !='Audio'){
+                            // alert("拿到库里的消息阅读状态"+data[i].isread);
+                            data[i].isread ='1';
+                            messaegeitem.isread=data[i].isread;
+                            // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                            $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                              // alert("保存成功");
+                            },function (err) {
+                            });
+                          }
                         }
                       }
                     },function (err) {
@@ -2244,14 +2319,16 @@ angular.module('message.controllers', [])
                       messaegeitem.daytype=data[i].daytype;
                       messaegeitem.istime=data[i].istime;
                       if(data[i].isread ==='0'){
-                        // alert("拿到库里的消息阅读状态"+data[i].isread);
-                        data[i].isread ='1';
-                        messaegeitem.isread=data[i].isread;
-                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                          // alert("保存成功");
-                        },function (err) {
-                        });
+                        if(data[i].messagetype !='Audio'){
+                          // alert("拿到库里的消息阅读状态"+data[i].isread);
+                          data[i].isread ='1';
+                          messaegeitem.isread=data[i].isread;
+                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            // alert("保存成功");
+                          },function (err) {
+                          });
+                        }
                       }
                     }
                   },function (err) {
@@ -2603,17 +2680,19 @@ angular.module('message.controllers', [])
                   messaegeitem.daytype=data[i].daytype;
                   messaegeitem.istime=data[i].istime;
                   if(data[i].isread ==='0'){
-                    // alert("拿到库里的消息阅读状态"+data[i].isread);
-                    data[i].isread ='1';
-                    messaegeitem.isread=data[i].isread;
-                    // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                    $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                      // alert("保存成功");
-                      $timeout(function () {
-                        viewScroll.scrollBottom();
-                      }, 100);
-                    },function (err) {
-                    });
+                    if(data[i].messagetype !='Audio'){
+                      // alert("拿到库里的消息阅读状态"+data[i].isread);
+                      data[i].isread ='1';
+                      messaegeitem.isread=data[i].isread;
+                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                        // alert("保存成功");
+                        $timeout(function () {
+                          viewScroll.scrollBottom();
+                        }, 100);
+                      },function (err) {
+                      });
+                    }
                   }
                 }
               },function (err) {
@@ -2714,14 +2793,16 @@ angular.module('message.controllers', [])
                       messaegeitem.daytype=data[i].daytype;
                       messaegeitem.istime=data[i].istime;
                       if(data[i].isread ==='0'){
-                        // alert("拿到库里的消息阅读状态"+data[i].isread);
-                        data[i].isread ='1';
-                        messaegeitem.isread=data[i].isread;
-                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                          // alert("保存成功");
-                        },function (err) {
-                        });
+                        if(data[i].messagetype !='Audio'){
+                          // alert("拿到库里的消息阅读状态"+data[i].isread);
+                          data[i].isread ='1';
+                          messaegeitem.isread=data[i].isread;
+                          // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                          $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            // alert("保存成功");
+                          },function (err) {
+                          });
+                        }
                       }
                     }
                   },function (err) {
@@ -2838,14 +2919,16 @@ angular.module('message.controllers', [])
                     messaegeitem.daytype=data[i].daytype;
                     messaegeitem.istime=data[i].istime;
                     if(data[i].isread ==='0'){
-                      // alert("拿到库里的消息阅读状态"+data[i].isread);
-                      data[i].isread ='1';
-                      messaegeitem.isread=data[i].isread;
-                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                        // alert("保存成功");
-                      },function (err) {
-                      });
+                      if(data[i].messagetype != 'Audio'){
+                        // alert("拿到库里的消息阅读状态"+data[i].isread);
+                        data[i].isread ='1';
+                        messaegeitem.isread=data[i].isread;
+                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                          // alert("保存成功");
+                        },function (err) {
+                        });
+                      }
                     }
                   }
                 },function (err) {
@@ -3486,7 +3569,7 @@ angular.module('message.controllers', [])
     $scope.isGrouplisten='false';
     $scope.groupaudioid='';
     $scope.isshowGroupgif='false';
-    $scope.showgroupanimation=function (filepath,sqlid) {
+    $scope.showgroupanimation=function (filepath,sqlid,isRead) {
       //判断id是否一致，若一致则判断标志位；若不一致，则播放
       // alert("拿到的id"+sqlid);
       if($scope.groupaudioid != sqlid){
@@ -3534,8 +3617,38 @@ angular.module('message.controllers', [])
         });
       }
 
-      // $scope.isshowaudio='true';
-      // $scope.numlist=[{no:1},{no:2},{no:3}];
+      //修改语音播放未读已读状态
+      if(isRead === '0'){
+        $greendao.queryData('MessagesService','where _id =?',sqlid,function (data) {
+          // alert("进来了吗");
+          var messaegeitem={};
+          messaegeitem._id=data[0]._id;
+          messaegeitem.sessionid=data[0].sessionid;
+          messaegeitem.type=data[0].type;
+          // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+          messaegeitem.from=data[0].from;
+          messaegeitem.message=data[0].message;
+          messaegeitem.messagetype=data[0].messagetype;
+          messaegeitem.platform=data[0].platform;
+          messaegeitem.when=data[0].when;
+          messaegeitem.isFailure=data[0].isFailure;
+          messaegeitem.isDelete=data[0].isDelete;
+          messaegeitem.imgSrc=data[0].imgSrc;
+          messaegeitem.username=data[0].username;
+          messaegeitem.senderid=data[0].senderid;
+          messaegeitem.isSuccess=data[0].isSuccess;
+          messaegeitem.daytype=data[0].daytype;
+          messaegeitem.istime=data[0].istime;
+          messaegeitem.isread='1';
+          $greendao.saveObj('MessagesService',messaegeitem,function (succ) {
+            $mqtt.updateQunliao(messaegeitem);
+            // alert("保存成功");
+          },function (err) {
+          });
+        },function (err) {
+
+        });
+      }
 
     }
 
@@ -4510,14 +4623,16 @@ angular.module('message.controllers', [])
                   messaegeitem.daytype=data[i].daytype;
                   messaegeitem.istime=data[i].istime;
                   if(data[i].isread ==='0'){
-                    // alert("拿到库里的消息阅读状态"+data[i].isread);
-                    data[i].isread ='1';
-                    messaegeitem.isread=data[i].isread;
-                    // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                    $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                      // alert("保存成功");
-                    },function (err) {
-                    });
+                    if(data[i].messagetype != 'Audio'){
+                      // alert("拿到库里的消息阅读状态"+data[i].isread);
+                      data[i].isread ='1';
+                      messaegeitem.isread=data[i].isread;
+                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                        // alert("保存成功");
+                      },function (err) {
+                      });
+                    }
                   }
                 }
               },function (err) {
@@ -4589,14 +4704,16 @@ angular.module('message.controllers', [])
                   messaegeitem.daytype=data[i].daytype;
                   messaegeitem.istime=data[i].istime;
                   if(data[i].isread ==='0'){
-                    // alert("拿到库里的消息阅读状态"+data[i].isread);
-                    data[i].isread ='1';
-                    messaegeitem.isread=data[i].isread;
-                    // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                    $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                      // alert("保存成功");
-                    },function (err) {
-                    });
+                    if(data[i].messagetype != 'Audio'){
+                      // alert("拿到库里的消息阅读状态"+data[i].isread);
+                      data[i].isread ='1';
+                      messaegeitem.isread=data[i].isread;
+                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                        // alert("保存成功");
+                      },function (err) {
+                      });
+                    }
                   }
                 }
               },function (err) {
@@ -4669,14 +4786,17 @@ angular.module('message.controllers', [])
                     messaegeitem.daytype=data[i].daytype;
                     messaegeitem.istime=data[i].istime;
                     if(data[i].isread ==='0'){
-                      // alert("拿到库里的消息阅读状态"+data[i].isread);
-                      data[i].isread ='1';
-                      messaegeitem.isread=data[i].isread;
-                      // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                      $greendao.saveObj('MessagesService',messaegeitem,function (data) {
-                        // alert("保存成功");
-                      },function (err) {
-                      });
+                      if(data[i].messagetype != 'Audio'){
+                        // alert("拿到库里的消息阅读状态"+data[i].isread);
+                        data[i].isread ='1';
+                        messaegeitem.isread=data[i].isread;
+                        // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                          // alert("保存成功");
+                        },function (err) {
+                        });
+                      }
+
                     }
                   }
                 },function (err) {

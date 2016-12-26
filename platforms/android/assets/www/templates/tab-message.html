@@ -80,6 +80,7 @@
             <!--<div>-->
               <span style="float: left;">
                 <font style="font-size: 14px;color: #777777"><img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false'"/>{{item.lastText}}</font>
+                <font style="font-size: 14px;color: #777777;color: red"><img style="background-color: transparent;padding-right: 5px;" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.lastText === '[语音]'"/>{{item.lastText}}</font>
               </span>
               <span class="rj-sm-red-icon" style="float: right;margin-right:8px;margin-top:2px;padding-right: 0px;" ng-if="item.count > 0 && item.count <100"><p>{{item.count}}</p></span>
               <span class="rj-sm-red-icon" style="float: right;margin-right:8px;margin-top:2px;padding-right: 0px;" ng-if="item.count > 99" ><p style="font-size: 10px;">99+</p></span>
