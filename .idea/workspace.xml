@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7869027417806273591.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
     </list>
@@ -523,14 +524,7 @@
       <workItem from="1482453407620" duration="2706000" />
       <workItem from="1482456955598" duration="8811000" />
       <workItem from="1482479989579" duration="2392000" />
-      <workItem from="1482712811080" duration="5430000" />
-    </task>
-    <task id="LOCAL-00056" summary="commit">
-      <created>1480509663792</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1480509663792</updated>
+      <workItem from="1482712811080" duration="5496000" />
     </task>
     <task id="LOCAL-00057" summary="11.30commit：稳定版">
       <created>1480509967469</created>
@@ -868,11 +862,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482717522945</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="commit:定版">
+      <created>1482718519968</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1482718519968</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="847987000" />
+    <option name="totallyTimeSpent" value="848053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
