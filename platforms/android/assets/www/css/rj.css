@@ -1,3 +1,32 @@
+.rj-weather-rightbig {
+  position: absolute;
+  left: 63%;
+  top: 32px;
+  color: #8c8c8c;
+  font-size: 45px;
+}
+.rj-weather-rightbigsmall {
+  position: absolute;
+  left: 82%;
+  top: 10px;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+
+.rj-weather-rightsmall {
+  position: absolute;
+  left: 82%;
+  top: 30px;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+.rj-weather-rightsmallsamll {
+  position: absolute;
+  left: 82%;
+  top: 55px;
+  color: #8c8c8c;
+  font-size: 16px;
+}
 .rj-push-right {
   position: absolute;
   right: 10px;
@@ -11,6 +40,14 @@
   top: 10px;
   color: #8c8c8c;
   font-size: 13px;
+}
+
+.rj-push-account {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #8c8c8c;
+  font-size: 15px;
 }
 .rj-push-rightdown {
   position: absolute;
@@ -116,14 +153,14 @@
 .rj-sm-red-icon {
   position: absolute;
   display: inline-block;
-  width:  15px;
-  height: 16px;
+  width:  18px;
+  height: 17px;
   border-radius: 50%;
   background-color: #DD5044;
-  line-height: 18px;
+  line-height: 16px;
   text-align: center;
   right: 18px;
-  top: 40px;
+  top: 35px;
 }
 .rj-sm-red-icon11 {
   display: inline-block;
@@ -302,6 +339,15 @@
   border-radius: 6px;
   margin-left: 3px;
   margin-right: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-notify-bggg{
+  border-radius: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
   height: 85px;

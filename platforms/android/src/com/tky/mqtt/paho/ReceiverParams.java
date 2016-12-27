@@ -86,6 +86,11 @@ public class ReceiverParams {
 	public static final String RECEIVER_PROXY = "com.sls.mqtt.receiver_proxy";
 
 	/**
+	 * 熄灭屏幕或者其他导致播放停止的因素广播
+	 */
+	public static final String RECEIVER_PLAY_STOP = "com.sls.mqtt.receiver_play_stop";
+
+	/**
 	 * 声音变化的广播接收者
 	 */
 //	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";

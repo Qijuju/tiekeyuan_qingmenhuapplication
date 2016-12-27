@@ -22,6 +22,7 @@ import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -166,14 +167,14 @@ public class ThriftApiClient extends CordovaPlugin {
                                         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                         ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                                         TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
-                                        SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+//                                        SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                                         topContactsService.deleteAllData();
                                         messagesService.deleteAllData();
                                         chatListService.deleteAllData();
 //                                        System.out.println("删除本地缓存成功");
                                     }
 
-                                    LocalPhoneService localPhoneService=LocalPhoneService.getInstance(UIUtils.getContext());
+                                    LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
                                     localPhoneService.deleteAllData();
 
                                     //保存登录信息
@@ -1251,7 +1252,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                 if (result.result) {
                                     MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                                     List<Msg> messagesList = result.getMsglist();
-                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
+//                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
                                     for (int i = 0; i < messagesList.size(); i++) {
                                         Msg msg = messagesList.get(i);
                                         Messages messages = new Messages();
@@ -1300,10 +1301,10 @@ public class ThriftApiClient extends CordovaPlugin {
                                         messageBean.setWhen(msg.getMsgDate());
                                         sendArriveMsgToFront(result.getSessionID(), messageBean);
                                     }
-//                                    //离线新建群，获取最新群名
-//                                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
-//                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
-//                                    String groupName=groupChatsList.get(0).getGroupName();
+                                    //离线新建群，获取最新群名
+                                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
+                                    List<GroupChats> groupChatsList=groupChatsService.queryData("where id =?", groupID);
+                                    String groupName=groupChatsList.get(0).getGroupName();
 //                                    ToastUtil.showSafeToast("最新群名"+groupName);
                                     //统计未读数量
                                     int count=0;
@@ -1334,7 +1335,7 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatList.setLastText("[图片]");//从数据库里取最后一条消息
                                     } else if (lastmessages.getMessagetype() == "LOCATION") {
                                         chatList.setLastText("[位置]");//从数据库里取最后一条消息
-                                        System.out.println("消息类型weizhi");
+//                                        System.out.println("消息类型weizhi");
                                     } else if (lastmessages.getMessagetype() == "File") {
                                         chatList.setLastText("[文件]");//从数据库里取最后一条消息
                                     }else if(lastmessages.getMessagetype() == "Audio"){
@@ -2270,27 +2271,32 @@ public class ThriftApiClient extends CordovaPlugin {
             File file = null;
             String nowSavePath = null;
             if (!"Audio".equals(messagetype)) {
-                FileInputStream fis = new FileInputStream(filePath);
-                final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
-                File dirFile = new File(dir);
-                if (dirFile != null && !dirFile.exists()) {
-                    dirFile.mkdirs();
-                }
-//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
-                nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
-                ;
-                file = new File(nowSavePath);
-                if (!file.exists()) {
-                    FileOutputStream fos = new FileOutputStream(nowSavePath);
-
-                    byte[] bys = new byte[10 * 1024];
-                    int len = 0;
-                    while ((len = fis.read(bys)) != -1) {
-                        fos.write(bys, 0, len);
+                /*if (MediaFile.isImageFileType(filePath)) {
+                    nowSavePath = filePath;
+                    file = new File(nowSavePath);
+                } else {*/
+                    FileInputStream fis = new FileInputStream(filePath);
+                    final String dir = FileUtils.getIconDir() + File.separator + "chat_img";
+                    File dirFile = new File(dir);
+                    if (dirFile != null && !dirFile.exists()) {
+                        dirFile.mkdirs();
                     }
+//                nowSavePath = dir + File.separator + UUID.randomUUID().toString() + filePath.substring(filePath.lastIndexOf("."), filePath.length());
+                    nowSavePath = dir + File.separator + filePath.substring(filePath.lastIndexOf("/") + 1, filePath.length());
+                    ;
+                    file = new File(nowSavePath);
+                    if (!file.exists()) {
+                        FileOutputStream fos = new FileOutputStream(nowSavePath);
 
-                    fos.close();
-                }
+                        byte[] bys = new byte[10 * 1024];
+                        int len = 0;
+                        while ((len = fis.read(bys)) != -1) {
+                            fos.write(bys, 0, len);
+                        }
+
+                        fos.close();
+                    }
+//                }
             } else {
                 nowSavePath = filePath;
                 file = new File(filePath);

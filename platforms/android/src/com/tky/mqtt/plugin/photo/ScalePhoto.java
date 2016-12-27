@@ -11,12 +11,10 @@ import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.FilePictureDao;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
-import com.tky.mqtt.services.FilePictureService;
-import com.tky.photohelper.PhotoScaleActivity;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -51,7 +49,7 @@ public class ScalePhoto extends CordovaPlugin {
 
 
     private static final List<String> downList = new ArrayList<String>();
-  
+
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         cordova.getThreadPool().execute(new Runnable() {
@@ -71,29 +69,30 @@ public class ScalePhoto extends CordovaPlugin {
         });
         return true;
     }
-    
+
     /**
      * 缩放图片
      * @param args 参数
      * @param callbackContext 插件回调
      */
     public void scale(final JSONArray args, final CallbackContext callbackContext) {
-    	//需要传入的图片路径
         try {
+            //需要传入的图片路径
             String filepath = args.getString(0);
-            Intent intent =new Intent(cordova.getActivity(), PhotoScaleActivity.class);
+            Intent intent =new Intent(cordova.getActivity(), com.tky.photoview.PhotoScaleActivity.class);
             intent.putExtra("filePath",filepath);
             intent.putExtra("fromwhere","local");
             intent.putExtra("filefactsize",0l);
             intent.putExtra("bigfilepath",filepath);
             cordova.getActivity().startActivity(intent);
+            AnimationUtils.execShrinkAnim(cordova.getActivity());
             setResult("加载成功！", PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
             setResult("加载失败！", PluginResult.Status.ERROR, callbackContext);
         }
     }
-    
+
     /**
      * 请求大图并且缩放
      * @param args 参数
@@ -115,7 +114,7 @@ public class ScalePhoto extends CordovaPlugin {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                final Intent intent4=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                final Intent intent4=new Intent(cordova.getActivity(),com.tky.photoview.PhotoScaleActivity.class);
                                 //传入的是小图路径
                                 intent4.putExtra("filePath", samllfilepath);
                                 intent4.putExtra("filefactsize", 0);
@@ -123,6 +122,7 @@ public class ScalePhoto extends CordovaPlugin {
                                 //传入的是大图路径
                                 intent4.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 cordova.getActivity().startActivity(intent4);
+                                AnimationUtils.execShrinkAnim(cordova.getActivity());
                             }
                         });
 
@@ -167,11 +167,12 @@ public class ScalePhoto extends CordovaPlugin {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                final Intent intent3=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                final Intent intent3=new Intent(cordova.getActivity(),com.tky.photoview.PhotoScaleActivity.class);
                                 intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 intent3.putExtra("filefactsize",factsize);
                                 intent3.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 cordova.getActivity().startActivity(intent3);
+                                AnimationUtils.execShrinkAnim(cordova.getActivity());
                             }
                         });
 
@@ -187,7 +188,7 @@ public class ScalePhoto extends CordovaPlugin {
                         UIUtils.runInMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                final Intent intent=new Intent(cordova.getActivity(),PhotoScaleActivity.class);
+                                final Intent intent=new Intent(cordova.getActivity(),com.tky.photoview.PhotoScaleActivity.class);
                                 //传入的是小图路径
                                 intent.putExtra("filePath", samllfilepath);
                                 intent.putExtra("filefactsize",factsize);
@@ -195,6 +196,7 @@ public class ScalePhoto extends CordovaPlugin {
                                 //传入的是大图路径
                                 intent.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
                                 cordova.getActivity().startActivity(intent);
+                                AnimationUtils.execShrinkAnim(cordova.getActivity());
                             }
                         });
 
@@ -354,12 +356,13 @@ public class ScalePhoto extends CordovaPlugin {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
         try {
             cordova.getActivity().startActivityForResult(intent, TAKE_PHOTO_CODE);
+            AnimationUtils.execShrinkAnim(cordova.getActivity());
 
         } catch (final ActivityNotFoundException e) {
         }
     }
-    
-    
+
+
     /**
      * 设置返回信息
      * @param result 返回结果数据
@@ -403,5 +406,5 @@ public class ScalePhoto extends CordovaPlugin {
 
 }
 
- 
+
 

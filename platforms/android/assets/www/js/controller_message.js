@@ -12,7 +12,13 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
-
+      //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
+      if($scope.isYuYin === 'true'){
+        $scope.isYuYin = 'false';
+        // $scope.a =1;
+        // alert("单聊a直===="+$scope.a);
+        keepKeyboardClose();
+      }
       if ($scope.a==0){
         //加滑动底部
         $timeout(function () {
@@ -132,6 +138,10 @@ angular.module('message.controllers', [])
                             messaegeitem.isread=data[i].isread;
                             // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                             $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                              //回到主界面时，检测关闭语音
+                              $mqtt.stopPlayRecord(function (success) {
+                              },function (err) {
+                              });
                               // alert("保存成功");
                               $state.go("tab.message", {
                                 "id": $scope.userId,
@@ -143,6 +153,10 @@ angular.module('message.controllers', [])
                           }
                         }
                       }else{
+                        //回到主界面时，检测关闭语音
+                        $mqtt.stopPlayRecord(function (success) {
+                        },function (err) {
+                        });
                         //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                         $state.go("tab.message", {
                           "id": $scope.userId,
@@ -177,6 +191,10 @@ angular.module('message.controllers', [])
                   $rootScope.isPersonSend = 'false';
                 }
               }else{
+                //回到主界面时，检测关闭语音
+                $mqtt.stopPlayRecord(function (success) {
+                },function (err) {
+                });
                 $state.go("tab.message", {
                   "id": $scope.userId,
                   "sessionid": $scope.chatName,
@@ -258,6 +276,10 @@ angular.module('message.controllers', [])
                           messaegeitem.isread=data[i].isread;
                           // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
                           $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                            //回到主界面时，检测关闭语音
+                            $mqtt.stopPlayRecord(function (success) {
+                            },function (err) {
+                            });
                             // alert("保存成功");
                             //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                             $state.go("tab.message", {
@@ -270,6 +292,10 @@ angular.module('message.controllers', [])
                         }
                       }
                     }else {
+                      //回到主界面时，检测关闭语音
+                      $mqtt.stopPlayRecord(function (success) {
+                      },function (err) {
+                      });
                       //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                       $state.go("tab.message", {
                         "id": $scope.userId,
@@ -1177,6 +1203,7 @@ angular.module('message.controllers', [])
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
+              // $ToastUtils.showToast("存在该对话的单聊对话名称"+$scope.chatName);
               chatitem.imgSrc = $scope.imgSrc;
               chatitem.lastText = $scope.lastText;
               chatitem.count = '0';
@@ -1459,7 +1486,13 @@ angular.module('message.controllers', [])
      * 点击语音按钮触发事件
      */
     $scope.clickOn=function () {
-      $scope.isYuYin="true";
+      if($scope.a === 1){
+        // alert("进不进");
+        $scope.gengduo();
+      }
+      if($scope.isYuYin=== 'false'){
+        $scope.isYuYin="true";
+      }
       keepKeyboardClose();
     }
 
@@ -1945,7 +1978,7 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
     $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
@@ -1954,19 +1987,26 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.bgroup=0;
     $scope.gengduogropu=function () {
-
       if ($scope.bgroup==0){
         //加滑动底部
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
+        // alert("管不管");
         document.getElementById("contentbb").style.marginBottom='165px';
         $scope.bgroup=1;
       }else {
+        // alert("不管不管");
         document.getElementById("contentbb").style.marginBottom='0px';
         $scope.bgroup=0;
       }
-    };
+
+      //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
+      if($scope.isGroupYuYin === 'true'){
+        $scope.isGroupYuYin = 'false';
+        keepKeyboardClose();
+      }
+  };
     $scope.zhilinggroup=function () {
       document.getElementById("contentbb").style.marginBottom='0px';
       $scope.bgroup=0;
@@ -2093,6 +2133,10 @@ angular.module('message.controllers', [])
                       }
                     },function (err) {
                     });
+                    //回到主界面时，检测关闭语音
+                    $mqtt.stopPlayRecord(function (success) {
+                    },function (err) {
+                    });
                     //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
                     $state.go("tab.message", {
                       "id": $scope.groupid,
@@ -2122,6 +2166,10 @@ angular.module('message.controllers', [])
                   $rootScope.isPersonSend = 'false';
                 }
               }else{
+                //回到主界面时，检测关闭语音
+                $mqtt.stopPlayRecord(function (success) {
+                },function (err) {
+                });
                 $state.go("tab.message", {
                   "id": $scope.groupid,
                   "sessionid":$scope.chatname,
@@ -2206,6 +2254,10 @@ angular.module('message.controllers', [])
                         });
                       }
                     }
+                  },function (err) {
+                  });
+                  //回到主界面时，检测关闭语音
+                  $mqtt.stopPlayRecord(function (success) {
                   },function (err) {
                   });
                   //chat表count值改变过后并且message表消息状态全部改变以后，返回主界面
@@ -3322,7 +3374,13 @@ angular.module('message.controllers', [])
     $scope.isshowgroupPng ='true';
 
     $scope.groupclickOn=function () {
-      $scope.isGroupYuYin="true";
+      if($scope.bgroup === 1){
+        // alert("进不进");
+        $scope.gengduogropu();
+      }
+      if($scope.isGroupYuYin=== 'false'){
+        $scope.isGroupYuYin="true";
+      }
       keepKeyboardClose();
     }
 
@@ -3663,7 +3721,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
 
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
@@ -4052,8 +4110,35 @@ angular.module('message.controllers', [])
     });
 
 
+    /**
+     * 实现文件、图片、文字、语音发送成功以后的监听
+     */
+    $scope.$on('sendsuccess.update',function (event) {
+      var value=$mqtt.receiveupdate();
+      var id=value.split(',')[0];
+      var sessionid=value.split(',')[1];
+      $greendao.queryData('ChatListService','where id =?',id,function (data) {
+        var chatitem={};
+        chatitem.id=data[0].id;
+        chatitem.chatName=data[0].chatName;
+        chatitem.isDelete=data[0].isDelete;
+        chatitem.lastText=data[0].lastText;
+        chatitem.count=data[0].count;
+        chatitem.lastDate=data[0].lastDate;
+        chatitem.chatType=data[0].chatType;
+        chatitem.senderId=data[0].senderId;
+        chatitem.senderName=data[0].senderName;
+        chatitem.daytype=data[0].daytype;
+        chatitem.imgSrc=data[0].imgSrc;
+        chatitem.isSuccess='true';
+        $greendao.saveObj('ChatListService',chatitem,function (suc) {
+          $chatarr.updatedatanosort(chatitem);
+        },function (err) {
+        });
 
-
+      },function (err) {
+      });
+    });
 
 
     //扫一扫
@@ -4377,6 +4462,7 @@ angular.module('message.controllers', [])
     // });
     //进入单聊界面
     $scope.goDetailMessage = function (id, ssid,chatType) {
+      // alert("进去的数据对不对"+id+"ssid===="+ssid);
       $scope.a=false;
       // $ToastUtils.showToast("单聊界面"+id+ssid+chatType);
       $mqtt.clearMsgCount();
@@ -5323,8 +5409,8 @@ angular.module('message.controllers', [])
     $scope.groupid = $stateParams.id;
     // $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
-    alert($scope.groupid)
-    alert($scope.grouptype)
+    // alert($scope.groupid)
+    // alert($scope.grouptype)
     if($scope.grouptype=="Group"){
       $scope.grouptype="G"
     }

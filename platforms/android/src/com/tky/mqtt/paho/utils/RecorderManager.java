@@ -6,7 +6,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.tky.mqtt.paho.SPUtils;
@@ -323,7 +322,6 @@ public class RecorderManager {
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Log.d("rate", "rate:" + amp);
                             onRecorderChangeListener.onRateChange(filePath, interval, amp > 5 ? 5 : amp);
                         }
                     });
@@ -394,15 +392,18 @@ public class RecorderManager {
                 player = new MediaPlayer();
             }
         }
+        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+        UIUtils.switchEarphone(context, !proxyMode);
         try {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));
             player.prepare();
             player.start();                                           // play the record
             AudioManager audioManager = (AudioManager) UIUtils.getContext().getSystemService(Context.AUDIO_SERVICE);
-            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+//            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
             int currVolume = audioManager.getStreamVolume(proxyMode ? AudioManager.STREAM_MUSIC : AudioManager.STREAM_VOICE_CALL) ;// 当前的媒体音量
             player.setVolume(currVolume, currVolume);
         }catch (IOException e) {
+            UIUtils.switchEarphone(context, false);
             player.stop();
             player.release();
             player = null;
@@ -456,12 +457,11 @@ public class RecorderManager {
             if (player != null && player.isPlaying()) {
                 player.stop();
                 player.release();
+                player = null;
             }
         } catch (Exception e) {
         } finally {
-            //播放完成恢复距离感应器模式
-            boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
-            UIUtils.switchEarphone(context, !proxyMode);
+            UIUtils.switchEarphone(context, false);
         }
     }
 
