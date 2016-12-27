@@ -291,7 +291,7 @@ public class MqttChat extends CordovaPlugin {
     public void stopMqttChat() {
     }
 
-    int count = 0;
+//    int count = 0;
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
         final String message = args.getString(1);
@@ -327,7 +327,7 @@ public class MqttChat extends CordovaPlugin {
 
             @Override
             public void onMqttSendError(String msg) {
-                count++;
+//                count++;
                 try {
                     setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
                 } catch (JSONException e) {
@@ -378,8 +378,9 @@ public class MqttChat extends CordovaPlugin {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }*/
-            count = 0;
+            }
+            Log.e("countyou", "发送失败总数为：" + count);
+            count = 0;*/
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
