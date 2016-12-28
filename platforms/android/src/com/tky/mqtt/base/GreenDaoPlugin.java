@@ -129,6 +129,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setSenderName(jsonobj.getString("senderName"));
             chatList.setDaytype(jsonobj.getString("daytype"));
             chatList.setIsSuccess(jsonobj.getString("isSuccess"));
+            chatList.setMessagetype(jsonobj.getString("messagetype"));
+            chatList.setIsFailure(jsonobj.getString("isFailure"));
+            chatList.setIsRead(jsonobj.getString("isRead"));
             obj = chatList;
         }else if("GroupChatsService".equals(services)){
           GroupChats groupChats=new GroupChats();

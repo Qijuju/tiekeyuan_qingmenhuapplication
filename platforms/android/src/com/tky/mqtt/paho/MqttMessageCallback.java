@@ -353,15 +353,20 @@ public class MqttMessageCallback implements MqttCallback {
                                 if ("Image".equals(lastmessages.getMessagetype())) {
                                     // alert("返回即时通");
                                     chatList.setLastText("[图片]");//从数据库里取最后一条消息
+                                    chatList.setMessagetype("Image");
                                 } else if ("LOCATION".equals(lastmessages.getMessagetype())) {
                                     chatList.setLastText("[位置]");//从数据库里取最后一条消息
-                                    System.out.println("消息类型weizhi");
+                                    chatList.setMessagetype("LOCATION");
+//                                    System.out.println("消息类型weizhi");
                                 } else if ("File".equals(lastmessages.getMessagetype())) {
                                     chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                                    chatList.setMessagetype("File");
                                 } else if("Audio".equals(lastmessages.getMessagetype()) ){
                                     chatList.setLastText("[语音]");//从数据库里取最后一条消息
+                                    chatList.setMessagetype("Audio");
                                 }else {
                                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+                                    chatList.setMessagetype("Text");
                                 }
                                 chatList.setCount(count + "");//将统计的count未读数量存进去
                                 chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
@@ -381,6 +386,8 @@ public class MqttMessageCallback implements MqttCallback {
                                     chatList.setChatType(chatLists.get(0).getChatType());
                                     chatList.setDaytype(chatLists.get(0).getDaytype());
                                     chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                                    chatList.setIsFailure(chatLists.get(0).getIsFailure());
+                                    chatList.setIsRead("0");
                                 } else {
                                     chatList.setId(lastmessages.getSessionid());
                                     if ("User" .equals(lastmessages.getType())) {
@@ -400,6 +407,8 @@ public class MqttMessageCallback implements MqttCallback {
                                     chatList.setChatType(lastmessages.getType());
                                     chatList.setDaytype(lastmessages.getDaytype());
                                     chatList.setIsSuccess(lastmessages.getIsSuccess());
+                                    chatList.setIsFailure(lastmessages.getIsFailure());
+                                    chatList.setIsRead(lastmessages.getIsread());
                                 }
                                 chatListService.saveObj(chatList);//保存chatlist对象
                             } catch (ParseException e) {
@@ -591,15 +600,20 @@ public class MqttMessageCallback implements MqttCallback {
                 if ("Image".equals(lastmessages.getMessagetype())) {
                     // alert("返回即时通");
                     chatList.setLastText("[图片]");//从数据库里取最后一条消息
-                    System.out.println("是不是图片");
+                    chatList.setMessagetype("Image");
+//                    System.out.println("是不是图片");
                 } else if ("LOCATION".equals(lastmessages.getMessagetype())) {
                     chatList.setLastText("[位置]");//从数据库里取最后一条消息
+                    chatList.setMessagetype("LOCATION");
                 } else if ("File".equals(lastmessages.getMessagetype())) {
                     chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                    chatList.setMessagetype("File");
                 }else if( "Audio".equals(lastmessages.getMessagetype())){
                     chatList.setLastText("[语音]");//从数据库里取最后一条消息
+                    chatList.setMessagetype("Audio");
                 } else {
                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+                    chatList.setMessagetype("Text");
                 }
                 chatList.setCount(count + "");//将统计的count未读数量存进去
                 chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
@@ -618,6 +632,8 @@ public class MqttMessageCallback implements MqttCallback {
                     chatList.setChatType(chatLists.get(0).getChatType());
                     chatList.setDaytype(chatLists.get(0).getDaytype());
                     chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                    chatList.setIsFailure(chatLists.get(0).getIsFailure());
+                    chatList.setIsRead("0");
                 } else {
                     chatList.setId(lastmessages.getSessionid());
                     if ( "User".equals(lastmessages.getType())) {
@@ -631,6 +647,8 @@ public class MqttMessageCallback implements MqttCallback {
                     chatList.setChatType(lastmessages.getType());
                     chatList.setDaytype(lastmessages.getDaytype());
                     chatList.setIsSuccess(lastmessages.getIsSuccess());
+                    chatList.setIsFailure(lastmessages.getIsFailure());
+                    chatList.setIsRead(lastmessages.getIsread());
                 }
                 chatListService.saveObj(chatList);//保存chatlist对象
 

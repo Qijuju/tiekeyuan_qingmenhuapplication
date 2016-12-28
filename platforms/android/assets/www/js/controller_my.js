@@ -437,6 +437,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.picyoumeiyou=false;
         // alert("没有")
       })
+  
 
     $scope.setpic = function (name) {
       // 显示操作表

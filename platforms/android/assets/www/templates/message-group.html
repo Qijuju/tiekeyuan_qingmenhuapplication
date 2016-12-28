@@ -112,11 +112,13 @@
 
 
               <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;height:40px;position: relative;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);" >
+            <p class="rj-message" style="margin-left: 14.5%;height:40px;position: relative;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id,msg.isread);" >
               <img src="img/turnrightstatic.jpg" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
               <img src="img/turnright.gif" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''">
-            </p><span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msg.messagetype === 'Audio'">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</span>
-          </span>
+            </p>
+              <img src="img/redpoint.png" style="height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;" ng-if="msg.messagetype === 'Audio'&&msg.isread === '0'"/>
+              <span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msg.messagetype === 'Audio'">{{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"</span>
+              </span>
         </div>
 
 
