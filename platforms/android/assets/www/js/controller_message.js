@@ -3410,6 +3410,10 @@ angular.module('message.controllers', [])
         "groupname":''
       });
     }
+    //紧急呼叫
+    $scope.gozhuan=function () {
+      $state.go("emergencycall");
+    }
     //刚开始进来先拿到部门的id
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -4637,8 +4641,8 @@ angular.module('message.controllers', [])
         //   viewScroll.scrollBottom();
         // }, 100);
       })
-    });
-
+    })
+    ;
     //获取更多数据
     $scope.doRefreshhis = function () {
       if ($scope.dangqianpage<$scope.totalpage){
@@ -4923,8 +4927,8 @@ angular.module('message.controllers', [])
     $scope.groupid = $stateParams.id;
     // $scope.ssid = $stateParams.ssid;
     $scope.grouptype=$stateParams.grouptype;
-    alert($scope.groupid)
-    alert($scope.grouptype)
+    // alert($scope.groupid)
+    // alert($scope.grouptype)
     if($scope.grouptype=="Group"){
       $scope.grouptype="G"
     }
@@ -5493,4 +5497,79 @@ angular.module('message.controllers', [])
 
 
 
+  })
+  .controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
+    $scope.topaa=1;
+    var viewScroll = $ionicScrollDelegate.$getByHandle('fdsfsdfsd');
+    $scope.toptoptop=function () {
+      $scope.topaa=0;
+      viewScroll.scrollBottom();
+    }
+    $scope.botbotbot=function () {
+      $scope.topaa=1;
+      viewScroll.scrollTop();
+    }
+    $scope.goback=function () {
+      $state.go('tab.message');
+    }
+
+    $scope.aaa=0;
+    $scope.bbb=0;
+    $scope.ccc=0;
+    $scope.ddd=0;
+    $scope.eee=0;
+    $scope.fff=0;
+    $scope.ggg=0;
+    $scope.hhh=0;
+    $scope.iii=0;
+    $scope.jjj=0;
+    $scope.kkk=0;
+    $scope.lll=0;
+    $scope.mmm=0;
+    $scope.nnn=0;
+    $scope.ooo=0;
+    $scope.ppp=0;
+    $timeout(function () {
+      $scope.aaa=1;
+    }, 5000);
+    $timeout(function () {
+      $scope.bbb=1;
+      $scope.nnn=1;
+    }, 2000);
+    $timeout(function () {
+      $scope.ccc=1;
+    }, 3500);
+    $timeout(function () {
+      $scope.ooo=1;
+      $scope.ddd=1;
+    }, 5555);
+    $timeout(function () {
+      $scope.eee=1;
+    }, 7000);
+    $timeout(function () {
+      $scope.fff=1;
+    }, 10000);
+    $timeout(function () {
+      $scope.ggg=1;
+      $scope.ppp=1;
+    }, 20000);
+    $timeout(function () {
+      $scope.hhh=1;
+    }, 12500);
+    $timeout(function () {
+      $scope.iii=1;
+    }, 14000);
+    $timeout(function () {
+      $scope.jjj=1;
+    }, 15000);
+    $timeout(function () {
+      $scope.kkk=1;
+    }, 15000);
+    $timeout(function () {
+      $scope.lll=1;
+    }, 18000);
+    $timeout(function () {
+      $scope.mmm=1;
+    }, 19000);
+    
   })
