@@ -35,6 +35,9 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         public final static Property SenderName = new Property(9, String.class, "senderName", false, "SENDER_NAME");
         public final static Property IsSuccess = new Property(10, String.class, "isSuccess", false, "IS_SUCCESS");
         public final static Property Daytype = new Property(11, String.class, "daytype", false, "DAYTYPE");
+        public final static Property IsFailure = new Property(12, String.class, "isFailure", false, "IS_FAILURE");
+        public final static Property Messagetype = new Property(13, String.class, "messagetype", false, "MESSAGETYPE");
+        public final static Property IsRead = new Property(14, String.class, "isRead", false, "IS_READ");
     };
 
 
@@ -61,7 +64,10 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
                 "'SENDER_ID' TEXT," + // 8: senderId
                 "'SENDER_NAME' TEXT," + // 9: senderName
                 "'IS_SUCCESS' TEXT," + // 10: isSuccess
-                "'DAYTYPE' TEXT);"); // 11: daytype
+                "'DAYTYPE' TEXT," + // 11: daytype
+                "'IS_FAILURE' TEXT," + // 12: isFailure
+                "'MESSAGETYPE' TEXT," + // 13: messagetype
+                "'IS_READ' TEXT);"); // 14: isRead
     }
 
     /** Drops the underlying database table. */
@@ -134,6 +140,21 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         if (daytype != null) {
             stmt.bindString(12, daytype);
         }
+ 
+        String isFailure = entity.getIsFailure();
+        if (isFailure != null) {
+            stmt.bindString(13, isFailure);
+        }
+ 
+        String messagetype = entity.getMessagetype();
+        if (messagetype != null) {
+            stmt.bindString(14, messagetype);
+        }
+ 
+        String isRead = entity.getIsRead();
+        if (isRead != null) {
+            stmt.bindString(15, isRead);
+        }
     }
 
     /** @inheritdoc */
@@ -157,7 +178,10 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // senderId
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // senderName
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // isSuccess
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // daytype
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // daytype
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // isFailure
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // messagetype
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // isRead
         );
         return entity;
     }
@@ -177,6 +201,9 @@ public class ChatListDao extends AbstractDao<ChatList, String> {
         entity.setSenderName(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setIsSuccess(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setDaytype(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setIsFailure(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setMessagetype(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setIsRead(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
      }
     
     /** @inheritdoc */

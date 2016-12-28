@@ -32,7 +32,7 @@ public class GreenDaoGenerator {
         addModuleCount(schema);
         addSlowNotifyLists(schema);
         //addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "E:/jishitong/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -141,6 +141,10 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("senderName");//消息来源人的名字
         chatitem.addStringProperty("isSuccess");//消息成功与否状态
         chatitem.addStringProperty("daytype");//最后一条消息的日期类型
+        chatitem.addStringProperty("isFailure");//最后一条消息的成功失败状态
+        chatitem.addStringProperty("messagetype");//最后一条消息的类型(语音、文本、图片、文件等)
+        chatitem.addStringProperty("isRead");//最后一条消息的已读未读状态
+
     }
 
 

@@ -88,6 +88,9 @@ angular.module('message.controllers', [])
                 $scope.srcId = data[0].senderid;//消息来源人id
                 $scope.daytype=data[0].daytype;//最后一条消息的日期类型
                 $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+                $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+                $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+                $scope.messagetype=data[0].messagetype;//最后一条消息的类型
                 // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
                 //保存最后一条数据到chat表
                 $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
@@ -105,6 +108,9 @@ angular.module('message.controllers', [])
                   chatitem.senderName = $scope.srcName;//发送者名字
                   chatitem.daytype=$scope.daytype;
                   chatitem.isSuccess=$scope.isSuccess;
+                  chatitem.isFailure=$scope.isFailure;
+                  chatitem.messagetype=$scope.messagetype;
+                  chatitem.isRead=$scope.isRead;
                   $chatarr.updatedatanosort(chatitem);
                   // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                   // //保存到数据库chat表
@@ -235,6 +241,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
 
               //保存最后一条数据到chat表
@@ -253,6 +262,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 $chatarr.updatedatanosort(chatitem);
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 //保存到数据库chat表
@@ -895,6 +907,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = data[0].senderName;//发送者名字
               chatitem.daytype=data[0].daytype;
               chatitem.isSuccess=data[0].isSuccess;
+              chatitem.isFailure=data[0].isFailure;
+              chatitem.messagetype=data[0].messagetype;
+              chatitem.isRead=data[0].isRead;
               $greendao.saveObj('ChatListService',chatitem,function (data) {
                 $greendao.queryDataByIdAndIsread($scope.userId,'0',function (data) {
                   for(var i=0;i<data.length;i++){
@@ -1078,6 +1093,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
@@ -1095,6 +1113,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 // //保存到数据库chat表
                 $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -1226,6 +1247,9 @@ angular.module('message.controllers', [])
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
             $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+            $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+            $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+            $scope.messagetype=data[0].messagetype;//最后一条消息的类型
             // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
 
             //保存最后一条数据到chat表
@@ -1245,6 +1269,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = $scope.srcName;//发送者名字
               chatitem.daytype=$scope.daytype;
               chatitem.isSuccess=$scope.isSuccess;
+              chatitem.isFailure=$scope.isFailure;
+              chatitem.messagetype=$scope.messagetype;
+              chatitem.isRead=$scope.isRead;
               // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               //保存到数据库chat表
               $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -1833,6 +1860,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
@@ -1850,6 +1880,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 $chatarr.updatedatanosort(chatitem);
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 // //保存到数据库chat表
@@ -1958,6 +1991,9 @@ angular.module('message.controllers', [])
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
             $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+            $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+            $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+            $scope.messagetype=data[0].messagetype;//最后一条消息的类型
             // alert("最后一条消息的日期类型+成功状态"+$scope.daytype+$scope.isSuccess);
 
             //保存最后一条数据到chat表
@@ -1976,6 +2012,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = $scope.srcName;//发送者名字
               chatitem.daytype=$scope.daytype;
               chatitem.isSuccess=$scope.isSuccess;
+              chatitem.isFailure=$scope.isFailure;
+              chatitem.messagetype=$scope.messagetype;
+              chatitem.isRead=$scope.isRead;
               $chatarr.updatedatanosort(chatitem);
               // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               //保存到数据库chat表
@@ -2150,6 +2189,9 @@ angular.module('message.controllers', [])
                 $scope.srcId = data[0].senderid;//消息来源人id
                 $scope.daytype=data[0].daytype;//最后一条消息的日期类型
                 $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+                $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+                $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+                $scope.messagetype=data[0].messagetype;//最后一条消息的类型
                 // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
                 //保存最后一条数据到chat表
                 $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -2167,6 +2209,9 @@ angular.module('message.controllers', [])
                   chatitem.senderName = $scope.srcName;//发送者名字
                   chatitem.daytype=$scope.daytype;
                   chatitem.isSuccess=$scope.isSuccess;
+                  chatitem.isFailure=$scope.isFailure;
+                  chatitem.messagetype=$scope.messagetype;
+                  chatitem.isRead=$scope.isRead;
                   // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                   $chatarr.updatedatanosort(chatitem);
                   //保存到数据库chat表
@@ -2275,6 +2320,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -2292,6 +2340,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 $chatarr.updatedatanosort(chatitem);
                 //保存到数据库chat表
@@ -2657,6 +2708,9 @@ angular.module('message.controllers', [])
             chatitem.senderName = data[0].senderName;//发送者名字
             chatitem.daytype=data[0].daytype;
             chatitem.isSuccess=data[0].isSuccess;
+            chatitem.isFailure=data[0].isFailure;
+            chatitem.messagetype=data[0].messagetype;
+            chatitem.isRead=data[0].isRead;
             $greendao.saveObj('ChatListService',chatitem,function (data) {
               $greendao.queryDataByIdAndIsread($scope.groupid,'0',function (data) {
                 for(var i=0;i<data.length;i++){
@@ -2750,6 +2804,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -2767,6 +2824,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 //保存到数据库chat表
                 $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -2876,6 +2936,9 @@ angular.module('message.controllers', [])
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
             $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+            $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+            $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+            $scope.messagetype=data[0].messagetype;//最后一条消息的类型
             // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
             //保存最后一条数据到chat表
             $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -2893,6 +2956,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = $scope.srcName;//发送者名字
               chatitem.daytype=$scope.daytype;
               chatitem.isSuccess=$scope.isSuccess;
+              chatitem.isFailure=$scope.isFailure;
+              chatitem.messagetype=$scope.messagetype;
+              chatitem.isRead=$scope.isRead;
               // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               //保存到数据库chat表
               $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -3177,6 +3243,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
               $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -3194,6 +3263,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 $chatarr.updatedatanosort(chatitem);
                 //保存到数据库chat表
@@ -3292,6 +3364,9 @@ angular.module('message.controllers', [])
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
             $scope.isSuccess=data[0].isSuccess;//最后一条消息的成功与否状态
+            $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+            $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+            $scope.messagetype=data[0].messagetype;//最后一条消息的类型
             // alert("部门聊中返回的类型+成功与否状态"+$scope.daytype+$scope.isSuccess);
             //保存最后一条数据到chat表
             $greendao.queryData('ChatListService','where id =?',$scope.groupid,function (data) {
@@ -3309,6 +3384,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = $scope.srcName;//发送者名字
               chatitem.daytype=$scope.daytype;
               chatitem.isSuccess=$scope.isSuccess;
+              chatitem.isFailure=$scope.isFailure;
+              chatitem.messagetype=$scope.messagetype;
+              chatitem.isRead=$scope.isRead;
               // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               $chatarr.updatedatanosort(chatitem);
               //保存到数据库chat表
@@ -3997,7 +4075,9 @@ angular.module('message.controllers', [])
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;
               $scope.isSuccess=data[0].isSuccess;
-
+              $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+              $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+              $scope.messagetype=data[0].messagetype;//最后一条消息的类型
               //保存最后一条数据到chat表
               $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
                 //赋值chat对象
@@ -4014,6 +4094,9 @@ angular.module('message.controllers', [])
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
+                chatitem.isFailure=$scope.isFailure;
+                chatitem.messagetype=$scope.messagetype;
+                chatitem.isRead=$scope.isRead;
                 // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
                 // //保存到数据库chat表
                 $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -4121,7 +4204,9 @@ angular.module('message.controllers', [])
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;
             $scope.isSuccess=data[0].isSuccess;
-
+            $scope.isFailure=data[0].isFailure;//最后一条消息的失败与否状态
+            $scope.isRead=data[0].isread;//最后一条消息的已读未读状态
+            $scope.messagetype=data[0].messagetype;//最后一条消息的类型
             //保存最后一条数据到chat表
             $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
               //赋值chat对象
@@ -4138,6 +4223,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = $scope.srcName;//发送者名字
               chatitem.daytype=$scope.daytype;
               chatitem.isSuccess=$scope.isSuccess;
+              chatitem.isFailure=$scope.isFailure;
+              chatitem.messagetype=$scope.messagetype;
+              chatitem.isRead=$scope.isRead;
               // alert("chatype"+chatitem.chatType+"发送者id"+chatitem.senderId+"发送者名字"+chatitem.senderName);
               //保存到数据库chat表
               $greendao.saveObj('ChatListService',chatitem,function (data) {
@@ -4244,6 +4332,9 @@ angular.module('message.controllers', [])
         chatitem.daytype=data[0].daytype;
         chatitem.imgSrc=data[0].imgSrc;
         chatitem.isSuccess='true';
+        chatitem.isFailure=data[0].isFailure;
+        chatitem.messagetype=data[0].messagetype;
+        chatitem.isRead=data[0].isRead;
         $greendao.saveObj('ChatListService',chatitem,function (suc) {
           $chatarr.updatedatanosort(chatitem);
         },function (err) {
@@ -4327,6 +4418,9 @@ angular.module('message.controllers', [])
         chatitem.senderId=data[i].senderId;
         chatitem.senderName=data[i].senderName;
         chatitem.isSuccess=data[i].isSuccess;
+        chatitem.isFailure=data[i].isFailure;
+        chatitem.messagetype=data[i].messagetype;
+        chatitem.isRead=data[i].isRead;
         if(data[i].lastDate<millions){
           chatitem.daytype='0';
           // alert("日期变小了");
@@ -4600,6 +4694,9 @@ angular.module('message.controllers', [])
             chatitem.senderName = data[0].senderName;//发送者名字
             chatitem.daytype=data[0].daytype;
             chatitem.isSuccess=data[0].isSuccess;
+            chatitem.isFailure=data[0].isFailure;
+            chatitem.messagetype=data[0].messagetype;
+            chatitem.isRead=data[0].isRead;
             $greendao.saveObj('ChatListService',chatitem,function (data) {
               $greendao.queryDataByIdAndIsread(id,'0',function (data) {
                 for(var i=0;i<data.length;i++){
@@ -4681,6 +4778,9 @@ angular.module('message.controllers', [])
             chatitem.senderName = data[0].senderName;//发送者名字
             chatitem.daytype=data[0].daytype;
             chatitem.isSuccess=data[0].isSuccess;
+            chatitem.isFailure=data[0].isFailure;
+            chatitem.messagetype=data[0].messagetype;
+            chatitem.isRead=data[0].isRead;
             $greendao.saveObj('ChatListService',chatitem,function (data) {
               $greendao.queryDataByIdAndIsread(id,'0',function (data) {
                 for(var i=0;i<data.length;i++){
@@ -4763,6 +4863,9 @@ angular.module('message.controllers', [])
               chatitem.senderName = data[0].senderName;//发送者名字
               chatitem.daytype=data[0].daytype;
               chatitem.isSuccess=data[0].isSuccess;
+              chatitem.isFailure=data[0].isFailure;
+              chatitem.messagetype=data[0].messagetype;
+              chatitem.isRead=data[0].isRead;
               $greendao.saveObj('ChatListService',chatitem,function (data) {
                 $greendao.queryDataByIdAndIsread(id,'0',function (data) {
                   for(var i=0;i<data.length;i++){

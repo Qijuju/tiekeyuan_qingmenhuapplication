@@ -31,6 +31,9 @@ angular.module('message.services', [])
         chatitem.senderName ='';
         chatitem.isSuccess='';
         chatitem.daytype='';
+        chatitem.isRead='';
+        chatitem.isFailure='';
+        chatitem.messagetype='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }else if(messageType === 'Dept'){
