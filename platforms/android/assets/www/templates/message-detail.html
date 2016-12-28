@@ -1,49 +1,45 @@
 <ion-view id="messageDetail" view-title={{viewtitle}}>
   <ion-nav-bar align-title="center">
 
-    <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">
-        即时通
-      </button>
+    <ion-nav-buttons side="left"">
+      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backFirstMenu(groupType)"/>
+      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">-->
+        <!--即时通-->
+      <!--</button>-->
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button class="button button-icon icon ion-ios-telephone" ng-click="callperson()"></button>
+      <md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
+      <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size:25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></md-icon>
+      <!--<button class="button button-icon icon ion-ios-telephone" style="padding-right:0px;padding-left: 0px;" ng-click="callperson()"></button>-->
+      <img src="img/personal_phone.png" style="height:36px;width:36px;padding-right:0px;padding-left: 0px;" ng-click="callperson()" />
+      <img src="img/personal_setting.png" ng-click="personalSetting()" style="margin-right: 5px;height:36px;width:36px;" />
+      <!--<button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"-->
+              <!--style="margin-right: 5px"></button>-->
     </ion-nav-buttons>
 
-    <ion-nav-buttons side="secondary">
-      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
-              style="margin-right: 5px"></button>
+    <!--<ion-nav-buttons side="right">-->
+     <!---->
 
-    </ion-nav-buttons>
+    <!--</ion-nav-buttons>-->
 
   </ion-nav-bar>
-  <div
-    style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;"
-    class="yuanjiao"
+  <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
     ng-if="isShow === 'true'">
     <!---若录音时间小于1s，则展示这个--->
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless ==='true'"
-         src="img/chat_icon_voice_short.png"/>
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show= "isshowless ==='true'" src="img/chat_icon_voice_short.png"/>
 
     <!---分贝的六个等级--->
     <!--<img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===0" src="img/chat_icon_voice1.png" />-->
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===0"
-         src="img/chat_icon_voice2.png"/>
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===1"
-         src="img/chat_icon_voice3.png"/>
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===2"
-         src="img/chat_icon_voice4.png"/>
-    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===3"
-         src="img/chat_icon_voice5.png"/>
-    <img style="padding-top:20px;width:100px;height: 100px;"
-         ng-show="(isshowless === 'false')&& (rate ===4 || rate ===5)" src="img/chat_icon_voice6.png"/>
-    <br/>
-    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center"
-       ng-show="isshowless ==='false' && (rate >= 0 && rate <=6)">手指上滑,取消发送</p>
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===0" src="img/chat_icon_voice2.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===1" src="img/chat_icon_voice3.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===2" src="img/chat_icon_voice4.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isshowless === 'false' && rate ===3" src="img/chat_icon_voice5.png" />
+    <img style="padding-top:20px;width:100px;height: 100px;" ng-show="(isshowless === 'false')&& (rate ===4 || rate ===5)"src="img/chat_icon_voice6.png" />
+    <br />
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show="isshowless ==='false' && (rate >= 0 && rate <=6)">手指上滑,取消发送</p>
     <!---若录音时间小于1s，则展示这个--->
-    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center"
-       ng-show="isshowless ==='true'">说话时间太短</p>
+    <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show= "isshowless ==='true'">说话时间太短</p>
   </div>
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()" ng-click="zhiling()"
                id="contentaa">
@@ -55,23 +51,15 @@
       <div ng-repeat="msgSingle in msgs">
         <!---时间戳--->
         <div ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
-          <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;"
-             ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when |
-            date:'HH:mm'}}</p>
-          <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;"
-             ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " align="center">{{msgSingle.when |
-            date:'yyyy-MM-dd HH:mm'}}</p>
+        <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+        <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
         </div>
         <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
         <div class="rj-message-wrap" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
           <!---时间戳--->
-          <div>
-            <p style="height:20px;width:50px;background-color:#c2ccd1;margin:3px auto;"
-               ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when |
-              date:'HH:mm'}}</p>
-            <p style="height:20px;width:150px;background-color: #c2ccd1;margin: 3px auto;"
-               ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " align="center">{{msgSingle.when |
-              date:'yyyy-MM-dd HH:mm'}}</p>
+          <div >
+            <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
+            <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
           </div>
 
 
@@ -94,7 +82,7 @@
           <div
             ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7"
             class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
-            ng-click="godetail(msgSingle.sessionid)"> {{msgSingle.username.length > 2 ?
+            ng-click="godetail(msgSingle.sessionid)">  {{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
           </div>
 
@@ -118,17 +106,16 @@
           <!--<img src="img/mike.png" class="rj-head-pic">-->
           <span>
             <!---接收图片ui--->
-            <p class="rj-message" style="margin-left: 14.5%;background-color: rgba(255, 255, 255, 0)"
-               ng-if="msgSingle.messagetype === 'Image'">
-              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
-                   ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
+            <p class="rj-message" style="margin-left: 14.5%;background-color: rgba(255, 255, 255, 0)" ng-if="msgSingle.messagetype === 'Image'">
+              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;border-radius: 10px;"
+              ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/></p>
             <!--<p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img
               src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/></p>-->
-            <!--ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/>-->
+              <!--ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])"/>-->
             </p>
             <!---接收位置ui--->
             <!--<p class="rj-message" style="margin-left: 14.5%" ng-if="msgSingle.messagetype === 'LOCATION'"><img-->
-            <!--src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/>-->
+              <!--src="img/beifengwolu.jpg" style="width: 110px;" class="yuanjiao" ng-click="entermap(msgSingle.message)"/>-->
             <!--</p>-->
             <!---接收文本ui--->
             <p class="rj-message" style="margin-left: 14.5%"
@@ -145,16 +132,7 @@
                  ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle)">
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/><font
-                style="font-size: 10px;border: none;margin-left: 15px;">{{getFileName(msgSingle.message)}}<br/><div
-                ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'"
-                class="outbar" style="margin-top: 10px;margin-left: 15px;"><div class="inbar"
-                                                                                style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span
-                ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span><span
-                ng-show="msgSingle.message.split('###')[5] === '100'"
-                style="color: #5CB85C;margin-left: 15px;">已下载</span><span
-                ng-show="msgSingle.message.split('###')[5] === '0'" style="margin-left: 15px;">未下载</span><span
-                ng-show="msgSingle.message.split('###')[5] === '-1'"
-                style="color: #ee0500;margin-left: 15px;">下载失败！</span></font>
+                style="font-size: 10px;border: none;margin-left: 15px;">{{getFileName(msgSingle.message)}}<br/><div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;margin-left: 15px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span><span ng-show="msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;margin-left: 15px;">已下载</span><span ng-show="msgSingle.message.split('###')[5] === '0'" style="margin-left: 15px;">未下载</span><span ng-show="msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;margin-left: 15px;">下载失败！</span></font>
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message)" style="float: none;"></div>
@@ -167,25 +145,23 @@
                  ng-click="entermap(msgSingle.message)">
                 <img class="icon" ng-src="{{getFileTypeImg('location')}}"
                      style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/><font
-                style="font-size: 10px;border: none;margin-left: 20px;">{{msgSingle.message.split(',')[2]}}<br/><span
-                style="margin-left: 20px;">已接收</span></font>
+                style="font-size: 10px;border: none;margin-left: 20px;">{{msgSingle.message.split(',')[2]}}<br/><span style="margin-left: 20px;">已接收</span></font>
               </a>
             </div>
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;"></div>
             </p>
 
             <!---接收语音--->
-            <p class="rj-message" style="margin-left: 14.5%;width: 120px;" ng-if="msgSingle.messagetype === 'Audio'"
-               ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
-              <img src="img/voice_right3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;"
-                   class="yuanjiao" align="left"/>
-
-            </p><span align="center"
-                      style="background-color: transparent;position:relative;padding-top: 35px;height: 300px;margin-top: 20px;"
-                      ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
+            <p class="rj-message" style="margin-left: 14.5%;height:40px;position:relative;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msgSingle.messagetype === 'Audio'" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id,msgSingle.isread);" >
+              <img src="img/turnrightstatic.jpg" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
+              <img src="img/turnright.gif" style="height: 25px;margin-top:3px;padding-bottom: 3px;" class="yuanjiao" align="left" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''">
+            </p>
+            <img src="img/redpoint.png" style="height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>
+            <span align="center" style="background-color: transparent;position:relative;margin-left:5px;top: 10px;"  ng-if="msgSingle.messagetype === 'Audio'">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
           </span>
 
         </div>
+
 
 
         <div class="rj-message-wrap" ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)">
@@ -205,7 +181,7 @@
               <ion-spinner icon="ios-small"
                            style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
                            ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;" class="yuanjiao"
+              <img src="{{msgSingle.message.split('###')[1]}}" style="width: 110px;border-radius: 10px;"
                    ng-click="boostImage(msgSingle.message.split('###')[1])"/>
             </font>
 
@@ -221,15 +197,8 @@
                 <img class="icon" ng-src="{{getFileTypeImg(msgSingle.message)}}"
                      style="width: 55px;padding-top: 10px;padding-bottom: 10px;"/>
                 <font style="font-size: 10px;border: none;margin-left: 15px;">{{msgSingle.message.split('###')[4]}}
-                  <br/><!--{{msgSingle.message.split('###')[3]}}--> <!--{{msgSingle.message.split('###')[5]}}--><div
-                    ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'"
-                    class="outbar" style="margin-top: 10px;margin-left: 15px;"><div class="inbar"
-                                                                                    style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span
-                    ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span>
-                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true' || msgSingle.message.split('###')[5] === '-1'"
-                                    style="color: #ee0500;margin-left: 15px;">发送失败！</span><span
-                    ng-if="msgSingle.isFailure === 'false' && msgSingle.message.split('###')[5] === '100'"
-                    style="color: #5CB85C;margin-left: 15px;">发送成功！</span>
+                  <br/><!--{{msgSingle.message.split('###')[3]}}--> <!--{{msgSingle.message.split('###')[5]}}--><div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;margin-left: 15px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div><span ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">&nbsp;&nbsp;{{msgSingle.message.split('###')[5]}}%</span>
+                  &nbsp;&nbsp;<span ng-if="msgSingle.isFailure === 'true' || msgSingle.message.split('###')[5] === '-1'" style="color: #ee0500;margin-left: 15px;">发送失败！</span><span ng-if="msgSingle.isFailure === 'false' && msgSingle.message.split('###')[5] === '100'" style="color: #5CB85C;margin-left: 15px;">发送成功！</span>
                 </font>
               </a>
               <a class="item item-icon-left" ng-if="msgSingle.isFailure === 'true'"
@@ -272,26 +241,42 @@
             <div ng-if="msgSingle.messagetype === 'LOCATION'" style="float: none;">
             </div>
           </font>
-            <font class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="width: 120px;"
-                  ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
-              <img style="background-color: transparent;margin-left: -30px" src="img/red.png"
-                   ng-if="msgSingle.isFailure ==='true'"
-                   ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
-              <ion-spinner icon="ios-small"
-                           style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"
-                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' "></ion-spinner>
-              <font style="background-color: transparent;margin-left: -30px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</font>
-              <!--<img  src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
-              <img src="img/video.gif"
-                   style="background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;"
-                   class="yuanjiao" align="right">
-              <!--<div ng-if="isshowaudio === 'true'" ng-repeat="no in numlist">-->
-              <!--{{no.no}}-->
-              <!--<img ng-show="no.no === 1" ng-hide="no.no !=1" src="img/voice_left1.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>-->
-              <!--&lt;!&ndash;<img ng-show="no.no === 1" src="img/voice_left2.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
-              <!--&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
+            <!---发送语音样式--->
+            <!--<div class="rj-message-right" style="width: 250px;" >-->
+              <div class="rj-message-right" ng-if="msgSingle.messagetype === 'Audio'" style="display:inline;margin-left:0px;padding-left:0px;float: right;width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+                <img  src="img/turnleftstatic.png" style="position:relative;height: 25px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />
+                <img src="img/turnleft.gif" style="position:relative;background-color:transparent;height: 25px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >
               <!--</div>-->
-            </font>
+              </div>
+              <div class="rj-message-right"  ng-if="msgSingle.messagetype === 'Audio'" style="display: inline;background-color: transparent;padding-right: 0px;margin-right: 3px;">
+                <font style="float: right">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"
+                </font>
+                <ion-spinner icon="ios-small"
+                           style="vertical-align: middle"
+                           ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">
+                </ion-spinner>
+                <img style="margin-right:3px;" src="img/red.png"
+                     ng-if="msgSingle.isFailure ==='true'"
+                     ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
+              </div>
+            <!--<p ng-if="msgSingle.messagetype === 'Audio'" class="rj-message-right" style="width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px">-->
+              <!--<img style="background-color: transparent;position:relative;margin-left: -45px;" src="img/red.png"-->
+                 <!--ng-if="msgSingle.isFailure ==='true'"-->
+                 <!--ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>-->
+              <!--<ion-spinner icon="ios-small"-->
+                           <!--style="background-color: transparent;margin-left: -35px;position: relative;vertical-align: middle"-->
+                           <!--ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' ">-->
+              <!--</ion-spinner>-->
+              <!--<font style="position: relative;background-color: transparent;margin-left: -5px;">{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)                  /1000}}"-->
+              <!--</font>-->
+              <!--<span style="position:relative;background-color: #000000" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);" >-->
+              <!--&lt;!&ndash;<span style="width: 120px;"  >&ndash;&gt;-->
+                <!--<img  src="img/voice_left3.png" style="position:relative;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="msgSingle._id != audioid || isshowgPng === 'true'" />-->
+                <!--<img src="img/video.gif" style="position:relative;background-color:transparent;width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''" >-->
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+              <!--</span>-->
+            <!--</p>-->
+
             <!----发送位置的ui-->
             <!--<font ng-if="msgSingle.messagetype === 'LOCATION'" style="float:right;">
               <img style="background-color: transparent;margin-left: -24px" src="img/red.png"
@@ -320,8 +305,7 @@
 
             <!---发送文本的ui--->
             <font class="rj-message-right"
-                  ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'"
-                  style="max-width: 300px;color: #ffffff">
+                  ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'" style="max-width: 300px;color: #ffffff">
               <img style="background-color: transparent;margin-left: -24px" src="img/red.png"
                    ng-if="msgSingle.isFailure ==='true' &&(msgSingle.messagetype != 'Image' && msgSingle.messagetype != 'File') && (msgSingle.isSuccess === 'false')"
                    ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
@@ -345,28 +329,27 @@
 
   <ion-footer-bar class="bar-light" style="height: auto">
     <div class="rj-footer-btn-wrap" style="margin-top: 37px">
-      <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left" ng-hide="isYuYin === 'true'"
-              ng-click="clickOn()">
-      </button>
-      <img src="img/keybroad.png" class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left"
-           ng-show="isYuYin === 'true'" ng-click="clickOnChange()">
-      </img>
+      <div ng-click="clickOn()" ng-hide="isYuYin === 'true'" style="float:left;height: 40px;width:40px;bottom:0px;position: absolute;" >
+        <md-icon class="icon ion-ios-mic-outline" style="border: none;background-color: #FFFFFF;font-size: 29px;line-height: 1;position:relative;bottom: 2px;left:10px;top: 7px;">
+        </md-icon>
+      </div>
+      <img src="img/keyborad.png" class="icon ion-ios-mic-outline rj-footer-btn-left " style="position: relative;left:4px;bottom: 0px;width: 36px;height: 36px;" ng-show="isYuYin === 'true'" ng-click="clickOnChange()" />
     </div>
 
-    <div style="width: 72%;margin-top: 5px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'">
-      <button style="margin-right: 45px;width:90%;height: 20px;" on-touch="showYuyin('Audio',_id)"
-              on-release="releaseYuyin('Audio',_id)">
-        按住请说话
+    <div style="width: 72%;margin-top: 1px;position: relative;bottom: 0px;" ng-show="isYuYin === 'true'"  >
+      <button style="margin-right: 45px;width:100%;height: 35px;background-color: #FFFFFF;border: none;border:1px solid #7D8790;border-radius: 5px
+     ;margin-bottom: 0px;padding-bottom: 0px;" on-touch="showYuyin('Audio',_id)" on-release="releaseYuyin('Audio',_id)">
+        <font style="font-size: 15px;">按住 说话</font>
       </button>
     </div>
-    <div class="item-input rj-footer-btn-wrap" style="width: 72%" ng-show="isYuYin != 'true'" ng-click="zhiling()">
-      <textarea msd-elastic ng-model="send_content" style="margin-right: 45px">
+    <div class="item-input rj-footer-btn-wrap" style="width: 72%" ng-show="isYuYin != 'true'" ng-click="zhiling()" >
+      <textarea msd-elastic ng-model="send_content" style="margin-right: 45px"  >
       </textarea>
     </div>
 
     <div class="rj-footer-btn-wrap"><!--style="margin-left: 15px;margin-right: 5px"-->
       <div class="buttons rj-footer-btn-wrap" style="margin-top: 22px;width: 15px;height: 15px">
-        <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+        <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
       </div>
       <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduo()">
         <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">

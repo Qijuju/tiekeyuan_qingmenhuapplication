@@ -5,7 +5,7 @@
 
 
     <div>
-      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
+      <div style="height: 160px;background-color:#38ADFF;text-align: center;width:100%">
         <img ng-if="picyoumeiyou" class="yuanjiao1" id="myImage" src="{{securlpic}}" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
         <img ng-if="!picyoumeiyou" src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="setpic()">
         <div ng-if="!picyoumeiyou" class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="setpic()">{{jiename}}</div>
@@ -40,7 +40,7 @@
       </ul>
 
       <div class="list padding">
-        <button class="button button-block button-positive" ng-click="showConfirm()">
+        <button class="button button-block button-positive" style="background-color: #38ADFF;" ng-click="showConfirm()">
           <i class="icon ion-log-out"></i>&nbsp;退出当前账号
 
         </button>

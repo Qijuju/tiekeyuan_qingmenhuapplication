@@ -2,17 +2,17 @@
   <ion-nav-bar align-title="center" class="bar-stable">
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
-    <div class=" item-input-inset" ng-click="goSearch()" style="background: #ffffff;">
+    <div class=" item-input-inset" ng-click="goSearch()" style="background: #ffffff;margin-bottom: 0px;padding-bottom: 7px;">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" placeholder="搜索" ng-model="query">
       </label>
     </div>
-    <div class="row" style="background: #ffffff;">
+    <div class="row" style="background: #ffffff;padding-top: 0px;padding-bottom: 0px;margin-bottom: 0px;margin-top: 0px;">
       <div class="col" align="center">
-        <a href="#/localContacts" >
+        <a  ng-click="goLocalContact()">
           <ul>
-            <li><img src="img/icon_local_contact.png" width="45" height="45"></li>
+            <li><img src="img/icon_contact_local.png" width="45" height="45"></li>
             <li>手机通讯录</li>
           </ul>
         </a>
@@ -20,7 +20,7 @@
       <div class="col" align="center">
         <a href="#/topContacts" >
           <ul>
-            <li><img src="img/icon_friends.png" width="45" height="45"></li>
+            <li><img src="img/icon_contact_friends.png" width="45" height="45"></li>
             <li>常用联系人</li>
           </ul>
         </a>
@@ -28,7 +28,7 @@
       <div class="col" align="center">
         <a href="#/group">
           <ul>
-            <li><img src="img/icon_group_conversation.png" width="45" height="45"></li>
+            <li><img src="img/icon_contact_group.png" width="45" height="45"></li>
             <li>我的群组</li>
           </ul>
         </a>

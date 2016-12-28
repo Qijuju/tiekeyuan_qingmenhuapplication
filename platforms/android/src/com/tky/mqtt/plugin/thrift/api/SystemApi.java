@@ -40,8 +40,8 @@ import im.server.attention.IMAttention;
  */
 public class SystemApi {
 
-//    public static final String url = "immobile.r93535.com";
-    public static final String url = "61.237.239.152";
+    public static final String url = "immobile.r93535.com";
+//    public static final String url = "61.237.239.152";
 
     /**
      * 获取一个AsyncClient对象
@@ -318,6 +318,7 @@ public class SystemApi {
         IMFile.AsyncClient fileClient = getFileAsyncClient();
         fileClient.GetHeadPic(ID, userID, picSize, callback);
     }
+
     /**
      * 上传头像
      * @param userID

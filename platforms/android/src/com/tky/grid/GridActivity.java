@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.FilePictureDao;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.UIUtils;
-import com.tky.photohelper.PhotoScaleActivity;
+import com.tky.mqtt.paho.constant.ResumeParams;
+import com.tky.mqtt.paho.utils.AnimationUtils;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +46,8 @@ public class GridActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
 
+        AnimationUtils.execNextAnim(this);
+
         mImageLoader = ImageLoader.getInstance(3, ImageLoader.Type.LIFO);
 
         mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
@@ -61,13 +66,35 @@ public class GridActivity extends Activity {
                 .list();
 
         String[] IMAGES_PATHs = new String[filePictures.size()];
+        List<String> list = new ArrayList<String>();
 
         for(int i=0;i<filePictures.size();i++){
-            IMAGES_PATHs[i]=filePictures.get(i).getBigurl();
+            String path = trimNull(filePictures.get(i).getBigurl());
+            if (path == null) {
+                continue;
+            } else {
+//                IMAGES_PATHs[i] = path;
+                list.add(path);
+            }
         }
+        IMAGES_PATH = new String[list.size()];
+        list.toArray(IMAGES_PATH);
 
-        IMAGES_PATH = IMAGES_PATHs;
+    }
 
+    private String trimNull(String trims) {
+        File file = new File(trims);
+//        String path = FileUtils.getIconDir() + File.separator + "default" + File.separator + "default.png";
+        return trims == null || TextUtils.isEmpty(trims) || !file.exists() ? null : trims;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ResumeParams.IMG_RESUME) {
+            AnimationUtils.execShrinkAnim(this);
+            ResumeParams.IMG_RESUME = false;
+        }
     }
 
     private void init() {
@@ -76,7 +103,7 @@ public class GridActivity extends Activity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent =new Intent(GridActivity.this, PhotoScaleActivity.class);
+                Intent intent =new Intent(GridActivity.this, com.tky.photoview.PhotoScaleActivity.class);
                 intent.putExtra("filePath",IMAGES_PATH[i]);
                 intent.putExtra("fromwhere","local");
                 intent.putExtra("filefactsize",0l);

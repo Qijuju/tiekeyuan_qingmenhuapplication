@@ -374,15 +374,15 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
-              $mqtt.save('pwdgesture', "");
-              $mqtt.save('namegesture', "");
-              $mqtt.save('historyusername', "");
-              $mqtt.save('userNamea', "");
-              $mqtt.save('loginpage', "passwordlogin");
+              // $mqtt.save('pwdgesture', "");
+              // $mqtt.save('namegesture', "");
+              // $mqtt.save('historyusername', "");
+              // $mqtt.save('userNamea', "");
+              // $mqtt.save('loginpage', "passwordlogin");
               $mqtt.save('passlogin', "0");
-              $mqtt.save('gesturePwd', "");//存
-              $mqtt.save('remPwd', "");
-              $mqtt.save('pwd', "");
+              // $mqtt.save('gesturePwd', "");//存
+              // $mqtt.save('remPwd', "");
+              // $mqtt.save('pwd', "");
               $state.go("login");
             }, function (message) {
               $ToastUtils.showToast(message);
@@ -438,6 +438,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // alert("没有")
       })
   
+
     $scope.setpic = function (name) {
       // 显示操作表
       $ionicActionSheet.show({

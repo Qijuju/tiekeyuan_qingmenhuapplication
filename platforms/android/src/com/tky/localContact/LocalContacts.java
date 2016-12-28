@@ -79,7 +79,7 @@ public class LocalContacts extends CordovaPlugin {
       instance= LocalPhoneService.getInstance(UIUtils.getContext());
       mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
       localPhoneDao=mDaoSession.getLocalPhoneDao();
-      localPhoneDao.deleteAll();
+//      localPhoneDao.deleteAll();
         ContentResolver cr = cordova.getActivity().getContentResolver();
         String str[] = {ContactsContract.CommonDataKinds.Phone.CONTACT_ID, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
         Cursor cur = cr.query(
