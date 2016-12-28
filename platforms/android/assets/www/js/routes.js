@@ -542,7 +542,12 @@ angular.module('im.routes', [])
         controller: 'historymessagegroupCtrl',
         cache:false
       })
-
+      .state('emergencycall', {
+        url: '/emergencycall',
+        templateUrl: 'templates/emergencycall.html',
+        controller: 'emergencycallCtrl',
+        cache:false
+      })
 
 
 
