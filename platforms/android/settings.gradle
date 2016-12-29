@@ -1,2 +1,3 @@
 // GENERATED FILE - DO NOT EDIT
-include ':CordovaLib', ':'
+include ":", ':wechatRecoderVideoLibrary', ':vitamioRecorderLibrary'
+include ":CordovaLib"
