@@ -259,6 +259,13 @@
                      ng-if="msgSingle.isFailure ==='true'"
                      ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)"/>
               </div>
+
+            <!---发送小视频样式--->
+            <div  class="rj-message-right">
+              <video style="width: 150px;height: 220px;"  controls poster="http://qq.yh31.com/tp/zjbq/201612251914198050.gif">
+                <source src="/storage/emulated/0/1482852463596.mp4" type="video/mp4">
+              </video>
+            </div>
             <!--<p ng-if="msgSingle.messagetype === 'Audio'" class="rj-message-right" style="width:{{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px">-->
               <!--<img style="background-color: transparent;position:relative;margin-left: -45px;" src="img/red.png"-->
                  <!--ng-if="msgSingle.isFailure ==='true'"-->
@@ -414,15 +421,16 @@
         </div>
 
       </div>
-      <!--<div class="row" style="margin-top: -22%">-->
-      <!--<div class="col" align="center" ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">-->
-      <!--<a>-->
-      <!--<ul>-->
-      <!--<li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/shipin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>-->
-      <!--<li style="color: #848484;font-size: 10px">视频</li>-->
-      <!--</ul>-->
-      <!--</a>-->
-      <!--</div>-->
+
+      <div class="row" style="margin-top: -22%">
+        <div  style="width:25%;margin-top: 10px;padding-top: 10px;" align="center"  ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">
+          <a>
+          <ul>
+          <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/shipin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+          <li style="color: #848484;font-size: 10px">视频</li>
+          </ul>
+          </a>
+        </div>
       <!--<div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">-->
       <!--<a>-->
       <!--<ul>-->
@@ -518,7 +526,7 @@
     <!--</a>-->
     <!--</div>-->
     <!--</div>-->
-    <!--</div>-->
+    </div>
   </ion-footer-bar>
   <!--ion-image-->
 
