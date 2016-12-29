@@ -1359,6 +1359,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatList.setChatType(chatLists.get(0).getChatType());
                                         chatList.setDaytype(chatLists.get(0).getDaytype());
                                         chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                                        chatList.setIsFailure(chatLists.get(0).getIsFailure());
+                                        chatList.setIsRead(chatLists.get(0).getIsRead());
+                                        chatList.setMessagetype(chatLists.get(0).getMessagetype());
                                     } else {
                                         chatList.setId(lastmessages.getSessionid());
                                         if (lastmessages.getType() == "Group" ) {
@@ -1375,6 +1378,9 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatList.setChatType(lastmessages.getType());
                                         chatList.setDaytype(lastmessages.getDaytype());
                                         chatList.setIsSuccess(lastmessages.getIsSuccess());
+                                        chatList.setIsFailure(lastmessages.getIsFailure());
+                                        chatList.setIsRead(lastmessages.getIsread());
+                                        chatList.setMessagetype(lastmessages.getMessagetype());
                                     }
                                     chatListService.saveObj(chatList);//保存chatlist对象
                                 }

@@ -96,10 +96,12 @@
 .rj-message-wrap .rj-head-pic,
 .rj-message-wrap .rj-head-pic-right{
   max-height: 40px;
-  max-width: 40px;
+  max-width: 60px;
+  border-radius:50%;
 }
 .rj-message-wrap .rj-head-pic{
   float: left;
+  border-radius:50%;
 }
 
 .rj-message-wrap .rj-head-pic-right{
@@ -349,6 +351,15 @@
 .rj-notify-bggg{
   border-radius: 6px;
   margin-top: 5px;
+  margin-bottom: 5px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-notify-bgggg{
+  border-radius: 6px;
+  margin-top: 8px;
   margin-bottom: 5px;
   height: 85px;
   padding-top: -15px;
