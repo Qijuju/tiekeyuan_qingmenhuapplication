@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/emergencycall.html" afterPath="$PROJECT_DIR$/www/templates/emergencycall.html" />
     </list>
@@ -35,16 +31,9 @@
       <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1296">
-              <caret line="6211" column="65" selection-start-line="6211" selection-start-column="56" selection-end-line="6211" selection-end-column="65" />
+            <state relative-caret-position="186420">
+              <caret line="6214" column="32" selection-start-line="6214" selection-start-column="32" selection-end-line="6214" selection-end-column="32" />
               <folding>
-                <marker date="1482908481305" expanded="true" signature="386:722" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="443:590" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="477:582" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="720:722" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="209184:209196" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="209184:209233" placeholder="{...}" />
-                <marker date="1482908481305" expanded="true" signature="209184:209246" placeholder="{...}" />
                 <marker date="1482908481305" expanded="true" signature="223417:223426" placeholder="{...}" />
               </folding>
             </state>
@@ -54,70 +43,9 @@
       <file leaf-file-name="controller_my.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-810">
+            <state relative-caret-position="33750">
               <caret line="1125" column="11" selection-start-line="1125" selection-start-column="11" selection-end-line="1125" selection-end-column="11" />
-              <folding>
-                <marker date="1482908827537" expanded="true" signature="456:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="1896:2674" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="2324:2666" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="2747:2902" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="2908:3160" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="3168:3691" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="3736:3864" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="3771:3856" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="3907:4036" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="3943:4028" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4072:4198" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4103:4190" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4286:4684" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4332:4676" placeholder="{&quot;titleText&quot;: '上传头像'...}" />
-                <marker date="1482908827537" expanded="true" signature="4351:4413" placeholder="[...]" />
-                <marker date="1482908827537" expanded="true" signature="4508:4667" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4536:4581" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="4587:4634" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="5059:8058" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="5081:6314" placeholder="{&quot;quality&quot;: 100...}" />
-                <marker date="1482908827537" expanded="true" signature="5444:5730" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="5870:6197" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="6384:7969" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="6413:6565" placeholder="{&quot;content&quot;: 'Loading'...}" />
-                <marker date="1482908827537" expanded="true" signature="6576:6847" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="6902:7033" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="7042:7227" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="7276:7889" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="7335:7557" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="7375:7510" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="7571:7879" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="7906:7959" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="7986:8049" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="8064:8743" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="8781:12020" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="8803:10165" placeholder="{&quot;quality&quot;: 100...}" />
-                <marker date="1482908827537" expanded="true" signature="8835:9067" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="9295:9581" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="9721:10048" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="10234:11931" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="10264:10416" placeholder="{&quot;content&quot;: 'Loading'...}" />
-                <marker date="1482908827537" expanded="true" signature="10428:10510" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="10592:10723" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="10733:10998" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="11047:11699" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="11105:11285" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="11146:11238" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="11298:11689" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="11716:11769" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="11780:11923" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="12028:12386" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="12391:12617" placeholder="/*...*/" />
-                <marker date="1482908827537" expanded="true" signature="12622:12655" placeholder="//..." />
-                <marker date="1482908827537" expanded="true" signature="12693:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="12740:12871" placeholder="{&quot;title&quot;: '&lt;strong&gt;注销用户?&lt;/strong&gt;'...}" />
-                <marker date="1482908827537" expanded="true" signature="12913:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="12932:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="12997:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="13047:13063" placeholder="{...}" />
-                <marker date="1482908827537" expanded="true" signature="15072:27273" placeholder="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,8 +53,8 @@
       <file leaf-file-name="emergencycall.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/emergencycall.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+            <state relative-caret-position="435">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -142,10 +70,9 @@
                 <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-content#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#ion-content#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,31 +125,9 @@
       <file leaf-file-name="myattention.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="802" column="12" selection-start-line="802" selection-start-column="12" selection-end-line="802" selection-end-column="12" />
+            <state relative-caret-position="24300">
+              <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="message-group.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-195">
-              <caret line="296" column="4" selection-start-line="296" selection-start-column="4" selection-end-line="296" selection-end-column="4" />
-              <folding>
-                <element signature="n#style#0;n#textarea#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#3;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#3;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -325,8 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -377,62 +280,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,6 +355,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="" />
@@ -556,7 +410,8 @@
       <workItem from="1482453021269" duration="25382000" />
       <workItem from="1482712093732" duration="24916000" />
       <workItem from="1482798587135" duration="19626000" />
-      <workItem from="1482884625845" duration="16740000" />
+      <workItem from="1482884625845" duration="23384000" />
+      <workItem from="1482971154238" duration="2253000" />
     </task>
     <task id="LOCAL-00001" summary="改bug">
       <created>1478249860204</created>
@@ -803,11 +658,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482909282406</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="合并代码22">
+      <created>1482912162460</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1482912162460</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="701965000" />
+    <option name="totallyTimeSpent" value="710862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
@@ -825,11 +687,18 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="搜索修改，跳过登陆" />
     <MESSAGE value="hebingdaima" />
     <MESSAGE value="提交代码11" />
     <MESSAGE value="替代吗321" />
@@ -854,7 +723,8 @@
     <MESSAGE value="紧急呼叫1" />
     <MESSAGE value="紧急呼叫12" />
     <MESSAGE value="合并代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并代码" />
+    <MESSAGE value="合并代码22" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并代码22" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1128,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1410">
           <caret line="47" column="79" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,132 +1042,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="6211" column="65" selection-start-line="6211" selection-start-column="56" selection-end-line="6211" selection-end-column="65" />
-          <folding>
-            <marker date="1482908481305" expanded="true" signature="386:722" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="443:590" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="477:582" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="720:722" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="209184:209196" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="209184:209233" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="209184:209246" placeholder="{...}" />
-            <marker date="1482908481305" expanded="true" signature="223417:223426" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="802" column="12" selection-start-line="802" selection-start-column="12" selection-end-line="802" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_bar.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="286" column="1" selection-start-line="286" selection-start-column="1" selection-end-line="286" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-810">
+        <state relative-caret-position="33750">
           <caret line="1125" column="11" selection-start-line="1125" selection-start-column="11" selection-end-line="1125" selection-end-column="11" />
-          <folding>
-            <marker date="1482908827537" expanded="true" signature="456:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="1896:2674" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="2324:2666" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="2747:2902" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="2908:3160" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="3168:3691" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="3736:3864" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="3771:3856" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="3907:4036" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="3943:4028" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4072:4198" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4103:4190" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4286:4684" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4332:4676" placeholder="{&quot;titleText&quot;: '上传头像'...}" />
-            <marker date="1482908827537" expanded="true" signature="4351:4413" placeholder="[...]" />
-            <marker date="1482908827537" expanded="true" signature="4508:4667" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4536:4581" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="4587:4634" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="5059:8058" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="5081:6314" placeholder="{&quot;quality&quot;: 100...}" />
-            <marker date="1482908827537" expanded="true" signature="5444:5730" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="5870:6197" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="6384:7969" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="6413:6565" placeholder="{&quot;content&quot;: 'Loading'...}" />
-            <marker date="1482908827537" expanded="true" signature="6576:6847" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="6902:7033" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="7042:7227" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="7276:7889" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="7335:7557" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="7375:7510" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="7571:7879" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="7906:7959" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="7986:8049" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="8064:8743" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="8781:12020" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="8803:10165" placeholder="{&quot;quality&quot;: 100...}" />
-            <marker date="1482908827537" expanded="true" signature="8835:9067" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="9295:9581" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="9721:10048" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="10234:11931" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="10264:10416" placeholder="{&quot;content&quot;: 'Loading'...}" />
-            <marker date="1482908827537" expanded="true" signature="10428:10510" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="10592:10723" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="10733:10998" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="11047:11699" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="11105:11285" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="11146:11238" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="11298:11689" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="11716:11769" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="11780:11923" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="12028:12386" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="12391:12617" placeholder="/*...*/" />
-            <marker date="1482908827537" expanded="true" signature="12622:12655" placeholder="//..." />
-            <marker date="1482908827537" expanded="true" signature="12693:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="12740:12871" placeholder="{&quot;title&quot;: '&lt;strong&gt;注销用户?&lt;/strong&gt;'...}" />
-            <marker date="1482908827537" expanded="true" signature="12913:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="12932:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="12997:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="13047:13063" placeholder="{...}" />
-            <marker date="1482908827537" expanded="true" signature="15072:27273" placeholder="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="296" column="4" selection-start-line="296" selection-start-column="4" selection-end-line="296" selection-end-column="4" />
+        <state relative-caret-position="3645">
+          <caret line="303" column="12" selection-start-line="303" selection-start-column="12" selection-end-line="303" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24300">
+          <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186420">
+          <caret line="6214" column="32" selection-start-line="6214" selection-start-column="32" selection-end-line="6214" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#textarea#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#0;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#2;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#3;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#a#0;n#div#3;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+            <marker date="1482908481305" expanded="true" signature="223417:223426" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/emergencycall.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+        <state relative-caret-position="435">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#img#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -1314,10 +1101,9 @@
             <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#ion-content#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-content#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#div#1;n#ion-content#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
