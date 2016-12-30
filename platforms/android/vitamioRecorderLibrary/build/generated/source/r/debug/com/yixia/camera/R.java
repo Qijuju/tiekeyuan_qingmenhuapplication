@@ -26,8 +26,6 @@ public final class R {
         
          */
         public static int AppBaseTheme=0x7f030000;
-        /**  All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static int AppTheme=0x7f030001;
     }
 }

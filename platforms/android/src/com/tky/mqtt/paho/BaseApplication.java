@@ -9,6 +9,8 @@ import android.os.Handler;
 
 import com.tky.mqtt.dao.DaoMaster;
 import com.tky.mqtt.dao.DaoSession;
+import com.yixia.camera.VCamera;
+import com.yixia.camera.util.DeviceUtils;
 
 import java.io.File;
 
@@ -75,7 +77,36 @@ public class BaseApplication extends Application {
 			public void onActivityDestroyed(Activity activity) {
 			}
 		});
+		//初始化摄像机
+		initDCIM();
 	}
+
+	/**
+	 * 初始化摄像机
+	 */
+	private void initDCIM() {
+		// 设置拍摄视频缓存路径
+		File dcim = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+		if (DeviceUtils.isZte()) {
+			if (dcim.exists()) {
+				VCamera.setVideoCachePath(dcim + "/recoder/");
+			} else {
+				VCamera.setVideoCachePath(dcim.getPath().replace("/sdcard/",
+						"/sdcard-ext/")
+						+ "/recoder/");
+			}
+		} else {
+			VCamera.setVideoCachePath(dcim + "/WeChatJuns/");
+		}
+
+//		VCamera.setVideoCachePath(FileUtils.getRecorderPath());
+		// 开启log输出,ffmpeg输出到logcat
+		VCamera.setDebugMode(true);
+		// 初始化拍摄SDK，必须
+		VCamera.initialize(this);
+	}
+
 	public static Context getContext() {
 		return context;
 	}

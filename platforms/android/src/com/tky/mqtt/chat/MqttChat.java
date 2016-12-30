@@ -13,6 +13,8 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ionicframework.im366077.MainActivity;
+import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -699,7 +701,8 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {
-        PhotoUtils.takePhoto(cordova.getActivity());
+        WechatRecoderActivity.launchActivity(cordova.getActivity(), 0x02001);
+        /*PhotoUtils.takePhoto(cordova.getActivity());
         photoFileReceiver.setOnPhotoGetListener(new PhotoFileReceiver.OnPhotoGetListener() {
             @Override
             public void getPhoto(String filePath, String length, String formatSize, String fileName) {
@@ -709,7 +712,7 @@ public class MqttChat extends CordovaPlugin {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
     }
 
 

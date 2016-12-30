@@ -13,8 +13,10 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
     </style>
+    <!--<style name="AppTheme" parent="AppBaseTheme">-->
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <!--</style>-->
 
 </resources>
