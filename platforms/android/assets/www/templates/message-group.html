@@ -110,6 +110,13 @@
               </div>
             </p>
 
+              <!---接收小视频样式--->
+            <div class="list"  style="width: 230px;background-color: #888888;float: left;margin-left: 14.5%;background-color: transparent" ng-if="msg.messagetype === 'Video'">
+              <video style="width: 100%;height:100%;" controls poster="http://qq.yh31.com/tp/zjbq/201612251914198050.gif">
+                <source style="height: 100%;width: 100%;background-color: #DD5044" src="/storage/emulated/0/1482852463596.mp4" type="video/mp4">
+              </video>
+            </div>
+
 
               <!---接收语音--->
             <p class="rj-message" style="margin-left: 14.5%;height:40px;position: relative;width:{{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id,msg.isread);" >
@@ -243,6 +250,13 @@
                  <!--&lt;!&ndash;<img ng-show="no.no === 3" src="img/voice_left3.png" style="width: 20px;height: 20px;margin-top:3px;margin-bottom: 3px;" class="yuanjiao" align="right"/>&ndash;&gt;-->
                  <!--</div>-->
               <!--</font>-->
+
+             <!---发送小视频样式--->
+                <div ng-if="msgSingle.messagetype ==='Video'" class="rj-message-right" style="background-color: transparent">
+                  <video style="width: 100%;height:100%;" controls poster="http://qq.yh31.com/tp/zjbq/201612251914198050.gif">
+                    <source style="height: 100%;width: 100%;background-color: #DD5044" src="/storage/emulated/0/1482852463596.mp4" type="video/mp4">
+                  </video>
+                </div>
 
 
                <!---发送文字ui--->

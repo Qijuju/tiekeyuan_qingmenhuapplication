@@ -521,6 +521,34 @@ angular.module('message.controllers', [])
     });
 
 
+    //小视频
+    // var video, output;
+    // var scale = 0.8;
+    // $scope.initialize = function() {
+    //   /*output = $("#output");//document.getElementById("output1");
+    //   video = $("#video");//document.getElementById("video1");
+    //   video.addEventListener('loadedmetadata',function () {
+    //     alert('sdfdgf');
+    //   });
+    //   alert("1111111");*/
+    //   // video.addEventListener('loadeddata',captureImage);
+    // };
+    //
+    // $scope.captureImage = function() {
+    //   var canvas = document.createElement("canvas");
+    //   alert("视频的宽高："+video.videoWidth+video.videoHeight);
+    //   canvas.width = video.videoWidth * scale;
+    //   canvas.height = video.videoHeight* scale;
+    //   // canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    //   // var img = document.createElement("img");
+    //   // img.src = canvas.toDataURL("image/png");
+    //   // output.appendChild(img);
+    //   alert("22222222");
+    // };
+    // alert("3333333");
+    // $scope.initialize();
+    // alert("4444444");
+
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
     $scope.doRefresh = function () {
