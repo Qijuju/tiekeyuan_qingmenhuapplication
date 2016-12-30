@@ -13,7 +13,6 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.ionicframework.im366077.MainActivity;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
@@ -33,6 +32,7 @@ import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
+import com.tky.mqtt.paho.receiver.VideoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -79,6 +79,7 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
+    private VideoFileReceiver videoFileReceiver;
     //    private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
@@ -106,6 +107,12 @@ public class MqttChat extends CordovaPlugin {
         IntentFilter photoFilter = new IntentFilter();
         photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
         UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
+
+        //录制小视频广播
+        videoFileReceiver = new VideoFileReceiver();
+        IntentFilter videoFilter = new IntentFilter();
+        videoFilter.addAction(ReceiverParams.VIDEO_FILE_GET);
+        UIUtils.getContext().registerReceiver(videoFileReceiver, videoFilter);
 
         /*netStatusChangeReceiver = new NetStatusChangeReceiver();
         IntentFilter netStatusChangeFilter = new IntentFilter();
@@ -701,8 +708,7 @@ public class MqttChat extends CordovaPlugin {
      * @param callbackContext
      */
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {
-        WechatRecoderActivity.launchActivity(cordova.getActivity(), 0x02001);
-        /*PhotoUtils.takePhoto(cordova.getActivity());
+        PhotoUtils.takePhoto(cordova.getActivity());
         photoFileReceiver.setOnPhotoGetListener(new PhotoFileReceiver.OnPhotoGetListener() {
             @Override
             public void getPhoto(String filePath, String length, String formatSize, String fileName) {
@@ -712,7 +718,26 @@ public class MqttChat extends CordovaPlugin {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
+    }
+
+    /**
+     * 录制小视频
+     * @param args
+     * @param callbackContext
+     */
+    public void takeVideo(final JSONArray args, final CallbackContext callbackContext) {
+        WechatRecoderActivity.launchActivity(cordova.getActivity(), 0x02001);
+        videoFileReceiver.setOnVideoGetListener(new VideoFileReceiver.OnVideoGetListener() {
+            @Override
+            public void getVideo(String filePath, String length, String formatSize, String fileName) {
+                try {
+                    setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 

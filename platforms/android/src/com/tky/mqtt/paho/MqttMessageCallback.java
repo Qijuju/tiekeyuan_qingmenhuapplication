@@ -115,6 +115,7 @@ public class MqttMessageCallback implements MqttCallback {
                         tip = "Image".equals(messagetype) ? "【图片】" : tip;
                         tip = "LOCATION".equals(messagetype) ? "【定位】" : tip;
                         tip = "Audio" .equals(messagetype) ?"【语音】": tip;
+                        tip = "Vedio" .equals(messagetype) ?"【小视频】": tip;
                         GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
                         if (fromUserId != null && !map.isFromMe()) {
                             if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
@@ -364,7 +365,10 @@ public class MqttMessageCallback implements MqttCallback {
                                 } else if("Audio".equals(lastmessages.getMessagetype()) ){
                                     chatList.setLastText("[语音]");//从数据库里取最后一条消息
                                     chatList.setMessagetype("Audio");
-                                }else {
+                                } else if("Vedio".equals(lastmessages.getMessagetype()) ){
+                                    chatList.setLastText("[小视频]");//从数据库里取最后一条消息
+                                    chatList.setMessagetype("Vedio");
+                                } else {
                                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                     chatList.setMessagetype("Text");
                                 }
@@ -611,6 +615,9 @@ public class MqttMessageCallback implements MqttCallback {
                 }else if( "Audio".equals(lastmessages.getMessagetype())){
                     chatList.setLastText("[语音]");//从数据库里取最后一条消息
                     chatList.setMessagetype("Audio");
+                } else if( "Vedio".equals(lastmessages.getMessagetype())){
+                    chatList.setLastText("[小视频]");//从数据库里取最后一条消息
+                    chatList.setMessagetype("Vedio");
                 } else {
                     chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                     chatList.setMessagetype("Text");

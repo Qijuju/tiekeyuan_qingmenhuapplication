@@ -22,7 +22,6 @@ import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
-import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -32,7 +31,6 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
-import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
@@ -97,7 +95,6 @@ import im.server.User.RSTCheckUser;
 import im.server.User.RSTgetUser;
 import im.server.attention.IMAttention;
 import im.server.attention.RSTgetAttention;
-import okhttp3.OkHttpClient;
 
 /**
  * 作者：
@@ -1340,6 +1337,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                         chatList.setLastText("[文件]");//从数据库里取最后一条消息
                                     }else if(lastmessages.getMessagetype() == "Audio"){
                                         chatList.setLastText("[语音]");//从数据库里取最后一条消息
+                                    } else if(lastmessages.getMessagetype() == "Vedio"){
+                                        chatList.setLastText("[小视频]");//从数据库里取最后一条消息
                                     } else {
                                         chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
                                     }
@@ -2276,7 +2275,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
             File file = null;
             String nowSavePath = null;
-            if (!"Audio".equals(messagetype)) {
+            if (!"Audio".equals(messagetype) && !"Vedio".equals(messagetype)) {
                 /*if (MediaFile.isImageFileType(filePath)) {
                     nowSavePath = filePath;
                     file = new File(nowSavePath);
@@ -2414,7 +2413,7 @@ public class ThriftApiClient extends CordovaPlugin {
             final String objectTP=args.getString(0);
             final String objectID=args.getString(1);
             String picSize=args.getString(2);
-            SystemApi.getFile(getUserID(),"A".equals(objectTP) ? "F" : objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+            SystemApi.getFile(getUserID(),("A".equals(objectTP) || "V".equals(objectTP)) ? "F" : objectTP, objectID.split("###")[0],picSize, 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                 @Override
                 public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
                     if(arg0!=null){
@@ -2438,8 +2437,13 @@ public class ThriftApiClient extends CordovaPlugin {
                                 } else {*/
                                 String saveFilePath = objectID.split("###")[1];
                                     tempPicName = tempUserPic + File.separator + saveFilePath.substring(saveFilePath.lastIndexOf("/") + 1, saveFilePath.length());//result.getObjectID() + "_" + type + "_" + result.picSize + objectID.split("###")[4].substring(objectID.split("###")[4].lastIndexOf("."));
-                                if ("A".equals(objectTP)) {
+                                if ("A".equals(objectTP) || "V".equals(objectTP)) {
                                     tempPicName = objectID.split("###")[1];
+                                    String path = tempPicName.substring(0, tempPicName.lastIndexOf("/"));
+                                    File tempFile = new File(path);
+                                    if (!tempFile.exists()) {
+                                        tempFile.mkdirs();
+                                    }
                                 }
 //                                }
                                 File tempFile = new File(tempPicName);

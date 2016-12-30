@@ -1,3 +1,32 @@
+.rj-weather-rightbig {
+  position: absolute;
+  left: 60%;
+  top: 39%;
+  color: #8c8c8c;
+  font-size: 45px;
+}
+.rj-weather-rightbigsmall {
+  position: absolute;
+  left: 80%;
+  top: 11%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+
+.rj-weather-rightsmall {
+  position: absolute;
+  left: 80%;
+  top: 36%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+.rj-weather-rightsmallsamll {
+  position: absolute;
+  left: 80%;
+  top: 62%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
 .rj-push-right {
   position: absolute;
   right: 10px;
@@ -11,6 +40,14 @@
   top: 10px;
   color: #8c8c8c;
   font-size: 13px;
+}
+
+.rj-push-account {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #8c8c8c;
+  font-size: 15px;
 }
 .rj-push-rightdown {
   position: absolute;
@@ -304,6 +341,15 @@
   border-radius: 6px;
   margin-left: 3px;
   margin-right: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-notify-bggg{
+  border-radius: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
   height: 85px;

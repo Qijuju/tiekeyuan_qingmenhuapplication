@@ -78,6 +78,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[文件]";//最后一条消息内容
                 }else if(data[0].messagetype === 'Audio'){
                   $scope.lastText = "[语音]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Vedio'){
+                  $scope.lastText = "[小视频]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -231,6 +233,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -521,6 +525,34 @@ angular.module('message.controllers', [])
     });
 
 
+    //小视频
+    // var video, output;
+    // var scale = 0.8;
+    // $scope.initialize = function() {
+    //   /*output = $("#output");//document.getElementById("output1");
+    //   video = $("#video");//document.getElementById("video1");
+    //   video.addEventListener('loadedmetadata',function () {
+    //     alert('sdfdgf');
+    //   });
+    //   alert("1111111");*/
+    //   // video.addEventListener('loadeddata',captureImage);
+    // };
+    //
+    // $scope.captureImage = function() {
+    //   var canvas = document.createElement("canvas");
+    //   alert("视频的宽高："+video.videoWidth+video.videoHeight);
+    //   canvas.width = video.videoWidth * scale;
+    //   canvas.height = video.videoHeight* scale;
+    //   // canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    //   // var img = document.createElement("img");
+    //   // img.src = canvas.toDataURL("image/png");
+    //   // output.appendChild(img);
+    //   alert("22222222");
+    // };
+    // alert("3333333");
+    // $scope.initialize();
+    // alert("4444444");
+
     var footerBar = document.body.querySelector('#messageDetail .bar-footer');
     var txtInput = angular.element(footerBar.querySelector('textarea'));
     $scope.doRefresh = function () {
@@ -646,6 +678,32 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
           //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
           var fileType = 'Image';
+          /*if (type === 'image') {
+           fileType = 'Image';
+           }*/
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt);
+            $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
+            keepKeyboardOpen();
+          });
+        });
+      }, function (err) {
+
+      });
+    };
+
+    $scope.takeVideo = function (topic, content, id,localuser,localuserId,sqlid) {
+      $mqtt.takeVideo(function (fileData) {
+        $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'Vedio';
           /*if (type === 'image') {
            fileType = 'Image';
            }*/
@@ -1083,6 +1141,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1237,6 +1297,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[文件]";//最后一条消息内容
             }else if(data[0].messagetype === 'Audio'){
               $scope.lastText = "[语音]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Vedio'){
+              $scope.lastText = "[小视频]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -1850,6 +1912,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -1981,6 +2045,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[文件]";//最后一条消息内容
             }else if(data[0].messagetype === 'Audio'){
               $scope.lastText = "[语音]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Vedio'){
+              $scope.lastText = "[小视频]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -2179,6 +2245,8 @@ angular.module('message.controllers', [])
                   $scope.lastText = "[文件]";//最后一条消息内容
                 }else if(data[0].messagetype === 'Audio'){
                   $scope.lastText = "[语音]";//最后一条消息内容
+                }else if(data[0].messagetype === 'Vedio'){
+                  $scope.lastText = "[小视频]";//最后一条消息内容
                 }else {
                   $scope.lastText = data[0].message;//最后一条消息内容
                 }
@@ -2310,6 +2378,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2794,6 +2864,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -2926,6 +2998,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[文件]";//最后一条消息内容
             }else if(data[0].messagetype === 'Audio'){
               $scope.lastText = "[语音]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Vedio'){
+              $scope.lastText = "[小视频]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -3233,6 +3307,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -3354,6 +3430,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[文件]";//最后一条消息内容
             }else if(data[0].messagetype === 'Audio'){
               $scope.lastText = "[语音]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Vedio'){
+              $scope.lastText = "[小视频]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -3461,6 +3539,32 @@ angular.module('message.controllers', [])
             sqlid=data;
             // alert("图片传进去的id"+sqlid);
             // alert('takeGroupPhoto');
+            $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt,type);
+            $scope.send_content = "";
+            $timeout(function () {
+              viewScroll.scrollBottom();
+            }, 100);
+            keepKeyboardOpen();
+          });
+        });
+      }, function (err) {
+
+      });
+    };
+
+    $scope.takeGroupVideo = function (topic, content, id,localuser,localuserId,sqlid, type) {
+      $mqtt.takeVideo(function (fileData) {
+        $mqtt.getMqtt().getTopic(topic, type, function (userTopic) {
+          // $ToastUtils.showToast("单聊topic"+userTopic+$scope.groupType);
+          //alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3] + '===' + id + '===' + localuser + '===' + localuserId);
+          var fileType = 'Vedio';
+          /*if (type === 'image') {
+           fileType = 'Image';
+           }*/
+          // alert(fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3]);
+          $greendao.getUUID(function (data) {
+            sqlid=data;
+            // alert("图片传进去的id"+sqlid);
             $scope.suc = $mqtt.sendDocFileMsg(userTopic, fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], fileData[0] + "###" + fileData[1] + "###" + fileData[2] + "###" + fileData[3], id, localuser, localuserId, sqlid, fileType, fileData[0],$mqtt,type);
             $scope.send_content = "";
             $timeout(function () {
@@ -4069,6 +4173,8 @@ angular.module('message.controllers', [])
                 $scope.lastText = "[文件]";//最后一条消息内容
               }else if(data[0].messagetype === 'Audio'){
                 $scope.lastText = "[语音]";//最后一条消息内容
+              }else if(data[0].messagetype === 'Vedio'){
+                $scope.lastText = "[小视频]";//最后一条消息内容
               }else {
                 $scope.lastText = data[0].message;//最后一条消息内容
               }
@@ -4198,6 +4304,8 @@ angular.module('message.controllers', [])
               $scope.lastText = "[文件]";//最后一条消息内容
             }else if(data[0].messagetype === 'Audio'){
               $scope.lastText = "[语音]";//最后一条消息内容
+            }else if(data[0].messagetype === 'Vedio'){
+              $scope.lastText = "[小视频]";//最后一条消息内容
             }else {
               $scope.lastText = data[0].message;//最后一条消息内容
             }
@@ -6280,5 +6388,5 @@ angular.module('message.controllers', [])
     $timeout(function () {
       $scope.mmm=1;
     }, 19000);
-    
+
   })
