@@ -6210,13 +6210,21 @@ angular.module('message.controllers', [])
   .controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
     $scope.topaa=1;
     var viewScroll = $ionicScrollDelegate.$getByHandle('fdsfsdfsd');
+    viewScroll.scrollBottom();
+    var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
+    window.addEventListener("native.keyboardshow", function (e) {
+      viewScroll.scrollBottom();
+      document.getElementById("content333").style.marginTop='0px';
+    });
+    window.addEventListener("native.keyboardhide", function (e) {
+      viewScroll.scrollBottom();
+      document.getElementById("content333").style.marginTop='70%';
+    });
     $scope.toptoptop=function () {
       $scope.topaa=0;
-      viewScroll.scrollBottom();
     }
     $scope.botbotbot=function () {
       $scope.topaa=1;
-      viewScroll.scrollTop();
     }
     $scope.goback=function () {
       $state.go('tab.message');
@@ -6280,5 +6288,5 @@ angular.module('message.controllers', [])
     $timeout(function () {
       $scope.mmm=1;
     }, 19000);
-    
+
   })
