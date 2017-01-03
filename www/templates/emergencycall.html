@@ -1,19 +1,19 @@
-<ion-view view-title="紧急呼叫">
-  <ion-nav-bar align-title="center" class="bar-stable">
-    <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goback()">
-        返回
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<!--<ion-view view-title="紧急呼叫">-->
+  <!--<ion-nav-bar align-title="center" class="bar-stable">-->
+    <!--<ion-nav-buttons side="left">-->
+      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="goback()">-->
+        <!--返回-->
+      <!--</button>-->
+    <!--</ion-nav-buttons>-->
+  <!--</ion-nav-bar>-->
   <img src="img/toptop.png"  style="position: absolute;margin-top: 155%;margin-left: 85%;z-index: 5;height: 30px;width: 30px" ng-click="toptoptop()" ng-if="topaa==1">
 
-  <ion-content overflow-scroll="true" style="background-color: #2e2e2e;z-index: 1;overflow: hidden" delegate-handle="fdsfsdfsd">
+  <ion-content overflow-scroll="true" style="background-color: #2e2e2e;z-index: 1;overflow: hidden" ng-if="topaa==1">
     <!--<div class="zhuan">-->
       <!--<div class="zhuan1"></div>-->
     <!--</div>-->
 
-    <div class="father" ng-if="topaa==1">
+    <div class="father" >
       <div class='father2'>
         <!--top:130以下190以上  left130以下190以上-->
         <img ng-if="aaa==1" class="yuanjiao1" src="img/im1.png" width="60px" height="60px" style="position: absolute;margin-top: 5px;margin-left: 5px;z-index: 3">
@@ -54,9 +54,15 @@
       <!--<div class="minutes"></div>-->
 
     </div>
-    <ion-content style="margin-top: 100%;height: 300px;width: 100%;background-color: #2e2e2e;z-index: 3;align-content: center;margin-left: 100px" ng-if="topaa==0">
-      <img src="img/botbot.png"  style="position: absolute;margin-top: 60%;margin-left: 85%;z-index: 5;height: 30px;width: 30px" ng-click="botbotbot()" ng-if="topaa==0">
-      <div class="father111">
+  </ion-content>
+
+
+
+
+    <ion-content style="width: 100%;background-color: #ffffff;z-index: 3;align-content: center" ng-if="topaa==0" >
+      <img src="img/botbot.png"  style="position: absolute;margin-top: 3%;margin-left: 85%;z-index: 5;height: 30px;width: 30px" ng-click="botbotbot()" ng-if="topaa==0">
+      <div style="background-color: #2e2e2e;height: 300px;width: 100%;z-index: 101">
+      <div class="father111" >
         <div class='father222'>
           <!--top:130以下190以上  left130以下190以上-->
           <img ng-if="aaa==1" class="yuanjiao1" src="img/im1.png" width="30px" height="30px" style="position: absolute;margin-top: 5px;margin-left: 5px;z-index: 3">
@@ -98,40 +104,71 @@
         <!--<div class="minutes"></div>-->
 
       </div>
-    </ion-content>
-    <ion-content style="margin-top: 180%;height: 50%;width: 100%;background-color: #ffffff;z-index: 102;margin-left: 100px">
-      <ion-content style="width: 100%;background-color: #ffffff">
-      <div class="rj-message-wrap">
-        <img src="img/im2.png"  class="rj-head-pic ">
+      </div>
+    <!--</ion-content>-->
+    <!--<ion-content style="margin-top: 180%;height: 50%;width: 100%;background-color: #ffffff;z-index: 102;margin-left: 100px">-->
+      <ion-content style="margin-top: 70%;height: 500px;width: 100%;background-color: #ffffff;z-index: 105" delegate-handle="fdsfsdfsd" id="content333">
+
+      <div class="rj-message-wrap" >
+        <img src="img/im2.png"  class="rj-head-pic">
 
         <p class="rj-message">范德萨发生的访问二手的范德萨发生的发生</p>
       </div>
 
       <!--<img  class="yuanjiao1" src="img/im2.png" width="50px" height="50px" style="z-index: 100;margin-left: 10px;margin-top: 15px">-->
       <!--<div style="position: absolute;margin-left: 70px;margin-top: -35px">范德萨发生的访问二手的范德萨发生的发生</div>-->
-      <div class="rj-message-wrap" >
+      <div class="rj-message-wrap" style="margin-top: 5%">
         <img src="img/im1.png" class="rj-head-pic-right">
           <span>
              <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
              <p style="float: right;"><font class="rj-message-right">范德萨发生的访问二手的范德萨发生的发生</font></p>
           </span>
       </div>
+        <div class="rj-message-wrap" style="margin-top: 5%">
+          <img src="img/im1.png" class="rj-head-pic-right">
+          <span>
+             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+             <p style="float: right;"><font class="rj-message-right">范德萨发生的访问二手的范德萨发生的发生</font></p>
+          </span>
+        </div>
+        <div class="rj-message-wrap" style="margin-top: 5%">
+          <img src="img/im1.png" class="rj-head-pic-right">
+          <span>
+             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+             <p style="float: right;"><font class="rj-message-right">范德萨发生的访问二手的范德萨发生的发生</font></p>
+          </span>
+        </div>
+        <div class="rj-message-wrap" style="margin-top: 5%">
+          <img src="img/im1.png" class="rj-head-pic-right">
+          <span>
+             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+             <p style="float: right;"><font class="rj-message-right">范德萨发生的访问二手的范德萨发生的发生</font></p>
+          </span>
+        </div>
+        <div class="rj-message-wrap" style="margin-top: 5%">
+          <img src="img/im1.png" class="rj-head-pic-right">
+          <span>
+             <!--<img style="margin-right: 5px;position: relative;right: 0px;" src="img/red.png" align="left">-->
+             <p style="float: right;"><font class="rj-message-right">范德萨发生的访问二手的范德萨发生的发生</font></p>
+          </span>
+        </div>
+
       </ion-content>
-      <ion-footer-bar  class="bar-light" >
 
-        <div class="item-input rj-footer-btn-wrap" style="width: 90%" >
-      <textarea msd-elastic ng-model="send_content" >
-      </textarea>
-        </div>
-        <div class="rj-footer-btn-wrap">
-
-          <div class="rj-send-button">
-            <p>发送</p>
-          </div>
-        </div>
-      </ion-footer-bar>
     </ion-content>
 
-  </ion-content>
+<ion-footer-bar  class="bar-light" ng-if="topaa==0" style="z-index: 200" >
 
-</ion-view>
+  <div class="item-input rj-footer-btn-wrap" style="width: 90%" >
+      <textarea msd-elastic ng-model="send_content" >
+      </textarea>
+  </div>
+  <div class="rj-footer-btn-wrap">
+
+    <div class="rj-send-button">
+      <p>发送</p>
+    </div>
+  </div>
+</ion-footer-bar>
+
+<!--</ion-view>-->

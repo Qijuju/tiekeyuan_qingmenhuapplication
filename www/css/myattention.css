@@ -337,10 +337,11 @@
 
 .circle12{
   /*background: none repeat scroll 0 0 #eb67bb;*/
+  background-image:url(../img/circle6.png);
   border-radius: 50%;
   color: #FFFFFF;
-  width: 70px;
-  height: 70px;
+  width: 57px;
+  height: 57px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -502,6 +503,15 @@
   position: absolute;
   left: 3%;
   top:1%;
+}
+.yuanjiao3{
+  /*background: none repeat scroll 0 0 #eb67bb;*/
+  border-radius: 50%;
+  width: 57px;
+  height: 57px;
+  position: absolute;
+  right: 6%;
+  top:7%;
 }
 
 
