@@ -367,3 +367,24 @@
 }
 
 
+.history{
+  padding: 5px;
+  overflow: auto;
+  position: relative;
+}
+
+.history .right{
+  padding: 7px 9px;
+  line-height: 26px;
+  max-width: 250px;
+  border-radius: 2px;
+
+}
+.history .left{
+  float: left;
+  margin-left: 16px;
+  background-color: #fff;
+
+}
+
+
