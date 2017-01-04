@@ -29,14 +29,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/rj.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/rj.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-location.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-location.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessagegroup.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessagegroup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/person-location.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/person-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/rj.css" afterPath="$PROJECT_DIR$/www/css/rj.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/group-location.html" afterPath="$PROJECT_DIR$/www/templates/group-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/historymessagegroup.html" afterPath="$PROJECT_DIR$/www/templates/historymessagegroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/person-location.html" afterPath="$PROJECT_DIR$/www/templates/person-location.html" />
     </list>
     <list id="43ed02b5-2044-4264-a46c-baa77f6af7ab" name="Failed commit: Default" comment="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <ignored path="IM.iws" />
@@ -485,14 +481,7 @@
       <workItem from="1482916626663" duration="2691000" />
       <workItem from="1483091866070" duration="536000" />
       <workItem from="1483405575721" duration="21397000" />
-      <workItem from="1483493120781" duration="2105000" />
-    </task>
-    <task id="LOCAL-00061" summary="语音样式初步完成">
-      <created>1480681423254</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1480681423254</updated>
+      <workItem from="1483493120781" duration="2131000" />
     </task>
     <task id="LOCAL-00062" summary="语音样式。">
       <created>1480987095137</created>
@@ -830,11 +819,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483092026739</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="历史消息界面优化">
+      <created>1483495253107</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1483495253107</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="912474000" />
+    <option name="totallyTimeSpent" value="912500000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -855,7 +851,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24625267" sideWeight="0.50474185" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46631017" sideWeight="0.49683878" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2631016" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2633833" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3490364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -900,7 +896,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.13commit：1.文件bug&#10;2.语音样式bug&#10;3.底部未读条数字bug&#10;4.个人资料无数据bug" />
     <MESSAGE value="12.14commit：修改压测1000条出现的chatname没值的bug" />
     <MESSAGE value="更换gif。" />
     <MESSAGE value="12.15版本发布" />
@@ -925,7 +920,8 @@
     <MESSAGE value="我的模块界面优化" />
     <MESSAGE value="commit" />
     <MESSAGE value="合并cheng代码提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并cheng代码提交" />
+    <MESSAGE value="历史消息界面优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="历史消息界面优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
