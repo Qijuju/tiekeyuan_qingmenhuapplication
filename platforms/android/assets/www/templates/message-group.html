@@ -111,9 +111,9 @@
             </p>
 
               <!---接收小视频样式--->
-            <div class="list"  style="width: 230px;background-color: #888888;float: left;margin-left: 14.5%;background-color: transparent" ng-if="msg.messagetype === 'Video'">
-              <video style="width: 100%;height:100%;" controls poster="http://qq.yh31.com/tp/zjbq/201612251914198050.gif">
-                <source style="height: 100%;width: 100%;background-color: #DD5044" src="/storage/emulated/0/1482852463596.mp4" type="video/mp4">
+            <div class="list"  style="width: 230px;background-color: #888888;float: left;margin-left: 14.5%;background-color: transparent" ng-if="msg.messagetype === 'Vedio'">
+              <video style="width: 100%;height:100%;" controls>
+                <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msg.message.split('###')[1]}}" type="video/mp4">
               </video>
             </div>
 
@@ -252,11 +252,19 @@
               <!--</font>-->
 
              <!---发送小视频样式--->
-                <div ng-if="msgSingle.messagetype ==='Video'" class="rj-message-right" style="background-color: transparent">
-                  <video style="width: 100%;height:100%;" controls poster="http://qq.yh31.com/tp/zjbq/201612251914198050.gif">
-                    <source style="height: 100%;width: 100%;background-color: #DD5044" src="/storage/emulated/0/1482852463596.mp4" type="video/mp4">
-                  </video>
-                </div>
+            <div ng-if="msg.messagetype ==='Vedio'" class="rj-message-right" style="background-color: transparent;width: 300px;height: 300px;">
+              <div style="position: absolute;top: 261px;right: 79px;width: 100%;z-index: 1000;">
+                <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar" style="margin-top: 10px;margin-left: 15px;width: 233px;float: right;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
+              </div>
+              <div style="clear: both;"></div>
+              <video id="video1" ng-if="msg.message.split('###')[5] != '100'" style="width: 100%;height:100%;"  preload="auto">
+                <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msg.message.split('###')[1]}}" type="video/mp4">
+              </video>
+              <video id="video" ng-if="msg.message.split('###')[5] === '100'" style="width: 100%;height:100%;" controls  preload="auto">
+                <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msg.message.split('###')[1]}}" type="video/mp4">
+              </video>
+            </div>
+            <div id="output"></div>
 
 
                <!---发送文字ui--->
@@ -377,39 +385,40 @@
         </div>
 
       </div>
-      <!--<div class="row" style="margin-top: -22%">-->
-      <!--<div class="col" align="center" ng-click="openDocumentWindow('video', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">-->
-      <!--<a>-->
-      <!--<ul>-->
-      <!--<li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/shipin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>-->
-      <!--<li style="color: #848484;font-size: 10px">视频</li>-->
-      <!--</ul>-->
-      <!--</a>-->
-      <!--</div>-->
-      <!--<div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">-->
-      <!--<a>-->
-      <!--<ul>-->
-      <!--<li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/yinpin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>-->
-      <!--<li style="color: #848484;font-size: 10px">音频</li>-->
-      <!--</ul>-->
-      <!--</a>-->
-      <!--</div>-->
-      <!--<div class="col" align="center" style="padding: 15px">-->
-      <!--<a>-->
-      <!--<ul>-->
-      <!--<li style="height: 50px;width: 50px;align-content: center"> </li>-->
-      <!--<li style="color: #848484;font-size: 10px"> </li>-->
-      <!--</ul>-->
-      <!--</a>-->
-      <!--</div>-->
-      <!--<div class="col" align="center" style="padding: 15px">-->
-      <!--<a>-->
-      <!--<ul>-->
-      <!--<li style="height: 50px;width: 50px;align-content: center"> </li>-->
-      <!--<li style="color: #848484;font-size: 10px"> </li>-->
-      <!--</ul>-->
-      <!--</a>-->
-      <!--</div>-->
+      <div class="row" style="margin-top: -22%">
+        <div  style="width:25%;margin-top: 10px;padding-top: 10px;" align="center"  ng-click="takeGroupVideo(groupid,send_content, groupid,localusr,myUserID,_id, grouptype)" style="padding: 15px">
+          <a>
+            <ul>
+              <li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/shipin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>
+              <li style="color: #848484;font-size: 10px">视频</li>
+            </ul>
+          </a>
+        </div>
+        <!--<div class="col" align="center" ng-click="openDocumentWindow('audio', userId,send_content, userId,localusr,myUserID,_id)" style="padding: 15px">-->
+        <!--<a>-->
+        <!--<ul>-->
+        <!--<li style="height: 50px;width: 50px;align-content: center" class="squareliao1"><img src="img/yinpin.png" style="width: 28px;height: 28px;align-content: center;margin-top: 9px"></li>-->
+        <!--<li style="color: #848484;font-size: 10px">音频</li>-->
+        <!--</ul>-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div class="col" align="center" style="padding: 15px">-->
+        <!--<a>-->
+        <!--<ul>-->
+        <!--<li style="height: 50px;width: 50px;align-content: center"> </li>-->
+        <!--<li style="color: #848484;font-size: 10px"> </li>-->
+        <!--</ul>-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div class="col" align="center" style="padding: 15px">-->
+        <!--<a>-->
+        <!--<ul>-->
+        <!--<li style="height: 50px;width: 50px;align-content: center"> </li>-->
+        <!--<li style="color: #848484;font-size: 10px"> </li>-->
+        <!--</ul>-->
+        <!--</a>-->
+        <!--</div>-->
+      </div>
     </div>
   </ion-footer-bar>
 </ion-view>
