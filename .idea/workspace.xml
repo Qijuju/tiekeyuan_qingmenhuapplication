@@ -29,8 +29,8 @@
       <file leaf-file-name="message-detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="409" column="9" selection-start-line="409" selection-start-column="9" selection-end-line="409" selection-end-column="9" />
+            <state relative-caret-position="320">
+              <caret line="407" column="12" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -331,14 +331,7 @@
       <workItem from="1483091866070" duration="536000" />
       <workItem from="1483405575721" duration="21397000" />
       <workItem from="1483493120781" duration="2236000" />
-      <workItem from="1483496710799" duration="13585000" />
-    </task>
-    <task id="LOCAL-00064" summary="cc">
-      <created>1480998168015</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1480998168015</updated>
+      <workItem from="1483496710799" duration="13658000" />
     </task>
     <task id="LOCAL-00065" summary="语音发送正常显示在界面上（接收未做，样式还有问题）">
       <created>1481017825218</created>
@@ -676,11 +669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483524456914</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="界面优化">
+      <created>1483524512152</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1483524512152</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="926190000" />
+    <option name="totallyTimeSpent" value="926263000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -692,16 +692,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19072708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19072708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24625267" sideWeight="0.50474185" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24411134" sideWeight="0.49683878" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24411134" sideWeight="0.49683878" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30053475" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29978585" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3490364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1193,8 +1193,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="409" column="9" selection-start-line="409" selection-start-column="9" selection-end-line="409" selection-end-column="9" />
+        <state relative-caret-position="320">
+          <caret line="407" column="12" selection-start-line="407" selection-start-column="12" selection-end-line="407" selection-end-column="12" />
           <folding>
             <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
