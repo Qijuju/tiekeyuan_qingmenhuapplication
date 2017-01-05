@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.Formatter;
 
+import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
@@ -272,6 +273,26 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
                             }).launch();
                 }
             }).start();
+        } else if (intent != null && requestCode == 0x02001) {
+            String videoPath = intent.getStringExtra(WechatRecoderActivity.VIDEO_PATH);
+            File file = new File(videoPath);
+            if (file.exists()) {
+                final long length = file.length();
+                if (length <= 0) {
+                    ToastUtil.showSafeToast("0B文件无法发送！");
+                    return;
+                }
+                String formatSize = Formatter.formatFileSize(MainActivity.this, length);
+                Intent receiverIntent = new Intent();
+                receiverIntent.setAction(ReceiverParams.VIDEO_FILE_GET);
+                receiverIntent.putExtra("filePath", file.getAbsolutePath());
+                receiverIntent.putExtra("length", String.valueOf(length));
+                receiverIntent.putExtra("formatSize", formatSize);
+                receiverIntent.putExtra("fileName", (file.getAbsolutePath() != null && !"".equals(file.getAbsolutePath().trim()) ? file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("/") + 1) : "noname"));
+                sendBroadcast(receiverIntent);
+            } else {
+                ToastUtil.showSafeToast("文件不存在！");
+            }
         }
 
     }

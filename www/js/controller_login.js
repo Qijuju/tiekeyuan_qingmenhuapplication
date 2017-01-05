@@ -578,7 +578,8 @@ angular.module('login.controllers', [])
           $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
           $timeout(function () {
             firstlock.reset();
-            method();
+            metho
+            d();
           },300);
         }
       }

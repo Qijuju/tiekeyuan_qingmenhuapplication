@@ -53,6 +53,10 @@ public class ReceiverParams {
 	 */
 	public static final String PHOTO_FILE_GET = "com.tky.mqtt.mqttserverdemo.photo_file_get";
 	/**
+	 * 录制小视频后获取小视频
+	 */
+	public static final String VIDEO_FILE_GET = "com.tky.mqtt.mqttserverdemo.video_file_get";
+	/**
 	 * MQTT启动
 	 */
 	public static final String MQTT_START = "com.tky.mqtt.mqttserverdemo.mqtt_start";
