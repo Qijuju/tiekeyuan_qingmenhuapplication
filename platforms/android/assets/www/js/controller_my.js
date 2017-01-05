@@ -26,6 +26,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           // alert(srcurl+"id"+$scope.UserID)
           $scope.$apply(function () {
             $scope.securlpic=srcurl;
+            $rootScope.securlpicaaa = srcurl;
           })
           // $scope.$apply(function () {
           //   document.getElementById('myImage').src=srcurl;
@@ -437,7 +438,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.picyoumeiyou=false;
         // alert("没有")
       })
-  
+
 
     $scope.setpic = function (name) {
       // 显示操作表
@@ -892,7 +893,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
 
   })
-  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils,$mqtt,$api,$ionicPopup,$ionicLoading,$cordovaFileOpener2) {
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils,$mqtt,$api,$ionicPopup,$ionicLoading,$cordovaFileOpener2,$rootScope) {
     $scope.UserIDabouthou = $stateParams.UserIDabout;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -958,6 +959,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
                 $mqtt.save('loginpage', "gesturelogin");
+                $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
@@ -1015,6 +1017,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea',  $scope.mymypersonname);
                 $mqtt.save('loginpage', "gesturelogin");
+                $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
                   "UserIDset": $scope.UserID
@@ -1185,6 +1188,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               checklock.drawStatusPoint('right')
               $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea',  $scope.mymypersonname);
+              $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
               $ToastUtils.showToast("密码修改成功")
               $state.go("accountsettion", {
                 "UserIDset": $scope.UserID
