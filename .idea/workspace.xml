@@ -2,22 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/loginaaa.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/loginmohu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/titleaaa.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/H5lock.publish.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/H5lock.publish.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/css/ionic.min.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/css/ionic.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/scss/_form.scss" afterPath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/scss/_form.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/gesturelogin.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/gesturelogin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/historymessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/login.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/myattention.css" afterPath="$PROJECT_DIR$/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/H5lock.publish.js" afterPath="$PROJECT_DIR$/www/js/H5lock.publish.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" afterPath="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/emergencycall.html" afterPath="$PROJECT_DIR$/www/templates/emergencycall.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/gesturelogin.html" afterPath="$PROJECT_DIR$/www/templates/gesturelogin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/www/templates/historymessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/login.html" afterPath="$PROJECT_DIR$/www/templates/login.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,13 +53,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1412">
-              <caret line="6221" column="7" selection-start-line="6221" selection-start-column="7" selection-end-line="6221" selection-end-column="7" />
+            <state relative-caret-position="314">
+              <caret line="33" column="97" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="97" />
               <folding>
-                <marker date="1483000681893" expanded="true" signature="223417:223426" placeholder="{...}" />
+                <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gesturelogin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/gesturelogin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tab-account.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+              <folding>
+                <element signature="n#style#0;n#P#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,128 +119,74 @@
       <file leaf-file-name="controller_my.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="1125" column="11" selection-start-line="1125" selection-start-column="11" selection-end-line="1125" selection-end-column="11" />
+            <state relative-caret-position="263">
+              <caret line="961" column="68" selection-start-line="961" selection-start-column="14" selection-end-line="961" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="emergencycall.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/templates/emergencycall.html">
+      <file leaf-file-name="ionic.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4710">
-              <caret line="118" column="50" selection-start-line="118" selection-start-column="50" selection-end-line="118" selection-end-column="50" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#2;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#3;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#4;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#span#0;n#div#5;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ion-footer-bar#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="8755" column="12" selection-start-line="8755" selection-start-column="12" selection-end-line="8755" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_form.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_form.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="228" column="1" selection-start-line="228" selection-start-column="1" selection-end-line="228" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ionic.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="9142" column="8" selection-start-line="9142" selection-start-column="8" selection-end-line="9142" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="229" column="79" selection-start-line="229" selection-start-column="79" selection-end-line="229" selection-end-column="79" />
+            <state relative-caret-position="323">
+              <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="message-detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
+      <file leaf-file-name="H5lock.publish.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/H5lock.publish.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="44" column="28" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="28" />
+            <state relative-caret-position="480">
+              <caret line="136" column="96" selection-start-line="136" selection-start-column="96" selection-end-line="136" selection-end-column="96" />
               <folding>
-                <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#1;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+                <marker date="1483584987065" expanded="true" signature="5137:5234" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="message-group.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
+      <file leaf-file-name="H5lock.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/H5lock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-551">
-              <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+            <state relative-caret-position="-5797">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
               <folding>
-                <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+                <marker date="1478161696575" expanded="true" signature="8151:8230" placeholder="..." />
+                <marker date="1478161696575" expanded="true" signature="8318:8383" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rj.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/rj.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="botbot.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/img/botbot.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tab-notification.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/tab-notification.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9540">
-              <caret line="318" column="23" selection-start-line="318" selection-start-column="23" selection-end-line="318" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myattention.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24300">
-              <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -209,14 +217,12 @@
         <option value="$PROJECT_DIR$/www/templates/message-group.html" />
         <option value="$PROJECT_DIR$/www/templates/tab-notification.html" />
         <option value="$PROJECT_DIR$/www/js/service_my.js" />
-        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
         <option value="$PROJECT_DIR$/www/templates/person-file.html" />
         <option value="$PROJECT_DIR$/www/templates/searchmessage.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/controller_search.js" />
         <option value="$PROJECT_DIR$/www/js/service_contacts.js" />
         <option value="$PROJECT_DIR$/www/templates/person-location.html" />
-        <option value="$PROJECT_DIR$/www/templates/historymessage.html" />
         <option value="$PROJECT_DIR$/www/templates/personal-setting.html" />
         <option value="$PROJECT_DIR$/www/templates/group-setting.html" />
         <option value="$PROJECT_DIR$/www/templates/group-location.html" />
@@ -225,18 +231,24 @@
         <option value="$PROJECT_DIR$/www/templates/historymessagegroup.html" />
         <option value="$PROJECT_DIR$/www/js/service_common.js" />
         <option value="$PROJECT_DIR$/www/templates/newsPage.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_login.js" />
         <option value="$PROJECT_DIR$/www/templates/search.html" />
         <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
         <option value="$PROJECT_DIR$/www/templates/myinfomation.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_my.js" />
         <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
         <option value="$PROJECT_DIR$/www/js/routes.js" />
         <option value="$PROJECT_DIR$/www/templates/welcome.html" />
         <option value="$PROJECT_DIR$/www/css/rj.css" />
-        <option value="$PROJECT_DIR$/www/css/myattention.css" />
-        <option value="$PROJECT_DIR$/www/templates/emergencycall.html" />
         <option value="$PROJECT_DIR$/www/js/controller_message.js" />
+        <option value="$PROJECT_DIR$/www/templates/emergencycall.html" />
+        <option value="$PROJECT_DIR$/www/templates/historymessage.html" />
+        <option value="$PROJECT_DIR$/www/css/myattention.css" />
+        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
+        <option value="$PROJECT_DIR$/www/lib/ionic/scss/_form.scss" />
+        <option value="$PROJECT_DIR$/www/templates/login.html" />
+        <option value="$PROJECT_DIR$/www/js/H5lock.publish.js" />
+        <option value="$PROJECT_DIR$/www/templates/gesturelogin.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_my.js" />
+        <option value="$PROJECT_DIR$/www/js/controller_login.js" />
       </list>
     </option>
   </component>
@@ -281,7 +293,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -300,58 +311,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -365,6 +327,11 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebstormProjects\IM\www\img" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -481,7 +448,11 @@
       <workItem from="1482798587135" duration="19626000" />
       <workItem from="1482884625845" duration="23384000" />
       <workItem from="1482971154238" duration="2253000" />
-      <workItem from="1482976089266" duration="16387000" />
+      <workItem from="1482976089266" duration="20708000" />
+      <workItem from="1483057508140" duration="18692000" />
+      <workItem from="1483403508321" duration="19327000" />
+      <workItem from="1483489723390" duration="16496000" />
+      <workItem from="1483576818879" duration="13462000" />
     </task>
     <task id="LOCAL-00001" summary="改bug">
       <created>1478249860204</created>
@@ -742,11 +713,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482976126365</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="紧急呼叫页面">
+      <created>1483000699697</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1483000699697</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="727249000" />
+    <option name="totallyTimeSpent" value="799547000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
@@ -755,8 +733,8 @@
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1890625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.004179728" sideWeight="0.53541666" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.46458334" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0052246605" sideWeight="0.5375" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0052246605" sideWeight="0.4625" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -776,7 +754,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="提交代码11" />
     <MESSAGE value="替代吗321" />
     <MESSAGE value="最新" />
     <MESSAGE value="最新1" />
@@ -801,83 +778,14 @@
     <MESSAGE value="合并代码" />
     <MESSAGE value="合并代码22" />
     <MESSAGE value="1321" />
-    <option name="LAST_COMMIT_MESSAGE" value="1321" />
+    <MESSAGE value="紧急呼叫页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="紧急呼叫页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/templates/chat-detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/attentionDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/historymessage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="23" column="69" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/historymessagegroup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/elastic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/jquery-3.0.0.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/ng-cordova.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/ui-bootstrap-tpls-2.2.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -911,23 +819,6 @@
         <state relative-caret-position="5640">
           <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="8" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/im1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/im2.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/tab-contacts.html">
@@ -1026,13 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="157" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="157" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1068,14 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1650">
           <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#ion-content#1;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#0;n#ion-slide#0;n#ion-slide-box#0;n#ion-content#1;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#2;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#4;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-content#4;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#ion-content#4;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1093,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9540">
           <caret line="318" column="23" selection-start-line="318" selection-start-column="23" selection-end-line="318" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,111 +979,196 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24300">
-          <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/rj.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
+        <state relative-caret-position="1110">
           <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-551">
+        <state relative-caret-position="8490">
           <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="1320">
           <caret line="44" column="28" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186630">
+          <caret line="6221" column="7" selection-start-line="6221" selection-start-column="7" selection-end-line="6221" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/historymessage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/emergencycall.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="63" column="84" selection-start-line="63" selection-start-column="84" selection-end-line="63" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/location.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/login4.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/im1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/im3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/im2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="712" column="20" selection-start-line="712" selection-start-column="1" selection-end-line="712" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_form.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="228" column="1" selection-start-line="228" selection-start-column="1" selection-end-line="228" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="9142" column="8" selection-start-line="9142" selection-start-column="8" selection-end-line="9142" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="8755" column="12" selection-start-line="8755" selection-start-column="12" selection-end-line="8755" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/H5lock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5797">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#2;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+            <marker date="1478161696575" expanded="true" signature="8151:8230" placeholder="..." />
+            <marker date="1478161696575" expanded="true" signature="8318:8383" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/H5lock.publish.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="136" column="96" selection-start-line="136" selection-start-column="96" selection-end-line="136" selection-end-column="96" />
+          <folding>
+            <marker date="1483584987065" expanded="true" signature="5137:5234" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="33" column="97" selection-start-line="33" selection-start-column="91" selection-end-line="33" selection-end-column="97" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#P#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/gesturelogin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="1125" column="11" selection-start-line="1125" selection-start-column="11" selection-end-line="1125" selection-end-column="11" />
+        <state relative-caret-position="263">
+          <caret line="961" column="68" selection-start-line="961" selection-start-column="14" selection-end-line="961" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="229" column="79" selection-start-line="229" selection-start-column="79" selection-end-line="229" selection-end-column="79" />
+        <state relative-caret-position="323">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1412">
-          <caret line="6221" column="7" selection-start-line="6221" selection-start-column="7" selection-end-line="6221" selection-end-column="7" />
-          <folding>
-            <marker date="1483000681893" expanded="true" signature="223417:223426" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/emergencycall.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4710">
-          <caret line="118" column="50" selection-start-line="118" selection-start-column="50" selection-end-line="118" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#1;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#2;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#3;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#4;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#span#0;n#div#5;n#ion-content#0;n#ion-content#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ion-footer-bar#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

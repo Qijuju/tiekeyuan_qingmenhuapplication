@@ -6210,38 +6210,21 @@ angular.module('message.controllers', [])
   .controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
     $scope.topaa=1;
     var viewScroll = $ionicScrollDelegate.$getByHandle('fdsfsdfsd');
-    // document.getElementById("content333").style.height=(window.screen.height-300)+'px';
     viewScroll.scrollBottom();
     var keyboard = cordova.require('ionic-plugin-keyboard.keyboard');
     window.addEventListener("native.keyboardshow", function (e) {
-
       viewScroll.scrollBottom();
-      // keepKeyboardOpen();
-      // alert(e.keyboardHeight)
-      // document.getElementById("content11").style.marginBottom=e.keyboardHeight+'px';
-      // document.getElementById("content22").style.marginTop=-e.keyboardHeight+'px';
       document.getElementById("content333").style.marginTop='0px';
-      // document.getElementById("content333").style.height='100%';
-      // document.getElementById("content22").style.marginBottom=e.keyboardHeight+'px';
     });
     window.addEventListener("native.keyboardhide", function (e) {
       viewScroll.scrollBottom();
-      // viewScroll.scrollBottom();
-      // keepKeyboardOpen();
-      // document.getElementById("content11").style.marginBottom='0px';
-      // document.getElementById("content22").style.marginTop='0px';
       document.getElementById("content333").style.marginTop='80%';
-      // document.getElementById("content333").style.height=(window.screen.height-300)+'px';
-      // document.getElementById("content22").style.marginBottom='0px';
     });
-
     $scope.toptoptop=function () {
       $scope.topaa=0;
-      // viewScroll.scrollBottom();
     }
     $scope.botbotbot=function () {
       $scope.topaa=1;
-      // viewScroll.scrollTop();
     }
     $scope.goback=function () {
       $state.go('tab.message');

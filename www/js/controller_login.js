@@ -8,6 +8,8 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
+    document.getElementById("loginpic").style.height=(window.screen.height)+'px';
+    document.getElementById("loginpic").style.width=(window.screen.width)+'px';
     $mqtt.save('loginpage', "passwordlogin");
 
     $mqtt.setLogin(false);
@@ -413,6 +415,9 @@ angular.module('login.controllers', [])
     };
   })
   .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout) {
+    $scope.picyoumeiyoua=false;
+    document.getElementById("loginpica").style.height=(window.screen.height)+'px';
+    document.getElementById("loginpica").style.width=(window.screen.width)+'px';
     $mqtt.save('loginpage', "gesturelogin");
 
     $mqtt.setLogin(false);
@@ -429,6 +434,19 @@ angular.module('login.controllers', [])
     $mqtt.getMqtt().getString('userNamea', function (message) {
       $scope.userNamea = message;
     });
+    $mqtt.getMqtt().getString('securlpicaa', function (message) {
+      if(message==null||message.length==0||message==undefined){
+        $scope.picyoumeiyoua=false;
+      }else {
+        $scope.picyoumeiyoua=true;
+        $scope.$apply(function () {
+          $scope.securlpica=message;
+        })
+      }
+    });
+
+
+
     $scope.goLogin = function() {
       $state.go('login');
     };
