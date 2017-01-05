@@ -1118,6 +1118,11 @@ angular.module('message.controllers', [])
 
     };
 
+    //判断文件是否是视频格式
+    $scope.isMsgVideo = function (filePath) {
+      return $mqtt.isVideo(filePath);
+    };
+
     $scope.backFirstMenu = function (groupType) {
       $ionicHistory.nextViewOptions({
        disableBack: true
@@ -3971,6 +3976,11 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+    };
+
+    //判断文件是否是视频格式
+    $scope.isGroupVideo = function (filePath) {
+      return $mqtt.isVideo(filePath);
     };
 
     //发送图片的时候打开图片查看大图
