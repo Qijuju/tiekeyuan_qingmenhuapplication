@@ -13,6 +13,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -31,6 +32,7 @@ import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
+import com.tky.mqtt.paho.receiver.VideoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -77,6 +79,7 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
+    private VideoFileReceiver videoFileReceiver;
     //    private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
@@ -104,6 +107,12 @@ public class MqttChat extends CordovaPlugin {
         IntentFilter photoFilter = new IntentFilter();
         photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
         UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
+
+        //录制小视频广播
+        videoFileReceiver = new VideoFileReceiver();
+        IntentFilter videoFilter = new IntentFilter();
+        videoFilter.addAction(ReceiverParams.VIDEO_FILE_GET);
+        UIUtils.getContext().registerReceiver(videoFileReceiver, videoFilter);
 
         /*netStatusChangeReceiver = new NetStatusChangeReceiver();
         IntentFilter netStatusChangeFilter = new IntentFilter();
@@ -291,7 +300,7 @@ public class MqttChat extends CordovaPlugin {
     public void stopMqttChat() {
     }
 
-    int count = 0;
+//    int count = 0;
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
         final String message = args.getString(1);
@@ -327,7 +336,7 @@ public class MqttChat extends CordovaPlugin {
 
             @Override
             public void onMqttSendError(String msg) {
-                count++;
+//                count++;
                 try {
                     setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
                 } catch (JSONException e) {
@@ -378,8 +387,9 @@ public class MqttChat extends CordovaPlugin {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }*/
-            count = 0;
+            }
+            Log.e("countyou", "发送失败总数为：" + count);
+            count = 0;*/
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
@@ -702,6 +712,25 @@ public class MqttChat extends CordovaPlugin {
         photoFileReceiver.setOnPhotoGetListener(new PhotoFileReceiver.OnPhotoGetListener() {
             @Override
             public void getPhoto(String filePath, String length, String formatSize, String fileName) {
+                try {
+                    setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * 录制小视频
+     * @param args
+     * @param callbackContext
+     */
+    public void takeVideo(final JSONArray args, final CallbackContext callbackContext) {
+        WechatRecoderActivity.launchActivity(cordova.getActivity(), 0x02001);
+        videoFileReceiver.setOnVideoGetListener(new VideoFileReceiver.OnVideoGetListener() {
+            @Override
+            public void getVideo(String filePath, String length, String formatSize, String fileName) {
                 try {
                     setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
                 } catch (JSONException e) {

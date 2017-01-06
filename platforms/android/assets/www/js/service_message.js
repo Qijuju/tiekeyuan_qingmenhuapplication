@@ -553,7 +553,7 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         //alert("图片类型"+type);
-        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio') {
+        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio' || messageDetail.messagetype === 'Vedio') {
           messageDetail.message = messageDetail.message + '###0';
         }
         var fileIsImage = "File";
@@ -673,7 +673,7 @@ angular.module('message.services', [])
               // message.isSuccess='true';
               //alert("message"+message)
 
-              if (msgDetail.messagetype != 'Audio') {
+              if (msgDetail.messagetype != 'Audio' && msgDetail.messagetype != 'Vedio') {
                 var savefilepic = {};
                 savefilepic.filepicid = sdata[1];
                 savefilepic._id = msgDetail._id;
@@ -842,7 +842,7 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){       //消息模块
-            if (message.messagetype === "Image" || message.messagetype === "File" || message.messagetype === "Audio") {   //文件或者图片
+            if (message.messagetype === "Image" || message.messagetype === "File" || message.messagetype === "Audio" || message.messagetype === 'Vedio') {   //文件或者图片
               var objectTP = 'I';
               if (message.messagetype === "Image") {
                 objectTP = 'I';
@@ -850,6 +850,8 @@ angular.module('message.services', [])
                 objectTP = 'F';
               } else if (message.messagetype === "Audio") {
                 objectTP = 'A';
+              } else if (message.messagetype === "Vedio") {
+                objectTP = 'V';
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
@@ -892,7 +894,7 @@ angular.module('message.services', [])
 
                 });
 
-            } else if(objectTP === 'I' || objectTP === 'A'){        //当发送消息的为图片时
+            } else if(objectTP === 'I' || objectTP === 'A' || objectTP === 'V'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
@@ -908,7 +910,7 @@ angular.module('message.services', [])
                       $rootScope.$broadcast('msgs.update');
                     }
 
-                    if (arriveMessage.messagetype!="Audio") {
+                    if (arriveMessage.messagetype!="Audio" && arriveMessage.messagetype!="Vedio") {
                       var arrivepic={};
                       arrivepic.filepicid=arriveMessage.message.split('###')[0];
                       arrivepic._id=arriveMessage._id;
@@ -1434,6 +1436,9 @@ angular.module('message.services', [])
       },
       takePhoto:function (success, error) {//拍照方法
         mqtt.takePhoto(success, error);
+      },
+      takeVideo:function(success,error) {//录制小视频
+        mqtt.takeVideo(success, error);
       },
       setOnNetStatusChangeListener:function(success,error) {//网络监听
         // alert("走监听事件了吗");

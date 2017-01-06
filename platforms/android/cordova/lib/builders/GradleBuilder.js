@@ -90,7 +90,9 @@ GradleBuilder.prototype.prepBuildFiles = function() {
     // Write the settings.gradle file.
     fs.writeFileSync(path.join(this.root, 'settings.gradle'),
         '// GENERATED FILE - DO NOT EDIT\n' +
-        'include ":"\n' + settingsGradlePaths.join(''));
+        'include ":"\n' + settingsGradlePaths.join('') +
+        'include ":wechatRecoderVideoLibrary"\n' +
+        'include ":vitamioRecorderLibrary"\n');
     // Update dependencies within build.gradle.
     var buildGradle = fs.readFileSync(path.join(this.root, 'build.gradle'), 'utf8');
     var depsList = '';
