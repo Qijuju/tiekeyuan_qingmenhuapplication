@@ -106,8 +106,8 @@
       <file leaf-file-name="message-group.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+            <state relative-caret-position="174">
+              <caret line="204" column="75" selection-start-line="204" selection-start-column="75" selection-end-line="204" selection-end-column="75" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#ion-nav-buttons#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#ion-nav-buttons#1;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -462,13 +462,6 @@
       <workItem from="1483013476535" duration="40000" />
       <workItem from="1483403581423" duration="1370000" />
     </task>
-    <task id="LOCAL-00065" summary="语音发送正常显示在界面上（接收未做，样式还有问题）">
-      <created>1481017825218</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1481017825218</updated>
-    </task>
     <task id="LOCAL-00066" summary="12.7commit:完成根据id是否相同来判断语音播放还是停止">
       <created>1481076841237</created>
       <option name="number" value="00066" />
@@ -805,11 +798,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483013379645</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="。。。">
+      <created>1483685662397</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1483685662397</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="914878000" />
+    <option name="totallyTimeSpent" value="914933000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -866,7 +866,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="压缩文件、图片完成。bug改完" />
     <MESSAGE value="图片压缩已完成。" />
     <MESSAGE value="图片压缩。" />
     <MESSAGE value="图片压缩已完成" />
@@ -891,7 +890,8 @@
     <MESSAGE value="合并丁代码" />
     <MESSAGE value="合并宋亚代码" />
     <MESSAGE value="12.29commit:视频播放添加默认界面。（第一帧还得继续找）" />
-    <option name="LAST_COMMIT_MESSAGE" value="12.29commit:视频播放添加默认界面。（第一帧还得继续找）" />
+    <MESSAGE value="。。。" />
+    <option name="LAST_COMMIT_MESSAGE" value="。。。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1238,8 +1238,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+        <state relative-caret-position="174">
+          <caret line="204" column="75" selection-start-line="204" selection-start-column="75" selection-end-line="204" selection-end-column="75" />
           <folding>
             <element signature="n#style#0;n#img#0;n#ion-nav-buttons#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#ion-nav-buttons#1;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
