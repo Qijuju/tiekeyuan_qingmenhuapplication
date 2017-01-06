@@ -1,63 +1,54 @@
-<ion-view view-title="群设置">
-  <ion-nav-bar align-title="center" class="bar-stable">
-    <ion-nav-buttons side="left">
-      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backAny()"/>
-      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()">-->
-        <!--返回-->
-      <!--</button>-->
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<ion-view >
   <ion-content  style="background-color:#e5e5e5 " >
-    <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
-      <img src="img/icon_group_conversation.png" width="70px" height="70px" style="margin-top: 30px">
-      <P style="font-size: 18px">{{groupName}}</P>
 
+    <div>
+      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="backAny()"/>
     </div>
-    <div class="row" style="background-color: #ffffff; height: 80px">
 
-      <!--<div class="col" align="center" ng-click="groupNotice()">-->
-        <!--<a>-->
-          <!--<ul>-->
-            <!--<li><img src="img/im_chat_btn_announce.png" width="40" height="40"></li>-->
-            <!--<li>群公告</li>-->
-          <!--</ul>-->
-        <!--</a>-->
-      <!--</div>-->
-      <div class="col" align="center" ng-click="gohistoryMessagea()">
-        <a >
-          <ul>
-            <li><img src="img/message.png" width="40" height="40" > </li>
-            <li style="color: #38ADFF;">消息</li>
-          </ul>
-        </a>
-      </div>
-      <div class="col" align="center" ng-click="groupPicture()">
-        <a >
-          <ul>
-            <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
-            <li style="color: #38ADFF;">图片</li>
-          </ul>
-        </a>
-      </div>
-      <div class="col" align="center" ng-click="groupFile()">
-        <a>
-          <ul>
-            <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
-            <li style="color: #38ADFF;">文件</li>
-          </ul>
-        </a>
-      </div>
-      <div class="col" align="center" ng-click="gogroupLocation()">
-        <a>
-          <ul>
-            <li><img src="img/dingwei2.png" width="40" height="40"></li>
-            <li style="color: #38ADFF;">定位</li>
-          </ul>
-        </a>
+    <div style="height: 255px;background-color: white;text-align: center;width:100%">
+      <img src="img/im_new_group.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
+      <P style="font-size: 18px;margin-top: 10px;text-align-all: center">{{groupName}}</P>
+
+      <div style="position: absolute;top: 185px;"  class="row">
+        <div class="col" align="center" ng-click="gohistoryMessagea()">
+          <a >
+            <ul>
+              <li><img src="img/im_new_chat.png" width="30" height="30"></li>
+              <li style="color: black;">消息</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="groupFile()">
+          <a >
+            <ul>
+              <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
+              <li style="color: black;margin-top: -2px">文件</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="gogroupLocation()">
+          <a >
+            <ul>
+              <li><img src="img/im_new_map.png" width="32" height="32"></li>
+              <li style="color: black;margin-top: -3px">定位</li>
+            </ul>
+          </a>
+        </div>
+
       </div>
     </div>
 
-    <ul class="list " style="margin-bottom: 10px">
+    <ul class="list " style="margin-top: 15px">
+
+      <div ng-click="groupPicture()">
+        <li class="item item-toggle item-button-right" >
+          群图片
+          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
+        </li>
+      </div>
+
       <div ng-click="groupNotice()">
         <li class="item item-toggle item-button-right" >
           群公告
@@ -78,29 +69,19 @@
           <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
         </li>
       </div>
-      <!--<Li>
-        <ion-toggle ng-click="meizuo()">
-          聊天置顶
-        </ion-toggle>
-      </Li>
-      <Li>
-        <ion-toggle ng-click="meizuo()">
-          消息免打扰
-        </ion-toggle>
-      </Li>-->
-      <li class="item" ng-click="clearGroupRS(groupId,groupName)">
-        <a style="color: #38ADFF;">清空聊天记录</a>
-      </li>
     </ul>
-    <div style="margin-bottom: 10px" ng-if="ismygroupaaa=='true'" >
-      <button class="button button-block button-positive" ng-click="dissolveGroup()">
-        解散该群
+
+    <div class="list" style="margin-top: -8px">
+      <button class="button button-block button-stable"  ng-click="clearGroupRS(groupId,groupName)" style="text-align: left">
+        清空聊天记录
       </button>
     </div>
 
-    <div style="margin-top: 10px">
 
+    <div class="list" style="margin-top: -8px;margin-left: 8px;margin-right: 8px" ng-if="ismygroupaaa=='true'">
+      <button class="button button-block button-positive"  ng-click="dissolveGroup()" >
+        解散该群
+      </button>
     </div>
-
   </ion-content>
 </ion-view>

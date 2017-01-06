@@ -134,7 +134,7 @@
         }
         H5lock.prototype.initDom = function(){
             var wrap = document.getElementById(this.container);
-            var str = '<canvas id="canvas" width="380" height="380" style="background-color: #ffffff;display: inline-block;margin-top: 15px;margin-left: -10%"></canvas>';
+            var str = '<canvas id="canvas" width="380" height="380" style="background-color: rgba(255, 255, 255, 0);display: inline-block;margin-top: 15px;margin-left: -10%"></canvas>';
             // wrap.setAttribute('style','position: absolute;top:0;left:0;right:0;bottom:0;');
             wrap.innerHTML = str;
             // document.body.appendChild(wrap);
