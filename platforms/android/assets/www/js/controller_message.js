@@ -12,6 +12,7 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
+      // alert("sdfdsdsf");
       //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
       if($scope.isYuYin === 'true'){
         $scope.isYuYin = 'false';

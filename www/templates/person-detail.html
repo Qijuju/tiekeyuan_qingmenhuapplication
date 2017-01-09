@@ -1,78 +1,118 @@
 <ion-view >
-  <ion-nav-bar class="bar-positive">
-    <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backAny()" >
-        返回
-      </button>
-    </ion-nav-buttons>
+  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
 
-    <ion-nav-buttons side="right">
-      <button  ng-if="!persondsfs.IsAttention" class="button  icon ion-ios-star-outline" style="border: none;" ng-click="addattentiondetail(persondsfs.UserID)">
-      </button>
-      <button  ng-if="persondsfs.IsAttention" class="button  icon ion-ios-star" style="border: none;" ng-click="removeattention(persondsfs.UserID)">
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
-
-  <ion-content overflow-scroll="false">
     <div>
-      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
-        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px">
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px">{{simpleName}}</div>
-        <div><span style="font-size: 18px;color: #ffffff">{{persondsfs.UserName}}</span>&nbsp;<img ng-show="persondsfs.Sex=='男'" src="img/man.png" width="20px" height="20px" ><img ng-show="persondsfs.Sex=='女'" src="img/woman.png" width="20px" height="20px" >
+      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="backAny()"/>
+    </div>
+
+    <div>
+      <img ng-show="persondsfs.Sex=='男'" src="img/im_new_male.png"  style="position: absolute;right:3%;top:3%;width: 22px;height: 22px;" >
+      <img ng-show="persondsfs.Sex=='女'" src="img/im_new_female.png"  style="position: absolute;right:3%;top:3%;width: 22px;height: 22px;" >
+    </div>
+
+    <div style="height: 255px;background-color: white;text-align: center;width:100%">
+      <img src="img/circle6.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
+      <div class="vcenter" style="position: absolute;left: 46%;top: 75px;color: whitesmoke;font-size: 15px" ng-click="godetailaa()">{{simpleName}}</div>
+      <P style="text-align-all: center;font-size: 17px;margin-top: 2px">{{persondsfs.UserName}}</P>
+
+
+      <div style="position: absolute;top: 185px;"  class="row">
+        <div class="col" align="center" ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)">
+          <a >
+            <ul>
+              <li><img src="img/im_new_message.png" width="30" height="30"></li>
+              <li style="color: black;">发消息</li>
+            </ul>
+          </a>
         </div>
+
+        <div class="col" align="center" ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)">
+          <a >
+            <ul>
+              <li><img src="img/im_new_local.png" width="32" height="32"></li>
+              <li style="color: black;margin-top: -3px">保存手机</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+          <a >
+            <ul>
+              <li><img src="img/im_new_phone.png" width="30" height="30"></li>
+              <li style="color: black;margin-top: -2px">打电话</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+          <a >
+            <ul>
+              <li><img src="img/im_new_duanxin.png" width="32" height="32"></li>
+              <li style="color: black;margin-top: -3px">发短信</li>
+            </ul>
+          </a>
+        </div>
+
       </div>
+    </div>
 
-      <ul class="list">
-        <li class="item ">
-          <div   class="detail-top">
-            企业信息
-          </div>
-        </li>
-        <li class="item ">
-          <p>姓名</p>
-          <h2>{{persondsfs.UserName}}</h2>
-        </li>
-        <li class="item">
-          <p>电话</p>
-          <h2>{{persondsfs.Mobile}}</h2>
-        </li>
-        <li class="item item-button-right">
-          <p>单位</p>
-          <h2>{{persondsfs.DeptName}}</h2>
-        </li>
-        <li class="item item-button-right">
-          <p>职位</p>
-          <h2>{{(persondsfs.Duty==0||persondsfs.Duty==""||persondsfs.Duty==undefined) ? "未填写":persondsfs.Duty}}</h2>
+    <div style="margin-top: 20px;margin-left: 15px">
+      <p style="font-size: 14px">个人信息</p>
+    </div>
 
-        </li>
+    <ul class="list" style="margin-top: 15px">
+
+      <li class="item ">
+        <p>部门</p>
+        <h2>{{persondsfs.DeptName}}</h2>
+      </li>
+      <li class="item">
+        <p>职务</p>
+        <h2>{{(persondsfs.Duty==0||persondsfs.Duty==""||persondsfs.Duty==undefined) ? "未填写":persondsfs.Duty}}</h2>
+      </li>
+      <li class="item " ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+        <p>电话</p>
+        <h2>{{persondsfs.Mobile}}</h2>
+        <i class="button button-dark button-clear icon ion-ios-arrow-right" style=" position: absolute;right: -1%;top: 24%"></i>
+      </li>
+    </ul>
+
+    <div >
+      <ul>
+        <Li ng-if="!persondsfs.IsAttention" >
+          <ion-toggle  ng-checked="persondsfs.IsAttention" ng-click="addattentiondetail(persondsfs.UserID)">
+            添加关注
+          </ion-toggle>
+        </Li>
+        <Li ng-if="persondsfs.IsAttention">
+          <ion-toggle  ng-checked="persondsfs.IsAttention" ng-click="removeattention(persondsfs.UserID)">
+            添加关注
+          </ion-toggle>
+        </Li>
 
       </ul>
     </div>
-
   </ion-content>
-  <ion-footer-bar>
-    <div class="tabs tabs-stable tabs-icon-top">
-      <div class="tab-item" ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)">
-        <i class="icon ion-chatbubble-working" ></i>
-        创建聊天
-      </div>
-      <div class="tab-item has-badge" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
-        <i class="icon ion-ios-telephone" ></i>
-        打电话
-      </div>
 
-      <div class="tab-item " ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)">
-        <i class="icon ion-iphone"></i>
-        存到手机
-      </div>
 
-      <div class="tab-item " ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
-        <i class="icon ion-chatbox-working" ></i>
-        发短信
-      </div>
-    </div>
-  </ion-footer-bar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </ion-view>
 
 

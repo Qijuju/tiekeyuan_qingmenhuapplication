@@ -20,7 +20,7 @@
       <div class="col" align="center">
         <a href="#/topContacts" >
           <ul>
-            <li><img src="img/icon_contact_friends.png" width="45" height="45"></li>
+            <li><img src="img/icon_contact_common.png" width="45" height="45"></li>
             <li>常用联系人</li>
           </ul>
         </a>
@@ -42,57 +42,45 @@
         </a>
       </div>
     </div>
-    <div style="float: none;"></div>
-    <!-- 导航部分 END -->
-     <!--公司通讯录 START-->
-    <br/>
-    <div class="background_white">
-      <p class="company_contacts_title padding_10 font_18">公司通讯录</p>
-    </div>
-    <div class="background_white">
-      <ion-list>
-        <ion-item ng-repeat="item in depts" href="#/second/{{item.DeptID}}">
-            <img src="img/icon_org.png" style="vertical-align: bottom" width="27" height="27" style="display: inline;">
-            <strong class="font_16">{{item.DeptName}}</strong>
-        </ion-item>
-      </ion-list>
-    </div>
-    <div class="background_white">
-      <ion-list>
-        <ion-item  href="#/second/{{loginid}}">
-          <img src="img/icon_org.png" style="vertical-align: bottom" width="27" height="27" style="display: inline;">
-          <strong class="font_16">我的部门</strong>
-        </ion-item>
-      </ion-list>
-    </div>
-    <br/>
-    <div class="background_white">
-      <p class="company_contacts_title padding_10 font_18">常用联系人</p>
-    </div>
-    <div ng-controller="ContactsCtrl">
-      <ion-list>
-        <ion-item ng-repeat="item in topContactLists" style="height: 60px" >
+    <ion-item  class=" rj-contact-new"   style="height: 55px;margin-top: 10px"  >
+      <p style="margin-top: 4px;margin-left: -5px;font-size: 18px;color: black;">公司通讯录</p>
+    </ion-item>
 
-          <div class="row">
-            <div class="col-20" align="left" ng-click="simpleSheetShow(item._id,item.phone,item.name,1)">
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==1||item._id.substring((item._id.length-1),item._id.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==2||item._id.substring((item._id.length-1),item._id.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==3||item._id.substring((item._id.length-1),item._id.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==4||item._id.substring((item._id.length-1),item._id.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==5||item._id.substring((item._id.length-1),item._id.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            </div>
-            <div class="col-25" align="center" style="font-size: 18px" ng-click="topGoDetail(item._id)">
-              <p style="font-size: 15px">{{item.name}}</p>
-            </div>
-            <div class="col-35" align="center"  ng-click="topGoDetail(item._id)">
-              <p style="font-size: 15px">{{item.phone}}</p>
-            </div>
+    <div style="margin-top: 15px;">
+      <ion-list>
+        <ion-item  class="item-remove-animate item-avatar rj-contact-new "   style="height: 55px" ng-repeat="item in depts" href="#/second/{{item.DeptID}}" >
+          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
+          <p style="margin-top: 4px;margin-left: -5px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        </ion-item>
+
+        <ion-item  class="item-remove-animate item-avatar rj-contact-new "   style="height: 55px" href="#/second/{{loginid}}" >
+          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
+          <p style="margin-top: 4px;margin-left: -5px;font-size: 17px;color: black;text-align-all: center">我的部门</p>
+        </ion-item>
+
+      </ion-list>
+    </div>
+
+    <div>
+      <ion-item  class="item-remove-animate item-avatar rj-contact-new " style="margin-top: 15px">
+        <img  src="img/icon_contact_common.png" style="width: 38px;height: 38px;align-content: center">
+        <p style="margin-top: 4px;margin-left: -5px;font-size: 17px;color: black;text-align-all: center">常用联系人</p>
+      </ion-item>
+    </div>
+
+    <div style="margin-top: 15px">
+      <ion-list>
+        <ion-item  class="item-remove-animate item-avatar rj-contact-new "  ng-repeat="item in topContactLists" >
+          <div ng-click="simpleSheetShow(item._id,item.phone,item.name,1)">
+            <div ng-if="item._id.substring((item._id.length-1),item._id.length)==1||item._id.substring((item._id.length-1),item._id.length)==9" class="center circle1" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item._id.substring((item._id.length-1),item._id.length)==2||item._id.substring((item._id.length-1),item._id.length)==8" class="center circle2" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item._id.substring((item._id.length-1),item._id.length)==3||item._id.substring((item._id.length-1),item._id.length)==7"  class="center circle3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item._id.substring((item._id.length-1),item._id.length)==4||item._id.substring((item._id.length-1),item._id.length)==6" class="center circle4" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item._id.substring((item._id.length-1),item._id.length)==5||item._id.substring((item._id.length-1),item._id.length)==0" class="center circle5" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
           </div>
-
-
+          <p  ng-click="topGoDetail(item._id)" style="margin-top: 4px;margin-left: 5px;font-size: 15px;text-align-all: center">{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.phone}}</p>
         </ion-item>
       </ion-list>
     </div>
-    <br/>
   </ion-content>
 </ion-view>
