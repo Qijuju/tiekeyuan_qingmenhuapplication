@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+    <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="commit:">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1902215606991163380.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/manifest/tmp/manifestMerger5433057745897239053.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/manifest/tmp/manifestMerger8945852735634165933.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/res/drawable-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/res/drawable-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/res/drawable-xhdpi/ic_launcher.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_message.js" afterPath="$PROJECT_DIR$/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/message-group.html" afterPath="$PROJECT_DIR$/www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/misc.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/test/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/test/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/debug/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/debug/com/yixia/camera/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/release/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/release/com/yixia/camera/R.java" />
     </list>
     <list id="43ed02b5-2044-4264-a46c-baa77f6af7ab" name="Failed commit: Default" comment="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <ignored path="IM.iws" />
@@ -66,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="message-detail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="message-detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4851">
-              <caret line="147" column="104" selection-start-line="147" selection-start-column="54" selection-end-line="147" selection-end-column="104" />
+            <state relative-caret-position="-2491">
+              <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#source#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -88,14 +89,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="message-group.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="message-group.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="204" column="44" selection-start-line="204" selection-start-column="44" selection-end-line="204" selection-end-column="44" />
+            <state relative-caret-position="5874">
+              <caret line="178" column="85" selection-start-line="178" selection-start-column="85" selection-end-line="178" selection-end-column="85" />
               <folding>
                 <element signature="n#style#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#source#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#font#1;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -162,9 +164,9 @@
         <option value="$PROJECT_DIR$/www/js/controller_fileandpicture.js" />
         <option value="$PROJECT_DIR$/platforms/android/cordova/lib/builders/GradleBuilder.js" />
         <option value="$PROJECT_DIR$/www/js/service_message.js" />
-        <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
         <option value="$PROJECT_DIR$/www/js/controller_message.js" />
         <option value="$PROJECT_DIR$/www/templates/message-group.html" />
+        <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
       </list>
     </option>
   </component>
@@ -239,42 +241,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -426,14 +392,9 @@
       <workItem from="1483094117517" duration="801000" />
       <workItem from="1483403640570" duration="12361000" />
       <workItem from="1483490538056" duration="4542000" />
-      <workItem from="1483576733070" duration="3235000" />
-    </task>
-    <task id="LOCAL-00058" summary="12.1commit：发布测试版。">
-      <created>1480555379919</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1480555379920</updated>
+      <workItem from="1483576733070" duration="7686000" />
+      <workItem from="1483663345381" duration="4001000" />
+      <workItem from="1483923085306" duration="1798000" />
     </task>
     <task id="LOCAL-00059" summary="自动更新无bug版">
       <created>1480585781635</created>
@@ -771,11 +732,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483404903572</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="commit:">
+      <created>1483585713114</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1483585713115</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="804643000" />
+    <option name="totallyTimeSpent" value="814893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -787,7 +755,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1006424" sideWeight="0.50316125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38650963" sideWeight="0.49683878" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27408993" sideWeight="0.49789253" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27408993" sideWeight="0.49789253" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3490364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -832,7 +800,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.12commit：1.接收语音模块，播放语音样式bug&#10;2.离开聊天界面时关闭语音&#10;3.注销登陆依然记住用户名或密码" />
     <MESSAGE value="12.12commit：修改icon图标大小，并且语音图标切换。" />
     <MESSAGE value="12.12commit：1.闪退bug&#10;2.样式优化&#10;3.释放发送语音时，黑框去掉&#10;4.若在播放语音过程中，点击录音则将正在播放的语音关闭" />
     <MESSAGE value="。。。" />
@@ -857,7 +824,8 @@
     <MESSAGE value=",,," />
     <MESSAGE value="commit" />
     <MESSAGE value="commit:&#10;小视频及合并宋亚代码后的代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit:&#10;小视频及合并宋亚代码后的代码" />
+    <MESSAGE value="commit:" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit:" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1192,10 +1160,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5874">
+          <caret line="178" column="85" selection-start-line="178" selection-start-column="85" selection-end-line="178" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#source#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#font#1;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#source#0;n#video#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#1;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4851">
-          <caret line="147" column="104" selection-start-line="147" selection-start-column="54" selection-end-line="147" selection-end-column="104" />
+        <state relative-caret-position="-2491">
+          <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#source#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -1208,28 +1199,6 @@
             <element signature="n#style#0;n#source#0;n#video#0;n#div#2;n#span#1;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#video#1;n#div#2;n#span#1;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#a#0;n#div#3;n#div#0;n#div#4;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="204" column="44" selection-start-line="204" selection-start-column="44" selection-end-line="204" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#source#0;n#video#0;n#div#4;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#font#0;n#a#0;n#div#0;n#font#2;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#video#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#source#0;n#video#0;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#video#1;n#div#2;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
