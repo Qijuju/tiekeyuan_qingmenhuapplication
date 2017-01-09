@@ -15,7 +15,7 @@
         <a id="a2" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo}}</a>
       </div>
     </ion-scroll>
-    <div>
+    <!--<div>
       <ion-list>
         <ion-item ng-repeat=" item in departlist"   ng-click="jumpThird(item.DeptID,deptinfo)">
           <div class="row" >
@@ -26,8 +26,8 @@
               <p style="font-size: 18px" align="left">{{item.DeptName}}</p>
             </div>
             </div>
-          <!--<span-->
-          <!--ng-bind="item.DeptName" style="vertical-align: center;"></span>-->
+          &lt;!&ndash;<span&ndash;&gt;
+          &lt;!&ndash;ng-bind="item.DeptName" style="vertical-align: center;"></span>&ndash;&gt;
         </ion-item>
       </ion-list>
       <ion-list>
@@ -46,7 +46,28 @@
           </div>
         </ion-item>
       </ion-list>
+    </div>-->
+    <div>
+      <ion-list>
+        <ion-item ng-repeat=" item in departlist"   ng-click="jumpThird(item.DeptID,deptinfo)" class="item-remove-animate item-avatar rj-contact-new ">
+          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
+          <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        </ion-item>
+        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in userlist"  ng-click="goSecondDetail(item.UserID)">
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 3%;top: 20%;font-size: 14 px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
+        </ion-item>
+      </ion-list>
     </div>
+
+
+
+
+
     <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
     <ion-infinite-scroll  ng-if="secondStatus" on-infinite="loadMoreSecond()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
