@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/drawable-xhdpi/img_btn_press.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/drawable-xhdpi/ms_video_focus_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/drawable-xxhdpi/ms_video_focus_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BuildConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$anim.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$attr.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$color.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$dimen.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$drawable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$id.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$layout.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$string.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R$style.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/CommonCons.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/OnDialogListener.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$Builder.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$5.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/ConvertToUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/IsUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/CircleBackgroundTextView.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jni/armeabi-v7a/libutility.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-hdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-hdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-mdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-mdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-xhdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/drawable-xhdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/incremental/aidl/release/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-hdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-hdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-mdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-mdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-xhdpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-xhdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-xhdpi/img_btn_press.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-xhdpi/ms_video_focus_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/drawable-xxhdpi/ms_video_focus_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_annotations_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_compat_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_ui_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_utils_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_fragment_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_media_compat_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_v4_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger6404568469231296056.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8843777330095362137.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/generated/source/buildConfig/release/com/maiml/wechatrecodervideolibrary/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/generated/source/r/release/com/maiml/wechatrecodervideolibrary/R.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/R.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/anim/push_bottom_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/anim/push_bottom_out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/anim/push_up_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/anim/push_up_out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/anim/record_focus.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/layout/activity_wechat_recoder.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/layout/activity_wechat_recoder2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/res/values/values.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/R.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/aapt/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/values-v11/values-v11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/values-v14/values-v14.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/values/values.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/incremental/mergeAssets/release/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/incremental/mergeResourcesrelease/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/anim/push_bottom_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/anim/push_bottom_out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/anim/push_up_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/anim/push_up_out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/anim/record_focus.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/layout/activity_wechat_recoder.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/layout/activity_wechat_recoder2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/values-v11/values-v11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/values-v14/values-v14.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/res/merged/release/values/values.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/tmp/packageReleaseJar/MANIFEST.MF" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_annotations_24_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_v4_24_0_0.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/gradle.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/settings.gradle" afterPath="$PROJECT_DIR$/platforms/android/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePicture.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePicture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChats.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChats.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCount.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistory.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDept.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedId.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedId.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDept.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContacts.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContacts.java" />
+    </list>
+    <ignored path="IM.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/platforms/" />
+    <ignored path="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/platforms/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="IM" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="relabchengll" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/www/js/controller_notification.js" />
+        <option value="$PROJECT_DIR$/www/templates/mapdetail.html" />
+        <option value="$PROJECT_DIR$/www/js/routes.js" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/templates/test.html" />
+        <option value="$PROJECT_DIR$/www/css/myattention.css" />
+        <option value="$PROJECT_DIR$/www/templates/acount-setting.html" />
+        <option value="$PROJECT_DIR$/www/templates/myinfomation.html" />
+        <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/www/templates/historymessagegroup.html" />
+        <option value="$PROJECT_DIR$/www/js/service_common.js" />
+        <option value="$PROJECT_DIR$/www/lib/ionic/scss/_button.scss" />
+        <option value="$PROJECT_DIR$/www/js/controller_my.js" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/templates/person-detail.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_badge.js" />
+        <option value="$PROJECT_DIR$/www/css/rj.css" />
+        <option value="$PROJECT_DIR$/www/css/tabicon.css" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/templates/tabs.html" />
+        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
+        <option value="$PROJECT_DIR$/www/templates/group-setting.html" />
+        <option value="$PROJECT_DIR$/www/templates/personal-setting.html" />
+        <option value="$PROJECT_DIR$/www/templates/tab-account.html" />
+        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
+        <option value="$PROJECT_DIR$/www/templates/tab-contacts.html" />
+        <option value="$PROJECT_DIR$/www/js/service_message.js" />
+        <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_contacts.js" />
+        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
+        <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
+        <option value="$PROJECT_DIR$/www/templates/message-group.html" />
+        <option value="$PROJECT_DIR$/www/templates/historymessage.html" />
+        <option value="$PROJECT_DIR$/www/templates/newsPage.html" />
+        <option value="$PROJECT_DIR$/www/templates/login.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_login.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+      </GulpfileState>
+    </gulpfiles>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
+    <property name="editor.config.accepted" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\gitlab\IM\www\img" />
+      <recent name="C:\Users\Administrator\gitlab\IM\www\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="" />
+      <created>1478160773331</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1478160773331</updated>
+      <workItem from="1478160774581" duration="11128000" />
+      <workItem from="1478220088367" duration="22023000" />
+      <workItem from="1478480484490" duration="22179000" />
+      <workItem from="1478565829416" duration="25132000" />
+      <workItem from="1478652010359" duration="13919000" />
+      <workItem from="1478739434989" duration="29660000" />
+      <workItem from="1478824758753" duration="21695000" />
+      <workItem from="1479084604983" duration="19084000" />
+      <workItem from="1479170315483" duration="35257000" />
+      <workItem from="1479258083282" duration="35364000" />
+      <workItem from="1479343450487" duration="35906000" />
+      <workItem from="1479438218636" duration="15342000" />
+      <workItem from="1479689031901" duration="10844000" />
+      <workItem from="1479775545740" duration="20658000" />
+      <workItem from="1479861294704" duration="14037000" />
+      <workItem from="1479947641826" duration="23862000" />
+      <workItem from="1480034222060" duration="19389000" />
+      <workItem from="1480293416109" duration="19265000" />
+      <workItem from="1480379483325" duration="16393000" />
+      <workItem from="1480466237208" duration="16750000" />
+      <workItem from="1480552746121" duration="11545000" />
+      <workItem from="1480639347132" duration="19126000" />
+      <workItem from="1480898451654" duration="23148000" />
+      <workItem from="1480984759774" duration="34276000" />
+      <workItem from="1481071428158" duration="24971000" />
+      <workItem from="1481156973790" duration="29849000" />
+      <workItem from="1481243862242" duration="25000000" />
+      <workItem from="1481434315291" duration="283000" />
+      <workItem from="1481503015359" duration="28304000" />
+      <workItem from="1481589300615" duration="27315000" />
+      <workItem from="1481675152437" duration="17569000" />
+      <workItem from="1481761583540" duration="25482000" />
+      <workItem from="1481848418285" duration="25119000" />
+      <workItem from="1481888510782" duration="513000" />
+      <workItem from="1481889041678" duration="27000" />
+      <workItem from="1482107434350" duration="22501000" />
+      <workItem from="1482193719648" duration="25461000" />
+      <workItem from="1482280756668" duration="30269000" />
+      <workItem from="1482367399431" duration="30003000" />
+      <workItem from="1482453407620" duration="2706000" />
+      <workItem from="1482456955598" duration="8811000" />
+      <workItem from="1482479989579" duration="2392000" />
+      <workItem from="1482712811080" duration="28441000" />
+      <workItem from="1482799055613" duration="5878000" />
+      <workItem from="1482885468513" duration="4968000" />
+      <workItem from="1482918175934" duration="2023000" />
+      <workItem from="1482920531988" duration="5871000" />
+      <workItem from="1482971519587" duration="14361000" />
+      <workItem from="1482988151604" duration="9281000" />
+      <workItem from="1483013476535" duration="40000" />
+      <workItem from="1483403581423" duration="1370000" />
+      <workItem from="1483685936125" duration="559000" />
+      <workItem from="1483686573271" duration="10485000" />
+      <workItem from="1483922067500" duration="3584000" />
+    </task>
+    <task id="LOCAL-00071" summary="。。。。">
+      <created>1481095957070</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1481095957070</updated>
+    </task>
+    <task id="LOCAL-00072" summary="录音样式">
+      <created>1481160918942</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1481160918943</updated>
+    </task>
+    <task id="LOCAL-00073" summary="12.8commit：添加群组语音功能，并且修改样式，添加听筒与扬声器模式切换按钮">
+      <created>1481195206640</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1481195206640</updated>
+    </task>
+    <task id="LOCAL-00074" summary="。。。">
+      <created>1481197083489</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1481197083489</updated>
+    </task>
+    <task id="LOCAL-00075" summary="添加页面的模式切换的逻辑">
+      <created>1481199601096</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1481199601096</updated>
+    </task>
+    <task id="LOCAL-00076" summary="模式切换。">
+      <created>1481245070876</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1481245070877</updated>
+    </task>
+    <task id="LOCAL-00077" summary="更改图片样式。">
+      <created>1481253187081</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1481253187082</updated>
+    </task>
+    <task id="LOCAL-00078" summary="。。。">
+      <created>1481254643996</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1481254643996</updated>
+    </task>
+    <task id="LOCAL-00079" summary="语音功能完成、模式切换完成、文件名bug">
+      <created>1481264991151</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1481264991151</updated>
+    </task>
+    <task id="LOCAL-00080" summary="合并宋亚代码">
+      <created>1481266279615</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1481266279615</updated>
+    </task>
+    <task id="LOCAL-00081" summary="合并丁啸代码，并更改样式">
+      <created>1481270814066</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1481270814066</updated>
+    </task>
+    <task id="LOCAL-00082" summary="...">
+      <created>1481506255399</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1481506255399</updated>
+    </task>
+    <task id="LOCAL-00083" summary="12.12commit：1.接收语音模块，播放语音样式bug&#10;2.离开聊天界面时关闭语音&#10;3.注销登陆依然记住用户名或密码">
+      <created>1481511717745</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1481511717745</updated>
+    </task>
+    <task id="LOCAL-00084" summary="12.12commit：修改icon图标大小，并且语音图标切换。">
+      <created>1481528871300</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1481528871300</updated>
+    </task>
+    <task id="LOCAL-00085" summary="12.12commit：1.闪退bug&#10;2.样式优化&#10;3.释放发送语音时，黑框去掉&#10;4.若在播放语音过程中，点击录音则将正在播放的语音关闭">
+      <created>1481535958834</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1481535958834</updated>
+    </task>
+    <task id="LOCAL-00086" summary="。。。">
+      <created>1481537170888</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1481537170888</updated>
+    </task>
+    <task id="LOCAL-00087" summary="12.13commit:1.点击语音按钮关闭键盘&#10;2.根据语音时长改变语音展示长度">
+      <created>1481610351467</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1481610351467</updated>
+    </task>
+    <task id="LOCAL-00088" summary="1.滑动删除时，将当前会话的所有未读消息的状态置为已读即置为1.">
+      <created>1481612036118</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1481612036118</updated>
+    </task>
+    <task id="LOCAL-00089" summary="发送语音点击事件范围扩大的样式修改。">
+      <created>1481626560148</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1481626560148</updated>
+    </task>
+    <task id="LOCAL-00090" summary="拉取孙林松代码(文件bug、文件错误样式)">
+      <created>1481626670191</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1481626670192</updated>
+    </task>
+    <task id="LOCAL-00091" summary="12.13commit：1.文件bug&#10;2.语音样式bug&#10;3.底部未读条数字bug&#10;4.个人资料无数据bug">
+      <created>1481628172564</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1481628172564</updated>
+    </task>
+    <task id="LOCAL-00092" summary="12.14commit：修改压测1000条出现的chatname没值的bug">
+      <created>1481709943899</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1481709943907</updated>
+    </task>
+    <task id="LOCAL-00093" summary="更换gif。">
+      <created>1481782525227</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1481782525240</updated>
+    </task>
+    <task id="LOCAL-00094" summary="12.15版本发布">
+      <created>1481853818583</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1481853818584</updated>
+    </task>
+    <task id="LOCAL-00095" summary="12.15版本发布">
+      <created>1481853894479</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1481853894479</updated>
+    </task>
+    <task id="LOCAL-00096" summary="12.16commit：1.更改item高度&#10;2.底部未读数超过99显示99+&#10;3.按住请说话button框长度宽&#10;4.物理返回键关闭正在播放的语音">
+      <created>1481884020467</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1481884020468</updated>
+    </task>
+    <task id="LOCAL-00097" summary="commit">
+      <created>1482110627121</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1482110627122</updated>
+    </task>
+    <task id="LOCAL-00098" summary="12.19commit：优化:聊天界面发送语音、文件、图片时，返回到主界面，当文件传送完毕时，chatitem更新状态">
+      <created>1482136011940</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1482136011940</updated>
+    </task>
+    <task id="LOCAL-00099" summary="...页面改造前提交">
+      <created>1482201738286</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1482201738287</updated>
+    </task>
+    <task id="LOCAL-00100" summary="更改界面样式">
+      <created>1482456365590</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1482456365590</updated>
+    </task>
+    <task id="LOCAL-00101" summary="拉取孙林松代码(完成图片单击返回，图片缓存展示过滤未下载的图片)">
+      <created>1482458575684</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1482458575685</updated>
+    </task>
+    <task id="LOCAL-00102" summary="12.23commit合并完成，准备测试">
+      <created>1482473248891</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1482473248891</updated>
+    </task>
+    <task id="LOCAL-00103" summary="去掉接收数据的50ms休眠。">
+      <created>1482479707341</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1482479707342</updated>
+    </task>
+    <task id="LOCAL-00104" summary="commit:定版">
+      <created>1482717522944</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1482717522945</updated>
+    </task>
+    <task id="LOCAL-00105" summary="commit:定版">
+      <created>1482718519968</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1482718519968</updated>
+    </task>
+    <task id="LOCAL-00106" summary="commit:定版">
+      <created>1482718578894</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1482718578894</updated>
+    </task>
+    <task id="LOCAL-00107" summary="12.26commit:更改联系人四大模块的图标及item高度">
+      <created>1482733728469</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1482733728469</updated>
+    </task>
+    <task id="LOCAL-00108" summary="12.26commit:未读语音样式及逻辑">
+      <created>1482746700365</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1482746700365</updated>
+    </task>
+    <task id="LOCAL-00109" summary="12.28commit:返回时根据最后一条消息的状态现在在tabmessage界面">
+      <created>1482906215271</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1482906215271</updated>
+    </task>
+    <task id="LOCAL-00110" summary="12.28commit：添加popupwindow的视频快速入口">
+      <created>1482909416009</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1482909416009</updated>
+    </task>
+    <task id="LOCAL-00111" summary="合并丁代码">
+      <created>1482918343889</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1482918343889</updated>
+    </task>
+    <task id="LOCAL-00112" summary="合并宋亚代码">
+      <created>1482920701026</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1482920701026</updated>
+    </task>
+    <task id="LOCAL-00113" summary="12.29commit:视频播放添加默认界面。（第一帧还得继续找）">
+      <created>1483013379645</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1483013379645</updated>
+    </task>
+    <task id="LOCAL-00114" summary="。。。">
+      <created>1483685662397</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1483685662397</updated>
+    </task>
+    <task id="LOCAL-00115" summary="拉取小孙代码。">
+      <created>1483686399885</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1483686399885</updated>
+    </task>
+    <task id="LOCAL-00116" summary="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)">
+      <created>1483687200034</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1483687200034</updated>
+    </task>
+    <task id="LOCAL-00117" summary="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)">
+      <created>1483687877496</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1483687877496</updated>
+    </task>
+    <task id="LOCAL-00118" summary="1.6commit：修改登陆界面字母大小写">
+      <created>1483690719981</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1483690719981</updated>
+    </task>
+    <task id="LOCAL-00119" summary="commit：重新提交代码">
+      <created>1484041746653</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1484041746654</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="931030000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="图片" />
+    <MESSAGE value="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
+    <MESSAGE value="。。。。" />
+    <MESSAGE value="vv" />
+    <MESSAGE value=",,," />
+    <MESSAGE value="commit" />
+    <MESSAGE value="12.19commit：优化:聊天界面发送语音、文件、图片时，返回到主界面，当文件传送完毕时，chatitem更新状态" />
+    <MESSAGE value="...页面改造前提交" />
+    <MESSAGE value="更改界面样式" />
+    <MESSAGE value="拉取孙林松代码(完成图片单击返回，图片缓存展示过滤未下载的图片)" />
+    <MESSAGE value="12.23commit合并完成，准备测试" />
+    <MESSAGE value="去掉接收数据的50ms休眠。" />
+    <MESSAGE value="commit:定版" />
+    <MESSAGE value="12.26commit:更改联系人四大模块的图标及item高度" />
+    <MESSAGE value="12.26commit:未读语音样式及逻辑" />
+    <MESSAGE value="12.28commit:返回时根据最后一条消息的状态现在在tabmessage界面" />
+    <MESSAGE value="12.28commit：添加popupwindow的视频快速入口" />
+    <MESSAGE value="合并丁代码" />
+    <MESSAGE value="合并宋亚代码" />
+    <MESSAGE value="12.29commit:视频播放添加默认界面。（第一帧还得继续找）" />
+    <MESSAGE value="。。。" />
+    <MESSAGE value="拉取小孙代码。" />
+    <MESSAGE value="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)" />
+    <MESSAGE value="1.6commit：修改登陆界面字母大小写" />
+    <MESSAGE value="commit：重新提交代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit：重新提交代码" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/im1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/ionic.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/splash.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/ic_actbar_more.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_list.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/creategroupicon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_items.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="654" column="27" selection-start-line="654" selection-start-column="27" selection-end-line="654" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/jiantou.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-hdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-ldpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-xhdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-xxxhdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scss/ionic.app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/keybroad.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/keyborad.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_tabs.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="523" column="3" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/personal_phone.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/rj.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="89" column="60" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_grid.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/dash.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/secondStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/localContact.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tabs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="57" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/group-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="80" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-contacts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_bar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4104">
+          <caret line="32" column="19801" selection-start-line="32" selection-start-column="19784" selection-end-line="32" selection-end-column="19801" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13515">
+          <caret line="795" column="27" selection-start-line="795" selection-start-column="27" selection-end-line="795" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/person-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2686">
+          <caret line="158" column="29" selection-start-line="158" selection-start-column="29" selection-end-line="158" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28220">
+          <caret line="1660" column="26" selection-start-line="1660" selection-start-column="26" selection-end-line="1660" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/scan.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js___jb_old___" />
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js___jb_tmp___" />
+    <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6562">
+          <caret line="386" column="2" selection-start-line="386" selection-start-column="2" selection-end-line="386" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5610">
+          <caret line="330" column="4" selection-start-line="330" selection-start-column="4" selection-end-line="332" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9078">
+          <caret line="534" column="9" selection-start-line="534" selection-start-column="9" selection-end-line="534" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4233">
+          <caret line="249" column="113" selection-start-line="249" selection-start-column="113" selection-end-line="249" selection-end-column="113" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-spinner#0;n#font#0;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#font#0;n#p#0;n#span#0;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/personal-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/historymessage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="124" selection-start-line="27" selection-start-column="124" selection-end-line="27" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/historymessagegroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3111">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#p#0;n#span#1;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-spinner#0;n#font#0;n#p#0;n#span#1;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#font#0;n#p#0;n#span#1;n#div#2;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/newsPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="470" column="38" selection-start-line="470" selection-start-column="38" selection-end-line="470" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

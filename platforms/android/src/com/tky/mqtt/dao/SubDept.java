@@ -1,6 +1,5 @@
 package com.tky.mqtt.dao;
 
-import com.tky.mqtt.base.BaseDao;
 import com.tky.mqtt.dao.DaoSession;
 import de.greenrobot.dao.DaoException;
 
@@ -8,7 +7,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table SUB_DEPT.
  */
-public class SubDept extends BaseDao implements java.io.Serializable {
+public class SubDept implements java.io.Serializable {
 
     private String _id;
     private String name;

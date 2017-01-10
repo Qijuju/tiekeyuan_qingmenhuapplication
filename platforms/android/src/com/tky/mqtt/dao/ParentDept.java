@@ -1,8 +1,6 @@
 package com.tky.mqtt.dao;
 
 import java.util.List;
-
-import com.tky.mqtt.base.BaseDao;
 import com.tky.mqtt.dao.DaoSession;
 import de.greenrobot.dao.DaoException;
 
@@ -10,7 +8,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table PARENT_DEPT.
  */
-public class ParentDept extends BaseDao implements java.io.Serializable {
+public class ParentDept implements java.io.Serializable {
 
     private String _id;
     private String name;

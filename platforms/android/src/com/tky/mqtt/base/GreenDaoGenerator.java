@@ -32,7 +32,7 @@ public class GreenDaoGenerator {
         addModuleCount(schema);
         addSlowNotifyLists(schema);
         //addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "E:/jishitong/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/regitlab/IM/platforms/android/src");//项目绝对路径
     }
 
 
