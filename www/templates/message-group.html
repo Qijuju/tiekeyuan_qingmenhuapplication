@@ -136,9 +136,10 @@
                 <!--ng-if="msg.messagetype === 'Text' || msg.messagetype === 'normal'"></span>-->
           <!---展示用户头像--->
           <div class="circle6"
-               style=" position: absolute;left: 86%;top: 10px;font-size: 14px;text-align: center;padding-top: 9px;">
+               style=" position: absolute;left: 86%;top: 5px;font-size: 14px;text-align: center;padding-top: 9px;" ng-if="!picyoumeiyoumsg">
             {{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}
           </div>
+          <img style="position: absolute;left: 86%;top: 5px" ng-if="picyoumeiyoumsg" src="{{securlpicmsg}}" class="yuanjiao4">
 
           <!---根据消息类型区分--->
            <span>

@@ -3,6 +3,7 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location) {
+
     $scope.$on('sendprogress.update', function (event) {
       $scope.$apply(function () {
         // $ToastUtils.showToast("进度进行中~~~",null,null);
@@ -58,7 +59,13 @@ angular.module('message.controllers', [])
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
 
+   //取出头像url
+    alert($scope.userId)
+    $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
 
+      alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+    },function (err) {
+    });
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/messageDetail/'+$scope.userId+'/'+$scope.viewtitle+'/'+$scope.groupType+'/'+$scope.longitude+'/'+$scope.latitude)){
@@ -2163,6 +2170,20 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+    $scope.picyoumeiyoumsg=false;
+    $scope.p=$rootScope.securlpicaaa;
+
+    if($scope.p==null|| $scope.p.length==0|| $scope.p==undefined){
+      $scope.picyoumeiyoumsg=false;
+    }else {
+      $scope.picyoumeiyoumsg=true;
+      // alert($scope.p)
+      // $scope.$apply(function () {
+        $scope.securlpicmsg= $scope.p
+      // })
+    }
+
+
     $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
@@ -4032,6 +4053,25 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
+
+    $scope.$on('$ionicView.enter', function () {
+      $mqtt.getUserInfo(function (msg) {
+        $api.getHeadPic(msg.userID,"60",function (srcurl) {
+          $rootScope.securlpicaaa = srcurl;
+          // alert( $rootScope.securlpicaaa)
+        },function (error) {
+
+        })
+
+      }, function (msg) {
+        // $ToastUtils.showToast(msg)
+      });
+
+    });
+
+
+
+
     $api.getWelcomePic($scope.ID,"960",function (srcurl) {
       $mqtt.save('welcomePic', srcurl);
       // $ToastUtils.showToast(srcurl)
@@ -5132,13 +5172,16 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory,$api) {
 
 
 
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方名字
+
+
+
  // alert("带过来的数据"+$scope.userId+$scope.userName+$stateParams.sessionid);
     $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
     $scope.$on('personDetail.update', function (event) {
