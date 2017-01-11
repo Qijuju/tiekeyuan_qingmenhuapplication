@@ -37,6 +37,10 @@ exports.updateUserInfo = function(newUserInfoObj, success, error) {//newUserInfo
 exports.getHeadPic = function(picUserID, picSize, success, error) {
   exec(success, error, "ThriftApiClient", "getHeadPic", [picUserID, picSize]);
 };
+exports.getOtherHeadPic = function(picUserID, picSize, success, error) {
+  exec(success, error, "ThriftApiClient", "getOtherHeadPic", [picUserID, picSize]);
+};
+
 exports.setHeadPic = function(filePath,success, error) {
   exec(success, error, "ThriftApiClient", "setHeadPic", [filePath]);
 };

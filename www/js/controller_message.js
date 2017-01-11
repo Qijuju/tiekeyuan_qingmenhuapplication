@@ -12,6 +12,7 @@ angular.module('message.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
     $scope.a=0;
     $scope.gengduo=function () {
+      // alert("sdfdsdsf");
       //当点击更多按钮时，将语音模式切换成输入法模式(微信、钉钉)
       if($scope.isYuYin === 'true'){
         $scope.isYuYin = 'false';
@@ -1116,6 +1117,11 @@ angular.module('message.controllers', [])
         }
       });
 
+    };
+
+    //判断文件是否是视频格式
+    $scope.isMsgVideo = function (filePath) {
+      return $mqtt.isVideo(filePath);
     };
 
     $scope.backFirstMenu = function (groupType) {
@@ -3971,6 +3977,11 @@ angular.module('message.controllers', [])
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
       });
+    };
+
+    //判断文件是否是视频格式
+    $scope.isGroupVideo = function (filePath) {
+      return $mqtt.isVideo(filePath);
     };
 
     //发送图片的时候打开图片查看大图

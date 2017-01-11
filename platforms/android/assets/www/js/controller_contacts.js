@@ -1557,7 +1557,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao) {
 
     // Setup the loader
     $ionicLoading.show({
@@ -1571,6 +1571,25 @@ angular.module('contacts.controllers', [])
 
 
     $scope.userId = $stateParams.userId;
+    $scope.picyoumeiyoudet=false;
+
+    $api.getOtherHeadPic($scope.userId,"60",function (srcurl) {
+      $scope.picyoumeiyoudet=true;
+      $scope.securlpicdet=srcurl;
+      var otherHeadPicItem={};
+      otherHeadPicItem.id=$scope.userId;
+      otherHeadPicItem.picurl=$scope.securlpicdet;
+      $greendao.saveObj('OtherHeadPicService',otherHeadPicItem,function (succ) {
+        alert(succ.length);
+      },function (err) {
+      });
+      // alert(srcurl)
+      // alert( $rootScope.securlpicaaa)
+    },function (error) {
+      $scope.picyoumeiyoudet=false;
+      // alert(error)
+    })
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {

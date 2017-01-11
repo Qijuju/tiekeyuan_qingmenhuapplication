@@ -1467,6 +1467,17 @@ angular.module('message.services', [])
       },
       getProxyMode:function(success) {//获取距离感应器模式（0为正常模式，1为听筒模式）
         mqtt.getProxyMode(success);
+      },
+      isVideo:function(filePath) {//filePath：文件全路径  判断文件是否是视频格式
+        if (filePath === null || filePath.indexOf('.') <= 0) {
+          return false;
+        }
+        var suffix = filePath.substring(filePath.lastIndexOf('.'), filePath.length).toLowerCase();
+        return suffix === '.avi' || suffix === '.mp4' || suffix === '.wmv' || suffix === '.rmvb' ||
+        suffix === '.rm' || suffix === '.mpg' || suffix === '.mlv' || suffix === '.mpe' ||
+          suffix === '.mpeg' || suffix === '.dat' || suffix === '.mpe' || suffix === '.mpeg' ||
+          suffix === '.m2v' || suffix === '.vob' || suffix === '.asf' || suffix === '.mov' ||
+          suffix === '.divx' || suffix === '.wmf' || suffix === '.ts';
       }
 
 

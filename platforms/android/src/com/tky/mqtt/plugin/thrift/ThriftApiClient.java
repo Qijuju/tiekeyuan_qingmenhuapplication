@@ -27,6 +27,7 @@ import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
+import com.tky.mqtt.plugin.thrift.callback.GetOthersHeadPicCallback;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
@@ -812,6 +813,27 @@ public class ThriftApiClient extends CordovaPlugin {
             String picUserID = args.getString(0);//查询的是谁的图片
             String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
             SystemApi.getHeadPic(getUserID(), picUserID, picSize, new GetHeadPicCallback(callbackContext));
+        } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        } catch (IOException e) {
+            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 获取他人头像
+     * @param args
+     * @param callbackContext
+     */
+    public void getOtherHeadPic(final JSONArray args, final CallbackContext callbackContext){
+        try {
+            String picUserID = args.getString(0);//查询的是谁的图片
+            String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
+            SystemApi.getHeadPic(getUserID(), picUserID, picSize, new GetOthersHeadPicCallback(callbackContext));
         } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
