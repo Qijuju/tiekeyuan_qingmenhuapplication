@@ -23,7 +23,7 @@
       </div>
     </ion-scroll>
 
-    <div  class="item-style">
+    <!--<div  class="item-style">
       <ion-list>
         <ion-item ng-repeat=" item in eightDept"  >
           <div class="row" >
@@ -52,7 +52,28 @@
           </div>
         </ion-item>
       </ion-list>
+    </div>-->
+
+    <div>
+      <ion-list>
+        <ion-item ng-repeat=" item in eightDept"   ng-click="jumpSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5)"  class="item-remove-animate item-avatar rj-contact-new ">
+          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
+          <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        </ion-item>
+        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in eightUser"  ng-click="goEighthDetail(item.UserID)" >
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 3%;top: 20%;font-size: 14 px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
+        </ion-item>
+      </ion-list>
     </div>
+
+
+
+
     <ion-infinite-scroll  ng-if="eighthStatus" on-infinite="loadEighthMore()" distance="1%" ></ion-infinite-scroll>
 
   </ion-content>

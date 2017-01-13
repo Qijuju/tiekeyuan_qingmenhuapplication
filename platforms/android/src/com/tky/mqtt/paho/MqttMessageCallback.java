@@ -11,6 +11,7 @@ import com.ionicframework.im366077.R;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -24,6 +25,7 @@ import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.mqtt.services.SystemMsgService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -289,9 +291,16 @@ public class MqttMessageCallback implements MqttCallback {
                                 messages.setMessagetype(map.getMessagetype());
                                 messages.setIsFailure(map.getIsFailure());
                                 messages.setIsDelete(map.getIsDelete());
-                                messages.setImgSrc(map.getImgSrc());
                                 messages.setUsername(map.getUsername());
                                 messages.setSenderid(map.getSenderid());
+                                OtherHeadPicService otherHeadPicService=OtherHeadPicService.getInstance(UIUtils.getContext());
+                                List<Otherpichead> otherpicheadList=otherHeadPicService.queryData("where id =?",map.getSenderid());
+                                if(otherpicheadList.size() == 0){
+                                    messages.setImgSrc("");
+                                }else{
+                                    messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+                                }
                                 map.setSenderid(map.getSenderid());
                                 messages.setPlatform(map.getPlatform());
                                 messages.setWhen(map.getWhen());

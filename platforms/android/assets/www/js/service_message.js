@@ -369,7 +369,15 @@ angular.module('message.services', [])
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
-        messageDetail.imgSrc='';
+        alert($rootScope.securlpicaaa+";;1")
+        if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
+          alert($rootScope.securlpicaaa+";;2")
+          messageDetail.imgSrc='';
+        }else{
+          alert($rootScope.securlpicaaa+";;3")
+          messageDetail.imgSrc=$rootScope.securlpicaaa;
+          alert($rootScope.imgSrc+";;4")
+        }
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
@@ -747,10 +755,17 @@ angular.module('message.services', [])
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
           arriveMessage.isDelete=message.isDelete;
-          arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message.senderid;
-          // alert("监听消息类型"+arriveMessage.senderid);
+          $greendao.queryData('OtherHeadPicService','where id =?',arriveMessage.senderid,function (data) {
+            if(data[0].picurl==null||data[0].picurl==undefined||data[0].picurl.length==0){
+              arriveMessage.imgSrc=message.imgSrc;
+            }else {
+              arriveMessage.imgSrc=data[0].picurl;
+            }
+          },function (err) {
+            arriveMessage.imgSrc=message.imgSrc;
+          });
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;
@@ -1240,7 +1255,14 @@ angular.module('message.services', [])
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
         messageReal.isDelete='false';
-        messageReal.imgSrc='';
+
+        if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
+          messageReal.imgSrc='';
+        }else{
+          var imssrc=$rootScope.securlpicaaa;
+          messageReal.imgSrc=imssrc;
+        }
+        // messageReal.imgSrc='';
         messageReal.username=localuser;
         messageReal.senderid=localuserId;
         messageReal.isread='1';
@@ -1315,6 +1337,7 @@ angular.module('message.services', [])
               }, function (err) {
               });
             }else{
+              alert(message.imgSrc+"+++")
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
                 // alert("群组消息保存成功");
