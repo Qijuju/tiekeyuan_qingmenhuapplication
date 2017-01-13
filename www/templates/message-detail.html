@@ -82,12 +82,14 @@
           <!---时间戳--->
           <div >
             <p style="height:auto;width:50px;background-color:lightgrey;margin:3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='1' " align="center">{{msgSingle.when | date:'HH:mm'}}</p>
-            <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' "align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
+            <p style="height:auto;width:150px;background-color: lightgrey;margin: 3px auto;color: #FFFFFF;border-radius: 3px;" ng-if="msgSingle.istime === 'true' && msgSingle.daytype ==='0' " align="center">{{msgSingle.when | date:'yyyy-MM-dd HH:mm'}}</p>
           </div>
 
-
+          <div style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px" ng-if="otheryoumeiyou" ng-click="godetail(msgSingle.sessionid)">
+          <img  src="{{otherheadpicurl}}" class="yuanjiao4">
+          </div>
           <div
-            ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9"
+            ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)"
             class=" circle1" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)"> {{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
@@ -95,7 +97,7 @@
 
 
           <div
-            ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8"
+            ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8)&&(!otheryoumeiyou)"
             class=" circle2" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)"> {{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
@@ -103,7 +105,7 @@
 
 
           <div
-            ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7"
+            ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7)&&(!otheryoumeiyou)"
             class=" circle3" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">  {{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
@@ -111,7 +113,7 @@
 
 
           <div
-            ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6"
+            ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6)&&(!otheryoumeiyou)"
             class=" circle4" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
@@ -119,7 +121,7 @@
 
 
           <div
-            ng-if="msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0"
+            ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)"
             class=" circle5" style=" position: absolute;left: 3%;font-size: 14px;padding-top: 9px"
             ng-click="godetail(msgSingle.sessionid)">{{msgSingle.username.length > 2 ?
             msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}
