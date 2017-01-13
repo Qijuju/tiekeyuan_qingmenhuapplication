@@ -32,7 +32,7 @@ public class GreenDaoGenerator {
         addModuleCount(schema);
         addSlowNotifyLists(schema);
         //addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "D:/impro/final4/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -117,6 +117,7 @@ public class GreenDaoGenerator {
         subDept.addStringProperty("isactive"); //1代表激活 2 代表未激活  3 代表部门没有这个字段、
         subDept.addStringProperty("parentname"); //父部门的名称
         subDept.addIntProperty("pagesize");//需要页数
+        subDept.addStringProperty("isFailure");
         subDept.addIntProperty("childcount");//1 如果是部门有数 如果是人的话 设置为空
 
 

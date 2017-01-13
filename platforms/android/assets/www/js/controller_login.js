@@ -229,7 +229,7 @@ angular.module('login.controllers', [])
   })
 
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
-    document.getElementById("imgaaa").style.height=(window.screen.height - 24)+'px';
+    document.getElementById("imgaaa").style.height=(window.screen.height)+'px';
     document.getElementById("imgaaa").style.width=(window.screen.width)+'px';
     var passworda="";
     var loginpageaa=""

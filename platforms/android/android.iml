@@ -93,18 +93,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="greendao-1.3.7" level="project" />
     <orderEntry type="library" exported="" name="org.eclipse.paho.client.mqttv3-1.0.1-20141007.040217-92" level="project" />
-<<<<<<< HEAD
     <orderEntry type="library" exported="" name="support-core-ui-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="freemarker-2.3.20" level="project" />
     <orderEntry type="library" exported="" name="greendao-generator-1.3.1" level="project" />
-=======
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="freemarker-2.3.20" level="project" />
-    <orderEntry type="library" exported="" name="greendao-generator-1.3.1" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-24.0.0" level="project" />
-    <orderEntry type="library" exported="" name="rxjava-1.1.6" level="project" />
->>>>>>> 235c570c7ed8b012a0262f5d57325fde97062863
     <orderEntry type="library" exported="" name="okhttp-2.6.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.1.6" level="project" />
     <orderEntry type="library" exported="" name="rxandroid-1.1.0" level="project" />
@@ -128,6 +120,7 @@
     <orderEntry type="library" exported="" name="support-core-utils-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="imDataCast" level="project" />
     <orderEntry type="library" exported="" name="support-compat-25.0.1" level="project" />
+    <orderEntry type="module" module-name="wechatRecoderVideoLibrary" exported="" />
     <orderEntry type="module" module-name="CordovaLib" exported="" />
   </component>
 </module>
