@@ -45,6 +45,18 @@
   position: absolute;
   text-align: center;
 }
+.circle1test {
+  /*background: none repeat scroll 0 0 #02b5bb;*/
+  background-image:url(../img/circle1.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  width: 38px;
+  height: 38px;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*padding: 9px 6px;*/
+}
 
 .circle2{
   /*background: none repeat scroll 0 0 #9d55b8;*/

@@ -369,14 +369,14 @@ angular.module('message.services', [])
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
-        alert($rootScope.securlpicaaa+";;1")
+        // alert($rootScope.securlpicaaa+";;1")
         if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
-          alert($rootScope.securlpicaaa+";;2")
+          // alert($rootScope.securlpicaaa+";;2")
           messageDetail.imgSrc='';
         }else{
-          alert($rootScope.securlpicaaa+";;3")
+          // alert($rootScope.securlpicaaa+";;3")
           messageDetail.imgSrc=$rootScope.securlpicaaa;
-          alert($rootScope.imgSrc+";;4")
+          // alert($rootScope.imgSrc+";;4")
         }
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
@@ -1337,7 +1337,7 @@ angular.module('message.services', [])
               }, function (err) {
               });
             }else{
-              alert(message.imgSrc+"+++")
+              // alert(message.imgSrc+"+++")
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
                 // alert("群组消息保存成功");
