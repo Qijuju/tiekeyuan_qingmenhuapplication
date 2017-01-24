@@ -3,6 +3,7 @@
  */
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location) {
+
     $scope.$on('sendprogress.update', function (event) {
       $scope.$apply(function () {
         // $ToastUtils.showToast("进度进行中~~~",null,null);
@@ -57,6 +58,21 @@ angular.module('message.controllers', [])
     // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
+
+    $scope.otheryoumeiyou=false;
+   //取出头像url
+    $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+      if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+        $scope.otheryoumeiyou=false;
+      }else {
+        $scope.otheryoumeiyou=true;
+        $scope.otherheadpicurl=succ[0].picurl;
+      }
+
+      // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+    },function (err) {
+      $scope.otheryoumeiyou=false;
+    });
 
 
 
@@ -257,13 +273,13 @@ angular.module('message.controllers', [])
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 chatitem.chatName = data[0].chatName;
-                chatitem.imgSrc = $scope.imgSrc;
                 chatitem.lastText = $scope.lastText;
                 chatitem.count = '0';
                 chatitem.isDelete = data[0].isDelete;
                 chatitem.lastDate = $scope.lastDate;
                 chatitem.chatType = data[0].chatType;
                 chatitem.senderId = $scope.srcId;//发送者id
+                chatitem.imgSrc = $scope.imgSrc;
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
@@ -2163,6 +2179,23 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+    $scope.picyoumeiyoumsg=false;
+    $scope.p=$rootScope.securlpicaaa;
+    $scope.otheryoumeiyougro=false;
+    if($scope.p==null|| $scope.p.length==0|| $scope.p==undefined){
+      $scope.picyoumeiyoumsg=false;
+    }else {
+      $scope.picyoumeiyoumsg=true;
+      // alert($scope.p)
+      // $scope.$apply(function () {
+        $scope.securlpicmsg= $scope.p
+      // })
+    }
+
+
+
+
+
     $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
@@ -2307,6 +2340,7 @@ angular.module('message.controllers', [])
                         messaegeitem.isFailure=data[i].isFailure;
                         messaegeitem.isDelete=data[i].isDelete;
                         messaegeitem.imgSrc=data[i].imgSrc;
+
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
                         messaegeitem.isSuccess=data[i].isSuccess;
@@ -2440,6 +2474,7 @@ angular.module('message.controllers', [])
                       messaegeitem.isFailure=data[i].isFailure;
                       messaegeitem.isDelete=data[i].isDelete;
                       messaegeitem.imgSrc=data[i].imgSrc;
+
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
@@ -2600,7 +2635,7 @@ angular.module('message.controllers', [])
       // alert("最高毫秒值"+millions);
       $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
-      // alert("看时间"+$mqtt.getDanliao()[$scope.msgs.length-1].when);
+      
       if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
         // alert("群聊改时间进来了吗");
         for(var i=0;i<data.length;i++){
@@ -2804,6 +2839,7 @@ angular.module('message.controllers', [])
                   messaegeitem.isFailure=data[i].isFailure;
                   messaegeitem.isDelete=data[i].isDelete;
                   messaegeitem.imgSrc=data[i].imgSrc;
+
                   messaegeitem.username=data[i].username;
                   messaegeitem.senderid=data[i].senderid;
                   messaegeitem.isSuccess=data[i].isSuccess;
@@ -2925,6 +2961,7 @@ angular.module('message.controllers', [])
                       messaegeitem.isFailure=data[i].isFailure;
                       messaegeitem.isDelete=data[i].isDelete;
                       messaegeitem.imgSrc=data[i].imgSrc;
+
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
@@ -3059,6 +3096,7 @@ angular.module('message.controllers', [])
                     messaegeitem.isFailure=data[i].isFailure;
                     messaegeitem.isDelete=data[i].isDelete;
                     messaegeitem.imgSrc=data[i].imgSrc;
+
                     messaegeitem.username=data[i].username;
                     messaegeitem.senderid=data[i].senderid;
                     messaegeitem.isSuccess=data[i].isSuccess;
@@ -3369,6 +3407,7 @@ angular.module('message.controllers', [])
                       messaegeitem.isFailure=data[i].isFailure;
                       messaegeitem.isDelete=data[i].isDelete;
                       messaegeitem.imgSrc=data[i].imgSrc;
+
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
@@ -4032,6 +4071,25 @@ angular.module('message.controllers', [])
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
     $scope.GROUP=$stateParams.grouptype;
+
+    $scope.$on('$ionicView.enter', function () {
+      $mqtt.getUserInfo(function (msg) {
+        $api.getHeadPic(msg.userID,"60",function (srcurl) {
+          $rootScope.securlpicaaa = srcurl;
+          // alert( $rootScope.securlpicaaa)
+        },function (error) {
+
+        })
+
+      }, function (msg) {
+        // $ToastUtils.showToast(msg)
+      });
+
+    });
+
+
+
+
     $api.getWelcomePic($scope.ID,"960",function (srcurl) {
       $mqtt.save('welcomePic', srcurl);
       // $ToastUtils.showToast(srcurl)
@@ -4239,6 +4297,7 @@ angular.module('message.controllers', [])
                         messaegeitem.isFailure=data[i].isFailure;
                         messaegeitem.isDelete=data[i].isDelete;
                         messaegeitem.imgSrc=data[i].imgSrc;
+
                         messaegeitem.username=data[i].username;
                         messaegeitem.senderid=data[i].senderid;
                         messaegeitem.isSuccess=data[i].isSuccess;
@@ -5132,13 +5191,16 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory) {
+  .controller('SettingAccountCtrl',function ($scope,$state,$stateParams,$greendao,$ToastUtils,$contacts,$ionicActionSheet,$chatarr,$rootScope,$GridPhoto,$timeout,$ionicHistory,$api) {
 
 
 
     //取出聊天界面带过来的id和ssid
     $scope.userId=$stateParams.id;//对方用户id
     $scope.userName=$stateParams.ssid;//对方名字
+
+
+
  // alert("带过来的数据"+$scope.userId+$scope.userName+$stateParams.sessionid);
     $contacts.personDetail($scope.userId,$timeout,$ToastUtils);
     $scope.$on('personDetail.update', function (event) {

@@ -160,6 +160,9 @@ angular.module('common.services', [])
       getHeadPic: function (picUserID, picSize, success, error) {
         api.getHeadPic(picUserID, picSize, success, error);
       },
+      getOtherHeadPic: function (picUserID, picSize, success, error) {
+        api.getOtherHeadPic(picUserID, picSize, success, error);
+      },
       setHeadPic: function (success, error) {
         api.setHeadPic(success, error);
       },

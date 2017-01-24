@@ -31,8 +31,9 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
+        addOtherpichead(schema);
         //addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/gitlab/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -273,4 +274,12 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("name");//应用名
     }
 
+    /**
+     * 他人的头像
+     */
+    private static void addOtherpichead(Schema schema) {
+        Entity msgHistory=schema.addEntity("Otherpichead");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("picurl");//图片地址
+    }
 }

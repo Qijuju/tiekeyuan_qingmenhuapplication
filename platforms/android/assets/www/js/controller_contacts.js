@@ -1557,7 +1557,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao) {
 
     // Setup the loader
     $ionicLoading.show({
@@ -1571,6 +1571,123 @@ angular.module('contacts.controllers', [])
 
 
     $scope.userId = $stateParams.userId;
+    $scope.picyoumeiyoudet=false;
+
+    $api.getOtherHeadPic($scope.userId,"60",function (srcurl) {
+      $scope.picyoumeiyoudet=true;
+
+      $scope.securlpicdet=srcurl;
+
+      $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
+        if(data[0].count>0){
+          // alert("进来查询了吗？"+data.length);
+          var chatitem = {};
+          chatitem.id = data[0].id;
+          chatitem.chatName = data[0].chatName;
+          chatitem.imgSrc = data[0].imgSrc;
+          chatitem.lastText = data[0].lastText;
+          chatitem.count = '0';
+          chatitem.isDelete = data[0].isDelete;
+          chatitem.lastDate = data[0].lastDate;
+          chatitem.chatType = data[0].chatType;
+          // alert("chatype"+chatitem.chatType);
+          chatitem.senderId = data[0].senderId;//发送者id
+          chatitem.senderName = data[0].senderName;//发送者名字
+          chatitem.daytype=data[0].daytype;
+          chatitem.isSuccess=data[0].isSuccess;
+          chatitem.isFailure=data[0].isFailure;
+          chatitem.messagetype=data[0].messagetype;
+          chatitem.isRead=data[0].isRead;
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+            $greendao.queryDataByIdAndIsread($scope.userId,'0',function (data) {
+              for(var i=0;i<data.length;i++){
+                // alert("进入for循环的长度"+data.length);
+                var messaegeitem={};
+                messaegeitem._id=data[i]._id;
+                messaegeitem.sessionid=data[i].sessionid;
+                messaegeitem.type=data[i].type;
+                // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+                messaegeitem.from=data[i].from;
+                messaegeitem.message=data[i].message;
+                messaegeitem.messagetype=data[i].messagetype;
+                messaegeitem.platform=data[i].platform;
+                messaegeitem.when=data[i].when;
+                messaegeitem.isFailure=data[i].isFailure;
+                messaegeitem.isDelete=data[i].isDelete;
+                messaegeitem.imgSrc=srcurl;
+                messaegeitem.username=data[i].username;
+                messaegeitem.senderid=data[i].senderid;
+                messaegeitem.isSuccess=data[i].isSuccess;
+                messaegeitem.istime=data[i].istime;
+                messaegeitem.daytype=data[i].daytype;
+                if(data[i].isread ==='0'){
+                  if(data[i].messagetype != 'Audio'){
+                    // alert("拿到库里的消息阅读状态"+data[i].isread);
+                    data[i].isread ='1';
+                    messaegeitem.isread=data[i].isread;
+                    // alert('hellonihaozhoujielun' + messaegeitem._id);
+                    // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                    $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                      // alert("保存成功");
+
+                    },function (err) {
+                    });
+                  }
+                }
+              }
+            },function (err) {
+            });
+          },function (err) {
+
+          });
+        }
+      },function (err) {
+
+      });
+
+      var otherHeadPicItem={};
+      otherHeadPicItem.id=$scope.userId;
+      otherHeadPicItem.picurl=$scope.securlpicdet;
+      $greendao.saveObj('OtherHeadPicService',otherHeadPicItem,function (succ) {
+        $greendao.queryData('MessagesService','where senderid =?',$scope.userId,function (data) {
+          // alert("取出数据得长度"+data.length);
+          for(var i=0;i<data.length;i++){
+            var messageitem={};
+            messageitem._id=data[i]._id;
+            messageitem.sessionid=data[i].sessionid;
+            messageitem.type=data[i].type;
+            messageitem.from=data[i].from;
+            messageitem.message=data[i].message;
+            messageitem.messagetype=data[i].messagetype;
+            messageitem.platform=data[i].platform;
+            messageitem.isFailure=data[i].isFailure;
+            messageitem.when=data[i].when;
+            messageitem.isDelete=data[i].isDelete;
+            // $scope.securlpicdet= $scope.securlpicdet.replace("//","/");
+            messageitem.imgSrc=$scope.securlpicdet;
+            messageitem.username=data[i].username;
+            messageitem.senderid=data[i].senderid;
+            messageitem.isread=data[i].isread;
+            messageitem.isSuccess=data[i].isSuccess;
+            messageitem.daytype=data[i].daytype;
+            messageitem.istime=data[i].istime;
+            $greendao.saveObj('MessagesService',messageitem,function (success) {
+            },function (err) {
+            });
+          }
+
+        },function (err) {
+        });
+        // alert(succ.length);
+      },function (err) {
+      });
+      // alert(srcurl)
+      // alert( $rootScope.securlpicaaa)
+    },function (error) {
+      $scope.picyoumeiyoudet=false;
+      // alert(error)
+    })
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {
