@@ -1,64 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="热修复代码集成">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/dictionaries/Administrator.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/dictionaries/MSI.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/BaiduLBS_Android.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/imDataCast.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_3_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okio_1_6_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/androidTest/debug/org/apache/cordova/test/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/aidl/androidTest/debug/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/aidl/debug/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/aidl/release/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1582518282984453919.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/tmp/packageDebugJar/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/tmp/packageReleaseJar/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/libs/nineoldandroids-2.4.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-hdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-mdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-xhdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-mdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-xhdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/aidl/androidTest/debug/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/aidl/debug/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/aidl/release/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeAssets/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeAssets/release/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageResourcesdebug/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageResourcesrelease/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/manifest/tmp/manifestMerger6896576907470867074.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-mdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/tmp/packageDebugJar/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/tmp/packageReleaseJar/MANIFEST.MF" afterPath="" />
+    <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/bean/PatchBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
     </list>
     <list id="43ed02b5-2044-4264-a46c-baa77f6af7ab" name="Failed commit: Default" comment="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <ignored path="IM.iws" />
@@ -95,8 +41,8 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/platforms/android/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="219" column="13" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="218" column="20" selection-start-line="218" selection-start-column="20" selection-end-line="218" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -484,14 +430,7 @@
       <workItem from="1486375034287" duration="336000" />
       <workItem from="1486429111155" duration="2320000" />
       <workItem from="1486435154385" duration="3408000" />
-      <workItem from="1486515412767" duration="1454000" />
-    </task>
-    <task id="LOCAL-00070" summary="各种初始化">
-      <created>1481093380162</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1481093380162</updated>
+      <workItem from="1486515412767" duration="2579000" />
     </task>
     <task id="LOCAL-00071" summary="。。。。">
       <created>1481095957070</created>
@@ -829,23 +768,30 @@
       <option name="project" value="LOCAL" />
       <updated>1485222235334</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="last commit">
+      <created>1486524423233</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1486524423233</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="988088000" />
+    <option name="totallyTimeSpent" value="989213000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1062" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1062" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15015806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15015806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1006424" sideWeight="0.50316125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44432548" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39097744" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39139786" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04678999" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -890,7 +836,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="图片" />
     <MESSAGE value="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <MESSAGE value="。。。。" />
     <MESSAGE value="vv" />
@@ -915,7 +860,8 @@
     <MESSAGE value="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)" />
     <MESSAGE value="合并最新代码，最后commit" />
     <MESSAGE value="热修复代码集成" />
-    <option name="LAST_COMMIT_MESSAGE" value="热修复代码集成" />
+    <MESSAGE value="last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="last commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1285,8 +1231,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="219" column="13" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="218" column="20" selection-start-line="218" selection-start-column="20" selection-end-line="218" selection-end-column="20" />
           <folding />
         </state>
       </provider>
