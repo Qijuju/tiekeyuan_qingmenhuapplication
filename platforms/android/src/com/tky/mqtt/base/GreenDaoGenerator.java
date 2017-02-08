@@ -33,11 +33,8 @@ public class GreenDaoGenerator {
         addSlowNotifyLists(schema);
         addOtherpichead(schema);
         //addTestData(schema);
-<<<<<<< HEAD
-        new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/regitlab/IM/platforms/android/src");//项目绝对路径
-=======
-        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
->>>>>>> 621424a0c82dafe5d94866b15e352a7a033bcc61
+
+        new DaoGenerator().generateAll(schema,  "D:/AndroidStudio_tky_Application/IM/platforms/android/src");//项目绝对路径
     }
 
 
