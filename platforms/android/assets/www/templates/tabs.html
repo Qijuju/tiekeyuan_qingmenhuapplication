@@ -7,16 +7,16 @@ navigation history that also transitions its views in and out.
 
 
   <!-- Chats Tab -->
-  <ion-tab  badge="badge()" badge-style="badge-assertive" on-select="onTabSelected()"  on-deselect="onTabDeselected()" title="消息" icon-off="ion-ios-chatbubble-outline" icon-on="ion-ios-chatbubble" href="#/tab/message">
+  <ion-tab  badge="badge()" badge-style="badge-assertive" on-select="onTabSelected()"  on-deselect="onTabDeselected()" title="消息" icon-off="tkyiconmessage-off" icon-on="tkyiconmessage-on"  href="#/tab/message">
     <ion-nav-view name="tab-message"></ion-nav-view>
   </ion-tab>
-  <ion-tab  badge="notifyBadge()" badge-style="badge-assertive" on-select="onNotifyTabSelected()"  title="通知" icon-off="ion-ios-bell-outline" icon-on="ion-ios-bell" href="#/tab/notification">
+  <ion-tab  badge="notifyBadge()" badge-style="badge-assertive" on-select="onNotifyTabSelected()"  title="通知" icon-off="tkyiconnotific-off" icon-on="tkyiconnotific-on" href="#/tab/notification">
     <ion-nav-view name="tab-notification"></ion-nav-view>
   </ion-tab>
    <!--工作 -->
-  <!--<ion-tab title="工作" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/webpage">-->
-  <!--<ion-nav-view name="tab-webpage"></ion-nav-view>-->
-  <!--</ion-tab>-->
+  <ion-tab title="工作" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/webpage">
+  <ion-nav-view name="tab-webpage"></ion-nav-view>
+  </ion-tab>
 
 
   <!--&lt;!&ndash; Dashboard Tab &ndash;&gt;-->
@@ -25,14 +25,14 @@ navigation history that also transitions its views in and out.
   <!--</ion-tab>-->
 
   <!-- Account Tab -->
-  <ion-tab title="联系人" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/contacts">
+  <ion-tab title="联系人" icon-off="tkyiconcontact-off" icon-on="tkyiconcontact-on" href="#/tab/contacts">
     <ion-nav-view name="tab-contacts"></ion-nav-view>
   </ion-tab>
 
 
 
   <!-- Account Tab -->
-  <ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person"  href="#/tab/account">
+  <ion-tab title="我的" icon-off="tkyiconmy-off" icon-on="tkyiconmy-on"  href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

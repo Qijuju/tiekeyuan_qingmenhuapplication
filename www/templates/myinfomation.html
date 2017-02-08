@@ -6,126 +6,48 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
+  </ion-content>
+  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
+    <ion-item  class=" rj-notify-bgggg "   style="height: 70px" >
+      <p style="position: absolute;margin-top: 2%;font-size: 15px;">头像</p>
+      <div  ng-if="!picyoumeiyou" class="center circle12" style=" position: absolute;right: 6%;top: 7%;font-size: 16px;text-align: center;padding-top: 19px;z-index: 1" ng-click="setpic()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
+      <img  ng-if="picyoumeiyou" src="{{securlpic}}" class="yuanjiao3"  ng-click="setpic()">
+    </ion-item>
+    <ul class="list" style="margin-top: 12px">
+      <li class="item ">
+        <p>姓名</p>
+        <h2>{{mypersons.UserName}}</h2>
+      </li>
+      <li class="item ">
+        <p>部门</p>
+        <h2>{{mypersons.DeptName}}</h2>
+      </li>
+      <li class="item">
+        <p>职务</p>
+        <h2>{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</h2>
+      </li>
+      <li class="item " ng-click="updateinformation()">
+        <p>手机号</p>
+        <h2>{{mypersons.Mobile}}</h2>
+        <i  class="button button-dark button-clear icon ion-ios-arrow-right" style=" position: absolute;right: -1%;top: 24%"></i>
+      </li>
+      <li class="item " ng-click="updateinformation()">
+        <p>办公电话</p>
+        <h2>{{mypersons.FixPhone}}</h2>
+        <i class="button button-dark button-clear icon ion-ios-arrow-right" style=" position: absolute;right: -1%;top: 24%"></i>
+      </li>
+      <li class="item " ng-click="updateinformation()">
+        <p>邮箱</p>
+        <h2>{{mypersons.Email}}</h2>
+        <i class="button button-dark button-clear icon ion-ios-arrow-right" style=" position: absolute;right: -1%;top: 24%"></i>
+      </li>
+      <li class="item item-button-right">
+        <p>定位</p>
+        <h2>{{geolocation}}</h2>
+      </li>
 
-  <ion-content overflow-scroll="false">
-    <!--<div style="height: 180px;width: 100%">-->
-      <!--<div style="float: left;height: 100%;width: 80px;text-align: center;align-content: center">-->
-        <!--<div style="background-color: #6db7ff;width: 60px;height: 60px;margin-left: 50%;margin-top: 50%">-->
-          <!--<p style="align-content: center;text-align: center;padding-top: 20px;margin-top: 20px">公司简称</p>-->
-        <!--</div>-->
+    </ul>
 
-      <!--</div>-->
-      <!--<div style="float: right;height: 100%;width: auto">-->
-        <!--<h3 style="margin-top: 5px">{{mypersons.UserName}}</h3>-->
-        <!--<h5>{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</h5>-->
-        <!--<h6 style="margin-top: 5px">上海合合信息科技发展有限公司</h6>-->
-        <!--<h6>上海市杨浦区国定路335号三号湾七楼B区</h6>-->
-        <!--&lt;!&ndash;<h6>7B,Building 3,No.335 Guoding Road</h6>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h6>Shanghai 200433,China</h6>&ndash;&gt;-->
-        <!--<h6>T {{mypersons.FixPhone}}</h6>-->
-        <!--<h6>M {{mypersons.Mobile}}</h6>-->
-        <!--<h6>{{mypersons.Email}}</h6>-->
-      <!--</div>-->
-    <!--</div>-->
-
-      <div style="height: 160px;background-color: #387EF5;text-align: center;width:100%">
-        <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="updateinformation()">
-        <!--235-->
-        <div class="vcenter" style="position: absolute;left: 46%;top: 57px;font-size: 14px" ng-click="updateinformation()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
-        <P style="font-size: 18px;color: #ffffff" ng-click="updateinformation()">{{mypersons.UserName}}</P>
-      </div>
-      <ul class="list">
-        <li class="item" style="height: 50px">
-          <div class="row" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">姓名</h2>
-            </div>
-            <div class="col-70" align="left">
-              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.UserName}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">部门</h2>
-            </div>
-            <div class="col-70" align="left">
-              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.DeptName}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">职务</h2>
-            </div>
-            <div class="col-70" align="left">
-              <h2 style="position: absolute;left: 20%;top: 32%">{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</h2>
-
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">手机号</h2>
-            </div>
-            <div class="col-70" align="left" >
-              <h2 style="position: absolute;left: 25%;top: 32%">{{mypersons.Mobile}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">办公电话</h2>
-            </div>
-            <div class="col-70" align="left" >
-              <h2 style="position: absolute;left: 30%;top: 32%">{{mypersons.FixPhone}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row" style="padding-bottom: 8px" ng-click="updateinformation()">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">邮箱</h2>
-            </div>
-            <div class="col-70" align="left" >
-              <h2 style="position: absolute;left: 20%;top: 32%">{{mypersons.Email}}</h2>
-            </div>
-          </div>
-        </li>
-        <li class="item" style="height: 50px">
-          <div class="row"  style="padding-bottom: 8px">
-            <div class="col-30" align="center" >
-              <h2 style="position: absolute;left: 5%;top: 32%">定位</h2>
-            </div>
-            <div class="col-70" align="left" >
-              <h2 style="position: absolute;left: 20%;top: 32%">{{geolocation}}</h2>
-              <!--<img src="img/dingposition.png" width="25px" height="25px" style="position: absolute;left: 30%;top: 25%">-->
-            </div>
-          </div>
-        </li>
-        <!--<li class="item" style="height: 50px">-->
-          <!--<div class="row"  style="padding-bottom: 8px">-->
-            <!--<div class="col-30" align="center" >-->
-              <!--<h2 style="position: absolute;left: 5%;top: 32%">天气</h2>-->
-            <!--</div>-->
-            <!--<div class="col-70" align="left" >-->
-              <!--<h2 style="position: absolute;left: 20%;top: 32%"></h2>-->
-              <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-                <!--&lt;!&ndash;<angular-openweathermap city-name="New York" offset-hours="-4" offset-minutes="0"></angular-openweathermap>&ndash;&gt;-->
-                <!--&lt;!&ndash;<angular-openweathermap city-name="Tokyo" offset-hours="9" offset-minutes="0"></angular-openweathermap>&ndash;&gt;-->
-                <!--&lt;!&ndash;<angular-openweathermap city-name="London" offset-hours="0" offset-minutes="1"></angular-openweathermap>&ndash;&gt;-->
-                <!--&lt;!&ndash;<angular-openweathermap city-name="New Delhi" offset-hours="5" offset-minutes="30"></angular-openweathermap>&ndash;&gt;-->
-
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</li>-->
-      </ul>
-      <div style="height: 57px;background-color: transparent;color: transparent"></div>
 
   </ion-content>
 </ion-view>

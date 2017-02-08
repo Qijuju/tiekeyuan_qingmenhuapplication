@@ -1,3 +1,32 @@
+.rj-weather-rightbig {
+  position: absolute;
+  left: 58%;
+  top: 39%;
+  color: #8c8c8c;
+  font-size: 45px;
+}
+.rj-weather-rightbigsmall {
+  position: absolute;
+  left: 78%;
+  top: 11%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+
+.rj-weather-rightsmall {
+  position: absolute;
+  left: 78%;
+  top: 36%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
+.rj-weather-rightsmallsamll {
+  position: absolute;
+  left: 78%;
+  top: 63%;
+  color: #8c8c8c;
+  font-size: 16px;
+}
 .rj-push-right {
   position: absolute;
   right: 10px;
@@ -11,6 +40,14 @@
   top: 10px;
   color: #8c8c8c;
   font-size: 13px;
+}
+
+.rj-push-account {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #8c8c8c;
+  font-size: 15px;
 }
 .rj-push-rightdown {
   position: absolute;
@@ -59,10 +96,12 @@
 .rj-message-wrap .rj-head-pic,
 .rj-message-wrap .rj-head-pic-right{
   max-height: 40px;
-  max-width: 40px;
+  max-width: 60px;
+  border-radius:50%;
 }
 .rj-message-wrap .rj-head-pic{
   float: left;
+  border-radius:50%;
 }
 
 .rj-message-wrap .rj-head-pic-right{
@@ -116,14 +155,14 @@
 .rj-sm-red-icon {
   position: absolute;
   display: inline-block;
-  width:  15px;
-  height: 16px;
+  width:  18px;
+  height: 17px;
   border-radius: 50%;
   background-color: #DD5044;
-  line-height: 18px;
+  line-height: 16px;
   text-align: center;
   right: 18px;
-  top: 40px;
+  top: 35px;
 }
 .rj-sm-red-icon11 {
   display: inline-block;
@@ -308,5 +347,51 @@
   padding-top: -15px;
 
 }
+
+.rj-notify-bggg{
+  border-radius: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-notify-bgggg{
+  border-radius: 6px;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  height: 85px;
+  padding-top: -15px;
+
+}
+
+.rj-contact-new{
+  border-radius: 6px;
+  height: 55px;
+
+}
+
+
+.history{
+  padding: 5px;
+  overflow: auto;
+  position: relative;
+}
+
+.history .right{
+  padding: 7px 9px;
+  line-height: 26px;
+  max-width: 250px;
+  border-radius: 2px;
+
+}
+.history .left{
+  float: left;
+  margin-left: 16px;
+  background-color: #fff;
+
+}
+
 
 

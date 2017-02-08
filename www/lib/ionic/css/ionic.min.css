@@ -6558,7 +6558,7 @@ a.item-content {
 
 .item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
   padding-left: 72px;
-  min-height: 72px
+  min-height: 60px
 }
 
 .item-avatar .item-content .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-image, .item-avatar-left > img:first-child, .item-avatar > img:first-child {
@@ -7876,6 +7876,7 @@ button, input, select, textarea {
 }
 
 .item-input {
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;

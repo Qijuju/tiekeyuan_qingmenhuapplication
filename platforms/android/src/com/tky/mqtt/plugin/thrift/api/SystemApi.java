@@ -40,8 +40,8 @@ import im.server.attention.IMAttention;
  */
 public class SystemApi {
 
-//    public static final String url = "immobile.r93535.com";
-    public static final String url = "61.237.239.152";
+    //public static final String url = "immobile.r93535.com";
+      public static final String url = "61.237.239.152";
 
     /**
      * 获取一个AsyncClient对象
@@ -694,6 +694,23 @@ public class SystemApi {
     public static void readMessage(String ID, String sessionType, String sessionID, long sendWhen, AsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call> callback) throws IOException, TException {
       IMMessage.AsyncClient client = getMsgClient();
       client.ReadMessage(ID, sessionType, sessionID, sendWhen, callback);
+    }
+
+
+    /**
+     * 拉取离线建群，登录订阅群组topic以前的群消息
+     * @param ID
+     * @param sessionType
+     * @param sessionID
+     * @param when
+     * @param msgCount
+     * @param callback
+     * @throws IOException
+     * @throws TException
+     */
+    public static void getLatestMsg(String ID,String sessionType,String sessionID,long when,int msgCount,AsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call> callback) throws IOException,TException {
+        IMMessage.AsyncClient client=getMsgClient();
+        client.GetLatestMsg(ID,sessionType,sessionID,when,msgCount,callback);
     }
 
 }

@@ -1,79 +1,59 @@
-<ion-view view-title="聊天设置">
-  <ion-nav-bar align-title="center" class="bar-stable">
-    <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="gobackmsgdetail(userId,userName)">
-        返回
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<ion-view >
+
   <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
-    <div style="height: 160px;background-color: #e5e5e5;text-align: center;margin: 3px;width:100%">
-      <img src="img/icon_status_andriod.png" width="70px" height="70px" style="margin-top: 30px" ng-click="godetailaa()">
-      <div class="vcenter" style="position: absolute;left: 47%;top: 57px" ng-click="godetailaa()">{{jiename}}</div>
-      <P style="font-size: 18px">{{userName}}</P>
-
-    </div>
-
-
-    <div class="row" style="background-color: #ffffff; height: 80px">
-      <div class="col" align="center" ng-click="gohistoryMessage()">
-        <a >
-          <ul>
-            <li><img src="img/message.png" width="40" height="40"></li>
-            <li>消息</li>
-          </ul>
-        </a>
-      </div>
-      <div class="col" align="center" ng-click="perosnPicture()">
-        <a >
-          <ul>
-            <li><img src="img/im_chat_btn_photo.png" width="40" height="40"></li>
-            <li>图片</li>
-          </ul>
-        </a>
-      </div>
-      <div class="col" align="center" ng-click="personFile()">
-        <a >
-          <ul>
-            <li><img src="img/im_chat_btn_file.png" width="40" height="40"></li>
-            <li>文件</li>
-          </ul>
-        </a>
-      </div>
-
-      <div class="col" align="center" ng-click="goLocation()">
-        <a >
-          <ul>
-            <li><img src="img/dingwei2.png" width="40" height="40"></li>
-            <li>定位</li>
-          </ul>
-        </a>
-      </div>
-    </div>
-
-    <!--<div style="">
-      <button class="button button-block button-light" ng-click="addNewPerson()">
-        <i class="icon ion-ios-plus-outline"></i>&nbsp;&nbsp;添加新成员
-      </button>
-    </div>-->
-
     <div>
-      <ul>
-        <!--<Li>-->
-          <!--<ion-toggle ng-click="meizuo()">-->
-            <!--聊天置顶-->
-          <!--</ion-toggle>-->
-        <!--</Li>-->
-        <!--<Li>-->
-          <!--<ion-toggle ng-click="meizuo()">-->
-            <!--消息免打扰-->
-          <!--</ion-toggle>-->
-        <!--</Li>-->
-        <li class="item" ng-click="clearMsg(userId,userName)">
-          <a>清空聊天记录</a>
-        </li>
-      </ul>
+      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="gobackmsgdetail(userId,userName)"/>
     </div>
+    <div style="height: 255px;background-color: white;text-align: center;width:100%">
+      <img src="img/circle6.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
+      <div class="vcenter" style="position: absolute;left: 46%;top: 75px;color: whitesmoke;font-size: 15px" ng-click="godetailaa()">{{jiename}}</div>
+      <P style="font-size: 18px;margin-top: 10px;text-align-all: center">{{userName}}</P>
 
+     <div style="position: absolute;top: 185px;"  class="row">
+       <div class="col" align="center" ng-click="gohistoryMessage()">
+         <a >
+           <ul>
+             <li><img src="img/im_new_chat.png" width="30" height="30"></li>
+             <li style="color: black;">消息</li>
+           </ul>
+         </a>
+       </div>
+
+       <div class="col" align="center" ng-click="personFile()">
+         <a >
+           <ul>
+             <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
+             <li style="color: black;margin-top: -2px">文件</li>
+           </ul>
+         </a>
+       </div>
+
+       <div class="col" align="center" ng-click="goLocation()">
+         <a >
+           <ul>
+             <li><img src="img/im_new_map.png" width="32" height="32"></li>
+             <li style="color: black;margin-top: -3px">定位</li>
+           </ul>
+         </a>
+       </div>
+
+     </div>
+    </div>
+    <ul class="list" style="margin-top: 15px">
+      <div ng-click="perosnPicture()">
+        <a class="item item-icon-left item-icon-right" >
+          <i class=" icon ion-images"></i>
+          聊天图片
+          <i class="button button-dark button-clear icon ion-ios-arrow-right" ></i>
+        </a>
+      </div>
+    </ul>
+
+
+    <div class="list" style="margin-top: -15px">
+      <button class="button button-block button-stable"  ng-click="clearMsg(userId,userName)" style="text-align: left">
+        清空聊天记录
+      </button>
+    </div>
   </ion-content>
 </ion-view>

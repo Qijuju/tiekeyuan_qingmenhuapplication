@@ -105,11 +105,11 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
 
-    /*var backButtonPressedOnceToExit=false;
+    var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()== '/tab/contacts'){
+      if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -128,7 +128,60 @@ angular.module('contacts.controllers', [])
       return false;
 
 
-    },501)*/
+    },501)
+
+    $scope.goLocalContact=function () {
+
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+
+      $greendao.loadAllData('LocalPhoneService',function (msg) {
+
+        if(msg.length>0){
+          $ionicLoading.hide();
+          $state.go('localContacts');
+        }else {
+          localContact.getContact();
+        }
+
+      },function (err) {
+
+      });
+
+    }
+
+    $scope.$on('im.back',function (event) {
+
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $state.go('localContacts');
+        });
+      })
+
+    });
+
+    $scope.$on('im.wrong',function (event) {
+
+      $scope.$apply(function () {
+        $timeout(function () {
+          $ionicLoading.hide();
+          $ToastUtils.showToast("请求数据异常")
+          $greendao.deleteAllData('LocalPhoneService',function () {
+
+          },function () {
+
+          });
+
+        });
+      })
+
+    });
 
 
 
@@ -279,7 +332,21 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+
+    $scope.contactId = $stateParams.contactId;//传过来的id；
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/second/'+$scope.contactId)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     $ionicLoading.show({
       content: 'Loading',
@@ -293,7 +360,7 @@ angular.module('contacts.controllers', [])
     $scope.userlist = [];
     $scope.secondStatus;
 
-    $scope.contactId = $stateParams.contactId;//传过来的id；
+
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
     $scope.$on('second.update', function (event) {
@@ -381,8 +448,7 @@ angular.module('contacts.controllers', [])
 
     //在二级目录跳转到联系人界面
     $scope.backFirst = function () {
-      //$state.go("tab.contacts");
-      $ionicHistory.goBack();
+      $state.go("tab.contacts");
     }
 
     //在二级目录跳转到三级目录
@@ -405,7 +471,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -423,6 +489,21 @@ angular.module('contacts.controllers', [])
     $scope.contactId = $stateParams.contactId;
     //一级的名字
     $scope.pppid = $stateParams.secondname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/third/'+$scope.contactId+'/'+$scope.pppid)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
+
+
+
 
     //根据id获取子部门的数据
     $contacts.deptThirdInfo($scope.contactId);
@@ -514,14 +595,14 @@ angular.module('contacts.controllers', [])
     //在三级目录返回第二级
     $scope.idddd = $contacts.getFirstID();
 
-    /*$scope.backSecond = function (sd) {
-      $state.go("second", {
-        "contactId": sd
-      });
-    }*/
     $scope.backSecond = function () {
-      $ionicHistory.goBack();
+      $state.go("second", {
+        "contactId": $scope.idddd
+      });
     }
+    /*$scope.backSecond = function () {
+      $ionicHistory.goBack();
+    }*/
 
 
     //在第二级目录跳转到第四级目录
@@ -545,7 +626,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -564,6 +645,18 @@ angular.module('contacts.controllers', [])
     $scope.contactId = $stateParams.contactId;
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/forth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     //根据id获取子部门和人员信息
     $contacts.deptForthInfo($scope.contactId);
@@ -652,20 +745,20 @@ angular.module('contacts.controllers', [])
     $scope.firstid = $contacts.getFirstID();
 
 
-    /*$scope.backThird = function (sd, named) {
+    $scope.backThird = function () {
 
       $state.go("third", {
-        "contactId": sd,
-        "secondname": named
+        "contactId": $scope.idididi,
+        "secondname": $scope.secondName
       });
 
-    };*/
+    };
 
-    $scope.backThird = function () {
+    /*$scope.backThird = function () {
 
       $ionicHistory.goBack();
 
-    };
+    };*/
 
 
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
@@ -696,7 +789,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -714,6 +807,18 @@ angular.module('contacts.controllers', [])
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
     $scope.forthName = $stateParams.forthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/fifth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
     //根据id获取子部门和人员信息
     $contacts.deptFifthInfo($scope.contactId);
@@ -825,16 +930,16 @@ angular.module('contacts.controllers', [])
 
 
     //返回四级部门 需要一个id 和 两个名字
-    /*$scope.backForth = function (sd, sname, tname) {
-      $state.go("forth", {
-        "contactId": sd,
-        "secondname": sname,
-        "thirdname": tname,
-      });
-    };*/
     $scope.backForth = function () {
+      $state.go("forth", {
+        "contactId": $scope.thirdid,
+        "secondname": $scope.secondName,
+        "thirdname": $scope.thirdName,
+      });
+    };
+    /*$scope.backForth = function () {
       $ionicHistory.goBack();
-     };
+     };*/
 
     //从五级部门跳转到六级部门
     $scope.jumpSixth = function (id, sname, tname, fname, dd) {
@@ -859,7 +964,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -877,6 +982,18 @@ angular.module('contacts.controllers', [])
     $scope.thirdName = $stateParams.thirdname;
     $scope.forthName = $stateParams.forthname;
     $scope.fifthName = $stateParams.fifthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/sixth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
 
     //根据id获取子部门和人员信息
@@ -1013,18 +1130,18 @@ angular.module('contacts.controllers', [])
 
     //从六级返回五级  需要四个参数
 
-    /*$scope.backFifth = function (sd, sname, tname, ttname) {
-      $state.go("fifth", {
-        "contactId": sd,
-        "secondname": sname,
-        "thirdname": tname,
-        "forthname": ttname
-      });
-    };*/
-
     $scope.backFifth = function () {
-      $ionicHistory.goBack();
+      $state.go("fifth", {
+        "contactId": $scope.forthidInSix,
+        "secondname": $scope.secondName,
+        "thirdname": $scope.thirdName,
+        "forthname": $scope.forthName
+      });
     };
+
+    /*$scope.backFifth = function () {
+      $ionicHistory.goBack();
+    };*/
 
 
     //从六级部门跳转到详情界面
@@ -1037,7 +1154,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -1057,6 +1174,21 @@ angular.module('contacts.controllers', [])
     $scope.forthName = $stateParams.forthname;
     $scope.fifthName = $stateParams.fifthname;
     $scope.sixthName = $stateParams.sixthname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/seventh/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName+'/'+$scope.sixthName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
+
+
+
 
     //根据id获取子部门和人员信息
 
@@ -1162,7 +1294,13 @@ angular.module('contacts.controllers', [])
     //返回六级列表
 
     $scope.backSixth = function () {
-      $ionicHistory.goBack();
+      $state.go("sixth", {
+        "contactId": $scope.fifthidInSeven,
+        "secondname": $scope.secondName,
+        "thirdname": $scope.thirdName,
+        "forthname": $scope.forthName,
+        "fifthname":$scope.fifthName
+      });
 
     }
 
@@ -1215,7 +1353,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$location,$ionicPlatform) {
 
     $ionicLoading.show({
       content: 'Loading',
@@ -1238,6 +1376,18 @@ angular.module('contacts.controllers', [])
     $scope.fifthName = $stateParams.fifthname;
     $scope.sixthName = $stateParams.sixthname;
     $scope.seventhName = $stateParams.seventhname;
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/eighth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName+'/'+$scope.fifthName+'/'+$scope.sixthName+'/'+$scope.seventhName)){
+        $state.go("tab.contacts");
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+
+    },501)
 
 
     //根据id获取子部门和人员信息
@@ -1390,7 +1540,16 @@ angular.module('contacts.controllers', [])
     };
 
     $scope.backSeventh=function () {
-      $ionicHistory.goBack();
+      $state.go("seventh", {
+        "contactId": $scope.sixthidInEighth,
+        "secondname": $scope.secondName,
+        "thirdname": $scope.thirdName,
+        "forthname": $scope.forthName,
+        "fifthname":$scope.fifthName,
+        "sixthname":$scope.sixthName
+      });
+
+
 
     }
 
@@ -1398,7 +1557,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao) {
 
     // Setup the loader
     $ionicLoading.show({
@@ -1412,6 +1571,123 @@ angular.module('contacts.controllers', [])
 
 
     $scope.userId = $stateParams.userId;
+    $scope.picyoumeiyoudet=false;
+
+    $api.getOtherHeadPic($scope.userId,"60",function (srcurl) {
+      $scope.picyoumeiyoudet=true;
+
+      $scope.securlpicdet=srcurl;
+
+      $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
+        if(data[0].count>0){
+          // alert("进来查询了吗？"+data.length);
+          var chatitem = {};
+          chatitem.id = data[0].id;
+          chatitem.chatName = data[0].chatName;
+          chatitem.imgSrc = data[0].imgSrc;
+          chatitem.lastText = data[0].lastText;
+          chatitem.count = '0';
+          chatitem.isDelete = data[0].isDelete;
+          chatitem.lastDate = data[0].lastDate;
+          chatitem.chatType = data[0].chatType;
+          // alert("chatype"+chatitem.chatType);
+          chatitem.senderId = data[0].senderId;//发送者id
+          chatitem.senderName = data[0].senderName;//发送者名字
+          chatitem.daytype=data[0].daytype;
+          chatitem.isSuccess=data[0].isSuccess;
+          chatitem.isFailure=data[0].isFailure;
+          chatitem.messagetype=data[0].messagetype;
+          chatitem.isRead=data[0].isRead;
+          $greendao.saveObj('ChatListService',chatitem,function (data) {
+            $greendao.queryDataByIdAndIsread($scope.userId,'0',function (data) {
+              for(var i=0;i<data.length;i++){
+                // alert("进入for循环的长度"+data.length);
+                var messaegeitem={};
+                messaegeitem._id=data[i]._id;
+                messaegeitem.sessionid=data[i].sessionid;
+                messaegeitem.type=data[i].type;
+                // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
+                messaegeitem.from=data[i].from;
+                messaegeitem.message=data[i].message;
+                messaegeitem.messagetype=data[i].messagetype;
+                messaegeitem.platform=data[i].platform;
+                messaegeitem.when=data[i].when;
+                messaegeitem.isFailure=data[i].isFailure;
+                messaegeitem.isDelete=data[i].isDelete;
+                messaegeitem.imgSrc=srcurl;
+                messaegeitem.username=data[i].username;
+                messaegeitem.senderid=data[i].senderid;
+                messaegeitem.isSuccess=data[i].isSuccess;
+                messaegeitem.istime=data[i].istime;
+                messaegeitem.daytype=data[i].daytype;
+                if(data[i].isread ==='0'){
+                  if(data[i].messagetype != 'Audio'){
+                    // alert("拿到库里的消息阅读状态"+data[i].isread);
+                    data[i].isread ='1';
+                    messaegeitem.isread=data[i].isread;
+                    // alert('hellonihaozhoujielun' + messaegeitem._id);
+                    // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
+                    $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                      // alert("保存成功");
+
+                    },function (err) {
+                    });
+                  }
+                }
+              }
+            },function (err) {
+            });
+          },function (err) {
+
+          });
+        }
+      },function (err) {
+
+      });
+
+      var otherHeadPicItem={};
+      otherHeadPicItem.id=$scope.userId;
+      otherHeadPicItem.picurl=$scope.securlpicdet;
+      $greendao.saveObj('OtherHeadPicService',otherHeadPicItem,function (succ) {
+        $greendao.queryData('MessagesService','where senderid =?',$scope.userId,function (data) {
+          // alert("取出数据得长度"+data.length);
+          for(var i=0;i<data.length;i++){
+            var messageitem={};
+            messageitem._id=data[i]._id;
+            messageitem.sessionid=data[i].sessionid;
+            messageitem.type=data[i].type;
+            messageitem.from=data[i].from;
+            messageitem.message=data[i].message;
+            messageitem.messagetype=data[i].messagetype;
+            messageitem.platform=data[i].platform;
+            messageitem.isFailure=data[i].isFailure;
+            messageitem.when=data[i].when;
+            messageitem.isDelete=data[i].isDelete;
+            // $scope.securlpicdet= $scope.securlpicdet.replace("//","/");
+            messageitem.imgSrc=$scope.securlpicdet;
+            messageitem.username=data[i].username;
+            messageitem.senderid=data[i].senderid;
+            messageitem.isread=data[i].isread;
+            messageitem.isSuccess=data[i].isSuccess;
+            messageitem.daytype=data[i].daytype;
+            messageitem.istime=data[i].istime;
+            $greendao.saveObj('MessagesService',messageitem,function (success) {
+            },function (err) {
+            });
+          }
+
+        },function (err) {
+        });
+        // alert(succ.length);
+      },function (err) {
+      });
+      // alert(srcurl)
+      // alert( $rootScope.securlpicaaa)
+    },function (error) {
+      $scope.picyoumeiyoudet=false;
+      // alert(error)
+    })
+
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
     },function (msg) {

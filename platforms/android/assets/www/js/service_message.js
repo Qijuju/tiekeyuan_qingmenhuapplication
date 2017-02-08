@@ -31,6 +31,9 @@ angular.module('message.services', [])
         chatitem.senderName ='';
         chatitem.isSuccess='';
         chatitem.daytype='';
+        chatitem.isRead='';
+        chatitem.isFailure='';
+        chatitem.messagetype='';
         if(messageType === 'User'){
           chatitem.chatType='User';
         }else if(messageType === 'Dept'){
@@ -90,7 +93,7 @@ angular.module('message.services', [])
     getIdChatName:function (id,chatname) {
       $rootScope.id=id;
       $rootScope.username=chatname;
-      // alert("先收到"+$rootScope.id+$rootScope.username);
+      // alert("先收到无对话的单聊名称"+$rootScope.id+$rootScope.username);
     },
     setIdToMc:function (id) {
       return id;
@@ -323,6 +326,7 @@ angular.module('message.services', [])
     var sycount=0;//试验室通知数量
     var cjgccount=0;//沉降观测通知数量
     var isLogin = false;
+    var keyvalue;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -365,7 +369,15 @@ angular.module('message.services', [])
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
-        messageDetail.imgSrc='';
+        // alert($rootScope.securlpicaaa+";;1")
+        if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
+          // alert($rootScope.securlpicaaa+";;2")
+          messageDetail.imgSrc='';
+        }else{
+          // alert($rootScope.securlpicaaa+";;3")
+          messageDetail.imgSrc=$rootScope.securlpicaaa;
+          // alert($rootScope.imgSrc+";;4")
+        }
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
         messageDetail.isread='1';
@@ -429,6 +441,9 @@ angular.module('message.services', [])
                 // alert("发送成功后的位置"+msg.message);
                 $greendao.saveObj('MessagesService',msg,function (data) {
                   $rootScope.$broadcast('msgs.update');
+                  //往消息主界面发送一个监听
+                  $mqtt.sendupdate(msg.sessionid,msg._id);
+                  $rootScope.$broadcast('sendsuccess.update');
                 },function (err) {
                 });
               }
@@ -443,6 +458,9 @@ angular.module('message.services', [])
                 $greendao.saveObj('MessagesService',msg,function (data) {
                   // alert("数组长度后"+danliao[danliao.length-1].message+danliao[danliao.length-1].isSuccess);
                   $rootScope.$broadcast('msgs.update');
+                  //往消息主界面发送一个监听
+                  $mqtt.sendupdate(msg.sessionid,msg._id);
+                  $rootScope.$broadcast('sendsuccess.update');
                 },function (err) {
                   // alert(err+"sendmistake");
                 });
@@ -543,7 +561,7 @@ angular.module('message.services', [])
 
         messageDetail.message = '' + '###' + content;
         //alert("图片类型"+type);
-        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File') {
+        if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio' || messageDetail.messagetype === 'Vedio') {
           messageDetail.message = messageDetail.message + '###0';
         }
         var fileIsImage = "File";
@@ -575,6 +593,7 @@ angular.module('message.services', [])
           msgDetail = qunliao[qunliao.length - 1];
         }*/
         $api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
+          // $ToastUtils.showToast(fileContent, null, null);
           var msgDetail = sdata[3];
           msgDetail.message = sdata[1] + '###' + content;
           //图片上传过程中失败了，从图片管理器删除该图片
@@ -653,7 +672,7 @@ angular.module('message.services', [])
             msgDetail.message = newMsg;
             mqtt.sendMsg(topic, msgDetail, function (message) {
               // alert("发了几次是几次");
-              // alert("发送图片成功前数组长度"+danliao.length);
+              // alert("发送图片成功前数组长度"+danliao.length+"========="+content);
               if (type === 'User') {
                 $mqtt.updateDanliao(message);
               } else {
@@ -662,34 +681,40 @@ angular.module('message.services', [])
               // message.isSuccess='true';
               //alert("message"+message)
 
-              var savefilepic={};
-              savefilepic.filepicid=sdata[1];
-              savefilepic._id=msgDetail._id;
-              savefilepic.from="true";
-              savefilepic.sessionid=id;
-              savefilepic.fromname=localuser;
-              savefilepic.toname="你好"
-              savefilepic.smallurl=sdata[0];
-              savefilepic.bigurl=sdata[0];
-              savefilepic.bytesize=content.split('###')[1];
-              savefilepic.megabyte=content.split('###')[2];
-              savefilepic.filename=content.split('###')[3];
-              if(sendType=="F"){
-                savefilepic.type="file";
-              }else if(sendType=="I"){
-                savefilepic.type="image";
+              if (msgDetail.messagetype != 'Audio' && msgDetail.messagetype != 'Vedio') {
+                var savefilepic = {};
+                savefilepic.filepicid = sdata[1];
+                savefilepic._id = msgDetail._id;
+                savefilepic.from = "true";
+                savefilepic.sessionid = id;
+                savefilepic.fromname = localuser;
+                savefilepic.toname = "你好"
+                savefilepic.smallurl = sdata[0];
+                savefilepic.bigurl = sdata[0];
+                savefilepic.bytesize = content.split('###')[1];
+                savefilepic.megabyte = content.split('###')[2];
+                // alert("语音文件大小" + savefilepic.megabyte);
+                savefilepic.filename = content.split('###')[3];
+                if (sendType == "F") {
+                  savefilepic.type = "file";
+                } else if (sendType == "I") {
+                  savefilepic.type = "image";
+                }
+                savefilepic.when = 0;
+                $greendao.saveObj("FilePictureService", savefilepic, function (data) {
+                }, function (err) {
+                })
               }
-              savefilepic.when=0;
               // danliao.push(message);
               // alert("发送图片成功后数组长度"+danliao.length);
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               },function (err) {
               });
 
-              $greendao.saveObj("FilePictureService",savefilepic,function (data) {
-              },function (err) {
-              })
               $rootScope.firstSendId=message.sessionid;
               return "成功";
             },function (message) {
@@ -730,10 +755,17 @@ angular.module('message.services', [])
           arriveMessage.when=message.when;
           arriveMessage.isFailure=message.isFailure;
           arriveMessage.isDelete=message.isDelete;
-          arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message.senderid;
-          // alert("监听消息类型"+arriveMessage.senderid);
+          $greendao.queryData('OtherHeadPicService','where id =?',arriveMessage.senderid,function (data) {
+            if(data[0].picurl==null||data[0].picurl==undefined||data[0].picurl.length==0){
+              arriveMessage.imgSrc=message.imgSrc;
+            }else {
+              arriveMessage.imgSrc=data[0].picurl;
+            }
+          },function (err) {
+            arriveMessage.imgSrc=message.imgSrc;
+          });
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;
@@ -825,12 +857,16 @@ angular.module('message.services', [])
             $rootScope.messagetype= arriveMessage.type;
             // alert("存的对不对"+$rootScope.firstSessionid+$rootScope.messagetype+$rootScope.firstUserName);
           }else if(message.type ==="User" || message.type ==="Group" || message.type ==="Dept"){       //消息模块
-            if (message.messagetype === "Image" || message.messagetype === "File") {   //文件或者图片
+            if (message.messagetype === "Image" || message.messagetype === "File" || message.messagetype === "Audio" || message.messagetype === 'Vedio') {   //文件或者图片
               var objectTP = 'I';
               if (message.messagetype === "Image") {
                 objectTP = 'I';
               } else if(message.messagetype === "File") {
                 objectTP = 'F';
+              } else if (message.messagetype === "Audio") {
+                objectTP = 'A';
+              } else if (message.messagetype === "Vedio") {
+                objectTP = 'V';
               }
               var newMessage = arriveMessage.message;
               arriveMessage.message = '';
@@ -873,7 +909,7 @@ angular.module('message.services', [])
 
                 });
 
-            } else if(objectTP === 'I'){        //当发送消息的为图片时
+            } else if(objectTP === 'I' || objectTP === 'A' || objectTP === 'V'){        //当发送消息的为图片时
                 $api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
@@ -889,30 +925,32 @@ angular.module('message.services', [])
                       $rootScope.$broadcast('msgs.update');
                     }
 
-                    var arrivepic={};
-                    arrivepic.filepicid=arriveMessage.message.split('###')[0];
-                    arrivepic._id=arriveMessage._id;
-                    arrivepic.from="false";
-                    arrivepic.sessionid=arriveMessage.sessionid;
-                    arrivepic.fromname=arriveMessage.username;
-                    arrivepic.toname="";
-                    arrivepic.smallurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bigurl=arriveMessage.message.split('###')[1];
-                    arrivepic.bytesize=arriveMessage.message.split('###')[2];
-                    arrivepic.megabyte=arriveMessage.message.split('###')[3];
-                    arrivepic.filename=arriveMessage.message.split('###')[4];
-                    if(arriveMessage.messagetype=="Image"){
-                      arrivepic.type="image";
-                    }else if(arriveMessage.messagetype=="File"){
-                      arrivepic.type="file";
+                    if (arriveMessage.messagetype!="Audio" && arriveMessage.messagetype!="Vedio") {
+                      var arrivepic={};
+                      arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                      arrivepic._id=arriveMessage._id;
+                      arrivepic.from="false";
+                      arrivepic.sessionid=arriveMessage.sessionid;
+                      arrivepic.fromname=arriveMessage.username;
+                      arrivepic.toname="";
+                      arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                      arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                      arrivepic.filename=arriveMessage.message.split('###')[4];
+                      if(arriveMessage.messagetype=="Image"){
+                        arrivepic.type="image";
+                      }else if(arriveMessage.messagetype=="File"){
+                        arrivepic.type="file";
+                      }
+                      arrivepic.when=0;
+
+                      $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                      },function (err) {
+
+                      });
                     }
-                    arrivepic.when=0;
-
-                    $greendao.saveObj("FilePictureService",arrivepic,function (data) {
-
-                    },function (err) {
-
-                    });
                   }
 
                 }, function (err) {
@@ -1014,6 +1052,13 @@ angular.module('message.services', [])
         for(var i=0;i<data.length;i++){
           danliao.unshift(data[i]);
         }
+      },
+      sendupdate:function (sessionid,id) {
+        keyvalue=sessionid+","+id;
+        return keyvalue;
+      },
+      receiveupdate:function () {
+        return keyvalue;
       },
       updateImgFileDanliao:function (data) {
         for(var i=0;i<danliao.length;i++){
@@ -1210,7 +1255,14 @@ angular.module('message.services', [])
         messageReal.when=new Date().getTime();
         messageReal.isFailure='false';
         messageReal.isDelete='false';
-        messageReal.imgSrc='';
+
+        if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
+          messageReal.imgSrc='';
+        }else{
+          var imssrc=$rootScope.securlpicaaa;
+          messageReal.imgSrc=imssrc;
+        }
+        // messageReal.imgSrc='';
         messageReal.username=localuser;
         messageReal.senderid=localuserId;
         messageReal.isread='1';
@@ -1279,12 +1331,19 @@ angular.module('message.services', [])
               // alert("发送成功后的位置"+message.message);
               $greendao.saveObj('MessagesService', message, function (data) {
                 $rootScope.$broadcast('msgs.update');
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               }, function (err) {
               });
             }else{
+              // alert(message.imgSrc+"+++")
               $greendao.saveObj('MessagesService',message,function (data) {
                 $rootScope.$broadcast('msgs.update');
                 // alert("群组消息保存成功");
+                //往消息主界面发送一个监听
+                $mqtt.sendupdate(message.sessionid,message._id);
+                $rootScope.$broadcast('sendsuccess.update');
               },function (err) {
                 // alert("群组消息保存失败");
               });
@@ -1401,6 +1460,9 @@ angular.module('message.services', [])
       takePhoto:function (success, error) {//拍照方法
         mqtt.takePhoto(success, error);
       },
+      takeVideo:function(success,error) {//录制小视频
+        mqtt.takeVideo(success, error);
+      },
       setOnNetStatusChangeListener:function(success,error) {//网络监听
         // alert("走监听事件了吗");
         mqtt.setOnNetStatusChangeListener(success,error);
@@ -1410,6 +1472,35 @@ angular.module('message.services', [])
       },
       setExitStartedStatus:function() {//改变登录状态为未登录
         mqtt.setExitStartedStatus();
+      },
+      startRecording:function(success, error) {//开始录音
+        mqtt.startRecording(success, error);
+      },
+      stopRecording:function(success, error) {//结束录音
+        mqtt.stopRecording(success, error);
+      },
+      playRecord:function(fileName,success, error) {//播放录音
+        mqtt.playRecord(fileName,success, error);
+      },
+      stopPlayRecord:function(success, error) {//停止播放录音
+        mqtt.stopPlayRecord(success, error);
+      },
+      setProxyMode:function(mode) {//设置距离感应器模式（0为正常模式，1为听筒模式）
+        mqtt.setProxyMode(mode);
+      },
+      getProxyMode:function(success) {//获取距离感应器模式（0为正常模式，1为听筒模式）
+        mqtt.getProxyMode(success);
+      },
+      isVideo:function(filePath) {//filePath：文件全路径  判断文件是否是视频格式
+        if (filePath === null || filePath.indexOf('.') <= 0) {
+          return false;
+        }
+        var suffix = filePath.substring(filePath.lastIndexOf('.'), filePath.length).toLowerCase();
+        return suffix === '.avi' || suffix === '.mp4' || suffix === '.wmv' || suffix === '.rmvb' ||
+        suffix === '.rm' || suffix === '.mpg' || suffix === '.mlv' || suffix === '.mpe' ||
+          suffix === '.mpeg' || suffix === '.dat' || suffix === '.mpe' || suffix === '.mpeg' ||
+          suffix === '.m2v' || suffix === '.vob' || suffix === '.asf' || suffix === '.mov' ||
+          suffix === '.divx' || suffix === '.wmf' || suffix === '.ts';
       }
 
 

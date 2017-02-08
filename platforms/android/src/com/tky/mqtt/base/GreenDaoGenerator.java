@@ -31,8 +31,13 @@ public class GreenDaoGenerator {
         addFielandPic(schema);
         addModuleCount(schema);
         addSlowNotifyLists(schema);
+        addOtherpichead(schema);
         //addTestData(schema);
+<<<<<<< HEAD
         new DaoGenerator().generateAll(schema,  "C:/Users/Administrator/regitlab/IM/platforms/android/src");//项目绝对路径
+=======
+        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+>>>>>>> 621424a0c82dafe5d94866b15e352a7a033bcc61
     }
 
 
@@ -141,6 +146,10 @@ public class GreenDaoGenerator {
         chatitem.addStringProperty("senderName");//消息来源人的名字
         chatitem.addStringProperty("isSuccess");//消息成功与否状态
         chatitem.addStringProperty("daytype");//最后一条消息的日期类型
+        chatitem.addStringProperty("isFailure");//最后一条消息的成功失败状态
+        chatitem.addStringProperty("messagetype");//最后一条消息的类型(语音、文本、图片、文件等)
+        chatitem.addStringProperty("isRead");//最后一条消息的已读未读状态
+
     }
 
 
@@ -269,4 +278,12 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("name");//应用名
     }
 
+    /**
+     * 他人的头像
+     */
+    private static void addOtherpichead(Schema schema) {
+        Entity msgHistory=schema.addEntity("Otherpichead");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("picurl");//图片地址
+    }
 }

@@ -10,6 +10,7 @@ import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ModuleCount;
 import com.tky.mqtt.dao.MsgHistory;
 import com.tky.mqtt.dao.NotifyList;
+import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.dao.ParentDept;
 import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SlowNotifyList;
@@ -26,6 +27,7 @@ import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ModuleCountService;
 import com.tky.mqtt.services.MsgHistoryService;
 import com.tky.mqtt.services.NotifyListService;
+import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.mqtt.services.ParentDeptService;
 import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SlowNotifyListService;
@@ -129,6 +131,9 @@ public class GreenDaoPlugin extends CordovaPlugin {
             chatList.setSenderName(jsonobj.getString("senderName"));
             chatList.setDaytype(jsonobj.getString("daytype"));
             chatList.setIsSuccess(jsonobj.getString("isSuccess"));
+            chatList.setMessagetype(jsonobj.getString("messagetype"));
+            chatList.setIsFailure(jsonobj.getString("isFailure"));
+            chatList.setIsRead(jsonobj.getString("isRead"));
             obj = chatList;
         }else if("GroupChatsService".equals(services)){
           GroupChats groupChats=new GroupChats();
@@ -255,6 +260,11 @@ public class GreenDaoPlugin extends CordovaPlugin {
             notifyList.setSenderId(jsonobj.getString("senderId"));
             notifyList.setSenderName(jsonobj.getString("senderName"));
             obj = notifyList;
+        }else if("OtherHeadPicService".equals(services)){
+            Otherpichead otherpichead=new Otherpichead();
+            otherpichead.setId(jsonobj.getString("id"));
+            otherpichead.setPicurl(jsonobj.getString("picurl"));
+            obj=otherpichead;
         }
         return obj;
     }
@@ -348,6 +358,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= ModuleCountService.getInstance(UIUtils.getContext());
         }else if("SlowNotifyListService".equals(services)){
             baseInterface= SlowNotifyListService.getInstance(UIUtils.getContext());
+        }else if("OtherHeadPicService".equals(services)){
+            baseInterface = OtherHeadPicService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }

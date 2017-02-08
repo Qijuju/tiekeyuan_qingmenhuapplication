@@ -34,8 +34,9 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
         public final static Property Isactive = new Property(3, String.class, "isactive", false, "ISACTIVE");
         public final static Property Parentname = new Property(4, String.class, "parentname", false, "PARENTNAME");
         public final static Property Pagesize = new Property(5, Integer.class, "pagesize", false, "PAGESIZE");
-        public final static Property Childcount = new Property(6, Integer.class, "childcount", false, "CHILDCOUNT");
-        public final static Property F_id = new Property(7, String.class, "f_id", false, "F_ID");
+        public final static Property IsFailure = new Property(6, String.class, "isFailure", false, "IS_FAILURE");
+        public final static Property Childcount = new Property(7, Integer.class, "childcount", false, "CHILDCOUNT");
+        public final static Property F_id = new Property(8, String.class, "f_id", false, "F_ID");
     };
 
     private DaoSession daoSession;
@@ -61,8 +62,9 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
                 "'ISACTIVE' TEXT," + // 3: isactive
                 "'PARENTNAME' TEXT," + // 4: parentname
                 "'PAGESIZE' INTEGER," + // 5: pagesize
-                "'CHILDCOUNT' INTEGER," + // 6: childcount
-                "'F_ID' TEXT NOT NULL );"); // 7: f_id
+                "'IS_FAILURE' TEXT," + // 6: isFailure
+                "'CHILDCOUNT' INTEGER," + // 7: childcount
+                "'F_ID' TEXT NOT NULL );"); // 8: f_id
     }
 
     /** Drops the underlying database table. */
@@ -106,11 +108,16 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
             stmt.bindLong(6, pagesize);
         }
  
+        String isFailure = entity.getIsFailure();
+        if (isFailure != null) {
+            stmt.bindString(7, isFailure);
+        }
+ 
         Integer childcount = entity.getChildcount();
         if (childcount != null) {
-            stmt.bindLong(7, childcount);
+            stmt.bindLong(8, childcount);
         }
-        stmt.bindString(8, entity.getF_id());
+        stmt.bindString(9, entity.getF_id());
     }
 
     @Override
@@ -135,8 +142,9 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // isactive
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // parentname
             cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // pagesize
-            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // childcount
-            cursor.getString(offset + 7) // f_id
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // isFailure
+            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // childcount
+            cursor.getString(offset + 8) // f_id
         );
         return entity;
     }
@@ -150,8 +158,9 @@ public class SubDeptDao extends AbstractDao<SubDept, String> {
         entity.setIsactive(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setParentname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setPagesize(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
-        entity.setChildcount(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
-        entity.setF_id(cursor.getString(offset + 7));
+        entity.setIsFailure(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setChildcount(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setF_id(cursor.getString(offset + 8));
      }
     
     /** @inheritdoc */

@@ -40,7 +40,7 @@ angular.module('im.routes', [])
       })
       .state('newsPage', {
         url: '/newsPage',
-        cache: true,
+        cache: false,
         templateUrl: 'templates/newsPage.html',
         controller: 'newsPageCtrl'
       })
@@ -542,7 +542,12 @@ angular.module('im.routes', [])
         controller: 'historymessagegroupCtrl',
         cache:false
       })
-
+      .state('emergencycall', {
+        url: '/emergencycall',
+        templateUrl: 'templates/emergencycall.html',
+        controller: 'emergencycallCtrl',
+        cache:false
+      })
 
 
 

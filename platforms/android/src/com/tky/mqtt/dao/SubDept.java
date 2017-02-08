@@ -7,7 +7,11 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table SUB_DEPT.
  */
+<<<<<<< HEAD
 public class SubDept implements java.io.Serializable {
+=======
+public class SubDept extends BaseDao {
+>>>>>>> 621424a0c82dafe5d94866b15e352a7a033bcc61
 
     private String _id;
     private String name;
@@ -15,6 +19,7 @@ public class SubDept implements java.io.Serializable {
     private String isactive;
     private String parentname;
     private Integer pagesize;
+    private String isFailure;
     private Integer childcount;
     /** Not-null value. */
     private String f_id;
@@ -36,13 +41,14 @@ public class SubDept implements java.io.Serializable {
         this._id = _id;
     }
 
-    public SubDept(String _id, String name, String type, String isactive, String parentname, Integer pagesize, Integer childcount, String f_id) {
+    public SubDept(String _id, String name, String type, String isactive, String parentname, Integer pagesize, String isFailure, Integer childcount, String f_id) {
         this._id = _id;
         this.name = name;
         this.type = type;
         this.isactive = isactive;
         this.parentname = parentname;
         this.pagesize = pagesize;
+        this.isFailure = isFailure;
         this.childcount = childcount;
         this.f_id = f_id;
     }
@@ -99,6 +105,14 @@ public class SubDept implements java.io.Serializable {
 
     public void setPagesize(Integer pagesize) {
         this.pagesize = pagesize;
+    }
+
+    public String getIsFailure() {
+        return isFailure;
+    }
+
+    public void setIsFailure(String isFailure) {
+        this.isFailure = isFailure;
     }
 
     public Integer getChildcount() {

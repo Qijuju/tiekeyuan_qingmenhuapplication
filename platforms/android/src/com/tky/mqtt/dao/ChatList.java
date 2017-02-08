@@ -18,6 +18,9 @@ public class ChatList {
     private String senderName;
     private String isSuccess;
     private String daytype;
+    private String isFailure;
+    private String messagetype;
+    private String isRead;
 
     public ChatList() {
     }
@@ -26,7 +29,7 @@ public class ChatList {
         this.id = id;
     }
 
-    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName, String isSuccess, String daytype) {
+    public ChatList(String id, String chatName, String isDelete, String imgSrc, String lastText, String count, Long lastDate, String chatType, String senderId, String senderName, String isSuccess, String daytype, String isFailure, String messagetype, String isRead) {
         this.id = id;
         this.chatName = chatName;
         this.isDelete = isDelete;
@@ -39,6 +42,9 @@ public class ChatList {
         this.senderName = senderName;
         this.isSuccess = isSuccess;
         this.daytype = daytype;
+        this.isFailure = isFailure;
+        this.messagetype = messagetype;
+        this.isRead = isRead;
     }
 
     public String getId() {
@@ -135,6 +141,30 @@ public class ChatList {
 
     public void setDaytype(String daytype) {
         this.daytype = daytype;
+    }
+
+    public String getIsFailure() {
+        return isFailure;
+    }
+
+    public void setIsFailure(String isFailure) {
+        this.isFailure = isFailure;
+    }
+
+    public String getMessagetype() {
+        return messagetype;
+    }
+
+    public void setMessagetype(String messagetype) {
+        this.messagetype = messagetype;
+    }
+
+    public String getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(String isRead) {
+        this.isRead = isRead;
     }
 
 }

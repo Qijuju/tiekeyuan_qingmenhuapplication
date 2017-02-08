@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.security.MessageDigest;
 import java.util.List;
 
 /**
@@ -367,4 +370,88 @@ public class UIUtils {
 
 	}
 
+	/**
+	 * 字符串转MD5
+	 * @param var0
+	 * @return
+	 */
+	public static String string2MD5(String var0) {
+		MessageDigest var1;
+		try {
+			var1 = MessageDigest.getInstance("MD5");
+		} catch (Exception var4) {
+			System.out.println(var4.toString());
+			var4.printStackTrace();
+			return "";
+		}
+
+		char[] var5;
+		byte[] var2 = new byte[(var5 = var0.toCharArray()).length];
+
+		for(int var3 = 0; var3 < var5.length; ++var3) {
+			var2[var3] = (byte)var5[var3];
+		}
+
+		byte[] var9 = var1.digest(var2);
+		StringBuffer var6 = new StringBuffer();
+
+		for(int var7 = 0; var7 < var9.length; ++var7) {
+			int var8;
+			if((var8 = var9[var7] & 255) < 16) {
+				var6.append("0");
+			}
+
+			var6.append(Integer.toHexString(var8));
+		}
+
+		return var6.toString();
+	}
+
+	/**
+	 * 将double类型的比特数值转成文本大小（字符串）
+	 * @param var0 文件大小（比特【byte】）
+	 * @return 文本大小
+	 */
+	public static String getFormatSize(double var0) {
+		double var2;
+		if((var2 = var0 / 1024.0D) < 1.0D) {
+			return var0 + "Byte(s)";
+		} else {
+			double var4;
+			if((var4 = var2 / 1024.0D) < 1.0D) {
+				BigDecimal var11 = new BigDecimal(Double.toString(var2));
+				return var11.setScale(2, 4).toPlainString() + "KB";
+			} else {
+				double var6;
+				if((var6 = var4 / 1024.0D) < 1.0D) {
+					BigDecimal var12 = new BigDecimal(Double.toString(var4));
+					return var12.setScale(2, 4).toPlainString() + "MB";
+				} else {
+					double var8;
+					BigDecimal var10;
+					if((var8 = var6 / 1024.0D) < 1.0D) {
+						var10 = new BigDecimal(Double.toString(var6));
+						return var10.setScale(2, 4).toPlainString() + "GB";
+					} else {
+						var10 = new BigDecimal(var8);
+						return var10.setScale(2, 4).toPlainString() + "TB";
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 切换听筒模式和正常模式
+	 * @param context
+	 * @param earphone
+	 */
+	public static void switchEarphone(Activity context, boolean earphone) {
+		AudioManager manager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+		manager.setSpeakerphoneOn(!earphone);
+		manager.setMode(earphone ? AudioManager.MODE_IN_COMMUNICATION : AudioManager.MODE_NORMAL);
+		if (context != null) {
+			context.setVolumeControlStream(earphone ? AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_MUSIC);
+		}
+	}
 }

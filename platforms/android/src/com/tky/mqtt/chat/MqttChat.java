@@ -1,15 +1,19 @@
 package com.tky.mqtt.chat;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -27,11 +31,14 @@ import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
+import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
+import com.tky.mqtt.paho.receiver.VideoFileReceiver;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
+import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.protocol.model.IMPException;
@@ -72,10 +79,16 @@ public class MqttChat extends CordovaPlugin {
     private int FILE_SELECT_CODE = 0x0111;
     private DocFileReceiver docFileReceiver;
     private PhotoFileReceiver photoFileReceiver;
-//    private NetStatusChangeReceiver netStatusChangeReceiver;
+    private VideoFileReceiver videoFileReceiver;
+    //    private NetStatusChangeReceiver netStatusChangeReceiver;
     private MqttConnectReceiver mqttConnectReceiver;
     private MqttSendMsgReceiver topicReceiver;
     private MqttReceiver mqttReceiver;
+    /**
+     * 距离传感器改变时收到的Receiver
+     */
+    private ProxySensorReceiver mSensorReceiver;
+    private OnPlayStopReceiver onPlayStopReceiver;
 
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
@@ -95,17 +108,23 @@ public class MqttChat extends CordovaPlugin {
         photoFilter.addAction(ReceiverParams.PHOTO_FILE_GET);
         UIUtils.getContext().registerReceiver(photoFileReceiver, photoFilter);
 
+        //录制小视频广播
+        videoFileReceiver = new VideoFileReceiver();
+        IntentFilter videoFilter = new IntentFilter();
+        videoFilter.addAction(ReceiverParams.VIDEO_FILE_GET);
+        UIUtils.getContext().registerReceiver(videoFileReceiver, videoFilter);
+
         /*netStatusChangeReceiver = new NetStatusChangeReceiver();
         IntentFilter netStatusChangeFilter = new IntentFilter();
         netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
         netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
         UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);*/
 
-        mqttConnectReceiver=new MqttConnectReceiver();
-        IntentFilter mqttConnectFilter=new IntentFilter();
+        mqttConnectReceiver = new MqttConnectReceiver();
+        IntentFilter mqttConnectFilter = new IntentFilter();
         mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_STARTED);
         mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_CLOSED);
-        UIUtils.getContext().registerReceiver(mqttConnectReceiver,mqttConnectFilter);
+        UIUtils.getContext().registerReceiver(mqttConnectReceiver, mqttConnectFilter);
 
         //发布消息的广播
         topicReceiver = new MqttSendMsgReceiver();
@@ -113,6 +132,15 @@ public class MqttChat extends CordovaPlugin {
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_ERROR);
         topicFilter.addAction(ReceiverParams.SENDMESSAGE_SUCCESS);
         UIUtils.getContext().registerReceiver(topicReceiver, topicFilter);
+
+        //距离传感器改变时收到的Receiver
+        mSensorReceiver = ProxySensorReceiver.getInstance();
+
+        //特殊因素导致语音播放暂停的广播
+        onPlayStopReceiver = new OnPlayStopReceiver();
+        IntentFilter playStopFilter = new IntentFilter();
+        playStopFilter.addAction(ReceiverParams.RECEIVER_PLAY_STOP);
+        UIUtils.getContext().registerReceiver(onPlayStopReceiver, playStopFilter);
     }
 
     @Override
@@ -139,6 +167,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 保存数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -160,6 +189,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 保存登录的用户名
+     *
      * @param args
      * @param callbackContext
      */
@@ -169,7 +199,7 @@ public class MqttChat extends CordovaPlugin {
                 String key = args.getString(0);
                 String value = args.getString(1);
                 SPUtils.save(key, value);
-                if(value != null && !TextUtils.isEmpty(value.trim())) {
+                if (value != null && !TextUtils.isEmpty(value.trim())) {
                     SPUtils.save("historyusername", value);
                 }
                 setResult(key + "#" + value, PluginResult.Status.OK, callbackContext);
@@ -184,6 +214,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取保存的数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -254,6 +285,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 重启MQTT
+     *
      * @param args
      * @param callbackContext
      * @throws JSONException
@@ -265,24 +297,25 @@ public class MqttChat extends CordovaPlugin {
     /**
      * 停止MqttChat的服务
      */
-    public void stopMqttChat(){
+    public void stopMqttChat() {
     }
 
+//    int count = 0;
     public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         String tosb = args.getString(0);
         final String message = args.getString(1);
-        if (tosb == null || "".equals(tosb)){
+        if (tosb == null || "".equals(tosb)) {
             ToastUtil.showSafeToast("接收者未知！");
-            return ;
+            return;
         }
         if (message == null || "".equals(message.trim())) {
             ToastUtil.showSafeToast("消息内容不能为空！");
-            return ;
+            return;
         }
         JSONObject obj = new JSONObject(message);
         String msg = obj.getString("message");
         if (msg == null || "".equals(msg.trim())) {
-            return ;
+            return;
         }
         /*try {
             //收集发送出去的消息，判断多发消息是哪出错了
@@ -303,6 +336,7 @@ public class MqttChat extends CordovaPlugin {
 
             @Override
             public void onMqttSendError(String msg) {
+//                count++;
                 try {
                     setResult(new JSONObject(msg), PluginResult.Status.ERROR, callbackContext);
                 } catch (JSONException e) {
@@ -312,7 +346,7 @@ public class MqttChat extends CordovaPlugin {
         });
         if ("Group".equals(obj.getString("type"))) {
             boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
-            if (!fromMe){
+            if (!fromMe) {
                 String errMSG = switchMsg(message, false);
                 MqttOper.sendErrNotify(errMSG);
                 //setResult(jsonObject, PluginResult.Status.ERROR, callbackContext);
@@ -325,8 +359,8 @@ public class MqttChat extends CordovaPlugin {
         if(!NetUtils.isConnect(cordova.getActivity())){
             flag=true;
             *//**
-             * 若断网，则在20s内不断发送消息，并且实时启动mqtt
-             *//*
+         * 若断网，则在20s内不断发送消息，并且实时启动mqtt
+         *//*
             while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
                 SystemClock.sleep(10);
                 try {
@@ -345,8 +379,17 @@ public class MqttChat extends CordovaPlugin {
         }*/
         try {
 //            if(!flag){
-
+            MessageOper.sendMsg(tosb, message);
+            /*for (int i = 0; i < 10000; i++) {
                 MessageOper.sendMsg(tosb, message);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            Log.e("countyou", "发送失败总数为：" + count);
+            count = 0;*/
 //            }
         } catch (IMPException e) {
             setResult("failure", PluginResult.Status.ERROR, callbackContext);
@@ -370,6 +413,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 将收到的消息写到文件中
+     *
      * @param text
      * @throws IOException
      */
@@ -386,12 +430,19 @@ public class MqttChat extends CordovaPlugin {
     public void getChats(final JSONArray args, final CallbackContext callbackContext) {
         mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
             @Override
-            public void messageArrived(String topic, String content, int qos) {
-                try {
-                    setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void messageArrived(String topic, final String content, int qos) {
+
+                cordova.getThreadPool().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
             }
         });
 
@@ -400,11 +451,12 @@ public class MqttChat extends CordovaPlugin {
             return;
         } else {
             callbackContext.error("Expected one non-empty string argument.");
-                }
+        }
     }
 
     /**
      * 断开MQTT连接并解除用户的绑定
+     *
      * @param args
      * @param callbackContext
      */
@@ -448,6 +500,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 退出应用
+     *
      * @param args
      * @param callbackContext
      */
@@ -459,6 +512,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取用户信息
+     *
      * @param args
      * @param callbackContext
      */
@@ -473,6 +527,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的topic
+     *
      * @param args
      * @param callbackContext
      */
@@ -488,6 +543,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的topic
+     *
      * @param args
      * @param callbackContext
      */
@@ -505,6 +561,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录的用户ID
+     *
      * @param args
      * @param callbackContext
      */
@@ -519,6 +576,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 打开文件管理器
+     *
      * @param args
      * @param callbackContext
      */
@@ -546,11 +604,13 @@ public class MqttChat extends CordovaPlugin {
                     type = "*";
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType((type == null || "".equals(type.trim()) || "all".equals(type) ? "*" : type) + "/*");
-//                Uri parse = Uri.parse(Environment.getExternalStorageDirectory().getPath());
-//                intent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory().getPath()), "audio/*");
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                Intent intent = new Intent("image".equals(type) ? Intent.ACTION_PICK : Intent.ACTION_GET_CONTENT, null);
+                if ("image".equals(type)) {
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                } else {
+                    intent.setType((type == null || "".equals(type.trim()) || "all".equals(type) ? "*" : type) + "/*");
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                }
 
                 //显示文件管理器列表
                 try {
@@ -576,6 +636,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 拍照后发送图片需要的数据
+     *
      * @param args
      * @param callbackContext
      */
@@ -602,7 +663,7 @@ public class MqttChat extends CordovaPlugin {
             try {
                 fst = new FileInputStream(file);
                 fost = new FileOutputStream(cacheFileDoc);
-                byte[] buf = new byte[1024*10];
+                byte[] buf = new byte[1024 * 10];
                 int len = 0;
                 while ((len = fst.read(buf)) != -1) {
                     fost.write(buf, 0, len);
@@ -642,6 +703,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 拍照
+     *
      * @param args
      * @param callbackContext
      */
@@ -659,11 +721,30 @@ public class MqttChat extends CordovaPlugin {
         });
     }
 
+    /**
+     * 录制小视频
+     * @param args
+     * @param callbackContext
+     */
+    public void takeVideo(final JSONArray args, final CallbackContext callbackContext) {
+        WechatRecoderActivity.launchActivity(cordova.getActivity(), 0x02001);
+        videoFileReceiver.setOnVideoGetListener(new VideoFileReceiver.OnVideoGetListener() {
+            @Override
+            public void getVideo(String filePath, String length, String formatSize, String fileName) {
+                try {
+                    setResult(new JSONArray("['" + filePath + "','" + length + "','" + formatSize + "','" + fileName + "']"), PluginResult.Status.OK, callbackContext);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
     public void getIconDir(final JSONArray args, final CallbackContext callbackContext) {
         String dir = FileUtils.getIconDir() + "/screenshot";
-        File file=new File(dir);
-        if(!file.exists()){
+        File file = new File(dir);
+        if (!file.exists()) {
             file.mkdirs();
         }
         setResult(dir, PluginResult.Status.OK, callbackContext);
@@ -671,6 +752,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置网络监听（返回true：连接上网；返回false：网络断开了）
+     *
      * @param args
      * @param callbackContext
      */
@@ -679,12 +761,18 @@ public class MqttChat extends CordovaPlugin {
             mqttConnectReceiver.setOnMqttStatusChangeListener(new MqttConnectReceiver.OnMqttStatusChangeListener() {
                 @Override
                 public void onMqttStarted() {
-                    setResult("true", PluginResult.Status.OK, callbackContext);
+                    try {
+                        setResult("true", PluginResult.Status.OK, callbackContext);
+                    } catch (Exception e) {
+                    }
                 }
 
                 @Override
                 public void onMqttClosed() {
-                    setResult("false", PluginResult.Status.ERROR, callbackContext);
+                    try {
+                        setResult("false", PluginResult.Status.ERROR, callbackContext);
+                    } catch (Exception e) {
+                    }
                 }
 
             });
@@ -693,6 +781,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取MQTT连接状态
+     *
      * @param args
      * @param callbackContext
      */
@@ -702,6 +791,233 @@ public class MqttChat extends CordovaPlugin {
         } else {
             setResult("true", PluginResult.Status.OK, callbackContext);
         }
+    }
+
+    /**
+     * 开始录音
+     * @param args
+     * @param callbackContext
+     */
+    public void startRecording(final JSONArray args, final CallbackContext callbackContext) {
+        final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                manager.startRecord(manager.createVoicePath(), 0);
+            }
+        });
+        manager.setOnRecorderChangeListener(new RecorderManager.OnRecorderChangeListener() {
+            @Override
+            public void onTimeChange(final String filePath, long interval, final long recordTime) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeChange");
+                            obj.put("filePath", filePath);
+                            obj.put("recordTime", recordTime);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onTimeout(final String filePath, final long interval) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "timeout");
+                            obj.put("filePath", filePath);
+                            obj.put("time", interval);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onRateChange(final String filePath, long interval, final int rate) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "rateChange");
+                            obj.put("filePath", filePath);
+                            obj.put("rate", rate);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onError(final String filePath, long interval, final String error) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("type", "error");
+                            obj.put("filePath", filePath);
+                            obj.put("error", error);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+    }
+
+    /**
+     * 结束录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopRecording(final JSONArray args, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final RecorderManager manager = RecorderManager.getInstance(cordova.getActivity());
+                try {
+                    manager.stopRecord();
+                } catch (Exception e) {
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        long duration = manager.getDuration();
+                        try {
+                            JSONObject obj = new JSONObject();
+                            obj.put("filePath", manager.getRecordPath());
+                            obj.put("duration", duration <= 59 * 1000 ? duration : 59 * 1000);
+                            setResult(obj, PluginResult.Status.OK, callbackContext);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+    }
+
+    /**
+     * 播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void playRecord(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            final String playVoiceName = args.getString(0);
+            File file = new File(FileUtils.getVoiceDir() + File.separator + playVoiceName);
+            //获取当前距离感应器设置信息（true为正常模式，false为听筒模式）
+            if (file.exists()) {
+                cordova.getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final MediaPlayer player = RecorderManager.getInstance(cordova.getActivity()).playRecord(playVoiceName);
+                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                UIUtils.switchEarphone(cordova.getActivity(), false);
+                                RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                                setResult("true", PluginResult.Status.OK, callbackContext);
+                            }
+                        });
+                        mSensorReceiver.setOnProxyChangeListener(new ProxySensorReceiver.OnProxyChangeListener() {
+                            @Override
+                            public void onEarphoneMode() {//由正常模式切换为听筒模式
+                                boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+                                Log.d("mode", "firing the hole:onEarphoneMode");
+                                if (proxyMode && RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
+                                    RecorderManager.getInstance(cordova.getActivity()).pause();
+                                    UIUtils.switchEarphone(cordova.getActivity(), true);
+                                    RecorderManager.getInstance(cordova.getActivity()).resume();
+                                }
+                            }
+
+                            @Override
+                            public void onNormalMode() {//由听筒模式切换为正常模式
+                                boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+                                Log.d("mode", "firing the hole:onNormalMode");
+                                if (proxyMode && RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
+                                    RecorderManager.getInstance(cordova.getActivity()).pause();
+                                    UIUtils.switchEarphone(cordova.getActivity(), false);
+                                    RecorderManager.getInstance(cordova.getActivity()).resume();
+                                }
+                            }
+                        });
+                        onPlayStopReceiver.setOnPlayStopListener(new OnPlayStopListener() {
+                            @Override
+                            public void onPlayStop() {
+                                UIUtils.switchEarphone(cordova.getActivity(), false);
+                                setResult("true", PluginResult.Status.OK, callbackContext);
+                            }
+                        });
+                    }
+                });
+            } else {
+                setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
+            }
+        } catch (JSONException e) {
+            UIUtils.switchEarphone(cordova.getActivity(), false);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 停止播放录音
+     * @param args
+     * @param callbackContext
+     */
+    public void stopPlayRecord(final JSONArray args, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    setResult("true", PluginResult.Status.OK, callbackContext);
+                    RecorderManager.getInstance(cordova.getActivity()).stopPlayRecord();
+                } catch (Exception e) {}
+            }
+        });
+    }
+
+    /**
+     * 设置距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void setProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            int proxyMode = args.getInt(0);
+            SPUtils.save("set_proxy_mode", proxyMode == 1 ? false : true);
+            if (RecorderManager.getInstance(cordova.getActivity()).isPlaying()) {
+                UIUtils.switchEarphone(cordova.getActivity(), proxyMode == 1 ? true : false);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取距离感应器模式（0为正常模式，1为听筒模式）
+     * @param args
+     * @param callbackContext
+     */
+    public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
+        setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
     }
 
     public static MType getType(String type) {
@@ -718,6 +1034,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录的用户ID
+     *
      * @return
      */
     public String getUserID() throws JSONException {
@@ -727,6 +1044,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取当前登录用户的deptID
+     *
      * @return
      * @throws JSONException
      */
@@ -742,6 +1060,7 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 获取登录信息（JSONObject）
+     *
      * @return
      * @throws JSONException
      */
@@ -774,11 +1093,12 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(String result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(String result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
@@ -786,11 +1106,12 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(JSONObject result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
@@ -798,11 +1119,25 @@ public class MqttChat extends CordovaPlugin {
 
     /**
      * 设置返回信息
-     * @param result 返回结果数据
-     * @param resultStatus 返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
      * @param callbackContext
      */
-    public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext){
+    public void setResult(JSONArray result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+        MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    /**
+     * 设置返回信息
+     *
+     * @param result          返回结果数据
+     * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+     * @param callbackContext
+     */
+    public void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
         MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
         pluginResult.setKeepCallback(true);
         callbackContext.sendPluginResult(pluginResult);
@@ -838,6 +1173,34 @@ public class MqttChat extends CordovaPlugin {
             }
         } catch (Exception e) {
         }
+        try {
+            if (onPlayStopReceiver != null) {
+                cordova.getActivity().unregisterReceiver(onPlayStopReceiver);
+                onPlayStopReceiver = null;
+            }
+        } catch (Exception e) {
+        }
         super.onDestroy();
+    }
+
+    private class OnPlayStopReceiver extends BroadcastReceiver {
+        private OnPlayStopListener onPlayStopListener;
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ReceiverParams.RECEIVER_PLAY_STOP.equals(intent.getAction())) {
+                if (onPlayStopListener != null) {
+                    onPlayStopListener.onPlayStop();
+                }
+            }
+        }
+
+        public void setOnPlayStopListener(OnPlayStopListener onPlayStopListener) {
+            this.onPlayStopListener = onPlayStopListener;
+        }
+
+    }
+
+    public interface OnPlayStopListener {
+        public void onPlayStop();
     }
 }

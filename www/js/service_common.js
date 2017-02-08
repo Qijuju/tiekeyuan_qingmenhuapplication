@@ -160,6 +160,9 @@ angular.module('common.services', [])
       getHeadPic: function (picUserID, picSize, success, error) {
         api.getHeadPic(picUserID, picSize, success, error);
       },
+      getOtherHeadPic: function (picUserID, picSize, success, error) {
+        api.getOtherHeadPic(picUserID, picSize, success, error);
+      },
       setHeadPic: function (success, error) {
         api.setHeadPic(success, error);
       },
@@ -184,8 +187,11 @@ angular.module('common.services', [])
       installApk:function(targetPath, success, error) {//安装应用
         api.install(targetPath, success, error);
       },
+      getWelcomePic: function (picUserID, picSize, success, error) {
+        api.getWelcomePic(picUserID, picSize, success, error);
+      },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
-        $mqtt.getMqtt().getString('install_cancel', function (msg) {
+        /*$mqtt.getMqtt().getString('install_cancel', function (msg) {
           if (msg != 'true') {
             api.getVersionInfo(function (msg) {
               var versionName = msg.versionName;
@@ -238,7 +244,71 @@ angular.module('common.services', [])
           }
         }, function (err) {
           $ToastUtils.showToast(msg);
-        });
+        });*/
+
+          //从网络请求数据  获取版本号和各种信息
+          api.getVersionInfo(function (msg) {
+            var versionName = msg.versionName;
+            var versionDesc = msg.versionDesc;
+            var filesize=msg.size;
+
+            //判断此版本是否需要升级
+            api.needUpgrade(versionName,function (msg) {
+
+              if(msg=='true'){
+                //需要升级
+                var confirmPopup = $ionicPopup.confirm({
+                  title: '版本升级',
+                  template: versionDesc, //从服务端获取更新的内容
+                  cancelText: '忽略',
+                  okText: '升级'
+                });
+
+                confirmPopup.then(function (res) {
+                  if(res) {
+                    //点击升级走的方法
+                    api.getVersion("", versionName,filesize, function (msg) {
+                      targetPath = msg;
+                      api.installApk(targetPath, function (success) {
+                        // 成功
+                        $mqtt.save('local_versionname', versionName);
+
+                      }, function (err) {
+                        // 错误
+                        $mqtt.save('local_versionname', "");
+
+                      });
+                    },function (msg) {
+
+                      $ToastUtils.showToast(msg);
+                    });
+                  } else {
+                    //点击取消更新走的方法
+                    $mqtt.save('local_versionname', versionName);
+
+                  }
+
+                });
+
+
+
+
+              }else if(msg != 'false' && msg != ''){
+                //不需要升级
+                $ToastUtils.showToast(msg)
+              }
+
+
+
+             },function (err) {
+                //判断是否能升级失败
+             })
+
+
+          },function (err) {
+              //获取版本信息失败
+          });
+
       },
       getHistoryMsg:function(sessionType, sessionID, pageNum, pageCount, success, error) {//获取历史消息
         api.getHistoryMsg(sessionType, sessionID, pageNum, pageCount, success, error);

@@ -53,6 +53,10 @@ public class ReceiverParams {
 	 */
 	public static final String PHOTO_FILE_GET = "com.tky.mqtt.mqttserverdemo.photo_file_get";
 	/**
+	 * 录制小视频后获取小视频
+	 */
+	public static final String VIDEO_FILE_GET = "com.tky.mqtt.mqttserverdemo.video_file_get";
+	/**
 	 * MQTT启动
 	 */
 	public static final String MQTT_START = "com.tky.mqtt.mqttserverdemo.mqtt_start";
@@ -79,4 +83,19 @@ public class ReceiverParams {
 	 * 重启service
 	 */
 	public static final String RESTARTSERVICE = "com.sls.mqtt.restartservice";
+
+	/**
+	 * 距离感应器的广播接收者ACTION
+	 */
+	public static final String RECEIVER_PROXY = "com.sls.mqtt.receiver_proxy";
+
+	/**
+	 * 熄灭屏幕或者其他导致播放停止的因素广播
+	 */
+	public static final String RECEIVER_PLAY_STOP = "com.sls.mqtt.receiver_play_stop";
+
+	/**
+	 * 声音变化的广播接收者
+	 */
+//	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
 }

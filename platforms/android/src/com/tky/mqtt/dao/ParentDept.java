@@ -8,7 +8,11 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table PARENT_DEPT.
  */
+<<<<<<< HEAD
 public class ParentDept implements java.io.Serializable {
+=======
+public class ParentDept extends BaseDao {
+>>>>>>> 621424a0c82dafe5d94866b15e352a7a033bcc61
 
     private String _id;
     private String name;

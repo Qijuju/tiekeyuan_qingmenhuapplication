@@ -35,6 +35,11 @@ public class FileUtils {
 	public static String getDownloadDir(){
 		return getDir("download");
 	}
+
+	public static String getVoiceDir(){
+		return getDir("voice");
+	}
+
 	private static String getDir(String string) {
 		if (isSDAvailable()) {
 			return getSDDir(string);
