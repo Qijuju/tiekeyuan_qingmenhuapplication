@@ -6,21 +6,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad11e619-32aa-4827-a591-e05ad5898843" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/BaseBuildInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/BuildInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/crash/SampleUncaughtExceptionHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/report/SampleLoadReporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/report/SamplePatchListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/report/SamplePatchReporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/report/SampleTinkerReport.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/service/SampleResultService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/util/SampleApplicationContext.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/util/TinkerManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/util/UpgradePatchRetry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/mytinker/util/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="ad11e619-32aa-4827-a591-e05ad5898843" name="Default" comment="" />
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -97,7 +83,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="576">
               <caret line="34" column="68" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
-              <folding />
+              <folding>
+                <element signature="e#2591#2609#0" expanded="true" />
+                <element signature="e#2816#2839#0" expanded="true" />
+                <element signature="e#3047#3070#0" expanded="true" />
+                <element signature="e#4555#4579#0" expanded="true" />
+                <element signature="e#7141#7180#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -4317,7 +4309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486524266315</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit tinker第二次">
+      <created>1486524398950</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1486524398950</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -4381,7 +4380,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit tinker" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit tinker" />
+    <MESSAGE value="commit tinker第二次" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit tinker第二次" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -4434,7 +4434,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2591#2609#0" expanded="true" />
+            <element signature="e#2816#2839#0" expanded="true" />
+            <element signature="e#3047#3070#0" expanded="true" />
+            <element signature="e#4555#4579#0" expanded="true" />
+            <element signature="e#7141#7180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4468,7 +4474,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2591#2609#0" expanded="true" />
+            <element signature="e#2816#2839#0" expanded="true" />
+            <element signature="e#3047#3070#0" expanded="true" />
+            <element signature="e#4555#4579#0" expanded="true" />
+            <element signature="e#7141#7180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4476,7 +4488,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="30" column="126" selection-start-line="30" selection-start-column="126" selection-end-line="30" selection-end-column="126" />
-          <folding />
+          <folding>
+            <element signature="e#2591#2609#0" expanded="true" />
+            <element signature="e#2816#2839#0" expanded="true" />
+            <element signature="e#3047#3070#0" expanded="true" />
+            <element signature="e#4555#4579#0" expanded="true" />
+            <element signature="e#7141#7180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4735,7 +4753,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="34" column="68" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
-          <folding />
+          <folding>
+            <element signature="e#2591#2609#0" expanded="true" />
+            <element signature="e#2816#2839#0" expanded="true" />
+            <element signature="e#3047#3070#0" expanded="true" />
+            <element signature="e#4555#4579#0" expanded="true" />
+            <element signature="e#7141#7180#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
