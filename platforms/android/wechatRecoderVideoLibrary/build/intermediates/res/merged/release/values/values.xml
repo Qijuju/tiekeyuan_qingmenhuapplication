@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/src/main/res/values/colors.xml -->
-    <eat-comment/>
     <color name="FF00FF00">#ff00FF00</color>
     <color name="bar_color">#232325</color>
     <color name="black">#ff000000</color>
@@ -17,16 +15,10 @@
     <color name="video_color">#ff039bfb</color>
     <color name="white">#ffffff</color>
     <color name="windows_color">#F5F5F5</color>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/src/main/res/values/dimens.xml -->
-    <eat-comment/>
     <dimen name="camera_focus_area_size">96dp</dimen>
     <dimen name="recoder_circle_bg_height">60dp</dimen>
     <dimen name="recoder_circle_bg_width">60dp</dimen>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="app_name">WechatRecoderVideoLibrary</string>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/src/main/res/values/styles.xml -->
-    <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         
         <!--
@@ -35,12 +27,8 @@
             backward-compatibility can go here.
         -->
     </style>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/res/values/values.xml -->
-    <eat-comment/>
     <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
     </style>
-    <!-- From: file:/C:/Users/Administrator/regitlab/IM/platforms/android/wechatRecoderVideoLibrary/src/main/res/values/styles.xml -->
-    <eat-comment/>
     <style name="CameraTheme" parent="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/black</item>

@@ -40,10 +40,9 @@ public final class R {
         public static int recoder_circle_bg_width=0x7f070002;
     }
     public static final class drawable {
-        public static int ic_launcher=0x7f020000;
-        public static int icon=0x7f020001;
-        public static int img_btn_press=0x7f020002;
-        public static int ms_video_focus_icon=0x7f020003;
+        public static int icon=0x7f020000;
+        public static int img_btn_press=0x7f020001;
+        public static int ms_video_focus_icon=0x7f020002;
     }
     public static final class id {
         public static int btn_press=0x7f09000a;

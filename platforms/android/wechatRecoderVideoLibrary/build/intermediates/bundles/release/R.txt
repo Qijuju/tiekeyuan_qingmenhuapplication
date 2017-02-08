@@ -21,10 +21,9 @@ int color windows_color 0x7f06000e
 int dimen camera_focus_area_size 0x7f070000
 int dimen recoder_circle_bg_height 0x7f070001
 int dimen recoder_circle_bg_width 0x7f070002
-int drawable ic_launcher 0x7f020000
-int drawable icon 0x7f020001
-int drawable img_btn_press 0x7f020002
-int drawable ms_video_focus_icon 0x7f020003
+int drawable icon 0x7f020000
+int drawable img_btn_press 0x7f020001
+int drawable ms_video_focus_icon 0x7f020002
 int id btn_press 0x7f09000a
 int id img_record_focusing 0x7f090002
 int id layout_header 0x7f090003
