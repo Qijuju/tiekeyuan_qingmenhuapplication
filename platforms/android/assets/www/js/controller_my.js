@@ -420,9 +420,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading,$mqtt,$ionicActionSheet,$timeout,$cordovaCamera) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading,$mqtt,$ionicActionSheet,$timeout,$cordovaCamera,$ionicScrollDelegate) {
 
-
+    var viewScroll = $ionicScrollDelegate.$getByHandle('myinformationScroll');
+    $scope.$on('$ionicView.enter', function () {
+      viewScroll.scrollBottom();
+    });
     var isAndroid = ionic.Platform.isAndroid();
       $scope.UserIDforhou = $stateParams.UserIDfor;
       $api.getHeadPic($scope.UserIDforhou,"60",function (srcurl) {
@@ -1241,7 +1244,29 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count) {
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count,$location,$ionicPlatform,$ionicLoading,$ionicHistory,$ToastUtils,$mqtt,$timeout) {
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      if($location.path()==('/tab/webpage')){
+        window.close();
+      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+        if (backButtonPressedOnceToExit) {
+          $mqtt.setExitStartedStatus();
+          ionic.Platform.exitApp();
+        } else {
+          backButtonPressedOnceToExit = true;
+          $ToastUtils.showToast('再按一次退出系统');
+          setTimeout(function () {
+            backButtonPressedOnceToExit = false;
+          }, 1500);
+        }
+      }else {
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+      }
+      e.preventDefault();
+      return false;
+    },501)
+
     $scope.indicators = Indicators.all();
 
     $scope.indicatorId = Indicators.getId($stateParams.indicatorId);
@@ -1258,7 +1283,38 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
-      window.open("http://61.237.239.152:8080/html5/src/gouzhuwu.html","_self","location=no")
-    }
+      // window.open("http://61.237.239.152:8080/html5/src/gouzhuwu.html","_self","location=no")
 
+      window.open('http://61.237.239.152:8080/html5/src/gouzhuwu.html','newwindow','height=200,width=200,top=100,left=50,toolbar=no,menubar=no,scrollbars=no,location=no,status=no')
+      // w.document.body.clientHeight=200;
+      window.resizeTo(200,200)
+      window.moveTo(50,50)
+
+      // window.moveTo(0,100)
+      alert(window.outerHeight)
+    }
+    $scope.openUrlchenjiang=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://www.r93535.com/cj/riskcontrol/appmanager/appstatisticsindex!mobiledevicepc.action","_self","location=no")
+    }
+    $scope.openUrlbanchang=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://61.237.239.104:18080/TDBLAppService/html/1Allcompany.html","_self","location=no")
+    }
+    //
+    // window.
+    // Methods:
+    // open
+    // addEventListener
+    // removeEventListener
+    // close
+    // show
+    // executeScript
+    // insertCSS
   })

@@ -18,8 +18,8 @@
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects"
                   ng-click="openUrl()">
           <img ng-src="img/adam.jpg">
-          <h2>{{project.projectName}}</h2>
-          <p style="size: 12px">{{project.kzgsName}}</p>
+          <h2 style="margin-left: 20px">{{project.projectName}}</h2>
+          <p  style="size: 12px;margin-left: 20px">{{project.kzgsName}}</p>
           <i class="icon ion-chevron-right icon-accessory"></i>
         </ion-item>
       </ion-list>
@@ -66,7 +66,30 @@
           </a>
         </div>
       </div>
-
+      <!--质安-->
+      <h5 style="background-color: #dddddd;padding: 6px">质安</h5>
+      <div class="row" style="background: #ffffff;">
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/cjgc.png" width="45" height="45"  class="yuanjiao1" ng-click="openUrlchenjiang()"></li>
+              <li>沉降</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+          <a>
+            <ul>
+              <li><img src="img/bc.png" width="45" height="45"  class="yuanjiao1" ng-click="openUrlbanchang()"></li>
+              <li>板厂</li>
+            </ul>
+          </a>
+        </div>
+        <div class="col" align="center">
+        </div>
+        <div class="col" align="center">
+        </div>
+      </div>
       <!--工作-->
       <h5 style="background-color: #dddddd;padding: 6px">工作</h5>
       <div class="row" style="background: #ffffff;">
@@ -86,8 +109,8 @@
             </ul>
           </a>
         </div>
-        <div class="col" align="center">
-          <a>
+        <div class="col" align="center" >
+          <a href="http://61.237.239.152:8080/html5/src/gouzhuwu.html">
             <ul>
               <li><img src="img/icon_money.png" width="45" height="45"></li>
               <li>周报</li>
