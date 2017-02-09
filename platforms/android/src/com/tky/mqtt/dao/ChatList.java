@@ -25,8 +25,6 @@ public class ChatList extends BaseDao {
     private String messagetype;
     private String isRead;
 
-
-
     public ChatList() {
     }
 
