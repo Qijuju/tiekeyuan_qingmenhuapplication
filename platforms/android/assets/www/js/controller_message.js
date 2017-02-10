@@ -58,12 +58,13 @@ angular.module('message.controllers', [])
     // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
-
+    $scope.otherheadpicurl=1;
     $scope.otheryoumeiyou=false;
    //取出头像url
     $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
       if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
         $scope.otheryoumeiyou=false;
+        $scope.otherheadpicurl=1;
       }else {
         $scope.otheryoumeiyou=true;
         $scope.otherheadpicurl=succ[0].picurl;
@@ -71,6 +72,7 @@ angular.module('message.controllers', [])
 
       // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
     },function (err) {
+      $scope.otherheadpicurl=1;
       $scope.otheryoumeiyou=false;
     });
 
@@ -102,7 +104,8 @@ angular.module('message.controllers', [])
                 }
                 $scope.lastDate = data[0].when;//最后一条消息的时间
                 $scope.chatName = data[0].username;//对话框名称
-                $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+
+                $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像z
                 $scope.srcName = data[0].username;//消息来源人名字
                 $scope.srcId = data[0].senderid;//消息来源人id
                 $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -117,7 +120,22 @@ angular.module('message.controllers', [])
                   var chatitem = {};
                   chatitem.id = data[0].id;
                   chatitem.chatName = data[0].chatName;
-                  chatitem.imgSrc = $scope.imgSrc;
+                  // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+                  //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+                  //     chatitem.imgSrc = $scope.imgSrc;
+                  //   }else {
+                  //     chatitem.imgSrc =succ[0].picurl;
+                  //   }
+                  //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+                  // },function (err) {
+                  //   chatitem.imgSrc = $scope.imgSrc;
+                  // });
+                  if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                    chatitem.imgSrc =$scope.imgSrc
+                  }else {
+                    chatitem.imgSrc =$scope.otherheadpicurl
+                  }
+
                   chatitem.lastText = $scope.lastText;
                   chatitem.count = '0';
                   chatitem.isDelete = data[0].isDelete;
@@ -257,7 +275,7 @@ angular.module('message.controllers', [])
               }
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.chatName = data[0].username;//对话框名称
-              $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+              $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -279,7 +297,21 @@ angular.module('message.controllers', [])
                 chatitem.lastDate = $scope.lastDate;
                 chatitem.chatType = data[0].chatType;
                 chatitem.senderId = $scope.srcId;//发送者id
-                chatitem.imgSrc = $scope.imgSrc;
+                // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+                //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+                //     chatitem.imgSrc = $scope.imgSrc;
+                //   }else {
+                //     chatitem.imgSrc =succ[0].picurl;
+                //   }
+                //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+                // },function (err) {
+                //   chatitem.imgSrc = $scope.imgSrc;
+                // });
+                if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                  chatitem.imgSrc =$scope.imgSrc
+                }else {
+                  chatitem.imgSrc =$scope.otherheadpicurl
+                }
                 chatitem.senderName = $scope.srcName;//发送者名字
                 chatitem.daytype=$scope.daytype;
                 chatitem.isSuccess=$scope.isSuccess;
@@ -522,7 +554,7 @@ angular.module('message.controllers', [])
             messaegeitem.when=data[i].when;
             messaegeitem.isFailure=data[i].isFailure;
             messaegeitem.isDelete=data[i].isDelete;
-            messaegeitem.imgSrc=data[i].imgSrc;
+            messaegeitem.imgSrc=$scope.otherheadpicurl;
             messaegeitem.username=data[i].username;
             messaegeitem.senderid=data[i].senderid;
             messaegeitem.isSuccess=data[i].isSuccess;
@@ -971,7 +1003,21 @@ angular.module('message.controllers', [])
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
-              chatitem.imgSrc = data[0].imgSrc;
+              // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+              //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+              //     chatitem.imgSrc = $scope.imgSrc;
+              //   }else {
+              //     chatitem.imgSrc =succ[0].picurl;
+              //   }
+              //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+              // },function (err) {
+              //   chatitem.imgSrc = $scope.imgSrc;
+              // });
+              if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                chatitem.imgSrc =$scope.imgSrc
+              }else {
+                chatitem.imgSrc =$scope.otherheadpicurl
+              }
               chatitem.lastText = data[0].lastText;
               chatitem.count = '0';
               chatitem.isDelete = data[0].isDelete;
@@ -1170,7 +1216,7 @@ angular.module('message.controllers', [])
               }
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.chatName = data[0].username;//对话框名称
-              $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+              $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -1185,7 +1231,21 @@ angular.module('message.controllers', [])
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 chatitem.chatName = data[0].chatName;
-                chatitem.imgSrc = $scope.imgSrc;
+                // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+                //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+                //     chatitem.imgSrc = $scope.imgSrc;
+                //   }else {
+                //     chatitem.imgSrc =succ[0].picurl;
+                //   }
+                //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+                // },function (err) {
+                //   chatitem.imgSrc = $scope.imgSrc;
+                // });
+                if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                  chatitem.imgSrc =$scope.imgSrc
+                }else {
+                  chatitem.imgSrc =$scope.otherheadpicurl
+                }
                 chatitem.lastText = $scope.lastText;
                 chatitem.count = '0';
                 chatitem.isDelete = data[0].isDelete;
@@ -1326,7 +1386,7 @@ angular.module('message.controllers', [])
             }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             $scope.chatName = data[0].username;//对话框名称
-            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像
             $scope.srcName = data[0].username;//消息来源人名字
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -1343,7 +1403,21 @@ angular.module('message.controllers', [])
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
               // $ToastUtils.showToast("存在该对话的单聊对话名称"+$scope.chatName);
-              chatitem.imgSrc = $scope.imgSrc;
+              // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+              //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+              //     chatitem.imgSrc = $scope.imgSrc;
+              //   }else {
+              //     chatitem.imgSrc =succ[0].picurl;
+              //   }
+              //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+              // },function (err) {
+              //   chatitem.imgSrc = $scope.imgSrc;
+              // });
+              if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                chatitem.imgSrc =$scope.imgSrc
+              }else {
+                chatitem.imgSrc =$scope.otherheadpicurl
+              }
               chatitem.lastText = $scope.lastText;
               chatitem.count = '0';
               chatitem.isDelete = data[0].isDelete;
@@ -1851,7 +1925,7 @@ angular.module('message.controllers', [])
           messaegeitem.when=data[0].when;
           messaegeitem.isFailure=data[0].isFailure;
           messaegeitem.isDelete=data[0].isDelete;
-          messaegeitem.imgSrc=data[0].imgSrc;
+          messaegeitem.imgSrc=$scope.otherheadpicurl;
           messaegeitem.username=data[0].username;
           messaegeitem.senderid=data[0].senderid;
           messaegeitem.isSuccess=data[0].isSuccess;
@@ -1941,7 +2015,7 @@ angular.module('message.controllers', [])
               }
               $scope.lastDate = data[0].when;//最后一条消息的时间
               $scope.chatName = data[0].username;//对话框名称
-              $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+              $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像
               $scope.srcName = data[0].username;//消息来源人名字
               $scope.srcId = data[0].senderid;//消息来源人id
               $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -1956,7 +2030,21 @@ angular.module('message.controllers', [])
                 var chatitem = {};
                 chatitem.id = data[0].id;
                 chatitem.chatName = data[0].chatName;
-                chatitem.imgSrc = $scope.imgSrc;
+                // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+                //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+                //     chatitem.imgSrc = $scope.imgSrc;
+                //   }else {
+                //     chatitem.imgSrc =succ[0].picurl;
+                //   }
+                //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+                // },function (err) {
+                //   chatitem.imgSrc = $scope.imgSrc;
+                // });
+                if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                  chatitem.imgSrc =$scope.imgSrc
+                }else {
+                  chatitem.imgSrc =$scope.otherheadpicurl
+                }
                 chatitem.lastText = $scope.lastText;
                 chatitem.count = '0';
                 chatitem.isDelete = data[0].isDelete;
@@ -2074,7 +2162,7 @@ angular.module('message.controllers', [])
             }
             $scope.lastDate = data[0].when;//最后一条消息的时间
             $scope.chatName = data[0].username;//对话框名称
-            $scope.imgSrc = data[0].imgSrc;//最后一条消息的头像
+            $scope.imgSrc = $scope.otherheadpicurl;//最后一条消息的头像
             $scope.srcName = data[0].username;//消息来源人名字
             $scope.srcId = data[0].senderid;//消息来源人id
             $scope.daytype=data[0].daytype;//最后一条消息的日期类型
@@ -2090,7 +2178,21 @@ angular.module('message.controllers', [])
               var chatitem = {};
               chatitem.id = data[0].id;
               chatitem.chatName = data[0].chatName;
-              chatitem.imgSrc = $scope.imgSrc;
+              // $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
+              //   if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
+              //     chatitem.imgSrc = $scope.imgSrc;
+              //   }else {
+              //     chatitem.imgSrc =succ[0].picurl;
+              //   }
+              //   // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
+              // },function (err) {
+              //   chatitem.imgSrc = $scope.imgSrc;
+              // });
+              if($scope.otherheadpicurl==undefined||$scope.otherheadpicurl==null||$scope.otherheadpicurl.length==0){
+                chatitem.imgSrc =$scope.imgSrc
+              }else {
+                chatitem.imgSrc =$scope.otherheadpicurl
+              }
               chatitem.lastText = $scope.lastText;
               chatitem.count = '0';
               chatitem.isDelete = data[0].isDelete;
@@ -2635,7 +2737,7 @@ angular.module('message.controllers', [])
       // alert("最高毫秒值"+millions);
       $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
-      
+
       if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
         // alert("群聊改时间进来了吗");
         for(var i=0;i<data.length;i++){

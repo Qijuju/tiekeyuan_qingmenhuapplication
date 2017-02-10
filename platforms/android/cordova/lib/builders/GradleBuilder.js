@@ -185,8 +185,8 @@ GradleBuilder.prototype.prepEnv = function(opts) {
  * Returns a promise.
  */
 GradleBuilder.prototype.build = function(opts) {
-    var wrapper = path.join(this.root, 'gradlew');
-    var args = this.getArgs(opts.buildType == 'debug' ? 'debug' : 'release', opts);
+    var wrapper = path.join(this.root, 'gradlew');;
+    var args = this.getArgs(opts.buildType == 'debug' ? 'debug' : 'release', opts)
     return spawnAndSuppressJavaOptions(wrapper, args);
 };
 

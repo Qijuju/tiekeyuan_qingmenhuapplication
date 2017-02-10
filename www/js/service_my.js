@@ -35,20 +35,21 @@ angular.module('my.services', [])
       {
         id: 0,
         describe: '公司举行廉洁工程',
-        url: 'http://img.iyookee.cn/20150619/20150619_100607_883_670.png'
+        url: 'img/im77.png'
       }, {
         id: 1,
         describe: '公司举行廉洁工程',
-        url: 'http://img.iyookee.cn/20150619/20150619_100607_883_670.png'
+        url: 'img/im88.png'
       }, {
         id: 2,
         describe: '公司举行廉洁工程',
-        url: 'http://img.iyookee.cn/20150619/20150619_100607_883_670.png'
-      }, {
-        id: 3,
-        describe: '公司举行廉洁工程',
-        url: 'http://img.iyookee.cn/20150619/20150619_100607_883_670.png'
+        url: 'img/im99.png'
       }
+      // , {
+      //   id: 3,
+      //   describe: '公司举行廉洁工程',
+      //   url: 'img/im4.png'
+      // }
     ];
 
     return {
