@@ -18,8 +18,8 @@ android {
 }
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':vitamioRecorderLibrary')
     compile 'com.google.code.gson:gson:2.2.+'
+    compile project(':vitamioRecorderLibrary')
 }
 
 repositories {
