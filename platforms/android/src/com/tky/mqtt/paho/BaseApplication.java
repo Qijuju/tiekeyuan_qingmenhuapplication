@@ -4,30 +4,22 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
-import com.squareup.okhttp.OkHttpClient;
 import com.tencent.tinker.anno.DefaultLifeCycle;
-import com.tencent.tinker.lib.tinker.Tinker;
-import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tky.mqtt.dao.DaoMaster;
 import com.tky.mqtt.dao.DaoSession;
-import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mytinker.util.SampleApplicationContext;
 import com.tky.mytinker.util.TinkerManager;
 import com.yixia.camera.VCamera;
 import com.yixia.camera.util.DeviceUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 
 @DefaultLifeCycle(
@@ -81,13 +73,6 @@ public class BaseApplication extends DefaultApplicationLike {
     //installTinker after load multiDex
     //or you can put com.tencent.tinker.** to main dex
     TinkerManager.installTinker(this);
-
-
-
-
-
-
-
   }
 
   @Override

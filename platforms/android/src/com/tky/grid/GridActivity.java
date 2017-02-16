@@ -58,6 +58,8 @@ public class GridActivity extends Activity {
         init();
     }
 
+
+    //从数据库获取图片列表
     private void getImagespath(String sessionid,String type) {
         List<FilePicture> filePictures= filePictureDao.queryBuilder().where(FilePictureDao.Properties.Sessionid.eq(sessionid))
                 .where(FilePictureDao.Properties.Type.eq(type))

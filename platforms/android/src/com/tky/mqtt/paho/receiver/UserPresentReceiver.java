@@ -6,7 +6,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ionicframework.im366077.OnePxActivity;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
@@ -16,10 +15,7 @@ import com.tky.mqtt.paho.utils.NetUtils;
 import java.util.List;
 
 /**
- * 作者：
- * 包名：com.sls.mynewframe.mqtt.receiver
- * 日期：2016/10/24 0:52
- * 描述：
+ *屏幕段屏后  mqtt链接失败后  重启
  */
 public class UserPresentReceiver extends BroadcastReceiver {
     @Override
