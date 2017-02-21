@@ -4169,9 +4169,10 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
-
+    
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
+    alert("啦啦啦啦啦啦啦"+$scope.ID+$scope.SESSIONID);
     $scope.GROUP=$stateParams.grouptype;
 
     $scope.$on('$ionicView.enter', function () {

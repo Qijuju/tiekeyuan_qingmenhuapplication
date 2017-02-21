@@ -1,4 +1,4 @@
-package com.tky.mqtt.plugin.saveLocal;
+package com.tky.saveLocal;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;

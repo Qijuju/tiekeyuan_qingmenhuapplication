@@ -150,10 +150,6 @@ public class GridActivity extends Activity {
             mImageLoader.loadImage(getItem(position), imageview, false);
             return convertView;
         }
-
-
-
-
     }
 
 

@@ -119,6 +119,17 @@ angular.module('im.routes', [])
         }
       })
 
+      .state('tab.work', {
+        url: '/work',
+        cache:false,
+        views: {
+          'tab-work': {
+            templateUrl: 'templates/tab-work.html',
+            controller:'WorkCtrl'
+          }
+        }
+      })
+
       .state('tab.notifications', {
         url: '/notifications',
         cache:false,

@@ -1,4 +1,4 @@
-package com.tky.mqtt.plugin.phone;
+package com.tky.mqtt.phone;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -316,7 +316,11 @@ angular.module('login.controllers', [])
     };
 
     var ifyuju =function () {
+      //测试自动登录
+      // passlogin = 1;
       if(passlogin=="1"){
+        // namegesturea = 'chenglilicll';
+        // pwdgesturea = 'password';
         $api.login(namegesturea, pwdgesturea, function (message) {
           $ionicLoading.show({
             content: 'Loading',
