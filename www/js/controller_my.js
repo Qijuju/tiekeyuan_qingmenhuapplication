@@ -649,6 +649,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
 
     },501)
+    
     $scope.goAcount = function () {
       $state.go("tab.account");
     }

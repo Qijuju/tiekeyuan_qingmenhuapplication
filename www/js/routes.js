@@ -168,8 +168,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/message-detail.html',
         cache:false,
         controller: 'MessageDetailCtrl'
-
-
       })
 
 

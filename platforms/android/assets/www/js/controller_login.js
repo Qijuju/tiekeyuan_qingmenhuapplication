@@ -620,6 +620,5 @@ angular.module('login.controllers', [])
         $ToastUtils.showToast(err);
       });
     }
-
   })
 

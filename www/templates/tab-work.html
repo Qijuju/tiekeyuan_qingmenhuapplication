@@ -1,17 +1,19 @@
 <ion-view  view-title="工作">
-  <ion-nav-bar align-title="center">
+  <ion-nav-bar align-title="center" class="bar-stable">
   </ion-nav-bar>
 
   <ion-content overflow-scroll="false" on-drag="onDrag()">
 
-    <div>
-      {{data}}
-    </div>
+    <!--<div>-->
+      <!--{{data}}-->
+    <!--</div>-->
 
+    <iframe src="https://www.baidu.com/" name="self"
+            frameborder="0" width="100%" scrolling="yes"
+            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/>
 
-    <!--<iframe src="https://www.baidu.com/" name="self"-->
-            <!--frameborder="0" width="100%" scrolling="no"-->
-            <!--onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/>-->
   </ion-content>
+
+
 </ion-view>
 
