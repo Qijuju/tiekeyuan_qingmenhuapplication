@@ -13,11 +13,10 @@ angular.module('newnotification.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-
-
-
+    
     $scope.initstate=false;
     $scope.openagain=function () {
+      
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -53,7 +52,6 @@ angular.module('newnotification.controllers', [])
           $scope.initweekstate=true
         }else {
           $scope.initweekstate=false;
-
         }
         $ionicLoading.hide();
 
@@ -436,10 +434,6 @@ angular.module('newnotification.controllers', [])
 
           })
 
-
-
-
-
         },function (err) {
 
         })
@@ -492,17 +486,11 @@ angular.module('newnotification.controllers', [])
     }
 
   })
-
-
-
+    
 
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao,$api,$timeout,$ionicLoading,$ToastUtils) {
-
-
-
-
-
+    
     $scope.id=$stateParams.id;
 
 
@@ -572,11 +560,7 @@ angular.module('newnotification.controllers', [])
       //调用接口确认回复详情
       $timeout(function () {
         $api.readMessage($scope.allDetail.type,$scope.allDetail.sessionid,$scope.allDetail.when,function (suc) {
-
-
-
-
-
+          
           $scope.lastDetail=suc;
 
           var confirmD={};
