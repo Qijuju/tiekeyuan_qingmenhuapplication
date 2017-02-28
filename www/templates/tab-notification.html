@@ -26,12 +26,12 @@
             按应用
           </li>
         </div>
-        <div ng-click="goFocus(4)"
-             style="width: 100%;height: 40px;text-align: center;background-color: #e9e9d8;color: #000000">
-          <li class="item" style="width: 100%;height: 40px;text-align: center;background-color: white;color: #000000">
-            关注
-          </li>
-        </div>
+        <!--<div ng-click="goFocus(4)"-->
+             <!--style="width: 100%;height: 40px;text-align: center;background-color: #e9e9d8;color: #000000">-->
+          <!--<li class="item" style="width: 100%;height: 40px;text-align: center;background-color: white;color: #000000">-->
+            <!--关注-->
+          <!--</li>-->
+        <!--</div>-->
       </ul>
     </div>
   </ion-nav-bar>
@@ -40,6 +40,7 @@
     <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
                    pager-click="go(index)" on-slide-changed="go_changed(index)">
 
+      <!--通知下模块-->
       <ion-slide style="background: gainsboro">
         <div>
           <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;">
@@ -57,6 +58,9 @@
 
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
+
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+
 
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
               <span class="rj-push-right" ng-if="item.isread=='false' " style="color: cornflowerblue;margin-top: 2px">未读</span>
@@ -234,6 +238,7 @@
         </div>
       </ion-slide>
 
+      <!--应用下模块-->
       <ion-slide>
         <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
           <div class="col" align="center" ng-click="gotoFocus('1',0)">
@@ -242,7 +247,7 @@
                 <li><img src="img/oa.png" width="45" height="45">
 
                 </li>
-                <li style="color: #000000">公文处理</li>
+                <li style="color: #000000">公文处理1</li>
                 <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px" ng-if="gongwen>0">
                   {{gongwen}}
                 </div>
@@ -288,6 +293,7 @@
         </div>
       </ion-slide>
 
+      <!--应用下模块-->
       <ion-slide>
         <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
           <div class="col" align="center" ng-click="gotoFocus('1',1)">
@@ -296,7 +302,7 @@
                 <li><img src="img/oa.png" width="45" height="45">
 
                 </li>
-                <li style="color: #000000">公文处理</li>
+                <li style="color: #000000">公文处理2</li>
               </ul>
             </a>
           </div>
@@ -326,6 +332,7 @@
           </div>
         </div>
       </ion-slide>
+
 
       <ion-slide>
         <div>

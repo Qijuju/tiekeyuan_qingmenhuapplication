@@ -13,10 +13,10 @@ angular.module('newnotification.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
-    
+
     $scope.initstate=false;
     $scope.openagain=function () {
-      
+
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -64,10 +64,12 @@ angular.module('newnotification.controllers', [])
 
     //初始状态
     $scope.startA=false;
-    $scope.titleAll=['通知','应用','关注'];
+    // $scope.titleAll=['通知','应用','关注'];
+    $scope.titleAll=['通知','应用'];
     $scope.newdex=0;
     //滑块的状态
     $scope.appstatus=false;
+
 
     //当滑动时候改变title的值
     $scope.go_changed=function (index) {
@@ -90,9 +92,11 @@ angular.module('newnotification.controllers', [])
 
         }
       }else if(index==4||index==5){
-        $scope.newdex=2
+        //之前4，后改成0（Liuxw)
+        // $scope.newdex=4
+        $scope.newdex=0
         if(index==4){
-          $scope.appstatus=false;
+          $scope.appstatus=true;//之前false改成ture
 
         }else if (index==5){
           $scope.appstatus=true;
@@ -178,29 +182,27 @@ angular.module('newnotification.controllers', [])
     //点击滑块执行的方法
     $scope.changeSlide=function (index) {
 
+
       if(!$scope.appstatus){
         $scope.appstatus=true;
       }else {
         $scope.appstatus=false;
-
-
       }
-
-
       if(index==0 && $scope.appstatus==true){
-        $scope.goConfirmAll(1)
+        //已确认模块改成关注模块(Liuxw
+        // $scope.goConfirmAll(1)
+        $scope.goFocus(4);
       }else if (index==0 && $scope.appstatus==false){
         $scope.goAll(0)
+
       }else if (index==1 && $scope.appstatus==true){
         $scope.goConfirmApp(3)
-
       }else if (index==1 && $scope.appstatus==false){
         $scope.goApp(2)
       }else if (index==2 && $scope.appstatus==true){
         $scope.goConfirmFocus(5)
       }else if (index==2 && $scope.appstatus==false){
         $scope.goFocus(4)
-
       }
 
     }
@@ -271,10 +273,12 @@ angular.module('newnotification.controllers', [])
     //我的关注划分(关注未确认)    index 是4
     $scope.goFocus=function (index) {
 
-      $scope.appstatus=false;
-      $scope.startA=false;
-      $scope.newdex=2;
 
+      $scope.startA=false;
+      // $scope.appstatus=false;
+      // $scope.newdex=2; //之前是2,false  后改成 0 true
+      $scope.appstatus=true;
+      $scope.newdex=0;
       $ionicSlideBoxDelegate.slide(index);
 
     };
@@ -486,11 +490,11 @@ angular.module('newnotification.controllers', [])
     }
 
   })
-    
+
 
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope,$stateParams,$ionicHistory,$greendao,$api,$timeout,$ionicLoading,$ToastUtils) {
-    
+
     $scope.id=$stateParams.id;
 
 
@@ -560,7 +564,7 @@ angular.module('newnotification.controllers', [])
       //调用接口确认回复详情
       $timeout(function () {
         $api.readMessage($scope.allDetail.type,$scope.allDetail.sessionid,$scope.allDetail.when,function (suc) {
-          
+
           $scope.lastDetail=suc;
 
           var confirmD={};
