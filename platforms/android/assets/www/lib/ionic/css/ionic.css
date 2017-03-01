@@ -6675,6 +6675,14 @@ button.item.item-button-right {
     .item-options .button:before {
       margin: 0 auto; }
 
+
+
+.bkg .item-content{
+  background-color: #FFFAEC !important;
+  height:100%;
+}
+
+
 /**
  * Lists
  * --------------------------------------------------

@@ -1,6 +1,7 @@
 package com.tky.mqtt.plugin.thrift;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
@@ -194,12 +195,15 @@ public class ThriftApiClient extends CordovaPlugin {
             } catch (JSONException e) {
               setResult("JSON数据解析出错！", PluginResult.Status.ERROR, callbackContext);
               e.printStackTrace();
+            } catch (SQLiteException e){
+              setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
             }
           }
         }
 
         @Override
         public void onError(Exception e) {
+
           setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
         }
       });
