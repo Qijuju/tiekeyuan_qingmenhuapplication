@@ -624,10 +624,6 @@ angular.module('newnotification.controllers', [])
 
 
 
-
-
-
-
     $scope.$on('$ionicView.beforeLeave', function () {
 
       $greendao.loadDataByArg("SystemMsgService",$scope.id,function (message) {

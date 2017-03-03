@@ -561,6 +561,7 @@ angular.module('newnotification.controllers', [])
         maxWidth: 100,
         showDelay: 0
       });
+      
       //调用接口确认回复详情
       $timeout(function () {
         $api.readMessage($scope.allDetail.type,$scope.allDetail.sessionid,$scope.allDetail.when,function (suc) {
@@ -620,10 +621,6 @@ angular.module('newnotification.controllers', [])
 
 
     };
-
-
-
-
 
 
 
