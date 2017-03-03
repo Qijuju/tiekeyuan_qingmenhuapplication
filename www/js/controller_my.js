@@ -51,7 +51,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var long="";
     var locationaaa="";
     //获取定位的经纬度
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    var posOptions = {maximumAge: 3000,timeout: 10000};//, enableHighAccuracy: true
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       lat  = position.coords.latitude+0.006954;//   116.329102,39.952728,
@@ -66,8 +66,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         });
     }, function(err) {
-      $ToastUtils.showToast("请开启定位功能");
-    });
+      // alert(err.code+"1111"+err.message)
+      $ToastUtils.showToast(err.message);
+    },posOptions);
 
 
 
@@ -1306,6 +1307,20 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
       window.open("http://61.237.239.104:18080/TDBLAppService/html/1Allcompany.html","_self","location=no")
+    }
+    $scope.openXMdongtai=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://172.25.28.106:8080/XMdongtai/www/index.html#/tab/account","_self","location=no")
+    }
+    $scope.opentest=function(){
+      //   if (!cordova.InAppBrowser) {
+      //     return;
+      //   }
+      //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
+      window.open("http://172.25.28.106:8080/myapp/www/index.html","_self","location=no")
     }
     //
     // window.
