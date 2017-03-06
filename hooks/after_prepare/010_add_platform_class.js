@@ -90,5 +90,4 @@ if (rootdir) {
       process.stdout.write(e);
     }
   }
-
 }
