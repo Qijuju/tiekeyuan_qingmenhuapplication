@@ -1,7 +1,5 @@
-<ion-view  view-title="工作">
-  <ion-nav-bar align-title="center" class="bar-stable">
-  </ion-nav-bar>
-    <ion-content>
+<ion-view  >
+    <!--<ion-content>
       <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="false"
                      pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
         <ion-slide ng-repeat="idts in indicators">
@@ -11,9 +9,9 @@
         </ion-slide>
       </ion-slide-box>
 
-      <!--项目列表-->
+      &lt;!&ndash;项目列表&ndash;&gt;
       <h5 style="background-color: #dddddd;padding: 6px">项目列表</h5>
-      <!--<button ng-click="openUrl()">跳转</button>-->
+      &lt;!&ndash;<button ng-click="openUrl()">跳转</button>&ndash;&gt;
       <ion-list>
         <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects"
                   ng-click="openUrl()">
@@ -25,7 +23,7 @@
       </ion-list>
       <div align="center" style="padding: 5px"><a>more....</a></div>
 
-      <!--统计（做成动态-->
+      &lt;!&ndash;统计（做成动态&ndash;&gt;
       <h5 style="background-color: #dddddd;padding: 6px">统计</h5>
 
 
@@ -66,7 +64,7 @@
           </a>
         </div>
       </div>
-      <!--质安-->
+      &lt;!&ndash;质安&ndash;&gt;
       <h5 style="background-color: #dddddd;padding: 6px">质安</h5>
       <div class="row" style="background: #ffffff;">
         <div class="col" align="center">
@@ -90,7 +88,7 @@
         <div class="col" align="center">
         </div>
       </div>
-      <!--工作-->
+      &lt;!&ndash;工作&ndash;&gt;
       <h5 style="background-color: #dddddd;padding: 6px">工作</h5>
       <div class="row" style="background: #ffffff;">
         <div class="col" align="center">
@@ -120,6 +118,21 @@
         <div class="col" align="center">
         </div>
       </div>
-    </ion-content>
+    </ion-content>-->
+  <!--<ion-content>
+
+    <iframe src="http://immobile.r93535.com:8081/qmh/index.html" name="self"
+            frameborder="0" width="100%" scrolling="no"
+            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/>
+  </ion-content>-->
+
+  <ion-content scroll="true" overflow-scroll="true">
+    <iframe src="http://immobile.r93535.com:8081/qmh/index.html"
+            class="width-100 height-100"
+            style="min-width: 100%; min-height: 100%;">
+    </iframe>
+  </ion-content>
 
 </ion-view>
+
+http://immobile.r93535.com:8081/cs/index.html
