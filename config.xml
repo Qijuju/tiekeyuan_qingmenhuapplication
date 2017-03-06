@@ -9,14 +9,29 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="SplashScreenDelay" value="2000"/>
-  <preference name="FadeSplashScreenDuration" value="2000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
+
+  <preference name="FadeSplashScreenDuration" value="2000"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="2000"/>
+
+  <!--配置闪屏界面 防止白屏出现-->
+  <preference name="AutoHideSplashScreen" value="false"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="SplashMaintainAspectRatio" value="true"/>
+  <preference name="SplashShowOnlyFirstTime" value="false"/>
+
+
+
+  <feature name="SplashScreen">
+    <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen"/>
+  </feature>
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
