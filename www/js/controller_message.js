@@ -1739,6 +1739,7 @@ angular.module('message.controllers', [])
         $scope.recordTime = 0;
         $scope.ctime = 0;
         $scope.rate = 0;
+        $scope.duration = 0;
         if($scope.isshowgif ==="true"){
           $scope.isshowgPng="true";
           $scope.isshowgif ="false"
@@ -1801,12 +1802,12 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
-      if ($scope.recordTime  <1000){
-        $scope.isshowless='true';
-        $scope.recordTime = 0;
-        $scope.rate = 0;
-      }
       $mqtt.stopRecording(function (succ) {
+        if (succ.duration  <1000){
+          $scope.isshowless='true';
+          $scope.recordTime = 0;
+          $scope.rate = 0;
+        }
         $scope.isshowgPng="true";
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
@@ -3848,12 +3849,12 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
-      if ($scope.grouprecordTime  <1000){
-        $scope.isGroupshowless='true';
-        $scope.grouprecordTime = 0;
-        $scope.grouprate = 0;
-      }
       $mqtt.stopRecording(function (succ) {
+        if (succ.duration  <1000){
+          $scope.isGroupshowless='true';
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+        }
         $scope.isshowgroupPng='true';
         $scope.grouprate=-1;
         $scope.filepath=succ.filePath;
@@ -4222,7 +4223,7 @@ angular.module('message.controllers', [])
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
-        
+
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
