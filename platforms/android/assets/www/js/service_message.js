@@ -1525,6 +1525,7 @@ angular.module('message.services', [])
     }
   })
 
+
   // .factory('$cordovaScreenshot',  function ($q){
   //   return {
   //     capture: function (filename, extension, quality){

@@ -108,25 +108,20 @@ angular.module('newnotification.controllers', [])
 
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
-
       $ionicSlideBoxDelegate.enableSlide(false);
       $timeout(function () {
-
         $greendao.queryByConditions("SystemMsgService",function (msg) {
-            if(msg.length==0){
-              $ionicLoading.hide();
-           }
-           //$ionicLoading.hide();
+          if(msg.length==0){
+            $ionicLoading.hide();
+          }
+          //$ionicLoading.hide();
           $scope.allin=msg;
-
         },function (err) {
           $ionicLoading.hide();
-
         });
-
         $greendao.queryByToday(function (msg) {
-
           $scope.todayTime=msg;
+
           $greendao.queryByWeek(function (msg) {
             $scope.weektimeday=msg;
             $greendao.queryByYesterday(function (msg) {
@@ -137,51 +132,33 @@ angular.module('newnotification.controllers', [])
             })
           },function (err) {
             $ionicLoading.hide();
-
           });
-
         },function (err) {
           $ionicLoading.hide();
-
         });
-
         $greendao.queryNotifyCount("1",function (msg) {
           $scope.gongwen=msg.length;
-
         },function (err) {
-
         })
         $greendao.queryNotifyCount("15",function (msg) {
           $scope.banhezhan=msg.length;
-
         },function (err) {
-
         })
         $greendao.queryNotifyCount("16",function (msg) {
           $scope.shiyanshi=msg.length;
-
         },function (err) {
-
         })
         $greendao.queryNotifyCount("18",function (msg) {
           $scope.weiyan=msg.length;
-
         },function (err) {
-
         })
-
       });
       $rootScope.$broadcast('second.notify');
-
-
-
-
     });
 
 
     //点击滑块执行的方法
     $scope.changeSlide=function (index) {
-
 
       if(!$scope.appstatus){
         $scope.appstatus=true;
@@ -353,15 +330,10 @@ angular.module('newnotification.controllers', [])
         },function (err) {
 
         })
-
-
-
-
-
-
-
       })
     });
+
+
 
     //从全部跳入详情
     $scope.goNotifyDetail=function (id) {
@@ -447,6 +419,55 @@ angular.module('newnotification.controllers', [])
 
     }
 
+    //公有方法：点击确认以后更改数据库/数组的item
+    $scope.updateitemdata=function (id,array) {
+      for (var i = 0; i <= array.length - 1; i++) {
+        if (array[i]._id === id) {
+          array[i].isread ='true';
+          array[i].isconfirm ='true';
+          $greendao.saveObj('SystemMsgService',array[i],function (succ) {
+            $rootScope.$broadcast('newnotify.update');
+          },function (err) {
+          });
+        }
+      }
+    }
+    //详情确认
+    $scope.mainconfirm=function (id,flag) {
+      if(flag === 'today'){
+        $scope.updateitemdata(id,$scope.todayTime);
+      }else if (flag === 'week'){
+        $scope.updateitemdata(id,$scope.weektimeday);
+      }else if(flag === 'ago'){
+        $scope.updateitemdata(id,$scope.otherDay);
+      }
+    };
+
+    //公有方法：更改关注状态的数据库/数组
+    $scope.updatefocusitem=function (id,array) {
+      for (var i = 0; i <= array.length - 1; i++) {
+        if (array[i]._id === id) {
+          array[i].isfocus = !array[i].isfocus ;
+          $greendao.saveObj('SystemMsgService',array[i],function (succ) {
+            $rootScope.$broadcast('newnotify.update');
+          },function (err) {
+          });
+        }
+      }
+    }
+
+    //点击关注按钮，修改关注状态事件
+    $scope.onchangefocus=function (id,flag) {
+      if(flag === 'today'){
+        $scope.updatefocusitem(id,$scope.todayTime);
+      }else if (flag === 'week'){
+        $scope.updatefocusitem(id,$scope.weektimeday);
+      }else if(flag === 'ago'){
+        $scope.updatefocusitem(id,$scope.otherDay);
+      }
+    };
+
+
     $scope.gotoFocus=function (id,isfirm) {
       if(isfirm==0){
         switch (id){
@@ -490,6 +511,12 @@ angular.module('newnotification.controllers', [])
     }
 
   })
+
+
+
+
+
+
 
 
   //跳转进入详情界面的展示
@@ -561,6 +588,7 @@ angular.module('newnotification.controllers', [])
         maxWidth: 100,
         showDelay: 0
       });
+
       //调用接口确认回复详情
       $timeout(function () {
         $api.readMessage($scope.allDetail.type,$scope.allDetail.sessionid,$scope.allDetail.when,function (suc) {
@@ -647,10 +675,8 @@ angular.module('newnotification.controllers', [])
         newNotify.isconfirm=message.isconfirm;
         if($scope.isFoucStatus){
           newNotify.isfocus="true";
-
         }else {
           newNotify.isfocus="false";
-
         }
         if($scope.isTopStatus){
           newNotify.istop=100;
@@ -668,7 +694,6 @@ angular.module('newnotification.controllers', [])
       });
 
     });
-
 
 
 
