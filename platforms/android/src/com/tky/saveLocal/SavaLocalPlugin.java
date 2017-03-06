@@ -9,13 +9,10 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.tky.localContact.Friend;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -24,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 添加联系人姓名手机号到本地通讯录 插件
  * Created by Administrator on 2016/7/20.
  */
 public class SavaLocalPlugin extends CordovaPlugin{

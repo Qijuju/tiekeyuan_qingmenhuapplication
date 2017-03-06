@@ -12,7 +12,7 @@ angular.module('common.services', [])
       loadAllData:function (services, success, error) {
         greendao.loadAllData(services, success, error);
       },
-      loadDataByArg:function (services,str, success, error) {
+      loadDataByArg:function (services,str, success, error) { 
         greendao.loadDataByArg(services,str, success, error);
       },
       queryData:function (services,where,args, success, error) {

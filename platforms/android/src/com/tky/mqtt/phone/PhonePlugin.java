@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 /**
+ * 打电话、发短信插件
  * Created by Administrator on 2016/7/18.
  */
 public class PhonePlugin extends CordovaPlugin{

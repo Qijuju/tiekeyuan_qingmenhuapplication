@@ -8,6 +8,8 @@
   </ion-nav-bar>
   <ion-content overflow-scroll="false" class="rj-stable-content">
     <ion-list>
+
+
       <ion-item  ng-if="hahaha==0" class="item-remove-animate item-avatar rj-notify-bg" ng-repeat="item in appmsg |filter:{'username':appname}"  ng-click="appGoNotifyDetail(item._id)" >
         <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
         <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
@@ -54,7 +56,6 @@
 
         <ion-option-button class="button-stable"  ng-if="false">
         </ion-option-button>
-
       </ion-item>
 
 

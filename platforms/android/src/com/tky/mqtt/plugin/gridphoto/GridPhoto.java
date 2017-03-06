@@ -61,7 +61,6 @@ public class GridPhoto extends CordovaPlugin {
             intent.putExtra("type",type);
             cordova.getActivity().startActivity(intent);
             AnimationUtils.execNextAnim(cordova.getActivity());
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

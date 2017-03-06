@@ -33,7 +33,8 @@ public class GreenDaoGenerator {
         addSlowNotifyLists(schema);
         addOtherpichead(schema);
         //addTestData(schema);
-        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+
+        new DaoGenerator().generateAll(schema,  "D:/AndroidStudio_tky_Application/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -42,9 +43,9 @@ public class GreenDaoGenerator {
     private static void addTopContacts(Schema schema) {
 
         Entity topContacts=schema.addEntity("TopContacts");
-        topContacts.addStringProperty("_id").primaryKey();
-        topContacts.addStringProperty("name");
-        topContacts.addStringProperty("phone");
+        topContacts.addStringProperty("_id").primaryKey();//主键ID
+        topContacts.addStringProperty("name");//联系人姓名
+        topContacts.addStringProperty("phone");//电话
         topContacts.addStringProperty("type");//1代表打电话  2 代表发信息  3 代表创建聊天
         topContacts.addIntProperty("count");//根据count来降序来排列
         topContacts.addLongProperty("when");//存入当前的毫秒值

@@ -3,7 +3,6 @@ package com.tky.mqtt.chat;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.List;
 
 /**

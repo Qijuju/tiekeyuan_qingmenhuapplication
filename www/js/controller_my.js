@@ -591,7 +591,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $scope.$apply(function () {
               $scope.picyoumeiyou=true;
               $scope.securlpic=msg;
-
             })
             $ionicLoading.hide();
           });
@@ -620,7 +619,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
 
     };
+
     var backButtonPressedOnceToExit=false;
+
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/myinformation/'+$scope.UserIDforhou)){
         if(isopen){
@@ -649,6 +650,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
 
     },501)
+
     $scope.goAcount = function () {
       $state.go("tab.account");
     }
@@ -781,6 +783,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.UserIDsethou = $stateParams.UserIDset;
 
     var backButtonPressedOnceToExit=false;
+
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/accountsettion/'+$scope.UserIDsethou)){
         if(isopen){

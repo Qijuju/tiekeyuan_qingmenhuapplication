@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
+ * 一个像素activity
  * 作者：
  * 包名：com.ionicframework.im366077
  * 日期：2016/10/28 17:53

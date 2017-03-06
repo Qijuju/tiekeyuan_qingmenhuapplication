@@ -6562,7 +6562,7 @@ a.item-content {
 }
 
 .item-avatar .item-content .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-image, .item-avatar-left > img:first-child, .item-avatar > img:first-child {
-  position: absolute;
+  position: relative;
   top: 16px;
   left: 16px;
   max-width: 40px;

@@ -13,14 +13,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * 弹吐司插件
  * 作者：
  * 包名：com.tky.mqtt.plugin.toast
  * 日期：2016-08-11 14:45:26
  * 描述：
  */
 public class ToastUtils extends CordovaPlugin {
-  
-  
+
+
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         cordova.getThreadPool().execute(new Runnable() {
@@ -40,7 +41,7 @@ public class ToastUtils extends CordovaPlugin {
         });
         return true;
     }
-    
+
     /**
      * 要展示的文本年内容
      * @param args 参数
@@ -55,8 +56,8 @@ public class ToastUtils extends CordovaPlugin {
             e.printStackTrace();
         }
     }
-    
-    
+
+
     /**
      * 设置返回信息
      * @param result 返回结果数据
@@ -84,5 +85,5 @@ public class ToastUtils extends CordovaPlugin {
 
 }
 
- 
+
 

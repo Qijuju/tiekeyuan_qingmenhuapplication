@@ -42,7 +42,6 @@ import com.google.gson.reflect.TypeToken;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tencent.tinker.lib.tinker.Tinker;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
-import com.tky.grid.ImageLoader;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
@@ -96,6 +95,9 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     // Set by <content src="index.html" /> in config.xml
     inithotfix();
     loadUrl(launchUrl);
+    //自动登录测试（测完注释掉
+    //SPUtils.save("login_info", "{\"__isset_bitfield\":7,\"deptID\":\"37253\",\"isActive\":false,\"result\":true,\"resultCode\":\"100\",\"sDatetime\":1487237555948,\"userID\":\"232099\",\"userName\":\"程丽丽\"}");
+
     //Toast.makeText(getApplicationContext(),"热修复成功第二次验证",Toast.LENGTH_LONG).show();
     //初始化录音机
     RecorderManager.getInstance(MainActivity.this).init();
@@ -187,8 +189,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
          * 2 服务器的版本号和本地的版本号一致
          * 3 服务器的补丁版本号和本地的补丁版本号不一致  方可进行热修复
          */
-
-
         if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
 
 
@@ -203,7 +203,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
               @Override
               public void onResponse(File response, int id) {
-
                 Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
                 //开启热修复
                 TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
