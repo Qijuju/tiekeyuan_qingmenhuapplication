@@ -10,20 +10,17 @@ import java.io.Serializable;
  */
 public class Friend implements Serializable {
 
-
-
-
     private String impress;
     private String remdesc;
     private String remname;
-    private String groupid;//
+    private String groupid;
     private String grade;
     private String mobile;
     private String nickname;
     private String avatar;
     private String userid;
-    private String groupname;//
-    private String friendsid;//
+    private String groupname;
+    private String friendsid;
     private boolean isChecked;
     private String sortLetters;
 

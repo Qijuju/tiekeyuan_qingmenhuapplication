@@ -48,9 +48,9 @@ public class IMMsgFactory {
 								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException {
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
-		msgMap.put(IMPFields.Msg_type, getMsgType(msType));
-		msgMap.put(IMPFields.Msg_mediaType, getMediaType(mdType));
-		msgMap.put(IMPFields.Msg_platform, getPlatformType(pfType));
+		msgMap.put(IMPFields.Msg_type, getMsgType(msType));//聊天类型
+		msgMap.put(IMPFields.Msg_mediaType, getMediaType(mdType));//消息类型
+		msgMap.put(IMPFields.Msg_platform, getPlatformType(pfType));//平台类型
 		msgMap.put(IMPFields.Msg_receipt, getReceipt(rp));
 		msgMap.put(IMPFields.Msg_when, System.currentTimeMillis());
 		msgMap.put(IMPFields.Msg_to, to);
@@ -124,13 +124,13 @@ public class IMMsgFactory {
 	private static String getMsgType(MsgType msgType){
 		String msgTypeStr = "";
 		switch(msgType){
-			case User:
+			case User://单聊
 				msgTypeStr = IMPFields.M_Type_User;
 				break;
-			case Dept:
+			case Dept://部门聊天
 				msgTypeStr = IMPFields.M_Type_Dept;
 				break;
-			case Group:
+			case Group://群组聊天
 				msgTypeStr = IMPFields.M_Type_Group;
 				break;
 			case System:
@@ -145,7 +145,7 @@ public class IMMsgFactory {
 			case Alarm:
 				msgTypeStr = IMPFields.M_Type_Alarm;
 				break;
-			case Platform:
+			case Platform://通知
 				msgTypeStr = IMPFields.M_Type_Platform;
 				break;
 		}
@@ -161,10 +161,10 @@ public class IMMsgFactory {
 			case Image:
 				mediaType = IMPFields.M_MsgType_Image;
 				break;
-			case Shake:
+			case Shake://震动
 				mediaType = IMPFields.M_MsgType_Shake;
 				break;
-			case Emote:
+			case Emote://表情
 				mediaType = IMPFields.M_MsgType_Emote;
 				break;
 			case File:
@@ -173,10 +173,10 @@ public class IMMsgFactory {
 			case Audio:
 				mediaType = IMPFields.M_MsgType_Audio;
 				break;
-			case Vedio:
+			case Vedio://视频
 				mediaType = IMPFields.M_MsgType_Vedio;
 				break;
-			case Position:
+			case Position://定位
 				mediaType = IMPFields.M_MsgType_Position;
 				break;
 		}

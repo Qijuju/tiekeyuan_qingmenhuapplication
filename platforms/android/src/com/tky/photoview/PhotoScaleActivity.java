@@ -11,11 +11,11 @@ import android.widget.ProgressBar;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.constant.ResumeParams;
 import com.tky.mqtt.paho.utils.AnimationUtils;
-import com.tky.photohelper.MyReceiver;
 
 import java.io.File;
 
 /**
+ * 加载图片
  * 作者：SLS
  * 包名：com.tky.photoview
  * 日期：2016/12/22 15:31
