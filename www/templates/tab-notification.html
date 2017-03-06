@@ -6,10 +6,8 @@
       <ion-toggle ng-checked="appstatus" class="item-borderless"
                   style="position: absolute;left: 70%;height: 45px;margin-top: -10px;background: white"
                   ng-click="changeSlide(newdex)">
-
       </ion-toggle>
     </ion-nav-buttons>
-
     <div
       style="position: absolute;left: 0;top: -10px;width: 100%;height: 120px;z-index: 2;text-align: center;margin-top: 48px"
       ng-if="startA">
@@ -27,10 +25,10 @@
           </li>
         </div>
         <!--<div ng-click="goFocus(4)"-->
-             <!--style="width: 100%;height: 40px;text-align: center;background-color: #e9e9d8;color: #000000">-->
-          <!--<li class="item" style="width: 100%;height: 40px;text-align: center;background-color: white;color: #000000">-->
-            <!--关注-->
-          <!--</li>-->
+        <!--style="width: 100%;height: 40px;text-align: center;background-color: #e9e9d8;color: #000000">-->
+        <!--<li class="item" style="width: 100%;height: 40px;text-align: center;background-color: white;color: #000000">-->
+        <!--关注-->
+        <!--</li>-->
         <!--</div>-->
       </ul>
     </div>
@@ -40,8 +38,8 @@
                    pager-click="go(index)" on-slide-changed="go_changed(index)" >
       <ion-slide style="background-color: #F0EFF4" >
         <div >
-          <div  style="width:120px;height:40px;position: relative;margin: 15px auto;background-color: deepskyblue;top:4px;border-radius: 6px;text-align: center;" ng-if="notifyNoRead >0">
-            <div style="width:80px;height:20px;margin:auto;position:absolute;top: 0; left: 0; bottom: 0; right: 0; color: white;font-size:13px;">{{notifyNoRead}}个未读通知</div>
+          <div  style="width:120px;height:40px;position: relative;margin: 15px auto;background-color: deepskyblue;top:4px;border-radius: 6px;text-align: center;" ng-if="notifyNoRead>0">
+            <div style="width:70px;height:20px;margin:auto;position:absolute;top: 0; left: 0; bottom: 0; right: 0; color: white;font-size:13px;">{{notifyNoRead}}个未确认</div>
           </div>
           <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;">
             今天
@@ -49,47 +47,44 @@
           </div>
           <ion-list>
             <!---未读样式--->
-            <ion-item ng-if="item.isread=='false'" class="item-remove-animate item-avatar rj-notify-bg bkg" style="height: 100%;"  ng-repeat="item in todayTime"  ng-click="goNotifyDetail(item._id)">
-              <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+            <ion-item ng-if="item.isread=='false' || item.isconfirm=='false'" class="item-remove-animate item-avatar rj-notify-bg bkg" style="height: 100%;"  ng-repeat="item in todayTime"  >
+              <div ng-click="goNotifyDetail(item._id)">
+                <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+                <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+                <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+                <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+                <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
+                <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
+                <!--<img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding1.png" width="18px" height="18px">-->
+                <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.isfocus== 'false' " src="img/unfocus.png" width="18px" height="18px" ng-click="onchangefocus(item._id,'today')">
+                <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.isfocus== 'true' " src="img/focus.png" width="18px" height="18px" ng-click="onchangefocus(item._id,'today')">
 
-              <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
-              <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
-              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
-              <!--<span class="rj-push-right" ng-if=" " style="color: cornflowerblue;margin-top: 2px">未读</span>-->
-              <!--<span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>-->
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
-              <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
-              <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
-              <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
-              <div ng-if="item.isconfirm=='false' " onclick="confirmDetail()" style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
-                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
-                <span ng-click="confirmDetail()" ng-if="item.isconfirm=='false' " style="color: teal" >待确认</span>
-                <span ng-if="item.isconfirm=='true'" style="color: deepskyblue" >确认收到</span>
+                <!--<span class="rj-push-right" ng-if=" " style="color: cornflowerblue;margin-top: 2px">未读</span>-->
+                <!--<span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>-->
+                <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
+                <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'" style="color: orange;margin-top: 2px">!!</span>
+                <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'" style="color: #cec62a;margin-top: 2px">!</span>
+                <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
+                <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
+                <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
               </div>
-
-
+              <div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%;background-color: #0c60ee" ng-click="mainconfirm(item._id,'today')">
+                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%" ></div>
+                <span style="color: deepskyblue" ng-if="item.isconfirm=='false'">点击确认收到</span>
+              </div>
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
             </ion-item>
-
             <!---已读样式--->
-            <ion-item ng-if="item.isread=='true'" class="item-remove-animate item-avatar rj-notify-bg" style="height: 80%;"  ng-repeat="item in todayTime"  ng-click="goNotifyDetail(item._id)">
+            <ion-item ng-if="item.isread=='true' && item.isconfirm=='true'" class="item-remove-animate item-avatar rj-notify-bg"  ng-repeat="item in todayTime"  ng-click="goNotifyDetail(item._id)">
               <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
-              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
+              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding1.png" width="18px" height="18px">
               <!--<span class="rj-push-right" ng-if=" " style="color: cornflowerblue;margin-top: 2px">未读</span>-->
               <!--<span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>-->
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'" style="color: red;margin-top: 2px">!!!</span>
@@ -98,27 +93,16 @@
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
-              <div ng-if="item.isconfirm=='false'" style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
-                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
-
-                <span ng-click="confirmDetail()" ng-if="item.isconfirm=='false' " style="color: teal" >待确认</span>
-                <span ng-if="item.isconfirm=='true' "style="color: #e98f36">已经确认</span>
-
-                <!---->
-                <!---->
-                <!--<span style="color: #e98f36">确认收到</span>-->
-              </div>
-
-
+              <!--<div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">-->
+              <!--<div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>-->
+              <!--&lt;!&ndash;<span ng-click="confirmDetail()" style="color: teal" >详情确认</span>&ndash;&gt;-->
+              <!--<span style="color: #e98f36">已经确认</span>-->
+              <!--</div>-->
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
             </ion-item>
-
           </ion-list>
-
           <div class="item item-divider" style="text-align: center;color: black;font-size: 19px;"
                ng-if="weektimeday.length>0" ng-click="openweeknotify()">
             本周
@@ -132,7 +116,6 @@
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
@@ -144,26 +127,20 @@
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
-              <div ng-if="item.isconfirm=='false' " onclick="confirmDetail()" style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
-                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
-                <span style="color: deepskyblue" >确认收到</span>
+              <div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
+                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
+                <span style="color: deepskyblue">确认收到</span>
               </div>
-
-
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
             </ion-item>
-
             <!---已读样式--->
             <ion-item ng-if="item.isread=='true'" class="item-remove-animate item-avatar rj-notify-bg" style="height: 80%;"  ng-repeat="item in weektimeday"  ng-click="goNotifyDetail(item._id)">
               <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
@@ -175,17 +152,11 @@
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
-              <div ng-if="item.isconfirm=='false'" style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
-                <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
-
-                <span ng-click="confirmDetail()" ng-if="item.isconfirm=='false' " style="color: teal" >待确认</span>
-                <span ng-if="item.isconfirm=='true' "style="color: #e98f36">已经确认</span>
-
-                <!--<span style="color: #e98f36">确认收到</span>-->
-              </div>
-
+              <!--<div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">-->
+              <!--<div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>-->
+              <!--&lt;!&ndash;<span ng-click="confirmDetail()" style="color: teal" >详情确认</span>&ndash;&gt;-->
+              <!--<span style="color: #e98f36">已经确认</span>-->
+              <!--</div>-->
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
@@ -196,7 +167,6 @@
             以前
             <i class="icon ion-android-arrow-dropdown" ng-if="!initstate"></i>
             <i class="icon ion-android-arrow-dropup" ng-if="initstate"></i>
-
           </div>
           <ion-list ng-if="initstate">
             <!---未读样式--->
@@ -205,7 +175,6 @@
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
@@ -217,26 +186,20 @@
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
               <div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
                 <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>
                 <span style="color: deepskyblue">确认收到</span>
               </div>
-
-
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
             </ion-item>
-
             <!---已读样式--->
             <ion-item ng-if="item.isread=='true'" class="item-remove-animate item-avatar rj-notify-bg" style="height: 80%;"  ng-repeat="item in otherDay"  ng-click="goNotifyDetail(item._id)">
               <div ng-if="item.msglevel=='Level_1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Level_3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
               <div ng-if="item.msglevel=='Common'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 30px">{{item.message.toString().substr(0,40)}}</pre>
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png" width="18px" height="18px">
@@ -248,68 +211,57 @@
               <span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
               <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'" style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
               <!--<div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">-->
               <!--<div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%"></div>-->
               <!--&lt;!&ndash;<span ng-click="confirmDetail()" style="color: teal" >详情确认</span>&ndash;&gt;-->
               <!--<span style="color: #e98f36">已经确认</span>-->
               <!--</div>-->
-
-
               <ion-option-button class="button-assertive"  ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
             </ion-item>
             <!--<ion-item class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in otherDay"-->
-                      <!--ng-click="goNotifyDetail(item._id)">-->
-              <!--<div ng-if="item.msglevel=='Level_1'" class="center square9"-->
-                   <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
-                <!--通知-->
-              <!--</div>-->
-              <!--<div ng-if="item.msglevel=='Level_2'" class="center square8"-->
-                   <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
-                <!--通知-->
-              <!--</div>-->
-              <!--<div ng-if="item.msglevel=='Level_3'" class="center square7"-->
-                   <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
-                <!--通知-->
-              <!--</div>-->
-              <!--<div ng-if="item.msglevel=='Common'" class="center square10"-->
-                   <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
-                <!--通知-->
-              <!--</div>-->
-
-              <!--<h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>-->
-              <!--<pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>-->
-
-              <!--<img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png"-->
-                   <!--width="18px" height="18px">-->
-              <!--<span class="rj-push-right" ng-if="item.isread=='false' "-->
-                    <!--style="color: cornflowerblue;margin-top: 2px">未读</span>-->
-              <!--<span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>-->
-              <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'"-->
-                    <!--style="color: red;margin-top: 2px">!!!</span>-->
-              <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'"-->
-                    <!--style="color: orange;margin-top: 2px">!!</span>-->
-              <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'"-->
-                    <!--style="color: #cec62a;margin-top: 2px">!</span>-->
-              <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>-->
-              <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
-              <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'"-->
-                    <!--style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
-
-
-              <!--<ion-option-button class="button-assertive" ng-click="deleteNotify(item._id)">-->
-                <!--删 除-->
-              <!--</ion-option-button>-->
-
+            <!--ng-click="goNotifyDetail(item._id)">-->
+            <!--<div ng-if="item.msglevel=='Level_1'" class="center square9"-->
+            <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
+            <!--通知-->
+            <!--</div>-->
+            <!--<div ng-if="item.msglevel=='Level_2'" class="center square8"-->
+            <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
+            <!--通知-->
+            <!--</div>-->
+            <!--<div ng-if="item.msglevel=='Level_3'" class="center square7"-->
+            <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
+            <!--通知-->
+            <!--</div>-->
+            <!--<div ng-if="item.msglevel=='Common'" class="center square10"-->
+            <!--style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">-->
+            <!--通知-->
+            <!--</div>-->
+            <!--<h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>-->
+            <!--<pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>-->
+            <!--<img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png"-->
+            <!--width="18px" height="18px">-->
+            <!--<span class="rj-push-right" ng-if="item.isread=='false' "-->
+            <!--style="color: cornflowerblue;margin-top: 2px">未读</span>-->
+            <!--<span class="rj-push-right" ng-if="item.isread=='true'" style="margin-top: 2px">已读</span>-->
+            <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_3'"-->
+            <!--style="color: red;margin-top: 2px">!!!</span>-->
+            <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_2'"-->
+            <!--style="color: orange;margin-top: 2px">!!</span>-->
+            <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Level_1'"-->
+            <!--style="color: #cec62a;margin-top: 2px">!</span>-->
+            <!--<span class="rj-push-rightdown" ng-if="item.msglevel=='Common'" style="margin-top: 2px"></span>-->
+            <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='true'" style="margin-top: 2px;">已确认</span>-->
+            <!--<span class="rj-push-downdown" ng-if="item.isconfirm=='false'"-->
+            <!--style="margin-top: 2px;color: cornflowerblue;">未确认</span>-->
+            <!--<ion-option-button class="button-assertive" ng-click="deleteNotify(item._id)">-->
+            <!--删 除-->
+            <!--</ion-option-button>-->
             <!--</ion-item>-->
-
           </ion-list>
         </div>
       </ion-slide>
-
       <ion-slide>
         <div>
           <ion-list>
@@ -331,10 +283,8 @@
                    style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">
                 通知
               </div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px">{{item.message}}</pre>
-
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png"
                    width="18px" height="18px">
               <span class="rj-push-right" ng-if="item.isread=='false' "
@@ -351,12 +301,10 @@
               <ion-option-button class="button-assertive" ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
-
             </ion-item>
           </ion-list>
         </div>
       </ion-slide>
-
       <!--应用下模块-->
       <ion-slide>
         <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
@@ -364,7 +312,6 @@
             <a>
               <ul>
                 <li><img src="img/oa.png" width="45" height="45">
-
                 </li>
                 <li style="color: #000000">公文处理1</li>
                 <div class="circlered" style="position: absolute;left: 18%;top: 7px;font-size: 10px" ng-if="gongwen>0">
@@ -393,7 +340,6 @@
                 <div class="circlered" style="position: absolute;left: 66%;top: 7px;font-size: 10px"
                      ng-if="shiyanshi>0">
                   {{shiyanshi}}
-
                 </div>
               </ul>
             </a>
@@ -411,7 +357,6 @@
           </div>
         </div>
       </ion-slide>
-
       <!--应用下模块-->
       <ion-slide>
         <div class="row" style="background: #ffffff;margin-top: 7px;border-radius: 6px;">
@@ -419,7 +364,6 @@
             <a>
               <ul>
                 <li><img src="img/oa.png" width="45" height="45">
-
                 </li>
                 <li style="color: #000000">公文处理2</li>
               </ul>
@@ -451,8 +395,6 @@
           </div>
         </div>
       </ion-slide>
-
-
       <ion-slide>
         <div>
           <ion-list>
@@ -474,10 +416,8 @@
                    style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">
                 通知
               </div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
-
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png"
                    width="18px" height="18px">
               <span class="rj-push-right" ng-if="item.isread=='false' "
@@ -496,13 +436,10 @@
               <ion-option-button class="button-assertive" ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
-
             </ion-item>
-
           </ion-list>
         </div>
       </ion-slide>
-
       <ion-slide>
         <div>
           <ion-list>
@@ -525,10 +462,8 @@
                    style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">
                 通知
               </div>
-
               <h3 style="margin-left: -12px">{{item.username}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.when | date:'MM-dd HH:mm'}}</h3>
               <pre style=" margin-top: 3px;margin-left: -12px;font-size: 14px;max-height: 25px;">{{item.message}}</pre>
-
               <!--<span class="rj-push-rightright" >{{item.when | date:'MM-dd HH:mm'}}</span>-->
               <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.istop==100 " src="img/dingding.png"
                    width="18px" height="18px">
@@ -546,15 +481,10 @@
               <ion-option-button class="button-assertive" ng-click="deleteNotify(item._id)">
                 删 除
               </ion-option-button>
-
             </ion-item>
-
           </ion-list>
         </div>
       </ion-slide>
-
     </ion-slide-box>
-
   </ion-content>
 </ion-view>
-
