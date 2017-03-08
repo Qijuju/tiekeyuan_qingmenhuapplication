@@ -733,7 +733,7 @@ angular.module('newnotification.controllers', [])
     }else if ($scope.ididididi==16){
       $scope.appname="试验室";
     }else if ($scope.ididididi==18){
-      $scope.appname="连续梁";
+      $scope.appname="围岩量测";
     }
 
     $scope.appGoNotifyDetail=function (nihao) {
