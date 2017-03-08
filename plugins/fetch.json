@@ -23,14 +23,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-statusbar": {
         "source": {
             "type": "registry",
@@ -233,6 +225,14 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-inappbrowser@1.6.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen@4.0.1"
         },
         "is_top_level": true,
         "variables": {}

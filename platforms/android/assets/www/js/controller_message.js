@@ -1803,7 +1803,7 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
-        if ($scope.duration  <=1000){
+        if (succ.duration  <1000){
           $scope.isshowless='true';
           $scope.recordTime = 0;
           $scope.rate = 0;
@@ -1812,7 +1812,7 @@ angular.module('message.controllers', [])
         $scope.rate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
-        if($scope.duration <=1000){
+        if($scope.duration <1000){
           $scope.recordTime = 0;
           $scope.rate = 0;
           $scope.isshowless='true';
@@ -3849,17 +3849,17 @@ angular.module('message.controllers', [])
       //若录取的时间小于1s
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
-      if ($scope.grouprecordTime  <=1000){
-        $scope.isGroupshowless='true';
-        $scope.grouprecordTime = 0;
-        $scope.grouprate = 0;
-      }
       $mqtt.stopRecording(function (succ) {
+        if (succ.duration  <1000){
+          $scope.isGroupshowless='true';
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+        }
         $scope.isshowgroupPng='true';
         $scope.grouprate=-1;
         $scope.filepath=succ.filePath;
         $scope.duration=succ.duration;
-        if($scope.duration <=1000){
+        if($scope.duration <1000){
           $scope.grouprecordTime = 0;
           $scope.grouprate = 0;
           $scope.isGroupshowless='true';
