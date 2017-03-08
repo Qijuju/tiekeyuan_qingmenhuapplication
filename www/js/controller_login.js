@@ -119,6 +119,7 @@ angular.module('login.controllers', [])
     };
     //获取当前用户的id
     var loginM = function () {
+      //登录成功以后根据部门id将部门信息入库
       $api.SetDeptInfo(function (msg) {
         $mqtt.getMqtt().getUserId(function (userID) {
           $rootScope.rootUserId = userID;
