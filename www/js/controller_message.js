@@ -531,10 +531,10 @@ angular.module('message.controllers', [])
       var day=myDate.getDate();//获取日期
       // alert("获取当前年月日"+year+month+day);
 
-      var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+      var millions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"00:00:00").getTime();
       // alert("最低毫秒值"+millions);
 
-      var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+      var maxmillions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"23:59:59").getTime();
       // alert("最高毫秒值"+millions);
       $mqtt.setDanliao(data);
       $scope.msgs = $mqtt.getDanliao();
@@ -946,15 +946,15 @@ angular.module('message.controllers', [])
           myDate.toLocaleTimeString(); //可以获取当前时间
           // alert("获取当前时间"+myDate.toLocaleTimeString());
 
-          var year=myDate.getFullYear();//获取年份
+          var year=myDate.getFullYear() + 0;//获取年份
           var month=myDate.getMonth()+1;//获取月份
-          var day=myDate.getDate();//获取日期
+          var day=myDate.getDate() + 0;//获取日期
           // alert("获取当前年月日"+year+month+day);
 
-          var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+          var millions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"00:00:00").getTime();
           // alert("最低毫秒值"+millions);
 
-          var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+          var maxmillions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"23:59:59").getTime();
           // alert("最高毫秒值"+maxmillions);
           $scope.timegap=$mqtt.getDanliao()[$scope.msgs.length-1].when-$mqtt.getDanliao()[$scope.msgs.length-2].when;
           var lastmsg= $mqtt.getDanliao()[$scope.msgs.length-1];
@@ -2731,10 +2731,10 @@ angular.module('message.controllers', [])
       var day=myDate.getDate();//获取日期
       // alert("获取当前年月日"+year+month+day);
 
-      var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+      var millions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"00:00:00").getTime();
       // alert("最低毫秒值"+millions);
 
-      var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+      var maxmillions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"23:59:59").getTime();
       // alert("最高毫秒值"+millions);
       $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
@@ -2864,10 +2864,10 @@ angular.module('message.controllers', [])
         var day=myDate.getDate();//获取日期
         // alert("获取当前年月日"+year+month+day);
 
-        var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+        var millions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"00:00:00").getTime();
         // alert("最低毫秒值"+millions);
 
-        var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+        var maxmillions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"23:59:59").getTime();
         // alert("最高毫秒值"+millions);
         $scope.timegap=$mqtt.getQunliao()[$scope.groupmsgs.length-1].when-$mqtt.getQunliao()[$scope.groupmsgs.length-2].when;
         var lastgroupmsg= $mqtt.getQunliao()[$scope.groupmsgs.length-1];
@@ -4689,10 +4689,10 @@ angular.module('message.controllers', [])
       var day=myDate.getDate();//获取日期
       // alert("获取当前年月日"+year+month+day);
 
-      var millions=new Date(year+"/"+month+"/"+day+" "+"00:00:00").getTime();
+      var millions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"00:00:00").getTime();
       // alert("最低毫秒值"+millions);
 
-      var maxmillions=new Date(year+"/"+month+"/"+day+" "+"23:59:59").getTime();
+      var maxmillions=new Date(year+"/"+$mqtt.getMonthOrDay(month)+"/"+$mqtt.getMonthOrDay(day)+" "+"23:59:59").getTime();
       for(var i=0;i<data.length;i++){
         var chatitem={};
         chatitem.id=data[i].id;
