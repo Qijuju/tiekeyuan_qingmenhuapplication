@@ -91,8 +91,8 @@
       <!--2、对方的消息-->
       <div class="row" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)" style="float: left;">
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="otheryoumeiyou" >
-          <img  src="{{otherheadpicurl}}" class="yuanjiao4">
-        </div>
+        <img  src="{{otherheadpicurl}}" class="yuanjiao4">
+      </div>
         <!--头像-->
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)"><button class="circle1" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>

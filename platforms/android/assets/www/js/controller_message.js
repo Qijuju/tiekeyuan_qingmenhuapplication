@@ -58,21 +58,22 @@ angular.module('message.controllers', [])
     // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
-    $scope.otherheadpicurl=1;
+    $scope.otherheadpicurl=0;
     $scope.otheryoumeiyou=false;
    //取出头像url
     $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
       if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
         $scope.otheryoumeiyou=false;
-        $scope.otherheadpicurl=1;
+        $scope.otherheadpicurl=0;
       }else {
+
         $scope.otheryoumeiyou=true;
         $scope.otherheadpicurl=succ[0].picurl;
       }
 
       // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
     },function (err) {
-      $scope.otherheadpicurl=1;
+      $scope.otherheadpicurl=0;
       $scope.otheryoumeiyou=false;
     });
 
@@ -3509,7 +3510,6 @@ angular.module('message.controllers', [])
                       messaegeitem.isFailure=data[i].isFailure;
                       messaegeitem.isDelete=data[i].isDelete;
                       messaegeitem.imgSrc=data[i].imgSrc;
-
                       messaegeitem.username=data[i].username;
                       messaegeitem.senderid=data[i].senderid;
                       messaegeitem.isSuccess=data[i].isSuccess;
@@ -4222,7 +4222,7 @@ angular.module('message.controllers', [])
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/tab/message/'+$scope.ID+'/'+$scope.SESSIONID+'/'+$scope.GROUP)||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
-        
+
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -4697,7 +4697,12 @@ angular.module('message.controllers', [])
         chatitem.id=data[i].id;
         chatitem.chatName=data[i].chatName;
         chatitem.isDelete=data[i].isDelete;
-        chatitem.imgSrc=data[i].imgSrc;
+        if(chatitem.imgSrc == null && chatitem.imgSrc =='' && chatitem.imgSrc == undefined){
+          chatitem.imgSrc=1;
+        }else{
+          chatitem.imgSrc=data[i].imgSrc;
+        }
+        // alert("imgsrc++=="+chatitem.imgSrc);
         chatitem.lastText=data[i].lastText;
         chatitem.count=data[i].count;
         chatitem.lastDate=data[i].lastDate;
