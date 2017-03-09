@@ -151,65 +151,19 @@ angular.module('localphone.controllers', [])
 
       })
 
+    $scope.$on('$ionicView.enter', function () {
+     $scope.init();
+    });
 
+    $scope.init=function () {
 
-
-
-
-
-    //localContact.getContact();
-    /*$scope.$on('im.back',function (event) {
-
-      $scope.$apply(function () {
-
-        $timeout(function () {
-          $ionicLoading.hide();
-          $scope.contacts=localContact.getAllContacts();
-
-          $scope.contactsA=localContact.getA();
-          $scope.contactsB=localContact.getB();
-          $scope.contactsC=localContact.getC();
-          $scope.contactsD=localContact.getD();
-          $scope.contactsE=localContact.getE();
-          $scope.contactsF=localContact.getF();
-          $scope.contactsG=localContact.getG();
-          $scope.contactsH=localContact.getH();
-          $scope.contactsI=localContact.getI();
-          $scope.contactsJ=localContact.getJ();
-          $scope.contactsK=localContact.getK();
-          $scope.contactsL=localContact.getL();
-          $scope.contactsM=localContact.getM();
-          $scope.contactsN=localContact.getN();
-          $scope.contactsO=localContact.getO();
-          $scope.contactsP=localContact.getP();
-          $scope.contactsQ=localContact.getQ();
-          $scope.contactsR=localContact.getR();
-          $scope.contactsS=localContact.getS();
-          $scope.contactsT=localContact.getT();
-          $scope.contactsU=localContact.getU();
-          $scope.contactsV=localContact.getV();
-          $scope.contactsW=localContact.getW();
-          $scope.contactsX=localContact.getX();
-          $scope.contactsY=localContact.getY();
-          $scope.contactsZ=localContact.getZ();
-          $scope.contactsNoSuch=localContact.getNoSuch();
-
-
-          init();
-
-        });
-
-
-      })
-
-    });*/
-    function init(){
       var startY = 0;
       var lastY =  0;
       var indicator =document.getElementById("indicator");
       indicator.addEventListener('touchstart', function(e) {
         lastY = startY = e.touches[0].pageY;
         console.log(lastY+"start");
+        //alert(lastY+"start")
       });
       indicator.addEventListener('touchmove', function(e) {
         var nowY = e.touches[0].pageY;
@@ -218,6 +172,8 @@ angular.module('localphone.controllers', [])
         content.style.top = (parseInt(contentTop) + moveY) + 'px';
         lastY = nowY;
         console.log(lastY+"move");
+        alert(lastY+"move")
+
       });
       indicator.addEventListener('touchend', function(e) {
         // do touchend
@@ -227,9 +183,32 @@ angular.module('localphone.controllers', [])
         content.style.top = (parseInt(contentTop) + moveY) + 'px';
         lastY = nowY+30;
         console.log(lastY+"end");
+        alert(lastY+"end")
+
       });
+
     }
 
+   /* $scope.isis=false;
+    $scope.$on('selectedCity', function (e, data) {
+      $scope.isis=true;
+      $scope.daxie=data;
+      $timeout(function () {
+        $scope.isis=false;
+      },1500);
+
+    });*/
+
+
+
+
+
+
+
+
+    /*function init(){
+    }
+*/
 
 // 点击按钮触发，或一些其他的触发条件
     $scope.tanchuang = function(phonenumber,name) {

@@ -11,6 +11,7 @@ import com.tky.mqtt.dao.SystemMsgDao;
 import com.tky.mqtt.dao.TopContacts;
 import com.tky.mqtt.dao.TopContactsDao;
 import com.tky.mqtt.paho.BaseApplication;
+import com.tky.mqtt.paho.ToastUtil;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -107,13 +108,6 @@ public class FilePictureService implements BaseInterface<FilePicture>{
                 .list();
     }
 
-
-
-
-
-
-
-
     //查找今天的
     public List<FilePicture> queryTodayFile(String sessionid,String type){
 
@@ -130,6 +124,10 @@ public class FilePictureService implements BaseInterface<FilePicture>{
         List<FilePicture> list=new ArrayList<FilePicture>();
         if(day<10){
             sday=0+sday;
+        }
+
+        if(month<10){
+          smonth=0+smonth;
         }
 
         String start=syear+smonth+sday+"000000";
@@ -173,6 +171,10 @@ public class FilePictureService implements BaseInterface<FilePicture>{
         List<FilePicture> list=new ArrayList<FilePicture>();
         if(day<10){
             sday=0+sday;
+        }
+
+        if(month<10){
+          smonth=0+smonth;
         }
 
         //拿到的今天的时间
@@ -275,22 +277,8 @@ public class FilePictureService implements BaseInterface<FilePicture>{
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     //查找以前的的File
     public List<FilePicture> queryLongFile(String sessionid,String type){
-
 
         Calendar calendar=Calendar.getInstance();
 
@@ -326,32 +314,24 @@ public class FilePictureService implements BaseInterface<FilePicture>{
         }
 
         return list;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*return filePictureDao.queryBuilder()
-                .where(FilePictureDao.Properties.Sessionid.eq(sessionid))
-                .where(FilePictureDao.Properties.Type.eq(type))
-                .orderAsc(FilePictureDao.Properties.When)
-                .build()
-                .list();*/
     }
 
+
+
+    public void deleteBySessionid(String sessionid){
+
+      List<FilePicture> filePictures=new ArrayList<FilePicture>();
+
+      filePictures= filePictureDao.queryBuilder()
+        .where(FilePictureDao.Properties.Sessionid.eq(sessionid))
+        .build().list();
+
+      filePictureDao.deleteInTx(filePictures);
+
+      //filePictureDao.deleteAll();
+
+
+    }
 
 
 

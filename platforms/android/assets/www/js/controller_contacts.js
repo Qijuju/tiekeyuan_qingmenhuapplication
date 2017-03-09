@@ -1557,7 +1557,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao,$ionicPlatform) {
 
     // Setup the loader
     $ionicLoading.show({
@@ -1713,6 +1713,16 @@ angular.module('contacts.controllers', [])
       $ionicHistory.goBack();
 
     };
+
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+        e.preventDefault();
+      return false;
+    },501)
+
 
     //调用打电话功能，并且会存到数据库里面
     $scope.detailCall = function (id, phone, name, type) {
