@@ -248,10 +248,10 @@
         <div class="col" ng-if="msgSingle.messagetype ==='Vedio' || isMsgVideo(msgSingle.message.split('###')[1])">
           <div style="width: 250px;float: right;">
             <video id="vedio1" style="width: 100%;height:100%;" ng-if="msgSingle.message.split('###')[5] != '100'" preload="auto">
-              <source style="height: 100%;width: 100%;background-color: #DD5044" src="img/video.mp4" type="video/mp4">
+              <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msgSingle.message.split('###')[1]}}" type="video/mp4">
             </video>
             <video id="vedio" style="width: 100%;height:100%;" ng-if="msgSingle.message.split('###')[5] === '100'" controls preload="auto">
-              <source style="height: 100%;width: 100%;background-color: #DD5044" src="img/video.mp4" type="video/mp4">
+              <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msgSingle.message.split('###')[1]}}" type="video/mp4">
             </video>
             <div style="width: 100%;height:100%;margin-top: -7px;">
               <div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="width: 100%;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
@@ -720,19 +720,54 @@
             </button>
           </div>
           <div style="width: 100%;height: 100%;" ng-show="isYuYin != 'true'" ng-click="zhiling()">
-            <textarea msd-elastic style="width: 100%;height: 40px;border: 1px solid #F5F5F5;border-radius: 5px;" ng-model="send_content" >
+            <textarea style="width: 100%;height: 40px;border: 1px solid #F5F5F5;border-radius: 5px;" rows="3" contenteditable="false" ng-model="send_content" >
             </textarea>
           </div>
         </div>
+
+
+
+
+
+        <!--高机型适配-->
+        <!--<div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">-->
+          <!--<div class="buttons" ng-show="!send_content || send_content === ''"  style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">-->
+            <!--<button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:137%;width:100%;height:100%;bottom:6px;" >-->
+            <!--</button>-->
+          <!--</div>-->
+          <!--<div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">-->
+          <!--<p>发送</p>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
         <div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">
-          <div class="buttons" ng-show="!send_content || send_content === ''"  style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">
-            <button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:137%;width:100%;height:100%;bottom:6px;" >
+
+          <div class="buttons" ng-show="!send_content || send_content === ''"
+               style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">
+            <button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:85%;
+            bottom:2px;" >
             </button>
           </div>
-          <div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
-          <p>发送</p>
+
+
+          <div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;"
+               ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
+            <p>发送</p>
           </div>
+
+
+
         </div>
+
+
+
+
+
+
+
+
+
       </div>
 
       <div ng-if="a==1" style="height: 170px;width: 100%;">
