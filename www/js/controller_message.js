@@ -1549,6 +1549,11 @@ angular.module('message.controllers', [])
         messagetype:messagetype
       });
     };
+
+
+
+
+
     var map ="";
     var point ="";
     // $scope.changelocation =function (content) {
@@ -5862,6 +5867,7 @@ angular.module('message.controllers', [])
     var long="";
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       lat  = position.coords.latitude+0.006954;//   当前位置
@@ -5881,12 +5887,15 @@ angular.module('message.controllers', [])
       map.addOverlay(marker); // 将标注添加到地图中
       marker.enableDragging();
       var myGeo = new BMap.Geocoder();
+
       $timeout(function () {
-        // $ToastUtils.showToast("网络超时")
+        // $ToastUtils.showToast("请检查网！");
         $ionicLoading.hide();
       },7000);
+
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
+
         if (result){
           $scope.$apply(function () {
             $timeout(function () {
@@ -5909,12 +5918,15 @@ angular.module('message.controllers', [])
         long=e.point.lng;
         // 创建地理编码实例
         var myGeo = new BMap.Geocoder();
+
         $timeout(function () {
-          // $ToastUtils.showToast("网络超时")
+          // $ToastUtils.showToast("请检查网络！")
           $ionicLoading.hide();
         },7000);
+
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
+
           if (result){
             $scope.$apply(function () {
               $timeout(function () {
@@ -5925,36 +5937,6 @@ angular.module('message.controllers', [])
           }
         });
       })
-
-
-      //查询功能
-      // var local = new BMap.LocalSearch(map, {
-      //   renderOptions: {map: map, panel: "results"},
-      //   pageCapacity: 10
-      // });
-      // local.searchInBounds(" ", map.getBounds());
-      //多地理位置代码
-      // var mOption = {
-      //   poiRadius : 100,           //半径为1000米内的POI,默认100米
-      //   numPois : 5                //列举出50个POI,默认10个
-      // }
-      // $scope.weizhis=[];
-      // // map.addOverlay(new BMap.Circle(point,500));        //添加一个圆形覆盖物,圆圈，显示不显示都行
-      // myGeo.getLocation(point,
-      //   function mCallback(rs){
-      //     var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
-      //     for(var i=0;i<allPois.length;i++){
-      //       // document.getElementById("panel").innerHTML += "<p style='font-size:12px;'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
-      //       map.addOverlay(new BMap.Marker(allPois[i].point));
-      //
-      //       $scope.$apply(function () {
-      //         $scope.weizhis.push(allPois[i].address);
-      //       });
-      //
-      //
-      //     }
-      //   },mOption
-      // );
 
     }, function(err) {
       $ToastUtils.showToast("定位失败");

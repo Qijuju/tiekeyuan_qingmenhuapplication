@@ -16,6 +16,7 @@ angular.module('im.directives', [])
       };
     }
   ])
+  
   .directive('rjCloseBackDrop', [function () {
     return {
       scope: false,
