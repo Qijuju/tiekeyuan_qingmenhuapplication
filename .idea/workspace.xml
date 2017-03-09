@@ -431,10 +431,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/splashscreen/SplashScreen.java" afterPath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/splashscreen/SplashScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/release/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/release/com/yixia/camera/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/generated/source/r/release/com/maiml/wechatrecodervideolibrary/R.java" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/generated/source/r/release/com/maiml/wechatrecodervideolibrary/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/www/templates/tab-message.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -459,8 +455,8 @@
       <file leaf-file-name="tab-message.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state relative-caret-position="250">
+              <caret line="104" column="91" lean-forward="true" selection-start-line="104" selection-start-column="91" selection-end-line="104" selection-end-column="91" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -952,14 +948,7 @@
       <workItem from="1488849950375" duration="19366000" />
       <workItem from="1489014815119" duration="1429000" />
       <workItem from="1489016472793" duration="39000" />
-      <workItem from="1489016731734" duration="8967000" />
-    </task>
-    <task id="LOCAL-00086" summary="。。。">
-      <created>1481537170888</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1481537170888</updated>
+      <workItem from="1489016731734" duration="9704000" />
     </task>
     <task id="LOCAL-00087" summary="12.13commit:1.点击语音按钮关闭键盘&#10;2.根据语音时长改变语音展示长度">
       <created>1481610351467</created>
@@ -1297,17 +1286,24 @@
       <option name="project" value="LOCAL" />
       <updated>1489015944547</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="提交代码">
+      <created>1489050162154</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1489050162154</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="997077000" />
+    <option name="totallyTimeSpent" value="997814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="943" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18505123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18505123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1342,7 +1338,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="vv" />
     <MESSAGE value=",,," />
     <MESSAGE value="commit" />
     <MESSAGE value="12.19commit：优化:聊天界面发送语音、文件、图片时，返回到主界面，当文件传送完毕时，chatitem更新状态" />
@@ -1367,7 +1362,8 @@
     <MESSAGE value="commit：重新提交代码11111" />
     <MESSAGE value="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知" />
     <MESSAGE value="commit:修改bug（头像、、、）" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit:修改bug（头像、、、）" />
+    <MESSAGE value="提交代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1730,8 +1726,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="250">
+          <caret line="104" column="91" lean-forward="true" selection-start-line="104" selection-start-column="91" selection-end-line="104" selection-end-column="91" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />

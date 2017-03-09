@@ -319,6 +319,8 @@ angular.module('login.controllers', [])
       //测试自动登录
       // passlogin = 1;
       if(passlogin=="1"){
+        $ToastUtils.showToast("网路异常！");
+
         // namegesturea = 'chenglilicll';
         // pwdgesturea = 'password';
         $api.login(namegesturea, pwdgesturea, function (message) {
@@ -352,6 +354,7 @@ angular.module('login.controllers', [])
       }else if(passworda.length>0&&loginpageaa=="gesturelogin"){
         $state.go('gesturelogin');
       }else {
+        $ToastUtils.showToast("网路异常！");
         $state.go('login');
       }
     }
@@ -367,11 +370,9 @@ angular.module('login.controllers', [])
 
           // alert("当前用户的id"+userID);
         }, function (err) {
-
         });
         // alert(message.toString());
         $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
-
         //调用保存用户名方法
         mqtt.saveLogin('name', namegesturea, function (message) {
         }, function (message) {
@@ -397,6 +398,7 @@ angular.module('login.controllers', [])
               $ionicLoading.hide()
               $state.go('login');
             },function (err) {
+              $ToastUtils.showToast(err);
               $ionicLoading.hide()
               $state.go('login');
             });
@@ -407,6 +409,7 @@ angular.module('login.controllers', [])
           $state.go('login');
         });
       }, function (err) {
+        $ToastUtils.showToast(err);
         $ionicLoading.hide()
         $state.go('login');
       });
@@ -416,6 +419,7 @@ angular.module('login.controllers', [])
       $mqtt.getUserInfo(function (userInfo) {
         $rootScope.userName = userInfo.userName;
       },function (err) {
+        $ToastUtils.showToast(err);
       });
     };
   })
