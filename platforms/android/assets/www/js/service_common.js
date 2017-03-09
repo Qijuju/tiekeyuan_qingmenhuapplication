@@ -197,60 +197,7 @@ angular.module('common.services', [])
         api.getWelcomePic(picUserID, picSize, success, error);
       },
       checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
-        /*$mqtt.getMqtt().getString('install_cancel', function (msg) {
-          if (msg != 'true') {
-            api.getVersionInfo(function (msg) {
-              var versionName = msg.versionName;
-              var versionDesc = msg.versionDesc;
-              var filesize=msg.size;
-              var targetPath = "";
-              api.needUpgrade(versionName, function (msg) {
-                if(msg == 'true') {
-                  var confirmPopup = $ionicPopup.confirm({
-                    title: '版本升级',
-                    template: versionDesc, //从服务端获取更新的内容
-                    cancelText: '取消',
-                    okText: '升级'
-                  });
-                  confirmPopup.then(function (res) {
-                    if(res) {
 
-                      api.getVersion("", versionName,filesize, function (msg) {
-                        targetPath = msg;
-                        api.installApk(targetPath, function (success) {
-                          // 成功
-                          $mqtt.save('install_cancel', 'false');
-                        }, function (err) {
-                          // 错误
-                          $mqtt.save('install_cancel', 'false');
-                        });
-                      },function (msg) {
-
-                        $ToastUtils.showToast(msg);
-                      });
-                    } else {
-                      //取消更新
-                      $mqtt.save('install_cancel', 'true');
-
-                    }
-
-                  });
-                } else if(msg != 'false' && msg != '') {
-                  $mqtt.save('install_cancel', 'true');
-                  $ToastUtils.showToast(msg);
-                }
-              },function (msg) {
-                $ToastUtils.showToast(msg);
-
-              });
-            }, function (msg) {
-              $ToastUtils.showToast(msg);
-
-            });
-          }
-        }, function (err) {
-          $ToastUtils.showToast(msg);
-        });*/
 
           //从网络请求数据  获取版本号和各种信息
           api.getVersionInfo(function (msg) {
