@@ -1433,6 +1433,9 @@ angular.module('message.services', [])
           suffix === '.mpeg' || suffix === '.dat' || suffix === '.mpe' || suffix === '.mpeg' ||
           suffix === '.m2v' || suffix === '.vob' || suffix === '.asf' || suffix === '.mov' ||
           suffix === '.divx' || suffix === '.wmf' || suffix === '.ts';
+      },
+      getMonthOrDay:function (monthOrDay) {//修正日期的month或day（如果小于9，则在其前面加0，否则不变）
+        return (monthOrDay>9 ? (monthOrDay + "") : ("0" + monthOrDay));
       }
 
 

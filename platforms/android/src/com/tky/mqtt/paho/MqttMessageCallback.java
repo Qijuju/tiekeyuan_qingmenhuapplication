@@ -311,9 +311,11 @@ public class MqttMessageCallback implements MqttCallback {
                 OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
                 List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", map.getSenderid());
                 if (otherpicheadList.size() == 0) {
-                  messages.setImgSrc("");
+                  messages.setImgSrc("1");
+                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
                 } else {
                   messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
 //                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
                 }
                 map.setSenderid(map.getSenderid());
