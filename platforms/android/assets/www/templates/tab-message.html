@@ -98,18 +98,21 @@
               <span style="float: left;">
                 <!---已读语音--->
                 <font style="font-size: 14px;color: #777777" ng-if="item.isRead === '1'">
-                  <!---发送过程中--->
-                  <img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
-                  <!---发送失败--->
-                  <img style="background-color: transparent;padding-right: 5px" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
-                  <span style="display:block;width: 280px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
+                  <div style="display: inline-block">
+                    <!---发送过程中--->
+                    <img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
+                    <!---发送失败--->
+                    <img style="background-color: transparent;padding-right: 5px" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
+                    <span style="width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
+                  </div>
+
                 </font>
                 <!---未读语音--->
                 <font style="font-size: 14px;color: #DD5044" ng-if="item.messagetype === 'Audio' && item.isRead === '0'">
                   {{item.lastText}}
                 </font>
                 <!---未读文本等--->
-                <font style="font-size: 14px;color: #777777;display:block;width: 280px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;" ng-if="item.messagetype != 'Audio' && item.isRead === '0'">
+                <font style="font-size: 14px;color: #777777;display:block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;" ng-if="item.messagetype != 'Audio' && item.isRead === '0'">
                   {{item.lastText}}
                 </font>
                 <!--<font style="font-size: 14px;">{{item.lastText}}</font>-->

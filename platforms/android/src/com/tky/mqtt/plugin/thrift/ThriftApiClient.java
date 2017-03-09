@@ -138,6 +138,10 @@ public class ThriftApiClient extends CordovaPlugin {
    * @param callbackContext 插件回调
    */
   public void login(final JSONArray args, final CallbackContext callbackContext) {
+    if (!NetUtils.isConnect(cordova.getActivity())) {
+      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+      return;
+    }
     try {
       MqttReceiver.hasRegister = false;
       String username = args.getString(0);
