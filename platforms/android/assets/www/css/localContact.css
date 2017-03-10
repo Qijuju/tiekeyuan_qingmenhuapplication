@@ -87,16 +87,10 @@
 }
 
 .isss{
-  border-radius: 2px;
-  width: 70px;
-  height: 70px;
-  background-color:grey;
   position:fixed;
   left:50%;
   top:50%;
-  z-index: 33;
   text-align: center;
-  line-height: 70px;
   overflow-y: auto;
   transform:translateX(-50%) translateY(-50%);
 }
