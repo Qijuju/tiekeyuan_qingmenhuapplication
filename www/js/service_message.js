@@ -757,15 +757,7 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message.senderid;
-          $greendao.queryData('OtherHeadPicService','where id =?',arriveMessage.senderid,function (data) {
-            if(data[0].picurl==null||data[0].picurl==undefined||data[0].picurl.length==0){
-              arriveMessage.imgSrc=message.imgSrc;
-            }else {
-              arriveMessage.imgSrc=data[0].picurl;
-            }
-          },function (err) {
-            arriveMessage.imgSrc=message.imgSrc;
-          });
+          arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;

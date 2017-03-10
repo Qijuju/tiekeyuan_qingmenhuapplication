@@ -58,13 +58,13 @@ angular.module('message.controllers', [])
     // alert("纬度"+$scope.latitude)
     var isAndroid = ionic.Platform.isAndroid();
     // $ToastUtils.showToast("当前用户名"+$scope.myUserID+$scope.localusr);
-    $scope.otherheadpicurl=0;
+    $scope.otherheadpicurl='1';
     $scope.otheryoumeiyou=false;
    //取出头像url
     $greendao.queryData('OtherHeadPicService','where id =?',$scope.userId,function (succ) {
       if(succ[0].picurl==undefined||succ[0].picurl==null||succ[0].picurl.length==0){
         $scope.otheryoumeiyou=false;
-        $scope.otherheadpicurl=0;
+        $scope.otherheadpicurl='1';
       }else {
 
         $scope.otheryoumeiyou=true;
@@ -73,7 +73,7 @@ angular.module('message.controllers', [])
 
       // alert("id===="+succ[0].id+"picurl===="+succ[0].picurl);
     },function (err) {
-      $scope.otherheadpicurl=0;
+      $scope.otherheadpicurl='1';
       $scope.otheryoumeiyou=false;
     });
 
@@ -2283,6 +2283,7 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+    //获取用户修改后的头像
     $scope.picyoumeiyoumsg=false;
     $scope.p=$rootScope.securlpicaaa;
     $scope.otheryoumeiyougro=false;
@@ -2296,6 +2297,7 @@ angular.module('message.controllers', [])
       // })
     }
 
+    //获取对方修改后的头像
 
 
 
@@ -4177,6 +4179,7 @@ angular.module('message.controllers', [])
     $scope.GROUP=$stateParams.grouptype;
 
 
+    //进来消息主界面时，读取当前用户的头像
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (msg) {
         $api.getHeadPic(msg.userID,"60",function (srcurl) {
@@ -4194,13 +4197,19 @@ angular.module('message.controllers', [])
 
 
 
-
+    //读取当前 app的欢迎界面
     $api.getWelcomePic($scope.ID,"960",function (srcurl) {
       $mqtt.save('welcomePic', srcurl);
       // $ToastUtils.showToast(srcurl)
     },function (error) {
       $ToastUtils.showToast(error)
     })
+
+
+
+
+
+
 
     if ($mqtt.isLogin()) {
       // alert($mqtt.isLogin());
