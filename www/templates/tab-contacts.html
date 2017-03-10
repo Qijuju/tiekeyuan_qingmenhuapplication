@@ -46,7 +46,7 @@
       <p style="margin-top: 4px;margin-left: -5px;font-size: 18px;color: black;">公司通讯录</p>
     </ion-item>
 
-    <div style="margin-top: 15px;">
+    <div>
       <ion-list>
         <ion-item  class="item-remove-animate item-avatar rj-contact-new "   style="height: 55px" ng-repeat="item in depts" href="#/second/{{item.DeptID}}" >
           <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
@@ -72,7 +72,7 @@
       </ion-item>
     </div>
 
-    <div style="margin-top: 15px">
+    <div >
       <ion-list>
         <ion-item  class="item-remove-animate item-avatar rj-contact-new "  ng-repeat="item in topContactLists" >
           <div ng-click="simpleSheetShow(item._id,item.phone,item.name,1)">

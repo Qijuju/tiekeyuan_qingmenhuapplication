@@ -6,7 +6,7 @@ angular.module('login.controllers', [])
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
   })
-  
+
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
     document.getElementById("loginpic").style.height=(window.screen.height)+'px';
     document.getElementById("loginpic").style.width=(window.screen.width)+'px';
@@ -320,7 +320,7 @@ angular.module('login.controllers', [])
       //测试自动登录
       // passlogin = 1;
       if(passlogin=="1"){
-        $ToastUtils.showToast("网路异常！");
+        // $ToastUtils.showToast("网路异常！");
 
         // namegesturea = 'chenglilicll';
         // pwdgesturea = 'password';
