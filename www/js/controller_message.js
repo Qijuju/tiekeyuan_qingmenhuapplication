@@ -5221,20 +5221,29 @@ angular.module('message.controllers', [])
                     var key=data[i]._id;
                     $greendao.deleteDataByArg('MessagesService',key,function (data) {
                       $greendao.queryData('ChatListService','where id =?',id,function (data) {
-                        for(var i=0;i<=$chatarr.getAllData().length-1;i++){
-                          // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
-                          if( $chatarr.getAllData()[i].id === data[0].id){
-                            // alert("找出chat数组的要删除的数据"+i);
-                            var key=$chatarr.getAllData()[i].id;
-                            $greendao.deleteDataByArg('ChatListService',key,function (data) {
-                              $state.go('tab.message',{
-                                "id":id,
-                                "sessionid":ssid,
-                                "grouptype":"User"
+
+                        if(data.length==0){
+                          $state.go('tab.message',{
+                            "id":id,
+                            "sessionid":ssid,
+                            "grouptype":"User"
+                          });
+                        }else {
+                          for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                            // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                            if( $chatarr.getAllData()[i].id === data[0].id){
+                              // alert("找出chat数组的要删除的数据"+i);
+                              var key=$chatarr.getAllData()[i].id;
+                              $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                                $state.go('tab.message',{
+                                  "id":id,
+                                  "sessionid":ssid,
+                                  "grouptype":"User"
+                                });
+                              },function (err) {
                               });
-                            },function (err) {
-                            });
-                            break;
+                              break;
+                            }
                           }
                         }
                       },function (err) {
@@ -5251,12 +5260,6 @@ angular.module('message.controllers', [])
                 }
               },function (err) {
                 // $ToastUtils.showToast(err+"查询所有记录失败");
-              });
-
-              $state.go('tab.message',{
-                "id":id,
-                "sessionid":ssid,
-                "grouptype":"User"
               });
             },function (err) {
 
@@ -5690,26 +5693,37 @@ angular.module('message.controllers', [])
                     var key=data[i]._id;
                     $greendao.deleteDataByArg('MessagesService',key,function (data) {
                       $greendao.queryData('ChatListService','where id =?',id,function (data) {
-                        for(var i=0;i<=$chatarr.getAllData().length-1;i++){
-                          // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
-                          if( $chatarr.getAllData()[i].id === data[0].id){
-                            // alert("找出chat数组的要删除的数据"+i);
-                            var key=$chatarr.getAllData()[i].id;
-                            $greendao.deleteDataByArg('ChatListService',key,function (data) {
-
-                              alert("跳进来了没有啊啊啊啊啊啊啊 啊")
-
-                              $state.go('tab.message',{
-                                "id":id,
-                                "sessionid":name,
-                                "grouptype":"Group"
+                        if(data.length == 0){
+                          $state.go('tab.message',{
+                            "id":id,
+                            "sessionid":name,
+                            "grouptype":"Group"
+                          });
+                        }else{
+                          for(var i=0;i<=$chatarr.getAllData().length-1;i++){
+                            // alert("找出chat数组"+$chatarr.getAllData()[i].id+"==="+data[0].id);
+                            if( $chatarr.getAllData()[i].id === data[0].id){
+                              // alert("找出chat数组的要删除的数据"+i);
+                              var key=$chatarr.getAllData()[i].id;
+                              $greendao.deleteDataByArg('ChatListService',key,function (data) {
+                                $state.go('tab.message',{
+                                  "id":id,
+                                  "sessionid":name,
+                                  "grouptype":"Group"
+                                });
+                              },function (err) {
                               });
-                            },function (err) {
-                            });
-                            break;
+                              break;
+                            }
                           }
                         }
+
                       },function (err) {
+                        $state.go('tab.message',{
+                          "id":id,
+                          "sessionid":name,
+                          "grouptype":"Group"
+                        });
                       });
                     },function (err) {
                     });
@@ -5726,11 +5740,11 @@ angular.module('message.controllers', [])
               },function (err) {
                 // $ToastUtils.showToast(err+"查询所有记录失败");
               });
-              $state.go('tab.message',{
-                "id":id,
-                "sessionid":name,
-                "grouptype":"Group"
-              });
+              // $state.go('tab.message',{
+              //   "id":id,
+              //   "sessionid":name,
+              //   "grouptype":"Group"
+              // });
 
 
             },function (err) {

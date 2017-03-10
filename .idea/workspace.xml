@@ -2,15 +2,114 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c7656c2-cccc-4680-9509-951f32caa956" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/androidTest/debug/org/apache/cordova/test/BuildConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/android-debug.apk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/img/focus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/img/focus1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/img/unfocus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/img/unfocus1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-hdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-ldpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-mdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-ldpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-hdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-ldpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-mdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-xhdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-xxhdpi/screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxxhdpi/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-hdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-mdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-mdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-xhdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$drawable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$string.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$style.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/BuildConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$attr.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$drawable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$string.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$style.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/compileDebugAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/jniLibs/debug/armeabi-v7a/libutility.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/jniLibs/release/armeabi-v7a/libutility.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/3/main/lib/armeabi-v7a/libutility.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/release/folders/2000/3/main/lib/armeabi-v7a/libutility.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/debug/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/release/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_work.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-work.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/debug/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/release/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageDebugResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" afterPath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes.js" afterPath="$PROJECT_DIR$/www/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/www/templates/tab-message.html" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/localContact.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/localContact.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-notice.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/group-notice.html" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
     </list>
     <list id="43ed02b5-2044-4264-a46c-baa77f6af7ab" name="Failed commit: Default" comment="Merge branch 'libsunlinsong' of http://192.168.100.25/jishitong/IM into labchengll&#10;&#10;Conflicts:&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/cache.properties.lock&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileHashes.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin&#10;&#9;platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin&#10;&#9;platforms/android/.idea/workspace.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger1981342129261790156.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger7578451011066093314.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/manifest/tmp/manifestMerger8161881886139479094.xml&#10;&#9;platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar&#10;&#9;platforms/android/android.iml&#10;&#9;platforms/android/assets/www/img/turnleft.gif&#10;&#9;platforms/android/src/com/tky/mqtt/chat/MqttChat.java&#10;" />
     <ignored path="IM.iws" />
@@ -34,21 +133,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-149">
               <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+=======
+      <file leaf-file-name="controller_contacts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48100">
+              <caret line="1850" column="123" selection-start-line="1850" selection-start-column="116" selection-end-line="1850" selection-end-column="123" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
               <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+=======
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/platforms/android/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2366">
+              <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="service_contacts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/service_contacts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19448">
+              <caret line="748" column="19" selection-start-line="748" selection-start-column="14" selection-end-line="748" selection-end-column="19" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
               <folding />
             </state>
           </provider>
@@ -57,6 +182,7 @@
       <file leaf-file-name="tab-message.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="250">
               <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
               <folding>
@@ -65,6 +191,77 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+=======
+            <state relative-caret-position="11180">
+              <caret line="430" column="5" selection-start-line="430" selection-start-column="1" selection-end-line="434" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localContact.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/localContact.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2418">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group-member.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/group-member.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="3" column="84" selection-start-line="3" selection-start-column="84" selection-end-line="3" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147212">
+              <caret line="5662" column="39" selection-start-line="5662" selection-start-column="39" selection-end-line="5662" selection-end-column="39" />
+              <folding />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group-notice.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/templates/group-notice.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller_select_group.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_select_group.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45188">
+              <caret line="1738" column="20" selection-start-line="1738" selection-start-column="11" selection-end-line="1738" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group-setting.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/group-setting.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1326">
+              <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+              <folding>
+                <element signature="n#style#0;n#button#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,7 +289,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/www/templates/mapdetail.html" />
+=======
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/controller_login.js" />
         <option value="$PROJECT_DIR$/www/templates/test.html" />
@@ -135,14 +335,19 @@
         <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
         <option value="$PROJECT_DIR$/platforms/android/platform_www/plugins/GreenDaoPlugin/www/green_dao_plugin.js" />
         <option value="$PROJECT_DIR$/www/js/service_common.js" />
-        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
         <option value="$PROJECT_DIR$/www/js/directives.js" />
-        <option value="$PROJECT_DIR$/www/css/localContact.css" />
         <option value="$PROJECT_DIR$/www/js/controller_localphone.js" />
         <option value="$PROJECT_DIR$/www/templates/contact-local.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/js/routes.js" />
         <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
+=======
+        <option value="$PROJECT_DIR$/platforms/android/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
+        <option value="$PROJECT_DIR$/www/css/localContact.css" />
+        <option value="$PROJECT_DIR$/www/templates/group-notice.html" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
       </list>
     </option>
   </component>
@@ -191,7 +396,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -242,9 +450,126 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+<<<<<<< HEAD
         </subPane>
       </pane>
       <pane id="Scratches" />
+=======
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platforms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platforms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platforms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".gradle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.14.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platforms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".gradle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.14.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taskArtifacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platforms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".gradle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -445,8 +770,14 @@
       <workItem from="1488849013634" duration="731000" />
       <workItem from="1488935071649" duration="17063000" />
       <workItem from="1489021730757" duration="14389000" />
+<<<<<<< HEAD
       <workItem from="1489053625024" duration="822000" />
       <workItem from="1489106003131" duration="6446000" />
+=======
+      <workItem from="1489051163000" duration="5366000" />
+      <workItem from="1489108561020" duration="5608000" />
+      <workItem from="1489115864913" duration="1054000" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
     </task>
     <task id="LOCAL-00077" summary="更改图片样式。">
       <created>1481253187081</created>
@@ -777,6 +1108,7 @@
       <option name="project" value="LOCAL" />
       <updated>1486689076231</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00124" summary="修改bug后提交代码">
       <created>1489053894031</created>
       <option name="number" value="00124" />
@@ -790,12 +1122,31 @@
       <option name="presentableId" value="LOCAL-00125" />
       <option name="project" value="LOCAL" />
       <updated>1489054410013</updated>
+=======
+    <task id="LOCAL-00124" summary="合并liu commit">
+      <created>1489053389846</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1489053389846</updated>
+    </task>
+    <task id="LOCAL-00125" summary="提交最新代码">
+      <created>1489116068349</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1489116068349</updated>
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
     </task>
     <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="1128823000" />
+=======
+    <option name="totallyTimeSpent" value="1133583000" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -807,27 +1158,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17175975" sideWeight="0.5056" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18651211" sideWeight="0.4944" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32762313" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1006424" sideWeight="0.50316125" order="7" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14393939" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28896105" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63811564" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24946466" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17175975" sideWeight="0.5056" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04678999" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -842,8 +1204,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit" />
-    <MESSAGE value="12.19commit：优化:聊天界面发送语音、文件、图片时，返回到主界面，当文件传送完毕时，chatitem更新状态" />
     <MESSAGE value="...页面改造前提交" />
     <MESSAGE value="更改界面样式" />
     <MESSAGE value="拉取孙林松代码(完成图片单击返回，图片缓存展示过滤未下载的图片)" />
@@ -867,7 +1227,9 @@
     <MESSAGE value="提交chatlist" />
     <MESSAGE value="合并ding代码提交" />
     <MESSAGE value="修改bug后提交代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改bug后提交代码" />
+    <MESSAGE value="合并liu commit" />
+    <MESSAGE value="提交最新代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交最新代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1058,6 +1420,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2631">
           <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -1072,6 +1435,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="1437" column="0" selection-start-line="1437" selection-start-column="0" selection-end-line="1437" selection-end-column="0" />
+=======
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
@@ -1079,6 +1444,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-628">
           <caret line="780" column="14" selection-start-line="780" selection-start-column="14" selection-end-line="780" selection-end-column="14" />
+<<<<<<< HEAD
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5278">
+          <caret line="203" column="28" selection-start-line="203" selection-start-column="28" selection-end-line="203" selection-end-column="28" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
@@ -1086,6 +1461,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -1093,6 +1469,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="74" column="74" selection-start-line="74" selection-start-column="74" selection-end-line="74" selection-end-column="74" />
+=======
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
@@ -1128,6 +1506,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -1135,6 +1514,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="458" column="7" selection-start-line="454" selection-start-column="4" selection-end-line="458" selection-end-column="7" />
+=======
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
@@ -1163,6 +1544,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="2246" column="23" selection-start-line="2246" selection-start-column="10" selection-end-line="2246" selection-end-column="23" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -1177,11 +1559,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10750">
           <caret line="430" column="5" selection-start-line="430" selection-start-column="1" selection-end-line="434" selection-end-column="19" />
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platforms/android/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2366">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48100">
+          <caret line="1850" column="123" selection-start-line="1850" selection-start-column="116" selection-end-line="1850" selection-end-column="123" />
+          <folding />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/service_contacts.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="6100">
           <caret line="244" column="36" selection-start-line="244" selection-start-column="36" selection-end-line="244" selection-end-column="36" />
         </state>
@@ -1191,13 +1592,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="1860" column="0" selection-start-line="1860" selection-start-column="0" selection-end-line="1860" selection-end-column="0" />
+=======
+        <state relative-caret-position="19448">
+          <caret line="748" column="19" selection-start-line="748" selection-start-column="14" selection-end-line="748" selection-end-column="19" />
+          <folding />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="620">
           <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -1205,25 +1612,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="199" column="9" selection-start-line="199" selection-start-column="9" selection-end-line="199" selection-end-column="9" />
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_localphone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="199" column="9" selection-start-line="199" selection-start-column="9" selection-end-line="199" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_select_group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45188">
+          <caret line="1738" column="20" selection-start-line="1738" selection-start-column="11" selection-end-line="1738" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/group-member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="84" selection-start-line="3" selection-start-column="84" selection-end-line="3" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/group-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/localContact.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2418">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-149">
           <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+=======
+        <state relative-caret-position="11180">
+          <caret line="430" column="5" selection-start-line="430" selection-start-column="1" selection-end-line="434" selection-end-column="19" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/www/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147212">
+          <caret line="5662" column="39" selection-start-line="5662" selection-start-column="39" selection-end-line="5662" selection-end-column="39" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1234,6 +1697,16 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#ion-nav-bar#0;n#ion-view#0;n#!!top" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/www/templates/group-notice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+>>>>>>> 0d34a2e529d3720717f1edad5afbb287fe3e31df
           </folding>
         </state>
       </provider>
