@@ -24,6 +24,7 @@ public class MqttParams {
 
 	public MqttParams(){
 		options = new MqttConnectOptions();
+		options.setAutomaticReconnect(true);
 		options.setCleanSession(isCleanSession());
 		options.setUserName(getUserName());
 		options.setPassword(getPassword().toCharArray());
