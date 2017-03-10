@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button  button-icon icon " ng-click="createNotice()" ng-if=" islook== 0" >
+        <button class="button  button-icon icon " ng-click="createNotice()" ng-if=" islook== 0 && isMygroup=='true' " >
           创建
         </button>
         <button class="button  button-icon icon " ng-click="clearNotice()"  ng-if=" islook== 1" >
@@ -19,7 +19,7 @@
       <input type="text" id="nameId"  ng-model="send_name">
     </label>-->
     <h1 style="font-size: 22px;margin: 5px"ng-if="islook==1">{{noticeText}}</h1>
-    <h1 style="font-size: 22px; position: absolute;left: 36%;top: 40%" ng-if="islook==0">暂无群公告</h1>
+    <h1 style="font-size: 20px;color: initial;" class="isss" ng-if="islook==0">暂无群公告</h1>
 
 
   </ion-content>

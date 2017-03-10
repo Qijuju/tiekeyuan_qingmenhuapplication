@@ -326,7 +326,12 @@ public class FilePictureService implements BaseInterface<FilePicture>{
         .where(FilePictureDao.Properties.Sessionid.eq(sessionid))
         .build().list();
 
-      filePictureDao.deleteInTx(filePictures);
+      if(filePictures.size()==0){
+        return;
+      }else{
+        filePictureDao.deleteInTx(filePictures);
+      }
+
 
       //filePictureDao.deleteAll();
 
