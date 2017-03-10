@@ -68,9 +68,6 @@
           <div  style=" position: absolute;left: 5%;top: 5%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;" ng-if="(item.chatType==='User')&&(item.imgSrc!='1')" >
             <img  src="{{item.imgSrc}}" class="yuanjiao4 center">
           </div>
-
-
-
           <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9)&&(item.chatType==='User')&&(item.imgSrc== '1')" class="center circle1" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
 
 
