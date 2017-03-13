@@ -10,13 +10,18 @@
       <img ng-show="persondsfs.Sex=='女'" src="img/im_new_female.png"  style="position: absolute;right:3%;top:3%;width: 22px;height: 22px;" >
     </div>
 
-    <div style="height: 255px;background-color: white;text-align: center;width:100%">
+    <div style="height: 255px;background-color: white;width:100%" align="center">
       <img ng-if="!picyoumeiyoudet" src="img/circle6.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
-      <!--<div ng-if="!picyoumeiyoudet" class="vcenter" style="position: absolute;left: 46%;top: 75px;color: whitesmoke;font-size: 15px" ng-click="godetailaa()">{{simpleName}}</div>-->
-      <div ng-if="!picyoumeiyoudet" style="position: absolute;width: 100%;top: 75px;color: whitesmoke;font-size: 15px" ng-click="godetailaa()">{{simpleName}}</div>
+      <div ng-if="!picyoumeiyoudet"  style="position:absolute;width: 100%;top: 75px;color: whitesmoke;font-size: 15px" ng-click="godetailaa()">
+        {{simpleName}}
+      </div>
 
-      <img  width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()" ng-if="picyoumeiyoudet" src="{{securlpicdet}}" class="yuanjiao1">
-      <P style="text-align-all: center;font-size: 17px;margin-top: 2px">{{persondsfs.UserName}}</P>
+      <img  ng-if="picyoumeiyoudet" width="75px" height="75px" style="margin-top: 45px;" ng-click="godetailaa()"  src="{{securlpicdet}}" class="yuanjiao1">
+
+      <div style="margin-top: 2px">
+        <P style="text-align-all: center;font-size: 17px">{{persondsfs.UserName}}</P>
+
+      </div>
       <div style="position: absolute;top: 185px;"  class="row">
         <div class="col" align="center" ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)">
           <a >

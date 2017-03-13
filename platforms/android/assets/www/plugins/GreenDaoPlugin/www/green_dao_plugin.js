@@ -117,4 +117,9 @@ cordova.define("GreenDaoPlugin.green_dao_plugin", function (require, exports, mo
          exports.queryTodayFile=function(ssid,type,success,error){//查找今天的文件
                        exec(success, error,"GreenDaoPlugin", "queryTodayFile",[ssid,type]);
                   };
+
+         exports.deleteBySessionid=function(sessionid,success,error){
+
+                       exec(success,error,"GreenDaoPlugin","deleteBySessionid",[sessionid])
+          };
 });

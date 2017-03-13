@@ -91,18 +91,18 @@
       <!--2、对方的消息-->
       <div class="row" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)" style="float: left;">
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="otheryoumeiyou" >
-          <img  src="{{otherheadpicurl}}" class="yuanjiao4">
-        </div>
+        <img  src="{{otherheadpicurl}}" class="yuanjiao4">
+      </div>
         <!--头像-->
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)"><button class="circle1" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)")><button class="circle1" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8)&&(!otheryoumeiyou)"><button class="circle2" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8)&&(!otheryoumeiyou)")><button class="circle2" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle3" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7)&&(!otheryoumeiyou)")><button class="circle3" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle4" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6)&&(!otheryoumeiyou)")><button class="circle4" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle5" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)")><button class="circle5" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
         <!--接收###文本内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">

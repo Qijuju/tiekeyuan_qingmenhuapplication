@@ -1247,7 +1247,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count,$location,$ionicPlatform,$ionicLoading,$ionicHistory,$ToastUtils,$mqtt,$timeout) {
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count,$location,$ionicPlatform,$ionicLoading,$ionicHistory,$ToastUtils,$mqtt,$timeout,$http) {
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/tab/webpage')){
         window.close();
@@ -1301,14 +1301,35 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
-      window.open("http://www.r93535.com/cj/riskcontrol/appmanager/appstatisticsindex!mobiledevicepc.action","_self","location=no")
+      //window.open("http://www.r93535.com/cj/riskcontrol/appmanager/appstatisticsindex!mobiledevicepc.action","_self","location=no")
+      window.open("http://immobile.r93535.com:8081/ddzh/index.html","_self","location=no")
+
     }
     $scope.openUrlbanchang=function(){
       //   if (!cordova.InAppBrowser) {
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
-      window.open("http://61.237.239.104:18080/TDBLAppService/html/1Allcompany.html","_self","location=no")
+       window.open("http://immobile.r93535.com:8081/sgtsh/index.html","_self","location=no")
+
+        //window.open("http://172.25.28.106:8080/www/index.html","_self","location=no")
+
+      /*var url1="http://www.r93535.com/appservice/appsgtsh/sgtsh/xinproject.action?ssid=APP-805246a0-ef79-4469-97f8-3e1c0ebe1694&userid=156938";
+      $http({
+        method: 'GET',
+        url: url1
+      }).success(function(data, status) {
+
+        alert(status)
+
+      }).error(function(data, status) {
+        alert(status)
+
+
+      });*/
+
+
+
     }
     //
     // window.
@@ -1320,4 +1341,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     // show
     // executeScript
     // insertCSS
+
+    /*$scope.$on('$ionicView.enter', function () {
+
+      window.open("http://172.25.28.106:8080/www/index.html","_blank","location=no")
+
+    });*/
+
   })

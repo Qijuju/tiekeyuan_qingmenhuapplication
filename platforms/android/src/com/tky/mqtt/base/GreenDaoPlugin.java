@@ -1,5 +1,7 @@
 package com.tky.mqtt.base;
 
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
@@ -17,6 +19,7 @@ import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.services.ChatListService;
@@ -692,11 +695,31 @@ public class GreenDaoPlugin extends CordovaPlugin {
     }
 
 
-
-
-
-
     /**
+     * 根据会话id来删除文件和图片表里的数据
+     * @param args
+     * @param callbackContext
+     */
+
+  public void deleteBySessionid(final JSONArray args,final CallbackContext callbackContext){
+    FilePictureService service = FilePictureService.getInstance(UIUtils.getContext());
+    try {
+      String sessionid = args.getString(0);
+
+      service.deleteBySessionid(sessionid);
+      setResult("删除成功", PluginResult.Status.OK, callbackContext);
+    } catch (JSONException e) {
+      e.printStackTrace();
+      setResult("删除失败", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+
+
+
+
+
+  /**
      * 带两个参数查询(NotifyListService)
      */
     public void queryNotifyChat(final JSONArray args,final CallbackContext callbackContext){

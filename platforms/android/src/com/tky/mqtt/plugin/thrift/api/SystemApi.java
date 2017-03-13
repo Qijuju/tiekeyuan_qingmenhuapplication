@@ -40,7 +40,7 @@ import im.server.attention.IMAttention;
  */
 public class SystemApi {
 
-    //public static final String url = "immobile.r93535.com";//正是环境
+     //public static final String url = "immobile.r93535.com";
       public static final String url = "61.237.239.152";
 
     /**
@@ -459,6 +459,8 @@ public class SystemApi {
             //final long finalOffset = result.getOffset();
             int progress = (int) (result.getOffset() * 1.0f / size * 100);
             ProgressDialogFactory.setProgress(progress);
+
+
         }
 
         UIUtils.runInMainThread(new Runnable() {

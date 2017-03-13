@@ -2,9 +2,11 @@ package com.tky.mqtt.paho;
 
 import android.content.Intent;
 
+import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
+import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
 import com.tky.protocol.model.IMPFields;
@@ -12,6 +14,7 @@ import com.tky.protocol.model.IMPFields;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
 public class MessageOper {
@@ -87,7 +90,13 @@ public class MessageOper {
 			bean.setWhen((Long) msgMap.get("when"));
 			bean.setIsFailure("false");
 			bean.setIsDelete("");
-			bean.setImgSrc("");
+			OtherHeadPicService otherHeadPicService= OtherHeadPicService.getInstance(UIUtils.getContext());
+			List<Otherpichead> otherpicheadList=otherHeadPicService.queryData("where id =?",(String) msgMap.get("from"));
+			if(otherpicheadList.size() == 0){
+				bean.setImgSrc("1");
+			}else{
+				bean.setImgSrc(otherpicheadList.get(0).getPicurl());
+			}
 			bean.setUsername((String) msgMap.get("fromName"));
 			bean.setIsFromMe(fromMe);
 			bean.setSenderid((String) msgMap.get("from"));

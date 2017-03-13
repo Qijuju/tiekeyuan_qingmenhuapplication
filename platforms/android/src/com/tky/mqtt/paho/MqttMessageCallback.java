@@ -276,7 +276,16 @@ public class MqttMessageCallback implements MqttCallback {
                         updateMsg.setWhen(messages.getWhen());
                         updateMsg.setIsFailure(messages.getIsFailure());
                         updateMsg.setIsDelete(messages.getIsDelete());
-                        updateMsg.setImgSrc(messages.getImgSrc());
+                        OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+                        List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", map.getSenderid());
+                        if (otherpicheadList.size() == 0) {
+                          updateMsg.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+                        } else {
+                          updateMsg.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+                        }
                         updateMsg.setUsername(messages.getUsername());
                         updateMsg.setSenderid(messages.getSenderid());
                         updateMsg.setIsread(messages.getIsread());
@@ -312,9 +321,11 @@ public class MqttMessageCallback implements MqttCallback {
                 OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
                 List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", map.getSenderid());
                 if (otherpicheadList.size() == 0) {
-                  messages.setImgSrc("");
+                  messages.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
                 } else {
                   messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
 //                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
                 }
                 map.setSenderid(map.getSenderid());
@@ -550,7 +561,16 @@ public class MqttMessageCallback implements MqttCallback {
                 updateMsg.setWhen(messages.getWhen());
                 updateMsg.setIsFailure(messages.getIsFailure());
                 updateMsg.setIsDelete(messages.getIsDelete());
-                updateMsg.setImgSrc(messages.getImgSrc());
+                OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+                List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
+                if (otherpicheadList.size() == 0) {
+                  updateMsg.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+                } else {
+                  updateMsg.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+                }
                 updateMsg.setUsername(messages.getUsername());
                 updateMsg.setSenderid(messages.getSenderid());
                 eventBean.setSenderid(messages.getSenderid());
@@ -585,7 +605,16 @@ public class MqttMessageCallback implements MqttCallback {
         messages.setWhen(eventBean.getWhen());
         messages.setIsFailure(eventBean.getIsFailure());
         messages.setIsDelete(eventBean.getIsDelete());
-        messages.setImgSrc(eventBean.getImgSrc());
+        OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+        List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
+        if (otherpicheadList.size() == 0) {
+          messages.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+        } else {
+          messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+        }
         messages.setUsername(eventBean.getUsername());
         messages.setSenderid(eventBean.getSenderid());
 //				ToastUtil.showSafeToast("qun聊senderid" + eventBean.getSenderid());
