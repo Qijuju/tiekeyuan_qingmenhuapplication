@@ -7,20 +7,20 @@
 
 
     <div class="list padding" style="z-index: 100;margin-top: 30%">
-     <p style="font-size: 65px;font-family: STCaiyun;z-index: 100;text-align: center;margin-bottom: 50px;color: #e2f3ff">REMPLAT</p>
+      <p style="font-size: 65px;font-family: STCaiyun;z-index: 100;text-align: center;margin-bottom: 50px;color: #e2f3ff">REMPLAT</p>
       <p style="font-size: 50px;font-family: STCaiyun;z-index: 100;text-align: center;margin-bottom: 80px;color: #e2f3ff">即时通</p>
       <div style="border-radius: 20%">
-      <div class="item item-input"  style="z-index: 100;background-color: rgba(255, 255, 255, 0.44);width: 90%;margin-left: 5%;border-top-left-radius: 10px;border-top-right-radius: 10px; " >
-        <i class="icon  ion-android-person positive positive" ></i>
-        <input type="text" placeholder="请输入用户名"  ng-model="name" id="nameabc">
-        <img src="img/chacha.png" style="height: 15px;width: 15px;margin-right: 10px" ng-if="name.length>0" ng-click="chaname()">
-      </div>
+        <div class="item item-input"  style="z-index: 100;background-color: rgba(255, 255, 255, 0.44);width: 90%;margin-left: 5%;border-top-left-radius: 10px;border-top-right-radius: 10px; " >
+          <i class="icon  ion-android-person positive positive" ></i>
+          <input type="text" placeholder="请输入用户名"  ng-model="name" id="nameabc">
+          <img src="img/chacha.png" style="height: 15px;width: 15px;margin-right: 10px" ng-if="name.length>0" ng-click="chaname()">
+        </div>
 
-      <div class="item item-input" style="z-index: 100;background-color: rgba(255, 255, 255, 0.44);width: 90% ;margin-left: 5%;border-bottom-right-radius:10px; border-bottom-left-radius:  10px;">
-        <i class="icon ion-ios-unlocked-outline positive" ></i>
-        <input type="password" placeholder="请输入密码" ng-model="password" id="passwordabc" onfocus="true"  >
-        <img src="img/chacha.png" style="height: 15px;width: 15px;margin-right: 10px" ng-if="password.length>0" ng-click="chapassword()">
-      </div>
+        <div class="item item-input" style="z-index: 100;background-color: rgba(255, 255, 255, 0.44);width: 90% ;margin-left: 5%;border-bottom-right-radius:10px; border-bottom-left-radius:  10px;">
+          <i class="icon ion-ios-unlocked-outline positive" ></i>
+          <input type="password" placeholder="请输入密码" ng-model="password" id="passwordabc" onfocus="true"  >
+          <img src="img/chacha.png" style="height: 15px;width: 15px;margin-right: 10px" ng-if="password.length>0" ng-click="chapassword()">
+        </div>
       </div>
       <button class="button button-block button-positive" ng-click="login(name,password)" style="z-index: 100;background-color: rgba(144, 65, 7, 0.7);width: 90%;margin-left: 5%">
         <i class="icon ion-log-in"></i>&nbsp;登录
@@ -29,9 +29,9 @@
 
 
       <div style="font-size: 16px;z-index: 100">
-      <input id="check" type="checkbox" ng-checked="remPwd === 'true'" checked style="margin-left: 5%;width: 20px;height: 20px;float: left;z-index: 2;background-color: rgba(255, 255, 255, 0.44)" ng-click="rememberPwd()">
-      <label for="check"  ng-checked="remPwd === 'true'" checked  style="color: #e2f3ff;font-size: 16px;padding: 10px;padding-left: 1px" ng-click="rememberPwd()">记住密码</label>
-      <font style="float: right;color: #e2f3ff;margin-right: 5%" ng-click="goGestureLogin()">切换登录方式</font>
+        <input id="check" type="checkbox" ng-checked="remPwd === 'true'" checked style="margin-left: 5%;width: 20px;height: 20px;float: left;z-index: 2;background-color: rgba(255, 255, 255, 0.44)" ng-click="rememberPwd()">
+        <label for="check"  ng-checked="remPwd === 'true'" checked  style="color: #e2f3ff;font-size: 16px;padding: 10px;padding-left: 1px" ng-click="rememberPwd()">记住密码</label>
+        <font style="float: right;color: #e2f3ff;margin-right: 5%" ng-click="goGestureLogin()">切换登录方式</font>
       </div>
 
 
@@ -44,5 +44,5 @@
       <!--<button class="button" ng-click="meizuo()" style="height: 10px;;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;left: 3%;bottom: 2%" >找回密码</button>-->
       <!--<button class="button" ng-click="goGestureLogin()" style="height: 10px;background-color: rgba(34, 218, 255, 0.11);color: #000000;position: absolute;right: 3%;bottom: 2%" >切换登陆方式</button>-->
     </div>
-   </ion-content>
+  </ion-content>
 </ion-view>

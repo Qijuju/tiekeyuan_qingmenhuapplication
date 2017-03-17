@@ -384,7 +384,6 @@ angular.module('search.controllers', [])
         "UserIDSM": $scope.UserIDSM,
         "UserNameSM": $scope.UserNameSM
       });
-
     };
     $scope.goPersonDetail = function (id) {
       $state.go("person", {

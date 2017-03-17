@@ -24,7 +24,14 @@
             <!--<span style="font-size: 15px;position: absolute;left: 100px;top: 20% ">{{messageaname.username}}</span>-->
 
             <p  ng-if="item.lastDate != 0" style="font-size: 15px;margin-top: -12px">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-            <p style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message.length>18?messageaname.message.substring(0,18)+'...':messageaname.message}}</p>
+            <!--<p style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message.length>18?messageaname.message.substring(0,18)+'...':messageaname.message}}</p>-->
+            <p ng-if="messageaname.messagetype=='File'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message.split("###")[4]}}</p>
+            <p ng-if="messageaname.messagetype=='Image'" style="font-size: 15px;margin-bottom: -5px" > [图片]</p>
+            <p ng-if="messageaname.messagetype=='Vedio'" style="font-size: 15px;margin-bottom: -5px" > [小视频]</p>
+            <p ng-if="messageaname.messagetype=='Audio'" style="font-size: 15px;margin-bottom: -5px" > [语音]</p>
+            <p ng-if="messageaname.messagetype=='LOCATION'" style="font-size: 15px;margin-bottom: -5px" > [位置]</p>
+            <p ng-if="messageaname.messagetype=='normal'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message}}</p>
+            <p ng-if="messageaname.messagetype=='Text'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message}}</p>
 
             <!--<h3 style="font-size: 15px;position: absolute;left: 72px;top: 20%">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</h3>-->
             <!--<h3 style="font-size: 15px;position: absolute;left: 72px;top: 50%">{{messageaname.username}}</h3>-->

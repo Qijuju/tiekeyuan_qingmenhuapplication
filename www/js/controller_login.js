@@ -41,7 +41,7 @@ angular.module('login.controllers', [])
             }
           },function (err) {
             $ToastUtils.showToast(err, function (success) {
-            },function (err) {
+            },function (err) {z
             })
           });
         }, function (msg) {
@@ -585,7 +585,14 @@ angular.module('login.controllers', [])
 
         }else {
           firstlock.drawStatusPoint('notright')
-          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          if(count!=0){
+            $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          }else{
+            $ToastUtils.showToast("请重新设置手势密码！")
+            $mqtt.save('gesturePwd', "");//存 手势密码清空
+            $state.go('login');
+          }
+          // alert("bbbbbb:"+count);
           $timeout(function () {
             firstlock.reset();
             metho
@@ -596,7 +603,7 @@ angular.module('login.controllers', [])
     }
     var firstlock = new H5lock(firstopt);
     firstlock.init();
-//获取当前用户的id
+    //获取当前用户的id
     var loginM = function () {
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;

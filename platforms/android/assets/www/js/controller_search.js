@@ -384,7 +384,6 @@ angular.module('search.controllers', [])
         "UserIDSM": $scope.UserIDSM,
         "UserNameSM": $scope.UserNameSM
       });
-
     };
     $scope.goPersonDetail = function (id) {
       $state.go("person", {
@@ -425,6 +424,7 @@ angular.module('search.controllers', [])
           for (var i=0;i<$searchmessage.getmessagenamess().length;i++){
             messagenamess=$searchmessage.getmessagenamess()[i];
             $scope.messagessname.push(messagenamess)
+            alert(messagenamess.messagetype);
           }
           $scope.lengtha= $searchmessage.getmessagenamess().length;
           $scope.sessionida=$searchmessage.getmessagenamess()[0].sessionid;

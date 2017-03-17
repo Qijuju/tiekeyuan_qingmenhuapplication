@@ -991,6 +991,7 @@ angular.module('contacts.services', [])
           //   messagesss.push(data[i]);
           // }
           messagesss=data;
+                    
           if(messagesss==null||messagesss.length==0||messagesss==""){
             // $ToastUtils.showToast("无该搜索数据")
           }
