@@ -22,6 +22,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MqttService extends Service {
 
     protected MqttConnection mqttConnection;
+    private AlarmManager am;
+    private static int count = 0;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -44,6 +46,7 @@ public class MqttService extends Service {
                 }
             }
         }).start();
+
         /*mqttConnection = new MqttConnection();
 		try {
 			mqttConnection.connect(getBaseContext());
@@ -92,15 +95,17 @@ public class MqttService extends Service {
         //从开机完成时开始计时
         long fristtume= SystemClock.elapsedRealtime();
         //得到全局定时器
-        AlarmManager am=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
-            am.setExact(AlarmManager.RTC_WAKEUP, 5*1000, sender);//ELAPSED_REALTIME_WAKEUP
-        }else{
+        if (am == null) {
+            am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                am.setExact(AlarmManager.RTC_WAKEUP, 5 * 1000, sender);//ELAPSED_REALTIME_WAKEUP
+            } else {
+            }
+            //毎30秒发个广播
+            am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5000, sender);
         }
-        //毎30秒发个广播
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 5000, sender);
 //        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 20*60*1000, sender);
-        return super.onStartCommand(intent, START_STICKY, startId);
+        return super.onStartCommand(intent, Service.START_FLAG_REDELIVERY, startId);
     }
 
     @Override
@@ -115,13 +120,14 @@ public class MqttService extends Service {
         //停止前台Service
         stopForeground(true);
         //要死时把自己救回来
-        if (mqttConnection != null && mqttConnection.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+        if (mqttConnection != null && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
             startService(new Intent(getBaseContext(), MqttService.class));
         } else {
-            MqttOper.freeMqtt();
+            //MqttOper.freeMqtt();
         }
         //要死时把保护该Service的服务起来
         startService(new Intent(getBaseContext(), ProtectService.class));
+//        am.cancel();
         super.onDestroy();
     }
 }

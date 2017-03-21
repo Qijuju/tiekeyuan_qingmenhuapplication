@@ -229,6 +229,28 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
+  .controller('newsPageCtrl2', function ($scope, $state, $mqtt, $api) {
+    //闪屏界面逻辑
+    /**
+     *
+     * 1、执行热修复：执行之前先判断网络是否可用。可用，执行热修复；不可用，提示网络不可用并跳过热修复
+     * 2、首先进入该面后，判断是否有网，网络是否可用
+     *  1️⃣ 网络可用：登录判断 a、之前登录过，进入主界面 b、之前未登录过，进入登录信息录入界面
+     *  2️⃣ 网络不可用：直接进入登录界面
+     * 3、提取第一、二步网络判断环节，先判断网络是否可用，再决定是否执行与网络相关代码
+     *
+     */
+    document.addEventListener('deviceready', function () {
+      $mqtt.getNetStatus(function (status) {
+        if (status) {
+          alert("网络正常");
+        } else {
+          alert("网络不可用");
+        }
+      });
+    });
+  })
+
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
     document.getElementById("imgaaab").style.height=(window.screen.height)+'px';
     document.getElementById("imgaaab").style.width=(window.screen.width)+'px';
@@ -277,13 +299,16 @@ angular.module('login.controllers', [])
           pwdgesturea=pwdgesture;
           //倒计时
           $scope.timea = 3;
-          var timer = null;
+          $scope.timer = null;
           timer = $interval(function(){
             if($scope.timea>0&&$scope.timea<4){
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if($scope.timea == 1) {
+              $scope.timea = 0;
+              //取消定时器
+              $interval.cancel($scope.timer);
               ifyuju();
             }
           }, 1000);
@@ -313,6 +338,7 @@ angular.module('login.controllers', [])
       }
     });
     $scope.startgogogo = function() {
+      $interval.cancel($scope.timer);
       ifyuju();
     };
 
@@ -373,7 +399,7 @@ angular.module('login.controllers', [])
         }, function (err) {
         });
         // alert(message.toString());
-        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         //调用保存用户名方法
         mqtt.saveLogin('name', namegesturea, function (message) {
         }, function (message) {
@@ -383,7 +409,10 @@ angular.module('login.controllers', [])
 
           $api.getAllGroupIds(function (groups) {
             $timeout(function () {
-              $mqtt.startMqttChat(msg + ',' + groups);
+              $mqtt.startMqttChat(msg + ',' + groups,function (msg) {
+              },function (err) {
+                $state.go('login');
+              });
               $mqtt.setLogin(true);
               $scope.getUserName();
               $mqtt.save('passlogin', "1");

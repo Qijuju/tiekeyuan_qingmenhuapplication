@@ -49,7 +49,7 @@ public class MqttConnection {
     //MQTT启动中...
     MqttRobot.setMqttStatus(MqttStatus.LOADING);
     //重置状态
-    setConnectionType(ConnectionType.MODE_NONE);
+    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
     params = new MqttParams();
     mqttAsyncClient = new MqttAsyncClient(params.getServerURI(),
       params.getClientId(), params.getPersistence(),
@@ -507,13 +507,13 @@ public class MqttConnection {
     return mqttAsyncClient == null ? false : mqttAsyncClient.isConnected();
   }
 
-  public ConnectionType getConnectionType() {
+  /*public ConnectionType getConnectionType() {
     return connectionType;
   }
 
   public void setConnectionType(ConnectionType connectionType) {
     this.connectionType = connectionType;
-  }
+  }*/
 
   /**
    * 清理MQTT功能

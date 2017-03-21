@@ -265,15 +265,13 @@ angular.module('message.services', [])
     });
     return{
 
-      startMqttChat:function(topics){
+      startMqttChat:function(topics,success,error){
         if (topics === undefined || topics === null || topics === '') {
           alert('非法登录！');
           return;
         }
         document.addEventListener('deviceready',function () {
-          mqtt.startMqttChat(topics,function (message) {
-          },function (message) {
-          });
+          mqtt.startMqttChat(topics,success,error);
         });
         return -1;
       },
@@ -1428,6 +1426,9 @@ angular.module('message.services', [])
       },
       getMonthOrDay:function (monthOrDay) {//修正日期的month或day（如果小于9，则在其前面加0，否则不变）
         return (monthOrDay>9 ? (monthOrDay + "") : ("0" + monthOrDay));
+      },
+      getNetStatus:function(success) {//获取当前网络状态
+        mqtt.getNetStatus(success);
       }
 
 

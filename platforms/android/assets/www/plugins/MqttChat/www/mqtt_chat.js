@@ -78,4 +78,8 @@ exec(null, null, "MqttChat", "setProxyMode", [mode])
 exports.getProxyMode =function(success){//获取距离感应器模式（0为正常模式，1为听筒模式）
 exec(success, null, "MqttChat", "getProxyMode", [])
 };
+exports.getNetStatus =function(success){//获取当前网络状态
+exec(success, null, "MqttChat", "getNetStatus", [])
+};
+
 });

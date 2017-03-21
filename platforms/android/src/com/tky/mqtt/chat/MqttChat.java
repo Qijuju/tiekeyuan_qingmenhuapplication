@@ -61,6 +61,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import im.model.RST;
 import im.server.System.IMSystem;
@@ -765,7 +767,11 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttStarted() {
           try {
-            setResult("true", PluginResult.Status.OK, callbackContext);
+            if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+              Log.e("getstarttime", format.format(new Date()));
+              setResult("true", PluginResult.Status.OK, callbackContext);
+            }
           } catch (Exception e) {
           }
         }
@@ -773,7 +779,11 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttClosed() {
           try {
-            setResult("false", PluginResult.Status.ERROR, callbackContext);
+            if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+              Log.e("getendtime", format.format(new Date()));
+              setResult("false", PluginResult.Status.ERROR, callbackContext);
+            }
           } catch (Exception e) {
           }
         }
@@ -1030,6 +1040,15 @@ public class MqttChat extends CordovaPlugin {
     setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
   }
 
+  /**
+   * 获取当前网络状态
+   * @param args
+   * @param callbackContext
+     */
+  public void getNetStatus(final JSONArray args, final CallbackContext callbackContext) {
+    setResult(NetUtils.isConnect(cordova.getActivity()), PluginResult.Status.OK, callbackContext);
+  }
+
   public static MType getType(String type) {
     if ("User".equals(type)) {
       return MType.U;
@@ -1148,6 +1167,19 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+    MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+    pluginResult.setKeepCallback(true);
+    callbackContext.sendPluginResult(pluginResult);
+  }
+
+  /**
+   * 设置返回信息
+   *
+   * @param result          返回结果数据 boolean
+   * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+   * @param callbackContext
+   */
+  public void setResult(boolean result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
     MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
     pluginResult.setKeepCallback(true);
     callbackContext.sendPluginResult(pluginResult);
