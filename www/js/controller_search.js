@@ -429,8 +429,6 @@ angular.module('search.controllers', [])
           $scope.sessionida=$searchmessage.getmessagenamess()[0].sessionid;
         })
       });
-
-
   })
   .controller('searchLocalCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$searchlocal,$ionicActionSheet,$phonepluin) {
 

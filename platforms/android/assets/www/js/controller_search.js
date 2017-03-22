@@ -424,14 +424,11 @@ angular.module('search.controllers', [])
           for (var i=0;i<$searchmessage.getmessagenamess().length;i++){
             messagenamess=$searchmessage.getmessagenamess()[i];
             $scope.messagessname.push(messagenamess)
-            alert(messagenamess.messagetype);
           }
           $scope.lengtha= $searchmessage.getmessagenamess().length;
           $scope.sessionida=$searchmessage.getmessagenamess()[0].sessionid;
         })
       });
-
-
   })
   .controller('searchLocalCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$searchlocal,$ionicActionSheet,$phonepluin) {
 

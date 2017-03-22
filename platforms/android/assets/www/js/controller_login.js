@@ -237,7 +237,7 @@ angular.module('login.controllers', [])
     var passlogin=""
     var pwdgesturea=""
     var namegesturea=""
-
+    var timer = null;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -277,13 +277,15 @@ angular.module('login.controllers', [])
           pwdgesturea=pwdgesture;
           //倒计时
           $scope.timea = 3;
-          var timer = null;
+
           timer = $interval(function(){
             if($scope.timea>0&&$scope.timea<4){
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if($scope.timea == 1) {
+              $scope.timea = 0;
+              $interval.cancel(timer);
               ifyuju();
             }
           }, 1000);
@@ -313,6 +315,7 @@ angular.module('login.controllers', [])
       }
     });
     $scope.startgogogo = function() {
+      $interval.cancel(timer);
       ifyuju();
     };
 
