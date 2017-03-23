@@ -1,4 +1,4 @@
-<ion-view id="messageDetail" view-title={{viewtitle}}>
+<ion-view id="messageDetail" view-title={{viewtitle}} class="common-view-color">
   <!--<script type="text/javascript">-->
     <!--(function(){-->
       <!--var video, output;-->
@@ -23,7 +23,7 @@
       <!--};-->
     <!--})();-->
   <!--</script>-->
-  <ion-nav-bar align-title="center">
+  <ion-nav-bar  align-title="center" class="newbarhead ">
     <ion-nav-buttons side="left"">
       <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backFirstMenu(groupType)"/>
       <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">-->
@@ -106,7 +106,7 @@
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
         <!--接收###文本内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
-          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
+          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'Image' || (msgSingle.messagetype === 'File' && getFileType(msgSingle.message))">

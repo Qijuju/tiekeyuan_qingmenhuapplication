@@ -1,65 +1,66 @@
-<ion-view view-title="关于">
-  <ion-nav-bar align-title="center">
+<ion-view class="common-view-color common-bg-color" view-title="关于" >
+  <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goAcount()">
-        返回
-      </button>
+      <div ng-click="goAcount()">
+        <img src="img/backbutton.png"  height="16px" style="margin-top: 8px;margin-left: 10px">
+        <p style="margin-top: -23px;margin-left: 28px;font-size: 16px">返回</p>
+      </div>
     </ion-nav-buttons>
   </ion-nav-bar>
 
 <ion-content overflow-scroll="false">
-  <div>
-    <ul class="list">
-      <div >
-        <li class="item item-toggle item-button-right" >
-          功能介绍
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
-
-      <div >
-        <li class="item item-toggle item-button-right">
-          版本信息
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
-
-      <div >
-        <li class="item item-toggle item-button-right" >
-          版权所有
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
-      <div ng-click="zaixianshengji()">
-        <li class="item item-toggle item-button-right" >
-          在线升级
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
+  <div style="background: white">
+    <ul>
+      <li style="border-bottom: 1px solid gainsboro">
+        <div class="row" style="background-color: white"  ng-click="gomyinformation()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/guanyu.png" width="30px" height="30px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">功能介绍</p>
+          </div>
+          <div class="col-10">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+          </div>
+        </div>
+      </li>
+      <li style="border-bottom: 1px solid gainsboro">
+        <div class="row" style="background-color: white" ng-click="goacountsettion()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/banb.png" width="30px" height="30px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">版本信息</p>
+          </div>
+          <div class="col-10">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+          </div>
+        </div>
+      </li>
+      <li style="border-bottom: 1px solid gainsboro">
+        <div class="row" style="background-color: white" ng-click="goaboutus()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/banq.png" width="30px" height="30px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">版权所有</p>
+          </div>
+          <div class="col-10">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+          </div>
+        </div>
+      </li>
+      <li style="border-bottom: 1px solid gainsboro" ng-click="zaixianshengji()">
+        <div class="row" style="background-color: white" ng-click="goaboutus()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/sj.png" width="30px" height="30px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">在线升级</p>
+          </div>
+          <div class="col-10">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+          </div>
+        </div>
+      </li>
     </ul>
-
-    <!--<ul class="list">-->
-      <!--<li class="item">-->
-        <!--<p class="company_contacts_title padding_10 font_18" style="text-align: center">功能介绍</p>-->
-        <!--<div style="text-align: center;margin-top: 50px;font-size: 14px">-->
-          <!--聊天，打电话，发短信，公司内部人员信息-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<li class="item">-->
-        <!--<p class="company_contacts_title padding_10 font_18" style="text-align: center">版本信息</p>-->
-        <!--<div style="text-align: center;margin-top: 50px;font-size: 14px">-->
-          <!--1.00版本-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<li class="item">-->
-        <!--<p class="company_contacts_title padding_10 font_18" style="text-align: center">版权所有</p>-->
-        <!--<div style="text-align: center;margin-top: 50px;font-size: 14px">-->
-          <!--中国铁路总公司-->
-        <!--</div>-->
-      <!--</li>-->
-    <!--</ul>-->
-
   </div>
+
+
+
+
 </ion-content>
 
   </ion-view >

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'tky';
-  src:  url('fonts/tky.eot?s4ci3z');
-  src:  url('fonts/tky.eot?s4ci3z#iefix') format('embedded-opentype'),
-    url('fonts/tky.ttf?s4ci3z') format('truetype'),
-    url('fonts/tky.woff?s4ci3z') format('woff'),
-    url('fonts/tky.svg?s4ci3z#tky') format('svg');
+  src:  url('fonts/tky.eot?hs4y68');
+  src:  url('fonts/tky.eot?hs4y68#iefix') format('embedded-opentype'),
+    url('fonts/tky.ttf?hs4y68') format('truetype'),
+    url('fonts/tky.woff?hs4y68') format('woff'),
+    url('fonts/tky.svg?hs4y68#tky') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,34 +24,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.tkyiconwork-on:before {
+.tkyiconcontact-off:before {
   content: "\e900";
 }
-.tkyiconwork-off:before {
+.tkyiconcontact-on:before {
   content: "\e901";
 }
-.tkyiconmy-on:before {
+.tkyiconwork-off:before {
   content: "\e902";
 }
-.tkyiconmy-off:before {
+.tkyiconwork-on:before {
   content: "\e903";
 }
-.tkyiconnotific-on:before {
+.tkyiconnotific-off:before {
   content: "\e904";
 }
-.tkyiconnotific-off:before {
+.tkyiconnotific-on:before {
   content: "\e905";
 }
-.tkyiconcontact-on:before {
+.tkyiconmy-off:before {
   content: "\e906";
 }
-.tkyiconcontact-off:before {
+.tkyiconmy-on:before {
   content: "\e907";
 }
-.tkyiconmessage-on:before {
+.tkyiconmessage-off:before {
   content: "\e908";
 }
-.tkyiconmessage-off:before {
+.tkyiconmessage-on:before {
   content: "\e909";
 }
 

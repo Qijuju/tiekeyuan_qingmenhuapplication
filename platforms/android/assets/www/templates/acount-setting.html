@@ -1,9 +1,13 @@
-<ion-view view-title="设置 ">
-  <ion-nav-bar align-title="center">
+<ion-view view-title="设置 " class="common-view-color">
+  <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goAcount()">
+     <!-- <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goAcount()">
         返回
-      </button>
+      </button>-->
+      <div ng-click="goAcount()">
+        <img src="img/backbutton.png"  height="16px" style="margin-top: 8px;margin-left: 10px">
+        <p style="margin-top: -23px;margin-left: 28px;font-size: 16px">返回</p>
+      </div>
     </ion-nav-buttons>
   </ion-nav-bar>
 <ion-content overflow-scroll="false">
