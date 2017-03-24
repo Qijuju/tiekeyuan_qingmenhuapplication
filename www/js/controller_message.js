@@ -4177,7 +4177,6 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
-
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 
@@ -4260,8 +4259,21 @@ angular.module('message.controllers', [])
 
 
 
-
     //一进来就检查网络是否连接
+    $mqtt.setOnNetChangeListener(function (success) {
+      $rootScope.isNetConnect='true';
+      // alert("进来了吗？ok");
+    },function (err) {
+      // alert("进来了吗？no");
+      $rootScope.isNetConnect='true';
+      $ToastUtils.showToast("当前网络不可用",null,null);
+    });
+
+
+
+
+
+    //一进来就检查mqtt是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
       $rootScope.netStatus = 'true';
       // alert("网成功时"+$rootScope.netStatus);

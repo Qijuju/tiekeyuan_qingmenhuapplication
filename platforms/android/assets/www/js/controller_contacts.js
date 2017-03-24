@@ -106,7 +106,7 @@ angular.module('contacts.controllers', [])
   })
 
   .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
-
+    alert("网络状态"+$rootScope.isNetConnect);
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'){

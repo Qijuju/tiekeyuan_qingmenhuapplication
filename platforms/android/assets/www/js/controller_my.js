@@ -662,7 +662,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       })
     });
 
-
     // 修改个人资料
     var myPopup;
     var isopen=false;
@@ -699,7 +698,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               if($scope.data.phoneb!=""){
                 string2=$scope.data.phoneb;
                 arr.FP = string2;
-                alert("eeee:"+string2);
+
                 return;
               }
               if($scope.data.email!=""){

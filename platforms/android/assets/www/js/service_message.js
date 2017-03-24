@@ -381,6 +381,7 @@ angular.module('message.services', [])
               }
               //判断是不是位置
               if(!(messagetype === 'LOCATION')){
+                alert("发送成功的消息"+msg);
                 //当消息从未成功到成功的这个状态时，先删除群组之前那个状态保存的数据
                 // alert("发送消息"+messageDetail.message+messageDetail.isSuccess);
                 //然后再入库成功状态的消息
@@ -1387,9 +1388,12 @@ angular.module('message.services', [])
       takeVideo:function(success,error) {//录制小视频
         mqtt.takeVideo(success, error);
       },
-      setOnNetStatusChangeListener:function(success,error) {//网络监听
+      setOnNetStatusChangeListener:function(success,error) {//MQTT监听
         // alert("走监听事件了吗");
         mqtt.setOnNetStatusChangeListener(success,error);
+      },
+      setOnNetChangeListener:function(success,error) {//网络监听
+        mqtt.setOnNetChangeListener(success,error);
       },
       getMqttStatus:function(success) {//MQTT连接状态获取
         mqtt.getMqttStatus(success);
