@@ -661,6 +661,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.mypersons = $searchdatadianji.getPersonDetaildianji();
       })
     });
+
+
     // 修改个人资料
     var myPopup;
     var isopen=false;
@@ -692,10 +694,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               if ($scope.data.phonea!=""){
                 string1=$scope.data.phonea;
                 arr.MB = string1;
+                // alert("eeee:"+string1);
               }
               if($scope.data.phoneb!=""){
                 string2=$scope.data.phoneb;
                 arr.FP = string2;
+                alert("eeee:"+string2);
+                return;
               }
               if($scope.data.email!=""){
                 string3=$scope.data.email;
