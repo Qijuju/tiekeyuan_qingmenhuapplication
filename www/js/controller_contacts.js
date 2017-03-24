@@ -182,14 +182,7 @@ angular.module('contacts.controllers', [])
       })
 
     });
-
-
-
-
-
-
-
-
+    
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
