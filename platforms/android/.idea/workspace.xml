@@ -11,62 +11,166 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad11e619-32aa-4827-a591-e05ad5898843" name="Default" comment="commit tinker第二次">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/aosp_dexutils_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/bsdiff_util_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/dom4j_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/imApi2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/libthrift_0_9_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_14.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_api_1_7_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_log4j12_1_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_connector.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_anno_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_lib_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_loader_1_7_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_commons_1_7_7.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/clgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/clgl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/cxtx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/cxtx_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/hygl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/hygl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/lwggzxt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/lwggzxt_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xmdt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xmdt_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xmxx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xmxx_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xxfb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/xxfb_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/zlgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app1/zlgl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/ddzh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/ddzh_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgrz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgrz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgtsh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgtsh_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgzz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/sgzz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/tzkz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/tzkz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/wzsb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/wzsb_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/ygjj.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/ygjj_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/zdcq.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app2/zdcq_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/bc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/bc_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/bhz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/bhz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/cjgc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/cjgc_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/jyp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/jyp_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lc_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lxl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lxl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lxys.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/lxys_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/qljz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/qljz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/qlxxh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/qlxxh_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sdjk.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sdjk_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sdxxh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sdxxh_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sys.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/sys_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/zdzl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/zdzl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/zjjc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/app3/zjjc_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/img.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/css/portal.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/controller_portal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/service_portal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/cxtx.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/tab-portal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$1.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$Builder.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$Builder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$1.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$2.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$3.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$4.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$5.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/ConvertToUtils.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/ConvertToUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/IsUtils.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/IsUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/CircleBackgroundTextView.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/CircleBackgroundTextView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/aosp_dexutils_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/aosp_dexutils_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/bsdiff_util_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/bsdiff_util_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/dom4j_1_6_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/dom4j_1_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" afterPath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/imApi2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/imApi2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libthrift_0_9_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libthrift_0_9_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_14.xml" afterPath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_14.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_api_1_7_12.xml" afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_api_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_log4j12_1_6_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_log4j12_1_6_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_connector.xml" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_connector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_anno_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_anno_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_lib_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_lib_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_loader_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_loader_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_commons_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_commons_1_7_7.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/androidTest/debug/org/apache/cordova/test/BuildConfig.java" afterPath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/androidTest/debug/org/apache/cordova/test/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/../../www/templates/myinfomation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,58 +208,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <file leaf-file-name="SystemApi.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="781" column="22" selection-start-line="781" selection-start-column="22" selection-end-line="781" selection-end-column="22" />
+            <state relative-caret-position="2806">
+              <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2231">
-              <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thrift_api_client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Messages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5635">
-              <caret line="308" column="37" selection-start-line="308" selection-start-column="37" selection-end-line="308" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#27239#27240#0" expanded="false" />
-                <element signature="e#27306#27307#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -2969,7 +3027,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8936636517920" />
+        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8937453234114" />
         <entry key="E:\jishitong\IM\platforms\android" value="8934426414940" />
       </map>
     </option>
@@ -3752,7 +3810,6 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
         <option value="$PROJECT_DIR$/assets/www/index.html" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/grid/GridActivity.java" />
@@ -3761,6 +3818,8 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/services/FilePictureService.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       </list>
     </option>
   </component>
@@ -3795,6 +3854,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3815,12 +3877,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane />
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4295,32 +4354,32 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853982" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34562212" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34447005" sideWeight="0.49573562" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4229075" sideWeight="0.50959486" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29262674" sideWeight="0.4904051" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16129032" sideWeight="0.4904051" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6178414" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4811947" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48041475" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34292036" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24946351" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17857143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17811158" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2626728" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4408,7 +4467,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java</url>
-          <line>308</line>
+          <line>309</line>
           <properties />
           <option name="timeStamp" value="66" />
         </line-breakpoint>
@@ -4418,14 +4477,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build/intermediates/assets/release/www/img/adam.jpg" />
-    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-2.14.1-all/9ossqmv60fyibylheubs4isy9/gradle-2.14.1/src/core/org/gradle/api/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="611" column="9" selection-start-line="611" selection-start-column="9" selection-end-line="611" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -4658,13 +4709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/MessagesDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -4679,20 +4723,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="57" column="36" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2231">
           <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4700,7 +4734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="759">
           <caret line="33" column="22" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4757,26 +4790,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5635">
-          <caret line="308" column="37" selection-start-line="308" selection-start-column="37" selection-end-line="308" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#27239#27240#0" expanded="false" />
-            <element signature="e#27306#27307#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="6417">
+          <caret line="309" column="37" selection-start-line="309" selection-start-column="37" selection-end-line="309" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/ConnectionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="781" column="22" selection-start-line="781" selection-start-column="22" selection-end-line="781" selection-end-column="22" />
+        <state relative-caret-position="1265">
+          <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2806">
+          <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
           <folding />
         </state>
       </provider>

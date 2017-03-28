@@ -559,14 +559,21 @@ angular.module('login.controllers', [])
             if (message.isActive === false) {
               $api.activeUser(message.userID, function (message) {
                 loginM();
+                $ionicLoading.hide();
+                $state.go('tab.message');
               }, function (message) {
                 $ToastUtils.showToast(message);
               });
             } else {
               loginM();
+              $ionicLoading.hide();
+              $state.go('tab.message');
             }
           }, function (message) {
+            $ionicLoading.hide();
+            $state.go('login');
             $ToastUtils.showToast(message);
+
           });
 
           firstlock.drawStatusPoint('right')
@@ -578,10 +585,7 @@ angular.module('login.controllers', [])
             maxWidth: 100,
             showDelay: 0
           });
-          $timeout(function () {
-            $ionicLoading.hide();
-            $state.go('tab.message');
-          });
+
           $timeout(function () {
             firstlock.reset();
           },300);

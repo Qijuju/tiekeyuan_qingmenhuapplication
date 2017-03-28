@@ -781,7 +781,8 @@ public class ThriftApiClient extends CordovaPlugin {
                 }
               } else {
                 if ("501".equals(result.getResultCode())) {
-                  setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+//                  setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+                  setResult("传入参数格式不正确！", PluginResult.Status.ERROR, callbackContext);
                 } else if ("502".equals(result.getResultCode())) {
                   setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
                 } else if ("997".equals(result.getResultCode())) {
