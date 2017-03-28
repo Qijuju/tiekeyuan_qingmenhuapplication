@@ -381,7 +381,7 @@ angular.module('message.services', [])
               }
               //判断是不是位置
               if(!(messagetype === 'LOCATION')){
-                alert("发送成功的消息"+msg);
+                // alert("发送成功的消息"+msg);
                 //当消息从未成功到成功的这个状态时，先删除群组之前那个状态保存的数据
                 // alert("发送消息"+messageDetail.message+messageDetail.isSuccess);
                 //然后再入库成功状态的消息
