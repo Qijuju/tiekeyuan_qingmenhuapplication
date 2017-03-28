@@ -1,14 +1,14 @@
 <ion-view  view-title="搜索">
   <ion-content overflow-scroll="false" on-drag="onDrag()">
 
-    <div id="search-bar" class="bar bar-header item-input-inset" style="height: 50px;">
+    <div id="search-bar" class=" item-input-inset" style="height: 50px;background-color: white">
       <label class="item-input-wrapper" id="search-input">
         <i class="icon ion-ios-search" style="position: relative;color: gray;font-size: 1.5em;top: 1px;"></i>
         <form  onsubmit="dosearch(query)">
           <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
         </form>
       </label>
-      <button class="button button-clear" style="color: #49B746;" ng-click="backSearchSM()" >取消</button>
+      <button class="button button-clear" style="color: #1D95D4;" ng-click="backSearchSM()" >取消</button>
     </div>
     <div ng-if="((lastMsg=='')||(lastMsg.length==0)||(lastMsg==null))&&((personsren=='')||(personsren.length==0)||(personsren==null))">
       <div style="text-align: center;background-color: rgba(222, 222, 222, 0.79);width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae">历史搜索记录</div>
@@ -18,7 +18,7 @@
           {{historymsg.msg}}
         </div>
       </div>
-      <div style="text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #0a80ff" ng-click="deletehistorymsg()">清空历史记录</div>
+      <div style="text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #1D95D4" ng-click="deletehistorymsg()">清空历史记录</div>
     </div>
     <div ng-if="lastMsg.length>0" style="background-color: rgba(222, 222, 222, 0.79);padding-left: 5px">聊天记录</div>
     <ion-list>

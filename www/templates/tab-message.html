@@ -1,63 +1,27 @@
-<ion-view view-title="消息" >
-  <ion-nav-bar align-title="center" class="bar-stable">
-    <!--<ion-nav-buttons side="left">-->
-    <!--<img src="img/icon.png" style="width: 16px;height: 16px;"/>-->
-    <!--</ion-nav-buttons>-->
-    <ion-nav-buttons side="right">
-      <img src="img/ic_actbar_more.png" style="height: 48px;width: 36px;padding-bottom:13px;margin-right: 5px" ng-click="popadd()"/>
-      <!--<button class="button no-animation button-icon icon ion-ios-plus-outline" ng-click="popadd()"></button>-->
+<ion-view class="common-view-color" view-title="消息" >
+
+  <ion-nav-bar align-title="center"  class="newbarhead ">
+    <ion-nav-buttons side="left" >
+      <img  src="img/saom.png" width="20px" height="20px" style="margin-top: 6px;margin-left: 6px" ng-click="saoyisao()">
     </ion-nav-buttons>
-    <div style="position: absolute;left: 70%;top: 0;width: 30%;height: 100px;z-index: 2;text-align: center;margin-top: 44px;padding-right: 5px;" class="bar-stable" ng-if="a">
-      <!--<ul class="list" style="width: 100%;height: 100px">-->
-      <div style="width: 100%;height: 50px;text-align: center;color: #000000;background-color:#F8F8F8;padding-right: 5px;padding-top: 15px;" ng-click="createGroupChats()">
-        <div style="display: inline;float: left;padding-left: 10px;padding-right: 5px;" >
-          <img src="img/creategroupicon.png"/>
-        </div>
-        <div style="display: inline;vertical-align: middle;padding-bottom: 2px;float: left;padding-top: 2px;">
-          发起群聊
-        </div>
-      </div>
-      <div ng-click="saoyisao()" style="width: 100%;height: 50px;text-align: center;color: #000000;background-color:#F8F8F8;padding-right: 5px;padding-top:10px;">
-        <div style="display: inline;float: left;padding-left: 10px;padding-right: 5px;" >
-          <img src="img/scan.png"/>
-        </div>
-        <div style="display: inline;vertical-align: middle;padding-bottom: 2px;float: left;padding-top: 2px;">
-          扫一扫
-        </div>
-        <!--<li  style="width: 100%;height: 50px;text-align: center;color: #000000">-->
-        <!--扫一扫-->
-        <!--</li>-->
-      </div>
-      <!--<div style="width: 100%;height: 50px;text-align: center;color: #000000;background-color:#F8F8F8;padding-right: 5px;padding-top:7px;" ng-click="gozhuan()">-->
-        <!--<div style="display: inline;float: left;padding-left: 10px;padding-right: 5px;" >-->
-          <!--<img  src="img/leida.png"/>-->
-        <!--</div>-->
-        <!--<div style="display: inline;vertical-align: middle;padding-bottom: 2px;float: left;padding-top: 2px;">-->
-          <!--紧急呼叫-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div style="width: 100%;height: 50px;text-align: center;background-color: #e9e9d8;color: #000000" ng-click="gozhuan()">-->
-        <!--<li class="item" style="width: 100%;height: 50px;text-align: center;background-color: #e9e9d8;color: #000000">-->
-          <!--紧急呼叫-->
-        <!--</li>-->
-      <!--</div>-->
-      </ul>
-    </div>
+    <ion-nav-buttons side="right" >
+      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 6px;margin-right: 6px"  ng-click="createGroupChats()">
+    </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
-    <div class="item-input-inset"  ng-click="goSearch()">
-      <label class="item-input-wrapper">
+    <div class="item-input-inset "  ng-click="goSearch()">
+      <label class="item-input-wrapper common-search">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" placeholder="搜索" ng-model="query">
       </label>
     </div>
-    <div style="background-color:#FFDFE0;height: 40px;" ng-if="isConnect === 'false'">
-      <div style="text-align: center;padding-top: 12px;">
-        <img src="img/red.png" style="margin-right: 10px;margin-left: 10px;" />
-        <span style="font-size: 16px;color: #7F7F7F;">当前网络不可用，请检查你的网络设置 </span>
-      </div>
+
+    <div class="row" style="background-color:#F8D5D9;height: 42px;margin-bottom: 12px" ng-if="isConnect === 'false'">
+      <div class="col" align="center" style="margin-left: 36px;"> <img src="img/nonet.png" width="24px" height="24px" /></div>
+      <div class="col col-80" align="left" style="font-size: 14px;color: #A4A4A4;margin-top: 2px">网络连接不可用，请检查网络设置。</div>
     </div>
-    <ion-list ng-click="shefalse()" >
+
+    <ion-list  ng-click="shefalse()" >
       <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)" style="z-index: 1;width: 100%;">
         <!---item--->
         <!--<div style="vertical-align: middle;width: 100%;height:100%;padding: 0;margin: 0;background-color: #000000">-->
@@ -95,12 +59,12 @@
               <span style="float: left;">
                 <!---已读语音--->
                 <font style="font-size: 14px;color: #777777" ng-if="item.isRead === '1'">
-                  <div style="display: inline-block;height: 20px;width: 270px;">
+                  <div style="display: inline-block">
                     <!---发送过程中--->
-                    <img style="background-color: transparent;padding-right: 5px;padding-bottom: 5px;" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
+                    <img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
                     <!---发送失败--->
-                    <img style="background-color: transparent;padding-right: 5px;padding-bottom: 5px;float: left;" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
-                    <span style="width: 250px;display:inline-block;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
+                    <img style="background-color: transparent;padding-right: 5px" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
+                    <span style="width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
                   </div>
 
                 </font>

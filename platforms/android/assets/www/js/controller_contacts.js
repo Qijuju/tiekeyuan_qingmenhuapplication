@@ -131,7 +131,7 @@ angular.module('contacts.controllers', [])
     },501)
 
     $scope.goLocalContact=function () {
-
+      
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -199,6 +199,9 @@ angular.module('contacts.controllers', [])
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
+        
+        
+        
       })
     });
 
@@ -321,6 +324,12 @@ angular.module('contacts.controllers', [])
      },function (err) {
      $ToastUtils.showToast(err);
      });*/
+
+    $scope.gogosecond=function (id) {
+      $state.go("second", {
+        "contactId": id,
+      });
+    }
 
 
   })

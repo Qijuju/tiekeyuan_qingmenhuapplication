@@ -1,14 +1,13 @@
-<ion-view  >
+<ion-view class="common-view-color common-bg-color" >
   <ion-content>
-
-    <div id="search-bar" class="bar bar-header item-input-inset" style="height: 50px;">
+    <div id="search-bar" class="item-input-inset" style="height: 50px;background-color: white">
       <label class="item-input-wrapper" id="search-input">
         <i class="icon ion-ios-search" style="position: relative;color: gray;font-size: 1.5em;top: 1px;"></i>
         <form  onsubmit="dosearchlocal(query)">
           <input style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearchlocal(query)" autocorrect="off" >
         </form>
       </label>
-      <button class="button button-clear" style="color: #49B746;" ui-sref="localContacts" >取消</button>
+      <button class="button button-clear" style="color: #1D95D4;" ui-sref="localContacts" >取消</button>
     </div>
 
     <!--<ion-list>-->

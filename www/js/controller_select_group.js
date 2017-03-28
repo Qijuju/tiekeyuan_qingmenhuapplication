@@ -5,7 +5,14 @@ angular.module('selectgroup.controllers', [])
 
 
 
-.controller('addNewPersonfirstCtrl', function ($scope, $state, $stateParams,$contacts,$ionicHistory,$ionicLoading,$timeout) {
+.controller('addNewPersonfirstCtrl', function ($scope, $state, $stateParams,$contacts,$ionicHistory,$ionicLoading,$timeout,$ionicPlatform) {
+
+  $ionicPlatform.registerBackButtonAction(function (e) {
+
+    $ionicHistory.goBack();
+    e.preventDefault();
+    return false;
+  },501)
 
   $ionicLoading.show({
     content: 'Loading',

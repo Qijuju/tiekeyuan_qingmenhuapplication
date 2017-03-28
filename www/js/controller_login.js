@@ -8,8 +8,8 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
-    document.getElementById("loginpic").style.height=(window.screen.height)+'px';
-    document.getElementById("loginpic").style.width=(window.screen.width)+'px';
+    /*document.getElementById("loginpic").style.height=(window.screen.height)+'px';
+    document.getElementById("loginpic").style.width=(window.screen.width)+'px';*/
     $mqtt.save('loginpage', "passwordlogin");
 
     $mqtt.setLogin(false);
