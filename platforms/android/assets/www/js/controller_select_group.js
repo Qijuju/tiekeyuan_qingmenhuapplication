@@ -355,28 +355,36 @@ angular.module('selectgroup.controllers', [])
           }
 
           if($scope.secondDeptIds.length>0 || $scope.secondUserIds.length>0){
-            $api.groupAddMember($scope.gourpId,$scope.secondDeptIds,$scope.secondUserIds,function (data) {
 
-              $greendao.deleteAllData('SelectIdService',function (hh) {
-                //跳转到设置界面
-                $state.go('groupMember',{
-                  "groupid":data,
-                  "chatname":$scope.groupName,
-                  "grouptype":'Group',
-                  "ismygroup":true
+            $greendao.queryData("GroupChatsService","where id =?",$scope.gourpId,function (suc) {
+              $scope.nihao=suc[0].ismygroup
+              $api.groupAddMember($scope.gourpId,$scope.secondDeptIds,$scope.secondUserIds,function (data) {
+
+                $greendao.deleteAllData('SelectIdService',function (hh) {
+                  //跳转到设置界面
+                  $state.go('groupMember',{
+                    "groupid":data,
+                    "chatname":$scope.groupName,
+                    "grouptype":'Group',
+                    "ismygroup":$scope.nihao
+                  });
+
+                },function (err) {
+
                 });
+                $ToastUtils.showToast("添加人员成功")
 
               },function (err) {
+                $scope.secondUserIds=[];
+                $scope.secondDeptIds=[];
+                $ToastUtils.showToast(err)
 
-              });
-              $ToastUtils.showToast("添加人员成功")
+              })
 
             },function (err) {
-              $scope.secondUserIds=[];
-              $scope.secondDeptIds=[];
-              $ToastUtils.showToast(err)
 
-            })
+            });
+
           }else {
             $scope.secondUserIds=[];
             $scope.secondDeptIds=[];
@@ -876,28 +884,36 @@ angular.module('selectgroup.controllers', [])
           }
 
           if($scope.thirdDeptIds.length>0 || $scope.thirdUserIds.length>0){
-            $api.groupAddMember($scope.gourpId,$scope.thirdDeptIds,$scope.thirdUserIds,function (data) {
 
-              $greendao.deleteAllData('SelectIdService',function (hh) {
-                //跳转到设置界面
-                $state.go('groupMember',{
-                  "groupid":data,
-                  "chatname":$scope.groupName,
-                  "grouptype":'Group',
-                  "ismygroup":true
+            $greendao.queryData("GroupChatsService","where id =?",$scope.gourpId,function (suc) {
+              $scope.nihao=suc[0].ismygroup
+              $api.groupAddMember($scope.gourpId,$scope.thirdDeptIds,$scope.thirdUserIds,function (data) {
+
+                $greendao.deleteAllData('SelectIdService',function (hh) {
+                  //跳转到设置界面
+                  $state.go('groupMember',{
+                    "groupid":data,
+                    "chatname":$scope.groupName,
+                    "grouptype":'Group',
+                    "ismygroup":$scope.nihao
+                  });
+
+                },function (err) {
+
                 });
+                $ToastUtils.showToast("添加人员成功")
 
               },function (err) {
+                $scope.thirdUserIds=[];
+                $scope.thirdDeptIds=[];
+                $ToastUtils.showToast(err)
 
-              });
-              $ToastUtils.showToast("添加人员成功")
+              })
 
             },function (err) {
-              $scope.thirdUserIds=[];
-              $scope.thirdDeptIds=[];
-              $ToastUtils.showToast(err)
 
-            })
+            });
+
           }else {
             $scope.thirdUserIds=[];
             $scope.thirdDeptIds=[];
@@ -1328,28 +1344,37 @@ angular.module('selectgroup.controllers', [])
           }
 
           if($scope.forthDeptIds.length>0 || $scope.forthUserIds.length>0){
-            $api.groupAddMember($scope.gourpId,$scope.forthDeptIds,$scope.forthUserIds,function (data) {
 
-              $greendao.deleteAllData('SelectIdService',function (hh) {
-                //跳转到设置界面
-                $state.go('groupMember',{
-                  "groupid":data,
-                  "chatname":$scope.groupName,
-                  "grouptype":'Group',
-                  "ismygroup":true
+            $greendao.queryData("GroupChatsService","where id =?",$scope.gourpId,function (suc) {
+              $scope.nihao=suc[0].ismygroup
+              $api.groupAddMember($scope.gourpId,$scope.forthDeptIds,$scope.forthUserIds,function (data) {
+
+                $greendao.deleteAllData('SelectIdService',function (hh) {
+                  //跳转到设置界面
+                  $state.go('groupMember',{
+                    "groupid":data,
+                    "chatname":$scope.groupName,
+                    "grouptype":'Group',
+                    "ismygroup":$scope.nihao
+                  });
+
+                },function (err) {
+
                 });
+                $ToastUtils.showToast("添加人员成功")
 
               },function (err) {
+                $scope.forthDeptIds=[];
+                $scope.forthUserIds=[];
+                $ToastUtils.showToast(err)
 
-              });
-              $ToastUtils.showToast("添加人员成功")
+              })
 
             },function (err) {
-              $scope.forthDeptIds=[];
-              $scope.forthUserIds=[];
-              $ToastUtils.showToast(err)
 
-            })
+            });
+
+
           }else {
             $scope.forthDeptIds=[];
             $scope.forthUserIds=[];
@@ -1463,6 +1488,8 @@ angular.module('selectgroup.controllers', [])
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
+
+    //alert($scope.groupId+$scope.ismygroup+ $scope.groupName+$scope.groupType);
 
     ///groupMember/:groupid/:chatname/:grouptype/:ismygroup
     $ionicPlatform.registerBackButtonAction(function (e) {

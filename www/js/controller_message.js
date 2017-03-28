@@ -5039,6 +5039,7 @@ angular.module('message.controllers', [])
               });
             }else{
               // alert("是不是没有数据");
+
               $state.go('messageGroup',{
                 "id":id,
                 "chatName":dataa[0].groupName,
@@ -5529,7 +5530,7 @@ angular.module('message.controllers', [])
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
-    // alert($scope.groupType)
+    //alert($scope.groupType)
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){
