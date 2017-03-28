@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.Contacts;
 import android.provider.MediaStore;
 
 import com.google.gson.Gson;
@@ -172,10 +173,12 @@ public class ThriftApiClient extends CordovaPlugin {
                     MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                     ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                     TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
 //                                      SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                     topContactsService.deleteAllData();
                     messagesService.deleteAllData();
                     chatListService.deleteAllData();
+                    groupChatsService.deleteAllData();
 //                                      System.out.println("删除本地缓存成功");
                   }
 
