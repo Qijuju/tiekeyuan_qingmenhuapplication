@@ -51,7 +51,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var long="";
     var locationaaa="";
     //获取定位的经纬度
-    var posOptions = {maximumAge: 3000,timeout: 10000};
+    var posOptions = {maximumAge: 3000,timeout: 10000};//, enableHighAccuracy: true
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       lat  = position.coords.latitude+0.006954;//   116.329102,39.952728,
