@@ -8,8 +8,8 @@ angular.module('login.controllers', [])
   })
 
   .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils) {
-    document.getElementById("loginpic").style.height=(window.screen.height)+'px';
-    document.getElementById("loginpic").style.width=(window.screen.width)+'px';
+    /*document.getElementById("loginpic").style.height=(window.screen.height)+'px';
+    document.getElementById("loginpic").style.width=(window.screen.width)+'px';*/
     $mqtt.save('loginpage', "passwordlogin");
 
     $mqtt.setLogin(false);
@@ -229,28 +229,6 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newsPageCtrl2', function ($scope, $state, $mqtt, $api) {
-    //闪屏界面逻辑
-    /**
-     *
-     * 1、执行热修复：执行之前先判断网络是否可用。可用，执行热修复；不可用，提示网络不可用并跳过热修复
-     * 2、首先进入该面后，判断是否有网，网络是否可用
-     *  1️⃣ 网络可用：登录判断 a、之前登录过，进入主界面 b、之前未登录过，进入登录信息录入界面
-     *  2️⃣ 网络不可用：直接进入登录界面
-     * 3、提取第一、二步网络判断环节，先判断网络是否可用，再决定是否执行与网络相关代码
-     *
-     */
-    document.addEventListener('deviceready', function () {
-      $mqtt.getNetStatus(function (status) {
-        if (status) {
-          alert("网络正常");
-        } else {
-          alert("网络不可用");
-        }
-      });
-    });
-  })
-
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope,$ToastUtils,$timeout,$interval) {
     document.getElementById("imgaaab").style.height=(window.screen.height)+'px';
     document.getElementById("imgaaab").style.width=(window.screen.width)+'px';
@@ -262,6 +240,7 @@ angular.module('login.controllers', [])
     //是否点击了立即进入（倒计时）
     var isClickGo = false;
 
+    var timer = null;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -300,17 +279,17 @@ angular.module('login.controllers', [])
         mqtt.getString('pwdgesture', function (pwdgesture) {
           pwdgesturea=pwdgesture;
           //倒计时
-          $scope.timea = 3;
-          $scope.timer = null;
+          $scope.timea = 4;
+
           timer = $interval(function(){
-            if($scope.timea>0&&$scope.timea<4){
+            if($scope.timea>0&&$scope.timea<5){
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if($scope.timea == 1 && !isClickGo) {//此处需要判断是否已经走了登录的方法
-              $scope.timea = 0;
+              $scope.timea = 1;
               //取消定时器
-              $interval.cancel($scope.timer);
+              $interval.cancel(timer);
               isClickGo = true;
               ifyuju();
             }
@@ -347,7 +326,7 @@ angular.module('login.controllers', [])
       }
       //防止重复点击
       isClickGo = true;
-      $interval.cancel($scope.timer);
+      $interval.cancel(timer);
       ifyuju();
     };
 
@@ -594,14 +573,21 @@ angular.module('login.controllers', [])
             if (message.isActive === false) {
               $api.activeUser(message.userID, function (message) {
                 loginM();
+                $ionicLoading.hide();
+                $state.go('tab.message');
               }, function (message) {
                 $ToastUtils.showToast(message);
               });
             } else {
               loginM();
+              $ionicLoading.hide();
+              $state.go('tab.message');
             }
           }, function (message) {
+            $ionicLoading.hide();
+            $state.go('login');
             $ToastUtils.showToast(message);
+
           });
 
           firstlock.drawStatusPoint('right')
@@ -613,17 +599,21 @@ angular.module('login.controllers', [])
             maxWidth: 100,
             showDelay: 0
           });
-          $timeout(function () {
-            $ionicLoading.hide();
-            $state.go('tab.message');
-          });
+
           $timeout(function () {
             firstlock.reset();
           },300);
 
         }else {
           firstlock.drawStatusPoint('notright')
-          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          if(count!=0){
+            $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--count)+"次")
+          }else{
+            $ToastUtils.showToast("请重新设置手势密码！")
+            $mqtt.save('gesturePwd', "");//存 手势密码清空
+            $state.go('login');
+          }
+          // alert("bbbbbb:"+count);
           $timeout(function () {
             firstlock.reset();
             metho
@@ -634,7 +624,7 @@ angular.module('login.controllers', [])
     }
     var firstlock = new H5lock(firstopt);
     firstlock.init();
-//获取当前用户的id
+    //获取当前用户的id
     var loginM = function () {
       $mqtt.getMqtt().getUserId(function (userID) {
         $rootScope.rootUserId = userID;

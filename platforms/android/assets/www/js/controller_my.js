@@ -844,6 +844,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.accountItems = new Array();
     $mqtt.getUserInfo(function (succuess) {
       $scope.accountItems[0] = succuess.userID;
+
       var subUserInfo = succuess.subUserInfo;
       // alert(JSON.stringify(succuess));
       var count = 1;
@@ -853,7 +854,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }, function (err) {
 
     });
-
+    
     /**
      * 切换账号（切换为兼职账号或主账号，本次切换只对当前登录有效，一旦重新登录，重新登录主账号）
      * @param userID

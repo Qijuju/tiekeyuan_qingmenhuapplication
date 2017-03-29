@@ -279,15 +279,15 @@ angular.module('login.controllers', [])
         mqtt.getString('pwdgesture', function (pwdgesture) {
           pwdgesturea=pwdgesture;
           //倒计时
-          $scope.timea = 3;
+          $scope.timea = 4;
 
           timer = $interval(function(){
-            if($scope.timea>0&&$scope.timea<4){
+            if($scope.timea>0&&$scope.timea<5){
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if($scope.timea == 1 && !isClickGo) {//此处需要判断是否已经走了登录的方法
-              $scope.timea = 0;
+              $scope.timea = 1;
               //取消定时器
               $interval.cancel(timer);
               isClickGo = true;
