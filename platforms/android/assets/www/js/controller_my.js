@@ -817,7 +817,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
 
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt, $ToastUtils, $cordovaBarcodeScanner, $location, $ionicPlatform, $ionicHistory, $ionicLoading) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt, $ToastUtils, $cordovaBarcodeScanner, $location, $ionicPlatform, $ionicHistory, $ionicLoading,$greendao) {
 
     $scope.UserIDsethou = $stateParams.UserIDset;
 
@@ -855,18 +855,35 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     $scope.cunzai = 0;
     //初始化页面，第一次输入旧密码
-    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-      // alert(pwd);
-      if (pwd == "" || pwd == null || pwd.length == 0 || pwd == undefined) {
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID;
+      $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
+        if (data[0].pwd == "" || data[0].pwd == null || data[0].pwd == 0 || data[0].pwd == undefined) {
+          $scope.cunzai = 0;
+        } else {
+          $scope.cunzai = 1;
+        }
+
+      },function (err) {
         $scope.cunzai = 0;
-      } else {
-        $scope.cunzai = 1;
-      }
-      // $ToastUtils.showToast("旧手势密码:"+pwd);
+      });
     }, function (msg) {
-      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
-      $scope.cunzai = 0;
     });
+
+    // $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+    //   // alert(pwd);
+    //   if (pwd == "" || pwd == null || pwd.length == 0 || pwd == undefined) {
+    //     $scope.cunzai = 0;
+    //   } else {
+    //     $scope.cunzai = 1;
+    //   }
+    //   // $ToastUtils.showToast("旧手势密码:"+pwd);
+    // }, function (msg) {
+    //   // $ToastUtils.showToast("旧手势密码获取失败"+msg);
+    //   $scope.cunzai = 0;
+    // });
+
+
     $scope.meizuo = function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
@@ -949,7 +966,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
   })
-  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope,$greendao) {
+
+    mqtt.getString('name', function (loginpagea) {
+      $scope.yonghuming=loginpagea;
+    }, function (msg) {
+      // $ToastUtils.showToast("还未设置手势密码");
+    });
+
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
       $scope.mymypersonname = msg.userName
@@ -1001,12 +1025,29 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               // alert(psw)
               if (psw == password) {
                 checklock.drawStatusPoint('right')
-                $mqtt.save('gesturePwd', psw);//存
+                // $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea', $scope.mymypersonname);
                 $mqtt.save('loginpage', "gesturelogin");
                 $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
+                $mqtt.save('UserIDaaa', $scope.UserID);//存
                 // $mqtt.getMqtt().getString();//取
-                $ToastUtils.showToast("密码设置成功")
+                //存库
+                var gestureobj={};
+                gestureobj.id=$scope.UserID;
+                gestureobj.username= $scope.yonghuming;
+                gestureobj.pwd=psw;
+                $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+
+                  $ToastUtils.showToast("密码设置成功")
+                },function (err) {
+                  alert(err)
+                });
+
+
+
+
+
+
                 $state.go("accountsettion", {
                   "UserIDset": $scope.UserID
                 });
@@ -1059,11 +1100,33 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             // alert(psw)
             if (psw == password) {
               checklock.drawStatusPoint('right')
-              $mqtt.save('gesturePwd', psw);//存
+              // $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea', $scope.mymypersonname);
               $mqtt.save('loginpage', "gesturelogin");
               $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
-              $ToastUtils.showToast("密码设置成功")
+              $mqtt.save('UserIDaaa', $scope.UserID);//存
+              //存库
+              var gestureobj={};
+              gestureobj.id=$scope.UserID;
+              gestureobj.username= $scope.yonghuming;
+              gestureobj.pwd=psw;
+              // alert(gestureobj.id)
+              // alert(gestureobj.username)
+              // alert(gestureobj.pwd)
+
+              $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+                $ToastUtils.showToast("密码设置成功")
+              },function (err) {
+                // alert(err)
+              });
+              // $greendao.queryData('GesturePwdService','where username=?',$scope.username ,function (data) {
+              //   alert("取出来的数据长度"+data.id);
+              //   alert("取出来的数据长度"+data.username);
+              //   alert("取出来的数据长度"+data.pwd);
+              // },function (err) {
+              // });
+
+
               $state.go("accountsettion", {
                 "UserIDset": $scope.UserID
               });
@@ -1113,27 +1176,49 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
-    $scope.a = 1;
-    var password = "";
-    $scope.count = 6;
+  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope,$greendao) {
+
+    mqtt.getString('name', function (loginpagea) {
+      // alert(loginpagea)
+      $scope.yonghuming=loginpagea;
+    }, function (msg) {
+      // $ToastUtils.showToast("还未设置手势密码");
+    });
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
       $scope.mymypersonname = msg.userName
+       alert($scope.UserID)
+      $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
+        password=data[0].pwd
+      },function (err) {
+      });
     }, function (msg) {
     });
+
+    $scope.a = 1;
+    var password = "";
+    $scope.count = 6;
     $scope.goSetting = function () {
       $state.go("accountsettion", {
         "UserIDset": $scope.UserID
       });
     }
     //初始化页面，第一次输入旧密码
-    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-      password = pwd;
-      // $ToastUtils.showToast("旧手势密码:"+pwd);
-    }, function (msg) {
-      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
-    });
+    // alert($scope.UserID)
+    // $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
+    //   password=data[0].pwd;
+    // },function (err) {
+    // });
+
+    // $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+    //   password = pwd;
+    //   // $ToastUtils.showToast("旧手势密码:"+pwd);
+    // }, function (msg) {
+    //   // $ToastUtils.showToast("旧手势密码获取失败"+msg);
+    // });
+
+
+
     var firstopt2 = {
       chooseType: 3,
       width: 400,
@@ -1166,7 +1251,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //旧密码输入错误情况跳入的方法
     var method = function () {
       if ($scope.count == 0) {
-        $mqtt.save('gesturePwd', "");//存
+        var gestureobj={};
+        gestureobj.id=$scope.UserID;
+        gestureobj.username= $scope.mymypersonname;
+        gestureobj.pwd="";
+        $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+          // $ToastUtils.showToast("密码修改成功")
+        },function (err) {
+        });
         $state.go("login");
       } else {
         $scope.$apply(function () {
@@ -1229,11 +1321,26 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               // alert(psw)
               if (psw == password) {
                 checklock.drawStatusPoint('right')
-                $mqtt.save('gesturePwd', psw);//存
+                // $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea', $scope.mymypersonname);
                 // $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
+                $mqtt.save('UserIDaaa', $scope.UserID);//存
 
-                $ToastUtils.showToast("密码修改成功")
+                //存库
+                var gestureobj={};
+                gestureobj.id=$scope.UserID;
+                gestureobj.username= $scope.yonghuming;
+                gestureobj.pwd=psw;
+                $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+                  $ToastUtils.showToast("密码修改成功")
+                },function (err) {
+                });
+                // $greendao.queryData('GesturePwdService','where username=?',$scope.username ,function (data) {
+                //   alert("取出来的数据长度"+data.id);
+                //   alert("取出来的数据长度"+data.username);
+                //   alert("取出来的数据长度"+data.pwd);
+                // },function (err) {
+                // });
 
 
 

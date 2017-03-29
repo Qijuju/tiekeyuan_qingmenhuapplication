@@ -4177,12 +4177,30 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
-
     $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID;
+      $mqtt.save('zuinewID',  $scope.UserID);
       $scope.mymypersonname = msg.userName
       $mqtt.save('userNamea', $scope.mymypersonname);
+      // alert($scope.UserID)
+      // alert($scope.mymypersonname)
+      $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
+        // alert(data[0].pwd)
+        if(data[0].pwd==null||data[0].pwd==undefined||data[0].pwd.length==0){
+          var gestureobj={};
+          gestureobj.id=$scope.UserID;
+          gestureobj.username= $scope.mymypersonname;
+          gestureobj.pwd="";
+          $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+            // $ToastUtils.showToast("密码修改成功")
+          },function (err) {
+          });
+        }
+      },function (err) {
+      });
     }, function (msg) {
     });
+
 
 
     $scope.ID=$stateParams.id;
