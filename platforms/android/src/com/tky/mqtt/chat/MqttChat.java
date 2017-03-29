@@ -637,7 +637,9 @@ public class MqttChat extends CordovaPlugin {
       map.put("deptID", user.getDeptID());
       Map<String, String> subMap = new HashMap<String, String>();
       JSONObject userInfo = getUserInfo();//.getJSONObject("subUserInfo");
-      subMap.put(userInfo.getString("userID"), userInfo.getString("deptID"));
+      if (!user.getUserID().equals(userInfo.getString("userID"))) {
+        subMap.put(userInfo.getString("userID"), userInfo.getString("deptID"));
+      }
       if (userInfo.has("subUserInfo")) {
         Iterator<String> keys = userInfo.getJSONObject("subUserInfo").keys();
         while (keys != null && keys.hasNext()) {

@@ -797,6 +797,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $mqtt.getUserInfo(function (succuess) {
       $scope.accountItems[0] = succuess.userID;
       var subUserInfo = succuess.subUserInfo;
+      // alert(JSON.stringify(succuess));
       var count = 1;
       for (var key in subUserInfo) {
         $scope.accountItems[count++] = key;
