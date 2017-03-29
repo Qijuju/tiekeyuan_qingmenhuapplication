@@ -439,6 +439,9 @@ angular.module('login.controllers', [])
     $mqtt.getMqtt().getString('userNamea', function (message) {
       $scope.userNamea = message;
     });
+    // getHeadPic: function (picUserID, picSize, success, error) {
+    //   api.getHeadPic(picUserID, picSize, success, error);
+    // },
     $mqtt.getMqtt().getString('securlpicaa', function (message) {
       if(message==null||message.length==0||message==undefined){
         $scope.picyoumeiyoua=false;
