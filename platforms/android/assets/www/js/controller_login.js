@@ -41,7 +41,7 @@ angular.module('login.controllers', [])
             }
           },function (err) {
             $ToastUtils.showToast(err, function (success) {
-            },function (err) {
+            },function (err) {z
             })
           });
         }, function (msg) {
@@ -128,7 +128,7 @@ angular.module('login.controllers', [])
 
         });
         // alert(message.toString());
-        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
@@ -237,9 +237,6 @@ angular.module('login.controllers', [])
     var passlogin=""
     var pwdgesturea=""
     var namegesturea=""
-    //是否点击了立即进入（倒计时）
-    var isClickGo = false;
-
     var timer = null;
 
     document.addEventListener('deviceready',function () {
@@ -286,11 +283,9 @@ angular.module('login.controllers', [])
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
-            if($scope.timea == 1 && !isClickGo) {//此处需要判断是否已经走了登录的方法
+            if($scope.timea == 1) {
               $scope.timea = 0;
-              //取消定时器
               $interval.cancel(timer);
-              isClickGo = true;
               ifyuju();
             }
           }, 1000);
@@ -320,12 +315,6 @@ angular.module('login.controllers', [])
       }
     });
     $scope.startgogogo = function() {
-      //判断是否点击过倒计时，如果已经点击过，则不重复点击
-      if (isClickGo) {
-        return;
-      }
-      //防止重复点击
-      isClickGo = true;
       $interval.cancel(timer);
       ifyuju();
     };
@@ -387,7 +376,7 @@ angular.module('login.controllers', [])
         }, function (err) {
         });
         // alert(message.toString());
-        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+        $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         //调用保存用户名方法
         mqtt.saveLogin('name', namegesturea, function (message) {
         }, function (message) {
@@ -397,10 +386,7 @@ angular.module('login.controllers', [])
 
           $api.getAllGroupIds(function (groups) {
             $timeout(function () {
-              $mqtt.startMqttChat(msg + ',' + groups,function (msg) {
-              },function (err) {
-                $state.go('login');
-              });
+              $mqtt.startMqttChat(msg + ',' + groups);
               $mqtt.setLogin(true);
               $scope.getUserName();
               $mqtt.save('passlogin', "1");
@@ -633,7 +619,7 @@ angular.module('login.controllers', [])
 
       });
       // alert(message.toString());
-      // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
       //调用保存用户名方法
       $mqtt.getMqtt().saveLogin('name', $scope.namegesturea, function (message) {
       }, function (message) {
