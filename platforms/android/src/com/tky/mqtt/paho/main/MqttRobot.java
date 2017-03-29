@@ -108,4 +108,20 @@ public class MqttRobot {
     public static ConnectionType getConnectionType() {
         return connectionType;
     }
+
+    /**
+     * 设置当前屏幕状态（开：true，关：false）
+     * @param light
+     */
+    public static void setScreenStatus(boolean light) {
+        SPUtils.save("screenStatus", light);
+    }
+
+    /**
+     * 获取屏幕状态（开：true，关：false）
+     * @return
+     */
+    public static boolean getScreenStatus() {
+        return SPUtils.getBoolean("screenStatus", true);
+    }
 }

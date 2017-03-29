@@ -46,7 +46,7 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.tky.mqtt.paho.receiver.UserPresentReceiver" android:process=":newtask_onepx">
+        <receiver android:name="com.tky.mqtt.paho.receiver.UserPresentReceiver">
             <intent-filter android:priority="90000">
                 <action android:name="android.intent.action.SCREEN_ON" />
                 <action android:name="android.intent.action.SCREEN_OFF" />

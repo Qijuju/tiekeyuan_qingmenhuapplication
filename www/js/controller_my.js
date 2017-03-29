@@ -209,6 +209,15 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $ionicLoading.hide();
           });
 
+          // $ToastUtils.showToast("成功")
+          // $api.getHeadPic($scope.UserID,"60",function (srcurl) {
+          //   alert(srcurl)
+          //   $scope.$apply(function () {
+          //     $scope.securlpic=srcurl;
+          //   })
+          // },function (error) {
+          //   alert("没拿到")
+          // })
         }, function (msg) {
           $ToastUtils.showToast("设置头像失败")
         });
@@ -363,9 +372,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
-              $mqtt.save('gesturePwd', "");//存
-              $mqtt.save('userNamea', "");
-              $mqtt.save('securlpicaa', "");
               // $mqtt.save('pwdgesture', "");
               // $mqtt.save('namegesture', "");
               // $mqtt.save('historyusername', "");
@@ -952,7 +958,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
   })
-  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope,$ionicLoading) {
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
       $scope.mymypersonname = msg.userName
@@ -1007,31 +1013,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea', $scope.mymypersonname);
                 $mqtt.save('loginpage', "gesturelogin");
-                // $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
-                //更新本地头像
-                // $ionicLoading.show({
-                //   content: 'Loading',
-                //   animation: 'fade-in',
-                //   showBackdrop: false,
-                //   maxWidth: 100,
-                //   showDelay: 0
-                // });
-                $timeout(function () {
-                  $api.getHeadPic($scope.UserID, "60", function (srcurl) {
-                    if(srcurl==null||srcurl==undefined||srcurl.length==0){
-                      $mqtt.save('securlpicaa', "");
-                    }else {
-                      $mqtt.save('securlpicaa', srcurl);
-                      // $api.setHeadPic(srcurl, function (msg) {
-                      // })
-                    }
-                  }, function (error) {
-                    $mqtt.save('securlpicaa', "");
-                  })
-                  $ionicLoading.hide();
-                });
-
-
+                $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
@@ -1089,30 +1071,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $mqtt.save('gesturePwd', psw);//存
               $mqtt.save('userNamea', $scope.mymypersonname);
               $mqtt.save('loginpage', "gesturelogin");
-              // $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
-              //更新本地头像
-              // $ionicLoading.show({
-              //   content: 'Loading',
-              //   animation: 'fade-in',
-              //   showBackdrop: false,
-              //   maxWidth: 100,
-              //   showDelay: 0
-              // });
-              $timeout(function () {
-                $api.getHeadPic($scope.UserID, "60", function (srcurl) {
-                  if(srcurl==null||srcurl==undefined||srcurl.length==0){
-                    $mqtt.save('securlpicaa', "");
-                  }else {
-                    $mqtt.save('securlpicaa', srcurl);
-                    // $api.setHeadPic(srcurl, function (msg) {
-                    // })
-                  }
-                }, function (error) {
-                  $mqtt.save('securlpicaa', "");
-                })
-                $ionicLoading.hide();
-              });
-
+              $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
               $ToastUtils.showToast("密码设置成功")
               $state.go("accountsettion", {
                 "UserIDset": $scope.UserID
@@ -1163,7 +1122,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope,$ionicLoading) {
+  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
     $scope.a = 1;
     var password = "";
     $scope.count = 6;
@@ -1281,35 +1240,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                 checklock.drawStatusPoint('right')
                 $mqtt.save('gesturePwd', psw);//存
                 $mqtt.save('userNamea', $scope.mymypersonname);
-                // $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
-
-                //更新本地头像
-                // $ionicLoading.show({
-                //   content: 'Loading',
-                //   animation: 'fade-in',
-                //   showBackdrop: false,
-                //   maxWidth: 100,
-                //   showDelay: 0
-                // });
-                $timeout(function () {
-                  $api.getHeadPic($scope.UserID, "60", function (srcurl) {
-                    if(srcurl==null||srcurl==undefined||srcurl.length==0){
-                      $mqtt.save('securlpicaa', "");
-                    }else {
-                      $mqtt.save('securlpicaa', srcurl);
-                      // $api.setHeadPic(srcurl, function (msg) {
-                      // })
-                    }
-                  }, function (error) {
-                    $mqtt.save('securlpicaa', "");
-                  })
-                  $ionicLoading.hide();
-                });
+                $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
                 $ToastUtils.showToast("密码修改成功")
-
-
-
-
                 $state.go("accountsettion", {
                   "UserIDset": $scope.UserID
                 });

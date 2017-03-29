@@ -3,6 +3,7 @@ package com.tky.mqtt.paho;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -10,16 +11,22 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.util.List;
@@ -280,6 +287,86 @@ public class UIUtils {
 		return TelephonyMgr.getDeviceId();
 	}
 
+	public static String getPhoneImsiNum(Context context) {
+		int subId1 = -1;
+		int subId2 = -1;
+		String imsi1 = null;
+		String imsi2 = null;
+		try {
+			TelephonyManager tManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //大于等于Android 5.0 L版本
+				Method getSubscriberId = tManager.getClass().getMethod("getSubscriberId", int.class);
+
+				ContentResolver contentResolver = context.getContentResolver();
+				Cursor c = contentResolver.query(Uri.parse("content://telephony/siminfo"),
+						new String[]{"_id"}, "sim_id" + " = ?", new String[]{"0"}, null);
+				if (null != c && c.moveToFirst()) {
+					subId1 = c.getInt(c.getColumnIndexOrThrow("_id"));
+					Log.d("PhoneUtil", "subId1:" + subId1);
+					c.close();
+				}
+
+				c = contentResolver.query(Uri.parse("content://telephony/siminfo"),
+						new String[]{"_id"}, "sim_id" + " = ?", new String[]{"1"}, null);
+				if (null != c && c.moveToFirst()) {
+					subId2 = c.getInt(c.getColumnIndexOrThrow("_id"));
+					Log.d("PhoneUtil", "subId2:" + subId2);
+					c.close();
+				}
+
+				if (subId1 > 0) {
+					imsi1 = (String) getSubscriberId.invoke(tManager, subId1);
+				}
+				if (subId2 > 0) {
+					imsi2 = (String) getSubscriberId.invoke(tManager, subId2);
+				}
+
+				if (!TextUtils.isEmpty(imsi1) && !TextUtils.isEmpty(imsi2)) {
+					return imsi1 + "," + imsi2;
+				} else {
+					if (!TextUtils.isEmpty(imsi1)) {
+						return imsi1;
+					} else {
+						return imsi2;
+					}
+				}
+			} else { //Android 5.0以下的api获取ismi方法 sdk < 21
+				return tManager.getDeviceId();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/***
+	 * sim_id 就是0 和 1
+	 * 通过sim_id来获取subId 然后在根据subid 通过反射获取imsi值 sim_id 和subid在同一张表中，可以通过simid 获取subid 这样就解决问题了
+	 之后在通过上面的方法把subid传入进去就可以了
+	 * @return
+	 */
+	public int getSubId(int simid,Context context) {
+		Uri uri = Uri.parse("content://telephony/siminfo");
+		Cursor cursor = null;
+		ContentResolver contentResolver = context.getContentResolver();
+		try {
+			cursor = contentResolver.query(uri, new String[]{"_id", "sim_id"}, "sim_id = ?",
+					new String[]{String.valueOf(simid)}, null);
+			if (null != cursor) {
+				if (cursor.moveToFirst()) {
+					return cursor.getInt(cursor.getColumnIndex("_id"));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (null != cursor) {
+				cursor.close();
+			}
+		}
+		return -1;
+	}
+
 	/**
 	 * 获取版本名称（版本号）
 	 * @return
@@ -452,6 +539,22 @@ public class UIUtils {
 		manager.setMode(earphone ? AudioManager.MODE_IN_COMMUNICATION : AudioManager.MODE_NORMAL);
 		if (context != null) {
 			context.setVolumeControlStream(earphone ? AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_MUSIC);
+		}
+	}
+
+	/**
+	 * 响铃
+	 */
+	public static void ring() {
+		MediaPlayer mp = new MediaPlayer();
+		try {
+
+			mp.setDataSource(getContext(), RingtoneManager
+					.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+			mp.prepare();
+			mp.start();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

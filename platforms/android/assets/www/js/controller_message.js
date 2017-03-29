@@ -1774,6 +1774,7 @@ angular.module('message.controllers', [])
         },function (err) {
 
         });
+
         // alert("show"+$scope.isShow);
         // recordCancel = false;
         // if(stopTimer)clearTimeout(stopTimer);
@@ -1800,6 +1801,20 @@ angular.module('message.controllers', [])
       }
 
     /**
+     * 语音上滑取消
+     * @param $event
+     */
+      $scope.onDragVoiceBtn = function($event) {
+      var y=$event.gesture.deltaY;
+      if (y < -10) {
+        $scope.isshowless = 'back';
+      } else {
+        $scope.isshowless = 'false';
+      }
+      // $ToastUtils.showToast('上滑：' + (position), null, null);
+    };
+
+    /**
      * 松开语音按钮触发事件
      */
     // 'Audio',userId,send_content, userId,localusr,myUserID,_id,groupType
@@ -1809,6 +1824,13 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
+        if ($scope.isshowless === 'back') {
+          $scope.isShow='false';
+          $scope.isshowless='false';
+          $scope.recordTime = 0;
+          $scope.rate = 0;
+          return;
+        }
         if (succ.duration  <1000){
           $scope.isshowless='true';
           $scope.recordTime = 0;
@@ -3848,6 +3870,20 @@ angular.module('message.controllers', [])
       });
     }
 
+    /**
+     * 语音上滑取消
+     * @param $event
+     */
+    $scope.onDragGroupVoiceBtn = function($event) {
+      var y=$event.gesture.deltaY;
+      if (y < -10) {
+        $scope.isGroupshowless = 'back';
+      } else {
+        $scope.isGroupshowless = 'false';
+      }
+      // $ToastUtils.showToast('上滑：' + (position), null, null);
+    };
+
 
 
     //释放语音按钮
@@ -3857,6 +3893,13 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
+        if ($scope.isGroupshowless === 'back'){
+          $scope.isGroupShow='false';
+          $scope.isGroupshowless='true';
+          $scope.grouprecordTime = 0;
+          $scope.grouprate = 0;
+          return;
+        }
         if (succ.duration  <1000){
           $scope.isGroupshowless='true';
           $scope.grouprecordTime = 0;
@@ -4176,7 +4219,9 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
+    //登录成功后第一件事：检测升级
+    $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 

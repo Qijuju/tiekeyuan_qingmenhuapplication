@@ -2703,7 +2703,7 @@ public class ThriftApiClient extends CordovaPlugin {
    */
   public static String getUserID() throws JSONException {
     JSONObject userInfo = getUserInfo();
-    return userInfo == null ? null : userInfo.getString("userID");
+    return (userInfo == null || !userInfo.has("userID")) ? null : userInfo.getString("userID");
   }
 
   public static JSONObject getUserInfo() throws JSONException {

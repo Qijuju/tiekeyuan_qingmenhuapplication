@@ -503,6 +503,12 @@ angular.module('im.routes', [])
         controller: 'myinformationCtrl',
         cache:false
       })
+      .state('switch_account', {
+        url: '/switch_account',
+        templateUrl: 'templates/switch_account.html',
+        controller: 'switchAccountCtrl',
+        cache:false
+      })
       .state('accountsettion', {
         url: '/accountsettion/:UserIDset',
         templateUrl: 'templates/acount-setting.html',
