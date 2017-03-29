@@ -1,14 +1,14 @@
 /*app列表中行样式*/
-.row {
+.row1 {
   margin: 0;
   padding: 0;
 
 }
-.row + .row  {
+.row1 + .row1  {
   margin-top: 0;
 }
 /*app列表中单个的样式边框*/
-.col {
+.col1 {
   background-color: white;
   /*border: 1px solid #EFEFF4;*/
   border-bottom: 1px solid #EFEFF4;
@@ -36,6 +36,7 @@
   padding: 10px;
   margin-top: -6px;
   background: white;
+  color: black;
 }
 
 /*app综合中的样式*/
@@ -46,10 +47,14 @@
   background: white;
   margin-top: 10px;
   border-bottom: 1px solid #EFEFF4;
+  color: black;
+
 }
 
 /*单个app中名称的样式*/
 .h5-p2 {
   font-size: 13px;
   margin-bottom: 0;
+  color: black;
+
 }
