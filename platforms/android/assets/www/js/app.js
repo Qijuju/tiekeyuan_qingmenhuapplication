@@ -8,7 +8,7 @@
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
   'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
   'my.controllers','search.controllers','selectgroup.controllers','notification.controllers','common.services','contacts.services',
-  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers','newnotification.controllers','work.controllers'])
+  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers','newnotification.controllers','work.controllers','portal.services','portal.controllers'])
 
 /*'im.controllers', 'starter.services',*/
   .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
@@ -32,6 +32,18 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     //登陆界面直接退出
 
 
+    $ionicPlatform.ready(function () {
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+
+        cordova.plugins.Keyboard.disableScroll(true);
+
+        //延迟splash screnn 隐藏时间,不然会有短暂的白屏出现
+        setTimeout(function () {
+          navigator.splashscreen.hide();
+        }, 1000);
+      }
+    });
 
     $ionicPlatform.registerBackButtonAction(function(e) {
       if ($location.path() == '/login'||$location.path() == '/welcome'||$location.path() == '/newsPage'||$location.path() == '/gesturelogin'){

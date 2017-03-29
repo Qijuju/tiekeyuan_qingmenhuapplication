@@ -1,52 +1,30 @@
-<ion-view id="messageDetail" view-title={{viewtitle}}>
-  <!--<script type="text/javascript">-->
-    <!--(function(){-->
-      <!--var video, output;-->
-      <!--var scale = 0.8;-->
-      <!--alert("0000000");-->
-      <!--initialize();-->
-      <!--var initialize = function() {-->
-        <!--output = document.getElementById("output");-->
-        <!--video = document.getElementById("video");-->
-        <!--video.addEventListener('loadeddata',captureImage);-->
-        <!--alert("111111");-->
-      <!--};-->
-      <!--var captureImage = function() {-->
-        <!--var canvas = document.createElement("canvas");-->
-        <!--canvas.width = video.videoWidth * scale;-->
-        <!--canvas.height = video.videoHeight * scale;-->
-        <!--canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);-->
-        <!--var img = document.createElement("img");-->
-        <!--img.src = canvas.toDataURL("image/png");-->
-        <!--output.appendChild(img);-->
-        <!--alert("22222222");-->
-      <!--};-->
-    <!--})();-->
-  <!--</script>-->
-  <ion-nav-bar align-title="center">
+<ion-view id="messageDetail" view-title={{viewtitle}} class="common-view-color">
+  <ion-nav-bar  align-title="center" class="newbarhead ">
     <ion-nav-buttons side="left"">
-      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backFirstMenu(groupType)"/>
-      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backFirstMenu(groupType)">-->
-        <!--即时通-->
-      <!--</button>-->
+
+    <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backFirstMenu(groupType)">
+
+    </button>
+
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
+      <!--<md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
       <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size:25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></md-icon>
-      <!--<button class="button button-icon icon ion-ios-telephone" style="padding-right:0px;padding-left: 0px;" ng-click="callperson()"></button>-->
       <img src="img/personal_phone.png" style="height:36px;width:36px;padding-right:0px;padding-left: 0px;" ng-click="callperson()" />
       <img src="img/personal_setting.png" ng-click="personalSetting()" style="margin-right: 5px;height:36px;width:36px;" />
-      <!--<button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"-->
-              <!--style="margin-right: 5px"></button>-->
+      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
+              style="margin-right: 5px"></button>-->
+      <div align="center" style="margin-top: 7px">
+        <img src="img/laba.png" style="height:18px;margin-right: 12px" ng-if="showsingleTingtong =='false'" ng-click="openSingleYangshengqiMode();"/>
+        <img src="img/tingt.png" style="height:18px;margin-right: 12px"  ng-if="showsingleTingtong =='true'" ng-click="openSingleTingtongMode();"/>
+        <img src="img/phone.png" style="height:18px;margin-right: 12px" ng-click="callperson()" />
+        <img src="img/dtx.png" ng-click="personalSetting()" style="margin-right: 10px;height:18px" />
+      </div>
+
     </ion-nav-buttons>
-
-    <!--<ion-nav-buttons side="right">-->
-     <!---->
-
-    <!--</ion-nav-buttons>-->
-
   </ion-nav-bar>
+
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
     ng-if="isShow === 'true'">
     <!---若录音时间小于1s，则展示这个--->
@@ -91,22 +69,22 @@
       <!--2、对方的消息-->
       <div class="row" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)" style="float: left;">
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="otheryoumeiyou" >
-          <img  src="{{otherheadpicurl}}" class="yuanjiao4">
-        </div>
+        <img  src="{{otherheadpicurl}}" class="yuanjiao4">
+      </div>
         <!--头像-->
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)"><button class="circle1" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==1||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==9)&&(!otheryoumeiyou)")><button class="circle1" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8)&&(!otheryoumeiyou)"><button class="circle2" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==2||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==8)&&(!otheryoumeiyou)")><button class="circle2" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle3" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==3||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==7)&&(!otheryoumeiyou)")><button class="circle3" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle4" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==4||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==6)&&(!otheryoumeiyou)")><button class="circle4" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)")&&(!otheryoumeiyou)><button class="circle5" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
+        <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)")><button class="circle5" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
         <!--接收###文本内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
-          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
+          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'Image' || (msgSingle.messagetype === 'File' && getFileType(msgSingle.message))">
@@ -248,10 +226,10 @@
         <div class="col" ng-if="msgSingle.messagetype ==='Vedio' || isMsgVideo(msgSingle.message.split('###')[1])">
           <div style="width: 250px;float: right;">
             <video id="vedio1" style="width: 100%;height:100%;" ng-if="msgSingle.message.split('###')[5] != '100'" preload="auto">
-              <source style="height: 100%;width: 100%;background-color: #DD5044" src="img/video.mp4" type="video/mp4">
+              <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msgSingle.message.split('###')[1]}}" type="video/mp4">
             </video>
             <video id="vedio" style="width: 100%;height:100%;" ng-if="msgSingle.message.split('###')[5] === '100'" controls preload="auto">
-              <source style="height: 100%;width: 100%;background-color: #DD5044" src="img/video.mp4" type="video/mp4">
+              <source style="height: 100%;width: 100%;background-color: #DD5044" src="{{msgSingle.message.split('###')[1]}}" type="video/mp4">
             </video>
             <div style="width: 100%;height:100%;margin-top: -7px;">
               <div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="width: 100%;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
@@ -720,19 +698,54 @@
             </button>
           </div>
           <div style="width: 100%;height: 100%;" ng-show="isYuYin != 'true'" ng-click="zhiling()">
-            <textarea msd-elastic style="width: 100%;height: 40px;border: 1px solid #F5F5F5;border-radius: 5px;" ng-model="send_content" >
+            <textarea style="width: 100%;height: 40px;border: 1px solid #F5F5F5;border-radius: 5px;" rows="3" contenteditable="false" ng-model="send_content" >
             </textarea>
           </div>
         </div>
+
+
+
+
+
+        <!--高机型适配-->
+        <!--<div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">-->
+          <!--<div class="buttons" ng-show="!send_content || send_content === ''"  style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">-->
+            <!--<button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:137%;width:100%;height:100%;bottom:6px;" >-->
+            <!--</button>-->
+          <!--</div>-->
+          <!--<div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">-->
+          <!--<p>发送</p>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
         <div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">
-          <div class="buttons" ng-show="!send_content || send_content === ''"  style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">
-            <button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:137%;width:100%;height:100%;bottom:6px;" >
+
+          <div class="buttons" ng-show="!send_content || send_content === ''"
+               style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">
+            <button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:85%;
+            bottom:2px;" >
             </button>
           </div>
-          <div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
-          <p>发送</p>
+
+
+          <div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;"
+               ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
+            <p>发送</p>
           </div>
+
+
+
         </div>
+
+
+
+
+
+
+
+
+
       </div>
 
       <div ng-if="a==1" style="height: 170px;width: 100%;">

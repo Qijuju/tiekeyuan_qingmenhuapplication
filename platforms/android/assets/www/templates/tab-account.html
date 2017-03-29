@@ -1,52 +1,70 @@
-<ion-view class="padding" view-title="我的">
-  <ion-nav-bar align-title="center" class="bar-stable">
+<ion-view class="padding common-view-color" view-title="我的">
+  <ion-nav-bar align-title="center" class="newbarhead">
   </ion-nav-bar>
 
   <ion-content overflow-scroll="false" style="background-color:#e5e5e5">
 
-    <div style="background-color: white;margin-top: 15px">
-      <ion-item  class="item-remove-animate item-avatar rj-notify-bggg "   style="height: 85px" >
+    <div style="background-color: white;margin-top: 16px">
+      <ion-item  class="item-avatar rj-notify-bggg "   style="height: 88px" >
 
         <div ng-if="!picyoumeiyou" class="center circle11" style=" position: absolute;left: 3%;top: 10%;font-size: 16px;text-align: center;padding-top: 22px;z-index: 1" ng-click="setpic()">{{jiename}}</div>
         <img ng-if="picyoumeiyou" src="{{securlpic}}" class="yuanjiao2"  ng-click="setpic()">
         <p style="margin-left: 18px;margin-top: 17px;font-size: 19px;color: black">{{mymypersonname}}</p>
-        <span class="rj-weather-rightbig"  style="color: cornflowerblue;margin-top: 2px">{{weathdate}}</span>
-        <span class="rj-weather-rightbigsmall"  style="color: cornflowerblue;margin-top: 2px">{{currentcity}}</span>
-        <span class="rj-weather-rightsmall"  style="color: cornflowerblue;margin-top: 2px">{{pm25aa}}</span>
-        <span class="rj-weather-rightsmallsamll"  style="color: cornflowerblue;margin-top: 2px">{{weatherzhen}}</span>
+        <span class="rj-weather-rightbig"  style="color: #6495ED;margin-top: 2px">{{weathdate}}</span>
+        <span class="rj-weather-rightbigsmall"  style="color: #6495ED;margin-top: 2px">{{currentcity}}</span>
+        <span class="rj-weather-rightsmall"  style="color: #6495ED;margin-top: 2px">{{pm25aa}}</span>
+        <span class="rj-weather-rightsmallsamll"  style="color: #6495ED;margin-top: 2px">{{weatherzhen}}</span>
 
       </ion-item>
     </div>
-    <ul class="list" style="margin-top: 15px">
-      <div ng-click="gomyinformation()">
-        <a class="item item-icon-left item-icon-right" >
-          <i class=" icon ion-document"></i>
-          我的资料
-          <i class="button button-dark button-clear icon ion-ios-arrow-right" ></i>
-        </a>
-      </div>
 
-      <div ng-click="goacountsettion()">
-        <a class="item item-icon-left item-icon-right" >
-          <i class="icon ion-ios-gear-outline"></i>
-          设置
-          <i class="button button-dark button-clear icon ion-ios-arrow-right" ></i>
-        </a>
-      </div>
 
-      <div ng-click="goaboutus()">
-        <a class="item item-icon-left item-icon-right" >
-          <i class="icon ion-ios-information-outline"></i>
-          关于
-          <i class="button button-dark button-clear icon ion-ios-arrow-right" ></i>
-        </a>
-      </div>
+    <div class="common-margin-top">
+    <ul>
+      <li>
+        <div class="row" style="background-color: white"  ng-click="gomyinformation()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/zil.png" height="24px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">我的资料</p>
+          </div>
+          <div class="col-10" style="text-align: center">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div style="width: 100%;height: 1px;color: ghostwhite; margin-left: 10px"></div>
+      </li>
+      <li>
+        <div class="row" style="background-color: white" ng-click="goacountsettion()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/shez.png" height="24px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">设置</p>
+          </div>
+          <div class="col-10" style="text-align: center">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div style="width: 100%;height: 1px;color: ghostwhite;margin-left: 10px"></div>
+      </li>
+      <li style="border-bottom: 1px solid gainsboro">
+        <div class="row" style="background-color: white" ng-click="goaboutus()">
+          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/guany.png" height="24px"></div>
+          <div class="col col-75" style="margin-top: 10px">
+            <p class="common-contact-bigp">关于</p>
+          </div>
+          <div class="col-10" style="text-align: center">
+            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
+          </div>
+        </div>
+      </li>
     </ul>
-
-    <div class="list">
-      <button class="button button-block button-stable"  ng-click="showConfirm()">
-        退出登录
-      </button>
     </div>
+
+    <button class="button button-block button-stable "  ng-click="showConfirm()" style="color: #1D95D4;font-size: 16px;height: 60px; margin-top: 32px">
+      退出登录
+    </button>
   </ion-content>
 </ion-view>

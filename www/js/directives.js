@@ -16,6 +16,7 @@ angular.module('im.directives', [])
       };
     }
   ])
+  
   .directive('rjCloseBackDrop', [function () {
     return {
       scope: false,
@@ -76,17 +77,20 @@ angular.module('im.directives', [])
    */
 
 
-  .directive('cityListBox', function ($timeout, $ionicScrollDelegate) {
+  .directive('cityListBox', function ($timeout, $ionicScrollDelegate,$ToastUtils) {
     return {
       restrict: 'A',
       link: function (scope, element, attr) {
         var events = scope.events;
         events.on('cityboxlinkclick', function (obj) {
           var id = obj.data.attr('href');
+          var currentid=id.substring(9,10);
           var el = document.querySelector(id);
-          if (el) {
+          if (el.offsetTop>0) {
             var scrollPosition = el.offsetTop+54;
             $ionicScrollDelegate.scrollTo(0, scrollPosition);
+          }else {
+            //$ToastUtils.showToast("没有"+currentid+"字母开头的人")
           }
         });
       },
@@ -95,9 +99,9 @@ angular.module('im.directives', [])
         $scope.$on('cityboxlinkclick', function (e, data) {
           $scope.events.trigger("cityboxlinkclick", {"event": e, "data": data});
         });
-        $scope.$on('selectedCity', function (e, data) {
+       /* $scope.$on('selectedCity', function (e, data) {
           $scope.currentCityChange(data);
-        });
+        });*/
       }
     }
   })

@@ -85,3 +85,12 @@
   -webkit-align-items:center;
   align-items:center;
 }
+
+.isss{
+  position:fixed;
+  left:50%;
+  top:50%;
+  text-align: center;
+  overflow-y: auto;
+  transform:translateX(-50%) translateY(-50%);
+}

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.Contacts;
 import android.provider.MediaStore;
 
 import com.google.gson.Gson;
@@ -138,6 +139,10 @@ public class ThriftApiClient extends CordovaPlugin {
    * @param callbackContext 插件回调
    */
   public void login(final JSONArray args, final CallbackContext callbackContext) {
+    if (!NetUtils.isConnect(cordova.getActivity())) {
+      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+      return;
+    }
     try {
       MqttReceiver.hasRegister = false;
       String username = args.getString(0);
@@ -168,10 +173,12 @@ public class ThriftApiClient extends CordovaPlugin {
                     MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                     ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                     TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+                    GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
 //                                      SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                     topContactsService.deleteAllData();
                     messagesService.deleteAllData();
                     chatListService.deleteAllData();
+                    groupChatsService.deleteAllData();
 //                                      System.out.println("删除本地缓存成功");
                   }
 
@@ -777,7 +784,8 @@ public class ThriftApiClient extends CordovaPlugin {
                 }
               } else {
                 if ("501".equals(result.getResultCode())) {
-                  setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+//                  setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
+                  setResult("传入参数格式不正确！", PluginResult.Status.ERROR, callbackContext);
                 } else if ("502".equals(result.getResultCode())) {
                   setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
                 } else if ("997".equals(result.getResultCode())) {

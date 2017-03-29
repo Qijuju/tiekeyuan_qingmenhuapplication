@@ -73,7 +73,9 @@
 }
 
 .rj-stable-content {
-  background-color: #EAEAEA;
+
+  background-image:url("../img/bg2.png");
+  background-size: 100%;
 }
 .rj-message-time{
 
@@ -327,11 +329,11 @@
 
 
 .rj-notify-bg{
-  border-radius: 6px;
-  margin-left: 3px;
-  margin-right: 3px;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  border-radius: 8px;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   padding-top: -15px;
 }
 
@@ -366,17 +368,14 @@
 
 .rj-notify-bgggg{
   border-radius: 6px;
-  margin-top: 8px;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  /*margin-bottom: 5px;*/
   height: 85px;
   padding-top: -15px;
-
 }
 
 .rj-contact-new{
-  border-radius: 6px;
-  height: 55px;
-
+  height: 60px;
 }
 
 

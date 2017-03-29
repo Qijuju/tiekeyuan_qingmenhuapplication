@@ -51,8 +51,11 @@ exec(success, error, "MqttChat", "takePhoto", [])
 exports.takeVideo =function(success,error){//录制小视频
 exec(success, error, "MqttChat", "takeVideo", [])
 };
-exports.setOnNetStatusChangeListener =function(success,error){//网络监听
+exports.setOnNetStatusChangeListener =function(success,error){//MQTT监听
 exec(success, error, "MqttChat", "setOnNetStatusChangeListener", [])
+};
+exports.setOnNetChangeListener =function(success,error){//网络监听
+exec(success, error, "MqttChat", "setOnNetChangeListener", [])
 };
 exports.getMqttStatus =function(success){//MQTT连接状态获取
 exec(success, null, "MqttChat", "getMqttStatus", [])

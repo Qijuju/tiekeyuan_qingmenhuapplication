@@ -39,12 +39,15 @@ public class GridActivity extends Activity {
 
     private String[] IMAGES_PATH = null;
     private ImageLoader mImageLoader;
+    private ImageView imageView;
 
 
-    @Override
+  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
+
+        imageView = (ImageView) findViewById(R.id.tv_back);
 
         AnimationUtils.execNextAnim(this);
 
@@ -56,6 +59,14 @@ public class GridActivity extends Activity {
         String type = getIntent().getStringExtra("type");
         getImagespath(sessionid,type);
         init();
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            GridActivity.this.finish();
+
+          }
+        });
     }
 
 

@@ -240,74 +240,6 @@ angular.module('message.services', [])
     }
   })
 
-  //群组会话列表的数据保存
-  // .factory('$grouparr',function ($state,$stateParams,$rootScope,$greendao,$mqtt) {
-  //   var grouplist =new Array();
-  //   var savegroupdata;
-  //   return{
-  //     getAllGroupList:function (isGroupSend,messageType) {
-  //       if(isGroupSend === 'true'){
-  //         // alert("跳转到service界面"+$stateParams.sessionid);
-  //         var groupchatitem={};
-  //         if(groupchatitem.id === undefined || groupchatitem.chatName === undefined){
-  //           groupchatitem.id=$rootScope.id;
-  //           groupchatitem.chatName=$rootScope.username;
-  //           // alert("dsddfs"+$rootScope.id+$rootScope.username);
-  //           // alert(groupchatitem.id+"监听群组消息来源"+groupchatitem.chatName);
-  //         }else{
-  //           groupchatitem.id=$stateParams.id;
-  //           groupchatitem.chatName=$stateParams.sessionid;
-  //         }
-  //         groupchatitem.imgSrc='img/quntu1.png';
-  //         groupchatitem.lastText='';
-  //         groupchatitem.count='';
-  //         groupchatitem.isDelete='false';
-  //         groupchatitem.lastDate=new Date().getTime();
-  //         groupchatitem.senderId ='',
-  //         groupchatitem.senderName ='';
-  //         if(messageType === 'Dept'){
-  //           groupchatitem.chatType='Dept';
-  //         }else if(messageType === 'Group'){
-  //           groupchatitem.chatType='Group';
-  //         }
-  //         // alert("保存记录成功群");
-  //         grouplist.push(groupchatitem);
-  //         $greendao.saveObj('ChatListService',groupchatitem,function (data) {
-  //           $rootScope.$broadcast('groupchatarr.update');
-  //           // alert("保存成功"+data.length)
-  //         },function (err) {
-  //         });
-  //
-  //       }
-  //       return grouplist;
-  //     },
-  //     setData:function (data) {
-  //       grouplist=new Array();
-  //       savegroupdata = data;
-  //       grouplist=savegroupdata;
-  //     },
-  //     updateGroupData:function (data) {
-  //       for(var i=0;i<=grouplist.length-1;i++){
-  //         // alert("data ===="+data.lastText+"数组长度"+notifylist.length);
-  //         if( grouplist[i].id === data.id){
-  //           // alert("找出数组的被更改的数据了"+i);
-  //           grouplist.splice(i,1);
-  //         }
-  //       }
-  //       grouplist.unshift(data);
-  //       // alert("push after"+notifylist[notifylist.length-1].lastText+"数组长度"+notifylist.length);
-  //     },
-  //     getAllGroupChatList:function () {
-  //       return grouplist;
-  //     },
-  //     getGroupIdChatName:function (id,chatname) {
-  //       $rootScope.id=id;
-  //       $rootScope.username=chatname;
-  //       // alert("先收到群组"+$rootScope.id+$rootScope.username);
-  //     }
-  //   }
-  // })
-
   .factory('$mqtt',function ($rootScope,$greendao,$api,$ToastUtils) {
     var mqtt;
     var msgs=new Array();
@@ -449,6 +381,7 @@ angular.module('message.services', [])
               }
               //判断是不是位置
               if(!(messagetype === 'LOCATION')){
+                // alert("发送成功的消息"+msg);
                 //当消息从未成功到成功的这个状态时，先删除群组之前那个状态保存的数据
                 // alert("发送消息"+messageDetail.message+messageDetail.isSuccess);
                 //然后再入库成功状态的消息
@@ -757,15 +690,7 @@ angular.module('message.services', [])
           arriveMessage.isDelete=message.isDelete;
           arriveMessage.username=message.username;
           arriveMessage.senderid=message.senderid;
-          $greendao.queryData('OtherHeadPicService','where id =?',arriveMessage.senderid,function (data) {
-            if(data[0].picurl==null||data[0].picurl==undefined||data[0].picurl.length==0){
-              arriveMessage.imgSrc=message.imgSrc;
-            }else {
-              arriveMessage.imgSrc=data[0].picurl;
-            }
-          },function (err) {
-            arriveMessage.imgSrc=message.imgSrc;
-          });
+          arriveMessage.imgSrc=message.imgSrc;
           arriveMessage.isread=message.isread;
           arriveMessage.isSuccess=message.isSuccess;
           arriveMessage.daytype=message.daytype;
@@ -1463,9 +1388,12 @@ angular.module('message.services', [])
       takeVideo:function(success,error) {//录制小视频
         mqtt.takeVideo(success, error);
       },
-      setOnNetStatusChangeListener:function(success,error) {//网络监听
+      setOnNetStatusChangeListener:function(success,error) {//MQTT监听
         // alert("走监听事件了吗");
         mqtt.setOnNetStatusChangeListener(success,error);
+      },
+      setOnNetChangeListener:function(success,error) {//网络监听
+        mqtt.setOnNetChangeListener(success,error);
       },
       getMqttStatus:function(success) {//MQTT连接状态获取
         mqtt.getMqttStatus(success);
@@ -1501,6 +1429,9 @@ angular.module('message.services', [])
           suffix === '.mpeg' || suffix === '.dat' || suffix === '.mpe' || suffix === '.mpeg' ||
           suffix === '.m2v' || suffix === '.vob' || suffix === '.asf' || suffix === '.mov' ||
           suffix === '.divx' || suffix === '.wmf' || suffix === '.ts';
+      },
+      getMonthOrDay:function (monthOrDay) {//修正日期的month或day（如果小于9，则在其前面加0，否则不变）
+        return (monthOrDay>9 ? (monthOrDay + "") : ("0" + monthOrDay));
       }
 
 
@@ -1524,6 +1455,7 @@ angular.module('message.services', [])
       }
     }
   })
+
 
   // .factory('$cordovaScreenshot',  function ($q){
   //   return {

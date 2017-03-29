@@ -106,7 +106,7 @@ angular.module('contacts.controllers', [])
   })
 
   .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
-
+    // alert("网络状态"+$rootScope.isNetConnect);
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'){
@@ -131,7 +131,7 @@ angular.module('contacts.controllers', [])
     },501)
 
     $scope.goLocalContact=function () {
-
+      
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -182,14 +182,7 @@ angular.module('contacts.controllers', [])
       })
 
     });
-
-
-
-
-
-
-
-
+    
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -206,6 +199,9 @@ angular.module('contacts.controllers', [])
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
+        
+        
+        
       })
     });
 
@@ -328,6 +324,12 @@ angular.module('contacts.controllers', [])
      },function (err) {
      $ToastUtils.showToast(err);
      });*/
+
+    $scope.gogosecond=function (id) {
+      $state.go("second", {
+        "contactId": id,
+      });
+    }
 
 
   })
@@ -1557,7 +1559,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao,$ionicPlatform) {
 
     // Setup the loader
     $ionicLoading.show({
@@ -1713,6 +1715,16 @@ angular.module('contacts.controllers', [])
       $ionicHistory.goBack();
 
     };
+
+
+    $ionicPlatform.registerBackButtonAction(function (e) {
+
+        $ionicHistory.goBack();
+        $ionicLoading.hide();
+        e.preventDefault();
+      return false;
+    },501)
+
 
     //调用打电话功能，并且会存到数据库里面
     $scope.detailCall = function (id, phone, name, type) {

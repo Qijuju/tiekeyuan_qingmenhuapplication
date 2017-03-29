@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.ionicframework.im366077.MainActivity;
@@ -240,9 +241,9 @@ public class MqttMessageCallback implements MqttCallback {
               String hour = c.get(Calendar.HOUR_OF_DAY) + "";
               String minute = c.get(Calendar.MINUTE) + "";
               String second = c.get(Calendar.SECOND) + "";
-              System.out.println(year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second);
-              String start = year + month + day + "000000";
-              String end = year + month + day + "235959";
+              //System.out.println(year + "/" + month + "/" + getMonthOrDay(day) + " " + getMonthOrDay(hour) + ":" + getMonthOrDay(minute) + ":" + getMonthOrDay(second));
+              String start = year + getMonthOrDay(month) + getMonthOrDay(day) + "000000";
+              String end = year + getMonthOrDay(month) + getMonthOrDay(day) + "235959";
               DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
               try {
                 long stmill = formatter.parse(start).getTime();
@@ -275,7 +276,16 @@ public class MqttMessageCallback implements MqttCallback {
                         updateMsg.setWhen(messages.getWhen());
                         updateMsg.setIsFailure(messages.getIsFailure());
                         updateMsg.setIsDelete(messages.getIsDelete());
-                        updateMsg.setImgSrc(messages.getImgSrc());
+                        OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+                        List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", map.getSenderid());
+                        if (otherpicheadList.size() == 0) {
+                          updateMsg.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+                        } else {
+                          updateMsg.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+                        }
                         updateMsg.setUsername(messages.getUsername());
                         updateMsg.setSenderid(messages.getSenderid());
                         updateMsg.setIsread(messages.getIsread());
@@ -311,9 +321,11 @@ public class MqttMessageCallback implements MqttCallback {
                 OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
                 List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", map.getSenderid());
                 if (otherpicheadList.size() == 0) {
-                  messages.setImgSrc("");
+                  messages.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
                 } else {
                   messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
 //                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
                 }
                 map.setSenderid(map.getSenderid());
@@ -468,7 +480,7 @@ public class MqttMessageCallback implements MqttCallback {
         eventBean.setUsername(eventMsgBean.getUserName() == null ? "" : eventMsgBean.getUserName());
         eventBean.setWhen(eventMsgBean.getWhen());
         eventBean.setImgSrc("");
-        eventBean.setFrom("false");
+        eventBean.setFrom("");
         eventBean.setIsFailure("false");
         eventBean.setMessage(getMessage(eventMsgBean.getEventCode()));
         eventBean.setMessagetype("Event_" + eventMsgBean.getEventCode());
@@ -517,9 +529,9 @@ public class MqttMessageCallback implements MqttCallback {
         String hour = c.get(Calendar.HOUR_OF_DAY) + "";
         String minute = c.get(Calendar.MINUTE) + "";
         String second = c.get(Calendar.SECOND) + "";
-        System.out.println(year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second);
-        String start = year + month + day + "000000";
-        String end = year + month + day + "235959";
+        //System.out.println(year + "/" + getMonthOrDay(month) + "/" + day + " " + hour + ":" + minute + ":" + second);
+        String start = year + getMonthOrDay(month) + getMonthOrDay(day) + "000000";
+        String end = year + getMonthOrDay(month) + getMonthOrDay(day) + "235959";
         DateFormat formatter = new SimpleDateFormat("yyyyMMddhhmmss");
 
         long stmill = formatter.parse(start).getTime();
@@ -541,7 +553,7 @@ public class MqttMessageCallback implements MqttCallback {
                 updateMsg.set_id(messages.get_id());
                 updateMsg.setSessionid(messages.getSessionid());
                 updateMsg.setType(messages.getType());
-                updateMsg.setFrom(messages.getFrom());
+                updateMsg.setFrom("");
                 updateMsg.setMessage(messages.getMessage());
 //						System.out.println("群事件" + messages.getMessage());
                 updateMsg.setMessagetype(messages.getMessagetype());
@@ -549,7 +561,16 @@ public class MqttMessageCallback implements MqttCallback {
                 updateMsg.setWhen(messages.getWhen());
                 updateMsg.setIsFailure(messages.getIsFailure());
                 updateMsg.setIsDelete(messages.getIsDelete());
-                updateMsg.setImgSrc(messages.getImgSrc());
+                OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+                List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
+                if (otherpicheadList.size() == 0) {
+                  updateMsg.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+                } else {
+                  updateMsg.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+                }
                 updateMsg.setUsername(messages.getUsername());
                 updateMsg.setSenderid(messages.getSenderid());
                 eventBean.setSenderid(messages.getSenderid());
@@ -576,7 +597,7 @@ public class MqttMessageCallback implements MqttCallback {
         eventBean.set_id(id);
         messages.setSessionid(eventBean.getSessionid());
         messages.setType(eventBean.getType());
-        messages.setFrom(eventBean.getFrom());
+        messages.setFrom("");
         messages.setMessage(eventBean.getMessage());
 //				ToastUtil.showSafeToast("qun聊" + eventBean.getMessage());
         messages.setMessagetype(eventBean.getMessagetype());
@@ -584,7 +605,16 @@ public class MqttMessageCallback implements MqttCallback {
         messages.setWhen(eventBean.getWhen());
         messages.setIsFailure(eventBean.getIsFailure());
         messages.setIsDelete(eventBean.getIsDelete());
-        messages.setImgSrc(eventBean.getImgSrc());
+        OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
+        List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
+        if (otherpicheadList.size() == 0) {
+          messages.setImgSrc("1");
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"原始");
+        } else {
+          messages.setImgSrc(otherpicheadList.get(0).getPicurl());
+//                  ToastUtil.showSafeToast(messages.getImgSrc()+"更改后");
+//                                    ToastUtil.showSafeToast("jiehsoupic" + otherpicheadList.get(0).getPicurl());
+        }
         messages.setUsername(eventBean.getUsername());
         messages.setSenderid(eventBean.getSenderid());
 //				ToastUtil.showSafeToast("qun聊senderid" + eventBean.getSenderid());
@@ -712,6 +742,22 @@ public class MqttMessageCallback implements MqttCallback {
         }
       }
     }).start();
+  }
+
+  /**
+   * 根据日期修正数据（若大于9，则返回monthOrDay；否则，返回("0"+monthOrDay)）
+   * @param monthOrDay
+   * @return
+     */
+  private String getMonthOrDay(String monthOrDay) {
+    if (monthOrDay == null || TextUtils.isEmpty(monthOrDay)) {
+      return "01";
+    }
+    try {
+      return Integer.parseInt(monthOrDay) > 9 ? monthOrDay : ("0" + monthOrDay);
+    } catch (Exception e) {
+      return "01";
+    }
   }
 
   public JSONObject getUserInfo() throws JSONException {

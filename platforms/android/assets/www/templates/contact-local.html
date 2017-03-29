@@ -1,8 +1,8 @@
-<ion-view city-list-box="" view-title="手机通讯录">
+<ion-view city-list-box="" view-title="手机通讯录" class="common-view-color common-bg-color">
 
-  <ion-nav-bar align-title="center">
+  <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ui-sref="tab.contacts">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ui-sref="tab.contacts">
         联系人
       </button>
     </ion-nav-buttons>
@@ -11,7 +11,7 @@
 
   <ion-content scrollbar-y="false">
 
-    <div class=" item-input-inset" id="searchbutton" ng-click="goLocalSearch()">
+    <div class=" item-input-inset" id="searchbutton" ng-click="goLocalSearch()" style="margin-top: 16px;background-color: white">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" placeholder="搜索" ng-model="query" id="searchdata1" >
@@ -19,7 +19,9 @@
     </div>
 
 
-    <ion-list  citybox-select  >
+
+
+    <ion-list  citybox-select style="margin-top: 16px"  >
 
 
       <ion-item id="contact-A" class="rj-contacts-item" ng-show="contactsA.length>0" >
@@ -426,34 +428,40 @@
     </ion-list>
   </ion-content>
 
+ <!-- <ion-content>
+    <div class="isss" ng-show="isis">
+      <P style="font-size: 22px">{{daxie}}</P>
+    </div>
+  </ion-content>-->
+
   <div class="citybox-shortcuts" id="indicator">
-    <a citybox-link href="#contact-A" ng-if="contactsA.length>0">A</a>
-    <a citybox-link href="#contact-B" ng-if="contactsB.length>0">B</a>
-    <a citybox-link href="#contact-C" ng-if="contactsC.length>0">C</a>
-    <a citybox-link href="#contact-D" ng-if="contactsD.length>0">D</a>
-    <a citybox-link href="#contact-E" ng-if="contactsE.length>0">E</a>
-    <a citybox-link href="#contact-F" ng-if="contactsF.length>0">F</a>
-    <a citybox-link href="#contact-G" ng-if="contactsG.length>0">G</a>
-    <a citybox-link href="#contact-H" ng-if="contactsH.length>0">H</a>
-    <a citybox-link href="#contact-I" ng-if="contactsI.length>0">I</a>
-    <a citybox-link href="#contact-J" ng-if="contactsJ.length>0">J</a>
-    <a citybox-link href="#contact-K" ng-if="contactsK.length>0">K</a>
-    <a citybox-link href="#contact-L" ng-if="contactsL.length>0">L</a>
-    <a citybox-link href="#contact-M" ng-if="contactsM.length>0">M</a>
-    <a citybox-link href="#contact-N" ng-if="contactsN.length>0">N</a>
-    <a citybox-link href="#contact-O" ng-if="contactsO.length>0">O</a>
-    <a citybox-link href="#contact-P" ng-if="contactsP.length>0">P</a>
-    <a citybox-link href="#contact-Q" ng-if="contactsQ.length>0">Q</a>
-    <a citybox-link href="#contact-R" ng-if="contactsR.length>0">R</a>
-    <a citybox-link href="#contact-S" ng-if="contactsS.length>0">S</a>
-    <a citybox-link href="#contact-T" ng-if="contactsT.length>0">T</a>
-    <a citybox-link href="#contact-U" ng-if="contactsU.length>0">U</a>
-    <a citybox-link href="#contact-V" ng-if="contactsV.length>0">V</a>
-    <a citybox-link href="#contact-W" ng-if="contactsW.length>0">W</a>
-    <a citybox-link href="#contact-X" ng-if="contactsX.length>0">X</a>
-    <a citybox-link href="#contact-Y" ng-if="contactsY.length>0">Y</a>
-    <a citybox-link href="#contact-Z" ng-if="contactsZ.length>0">Z</a>
-    <a citybox-link href="#contact-#" ng-if="contactsNoSuch.length>0">#</a>
+    <a citybox-link citybox-select href="#contact-A" >A</a>
+    <a citybox-link citybox-select href="#contact-B" >B</a>
+    <a citybox-link citybox-select href="#contact-C" >C</a>
+    <a citybox-link citybox-select href="#contact-D" >D</a>
+    <a citybox-link citybox-select href="#contact-E" >E</a>
+    <a citybox-link citybox-select href="#contact-F" >F</a>
+    <a citybox-link citybox-select href="#contact-G" >G</a>
+    <a citybox-link citybox-select href="#contact-H" >H</a>
+    <a citybox-link citybox-select href="#contact-I" >I</a>
+    <a citybox-link citybox-select href="#contact-J" >J</a>
+    <a citybox-link citybox-select href="#contact-K" >K</a>
+    <a citybox-link citybox-select href="#contact-L" >L</a>
+    <a citybox-link citybox-select href="#contact-M" >M</a>
+    <a citybox-link citybox-select href="#contact-N" >N</a>
+    <a citybox-link citybox-select href="#contact-O" >O</a>
+    <a citybox-link citybox-select href="#contact-P" >P</a>
+    <a citybox-link citybox-select href="#contact-Q" >Q</a>
+    <a citybox-link citybox-select href="#contact-R" >R</a>
+    <a citybox-link citybox-select href="#contact-S" >S</a>
+    <a citybox-link citybox-select href="#contact-T" >T</a>
+    <a citybox-link citybox-select href="#contact-U" >U</a>
+    <a citybox-link citybox-select href="#contact-V" >V</a>
+    <a citybox-link citybox-select href="#contact-W" >W</a>
+    <a citybox-link citybox-select href="#contact-X">X</a>
+    <a citybox-link citybox-select href="#contact-Y" >Y</a>
+    <a citybox-link citybox-select href="#contact-Z">Z</a>
+    <a citybox-link citybox-select href="#contact-#" >#</a>
 
   </div>
 

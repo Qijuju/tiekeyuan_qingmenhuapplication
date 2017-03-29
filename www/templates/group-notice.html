@@ -1,15 +1,15 @@
-<ion-view view-title="群公告">
-  <ion-nav-bar align-title="center" class="bar-stable">
+<ion-view view-title="群公告" class="common-view-color">
+  <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="noticebacksetting()">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="noticebacksetting()">
         群设置
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button  button-icon icon " ng-click="createNotice()" ng-if=" islook== 0" >
+        <button class="button  button-icon icon common-color-white" ng-click="createNotice()" ng-if=" islook== 0 && isMygroup=='true' " >
           创建
         </button>
-        <button class="button  button-icon icon " ng-click="clearNotice()"  ng-if=" islook== 1" >
+        <button class="button  button-icon icon common-color-white" ng-click="clearNotice()"  ng-if=" islook== 1" >
           清空
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
       <input type="text" id="nameId"  ng-model="send_name">
     </label>-->
     <h1 style="font-size: 22px;margin: 5px"ng-if="islook==1">{{noticeText}}</h1>
-    <h1 style="font-size: 22px; position: absolute;left: 36%;top: 40%" ng-if="islook==0">暂无群公告</h1>
+    <h1 style="font-size: 20px;color: initial;" class="isss" ng-if="islook==0">暂无群公告</h1>
 
 
   </ion-content>
