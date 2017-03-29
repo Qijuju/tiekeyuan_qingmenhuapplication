@@ -1,20 +1,21 @@
-<ion-view id="messageGroupDetail" view-title={{chatname}}>
-  <ion-nav-bar align-title="center">
+<ion-view id="messageGroupDetail" view-title={{chatname}} class="common-view-color">
+  <ion-nav-bar align-title="center" class="newbarhead">
 
     <ion-nav-buttons side="left">
-      <img src="img/backmain.png" style="width: 48px;height: 36px;" ng-click="backSecondMenu(grouptype)"/>
-      <!--<button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSecondMenu(grouptype)">-->
-        <!--即时通-->
-      <!--</button>-->
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backSecondMenu(grouptype)">
+
+      </button>
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <md-icon class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></md-icon>
+      <!--<md-icon class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></md-icon>
       <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong !='false'" ng-click="openTingtongMode();"></md-icon>
-      <img src="img/group_setting.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)" style="margin-right: 5px;height:36px;width:36px;" />
-      <!--<button class="button button-icon icon ion-ios-people-outline"-->
-              <!--ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"-->
-              <!--style="margin-right: 5px"></button>-->
+      <img src="img/group_setting.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)" style="margin-right: 5px;height:36px;width:36px;" />-->
+      <div align="center" style="margin-top: 7px">
+        <img src="img/laba.png" style="height:18px;margin-right: 12px" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();"/>
+        <img src="img/tingt.png" style="height:18px;margin-right: 12px"  ng-show="showTingtong !='false'" ng-click="openTingtongMode();"/>
+        <img src="img/qun.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)" style="margin-right: 10px;height:18px" />
+      </div>
     </ion-nav-buttons>
 
   </ion-nav-bar>
@@ -82,7 +83,7 @@
 
         <!--接收###文本内容-->
         <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
-          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
+          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
@@ -624,7 +625,7 @@
             </button>
           </div>
           <div style="width: 100%;height: 100%;" ng-show="isGroupYuYin != 'true'" ng-click="zhilinggroup()">
-            <textarea style="width: 100%;height: 100%;border: 1px solid #F5F5F5;border-radius: 5px;" ng-model="send_content"  rows="3" contenteditable="false">
+            <textarea style="width: 100%;height: 100%;border: 1px solid #F5F5F5;border-radius: 5px;padding-top: 11px;padding-bottom: 10px;" ng-model="send_content"  rows="3" contenteditable="false">
             </textarea>
           </div>
         </div>

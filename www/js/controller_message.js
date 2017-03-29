@@ -4304,8 +4304,21 @@ angular.module('message.controllers', [])
 
 
 
-
     //一进来就检查网络是否连接
+    $mqtt.setOnNetChangeListener(function (success) {
+      $rootScope.isNetConnect='true';
+      // alert("进来了吗？ok");
+    },function (err) {
+      // alert("进来了吗？no");
+      $rootScope.isNetConnect='true';
+      $ToastUtils.showToast("当前网络不可用",null,null);
+    });
+
+
+
+
+
+    //一进来就检查mqtt是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
       $rootScope.netStatus = 'true';
       // alert("网成功时"+$rootScope.netStatus);
@@ -5071,6 +5084,7 @@ angular.module('message.controllers', [])
               });
             }else{
               // alert("是不是没有数据");
+
               $state.go('messageGroup',{
                 "id":id,
                 "chatName":dataa[0].groupName,
@@ -5561,7 +5575,7 @@ angular.module('message.controllers', [])
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
     $scope.ismygroup=$stateParams.ismygroup;
-    // alert($scope.groupType)
+    //alert($scope.groupType)
     //alert("群主id"+$scope.groupId+"群类型"+$scope.groupType+"hhhhh"+$scope.ismygroup);
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/groupSetting/'+$scope.groupId+'/'+$scope.groupName+'/'+$scope.groupType+'/'+$scope.ismygroup)){

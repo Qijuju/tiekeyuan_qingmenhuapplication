@@ -31,6 +31,7 @@ import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
+import com.tky.mqtt.paho.receiver.NetStatusChangeReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.VideoFileReceiver;
@@ -93,7 +94,7 @@ public class MqttChat extends CordovaPlugin {
   private DocFileReceiver docFileReceiver;
   private PhotoFileReceiver photoFileReceiver;
   private VideoFileReceiver videoFileReceiver;
-  //    private NetStatusChangeReceiver netStatusChangeReceiver;
+  private NetStatusChangeReceiver netStatusChangeReceiver;
   private MqttConnectReceiver mqttConnectReceiver;
   private MqttSendMsgReceiver topicReceiver;
   private MqttReceiver mqttReceiver;
@@ -127,11 +128,11 @@ public class MqttChat extends CordovaPlugin {
     videoFilter.addAction(ReceiverParams.VIDEO_FILE_GET);
     UIUtils.getContext().registerReceiver(videoFileReceiver, videoFilter);
 
-        /*netStatusChangeReceiver = new NetStatusChangeReceiver();
-        IntentFilter netStatusChangeFilter = new IntentFilter();
-        netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
-        netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
-        UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);*/
+    netStatusChangeReceiver = new NetStatusChangeReceiver();
+    IntentFilter netStatusChangeFilter = new IntentFilter();
+    netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
+    netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
+    UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);
 
     mqttConnectReceiver = new MqttConnectReceiver();
     IntentFilter mqttConnectFilter = new IntentFilter();
@@ -358,6 +359,7 @@ public class MqttChat extends CordovaPlugin {
         }
       }
     });
+    /**若是群聊的消息则判断是否是自建群，若不是则通知栏提醒*/
     if ("Group".equals(obj.getString("type"))) {
       boolean fromMe = MqttTopicRW.isFromMe("Group", obj.getString("sessionid"));
       if (!fromMe) {
@@ -416,6 +418,7 @@ public class MqttChat extends CordovaPlugin {
 //        pluginResult.setKeepCallback(true);
 //        callbackContext.sendPluginResult(pluginResult);
   }
+
 
   private String switchMsg(String msg, boolean sendStatus) {
     Messages messages = GsonUtils.fromJson(msg, Messages.class);
@@ -926,7 +929,7 @@ public class MqttChat extends CordovaPlugin {
   }
 
   /**
-   * 设置网络监听（返回true：连接上网；返回false：网络断开了）
+   * 设置MQTT监听（返回true：连接上网；返回false：网络断开了）
    *
    * @param args
    * @param callbackContext
@@ -958,6 +961,34 @@ public class MqttChat extends CordovaPlugin {
           }
         }
 
+      });
+    }
+  }
+
+  /**
+   * 设置网络监听（返回true：连接上网；返回false：网络断开了）
+   *
+   * @param args
+   * @param callbackContext
+   */
+  public void setOnNetChangeListener(final JSONArray args, final CallbackContext callbackContext) {
+    if (netStatusChangeReceiver != null) {
+      netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
+        @Override
+        public void doNetDisconnect() {
+          try {
+            setResult("false", PluginResult.Status.ERROR, callbackContext);
+          } catch (Exception e) {
+          }
+        }
+
+        @Override
+        public void doNetConnect() {
+          try {
+            setResult("true", PluginResult.Status.OK, callbackContext);
+          } catch (Exception e) {
+          }
+        }
       });
     }
   }

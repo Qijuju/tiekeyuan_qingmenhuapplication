@@ -384,7 +384,6 @@ angular.module('search.controllers', [])
         "UserIDSM": $scope.UserIDSM,
         "UserNameSM": $scope.UserNameSM
       });
-
     };
     $scope.goPersonDetail = function (id) {
       $state.go("person", {
@@ -430,8 +429,6 @@ angular.module('search.controllers', [])
           $scope.sessionida=$searchmessage.getmessagenamess()[0].sessionid;
         })
       });
-
-
   })
   .controller('searchLocalCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$searchlocal,$ionicActionSheet,$phonepluin) {
 

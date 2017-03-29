@@ -1,38 +1,38 @@
 /**
  * Created by Administrator on 2016/8/14.
  */
-angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap','ngCordova'])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api,$searchdata,$ToastUtils,$rootScope,$timeout,$mqtt,$chatarr,$greendao,$cordovaImagePicker,$ionicPlatform,$location,$cordovaGeolocation,$ionicHistory) {
+angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap', 'ngCordova'])
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api, $searchdata, $ToastUtils, $rootScope, $timeout, $mqtt, $chatarr, $greendao, $cordovaImagePicker, $ionicPlatform, $location, $cordovaGeolocation, $ionicHistory) {
 
 
     /*$scope.$on('$ionicView.enter', function () {
-      /!*$ionicHistory.nextViewOptions({
-        disableBack: true
-      });*!/
-      $ionicHistory.clearHistory();
-    });*/
+     /!*$ionicHistory.nextViewOptions({
+     disableBack: true
+     });*!/
+     $ionicHistory.clearHistory();
+     });*/
 
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (msg) {
         $scope.UserID = msg.userID
-        $scope.mymypersonname=msg.userName
-        if ($scope.mymypersonname.length>2){
-          $scope.jiename=$scope.mymypersonname.substring(($scope.mymypersonname.length-2),$scope.mymypersonname.length);
-        }else {
-          $scope.jiename=$scope.mymypersonname;
+        $scope.mymypersonname = msg.userName
+        if ($scope.mymypersonname.length > 2) {
+          $scope.jiename = $scope.mymypersonname.substring(($scope.mymypersonname.length - 2), $scope.mymypersonname.length);
+        } else {
+          $scope.jiename = $scope.mymypersonname;
         }
-        $api.getHeadPic($scope.UserID,"60",function (srcurl) {
-          $scope.picyoumeiyou=true;
+        $api.getHeadPic($scope.UserID, "60", function (srcurl) {
+          $scope.picyoumeiyou = true;
           // alert(srcurl+"id"+$scope.UserID)
           $scope.$apply(function () {
-            $scope.securlpic=srcurl;
+            $scope.securlpic = srcurl;
             $rootScope.securlpicaaa = srcurl;
           })
           // $scope.$apply(function () {
           //   document.getElementById('myImage').src=srcurl;
           // })
-        },function (error) {
-          $scope.picyoumeiyou=false;
+        }, function (error) {
+          $scope.picyoumeiyou = false;
           // alert("没有")
         })
 
@@ -47,9 +47,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.name = "";
 
 
-    var lat="";
-    var long="";
-    var locationaaa="";
+    var lat = "";
+    var long = "";
+    var locationaaa = "";
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
@@ -64,21 +64,20 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      lat  = position.coords.latitude+0.006954;//   116.329102,39.952728,
-      long = position.coords.longitude+0.012647;//  116.329102
-      locationaaa=long+","+lat;
-      $http.get("http://api.map.baidu.com/telematics/v3/weather?location="+locationaaa+"&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
-        .success(function(response) {
-          $scope.pm25aa="pm2.5:"+response.results[0].pm25;
-          $scope.currentcity=response.results[0].currentCity;
-          $scope.weathdate=response.results[0].weather_data[0].date.substring(response.results[0].weather_data[0].date.length-3,response.results[0].weather_data[0].date.length-1);
-          $scope.weatherzhen=response.results[0].weather_data[0].weather;
+      lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
+      long = position.coords.longitude + 0.012647;//  116.329102
+      locationaaa = long + "," + lat;
+      $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+        .success(function (response) {
+          $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
+          $scope.currentcity = response.results[0].currentCity;
+          $scope.weathdate = response.results[0].weather_data[0].date.substring(response.results[0].weather_data[0].date.length - 3, response.results[0].weather_data[0].date.length - 1);
+          $scope.weatherzhen = response.results[0].weather_data[0].weather;
 
         });
-    }, function(err) {
+    }, function (err) {
       $ToastUtils.showToast("请开启定位功能");
     });
-
 
 
     // $ionicPlatform.registerBackButtonAction(function(e) {
@@ -96,7 +95,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     // });
 
 
-
     // $api.getUser($rootScope.rootUserId,function (msg) {
     //   $scope.mymypersonname=msg.user.UserName;
     //   $ToastUtils.showToast( $scope.mymypersonname)
@@ -109,7 +107,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     // },function (msg) {
     //   $ToastUtils.showToast(msg)
     // });
-
 
 
     $scope.gomyinformation = function () {
@@ -203,7 +200,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         //image.src = "data:image/jpeg;base64," + imageData;
         // if(isAndroid){
         var picPath = imageData;
-        if(isAndroid){
+        if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
         }
         // if(picPath.indexOf("file:///")==0){
@@ -219,8 +216,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $timeout(function () {
             $scope.$apply(function () {
-              $scope.picyoumeiyou=true;
-              $scope.securlpic=msg;
+              $scope.picyoumeiyou = true;
+              $scope.securlpic = msg;
               // alert($scope.picyoumeiyou)
             })
             $ionicLoading.hide();
@@ -301,7 +298,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         // if(isAndroid){
         var picPath = imageData;
-        if(isAndroid){
+        if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
         }
 
@@ -320,8 +317,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $timeout(function () {
 
             $scope.$apply(function () {
-              $scope.picyoumeiyou=true;
-              $scope.securlpic=msg;
+              $scope.picyoumeiyou = true;
+              $scope.securlpic = msg;
 
             })
             $ionicLoading.hide();
@@ -419,10 +416,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $scope.$apply(function () {
         // alert("进来单聊界面吗？");
         $chatarr.setData(data);
-        $greendao.queryByConditions('ChatListService',function (data) {
-          $scope.items=data;
+        $greendao.queryByConditions('ChatListService', function (data) {
+          $scope.items = data;
           // alert("数组的长度"+data.length);
-        },function (err) {
+        }, function (err) {
 
         });
         $timeout(function () {
@@ -434,27 +431,27 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji,$ionicPopup,$api,$ToastUtils,$cordovaGeolocation,$location,$ionicPlatform,$ionicHistory,$ionicLoading,$mqtt,$ionicActionSheet,$timeout,$cordovaCamera,$ionicScrollDelegate) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji, $ionicPopup, $api, $ToastUtils, $cordovaGeolocation, $location, $ionicPlatform, $ionicHistory, $ionicLoading, $mqtt, $ionicActionSheet, $timeout, $cordovaCamera, $ionicScrollDelegate) {
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('myinformationScroll');
     $scope.$on('$ionicView.enter', function () {
       viewScroll.scrollBottom();
     });
     var isAndroid = ionic.Platform.isAndroid();
-      $scope.UserIDforhou = $stateParams.UserIDfor;
-      $api.getHeadPic($scope.UserIDforhou,"60",function (srcurl) {
-        $scope.picyoumeiyou=true;
-        // alert(srcurl)
-        $scope.$apply(function () {
-          $scope.securlpic=srcurl;
-        })
-        // $scope.$apply(function () {
-        //   document.getElementById('myImage').src=srcurl;
-        // })
-      },function (error) {
-        $scope.picyoumeiyou=false;
-        // alert("没有")
+    $scope.UserIDforhou = $stateParams.UserIDfor;
+    $api.getHeadPic($scope.UserIDforhou, "60", function (srcurl) {
+      $scope.picyoumeiyou = true;
+      // alert(srcurl)
+      $scope.$apply(function () {
+        $scope.securlpic = srcurl;
       })
+      // $scope.$apply(function () {
+      //   document.getElementById('myImage').src=srcurl;
+      // })
+    }, function (error) {
+      $scope.picyoumeiyou = false;
+      // alert("没有")
+    })
 
 
     $scope.setpic = function (name) {
@@ -511,7 +508,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         //image.src = "data:image/jpeg;base64," + imageData;
         // if(isAndroid){
         var picPath = imageData;
-        if(isAndroid){
+        if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
         }
         // if(picPath.indexOf("file:///")==0){
@@ -527,8 +524,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           $timeout(function () {
             $scope.$apply(function () {
-              $scope.picyoumeiyou=true;
-              $scope.securlpic=msg;
+              $scope.picyoumeiyou = true;
+              $scope.securlpic = msg;
               // alert($scope.picyoumeiyou)
             })
             $ionicLoading.hide();
@@ -586,7 +583,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         // if(isAndroid){
         var picPath = imageData;
-        if(isAndroid){
+        if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
         }
 
@@ -603,8 +600,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           // alert(msg)
           $timeout(function () {
             $scope.$apply(function () {
-              $scope.picyoumeiyou=true;
-              $scope.securlpic=msg;
+              $scope.picyoumeiyou = true;
+              $scope.securlpic = msg;
             })
             $ionicLoading.hide();
           });
@@ -634,17 +631,17 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     };
 
-    var backButtonPressedOnceToExit=false;
+    var backButtonPressedOnceToExit = false;
 
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/myinformation/'+$scope.UserIDforhou)){
-        if(isopen){
+      if ($location.path() == ('/myinformation/' + $scope.UserIDforhou)) {
+        if (isopen) {
           myPopup.close();
-          isopen=false;
-        }else {
+          isopen = false;
+        } else {
           $state.go("tab.account");
         }
-      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
+      } else if ($location.path() == '/tab/account' || $location.path() == '/tab/notification' || $location.path() == '/tab/contacts' || $location.path() == '/login' || $location.path() == '/tab/webpage') {
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -655,7 +652,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
-      }else {
+      } else {
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }
@@ -663,7 +660,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       return false;
 
 
-    },501)
+    }, 501)
 
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -675,13 +672,44 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.mypersons = $searchdatadianji.getPersonDetaildianji();
       })
     });
+
     // 修改个人资料
     var myPopup;
-    var isopen=false;
+    var isopen = false;
+
+    //验证格式是否正确
+    function isMB(str) {
+      var re = /^1\d{10}$/
+      if (re.test(str)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function isFP(str){
+      var re = /^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/;
+      if(re.test(str)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function isEM(str){
+      var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
+      if(re.test(str)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
     $scope.updateinformation = function () {
-      isopen=true;
+      isopen = true;
       $scope.data = {};
-       myPopup = $ionicPopup.show({
+      myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改手机号" ng-model="data.phonea"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="number" placeholder="修改办公电话" ng-model="data.phoneb"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="email" placeholder="修改邮箱" ng-model="data.email"></label>',
         title: '修改个人资料',
         subTitle: '请至少修改一项内容，否则无法提交',
@@ -692,33 +720,53 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             text: '<b>确定</b>',
             type: 'button-positive',
             onTap: function (e) {
-             // $ToastUtils.showToast("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
+              // $ToastUtils.showToast("老密码:"+$scope.data.phonea+"新密码:"+$scope.data.phoneb+"确认密码:"+$scope.data.email);
 
-              var arr={};
+              var arr = {};
               /*var arr={
-                'Mobile':$scope.data.phonea,
-                'FixPhone':$scope.data.phoneb,
-                'Email':$scope.data.email
-              };*/
-              var string1="";
-              var string2="";
-              var string3="";
-              if ($scope.data.phonea!=""){
-                string1=$scope.data.phonea;
-                arr.MB = string1;
+               'Mobile':$scope.data.phonea,
+               'FixPhone':$scope.data.phoneb,
+               'Email':$scope.data.email
+               };*/
+              var string1 = "";
+              var string2 = "";
+              var string3 = "";
+
+              if ($scope.data.phonea != ""&&$scope.data.phonea!=null) {
+                string1 = $scope.data.phonea;
+                if(isMB(string1)){
+                  arr.MB = string1;
+                  // alert(string1+"/"+isMB(string1));
+                }else{
+                  $ToastUtils.showToast("请输入正确的手机号！");
+                  return;
+                }
+                // alert("eeee:"+string1);
               }
-              if($scope.data.phoneb!=""){
-                string2=$scope.data.phoneb;
-                arr.FP = string2;
+              if ($scope.data.phoneb != ""&&$scope.data.phoneb!=null) {
+                string2 = $scope.data.phoneb;
+                if(isFP(string2)){
+                  arr.FP = string2;
+                }else{
+                  $ToastUtils.showToast("请输入正确的电话！");
+                  return;
+                }
               }
-              if($scope.data.email!=""){
-                string3=$scope.data.email;
-                arr.EM = string3;
+              if ($scope.data.email != "" && $scope.data.email!=null) {
+                string3 = $scope.data.email;
+                if(isEM(string3)){
+                  arr.EM = string3;
+                }else{
+                  $ToastUtils.showToast("请输入正确的Email！");
+                  return;
+                }
+
               }
-              $api.updateUserInfo(arr,function (msg) {
+
+              $api.updateUserInfo(arr, function (msg) {
                 // $ToastUtils.showToast("修改个人资料成功");
                 $searchdatadianji.personDetaildianji($scope.UserIDforhou);
-              },function (msg) {
+              }, function (msg) {
                 $ToastUtils.showToast(msg)
               })
             }
@@ -726,7 +774,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         ]
       });
       myPopup.then(function (res) {
-        isopen=false;
+        isopen = false;
       });
 
       // myPopup.close(); //关闭
@@ -735,8 +783,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      var lat  = position.coords.latitude+0.006954;//   39.952728
-      var long = position.coords.longitude+0.012647;//  116.329102
+      var lat = position.coords.latitude + 0.006954;//   39.952728
+      var long = position.coords.longitude + 0.012647;//  116.329102
       // $ToastUtils.showToast("经度"+lat+"纬度"+long);
       // var map = new BMap.Map("container"); // 创建地图实例
       // var point = new BMap.Point(long, lat); // 创建点坐标
@@ -756,16 +804,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       // 创建地理编码实例
       var myGeo = new BMap.Geocoder();
       // 根据坐标得到地址描述
-      myGeo.getLocation(new BMap.Point(long, lat), function(result){
-        if (result){
+      myGeo.getLocation(new BMap.Point(long, lat), function (result) {
+        if (result) {
           // alert(result.address);
           $scope.$apply(function () {
-            $scope.geolocation=result.address;
+            $scope.geolocation = result.address;
           });
         }
       });
 
-    }, function(err) {
+    }, function (err) {
       $ToastUtils.showToast("请开启定位功能");
       // error
     });
@@ -778,10 +826,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $scope.$apply(function () {
         // alert("进来单聊界面吗？");
         $chatarr.setData(data);
-        $greendao.queryByConditions('ChatListService',function (data) {
-          $scope.items=data;
+        $greendao.queryByConditions('ChatListService', function (data) {
+          $scope.items = data;
           // alert("数组的长度"+data.length);
-        },function (err) {
+        }, function (err) {
 
         });
         $timeout(function () {
@@ -855,21 +903,21 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
 
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt,$ToastUtils,$cordovaBarcodeScanner,$location,$ionicPlatform,$ionicHistory,$ionicLoading) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt, $ToastUtils, $cordovaBarcodeScanner, $location, $ionicPlatform, $ionicHistory, $ionicLoading) {
 
     $scope.UserIDsethou = $stateParams.UserIDset;
 
-    var backButtonPressedOnceToExit=false;
+    var backButtonPressedOnceToExit = false;
 
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/accountsettion/'+$scope.UserIDsethou)){
-        if(isopen){
+      if ($location.path() == ('/accountsettion/' + $scope.UserIDsethou)) {
+        if (isopen) {
           myPopup.close();
-          isopen=false;
-        }else {
+          isopen = false;
+        } else {
           $state.go("tab.account");
         }
-      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'||$location.path()=='/tab/webpage'){
+      } else if ($location.path() == '/tab/account' || $location.path() == '/tab/notification' || $location.path() == '/tab/contacts' || $location.path() == '/login' || $location.path() == '/tab/webpage') {
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -880,7 +928,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
-      }else  {
+      } else {
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }
@@ -888,24 +936,24 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       return false;
 
 
-    },501)
+    }, 501)
 
 
-    $scope.cunzai=0;
+    $scope.cunzai = 0;
     //初始化页面，第一次输入旧密码
     $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
       // alert(pwd);
-      if(pwd==""||pwd==null||pwd.length==0||pwd==undefined){
-        $scope.cunzai=0;
-      }else {
-        $scope.cunzai=1;
+      if (pwd == "" || pwd == null || pwd.length == 0 || pwd == undefined) {
+        $scope.cunzai = 0;
+      } else {
+        $scope.cunzai = 1;
       }
       // $ToastUtils.showToast("旧手势密码:"+pwd);
     }, function (msg) {
       // $ToastUtils.showToast("旧手势密码获取失败"+msg);
-      $scope.cunzai=0;
+      $scope.cunzai = 0;
     });
-    $scope.meizuo=function () {
+    $scope.meizuo = function () {
       $ToastUtils.showToast("此功能暂未开发");
     }
     $scope.goAcount = function () {
@@ -913,11 +961,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
     // 修改密码
     var myPopup;
-    var isopen=false;
+    var isopen = false;
     $scope.showPopup = function () {
-      isopen=true;
+      isopen = true;
       $scope.data = {}
-       myPopup = $ionicPopup.show({
+      myPopup = $ionicPopup.show({
         template: ' <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入原密码" ng-model="data.oldpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请输入新密码" ng-model="data.newpassword"></label> <label class="item item-input"><i class="icon  ion-ios-unlocked-outline positive positive"></i><input type="password" placeholder="请确认新密码" ng-model="data.enterpassword"></label>',
         title: '修改密码',
         subTitle: '区分大小写，请认真填写',
@@ -929,9 +977,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             type: 'button-positive',
             onTap: function (e) {
               //       $ToastUtils.showToast("老密码:"+$scope.data.oldpassword+"新密码:"+$scope.data.newpassword+"确认密码:"+$scope.data.enterpassword);
-              if($scope.data.newpassword==""||$scope.data.newpassword==undefined||$scope.data.newpassword.length==0){
+              if ($scope.data.newpassword == "" || $scope.data.newpassword == undefined || $scope.data.newpassword.length == 0) {
                 $ToastUtils.showToast("密码不能为空")
-              }else {
+              } else {
                 $api.updatePwd($scope.data.oldpassword, $scope.data.newpassword, $scope.data.enterpassword, function (msg) {
                   $ToastUtils.showToast("修改密码成功")
                   $mqtt.save('passlogin', "2");
@@ -948,7 +996,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         ]
       });
       myPopup.then(function (res) {
-        isopen=false;
+        isopen = false;
 
       });
       // myPopup.close(); //关闭
@@ -960,11 +1008,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     // }
     //扫一扫
     $scope.scanCode = function () {
-      $cordovaBarcodeScanner.scan().then(function(imageData) {
+      $cordovaBarcodeScanner.scan().then(function (imageData) {
         // $ToastUtils.showToast(imageData.text);
         // console.log("Barcode Format -> " + imageData.format);
         // console.log("Cancelled -> " + imageData.cancelled);
-      }, function(error) {
+      }, function (error) {
         // $ToastUtils.showToast( error);
       });
     };
@@ -976,7 +1024,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
 
   })
-  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams,$ToastUtils,$mqtt,$api,$ionicPopup,$ionicLoading,$cordovaFileOpener2,$rootScope) {
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, $ToastUtils, $mqtt, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $rootScope) {
     $scope.UserIDabouthou = $stateParams.UserIDabout;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -987,10 +1035,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     }
   })
-  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout,$rootScope) {
+  .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
-      $scope.mymypersonname=msg.userName
+      $scope.mymypersonname = msg.userName
     }, function (msg) {
     });
     $scope.goSetting = function () {
@@ -998,7 +1046,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         "UserIDset": $scope.UserID
       });
     }
-   // $scope.a=0;
+    // $scope.a=0;
     //初始化
     // var password="";
     // var opt = {
@@ -1013,20 +1061,20 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     // lock.init();
     //设置密码
     // $scope.setpassword = function () {
-    var method=function () {
+    var method = function () {
       $scope.$apply(function () {
-        $scope.a=1
+        $scope.a = 1
       });
       var setopt = {
         chooseType: 3, // 3 , 4 , 5,
         width: 350, // lock wrap width
         height: 350, // lock wrap height
         container: 'element', // the id attribute of element
-        inputEnd: function(psw){
+        inputEnd: function (psw) {
           // alert(psw)
-          password=psw;
+          password = psw;
           $scope.$apply(function () {
-            $scope.a=2
+            $scope.a = 2
           })
           // $ToastUtils.showToast("请再输入一次")
           setlock.reset();
@@ -1035,33 +1083,33 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             width: 350, // lock wrap width
             height: 350, // lock wrap height
             container: 'element', // the id attribute of element
-            inputEnd: function(psw){
+            inputEnd: function (psw) {
               // alert(psw)
-              if (psw==password){
+              if (psw == password) {
                 checklock.drawStatusPoint('right')
                 $mqtt.save('gesturePwd', psw);//存
-                $mqtt.save('userNamea',  $scope.mymypersonname);
+                $mqtt.save('userNamea', $scope.mymypersonname);
                 $mqtt.save('loginpage', "gesturelogin");
-                $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
+                $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
                 // $mqtt.getMqtt().getString();//取
                 $ToastUtils.showToast("密码设置成功")
                 $state.go("accountsettion", {
                   "UserIDset": $scope.UserID
                 });
                 $scope.$apply(function () {
-                  $scope.a=3
+                  $scope.a = 3
                 })
                 $timeout(function () {
                   checklock.reset()
 
-                },300);
-              }else {
+                }, 300);
+              } else {
                 checklock.drawStatusPoint('notright')
                 $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
                 $timeout(function () {
                   checklock.reset();
                   method();
-                },300);
+                }, 300);
 
               }
             }
@@ -1073,225 +1121,51 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       var setlock = new H5lock(setopt);
       setlock.init();
     }
-      $scope.a=1;
-      var setopt = {
-        chooseType: 3, // 3 , 4 , 5,
-        width: 350, // lock wrap width
-        height: 350, // lock wrap height
-        container: 'element', // the id attribute of element
-        inputEnd: function(psw){
-
-          // alert(psw)
-          password=psw;
-          $scope.$apply(function () {
-            $scope.a=2
-          })
-          // $ToastUtils.showToast("请再输入一次")
-          setlock.reset();
-          var checkopt = {
-            chooseType: 3, // 3 , 4 , 5,
-            width: 350, // lock wrap width
-            height: 350, // lock wrap height
-            container: 'element', // the id attribute of element
-            inputEnd: function(psw){
-              // alert(psw)
-              if (psw==password){
-                checklock.drawStatusPoint('right')
-                $mqtt.save('gesturePwd', psw);//存
-                $mqtt.save('userNamea',  $scope.mymypersonname);
-                $mqtt.save('loginpage', "gesturelogin");
-                $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
-                $ToastUtils.showToast("密码设置成功")
-                $state.go("accountsettion", {
-                  "UserIDset": $scope.UserID
-                });
-                $scope.$apply(function () {
-                  $scope.a=3
-                })
-                $timeout(function () {
-                  checklock.reset()
-                },300);
-              }else {
-                checklock.drawStatusPoint('notright')
-                $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
-                $timeout(function () {
-                  checklock.reset();
-                  method();
-                },300);
-              }
-            }
-          };
-          var checklock = new H5lock(checkopt);
-          checklock.init();
-        }
-      }
-      var setlock = new H5lock(setopt);
-      setlock.init();
-
-
-    /**
-     * 监听消息
-     */
-    $scope.$on('msgs.update', function (event) {
-      $scope.$apply(function () {
-        // alert("进来单聊界面吗？");
-        $chatarr.setData(data);
-        $greendao.queryByConditions('ChatListService',function (data) {
-          $scope.items=data;
-          // alert("数组的长度"+data.length);
-        },function (err) {
-
-        });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
-      })
-    });
-
-
-  })
-
-  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams,$mqtt,$ToastUtils,$timeout,$rootScope) {
-    $scope.a=1;
-    var password="";
-    $scope.count=6;
-    $mqtt.getUserInfo(function (msg) {
-      $scope.UserID = msg.userID;
-      $scope.mymypersonname=msg.userName
-    }, function (msg) {
-    });
-    $scope.goSetting = function () {
-      $state.go("accountsettion", {
-        "UserIDset": $scope.UserID
-      });
-    }
-    //初始化页面，第一次输入旧密码
-    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-      password=pwd;
-      // $ToastUtils.showToast("旧手势密码:"+pwd);
-    }, function (msg) {
-      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
-    });
-    var firstopt2 = {
-      chooseType: 3,
-      width: 400,
-      height: 400,
-      container: 'element',
-      inputEnd: function(psw){
-        if(psw==password){
-          firstlock2.drawStatusPoint('right');
-          $ToastUtils.showToast("输入密码正确,请输入新密码");
-          $timeout(function () {
-            firstlock2.reset();
-          },300);
-          $scope.$apply(function () {
-            $scope.a=2
-          });
-          newmethod()
-        }else {
-          firstlock2.drawStatusPoint('notright');
-          $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--$scope.count)+"次");
-          method();
-          $timeout(function () {
-            firstlock2.reset();
-            method();
-          },300);
-        }
-      }
-    }
-    var firstlock2 = new H5lock(firstopt2);
-    firstlock2.init();
-    //旧密码输入错误情况跳入的方法
-    var method=function () {
-      if($scope.count==0){
-        $mqtt.save('gesturePwd', "");//存
-        $state.go("login");
-      }else {
-        $scope.$apply(function () {
-          $scope.a=0
-        });
-        var checkoldopt = {
-          chooseType: 3,
-          width: 400,
-          height: 400,
-          container: 'element',
-          inputEnd: function(psw){
-            if(psw==password){
-              checkoldlock.drawStatusPoint('right');
-              $ToastUtils.showToast("输入密码正确,请输入新密码");
-              $timeout(function () {
-                checkoldlock.reset();
-              },300);
-              $scope.$apply(function () {
-                $scope.a=2
-              });
-              newmethod()
-            }else {
-              checkoldlock.drawStatusPoint('notright');
-              $ToastUtils.showToast("输入错误，请再输入一次,还能输入"+(--$scope.count)+"次");
-              method();
-              $timeout(function () {
-                checkoldlock.reset();
-                method();
-              },300);
-            }
-          }
-        }
-        var checkoldlock = new H5lock(checkoldopt);
-        checkoldlock.init();
-      }
-    }
-
-
-
-
-    var newmethod=function () {
+    $scope.a = 1;
     var setopt = {
       chooseType: 3, // 3 , 4 , 5,
-      width: 400, // lock wrap width
-      height: 400, // lock wrap height
+      width: 350, // lock wrap width
+      height: 350, // lock wrap height
       container: 'element', // the id attribute of element
-      inputEnd: function(psw){
-        // alert(psw)
-        password=psw;
-        $scope.$apply(function () {
-          $scope.a=3
-        })
-        $ToastUtils.showToast("请再输入一次")
-        setlock.reset();
+      inputEnd: function (psw) {
 
+        // alert(psw)
+        password = psw;
+        $scope.$apply(function () {
+          $scope.a = 2
+        })
+        // $ToastUtils.showToast("请再输入一次")
+        setlock.reset();
         var checkopt = {
           chooseType: 3, // 3 , 4 , 5,
-          width: 400, // lock wrap width
-          height: 400, // lock wrap height
+          width: 350, // lock wrap width
+          height: 350, // lock wrap height
           container: 'element', // the id attribute of element
-          inputEnd: function(psw){
+          inputEnd: function (psw) {
             // alert(psw)
-            if (psw==password){
+            if (psw == password) {
               checklock.drawStatusPoint('right')
               $mqtt.save('gesturePwd', psw);//存
-              $mqtt.save('userNamea',  $scope.mymypersonname);
-              $mqtt.save('securlpicaa',  $rootScope.securlpicaaa);
-              $ToastUtils.showToast("密码修改成功")
+              $mqtt.save('userNamea', $scope.mymypersonname);
+              $mqtt.save('loginpage', "gesturelogin");
+              $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
+              $ToastUtils.showToast("密码设置成功")
               $state.go("accountsettion", {
                 "UserIDset": $scope.UserID
               });
               $scope.$apply(function () {
-                $scope.a=4
+                $scope.a = 3
               })
               $timeout(function () {
                 checklock.reset()
-              },300);
-            }else {
+              }, 300);
+            } else {
               checklock.drawStatusPoint('notright')
               $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
-              $scope.$apply(function () {
-                $scope.a=2
-              })
               $timeout(function () {
                 checklock.reset();
-                newmethod();
-              },300);
+                method();
+              }, 300);
             }
           }
         };
@@ -1301,6 +1175,178 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
     var setlock = new H5lock(setopt);
     setlock.init();
+
+
+    /**
+     * 监听消息
+     */
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        // alert("进来单聊界面吗？");
+        $chatarr.setData(data);
+        $greendao.queryByConditions('ChatListService', function (data) {
+          $scope.items = data;
+          // alert("数组的长度"+data.length);
+        }, function (err) {
+
+        });
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
+    });
+
+
+  })
+
+  .controller('updategespasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope) {
+    $scope.a = 1;
+    var password = "";
+    $scope.count = 6;
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID;
+      $scope.mymypersonname = msg.userName
+    }, function (msg) {
+    });
+    $scope.goSetting = function () {
+      $state.go("accountsettion", {
+        "UserIDset": $scope.UserID
+      });
+    }
+    //初始化页面，第一次输入旧密码
+    $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
+      password = pwd;
+      // $ToastUtils.showToast("旧手势密码:"+pwd);
+    }, function (msg) {
+      // $ToastUtils.showToast("旧手势密码获取失败"+msg);
+    });
+    var firstopt2 = {
+      chooseType: 3,
+      width: 400,
+      height: 400,
+      container: 'element',
+      inputEnd: function (psw) {
+        if (psw == password) {
+          firstlock2.drawStatusPoint('right');
+          $ToastUtils.showToast("输入密码正确,请输入新密码");
+          $timeout(function () {
+            firstlock2.reset();
+          }, 300);
+          $scope.$apply(function () {
+            $scope.a = 2
+          });
+          newmethod()
+        } else {
+          firstlock2.drawStatusPoint('notright');
+          $ToastUtils.showToast("输入错误，请再输入一次,还能输入" + (--$scope.count) + "次");
+          method();
+          $timeout(function () {
+            firstlock2.reset();
+            method();
+          }, 300);
+        }
+      }
+    }
+    var firstlock2 = new H5lock(firstopt2);
+    firstlock2.init();
+    //旧密码输入错误情况跳入的方法
+    var method = function () {
+      if ($scope.count == 0) {
+        $mqtt.save('gesturePwd', "");//存
+        $state.go("login");
+      } else {
+        $scope.$apply(function () {
+          $scope.a = 0
+        });
+        var checkoldopt = {
+          chooseType: 3,
+          width: 400,
+          height: 400,
+          container: 'element',
+          inputEnd: function (psw) {
+            if (psw == password) {
+              checkoldlock.drawStatusPoint('right');
+              $ToastUtils.showToast("输入密码正确,请输入新密码");
+              $timeout(function () {
+                checkoldlock.reset();
+              }, 300);
+              $scope.$apply(function () {
+                $scope.a = 2
+              });
+              newmethod()
+            } else {
+              checkoldlock.drawStatusPoint('notright');
+              $ToastUtils.showToast("输入错误，请再输入一次,还能输入" + (--$scope.count) + "次");
+              method();
+              $timeout(function () {
+                checkoldlock.reset();
+                method();
+              }, 300);
+            }
+          }
+        }
+        var checkoldlock = new H5lock(checkoldopt);
+        checkoldlock.init();
+      }
+    }
+
+
+    var newmethod = function () {
+      var setopt = {
+        chooseType: 3, // 3 , 4 , 5,
+        width: 400, // lock wrap width
+        height: 400, // lock wrap height
+        container: 'element', // the id attribute of element
+        inputEnd: function (psw) {
+          // alert(psw)
+          password = psw;
+          $scope.$apply(function () {
+            $scope.a = 3
+          })
+          $ToastUtils.showToast("请再输入一次")
+          setlock.reset();
+
+          var checkopt = {
+            chooseType: 3, // 3 , 4 , 5,
+            width: 400, // lock wrap width
+            height: 400, // lock wrap height
+            container: 'element', // the id attribute of element
+            inputEnd: function (psw) {
+              // alert(psw)
+              if (psw == password) {
+                checklock.drawStatusPoint('right')
+                $mqtt.save('gesturePwd', psw);//存
+                $mqtt.save('userNamea', $scope.mymypersonname);
+                $mqtt.save('securlpicaa', $rootScope.securlpicaaa);
+                $ToastUtils.showToast("密码修改成功")
+                $state.go("accountsettion", {
+                  "UserIDset": $scope.UserID
+                });
+                $scope.$apply(function () {
+                  $scope.a = 4
+                })
+                $timeout(function () {
+                  checklock.reset()
+                }, 300);
+              } else {
+                checklock.drawStatusPoint('notright')
+                $ToastUtils.showToast("两次输入不一样,密码设置失败,请重新输入")
+                $scope.$apply(function () {
+                  $scope.a = 2
+                })
+                $timeout(function () {
+                  checklock.reset();
+                  newmethod();
+                }, 300);
+              }
+            }
+          };
+          var checklock = new H5lock(checkopt);
+          checklock.init();
+        }
+      }
+      var setlock = new H5lock(setopt);
+      setlock.init();
     }
 
     /**
@@ -1310,10 +1356,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $scope.$apply(function () {
         // alert("进来单聊界面吗？");
         $chatarr.setData(data);
-        $greendao.queryByConditions('ChatListService',function (data) {
-          $scope.items=data;
+        $greendao.queryByConditions('ChatListService', function (data) {
+          $scope.items = data;
           // alert("数组的长度"+data.length);
-        },function (err) {
+        }, function (err) {
 
         });
         $timeout(function () {
@@ -1324,11 +1370,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count,$location,$ionicPlatform,$ionicLoading,$ionicHistory,$ToastUtils,$mqtt,$timeout,$http) {
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count, $location, $ionicPlatform, $ionicLoading, $ionicHistory, $ToastUtils, $mqtt, $timeout, $http) {
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/tab/webpage')){
+      if ($location.path() == ('/tab/webpage')) {
         window.close();
-      }else if($location.path()=='/tab/account'||$location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/login'){
+      } else if ($location.path() == '/tab/account' || $location.path() == '/tab/notification' || $location.path() == '/tab/contacts' || $location.path() == '/login') {
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -1339,13 +1385,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
-      }else {
+      } else {
         $ionicHistory.goBack();
         $ionicLoading.hide();
       }
       e.preventDefault();
       return false;
-    },501)
+    }, 501)
 
     $scope.indicators = Indicators.all();
 
@@ -1357,54 +1403,52 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.counts = Count.all();
 
 
-
-    $scope.openUrl=function(){
+    $scope.openUrl = function () {
       //   if (!cordova.InAppBrowser) {
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
       // window.open("http://61.237.239.152:8080/html5/src/gouzhuwu.html","_self","location=no")
 
-      window.open('http://61.237.239.152:8080/html5/src/gouzhuwu.html','newwindow','height=200,width=200,top=100,left=50,toolbar=no,menubar=no,scrollbars=no,location=no,status=no')
+      window.open('http://61.237.239.152:8080/html5/src/gouzhuwu.html', 'newwindow', 'height=200,width=200,top=100,left=50,toolbar=no,menubar=no,scrollbars=no,location=no,status=no')
       // w.document.body.clientHeight=200;
-      window.resizeTo(200,200)
-      window.moveTo(50,50)
+      window.resizeTo(200, 200)
+      window.moveTo(50, 50)
 
       // window.moveTo(0,100)
       alert(window.outerHeight)
     }
-    $scope.openUrlchenjiang=function(){
+    $scope.openUrlchenjiang = function () {
       //   if (!cordova.InAppBrowser) {
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
       //window.open("http://www.r93535.com/cj/riskcontrol/appmanager/appstatisticsindex!mobiledevicepc.action","_self","location=no")
-      window.open("http://immobile.r93535.com:8081/ddzh/index.html","_self","location=no")
+      window.open("http://immobile.r93535.com:8081/ddzh/index.html", "_self", "location=no")
 
     }
-    $scope.openUrlbanchang=function(){
+    $scope.openUrlbanchang = function () {
       //   if (!cordova.InAppBrowser) {
       //     return;
       //   }
       //   cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no,toolbar=yes,toolbarposition=top,closebuttoncaption=关闭');
-       window.open("http://immobile.r93535.com:8081/sgtsh/index.html","_self","location=no")
+      window.open("http://immobile.r93535.com:8081/sgtsh/index.html", "_self", "location=no")
 
-        //window.open("http://172.25.28.106:8080/www/index.html","_self","location=no")
+      //window.open("http://172.25.28.106:8080/www/index.html","_self","location=no")
 
       /*var url1="http://www.r93535.com/appservice/appsgtsh/sgtsh/xinproject.action?ssid=APP-805246a0-ef79-4469-97f8-3e1c0ebe1694&userid=156938";
-      $http({
-        method: 'GET',
-        url: url1
-      }).success(function(data, status) {
+       $http({
+       method: 'GET',
+       url: url1
+       }).success(function(data, status) {
 
-        alert(status)
+       alert(status)
 
-      }).error(function(data, status) {
-        alert(status)
+       }).error(function(data, status) {
+       alert(status)
 
 
-      });*/
-
+       });*/
 
 
     }
@@ -1421,8 +1465,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     /*$scope.$on('$ionicView.enter', function () {
 
-      window.open("http://172.25.28.106:8080/www/index.html","_blank","location=no")
+     window.open("http://172.25.28.106:8080/www/index.html","_blank","location=no")
 
-    });*/
+     });*/
 
   })

@@ -129,6 +129,25 @@ angular.module('im.routes', [])
           }
         }
       })
+      //rxy 页面首页动态获取路由
+      .state('tab.portal', {
+        url: '/portal',
+        cache:false,
+        views: {
+          'tab-portal': {
+            templateUrl: 'templates/tab-portal.html',
+            controller: 'portalCtrl'
+          }
+        }
+      })
+      //rxy 页面详情路由
+      .state('cxtx', {
+        url: '/cxtx/:appId/:userId/:appUrl',
+        templateUrl: 'templates/cxtx.html',
+        controller: 'OhterCtrl',
+        cache:false
+      })
+
 
       .state('tab.notifications', {
         url: '/notifications',

@@ -1,12 +1,12 @@
-<ion-view view-title={{groupName}}>
-  <ion-nav-bar align-title="center" class="bar-stable">
+<ion-view view-title={{groupName}} class="common-view-color">
+  <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backsetting()">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backsetting()">
         群设置
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon " ng-click="addPerson()" ng-if="xianshi=='true' ||xianshi2=='true'">添加</button>
+      <button class="button button-icon common-color-white" ng-click="addPerson()" ng-if="xianshi=='true' ||xianshi2=='true'">添加</button>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
