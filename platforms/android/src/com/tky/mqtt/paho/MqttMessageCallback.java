@@ -60,18 +60,25 @@ public class MqttMessageCallback implements MqttCallback {
    */
   @Override
   public void connectionLost(Throwable arg0) {
-    MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+    if (MqttRobot.getScreenStatus()) {
+      MqttOper.tellMqttStatus(false);
+    } else {
+      MqttRobot.setScreenStatus(true);
+    }
     MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-    MqttOper.tellMqttStatus(false);
-    if (NetUtils.isConnect(context) && MqttRobot.isStarted() && mqttAsyncClient.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+    if (NetUtils.isConnect(context) && MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
       SPUtils.save("reconnect", true);
-      mqttAsyncClient.setConnectionType(ConnectionType.MODE_NONE);
-      try {
+      MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+      /*try {
         mqttAsyncClient.reconnect();
       } catch (MqttException e) {
         e.printStackTrace();
-      }
+      }*/
+      MqttOper.restartService();
+    } else {
+      MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
     }
+
   }
 
 

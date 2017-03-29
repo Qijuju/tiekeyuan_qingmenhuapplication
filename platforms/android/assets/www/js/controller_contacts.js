@@ -109,7 +109,7 @@ angular.module('contacts.controllers', [])
     // alert("网络状态"+$rootScope.isNetConnect);
     var backButtonPressedOnceToExit=false;
     $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'){
+      if($location.path()=='/tab/notification'||$location.path()=='/tab/contacts'||$location.path()=='/tab/account'||$location.path()=='/tab/portal'){
         if (backButtonPressedOnceToExit) {
           $mqtt.setExitStartedStatus();
           ionic.Platform.exitApp();
@@ -131,7 +131,7 @@ angular.module('contacts.controllers', [])
     },501)
 
     $scope.goLocalContact=function () {
-      
+
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -182,7 +182,7 @@ angular.module('contacts.controllers', [])
       })
 
     });
-    
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -199,9 +199,9 @@ angular.module('contacts.controllers', [])
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
-        
-        
-        
+
+
+
       })
     });
 

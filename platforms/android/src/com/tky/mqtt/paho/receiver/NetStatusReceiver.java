@@ -29,7 +29,8 @@ public class NetStatusReceiver extends BroadcastReceiver {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_CONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);
-                MqttOper.resetMqtt();
+//                MqttOper.resetMqtt();
+                MqttOper.restartService();
             } else if (info.getState().equals(NetworkInfo.State.DISCONNECTED)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_DISCONNECTED);

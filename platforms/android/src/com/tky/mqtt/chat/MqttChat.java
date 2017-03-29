@@ -13,6 +13,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
@@ -42,6 +43,10 @@ import com.tky.mqtt.paho.utils.PhotoUtils;
 import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
+import com.tky.mqtt.services.ChatListService;
+import com.tky.mqtt.services.LocalPhoneService;
+import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.TopContactsService;
 import com.tky.protocol.model.IMPException;
 
 import org.apache.cordova.CallbackContext;
@@ -62,9 +67,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import im.model.RST;
+import im.model.UserDetail;
 import im.server.System.IMSystem;
+import im.server.User.IMUser;
 
 /**
  * 通讯插件
@@ -300,8 +312,8 @@ public class MqttChat extends CordovaPlugin {
   /**
    * 停止MqttChat的服务
    */
-  public void stopMqttChat() {
-  }
+  /*public void stopMqttChat() {
+  }*/
 
   //    int count = 0;
   public void sendMsg(final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -484,21 +496,181 @@ public class MqttChat extends CordovaPlugin {
               MqttNotification.cancelAll();
               setResult("success", PluginResult.Status.OK, callbackContext);
             } else {
-              setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+              setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
             }
           } catch (TException e) {
-            setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+            setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
           }
         }
 
         @Override
         public void onError(Exception e) {
-          setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+          setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
         }
       });
     } catch (Exception e) {
-      setResult("解绑失败！", PluginResult.Status.ERROR, callbackContext);
+      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * 切换账号
+   * @param args
+   * @param callbackContext
+     */
+  public void switchAccount(final JSONArray args, final CallbackContext callbackContext) {
+    try {
+      final String userID = args.getString(0);
+      try {
+        SystemApi.getUser(getUserID(), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
+          @Override
+          public void onComplete(IMUser.AsyncClient.GetUser_call getUser_call) {
+            UserDetail user = null;
+            try {
+              user = getUser_call.getResult().getUser();
+              if (user.isIsActive()) {//账号已经激活，直接切换登录
+                swithAccount(user, callbackContext);
+              } else {                  //账号未激活，先激活账号
+                try {
+                  final UserDetail finalUser = user;
+                  //调用激活账户方法，激活该账号
+                  SystemApi.activeUser(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
+                    @Override
+                    public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
+                      try {
+                        RST result = activateUser_call.getResult();
+                        if (result.result) {
+                          swithAccount(finalUser, callbackContext);
+                        } else {
+                          setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                        }
+                      } catch (TException e) {
+                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                      }
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                      setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                    }
+                  });
+                } catch (IOException e) {
+                  setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                  e.printStackTrace();
+                }
+              }
+            } catch (TException e) {
+              e.printStackTrace();
+            }
+          }
+
+          @Override
+          public void onError(Exception e) {
+            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+          }
+        });
+      } catch (IOException e) {
+        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (TException e) {
+        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } catch (JSONException e) {
+      setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+
+    /*MqttRobot.setIsStarted(false);
+    if (!NetUtils.isConnect(cordova.getActivity())) {
+      setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
+      return;
+    }
+    hasLogin = false;
+    MqttOper.closeMqttConnection();
+    UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+    try {
+      SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
+        @Override
+        public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+          try {
+            RST result = cancelUser_call.getResult();
+            if (result.result) {
+              MqttNotification.cancelAll();
+              MqttRobot.setIsStarted(true);
+              setResult("success", PluginResult.Status.OK, callbackContext);
+            } else {
+              setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+            }
+          } catch (TException e) {
+            setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          }
+        }
+
+        @Override
+        public void onError(Exception e) {
+          setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+        }
+      });
+    } catch (Exception e) {
+      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }*/
+  }
+
+  /**
+   * 激活的账号才可以走该方法（为减少代码量，精简代码，故抽取出该段代码
+   * @param user
+   * @param callbackContext
+     */
+  private void swithAccount(UserDetail user, CallbackContext callbackContext) {
+    try {
+      //因切换账号，重新整理登录数据
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("result", true);
+      map.put("resultCode", 100);
+      map.put("isActive", true);
+      map.put("sDatetime", System.currentTimeMillis());
+      map.put("userID", user.getUserID());
+      map.put("userName", user.getUserName());
+      map.put("deptID", user.getDeptID());
+      Map<String, String> subMap = new HashMap<String, String>();
+      JSONObject userInfo = getUserInfo();//.getJSONObject("subUserInfo");
+      if (!user.getUserID().equals(userInfo.getString("userID"))) {
+        subMap.put(userInfo.getString("userID"), userInfo.getString("deptID"));
+      }
+      if (userInfo.has("subUserInfo")) {
+        Iterator<String> keys = userInfo.getJSONObject("subUserInfo").keys();
+        while (keys != null && keys.hasNext()) {
+          String key = keys.next();
+          if (!user.getUserID().equals(key)) {
+            subMap.put(key, userInfo.getJSONObject("subUserInfo").getString(key));
+          }
+        }
+      }
+      map.put("subUserInfo", subMap);
+//      JSONObject obj = new JSONObject(map);
+      Gson gson = new Gson();
+      String loginJson = gson.toJson(map);
+      SPUtils.save("login_info", loginJson);
+      //删除数据
+      MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+      ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+      TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+      topContactsService.deleteAllData();
+      messagesService.deleteAllData();
+      chatListService.deleteAllData();
+      LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
+      localPhoneService.deleteAllData();
+      //断开MQTT，启动MQTT交给MQTT去处理
+      MqttOper.closeMqttConnection();
+      setResult("success", PluginResult.Status.OK, callbackContext);
+    } catch (JSONException e) {
+      setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     }
   }
@@ -768,7 +940,11 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttStarted() {
           try {
-            setResult("true", PluginResult.Status.OK, callbackContext);
+            if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+              Log.e("getstarttime", format.format(new Date()));
+              setResult("true", PluginResult.Status.OK, callbackContext);
+            }
           } catch (Exception e) {
           }
         }
@@ -776,7 +952,11 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttClosed() {
           try {
-            setResult("false", PluginResult.Status.ERROR, callbackContext);
+            if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+              Log.e("getendtime", format.format(new Date()));
+              setResult("false", PluginResult.Status.ERROR, callbackContext);
+            }
           } catch (Exception e) {
           }
         }
@@ -1061,6 +1241,36 @@ public class MqttChat extends CordovaPlugin {
     setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
   }
 
+  /**
+   * 获取当前网络状态
+   * @param args
+   * @param callbackContext
+     */
+  public void getNetStatus(final JSONArray args, final CallbackContext callbackContext) {
+    setResult(NetUtils.isConnect(cordova.getActivity()), PluginResult.Status.OK, callbackContext);
+  }
+
+  /**
+   * 判断是否有兼职账号
+   * @param args
+   * @param callbackContext
+   */
+  public void hasParttimeAccount(final JSONArray args, final CallbackContext callbackContext) {
+    try {
+      JSONObject userInfo = getUserInfo();
+      if (userInfo != null && userInfo.has("subUserInfo")) {
+        JSONObject subUserInfo = userInfo.getJSONObject("subUserInfo");
+        boolean flag = subUserInfo.keys().hasNext();
+        setResult(flag, flag ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
+      } else {
+        setResult(false, PluginResult.Status.ERROR, callbackContext);
+      }
+    } catch (JSONException e) {
+      setResult(false, PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+  }
+
   public static MType getType(String type) {
     if ("User".equals(type)) {
       return MType.U;
@@ -1179,6 +1389,19 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setResult(int result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
+    MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
+    pluginResult.setKeepCallback(true);
+    callbackContext.sendPluginResult(pluginResult);
+  }
+
+  /**
+   * 设置返回信息
+   *
+   * @param result          返回结果数据 boolean
+   * @param resultStatus    返回结果状态  PluginResult.Status.ERROR / PluginResult.Status.OK
+   * @param callbackContext
+   */
+  public void setResult(boolean result, PluginResult.Status resultStatus, CallbackContext callbackContext) {
     MqttPluginResult pluginResult = new MqttPluginResult(resultStatus, result);
     pluginResult.setKeepCallback(true);
     callbackContext.sendPluginResult(pluginResult);

@@ -6,9 +6,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.NetUtils;
 
@@ -18,6 +22,7 @@ import java.util.List;
  *屏幕段屏后  mqtt链接失败后  重启
  */
 public class UserPresentReceiver extends BroadcastReceiver {
+    private static int count = 0;
     @Override
     public void onReceive(Context context, Intent intent) {
         /*if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
@@ -34,13 +39,26 @@ public class UserPresentReceiver extends BroadcastReceiver {
             onePxIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             onePxIntent.putExtra("backgroud", isApplicationBroughtToBackground(context));
             context.startActivity(onePxIntent);*/
+            MqttRobot.setScreenStatus(false);
         }else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction()) || ReceiverParams.RESTARTSERVICE.equals(intent.getAction())) {
             if (!NetUtils.isConnect(context)) {
                 return;
             }
-//            MqttOper.resetMqtt();
-            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
-//            if (MqttRobot.isStarted() && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+
+            boolean flag = false;
+//            ToastUtil.showSafeToast(MqttRobot.getScreenStatus() ? "light" : "dark");
+
+            if (MqttRobot.isStarted() && Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
+                try {
+                    context.stopService(new Intent(context, MqttService.class));
+                } catch (Exception e){
+                }finally {
+                    context.startService(new Intent(context, MqttService.class));
+                }
+                flag = true;
+            }
+
+            if (!flag && MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 try {
                     context.stopService(new Intent(context, MqttService.class));
                 } catch (Exception e){
@@ -48,7 +66,6 @@ public class UserPresentReceiver extends BroadcastReceiver {
                     context.startService(new Intent(context, MqttService.class));
                 }
             }
-        } else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
         }
         if (Intent.ACTION_USER_PRESENT.equals(intent.getAction())) {
             if (!NetUtils.isConnect(context)) {

@@ -13,8 +13,8 @@ import com.tky.mqtt.paho.utils.NetUtils;
 
 public class AlarmRecevier extends BroadcastReceiver{
 	private static String TAG="AlarmRecevier";
-	private PowerManager pm;
-	private PowerManager.WakeLock wakelock;
+//	private PowerManager pm;
+//	private PowerManager.WakeLock wakelock;
 	private static int count = 0;
 //	private WifiManager  wifiManager;
 //	private WifiManager.WifiLock wifiLock;
@@ -25,7 +25,7 @@ public class AlarmRecevier extends BroadcastReceiver{
 		//接受循环广播，启动界面
 		//点亮亮屏
 		if(intent.getAction().equals("sendbroadcast.action")){
-			if(wakelock==null){
+			/*if(wakelock==null){
 				//获取电源服务
 				pm=(PowerManager)context.getSystemService(Context.POWER_SERVICE);
 				wakelock=pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP|PowerManager.SCREEN_DIM_WAKE_LOCK, "Me tag");
@@ -37,17 +37,26 @@ public class AlarmRecevier extends BroadcastReceiver{
 					// 说明系统中不存在这个activity
 					context.startActivity(mainIntent);
 				}
+			}*/
+			Intent mainIntent=new Intent();
+			mainIntent.setClass(context, MainActivity.class);
+			mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			if (context.getPackageManager().resolveActivity(mainIntent, 0) == null) {
+				// 说明系统中不存在这个activity
+				context.startActivity(mainIntent);
 			}
 			if (NetUtils.isConnect(UIUtils.getContext()) && MqttRobot.isStarted()) {
 				//重新启动MQTT
-				MqttOper.resetMqtt();
+				//MqttOper.resetMqtt();
+				MqttOper.restartService();
 			}
 		} else if(intent.getAction().equals("release_alarm_lock.action")){
-			if (wakelock != null) {
+			/*if (wakelock != null) {
 				wakelock.release();
 				wakelock = null;
 				context.unregisterReceiver(this);
-			}
+			}*/
+			context.unregisterReceiver(this);
 		}
 	}
 

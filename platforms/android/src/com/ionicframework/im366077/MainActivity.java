@@ -161,7 +161,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     OkHttpUtils.get().url(patchUrl).build().execute(new StringCallback() {
       @Override
       public void onError(Call call, Exception e, int id) {
-        Toast.makeText(getApplicationContext(), "获取热修复信息失败", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "获取热修复信息失败", Toast.LENGTH_LONG).show();
       }
 
       @Override
