@@ -52,6 +52,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     var locationaaa = "";
     //获取定位的经纬度
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+    document.addEventListener('deviceready', function () {
+      //判断是否有兼职账号
+      $mqtt.hasParttimeAccount(function (msg) {//有兼职账号，显示按钮
+        $scope.hasParttimeAccount = true;
+      }, function (err) {                       //没有兼职账号，不显示按钮
+        $scope.hasParttimeAccount = false;
+      });
+    });
+
     // alert("进来了")
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
@@ -104,6 +114,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         "UserIDfor": $scope.UserID
         // "youmeiyou":$scope.youmeiyou,
       });
+    }
+
+    $scope.goSwitchAccount = function () {
+      $state.go("switch_account");
     }
 
     $scope.goacountsettion = function () {
@@ -823,6 +837,69 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }, 100);
       })
     });
+  })
+
+  .controller('switchAccountCtrl', function ($scope, $state, $mqtt,$ionicLoading,$ToastUtils, $api) {
+
+    $scope.accountItems = new Array();
+    $mqtt.getUserInfo(function (succuess) {
+      $scope.accountItems[0] = succuess.userID;
+      var subUserInfo = succuess.subUserInfo;
+      // alert(JSON.stringify(succuess));
+      var count = 1;
+      for (var key in subUserInfo) {
+        $scope.accountItems[count++] = key;
+      }
+    }, function (err) {
+
+    });
+
+    /**
+     * 切换账号（切换为兼职账号或主账号，本次切换只对当前登录有效，一旦重新登录，重新登录主账号）
+     * @param userID
+     */
+    $scope.switchAccount = function (userID) {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 100,
+        showDelay: 0
+      });
+      //切换账号开始
+      $mqtt.switchAccount(userID, function (msg) {
+        //切换账号成功，启动MQTT
+        $mqtt.getMqtt().getMyTopic(function (msg) {
+          $api.getAllGroupIds(function (groups) {
+            if (msg != null && msg != '') {
+              $mqtt.startMqttChat(msg + ',' + groups);
+              $mqtt.setLogin(true);
+              $state.go('tab.message');
+              $ionicLoading.hide();
+              return;
+            }
+          },function (err) {
+            $ToastUtils.showToast(err, null, null)
+          });
+        }, function (msg) {
+          $ionicLoading.hide();
+          $ToastUtils.showToast("切换账号出现异常！", null, null)
+        });
+      }, function (err) {//切换账号失败
+        $ionicLoading.hide();
+        $ToastUtils.showToast(err, null, null)
+      });
+      /*$mqtt.disconnect(function (message) {
+        $mqtt.save('passlogin', "0");
+        $state.go("tab.message");
+      }, function (message) {
+        $ToastUtils.showToast(message);
+      });*/
+      //$state.go("tab.message");
+    };
+    $scope.goAcount = function () {
+      $state.go("tab.account");
+    }
   })
 
 
