@@ -4177,6 +4177,14 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading) {
+
+    $mqtt.getUserInfo(function (msg) {
+      $scope.mymypersonname = msg.userName
+      $mqtt.save('userNamea', $scope.mymypersonname);
+    }, function (msg) {
+    });
+
+
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 

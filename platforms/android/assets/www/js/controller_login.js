@@ -87,6 +87,7 @@ angular.module('login.controllers', [])
     };
 
     $scope.login = function (name, password) {
+
       if (name == '' || password == '') {
         $ToastUtils.showToast('用户名或密码不能为空！');
         return;
@@ -447,18 +448,35 @@ angular.module('login.controllers', [])
     $mqtt.getMqtt().getString('userNamea', function (message) {
       $scope.userNamea = message;
     });
-    $mqtt.getMqtt().getString('securlpicaa', function (message) {
+    // getHeadPic: function (picUserID, picSize, success, error) {
+    //   api.getHeadPic(picUserID, picSize, success, error);
+    // },
+    // $mqtt.getMqtt().getString('securlpicaa', function (message) {
+    //   if(message==null||message.length==0||message==undefined){
+    //     $scope.picyoumeiyoua=false;
+    //   }else {
+    //     $scope.picyoumeiyoua=true;
+    //     $scope.$apply(function () {
+    //       $scope.securlpica=message;
+    //     })
+    //   }
+    // });
+
+    $api.getHeadPic($scope.UserID, "60", function (srcurl) {
+      alert(srcurl)
       if(message==null||message.length==0||message==undefined){
         $scope.picyoumeiyoua=false;
       }else {
         $scope.picyoumeiyoua=true;
         $scope.$apply(function () {
-          $scope.securlpica=message;
+          $scope.securlpica=srcurl;
         })
       }
-    });
-
-
+    }, function (error) {
+      alert(error)
+      $scope.picyoumeiyoua = false;
+      // alert("没有")
+    })
 
     $scope.goLogin = function() {
       $state.go('login');
