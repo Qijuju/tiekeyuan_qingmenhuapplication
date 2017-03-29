@@ -1355,6 +1355,12 @@ angular.module('message.services', [])
       disconnect:function (success, error) {
         mqtt.disconnect(success, error);
       },
+      switchAccount:function(userID, success, error){//切换账号
+        mqtt.switchAccount(userID, success, error);
+      },
+      hasParttimeAccount:function(success, error) {//判断是否有兼职账号
+        mqtt.hasParttimeAccount(success, error);
+      },
       save:function (key,value) {
         mqtt.save(key,value);
       },

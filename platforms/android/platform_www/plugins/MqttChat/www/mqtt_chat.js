@@ -81,5 +81,11 @@ exec(success, null, "MqttChat", "getProxyMode", [])
 exports.getNetStatus =function(success){//获取当前网络状态
 exec(success, null, "MqttChat", "getNetStatus", [])
 };
+exports.switchAccount =function(userID, success, error){//切换账号
+    exec(success, error, "MqttChat", "switchAccount", [userID])
+};
+exports.hasParttimeAccount =function(success, error){//判断是否有兼职账号
+    exec(success, error, "MqttChat", "hasParttimeAccount", [])
+};
 
 });

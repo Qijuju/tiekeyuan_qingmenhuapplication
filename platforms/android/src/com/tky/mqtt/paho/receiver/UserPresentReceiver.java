@@ -46,7 +46,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             }
 
             boolean flag = false;
-            ToastUtil.showSafeToast(MqttRobot.getScreenStatus() ? "light" : "dark");
+//            ToastUtil.showSafeToast(MqttRobot.getScreenStatus() ? "light" : "dark");
 
             if (MqttRobot.isStarted() && Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 try {

@@ -1,5 +1,6 @@
 package com.tky.mqtt.paho;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -40,12 +41,14 @@ public class MqttConnection {
   private Context context;
   private MqttReceiver receiver;
   private ConnectionType connectionType = ConnectionType.MODE_NONE;
+  private MqttService service;
 
-  public void connect(Context context) throws MqttException {
+  public void connect(Context context, MqttService service) throws MqttException {
     if (!MqttRobot.isStarted()) {
       return;
     }
     this.context = context;
+    this.service = service;
     //MQTT启动中...
     MqttRobot.setMqttStatus(MqttStatus.LOADING);
     //重置状态
@@ -86,7 +89,7 @@ public class MqttConnection {
         MqttRobot.setMqttStatus(MqttStatus.CLOSE);
         MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
 //                mqttAsyncClient.close();
-        connect(context);
+        connect(context, service);
       }
     }
   }
@@ -304,6 +307,9 @@ public class MqttConnection {
               public void onConnectionDown() {
                 try {
                   closeConnection(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+                  if (service != null) {
+                    service.destorySelfByHand();
+                  }
                 } catch (MqttException e) {
                   e.printStackTrace();
                 }

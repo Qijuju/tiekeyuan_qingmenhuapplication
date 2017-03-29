@@ -39,7 +39,7 @@ public class MqttService extends Service {
                 if (MqttRobot.isStarted()) {
                     mqttConnection = new MqttConnection();
                     try {
-                        mqttConnection.connect(getBaseContext());
+                        mqttConnection.connect(getBaseContext(), MqttService.this);
                     } catch (MqttException e) {
                         e.printStackTrace();
                     }
@@ -64,6 +64,13 @@ public class MqttService extends Service {
 				Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
 			}
 		});*/
+    }
+
+    /**
+     * Service的自我销毁
+     */
+    public void destorySelfByHand() {
+        stopSelf();
     }
 
     @Override
