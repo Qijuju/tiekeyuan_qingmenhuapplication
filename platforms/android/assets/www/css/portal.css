@@ -1,0 +1,60 @@
+/*app列表中行样式*/
+.row1 {
+  margin: 0;
+  padding: 0;
+
+}
+.row1 + .row1  {
+  margin-top: 0;
+}
+/*app列表中单个的样式边框*/
+.col1 {
+  background-color: white;
+  /*border: 1px solid #EFEFF4;*/
+  border-bottom: 1px solid #EFEFF4;
+  border-right: 1px solid #EFEFF4;
+  /*border-top: 1px solid #EFEFF4;*/
+  /*border-radius: 0px;*/
+  text-align: center;
+  /*margin-bottom: -4px;*/
+}
+.top{
+  border-top: 1px solid #EFEFF4;
+}
+
+/*轮播图的样式*/
+.slide-img {
+  width: 100%;
+  height: 206px;
+  background-color: transparent;
+}
+
+/*人员的名称样式*/
+.h5-name {
+  font-size: 17px;
+  margin: 0px;
+  padding: 10px;
+  margin-top: -6px;
+  background: white;
+  color: black;
+}
+
+/*app综合中的样式*/
+.h5-p {
+  font-size: 15px;
+  padding: 5px;
+  margin: 0;
+  background: white;
+  margin-top: 10px;
+  border-bottom: 1px solid #EFEFF4;
+  color: black;
+
+}
+
+/*单个app中名称的样式*/
+.h5-p2 {
+  font-size: 13px;
+  margin-bottom: 0;
+  color: black;
+
+}
