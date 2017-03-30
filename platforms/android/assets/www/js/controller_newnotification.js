@@ -269,14 +269,8 @@ angular.module('newnotification.controllers', [])
 
     $scope.$on('newnotify.update', function (event) {
       $scope.$apply(function () {
-        //数据库中查找全部的消息
-        $greendao.queryByConditions("SystemMsgService", function (msg) {
 
-          $scope.allin = msg;
 
-        }, function (err) {
-
-        });
 
         $greendao.queryByToday(function (msg) {
 
@@ -293,6 +287,14 @@ angular.module('newnotification.controllers', [])
           }, function (err) {
           });
           $rootScope.$broadcast('second.notify');
+        }, function (err) {
+
+        });
+        //数据库中查找全部的消息
+        $greendao.queryByConditions("SystemMsgService", function (msg) {
+
+          $scope.allin = msg;
+
         }, function (err) {
 
         });

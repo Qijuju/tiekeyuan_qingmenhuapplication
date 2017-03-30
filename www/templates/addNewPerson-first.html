@@ -1,7 +1,7 @@
 <ion-view view-title="添加新成员" class="common-view-color">
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backback()">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white " ng-click="backback()">
         取消
       </button>
     </ion-nav-buttons>
@@ -9,9 +9,8 @@
   <ion-content>
         <div class="background_white">
           <ion-list>
-            <ion-item ng-repeat="item in depts"  ng-click="jumpGroupSecond(item.DeptID)">
-              <img src="img/icon_org.png" style="vertical-align: bottom" width="27" height="27" style="display: inline;">
-              <strong class="font_16">{{item.DeptName}}</strong>
+            <ion-item ng-repeat="item in depts"  ng-click="jumpGroupSecond(item.DeptID)" style="height: 65px">
+              <img src="img/icon_org.png"  style="vertical-align: middle" width="38px" height="38px" style="display: inline;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="font_16">{{item.DeptName}}</span>
             </ion-item>
           </ion-list>
         </div>
