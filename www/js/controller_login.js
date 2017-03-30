@@ -179,11 +179,9 @@ angular.module('login.controllers', [])
       $ToastUtils.showToast("此功能暂未开发");
     };
 
-
     $scope.goGestureLogin = function () {
-      // alert("2222");
-      mqtt = cordova.require('MqttChat.mqtt_chat');
-      mqtt.getString('zuinewID', function (message) {
+
+      $mqtt.getMqtt().getString('zuinewID', function (message) {
 
         if (message == null || message == "" || message == 0) {
           alert("无ID无法跳转手势密码界面")
