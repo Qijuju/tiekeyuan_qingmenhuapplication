@@ -1,7 +1,5 @@
 package com.tky.mqtt.base;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
@@ -20,7 +18,6 @@ import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.services.ChatListService;

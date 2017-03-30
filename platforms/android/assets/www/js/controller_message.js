@@ -1824,15 +1824,16 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
-        $scope.$apply(function () {
-          if ($scope.isshowless === 'back') {
+        if ($scope.isshowless === 'back') {
+          $scope.$apply(function () {
             $scope.isShow='false';
             $scope.isshowless='false';
             $scope.recordTime = 0;
             $scope.rate = 0;
-            return;
-          }
-        });
+          });
+          return;
+
+        }
 
         if (succ.duration  <1000){
           $scope.isshowless='true';
@@ -3896,15 +3897,15 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
-        $scope.$apply(function () {
-          if ($scope.isGroupshowless === 'back'){
+        if ($scope.isGroupshowless === 'back'){
+          $scope.$apply(function () {
             $scope.isGroupShow='false';
             $scope.isGroupshowless='true';
             $scope.grouprecordTime = 0;
             $scope.grouprate = 0;
-            return;
-          }
-        });
+          });
+          return;
+        }
 
         if (succ.duration  <1000){
           $scope.isGroupshowless='true';
@@ -4226,6 +4227,32 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
+
+    $mqtt.getUserInfo(function (msg) {
+      $scope.UserID = msg.userID;
+      $mqtt.save('zuinewID',  $scope.UserID);
+      $scope.mymypersonname = msg.userName
+      $mqtt.save('userNamea', $scope.mymypersonname);
+      // alert($scope.UserID)
+      // alert($scope.mymypersonname)
+      $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
+        // alert(data[0].pwd)
+        if(data[0].pwd==null||data[0].pwd==undefined||data[0].pwd.length==0){
+          var gestureobj={};
+          gestureobj.id=$scope.UserID;
+          gestureobj.username= $scope.mymypersonname;
+          gestureobj.pwd="";
+          $greendao.saveObj('GesturePwdService',gestureobj,function (data) {
+            // $ToastUtils.showToast("密码修改成功")
+          },function (err) {
+          });
+        }
+      },function (err) {
+      });
+    }, function (msg) {
+    });
+
+
     //登录成功后第一件事：检测升级
     $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     $scope.ID=$stateParams.id;
@@ -4236,6 +4263,8 @@ angular.module('message.controllers', [])
 
     //进来消息主界面时，读取当前用户的头像
     $scope.$on('$ionicView.enter', function () {
+      //发送通知广播 用来在界面显示未读数
+      $rootScope.$broadcast('second.notify');
       $mqtt.getUserInfo(function (msg) {
         $api.getHeadPic(msg.userID,"60",function (srcurl) {
           $rootScope.securlpicaaa = srcurl;

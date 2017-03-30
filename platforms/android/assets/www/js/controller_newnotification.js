@@ -5,7 +5,6 @@ angular.module('newnotification.controllers', [])
 
 
   .controller('newnotificationCtrl', function ($scope, $state, $ionicSlideBoxDelegate, $greendao, $ionicLoading, $timeout, $rootScope) {
-
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -120,7 +119,6 @@ angular.module('newnotification.controllers', [])
         });
         $greendao.queryByToday(function (msg) {
           $scope.todayTime = msg;
-
           $greendao.queryByWeek(function (msg) {
             $scope.weektimeday = msg;
             $greendao.queryByYesterday(function (msg) {
@@ -293,9 +291,8 @@ angular.module('newnotification.controllers', [])
             })
 
           }, function (err) {
-
           });
-
+          $rootScope.$broadcast('second.notify');
         }, function (err) {
 
         });
@@ -349,6 +346,8 @@ angular.module('newnotification.controllers', [])
         showDelay: 0
       });
 
+
+
       $timeout(function () {
         $greendao.deleteDataByArg("SystemMsgService", id, function (msg) {
           $greendao.queryByConditions("SystemMsgService", function (msg) {
@@ -360,7 +359,6 @@ angular.module('newnotification.controllers', [])
                 $scope.weektimeday = msg;
                 $greendao.queryByYesterday(function (msg) {
                   $scope.otherDay = msg;
-                  $rootScope.$broadcast('second.notify');
 
                 }, function (err) {
 
@@ -374,7 +372,7 @@ angular.module('newnotification.controllers', [])
 
             });
 
-
+            $rootScope.$broadcast('second.notify');
           }, function (err) {
 
           });
