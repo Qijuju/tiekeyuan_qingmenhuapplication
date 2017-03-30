@@ -32,9 +32,10 @@ public class GreenDaoGenerator {
         addModuleCount(schema);
         addSlowNotifyLists(schema);
         addOtherpichead(schema);
+        addGesturePwd(schema);
         //addTestData(schema);
 
-        new DaoGenerator().generateAll(schema,  "D:/AndroidStudio_tky_Application/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -282,5 +283,16 @@ public class GreenDaoGenerator {
         Entity msgHistory=schema.addEntity("Otherpichead");
         msgHistory.addStringProperty("id").primaryKey();
         msgHistory.addStringProperty("picurl");//图片地址
+    }
+
+    /**
+     *  存取不同用户的手势密码
+     */
+    private static void addGesturePwd(Schema schema){
+        Entity msgHistory=schema.addEntity("GesturePwd");
+        msgHistory.addStringProperty("id").primaryKey();
+        msgHistory.addStringProperty("username");//用户姓名
+        msgHistory.addStringProperty("pwd");//手势密码
+
     }
 }
