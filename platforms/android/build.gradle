@@ -156,14 +156,14 @@ task cdvPrintProps << {
 }
 
 android {
-//  signingConfigs {
-//    release {
-//      keyAlias 'IMKey'
-//      keyPassword '123456'
-//      storeFile file('E:/jishitong/IM/platforms/android/keystore/IM.jks')
-//      storePassword '123456'
-//    }
-//  }
+  signingConfigs {
+    release {
+      keyAlias 'IMKey'
+      keyPassword '123456'
+      storeFile file('E:/jishitong/IM/platforms/android/keystore/IM.jks')
+      storePassword '123456'
+    }
+  }
   packagingOptions {
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'
@@ -276,14 +276,14 @@ android {
   if (cdvDebugSigningPropertiesFile) {
     addSigningProps(cdvDebugSigningPropertiesFile, signingConfigs.debug)
   }
-//  buildTypes {
-//    debug {
-//      signingConfig signingConfigs.release
-//    }
-//    release {
-//      signingConfig signingConfigs.release
-//    }
-//  }
+  buildTypes {
+    debug {
+      signingConfig signingConfigs.release
+    }
+    release {
+      signingConfig signingConfigs.release
+    }
+  }
 }
 
 dependencies {
@@ -610,7 +610,7 @@ if (buildWithTinker()) {
             /**
              * patch version via packageConfig
              */
-            configField("patchVersion", "1.1.0120.1-2.0")
+            configField("patchVersion", "1.1.0330.1-1  .0")
         }
         //or you can add config filed outside, or get meta value from old apk
         //project.tinkerPatch.packageConfig.configField("test1", project.tinkerPatch.packageConfig.getMetaDataFromOldApk("Test"))

@@ -8,14 +8,15 @@
 
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="41dp"
-    android:background="#F8F8F8">
+    android:layout_height="47dp"
+    android:background="@drawable/top">
 
     <ImageView
       android:id="@+id/tv_back"
-      android:src="@drawable/backmain"
-      android:layout_width="48dp"
-      android:layout_height="41dp"
+      android:src="@drawable/backbutton"
+      android:layout_marginLeft="5dp"
+      android:layout_width="20dp"
+      android:layout_height="20dp"
       android:layout_centerVertical="true"
       />
 
@@ -24,9 +25,9 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerInParent="true"
-      android:textColor="#000000"
-      android:textSize="17dp"
-      android:text="文件查看" />
+      android:textColor="#ffffff"
+      android:textSize="16dp"
+      android:text="图片查看" />
 
   </RelativeLayout>
 

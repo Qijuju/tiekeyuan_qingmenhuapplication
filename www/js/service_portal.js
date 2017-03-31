@@ -89,7 +89,7 @@ angular.module('portal.services', [])
           method: 'get',
           url: "https://cars.crbim.top/apiman-gateway/r93535.com/getJSDeptsByUserId/2.0/" + userID + "?apikey=4a81ca6e-9683-4d47-b80d-c8f1c7ca11d3"
         }).success(function (data, status) {
-          // alert(status);
+          companyName="";
           //首先筛选二级公司 没有二级公司使用客专公司或者路局
           for (var i = 0; i < data.length; i++) {
             if (data[i].grade == 150) {
@@ -97,15 +97,17 @@ angular.module('portal.services', [])
               break;
             } else if (data[i].grade == 130 || data[i].grade == 60) {
               companyName = data[i].name;
+
             }
           }
+
           $rootScope.$broadcast('companyName.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
-          console.log(status);
         });
       },
       getName: function () {
+
         return companyName;
       },
 

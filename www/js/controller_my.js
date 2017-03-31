@@ -845,7 +845,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }, function (err) {
 
     });
-    
+
     /**
      * 切换账号（切换为兼职账号或主账号，本次切换只对当前登录有效，一旦重新登录，重新登录主账号）
      * @param userID
@@ -1265,7 +1265,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
       $scope.mymypersonname = msg.userName
-       alert($scope.UserID)
+       // alert($scope.UserID)
       $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
         password=data[0].pwd
       },function (err) {
