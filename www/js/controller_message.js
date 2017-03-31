@@ -1824,15 +1824,15 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
-        $scope.$apply(function () {
-          if ($scope.isshowless === 'back') {
-            $scope.isShow='false';
-            $scope.isshowless='false';
+        if ($scope.isshowless === 'back') {
+          $scope.$apply(function () {
+            $scope.isShow = 'false';
+            $scope.isshowless = 'false';
             $scope.recordTime = 0;
             $scope.rate = 0;
-            return;
-          }
-        });
+          });
+          return;
+        }
 
         if (succ.duration  <1000){
           $scope.isshowless='true';
@@ -3896,15 +3896,16 @@ angular.module('message.controllers', [])
       //当录取的时间大于1s小于60s时，给一个标志符
       // $scope.isyuyinshow="true";
       $mqtt.stopRecording(function (succ) {
-        $scope.$apply(function () {
-          if ($scope.isGroupshowless === 'back'){
-            $scope.isGroupShow='false';
-            $scope.isGroupshowless='true';
+        if ($scope.isGroupshowless === 'back') {
+          $scope.$apply(function () {
+            $scope.isGroupShow = 'false';
+            $scope.isGroupshowless = 'true';
             $scope.grouprecordTime = 0;
             $scope.grouprate = 0;
-            return;
-          }
-        });
+
+          });
+          return;
+        }
 
         if (succ.duration  <1000){
           $scope.isGroupshowless='true';

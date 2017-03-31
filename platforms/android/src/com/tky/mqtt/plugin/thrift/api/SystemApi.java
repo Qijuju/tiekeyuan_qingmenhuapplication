@@ -40,8 +40,8 @@ import im.server.attention.IMAttention;
  */
 public class SystemApi {
 
-//     public static final String url = "immobile.r93535.com";//生产环境
-      public static final String url = "61.237.239.152";//测试环境
+     public static final String url = "immobile.r93535.com";//生产环境
+//      public static final String url = "61.237.239.152";//测试环境
 
     /**
      * 获取一个AsyncClient对象
