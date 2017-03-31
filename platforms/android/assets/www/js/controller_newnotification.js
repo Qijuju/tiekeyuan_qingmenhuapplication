@@ -268,64 +268,65 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.$on('newnotify.update', function (event) {
-      $scope.$apply(function () {
+      /*$scope.$apply(function () {
 
+      })*/
+      $greendao.queryByToday(function (msg) {
+        $scope.todayTime = msg;
+        $greendao.queryByWeek(function (msg) {
+          $scope.weektimeday = msg;
+          $greendao.queryByYesterday(function (msg) {
+            $scope.otherDay = msg;
 
-
-        $greendao.queryByToday(function (msg) {
-
-          $scope.todayTime = msg;
-          $greendao.queryByWeek(function (msg) {
-            $scope.weektimeday = msg;
-            $greendao.queryByYesterday(function (msg) {
-              $scope.otherDay = msg;
-
-            }, function (err) {
-
-            })
+            $rootScope.$broadcast('second.notify');
 
           }, function (err) {
-          });
-          $rootScope.$broadcast('second.notify');
-        }, function (err) {
 
-        });
-        //数据库中查找全部的消息
-        $greendao.queryByConditions("SystemMsgService", function (msg) {
-
-          $scope.allin = msg;
+          })
 
         }, function (err) {
-
         });
 
+      }, function (err) {
 
-        //应用列表的展示
-        $greendao.queryNotifyCount("1", function (msg) {
-          $scope.gongwen = msg.length;
+      });
+      //数据库中查找全部的消息
+      $greendao.queryByConditions("SystemMsgService", function (msg) {
 
-        }, function (err) {
+        $scope.allin = msg;
 
-        })
-        $greendao.queryNotifyCount("15", function (msg) {
-          $scope.banhezhan = msg.length;
+      }, function (err) {
 
-        }, function (err) {
+      });
 
-        })
-        $greendao.queryNotifyCount("16", function (msg) {
-          $scope.shiyanshi = msg.length;
 
-        }, function (err) {
+      //应用列表的展示
+      $greendao.queryNotifyCount("1", function (msg) {
+        $scope.gongwen = msg.length;
 
-        })
-        $greendao.queryNotifyCount("18", function (msg) {
-          $scope.weiyan = msg.length;
+      }, function (err) {
 
-        }, function (err) {
-
-        })
       })
+      $greendao.queryNotifyCount("15", function (msg) {
+        $scope.banhezhan = msg.length;
+
+      }, function (err) {
+
+      })
+      $greendao.queryNotifyCount("16", function (msg) {
+        $scope.shiyanshi = msg.length;
+
+      }, function (err) {
+
+      })
+      $greendao.queryNotifyCount("18", function (msg) {
+        $scope.weiyan = msg.length;
+
+      }, function (err) {
+
+      })
+
+
     });
 
 
@@ -374,7 +375,6 @@ angular.module('newnotification.controllers', [])
 
             });
 
-            $rootScope.$broadcast('second.notify');
           }, function (err) {
 
           });
@@ -403,13 +403,12 @@ angular.module('newnotification.controllers', [])
           }, function (err) {
 
           })
+          $rootScope.$broadcast('second.notify');
 
         }, function (err) {
 
         })
       });
-
-
     }
 
     //公有方法：点击确认以后更改数据库/数组的item

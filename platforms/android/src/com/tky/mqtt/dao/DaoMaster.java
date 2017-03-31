@@ -30,7 +30,7 @@ import com.tky.mqtt.dao.GesturePwdDao;
  * Master of DAO (schema version 1): knows all DAOs.
 */
 public class DaoMaster extends AbstractDaoMaster {
-    public static final int SCHEMA_VERSION = 2;
+    public static final int SCHEMA_VERSION = 10;
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
