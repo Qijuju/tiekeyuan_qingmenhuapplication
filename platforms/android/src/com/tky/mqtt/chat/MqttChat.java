@@ -68,9 +68,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import im.model.RST;
@@ -523,6 +525,10 @@ public class MqttChat extends CordovaPlugin {
   public void switchAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
       final String userID = args.getString(0);
+      if(getUserID().equals(userID)) {
+        setResult("-1", PluginResult.Status.OK, callbackContext);
+        return;
+      }
       try {
         SystemApi.getUser(getUserID(), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
           @Override
@@ -638,22 +644,41 @@ public class MqttChat extends CordovaPlugin {
       map.put("userID", user.getUserID());
       map.put("userName", user.getUserName());
       map.put("deptID", user.getDeptID());
-      Map<String, String> subMap = new HashMap<String, String>();
-      JSONObject userInfo = getUserInfo();//.getJSONObject("subUserInfo");
-      if (!user.getUserID().equals(userInfo.getString("userID"))) {
-        subMap.put(userInfo.getString("userID"), userInfo.getString("deptID"));
-      }
-      if (userInfo.has("subUserInfo")) {
-        Iterator<String> keys = userInfo.getJSONObject("subUserInfo").keys();
-        while (keys != null && keys.hasNext()) {
-          String key = keys.next();
-          if (!user.getUserID().equals(key)) {
-            subMap.put(key, userInfo.getJSONObject("subUserInfo").getString(key));
+      map.put("deptName", user.getDeptName());
+      List<Map<String, String>> viceUserList = new ArrayList<Map<String, String>>();
+      JSONObject userInfo = getUserInfo();
+
+      Map<String, String> selfSubMap = new HashMap<String, String>();
+      selfSubMap.put("deptId", userInfo.has("deptId") ? userInfo.getString("deptId") : "");
+      selfSubMap.put("deptName", userInfo.has("deptName") ? userInfo.getString("deptName") : "");
+      selfSubMap.put("rootName", userInfo.has("rootName") ? userInfo.getString("rootName") : "");
+      selfSubMap.put("userID", userInfo.has("userID") ? userInfo.getString("userID") : "");
+      selfSubMap.put("userName", userInfo.has("userName") ? userInfo.getString("userName") : "");
+      viceUserList.add(selfSubMap);
+
+
+      if (userInfo.has("viceUser")) {
+        JSONArray viceUserArr = userInfo.getJSONArray("viceUser");
+        for (int i = 0; i < viceUserArr.length(); i++) {
+          JSONObject viceUser = viceUserArr.getJSONObject(i);
+          if (!viceUser.getString("userID").equals(user.getUserID())) {
+            Map<String, String> subMap = new HashMap<String, String>();
+            subMap.put("deptId", viceUser.has("deptId") ? viceUser.getString("deptId") : "");
+            subMap.put("deptName", viceUser.has("deptName") ? viceUser.getString("deptName") : "");
+            subMap.put("rootName", viceUser.has("rootName") ? viceUser.getString("rootName") : "");
+            subMap.put("userID", viceUser.has("userID") ? viceUser.getString("userID") : "");
+            subMap.put("userName", viceUser.has("userName") ? viceUser.getString("userName") : "");
+            viceUserList.add(subMap);
+          } else {
+            if (viceUser.has("rootName")) {
+              map.put("rootName", viceUser.getString("rootName"));
+            } else {
+              map.put("rootName", "名称为空");
+            }
           }
         }
       }
-      map.put("subUserInfo", subMap);
-//      JSONObject obj = new JSONObject(map);
+      map.put("viceUser", viceUserList);
       Gson gson = new Gson();
       String loginJson = gson.toJson(map);
       SPUtils.save("login_info", loginJson);
@@ -1258,9 +1283,9 @@ public class MqttChat extends CordovaPlugin {
   public void hasParttimeAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
       JSONObject userInfo = getUserInfo();
-      if (userInfo != null && userInfo.has("subUserInfo")) {
-        JSONObject subUserInfo = userInfo.getJSONObject("subUserInfo");
-        boolean flag = subUserInfo.keys().hasNext();
+      if (userInfo != null && userInfo.has("viceUser")) {
+        JSONArray subUserInfo = userInfo.getJSONArray("viceUser");
+        boolean flag = subUserInfo.length() > 0;
         setResult(flag, flag ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
       } else {
         setResult(false, PluginResult.Status.ERROR, callbackContext);
