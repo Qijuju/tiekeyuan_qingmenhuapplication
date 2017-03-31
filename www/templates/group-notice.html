@@ -9,7 +9,7 @@
         <button class="button  button-icon icon common-color-white" ng-click="createNotice()" ng-if=" islook== 0 && isMygroup=='true' " >
           创建
         </button>
-        <button class="button  button-icon icon common-color-white" ng-click="clearNotice()"  ng-if=" islook== 1" >
+        <button class="button  button-icon icon common-color-white" ng-click="clearNotice()"  ng-if=" islook== 1 && isMygroup=='true'" >
           清空
         </button>
     </ion-nav-buttons>
@@ -23,7 +23,7 @@
 
 
   </ion-content>
-  <ion-footer-bar ng-if="islook==1" >
+  <ion-footer-bar ng-if="islook==1 && isMygroup=='true'" >
     <div style="width: 100%;"  ng-click="editnotice()">
       <button class="button button-positive"  style="width: 100%">
         重新编辑

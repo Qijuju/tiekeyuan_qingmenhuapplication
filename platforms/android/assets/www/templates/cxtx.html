@@ -1,0 +1,21 @@
+<ion-view view-title={{appName}}>
+
+  <ion-nav-bar align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-back" ng-click="goBack()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content scroll="true" overflow-scroll="true">
+    <!-- src='{{appurl}}'-->
+    <iframe ng-if="true" src='{{appurl}}'
+            class="width-100 height-100"
+            style="min-width: 100%; min-height: 100%;">
+    </iframe>
+    <div ng-if="false">fddfdfdf</div>
+  </ion-content>
+
+</ion-view>
+

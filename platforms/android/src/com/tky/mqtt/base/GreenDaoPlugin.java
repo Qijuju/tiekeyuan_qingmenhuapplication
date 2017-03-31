@@ -1,11 +1,10 @@
 package com.tky.mqtt.base;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.FilePicture;
+import com.tky.mqtt.dao.GesturePwd;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
@@ -19,11 +18,11 @@ import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.dao.TopContacts;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.FilePictureService;
+import com.tky.mqtt.services.GesturePwdService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
@@ -268,6 +267,12 @@ public class GreenDaoPlugin extends CordovaPlugin {
             otherpichead.setId(jsonobj.getString("id"));
             otherpichead.setPicurl(jsonobj.getString("picurl"));
             obj=otherpichead;
+        }else if("GesturePwdService".equals(services)){
+            GesturePwd gesturePwd=new GesturePwd();
+            gesturePwd.setId(jsonobj.getString("id"));
+            gesturePwd.setUsername(jsonobj.getString("username"));
+            gesturePwd.setPwd(jsonobj.getString("pwd"));
+            obj=gesturePwd;
         }
         return obj;
     }
@@ -363,6 +368,8 @@ public class GreenDaoPlugin extends CordovaPlugin {
             baseInterface= SlowNotifyListService.getInstance(UIUtils.getContext());
         }else if("OtherHeadPicService".equals(services)){
             baseInterface = OtherHeadPicService.getInstance(UIUtils.getContext());
+        }else if("GesturePwdService".equals(services)){
+            baseInterface = GesturePwdService.getInstance(UIUtils.getContext());
         }
         return baseInterface;
     }
