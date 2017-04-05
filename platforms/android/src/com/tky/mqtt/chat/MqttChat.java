@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
@@ -281,6 +282,7 @@ public class MqttChat extends CordovaPlugin {
                     qoss[i] = 2;
                 }*/
       }
+      MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
       MqttTopicRW.writeTopicsAndQos(topics, qoss);
       cordova.getActivity().runOnUiThread(new Runnable() {
         @Override
@@ -691,8 +693,12 @@ public class MqttChat extends CordovaPlugin {
       chatListService.deleteAllData();
       LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
       localPhoneService.deleteAllData();
+      //允许启动MQTT之后重新订阅TOPIC
+      MqttReceiver.hasRegister = false;
       //断开MQTT，启动MQTT交给MQTT去处理
       MqttOper.closeMqttConnection();
+      //销毁MqttService
+      UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
       setResult("success", PluginResult.Status.OK, callbackContext);
     } catch (JSONException e) {
       setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
