@@ -1,6 +1,5 @@
 package com.tky.mqtt.paho;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -43,6 +42,8 @@ public class MqttConnection {
   private ConnectionType connectionType = ConnectionType.MODE_NONE;
   private MqttService service;
 
+
+  //链接mqtt
   public void connect(Context context, MqttService service) throws MqttException {
     if (!MqttRobot.isStarted()) {
       return;

@@ -107,7 +107,6 @@ angular.module('portal.services', [])
         });
       },
       getName: function () {
-
         return companyName;
       },
 
