@@ -832,15 +832,25 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   .controller('switchAccountCtrl', function ($scope, $state, $mqtt,$ionicLoading,$ToastUtils, $api) {
 
-    $scope.accountItems = new Array();
-    $mqtt.getUserInfo(function (succuess) {
-      $scope.accountItems[0] = succuess.userID;
+    $scope.accountItems = [];
 
-      var subUserInfo = succuess.subUserInfo;
+    $mqtt.getUserInfo(function (succuess) {
+      // alert(succuess.userID + "----" + succuess.deptName + "----" + succuess.rootName);
+      $scope.accountItems[0] = {
+        userID:succuess.userID,
+        deptName:succuess.deptName,
+        rootName:succuess.rootName
+      };
+      var subUserInfo = succuess.viceUser;
       // alert(JSON.stringify(succuess));
       var count = 1;
-      for (var key in subUserInfo) {
-        $scope.accountItems[count++] = key;
+      for (var i = 0; i < subUserInfo.length; i++) {
+        var key = subUserInfo[i];
+        $scope.accountItems[count++] = {
+          userID:key.userID,
+          deptName:key.deptName,
+          rootName:key.rootName
+        };
       }
     }, function (err) {
 
@@ -860,6 +870,11 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
       //切换账号开始
       $mqtt.switchAccount(userID, function (msg) {
+        if (msg === "-1") {
+          $ToastUtils.showToast("无需切换当前账号！", null, null)
+          $ionicLoading.hide();
+          return;
+        }
         //切换账号成功，启动MQTT
         $mqtt.getMqtt().getMyTopic(function (msg) {
           $api.getAllGroupIds(function (groups) {

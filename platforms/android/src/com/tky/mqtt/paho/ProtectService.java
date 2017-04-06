@@ -25,10 +25,9 @@ public class ProtectService extends Service {
     @Override
     public void onDestroy() {
         //只要不是手动退出应用程序，就一直启动MqttService
-        if(MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL){
+        /*if(MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL){
             startService(new Intent(getBaseContext(), MqttService.class));
-        }
-        startService(new Intent(getBaseContext(), ProtectService.class));
+        }*/
         super.onDestroy();
     }
 }

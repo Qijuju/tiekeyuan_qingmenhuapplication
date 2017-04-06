@@ -45,7 +45,7 @@ public class MqttConnection {
 
   //链接mqtt
   public void connect(Context context, MqttService service) throws MqttException {
-    if (!MqttRobot.isStarted()) {
+    if (!MqttRobot.isStarted() || MqttRobot.getConnectionType() == ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
       return;
     }
     this.context = context;
