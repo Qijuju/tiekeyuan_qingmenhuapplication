@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.Contacts;
 import android.provider.MediaStore;
 
 import com.google.gson.Gson;
@@ -34,6 +33,7 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
@@ -158,7 +158,7 @@ public class ThriftApiClient extends CordovaPlugin {
               if (result == null) {
                 setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
               } else {
-                if ("100".equals(result.getResultCode())) {
+                if ("100".equals(result.getResultCode()) || "105".equals(result.getResultCode())) {
                   //登录成功 标示
                   MqttRobot.setIsStarted(true);
                   Gson gson = new Gson();
@@ -174,11 +174,12 @@ public class ThriftApiClient extends CordovaPlugin {
                     ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                     TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
                     GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
-//                                      SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+                    SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                     topContactsService.deleteAllData();
                     messagesService.deleteAllData();
                     chatListService.deleteAllData();
                     groupChatsService.deleteAllData();
+                    systemMsgService.deleteAllData();
 //                                      System.out.println("删除本地缓存成功");
                   }
 
@@ -190,9 +191,9 @@ public class ThriftApiClient extends CordovaPlugin {
                   setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
                 } else if ("104".equals(result.getResultCode())) {
                   setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
-                } else if ("105".equals(result.getResultCode())) {
+                } /*else if ("105".equals(result.getResultCode())) {
                   setResult("该用户已在其他手机终端登录！", PluginResult.Status.ERROR, callbackContext);
-                } else {
+                }*/ else {
                   setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                 }
               }

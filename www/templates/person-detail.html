@@ -23,11 +23,17 @@
 
       </div>
       <div style="position: absolute;top: 185px;"  class="row">
-        <div class="col" align="center" ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)">
-          <a >
+        <div class="col" align="center" >
+          <a ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)" ng-show="persondsfs.IsActive==true">
             <ul>
               <li><img src="img/im_new_message.png" width="30" height="30"></li>
               <li style="color: black;">发消息</li>
+            </ul>
+          </a>
+          <a ng-show="persondsfs.IsActive==false" ng-click="showalert()">
+            <ul>
+              <li><img src="img/im_gray_message.png" width="30" height="30"></li>
+              <li style="color: #A3A3A3;">发消息</li>
             </ul>
           </a>
         </div>

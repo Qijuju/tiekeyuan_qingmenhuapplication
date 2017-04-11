@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
@@ -68,9 +69,10 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import im.model.RST;
@@ -279,11 +281,13 @@ public class MqttChat extends CordovaPlugin {
                     qoss[i] = 2;
                 }*/
       }
+      MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
       MqttTopicRW.writeTopicsAndQos(topics, qoss);
       cordova.getActivity().runOnUiThread(new Runnable() {
         @Override
         public void run() {
           //链接mqtt
+          cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
           cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
           hasLogin = true;
           MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
@@ -478,14 +482,14 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
-    MqttRobot.setIsStarted(false);
+
     if (!NetUtils.isConnect(cordova.getActivity())) {
       setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
       return;
     }
     hasLogin = false;
-    MqttOper.closeMqttConnection();
-    UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+
+
     try {
       SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
         @Override
@@ -493,7 +497,15 @@ public class MqttChat extends CordovaPlugin {
           try {
             RST result = cancelUser_call.getResult();
             if (result.result) {
+              MqttOper.closeMqttConnection();
+              try {
+                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+              } catch (Exception e) {
+
+              }
               MqttNotification.cancelAll();
+              MqttRobot.setIsStarted(false);
+
               setResult("success", PluginResult.Status.OK, callbackContext);
             } else {
               setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
@@ -517,12 +529,17 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 切换账号
+   *
    * @param args
    * @param callbackContext
-     */
+   */
   public void switchAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
       final String userID = args.getString(0);
+      if (getUserID().equals(userID)) {
+        setResult("-1", PluginResult.Status.OK, callbackContext);
+        return;
+      }
       try {
         SystemApi.getUser(getUserID(), userID, new AsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
           @Override
@@ -624,9 +641,10 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 激活的账号才可以走该方法（为减少代码量，精简代码，故抽取出该段代码
+   *
    * @param user
    * @param callbackContext
-     */
+   */
   private void swithAccount(UserDetail user, CallbackContext callbackContext) {
     try {
       //因切换账号，重新整理登录数据
@@ -638,22 +656,41 @@ public class MqttChat extends CordovaPlugin {
       map.put("userID", user.getUserID());
       map.put("userName", user.getUserName());
       map.put("deptID", user.getDeptID());
-      Map<String, String> subMap = new HashMap<String, String>();
-      JSONObject userInfo = getUserInfo();//.getJSONObject("subUserInfo");
-      if (!user.getUserID().equals(userInfo.getString("userID"))) {
-        subMap.put(userInfo.getString("userID"), userInfo.getString("deptID"));
-      }
-      if (userInfo.has("subUserInfo")) {
-        Iterator<String> keys = userInfo.getJSONObject("subUserInfo").keys();
-        while (keys != null && keys.hasNext()) {
-          String key = keys.next();
-          if (!user.getUserID().equals(key)) {
-            subMap.put(key, userInfo.getJSONObject("subUserInfo").getString(key));
+      map.put("deptName", user.getDeptName());
+      List<Map<String, String>> viceUserList = new ArrayList<Map<String, String>>();
+      JSONObject userInfo = getUserInfo();
+
+      Map<String, String> selfSubMap = new HashMap<String, String>();
+      selfSubMap.put("deptId", userInfo.has("deptId") ? userInfo.getString("deptId") : "");
+      selfSubMap.put("deptName", userInfo.has("deptName") ? userInfo.getString("deptName") : "");
+      selfSubMap.put("rootName", userInfo.has("rootName") ? userInfo.getString("rootName") : "");
+      selfSubMap.put("userID", userInfo.has("userID") ? userInfo.getString("userID") : "");
+      selfSubMap.put("userName", userInfo.has("userName") ? userInfo.getString("userName") : "");
+      viceUserList.add(selfSubMap);
+
+
+      if (userInfo.has("viceUser")) {
+        JSONArray viceUserArr = userInfo.getJSONArray("viceUser");
+        for (int i = 0; i < viceUserArr.length(); i++) {
+          JSONObject viceUser = viceUserArr.getJSONObject(i);
+          if (!viceUser.getString("userID").equals(user.getUserID())) {
+            Map<String, String> subMap = new HashMap<String, String>();
+            subMap.put("deptId", viceUser.has("deptId") ? viceUser.getString("deptId") : "");
+            subMap.put("deptName", viceUser.has("deptName") ? viceUser.getString("deptName") : "");
+            subMap.put("rootName", viceUser.has("rootName") ? viceUser.getString("rootName") : "");
+            subMap.put("userID", viceUser.has("userID") ? viceUser.getString("userID") : "");
+            subMap.put("userName", viceUser.has("userName") ? viceUser.getString("userName") : "");
+            viceUserList.add(subMap);
+          } else {
+            if (viceUser.has("rootName")) {
+              map.put("rootName", viceUser.getString("rootName"));
+            } else {
+              map.put("rootName", "名称为空");
+            }
           }
         }
       }
-      map.put("subUserInfo", subMap);
-//      JSONObject obj = new JSONObject(map);
+      map.put("viceUser", viceUserList);
       Gson gson = new Gson();
       String loginJson = gson.toJson(map);
       SPUtils.save("login_info", loginJson);
@@ -666,8 +703,12 @@ public class MqttChat extends CordovaPlugin {
       chatListService.deleteAllData();
       LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
       localPhoneService.deleteAllData();
+      //允许启动MQTT之后重新订阅TOPIC
+      MqttReceiver.hasRegister = false;
       //断开MQTT，启动MQTT交给MQTT去处理
       MqttOper.closeMqttConnection();
+      //销毁MqttService
+      UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
       setResult("success", PluginResult.Status.OK, callbackContext);
     } catch (JSONException e) {
       setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
@@ -682,9 +723,10 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setExitStartedStatus(final JSONArray args, final CallbackContext callbackContext) {
-    MqttOper.closeMqttConnection();
-    UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
-    MqttRobot.setIsStarted(false);
+//    MqttOper.closeMqttConnection();
+//    UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
+//    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+    MqttRobot.setIsStarted(true);
   }
 
   /**
@@ -1243,24 +1285,26 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 获取当前网络状态
+   *
    * @param args
    * @param callbackContext
-     */
+   */
   public void getNetStatus(final JSONArray args, final CallbackContext callbackContext) {
     setResult(NetUtils.isConnect(cordova.getActivity()), PluginResult.Status.OK, callbackContext);
   }
 
   /**
    * 判断是否有兼职账号
+   *
    * @param args
    * @param callbackContext
    */
   public void hasParttimeAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
       JSONObject userInfo = getUserInfo();
-      if (userInfo != null && userInfo.has("subUserInfo")) {
-        JSONObject subUserInfo = userInfo.getJSONObject("subUserInfo");
-        boolean flag = subUserInfo.keys().hasNext();
+      if (userInfo != null && userInfo.has("viceUser")) {
+        JSONArray subUserInfo = userInfo.getJSONArray("viceUser");
+        boolean flag = subUserInfo.length() > 0;
         setResult(flag, flag ? PluginResult.Status.OK : PluginResult.Status.ERROR, callbackContext);
       } else {
         setResult(false, PluginResult.Status.ERROR, callbackContext);

@@ -4252,7 +4252,6 @@ angular.module('message.controllers', [])
     }, function (msg) {
     });
 
-
     //登录成功后第一件事：检测升级
     $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
     $scope.ID=$stateParams.id;

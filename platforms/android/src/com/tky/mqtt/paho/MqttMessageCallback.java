@@ -60,18 +60,25 @@ public class MqttMessageCallback implements MqttCallback {
    */
   @Override
   public void connectionLost(Throwable arg0) {
-    if (MqttRobot.getScreenStatus()) {
-      MqttOper.tellMqttStatus(false);
-    } else {
-      MqttRobot.setScreenStatus(true);
-    }
+
+
+//    ToastUtil.showSafeToast("Mqtt断开链接了");
+//    MqttOper.restartService();
+
+//    if (MqttRobot.getScreenStatus()) {
+//      MqttOper.tellMqttStatus(false);
+//    } else {
+//      MqttRobot.setScreenStatus(true);
+//    }
     MqttRobot.setMqttStatus(MqttStatus.CLOSE);
-    if (NetUtils.isConnect(context) && MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
+
+    if (NetUtils.isConnect(context)&& MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL ) {
       SPUtils.save("reconnect", true);
       MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
       /*try {
         mqttAsyncClient.reconnect();
       } catch (MqttException e) {
+
         e.printStackTrace();
       }*/
       MqttOper.restartService();
@@ -85,6 +92,7 @@ public class MqttMessageCallback implements MqttCallback {
   @Override
   public void deliveryComplete(IMqttDeliveryToken arg0) {
   }
+
 
   /**
    * 收到消息的方法

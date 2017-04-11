@@ -15,7 +15,6 @@ import android.support.v4.app.NotificationCompat;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
-import com.tky.mqtt.paho.utils.MqttOper;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -113,10 +112,12 @@ public class MqttService extends Service {
         }
 //        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, fristtume, 20*60*1000, sender);
         return super.onStartCommand(intent, Service.START_FLAG_REDELIVERY, startId);
+
     }
 
     @Override
     public void onDestroy() {
+//      ToastUtil.showSafeToast("destroyService");
         //释放CPU锁
         Intent alarmReleaseLockIntent = new Intent();
         alarmReleaseLockIntent.setAction("release_alarm_lock.action");
@@ -128,7 +129,8 @@ public class MqttService extends Service {
         stopForeground(true);
         //要死时把自己救回来
         if (mqttConnection != null && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
-            startService(new Intent(getBaseContext(), MqttService.class));
+//          ToastUtil.showSafeToast("destroyService");
+//            startService(new Intent(getBaseContext(), MqttService.class));
         } else {
             //MqttOper.freeMqtt();
         }

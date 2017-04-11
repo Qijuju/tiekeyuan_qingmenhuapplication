@@ -349,11 +349,14 @@ angular.module('login.controllers', [])
         });
       }
     });
+
+    // 倒计时点击跳过
     $scope.startgogogo = function () {
       //判断是否点击过倒计时，如果已经点击过，则不重复点击
       if (isClickGo) {
         return;
       }
+      alert("dianjile");
       //防止重复点击
       isClickGo = true;
       $interval.cancel(timer);

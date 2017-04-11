@@ -32,11 +32,6 @@ angular.module('portal.controllers', [])
 
       });
 
-
-
-
-
-
       $scope.$on('error.update', function () {
         $ionicLoading.hide();
         $ToastUtils.showToast("网络错误");

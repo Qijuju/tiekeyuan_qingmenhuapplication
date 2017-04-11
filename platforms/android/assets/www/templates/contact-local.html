@@ -297,13 +297,13 @@
       <ion-item id="contact-S" class="rj-contacts-item" ng-show="contactsS.length>0">
         <div class="rj-contacts-index-bar">S</div>
         <ion-list class="rj-list">
-          <ion-item class="rj-item" ng-repeat="contact in contactsS" ng-click="tanchuang(contact.phonenumber,contact.name)">
+          <ion-item class="rj-item" ng-repeat="contact in contactsS" >
             <div class="rj-contacts-pic">
               <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
               <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
             </div>
-            <h2 >{{contact.name}}</h2>
-            <p >{{contact.phonenumber}}</p>
+            <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
+            <p ng-click="tanchuang(contact.phonenumber,contact.name)" >{{contact.phonenumber}}</p>
           </ion-item>
         </ion-list>
       </ion-item>
