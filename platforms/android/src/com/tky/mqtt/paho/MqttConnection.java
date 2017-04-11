@@ -98,6 +98,7 @@ public class MqttConnection {
 
     @Override
     public void onFailure(IMqttToken arg0, Throwable arg1) {
+      ToastUtil.showSafeToast("error");
       UIUtils.runInMainThread(new Runnable() {
         @Override
         public void run() {
@@ -120,6 +121,7 @@ public class MqttConnection {
 
     @Override
     public void onSuccess(IMqttToken arg0) {
+      ToastUtil.showSafeToast("onSuccess~~~");
       UIUtils.runInMainThread(new Runnable() {
         @Override
         public void run() {

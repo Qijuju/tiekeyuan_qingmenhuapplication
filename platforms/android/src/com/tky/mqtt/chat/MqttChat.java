@@ -635,7 +635,7 @@ public class MqttChat extends CordovaPlugin {
    * @param user
    * @param callbackContext
      */
-  private void swithAccount(UserDetail user, CallbackContext callbackContext) {
+  private void swithAccount(UserDetail user, final CallbackContext callbackContext) {
     try {
       //因切换账号，重新整理登录数据
       Map<String, Object> map = new HashMap<String, Object>();
@@ -697,9 +697,25 @@ public class MqttChat extends CordovaPlugin {
       MqttReceiver.hasRegister = false;
       //断开MQTT，启动MQTT交给MQTT去处理
       MqttOper.closeMqttConnection();
-      //销毁MqttService
-      UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-      setResult("success", PluginResult.Status.OK, callbackContext);
+      //重连检查
+      SwitchLocal.reloginCheck(new SwitchLocal.IReloginCheck() {
+        @Override
+        public void onCheck(boolean result) {
+          if (result) {
+            try {
+              //销毁MqttService
+              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+            } catch (Exception e) {
+            } finally {
+              setResult("success", PluginResult.Status.OK, callbackContext);
+            }
+          } else {
+            MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+            //退出登录
+            SwitchLocal.exitLogin(cordova.getActivity());
+          }
+        }
+      });
     } catch (JSONException e) {
       setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();

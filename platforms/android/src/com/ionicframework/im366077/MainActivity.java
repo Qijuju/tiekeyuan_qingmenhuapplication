@@ -42,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tencent.tinker.lib.tinker.Tinker;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
+import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
@@ -91,6 +92,12 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    try {
+      stopService(new Intent(MainActivity.this, MqttService.class));
+    } catch (Exception e) {
+    } finally {
+      startService(new Intent(MainActivity.this, MqttService.class));
+    }
     startService(new Intent(this, ProtectService.class));
     // Set by <content src="index.html" /> in config.xml
     inithotfix();
@@ -109,7 +116,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     //注册距离感应器
     mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-    MqttRobot.setIsStarted(false);
+//    MqttRobot.setIsStarted(false);
 
     //注册屏幕开关广播
     receiver = new UserPresentReceiver();

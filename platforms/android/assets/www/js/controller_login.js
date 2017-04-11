@@ -102,7 +102,7 @@ angular.module('login.controllers', [])
       $api.login($scope.name, $scope.password, function (message) {
 
         //alert(message.toJSONString());
-        if (message.isActive === false) {
+        if (message.isActive === false || message.resultCode === '105') {
           $api.activeUser(message.userID, function (message) {
             loginM();
           }, function (message) {
@@ -349,11 +349,14 @@ angular.module('login.controllers', [])
         });
       }
     });
+
+    // 倒计时点击跳过
     $scope.startgogogo = function () {
       //判断是否点击过倒计时，如果已经点击过，则不重复点击
       if (isClickGo) {
         return;
       }
+      // alert("dianjile");
       //防止重复点击
       isClickGo = true;
       $interval.cancel(timer);
@@ -376,7 +379,7 @@ angular.module('login.controllers', [])
             maxWidth: 100,
             showDelay: 0
           });
-          if (message.isActive === false) {
+          if (message.isActive === false || message.resultCode === '105') {
             $api.activeUser(message.userID, function (message) {
               loginM();
             }, function (message) {
@@ -574,7 +577,7 @@ angular.module('login.controllers', [])
             $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
               $mqtt.save('pwdgesture', $scope.pwdgesturea);
               $mqtt.save('namegesture', $scope.namegesturea);
-              if (message.isActive === false) {
+              if (message.isActive === false || message.resultCode === '105') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
@@ -645,7 +648,7 @@ angular.module('login.controllers', [])
           $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
             $mqtt.save('pwdgesture', $scope.pwdgesturea);
             $mqtt.save('namegesture', $scope.namegesturea);
-            if (message.isActive === false) {
+            if (message.isActive === false || message.resultCode === '105') {
               $api.activeUser(message.userID, function (message) {
                 loginM();
                 $ionicLoading.hide();

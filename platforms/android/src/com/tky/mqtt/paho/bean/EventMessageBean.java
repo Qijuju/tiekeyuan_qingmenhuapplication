@@ -32,6 +32,11 @@ public class EventMessageBean extends MessageTypeBean {
      */
     private String userName;
 
+    /**
+     * 手机设备码
+     */
+    private String MepID;
+
     public String getNotifyType() {
         return NotifyType;
     }
@@ -78,5 +83,13 @@ public class EventMessageBean extends MessageTypeBean {
 
     public void setGroupName(String groupName) {
         GroupName = groupName;
+    }
+
+    public void setMepID(String mepID) {
+        MepID = mepID;
+    }
+
+    public String getMepID() {
+        return MepID;
     }
 }
