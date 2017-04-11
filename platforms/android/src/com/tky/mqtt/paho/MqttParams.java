@@ -29,6 +29,7 @@ public class MqttParams {
 		options.setPassword(getPassword().toCharArray());
 		options.setConnectionTimeout(getConnectionTimeout());
 		options.setKeepAliveInterval(getKeepAliveInterval());
+    options.setWill(SwitchLocal.getATopic(MType.U,getUserID()),"close".getBytes(),2,true);
 	}
 
 	/**

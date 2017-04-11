@@ -20,7 +20,6 @@
 package com.ionicframework.im366077;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -31,7 +30,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -49,7 +47,6 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.PatchBean;
 import com.tky.mqtt.paho.constant.ResumeParams;
-import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.AnimationUtils;
@@ -119,11 +116,11 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 //    MqttRobot.setIsStarted(false);
 
     //注册屏幕开关广播
-    receiver = new UserPresentReceiver();
-    IntentFilter filter = new IntentFilter();
-    filter.addAction(Intent.ACTION_SCREEN_ON);
-    filter.addAction(Intent.ACTION_SCREEN_OFF);
-    registerReceiver(receiver, filter);
+//    receiver = new UserPresentReceiver();
+//    IntentFilter filter = new IntentFilter();
+//    filter.addAction(Intent.ACTION_SCREEN_ON);
+//    filter.addAction(Intent.ACTION_SCREEN_OFF);
+//    registerReceiver(receiver, filter);
 
     //声音大小监听
         /*volumeChangeReceiver = VolumeChangeReceiver.getInstance();
@@ -453,6 +450,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
   @Override
   public void onDestroy() {
+
     try {
       if (receiver != null) {
         unregisterReceiver(receiver);

@@ -72,7 +72,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -482,14 +481,14 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void disconnect(final JSONArray args, final CallbackContext callbackContext) {
-    MqttRobot.setIsStarted(false);
+
     if (!NetUtils.isConnect(cordova.getActivity())) {
       setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
       return;
     }
     hasLogin = false;
-    MqttOper.closeMqttConnection();
-    UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+
+
     try {
       SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
         @Override
@@ -497,7 +496,15 @@ public class MqttChat extends CordovaPlugin {
           try {
             RST result = cancelUser_call.getResult();
             if (result.result) {
+              MqttOper.closeMqttConnection();
+              try {
+                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+              } catch (Exception e) {
+
+              }
               MqttNotification.cancelAll();
+              MqttRobot.setIsStarted(false);
+
               setResult("success", PluginResult.Status.OK, callbackContext);
             } else {
               setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
@@ -521,13 +528,14 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 切换账号
+   *
    * @param args
    * @param callbackContext
-     */
+   */
   public void switchAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
       final String userID = args.getString(0);
-      if(getUserID().equals(userID)) {
+      if (getUserID().equals(userID)) {
         setResult("-1", PluginResult.Status.OK, callbackContext);
         return;
       }
@@ -632,6 +640,7 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 激活的账号才可以走该方法（为减少代码量，精简代码，故抽取出该段代码
+   *
    * @param user
    * @param callbackContext
      */
@@ -729,9 +738,10 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setExitStartedStatus(final JSONArray args, final CallbackContext callbackContext) {
-    MqttOper.closeMqttConnection();
-    UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
-    MqttRobot.setIsStarted(false);
+//    MqttOper.closeMqttConnection();
+//    UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
+//    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+    MqttRobot.setIsStarted(true);
   }
 
   /**
@@ -1290,15 +1300,17 @@ public class MqttChat extends CordovaPlugin {
 
   /**
    * 获取当前网络状态
+   *
    * @param args
    * @param callbackContext
-     */
+   */
   public void getNetStatus(final JSONArray args, final CallbackContext callbackContext) {
     setResult(NetUtils.isConnect(cordova.getActivity()), PluginResult.Status.OK, callbackContext);
   }
 
   /**
    * 判断是否有兼职账号
+   *
    * @param args
    * @param callbackContext
    */

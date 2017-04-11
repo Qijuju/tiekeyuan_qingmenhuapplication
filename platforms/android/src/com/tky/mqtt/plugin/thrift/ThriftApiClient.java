@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.Contacts;
 import android.provider.MediaStore;
 
 import com.google.gson.Gson;
@@ -234,7 +233,7 @@ public class ThriftApiClient extends CordovaPlugin {
         @Override
         public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
           try {
-            ToastUtil.showSafeToast("激活~~~~");
+            //ToastUtil.showSafeToast("激活~~~~");
             Thread.sleep(100);
             RST result = activateUser_call.getResult();
 
