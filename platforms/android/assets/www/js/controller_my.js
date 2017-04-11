@@ -376,6 +376,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         if (res) {
 
           $mqtt.getMqtt().save('name', '', function (message) {
+            // alert('disconnect');
             $mqtt.disconnect(function (message) {
               // $mqtt.save('pwdgesture', "");
               // $mqtt.save('namegesture', "");
@@ -522,7 +523,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $ionicLoading.hide();
           });
 
-          // $ToastUtils.showToast("成功")
           // $api.getHeadPic($scope.UserID,"60",function (srcurl) {
           //   alert(srcurl)
           //   $scope.$apply(function () {

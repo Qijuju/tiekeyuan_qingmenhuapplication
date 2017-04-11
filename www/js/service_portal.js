@@ -122,14 +122,15 @@ angular.module('portal.services', [])
             lightApps = new Array();
           }
 
-          lightApps.push(FinshedApp.get(99));
-          for (var i = 0; i < data.length; i++) {
-            if (FinshedApp.get(data[i].id) != null) {
-              lightApps.push(FinshedApp.get(data[i].id));
-            }
-          }
+          //点亮图标，先已置灰
+          // lightApps.push(FinshedApp.get(99));
+          // for (var i = 0; i < data.length; i++) {
+          //   if (FinshedApp.get(data[i].id) != null) {
+          //     lightApps.push(FinshedApp.get(data[i].id));
+          //   }
+          // }
 
-          console.log("lightApps" + lightApps.length);
+          // console.log("lightApps" + lightApps.length);
           $rootScope.$broadcast('appMenu.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');

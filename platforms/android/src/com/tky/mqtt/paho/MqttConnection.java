@@ -308,11 +308,12 @@ public class MqttConnection {
               public void onConnectionDown() {
                 try {
                   closeConnection(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+                } catch (MqttException e) {
+                  e.printStackTrace();
+                } finally {
                   if (service != null) {
                     service.destorySelfByHand();
                   }
-                } catch (MqttException e) {
-                  e.printStackTrace();
                 }
               }
             });

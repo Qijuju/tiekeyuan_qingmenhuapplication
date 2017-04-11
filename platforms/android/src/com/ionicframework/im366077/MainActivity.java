@@ -46,7 +46,6 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.PatchBean;
 import com.tky.mqtt.paho.constant.ResumeParams;
-import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.AnimationUtils;
@@ -107,7 +106,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     //注册距离感应器
     mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-    MqttRobot.setIsStarted(false);
+//    MqttRobot.setIsStarted(false);
 
     //注册屏幕开关广播
 //    receiver = new UserPresentReceiver();
@@ -444,6 +443,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
   @Override
   public void onDestroy() {
+
     try {
       if (receiver != null) {
         unregisterReceiver(receiver);

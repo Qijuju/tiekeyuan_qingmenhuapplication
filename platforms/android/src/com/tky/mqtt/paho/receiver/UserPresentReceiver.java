@@ -10,9 +10,6 @@ import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.NetUtils;
 
@@ -41,7 +38,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             context.startActivity(onePxIntent);*/
             MqttRobot.setScreenStatus(false);
         }else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction()) || ReceiverParams.RESTARTSERVICE.equals(intent.getAction())) {
-            if (!NetUtils.isConnect(context)) {
+            if (!NetUtils.isConnect(context) || MqttRobot.getConnectionType() == ConnectionType.MODE_CONNECTION_DOWN_MANUAL) {
                 return;
             }
 
@@ -76,6 +73,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             closeOnePxIntent.setAction("com.tky.close_one_px_activity");
             context.sendBroadcast(closeOnePxIntent);*/
         }
+//      context.startService(new Intent(context, MqttService.class));
     }
 
 

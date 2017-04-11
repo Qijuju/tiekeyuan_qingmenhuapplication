@@ -364,9 +364,7 @@ angular.module('newnotification.controllers', [])
                   $scope.otherDay = msg;
 
                 }, function (err) {
-
                 })
-
               }, function (err) {
 
               });
@@ -475,8 +473,6 @@ angular.module('newnotification.controllers', [])
               id: id,
               isfirm: isfirm
             })
-
-
             break;
           case '16':
             $state.go("notifyApplication", {
@@ -490,7 +486,6 @@ angular.module('newnotification.controllers', [])
               isfirm: isfirm
             })
             break;
-
         }
       } else {
         $state.go("notifyApplication", {
