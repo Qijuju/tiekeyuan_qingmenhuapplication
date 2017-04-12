@@ -88,7 +88,7 @@ public class MqttChat extends CordovaPlugin {
   /**
    * 是否已经登录
    */
-  private boolean hasLogin = false;
+  private static boolean hasLogin = false;
   /**
    * 打开文件管理器请求码
    */
@@ -109,6 +109,7 @@ public class MqttChat extends CordovaPlugin {
   @Override
   public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
+    setHasLogin(false);
     mqttReceiver = MqttReceiver.getInstance();
 //        IntentFilter mqttFilter = new IntentFilter();
 //        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
@@ -495,7 +496,7 @@ public class MqttChat extends CordovaPlugin {
         public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
           try {
             RST result = cancelUser_call.getResult();
-            if (result.result) {
+            if (result.result || "105".equals(result.getResultCode())) {
               MqttOper.closeMqttConnection();
               try {
                 UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
@@ -705,7 +706,7 @@ public class MqttChat extends CordovaPlugin {
       //允许启动MQTT之后重新订阅TOPIC
       MqttReceiver.hasRegister = false;
       //断开MQTT，启动MQTT交给MQTT去处理
-      MqttOper.closeMqttConnection();
+//      MqttOper.closeMqttConnection();
       //重连检查
       SwitchLocal.reloginCheck(new SwitchLocal.IReloginCheck() {
         @Override
@@ -713,7 +714,15 @@ public class MqttChat extends CordovaPlugin {
           if (result) {
             try {
               //销毁MqttService
-              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+//              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+              hasLogin = false;
+              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+              try {
+                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+              } catch (Exception e) {
+
+              }
+              MqttNotification.cancelAll();
             } catch (Exception e) {
             } finally {
               setResult("success", PluginResult.Status.OK, callbackContext);
@@ -1504,6 +1513,10 @@ public class MqttChat extends CordovaPlugin {
     } catch (Exception e) {
     }
     super.onDestroy();
+  }
+
+  public static void setHasLogin(boolean hasLogin) {
+    MqttChat.hasLogin = hasLogin;
   }
 
   private class OnPlayStopReceiver extends BroadcastReceiver {

@@ -515,15 +515,16 @@ public class MqttMessageCallback implements MqttCallback {
 
         if (isKUF) {
           MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-          Intent intent = new Intent();
+          /*Intent intent = new Intent();
           intent.setAction(ReceiverParams.MESSAGEARRIVED);
           intent.putExtra("topic", topic);
           String json = GsonUtils.toJson(eventBean, MessageBean.class);
           intent.putExtra("content", json);
           intent.putExtra("qos", msg.getQos());
           msg.clearPayload();
-          context.sendBroadcast(intent);
-          ToastUtil.showSafeToast("您已被强制下线！");
+          context.sendBroadcast(intent);*/
+          //退出登录
+          SwitchLocal.exitLogin(context);
           return;
         }
 
@@ -769,7 +770,6 @@ public class MqttMessageCallback implements MqttCallback {
 
       }
     } catch (Exception e) {
-      ToastUtil.showSafeToast("异常：" + e.getMessage());
     }
     new Thread(new Runnable() {
       @Override

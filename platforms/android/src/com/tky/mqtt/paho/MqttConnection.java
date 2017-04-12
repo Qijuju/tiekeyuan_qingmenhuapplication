@@ -9,6 +9,7 @@ import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.protocol.model.IMPException;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -99,7 +100,6 @@ public class MqttConnection {
 
     @Override
     public void onFailure(IMqttToken arg0, Throwable arg1) {
-      ToastUtil.showSafeToast("error");
       UIUtils.runInMainThread(new Runnable() {
         @Override
         public void run() {
@@ -122,7 +122,6 @@ public class MqttConnection {
 
     @Override
     public void onSuccess(IMqttToken arg0) {
-      ToastUtil.showSafeToast("onSuccess~~~");
       UIUtils.runInMainThread(new Runnable() {
         @Override
         public void run() {
@@ -219,56 +218,65 @@ public class MqttConnection {
                                             }
                                         });*/
 
-                    new Thread(new Runnable() {
-                      long start = 0;
-                      boolean hasExecute = false;
-
+                    SwitchLocal.reloginCheckStatus(new SwitchLocal.IReloginCheckStatus() {
                       @Override
-                      public void run() {
-                        start = System.currentTimeMillis();
-                        while (System.currentTimeMillis() - start < 20 * 1000) {
-                          if (!NetUtils.isConnect(UIUtils.getContext())) {
-                            SystemClock.sleep(100);
-                            continue;
-                          }
-                          if (isConnected()) {
-                            hasExecute = true;
-                            try {
-                              publish(content, topic, message);
-                            } catch (MqttException e) {
-                              String swithedMsg = switchMsg(content, false);
-                              MqttOper.sendErrNotify(swithedMsg);
-                              e.printStackTrace();
+                      public void onCheck(SwitchLocal.EReloginCheckStatus status) {
+                        if (SwitchLocal.EReloginCheckStatus.CAN_RECONNECT == status) {
+                          new Thread(new Runnable() {
+                            long start = 0;
+                            boolean hasExecute = false;
+
+                            @Override
+                            public void run() {
+                              start = System.currentTimeMillis();
+                              while (System.currentTimeMillis() - start < 20 * 1000) {
+                                if (!NetUtils.isConnect(UIUtils.getContext())) {
+                                  SystemClock.sleep(100);
+                                  continue;
+                                }
+                                if (isConnected()) {
+                                  hasExecute = true;
+                                  try {
+                                    publish(content, topic, message);
+                                  } catch (MqttException e) {
+                                    String swithedMsg = switchMsg(content, false);
+                                    MqttOper.sendErrNotify(swithedMsg);
+                                    e.printStackTrace();
+                                  }
+                                  break;
+                                }
+                                try {
+                                  reconnect();
+                                } catch (MqttException e) {
+                                  hasExecute = true;
+                                  String swithedMsg = switchMsg(content, false);
+                                  MqttOper.sendErrNotify(swithedMsg);
+                                  e.printStackTrace();
+                                  break;
+                                }
+                                SystemClock.sleep(100);
+                              }
+                              if (!hasExecute) {
+                                if (NetUtils.isConnect(UIUtils.getContext()) && isConnected()) {
+                                  try {
+                                    publish(content, topic, message);
+                                  } catch (MqttException e) {
+                                    String swithedMsg = switchMsg(content, false);
+                                    MqttOper.sendErrNotify(swithedMsg);
+                                    e.printStackTrace();
+                                  }
+                                } else {
+                                  String swithedMsg = switchMsg(content, false);
+                                  MqttOper.sendErrNotify(swithedMsg);
+                                }
+                              }
                             }
-                            break;
-                          }
-                          try {
-                            reconnect();
-                          } catch (MqttException e) {
-                            hasExecute = true;
-                            String swithedMsg = switchMsg(content, false);
-                            MqttOper.sendErrNotify(swithedMsg);
-                            e.printStackTrace();
-                            break;
-                          }
-                          SystemClock.sleep(100);
-                        }
-                        if (!hasExecute) {
-                          if (NetUtils.isConnect(UIUtils.getContext()) && isConnected()) {
-                            try {
-                              publish(content, topic, message);
-                            } catch (MqttException e) {
-                              String swithedMsg = switchMsg(content, false);
-                              MqttOper.sendErrNotify(swithedMsg);
-                              e.printStackTrace();
-                            }
-                          } else {
-                            String swithedMsg = switchMsg(content, false);
-                            MqttOper.sendErrNotify(swithedMsg);
-                          }
+                          }).start();
+                        } else {
+                          SwitchLocal.exitLogin(context);
                         }
                       }
-                    }).start();
+                    });
                     return;
                   }
                   //没网并且没连接MQTT

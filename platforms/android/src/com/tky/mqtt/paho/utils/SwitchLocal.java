@@ -3,12 +3,16 @@ package com.tky.mqtt.paho.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.tky.mqtt.chat.MqttChat;
 import com.tky.mqtt.paho.MType;
+import com.tky.mqtt.paho.MqttNotification;
+import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
 import org.apache.thrift.TException;
@@ -119,7 +123,7 @@ public class SwitchLocal {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                     try {
-                        if (reloginCheck_call != null) {
+                        if (reloginCheck_call != null && reloginCheck != null) {
                             if (reloginCheck_call.getResult().result) {
                                 reloginCheck.onCheck(true);
                             } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
@@ -152,8 +156,71 @@ public class SwitchLocal {
         }
     }
 
+    /**
+     * 重新连接MQTT验证
+     * @param reloginCheckStatus
+     */
+    public static void reloginCheckStatus(final IReloginCheckStatus reloginCheckStatus) {
+        try {
+            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+                @Override
+                public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                    try {
+                        if (reloginCheck_call != null && reloginCheckStatus != null) {
+                            if (reloginCheck_call.getResult().result) {
+                                reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
+                            } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
+                                reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
+                            }
+                        }
+                    } catch (Exception e) {
+                        if (reloginCheck_call != null && reloginCheckStatus != null) {
+                            reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                        }
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    if (reloginCheckStatus != null) {
+                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                    }
+                }
+            });
+        } catch (IOException e) {
+            if (reloginCheckStatus != null) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+            }
+            e.printStackTrace();
+        } catch (TException e) {
+            if (reloginCheckStatus != null) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+            }
+            e.printStackTrace();
+        } catch (JSONException e) {
+            if (reloginCheckStatus != null) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+            }
+            e.printStackTrace();
+        } catch (Exception e) {
+            if (reloginCheckStatus != null) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+            }
+            e.printStackTrace();
+        }
+    }
+
     public interface IReloginCheck {
         public void onCheck(boolean result);
+    }
+
+    public interface IReloginCheckStatus {
+        public void onCheck(EReloginCheckStatus status);
+    }
+
+    public enum EReloginCheckStatus {
+        CAN_RECONNECT/*可以重连*/,NEED_LOGOUT/*被强踢，需要退出登录*/,ERROR/*遇到异常*/
     }
 
     /**
@@ -182,6 +249,14 @@ public class SwitchLocal {
         intent.putExtra("content", json);
         intent.putExtra("qos", 1);
         context.sendBroadcast(intent);
+        MqttChat.setHasLogin(false);
+        try {
+            UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+        } catch (Exception e) {
+
+        }
+        MqttNotification.cancelAll();
+        MqttRobot.setIsStarted(false);
         ToastUtil.showSafeToast("您已被强制下线！");
     }
 }
