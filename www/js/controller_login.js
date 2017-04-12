@@ -356,7 +356,7 @@ angular.module('login.controllers', [])
       if (isClickGo) {
         return;
       }
-      alert("dianjile");
+      // alert("dianjile");
       //防止重复点击
       isClickGo = true;
       $interval.cancel(timer);
