@@ -33,6 +33,7 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
@@ -173,11 +174,12 @@ public class ThriftApiClient extends CordovaPlugin {
                     ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
                     TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
                     GroupChatsService groupChatsService=GroupChatsService.getInstance(UIUtils.getContext());
-//                                      SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+                    SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                     topContactsService.deleteAllData();
                     messagesService.deleteAllData();
                     chatListService.deleteAllData();
                     groupChatsService.deleteAllData();
+                    systemMsgService.deleteAllData();
 //                                      System.out.println("删除本地缓存成功");
                   }
 

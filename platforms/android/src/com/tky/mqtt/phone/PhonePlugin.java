@@ -55,7 +55,7 @@ public class PhonePlugin extends CordovaPlugin{
         if (phonenumber!=null&&phonenumber.length()>0){
             if (PhoneNumberUtils.isGlobalPhoneNumber(phonenumber)){
                 Uri uri=Uri.parse("smsto:"+phonenumber);
-                Intent intent=new Intent(Intent.ACTION_SENDTO,uri);
+                Intent intent=new Intent(Intent.ACTION_VIEW,uri);
                 this.cordova.startActivityForResult(this,intent,PHONE_SMS);
             }
             else {

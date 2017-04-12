@@ -1848,6 +1848,13 @@ angular.module('contacts.controllers', [])
       })
     });
 
+
+
+    $scope.showalert=function () {
+      $ToastUtils.showToast("此用户还未激活")
+    }
+
+
   })
 
   .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$ionicLoading,$timeout) {
