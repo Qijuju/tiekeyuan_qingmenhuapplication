@@ -102,7 +102,7 @@ angular.module('login.controllers', [])
       $api.login($scope.name, $scope.password, function (message) {
 
         //alert(message.toJSONString());
-        if (message.isActive === false || message.resultCode === '105') {
+        if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
           $api.activeUser(message.userID, function (message) {
             loginM();
           }, function (message) {
@@ -379,7 +379,7 @@ angular.module('login.controllers', [])
             maxWidth: 100,
             showDelay: 0
           });
-          if (message.isActive === false || message.resultCode === '105') {
+          if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
             $api.activeUser(message.userID, function (message) {
               loginM();
             }, function (message) {
@@ -577,7 +577,7 @@ angular.module('login.controllers', [])
             $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
               $mqtt.save('pwdgesture', $scope.pwdgesturea);
               $mqtt.save('namegesture', $scope.namegesturea);
-              if (message.isActive === false || message.resultCode === '105') {
+              if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
@@ -648,7 +648,7 @@ angular.module('login.controllers', [])
           $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
             $mqtt.save('pwdgesture', $scope.pwdgesturea);
             $mqtt.save('namegesture', $scope.namegesturea);
-            if (message.isActive === false || message.resultCode === '105') {
+            if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
               $api.activeUser(message.userID, function (message) {
                 loginM();
                 $ionicLoading.hide();

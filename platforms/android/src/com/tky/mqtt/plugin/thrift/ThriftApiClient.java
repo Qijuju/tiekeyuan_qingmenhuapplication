@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
@@ -23,6 +24,7 @@ import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -144,6 +146,8 @@ public class ThriftApiClient extends CordovaPlugin {
       return;
     }
     try {
+//      MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+//      MqttOper.closeMqttConnection();
       MqttReceiver.hasRegister = false;
       String username = args.getString(0);
       String password = args.getString(1);
@@ -160,7 +164,7 @@ public class ThriftApiClient extends CordovaPlugin {
               if (result == null) {
                 setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
               } else {
-                if ("100".equals(result.getResultCode()) || "105".equals(result.getResultCode())) {
+                if ("100".equals(result.getResultCode()) || "105".equals(result.getResultCode()) || "107".equals(result.getResultCode())) {
                   //登录成功 标示
                   MqttRobot.setIsStarted(true);
                   JSONObject newUserObj = new JSONObject(loginJson);
@@ -185,7 +189,6 @@ public class ThriftApiClient extends CordovaPlugin {
 
                   LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
                   localPhoneService.deleteAllData();
-
                   //保存登录信息
                   SPUtils.save("login_info", loginJson);
                   setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);

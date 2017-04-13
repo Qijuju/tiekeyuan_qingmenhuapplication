@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tky.mqtt.chat.MqttChat;
+import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttService;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -119,7 +121,20 @@ public class SwitchLocal {
      */
     public static void reloginCheck(final IReloginCheck reloginCheck) {
         try {
-            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+            reloginCheck(getUserID(), reloginCheck);
+        } catch (JSONException e) {
+            ToastUtil.showSafeToast("重连失败！");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 重新连接MQTT验证
+     * @param reloginCheck
+     */
+    public static void reloginCheck(String userID, final IReloginCheck reloginCheck) {
+        try {
+            SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
                 @Override
                 public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                     try {
@@ -145,9 +160,6 @@ public class SwitchLocal {
             ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
         } catch (TException e) {
-            ToastUtil.showSafeToast("重连失败！");
-            e.printStackTrace();
-        } catch (JSONException e) {
             ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
         } catch (Exception e) {
@@ -251,6 +263,8 @@ public class SwitchLocal {
         context.sendBroadcast(intent);
         MqttChat.setHasLogin(false);
         try {
+            MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+            MqttOper.closeMqttConnection();
             UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
         } catch (Exception e) {
 

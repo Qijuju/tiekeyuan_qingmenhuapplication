@@ -1,6 +1,7 @@
 package com.tky.mqtt.paho;
 
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.tky.mqtt.paho.utils.SwitchLocal;
 
@@ -16,6 +17,10 @@ public class MqttTopicRW {
 	 * @param topics
 	 */
 	public static void writeTopicsAndQos(String[] topics, int[] qoss) {
+		if (topics == null) {
+			SPUtils.save(key, "");
+			return;
+		}
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < topics.length; i++) {
 			sb.append(topics[i] + "#" + qoss[i] + ";");
@@ -37,6 +42,9 @@ public class MqttTopicRW {
 	public static Map<String, Integer> getTopicsAndQoss() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String topicsAndQoss = SPUtils.getString(key, "");
+		if (TextUtils.isEmpty(topicsAndQoss)) {
+			return map;
+		}
 		String[] tpaqs = topicsAndQoss.split(";");
 		for (int i = 0; i < tpaqs.length; i++) {
 			String[] tpaqArr = tpaqs[i].split("#");

@@ -2,6 +2,7 @@ package com.tky.mqtt.plugin.thrift.api;
 
 import android.content.Context;
 
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 
 import org.apache.thrift.TException;
