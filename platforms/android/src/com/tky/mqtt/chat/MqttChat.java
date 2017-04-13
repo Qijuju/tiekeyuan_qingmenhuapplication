@@ -547,11 +547,49 @@ public class MqttChat extends CordovaPlugin {
             UserDetail user = null;
             try {
               user = getUser_call.getResult().getUser();
-              if (user.isIsActive()) {//账号已经激活，直接切换登录
-                swithAccount(user, callbackContext);
-              } else {                  //账号未激活，先激活账号
+              final UserDetail finalUser = user;
+              if (finalUser.isIsActive()) {
+                SwitchLocal.reloginCheck(user.getUserID(), new SwitchLocal.IReloginCheck() {
+                  @Override
+                  public void onCheck(boolean result) {
+                    if (result) {
+                      swithAccount(finalUser, callbackContext);
+                    } else {
+                      try {
+                        //调用激活账户方法，激活该账号
+                        SystemApi.activeUser(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
+                          @Override
+                          public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
+                            try {
+                              RST result = activateUser_call.getResult();
+                              if (result.result) {
+                                swithAccount(finalUser, callbackContext);
+                              } else {
+                                setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                              }
+                            } catch (TException e) {
+                              setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                              e.printStackTrace();
+                            }
+                          }
+
+                          @Override
+                          public void onError(Exception e) {
+                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                          }
+                        });
+                      } catch (IOException e) {
+                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                      } catch (TException e) {
+                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                        e.printStackTrace();
+                      }
+                    }
+                  }
+                });
+              } else {
                 try {
-                  final UserDetail finalUser = user;
                   //调用激活账户方法，激活该账号
                   SystemApi.activeUser(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
                     @Override
@@ -577,8 +615,12 @@ public class MqttChat extends CordovaPlugin {
                 } catch (IOException e) {
                   setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
                   e.printStackTrace();
+                } catch (TException e) {
+                  setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+                  e.printStackTrace();
                 }
               }
+
             } catch (TException e) {
               e.printStackTrace();
             }
@@ -708,29 +750,31 @@ public class MqttChat extends CordovaPlugin {
       //断开MQTT，启动MQTT交给MQTT去处理
 //      MqttOper.closeMqttConnection();
       //重连检查
-      SwitchLocal.reloginCheck(new SwitchLocal.IReloginCheck() {
+      UIUtils.runInMainThread(new Runnable() {
         @Override
-        public void onCheck(boolean result) {
-          if (result) {
-            try {
-              //销毁MqttService
-//              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-              hasLogin = false;
-              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-              try {
-                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-              } catch (Exception e) {
-
-              }
-              MqttNotification.cancelAll();
-            } catch (Exception e) {
-            } finally {
-              setResult("success", PluginResult.Status.OK, callbackContext);
-            }
-          } else {
+        public void run() {
+          try {
+            hasLogin = false;
+            MqttTopicRW.writeTopicsAndQos(null, null);
             MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-            //退出登录
-            SwitchLocal.exitLogin(cordova.getActivity());
+            MqttOper.closeMqttConnection();
+            //销毁MqttService
+//              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+            UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+          } catch (Exception e) {
+          } finally {
+            MqttNotification.cancelAll();
+            new Thread(new Runnable() {
+              @Override
+              public void run() {
+                try {
+                  Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                  e.printStackTrace();
+                }
+                setResult("success", PluginResult.Status.OK, callbackContext);
+              }
+            }).start();
           }
         }
       });
@@ -750,7 +794,7 @@ public class MqttChat extends CordovaPlugin {
 //    MqttOper.closeMqttConnection();
 //    UIUtils.getContext().stopService(new Intent(cordova.getActivity(), MqttService.class));
 //    MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
-    MqttRobot.setIsStarted(true);
+    MqttRobot.setIsStarted(MqttRobot.isStarted());
   }
 
   /**
