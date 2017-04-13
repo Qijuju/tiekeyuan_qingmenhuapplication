@@ -155,14 +155,14 @@ public class ThriftApiClient extends CordovaPlugin {
           } else {
             try {
               RSTlogin result = login_call.getResult();
+              Gson gson = new Gson();
+              final String loginJson = gson.toJson(result, RSTlogin.class);
               if (result == null) {
                 setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
               } else {
                 if ("100".equals(result.getResultCode()) || "105".equals(result.getResultCode())) {
                   //登录成功 标示
                   MqttRobot.setIsStarted(true);
-                  Gson gson = new Gson();
-                  final String loginJson = gson.toJson(result, RSTlogin.class);
                   JSONObject newUserObj = new JSONObject(loginJson);
                   String newuserID = newUserObj.getString("userID");//新登陆用户名
 //                                  System.out.println("新用户名"+newuserID);
@@ -192,8 +192,8 @@ public class ThriftApiClient extends CordovaPlugin {
                 } else if ("104".equals(result.getResultCode())) {
                   setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                 } /*else if ("105".equals(result.getResultCode())) {
-                  setResult("该用户已在其他手机终端登录！", PluginResult.Status.ERROR, callbackContext);
-                }*/ else {
+                  setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);//该用户已在其他手机终端登录！
+                } */else {
                   setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                 }
               }
@@ -235,6 +235,8 @@ public class ThriftApiClient extends CordovaPlugin {
         @Override
         public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
           try {
+            //ToastUtil.showSafeToast("激活~~~~");
+            Thread.sleep(100);
             RST result = activateUser_call.getResult();
 
             if (result == null) {
@@ -248,6 +250,8 @@ public class ThriftApiClient extends CordovaPlugin {
             }
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          } catch (InterruptedException e) {
             e.printStackTrace();
           }
         }

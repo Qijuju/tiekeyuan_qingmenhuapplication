@@ -28,6 +28,7 @@ import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.mqtt.services.SystemMsgService;
+import com.tky.protocol.model.IMPFields;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -484,11 +485,19 @@ public class MqttMessageCallback implements MqttCallback {
           }
         });
       } else if (bean != null && bean instanceof EventMessageBean) {
-        //接收到消息时的铃声
-        ring();
         EventMessageBean eventMsgBean = (EventMessageBean) bean;
+        boolean isKUF = "KUF".equals(eventMsgBean.getEventCode());
         String groupID = eventMsgBean.getGroupID();
-        MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
+        if (!isKUF) {
+          //接收到消息时的铃声
+          ring();
+          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
+        } else if (eventMsgBean.getMepID().equals(UIUtils.getDeviceId())) {
+          MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！", new Intent(context, MainActivity.class));
+        } else {
+          return;
+        }
         MessageBean eventBean = new MessageBean();
         eventBean.set_id(groupID);
         eventBean.setSessionid(groupID);
@@ -503,6 +512,22 @@ public class MqttMessageCallback implements MqttCallback {
         eventBean.setType("Group");
         eventBean.setIsDelete("false");
         eventBean.setSenderid(eventMsgBean.getSenderid());
+
+        if (isKUF) {
+          MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+          /*Intent intent = new Intent();
+          intent.setAction(ReceiverParams.MESSAGEARRIVED);
+          intent.putExtra("topic", topic);
+          String json = GsonUtils.toJson(eventBean, MessageBean.class);
+          intent.putExtra("content", json);
+          intent.putExtra("qos", msg.getQos());
+          msg.clearPayload();
+          context.sendBroadcast(intent);*/
+          //退出登录
+          SwitchLocal.exitLogin(context);
+          return;
+        }
+
 //			ToastUtil.showSafeToast("群事件" + eventMsgBean.getEventCode() + eventMsgBean.getGroupID() + eventMsgBean.getGroupName());
         //如果是被添加群成员，数据需要入库
         if ("YAM".equals(eventMsgBean.getEventCode())) {
@@ -745,7 +770,6 @@ public class MqttMessageCallback implements MqttCallback {
 
       }
     } catch (Exception e) {
-      //ToastUtil.showSafeToast(e.getMessage());
     }
     new Thread(new Runnable() {
       @Override

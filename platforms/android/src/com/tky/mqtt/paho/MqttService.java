@@ -15,6 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
+import com.tky.mqtt.paho.utils.MqttOper;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -31,20 +32,6 @@ public class MqttService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //如果当前已经登录了，才会启动MQTT，否则不启动
-                if (MqttRobot.isStarted()) {
-                    mqttConnection = new MqttConnection();
-                    try {
-                        mqttConnection.connect(getBaseContext(), MqttService.this);
-                    } catch (MqttException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
 
         /*mqttConnection = new MqttConnection();
 		try {
@@ -74,6 +61,23 @@ public class MqttService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (mqttConnection == null || mqttConnection.isConnected()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //如果当前已经登录了，才会启动MQTT，否则不启动
+                    if (MqttRobot.isStarted()) {
+                        mqttConnection = new MqttConnection();
+                        try {
+                            mqttConnection.connect(getBaseContext(), MqttService.this);
+                        } catch (MqttException e) {
+                            MqttOper.restartService();
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
         //使用兼容版本
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         //设置状态栏的通知图标

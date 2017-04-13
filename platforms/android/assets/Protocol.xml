@@ -91,7 +91,7 @@
 		<Node id="EventCode">
 		 	<nLength>3</nLength>
 		 	<nFixed>true</nFixed>
-		 	<nValue>YAA,YAM,GN0,G00,YRA,YRM,GAM,GRM,RG0</nValue>
+		 	<nValue>YAA,YAM,GN0,G00,YRA,YRM,GAM,GRM,RG0,KUF</nValue>
 		</Node>
 		<Node id="Event">
 		 	<nLength>-1</nLength>
@@ -191,6 +191,14 @@
 	<!--The group be removed .-->
 	<Protocol id="RG0">
 		<Node id="GroupID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<!--Kick User oFFline .-->
+	<Protocol id="KUF">
+		<Node id="MepID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>

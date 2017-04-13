@@ -240,7 +240,7 @@ angular.module('message.services', [])
     }
   })
 
-  .factory('$mqtt',function ($rootScope,$greendao,$api,$ToastUtils) {
+  .factory('$mqtt',function ($rootScope,$greendao,$api,$ToastUtils,$state) {
     var mqtt;
     var msgs=new Array();
     var danliao=new Array();
@@ -697,6 +697,11 @@ angular.module('message.services', [])
           // alert("接受消息对方id"+arriveMessage.message);
           // alert("接受消息对方id"+arriveMessage.messagetype+message._id);
           // alert("进来了吗"+message.istime+message.daytype+message.isSuccess);
+          if(message.messagetype === 'Event_KUF'){
+            $state.go('login');
+            return;
+          }
+          // alert('alert')
           if(message.type === 'Platform'){
             $rootScope.$broadcast('newnotify.update');
             /*//当消息为系统通知时

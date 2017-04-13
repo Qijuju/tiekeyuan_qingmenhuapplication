@@ -215,6 +215,19 @@ public class SystemApi {
     }
 
     /**
+     * 重联验证
+     * @param ID 当前登录的用户的USERID
+     * @param imCode 设备码
+     * @param callback 回调
+     * @throws IOException
+     * @throws TException
+     */
+    public static void reloginCheck(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback) throws IOException, TException {
+        IMSystem.AsyncClient asyncClient = getSystemClient();
+        asyncClient.ReloginCheck(ID, imCode, callback);
+    }
+
+    /**
      * 获取子部门和人员列表
      * @param ID 被激活用户的ID
      * @param deptID 要获取的部门ID
