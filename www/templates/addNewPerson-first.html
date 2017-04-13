@@ -7,12 +7,12 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-        <div class="background_white">
-          <ion-list>
-            <ion-item ng-repeat="item in depts"  ng-click="jumpGroupSecond(item.DeptID)" style="height: 65px">
-              <img src="img/icon_org.png"  style="vertical-align: middle" width="38px" height="38px" style="display: inline;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="font_16">{{item.DeptName}}</span>
-            </ion-item>
-          </ion-list>
-        </div>
+    <div class="background_white">
+      <ion-list>
+        <ion-item ng-repeat="item in depts"  ng-click="jumpGroupSecond(item.DeptID)" style="height: 65px">
+          <img src="img/icon_org.png"  style="vertical-align: middle" width="38px" height="38px" style="display: inline;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="font_16">{{item.DeptName}}</span>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-view>
