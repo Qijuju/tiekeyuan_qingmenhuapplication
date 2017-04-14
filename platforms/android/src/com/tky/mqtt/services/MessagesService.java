@@ -173,4 +173,13 @@ public class MessagesService implements BaseInterface<Messages>{
                 .build()
                 .list();
     }
+
+
+  public List<Messages> queryFailure(){
+
+    return messagesDao.queryBuilder().where(MessagesDao.Properties.IsFailure.eq("false")).where(MessagesDao.Properties.IsSuccess.eq("false")).build().list();
+
+  }
+
+
 }

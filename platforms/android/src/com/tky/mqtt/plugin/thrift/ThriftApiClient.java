@@ -146,8 +146,24 @@ public class ThriftApiClient extends CordovaPlugin {
       return;
     }
     try {
-//      MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-//      MqttOper.closeMqttConnection();
+
+      MessagesService messagesService= MessagesService.getInstance(UIUtils.getContext());
+
+      List<Messages> list=messagesService.queryFailure();
+      if (list.size()>0){
+        for(int i=0;i<list.size();i++){
+
+          list.get(i).setIsFailure("true");
+
+          messagesService.saveObj(list.get(i));
+
+        }
+      }
+
+
+
+      MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+      MqttOper.closeMqttConnection();
       MqttReceiver.hasRegister = false;
       String username = args.getString(0);
       String password = args.getString(1);
