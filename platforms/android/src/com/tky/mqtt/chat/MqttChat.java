@@ -497,6 +497,7 @@ public class MqttChat extends CordovaPlugin {
           try {
             RST result = cancelUser_call.getResult();
             if (result.result || "105".equals(result.getResultCode())) {
+              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
               MqttOper.closeMqttConnection();
               try {
                 UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
