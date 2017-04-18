@@ -16,6 +16,7 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
@@ -44,6 +45,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
             onePxIntent.putExtra("backgroud", isApplicationBroughtToBackground(context));
             context.startActivity(onePxIntent);
         }*/
+        ConnectionType connectionType = MqttRobot.getConnectionType();
         if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
 //            isStarted = MqttRobot.isStarted();
             /*Intent onePxIntent = new Intent(context, OnePxActivity.class);
@@ -61,7 +63,9 @@ public class UserPresentReceiver extends BroadcastReceiver {
 
             if (MqttRobot.isStarted() && Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 try {
+                    MqttOper.closeMqttConnection();
                     context.stopService(new Intent(context, MqttService.class));
+                    MqttRobot.setConnectionType(connectionType);
                 } catch (Exception e){
                 }finally {
                     //重连检查
@@ -83,7 +87,9 @@ public class UserPresentReceiver extends BroadcastReceiver {
 
             if (!flag && MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 try {
+                    MqttOper.closeMqttConnection();
                     context.stopService(new Intent(context, MqttService.class));
+                    MqttRobot.setConnectionType(connectionType);
                 } catch (Exception e){
                 }finally {
                     //重连检查

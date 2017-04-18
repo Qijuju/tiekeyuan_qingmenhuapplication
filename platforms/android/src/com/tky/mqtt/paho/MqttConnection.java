@@ -221,7 +221,7 @@ public class MqttConnection {
                     SwitchLocal.reloginCheckStatus(new SwitchLocal.IReloginCheckStatus() {
                       @Override
                       public void onCheck(SwitchLocal.EReloginCheckStatus status) {
-                        if (SwitchLocal.EReloginCheckStatus.CAN_RECONNECT == status) {
+                        if (SwitchLocal.EReloginCheckStatus.CAN_RECONNECT == status || SwitchLocal.EReloginCheckStatus.NEED_LOGOUT != status) {
                           new Thread(new Runnable() {
                             long start = 0;
                             boolean hasExecute = false;
