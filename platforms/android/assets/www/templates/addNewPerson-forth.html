@@ -17,26 +17,26 @@
     </ion-scroll>
     <div>
       <ion-list>
-        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in departforthlist">
-          <div class="col-80">
-            <ion-checkbox class="checkbox-dark" ng-model="item.isSelected" style="border: 0" ><img src="img/icon_org.png" style="width: 25px;height: 25px">
-              <strong style="position: absolute;left: 33%;top:30%">{{item.DeptName}}</strong>
+        <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in departforthlist" >
+          <div class="col-80" >
+            <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_org.png" class="common-add-img" >
+              <span class="common-add-span">{{item.DeptName}}</span>
             </ion-checkbox>
           </div>
-          <div style="position: absolute;left: 80%;">
-            <button class="button button-clear"  ng-click="jumpGroupFifth(item.DeptID,secondName,thirdName,deptinfo4,item.isSelected)" style="color: #0a9dc7">下级</button>
+          <div class="col">
+            <button id="changecolor" class="button button-clear common-add-button" ng-click="jumpGroupFifth(item.DeptID,secondName,thirdName,deptinfo4,item.isSelected)"><span class="common-add-button-span">下级</span></button>
           </div>
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item class="row" style="height: 60px" align="left" ng-repeat="item in userforthlist">
-          <div class="col-80">
-            <ion-checkbox class="checkbox-dark" ng-model="item.isSelected" style="border: 0"><img src="img/icon_friends.png" style="width: 25px;height: 25px">
-              <strong style="position: absolute;left: 33%;top:30%">{{item.UserName}}</strong>
+        <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in userforthlist">
+          <div class="col-80"  >
+            <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_friends.png" class="common-add-img">
+              <span class="common-add-span">{{item.UserName}}</span>
             </ion-checkbox>
           </div>
-          <div style="position: absolute;left: 80%;">
-            <button class="button button-clear" style="color: #0a9dc7" ng-click="goGroupForthDetail(item.UserID)">详情</button>
+          <div class="col">
+            <button  class="button button-clear common-add-button" ng-click="goGroupForthDetail(item.UserID)" ><span class="common-add-button-span">详情</span></button>
           </div>
         </ion-item>
       </ion-list>

@@ -80,6 +80,10 @@
   position: absolute;
   left: 36%;
   top:30%;
+  width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
 
 }
 .common-add-button{

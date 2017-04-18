@@ -66,11 +66,11 @@ public class MqttMessageCallback implements MqttCallback {
 //    ToastUtil.showSafeToast("Mqtt断开链接了");
 //    MqttOper.restartService();
 
-//    if (MqttRobot.getScreenStatus()) {
-//      MqttOper.tellMqttStatus(false);
-//    } else {
-//      MqttRobot.setScreenStatus(true);
-//    }
+    if (MqttRobot.getScreenStatus()) {
+      MqttOper.tellMqttStatus(false);
+    } else {
+      MqttRobot.setScreenStatus(true);
+    }
     MqttRobot.setMqttStatus(MqttStatus.CLOSE);
 
     if (NetUtils.isConnect(context)&& MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL ) {

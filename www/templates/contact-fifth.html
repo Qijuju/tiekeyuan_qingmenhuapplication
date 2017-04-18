@@ -22,36 +22,7 @@
       <a id="a5" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo5}}</a>
     </div>
     </ion-scroll>
-    <!--<div  class="item-style">
-      <ion-list>
-        <ion-item ng-repeat=" item in departfifthlist"  ng-click="jumpSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5)" >
-          <div class="row" >
-            <div class="col-20" align="center">
-              <img src="img/icon_org.png" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;width: 38px;height: 38px">
-            </div>
-            <div class="col-80" align="left">
-              <p style="font-size: 18px" align="left">{{item.DeptName}}</p>
-            </div>
-          </div>
-        </ion-item>
-      </ion-list>
-      <ion-list>
-        <ion-item ng-repeat=" item in userfifthlist" ng-click="goFifthDetail(item.UserID)" >
-          <div class="row" >
-            <div class="col-20" align="center">
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 23%;font-size: 14px;text-align: center;padding-top: 8px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-            </div>
-            <div class="col-80" align="left">
-              <p style="font-size: 18px" align="left">{{item.UserName}}</p>
-            </div>
-          </div>
-        </ion-item>
-      </ion-list>
-    </div>-->
+
 
     <div>
       <ion-list>
@@ -60,11 +31,7 @@
           <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
         </ion-item>
         <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in userfifthlist"  ng-click="goFifthDetail(item.UserID)" >
-          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 3%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-          <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 3%;top: 20%;font-size: 14 px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
+          <img  src="img/icon_friends.png" style="width: 38px;height: 38px;align-content: center">
           <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
         </ion-item>
       </ion-list>
