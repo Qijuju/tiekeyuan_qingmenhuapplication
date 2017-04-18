@@ -61,10 +61,10 @@
                 <font style="font-size: 14px;color: #777777" ng-if="item.isRead === '1'">
                   <div style="display: inline-block">
                     <!---发送过程中--->
-                    <img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
+                    <img style="background-color: transparent;padding-right: 5px;float: left" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
                     <!---发送失败--->
-                    <img style="background-color: transparent;padding-right: 5px" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
-                    <font style="font-size: 14px;color: #777777;display:block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</font>
+                    <img style="background-color: transparent;padding-right: 5px;float: left" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
+                    <font style="font-size: 14px;color: #777777;display:inline-block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</font>
                   </div>
 
                 </font>

@@ -21,6 +21,8 @@ import com.yixia.camera.util.DeviceUtils;
 
 import java.io.File;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 @DefaultLifeCycle(
   application ="ook.yzx.tinker.Application",
@@ -135,7 +137,8 @@ public class BaseApplication extends DefaultApplicationLike {
 
     OkHttpUtils.initClient(okHttpClient);*/
 
-
+    JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+    JPushInterface.init(context);     		// 初始化 JPush
 
   }
 

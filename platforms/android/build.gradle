@@ -164,6 +164,13 @@ android {
 //      storePassword '123456'
 //    }
 //  }
+
+
+  dexOptions {
+    incremental true
+    javaMaxHeapSize "4g"
+  }
+
   packagingOptions {
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'
@@ -192,6 +199,7 @@ android {
     }
 
 
+
     multiDexEnabled true
 
     multiDexKeepProguard file("keep_in_main_dex.txt")
@@ -208,6 +216,17 @@ android {
     buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
     buildConfigField "String", "PLATFORM", "\"all\""
 
+    ndk {
+      //选择要添加的对应cpu类型的.so库。
+      abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+      // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+    }
+
+    manifestPlaceholders = [
+      JPUSH_PKGNAME : applicationId,
+      JPUSH_APPKEY : "466074b30b38240e62898a77", //JPush上注册的包名对应的appkey.
+      JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+    ]
 
   }
   lintOptions {
@@ -305,6 +324,10 @@ dependencies {
     compile files('libs/slf4j-log4j12-1.6.2.jar')
     //compile files('libs/imDataCast.jar')
     compile files('libs/dom4j-1.6.1.jar')
+
+  compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
+  compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
+
     //    compile files('libs/okhttp-2.6.0.jar')
     //compile 'com.squareup.okhttp3:okhttp:3.1.2'
     //compile files('libs/BaiduLBS_Android.jar')

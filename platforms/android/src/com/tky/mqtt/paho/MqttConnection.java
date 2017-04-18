@@ -129,7 +129,15 @@ public class MqttConnection {
           MqttRobot.setMqttStatus(MqttStatus.OPEN);
           MqttOper.publishStartStatus(true);
           MqttOper.tellMqttStatus(true);
+
+
           try {
+
+            MqttMessage event = new MqttMessage();
+            event.setPayload(params.getOnOffState("UOL"));
+            publish("",SwitchLocal.getOnOffTopic(),event);
+
+
 //						if (!isReconnect) {
             if (!MqttReceiver.hasRegister) {
 //                            ToastUtil.showToast("jinbujin");
@@ -431,28 +439,34 @@ public class MqttConnection {
         mqttAsyncClient.publish(topic, message, null, new IMqttActionListener() {
           @Override
           public void onSuccess(IMqttToken iMqttToken) {
-            if (iMqttToken.isComplete()) {
-              //发送中，消息发送成功，回调
-              String swithedMsg = switchMsg(content, true);
-              MqttOper.sendSuccNotify(swithedMsg);
-            } else {
-              //发送中，消息发送失败，回调
-              String swithedMsg = switchMsg(content, false);
-              MqttOper.sendErrNotify(swithedMsg);
+            if (!"".equals(content)) {
+              if (iMqttToken.isComplete()) {
+                //发送中，消息发送成功，回调
+                String swithedMsg = switchMsg(content, true);
+                MqttOper.sendSuccNotify(swithedMsg);
+              } else {
+                //发送中，消息发送失败，回调
+                String swithedMsg = switchMsg(content, false);
+                MqttOper.sendErrNotify(swithedMsg);
+              }
             }
           }
 
           @Override
           public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-            //发送中，消息发送失败，回调
-            String swithedMsg = switchMsg(content, false);
-            MqttOper.sendErrNotify(swithedMsg);
+            if (!"".equals(content)) {
+              //发送中，消息发送失败，回调
+              String swithedMsg = switchMsg(content, false);
+              MqttOper.sendErrNotify(swithedMsg);
+            }
           }
         });
       } catch (Exception e) {
-        //发送中，消息发送失败，回调
-        String swithedMsg = switchMsg(content, false);
-        MqttOper.sendErrNotify(swithedMsg);
+        if (!"".equals(content)) {
+          //发送中，消息发送失败，回调
+          String swithedMsg = switchMsg(content, false);
+          MqttOper.sendErrNotify(swithedMsg);
+        }
       }
     }
   }

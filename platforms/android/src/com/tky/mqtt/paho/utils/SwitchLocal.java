@@ -23,7 +23,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -62,6 +61,10 @@ public class SwitchLocal {
      */
     public static String getATopic(MType type, String id) {
         return getLocal() + "/" + getType(type) + "/" + id;
+    }
+
+    public static String getOnOffTopic(){
+      return  getLocal()+"/"+"s/LoginEvent";
     }
 
     public static String getType(MType type) {

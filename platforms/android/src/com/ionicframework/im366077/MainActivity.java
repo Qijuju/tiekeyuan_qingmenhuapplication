@@ -68,6 +68,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.Call;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener {
@@ -112,6 +113,8 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
     //注册距离感应器
     mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+    String id=JPushInterface.getRegistrationID(getApplicationContext());
 
 //    MqttRobot.setIsStarted(false);
 

@@ -283,6 +283,7 @@ public class UIUtils {
 	 * @return
 	 */
 	public static String getDeviceId() {
+//    JPushInterface.getRegistrationID(getContext());
 		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
 		return TelephonyMgr.getDeviceId();
 	}
@@ -416,7 +417,7 @@ public class UIUtils {
 
 	/**
 	 * 安装应用
-	 * @param context
+	 * @param
 	 * @param appPath
 	 */
 	public static void installApk(final String appPath) {
