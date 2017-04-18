@@ -5,7 +5,7 @@
       <!--<img  src="img/saom.png" width="20px" height="20px" style="margin-top: 6px;margin-left: 6px" ng-click="saoyisao()">-->
     <!--</ion-nav-buttons>-->
     <ion-nav-buttons side="right" >
-      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 6px;margin-right: 6px"  ng-click="createGroupChats()">
+      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 8px;margin-right: 16px"  ng-click="createGroupChats()">
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
@@ -64,7 +64,7 @@
                     <img style="background-color: transparent;padding-right: 5px;float: left" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
                     <!---发送失败--->
                     <img style="background-color: transparent;padding-right: 5px;float: left" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
-                    <font style="font-size: 14px;color: #777777;display:inline-block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</font>
+                    <span style="font-size: 14px;color: #777777;display:inline-block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
                   </div>
 
                 </font>
