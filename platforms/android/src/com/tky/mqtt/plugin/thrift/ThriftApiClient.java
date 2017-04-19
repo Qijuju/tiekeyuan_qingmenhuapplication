@@ -27,6 +27,8 @@ import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.paho.utils.luban.Luban;
+import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.GetHeadPicCallback;
@@ -52,6 +54,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -906,72 +909,118 @@ public class ThriftApiClient extends CordovaPlugin {
       if (filePath.contains("file:///")) {
         filePath = filePath.substring(7);
       }
-      File file = new File(filePath);
+      final File file = new File(filePath);
       boolean exists = file.exists();
+      System.out.print(FileUtils.formatFileSize(file.length()));
+
       if (!exists) {
         setResult("该文件不存在！", PluginResult.Status.ERROR, callbackContext);
         return;
       }
-      FileInputStream fis = new FileInputStream(file);
-      File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
-      String path = FileUtils.getIconDir() + File.separator + "headpic";
-      if (!fosDir.exists()) {
-        fosDir.mkdirs();
-      }
-      String[] listarr = fosDir.list();
-      if (listarr.length > 0 || listarr != null) {
-        for (int i = 0; i < listarr.length; i++) {
-          File temp = new File(path + File.separator + listarr[i]);
-          temp.delete();
-        }
-      }
 
-      final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
-      if (fosFile.exists()) {
-        fosFile.delete();
-      }
-      fosFile.createNewFile();
-      FileOutputStream fos = new FileOutputStream(fosFile);
-      byte[] bys = new byte[1024 * 10];
-      int len = 0;
-      while ((len = fis.read(bys)) != -1) {
-        fos.write(bys, 0, len);
-        fos.flush();
-      }
-
-      SystemApi.setHeadPic(getUserID(), filePath, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
+      new Thread(new Runnable() {
         @Override
-        public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
-          try {
-            RST result = setHeadPic_call.getResult();
-            if (result != null && result.result) {
-              String absolutePath = fosFile.getAbsolutePath();
-              if (absolutePath.contains("file:///")) {
-                absolutePath = absolutePath.substring(7);
+        public void run() {
+
+          //用luban压缩图片
+          Luban.get(cordova.getActivity())
+            .load(file).putGear(Luban.THIRD_GEAR)
+            .setFilename(file.getName().substring(0, file.getName().lastIndexOf(".")))
+            .setCompressListener(new OnCompressListener() {
+              @Override
+              public void onStart() {
+
               }
-              setResult(absolutePath, PluginResult.Status.OK, callbackContext);
-            } else {
-              setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
-            }
-          } catch (TException e) {
-            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-            e.printStackTrace();
-          }
-        }
 
-        @Override
-        public void onError(Exception e) {
-          setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+              @Override
+              public void onSuccess(File comfile) {
+
+                System.out.print(FileUtils.formatFileSize(comfile.length()));
+                if(!comfile.exists()){
+                  return;
+                }
+
+                try {
+                  FileInputStream fis=new FileInputStream(comfile);
+                  File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
+                  String path = FileUtils.getIconDir() + File.separator + "headpic";
+                  if (!fosDir.exists()) {
+                    fosDir.mkdirs();
+                  }
+                  String[] listarr = fosDir.list();
+                  if (listarr.length > 0 || listarr != null) {
+                    for (int i = 0; i < listarr.length; i++) {
+                      File temp = new File(path + File.separator + listarr[i]);
+                      temp.delete();
+                    }
+                  }
+
+                  final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
+                  if (fosFile.exists()) {
+                    fosFile.delete();
+                  }
+                  fosFile.createNewFile();
+                  FileOutputStream fos = new FileOutputStream(fosFile);
+                  byte[] bys = new byte[1024 * 10];
+                  int len = 0;
+                  while ((len = fis.read(bys)) != -1) {
+                    fos.write(bys, 0, len);
+                    fos.flush();
+                  }
+
+                  try {
+                    SystemApi.setHeadPic(getUserID(), comfile.getAbsolutePath(), new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
+                      @Override
+                      public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
+                        try {
+                          RST result = setHeadPic_call.getResult();
+                          if (result != null && result.result) {
+                            String absolutePath = fosFile.getAbsolutePath();
+                            if (absolutePath.contains("file:///")) {
+                              absolutePath = absolutePath.substring(7);
+                            }
+                            setResult(absolutePath, PluginResult.Status.OK, callbackContext);
+                          } else {
+                            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                          }
+                        } catch (TException e) {
+                          setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+                          e.printStackTrace();
+                        }
+                      }
+
+                      @Override
+                      public void onError(Exception e) {
+                        setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+                      }
+                    });
+                  } catch (TException e) {
+                    e.printStackTrace();
+                  } catch (JSONException e) {
+                    e.printStackTrace();
+                  }
+                } catch (FileNotFoundException e) {
+                  e.printStackTrace();
+                }catch (IOException e){
+                  e.printStackTrace();
+                }
+              }
+
+              @Override
+              public void onError(Throwable e) {
+
+
+              }
+            }).launch();
+
         }
-      });
+      }).start();
+
     } catch (JSONException e) {
       setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
-    } catch (TException e) {
+    } catch (Exception e) {
       setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (IOException e) {
-      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     }
   }

@@ -72,7 +72,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
           $scope.currentcity = response.results[0].currentCity;
           $scope.weathdate = response.results[0].weather_data[0].date.substring(14, response.results[0].weather_data[0].date.length - 1);
-           alert(response.results[0].weather_data[0].date.length)
 
           $scope.weatherzhen = response.results[0].weather_data[0].weather;
         });
