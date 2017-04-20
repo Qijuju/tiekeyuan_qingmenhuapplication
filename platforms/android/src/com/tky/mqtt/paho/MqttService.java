@@ -81,7 +81,7 @@ public class MqttService extends Service {
         //使用兼容版本
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         //设置状态栏的通知图标
-        builder.setSmallIcon(R.drawable.icon_friends);
+        builder.setSmallIcon(R.drawable.icon);
         //设置通知栏横条的图标
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
         //禁止用户点击删除按钮删除

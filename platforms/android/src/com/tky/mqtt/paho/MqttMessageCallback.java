@@ -152,10 +152,10 @@ public class MqttMessageCallback implements MqttCallback {
                 List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
                 if (groupChatsList.size() != 0) {
                   String chatname = groupChatsList.get(0).getGroupName();
-                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_group_conversation, chatname, tip, new Intent(context, MainActivity.class));
+                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
                 }
               } else {
-                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon_friends, username, tip, new Intent(context, MainActivity.class));
+                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
               }
             }
             //入库(MESSAGE和CHATLIST表)

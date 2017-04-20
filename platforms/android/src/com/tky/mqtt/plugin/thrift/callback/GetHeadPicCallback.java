@@ -35,7 +35,7 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
             try {
                 RSTgetPic result = getHeadPic_call.getResult();
                 if (result != null && result.result) {
-                    String iconDir = FileUtils.getIconDir() + File.separator + "/headpic";
+                    String iconDir = FileUtils.getIconDir() + File.separator + "headpic";
                     File directory = new File(iconDir);
                     if (!directory.exists()) {
                         directory.mkdirs();
