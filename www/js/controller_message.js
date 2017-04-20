@@ -4365,6 +4365,7 @@ angular.module('message.controllers', [])
     //监听网络状态的变化
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
+       //alert("哈哈哈哈哈啊哈哈哈哈");
       //   alert("关网时走不走"+$rootScope.netStatus);
         $rootScope.isConnect=$rootScope.netStatus;
         // alert("切换网络时"+$scope.isConnect);
@@ -4409,7 +4410,7 @@ angular.module('message.controllers', [])
       $state.go("emergencycall");
     }
     //刚开始进来先拿到部门的id
-    $contacts.loginInfo();+
+    $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
 
