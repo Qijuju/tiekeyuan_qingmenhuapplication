@@ -28,7 +28,6 @@ import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.mqtt.services.SystemMsgService;
-import com.tky.protocol.model.IMPFields;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -61,7 +60,6 @@ public class MqttMessageCallback implements MqttCallback {
    */
   @Override
   public void connectionLost(Throwable arg0) {
-
 
 //    ToastUtil.showSafeToast("Mqtt断开链接了");
 //    MqttOper.restartService();

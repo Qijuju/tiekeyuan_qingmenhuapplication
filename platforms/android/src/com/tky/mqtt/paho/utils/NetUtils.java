@@ -33,6 +33,7 @@ public class NetUtils {
                         return info.isAvailable() && info.isConnected();
                     }
                 }
+
             }
         } catch (Exception e) {
             // TODO: handle exception

@@ -4344,7 +4344,7 @@ angular.module('message.controllers', [])
       // alert("进来了吗？ok");
     },function (err) {
       // alert("进来了吗？no");
-      $rootScope.isNetConnect='true';
+      $rootScope.isNetConnect='false';
       $ToastUtils.showToast("当前网络不可用",null,null);
     });
 
@@ -4364,12 +4364,12 @@ angular.module('message.controllers', [])
     });
     //监听网络状态的变化
     $scope.$on('netstatus.update', function (event) {
-      // $scope.$apply(function () {
+      $scope.$apply(function () {
       //   alert("哈哈哈哈哈啊哈哈哈哈");
       //   alert("关网时走不走"+$rootScope.netStatus);
         $rootScope.isConnect=$rootScope.netStatus;
         // alert("切换网络时"+$scope.isConnect);
-      // })
+      })
     });
 
     // alert($location.path());

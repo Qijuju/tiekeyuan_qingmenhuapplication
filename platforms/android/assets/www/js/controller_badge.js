@@ -8,7 +8,6 @@ angular.module('badge.controllers',[])
     $scope.allNoRead=0;
     $scope.badge=function () {
 
-
       if($scope.allNoRead>99){
         $scope.allNoRead=99+'+'
         return $scope.allNoRead;
@@ -16,10 +15,7 @@ angular.module('badge.controllers',[])
         return $scope.allNoRead;
       }
 
-
     }
-
-
 
     $scope.$on('msgs.update', function (event) {
 
@@ -39,10 +35,8 @@ angular.module('badge.controllers',[])
 
     $scope.$on('noread.update', function (event) {
 
-
         $greendao.loadAllData('ChatListService',function (msg) {
           $scope.allNoRead=0;
-
           if (msg.length>0){
             for(var i=0;i<msg.length;i++){
               $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
@@ -88,14 +82,9 @@ angular.module('badge.controllers',[])
           if (msg.length>0){
               $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
           }
-
         },function (msg) {
 
         });
-
-
-
-
       })
     });
 
