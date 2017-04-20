@@ -3,7 +3,7 @@
  */
 angular.module('badge.controllers',[])
 
-  .controller('tabsCtrl', function ($scope,$greendao,$ionicLoading) {
+  .controller('tabsCtrl', function ($scope,$greendao,$ionicLoading,$ToastUtils) {
 
     $scope.allNoRead=0;
     $scope.badge=function () {
@@ -23,34 +23,43 @@ angular.module('badge.controllers',[])
 
     $scope.$on('msgs.update', function (event) {
 
-      $scope.$apply(function () {
-        $greendao.loadAllData('ChatListService',function (msg) {
-          $scope.allNoRead=0;
-          if (msg.length>0){
-            for(var i=0;i<msg.length;i++){
-              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
-            }
-          }
-        },function (err) {
+      /*$scope.$apply(function () {
 
-        })
+
+
+      })*/
+      $greendao.loadAllData('ChatListService',function (msg) {
+        $scope.allNoRead=0;
+        if (msg.length>0){
+          for(var i=0;i<msg.length;i++){
+            $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+          }
+
+          // $ToastUtils.showToast($scope.allNoRead)
+        }
+
+
+      },function (err) {
+
       })
     });
 
     $scope.$on('noread.update', function (event) {
 
+      $greendao.loadAllData('ChatListService',function (msg) {
+        $scope.allNoRead=0;
 
-        $greendao.loadAllData('ChatListService',function (msg) {
-          $scope.allNoRead=0;
+        if (msg.length>0){
+          for(var i=0;i<msg.length;i++){
+            $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
 
-          if (msg.length>0){
-            for(var i=0;i<msg.length;i++){
-              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
-            }
           }
-        },function (err) {
 
-        })
+        }
+      },function (err) {
+
+      })
+
 
     });
 

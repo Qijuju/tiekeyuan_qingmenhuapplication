@@ -1051,11 +1051,9 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttStarted() {
           try {
-            if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
-              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-              Log.e("getstarttime", format.format(new Date()));
-              setResult("true", PluginResult.Status.OK, callbackContext);
-            }
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Log.e("getstarttime", format.format(new Date()));
+            setResult("true", PluginResult.Status.OK, callbackContext);
           } catch (Exception e) {
           }
         }
@@ -1063,11 +1061,9 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onMqttClosed() {
           try {
-            if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
-              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-              Log.e("getendtime", format.format(new Date()));
-              setResult("false", PluginResult.Status.ERROR, callbackContext);
-            }
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            Log.e("getendtime", format.format(new Date()));
+            setResult("false", PluginResult.Status.ERROR, callbackContext);
           } catch (Exception e) {
           }
         }
