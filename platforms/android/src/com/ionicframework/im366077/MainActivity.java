@@ -96,7 +96,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     } finally {
       startService(new Intent(MainActivity.this, MqttService.class));
     }*/
-//    startService(new Intent(this, ProtectService.class));
+    startService(new Intent(this, ProtectService.class));
     // Set by <content src="index.html" /> in config.xml
     inithotfix();
     loadUrl(launchUrl);

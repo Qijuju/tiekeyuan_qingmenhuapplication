@@ -76,7 +76,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
                 try {
                     MqttOper.closeMqttConnection();
                     context.stopService(new Intent(context, MqttService.class));
-                    MqttRobot.setConnectionType(connectionType);
+
                 } catch (Exception e){
                 }finally {
                     //重连检查
@@ -84,6 +84,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
                         @Override
                         public void onCheck(boolean result) {
                             if (result) {
+                              MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
                                 context.startService(new Intent(context, MqttService.class));
                             } else {
                                 MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
