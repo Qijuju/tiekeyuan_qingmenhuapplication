@@ -4409,7 +4409,7 @@ angular.module('message.controllers', [])
       $state.go("emergencycall");
     }
     //刚开始进来先拿到部门的id
-    $contacts.loginInfo();
+    $contacts.loginInfo();+
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
 
