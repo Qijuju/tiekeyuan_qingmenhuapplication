@@ -231,7 +231,7 @@ public class ThriftApiClient extends CordovaPlugin {
             } catch (SQLiteException e){
               setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
             } catch (Exception e) {
-              ToastUtil.showSafeToast("ss");
+              //ToastUtil.showSafeToast("ss");
             }
           }
         }
@@ -252,7 +252,7 @@ public class ThriftApiClient extends CordovaPlugin {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     } catch (Exception e) {
-      ToastUtil.showSafeToast("ss");
+      //ToastUtil.showSafeToast("ss");
     }
   }
 

@@ -406,9 +406,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
      */
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        // alert("进来单聊界面吗？");
-        $chatarr.setData(data);
+        //alert("进来单聊界面吗？我是那个啥最后一个模块");
         $greendao.queryByConditions('ChatListService', function (data) {
+          $chatarr.setData(data);
           $scope.items = data;
           // alert("数组的长度"+data.length);
         }, function (err) {
@@ -417,6 +417,16 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
+      })
+    });
+
+    //监听网络状态的变化
+    $scope.$on('netstatus.update', function (event) {
+      $scope.$apply(function () {
+        alert("哈哈哈哈哈啊哈哈哈哈");
+        alert("关网时走不走"+$rootScope.netStatus);
+        $rootScope.isConnect=$rootScope.netStatus;
+        // alert("切换网络时"+$scope.isConnect);
       })
     });
 
