@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.ionicframework.im366077.Constants;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
@@ -131,6 +132,8 @@ public class ThriftApiClient extends CordovaPlugin {
           e.printStackTrace();
         } catch (IllegalAccessException e) {
           e.printStackTrace();
+        }catch (Exception e){
+          e.printStackTrace();
         }
       }
     });
@@ -227,6 +230,8 @@ public class ThriftApiClient extends CordovaPlugin {
               e.printStackTrace();
             } catch (SQLiteException e){
               setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
+            } catch (Exception e) {
+              ToastUtil.showSafeToast("ss");
             }
           }
         }
@@ -246,6 +251,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      ToastUtil.showSafeToast("ss");
     }
   }
 
@@ -553,10 +560,13 @@ public class ThriftApiClient extends CordovaPlugin {
    * @param args
    * @param callbackContext
    */
+
   public void getUserRoot(final JSONArray args, final CallbackContext callbackContext) {
+
     try {
       //String ID = args.getString(0);
       SystemApi.getUserRoot(getUserID(), new AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call>() {
+
         @Override
         public void onComplete(IMDepartment.AsyncClient.GetUserRoot_call getUserRoot_call) {
           try {
@@ -583,6 +593,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
         @Override
         public void onError(Exception e) {
+
           setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
         }
       });
@@ -918,58 +929,62 @@ public class ThriftApiClient extends CordovaPlugin {
         return;
       }
 
-      new Thread(new Runnable() {
-        @Override
-        public void run() {
 
-          //用luban压缩图片
-          Luban.get(cordova.getActivity())
-            .load(file).putGear(Luban.THIRD_GEAR)
-            .setFilename(file.getName().substring(0, file.getName().lastIndexOf(".")))
-            .setCompressListener(new OnCompressListener() {
-              @Override
-              public void onStart() {
+      Luban.get(cordova.getActivity())
+        .load(file).putGear(Luban.THIRD_GEAR)
+        .setFilename(file.getName().substring(0, file.getName().lastIndexOf(".")))
+        .setCompressListener(new OnCompressListener() {
+          @Override
+          public void onStart() {
 
+          }
+
+          @Override
+          public void onSuccess(final File comfile) {
+
+            System.out.print(FileUtils.formatFileSize(comfile.length()));
+            if(!comfile.exists()){
+              return;
+            }
+
+            final String pathlast=comfile.getAbsolutePath();
+
+            try {
+              FileInputStream fis=new FileInputStream(comfile);
+              File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
+              String path = FileUtils.getIconDir() + File.separator + "headpic";
+              if (!fosDir.exists()) {
+                fosDir.mkdirs();
+              }
+              String[] listarr = fosDir.list();
+              if (listarr.length > 0 || listarr != null) {
+                for (int i = 0; i < listarr.length; i++) {
+                  File temp = new File(path + File.separator + listarr[i]);
+                  temp.delete();
+                }
               }
 
-              @Override
-              public void onSuccess(File comfile) {
+              final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
+              if (fosFile.exists()) {
+                fosFile.delete();
+              }
+              fosFile.createNewFile();
+              FileOutputStream fos = new FileOutputStream(fosFile);
+              byte[] bys = new byte[1024 * 10];
+              int len = 0;
+              while ((len = fis.read(bys)) != -1) {
+                fos.write(bys, 0, len);
+                fos.flush();
+              }
 
-                System.out.print(FileUtils.formatFileSize(comfile.length()));
-                if(!comfile.exists()){
-                  return;
-                }
 
-                try {
-                  FileInputStream fis=new FileInputStream(comfile);
-                  File fosDir = new File(FileUtils.getIconDir() + File.separator + "headpic");
-                  String path = FileUtils.getIconDir() + File.separator + "headpic";
-                  if (!fosDir.exists()) {
-                    fosDir.mkdirs();
-                  }
-                  String[] listarr = fosDir.list();
-                  if (listarr.length > 0 || listarr != null) {
-                    for (int i = 0; i < listarr.length; i++) {
-                      File temp = new File(path + File.separator + listarr[i]);
-                      temp.delete();
-                    }
-                  }
+              new Thread(new Runnable() {
+                @Override
+                public void run() {
 
-                  final File fosFile = new File(fosDir + File.separator + UUID.randomUUID().toString() + ".jpg");
-                  if (fosFile.exists()) {
-                    fosFile.delete();
-                  }
-                  fosFile.createNewFile();
-                  FileOutputStream fos = new FileOutputStream(fosFile);
-                  byte[] bys = new byte[1024 * 10];
-                  int len = 0;
-                  while ((len = fis.read(bys)) != -1) {
-                    fos.write(bys, 0, len);
-                    fos.flush();
-                  }
 
                   try {
-                    SystemApi.setHeadPic(getUserID(), comfile.getAbsolutePath(), new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
+                    SystemApi.setHeadPic(getUserID(), pathlast, new AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call>() {
                       @Override
                       public void onComplete(IMFile.AsyncClient.SetHeadPic_call setHeadPic_call) {
                         try {
@@ -994,33 +1009,31 @@ public class ThriftApiClient extends CordovaPlugin {
                         setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
                       }
                     });
-                  } catch (TException e) {
-                    e.printStackTrace();
-                  } catch (JSONException e) {
+                  } catch (Exception e) {
+                    setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
                     e.printStackTrace();
                   }
-                } catch (FileNotFoundException e) {
-                  e.printStackTrace();
-                }catch (IOException e){
-                  e.printStackTrace();
+
+
                 }
-              }
-
-              @Override
-              public void onError(Throwable e) {
+              }).start();
 
 
-              }
-            }).launch();
+            } catch (Exception e){
+              setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            }
+          }
 
-        }
-      }).start();
+          @Override
+          public void onError(Throwable e) {
+            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
 
+          }
+        }).launch();
     } catch (JSONException e) {
       setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (Exception e) {
-      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     }
   }
@@ -2310,6 +2323,8 @@ public class ThriftApiClient extends CordovaPlugin {
       e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
+    }catch (Exception e){
+      e.printStackTrace();
     }
   }
 
@@ -2639,6 +2654,8 @@ public class ThriftApiClient extends CordovaPlugin {
       e.printStackTrace();
     } catch (JSONException e) {
       e.printStackTrace();
+    }catch (Exception e){
+      e.printStackTrace();
     }
   }
 
@@ -2809,6 +2826,9 @@ public class ThriftApiClient extends CordovaPlugin {
       }
     } catch (JSONException e) {
       setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }catch (Exception e){
+      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     }
   }
@@ -3036,7 +3056,8 @@ public class ThriftApiClient extends CordovaPlugin {
     try {
       String picUserID = args.getString(0);//查询的是谁的图片
       String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
-      URL url = new URL("http://61.237.239.152:8080/Im_Interface/loginpic/download?Id=0");
+      //URL url = new URL(Constants.testwelcome);
+      URL url = new URL(Constants.formalwelcome);
       HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
       httpURLConnection.setDoInput(true);
       httpURLConnection.setRequestMethod("GET");

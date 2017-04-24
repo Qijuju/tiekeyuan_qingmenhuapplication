@@ -11,6 +11,7 @@ import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.FilePictureDao;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
@@ -109,6 +110,14 @@ public class ScalePhoto extends CordovaPlugin {
                     final String imagename=args.getString(1);
                     final String samllfilepath=args.getString(2);
 
+                  DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
+                  final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
+                  final FilePicture firstFilePic=filePictureDao.load(imageid);
+                  if (firstFilePic==null){
+                    ToastUtil.showSafeToast("图片文件损坏");
+                    return;
+                  }
+
                     if (downList.contains(imageid)) {
 
                         UIUtils.runInMainThread(new Runnable() {
@@ -130,9 +139,6 @@ public class ScalePhoto extends CordovaPlugin {
                     }
                     downList.add(imageid);
 
-                    DaoSession mDaoSession= BaseApplication.getDaoSession(UIUtils.getContext());
-                    final FilePictureDao filePictureDao=mDaoSession.getFilePictureDao();
-                    final FilePicture firstFilePic=filePictureDao.load(imageid);
 
                     //收到图片的真是大小
                     String factStringSize=firstFilePic.getBytesize();

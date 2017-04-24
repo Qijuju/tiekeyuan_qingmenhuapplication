@@ -272,13 +272,13 @@ angular.module('im.routes', [])
 
       .state('tab.contacts', {
         url: '/contacts',
+        cache:false,
         views: {
           'tab-contacts': {
             templateUrl: 'templates/tab-contacts.html',
             controller: 'ContactsCtrl'
           }
-        },
-        cache:false
+        }
       })
 
       .state('second', {

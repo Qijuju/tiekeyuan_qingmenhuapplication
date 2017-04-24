@@ -13,6 +13,7 @@ import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
 /**
  * 作者：
@@ -26,6 +27,7 @@ public class NetStatusReceiver extends BroadcastReceiver {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             NetworkInfo info = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
             if (info.getState().equals(NetworkInfo.State.CONNECTED) && NetUtils.isConnect(context)) {
+//              if (info.getState().equals(NetworkInfo.State.CONNECTED) && NetUtils.isConnect(context)) {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_CONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);
@@ -35,6 +37,7 @@ public class NetStatusReceiver extends BroadcastReceiver {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_DISCONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);
+              SystemApi.dealNetDown();
 //                MqttOper.cutMqttWithNoting();
             }
         }

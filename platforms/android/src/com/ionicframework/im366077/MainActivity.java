@@ -141,10 +141,15 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
    */
   private void inithotfix() {
 
-    //请求补丁版本信息
-    String patchUrl = "http://61.237.239.152:8080/patch/patch/json";
+    /*//请求补丁版本信息
+    String patchUrl = Constants.testpatch;
     //下载补丁的地址
-    final String downurl = "http://61.237.239.152:8080/patch/patch/get";
+    final String downurl =Constants.testpatchdownload;*/
+
+
+    //生产
+    String patchUrl = Constants.formalpatch;
+    final String downurl =Constants.formalpatchdownload;
 
 
     Tinker tinker = Tinker.with(getApplicationContext());
@@ -208,6 +213,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
               @Override
               public void onResponse(File response, int id) {
                 Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
+                ToastUtil.showSafeToast("nihaoa");
                 //开启热修复
                 TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
 
