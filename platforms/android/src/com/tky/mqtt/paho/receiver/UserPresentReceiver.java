@@ -50,9 +50,8 @@ public class UserPresentReceiver extends BroadcastReceiver {
 
             if (MqttRobot.isStarted() && Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 try {
-                    MqttOper.closeMqttConnection();
+                    MqttOper.disconnectMqtt();
                     context.stopService(new Intent(context, MqttService.class));
-                    MqttRobot.setConnectionType(connectionType);
                 } catch (Exception e){
                 }finally {
                     //重连检查
@@ -74,7 +73,7 @@ public class UserPresentReceiver extends BroadcastReceiver {
 
             if (!flag && MqttRobot.isStarted() && MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL && MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
                 try {
-                    MqttOper.closeMqttConnection();
+                    MqttOper.disconnectMqtt();
                     context.stopService(new Intent(context, MqttService.class));
 
                 } catch (Exception e){
@@ -84,7 +83,6 @@ public class UserPresentReceiver extends BroadcastReceiver {
                         @Override
                         public void onCheck(boolean result) {
                             if (result) {
-                              MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
                                 context.startService(new Intent(context, MqttService.class));
                             } else {
                                 MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);

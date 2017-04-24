@@ -116,6 +116,11 @@ public class MqttConnection {
                     public void onConnectionDown() {
                         closeConnection(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
                     }
+
+                  @Override
+                  public void onDisconnect() {
+
+                  }
                 });
 
                 //发布主题的回调

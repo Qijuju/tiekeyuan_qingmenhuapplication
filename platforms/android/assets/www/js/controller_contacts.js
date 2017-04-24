@@ -215,12 +215,19 @@ angular.module('contacts.controllers', [])
       })
     });
 
+    $scope.$on('$ionicView.enter', function () {
+      $contacts.rootDept();
 
-    $contacts.rootDept();
+    });
+
+
+
+
+
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
+        $ionicLoading.hide();
         $timeout(function () {
-          $ionicLoading.hide();
           $scope.depts = $contacts.getRootDept();
         });
       })
@@ -411,7 +418,7 @@ angular.module('contacts.controllers', [])
 
 
 
-        },5000);
+        });
 
 
       })

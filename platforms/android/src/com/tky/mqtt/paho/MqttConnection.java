@@ -51,6 +51,11 @@ public class MqttConnection {
     }
     this.context = context;
     this.service = service;
+
+    if (isConnected()) {
+      closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+    }
+
     //MQTT启动中...
     MqttRobot.setMqttStatus(MqttStatus.LOADING);
     //重置状态
@@ -100,6 +105,11 @@ public class MqttConnection {
 
     @Override
     public void onFailure(IMqttToken arg0, Throwable arg1) {
+      try {
+        MqttConnection.this.closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+      } catch (MqttException e) {
+        e.printStackTrace();
+      }
       UIUtils.runInMainThread(new Runnable() {
         @Override
         public void run() {
@@ -334,6 +344,19 @@ public class MqttConnection {
                   }
                 }
               }
+
+              @Override
+              public void onDisconnect() {
+                try {
+                  closeConnection(ConnectionType.MODE_CONNECTION_DOWN_AUTO);
+                } catch (MqttException e) {
+                  e.printStackTrace();
+                } finally {
+                  if (service != null) {
+                    service.destorySelfByHand();
+                  }
+                }
+              }
             });
 
             receiver.setOnNetDownListener(new MqttReceiver.OnNetDownListener() {
@@ -509,11 +532,13 @@ public class MqttConnection {
     this.connectionType = modeConnectionDownManual;
     MqttRobot.setConnectionType(this.connectionType);
     if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
-      mqttAsyncClient.disconnectForcibly();
-      mqttAsyncClient.close();
-      if (mqttAsyncClient != null) {
-        mqttAsyncClient = null;
-      }
+      try {
+        mqttAsyncClient.disconnectForcibly();
+        mqttAsyncClient.close();
+        if (mqttAsyncClient != null) {
+          mqttAsyncClient = null;
+        }
+      } catch (Exception e) {}
     } else if (mqttAsyncClient != null) {
       mqttAsyncClient = null;
     }

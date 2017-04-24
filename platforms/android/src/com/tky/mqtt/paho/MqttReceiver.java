@@ -94,7 +94,11 @@ public class MqttReceiver extends BroadcastReceiver {
 			if (onConnectionDownListener != null) {
 				onConnectionDownListener.onConnectionDown();
 			}
-		} else if (ReceiverParams.NET_DOWN_MQTT.equals(intent.getAction())) {//由于网络断开而断开MQTT的监听回调
+		} else if (ReceiverParams.CONNECTION_DISCONNECT_MQTT.equals(intent.getAction())) {//断开MQTT但是不设置为手动断开
+      if (onConnectionDownListener != null) {
+        onConnectionDownListener.onDisconnect();
+      }
+    } else if (ReceiverParams.NET_DOWN_MQTT.equals(intent.getAction())) {//由于网络断开而断开MQTT的监听回调
 			if (onNetDownListener != null) {
 				onNetDownListener.onNetDown();
 			}
@@ -138,8 +142,13 @@ public class MqttReceiver extends BroadcastReceiver {
 	 * Mqtt断开连接的监听
 	 */
 	public interface OnConnectionDownListener {
-		public void onConnectionDown();
-	}
+    /**
+     * 只断开MQTT，不设置状态为手动断开状态
+     */
+    public void onConnectionDown();
+
+    public void onDisconnect();
+  }
 
 	/**
 	 * Mqtt由于网络断开而断开连接的监听

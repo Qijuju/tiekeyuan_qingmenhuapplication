@@ -91,7 +91,15 @@ public class MqttOper {
         Intent netIntent = new Intent();
         netIntent.setAction(ReceiverParams.CONNECTION_DOWN_MQTT);
         UIUtils.getContext().sendBroadcast(netIntent);
-        UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
+    }
+
+    /**
+     * 手动断掉MQTT的连接
+     */
+    public static void disconnectMqtt() {
+      Intent netIntent = new Intent();
+      netIntent.setAction(ReceiverParams.CONNECTION_DISCONNECT_MQTT);
+      UIUtils.getContext().sendBroadcast(netIntent);
     }
 
     /**

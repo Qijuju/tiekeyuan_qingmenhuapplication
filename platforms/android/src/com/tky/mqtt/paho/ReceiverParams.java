@@ -94,7 +94,12 @@ public class ReceiverParams {
 	 */
 	public static final String RECEIVER_PLAY_STOP = "com.sls.mqtt.receiver_play_stop";
 
-	/**
+  /**
+   * 只断开MQTT，不设置为手动断开
+   */
+  public static final String CONNECTION_DISCONNECT_MQTT = "com.sls.mqtt.connection_disconnect_mqtt";
+
+  /**
 	 * 声音变化的广播接收者
 	 */
 //	public static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
