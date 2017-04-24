@@ -45,8 +45,8 @@ public class SystemApi {
 
 
 	 public static final String url = Constants.formalbasemobile; //正式
-    //public static final String url = Constants.testbasemobile;//测试
-    //public static final String url = "201.137.140.133";
+   //public static final String url = Constants.testbasemobile;//测试
+   //public static final String url = Constants.JINGWAIURL;
 
 
 

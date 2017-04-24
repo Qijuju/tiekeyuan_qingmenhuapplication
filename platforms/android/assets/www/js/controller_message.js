@@ -4,6 +4,17 @@
 angular.module('message.controllers', [])
   .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location) {
 
+    $scope.$on('netstatus.update', function (event) {
+      /*$scope.$apply(function () {
+
+      })*/
+      //alert("哈哈哈哈哈啊哈哈哈哈1");
+      //   alert("关网时走不走"+$rootScope.netStatus);
+      $rootScope.isConnect=$rootScope.netStatus;
+      //alert("切换网络时"+$scope.isConnect);
+    });
+
+
     $scope.$on('sendprogress.update', function (event) {
       $scope.$apply(function () {
         // $ToastUtils.showToast("进度进行中~~~",null,null);
@@ -416,8 +427,10 @@ angular.module('message.controllers', [])
     //一进来就检查网络是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
       $rootScope.netStatus = 'true';
+      $rootScope.$broadcast('netstatus.update');
     },function (err) {
       $rootScope.netStatus='false';
+      $rootScope.$broadcast('netstatus.update');
       // alert("切换网络失败时");
       // $greendao.queryData('MessagesService','where sessionid =?',$scope.userId,function (data) {
       //   alert("切换网络时"+data.length);
@@ -2314,6 +2327,19 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+
+    $scope.$on('netstatus.update', function (event) {
+      $scope.$apply(function () {
+        //alert("哈哈哈哈哈啊哈哈哈哈");
+        //   alert("关网时走不走"+$rootScope.netStatus);
+        $rootScope.isConnect=$rootScope.netStatus;
+        // alert("切换网络时"+$scope.isConnect);
+      })
+    });
+
+
+
+
     //获取用户修改后的头像
     $scope.picyoumeiyoumsg=false;
     $scope.p=$rootScope.securlpicaaa;
@@ -2667,8 +2693,12 @@ angular.module('message.controllers', [])
     //一进来就检查网络是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
       $rootScope.netStatus = 'true';
+      $rootScope.$broadcast('netstatus.update');
+
     },function (err) {
       $rootScope.netStatus='false';
+      $rootScope.$broadcast('netstatus.update');
+
       // alert("切换网络失败时");
       // $greendao.queryData('MessagesService','where sessionid =?',$scope.groupid,function (data) {
       //   // alert("切换网络时"+data.length);
@@ -4280,13 +4310,13 @@ angular.module('message.controllers', [])
 
 
 
-    //读取当前 app的欢迎界面
+  /*  //读取当前 app的欢迎界面
     $api.getWelcomePic($scope.ID,"960",function (srcurl) {
       $mqtt.save('welcomePic', srcurl);
       // $ToastUtils.showToast(srcurl)
     },function (error) {
       $ToastUtils.showToast(error)
-    })
+    })*/
 
 
 

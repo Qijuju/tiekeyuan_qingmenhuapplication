@@ -23,25 +23,25 @@ angular.module('badge.controllers',[])
 
     $scope.$on('msgs.update', function (event) {
 
-      /*$scope.$apply(function () {
+      $scope.$apply(function () {
+       $greendao.loadAllData('ChatListService',function (msg) {
+       $scope.allNoRead=0;
+       if (msg.length>0){
+       for(var i=0;i<msg.length;i++){
+       $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+       }
+
+       // $ToastUtils.showToast($scope.allNoRead)
+       }
 
 
+       },function (err) {
 
-      })*/
-      $greendao.loadAllData('ChatListService',function (msg) {
-        $scope.allNoRead=0;
-        if (msg.length>0){
-          for(var i=0;i<msg.length;i++){
-            $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
-          }
+       })
 
-          // $ToastUtils.showToast($scope.allNoRead)
-        }
-
-
-      },function (err) {
 
       })
+
     });
 
     $scope.$on('noread.update', function (event) {
