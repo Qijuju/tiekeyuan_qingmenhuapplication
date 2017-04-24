@@ -22,7 +22,8 @@ angular.module('portal.controllers', [])
         NetData.getAppMenu(userID);
 
       }, function (err) {
-
+        $ionicLoading.hide();
+        $ToastUtils.showToast("网络错误");
       });
 
 

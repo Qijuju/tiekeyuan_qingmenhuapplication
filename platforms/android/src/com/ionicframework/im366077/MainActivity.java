@@ -40,6 +40,10 @@ import com.google.gson.reflect.TypeToken;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
 import com.tencent.tinker.lib.tinker.Tinker;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
+import com.tky.im.enums.IMEnums;
+import com.tky.im.params.ConstantsParams;
+import com.tky.im.utils.IMBroadOper;
+import com.tky.im.utils.IMStatusManager;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
@@ -95,7 +99,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     } finally {
       startService(new Intent(MainActivity.this, MqttService.class));
     }*/
-    startService(new Intent(this, ProtectService.class));
+//    startService(new Intent(this, ProtectService.class));
     // Set by <content src="index.html" /> in config.xml
     inithotfix();
     loadUrl(launchUrl);
@@ -280,6 +284,9 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
       ResumeParams.IMG_RESUME = false;
     }
     Utils.setBackground(false);
+    if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
+      IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
+    }
   }
 
   @Override

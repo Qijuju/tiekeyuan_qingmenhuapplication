@@ -87,6 +87,7 @@ angular.module('portal.services', [])
       getCompanyName: function (userID) {
         $http({
           method: 'get',
+          timeout:5000,
           url: "https://cars.crbim.top/apiman-gateway/r93535.com/getJSDeptsByUserId/2.0/" + userID + "?apikey=4a81ca6e-9683-4d47-b80d-c8f1c7ca11d3"
         }).success(function (data, status) {
           companyName="";
@@ -114,6 +115,7 @@ angular.module('portal.services', [])
       getAppMenu: function (userID) {
         $http({
           method: 'get',
+          timeout:5000,
           url: "https://cars.crbim.top/apiman-gateway/r93535.com/getSysMenuByUserId/2.0/" + userID + "?apikey=4a81ca6e-9683-4d47-b80d-c8f1c7ca11d3"
         }).success(function (data, status) {
           // alert(status);

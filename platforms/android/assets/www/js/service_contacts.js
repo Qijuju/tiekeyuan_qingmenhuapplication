@@ -244,15 +244,17 @@ angular.module('contacts.services', [])
           rootList = msg.deptList;
           $rootScope.$broadcast('first.update');
 
-        }, function (msg) {
-          $timeout(function () {
-            rootList = null;
-            $rootScope.$broadcast('first.update');
-            // $ToastUtils.showToast("获取数据失败")
-          },4000);
+        }, function (err) {
+          /*$timeout(function () {
+
+          },1000);
+*/
+          rootList = null;
+          $rootScope.$broadcast('first.update');
+          // $ToastUtils.showToast("获取数据失败")
         });
 
-        return null;
+
       },
       getRootDept: function () {
         return rootList;
@@ -991,7 +993,7 @@ angular.module('contacts.services', [])
           //   messagesss.push(data[i]);
           // }
           messagesss=data;
-                    
+
           if(messagesss==null||messagesss.length==0||messagesss==""){
             // $ToastUtils.showToast("无该搜索数据")
           }
