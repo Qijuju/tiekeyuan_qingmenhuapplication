@@ -35,7 +35,8 @@ public class MqttParams {
 		options.setPassword(getPassword().toCharArray());
 		options.setConnectionTimeout(getConnectionTimeout());
 		options.setKeepAliveInterval(getKeepAliveInterval());
-    options.setWill(SwitchLocal.getOnOffTopic(),getOnOffState("UOF"),1,true);
+
+    options.setWill(SwitchLocal.getOnOffTopic(),getOnOffState("UOF"),1,false);
 	}
 
 	/**

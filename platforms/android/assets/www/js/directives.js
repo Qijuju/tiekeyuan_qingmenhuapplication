@@ -16,7 +16,7 @@ angular.module('im.directives', [])
       };
     }
   ])
-  
+
   .directive('rjCloseBackDrop', [function () {
     return {
       scope: false,
@@ -87,7 +87,7 @@ angular.module('im.directives', [])
           var currentid=id.substring(9,10);
           var el = document.querySelector(id);
           if (el.offsetTop>0) {
-            var scrollPosition = el.offsetTop+54;
+            var scrollPosition = el.offsetTop+68;
             $ionicScrollDelegate.scrollTo(0, scrollPosition);
           }else {
             //$ToastUtils.showToast("没有"+currentid+"字母开头的人")

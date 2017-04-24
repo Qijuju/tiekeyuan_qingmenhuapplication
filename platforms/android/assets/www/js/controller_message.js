@@ -4332,8 +4332,6 @@ angular.module('message.controllers', [])
       }
       e.preventDefault();
       return false;
-
-
     },501)
 
 
@@ -4365,6 +4363,7 @@ angular.module('message.controllers', [])
     //监听网络状态的变化
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
+       //alert("哈哈哈哈哈啊哈哈哈哈");
       //   alert("关网时走不走"+$rootScope.netStatus);
         $rootScope.isConnect=$rootScope.netStatus;
         // alert("切换网络时"+$scope.isConnect);

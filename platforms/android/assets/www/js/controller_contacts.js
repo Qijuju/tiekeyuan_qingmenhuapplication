@@ -411,7 +411,7 @@ angular.module('contacts.controllers', [])
 
 
 
-        });
+        },5000);
 
 
       })

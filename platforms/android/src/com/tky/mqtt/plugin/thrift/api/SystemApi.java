@@ -49,8 +49,16 @@ public class SystemApi {
      * @throws IOException
      */
     private static IMSystem.AsyncClient getSystemClient() throws IOException {
+
+
+
         TAsyncClientManager clientManager = new TAsyncClientManager();//172.25.26.165
+
+
+
+
         TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 5000);
+
 //        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
@@ -67,6 +75,7 @@ public class SystemApi {
         TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
         TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
         IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
+
         return asyncClient;
     }
 

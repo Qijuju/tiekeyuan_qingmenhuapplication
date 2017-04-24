@@ -4332,8 +4332,6 @@ angular.module('message.controllers', [])
       }
       e.preventDefault();
       return false;
-
-
     },501)
 
 

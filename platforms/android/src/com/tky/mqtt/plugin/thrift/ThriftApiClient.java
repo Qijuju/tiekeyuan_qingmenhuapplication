@@ -164,7 +164,6 @@ public class ThriftApiClient extends CordovaPlugin {
       }
 
 
-
       MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
       MqttOper.closeMqttConnection();
       MqttReceiver.hasRegister = false;

@@ -135,40 +135,49 @@ public class SwitchLocal {
      * 重新连接MQTT验证
      * @param reloginCheck
      */
-    public static void reloginCheck(String userID, final IReloginCheck reloginCheck) {
-        try {
-            SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
-                @Override
-                public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
-                    try {
-                        if (reloginCheck_call != null && reloginCheck != null) {
-                            if (reloginCheck_call.getResult().result) {
-                                reloginCheck.onCheck(true);
-                            } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
-                                reloginCheck.onCheck(false);
-                            }
-                        }
-                    } catch (Exception e) {
-                        ToastUtil.showSafeToast("重连失败！");
-                        e.printStackTrace();
-                    }
-                }
+    public static void reloginCheck(final String userID, final IReloginCheck reloginCheck) {
 
-                @Override
-                public void onError(Exception e) {
-                    ToastUtil.showSafeToast("重连失败！");
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          try {
+            SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+              @Override
+              public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                try {
+                  if (reloginCheck_call != null && reloginCheck != null) {
+                    if (reloginCheck_call.getResult().result) {
+                      reloginCheck.onCheck(true);
+                    } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
+                      reloginCheck.onCheck(false);
+                    }
+                  }
+                } catch (Exception e) {
+                  ToastUtil.showSafeToast("重连失败！");
+                  e.printStackTrace();
                 }
+              }
+
+              @Override
+              public void onError(Exception e) {
+                ToastUtil.showSafeToast("重连失败！");
+              }
             });
-        } catch (IOException e) {
+          } catch (IOException e) {
             ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
-        } catch (TException e) {
+          } catch (TException e) {
             ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
-        } catch (Exception e) {
+          } catch (Exception e) {
             ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
+          }
         }
+      }).start();
+
+
+
     }
 
     /**
@@ -176,54 +185,64 @@ public class SwitchLocal {
      * @param reloginCheckStatus
      */
     public static void reloginCheckStatus(final IReloginCheckStatus reloginCheckStatus) {
-        try {
-            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
-                @Override
-                public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
-                    try {
-                        if (reloginCheck_call != null && reloginCheckStatus != null) {
-                            if (reloginCheck_call.getResult().result) {
-                                reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
-                            } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
-                                reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
-                            }
-                        }
-                    } catch (Exception e) {
-                        if (reloginCheck_call != null && reloginCheckStatus != null) {
-                            reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                        }
-                        e.printStackTrace();
-                    }
-                }
 
-                @Override
-                public void onError(Exception e) {
-                    if (reloginCheckStatus != null) {
-                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          try {
+            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+              @Override
+              public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                try {
+                  if (reloginCheck_call != null && reloginCheckStatus != null) {
+                    if (reloginCheck_call.getResult().result) {
+                      reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
+                    } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
+                      reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
                     }
+                  }
+                } catch (Exception e) {
+                  if (reloginCheck_call != null && reloginCheckStatus != null) {
+                    reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                  }
+                  e.printStackTrace();
                 }
+              }
+
+              @Override
+              public void onError(Exception e) {
+                if (reloginCheckStatus != null) {
+                  reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                }
+              }
             });
-        } catch (IOException e) {
+          } catch (IOException e) {
             if (reloginCheckStatus != null) {
-                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
             }
             e.printStackTrace();
-        } catch (TException e) {
+          } catch (TException e) {
             if (reloginCheckStatus != null) {
-                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
             }
             e.printStackTrace();
-        } catch (JSONException e) {
+          } catch (JSONException e) {
             if (reloginCheckStatus != null) {
-                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
             }
             e.printStackTrace();
-        } catch (Exception e) {
+          } catch (Exception e) {
             if (reloginCheckStatus != null) {
-                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
             }
             e.printStackTrace();
+          }
         }
+      }).start();
+
+
+
     }
 
     public interface IReloginCheck {
