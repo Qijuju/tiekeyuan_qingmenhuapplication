@@ -61,6 +61,11 @@ public class MqttMessageCallback implements MqttCallback {
   @Override
   public void connectionLost(Throwable arg0) {
 
+    try {
+      mqttAsyncClient.closeConnection(MqttRobot.getConnectionType());
+    } catch (MqttException e) {
+      e.printStackTrace();
+    }
 //    ToastUtil.showSafeToast("Mqtt断开链接了");
 //    MqttOper.restartService();
 

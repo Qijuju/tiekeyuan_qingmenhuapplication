@@ -2,12 +2,15 @@ package com.tky.mqtt.paho.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.tky.mqtt.chat.MqttChat;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttService;
+import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
@@ -16,12 +19,9 @@ import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
-import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import im.server.System.IMSystem;
 
@@ -62,11 +62,10 @@ public class SwitchLocal {
     public static String getATopic(MType type, String id) {
         return getLocal() + "/" + getType(type) + "/" + id;
     }
-
+    //固定的上下线发送Topic
     public static String getOnOffTopic(){
       return  getLocal()+"/"+"s/LoginEvent";
     }
-
     public static String getType(MType type) {
         if (MType.U == type) {
             return "U";
@@ -126,24 +125,67 @@ public class SwitchLocal {
         try {
             reloginCheck(getUserID(), reloginCheck);
         } catch (JSONException e) {
-            ToastUtil.showSafeToast("重连失败！");
+            //ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
         }
     }
+
+  private static class SaveMQTTRunnable implements Runnable {
+
+    private String userID;
+    private IReloginCheck reloginCheck;
+    private Handler handler;
+
+    public SaveMQTTRunnable(final String userID, final IReloginCheck reloginCheck, Handler handler) {
+      this.userID = userID;
+      this.reloginCheck = reloginCheck;
+      this.handler = handler;
+    }
+
+    @Override
+    public void run() {
+      handler.removeCallbacks(this);
+      if (MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+        reloginCheck(userID, reloginCheck);
+      }
+    }
+  }
+
+  private static class SaveMQTTRunnable2 implements Runnable {
+
+    private IReloginCheckStatus reloginCheck;
+    private Handler handler;
+
+    public SaveMQTTRunnable2(IReloginCheckStatus reloginCheck, Handler handler) {
+      this.handler = handler;
+      this.reloginCheck = reloginCheck;
+    }
+
+    @Override
+    public void run() {
+      handler.removeCallbacks(this);
+      if (MqttRobot.getConnectionType() != ConnectionType.MODE_CONNECTION_DOWN_MANUAL && MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+        reloginCheckStatus(reloginCheck);
+      }
+    }
+  }
 
     /**
      * 重新连接MQTT验证
      * @param reloginCheck
      */
     public static void reloginCheck(final String userID, final IReloginCheck reloginCheck) {
-
       new Thread(new Runnable() {
+        final Handler handler = new Handler();
+        final SaveMQTTRunnable saveMQTTRunnable = new SaveMQTTRunnable(userID, reloginCheck, handler);
         @Override
         public void run() {
+          Looper.prepare();
           try {
             SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                handler.removeCallbacks(saveMQTTRunnable);
                 try {
                   if (reloginCheck_call != null && reloginCheck != null) {
                     if (reloginCheck_call.getResult().result) {
@@ -153,30 +195,24 @@ public class SwitchLocal {
                     }
                   }
                 } catch (Exception e) {
-                  ToastUtil.showSafeToast("重连失败！");
+                  //ToastUtil.showSafeToast("重连失败！");
                   e.printStackTrace();
                 }
               }
 
               @Override
               public void onError(Exception e) {
-                ToastUtil.showSafeToast("重连失败！");
+                handler.postDelayed(saveMQTTRunnable, 2000);
+                //ToastUtil.showSafeToast("重连失败！");
               }
             });
-          } catch (IOException e) {
-            ToastUtil.showSafeToast("重连失败！");
-            e.printStackTrace();
-          } catch (TException e) {
-            ToastUtil.showSafeToast("重连失败！");
-            e.printStackTrace();
           } catch (Exception e) {
-            ToastUtil.showSafeToast("重连失败！");
+            handler.postDelayed(saveMQTTRunnable, 2000);
+            //ToastUtil.showSafeToast("重连失败！");
             e.printStackTrace();
           }
         }
       }).start();
-
-
 
     }
 
@@ -186,14 +222,17 @@ public class SwitchLocal {
      */
     public static void reloginCheckStatus(final IReloginCheckStatus reloginCheckStatus) {
 
-
       new Thread(new Runnable() {
         @Override
         public void run() {
+          Looper.prepare();
+          final Handler handler = new Handler();
+          final SaveMQTTRunnable2 saveMQTTRunnable = new SaveMQTTRunnable2(reloginCheckStatus, handler);
           try {
             SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                handler.removeCallbacks(saveMQTTRunnable);
                 try {
                   if (reloginCheck_call != null && reloginCheckStatus != null) {
                     if (reloginCheck_call.getResult().result) {
@@ -203,6 +242,7 @@ public class SwitchLocal {
                     }
                   }
                 } catch (Exception e) {
+                  handler.postDelayed(saveMQTTRunnable, 2000);
                   if (reloginCheck_call != null && reloginCheckStatus != null) {
                     reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
                   }
@@ -212,27 +252,14 @@ public class SwitchLocal {
 
               @Override
               public void onError(Exception e) {
+                handler.postDelayed(saveMQTTRunnable, 2000);
                 if (reloginCheckStatus != null) {
                   reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
                 }
               }
             });
-          } catch (IOException e) {
-            if (reloginCheckStatus != null) {
-              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-            }
-            e.printStackTrace();
-          } catch (TException e) {
-            if (reloginCheckStatus != null) {
-              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-            }
-            e.printStackTrace();
-          } catch (JSONException e) {
-            if (reloginCheckStatus != null) {
-              reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-            }
-            e.printStackTrace();
           } catch (Exception e) {
+            handler.postDelayed(saveMQTTRunnable, 2000);
             if (reloginCheckStatus != null) {
               reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
             }
@@ -240,8 +267,6 @@ public class SwitchLocal {
           }
         }
       }).start();
-
-
 
     }
 

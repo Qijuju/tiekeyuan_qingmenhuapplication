@@ -206,22 +206,22 @@
 
 
   <Protocol id="UOF">
-    <Node id="MepID">
-      <nLength>19</nLength>
-      <nFixed>true</nFixed>
-    </Node>
     <Node id="UserID">
+      <nLength>1</nLength>
+      <nFixed>false</nFixed>
+    </Node>
+    <Node id="MepID">
       <nLength>-1</nLength>
       <nFixed>false</nFixed>
     </Node>
   </Protocol>
 
   <Protocol id="UOL">
-    <Node id="MepID">
-      <nLength>19</nLength>
-      <nFixed>true</nFixed>
-    </Node>
     <Node id="UserID">
+      <nLength>1</nLength>
+      <nFixed>false</nFixed>
+    </Node>
+    <Node id="MepID">
       <nLength>-1</nLength>
       <nFixed>false</nFixed>
     </Node>

@@ -166,10 +166,10 @@ public class ThriftApiClient extends CordovaPlugin {
       }
 
 
+
       MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
       MqttOper.closeMqttConnection();
       MqttReceiver.hasRegister = false;
-
       String username = args.getString(0);
       String password = args.getString(1);
       String imCode = UIUtils.getDeviceId();
@@ -230,7 +230,8 @@ public class ThriftApiClient extends CordovaPlugin {
             } catch (SQLiteException e){
               setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
             } catch (Exception e) {
-              ToastUtil.showSafeToast("ss");
+              setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
+//              ToastUtil.showSafeToast("ss");
             }
           }
         }
@@ -251,8 +252,10 @@ public class ThriftApiClient extends CordovaPlugin {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     } catch (Exception e) {
-      ToastUtil.showSafeToast("ss");
+      setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
     }
+
   }
 
   public void activeUser(final JSONArray args, final CallbackContext callbackContext) {
