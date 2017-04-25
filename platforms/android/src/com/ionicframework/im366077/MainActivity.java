@@ -217,7 +217,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
               @Override
               public void onResponse(File response, int id) {
                 Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
-                ToastUtil.showSafeToast("nihaoa");
                 //开启热修复
                 TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
 
