@@ -156,14 +156,14 @@ task cdvPrintProps << {
 }
 
 android {
-  /*signingConfigs {
-    release {
-      keyAlias 'IMKey'
-      keyPassword '123456'
-      storeFile file('F:/jst/IM/platforms/android/keystore/IM.jks')
-      storePassword '123456'
-    }
-  }*/
+//  signingConfigs {
+//    release {
+//      keyAlias 'IMKey'
+//      keyPassword '123456'
+//      storeFile file('F:/newjst/IM/platforms/android/keystore/IM.jks')
+//      storePassword '123456'
+//    }
+//  }
   packagingOptions {
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'
@@ -276,14 +276,14 @@ android {
   if (cdvDebugSigningPropertiesFile) {
     addSigningProps(cdvDebugSigningPropertiesFile, signingConfigs.debug)
   }
-  /*buildTypes {
-    debug {
-      signingConfig signingConfigs.release
-    }
-    release {
-      signingConfig signingConfigs.release
-    }
-  }*/
+//  buildTypes {
+//    debug {
+//      signingConfig signingConfigs.release
+//    }
+//    release {
+//      signingConfig signingConfigs.release
+//    }
+//  }
 }
 
 dependencies {
@@ -412,11 +412,11 @@ ext {
 
     //for normal build
     //old apk file to build patch apk
-    tinkerOldApkPath = "${bakPath}/android-release-0422-12-26-39.apk"
+    tinkerOldApkPath = "${bakPath}/android-release-0424-21-30-04.apk"
     //proguard mapping file to build patch apk
     tinkerApplyMappingPath = "${bakPath}"
     //resource R.txt to build patch apk, must input if there is resource changed
-    tinkerApplyResourcePath = "${bakPath}/android-release-0422-12-26-39-R.txt"
+    tinkerApplyResourcePath = "${bakPath}/android-release-0424-21-30-04-R.txt"
 
     //only use for build all flavor, if not, just ignore this field
     //tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
@@ -610,7 +610,7 @@ if (buildWithTinker()) {
             /**
              * patch version via packageConfig
              */
-            configField("patchVersion", "1.1.0422.3-1.0")
+            configField("patchVersion", "1.1.0424.1-1.0")
         }
         //or you can add config filed outside, or get meta value from old apk
         //project.tinkerPatch.packageConfig.configField("test1", project.tinkerPatch.packageConfig.getMetaDataFromOldApk("Test"))
