@@ -37,9 +37,9 @@
             </intent-filter>
         </activity>
         <service android:exported="false" android:name="com.tky.mytinker.service.SampleResultService" />
-        <service android:enabled="true" android:name="com.tky.mqtt.paho.MqttService" />
-        <service android:enabled="true" android:name="com.tky.mqtt.paho.ProtectService" />
-        <receiver android:name="com.tky.mqtt.paho.receiver.NetStatusReceiver">
+        <service android:name="com.tky.im.service.IMService" />
+        <service android:name="com.tky.im.service.IMProtectService" />
+        <receiver android:name="com.tky.im.receiver.IMNetStatusChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />

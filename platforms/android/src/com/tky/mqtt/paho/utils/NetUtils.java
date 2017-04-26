@@ -14,6 +14,19 @@ import android.util.Log;
 public class NetUtils {
 
     /**
+     * 没有连接网络
+     */
+    private static final int NETWORK_NONE = -1;
+    /**
+     * 移动网络
+     */
+    private static final int NETWORK_MOBILE = 0;
+    /**
+     * 无线网络
+     */
+    private static final int NETWORK_WIFI = 1;
+
+    /**
      * 是否已经联网
      *
      * @param context
@@ -40,5 +53,30 @@ public class NetUtils {
             Log.v("error", e.toString());
         }
         return false;
+    }
+
+    /**
+     * 是否已联网，连的是wifi还是4g
+     * @param context
+     * @return
+     */
+    public static int getNetWorkState(Context context) {
+        // 得到连接管理器对象
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+
+            if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_WIFI)) {
+                return NETWORK_WIFI;
+            } else if (activeNetworkInfo.getType() == (ConnectivityManager.TYPE_MOBILE)) {
+                return NETWORK_MOBILE;
+            }
+        } else {
+            return NETWORK_NONE;
+        }
+        return NETWORK_NONE;
     }
 }

@@ -3,6 +3,8 @@ package com.tky.mqtt.paho;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.tky.im.bean.TopicsCoupleQoss;
+import com.tky.im.params.ConstantsParams;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 
 import java.util.HashMap;
@@ -54,6 +56,30 @@ public class MqttTopicRW {
 	}
 
 	/**
+	 * 返回topics和qoss的匹配对（所有的topics和所有的qoss）
+	 * @return
+     */
+	public static TopicsCoupleQoss getTopicsAndQoss2() {
+		String topicsAndQoss = SPUtils.getString(key, "");
+		if (TextUtils.isEmpty(topicsAndQoss)) {
+			return null;
+		}
+		String[] tpaqs = topicsAndQoss.split(";");
+		if (tpaqs.length <= 0) {
+			return null;
+		}
+		String[] topics = new String[tpaqs.length];
+		int[] qoss = new int[tpaqs.length];
+		for (int i = 0; i < tpaqs.length; i++) {
+			String[] tpaqArr = tpaqs[i].split("#");
+//			map.put(tpaqArr[0], Integer.parseInt(tpaqArr[1]));
+			topics[i] = tpaqArr[0];
+			qoss[i] = Integer.parseInt(tpaqArr[1]);
+		}
+		return new TopicsCoupleQoss(topics, qoss);
+	}
+
+	/**
 	 * 删除一个topic，根据groupID
 	 * @param groupID
 	 */
@@ -91,7 +117,8 @@ public class MqttTopicRW {
 	 */
 	public static void append(String topic, int qos) {
 		Intent intent = new Intent();
-		intent.setAction(ReceiverParams.SUBSCRIBE);
+//		intent.setAction(ReceiverParams.SUBSCRIBE);
+		intent.setAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
 		intent.putExtra("topic", topic);
 		intent.putExtra("qos", qos);
 		UIUtils.getContext().sendBroadcast(intent);

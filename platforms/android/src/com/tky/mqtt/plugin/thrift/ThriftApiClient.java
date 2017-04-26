@@ -173,6 +173,7 @@ public class ThriftApiClient extends CordovaPlugin {
       String username = args.getString(0);
       String password = args.getString(1);
       String imCode = UIUtils.getDeviceId();
+
       SystemApi.login(username.trim(), password.trim(), imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
         @Override
         public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
@@ -213,6 +214,9 @@ public class ThriftApiClient extends CordovaPlugin {
                   //保存登录信息
                   SPUtils.save("login_info", loginJson);
                   setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
+
+                  return;
+
                 } else if ("104".equals(result.getResultCode())) {
                   setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                 } /*else if ("105".equals(result.getResultCode())) {
@@ -231,7 +235,8 @@ public class ThriftApiClient extends CordovaPlugin {
               setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
             } catch (Exception e) {
               setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
-//              ToastUtil.showSafeToast("ss");
+              e.printStackTrace();
+              //ToastUtil.showSafeToast("ss");
             }
           }
         }
@@ -254,8 +259,9 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (Exception e) {
       setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
-    }
 
+      //ToastUtil.showSafeToast("ss");
+    }
   }
 
   public void activeUser(final JSONArray args, final CallbackContext callbackContext) {

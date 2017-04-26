@@ -116,6 +116,7 @@ public class SystemApi {
 //        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMSystemAsyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
+        IMSystemAsyncClient.setTimeout(5000);
         }
         return IMSystemAsyncClient;
     }
