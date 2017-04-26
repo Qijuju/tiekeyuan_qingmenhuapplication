@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.tky.im.enums.IMEnums;
+import com.tky.im.test.LogPrint;
 import com.tky.im.utils.IMStatusManager;
 
 /**
@@ -23,6 +24,7 @@ public class IMProtectService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND && IMStatusManager.getImStatus() != IMEnums.CONNECTED) {
             startService(new Intent(getBaseContext(), IMService.class));
+            LogPrint.print("IMProtectService", "保持IMService是活的~~~");
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -31,6 +33,7 @@ public class IMProtectService extends Service {
     public void onDestroy() {
         if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND && IMStatusManager.getImStatus() != IMEnums.CONNECTED) {
             startService(new Intent(getBaseContext(), IMService.class));
+            LogPrint.print("IMProtectService", "保持IMService是活的~~~");
         }
         super.onDestroy();
     }

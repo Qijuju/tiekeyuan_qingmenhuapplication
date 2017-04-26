@@ -96,21 +96,48 @@ angular.module('login.controllers', [])
       $scope.password = password;
       // alert(name);
       // alert(password);
-      $ionicLoading.show({
-        template: '登录中...'
-      });
       $api.login($scope.name, $scope.password, function (message) {
 
-        //alert(message.toJSONString());
-        if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-          $api.activeUser(message.userID, function (message) {
-            loginM();
-          }, function (message) {
-            $ToastUtils.showToast(message);
+        if (message.resultCode === '105') {
+          var confirmPopup = $ionicPopup.confirm({
+            title: '强制登录提示',
+            template: "您的账号在其他终端已登录，是否切换到该设备？",
+            cancelText: '不登录',
+            okText: '登录'
+          });
+          confirmPopup.then(function (isConfirm) {
+            if (isConfirm) {
+              $ionicLoading.show({
+                template: '登录中...'
+              });
+              if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                $api.activeUser(message.userID, function (message) {
+                  loginM();
+                }, function (message) {
+                  $ToastUtils.showToast(message);
+                });
+              } else {
+                loginM();
+              }
+            } else {
+              $state.go('login');
+            }
           });
         } else {
-          loginM();
+          $ionicLoading.show({
+            template: '登录中...'
+          });
+          if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+            $api.activeUser(message.userID, function (message) {
+              loginM();
+            }, function (message) {
+              $ToastUtils.showToast(message);
+            });
+          } else {
+            loginM();
+          }
         }
+
       }, function (message) {
         $ToastUtils.showToast(message);
         $ionicLoading.hide();
@@ -389,22 +416,54 @@ angular.module('login.controllers', [])
         // namegesturea = 'chenglilicll';
         // pwdgesturea = 'password';
         $api.login(namegesturea, pwdgesturea, function (message) {
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
-          if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-            $api.activeUser(message.userID, function (message) {
-              loginM();
-            }, function (message) {
-              $ToastUtils.showToast(message);
-              $state.go('login');
+          if (message.resultCode === '105') {
+            var confirmPopup = $ionicPopup.confirm({
+              title: '强制登录提示',
+              template: "您的账号在其他终端已登录，是否切换到该设备？",
+              cancelText: '不登录',
+              okText: '登录'
+            });
+            confirmPopup.then(function (isConfirm) {
+              if (isConfirm) {
+                $ionicLoading.show({
+                  content: 'Loading',
+                  animation: 'fade-in',
+                  showBackdrop: false,
+                  maxWidth: 100,
+                  showDelay: 0
+                });
+                if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                  $api.activeUser(message.userID, function (message) {
+                    loginM();
+                  }, function (message) {
+                    $ToastUtils.showToast(message);
+                    $state.go('login');
+                  });
+                } else {
+                  loginM();
+                }
+              } else {
+                $state.go('login');
+              }
             });
           } else {
-            loginM();
+            $ionicLoading.show({
+              content: 'Loading',
+              animation: 'fade-in',
+              showBackdrop: false,
+              maxWidth: 100,
+              showDelay: 0
+            });
+            if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+              $api.activeUser(message.userID, function (message) {
+                loginM();
+              }, function (message) {
+                $ToastUtils.showToast(message);
+                $state.go('login');
+              });
+            } else {
+              loginM();
+            }
           }
         }, function (message) {
           $ToastUtils.showToast(message);
@@ -592,16 +651,42 @@ angular.module('login.controllers', [])
         inputEnd: function (psw) {
           if (psw == password) {
             $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
-              $mqtt.save('pwdgesture', $scope.pwdgesturea);
-              $mqtt.save('namegesture', $scope.namegesturea);
-              if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-                $api.activeUser(message.userID, function (message) {
-                  loginM();
-                }, function (message) {
-                  $ToastUtils.showToast(message);
+              if (message.resultCode === '105') {
+                var confirmPopup = $ionicPopup.confirm({
+                  title: '强制登录提示',
+                  template: "您的账号在其他终端已登录，是否切换到该设备？",
+                  cancelText: '不登录',
+                  okText: '登录'
+                });
+                confirmPopup.then(function (isConfirm) {
+                  if (isConfirm) {
+                    $mqtt.save('pwdgesture', $scope.pwdgesturea);
+                    $mqtt.save('namegesture', $scope.namegesturea);
+                    if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                      $api.activeUser(message.userID, function (message) {
+                        loginM();
+                      }, function (message) {
+                        $ToastUtils.showToast(message);
+                      });
+                    } else {
+                      loginM();
+                    }
+                  } else {
+                    $state.go('login');
+                  }
                 });
               } else {
-                loginM();
+                $mqtt.save('pwdgesture', $scope.pwdgesturea);
+                $mqtt.save('namegesture', $scope.namegesturea);
+                if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                  $api.activeUser(message.userID, function (message) {
+                    loginM();
+                  }, function (message) {
+                    $ToastUtils.showToast(message);
+                  });
+                } else {
+                  loginM();
+                }
               }
             }, function (message) {
               $ToastUtils.showToast(message);
@@ -665,18 +750,46 @@ angular.module('login.controllers', [])
           $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
             $mqtt.save('pwdgesture', $scope.pwdgesturea);
             $mqtt.save('namegesture', $scope.namegesturea);
-            if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-              $api.activeUser(message.userID, function (message) {
+            if (message.resultCode === '105') {
+              var confirmPopup = $ionicPopup.confirm({
+                title: '强制登录提示',
+                template: "您的账号在其他终端已登录，是否切换到该设备？",
+                cancelText: '不登录',
+                okText: '登录'
+              });
+              confirmPopup.then(function (isConfirm) {
+                if (isConfirm) {
+                  if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                    $api.activeUser(message.userID, function (message) {
+                      loginM();
+                      $ionicLoading.hide();
+                      $state.go('tab.message');
+                    }, function (message) {
+                      $ToastUtils.showToast(message);
+                    });
+                  } else {
+                    loginM();
+                    $ionicLoading.hide();
+                    $state.go('tab.message');
+                  }
+                } else {
+                  $state.go('login');
+                }
+              });
+            } else {
+              if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
+                $api.activeUser(message.userID, function (message) {
+                  loginM();
+                  $ionicLoading.hide();
+                  $state.go('tab.message');
+                }, function (message) {
+                  $ToastUtils.showToast(message);
+                });
+              } else {
                 loginM();
                 $ionicLoading.hide();
                 $state.go('tab.message');
-              }, function (message) {
-                $ToastUtils.showToast(message);
-              });
-            } else {
-              loginM();
-              $ionicLoading.hide();
-              $state.go('tab.message');
+              }
             }
           }, function (message) {
             $ionicLoading.hide();
