@@ -139,6 +139,7 @@ angular.module('login.controllers', [])
         }
 
       }, function (message) {
+        $state.go('login');
         $ToastUtils.showToast(message);
         $ionicLoading.hide();
         // $state.go('tab.message');
@@ -672,6 +673,7 @@ angular.module('login.controllers', [])
                 }
               }
             }, function (message) {
+              $state.go('login');
               $ToastUtils.showToast(message);
             });
 

@@ -178,6 +178,7 @@ public class ThriftApiClient extends CordovaPlugin {
         @Override
         public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
           if (login_call == null) {
+            setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
           } else {
             try {
               RSTlogin result = login_call.getResult();

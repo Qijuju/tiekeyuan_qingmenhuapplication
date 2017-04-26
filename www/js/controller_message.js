@@ -1765,25 +1765,27 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("原本的语音在播放");
         }
         $mqtt.startRecording(function (succ) {
-          $scope.type=succ.type;
-          // alert("type--->"+$scope.type);
-          if($scope.type === "timeChange"){
-            $scope.recordTime=succ.recordTime;
-          }else if($scope.type === "timeout"){
-            $scope.ctime=succ.time;
-            // alert("超过59秒======》"+$scope.ctime);
-            $timeout(function () {
-              $scope.isShow='false';
-              // $scope.isshowless='false';
-            }, 100);
-            $scope.recordTime = 0;
-            $scope.rate = 0;
-          }else if($scope.type === "rateChange"){
-            $scope.rate=succ.rate;
-            // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
-          }else if($scope.type === "error"){
-            $scope.error=succ.error;
-          }
+          $scope.$apply(function () {
+            $scope.type=succ.type;
+            // alert("type--->"+$scope.type);
+            if($scope.type === "timeChange"){
+              $scope.recordTime=succ.recordTime;
+            }else if($scope.type === "timeout"){
+              $scope.ctime=succ.time;
+              // alert("超过59秒======》"+$scope.ctime);
+              $timeout(function () {
+                $scope.isShow='false';
+                // $scope.isshowless='false';
+              }, 100);
+              $scope.recordTime = 0;
+              $scope.rate = 0;
+            }else if($scope.type === "rateChange"){
+              $scope.rate=succ.rate;
+              // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+            }else if($scope.type === "error"){
+              $scope.error=succ.error;
+            }
+          });
         },function (err) {
 
         });
@@ -1847,53 +1849,54 @@ angular.module('message.controllers', [])
           return;
 
         }
-
-        if (succ.duration  <1000){
-          $scope.isshowless='true';
-          $scope.recordTime = 0;
-          $scope.rate = 0;
-        }
-        $scope.isshowgPng="true";
-        $scope.rate=-1;
-        $scope.filepath=succ.filePath;
-        $scope.duration=succ.duration;
-        if($scope.duration <1000){
-          $scope.recordTime = 0;
-          $scope.rate = 0;
-          $scope.isshowless='true';
-          $timeout(function () {
-            viewScroll.scrollBottom();
+        $scope.$apply(function () {
+          if (succ.duration  <1000){
+            $scope.isshowless='true';
+            $scope.recordTime = 0;
+            $scope.rate = 0;
+          }
+          $scope.isshowgPng="true";
+          $scope.rate=-1;
+          $scope.filepath=succ.filePath;
+          $scope.duration=succ.duration;
+          if($scope.duration <1000){
+            $scope.recordTime = 0;
+            $scope.rate = 0;
+            $scope.isshowless='true';
+            $timeout(function () {
+              viewScroll.scrollBottom();
+              $scope.isShow='false';
+              $scope.isshowless='false';
+            }, 1000);
+          }else{
             $scope.isShow='false';
             $scope.isshowless='false';
-          }, 1000);
-        }else{
-          $scope.isShow='false';
-          $scope.isshowless='false';
-          // alert("秒："+$scope.duration);
-          // if($scope.duration > 1000 && $scope.duration < 10000){
-          //   $ToastUtils.showToast("10s====");
-          //   document.getElementById("schangelength").style.width ='60px';
-          // }else if($scope.duration > 10000 && $scope.duration < 30000){
-          //   $ToastUtils.showToast("30s====");
-          //   document.getElementById("schangelength").style.width ='120px';
-          // }else if($scope.duration > 30000 && $scope.duration < 60000){
-          //   $ToastUtils.showToast("60s====");
-          //   document.getElementById("schangelength").style.width ='180px';
-          // }
-          //发送语音
-          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
-          $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
-            $greendao.getUUID(function (data) {
-              sqlid=data;
-              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
-              keepKeyboardOpen();
-              $timeout(function () {
-                viewScroll.scrollBottom();
-              }, 1000);
+            // alert("秒："+$scope.duration);
+            // if($scope.duration > 1000 && $scope.duration < 10000){
+            //   $ToastUtils.showToast("10s====");
+            //   document.getElementById("schangelength").style.width ='60px';
+            // }else if($scope.duration > 10000 && $scope.duration < 30000){
+            //   $ToastUtils.showToast("30s====");
+            //   document.getElementById("schangelength").style.width ='120px';
+            // }else if($scope.duration > 30000 && $scope.duration < 60000){
+            //   $ToastUtils.showToast("60s====");
+            //   document.getElementById("schangelength").style.width ='180px';
+            // }
+            //发送语音
+            // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+            $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+              $greendao.getUUID(function (data) {
+                sqlid=data;
+                $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+                keepKeyboardOpen();
+                $timeout(function () {
+                  viewScroll.scrollBottom();
+                }, 1000);
+              });
+            },function (err) {
             });
-          },function (err) {
-          });
-        }
+          }
+        });
       },function (err) {
 
       });

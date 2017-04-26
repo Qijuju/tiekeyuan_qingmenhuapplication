@@ -59,6 +59,7 @@ import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
+import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mytinker.util.Utils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -93,6 +94,12 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        SystemApi.dealNetDown();
+      }
+    }).start();
 /*    try {
       stopService(new Intent(MainActivity.this, MqttService.class));
     } catch (Exception e) {
