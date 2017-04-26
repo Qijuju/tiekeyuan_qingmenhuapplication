@@ -272,7 +272,7 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao) {
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
@@ -307,19 +307,110 @@ angular.module('login.controllers', [])
       //   // $ToastUtils.showToast("还未设置手势密码");
       // });
 
+
       mqtt.getString('welcomePic', function (picurl) {
+        var firsturl="http://61.237.239.60:8081/loginpic/loginpic/json";
+
+        //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
           $scope.$apply(function () {
             $scope.securlpic = "img/im1.png";
           })
+
+          $http({
+            method: 'get',
+            url: firsturl,
+          }).success(function(data, status) {
+
+            var varyname=data.loginpicName;
+            var varysize=data.size;
+
+            //调用下载的接口
+            $api.getWelcomePic(varyname,varysize,function (suc) {
+
+              //图片下载成功
+              //$ToastUtils.showToast("欢迎页面下载成功")
+
+
+            },function (error) {
+
+              //图片下载失败
+              $ToastUtils.showToast("欢迎页面下载失败")
+
+            })
+
+
+          }).error(function(data, status) {
+
+            $ToastUtils.showToast("服务器网络异常")
+
+
+          });
+
+
+
+
+
+
+
         } else {
+          // 查询到的图片不为空
+
           $scope.$apply(function () {
+
+            //先设置好值再去判断
             $scope.securlpic = picurl;
+
+            //从网络上拿下来图片的基本信息 图片的号码
+            mqtt.getString("varyName",function (latest) {
+
+
+              $http({
+                method: 'get',
+                url: firsturl,
+              }).success(function(data, status) {
+
+
+                if (latest!=data.loginpicName){
+
+                  //调用接口去下载图片
+                  //读取当前 app的欢迎界面
+                  $api.getWelcomePic(data.loginpicName,data.size,function (srcurl) {
+
+
+                  },function (error) {
+                    $ToastUtils.showToast("欢迎页面下载失败")
+
+                  })
+
+                }
+
+              }).error(function(data, status) {
+                $ToastUtils.showToast("服务器网络异常")
+
+              });
+
+
+
+            })
+
+
+
+
           })
         }
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
+
       });
+
+
+
+
+
+
+
+
+
 
       mqtt.getString('loginpage', function (loginpagea) {
         loginpageaa = loginpagea;

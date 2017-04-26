@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
 import com.ionicframework.im366077.Constants;
+import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.im.callback.IMConnectCallback;
 import com.tky.im.callback.IMMessageCallback;
@@ -24,7 +25,6 @@ import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.receiver.IMReceiver;
 import com.tky.im.receiver.IMScreenReceiver;
-import com.tky.im.test.LogPrint;
 import com.tky.im.utils.HeartbeatUtils;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
@@ -33,6 +33,7 @@ import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.GsonUtils;
@@ -60,6 +61,7 @@ public class IMService extends Service {
     private IMScreenReceiver screenReceiver;
     private HeartbeatUtils beats;
     private final Handler handler = new Handler();
+    private static int requestCode = 0x1001;
     /**
      * 对启动时间进行限制，保持前5次每1s启动一次，然后是隔5s，10s，20s，20s内如果持续连接异常，则退出登录
      */
@@ -95,7 +97,6 @@ public class IMService extends Service {
         receiver.setOnMessageSendListener(new IMReceiver.OnMessageSendListener() {
             @Override
             public void onSend(final String topic, final String content) {
-                LogPrint.print("MQTT", "即将发送消息~~~");
                 //发送消息
                 sendMsg(topic, content);
             }
@@ -107,45 +108,29 @@ public class IMService extends Service {
             private final ReconnectRunnable reconnectRunnable = new ReconnectRunnable();
             @Override
             public void onReconnect() {
-                LogPrint.print("MQTT", "是否要重连~~~");
-                LogPrint.print2("MQTT", "是否要重连~~~");
 
                 if (imConnection != null && imConnection.isConnected()) {
-                    LogPrint.print("MQTT", "连着呢，不需要连接~~~");
-                    LogPrint.print2("MQTT", "连着呢，不需要连接~~~");
                     return;
                 }
                 if (NetUtils.getNetWorkState(getBaseContext()) == -1) {
-                    LogPrint.print("MQTT", "没网啊，亲，不能重连~~~");
-                    LogPrint.print2("MQTT", "没网啊，亲，不能重连~~~");
                     return;
                 }
                 if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    LogPrint.print("MQTT", "即将重连~~~");
-                    LogPrint.print2("MQTT", "即将重连~~~");
                     IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
                         @Override
                         public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
                             if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
                                 count = 0;
-                                LogPrint.print("MQTT", "重连中~~~");
-                                LogPrint.print2("MQTT", "重连中~~~");
                                 connectIM();
                             } else if (status == IMSwitchLocal.EReloginCheckStatus.NEED_LOGOUT) {
                                 count = 0;
-                                LogPrint.print("MQTT", "您的账号被挤掉，无法登录~~~");
-                                LogPrint.print2("MQTT", "您的账号被挤掉，无法登录~~~");
                                 //账号被挤掉，退出登录
                                 IMSwitchLocal.exitLogin(getBaseContext());
                             } else {
-                                LogPrint.print("MQTT", "异常情况，等待" +  (2000 * count) + "S后重连MQTT~~~");
-                                LogPrint.print2("MQTT", "异常情况，等待" +  (2000 * count) + "S后重连MQTT~~~");
                                 handler.postDelayed(reconnectRunnable, 2000 * (count++));
                             }
                         }
                     });
-                } else {
-                    LogPrint.print2("MQTT", "已经手动断开了~~~");
                 }
             }
         });
@@ -226,6 +211,9 @@ public class IMService extends Service {
             builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
             //禁止用户点击删除按钮删除
             builder.setAutoCancel(false);
+            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
+            builder.setContentIntent(pendingIntent);
             //禁止滑动删除
             builder.setOngoing(true);
             //右上角的时间显示
@@ -339,19 +327,16 @@ public class IMService extends Service {
      */
     private void sendMsg(final String topic, final String content) {
         if (imConnection == null || !imConnection.isConnected()) {
-            LogPrint.print("MQTT", "未连接，20S内重连并发送~~~");
             //每隔1s检测一次IM是否已经连接，如果连接了，直接发送消息，如果没连接，重连IM，再隔1s再次检测，以此类推
             Handler handler = new Handler();
             MessageRunnable messageRunnable = new MessageRunnable(topic, content, handler);
             handler.postDelayed(messageRunnable, 1000);
         } else {
-            LogPrint.print("MQTT", "开始发送消息~~~");
             //MQTT连接，直接发送消息
             MqttMessage msg = new MqttMessage();
             try {
                 msg.setPayload(MessageOper.packData(content));
             } catch (Exception e) {
-                LogPrint.print("MQTT", "消息格式异常，无法发送~~~");
                 String swithedMsg = switchMsg(content, false);
                 MqttOper.sendErrNotify(swithedMsg);
                 e.printStackTrace();
@@ -361,7 +346,6 @@ public class IMService extends Service {
             imConnection.publish(topic, msg, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken iMqttToken) {
-                    LogPrint.print("MQTT", "发送消息成功~~~");
                     //发送中，消息发送成功，回调
                     String swithedMsg = switchMsg(content, true);
                     MqttOper.sendSuccNotify(swithedMsg);
@@ -369,7 +353,6 @@ public class IMService extends Service {
 
                 @Override
                 public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-                    LogPrint.print("MQTT", "发送消息失败~~~");
                     String swithedMsg = switchMsg(content, false);
                     MqttOper.sendErrNotify(swithedMsg);
                 }
@@ -396,9 +379,7 @@ public class IMService extends Service {
      * 连接MQTT
      */
     private void connectIM() {
-        LogPrint.print("MQTT", "将要连接MQTT~~~");
         if (NetUtils.isConnect(getBaseContext())) {
-            LogPrint.print("MQTT", "网络环境良好，可以连接~~~");
             imConnection = new IMConnection();
             if (imConnectCallback == null) {
                 imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
@@ -416,7 +397,6 @@ public class IMService extends Service {
 
     @Override
     public void onDestroy() {
-        LogPrint.print("IMService", "服务挂掉了~~~");
         if (receiver != null) {
             try {
                 getBaseContext().unregisterReceiver(receiver);
