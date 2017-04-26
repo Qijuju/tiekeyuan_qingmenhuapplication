@@ -846,11 +846,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="646" column="43" lean-forward="false" selection-start-line="646" selection-start-column="32" selection-end-line="646" selection-end-column="43" />
+            <state relative-caret-position="736">
+              <caret line="694" column="50" lean-forward="true" selection-start-line="694" selection-start-column="50" selection-end-line="694" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller_message.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="4051" column="49" lean-forward="true" selection-start-line="4051" selection-start-column="49" selection-end-line="4051" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -1271,14 +1281,7 @@
       <workItem from="1493080846611" duration="2245000" />
       <workItem from="1493103029703" duration="562000" />
       <workItem from="1493119359058" duration="343000" />
-      <workItem from="1493166307731" duration="4656000" />
-    </task>
-    <task id="LOCAL-00112" summary="合并宋亚代码">
-      <created>1482920701026</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1482920701026</updated>
+      <workItem from="1493166307731" duration="4828000" />
     </task>
     <task id="LOCAL-00113" summary="12.29commit:视频播放添加默认界面。（第一帧还得继续找）">
       <created>1483013379645</created>
@@ -1616,11 +1619,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493193324348</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="commit">
+      <created>1493193354871</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1493193354871</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1349673000" />
+    <option name="totallyTimeSpent" value="1349845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1633,9 +1643,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="975" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22242315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22242315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5232163" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2037,14 +2047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="4060" column="24" lean-forward="false" selection-start-line="4060" selection-start-column="18" selection-end-line="4060" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -2079,8 +2081,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="646" column="43" lean-forward="false" selection-start-line="646" selection-start-column="32" selection-end-line="646" selection-end-column="43" />
+        <state relative-caret-position="736">
+          <caret line="694" column="50" lean-forward="true" selection-start-line="694" selection-start-column="50" selection-end-line="694" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="4051" column="49" lean-forward="true" selection-start-line="4051" selection-start-column="49" selection-end-line="4051" selection-end-column="49" />
           <folding />
         </state>
       </provider>
