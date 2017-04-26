@@ -4310,13 +4310,13 @@ angular.module('message.controllers', [])
 
 
 
-    //读取当前 app的欢迎界面
+  /*  //读取当前 app的欢迎界面
     $api.getWelcomePic($scope.ID,"960",function (srcurl) {
       $mqtt.save('welcomePic', srcurl);
       // $ToastUtils.showToast(srcurl)
     },function (error) {
       $ToastUtils.showToast(error)
-    })
+    })*/
 
 
 

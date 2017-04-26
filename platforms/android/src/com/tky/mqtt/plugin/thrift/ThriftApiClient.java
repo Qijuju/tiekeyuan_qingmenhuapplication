@@ -3172,6 +3172,8 @@ public class ThriftApiClient extends CordovaPlugin {
     }
   }
 
+
+
   public void getWelcomePic(final JSONArray args, final CallbackContext callbackContext) {
 
     BufferedInputStream bis = null;
@@ -3190,7 +3192,15 @@ public class ThriftApiClient extends CordovaPlugin {
         bis = new BufferedInputStream(httpURLConnection.getInputStream());
         byte[] buffer = new byte[1024 * 8];
 
-        int c = 0;
+        int c = bis.read(buffer);
+        if (c == -1) {
+          SPUtils.save("welcomePic","");
+          SPUtils.save("varyName","");
+          return;
+        } else {
+          baos.write(buffer, 0, c);
+          baos.flush();
+        }
         while ((c = bis.read(buffer)) != -1) {
 
           baos.write(buffer, 0, c);
@@ -3198,12 +3208,24 @@ public class ThriftApiClient extends CordovaPlugin {
           baos.flush();
 
         }
-        String iconDir = FileUtils.getIconDir() + File.separator + "/welcome";
+        String iconDir = FileUtils.getIconDir() + File.separator + "welcome";
         File directory = new File(iconDir);
         if (!directory.exists()) {
           directory.mkdirs();
         }
-        String fileName = iconDir + File.separator + picUserID + picSize + ".jpg";
+
+        String[] listarr = directory.list();
+        if (listarr.length > 0 || listarr != null) {
+          for (int i = 0; i < listarr.length; i++) {
+            File temp = new File(iconDir + File.separator + listarr[i]);
+            temp.delete();
+          }
+        }
+
+
+
+
+        String fileName = iconDir + File.separator + picUserID + picSize + ".png";
         File file = new File(fileName);
         if (!file.exists()) {
           file.createNewFile();
@@ -3211,19 +3233,28 @@ public class ThriftApiClient extends CordovaPlugin {
         byte[] fileByte = baos.toByteArray();
         fos = new FileOutputStream(file);
         fos.write(fileByte);
-        setResult(fileName, PluginResult.Status.OK, callbackContext);
+        SPUtils.save("welcomePic",fileName);
+        SPUtils.save("varyName",picUserID);
+
+        setResult("成功", PluginResult.Status.OK, callbackContext);
+      }else {
+        SPUtils.save("varyName","");
       }
 
     } catch (MalformedURLException e) {
+      SPUtils.save("varyName","");
       setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     } catch (IOException e) {
+      SPUtils.save("varyName","");
       setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     } catch (JSONException e) {
+      SPUtils.save("varyName","");
       setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     } catch (Exception e) {
+      SPUtils.save("varyName","");
       setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     } finally {
       if (fos != null) {
@@ -3231,6 +3262,7 @@ public class ThriftApiClient extends CordovaPlugin {
           fos.close();
           fos = null;
         } catch (IOException e) {
+          SPUtils.save("varyName","");
           setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
           e.printStackTrace();
         }
