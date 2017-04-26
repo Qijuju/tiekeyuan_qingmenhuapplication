@@ -15,7 +15,7 @@ public class Constants {
   public static final String formalbasemobile= "immobile.r93535.com";
 
   //境外
-  public static final String JINGWAIURL = "201.137.140.133";
+  public static final String JINGWAIURL = "202.137.140.133";
 
 
 
