@@ -7,55 +7,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0ace942-c66f-4b6c-b8b6-eedd3a7a854d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/androidTest/debug/org/apache/cordova/test/BuildConfig.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/captures/com.ionicframework.im366077_2017.04.24_14.07.trace" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$drawable.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$string.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$style.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/BuildConfig.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$attr.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$drawable.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$string.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$style.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../resources/android/icon/._.DS_Store" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/bean/IMParams.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/bean/TopicsCoupleQoss.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/callback/IMConnectCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/connection/IMConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/enums/IMEnums.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/params/ConstantsParams.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/receiver/IMNetStatusChangeReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/receiver/IMReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/receiver/IMScreenReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/service/IMProtectService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/service/IMService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/HeartbeatUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMBroadOper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMMessageOper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMStatusManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/aosp_dexutils_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/bsdiff_util_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/dom4j_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/imApi2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jcore_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jpush_3_0_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/libthrift_0_9_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_14.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_api_1_7_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/slf4j_log4j12_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_connector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_anno_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_lib_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_android_loader_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/tinker_commons_1_7_7.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
@@ -79,8 +82,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" />
@@ -254,8 +255,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileDebugAidl/dependency.store" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileDebugAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android-debug.apk" afterPath="$PROJECT_DIR$/android-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.eot" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.eot" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.ttf" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.ttf" />
@@ -582,7 +581,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_next_item.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_next_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_remove.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon_friends.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon_friends.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon_group_conversation.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon_group_conversation.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/image_bg.9.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/image_bg.9.png" />
@@ -590,7 +588,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_dark.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_dark.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_light.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_discard_light.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_done_dark.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_done_dark.png" />
@@ -599,7 +596,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_remove.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" />
@@ -613,16 +609,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_remove.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ms_video_focus_icon.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ms_video_focus_icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/backbutton.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/backbutton.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_next_item.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_next_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_remove.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ms_video_focus_icon.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ms_video_focus_icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/top.jpg" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/top.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxxhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xxxhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/raw/jijiaojinxingqu.mp3" afterPath="$PROJECT_DIR$/res/raw/jijiaojinxingqu.mp3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/jni/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/jni/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi-v4/icon.png" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi-v4/icon.png" />
@@ -661,7 +654,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/release/com/yixia/videoeditor/adapter/UtilityAdapter.class" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/release/com/yixia/videoeditor/adapter/UtilityAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/compileReleaseAidl/dependency.store" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/jniLibs/release/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/jniLibs/release/armeabi-v7a/libutility.so" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/release/folders/2000/3/main/lib/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/release/folders/2000/3/main/lib/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/libs/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/libs/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/res/drawable-hdpi/icon.png" />
@@ -2304,7 +2296,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chariotsolutions/nfc/plugin/Util.java" afterPath="$PROJECT_DIR$/src/com/chariotsolutions/nfc/plugin/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/PermissionHelper.java" afterPath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/PermissionHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/Screenshot.java" afterPath="$PROJECT_DIR$/src/com/darktalker/cordova/screenshot/Screenshot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/Constants.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java" afterPath="$PROJECT_DIR$/src/com/ionicframework/im366077/OnePxActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" afterPath="$PROJECT_DIR$/src/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" />
@@ -2429,10 +2420,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/MqttPluginResult.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/MqttPluginResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/FileSyncClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/FileSyncClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/ProgressDialogFactory.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/ProgressDialogFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/callback/GetHeadPicCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/callback/GetHeadPicCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/callback/GetOthersHeadPicCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/callback/GetOthersHeadPicCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/toast/MqttPluginResult.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/toast/MqttPluginResult.java" />
@@ -2513,18 +2502,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/apache/cordova/statusbar/StatusBar.java" afterPath="$PROJECT_DIR$/src/org/apache/cordova/statusbar/StatusBar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/apache/cordova/whitelist/WhitelistPlugin.java" afterPath="$PROJECT_DIR$/src/org/apache/cordova/whitelist/WhitelistPlugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build.gradle" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/release/com/yixia/camera/BuildConfig.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/release/com/yixia/camera/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/R.txt" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/R.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
@@ -2532,10 +2510,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values-v14/values-v14.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values/values.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/release/tag.txt" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/release/tag.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/java/com/yixia/camera/AudioRecorder.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/java/com/yixia/camera/AudioRecorder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/java/com/yixia/camera/FFMpegUtils.java" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/src/main/java/com/yixia/camera/FFMpegUtils.java" />
@@ -3967,10 +3941,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_localphone.js" afterPath="$PROJECT_DIR$/../../www/js/controller_localphone.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_portal.js" afterPath="$PROJECT_DIR$/../../www/js/controller_portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_search.js" afterPath="$PROJECT_DIR$/../../www/js/controller_search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" />
@@ -4256,19 +4228,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+            <state relative-caret-position="1196">
+              <caret line="160" column="33" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemApi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
               <folding>
-                <element signature="e#3924#3932#0" expanded="true" />
-                <element signature="e#4115#4687#0" expanded="true" />
-                <element signature="e#4686#4687#0" expanded="true" />
-                <element signature="e#105935#105951#0" expanded="true" />
-                <element signature="e#106455#106463#0" expanded="true" />
-                <element signature="e#106822#106838#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/im/service/IMService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -4276,7 +4263,7 @@
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2996">
+            <state relative-caret-position="9108">
               <caret line="474" column="15" selection-start-line="474" selection-start-column="15" selection-end-line="474" selection-end-column="15" />
               <folding />
             </state>
@@ -7090,7 +7077,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8958550529566" />
+        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8958570399015" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -7896,10 +7883,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane />
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -8137,6 +8126,36 @@
               <option name="myItemId" value="im" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tky" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="im" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -8262,12 +8281,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="device.picker.selection" value="293dc6ee" />
+    <property name="device.picker.selection" value="f78be6d3" />
     <property name="editor.config.accepted" value="true" />
     <property name="show.do.not.ask.upgrade.gradle.plugin.version" value="2.1.0" />
   </component>
@@ -8585,19 +8602,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21543778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21543778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15207373" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -8609,8 +8626,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2626728" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2626728" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -8650,14 +8667,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9108">
+          <caret line="474" column="15" selection-start-line="474" selection-start-column="15" selection-end-line="474" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8683,7 +8709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2001">
           <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8707,14 +8732,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8730,7 +8748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2001">
           <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8754,14 +8771,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8777,7 +8787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2001">
           <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8801,14 +8810,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8824,7 +8826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2001">
           <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8848,14 +8849,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="112" column="13" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8871,7 +8865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1932">
           <caret line="99" column="62" selection-start-line="99" selection-start-column="62" selection-end-line="99" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8905,13 +8898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/im/service/IMService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="152" column="13" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/libthrift-0.9.3.jar!/org/apache/thrift/async/TAsyncMethodCall.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -8923,7 +8909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="788">
           <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8939,7 +8924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8947,9 +8931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="e#1838#1839#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8957,7 +8938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="196" column="16" selection-start-line="196" selection-start-column="16" selection-end-line="196" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8965,7 +8945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="531" column="16" selection-start-line="531" selection-start-column="16" selection-end-line="531" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8973,7 +8952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8981,7 +8959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8989,7 +8966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8997,7 +8973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -9005,7 +8980,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="369" column="25" selection-start-line="369" selection-start-column="25" selection-end-line="369" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -9013,7 +8987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="894" column="0" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -9035,7 +9008,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2996">
+        <state relative-caret-position="9108">
           <caret line="474" column="15" selection-start-line="474" selection-start-column="15" selection-end-line="474" selection-end-column="15" />
           <folding />
         </state>
@@ -9045,35 +9018,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-276">
           <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#1439#1440#0" expanded="true" />
-            <element signature="e#1480#1481#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="160" column="33" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="118" column="34" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+        <state relative-caret-position="143">
+          <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/im/service/IMService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
-          <folding>
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="e#4115#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-            <element signature="e#105935#105951#0" expanded="true" />
-            <element signature="e#106455#106463#0" expanded="true" />
-            <element signature="e#106822#106838#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>

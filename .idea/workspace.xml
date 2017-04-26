@@ -2,55 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="合并最新mqtt">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/androidTest/debug/org/apache/cordova/test/BuildConfig.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/captures/com.ionicframework.im366077_2017.04.24_14.07.trace" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$drawable.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$string.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$style.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/BuildConfig.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$attr.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$drawable.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$string.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$style.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/android/icon/._.DS_Store" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/bean/IMParams.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/bean/TopicsCoupleQoss.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMConnectCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/connection/IMConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/enums/IMEnums.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/params/ConstantsParams.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMNetStatusChangeReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMScreenReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMProtectService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/HeartbeatUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMBroadOper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMMessageOper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMStatusManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/aosp_dexutils_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/barcodescanner_.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/bsdiff_util_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/dom4j_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/freemarker_2_3_20.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_1_3_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/gson_2_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/imApi2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/jcore_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/jpush_3_0_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/libthrift_0_9_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/locSDK_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/log4j_1_2_14.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/nineoldandroids_2_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_2_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttputils_2_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okio_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_base_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_basement_8_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxandroid_1_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxjava_1_1_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/slf4j_api_1_7_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/slf4j_log4j12_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/sqlite_connector.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_annotations_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_compat_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_ui_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_utils_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_fragment_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_media_compat_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_v4_26_0_0_alpha1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_anno_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_lib_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_loader_1_7_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_commons_1_7_7.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
@@ -74,8 +77,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" />
@@ -249,8 +250,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAidl/dependency.store" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android-debug.apk" afterPath="$PROJECT_DIR$/platforms/android/android-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.eot" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.eot" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.ttf" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.ttf" />
@@ -577,7 +576,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_next_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_next_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/ic_action_remove.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon_friends.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon_friends.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon_group_conversation.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/icon_group_conversation.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/image_bg.9.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-hdpi/image_bg.9.png" />
@@ -585,7 +583,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-land-hdpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-hdpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-land-ldpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-ldpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-land-mdpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-land-mdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-ldpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-ldpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_discard_dark.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_discard_dark.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_discard_light.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_discard_light.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_done_dark.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_done_dark.png" />
@@ -594,7 +591,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_action_remove.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-mdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-port-hdpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-hdpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-port-ldpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-ldpi/screen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-port-mdpi/screen.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-port-mdpi/screen.png" />
@@ -608,16 +604,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_action_remove.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ms_video_focus_icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xhdpi/ms_video_focus_icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/backbutton.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/backbutton.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_next_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_next_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_previous_item.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_previous_item.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_remove.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ic_action_remove.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ms_video_focus_icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/ms_video_focus_icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/top.jpg" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxhdpi/top.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/drawable-xxxhdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/res/drawable-xxxhdpi/icon.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/raw/jijiaojinxingqu.mp3" afterPath="$PROJECT_DIR$/platforms/android/res/raw/jijiaojinxingqu.mp3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/jni/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/jni/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi-v4/icon.png" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/drawable-hdpi-v4/icon.png" />
@@ -656,7 +649,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/release/com/yixia/videoeditor/adapter/UtilityAdapter.class" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/classes/release/com/yixia/videoeditor/adapter/UtilityAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/compileReleaseAidl/dependency.store" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/jniLibs/release/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/jniLibs/release/armeabi-v7a/libutility.so" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/release/folders/2000/3/main/lib/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/release/folders/2000/3/main/lib/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/libs/armeabi-v7a/libutility.so" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/libs/armeabi-v7a/libutility.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/res/drawable-hdpi/icon.png" />
@@ -2299,7 +2291,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/chariotsolutions/nfc/plugin/Util.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/chariotsolutions/nfc/plugin/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/darktalker/cordova/screenshot/PermissionHelper.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/darktalker/cordova/screenshot/PermissionHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/darktalker/cordova/screenshot/Screenshot.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/darktalker/cordova/screenshot/Screenshot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/Constants.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/MainActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/OnePxActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/OnePxActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/phonegap/plugins/barcodescanner/BarcodeScanner.java" />
@@ -2424,10 +2415,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/MqttPluginResult.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/MqttPluginResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/photo/ScalePhoto.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/MqttPluginResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/FileSyncClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/FileSyncClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/ProgressDialogFactory.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/ProgressDialogFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/callback/GetHeadPicCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/callback/GetHeadPicCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/callback/GetOthersHeadPicCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/callback/GetOthersHeadPicCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/toast/MqttPluginResult.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/toast/MqttPluginResult.java" />
@@ -2508,18 +2497,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/statusbar/StatusBar.java" afterPath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/statusbar/StatusBar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/whitelist/WhitelistPlugin.java" afterPath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/whitelist/WhitelistPlugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/release/com/yixia/camera/BuildConfig.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/buildConfig/release/com/yixia/camera/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/R.txt" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/R.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
@@ -2527,10 +2505,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values-v14/values-v14.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values/values.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/res/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/release/tag.txt" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/release/tag.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/java/com/yixia/camera/AudioRecorder.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/java/com/yixia/camera/AudioRecorder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/java/com/yixia/camera/FFMpegUtils.java" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/src/main/java/com/yixia/camera/FFMpegUtils.java" />
@@ -3962,10 +3936,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_localphone.js" afterPath="$PROJECT_DIR$/www/js/controller_localphone.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/www/js/controller_portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_search.js" afterPath="$PROJECT_DIR$/www/js/controller_search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/www/js/controller_select_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/www/js/controller_select_othergroup.js" />
@@ -4204,8 +4176,8 @@
       <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="393" column="29" lean-forward="false" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
+            <state relative-caret-position="375">
+              <caret line="408" column="7" lean-forward="true" selection-start-line="408" selection-start-column="7" selection-end-line="408" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -4372,7 +4344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -4485,6 +4456,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
@@ -4814,14 +4786,9 @@
       <workItem from="1493108193014" duration="1060000" />
       <workItem from="1493116083885" duration="585000" />
       <workItem from="1493168566443" duration="1589000" />
-      <workItem from="1493170417555" duration="29000" />
-    </task>
-    <task id="LOCAL-00037" summary="1321">
-      <created>1482976126365</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1482976126365</updated>
+      <workItem from="1493170417555" duration="1032000" />
+      <workItem from="1493171579583" duration="962000" />
+      <workItem from="1493174339359" duration="175000" />
     </task>
     <task id="LOCAL-00038" summary="紧急呼叫页面">
       <created>1483000699697</created>
@@ -5159,25 +5126,32 @@
       <option name="project" value="LOCAL" />
       <updated>1492670835288</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="合并最新mqtt">
+      <created>1493170958337</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1493170958337</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1457535000" />
+    <option name="totallyTimeSpent" value="1459675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22497366" sideWeight="0.4941957" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22497366" sideWeight="0.4941957" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08676307" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23351352" sideWeight="0.54373026" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12567714" sideWeight="0.4093783" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12567714" sideWeight="0.4093783" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14734562" sideWeight="0.45626977" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15276273" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -5619,8 +5593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="393" column="29" lean-forward="false" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
+        <state relative-caret-position="375">
+          <caret line="408" column="7" lean-forward="true" selection-start-line="408" selection-start-column="7" selection-end-line="408" selection-end-column="7" />
           <folding />
         </state>
       </provider>
