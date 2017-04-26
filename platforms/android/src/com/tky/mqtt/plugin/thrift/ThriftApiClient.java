@@ -3074,7 +3074,7 @@ public class ThriftApiClient extends CordovaPlugin {
           baos.flush();
 
         }
-        String iconDir = FileUtils.getIconDir() + File.separator + "/welcome";
+        String iconDir = FileUtils.getIconDir() + File.separator + "welcome";
         File directory = new File(iconDir);
         if (!directory.exists()) {
           directory.mkdirs();

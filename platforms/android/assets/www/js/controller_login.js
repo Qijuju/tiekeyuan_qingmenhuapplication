@@ -281,17 +281,101 @@ angular.module('login.controllers', [])
       // });
 
       mqtt.getString('welcomePic', function (picurl) {
+        var firsturl="http://61.237.239.60:8081/loginpic/loginpic/json";
+
+        //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
           $scope.$apply(function () {
             $scope.securlpic = "img/im1.png";
           })
+
+          $http({
+            method: 'get',
+            url: firsturl,
+          }).success(function(data, status) {
+
+            var name=data.loginpicName;
+
+            //调用下载的接口
+            $api.getWelcomePic($scope.ID,"960",function (srcurl) {
+
+
+            },function (error) {
+
+            })
+
+
+          }).error(function(data, status) {
+
+
+          });
+
+
+
+
+
+
+
         } else {
+          // 查询到的图片不为空
+
           $scope.$apply(function () {
+            //先设置好值再去判断
             $scope.securlpic = picurl;
+
+            //从网络上拿下来图片的基本信息
+            $http({
+              method: 'get',
+              url: url,
+            }).success(function(data, status) {
+
+              mqtt.getString('')
+
+
+            }).error(function(data, status) {
+
+            });
+
+
+            mqtt.getString("varyName",function (latest) {
+
+              $http({
+                method: 'get',
+                url: url,
+              }).success(function(data, status) {
+
+                if (latest!==data){
+
+                    //调用接口去下载图片
+                  //读取当前 app的欢迎界面
+                  $api.getWelcomePic($scope.ID,"960",function (srcurl) {
+
+
+                  },function (error) {
+
+                  })
+
+                }else {
+
+
+                }
+
+
+              }).error(function(data, status) {
+
+              });
+
+
+
+            })
+
+
+
+
           })
         }
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
+
       });
 
       mqtt.getString('loginpage', function (loginpagea) {

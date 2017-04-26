@@ -245,7 +245,7 @@ angular.module('login.controllers', [])
     // }, 1000);
   })
 
-  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao) {
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
@@ -281,17 +281,34 @@ angular.module('login.controllers', [])
       // });
 
       mqtt.getString('welcomePic', function (picurl) {
+        //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
           $scope.$apply(function () {
             $scope.securlpic = "img/im1.png";
           })
         } else {
+          // 查询到的图片不为空
+
           $scope.$apply(function () {
+            //先设置好值再去判断
             $scope.securlpic = picurl;
+
+            /*//从网络上拿下来图片的基本信息
+            $http({
+              method: 'get',
+              url: url,
+            }).success(function(data, status) {
+
+              mqtt.getString('')
+
+
+            }).error(function(data, status) {
+
+            });*/
           })
         }
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
+
       });
 
       mqtt.getString('loginpage', function (loginpagea) {

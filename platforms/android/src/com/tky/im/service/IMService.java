@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
 import com.ionicframework.im366077.Constants;
+import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.im.callback.IMConnectCallback;
 import com.tky.im.callback.IMMessageCallback;
@@ -32,6 +33,7 @@ import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.GsonUtils;
@@ -59,6 +61,7 @@ public class IMService extends Service {
     private IMScreenReceiver screenReceiver;
     private HeartbeatUtils beats;
     private final Handler handler = new Handler();
+    private static int requestCode = 0x1001;
     /**
      * 对启动时间进行限制，保持前5次每1s启动一次，然后是隔5s，10s，20s，20s内如果持续连接异常，则退出登录
      */
@@ -208,6 +211,9 @@ public class IMService extends Service {
             builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
             //禁止用户点击删除按钮删除
             builder.setAutoCancel(false);
+            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
+            builder.setContentIntent(pendingIntent);
             //禁止滑动删除
             builder.setOngoing(true);
             //右上角的时间显示
