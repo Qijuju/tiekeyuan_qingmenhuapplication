@@ -12,6 +12,7 @@ import com.ionicframework.im366077.R;
 import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
+import com.tky.im.test.LogPrint;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
@@ -68,6 +69,8 @@ public class IMMessageCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
+        LogPrint.print("MQTT", "异常断开或手动断开~~~");
+        LogPrint.print2("MQTT", "异常断开或手动断开~~~");
         //断开IM
         IMBroadOper.broad(ConstantsParams.PARAM_IM_DOWN);
         if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {

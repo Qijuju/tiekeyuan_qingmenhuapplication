@@ -9,6 +9,7 @@ import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.receiver.IMReceiver;
+import com.tky.im.test.LogPrint;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.mqtt.paho.MqttTopicRW;
@@ -34,6 +35,8 @@ public class IMConnectCallback implements IMqttActionListener {
 
     @Override
     public void onSuccess(IMqttToken iMqttToken) {
+        LogPrint.print("MQTT", "启动成功~~~");
+        LogPrint.print2("MQTT", "启动成功~~~");
         //设置连接成功状态
         IMStatusManager.setImStatus(IMEnums.CONNECTED);
         //广播当前连接状态
@@ -45,6 +48,8 @@ public class IMConnectCallback implements IMqttActionListener {
 
     @Override
     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+        LogPrint.print("MQTT", "启动失败~~~");
+        LogPrint.print2("MQTT", "启动失败~~~");
         //广播当前连接状态
         IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_FAILURE);
 

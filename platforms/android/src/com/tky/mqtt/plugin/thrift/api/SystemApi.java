@@ -66,25 +66,40 @@ public class SystemApi {
 
   public static void dealNetDown() {
     if (clientManager != null) {
-      clientManager.stop();
+      try {
+        clientManager.stop();
+      } catch (Exception e) {}
     }
     if (clientManager1 != null) {
-      clientManager1.stop();
+      try {
+        clientManager1.stop();
+      } catch (Exception e) {}
     }
     if (clientManager2 != null) {
-      clientManager2.stop();
+      try {
+        clientManager2.stop();
+      } catch (Exception e) {}
     }
     if (clientManager3 != null) {
+      try {
+
+      } catch (Exception e) {}
       clientManager3.stop();
     }
     if (clientManager4 != null) {
-      clientManager4.stop();
+      try {
+        clientManager4.stop();
+      } catch (Exception e) {}
     }
     if (clientManager5 != null) {
-      clientManager5.stop();
+      try {
+        clientManager5.stop();
+      } catch (Exception e) {}
     }
     if (clientManager6 != null) {
-      clientManager6.stop();
+      try {
+        clientManager6.stop();
+      } catch (Exception e) {}
     }
 
     IMSystemAsyncClient = null;
