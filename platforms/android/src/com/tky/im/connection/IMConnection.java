@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.tky.im.bean.IMParams;
+import com.tky.im.test.LogPrint;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.utils.GsonUtils;
@@ -14,6 +15,8 @@ import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.List;
 
 /**
  * Created by tkysls on 2017/4/11.
@@ -51,6 +54,7 @@ public class IMConnection {
         if (mqttAsyncClient != null) {
             closeIM();
         }
+        LogPrint.print("MQTT", "开始连接~~~");
         params = new IMParams();
         mqttAsyncClient = new MqttAsyncClient(params.getServerURI(),
                 params.getClientId(), params.getPersistence(),
@@ -118,6 +122,7 @@ public class IMConnection {
      */
     public void closeIM() {
         if (mqttAsyncClient != null) {
+            LogPrint.print("MQTT", "断开连接~~~");
             try {
                 mqttAsyncClient.close();
             } catch (MqttException e) {

@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 
+import com.tky.im.test.LogPrint;
+
 /**
  * IM的心跳管理
  */
@@ -64,6 +66,7 @@ public class HeartbeatUtils {
                         case TIME_OUT:
                             HeartbeatUtils beats = (HeartbeatUtils) msg.obj;
                             if (beats.onTimeoutListener != null) {
+                                LogPrint.print("心跳", "心跳了一次💗");
                                 beats.onTimeoutListener.onTimeout();
                             }
                             beats.loop();

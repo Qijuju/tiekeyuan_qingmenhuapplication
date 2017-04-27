@@ -55,6 +55,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -173,7 +174,6 @@ public class ThriftApiClient extends CordovaPlugin {
       String username = args.getString(0);
       String password = args.getString(1);
       String imCode = UIUtils.getDeviceId();
-
       SystemApi.login(username.trim(), password.trim(), imCode, new AsyncMethodCallback<IMSystem.AsyncClient.Login_call>() {
         @Override
         public void onComplete(IMSystem.AsyncClient.Login_call login_call) {
@@ -214,9 +214,6 @@ public class ThriftApiClient extends CordovaPlugin {
                   //保存登录信息
                   SPUtils.save("login_info", loginJson);
                   setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
-
-                  return;
-
                 } else if ("104".equals(result.getResultCode())) {
                   setResult("账户名或密码错误！", PluginResult.Status.ERROR, callbackContext);
                 } /*else if ("105".equals(result.getResultCode())) {
@@ -234,9 +231,7 @@ public class ThriftApiClient extends CordovaPlugin {
             } catch (SQLiteException e){
               setResult("数据库错误！",PluginResult.Status.ERROR,callbackContext);
             } catch (Exception e) {
-              setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
-              e.printStackTrace();
-              //ToastUtil.showSafeToast("ss");
+              setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
             }
           }
         }
@@ -257,10 +252,8 @@ public class ThriftApiClient extends CordovaPlugin {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     } catch (Exception e) {
-      setResult("网络超时！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-
       //ToastUtil.showSafeToast("ss");
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -290,6 +283,8 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
           } catch (InterruptedException e) {
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -307,6 +302,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -335,6 +332,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -352,6 +351,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -383,6 +384,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -400,6 +403,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -433,6 +438,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -450,6 +457,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -489,6 +498,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -506,6 +517,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -542,6 +555,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -559,6 +574,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -596,6 +613,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -614,6 +633,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -650,6 +671,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -667,6 +690,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -705,6 +730,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -722,6 +749,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (JSONException e) {
       setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -782,6 +811,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -799,6 +830,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -850,6 +883,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -867,6 +902,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -890,6 +927,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -913,6 +952,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1009,6 +1050,8 @@ public class ThriftApiClient extends CordovaPlugin {
                         } catch (TException e) {
                           setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
                           e.printStackTrace();
+                        } catch (Exception e) {
+                          setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
                         }
                       }
 
@@ -1043,6 +1086,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (JSONException e) {
       setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1072,6 +1117,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1089,6 +1136,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1120,6 +1169,8 @@ public class ThriftApiClient extends CordovaPlugin {
       ProgressDialogFactory.cancel();
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1141,6 +1192,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (JSONException e) {
       setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1180,6 +1233,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (JSONException e) {
       setResult("数据解析异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1211,6 +1266,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1228,6 +1285,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1259,6 +1318,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1276,6 +1337,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1306,6 +1369,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1323,6 +1388,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1358,6 +1425,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1375,6 +1444,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1635,6 +1706,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1652,6 +1725,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1679,6 +1754,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1696,6 +1773,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1734,6 +1813,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1751,6 +1832,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1787,6 +1870,8 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
           } catch (JSONException e) {
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1804,6 +1889,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1839,6 +1926,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1856,6 +1945,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1885,6 +1976,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1902,6 +1995,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1934,6 +2029,8 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
           } catch (JSONException e) {
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1951,6 +2048,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -1979,6 +2078,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -1996,6 +2097,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2024,6 +2127,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -2041,6 +2146,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2069,6 +2176,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -2086,6 +2195,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2114,6 +2225,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -2131,6 +2244,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2160,6 +2275,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (JSONException e) {
             setResult("JSON数据解析失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -2177,6 +2294,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2226,6 +2345,8 @@ public class ThriftApiClient extends CordovaPlugin {
           } catch (TException e) {
             setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
+          } catch (Exception e) {
+            setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
           }
         }
 
@@ -2243,6 +2364,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2310,28 +2433,19 @@ public class ThriftApiClient extends CordovaPlugin {
                 System.out.println("用户头像设置失败");
               }
               System.out.println(result);
-            } catch (IOException e) {
-              e.printStackTrace();
-            } catch (TException e) {
-              e.printStackTrace();
-            } catch (JSONException e) {
-              e.printStackTrace();
+            } catch (Exception e) {
+              setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
             }
           }
         }
 
         @Override
         public void onError(Exception e) {
-
+          setResult("网络错误！",PluginResult.Status.ERROR,callbackContext);
         }
       });
-    } catch (JSONException e) {
-      e.printStackTrace();
-    } catch (TException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }catch (Exception e){
+    } catch (Exception e){
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     }
   }
@@ -2561,10 +2675,8 @@ public class ThriftApiClient extends CordovaPlugin {
             }
             setResult(retnObj, PluginResult.Status.OK, callbackContext);*/
       e.printStackTrace();
-    } catch (TException e) {
-      e.printStackTrace();
-    } catch (JSONException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2689,6 +2801,8 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (JSONException e) {
       setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -3053,8 +3167,12 @@ public class ThriftApiClient extends CordovaPlugin {
     } catch (IOException e) {
       setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
+
+
 
   public void getWelcomePic(final JSONArray args, final CallbackContext callbackContext) {
 
@@ -3074,7 +3192,15 @@ public class ThriftApiClient extends CordovaPlugin {
         bis = new BufferedInputStream(httpURLConnection.getInputStream());
         byte[] buffer = new byte[1024 * 8];
 
-        int c = 0;
+        int c = bis.read(buffer);
+        if (c == -1) {
+          SPUtils.save("welcomePic","");
+          SPUtils.save("varyName","");
+          return;
+        } else {
+          baos.write(buffer, 0, c);
+          baos.flush();
+        }
         while ((c = bis.read(buffer)) != -1) {
 
           baos.write(buffer, 0, c);
@@ -3082,12 +3208,24 @@ public class ThriftApiClient extends CordovaPlugin {
           baos.flush();
 
         }
-        String iconDir = FileUtils.getIconDir() + File.separator + "/welcome";
+        String iconDir = FileUtils.getIconDir() + File.separator + "welcome";
         File directory = new File(iconDir);
         if (!directory.exists()) {
           directory.mkdirs();
         }
-        String fileName = iconDir + File.separator + picUserID + picSize + ".jpg";
+
+        String[] listarr = directory.list();
+        if (listarr.length > 0 || listarr != null) {
+          for (int i = 0; i < listarr.length; i++) {
+            File temp = new File(iconDir + File.separator + listarr[i]);
+            temp.delete();
+          }
+        }
+
+
+
+
+        String fileName = iconDir + File.separator + picUserID + picSize + ".png";
         File file = new File(fileName);
         if (!file.exists()) {
           file.createNewFile();
@@ -3095,21 +3233,36 @@ public class ThriftApiClient extends CordovaPlugin {
         byte[] fileByte = baos.toByteArray();
         fos = new FileOutputStream(file);
         fos.write(fileByte);
-        setResult(fileName, PluginResult.Status.OK, callbackContext);
+        SPUtils.save("welcomePic",fileName);
+        SPUtils.save("varyName",picUserID);
+
+        setResult("成功", PluginResult.Status.OK, callbackContext);
+      }else {
+        SPUtils.save("varyName","");
       }
 
     } catch (MalformedURLException e) {
+      SPUtils.save("varyName","");
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     } catch (IOException e) {
+      SPUtils.save("varyName","");
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
     } catch (JSONException e) {
+      SPUtils.save("varyName","");
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
       e.printStackTrace();
+    } catch (Exception e) {
+      SPUtils.save("varyName","");
+      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     } finally {
       if (fos != null) {
         try {
           fos.close();
           fos = null;
         } catch (IOException e) {
+          SPUtils.save("varyName","");
           setResult("网络异常", PluginResult.Status.ERROR, callbackContext);
           e.printStackTrace();
         }

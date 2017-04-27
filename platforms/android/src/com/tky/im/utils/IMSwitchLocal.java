@@ -274,6 +274,6 @@ public class IMSwitchLocal {
 
         }
         MqttNotification.cancelAll();
-        ToastUtil.showSafeToast("您已被强制下线！");
+        ToastUtil.showSafeToast("您的账号在其他设备已登录！");
     }
 }
