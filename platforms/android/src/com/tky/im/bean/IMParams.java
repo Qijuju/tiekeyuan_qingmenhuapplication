@@ -1,18 +1,12 @@
 package com.tky.im.bean;
 
 import com.tky.im.utils.IMUtils;
-import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttChatPingSender;
-import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.UUID;
 
 /**
  * Created by tkysls on 2017/4/11.
@@ -37,7 +31,7 @@ public class IMParams {
         options.setPassword(getPassword().toCharArray());
         options.setConnectionTimeout(getConnectionTimeout());
         options.setKeepAliveInterval(getKeepAliveInterval());
-        options.setWill(SwitchLocal.getATopic(MType.U, IMUtils.getUserID()),"close".getBytes(),1,true);
+        options.setWill(SwitchLocal.getOnOffTopic(), IMUtils.getOnOffState("UOF"), 1, false);
     }
 
     /**
