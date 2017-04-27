@@ -137,6 +137,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMDepartmentAsyncClient = new IMDepartment.AsyncClient(protocol, clientManager1, transport);
+        IMDepartmentAsyncClient.setTimeout(5000);
         }
         return IMDepartmentAsyncClient;
     }
@@ -157,6 +158,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMUserAsyncClient = new IMUser.AsyncClient(protocol, clientManager2, transport);
+        IMUserAsyncClient.setTimeout(5000);
         }
         return IMUserAsyncClient;
     }
@@ -180,6 +182,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMFileAsyncClient = new IMFile.AsyncClient(protocol, clientManager3, transport);
+          IMFileAsyncClient.setTimeout(5000);
         }
         return IMFileAsyncClient;
     }
@@ -216,6 +219,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMAttentionAsyncClient = new IMAttention.AsyncClient(protocol, clientManager4, transport);
+          IMAttentionAsyncClient.setTimeout(5000);
         }
         return IMAttentionAsyncClient;
     }
@@ -235,6 +239,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMMessageAsyncClient = new IMMessage.AsyncClient(protocol, clientManager5, transport);
+          IMMessageAsyncClient.setTimeout(5000);
         }
         return IMMessageAsyncClient;
     }
@@ -254,6 +259,7 @@ public class SystemApi {
             TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 5000);
             TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
             IMGroupAsyncClient = new IMGroup.AsyncClient(protocol, clientManager6, transport);
+        IMGroupAsyncClient.setTimeout(5000);
         }
         return IMGroupAsyncClient;
     }
