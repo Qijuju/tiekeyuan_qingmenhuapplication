@@ -2,7 +2,17 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl', function ($scope,$ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $ionicLoading, NetData, FinshedApp) {
+  .controller('portalCtrl', function ($scope,$ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $ionicLoading, NetData, $greendao,FinshedApp,$rootScope) {
+
+    $scope.$on('netstatus.update', function (event) {
+      $scope.$apply(function () {
+        //alert("哈哈哈哈哈啊哈哈哈哈");
+        //   alert("关网时走不走"+$rootScope.netStatus);
+        $rootScope.isConnect=$rootScope.netStatus;
+        // alert("切换网络时"+$scope.isConnect);
+      })
+    });
+
 
     $ionicLoading.show({
       content: 'Loading',
@@ -10,6 +20,22 @@ angular.module('portal.controllers', [])
       showBackdrop: false,
       maxWidth: 100,
       showDelay: 0
+    });
+
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        // alert("进来单聊界面吗？");
+        $greendao.queryByConditions('ChatListService',function (data) {
+          $chatarr.setData(data);
+          $scope.items=data;
+          // alert("数组的长度"+data.length);
+        },function (err) {
+
+        });
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
     });
 
       var userID;

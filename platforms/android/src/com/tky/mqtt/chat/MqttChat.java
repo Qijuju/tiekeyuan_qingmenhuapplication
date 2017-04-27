@@ -15,14 +15,18 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
+import com.tky.im.enums.IMEnums;
+import com.tky.im.params.ConstantsParams;
+import com.tky.im.receiver.IMReceiver;
+import com.tky.im.service.IMService;
+import com.tky.im.utils.IMBroadOper;
+import com.tky.im.utils.IMStatusManager;
+import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
-import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
@@ -30,9 +34,7 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
-import com.tky.mqtt.paho.receiver.MqttConnectReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
-import com.tky.mqtt.paho.receiver.NetStatusChangeReceiver;
 import com.tky.mqtt.paho.receiver.PhotoFileReceiver;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.VideoFileReceiver;
@@ -42,13 +44,11 @@ import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
 import com.tky.mqtt.paho.utils.RecorderManager;
-import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.TopContactsService;
-import com.tky.protocol.model.IMPException;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -96,10 +96,11 @@ public class MqttChat extends CordovaPlugin {
   private DocFileReceiver docFileReceiver;
   private PhotoFileReceiver photoFileReceiver;
   private VideoFileReceiver videoFileReceiver;
-  private NetStatusChangeReceiver netStatusChangeReceiver;
-  private MqttConnectReceiver mqttConnectReceiver;
+//  private NetStatusChangeReceiver netStatusChangeReceiver;
+//  private MqttConnectReceiver mqttConnectReceiver;
   private MqttSendMsgReceiver topicReceiver;
-  private MqttReceiver mqttReceiver;
+//  private MqttReceiver mqttReceiver;
+  private IMReceiver imReceiver;
   /**
    * 距离传感器改变时收到的Receiver
    */
@@ -110,10 +111,7 @@ public class MqttChat extends CordovaPlugin {
   public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
     setHasLogin(false);
-    mqttReceiver = MqttReceiver.getInstance();
-//        IntentFilter mqttFilter = new IntentFilter();
-//        mqttFilter.addAction(ReceiverParams.MESSAGEARRIVED);
-//        cordova.getActivity().registerReceiver(mqttReceiver, mqttFilter);
+//    mqttReceiver = MqttReceiver.getInstance();
 
     docFileReceiver = new DocFileReceiver();
     IntentFilter filter = new IntentFilter();
@@ -131,17 +129,17 @@ public class MqttChat extends CordovaPlugin {
     videoFilter.addAction(ReceiverParams.VIDEO_FILE_GET);
     UIUtils.getContext().registerReceiver(videoFileReceiver, videoFilter);
 
-    netStatusChangeReceiver = new NetStatusChangeReceiver();
-    IntentFilter netStatusChangeFilter = new IntentFilter();
-    netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
-    netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
-    UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);
+//    netStatusChangeReceiver = new NetStatusChangeReceiver();
+//    IntentFilter netStatusChangeFilter = new IntentFilter();
+//    netStatusChangeFilter.addAction(ReceiverParams.NET_CONNECTED);
+//    netStatusChangeFilter.addAction(ReceiverParams.NET_DISCONNECTED);
+//    UIUtils.getContext().registerReceiver(netStatusChangeReceiver, netStatusChangeFilter);
 
-    mqttConnectReceiver = new MqttConnectReceiver();
-    IntentFilter mqttConnectFilter = new IntentFilter();
-    mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_STARTED);
-    mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_CLOSED);
-    UIUtils.getContext().registerReceiver(mqttConnectReceiver, mqttConnectFilter);
+//    mqttConnectReceiver = new MqttConnectReceiver();
+//    IntentFilter mqttConnectFilter = new IntentFilter();
+//    mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_STARTED);
+//    mqttConnectFilter.addAction(ReceiverParams.RECEIVER_MQTT_CLOSED);
+//    UIUtils.getContext().registerReceiver(mqttConnectReceiver, mqttConnectFilter);
 
     //发布消息的广播
     topicReceiver = new MqttSendMsgReceiver();
@@ -158,6 +156,17 @@ public class MqttChat extends CordovaPlugin {
     IntentFilter playStopFilter = new IntentFilter();
     playStopFilter.addAction(ReceiverParams.RECEIVER_PLAY_STOP);
     UIUtils.getContext().registerReceiver(onPlayStopReceiver, playStopFilter);
+
+    //新版本IM的广播接收者
+    imReceiver = new IMReceiver();
+    IntentFilter imFilter = new IntentFilter();
+    imFilter.addAction(ConstantsParams.PARAM_RECEIVE_MESSAGE);
+    imFilter.addAction(ConstantsParams.PARAM_CONNECT_SUCCESS);
+    imFilter.addAction(ConstantsParams.PARAM_CONNECT_FAILURE);
+    imFilter.addAction(ConstantsParams.PARAM_IM_DOWN);
+    imFilter.addAction(ConstantsParams.PARAM_NET_DOWN);
+    imFilter.addAction(ConstantsParams.PARAM_NET_UP);
+    UIUtils.getContext().registerReceiver(imReceiver, imFilter);
   }
 
   @Override
@@ -282,13 +291,16 @@ public class MqttChat extends CordovaPlugin {
                     qoss[i] = 2;
                 }*/
       }
-      MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+//      MqttRobot.setConnectionType(ConnectionType.MODE_NONE);
+//      IMStatusManager
       MqttTopicRW.writeTopicsAndQos(topics, qoss);
       cordova.getActivity().runOnUiThread(new Runnable() {
         @Override
         public void run() {
           //链接mqtt
-          cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
+//          cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
+          IMStatusManager.setImStatus(IMEnums.INIT);
+          cordova.getActivity().startService(new Intent(cordova.getActivity(), IMService.class));
           hasLogin = true;
           MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
           pluginResult.setKeepCallback(true);
@@ -336,12 +348,6 @@ public class MqttChat extends CordovaPlugin {
     if (msg == null || "".equals(msg.trim())) {
       return;
     }
-        /*try {
-            //收集发送出去的消息，判断多发消息是哪出错了
-            saveToFile(msg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     //消息发送过程中，网络信号减弱，数据回调
     topicReceiver.setOnMqttSendErrorListener(new MqttSendMsgReceiver.OnMqttSendErrorListener() {
       @Override
@@ -373,54 +379,14 @@ public class MqttChat extends CordovaPlugin {
         return;
       }
     }
-        /*//消息回执状态，默认false
-        boolean flag=false;
-        //消息发送失败，数据回调，然后结束(断网，失去连接)
-        if(!NetUtils.isConnect(cordova.getActivity())){
-            flag=true;
-            *//**
-     * 若断网，则在20s内不断发送消息，并且实时启动mqtt
-     *//*
-            while(System.currentTimeMillis() - obj.getLong("when") <20 * 1000){
-                SystemClock.sleep(10);
-                try {
-                    if(MqttRobot.getMqttStatus() != MqttStatus.OPEN){
-                        MqttOper.resetMqtt();
-                    }else{
-                        MessageOper.sendMsg(tosb, message);
-                        break;
-                    }
-                } catch (IMPException e) {
-                    setResult("failure", PluginResult.Status.ERROR, callbackContext);
-                    e.printStackTrace();
-                    return;
-                }
-            }
-        }*/
-    try {
-//            if(!flag){
-      MessageOper.sendMsg(tosb, message);
-            /*for (int i = 0; i < 10000; i++) {
-                MessageOper.sendMsg(tosb, message);
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            Log.e("countyou", "发送失败总数为：" + count);
-            count = 0;*/
-//            }
-    } catch (IMPException e) {
-      setResult("failure", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-      return;
-    }
-
-//        while ()
-//        MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
-//        pluginResult.setKeepCallback(true);
-//        callbackContext.sendPluginResult(pluginResult);
+    IMBroadOper.broadSendMsg(tosb, message);
+//    try {
+//      MessageOper.sendMsg(tosb, message);
+//    } catch (IMPException e) {
+//      setResult("failure", PluginResult.Status.ERROR, callbackContext);
+//      e.printStackTrace();
+//      return;
+//    }
   }
 
 
@@ -449,21 +415,32 @@ public class MqttChat extends CordovaPlugin {
   }
 
   public void getChats(final JSONArray args, final CallbackContext callbackContext) {
-    mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
+//    mqttReceiver.setOnMessageArrivedListener(new MqttReceiver.OnMessageArrivedListener() {
+//      @Override
+//      public void messageArrived(String topic, final String content, int qos) {
+//
+//        cordova.getThreadPool().execute(new Runnable() {
+//          @Override
+//          public void run() {
+//            try {
+//              setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
+//            } catch (JSONException e) {
+//              e.printStackTrace();
+//            }
+//          }
+//        });
+//
+//      }
+//    });
+
+    imReceiver.setOnMessageReceivedListener(new IMReceiver.OnMessageReceivedListener() {
       @Override
-      public void messageArrived(String topic, final String content, int qos) {
-
-        cordova.getThreadPool().execute(new Runnable() {
-          @Override
-          public void run() {
-            try {
-              setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
-            } catch (JSONException e) {
-              e.printStackTrace();
-            }
-          }
-        });
-
+      public void onReceive(String topic, String content, int qos) {
+        try {
+          setResult(new JSONObject(content), PluginResult.Status.OK, callbackContext);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
       }
     });
 
@@ -489,24 +466,22 @@ public class MqttChat extends CordovaPlugin {
     }
     hasLogin = false;
 
-
+    final long start = System.currentTimeMillis();
     try {
       SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
         @Override
         public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+//          ToastUtil.showSafeToast("调用接口耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
           try {
             RST result = cancelUser_call.getResult();
-            if (result.result || "105".equals(result.getResultCode())) {
-              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-              MqttOper.closeMqttConnection();
-              try {
-                UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-              } catch (Exception e) {
-
-              }
+            if (result.result || "105".equals(result.getResultCode()) || "106".equals(result.getResultCode())) {
+//              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+//              MqttOper.closeMqttConnection();
+//              IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
+              IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
               MqttNotification.cancelAll();
               MqttRobot.setIsStarted(false);
-
+//              ToastUtil.showSafeToast("执行完退出登录耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
               setResult("success", PluginResult.Status.OK, callbackContext);
             } else {
               setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
@@ -550,7 +525,7 @@ public class MqttChat extends CordovaPlugin {
               user = getUser_call.getResult().getUser();
               final UserDetail finalUser = user;
               if (finalUser.isIsActive()) {
-                SwitchLocal.reloginCheck(user.getUserID(), new SwitchLocal.IReloginCheck() {
+                IMSwitchLocal.reloginCheck(user.getUserID(), new IMSwitchLocal.IReloginCheck() {
                   @Override
                   public void onCheck(boolean result) {
                     if (result) {
@@ -757,8 +732,10 @@ public class MqttChat extends CordovaPlugin {
           try {
             hasLogin = false;
             MqttTopicRW.writeTopicsAndQos(null, null);
-            MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-            MqttOper.closeMqttConnection();
+//            IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
+            IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
+//            MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
+//            MqttOper.closeMqttConnection();
             //销毁MqttService
 //              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
             UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
@@ -821,7 +798,7 @@ public class MqttChat extends CordovaPlugin {
    */
   public void getMyTopic(final JSONArray args, final CallbackContext callbackContext) {
     try {
-      String topic = SwitchLocal.getATopic(MType.U, getUserID()) + "," + SwitchLocal.getATopic(MType.D, getDeptID());
+      String topic = IMSwitchLocal.getATopic(MType.U, getUserID()) + "," + IMSwitchLocal.getATopic(MType.D, getDeptID());
       setResult(topic, PluginResult.Status.OK, callbackContext);
     } catch (JSONException e) {
       setResult("获取失败！", PluginResult.Status.OK, callbackContext);
@@ -839,7 +816,7 @@ public class MqttChat extends CordovaPlugin {
     try {
       String userID = args.getString(0);
       String type = args.getString(1);
-      String topic = SwitchLocal.getATopic(getType(type), userID);
+      String topic = IMSwitchLocal.getATopic(getType(type), userID);
       setResult(topic, PluginResult.Status.OK, callbackContext);
     } catch (JSONException e) {
       setResult("获取失败！", PluginResult.Status.OK, callbackContext);
@@ -1046,10 +1023,10 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setOnNetStatusChangeListener(final JSONArray args, final CallbackContext callbackContext) {
-    if (mqttConnectReceiver != null) {
-      mqttConnectReceiver.setOnMqttStatusChangeListener(new MqttConnectReceiver.OnMqttStatusChangeListener() {
+    if (imReceiver != null) {
+      imReceiver.setOnConnectedListener(new IMReceiver.OnConnectedListener() {
         @Override
-        public void onMqttStarted() {
+        public void onConnected() {
           try {
             SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
             Log.e("getstarttime", format.format(new Date()));
@@ -1059,16 +1036,46 @@ public class MqttChat extends CordovaPlugin {
         }
 
         @Override
-        public void onMqttClosed() {
-          try {
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-            Log.e("getendtime", format.format(new Date()));
-            setResult("false", PluginResult.Status.ERROR, callbackContext);
-          } catch (Exception e) {
-          }
+        public void onConnectFailure() {//连接失败
+          SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+          Log.e("getendtime", format.format(new Date()));
+          setResult("false", PluginResult.Status.ERROR, callbackContext);
         }
-
       });
+      imReceiver.setOnConnectDownListener(new IMReceiver.OnConnectDownListener() {//连接中断
+        @Override
+        public void onConnectDown() {
+          SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+          Log.e("getendtime", format.format(new Date()));
+          setResult("false", PluginResult.Status.ERROR, callbackContext);
+        }
+      });
+//      mqttConnectReceiver.setOnMqttStatusChangeListener(new MqttConnectReceiver.OnMqttStatusChangeListener() {
+//        @Override
+//        public void onMqttStarted() {
+//          try {
+//            if (MqttRobot.getMqttStatus() == MqttStatus.OPEN) {
+//              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//              Log.e("getstarttime", format.format(new Date()));
+//              setResult("true", PluginResult.Status.OK, callbackContext);
+//            }
+//          } catch (Exception e) {
+//          }
+//        }
+//
+//        @Override
+//        public void onMqttClosed() {
+//          try {
+//            if (MqttRobot.getMqttStatus() == MqttStatus.CLOSE) {
+//              SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//              Log.e("getendtime", format.format(new Date()));
+//              setResult("false", PluginResult.Status.ERROR, callbackContext);
+//            }
+//          } catch (Exception e) {
+//          }
+//        }
+//
+//      });
     }
   }
 
@@ -1079,25 +1086,44 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void setOnNetChangeListener(final JSONArray args, final CallbackContext callbackContext) {
-    if (netStatusChangeReceiver != null) {
-      netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
+    if (imReceiver != null) {
+      imReceiver.setOnNetStatusChangeListener(new IMReceiver.OnNetStatusChangeListener() {
         @Override
-        public void doNetDisconnect() {
-          try {
-            setResult("false", PluginResult.Status.ERROR, callbackContext);
-          } catch (Exception e) {
-          }
-        }
-
-        @Override
-        public void doNetConnect() {
+        public void onNetUp() {
           try {
             setResult("true", PluginResult.Status.OK, callbackContext);
           } catch (Exception e) {
           }
         }
+
+        @Override
+        public void onNetDown() {
+          try {
+            setResult("false", PluginResult.Status.ERROR, callbackContext);
+          } catch (Exception e) {
+          }
+        }
       });
     }
+//    if (netStatusChangeReceiver != null) {
+//      netStatusChangeReceiver.setOnNetListener(new NetStatusChangeReceiver.OnNetListener() {
+//        @Override
+//        public void doNetDisconnect() {
+//          try {
+//            setResult("false", PluginResult.Status.ERROR, callbackContext);
+//          } catch (Exception e) {
+//          }
+//        }
+//
+//        @Override
+//        public void doNetConnect() {
+//          try {
+//            setResult("true", PluginResult.Status.OK, callbackContext);
+//          } catch (Exception e) {
+//          }
+//        }
+//      });
+//    }
   }
 
   /**
@@ -1107,9 +1133,9 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void getMqttStatus(final JSONArray args, final CallbackContext callbackContext) {
-    if (!NetUtils.isConnect(cordova.getActivity()) || MqttRobot.getMqttStatus() != MqttStatus.OPEN) {
+    if (IMStatusManager.getImStatus() != IMEnums.CONNECTED) {
       setResult("false", PluginResult.Status.OK, callbackContext);
-    } else {
+    } else if (IMStatusManager.getImStatus() == IMEnums.CONNECTED) {
       setResult("true", PluginResult.Status.OK, callbackContext);
     }
   }
@@ -1532,13 +1558,19 @@ public class MqttChat extends CordovaPlugin {
       }
     } catch (Exception e) {
     }
+//    try {
+//      if (mqttConnectReceiver != null) {
+//        cordova.getActivity().unregisterReceiver(mqttConnectReceiver);
+//        mqttConnectReceiver = null;
+//      }
+//    } catch (Exception e) {
+//    }
     try {
-      if (mqttConnectReceiver != null) {
-        cordova.getActivity().unregisterReceiver(mqttConnectReceiver);
-        mqttConnectReceiver = null;
+      if (imReceiver != null) {
+        UIUtils.getContext().unregisterReceiver(imReceiver);
+        imReceiver = null;
       }
-    } catch (Exception e) {
-    }
+    } catch (Exception e) {}
     try {
       if (topicReceiver != null) {
         cordova.getActivity().unregisterReceiver(topicReceiver);

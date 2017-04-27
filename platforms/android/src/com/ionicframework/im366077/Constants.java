@@ -14,6 +14,9 @@ public class Constants {
   public static final String FORMALBASEURL= "http://61.237.239.60:8081";
   public static final String formalbasemobile= "immobile.r93535.com";
 
+  //境外
+  public static final String JINGWAIURL = "202.137.140.133";
+
 
 
 
@@ -21,7 +24,7 @@ public class Constants {
   //首页欢迎界面
   public static final String testwelcome=TESTBASEURL+"/Im_Interface/loginpic/download?Id=0";
 
-  public static final String formalwelcome=FORMALBASEURL+"/Im_Interfacer/loginpic/download?Id=0";
+  public static final String formalwelcome="http://61.237.239.60:8081/loginpic/loginpic/get";
 
   //补丁包下载
 

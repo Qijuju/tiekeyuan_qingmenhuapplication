@@ -5,6 +5,17 @@ angular.module('newnotification.controllers', [])
 
 
   .controller('newnotificationCtrl', function ($scope, $state, $ionicSlideBoxDelegate, $greendao, $ionicLoading, $timeout, $rootScope) {
+
+    $scope.$on('netstatus.update', function (event) {
+      $scope.$apply(function () {
+        //alert("哈哈哈哈哈啊哈哈哈哈");
+        //   alert("关网时走不走"+$rootScope.netStatus);
+        $rootScope.isConnect=$rootScope.netStatus;
+        // alert("切换网络时"+$scope.isConnect);
+      })
+    });
+
+
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -12,6 +23,25 @@ angular.module('newnotification.controllers', [])
       maxWidth: 100,
       showDelay: 0
     });
+
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        // alert("进来单聊界面吗？");
+        $greendao.queryByConditions('ChatListService',function (data) {
+          $chatarr.setData(data);
+          $scope.items=data;
+          // alert("数组的长度"+data.length);
+        },function (err) {
+
+        });
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
+      })
+    });
+
+
+
 
     $scope.initstate = false;
     $scope.openagain = function () {
