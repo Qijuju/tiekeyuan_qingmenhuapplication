@@ -82,8 +82,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/barcodescanner/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.jiguang.sdk/jcore/1.1.1/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.jiguang.sdk/jpush/3.0.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/multidex-instrumentation/1.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars" />
@@ -121,13 +119,12 @@
     <orderEntry type="library" exported="" name="play-services-appindexing-8.4.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="jcore-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="tinker-android-lib-1.7.7" level="project" />
     <orderEntry type="library" exported="" name="bsdiff-util-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="jpush-android_v3.0.3" level="project" />
     <orderEntry type="library" exported="" name="aosp-dexutils-1.7.7" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="greendao-1.3.7" level="project" />
-    <orderEntry type="library" exported="" name="jpush-3.0.3" level="project" />
     <orderEntry type="library" exported="" name="sqlite-connector" level="project" />
     <orderEntry type="library" exported="" name="support-v4-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-26.0.0-alpha1" level="project" />
@@ -144,6 +141,7 @@
     <orderEntry type="library" exported="" name="tinker-android-anno-1.7.7" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="tinker-android-loader-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="jcore-android_v1.1.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="locSDK_4.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.1.6" level="project" />

@@ -3,7 +3,6 @@ package com.tky.mqtt.plugin.thrift.api;
 import android.content.Context;
 
 import com.ionicframework.im366077.Constants;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 
 import org.apache.thrift.TException;
@@ -106,7 +105,7 @@ public class SystemApi {
     IMDepartmentAsyncClient = null;
     IMUserAsyncClient = null;
     IMFileAsyncClient = null;
-    fileSyncClient = null;
+//    fileSyncClient = null;
     IMAttentionAsyncClient = null;
     IMMessageAsyncClient = null;
     IMGroupAsyncClient = null;
@@ -219,7 +218,30 @@ public class SystemApi {
     fileSyncClient = new FileSyncClient(transport2, fileClient);
 //        }
     return fileSyncClient;
+
   }
+
+  /**
+   * 在子线程直接用同步发送 不用
+   * @return
+   * @throws IOException
+     */
+  public static FileSyncClient getFileClient() throws IOException{
+
+    TTransport transport2 = new TFramedTransport(new TSocket(url, 6006, 5000));
+    TProtocol protocol2 = new TCompactProtocol(transport2);
+    IMFile.Client fileClient = new IMFile.Client(protocol2);
+    try {
+      transport2.open();
+    } catch (TTransportException e) {
+      e.printStackTrace();
+    }
+    return new FileSyncClient(transport2, fileClient);
+  }
+
+
+
+
 
   /**
    * 获取一个AsyncClient对象
@@ -584,6 +606,7 @@ public class SystemApi {
       IMFile.AsyncClient fileClient = getFileAsyncClient();
       fileClient.SetHeadPic(userID, fileByte, 0, true, callback);
       fileByte.clear();
+
     }
   }
 

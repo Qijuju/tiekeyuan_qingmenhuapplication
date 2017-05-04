@@ -55,7 +55,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -2495,6 +2494,7 @@ public class ThriftApiClient extends CordovaPlugin {
       while (flag) {
         try {
           rlt = SystemApi.getFileSyncClient().getFileClient().SendFile(getUserID(), type, fileId, fileByte, offset, isFinish);
+
           flag = false;
         } catch (Exception e) {
           count++;
@@ -2514,6 +2514,8 @@ public class ThriftApiClient extends CordovaPlugin {
           return;
         }
       }
+
+
       JSONArray retnObj = new JSONArray("['" + filePath + "','" + rlt.getObjID() + "','" + String.valueOf(rlt.getOffset() * 1.0f / fileSize) + "']");
       if (messageDetail != null) {
         retnObj.put(messageDetail);
@@ -2737,6 +2739,9 @@ public class ThriftApiClient extends CordovaPlugin {
                   try {
                     result = SystemApi.getFileSyncClient().getFileClient().GetFile(getUserID(), result.objectTP, result.getObjectID(),
                       result.getPicSize(), result.getOffset() + length, 0);
+
+
+
                   } catch (JSONException e) {
                     e.printStackTrace();
                   }

@@ -27,7 +27,6 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-
     }
 
     // Switch the Android Gradle plugin version requirement depending on the
@@ -184,7 +183,7 @@ android {
       renderscript.srcDirs = ['src']
       res.srcDirs = ['res']
       assets.srcDirs = ['assets']
-      //jniLibs.srcDirs = ['libs']
+      jniLibs.srcDirs = ['libs']
     }
   }
 
@@ -221,13 +220,6 @@ android {
       abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
       // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
     }
-
-    manifestPlaceholders = [
-      JPUSH_PKGNAME : applicationId,
-      JPUSH_APPKEY : "466074b30b38240e62898a77", //JPush上注册的包名对应的appkey.
-      JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-    ]
-
   }
   lintOptions {
     abortOnError false;
@@ -324,10 +316,6 @@ dependencies {
     compile files('libs/slf4j-log4j12-1.6.2.jar')
     //compile files('libs/imDataCast.jar')
     compile files('libs/dom4j-1.6.1.jar')
-
-  compile 'cn.jiguang.sdk:jpush:3.0.3'  // 此处以JPush 3.0.3 版本为例。
-  compile 'cn.jiguang.sdk:jcore:1.1.1'  // 此处以JCore 1.1.1 版本为例。
-
     //    compile files('libs/okhttp-2.6.0.jar')
     //compile 'com.squareup.okhttp3:okhttp:3.1.2'
     //compile files('libs/BaiduLBS_Android.jar')
@@ -719,7 +707,6 @@ if (buildWithTinker()) {
                         project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release-R.txt"
 
                     }
-
                 }
             }
 
@@ -736,7 +723,6 @@ if (buildWithTinker()) {
                         project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-mapping.txt"
                         project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-R.txt"
                     }
-
                 }
             }
         }

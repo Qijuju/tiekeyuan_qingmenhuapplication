@@ -322,6 +322,7 @@ public class IMService extends Service {
    * @param content
    */
   private void sendMsg(final String topic, final String content) {
+    imConnection.closeIM();
     if (imConnection == null || !imConnection.isConnected()) {
       //每隔1s检测一次IM是否已经连接，如果连接了，直接发送消息，如果没连接，重连IM，再隔1s再次检测，以此类推
       Handler handler = new Handler();
