@@ -116,7 +116,8 @@ public class IMService extends Service {
                     return;
                 }
                 if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
+                    connectIM();
+                    /*IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
                         @Override
                         public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
                             if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
@@ -130,7 +131,7 @@ public class IMService extends Service {
                                 handler.postDelayed(reconnectRunnable, 2000 * (count++));
                             }
                         }
-                    });
+                    });*/
                 }
             }
         });

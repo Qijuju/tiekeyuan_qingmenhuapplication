@@ -94,12 +94,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        SystemApi.dealNetDown();
-      }
-    }).start();
 /*    try {
       stopService(new Intent(MainActivity.this, MqttService.class));
     } catch (Exception e) {

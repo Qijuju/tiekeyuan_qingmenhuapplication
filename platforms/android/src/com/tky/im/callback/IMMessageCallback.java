@@ -28,6 +28,7 @@ import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -69,6 +70,7 @@ public class IMMessageCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
+        ToastUtil.showSafeToast("断开");
         LogPrint.print("MQTT", "异常断开或手动断开~~~");
         LogPrint.print2("MQTT", "异常断开或手动断开~~~");
         //断开IM

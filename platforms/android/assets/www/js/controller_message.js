@@ -4875,8 +4875,10 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         //alert("进来主界面吗？");
         $greendao.queryByConditions('ChatListService',function (data) {
-          $chatarr.setData(data);
-          $scope.items=data;
+          $scope.$apply(function () {
+            $chatarr.setData(data);
+            $scope.items=data;
+          });
            // alert("数组的长度"+data.length);
         },function (err) {
 

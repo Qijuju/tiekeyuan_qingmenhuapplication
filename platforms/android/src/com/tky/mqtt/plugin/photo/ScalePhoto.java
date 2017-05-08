@@ -16,6 +16,7 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
+import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -105,6 +106,7 @@ public class ScalePhoto extends CordovaPlugin {
             String imageid=null;
             @Override
             public void run() {
+                MyAsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback = null;
                 try {
                     imageid = args.getString(0);
                     final String imagename=args.getString(1);
@@ -209,9 +211,7 @@ public class ScalePhoto extends CordovaPlugin {
 
                         //将正在下载状态改为false
                         //isDown = false;
-
-
-                        SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, new AsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
+                        callback = new MyAsyncMethodCallback<IMFile.AsyncClient.GetFile_call>() {
                             @Override
                             public void onComplete(IMFile.AsyncClient.GetFile_call arg0) {
                                 //isDown = true;
@@ -273,7 +273,7 @@ public class ScalePhoto extends CordovaPlugin {
 
                                             @Override
                                             public void run() {
-                                                Intent intent1=new Intent();
+                                                Intent intent1 = new Intent();
                                                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 intent1.setAction("com.tky.updatefilepath");
                                                 intent1.putExtra("filepath", finalTempPicName);
@@ -310,27 +310,40 @@ public class ScalePhoto extends CordovaPlugin {
                                         e.printStackTrace();
                                     }
                                 }
+                                close();
                             }
 
                             @Override
                             public void onError(Exception e) {
+                                close();
                                 downList.remove(imageid);
 
                             }
-                        });
+                        };
+
+                        SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, callback);
 
                     }
                 } catch (IOException e) {
+                    if (callback != null) {
+                        callback.close();
+                    }
                     if(imageid!=null){
                         downList.remove(imageid);
                     }
                     e.printStackTrace();
                 } catch (TException e) {
+                    if (callback != null) {
+                        callback.close();
+                    }
                     if(imageid!=null){
                         downList.remove(imageid);
                     }
                     e.printStackTrace();
                 } catch (JSONException e) {
+                    if (callback != null) {
+                        callback.close();
+                    }
                     if(imageid!=null){
                         downList.remove(imageid);
                     }

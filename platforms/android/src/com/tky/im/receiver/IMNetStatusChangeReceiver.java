@@ -8,9 +8,11 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
+import com.tky.im.service.IMService;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
@@ -33,14 +35,32 @@ public class IMNetStatusChangeReceiver extends BroadcastReceiver {
                 IMBroadOper.broad(ConstantsParams.PARAM_NET_DOWN);
             }*/
             if (NetUtils.getNetWorkState(context) != -1) {
-                SystemApi.dealNetDown();
                 IMBroadOper.broad(ConstantsParams.PARAM_NET_UP);
                 if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
+                    if (UIUtils.isServiceWorked(IMService.class.getName())) {
+                        IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
+                    } else {
+                        context.startService(new Intent(context, IMService.class));
+                    }
                 }
             } else {
                 IMBroadOper.broad(ConstantsParams.PARAM_NET_DOWN);
             }
+            if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
+                UIUtils.getHandler().postDelayed(new IMStatusHoldTask(), 2000);
+            }
+        }
+    }
+
+    class IMStatusHoldTask implements Runnable {
+        @Override
+        public void run() {
+            if (IMStatusManager.getImStatus() == IMEnums.CONNECTED) {
+                IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
+            } else {
+                IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_FAILURE);
+            }
+            UIUtils.removeCallback(this);
         }
     }
 }

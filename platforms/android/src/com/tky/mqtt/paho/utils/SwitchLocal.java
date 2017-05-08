@@ -183,7 +183,7 @@ public class SwitchLocal {
         public void run() {
           Looper.prepare();
           try {
-            SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+            /*SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                 handler.removeCallbacks(saveMQTTRunnable);
@@ -206,7 +206,7 @@ public class SwitchLocal {
                 handler.postDelayed(saveMQTTRunnable, 2000);
                 //ToastUtil.showSafeToast("重连失败！");
               }
-            });
+            });*/
           } catch (Exception e) {
             handler.postDelayed(saveMQTTRunnable, 2000);
             //ToastUtil.showSafeToast("重连失败！");
@@ -230,7 +230,7 @@ public class SwitchLocal {
           final Handler handler = new Handler();
           final SaveMQTTRunnable2 saveMQTTRunnable = new SaveMQTTRunnable2(reloginCheckStatus, handler);
           try {
-            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+            /*SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                 handler.removeCallbacks(saveMQTTRunnable);
@@ -258,7 +258,7 @@ public class SwitchLocal {
                   reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
                 }
               }
-            });
+            });*/
           } catch (Exception e) {
             handler.postDelayed(saveMQTTRunnable, 2000);
             if (reloginCheckStatus != null) {
