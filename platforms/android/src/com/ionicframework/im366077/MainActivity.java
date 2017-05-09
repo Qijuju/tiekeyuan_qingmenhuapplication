@@ -44,8 +44,6 @@ import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
-import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
@@ -121,7 +119,6 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     String id=JPushInterface.getRegistrationID(getApplicationContext());
 
 //    MqttRobot.setIsStarted(false);
-
     //注册屏幕开关广播
 //    receiver = new UserPresentReceiver();
 //    IntentFilter filter = new IntentFilter();
