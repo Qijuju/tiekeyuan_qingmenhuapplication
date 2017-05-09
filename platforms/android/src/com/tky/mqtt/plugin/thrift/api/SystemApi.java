@@ -3,7 +3,10 @@ package com.tky.mqtt.plugin.thrift.api;
 import android.content.Context;
 
 import com.ionicframework.im366077.Constants;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.plugin.thrift.bean.MyAsyncClient;
+import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
@@ -46,162 +49,78 @@ public class SystemApi {
   //public static final String url = Constants.testbasemobile;//测试
   //public static final String url = Constants.JINGWAIURL;
 
-
-  private static IMSystem.AsyncClient IMSystemAsyncClient;
-  private static IMDepartment.AsyncClient IMDepartmentAsyncClient;
-  private static IMUser.AsyncClient IMUserAsyncClient;
-  private static IMFile.AsyncClient IMFileAsyncClient;
-  private static FileSyncClient fileSyncClient;
-  private static IMAttention.AsyncClient IMAttentionAsyncClient;
-  private static IMMessage.AsyncClient IMMessageAsyncClient;
-  private static IMGroup.AsyncClient IMGroupAsyncClient;
-  private static TAsyncClientManager clientManager;
-  private static TAsyncClientManager clientManager1;
-  private static TAsyncClientManager clientManager2;
-  private static TAsyncClientManager clientManager3;
-  private static TAsyncClientManager clientManager4;
-  private static TAsyncClientManager clientManager5;
-  private static TAsyncClientManager clientManager6;
-
-  public static void dealNetDown() {
-    if (clientManager != null) {
-      try {
-        clientManager.stop();
-      } catch (Exception e) {}
-    }
-    if (clientManager1 != null) {
-      try {
-        clientManager1.stop();
-      } catch (Exception e) {}
-    }
-    if (clientManager2 != null) {
-      try {
-        clientManager2.stop();
-      } catch (Exception e) {}
-    }
-    if (clientManager3 != null) {
-      try {
-
-      } catch (Exception e) {}
-      clientManager3.stop();
-    }
-    if (clientManager4 != null) {
-      try {
-        clientManager4.stop();
-      } catch (Exception e) {}
-    }
-    if (clientManager5 != null) {
-      try {
-        clientManager5.stop();
-      } catch (Exception e) {}
-    }
-    if (clientManager6 != null) {
-      try {
-        clientManager6.stop();
-      } catch (Exception e) {}
-    }
-
-    IMSystemAsyncClient = null;
-    IMDepartmentAsyncClient = null;
-    IMUserAsyncClient = null;
-    IMFileAsyncClient = null;
-//    fileSyncClient = null;
-    IMAttentionAsyncClient = null;
-    IMMessageAsyncClient = null;
-    IMGroupAsyncClient = null;
-  }
-
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMSystem.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMSystem.AsyncClient getSystemClient() throws IOException {
+  private static MyAsyncClient getSystemClient() throws IOException {
       /*if (clientManager != null) {
         clientManager.stop();
       }*/
-    if (IMSystemAsyncClient == null || IMSystemAsyncClient.hasError()) {
-      IMSystemAsyncClient = null;
-
-      //172.25.26.165
-      clientManager = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 5000);
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 5000);
 //        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMSystemAsyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
-      IMSystemAsyncClient.setTimeout(5000);
-    }
-    return IMSystemAsyncClient;
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMDepartment.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMDepartment.AsyncClient getDeptClient() throws IOException {
+  private static MyAsyncClient getDeptClient() throws IOException {
       /*if (clientManager1 != null) {
         clientManager1.stop();
       }*/
-    if (IMDepartmentAsyncClient == null || IMDepartmentAsyncClient.hasError()) {
-      IMDepartmentAsyncClient = null;
-      //172.25.26.165
-      clientManager1 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMDepartmentAsyncClient = new IMDepartment.AsyncClient(protocol, clientManager1, transport);
-      IMDepartmentAsyncClient.setTimeout(5000);
-    }
-    return IMDepartmentAsyncClient;
+    //172.25.26.165
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMUser.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMUser.AsyncClient getUserClient() throws IOException {
-/*      if (clientManager2 != null) {
-        clientManager2.stop();
-      }*/
-    if (IMUserAsyncClient == null || IMUserAsyncClient.hasError()) {
-      IMUserAsyncClient = null;
-      //172.25.26.165
-      clientManager2 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMUserAsyncClient = new IMUser.AsyncClient(protocol, clientManager2, transport);
-      IMUserAsyncClient.setTimeout(5000);
-    }
-    return IMUserAsyncClient;
+  private static MyAsyncClient getUserClient() throws IOException {
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMFile.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMFile.AsyncClient getFileAsyncClient() throws IOException {
+  private static MyAsyncClient getFileAsyncClient() throws IOException {
       /*if (IMFileAsyncClient != null) {
         IMFileAsyncClient.stop
       }*/
 /*      if (clientManager3 != null) {
         clientManager3.stop();
       }*/
-    if (IMFileAsyncClient == null || IMFileAsyncClient.hasError()) {
-      IMFileAsyncClient = null;
-      //172.25.26.165
-      clientManager3 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMFileAsyncClient = new IMFile.AsyncClient(protocol, clientManager3, transport);
-      IMFileAsyncClient.setTimeout(5000);
-    }
-    return IMFileAsyncClient;
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMFile.AsyncClient asyncClient = new IMFile.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   public static FileSyncClient getFileSyncClient() throws IOException {
@@ -215,96 +134,63 @@ public class SystemApi {
     } catch (TTransportException e) {
       e.printStackTrace();
     }
-    fileSyncClient = new FileSyncClient(transport2, fileClient);
+    FileSyncClient fileSyncClient = new FileSyncClient(transport2, fileClient);
 //        }
     return fileSyncClient;
-
   }
-
-  /**
-   * 在子线程直接用同步发送 不用
-   * @return
-   * @throws IOException
-     */
-  public static FileSyncClient getFileClient() throws IOException{
-
-    TTransport transport2 = new TFramedTransport(new TSocket(url, 6006, 5000));
-    TProtocol protocol2 = new TCompactProtocol(transport2);
-    IMFile.Client fileClient = new IMFile.Client(protocol2);
-    try {
-      transport2.open();
-    } catch (TTransportException e) {
-      e.printStackTrace();
-    }
-    return new FileSyncClient(transport2, fileClient);
-  }
-
-
-
-
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMAttention.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMAttention.AsyncClient getAttentionClient() throws IOException {
+  private static MyAsyncClient getAttentionClient() throws IOException {
 /*      if (clientManager4 != null) {
         clientManager4.stop();
       }*/
-    if (IMAttentionAsyncClient == null || IMAttentionAsyncClient.hasError()) {
-      IMAttentionAsyncClient = null;
-      //172.25.26.165
-      clientManager4 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMAttentionAsyncClient = new IMAttention.AsyncClient(protocol, clientManager4, transport);
-      IMAttentionAsyncClient.setTimeout(5000);
-    }
-    return IMAttentionAsyncClient;
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMMessage.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMMessage.AsyncClient getMsgClient() throws IOException {
+  private static MyAsyncClient getMsgClient() throws IOException {
 /*      if (clientManager5 != null) {
         clientManager5.stop();
       }*/
-    if (IMMessageAsyncClient == null || IMMessageAsyncClient.hasError()) {
-      //172.25.26.165
-      clientManager5 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMMessageAsyncClient = new IMMessage.AsyncClient(protocol, clientManager5, transport);
-      IMMessageAsyncClient.setTimeout(5000);
-    }
-    return IMMessageAsyncClient;
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
    * 获取一个AsyncClient对象
-   *
+   * IMGroup.AsyncClient
    * @return
    * @throws IOException
    */
-  private static IMGroup.AsyncClient getGroupClient() throws IOException {
+  private static MyAsyncClient getGroupClient() throws IOException {
    /*   if (clientManager6 != null) {
         clientManager6.stop();
       }*/
-    if (IMGroupAsyncClient == null || IMGroupAsyncClient.hasError()) {
-      //172.25.26.165
-      clientManager6 = new TAsyncClientManager();
-      TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 5000);
-      TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
-      IMGroupAsyncClient = new IMGroup.AsyncClient(protocol, clientManager6, transport);
-      IMGroupAsyncClient.setTimeout(5000);
-    }
-    return IMGroupAsyncClient;
+    TAsyncClientManager clientManager = new TAsyncClientManager();
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 5000);
+    TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
+    IMGroup.AsyncClient asyncClient = new IMGroup.AsyncClient(protocol, clientManager, transport);
+    asyncClient.setTimeout(5000);
+    return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   /**
@@ -317,14 +203,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void login(String loginAccount, String password, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.Login_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.Login(loginAccount, password, imCode, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.Login(loginAccount, password, imCode, callback);
-    }
+  public static void login(String loginAccount, String password, String imCode, MyAsyncMethodCallback<IMSystem.AsyncClient.Login_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.Login(loginAccount, password, imCode, callback);
   }
 
   /**
@@ -336,14 +219,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void activeUser(String userId, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.ActivateUser(userId, imCode, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.ActivateUser(userId, imCode, callback);
-    }
+  public static void activeUser(String userId, String imCode, MyAsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.ActivateUser(userId, imCode, callback);
   }
 
   /**
@@ -354,14 +234,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getDatetime(String userId, AsyncMethodCallback<IMSystem.AsyncClient.GetDatetime_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.GetDatetime(userId, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.GetDatetime(userId, callback);
-    }
+  public static void getDatetime(String userId, MyAsyncMethodCallback<IMSystem.AsyncClient.GetDatetime_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.GetDatetime(userId, callback);
   }
 
   /**
@@ -375,14 +252,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void seachUsers(String userId, String searchText, int pageNum, int pageCount, AsyncMethodCallback<IMSystem.AsyncClient.UserSearch_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.UserSearch(userId, searchText, pageNum, pageCount, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.UserSearch(userId, searchText, pageNum, pageCount, callback);
-    }
+  public static void seachUsers(String userId, String searchText, int pageNum, int pageCount, MyAsyncMethodCallback<IMSystem.AsyncClient.UserSearch_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.UserSearch(userId, searchText, pageNum, pageCount, callback);
   }
 
   /**
@@ -394,14 +268,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void cancelUser(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.CancelUser(ID, imCode, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.CancelUser(ID, imCode, callback);
-    }
+  public static void cancelUser(String ID, String imCode, MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.CancelUser(ID, imCode, callback);
   }
 
   /**
@@ -413,14 +284,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void reloginCheck(String ID, String imCode, AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback) throws IOException, TException {
-    try {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.ReloginCheck(ID, imCode, callback);
-    } catch (IllegalStateException e) {
-      IMSystem.AsyncClient asyncClient = getSystemClient();
-      asyncClient.ReloginCheck(ID, imCode, callback);
-    }
+  public static void reloginCheck(String ID, String imCode, MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback) throws IOException, TException {
+    MyAsyncClient client = getSystemClient();
+    callback.setClient(client);
+    IMSystem.AsyncClient asyncClient = (IMSystem.AsyncClient) client.getClient();
+    asyncClient.ReloginCheck(ID, imCode, callback);
   }
 
   /**
@@ -434,14 +302,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getChild(String ID, String deptID, int pageNum, int pageCount, AsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call> callback) throws IOException, TException {
-    try {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetChild(ID, deptID, pageNum, pageCount, callback);
-    } catch (IllegalStateException e) {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetChild(ID, deptID, pageNum, pageCount, callback);
-    }
+  public static void getChild(String ID, String deptID, int pageNum, int pageCount, MyAsyncMethodCallback<IMDepartment.AsyncClient.GetChild_call> callback) throws IOException, TException {
+    MyAsyncClient client = getDeptClient();
+    callback.setClient(client);
+    IMDepartment.AsyncClient asyncClient = (IMDepartment.AsyncClient) client.getClient();
+    asyncClient.GetChild(ID, deptID, pageNum, pageCount, callback);
   }
 
   /**
@@ -453,14 +318,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getDeparment(String ID, String deptID, AsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call> callback) throws IOException, TException {
-    try {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetDeparment(ID, deptID, callback);
-    } catch (IllegalStateException e) {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetDeparment(ID, deptID, callback);
-    }
+  public static void getDeparment(String ID, String deptID, MyAsyncMethodCallback<IMDepartment.AsyncClient.GetDeparment_call> callback) throws IOException, TException {
+    MyAsyncClient client = getDeptClient();
+    callback.setClient(client);
+    IMDepartment.AsyncClient asyncClient = (IMDepartment.AsyncClient) client.getClient();
+    asyncClient.GetDeparment(ID, deptID, callback);
   }
 
   /**
@@ -471,14 +333,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getUserRoot(String ID, AsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call> callback) throws IOException, TException {
-    try {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetUserRoot(ID, callback);
-    } catch (IllegalStateException e) {
-      IMDepartment.AsyncClient asyncClient = getDeptClient();
-      asyncClient.GetUserRoot(ID, callback);
-    }
+  public static void getUserRoot(String ID, MyAsyncMethodCallback<IMDepartment.AsyncClient.GetUserRoot_call> callback) throws IOException, TException {
+    MyAsyncClient client = getDeptClient();
+    callback.setClient(client);
+    IMDepartment.AsyncClient asyncClient = (IMDepartment.AsyncClient) client.getClient();
+    asyncClient.GetUserRoot(ID, callback);
   }
 
   /**
@@ -490,14 +349,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getUser(String ID, String userID, AsyncMethodCallback<IMUser.AsyncClient.GetUser_call> callback) throws IOException, TException {
-    try {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.GetUser(ID, userID, callback);
-    } catch (IllegalStateException e) {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.GetUser(ID, userID, callback);
-    }
+  public static void getUser(String ID, String userID, MyAsyncMethodCallback<IMUser.AsyncClient.GetUser_call> callback) throws IOException, TException {
+    MyAsyncClient client = getUserClient();
+    callback.setClient(client);
+    IMUser.AsyncClient userClient = (IMUser.AsyncClient) client.getClient();
+    userClient.GetUser(ID, userID, callback);
   }
 
   /**
@@ -511,14 +367,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void updatePwd(String ID, String orgPWD, String newPWD, String confirmPWD, AsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call> callback) throws IOException, TException {
-    try {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
-    } catch (IllegalStateException e) {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
-    }
+  public static void updatePwd(String ID, String orgPWD, String newPWD, String confirmPWD, MyAsyncMethodCallback<IMUser.AsyncClient.UserPwdUpdate_call> callback) throws IOException, TException {
+    MyAsyncClient client = getUserClient();
+    callback.setClient(client);
+    IMUser.AsyncClient userClient = (IMUser.AsyncClient) client.getClient();
+    userClient.UserPwdUpdate(ID, orgPWD, newPWD, confirmPWD, callback);
   }
 
   /**
@@ -530,14 +383,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void updateUserInfo(String ID, Map<String, String> updateInfo, AsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
-    try {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.UserUpdate(ID, updateInfo, callback);
-    } catch (IllegalStateException e) {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.UserUpdate(ID, updateInfo, callback);
-    }
+  public static void updateUserInfo(String ID, Map<String, String> updateInfo, MyAsyncMethodCallback<IMUser.AsyncClient.UserUpdate_call> callback) throws IOException, TException {
+    MyAsyncClient client = getUserClient();
+    callback.setClient(client);
+    IMUser.AsyncClient userClient = (IMUser.AsyncClient) client.getClient();
+    userClient.UserUpdate(ID, updateInfo, callback);
   }
 
   /**
@@ -546,14 +396,11 @@ public class SystemApi {
    * @param ID     用户ID
    * @param userMB 要查询用户的本地ID和手机号
    */
-  public static void checkLocalUser(String ID, Map<String, String> userMB, AsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call> callback) throws IOException, TException {
-    try {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.CheckLocalUser(ID, userMB, callback);
-    } catch (IllegalStateException e) {
-      IMUser.AsyncClient userClient = getUserClient();
-      userClient.CheckLocalUser(ID, userMB, callback);
-    }
+  public static void checkLocalUser(String ID, Map<String, String> userMB, MyAsyncMethodCallback<IMUser.AsyncClient.CheckLocalUser_call> callback) throws IOException, TException {
+    MyAsyncClient client = getUserClient();
+    callback.setClient(client);
+    IMUser.AsyncClient userClient = (IMUser.AsyncClient) client.getClient();
+    userClient.CheckLocalUser(ID, userMB, callback);
   }
 
   /**
@@ -566,14 +413,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getHeadPic(String ID, String userID, String picSize, AsyncMethodCallback<IMFile.AsyncClient.GetHeadPic_call> callback) throws IOException, TException {
-    try {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetHeadPic(ID, userID, picSize, callback);
-    } catch (IllegalStateException e) {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetHeadPic(ID, userID, picSize, callback);
-    }
+  public static void getHeadPic(String ID, String userID, String picSize, MyAsyncMethodCallback<IMFile.AsyncClient.GetHeadPic_call> callback) throws IOException, TException {
+    MyAsyncClient client = getFileAsyncClient();
+    callback.setClient(client);
+    IMFile.AsyncClient fileClient = (IMFile.AsyncClient) client.getClient();
+    fileClient.GetHeadPic(ID, userID, picSize, callback);
   }
 
   /**
@@ -585,29 +429,18 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void setHeadPic(String userID, String filePath, AsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call> callback) throws IOException, TException {
-    try {
-      FileInputStream in;
-      in = new FileInputStream(filePath);
-      ByteBuffer fileByte = ByteBuffer.allocate(in.available());
-      in.getChannel().read(fileByte);
-      in.close();
-      fileByte.flip();
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.SetHeadPic(userID, fileByte, 0, true, callback);
-      fileByte.clear();
-    } catch (IllegalStateException e) {
-      FileInputStream in;
-      in = new FileInputStream(filePath);
-      ByteBuffer fileByte = ByteBuffer.allocate(in.available());
-      in.getChannel().read(fileByte);
-      in.close();
-      fileByte.flip();
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.SetHeadPic(userID, fileByte, 0, true, callback);
-      fileByte.clear();
-
-    }
+  public static void setHeadPic(String userID, String filePath, MyAsyncMethodCallback<IMFile.AsyncClient.SetHeadPic_call> callback) throws IOException, TException {
+    FileInputStream in;
+    in = new FileInputStream(filePath);
+    ByteBuffer fileByte = ByteBuffer.allocate(in.available());
+    in.getChannel().read(fileByte);
+    in.close();
+    fileByte.flip();
+    MyAsyncClient client = getFileAsyncClient();
+    callback.setClient(client);
+    IMFile.AsyncClient fileClient = (IMFile.AsyncClient) client.getClient();
+    fileClient.SetHeadPic(userID, fileByte, 0, true, callback);
+    fileByte.clear();
   }
 
   /**
@@ -618,14 +451,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getVersionInfo(String ID, AsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call> callback) throws IOException, TException {
-    try {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetVersionInfo(ID, callback);
-    } catch (IllegalStateException e) {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetVersionInfo(ID, callback);
-    }
+  public static void getVersionInfo(String ID, MyAsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call> callback) throws IOException, TException {
+    MyAsyncClient client = getFileAsyncClient();
+    callback.setClient(client);
+    IMFile.AsyncClient fileClient = (IMFile.AsyncClient) client.getClient();
+    fileClient.GetVersionInfo(ID, callback);
   }
 
   /**
@@ -652,14 +482,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void sendFile(String ID, String objectTP, String objectID, ByteBuffer fileByte, long offset, boolean isFinish, AsyncMethodCallback<IMFile.AsyncClient.SendFile_call> callback) throws IOException, TException {
-    try {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.SendFile(ID, objectTP, objectID, fileByte, offset, isFinish, callback);
-    } catch (IllegalStateException e) {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.SendFile(ID, objectTP, objectID, fileByte, offset, isFinish, callback);
-    }
+  public static void sendFile(String ID, String objectTP, String objectID, ByteBuffer fileByte, long offset, boolean isFinish, MyAsyncMethodCallback<IMFile.AsyncClient.SendFile_call> callback) throws IOException, TException {
+    MyAsyncClient client = getFileAsyncClient();
+    callback.setClient(client);
+    IMFile.AsyncClient fileClient = (IMFile.AsyncClient) client.getClient();
+    fileClient.SendFile(ID, objectTP, objectID, fileByte, offset, isFinish, callback);
   }
 
   /**
@@ -675,14 +502,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getFile(String ID, String objectTP, String objectID, String picSize, long offset, int getSize, AsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback) throws IOException, TException {
-    try {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetFile(ID, objectTP, objectID, picSize, offset, getSize, callback);
-    } catch (IllegalStateException e) {
-      IMFile.AsyncClient fileClient = getFileAsyncClient();
-      fileClient.GetFile(ID, objectTP, objectID, picSize, offset, getSize, callback);
-    }
+  public static void getFile(String ID, String objectTP, String objectID, String picSize, long offset, int getSize, MyAsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback) throws IOException, TException {
+    MyAsyncClient client = getFileAsyncClient();
+    callback.setClient(client);
+    IMFile.AsyncClient fileClient = (IMFile.AsyncClient) client.getClient();
+    fileClient.GetFile(ID, objectTP, objectID, picSize, offset, getSize, callback);
   }
 
   /**
@@ -820,14 +644,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void addAttention(String ID, List<String> members, AsyncMethodCallback<IMAttention.AsyncClient.AddAttention_call> callback) throws IOException, TException {
-    try {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.AddAttention(ID, members, callback);
-    } catch (IllegalStateException e) {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.AddAttention(ID, members, callback);
-    }
+  public static void addAttention(String ID, List<String> members, MyAsyncMethodCallback<IMAttention.AsyncClient.AddAttention_call> callback) throws IOException, TException {
+    MyAsyncClient client = getAttentionClient();
+    callback.setClient(client);
+    IMAttention.AsyncClient attentionClient = (IMAttention.AsyncClient) client.getClient();
+    attentionClient.AddAttention(ID, members, callback);
   }
 
   /**
@@ -839,14 +660,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void removeAttention(String ID, List<String> members, AsyncMethodCallback<IMAttention.AsyncClient.RemoveAttention_call> callback) throws IOException, TException {
-    try {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.RemoveAttention(ID, members, callback);
-    } catch (IllegalStateException e) {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.RemoveAttention(ID, members, callback);
-    }
+  public static void removeAttention(String ID, List<String> members, MyAsyncMethodCallback<IMAttention.AsyncClient.RemoveAttention_call> callback) throws IOException, TException {
+    MyAsyncClient client = getAttentionClient();
+    callback.setClient(client);
+    IMAttention.AsyncClient attentionClient = (IMAttention.AsyncClient) client.getClient();
+    attentionClient.RemoveAttention(ID, members, callback);
   }
 
   /**
@@ -857,14 +675,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getAttention(String ID, AsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call> callback) throws IOException, TException {
-    try {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.GetAttention(ID, callback);
-    } catch (IllegalStateException e) {
-      IMAttention.AsyncClient client = getAttentionClient();
-      client.GetAttention(ID, callback);
-    }
+  public static void getAttention(String ID, MyAsyncMethodCallback<IMAttention.AsyncClient.GetAttention_call> callback) throws IOException, TException {
+    MyAsyncClient client = getAttentionClient();
+    callback.setClient(client);
+    IMAttention.AsyncClient attentionClient = (IMAttention.AsyncClient) client.getClient();
+    attentionClient.GetAttention(ID, callback);
   }
 
   /**
@@ -879,14 +694,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getHistoryMsg(String ID, String sessionType, String sessionID, int pageNum, int pageCount, AsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call> callback) throws IOException, TException {
-    try {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
-    } catch (IllegalStateException e) {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
-    }
+  public static void getHistoryMsg(String ID, String sessionType, String sessionID, int pageNum, int pageCount, MyAsyncMethodCallback<IMMessage.AsyncClient.GetHistoryMsg_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
+    msgClient.GetHistoryMsg(ID, sessionType, sessionID, pageNum, pageCount, callback);
   }
 
   /**
@@ -899,14 +711,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getMsgCount(String ID, String sessionType, String sessionID, AsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
-    try {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetMsgCount(ID, sessionType, sessionID, callback);
-    } catch (IllegalStateException e) {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetMsgCount(ID, sessionType, sessionID, callback);
-    }
+  public static void getMsgCount(String ID, String sessionType, String sessionID, MyAsyncMethodCallback<IMMessage.AsyncClient.GetMsgCount_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
+    msgClient.GetMsgCount(ID, sessionType, sessionID, callback);
   }
 
   /**
@@ -920,14 +729,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void addGroup(String ID, String groupName, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.AddGroup_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.AddGroup(ID, groupName, depts, members, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.AddGroup(ID, groupName, depts, members, callback);
-    }
+  public static void addGroup(String ID, String groupName, List<String> depts, List<String> members, MyAsyncMethodCallback<IMGroup.AsyncClient.AddGroup_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.AddGroup(ID, groupName, depts, members, callback);
   }
 
   /**
@@ -939,14 +745,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getGroup(String ID, List<String> groupIds, AsyncMethodCallback<IMGroup.AsyncClient.GetGroup_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetGroup(ID, groupIds, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetGroup(ID, groupIds, callback);
-    }
+  public static void getGroup(String ID, List<String> groupIds, MyAsyncMethodCallback<IMGroup.AsyncClient.GetGroup_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GetGroup(ID, groupIds, callback);
   }
 
   /**
@@ -960,14 +763,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void modifyGroup(String ID, String groupType, String groupID, String groupName, String groupText, AsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.ModifyGroup(ID, groupType, groupID, groupName, groupText, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.ModifyGroup(ID, groupType, groupID, groupName, groupText, callback);
-    }
+  public static void modifyGroup(String ID, String groupType, String groupID, String groupName, String groupText, MyAsyncMethodCallback<IMGroup.AsyncClient.ModifyGroup_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.ModifyGroup(ID, groupType, groupID, groupName, groupText, callback);
   }
 
   /**
@@ -979,14 +779,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void removeGroup(String ID, String groupID, AsyncMethodCallback<IMGroup.AsyncClient.RemoveGroup_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.RemoveGroup(ID, groupID, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.RemoveGroup(ID, groupID, callback);
-    }
+  public static void removeGroup(String ID, String groupID, MyAsyncMethodCallback<IMGroup.AsyncClient.RemoveGroup_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.RemoveGroup(ID, groupID, callback);
   }
 
   /**
@@ -999,14 +796,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getGroupUpdate(String ID, String groupType, String groupID, List<String> getObjects, AsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetGroupUpdate(ID, groupType, groupID, getObjects, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetGroupUpdate(ID, groupType, groupID, getObjects, callback);
-    }
+  public static void getGroupUpdate(String ID, String groupType, String groupID, List<String> getObjects, MyAsyncMethodCallback<IMGroup.AsyncClient.GetGroupUpdate_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GetGroupUpdate(ID, groupType, groupID, getObjects, callback);
   }
 
   /**
@@ -1020,14 +814,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void groupAddMember(String ID, String groupID, List<String> depts, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddMember_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupAddMember(ID, groupID, depts, members, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupAddMember(ID, groupID, depts, members, callback);
-    }
+  public static void groupAddMember(String ID, String groupID, List<String> depts, List<String> members, MyAsyncMethodCallback<IMGroup.AsyncClient.GroupAddMember_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GroupAddMember(ID, groupID, depts, members, callback);
   }
 
   /**
@@ -1040,14 +831,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void groupRemoveMember(String ID, String groupID, List<String> members, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveMember_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupRemoveMember(ID, groupID, members, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupRemoveMember(ID, groupID, members, callback);
-    }
+  public static void groupRemoveMember(String ID, String groupID, List<String> members, MyAsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveMember_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GroupRemoveMember(ID, groupID, members, callback);
   }
 
   /**
@@ -1060,14 +848,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void groupAddAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupAddAdmin_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupAddAdmin(ID, groupID, admins, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupAddAdmin(ID, groupID, admins, callback);
-    }
+  public static void groupAddAdmin(String ID, String groupID, List<String> admins, MyAsyncMethodCallback<IMGroup.AsyncClient.GroupAddAdmin_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GroupAddAdmin(ID, groupID, admins, callback);
   }
 
   /**
@@ -1080,14 +865,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, AsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveAdmin_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupRemoveAdmin(ID, groupID, admins, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GroupRemoveAdmin(ID, groupID, admins, callback);
-    }
+  public static void groupRemoveAdmin(String ID, String groupID, List<String> admins, MyAsyncMethodCallback<IMGroup.AsyncClient.GroupRemoveAdmin_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GroupRemoveAdmin(ID, groupID, admins, callback);
   }
 
   /**
@@ -1098,14 +880,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getAllGroup(String ID, AsyncMethodCallback<IMGroup.AsyncClient.GetAllGroup_call> callback) throws IOException, TException {
-    try {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetAllGroup(ID, callback);
-    } catch (IllegalStateException e) {
-      IMGroup.AsyncClient client = getGroupClient();
-      client.GetAllGroup(ID, callback);
-    }
+  public static void getAllGroup(String ID, MyAsyncMethodCallback<IMGroup.AsyncClient.GetAllGroup_call> callback) throws IOException, TException {
+    MyAsyncClient client = getGroupClient();
+    callback.setClient(client);
+    IMGroup.AsyncClient groupClient = (IMGroup.AsyncClient) client.getClient();
+    groupClient.GetAllGroup(ID, callback);
   }
 
   /**
@@ -1119,14 +898,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void readMessage(String ID, String sessionType, String sessionID, long sendWhen, AsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call> callback) throws IOException, TException {
-    try {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.ReadMessage(ID, sessionType, sessionID, sendWhen, callback);
-    } catch (IllegalStateException e) {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.ReadMessage(ID, sessionType, sessionID, sendWhen, callback);
-    }
+  public static void readMessage(String ID, String sessionType, String sessionID, long sendWhen, MyAsyncMethodCallback<IMMessage.AsyncClient.ReadMessage_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
+    msgClient.ReadMessage(ID, sessionType, sessionID, sendWhen, callback);
   }
 
 
@@ -1142,14 +918,11 @@ public class SystemApi {
    * @throws IOException
    * @throws TException
    */
-  public static void getLatestMsg(String ID, String sessionType, String sessionID, long when, int msgCount, AsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call> callback) throws IOException, TException {
-    try {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetLatestMsg(ID, sessionType, sessionID, when, msgCount, callback);
-    } catch (IllegalStateException e) {
-      IMMessage.AsyncClient client = getMsgClient();
-      client.GetLatestMsg(ID, sessionType, sessionID, when, msgCount, callback);
-    }
+  public static void getLatestMsg(String ID, String sessionType, String sessionID, long when, int msgCount, MyAsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
+    msgClient.GetLatestMsg(ID, sessionType, sessionID, when, msgCount, callback);
   }
 
 }

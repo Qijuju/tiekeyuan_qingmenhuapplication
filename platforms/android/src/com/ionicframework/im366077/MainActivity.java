@@ -57,6 +57,7 @@ import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
+import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mytinker.util.Utils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;

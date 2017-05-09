@@ -29,6 +29,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
@@ -559,5 +560,22 @@ public class UIUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 本方法判断自己些的一个Service-->com.xxx.xxx是否已经运行
+	 * @param className Service类名(全名）
+	 * @return
+     */
+	public static boolean isServiceWorked(String className)
+	{
+		ActivityManager myManager=(ActivityManager)getContext().getSystemService(Context.ACTIVITY_SERVICE);
+		ArrayList<ActivityManager.RunningServiceInfo> runningService = (ArrayList<ActivityManager.RunningServiceInfo>) myManager.getRunningServices(30);
+		for(int i = 0 ; i<runningService.size();i++) {
+			if(runningService.get(i).service.getClassName().toString().equals(className)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
