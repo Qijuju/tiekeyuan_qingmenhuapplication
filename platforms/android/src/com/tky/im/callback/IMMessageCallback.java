@@ -81,6 +81,12 @@ public class IMMessageCallback implements MqttCallback {
             //发送重连广播
             IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
         }
+        /*UIUtils.getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                IMBroadOper.broad(imConnection.isConnected() ? ConstantsParams.PARAM_CONNECT_SUCCESS : ConstantsParams.PARAM_CONNECT_FAILURE);
+            }
+        }, 2000);*/
     }
 
     @Override

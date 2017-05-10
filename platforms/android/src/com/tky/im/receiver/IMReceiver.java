@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ionicframework.im366077.Constants;
 import com.tky.im.params.ConstantsParams;
 
 /**
@@ -22,6 +23,7 @@ public class IMReceiver extends BroadcastReceiver {
     private OnStopIMService onStopIMService;
     private OnTopicSubscribeListener onTopicSubscribeListener;
     private OnTopicUnSubscribeListener onTopicUnSubscribeListener;
+    private OnBashIMListener onBashIMListener;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -77,6 +79,10 @@ public class IMReceiver extends BroadcastReceiver {
             if (onTopicUnSubscribeListener != null) {
                 onTopicUnSubscribeListener.onTopicUnSubscribe(intent.getStringExtra("topic"));
             }
+        } else if (ConstantsParams.PARAM_BASH_IM.equals(intent.getAction())) {//重置IM（断开MQTT让其重新连接）
+            if (onBashIMListener != null) {
+                onBashIMListener.onBashIM();
+            }
         }
     }
 
@@ -122,6 +128,10 @@ public class IMReceiver extends BroadcastReceiver {
         public void onTopicUnSubscribe(String topic);
     }
 
+    public interface OnBashIMListener {
+        public void onBashIM();
+    }
+
     public void setOnMessageSendListener(OnMessageSendListener onMessageSendListener) {
         this.onMessageSendListener = onMessageSendListener;
     }
@@ -160,5 +170,9 @@ public class IMReceiver extends BroadcastReceiver {
 
     public void setOnTopicUnSubscribeListener(OnTopicUnSubscribeListener onTopicUnSubscribeListener) {
         this.onTopicUnSubscribeListener = onTopicUnSubscribeListener;
+    }
+
+    public void setOnBashIMListener(OnBashIMListener onBashIMListener) {
+        this.onBashIMListener = onBashIMListener;
     }
 }

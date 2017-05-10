@@ -946,6 +946,9 @@ angular.module('message.controllers', [])
      * 监听消息
      */
     $scope.$on('msgs.update', function (event) {
+      $scope.longtab = function () {
+        alert('longtab()');
+      };
       $scope.$apply(function () {
         // alert("进来单聊界面吗？");
           /**
@@ -4260,6 +4263,15 @@ angular.module('message.controllers', [])
 
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
+
+    $scope.isNetConnectNow = $mqtt.getIMStatus();
+
+    //监听MQTT状态的变化
+    $scope.$on('netStatusNow.update', function (event) {
+      $scope.$apply(function () {
+        $scope.isNetConnectNow = $mqtt.getIMStatus();
+      })
+    });
 
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;

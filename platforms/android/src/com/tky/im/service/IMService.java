@@ -90,6 +90,7 @@ public class IMService extends Service {
         filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);
         filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
         filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);
+        filter.addAction(ConstantsParams.PARAM_BASH_IM);
         receiver = new IMReceiver();
         registerReceiver(receiver, filter);
 
@@ -110,19 +111,26 @@ public class IMService extends Service {
             public void onReconnect() {
 
                 if (imConnection != null && imConnection.isConnected()) {
+                    IMStatusManager.setImStatus(IMEnums.CONNECTED);
+                    IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
                     return;
                 }
                 if (NetUtils.getNetWorkState(getBaseContext()) == -1) {
+                    ToastUtil.showSafeToast("网络问题");
                     return;
                 }
                 if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    connectIM();
-                    /*IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
+                    IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
                         @Override
                         public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
                             if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
                                 count = 0;
-                                connectIM();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        connectIM();
+                                    }
+                                }).start();
                             } else if (status == IMSwitchLocal.EReloginCheckStatus.NEED_LOGOUT) {
                                 count = 0;
                                 //账号被挤掉，退出登录
@@ -131,7 +139,7 @@ public class IMService extends Service {
                                 handler.postDelayed(reconnectRunnable, 2000 * (count++));
                             }
                         }
-                    });*/
+                    });
                 }
             }
         });
@@ -183,6 +191,16 @@ public class IMService extends Service {
                     } catch (MqttException e) {
                         e.printStackTrace();
                     }
+                }
+            }
+        });
+
+        //断开MQTT，让其自动重启
+        receiver.setOnBashIMListener(new IMReceiver.OnBashIMListener() {
+            @Override
+            public void onBashIM() {
+                if (imConnection != null && imConnection.isConnected()) {
+                    imConnection.closeIM();
                 }
             }
         });
@@ -382,12 +400,14 @@ public class IMService extends Service {
     private void connectIM() {
         if (NetUtils.isConnect(getBaseContext())) {
             imConnection = new IMConnection();
-            if (imConnectCallback == null) {
+            /*if (imConnectCallback == null) {
                 imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
             }
             if (imMessageCallback == null) {
                 imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
-            }
+            }*/
+            imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
+            imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
             try {
                 imConnection.connect(getBaseContext(), imConnectCallback, imMessageCallback);
             } catch (Exception e) {

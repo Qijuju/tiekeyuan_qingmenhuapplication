@@ -259,6 +259,8 @@ angular.module('message.services', [])
     var cjgccount=0;//沉降观测通知数量
     var isLogin = false;
     var keyvalue;
+    //MQTT连接状态
+    var isNetConnect = true;
 
     document.addEventListener('deviceready',function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
@@ -1399,7 +1401,16 @@ angular.module('message.services', [])
       },
       setOnNetStatusChangeListener:function(success,error) {//MQTT监听
         // alert("走监听事件了吗");
-        mqtt.setOnNetStatusChangeListener(success,error);
+        mqtt.setOnNetStatusChangeListener(function (succ) {
+          isNetConnect = true;
+          $rootScope.$broadcast('netStatusNow.update');
+        },function (err) {
+          isNetConnect = false;
+          $rootScope.$broadcast('netStatusNow.update');
+        });
+      },
+      getIMStatus:function () {//获取MQTT连接状态
+        return isNetConnect;
       },
       setOnNetChangeListener:function(success,error) {//网络监听
         mqtt.setOnNetChangeListener(success,error);
