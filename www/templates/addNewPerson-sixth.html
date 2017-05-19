@@ -9,7 +9,7 @@
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%">
       <div id="sixthscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}/{{functionTag}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style" ng-click="fromSixthToSecond(firstidInSix)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style"  ng-click="fromSixthToThird(secondidInSix,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a4" class="a-style" ng-click="fromSixthToForth(thirdidInSix,secondName,thirdName)" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
@@ -20,10 +20,14 @@
     <div>
       <ion-list>
         <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in departsixthlist" >
-          <div class="col-80" >
+          <div class="col-80" ng-if="functionTag=='groupchat'">
             <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_org.png" class="common-add-img" >
               <span class="common-add-span">{{item.DeptName}}</span>
             </ion-checkbox>
+          </div>
+          <div class="col-80" ng-if="functionTag=='file'">
+            <img src="img/icon_org.png" class="common-add-img" style="margin-left: 10px" >
+            <span class="common-add-span" style="left: 20%">{{item.DeptName}}</span>
           </div>
           <div class="col">
             <button id="changecolor" class="button button-clear common-add-button" ng-click="jumpGroupSeventh(item.DeptID,secondName,thirdName,forthName,fifthName,deptinfo6,item.isSelected)"><span class="common-add-button-span">下级</span></button>
@@ -47,8 +51,11 @@
   </ion-content>
   <ion-footer-bar>
     <div style="position: absolute;right: 5px;width: 50px">
-      <button class="button button-balanced " ng-click="sixthConfirm()">
+      <button ng-if="functionTag=='groupchat'" class="button button-balanced " ng-click="sixthConfirm()">
         确定
+      </button>
+      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced " ng-click="gosixthMesstexting()">
+        提交
       </button>
     </div>
   </ion-footer-bar>

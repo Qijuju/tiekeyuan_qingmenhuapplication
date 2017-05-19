@@ -26,6 +26,7 @@ angular.module('selectgroup.controllers', [])
   $scope.createType=$stateParams.createtype;
   $scope.gourpId=$stateParams.groupid;
   $scope.groupName=$stateParams.groupname;
+  $scope.functionTag=$stateParams.functiontag;
 
   $contacts.rootDept();
   $scope.$on('first.update', function (event) {
@@ -35,9 +36,6 @@ angular.module('selectgroup.controllers', [])
         $ionicLoading.hide();
         $scope.depts = $contacts.getRootDept();
       });
-
-
-
     })
   });
 
@@ -51,8 +49,10 @@ angular.module('selectgroup.controllers', [])
       "contactId":id,
       "createtype":$scope.createType,
       "groupid":$scope.gourpId,
-      "groupname":$scope.groupName
+      "groupname":$scope.groupName,
+      "functiontag":$scope.functionTag
     });
+
   }
 
 
@@ -73,7 +73,7 @@ angular.module('selectgroup.controllers', [])
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
     $scope.groupName=$stateParams.groupname;
-
+    $scope.functionTag=$stateParams.functiontag;
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
 
@@ -227,7 +227,8 @@ angular.module('selectgroup.controllers', [])
           "secondname": pname,
           "createtype":$scope.createType,
           "groupid":$scope.gourpId,
-          "groupname":$scope.groupName
+          "groupname":$scope.groupName,
+          "functiontag":$scope.functionTag
         });
       }
 
@@ -240,6 +241,51 @@ angular.module('selectgroup.controllers', [])
       });
 
     };
+
+
+    //点击提交按钮
+    $scope.gosecondMesstexting=function () {
+      if($scope.userlist.length>0){
+        for(var j=0;j<$scope.userlist.length;j++){
+          if($scope.userlist[j].isSelected){
+            $scope.secondUserIds.push($scope.userlist[j].UserID+"##"+$scope.userlist[j].UserName);
+          }
+        }
+      }
+
+      $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentSecondID,function (data) {
+
+        for(var i=0;i<data.length;i++){
+          if(data[i].type=='user'){
+            $scope.secondUserIds.push(data[i].id+"##"+data[i].name)
+          }
+        }
+
+        if($scope.secondUserIds.length<=1){
+          $ToastUtils.showToast("请选择收件人！");
+
+        }else if($scope.secondUserIds.length>20){
+          $ToastUtils.showToast("收件人最多20人，目前"+($scope.secondUserIds.length-1)+"人");
+          $scope.secondUserIds=[];
+        }else{
+          $state.go('masstexting',{
+            "topicids":$scope.secondUserIds
+          });
+          $scope.secondUserIds=[];
+          $greendao.deleteAllData('SelectIdService',function (data) {
+            // alert('数据被清空了')
+          },function (err) {
+
+          });
+        }
+      },function (err) {
+
+      });
+    }
+
+
+
+
 
     //当点击确定按钮的时候的操作
     $scope.secondConfirm=function () {
@@ -432,6 +478,7 @@ angular.module('selectgroup.controllers', [])
 
                   var deptSaveId={};
                   deptSaveId.id=$scope.departlist[i].DeptID;
+                  deptSaveId.name=$scope.departlist[i].DeptName;
                   deptSaveId.grade='2';                        //二级代表是二级目录存下来的数据
                   deptSaveId.isselected=true;
                   deptSaveId.type='dept';
@@ -453,6 +500,7 @@ angular.module('selectgroup.controllers', [])
 
                 var userSaveId={};
                 userSaveId.id=$scope.userlist[j].UserID;
+                userSaveId.name=$scope.userlist[j].UserName;
                 userSaveId.grade='2';                        //二级代表是二级目录存下来的数据
                 userSaveId.isselected=true;
                 userSaveId.type='user';
@@ -501,6 +549,7 @@ angular.module('selectgroup.controllers', [])
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
     $scope.groupName=$stateParams.groupname;
+    $scope.functionTag=$stateParams.functiontag;
 
     //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
     var originalInfo=[];
@@ -667,8 +716,8 @@ angular.module('selectgroup.controllers', [])
           "thirdname": tname,
           "createtype":$scope.createType,
           "groupid":$scope.gourpId,
-          "groupname":$scope.groupName
-
+          "groupname":$scope.groupName,
+          "functiontag":$scope.functionTag
         });
       }
 
@@ -713,6 +762,7 @@ angular.module('selectgroup.controllers', [])
 
                     var deptSaveId={};
                     deptSaveId.id=$scope.departthirdlist[i].DeptID;
+                    deptSaveId.name=$scope.departthirdlist[i].DeptName;
                     deptSaveId.grade='3';                        //二级代表是二级目录存下来的数据
                     deptSaveId.isselected=true;
                     deptSaveId.type='dept';
@@ -733,6 +783,7 @@ angular.module('selectgroup.controllers', [])
 
                   var userSaveId={};
                   userSaveId.id=$scope.userthirdlist[j].UserID;
+                  userSaveId.name=$scope.userthirdlist[j].UserName;
                   userSaveId.grade='3';
                   userSaveId.isselected=true;
                   userSaveId.type='user';
@@ -762,8 +813,59 @@ angular.module('selectgroup.controllers', [])
 
     });
 
-    //当点击确认按钮的时候
+    //点击提交按钮
+    $scope.goThirdMesstexting=function () {
+      $state.go('masstexting');
+      $ToastUtils.showToast("群发文件");
+    }
 
+
+
+
+    //点击提交按钮
+    $scope.gothirdMesstexting=function () {
+      if($scope.userthirdlist.length>0){
+        for(var j=0;j<$scope.userthirdlist.length;j++){
+          if($scope.userthirdlist[j].isSelected){
+            $scope.thirdUserIds.push($scope.userthirdlist[j].UserID+"##"+$scope.userthirdlist[j].UserName);
+          }
+        }
+      }
+
+      $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentThirdID,function (data) {
+
+        for(var i=0;i<data.length;i++){
+          if(data[i].type=='user'){
+            $scope.thirdUserIds.push(data[i].id+"##"+data[i].name)
+          }
+        }
+
+        if($scope.thirdUserIds.length<=1){
+          $ToastUtils.showToast("请选择收件人！");
+
+        }else if($scope.thirdUserIds.length>20){
+          $ToastUtils.showToast("收件人最多20人，目前"+($scope.thirdUserIds.length-1)+"人");
+          $scope.thirdUserIds=[];
+        }else{
+          $state.go('masstexting',{
+            "topicids":$scope.thirdUserIds
+          });
+          $scope.thirdUserIds=[];
+          $greendao.deleteAllData('SelectIdService',function (data) {
+            // alert('数据被清空了')
+          },function (err) {
+
+          });
+        }
+      },function (err) {
+
+      });
+    }
+
+
+
+
+    //当点击确认按钮的时候
     $scope.thirdConfirm=function () {
 
       if($scope.departthirdlist.length>0){
@@ -951,7 +1053,7 @@ angular.module('selectgroup.controllers', [])
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
     $scope.groupName=$stateParams.groupname;
-
+    $scope.functionTag=$stateParams.functiontag;
 
 
     //先从数据库里面取出id为特殊级别的 ids  特殊级别为0的
@@ -1115,7 +1217,8 @@ angular.module('selectgroup.controllers', [])
         "contactId": sd,
         "createtype":$scope.createType,
         "groupid":$scope.groupId,
-        "groupname":$scope.groupName
+        "groupname":$scope.groupName,
+        "functiontag":$scope.functionTag
       });
     };
 
@@ -1132,7 +1235,8 @@ angular.module('selectgroup.controllers', [])
           "forthname": fname,
           "createtype":$scope.createType,
           "groupid": $scope.gourpId,
-          "groupname":$scope.groupName
+          "groupname":$scope.groupName,
+          "functiontag":$scope.functionTag
         });
       }
     };
@@ -1175,6 +1279,7 @@ angular.module('selectgroup.controllers', [])
 
                   var deptSaveId={};
                   deptSaveId.id=$scope.departforthlist[i].DeptID;
+                  deptSaveId.name=$scope.departforthlist[i].DeptName;
                   deptSaveId.grade='4';
                   deptSaveId.isselected=true;
                   deptSaveId.type='dept';
@@ -1197,6 +1302,7 @@ angular.module('selectgroup.controllers', [])
 
                 var userSaveId={};
                 userSaveId.id=$scope.userforthlist[j].UserID;
+                userSaveId.name=$scope.userforthlist[j].UserName;
                 userSaveId.grade='4';
                 userSaveId.isselected=true;
                 userSaveId.type='user';
@@ -1225,6 +1331,48 @@ angular.module('selectgroup.controllers', [])
 
 
     });
+
+
+    //点击提交按钮
+    $scope.goforthMesstexting=function () {
+      if($scope.userforthlist.length>0){
+        for(var j=0;j<$scope.userforthlist.length;j++){
+          if($scope.userforthlist[j].isSelected){
+            $scope.forthUserIds.push($scope.userforthlist[j].UserID+"##"+$scope.userforthlist[j].UserName);
+          }
+        }
+      }
+
+      $greendao.queryData('SelectIdService','where parentid <>?', $scope.parentForthID,function (data) {
+
+        for(var i=0;i<data.length;i++){
+          if(data[i].type=='user'){
+            $scope.forthUserIds.push(data[i].id+"##"+data[i].name)
+          }
+        }
+
+        if($scope.forthUserIds.length<=1){
+          $ToastUtils.showToast("请选择收件人！");
+
+        }else if($scope.forthUserIds.length>20){
+          $ToastUtils.showToast("收件人最多20人，目前"+($scope.forthUserIds.length-1)+"人");
+          $scope.forthUserIds=[];
+        }else{
+          $state.go('masstexting',{
+            "topicids":$scope.forthUserIds
+          });
+          $scope.forthUserIds=[];
+          $greendao.deleteAllData('SelectIdService',function (data) {
+            // alert('数据被清空了')
+          },function (err) {
+
+          });
+        }
+      },function (err) {
+
+      });
+    }
+
 
     $scope.forthConfirm=function () {
 
@@ -1602,6 +1750,7 @@ angular.module('selectgroup.controllers', [])
          var selectInfo={};
 
          selectInfo.id=$scope.addperonList[i].UserID;
+         selectInfo.name=$scope.addperonList[i].userName;
          selectInfo.grade="0";
          selectInfo.isselected=true;
          selectInfo.type='user';
@@ -1614,8 +1763,8 @@ angular.module('selectgroup.controllers', [])
       $state.go('addnewpersonfirst',{
         "createtype":'double',
         "groupid":$scope.groupId,
-        "groupname":$scope.groupName
-
+        "groupname":$scope.groupName,
+        "functiontag":'groupchat'
       });
 
     };

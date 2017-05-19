@@ -1,21 +1,16 @@
 package com.tky.im.service;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import com.ionicframework.im366077.Constants;
 import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.im.callback.IMConnectCallback;
@@ -28,25 +23,18 @@ import com.tky.im.receiver.IMScreenReceiver;
 import com.tky.im.utils.HeartbeatUtils;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
-import com.tky.im.utils.IMSwitchLocal;
+import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MessageOper;
-import com.tky.mqtt.paho.MqttStatus;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
-import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
-import com.tky.mqtt.paho.utils.SwitchLocal;
-import com.tky.protocol.model.IMPException;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.json.JSONException;
 
 /**
  * Created by tkysls on 2017/4/11.
@@ -150,7 +138,9 @@ public class IMService extends Service {
         receiver.setOnStopIMService(new IMReceiver.OnStopIMService() {
             @Override
             public void onStopIMService() {
-                IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
+              //向服务起发送离线消息
+              IMUtils.sendOnOffState("UOF", imConnection);
+              IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
                 if (imConnection != null) {
                     imConnection.closeIM();
                 }

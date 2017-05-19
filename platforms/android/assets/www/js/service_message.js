@@ -45,7 +45,7 @@ angular.module('message.services', [])
         // alert("进来会话列表了吗");
         $greendao.saveObj('ChatListService',chatitem,function (data) {
           $rootScope.$broadcast('chatarr.update');
-          // alert("保存成功"+data.length)
+          alertMsg("保存成功"+data.length)
         },function (err) {
         });
       }
@@ -511,6 +511,7 @@ angular.module('message.services', [])
         }
         // alert("图片入数组后长度"+danliao.length);
         $greendao.saveObj('MessagesService',messageDetail,function (data) {
+          // alert("消息已经入库。。。。")
           $rootScope.$broadcast('msgs.update');
         },function (err) {
         });
@@ -602,7 +603,8 @@ angular.module('message.services', [])
             }
             msgDetail.message = newMsg;
             mqtt.sendMsg(topic, msgDetail, function (message) {
-              // alert("发了几次是几次");
+              // alert("群发图片回执"+JSON.stringify(message));
+
               // alert("发送图片成功前数组长度"+danliao.length+"========="+content);
               if (type === 'User') {
                 $mqtt.updateDanliao(message);
@@ -639,10 +641,11 @@ angular.module('message.services', [])
               // danliao.push(message);
               // alert("发送图片成功后数组长度"+danliao.length);
               $greendao.saveObj('MessagesService',message,function (data) {
+                // alert("保存messgae表"+data);
                 $rootScope.$broadcast('msgs.update');
                 //往消息主界面发送一个监听
-                $mqtt.sendupdate(message.sessionid,message._id);
                 $rootScope.$broadcast('sendsuccess.update');
+                $rootScope.$broadcast('sendFilesuccess.update',message.sessionid);
               },function (err) {
               });
 
