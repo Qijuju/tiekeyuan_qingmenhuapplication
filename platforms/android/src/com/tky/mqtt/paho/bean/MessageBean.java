@@ -28,7 +28,61 @@ public class MessageBean extends MessageTypeBean {
      */
     private String msgLevel;
 
-    public String get_id() {
+    private String title;
+
+    private String link;
+
+    private String linkType;
+
+    private String msgId;
+
+  public String getLevelName() {
+    return levelName;
+  }
+
+  public void setLevelName(String levelName) {
+    this.levelName = levelName;
+  }
+
+  private String levelName;
+
+  public void setFromMe(boolean fromMe) {
+    isFromMe = fromMe;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
+  }
+
+  public String getLinkType() {
+    return linkType;
+  }
+
+  public void setLinkType(String linkType) {
+    this.linkType = linkType;
+  }
+
+  public String getMsgId() {
+    return msgId;
+  }
+
+  public void setMsgId(String msgId) {
+    this.msgId = msgId;
+  }
+
+  public String get_id() {
         return _id;
     }
 

@@ -94,7 +94,10 @@ import im.server.Group.RSTgetGroupUpdate;
 import im.server.Message.IMMessage;
 import im.server.Message.RSTgetMsg;
 import im.server.Message.RSTgetMsgCount;
+import im.server.Message.RSTgetNotifyMsg;
+import im.server.Message.RSTgetReadList;
 import im.server.Message.RSTreadMsg;
+import im.server.Message.RSTsetNotifyMsg;
 import im.server.System.IMSystem;
 import im.server.System.RSTlogin;
 import im.server.System.RSTsearch;
@@ -1730,6 +1733,191 @@ public class ThriftApiClient extends CordovaPlugin {
     }
   }
 
+
+
+  /**
+   * 从服务器获取通知消息
+   * @param args
+   * @param callbackContext
+     */
+  public void getNotifyMsg(final JSONArray args, final CallbackContext callbackContext){
+
+    try {
+      String date=args.getString(0);
+      boolean isAttention=args.getBoolean(1);
+      String fromId=args.getString(2);
+      int pageNum = args.getInt(3);
+      int pageCount = args.getInt(4);
+
+      SystemApi.getNotifyMsg(getUserID(), date, isAttention, fromId, pageNum, pageCount, new AsyncMethodCallback<IMMessage.AsyncClient.GetNotifyMsg_call>() {
+        @Override
+        public void onComplete(IMMessage.AsyncClient.GetNotifyMsg_call getNotifyMsg_call) {
+
+          try {
+            RSTgetNotifyMsg result=getNotifyMsg_call.getResult();
+            if (result != null && result.result) {
+              String json = GsonUtils.toJson(result, RSTgetNotifyMsg.class);
+              setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+            } else {
+              setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+            }
+          } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          }
+
+
+        }
+
+        @Override
+        public void onError(Exception e) {
+          setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+        }
+      });
+
+
+
+    } catch (JSONException e) {
+
+      setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (IOException e){
+
+      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (TException e){
+
+      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+
+
+
+  }
+
+  /**
+   * 设置已读 未读消息
+   * @param args
+   * @param callbackContext
+     */
+  public void setNotifyMsg(JSONArray args, final CallbackContext callbackContext){
+    try {
+      String msgId=args.getString(0);
+      boolean setReaded=args.getBoolean(1);
+      String setToped=args.getString(2);
+      String setAttention=args.getString(3);
+
+      SystemApi.setNotifyMsg(getUserID(), msgId, setReaded, setToped, setAttention, new AsyncMethodCallback<IMMessage.AsyncClient.SetNotifyMsg_call>() {
+        @Override
+        public void onComplete(IMMessage.AsyncClient.SetNotifyMsg_call setNotifyMsg_call) {
+
+          try {
+            RSTsetNotifyMsg result=setNotifyMsg_call.getResult();
+
+            if (result != null && result.result) {
+              String json = GsonUtils.toJson(result, RSTsetNotifyMsg.class);
+              setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+            } else {
+              setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+            }
+          } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          }
+
+        }
+
+        @Override
+        public void onError(Exception e) {
+          setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+        }
+      });
+
+
+    } catch (JSONException e) {
+
+      setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (IOException e){
+
+      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (TException e){
+
+      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+
+  }
+
+
+  /**
+   * 获取人员确认 未确认列表
+   * @param args
+   * @param callbackContext
+     */
+  public void getMsgReadList(JSONArray args, final CallbackContext callbackContext){
+
+    try {
+      String msgId=args.getString(0);
+      boolean isReaded=args.getBoolean(1);
+
+      SystemApi.GetMsgReadList(getUserID(), msgId, isReaded, new AsyncMethodCallback<IMMessage.AsyncClient.GetMsgReadList_call>() {
+        @Override
+        public void onComplete(IMMessage.AsyncClient.GetMsgReadList_call getMsgReadList_call) {
+          try {
+            RSTgetReadList result= getMsgReadList_call.getResult();
+            if (result != null && result.result) {
+              String json = GsonUtils.toJson(result, RSTgetReadList.class);
+              setResult(new JSONObject(json), PluginResult.Status.OK, callbackContext);
+            } else {
+              setResult("获取失败！", PluginResult.Status.ERROR, callbackContext);
+            }
+          } catch (TException e) {
+            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          } catch (JSONException e) {
+            setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+            e.printStackTrace();
+          }
+
+        }
+
+        @Override
+        public void onError(Exception e) {
+          setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+        }
+      });
+
+
+    } catch (JSONException e) {
+
+      setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (IOException e){
+
+      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+
+    }catch (TException e){
+
+      setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    }
+
+  }
+
   /**
    * 获取历史消息数
    *
@@ -3271,6 +3459,9 @@ public class ThriftApiClient extends CordovaPlugin {
 
 
   }
+
+
+
 
 
   /**

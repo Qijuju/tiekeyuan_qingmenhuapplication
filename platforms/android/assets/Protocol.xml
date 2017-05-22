@@ -18,7 +18,7 @@
 		<Node id="platform">
 		 	<nLength>1</nLength>
 		 	<nFixed>true</nFixed>
-		 	<nValue>A,W</nValue>
+		 	<nValue>A,W,I</nValue>
 		</Node>
 		<Node id="receipt">
 		 	<nLength>1</nLength>
@@ -63,6 +63,30 @@
 		 	<nFixed>true</nFixed>
 		 	<nValue>0,1,2,3</nValue>
 		</Node>
+		<Node id="title">
+		 	<nLength>3</nLength>
+		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
+		</Node>
+		<Node id="link">
+		 	<nLength>3</nLength>
+		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
+		</Node>
+		<Node id="linkType">
+		 	<nLength>1</nLength>
+		 	<nFixed>true</nFixed>
+		 	<nValue>0,U,F</nValue>
+		</Node>
+		<Node id="msgId">
+		 	<nLength>32</nLength>
+		 	<nFixed>true</nFixed>
+		</Node>
+		<Node id="levelName">
+		 	<nLength>2</nLength>
+		 	<nFixed>false</nFixed>
+		 	<nType>C</nType>
+		</Node>
 		<Node id="message">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
@@ -91,7 +115,7 @@
 		<Node id="EventCode">
 		 	<nLength>3</nLength>
 		 	<nFixed>true</nFixed>
-		 	<nValue>YAA,YAM,GN0,G00,YRA,YRM,GAM,GRM,RG0,KUF</nValue>
+		 	<nValue>YAA,YAM,GN0,G00,YRA,YRM,GAM,GRM,RG0,KUF,UOL,UOF</nValue>
 		</Node>
 		<Node id="Event">
 		 	<nLength>-1</nLength>
@@ -204,6 +228,27 @@
 		</Node>
 	</Protocol>
 	
+	<Protocol id="UOF">
+		<Node id="UserID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="MepID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
+	
+	<Protocol id="UOL">
+		<Node id="UserID">
+		 	<nLength>1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+		<Node id="MepID">
+		 	<nLength>-1</nLength>
+		 	<nFixed>false</nFixed>
+		</Node>
+	</Protocol>
 	<!-- 
 	<Protocol id="US0">
 		<Node id="UserID">

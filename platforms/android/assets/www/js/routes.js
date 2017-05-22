@@ -101,6 +101,7 @@ angular.module('im.routes', [])
 
       .state('tab.notification', {
         url: '/notification',
+        cache:false,
         views: {
           'tab-notification': {
             templateUrl: 'templates/tab-notification.html',
@@ -168,10 +169,13 @@ angular.module('im.routes', [])
       })
 
       .state('notifyDetail', {
-        url: '/notifyDetail/:id',
+        url: '/notifyDetail',
         templateUrl: 'templates/notifyDetail.html',
         cache:false,
-        controller: 'notifyDetailCtrl'
+        controller: 'notifyDetailCtrl',
+        params:{
+          obj:null
+        },
       })
 
       .state('notifyApplication', {
@@ -582,6 +586,20 @@ angular.module('im.routes', [])
         controller: 'emergencycallCtrl',
         cache:false
       })
+
+      .state('confirmornot', {
+        url: '/confirmornot/:id',
+        templateUrl: 'templates/notify-confirm.html',
+        controller: 'confirmornotCtrl',
+      })
+      .state('netconfirm', {
+        url: '/netconfirm/:url',
+        templateUrl: 'templates/net-confirm.html',
+        controller: 'netconfirmCtrl',
+        cache:false
+
+      })
+
 
 
 

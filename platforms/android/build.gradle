@@ -164,6 +164,13 @@ android {
 //      storePassword '123456'
 //    }
 //  }
+
+
+  dexOptions {
+    incremental true
+    javaMaxHeapSize "4g"
+  }
+
   packagingOptions {
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'

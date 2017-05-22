@@ -5468,6 +5468,12 @@ a.subdued:last-child {
   border-bottom-width: 1px;
   background-image: url("../../../img/top.jpg");
 }
+.secondbar.bar-header{
+  top: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  background: white;
+}
 
 .bar-header.has-tabs-top {
   border-bottom-width: 0px;
@@ -10967,7 +10973,7 @@ progress {
  * --------------------------------------------------
  */
 .button {
-  border-color: transparent;
+  border-color: white;
   background-color: #f8f8f8;
   color: #444;
   position: relative;
@@ -10982,7 +10988,7 @@ progress {
   vertical-align: top;
   text-align: center;
   text-overflow: ellipsis;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 42px;
   cursor: pointer;
 }
