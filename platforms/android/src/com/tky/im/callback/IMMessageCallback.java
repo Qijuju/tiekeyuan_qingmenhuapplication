@@ -68,7 +68,6 @@ public class IMMessageCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable throwable) {
-        ToastUtil.showSafeToast("断开");
         LogPrint.print("MQTT", "异常断开或手动断开~~~");
         LogPrint.print2("MQTT", "异常断开或手动断开~~~");
         //断开IM

@@ -2355,12 +2355,12 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard) {
 
     /**
      * 长按事件
      */
-    $scope.longtab = function (msgSingle) {
+    $scope.longtabGroup = function (msgSingle) {
       $ionicActionSheet.show({
         buttons: [
           {text: '复制'}
@@ -2368,6 +2368,7 @@ angular.module('message.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
+            alert('asdf');
             $cordovaClipboard
               .copy(msgSingle.message)
               .then(function () {

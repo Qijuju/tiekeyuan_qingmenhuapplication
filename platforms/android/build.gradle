@@ -300,9 +300,9 @@ android {
 dependencies {
   compile fileTree(include: '*.jar', dir: 'libs')
   // SUB-PROJECT DEPENDENCIES START
-  debugCompile project(path: 'CordovaLib', configuration: 'debug')
-  releaseCompile project(path: 'CordovaLib', configuration: 'release')
-  // SUB-PROJECT DEPENDENCIES END
+    debugCompile project(path: "CordovaLib", configuration: "debug")
+    releaseCompile project(path: "CordovaLib", configuration: "release")
+    // SUB-PROJECT DEPENDENCIES END
   compile 'com.android.support:support-v4:23.0.1'
   compile 'com.android.support:appcompat-v7:23.0.1'
   //    compile 'com.google.code.gson:gson:2.2.4'
