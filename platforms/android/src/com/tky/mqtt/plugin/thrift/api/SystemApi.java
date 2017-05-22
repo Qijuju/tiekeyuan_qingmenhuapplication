@@ -3,13 +3,11 @@ package com.tky.mqtt.plugin.thrift.api;
 import android.content.Context;
 
 import com.ionicframework.im366077.Constants;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.plugin.thrift.bean.MyAsyncClient;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.apache.thrift.async.TAsyncClientManager;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;

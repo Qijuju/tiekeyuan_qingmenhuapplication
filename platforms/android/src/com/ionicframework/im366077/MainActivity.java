@@ -44,8 +44,6 @@ import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
-import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.ProtectService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
@@ -73,6 +71,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.Call;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener {
@@ -118,8 +117,9 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     //注册距离感应器
     mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-//    MqttRobot.setIsStarted(false);
+    String id=JPushInterface.getRegistrationID(getApplicationContext());
 
+//    MqttRobot.setIsStarted(false);
     //注册屏幕开关广播
 //    receiver = new UserPresentReceiver();
 //    IntentFilter filter = new IntentFilter();

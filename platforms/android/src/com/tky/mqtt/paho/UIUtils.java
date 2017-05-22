@@ -32,6 +32,8 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * 作者：SLS 包名：com.tky.frameplay.utils 日期：2016/1/11 描述：UI工具类
  */
@@ -284,8 +286,9 @@ public class UIUtils {
 	 * @return
 	 */
 	public static String getDeviceId() {
-		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-		return TelephonyMgr.getDeviceId();
+     return JPushInterface.getRegistrationID(getContext());
+//		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+//		return TelephonyMgr.getDeviceId();
 	}
 
 	public static String getPhoneImsiNum(Context context) {
@@ -417,7 +420,7 @@ public class UIUtils {
 
 	/**
 	 * 安装应用
-	 * @param context
+	 * @param
 	 * @param appPath
 	 */
 	public static void installApk(final String appPath) {

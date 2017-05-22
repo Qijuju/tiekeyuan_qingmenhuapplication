@@ -47,6 +47,8 @@ public class MessageOper {
 		return IMMsgFactory.createMsg(getMsgType(obj.getString("type")), getMediaType(obj.getString("messagetype")), IMMsgFactory.PlatType.Android, IMMsgFactory.Receipt.False, obj.getLong("when"), obj.getString("sessionid"), getUserID(), obj.getString("message"), obj.getString("username"));
 	}
 
+
+
 	/**
 	 * 将别人发过来的消息转成本地需要的数据
 	 * @param msg

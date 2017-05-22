@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
+import com.ionicframework.im366077.MainActivity;
 import com.ionicframework.im366077.R;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
@@ -24,6 +25,7 @@ public class MqttService extends Service {
     protected MqttConnection mqttConnection;
     private AlarmManager am;
     private static int count = 0;
+  private static int requestCode = 0x1001;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -86,12 +88,15 @@ public class MqttService extends Service {
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
         //禁止用户点击删除按钮删除
         builder.setAutoCancel(false);
+        Intent intent1=new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1,  0);
+        builder.setContentIntent(pendingIntent);
         //禁止滑动删除
         builder.setOngoing(true);
         //右上角的时间显示
         builder.setShowWhen(true);
         //设置通知栏的标题内容
-        builder.setContentTitle("即时通正在运行");
+        builder.setContentTitle("轻门户正在运行");
         //创建通知
         Notification notification = builder.build();
         //设置为前台服务

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.ToastUtil;
 
 /**
  * 作者：
@@ -15,6 +14,7 @@ import com.tky.mqtt.paho.ToastUtil;
  */
 public class MqttConnectReceiver extends BroadcastReceiver {
     private OnMqttStatusChangeListener onMqttStatusChangeListener;
+
     public void setOnMqttStatusChangeListener(OnMqttStatusChangeListener onMqttStatusChangeListener) {
         this.onMqttStatusChangeListener = onMqttStatusChangeListener;
     }

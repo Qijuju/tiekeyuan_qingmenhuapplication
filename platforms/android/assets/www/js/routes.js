@@ -331,6 +331,13 @@ angular.module('im.routes', [])
 
       })
 
+      .state("masstexting",{
+        url:'/masstexting/:topicids',
+        templateUrl:'templates/mass_texting.html',
+        controller:'masstextingCtrl',
+        cache:false
+      })
+
       .state('mydepartment', {
         url: '/mydepartment',
         templateUrl: 'templates/my_department.html',
@@ -413,48 +420,48 @@ angular.module('im.routes', [])
         cache:false
       })
 
-
+      //functiontag:用来区分群聊还是群发文件
       .state('addnewpersonfirst', {
-        url: '/addnewpersonfirst/:createtype/:groupid/:groupname',
+        url: '/addnewpersonfirst/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-first.html',
         controller: 'addNewPersonfirstCtrl',
         cache:false,
       })
       .state('addnewpersonsecond', {
-        url: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname',
+        url: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-second.html',
         controller: 'addNewPersonsecondCtrl',
         cache:false,
       })
       .state('addnewpersonthird', {
-        url: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname',
+        url: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-third.html',
         controller: 'addNewPersonthirdCtrl',
         cache:false,
       })
       .state('addnewpersonforth', {
-        url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname',
+        url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-forth.html',
         controller: 'addNewPersonforthCtrl',
         cache:false
 
       })
       .state('addnewpersonfifth', {
-        url: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname/:createtype/:groupid/:groupname',
+        url: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-fifth.html',
         controller: 'addNewPersonfifthCtrl',
         cache:false
 
       })
       .state('addnewpersonsixth', {
-        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype/:groupid/:groupname',
+        url: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-sixth.html',
         controller: 'addNewPersonsixthCtrl',
         cache:false
 
       })
       .state('addnewpersonseventh', {
-        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype/:groupid/:groupname',
+        url: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-seventh.html',
         controller: 'addNewPersonseventhCtrl',
         cache:false
@@ -462,7 +469,7 @@ angular.module('im.routes', [])
       })
 
       .state('addnewpersoneighth', {
-        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype/:groupid/:groupname',
+        url: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-eighth.html',
         controller: 'addNewPersoneighthCtrl',
         cache:false

@@ -98,7 +98,6 @@ angular.module('portal.services', [])
               break;
             } else if (data[i].grade == 130 || data[i].grade == 60) {
               companyName = data[i].name;
-
             }
           }
 
@@ -143,6 +142,7 @@ angular.module('portal.services', [])
       getLightApps: function () {
         return lightApps;
       },
+
       get: function (appId) {
         for (var i = 0; i < lightApps.length; i++) {
           if (lightApps[i].appId === parseInt(appId)) {

@@ -19,14 +19,10 @@ import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
-import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -66,7 +62,10 @@ public class SwitchLocal {
     public static String getATopic(MType type, String id) {
         return getLocal() + "/" + getType(type) + "/" + id;
     }
-
+    //固定的上下线发送Topic
+    public static String getOnOffTopic(){
+      return  getLocal()+"/"+"s/LoginEvent";
+    }
     public static String getType(MType type) {
         if (MType.U == type) {
             return "U";

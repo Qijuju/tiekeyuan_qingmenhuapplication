@@ -1894,6 +1894,7 @@ angular.module('contacts.controllers', [])
         $contacts.clearSecondCount();
         //登录人员的id
         $scope.loginId=$contacts.getLoignInfo().userID;
+        $scope.loginName=$contacts.getLoignInfo().userName;
         //部门id
         $scope.depid=$contacts.getLoignInfo().deptID;
         $contacts.loginDeptInfo($scope.depid);
@@ -1994,6 +1995,7 @@ angular.module('contacts.controllers', [])
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
+      selectInfo.name=$scope.loginName;
       selectInfo.grade="0";
       selectInfo.isselected=true;
       selectInfo.type='user';
@@ -2007,7 +2009,8 @@ angular.module('contacts.controllers', [])
       $state.go('addnewpersonfirst',{
         "createtype":'single',
         "groupid":'0',
-        "groupname":''
+        "groupname":'',
+        "functiontag":"groupchat"
       });
 
     }

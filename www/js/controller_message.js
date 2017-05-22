@@ -2355,12 +2355,12 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard) {
 
     /**
      * 长按事件
      */
-    $scope.longtab = function (msgSingle) {
+    $scope.longtabGroup = function (msgSingle) {
       $ionicActionSheet.show({
         buttons: [
           {text: '复制'}
@@ -4324,6 +4324,7 @@ angular.module('message.controllers', [])
 
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
+
       $mqtt.save('zuinewID',  $scope.UserID);
       $scope.mymypersonname = msg.userName
       $mqtt.save('userNamea', $scope.mymypersonname);
@@ -4426,8 +4427,6 @@ angular.module('message.controllers', [])
       }
       e.preventDefault();
       return false;
-
-
     },501)
 
 
@@ -4483,6 +4482,7 @@ angular.module('message.controllers', [])
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
+      selectInfo.name=$scope.mymypersonname;
       selectInfo.grade="0";
       selectInfo.isselected=true;
       selectInfo.type='user';
@@ -4496,7 +4496,8 @@ angular.module('message.controllers', [])
       $state.go('addnewpersonfirst',{
         "createtype":'single',
         "groupid":'0',
-        "groupname":''
+        "groupname":'',
+        "functiontag":'groupchat'
       });
     }
     //紧急呼叫
@@ -5340,6 +5341,7 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         //登录人员的id
         $scope.loginId=$contacts.getLoignInfo().userID;
+        $scope.loginName=$contacts.getLoignInfo().userName;
         //部门id
         $scope.depid=$contacts.getLoignInfo().deptID;
 
@@ -5355,7 +5357,7 @@ angular.module('message.controllers', [])
         $chatarr.setData(data);
         $greendao.queryByConditions('ChatListService',function (data) {
           $scope.items=data;
-          // alert("数组的长度"+data.length);
+          // alert("群发完成数组"+JSON.stringify(data));
         },function (err) {
 
         });

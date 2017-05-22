@@ -26,7 +26,6 @@ import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttReceiver;
-import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
@@ -57,7 +56,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -866,10 +864,21 @@ public class MqttChat extends CordovaPlugin {
    */
   public void getTopic(final JSONArray args, final CallbackContext callbackContext) {
     try {
-      String userID = args.getString(0);
-      String type = args.getString(1);
-      String topic = IMSwitchLocal.getATopic(getType(type), userID);
-      setResult(topic, PluginResult.Status.OK, callbackContext);
+      Object obj = args.get(0);
+      List<String> topics=new ArrayList();
+      if (obj != null && obj instanceof JSONArray) {
+        String type = args.getString(1);
+        for(int i=0;i<((JSONArray) obj).length();i++){
+          topics.add(IMSwitchLocal.getATopic(getType(type), (String) ((JSONArray) obj).get(i)));
+        }
+        JSONArray jsonArray=new JSONArray(topics);
+        setResult(jsonArray,PluginResult.Status.OK, callbackContext);
+      } else {
+        String userID = args.getString(0);
+        String type = args.getString(1);
+        String topic = IMSwitchLocal.getATopic(getType(type), userID);
+        setResult(topic, PluginResult.Status.OK, callbackContext);
+      }
     } catch (JSONException e) {
       setResult("获取失败！", PluginResult.Status.OK, callbackContext);
       e.printStackTrace();
