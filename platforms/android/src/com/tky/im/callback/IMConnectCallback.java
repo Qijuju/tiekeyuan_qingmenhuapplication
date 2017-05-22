@@ -15,6 +15,7 @@ import com.tky.im.utils.IMStatusManager;
 import com.tky.mqtt.paho.MqttTopicRW;
 import com.tky.mqtt.paho.UIUtils;
 
+import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -51,6 +52,12 @@ public class IMConnectCallback implements IMqttActionListener {
     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
         LogPrint.print("MQTT", "启动失败~~~");
         LogPrint.print2("MQTT", "启动失败~~~");
+        DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
+        disconnectedBufferOptions.setBufferEnabled(true);
+        disconnectedBufferOptions.setBufferSize(100);
+        disconnectedBufferOptions.setPersistBuffer(false);
+        disconnectedBufferOptions.setDeleteOldestMessages(false);
+        imConnection.getClient().setBufferOpts(disconnectedBufferOptions);
         //广播当前连接状态
         IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_FAILURE);
 

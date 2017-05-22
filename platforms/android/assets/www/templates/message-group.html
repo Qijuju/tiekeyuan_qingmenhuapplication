@@ -83,7 +83,7 @@
 
         <!--接收###文本内容-->
         <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
-          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
+          <div class="rj-message-new-left" on-hold="longtab({{msg}})" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
@@ -169,7 +169,7 @@
       <div ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)" class="row" style="float: right;">
         <!--发送###文本内容-->
         <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
-          <div class="rj-message-new-right" style="max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
+          <div class="rj-message-new-right" on-hold="longtab({{msg}})" style="max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
           <!--容错处理-->
           <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">

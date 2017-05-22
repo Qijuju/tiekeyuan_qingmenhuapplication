@@ -21,12 +21,10 @@ import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.dao.SystemMsg;
-import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttNotification;
 import com.tky.mqtt.paho.MqttTopicRW;
-import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
@@ -843,7 +841,7 @@ public class IMMessageCallback implements MqttCallback {
             start = System.currentTimeMillis();
             ringStaus = RingStatus.RING;
         }
-        ringStaus = (ringStaus == RingStatus.RING ? ringStaus :
+        ringStaus = (ringStaus == RingStatus.RING ? RingStatus.RING :
                 ((System.currentTimeMillis() - start > 100) ? RingStatus.RING :
                         RingStatus.NO_RING));
         //************* 判断是否需要响铃 END *************
@@ -858,8 +856,8 @@ public class IMMessageCallback implements MqttCallback {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            start = System.currentTimeMillis();
         }
+        start = System.currentTimeMillis();
     }
 
 

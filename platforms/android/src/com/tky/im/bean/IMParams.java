@@ -32,6 +32,7 @@ public class IMParams {
 
     public IMParams(){
         options = new MqttConnectOptions();
+        options.setAutomaticReconnect(false);
         options.setCleanSession(isCleanSession());
         options.setUserName(getUserName());
         options.setPassword(getPassword().toCharArray());

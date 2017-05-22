@@ -294,7 +294,7 @@ public class MqttChat extends CordovaPlugin {
             });*/
       int[] qoss = new int[topics.length];
       for (int i = 0; i < topics.length; i++) {
-        qoss[i] = 1;
+        qoss[i] = 2;
                 /*if (!"zhuanjiazu".equals(topics[i].trim())){
                     qoss[i] = 2;
                 } else {

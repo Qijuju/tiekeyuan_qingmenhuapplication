@@ -222,27 +222,6 @@ public class IMService extends Service {
                     connectIM();
                 }
             }).start();
-            //使用兼容版本
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-            //设置状态栏的通知图标
-            builder.setSmallIcon(R.drawable.icon);
-            //设置通知栏横条的图标
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
-            //禁止用户点击删除按钮删除
-            builder.setAutoCancel(false);
-            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
-            builder.setContentIntent(pendingIntent);
-            //禁止滑动删除
-            builder.setOngoing(true);
-            //右上角的时间显示
-            builder.setShowWhen(true);
-            //设置通知栏的标题内容
-            builder.setContentTitle("即时通正在运行");
-            //创建通知
-            Notification notification = builder.build();
-            //设置为前台服务
-            startForeground(0x0010, notification);
         }
         if (beats == null) {
             IMService.this.beats = new HeartbeatUtils(new HeartbeatUtils.OnTimeoutListener() {
@@ -255,6 +234,27 @@ public class IMService extends Service {
             });
             IMService.this.beats.start();
         }
+        //使用兼容版本
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        //设置状态栏的通知图标
+        builder.setSmallIcon(R.drawable.icon);
+        //设置通知栏横条的图标
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
+        //禁止用户点击删除按钮删除
+        builder.setAutoCancel(false);
+        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
+        builder.setContentIntent(pendingIntent);
+        //禁止滑动删除
+        builder.setOngoing(true);
+        //右上角的时间显示
+        builder.setShowWhen(true);
+        //设置通知栏的标题内容
+        builder.setContentTitle("即时通正在运行");
+        //创建通知
+        Notification notification = builder.build();
+        //设置为前台服务
+        startForeground(0x0010, notification);
         return super.onStartCommand(intent, Service.START_FLAG_REDELIVERY, startId);
     }
 
@@ -353,6 +353,7 @@ public class IMService extends Service {
         } else {
             //MQTT连接，直接发送消息
             MqttMessage msg = new MqttMessage();
+            msg.setQos(2);
             try {
                 msg.setPayload(MessageOper.packData(content));
             } catch (Exception e) {
@@ -411,6 +412,7 @@ public class IMService extends Service {
             try {
                 imConnection.connect(getBaseContext(), imConnectCallback, imMessageCallback);
             } catch (Exception e) {
+                IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
                 e.printStackTrace();
             }
         }
