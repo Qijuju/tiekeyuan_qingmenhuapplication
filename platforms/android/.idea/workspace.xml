@@ -10,152 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0ace942-c66f-4b6c-b8b6-eedd3a7a854d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/controller_masstexting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/mass_texting.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/classes/androidTest/debug/org/apache/cordova/test/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/androidTest/debug/com/yixia/camera/test/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/masstexting.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.json" afterPath="$PROJECT_DIR$/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/apppreferences.xml" afterPath="$PROJECT_DIR$/res/values/apppreferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/apppreferences.xml" afterPath="$PROJECT_DIR$/res/xml/apppreferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/im/service/IMService.java" afterPath="$PROJECT_DIR$/src/com/tky/im/service/IMService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatListDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoMaster.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoMaster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoSession.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoSession.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePicture.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePicture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePictureDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/FilePictureDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GesturePwd.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GesturePwd.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GesturePwdDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GesturePwdDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChats.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChatsDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/GroupChatsDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhoneDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/LocalPhoneDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Messages.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MessagesDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MessagesDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCount.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCountDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ModuleCountDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistory.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistoryDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/MsgHistoryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyListDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/NotifyListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Otherpichead.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/Otherpichead.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/OtherpicheadDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/OtherpicheadDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDept.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDept.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDeptDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/ParentDeptDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedId.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyList.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyListDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SlowNotifyListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDept.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDept.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDeptDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDeptDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsgDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContactsDao.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContactsDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-account.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-account.html" />
     </list>
     <ignored path="android.iws" />
@@ -278,11 +153,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GreenDaoPlugin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="957" column="0" selection-start-line="957" selection-start-column="0" selection-end-line="957" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMParams.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tky/im/bean/IMParams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -293,7 +188,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15893">
               <caret line="793" column="0" selection-start-line="793" selection-start-column="0" selection-end-line="793" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -3095,7 +2992,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8967345625347" />
+        <entry key="D:\AndroidStudio_tky_Application\IM\platforms\android" value="8968042026567" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3872,7 +3769,6 @@
         <option value="$PROJECT_DIR$/src/com/tky/im/service/IMService.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java" />
-        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/ChatList.java" />
@@ -3893,6 +3789,7 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/SubDept.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/DaoMaster.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+        <option value="$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java" />
       </list>
     </option>
   </component>
@@ -3927,7 +3824,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -4005,183 +3901,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mqtt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="im" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="im" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="im" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bean" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4209,6 +3929,7 @@
         <subPane />
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4568,7 +4289,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50345623" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24193548" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -4583,7 +4304,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21781115" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28379828" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -4617,52 +4338,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#44293#44294#0" expanded="false" />
-            <element signature="e#44360#44361#0" expanded="false" />
-            <element signature="e#58377#58378#0" expanded="false" />
-            <element signature="e#58415#58416#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/AppData/Local/Android/sdk/sources/android-23/org/json/JSONArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12650">
-          <caret line="582" column="13" selection-start-line="582" selection-start-column="13" selection-end-line="582" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#20592#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2213#2214#0" expanded="false" />
-            <element signature="e#2261#2262#0" expanded="false" />
-            <element signature="e#4598#4599#0" expanded="false" />
-            <element signature="e#4634#4635#0" expanded="false" />
-            <element signature="e#11284#11285#0" expanded="false" />
-            <element signature="e#11331#11332#0" expanded="false" />
-            <element signature="e#12423#12424#0" expanded="false" />
-            <element signature="e#12474#12475#0" expanded="false" />
-            <element signature="e#13525#13526#0" expanded="false" />
-            <element signature="e#13564#13565#0" expanded="false" />
-            <element signature="e#14604#14605#0" expanded="false" />
-            <element signature="e#14645#14646#0" expanded="false" />
-            <element signature="e#15631#15632#0" expanded="false" />
-            <element signature="e#15674#15675#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="805">
@@ -4703,7 +4378,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87998">
           <caret line="3937" column="24" selection-start-line="3937" selection-start-column="23" selection-end-line="3937" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4732,24 +4409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12650">
           <caret line="582" column="13" selection-start-line="582" selection-start-column="13" selection-end-line="582" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#20592#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2213#2214#0" expanded="false" />
-            <element signature="e#2261#2262#0" expanded="false" />
-            <element signature="e#4598#4599#0" expanded="false" />
-            <element signature="e#4634#4635#0" expanded="false" />
-            <element signature="e#11284#11285#0" expanded="false" />
-            <element signature="e#11331#11332#0" expanded="false" />
-            <element signature="e#12423#12424#0" expanded="false" />
-            <element signature="e#12474#12475#0" expanded="false" />
-            <element signature="e#13525#13526#0" expanded="false" />
-            <element signature="e#13564#13565#0" expanded="false" />
-            <element signature="e#14604#14605#0" expanded="false" />
-            <element signature="e#14645#14646#0" expanded="false" />
-            <element signature="e#15631#15632#0" expanded="false" />
-            <element signature="e#15674#15675#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4810,35 +4469,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3657">
-          <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/AppData/Local/Android/sdk/sources/android-23/org/json/JSONArray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1104">
           <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#20592#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2213#2214#0" expanded="false" />
-            <element signature="e#2261#2262#0" expanded="false" />
-            <element signature="e#4598#4599#0" expanded="false" />
-            <element signature="e#4634#4635#0" expanded="false" />
-            <element signature="e#11284#11285#0" expanded="false" />
-            <element signature="e#11331#11332#0" expanded="false" />
-            <element signature="e#12423#12424#0" expanded="false" />
-            <element signature="e#12474#12475#0" expanded="false" />
-            <element signature="e#13525#13526#0" expanded="false" />
-            <element signature="e#13564#13565#0" expanded="false" />
-            <element signature="e#14604#14605#0" expanded="false" />
-            <element signature="e#14645#14646#0" expanded="false" />
-            <element signature="e#15631#15632#0" expanded="false" />
-            <element signature="e#15674#15675#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -5018,14 +4652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/dao/SelectedIdDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-506">
@@ -5059,14 +4685,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15893">
           <caret line="793" column="0" selection-start-line="793" selection-start-column="0" selection-end-line="793" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="321" column="32" selection-start-line="321" selection-start-column="32" selection-end-line="321" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/base/GreenDaoPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="957" column="0" selection-start-line="957" selection-start-column="0" selection-end-line="957" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/utils/SwitchLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
+          <folding>
+            <element signature="e#1755#1756#0" expanded="false" />
+            <element signature="e#1806#1807#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/im/bean/IMParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3059">
+          <caret line="133" column="86" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/BaseApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
           <folding />
         </state>
       </provider>

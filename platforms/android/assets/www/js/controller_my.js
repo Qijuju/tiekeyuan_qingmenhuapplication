@@ -128,6 +128,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
     }
 
+    $scope.goFounction = function () {
+      $state.go("founction");
+    }
+
+
+
     //文件群发
     $scope.goMessFile=function () {
       $greendao.deleteAllData('SelectIdService',function (data) {
