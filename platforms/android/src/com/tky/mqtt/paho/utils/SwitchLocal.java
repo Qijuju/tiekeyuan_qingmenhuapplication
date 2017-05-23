@@ -19,14 +19,10 @@ import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
-import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import im.model.RST;
 import im.server.System.IMSystem;
 
 /**
@@ -66,7 +62,10 @@ public class SwitchLocal {
     public static String getATopic(MType type, String id) {
         return getLocal() + "/" + getType(type) + "/" + id;
     }
-
+    //固定的上下线发送Topic
+    public static String getOnOffTopic(){
+      return  getLocal()+"/"+"s/LoginEvent";
+    }
     public static String getType(MType type) {
         if (MType.U == type) {
             return "U";
@@ -183,7 +182,7 @@ public class SwitchLocal {
         public void run() {
           Looper.prepare();
           try {
-            SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+            /*SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                 handler.removeCallbacks(saveMQTTRunnable);
@@ -206,7 +205,7 @@ public class SwitchLocal {
                 handler.postDelayed(saveMQTTRunnable, 2000);
                 //ToastUtil.showSafeToast("重连失败！");
               }
-            });
+            });*/
           } catch (Exception e) {
             handler.postDelayed(saveMQTTRunnable, 2000);
             //ToastUtil.showSafeToast("重连失败！");
@@ -230,7 +229,7 @@ public class SwitchLocal {
           final Handler handler = new Handler();
           final SaveMQTTRunnable2 saveMQTTRunnable = new SaveMQTTRunnable2(reloginCheckStatus, handler);
           try {
-            SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+            /*SystemApi.reloginCheck(SwitchLocal.getUserID(), UIUtils.getDeviceId(), new AsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
               @Override
               public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
                 handler.removeCallbacks(saveMQTTRunnable);
@@ -258,7 +257,7 @@ public class SwitchLocal {
                   reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
                 }
               }
-            });
+            });*/
           } catch (Exception e) {
             handler.postDelayed(saveMQTTRunnable, 2000);
             if (reloginCheckStatus != null) {

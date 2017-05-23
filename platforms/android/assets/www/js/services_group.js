@@ -50,21 +50,39 @@ angular.module('group.services', [])
     getGroupDetail:function () {
       return groupDetails;
     },
+  }
+
+})
+
+.factory('$notify',function ($api,$rootScope,$timeout,$ToastUtils) {
+
+  var defaultCount=1;
+  var allNotify;
+  var defaultNumber=5;
+
+
+  return{
+
+    allNotify:function () {
+      $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
+        allNotify=msg;
+        $rootScope.$broadcast('allnotify.update');
+        defaultCount++;
+      }, function (err) {
+        $ToastUtils.showToast(err)
+      });
+    },
+
+
+    clearDefaultCount:function () {
+      defaultCount=1;
+    },
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    getAllNotify:function () {
+      return allNotify;
+    },
 
 
   }

@@ -136,4 +136,20 @@ exports.readMessage = function(sessionType, sessionID, sendWhen, success, error)
 exports.getWelcomePic = function(picUserID, picSize, success, error) {
   exec(success, error, "ThriftApiClient", "getWelcomePic", [picUserID, picSize]);
 };
+
+exports.getNotifyMsg = function(date, isAttention, formId,pageNum,pageCount,success, error) {//获取通知消息
+  exec(success, error, "ThriftApiClient", "getNotifyMsg", [date, isAttention, formId,pageNum,pageCount]);
+};
+
+exports.setNotifyMsg = function(msgId, setReaded, setToped,setAttention,success, error) {//设置已读未读消息
+  exec(success, error, "ThriftApiClient", "setNotifyMsg", [msgId, setReaded, setToped,setAttention]);
+};
+
+exports.getMsgReadList = function(msgId, isReaded,success, error) {//获取确认 未确认列表
+  exec(success, error, "ThriftApiClient", "getMsgReadList", [msgId, isReaded]);
+};
+
+
+
+
 });

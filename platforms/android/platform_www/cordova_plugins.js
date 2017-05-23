@@ -352,6 +352,13 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
+    },
+    {
+        "file": "plugins/com.verso.cordova.clipboard/www/clipboard.js",
+        "id": "com.verso.cordova.clipboard.Clipboard",
+        "clobbers": [
+            "cordova.plugins.clipboard"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -384,7 +391,8 @@ module.exports.metadata =
     "ScalePhoto": "1.0.0",
     "GridPhoto": "1.0.0",
     "cordova-plugin-inappbrowser": "1.5.0",
-    "cordova-plugin-splashscreen": "4.0.1"
+    "cordova-plugin-splashscreen": "4.0.1",
+    "com.verso.cordova.clipboard": "0.1.0"
 };
 // BOTTOM OF METADATA
 });

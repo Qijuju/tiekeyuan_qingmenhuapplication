@@ -10,25 +10,12 @@ import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MqttService;
 import com.tky.mqtt.paho.MqttStatus;
 import com.tky.mqtt.paho.ReceiverParams;
-import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.ToastUtil;
-import com.tky.mqtt.paho.UIUtils;
-import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.SwitchLocal;
-import com.tky.mqtt.plugin.thrift.api.SystemApi;
 
-import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.List;
-
-import im.server.System.IMSystem;
 
 /**
  *屏幕段屏后  mqtt链接失败后  重启

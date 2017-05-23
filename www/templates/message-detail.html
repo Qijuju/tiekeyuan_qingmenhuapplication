@@ -84,9 +84,9 @@
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="(msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==5||msgSingle.sessionid.substring((msgSingle.sessionid.length-1),msgSingle.sessionid.length)==0)&&(!otheryoumeiyou)")><button class="circle5" style="border: none;font-size: 12px;">{{msgSingle.username.length > 2 ?
           msgSingle.username.substring((msgSingle.username.length-2),msgSingle.username.length):msgSingle.username}}</button></div>
-        <!--接收###文本内容-->
+        <!--接收###文本内容-->·
         <div class="col" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
-          <div class="rj-message-new-left" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
+          <div class="rj-message-new-left" on-hold="longtab({{msgSingle}})" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'Image' || (msgSingle.messagetype === 'File' && getFileType(msgSingle.message))">
@@ -169,7 +169,7 @@
       <div ng-if="(msgSingle.from === 'true') &&(msgSingle.senderid === myUserID)" class="row" style="float: right;">
         <!--发送###文本内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text'">
-          <div class="rj-message-new-right" style="max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
+          <div class="rj-message-new-right" style="max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;" on-hold="longtab({{msgSingle}})"><p style="text-align: left;padding: 0 auto;">{{msgSingle.message}}</p></div>
           <!--容错处理-->
           <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
             <div class="col col-center item" ng-if="msgSingle.isFailure ==='true'" style="background: none !important; border: none;float: right;">

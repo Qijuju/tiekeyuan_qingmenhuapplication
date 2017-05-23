@@ -14,7 +14,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (msg) {
-        $scope.UserID = msg.userID
+        $scope.UserID = msg.userID;
+        $scope.DeptID=msg.deptID;
         $scope.mymypersonname = msg.userName
         if ($scope.mymypersonname.length > 2) {
           $scope.jiename = $scope.mymypersonname.substring(($scope.mymypersonname.length - 2), $scope.mymypersonname.length);
@@ -126,6 +127,43 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         // "youmeiyou":$scope.youmeiyou,
       });
     }
+
+    $scope.goFounction = function () {
+      $state.go("founction");
+    }
+
+
+
+    //文件群发
+    $scope.goMessFile=function () {
+      $greendao.deleteAllData('SelectIdService',function (data) {
+        // alert('数据被清空了')
+      },function (err) {
+
+      });
+      var selectInfo={};
+      //当创建群聊的时候先把登录的id和信息  存到数据库上面
+      selectInfo.id=$scope.UserID;
+      selectInfo.name=$scope.mymypersonname;
+      selectInfo.grade="0";
+      selectInfo.isselected=true;
+      selectInfo.type='user';
+      selectInfo.parentid=$scope.DeptID;
+      $greendao.saveObj('SelectIdService',selectInfo,function (msg) {
+
+      },function (err) {
+
+      })
+
+      $state.go('addnewpersonfirst',{
+        "createtype":'single',
+        "groupid":'0',
+        "groupname":'',
+        "functiontag":'file'
+      });
+    }
+
+
     $scope.goaboutus = function () {
       $state.go("aboutours", {
         "UserIDabout": $scope.UserID

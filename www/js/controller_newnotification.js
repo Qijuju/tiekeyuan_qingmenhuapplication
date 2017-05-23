@@ -4,33 +4,22 @@
 angular.module('newnotification.controllers', [])
 
 
-  .controller('newnotificationCtrl', function ($scope, $state, $ionicSlideBoxDelegate, $greendao, $ionicLoading, $timeout, $rootScope) {
+  .controller('newnotificationCtrl', function ($scope, $state,  $ionicLoading,$api, $timeout, $rootScope,$notify,$mqtt,$ionicScrollDelegate,$ionicSlideBoxDelegate) {
+
+
+    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
-        //alert("哈哈哈哈哈啊哈哈哈哈");
-        //   alert("关网时走不走"+$rootScope.netStatus);
         $rootScope.isConnect=$rootScope.netStatus;
-        // alert("切换网络时"+$scope.isConnect);
       })
-    });
-
-
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
     });
 
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
-        // alert("进来单聊界面吗？");
         $greendao.queryByConditions('ChatListService',function (data) {
           $chatarr.setData(data);
           $scope.items=data;
-          // alert("数组的长度"+data.length);
         },function (err) {
 
         });
@@ -40,67 +29,85 @@ angular.module('newnotification.controllers', [])
       })
     });
 
+    $scope.notifyNewList=[];
+
+    /*$ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 100,
+      showDelay: 0
+    });
+*/
+    $scope.gonet=function (net) {
+
+      $state.go('netconfirm',{
+        url:net,
+      })
+
+    };
+
+    $scope.$on('allnotify.update', function (event) {
+      $scope.$apply(function () {
+
+       $scope.notifyjson= $notify.getAllNotify();
+       var notifyList= $notify.getAllNotify().msgList;
+
+       $scope.lastCount= $notify.getAllNotify().msgList.length;
 
 
+        if ($scope.lastCount==5){
+          $scope.notifyStatus=true;
 
-    $scope.initstate = false;
-    $scope.openagain = function () {
-
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
-      $timeout(function () {
-        if (!$scope.initstate) {
-          $scope.initstate = true
-        } else {
-          $scope.initstate = false;
+        }else if($scope.lastCount<5) {
+          $scope.notifyStatus=false;
 
         }
-        $ionicLoading.hide();
 
-      }, 400)
+        for (var i = 0; i <notifyList.length; i++) {
 
-
-    }
-
-    $scope.initweekstate = false;
-    $scope.openweeknotify = function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
-      $timeout(function () {
-        if (!$scope.initweekstate) {
-          $scope.initweekstate = true
-        } else {
-          $scope.initweekstate = false;
+          $scope.notifyNewList.push(notifyList[i]);
         }
-        $ionicLoading.hide();
 
-      }, 400)
+        $scope.$broadcast('scroll.infiniteScrollComplete');
 
 
+      })
+    });
+
+
+
+    $scope.loadMoreNotify=function () {
+      if($notify.getAllNotify().msgLeave==0){
+        $scope.notifyStatus=false;
+        return;
+      }else {
+        $notify.allNotify();
+      }
     }
+
+
+
+
+
+
+
 
 
     //初始状态
+/*
     $scope.startA = false;
-    // $scope.titleAll=['通知','应用','关注'];
+*/
+/*
     $scope.titleAll = ['通知', '应用'];
+*/
     $scope.newdex = 0;
     //滑块的状态
     $scope.appstatus = false;
 
 
     //当滑动时候改变title的值
-    $scope.go_changed = function (index) {
+   /* $scope.go_changed = function (index) {
       if (index == 0 || index == 1) {
         $scope.newdex = 0
         if (index == 0) {
@@ -110,77 +117,17 @@ angular.module('newnotification.controllers', [])
           $scope.appstatus = true;
 
         }
-      } else if (index == 2 || index == 3) {
-        $scope.newdex = 1
-        if (index == 2) {
-          $scope.appstatus = false;
-
-        } else if (index == 3) {
-          $scope.appstatus = true;
-
-        }
-      } else if (index == 4 || index == 5) {
-        //之前4，后改成0（Liuxw)
-        // $scope.newdex=4
-        $scope.newdex = 0
-        if (index == 4) {
-          $scope.appstatus = true;//之前false改成ture
-
-        } else if (index == 5) {
-          $scope.appstatus = true;
-
-        }
       }
-    }
+    }*/
 
 
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
       $ionicSlideBoxDelegate.enableSlide(false);
-      $timeout(function () {
-        $greendao.queryByConditions("SystemMsgService", function (msg) {
-          if (msg.length == 0) {
-            $ionicLoading.hide();
-          }
-          //$ionicLoading.hide();
-          $scope.allin = msg;
-        }, function (err) {
-          $ionicLoading.hide();
-        });
-        $greendao.queryByToday(function (msg) {
-          $scope.todayTime = msg;
-          $greendao.queryByWeek(function (msg) {
-            $scope.weektimeday = msg;
-            $greendao.queryByYesterday(function (msg) {
-              $scope.otherDay = msg;
-              $ionicLoading.hide();
-            }, function (err) {
-              $ionicLoading.hide();
-            })
-          }, function (err) {
-            $ionicLoading.hide();
-          });
-        }, function (err) {
-          $ionicLoading.hide();
-        });
-        $greendao.queryNotifyCount("1", function (msg) {
-          $scope.gongwen = msg.length;
-        }, function (err) {
-        })
-        $greendao.queryNotifyCount("15", function (msg) {
-          $scope.banhezhan = msg.length;
-        }, function (err) {
-        })
-        $greendao.queryNotifyCount("16", function (msg) {
-          $scope.shiyanshi = msg.length;
-        }, function (err) {
-        })
-        $greendao.queryNotifyCount("18", function (msg) {
-          $scope.weiyan = msg.length;
-        }, function (err) {
-        })
-      });
-      $rootScope.$broadcast('second.notify');
+      $notify.clearDefaultCount();
+      $notify.allNotify();
+
+
     });
 
 
@@ -194,25 +141,19 @@ angular.module('newnotification.controllers', [])
       }
       if (index == 0 && $scope.appstatus == true) {
         //已确认模块改成关注模块(Liuxw
-        // $scope.goConfirmAll(1)
-        $scope.goFocus(4);
-      } else if (index == 0 && $scope.appstatus == false) {
-        $scope.goAll(0)
+        $scope.go(1)
+        viewScroll.scrollTop();
 
-      } else if (index == 1 && $scope.appstatus == true) {
-        $scope.goConfirmApp(3)
-      } else if (index == 1 && $scope.appstatus == false) {
-        $scope.goApp(2)
-      } else if (index == 2 && $scope.appstatus == true) {
-        $scope.goConfirmFocus(5)
-      } else if (index == 2 && $scope.appstatus == false) {
-        $scope.goFocus(4)
+
+      } else if (index == 0 && $scope.appstatus == false) {
+        $scope.go(0)
+
       }
 
     }
 
 
-    //打开下拉列表
+    /*//打开下拉列表
     $scope.openNext = function () {
       if (!$scope.startA) {
         $scope.startA = true
@@ -220,13 +161,13 @@ angular.module('newnotification.controllers', [])
         $scope.startA = false
       }
     };
-
-    //点击界面的任何地方，或者活动时候就把他们隐藏
+*/
+    /*//点击界面的任何地方，或者活动时候就把他们隐藏
     $scope.clickAny = function () {
       $scope.startA = false
-    };
+    };*/
 
-    //跳转到默认的全部  index 是0；
+   /* //跳转到默认的全部  index 是0；
     $scope.goAll = function (index) {
 
       $scope.appstatus = false;
@@ -237,8 +178,14 @@ angular.module('newnotification.controllers', [])
 
 
     };
+*/
+    $scope.go=function (index) {
 
-    //全部已经确认  index 是 1
+      $ionicSlideBoxDelegate.slide(index);
+
+    }
+
+   /* //全部已经确认  index 是 1
     $scope.goConfirmAll = function (index) {
 
       //$scope.appstatus=true;
@@ -295,40 +242,15 @@ angular.module('newnotification.controllers', [])
       $ionicSlideBoxDelegate.slide(index);
 
 
-    };
+    };*/
 
-    $scope.$on('newnotify.update', function (event) {
-      /*$scope.$apply(function () {
+    $scope.$on('newnotify.update', function (event,msg) {
 
-      })*/
-      $greendao.queryByToday(function (msg) {
-        $scope.todayTime = msg;
-        $greendao.queryByWeek(function (msg) {
-          $scope.weektimeday = msg;
-          $greendao.queryByYesterday(function (msg) {
-            $scope.otherDay = msg;
 
-            $rootScope.$broadcast('second.notify');
-
-          }, function (err) {
-
-          })
-
-        }, function (err) {
-        });
-
-      }, function (err) {
-
-      });
-      //数据库中查找全部的消息
-      $greendao.queryByConditions("SystemMsgService", function (msg) {
-
-        $scope.allin = msg;
-
-      }, function (err) {
-
-      });
-
+      $scope.notifyNewList.unshift(msg)
+      $timeout(function () {
+        viewScroll.scrollTop();
+      }, 100);
 
       //应用列表的展示
       $greendao.queryNotifyCount("1", function (msg) {
@@ -361,83 +283,15 @@ angular.module('newnotification.controllers', [])
 
 
     //从全部跳入详情
-    $scope.goNotifyDetail = function (id) {
-
-
-      $state.go('notifyDetail', {
-        "id": id,
-      });
+    $scope.goNotifyDetail = function (obj) {
+      $state.go('notifyDetail',{
+        obj:{
+          "bean":obj
+        }
+      })
     };
 
-    //删除一条通知
-    $scope.deleteNotify = function (id) {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
 
-
-
-      $timeout(function () {
-        $greendao.deleteDataByArg("SystemMsgService", id, function (msg) {
-          $greendao.queryByConditions("SystemMsgService", function (msg) {
-            $scope.allin = msg;
-            $greendao.queryByToday(function (msg) {
-              $ionicLoading.hide();
-              $scope.todayTime = msg;
-              $greendao.queryByWeek(function (msg) {
-                $scope.weektimeday = msg;
-                $greendao.queryByYesterday(function (msg) {
-                  $scope.otherDay = msg;
-
-                }, function (err) {
-                })
-              }, function (err) {
-
-              });
-
-            }, function (err) {
-
-            });
-
-          }, function (err) {
-
-          });
-
-          $greendao.queryNotifyCount("1", function (msg) {
-            $scope.gongwen = msg.length;
-
-          }, function (err) {
-
-          })
-          $greendao.queryNotifyCount("15", function (msg) {
-            $scope.banhezhan = msg.length;
-
-          }, function (err) {
-
-          })
-          $greendao.queryNotifyCount("16", function (msg) {
-            $scope.shiyanshi = msg.length;
-
-          }, function (err) {
-
-          })
-          $greendao.queryNotifyCount("18", function (msg) {
-            $scope.weiyan = msg.length;
-
-          }, function (err) {
-
-          })
-          $rootScope.$broadcast('second.notify');
-
-        }, function (err) {
-
-        })
-      });
-    }
 
     //公有方法：点击确认以后更改数据库/数组的item
     $scope.updateitemdata = function (id, array) {
@@ -537,78 +391,116 @@ angular.module('newnotification.controllers', [])
 
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $ionicLoading, $ToastUtils) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $ionicLoading, $ToastUtils,$state,$ionicScrollDelegate) {
 
-    $scope.id = $stateParams.id;
-
-
-    $greendao.loadDataByArg("SystemMsgService", $scope.id, function (msg) {
-
-      $scope.allDetail = msg;
-
-      if (msg.istop == 0) {
-        $scope.isTopStatus = false;
-
-      } else {
-        $scope.isTopStatus = true;
-      }
-      if (msg.isfocus == "false") {
-        $scope.isFoucStatus = false;
-      } else {
-        $scope.isFoucStatus = true;
-
-      }
-
-      if (msg.msglevel == "Level_3") {
-        $scope.levelName = "超级紧急";
-      } else if (msg.msglevel == "Level_2") {
-        $scope.levelName = "非常紧急";
-      } else if (msg.msglevel == "Level_1") {
-        $scope.levelName = "一般紧急";
-      } else {
-        $scope.levelName = "一般";
-      }
+    $scope.notifyObj =$stateParams.obj.bean;
+    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
 
-    }, function (err) {
+    if ($scope.notifyObj.Level ==0 ) {
+      $scope.levelName = "一般";
+    } else if ($scope.notifyObj.Level ==1 ) {
+      $scope.levelName = "一般紧急";
+    } else if ($scope.notifyObj.Level ==2 ) {
+      $scope.levelName = "非常紧急";
+    } else {
+      $scope.levelName = "超级紧急";
+    }
 
-    });
+
+
+
+
 
     //通知置顶
-    $scope.notifyTop = function () {
-      if (!$scope.isTopStatus) {
-        $scope.isTopStatus = true;
-        $scope.allDetail.istop = 100;
-      } else {
-        $scope.isTopStatus = false;
-        $scope.allDetail.istop = 0;
-      }
-      $greendao.saveObj('SystemMsgService', $scope.allDetail, function (succ) {
-        $rootScope.$broadcast('newnotify.update');
-      }, function (err) {
-      });
+    $scope.notifyTop = function (id,istop) {
+
+
+
+      $api.setNotifyMsg(id,false,istop,"",function (suc) {
+
+        if(istop=="T"){
+          $scope.notifyObj.IsToped=true;
+
+
+        }else if (istop=="F")
+        {
+          $scope.notifyObj.IsToped=false;
+
+        }
+
+        $timeout(function () {
+          viewScroll.scrollTop();
+        }, 100);
+
+      },function (err) {
+       $ToastUtils.showToast("置顶更改失败")
+        if(istop=="T"){
+          $scope.notifyObj.IsToped=false;
+
+
+        }else if (istop=="F")
+        {
+          $scope.notifyObj.IsToped=true;
+
+        }
+
+        $timeout(function () {
+          viewScroll.scrollTop();
+        }, 100);
+
+      })
+
     }
 
     //添加关注
-    $scope.notifyFocus = function () {
-      if (!$scope.isFoucStatus) {
-        $scope.isFoucStatus = true;
-        $scope.allDetail.isfocus = "true";
+    $scope.notifyFocus = function (id,isattention) {
 
-      } else {
-        $scope.isFoucStatus = false;
-        $scope.allDetail.isfocus = "false";
-      }
-      $greendao.saveObj('SystemMsgService', $scope.allDetail, function (succ) {
-        $rootScope.$broadcast('newnotify.update');
-      }, function (err) {
-      });
+      $api.setNotifyMsg(id,false,"",isattention,function (suc) {
+        if(isattention=="T"){
+          $scope.notifyObj.IsAttention=true;
+
+
+        }else if (isattention=="F")
+        {
+          $scope.notifyObj.IsAttention=false;
+
+        }
+
+
+
+        $timeout(function () {
+          viewScroll.scrollTop();
+
+        }, 100);
+
+      },function (err) {
+        $ToastUtils.showToast("关注更改失败")
+        if(isattention=="T"){
+          $scope.notifyObj.IsAttention=false;
+
+
+        }else if (isattention=="F")
+        {
+          $scope.notifyObj.IsAttention=true;
+
+        }
+
+
+
+        $timeout(function () {
+          viewScroll.scrollTop();
+
+        }, 100);
+
+
+      })
 
     }
 
 
     //详情确认
-    $scope.confirmDetail = function () {
+    $scope.confirmDetail = function (id) {
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -619,107 +511,42 @@ angular.module('newnotification.controllers', [])
 
       //调用接口确认回复详情
       $timeout(function () {
-        $api.readMessage($scope.allDetail.type, $scope.allDetail.sessionid, $scope.allDetail.when, function (suc) {
-
-          $scope.lastDetail = suc;
-
-          var confirmD = {};
-          confirmD._id = $scope.allDetail._id;
-          confirmD.sessionid = $scope.allDetail.sessionid;
-          confirmD.type = $scope.allDetail.type;
-          confirmD.from = $scope.allDetail.from;
-          confirmD.message = $scope.allDetail.message;
-          confirmD.messagetype = $scope.allDetail.messagetype;
-          confirmD.platform = $scope.allDetail.platform;
-          confirmD.when = suc.sendWhen;
-          confirmD.isFailure = $scope.allDetail.isFailure;
-          confirmD.isDelete = $scope.allDetail.isDelete;
-          confirmD.imgSrc = $scope.allDetail.imgSrc;
-          confirmD.username = $scope.allDetail.username;
-          confirmD.senderid = $scope.allDetail.senderid;
-          confirmD.msglevel = $scope.allDetail.msglevel;
-          confirmD.isread = "true";
-          confirmD.isconfirm = "true";
-
-          if ($scope.isFoucStatus) {
-            confirmD.isfocus = "true";
-
-          } else {
-            confirmD.isfocus = "false";
-
-          }
-
-          if ($scope.isTopStatus) {
-            confirmD.istop = 100;
-          } else {
-            confirmD.istop = 0;
-          }
-          $greendao.saveObj("SystemMsgService", confirmD, function (suc) {
-
-            $ionicLoading.hide();
-            $scope.allDetail = confirmD;
-
-
-          }, function (err) {
-
-            $ionicLoading.hide();
-
-          })
-        }, function (err) {
-          $ToastUtils.showToast(err)
-
+        $api.setNotifyMsg(id,true,"","",function (suc) {
           $ionicLoading.hide();
+          $scope.notifyObj.IsReaded=true;
+
+          $timeout(function () {
+            viewScroll.scrollTop();
+
+          }, 100);
+
+        },function (err) {
+          $ionicLoading.hide();
+          $ToastUtils.showToast("确认失败")
 
         })
+
 
       })
 
 
+
+
     };
 
+    $scope.openconfirm=function (id) {
+      $state.go("confirmornot",{
+        id:id,
+      })
+    }
 
-    $scope.$on('$ionicView.beforeLeave', function () {
+    $scope.gonetdetail=function (net) {
+      $state.go('netconfirm',{
+        url:net,
+      })
+    }
 
-      $greendao.loadDataByArg("SystemMsgService", $scope.id, function (message) {
 
-        var newNotify = {};
-        newNotify._id = message._id;
-        newNotify.sessionid = message.sessionid;
-        newNotify.type = message.type;
-        newNotify.from = message.from;
-        newNotify.message = message.message;
-        newNotify.messagetype = message.messagetype;
-        newNotify.platform = message.platform;
-        newNotify.when = message.when;
-        newNotify.isFailure = message.isFailure;
-        newNotify.isDelete = message.isDelete;
-        newNotify.imgSrc = message.imgSrc;
-        newNotify.username = message.username;
-        newNotify.senderid = message.senderid;
-        newNotify.msglevel = message.msglevel;
-        newNotify.isread = "true";
-        newNotify.isconfirm = message.isconfirm;
-        if ($scope.isFoucStatus) {
-          newNotify.isfocus = "true";
-        } else {
-          newNotify.isfocus = "false";
-        }
-        if ($scope.isTopStatus) {
-          newNotify.istop = 100;
-        } else {
-          newNotify.istop = 0;
-        }
-        $greendao.saveObj("SystemMsgService", newNotify, function (suc) {
-
-        }, function (err) {
-
-        })
-
-      }, function (err) {
-
-      });
-
-    });
 
 
     $scope.backNotify = function () {
@@ -805,6 +632,124 @@ angular.module('newnotification.controllers', [])
 
 
   })
+
+  .controller('confirmornotCtrl', function ($scope, $stateParams,$api,$ToastUtils,$ionicScrollDelegate,$timeout,$ionicSlideBoxDelegate,$ionicHistory) {
+
+    $scope.msgid=$stateParams.id;
+
+    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
+
+    $scope.index=0;
+
+    $scope.$on('$ionicView.enter', function () {
+
+      $ionicSlideBoxDelegate.enableSlide(false);
+
+      $api.getMsgReadList($scope.msgid,false,function (suc) {
+        $scope.noNotifyUser=suc.userList;
+        $timeout(function () {
+          viewScroll.scrollTop();
+
+        }, 100);
+
+      },function (err) {
+        $ToastUtils.showToast("获取失败")
+
+      })
+
+
+
+    })
+
+
+
+    $scope.goConfirm=function (index) {
+      $ionicSlideBoxDelegate.slide(index);
+    }
+
+    $scope.go_confirm=function (index) {
+
+
+      if (index==0){
+        $scope.index =0;
+        document.getElementById("rightbt").style.borderBottomColor="#ffffff";
+        document.getElementById("leftbt").style.borderBottomColor="#6c9aff";
+        document.getElementById("leftbt").style.borderWidth="3px";
+        $scope.noNotify();
+
+
+      }
+
+      if(index==1){
+        $scope.index =1;
+        document.getElementById("leftbt").style.borderBottomColor="#ffffff";
+        document.getElementById("rightbt").style.borderBottomColor="#6c9aff";
+        document.getElementById("rightbt").style.borderWidth="3px";
+
+        $scope.alreadyNofiy();
+
+      }
+
+    }
+
+
+
+    $scope.alreadyNofiy=function () {
+      $api.getMsgReadList($scope.msgid,true,function (suc) {
+
+        $scope.alreadyUser=suc.userList;
+
+        $timeout(function () {
+          viewScroll.scrollTop();
+
+        }, 100);
+      },function (err) {
+
+        $ToastUtils.showToast("获取失败")
+      })
+
+    }
+
+    $scope.noNotify=function () {
+      $api.getMsgReadList($scope.msgid,false,function (suc) {
+
+        $scope.noNotifyUser=suc.userList;
+        $timeout(function () {
+          viewScroll.scrollTop();
+
+        }, 100);
+
+      },function (err) {
+        $ToastUtils.showToast("获取失败")
+
+      })
+    }
+
+
+    $scope.backAny=function () {
+      $ionicHistory.goBack();
+    }
+
+
+
+
+  })
+
+
+
+  .controller('netconfirmCtrl', function ($scope, $stateParams,$sce) {
+
+
+   //$scope.neturl=$stateParams.url;
+    //$scope.neturl="https://www.baidu.com";
+    $scope.neturl=$sce.trustAsResourceUrl($stateParams.url);
+
+    // alert( $scope.neturl)
+
+
+  })
+
+
 
 
 

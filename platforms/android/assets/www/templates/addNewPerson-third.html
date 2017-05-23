@@ -9,7 +9,7 @@
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%" >
       <div id="thirdscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}/{{functionTag}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style" ng-click="backSecond()" style="font-size: 15px">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo2}}</a>
       </div>
@@ -17,10 +17,14 @@
     <div>
       <ion-list>
         <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in departthirdlist" >
-          <div class="col-80" >
+          <div class="col-80" ng-if="functionTag=='groupchat'">
             <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_org.png" class="common-add-img" >
               <span class="common-add-span">{{item.DeptName}}</span>
             </ion-checkbox>
+          </div>
+          <div class="col-80" ng-if="functionTag=='file'">
+            <img src="img/icon_org.png" class="common-add-img" style="margin-left: 10px" >
+            <span class="common-add-span" style="left: 20%">{{item.DeptName}}</span>
           </div>
           <div class="col">
             <button id="changecolor" class="button button-clear common-add-button" ng-click="jumpGroupForth(item.DeptID,pppid,deptinfo2,item.isSelected)" ><span class="common-add-button-span">下级</span></button>
@@ -44,8 +48,11 @@
   </ion-content>
   <ion-footer-bar>
     <div style="position: absolute;right: 5px;width: 50px">
-      <button class="button button-balanced " ng-click="thirdConfirm()">
+      <button ng-if="functionTag=='groupchat'" class="button button-balanced " ng-click="thirdConfirm()">
         确定
+      </button>
+      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced " ng-click="gothirdMesstexting()">
+        提交
       </button>
     </div>
   </ion-footer-bar>

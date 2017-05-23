@@ -22,7 +22,7 @@ import im.server.File.RSTgetPic;
  * 日期：2016/8/5 14:27
  * 描述：
  */
-public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClient.GetHeadPic_call> {
+public class GetHeadPicCallback extends MyAsyncMethodCallback<IMFile.AsyncClient.GetHeadPic_call> {
     private CallbackContext callbackContext;
 
     public GetHeadPicCallback(CallbackContext callbackContext) {
@@ -72,6 +72,9 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
             } catch (IOException e) {
                 setResult("数据异常", PluginResult.Status.ERROR, callbackContext);
                 e.printStackTrace();
+            } catch (Exception e) {
+                setResult("未知异常", PluginResult.Status.ERROR, callbackContext);
+                e.printStackTrace();
             } finally {
                 if (fos != null) {
                     try {
@@ -84,10 +87,12 @@ public class GetHeadPicCallback implements AsyncMethodCallback<IMFile.AsyncClien
                 }
             }
         }
+        close();
     }
 
     @Override
     public void onError(Exception e) {
+        close();
         setResult("请求失败", PluginResult.Status.ERROR, callbackContext);
     }
 

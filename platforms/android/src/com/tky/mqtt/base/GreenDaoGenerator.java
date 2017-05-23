@@ -35,7 +35,7 @@ public class GreenDaoGenerator {
         addGesturePwd(schema);
         //addTestData(schema);
 
-        new DaoGenerator().generateAll(schema,  "D:/WebstormProjects/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "D:/AndroidStudio_tky_Application/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -198,10 +198,11 @@ public class GreenDaoGenerator {
   private static void addGroupIDS(Schema schema) {
     Entity groupIds=schema.addEntity("SelectedId");
     groupIds.addStringProperty("id").primaryKey();//选中人或者部门的id
+    groupIds.addStringProperty("name");//选中人的名称 lxw后加
     groupIds.addStringProperty("grade");//选中的的在哪个级别
     groupIds.addBooleanProperty("isselected");//是否被选中
     groupIds.addStringProperty("type");//选中的类型
-      groupIds.addStringProperty("parentid");
+    groupIds.addStringProperty("parentid");
   }
     //添加搜素消息记录的表
 

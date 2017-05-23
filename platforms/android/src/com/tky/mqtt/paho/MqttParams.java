@@ -1,6 +1,8 @@
 package com.tky.mqtt.paho;
 
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.protocol.factory.IMMsgFactory;
+import com.tky.protocol.model.IMPException;
 
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -8,7 +10,11 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class MqttParams {
 	private String serverURI = SwitchLocal.getLocalIp();
@@ -29,7 +35,7 @@ public class MqttParams {
 		options.setPassword(getPassword().toCharArray());
 		options.setConnectionTimeout(getConnectionTimeout());
 		options.setKeepAliveInterval(getKeepAliveInterval());
-    options.setWill(SwitchLocal.getATopic(MType.U,getUserID()),"close".getBytes(),2,true);
+    options.setWill(SwitchLocal.getOnOffTopic(),getOnOffState("UOF"),1,false);
 	}
 
 	/**
@@ -114,6 +120,28 @@ public class MqttParams {
 	public void setCleanSession(boolean cleanSession) {
 		this.cleanSession = cleanSession;
 	}
+
+  /**
+   * 获取上下线状态
+   * @param onoff
+   * @return
+     */
+  public byte[] getOnOffState(String onoff) {
+    byte[] data=null;
+    Map<String,Object> map=new HashMap<String, Object>();
+    map.put("MepID", JPushInterface.getRegistrationID(BaseApplication.getContext()));
+    map.put("UserID",getUserID());
+    try {
+      data=  IMMsgFactory.createEvent(onoff,map);
+    } catch (IMPException e) {
+      e.printStackTrace();
+    }
+    return data;
+  }
+
+
+
+
 
 	/**
 	 * 获取当前登录的用户ID

@@ -36,10 +36,10 @@ public class BaseApplication extends DefaultApplicationLike {
   private static BaseApplication mInstance;
   private static DaoMaster daoMaster;
   private static DaoSession daoSession;
-//  public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
-//    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
+  public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
+    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
   private boolean isInBackground;
-  public static final String DB_NAME = "KKK";//正式发布版本数据库路径
+//  public static final String DB_NAME = "KKK";//正式发布版本数据库路径
 
 
 
@@ -135,7 +135,8 @@ public class BaseApplication extends DefaultApplicationLike {
 
     OkHttpUtils.initClient(okHttpClient);*/
 
-
+//    JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+//    JPushInterface.init(context);     		// 初始化 JPush
 
   }
 

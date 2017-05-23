@@ -37,7 +37,6 @@ public class NetStatusReceiver extends BroadcastReceiver {
                 Intent netIntent = new Intent();
                 netIntent.setAction(ReceiverParams.NET_DISCONNECTED);
                 UIUtils.getContext().sendBroadcast(netIntent);
-              SystemApi.dealNetDown();
 //                MqttOper.cutMqttWithNoting();
             }
         }

@@ -2,7 +2,33 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location,$cordovaClipboard) {
+
+    /**
+     * 长按事件
+     */
+    $scope.longtab = function (msgSingle) {
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '复制'}
+        ],
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $cordovaClipboard
+              .copy(msgSingle.message)
+              .then(function () {
+                // success
+                $ToastUtils.showToast("复制成功", null, null);
+              }, function () {
+                $ToastUtils.showToast("复制失败", null, null);
+                // error
+              });
+          }
+          return true;
+        }
+      });
+    };
 
     $scope.$on('netstatus.update', function (event) {
       /*$scope.$apply(function () {
@@ -1135,7 +1161,7 @@ angular.module('message.controllers', [])
           }
           if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File' || msgSingle.messagetype === 'Vedio')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
@@ -1765,25 +1791,27 @@ angular.module('message.controllers', [])
           // $ToastUtils.showToast("原本的语音在播放");
         }
         $mqtt.startRecording(function (succ) {
-          $scope.type=succ.type;
-          // alert("type--->"+$scope.type);
-          if($scope.type === "timeChange"){
-            $scope.recordTime=succ.recordTime;
-          }else if($scope.type === "timeout"){
-            $scope.ctime=succ.time;
-            // alert("超过59秒======》"+$scope.ctime);
-            $timeout(function () {
-              $scope.isShow='false';
-              // $scope.isshowless='false';
-            }, 100);
-            $scope.recordTime = 0;
-            $scope.rate = 0;
-          }else if($scope.type === "rateChange"){
-            $scope.rate=succ.rate;
-            // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
-          }else if($scope.type === "error"){
-            $scope.error=succ.error;
-          }
+          $scope.$apply(function () {
+            $scope.type=succ.type;
+            // alert("type--->"+$scope.type);
+            if($scope.type === "timeChange"){
+              $scope.recordTime=succ.recordTime;
+            }else if($scope.type === "timeout"){
+              $scope.ctime=succ.time;
+              // alert("超过59秒======》"+$scope.ctime);
+              $timeout(function () {
+                $scope.isShow='false';
+                // $scope.isshowless='false';
+              }, 100);
+              $scope.recordTime = 0;
+              $scope.rate = 0;
+            }else if($scope.type === "rateChange"){
+              $scope.rate=succ.rate;
+              // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+            }else if($scope.type === "error"){
+              $scope.error=succ.error;
+            }
+          });
         },function (err) {
 
         });
@@ -1847,53 +1875,54 @@ angular.module('message.controllers', [])
           return;
 
         }
-
-        if (succ.duration  <1000){
-          $scope.isshowless='true';
-          $scope.recordTime = 0;
-          $scope.rate = 0;
-        }
-        $scope.isshowgPng="true";
-        $scope.rate=-1;
-        $scope.filepath=succ.filePath;
-        $scope.duration=succ.duration;
-        if($scope.duration <1000){
-          $scope.recordTime = 0;
-          $scope.rate = 0;
-          $scope.isshowless='true';
-          $timeout(function () {
-            viewScroll.scrollBottom();
+        $scope.$apply(function () {
+          if (succ.duration  <1000){
+            $scope.isshowless='true';
+            $scope.recordTime = 0;
+            $scope.rate = 0;
+          }
+          $scope.isshowgPng="true";
+          $scope.rate=-1;
+          $scope.filepath=succ.filePath;
+          $scope.duration=succ.duration;
+          if($scope.duration <1000){
+            $scope.recordTime = 0;
+            $scope.rate = 0;
+            $scope.isshowless='true';
+            $timeout(function () {
+              viewScroll.scrollBottom();
+              $scope.isShow='false';
+              $scope.isshowless='false';
+            }, 1000);
+          }else{
             $scope.isShow='false';
             $scope.isshowless='false';
-          }, 1000);
-        }else{
-          $scope.isShow='false';
-          $scope.isshowless='false';
-          // alert("秒："+$scope.duration);
-          // if($scope.duration > 1000 && $scope.duration < 10000){
-          //   $ToastUtils.showToast("10s====");
-          //   document.getElementById("schangelength").style.width ='60px';
-          // }else if($scope.duration > 10000 && $scope.duration < 30000){
-          //   $ToastUtils.showToast("30s====");
-          //   document.getElementById("schangelength").style.width ='120px';
-          // }else if($scope.duration > 30000 && $scope.duration < 60000){
-          //   $ToastUtils.showToast("60s====");
-          //   document.getElementById("schangelength").style.width ='180px';
-          // }
-          //发送语音
-          // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
-          $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
-            $greendao.getUUID(function (data) {
-              sqlid=data;
-              $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
-              keepKeyboardOpen();
-              $timeout(function () {
-                viewScroll.scrollBottom();
-              }, 1000);
+            // alert("秒："+$scope.duration);
+            // if($scope.duration > 1000 && $scope.duration < 10000){
+            //   $ToastUtils.showToast("10s====");
+            //   document.getElementById("schangelength").style.width ='60px';
+            // }else if($scope.duration > 10000 && $scope.duration < 30000){
+            //   $ToastUtils.showToast("30s====");
+            //   document.getElementById("schangelength").style.width ='120px';
+            // }else if($scope.duration > 30000 && $scope.duration < 60000){
+            //   $ToastUtils.showToast("60s====");
+            //   document.getElementById("schangelength").style.width ='180px';
+            // }
+            //发送语音
+            // function (topic, fileContent, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt, type)
+            $mqtt.getMqtt().getTopic($scope.userId,$scope.groupType,function (userTopic) {
+              $greendao.getUUID(function (data) {
+                sqlid=data;
+                $scope.suc=$mqtt.sendDocFileMsg(userTopic,$scope.filepath+'###' + $scope.duration,$scope.filepath+'###' + $scope.duration,$scope.userId,$scope.localusr,$scope.myUserID,sqlid,messagetype,$scope.filepath,$mqtt,$scope.groupType);
+                keepKeyboardOpen();
+                $timeout(function () {
+                  viewScroll.scrollBottom();
+                }, 1000);
+              });
+            },function (err) {
             });
-          },function (err) {
-          });
-        }
+          }
+        });
       },function (err) {
 
       });
@@ -2326,7 +2355,33 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard) {
+
+    /**
+     * 长按事件
+     */
+    $scope.longtabGroup = function (msgSingle) {
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '复制'}
+        ],
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $cordovaClipboard
+              .copy(msgSingle.message)
+              .then(function () {
+                // success
+                $ToastUtils.showToast("复制成功", null, null);
+              }, function () {
+                $ToastUtils.showToast("复制失败", null, null);
+                // error
+              });
+          }
+          return true;
+        }
+      });
+    };
 
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
@@ -3357,7 +3412,7 @@ angular.module('message.controllers', [])
           // alert('msgSingle.messagetype' + msgSingle);
           if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleGroupMsg(topic, content, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File' || msgSingle.messagetype === 'Vedio')) {
             for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getQunliao()[i]._id === sqlid){
@@ -4258,8 +4313,18 @@ angular.module('message.controllers', [])
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
 
+    $scope.isNetConnectNow = $mqtt.getIMStatus();
+
+    //监听MQTT状态的变化
+    $scope.$on('netStatusNow.update', function (event) {
+      $scope.$apply(function () {
+        $scope.isNetConnectNow = $mqtt.getIMStatus();
+      })
+    });
+
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
+
       $mqtt.save('zuinewID',  $scope.UserID);
       $scope.mymypersonname = msg.userName
       $mqtt.save('userNamea', $scope.mymypersonname);
@@ -4362,8 +4427,6 @@ angular.module('message.controllers', [])
       }
       e.preventDefault();
       return false;
-
-
     },501)
 
 
@@ -4419,6 +4482,7 @@ angular.module('message.controllers', [])
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
+      selectInfo.name=$scope.mymypersonname;
       selectInfo.grade="0";
       selectInfo.isselected=true;
       selectInfo.type='user';
@@ -4432,7 +4496,8 @@ angular.module('message.controllers', [])
       $state.go('addnewpersonfirst',{
         "createtype":'single',
         "groupid":'0',
-        "groupname":''
+        "groupname":'',
+        "functiontag":'groupchat'
       });
     }
     //紧急呼叫
@@ -4742,29 +4807,31 @@ angular.module('message.controllers', [])
       var id=value.split(',')[0];
       var sessionid=value.split(',')[1];
       $greendao.queryData('ChatListService','where id =?',id,function (data) {
-        var chatitem={};
-        chatitem.id=data[0].id;
-        chatitem.chatName=data[0].chatName;
-        chatitem.isDelete=data[0].isDelete;
-        chatitem.lastText=data[0].lastText;
-        chatitem.count=data[0].count;
-        chatitem.lastDate=data[0].lastDate;
-        chatitem.chatType=data[0].chatType;
-        chatitem.senderId=data[0].senderId;
-        chatitem.senderName=data[0].senderName;
-        chatitem.daytype=data[0].daytype;
-        chatitem.imgSrc=data[0].imgSrc;
-        chatitem.isSuccess='true';
-        chatitem.isFailure=data[0].isFailure;
-        chatitem.messagetype=data[0].messagetype;
-        chatitem.isRead=data[0].isRead;
-        $greendao.saveObj('ChatListService',chatitem,function (suc) {
-          $chatarr.updatedatanosort(chatitem);
-        },function (err) {
-        });
+        $scope.$apply(function () {
+            var chatitem={};
+            chatitem.id=data[0].id;
+            chatitem.chatName=data[0].chatName;
+            chatitem.isDelete=data[0].isDelete;
+            chatitem.lastText=data[0].lastText;
+            chatitem.count=data[0].count;
+            chatitem.lastDate=data[0].lastDate;
+            chatitem.chatType=data[0].chatType;
+            chatitem.senderId=data[0].senderId;
+            chatitem.senderName=data[0].senderName;
+            chatitem.daytype=data[0].daytype;
+            chatitem.imgSrc=data[0].imgSrc;
+            chatitem.isSuccess='true';
+            chatitem.isFailure=data[0].isFailure;
+            chatitem.messagetype=data[0].messagetype;
+            chatitem.isRead=data[0].isRead;
+            $greendao.saveObj('ChatListService',chatitem,function (suc) {
+              $chatarr.updatedatanosort(chatitem);
+            },function (err) {
+            });
 
-      },function (err) {
-      });
+          },function (err) {
+          });
+        });
     });
 
 
@@ -4872,8 +4939,10 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         //alert("进来主界面吗？");
         $greendao.queryByConditions('ChatListService',function (data) {
-          $chatarr.setData(data);
-          $scope.items=data;
+          $scope.$apply(function () {
+            $chatarr.setData(data);
+            $scope.items=data;
+          });
            // alert("数组的长度"+data.length);
         },function (err) {
 
@@ -5272,6 +5341,7 @@ angular.module('message.controllers', [])
       $scope.$apply(function () {
         //登录人员的id
         $scope.loginId=$contacts.getLoignInfo().userID;
+        $scope.loginName=$contacts.getLoignInfo().userName;
         //部门id
         $scope.depid=$contacts.getLoignInfo().deptID;
 
@@ -5287,7 +5357,7 @@ angular.module('message.controllers', [])
         $chatarr.setData(data);
         $greendao.queryByConditions('ChatListService',function (data) {
           $scope.items=data;
-          // alert("数组的长度"+data.length);
+          // alert("群发完成数组"+JSON.stringify(data));
         },function (err) {
 
         });

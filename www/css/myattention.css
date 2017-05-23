@@ -149,7 +149,8 @@
 
 .circle7{
   /*background: none repeat scroll 0 0 #eb67bb;*/
-  background-image:url(../img/circle6.png);
+  //background-image:url(../img/circle6.png);
+  background-color: #56ABE4;
   border-radius: 50%;
   color: #FFFFFF;
   width: 34px;
@@ -164,7 +165,8 @@
 
 .circle8{
   /*background: none repeat scroll 0 0 #eb67bb;*/
-  background-image:url(../img/circle1.png);
+  //background-image:url(../img/circle1.png);
+  background-color: #00BB9C;
   border-radius: 50%;
   color: #FFFFFF;
   width: 34px;

@@ -7,50 +7,58 @@ import com.tky.protocol.model.ProtocolUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class IMMsgFactory {
 	public enum MsgType{
-		User,		//用户 U
-		Group,		//群组 G
-		System,		//系统推送 S
-		Radio,		//广播消息 R
-		Receipt,	//回执消息 C
-		Dept,		//部门消息 D
-		Alarm,		//警报消息 A
-		Platform	//各平台消息 P
+		User,		//�û� U
+		Group,		//Ⱥ�� G
+		System,		//ϵͳ���� S
+		Radio,		//�㲥��Ϣ R
+		Receipt,	//��ִ��Ϣ C
+		Dept,		//������Ϣ D
+		Alarm,		//������Ϣ A
+		Platform	//��ƽ̨��Ϣ P
 	};
 	public enum MediaType{
-		Text,		//文本 T
-		Image,		//图片 I
-		File,		//文件 F
-		Shake,		//抖动 S
-		Emote,		//表情 E
-		Audio,		//声音 A
-		Vedio,		//声音 V
-		Position	//定位 P
+		Text,		//�ı� T
+		Image,		//ͼƬ I
+		File,		//�ļ� F
+		Shake,		//���� S
+		Emote,		//���� E
+		Audio,		//���� A
+		Vedio,		//���� V
+		Position	//��λ P
 	};
 	public enum PlatType{
 		Window,		//PC  W
-		Android		//移动 A
+		Android,	//�ƶ� A
+		Ios			//�ƶ� I
 	};
 	public enum Receipt{
-		True,		//需要回执
-		False		//不需要回执
+		True,		//��Ҫ��ִ
+		False		//����Ҫ��ִ
 	};
 	public enum MsgLevel{
-		Common,		//普通 0
-		Level_1,	//紧急 1
-		Level_2,	//紧急 1
-		Level_3,	//紧急 1
+		Common,		//��ͨ 0
+		Level_1,	//���� 1
+		Level_2,	//���� 1
+		Level_3,	//���� 1
+	};
+	public enum LinkType{
+		NoLink,		//��Link
+		Url,		//��ͨ����
+		File		//��������
 	};
 
-	//需要添加发送人名
+	//��Ҫ��ӷ�������
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
-								   Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException {
+			Receipt rp, long when, String to, String from, String msg, String fromName) throws IMPException {
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
-		msgMap.put(IMPFields.Msg_type, getMsgType(msType));//聊天类型
-		msgMap.put(IMPFields.Msg_mediaType, getMediaType(mdType));//消息类型
-		msgMap.put(IMPFields.Msg_platform, getPlatformType(pfType));//平台类型
+		msgMap.put(IMPFields.Msg_type, getMsgType(msType));
+		msgMap.put(IMPFields.Msg_mediaType, getMediaType(mdType));
+		msgMap.put(IMPFields.Msg_platform, getPlatformType(pfType));
 		msgMap.put(IMPFields.Msg_receipt, getReceipt(rp));
 		msgMap.put(IMPFields.Msg_when, System.currentTimeMillis());
 		msgMap.put(IMPFields.Msg_to, to);
@@ -62,7 +70,7 @@ public class IMMsgFactory {
 	}
 
 	public static byte[] createMsg(MsgType msType, MediaType mdType, PlatType pfType,
-								   Receipt rp, long when, String to, String from, String msg) throws IMPException{
+			Receipt rp, long when, String to, String from, String msg) throws IMPException{
 
 		Map<String,Object> msgMap = new HashMap<String,Object>();
 		msgMap.put(IMPFields.NotifyType,IMPFields.N_Type_Msg);
@@ -94,11 +102,27 @@ public class IMMsgFactory {
 		msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
 		if(msgMap.containsKey(IMPFields.Msg_msgLevel))
 			msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
+		if(msgMap.containsKey(IMPFields.Msg_title))
+			msgMap.put(IMPFields.Msg_title, msgMap.get(IMPFields.Msg_title));
+		if(msgMap.containsKey(IMPFields.Msg_linkType))
+			msgMap.put(IMPFields.Msg_linkType, getLinkType(msgMap.get(IMPFields.Msg_linkType).toString()));
+		if(msgMap.containsKey(IMPFields.Msg_link))
+			msgMap.put(IMPFields.Msg_msgLevel, msgMap.get(IMPFields.Msg_msgLevel));
+		if(msgMap.containsKey(IMPFields.Msg_levelName))
+			msgMap.put(IMPFields.Msg_levelName, msgMap.get(IMPFields.Msg_levelName));
 		return msgMap;
 	}
 
 	public static Map<String, Object> createEvent(byte[] msgData) throws IMPException{
 		return ProtocolUtil.unPackage(msgData);
+	}
+
+	public static byte[] createEvent(String eventID, Map<String, Object> eventMap) throws IMPException{
+		eventMap.put("NotifyType", IMPFields.N_Type_Event);
+		eventMap.put("when", System.currentTimeMillis());
+		eventMap.put("EventCode", eventID);
+		eventMap.put("Event","");
+		return ProtocolUtil.doPackage(eventMap);
 	}
 
 	public static Map<String, Object> createNotify(byte[] msgData) throws IMPException{
@@ -118,36 +142,45 @@ public class IMMsgFactory {
 			msgMap.put(IMPFields.Msg_fromName, msgMap.get(IMPFields.Msg_fromName));
 			if(msgMap.containsKey(IMPFields.Msg_msgLevel))
 				msgMap.put(IMPFields.Msg_msgLevel, getMsgLevel(msgMap.get(IMPFields.Msg_msgLevel).toString()));
+			if(msgMap.containsKey(IMPFields.Msg_title))
+				msgMap.put(IMPFields.Msg_title, msgMap.get(IMPFields.Msg_title));
+			if(msgMap.containsKey(IMPFields.Msg_linkType))
+				msgMap.put(IMPFields.Msg_linkType, getLinkType(msgMap.get(IMPFields.Msg_linkType).toString()));
+			if(msgMap.containsKey(IMPFields.Msg_link))
+				msgMap.put(IMPFields.Msg_msgLevel, msgMap.get(IMPFields.Msg_msgLevel));
+			if(msgMap.containsKey(IMPFields.Msg_levelName))
+				msgMap.put(IMPFields.Msg_levelName, msgMap.get(IMPFields.Msg_levelName));
 		}
 		return msgMap;
 	}
+
 	private static String getMsgType(MsgType msgType){
 		String msgTypeStr = "";
 		switch(msgType){
-			case User://单聊
-				msgTypeStr = IMPFields.M_Type_User;
-				break;
-			case Dept://部门聊天
-				msgTypeStr = IMPFields.M_Type_Dept;
-				break;
-			case Group://群组聊天
-				msgTypeStr = IMPFields.M_Type_Group;
-				break;
-			case System:
-				msgTypeStr = IMPFields.M_Type_Sys;
-				break;
-			case Radio:
-				msgTypeStr = IMPFields.M_Type_Radio;
-				break;
-			case Receipt:
-				msgTypeStr = IMPFields.M_Type_Recipt;
-				break;
-			case Alarm:
-				msgTypeStr = IMPFields.M_Type_Alarm;
-				break;
-			case Platform://通知
-				msgTypeStr = IMPFields.M_Type_Platform;
-				break;
+		case User:
+			msgTypeStr = IMPFields.M_Type_User;
+			break;
+		case Dept:
+			msgTypeStr = IMPFields.M_Type_Dept;
+			break;
+		case Group:
+			msgTypeStr = IMPFields.M_Type_Group;
+			break;
+		case System:
+			msgTypeStr = IMPFields.M_Type_Sys;
+			break;
+		case Radio:
+			msgTypeStr = IMPFields.M_Type_Radio;
+			break;
+		case Receipt:
+			msgTypeStr = IMPFields.M_Type_Recipt;
+			break;
+		case Alarm:
+			msgTypeStr = IMPFields.M_Type_Alarm;
+			break;
+		case Platform:
+			msgTypeStr = IMPFields.M_Type_Platform;
+			break;
 		}
 		return msgTypeStr;
 	}
@@ -155,30 +188,30 @@ public class IMMsgFactory {
 	private static String getMediaType(MediaType mdType){
 		String mediaType = "";
 		switch(mdType){
-			case Text:
-				mediaType = IMPFields.M_MsgType_Text;
-				break;
-			case Image:
-				mediaType = IMPFields.M_MsgType_Image;
-				break;
-			case Shake://震动
-				mediaType = IMPFields.M_MsgType_Shake;
-				break;
-			case Emote://表情
-				mediaType = IMPFields.M_MsgType_Emote;
-				break;
-			case File:
-				mediaType = IMPFields.M_MsgType_File;
-				break;
-			case Audio:
-				mediaType = IMPFields.M_MsgType_Audio;
-				break;
-			case Vedio://视频
-				mediaType = IMPFields.M_MsgType_Vedio;
-				break;
-			case Position://定位
-				mediaType = IMPFields.M_MsgType_Position;
-				break;
+		case Text:
+			mediaType = IMPFields.M_MsgType_Text;
+			break;
+		case Image:
+			mediaType = IMPFields.M_MsgType_Image;
+			break;
+		case Shake:
+			mediaType = IMPFields.M_MsgType_Shake;
+			break;
+		case Emote:
+			mediaType = IMPFields.M_MsgType_Emote;
+			break;
+		case File:
+			mediaType = IMPFields.M_MsgType_File;
+			break;
+		case Audio:
+			mediaType = IMPFields.M_MsgType_Audio;
+			break;
+		case Vedio:
+			mediaType = IMPFields.M_MsgType_Vedio;
+			break;
+		case Position:
+			mediaType = IMPFields.M_MsgType_Position;
+			break;
 		}
 		return mediaType;
 	}
@@ -186,12 +219,12 @@ public class IMMsgFactory {
 	private static String getPlatformType(PlatType pfType){
 		String platType = "";
 		switch(pfType){
-			case Android:
-				platType = IMPFields.M_Platform_And;
-				break;
-			case Window:
-				platType = IMPFields.M_Platform_Win;
-				break;
+		case Android:
+			platType = IMPFields.M_Platform_And;
+			break;
+		case Window:
+			platType = IMPFields.M_Platform_Win;
+			break;
 		}
 		return platType;
 	}
@@ -199,12 +232,12 @@ public class IMMsgFactory {
 	private static String getReceipt(Receipt rp){
 		String receipt = "";
 		switch(rp){
-			case False:
-				receipt = IMPFields.M_Recipt_False;
-				break;
-			case True:
-				receipt = IMPFields.M_Recipt_True;
-				break;
+		case False:
+			receipt = IMPFields.M_Recipt_False;
+			break;
+		case True:
+			receipt = IMPFields.M_Recipt_True;
+			break;
 		}
 		return receipt;
 	}
@@ -285,5 +318,16 @@ public class IMMsgFactory {
 			level = MsgLevel.Level_3;
 		}
 		return level;
+	}
+	private static LinkType getLinkType(String lt){
+		LinkType type = null;
+		if(lt.equals(IMPFields.M_LinkType_Null)){
+			type = LinkType.NoLink;
+		} else if(lt.equals(IMPFields.M_LinkType_Url)){
+			type = LinkType.Url;
+		} else if(lt.equals(IMPFields.M_LinkType_File)){
+			type = LinkType.File;
+		}
+		return type;
 	}
 }
