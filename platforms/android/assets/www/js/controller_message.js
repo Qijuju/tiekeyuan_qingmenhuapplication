@@ -2368,7 +2368,6 @@ angular.module('message.controllers', [])
         cancelText: '取消',
         buttonClicked: function (index) {
           if (index == 0) {
-            alert('asdf');
             $cordovaClipboard
               .copy(msgSingle.message)
               .then(function () {

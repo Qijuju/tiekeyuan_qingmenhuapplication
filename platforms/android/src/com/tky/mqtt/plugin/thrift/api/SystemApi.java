@@ -937,8 +937,10 @@ public class SystemApi {
    * @throws IOException
      * @throws TException
      */
-  public static void getNotifyMsg(String ID,String date,boolean isAttention,String formId,int pageNum, int pageSize,AsyncMethodCallback<IMMessage.AsyncClient.GetNotifyMsg_call> callback) throws IOException,TException {
-    IMMessage.AsyncClient msgClient = getMsgClient();
+  public static void getNotifyMsg(String ID,String date,boolean isAttention,String formId,int pageNum, int pageSize,MyAsyncMethodCallback<IMMessage.AsyncClient.GetNotifyMsg_call> callback) throws IOException,TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
     msgClient.GetNotifyMsg(ID,date,isAttention,formId,pageNum,pageSize,callback);
 
   }
@@ -955,8 +957,10 @@ public class SystemApi {
    * @throws IOException
      * @throws TException
      */
-  public static void setNotifyMsg(String ID,String msgId,boolean setReaded,String setToped,String setAttention,AsyncMethodCallback<IMMessage.AsyncClient.SetNotifyMsg_call> callback) throws IOException, TException {
-    IMMessage.AsyncClient msgClient = getMsgClient();
+  public static void setNotifyMsg(String ID,String msgId,boolean setReaded,String setToped,String setAttention,MyAsyncMethodCallback<IMMessage.AsyncClient.SetNotifyMsg_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
     msgClient.SetNotifyMsg(ID,msgId,setReaded,setToped,setAttention,callback);
   }
 
@@ -970,8 +974,10 @@ public class SystemApi {
    * @throws IOException
      * @throws TException
      */
-  public static void GetMsgReadList(String ID,String msgId,boolean isReaded,AsyncMethodCallback<IMMessage.AsyncClient.GetMsgReadList_call> callback) throws IOException, TException {
-    IMMessage.AsyncClient msgClient = getMsgClient();
+  public static void GetMsgReadList(String ID,String msgId,boolean isReaded,MyAsyncMethodCallback<IMMessage.AsyncClient.GetMsgReadList_call> callback) throws IOException, TException {
+    MyAsyncClient client = getMsgClient();
+    callback.setClient(client);
+    IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
     msgClient.GetMsgReadList(ID,msgId,isReaded, callback);
   }
 

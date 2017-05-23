@@ -229,17 +229,7 @@ public class IMMsgFactory {
 		return platType;
 	}
 
-
-  public static byte[] createEvent(String eventID, Map<String, Object> eventMap) throws IMPException{
-    eventMap.put("NotifyType", IMPFields.N_Type_Event);
-    eventMap.put("when", System.currentTimeMillis());
-    eventMap.put("EventCode", eventID);
-    eventMap.put("Event","");
-    return ProtocolUtil.doPackage(eventMap);
-  }
-
-
-  private static String getReceipt(Receipt rp){
+	private static String getReceipt(Receipt rp){
 		String receipt = "";
 		switch(rp){
 		case False:
