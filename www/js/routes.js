@@ -342,6 +342,14 @@ angular.module('im.routes', [])
         cache:false
       })
 
+      .state("founction",{
+        url:'/founction',
+        templateUrl:'templates/founction.html',
+        controller:'founctionCtrl',
+        cache:false
+      })
+
+
       .state('mydepartment', {
         url: '/mydepartment',
         templateUrl: 'templates/my_department.html',
