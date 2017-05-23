@@ -1,0 +1,38 @@
+<ion-view  >
+  <ion-nav-bar align-title="center" class="secondbar" >
+    <ion-nav-buttons side="left">
+      <!--<button class="button  button-icon icon ion-ios-arrow-left common-single-white" >
+        确认详情
+      </button>-->
+      <div ng-click="backAny()" >
+        <img src="img/backmain.png"  height="36px" style="margin-top: 4px;margin-left: -10px">
+        <p style="margin-top: -32px;margin-left: 36px;font-size: 17px">确认详情</p>
+      </div>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content delegate-handle="scrollTop" overflow-scroll="false" style="background-color:white; margin-top: 6px">
+    <div   style="margin-top: 10px" class="button-bar">
+      <a id="leftbt" style="border-bottom: solid 3px #6c9aff;background-color: white;border-top: ghostwhite;border-right: ghostwhite;border-left: ghostwhite" class="button" ng-click="goConfirm(0)">未确认</a>
+      <a id="rightbt" style="background-color: white;border-top: ghostwhite;border-right: ghostwhite;border-left: ghostwhite" class="button" ng-click="goConfirm(1)">已确认</a>
+    </div>
+    <ion-slide-box active-slide="index"  does-continue="false" show-pager="false"
+                   pager-click="goConfirm(index)" on-slide-changed="go_confirm(index)" >
+
+      <ion-slide>
+        <ion-item ng-repeat="item in noNotifyUser">
+          <p>{{item.UserName}}</p>
+
+        </ion-item>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-item ng-repeat="item in alreadyUser" ng-click="">
+          <p>{{item.UserName}}</p>
+
+        </ion-item>
+        <div></div>
+      </ion-slide>
+
+    </ion-slide-box>
+  </ion-content>
+</ion-view>

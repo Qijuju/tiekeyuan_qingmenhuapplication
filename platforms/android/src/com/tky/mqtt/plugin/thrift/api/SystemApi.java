@@ -1,6 +1,8 @@
 package com.tky.mqtt.plugin.thrift.api;
 
 import android.content.Context;
+import android.content.pm.LauncherApps;
+import android.graphics.pdf.PdfDocument;
 
 import com.ionicframework.im366077.Constants;
 import com.tky.mqtt.paho.UIUtils;
@@ -43,8 +45,8 @@ import im.server.attention.IMAttention;
 public class SystemApi {
 
 
-  public static final String url = Constants.formalbasemobile; //正式
-  //public static final String url = Constants.testbasemobile;//测试
+  //public static final String url = Constants.formalbasemobile; //正式
+  public static final String url = Constants.testbasemobile;//测试
   //public static final String url = Constants.JINGWAIURL;
 
   /**
@@ -921,6 +923,56 @@ public class SystemApi {
     callback.setClient(client);
     IMMessage.AsyncClient msgClient = (IMMessage.AsyncClient) client.getClient();
     msgClient.GetLatestMsg(ID, sessionType, sessionID, when, msgCount, callback);
+  }
+
+  /**
+   * 从服务器获取通知消息
+   * @param ID
+   * @param date
+   * @param isAttention
+   * @param formId
+   * @param pageNum
+   * @param pageSize
+   * @param callback
+   * @throws IOException
+     * @throws TException
+     */
+  public static void getNotifyMsg(String ID,String date,boolean isAttention,String formId,int pageNum, int pageSize,AsyncMethodCallback<IMMessage.AsyncClient.GetNotifyMsg_call> callback) throws IOException,TException {
+    IMMessage.AsyncClient msgClient = getMsgClient();
+    msgClient.GetNotifyMsg(ID,date,isAttention,formId,pageNum,pageSize,callback);
+
+  }
+
+
+  /**
+   * 设置消息为已读  置顶
+   * @param ID
+   * @param msgId
+   * @param setReaded
+   * @param setToped
+   * @param setAttention
+   * @param callback
+   * @throws IOException
+     * @throws TException
+     */
+  public static void setNotifyMsg(String ID,String msgId,boolean setReaded,String setToped,String setAttention,AsyncMethodCallback<IMMessage.AsyncClient.SetNotifyMsg_call> callback) throws IOException, TException {
+    IMMessage.AsyncClient msgClient = getMsgClient();
+    msgClient.SetNotifyMsg(ID,msgId,setReaded,setToped,setAttention,callback);
+  }
+
+
+  /**
+   * 获取人员确认未确认的列表
+   * @param ID
+   * @param msgId
+   * @param isReaded
+   * @param callback
+   * @throws IOException
+     * @throws TException
+     */
+  public static void GetMsgReadList(String ID,String msgId,boolean isReaded,AsyncMethodCallback<IMMessage.AsyncClient.GetMsgReadList_call> callback) throws IOException, TException {
+    IMMessage.AsyncClient msgClient = getMsgClient();
+    msgClient.GetMsgReadList(ID,msgId,isReaded, callback);
   }
 
 }

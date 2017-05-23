@@ -151,11 +151,10 @@ public class IMMessageCallback implements MqttCallback {
                         //入库(MESSAGE和CHATLIST表)
                         //消息转化完毕就入库
                         int count = 0;
-//                        ToastUtil.showSafeToast("消息类型" + map.getType());
+                        //ToastUtil.showSafeToast("消息类型" + map.getType());
                         //平台推送消息
                         if ("Platform".equals(map.getType())) {
-
-                            SystemMsg systemMsg = new SystemMsg();
+                            /*SystemMsg systemMsg = new SystemMsg();
                             systemMsg.set_id(UUID.randomUUID().toString());
                             systemMsg.setSessionid(map.getSessionid());
                             systemMsg.setType(map.getType());
@@ -176,59 +175,7 @@ public class IMMessageCallback implements MqttCallback {
                             systemMsg.setIstop(0);
                             systemMsg.setIsconfirm("false");
                             SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
-                            systemMsgService.saveObj(systemMsg);
-
-						/*ModuleCountService moduleCountService = ModuleCountService.getInstance(UIUtils.getContext());
-                        List<ModuleCount> listModule = moduleCountService.loadAllData();
-						Long long1 = 0L;
-						Long long2 = 0L;
-						Long long3 = 0L;
-						Long long4 = 0L;
-
-						if(listModule.size()>0){
-							long1 = listModule.get(0).getCount1();
-							long2 = listModule.get(0).getCount2();
-							long3 = listModule.get(0).getCount3();
-							long4 = listModule.get(0).getCount4();
-						}else{
-							long1 = 0L;
-							long2 = 0L;
-							long3 = 0L;
-							long4 = 0L;
-						}
-
-
-
-						ModuleCount moduleCount = new ModuleCount();
-						moduleCount.setId("1000");
-
-						moduleCount.setName(map.getUsername());
-
-						switch (Integer.parseInt(map.getSessionid())) {
-							case 1:
-								long1++;
-
-								break;
-							case 15:
-								long2++;
-
-								break;
-							case 16:
-								long3++;
-
-								break;
-							case 18:
-								long4++;
-
-								break;
-
-						}
-						moduleCount.setCount1(long1);
-						moduleCount.setCount2(long2);
-						moduleCount.setCount3(long3);
-						moduleCount.setCount4(long4);
-						moduleCount.setType("notify");
-						moduleCountService.saveObj(moduleCount);*/
+                            systemMsgService.saveObj(systemMsg);*/
 
 
                         } else if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {
@@ -747,6 +694,7 @@ public class IMMessageCallback implements MqttCallback {
 
             }
         } catch (Exception e) {
+           // ToastUtil.showSafeToast(e.getMessage());
         }
         new Thread(new Runnable() {
             @Override
