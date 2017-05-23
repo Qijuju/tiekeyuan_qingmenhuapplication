@@ -23,9 +23,11 @@ import com.tky.im.receiver.IMScreenReceiver;
 import com.tky.im.utils.HeartbeatUtils;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
+import com.tky.im.utils.IMSwitchLocal;
 import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MessageOper;
+import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
@@ -78,6 +80,7 @@ public class IMService extends Service {
         filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);
         filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
         filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);
+        filter.addAction(ConstantsParams.PARAM_BASH_IM);
         receiver = new IMReceiver();
         registerReceiver(receiver, filter);
 
@@ -98,19 +101,26 @@ public class IMService extends Service {
             public void onReconnect() {
 
                 if (imConnection != null && imConnection.isConnected()) {
+                    IMStatusManager.setImStatus(IMEnums.CONNECTED);
+                    IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
                     return;
                 }
                 if (NetUtils.getNetWorkState(getBaseContext()) == -1) {
+                    ToastUtil.showSafeToast("网络问题");
                     return;
                 }
                 if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    connectIM();
-                    /*IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
+                    IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
                         @Override
                         public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
                             if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
                                 count = 0;
-                                connectIM();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        connectIM();
+                                    }
+                                }).start();
                             } else if (status == IMSwitchLocal.EReloginCheckStatus.NEED_LOGOUT) {
                                 count = 0;
                                 //账号被挤掉，退出登录
@@ -119,7 +129,7 @@ public class IMService extends Service {
                                 handler.postDelayed(reconnectRunnable, 2000 * (count++));
                             }
                         }
-                    });*/
+                    });
                 }
             }
         });
@@ -177,6 +187,16 @@ public class IMService extends Service {
             }
         });
 
+        //断开MQTT，让其自动重启
+        receiver.setOnBashIMListener(new IMReceiver.OnBashIMListener() {
+            @Override
+            public void onBashIM() {
+                if (imConnection != null && imConnection.isConnected()) {
+                    imConnection.closeIM();
+                }
+            }
+        });
+
         //注册亮屏广播
         screenReceiver = new IMScreenReceiver();
         IntentFilter screenFilter = new IntentFilter();
@@ -194,27 +214,6 @@ public class IMService extends Service {
                     connectIM();
                 }
             }).start();
-            //使用兼容版本
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-            //设置状态栏的通知图标
-            builder.setSmallIcon(R.drawable.icon);
-            //设置通知栏横条的图标
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
-            //禁止用户点击删除按钮删除
-            builder.setAutoCancel(false);
-            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
-            builder.setContentIntent(pendingIntent);
-            //禁止滑动删除
-            builder.setOngoing(true);
-            //右上角的时间显示
-            builder.setShowWhen(true);
-            //设置通知栏的标题内容
-            builder.setContentTitle("即时通正在运行");
-            //创建通知
-            Notification notification = builder.build();
-            //设置为前台服务
-            startForeground(0x0010, notification);
         }
         if (beats == null) {
             IMService.this.beats = new HeartbeatUtils(new HeartbeatUtils.OnTimeoutListener() {
@@ -227,6 +226,27 @@ public class IMService extends Service {
             });
             IMService.this.beats.start();
         }
+        //使用兼容版本
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        //设置状态栏的通知图标
+        builder.setSmallIcon(R.drawable.icon);
+        //设置通知栏横条的图标
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
+        //禁止用户点击删除按钮删除
+        builder.setAutoCancel(false);
+        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(UIUtils.getContext(), requestCode, intent1, 0);
+        builder.setContentIntent(pendingIntent);
+        //禁止滑动删除
+        builder.setOngoing(true);
+        //右上角的时间显示
+        builder.setShowWhen(true);
+        //设置通知栏的标题内容
+        builder.setContentTitle("即时通正在运行");
+        //创建通知
+        Notification notification = builder.build();
+        //设置为前台服务
+        startForeground(0x0010, notification);
         return super.onStartCommand(intent, Service.START_FLAG_REDELIVERY, startId);
     }
 
@@ -325,6 +345,7 @@ public class IMService extends Service {
         } else {
             //MQTT连接，直接发送消息
             MqttMessage msg = new MqttMessage();
+            msg.setQos(2);
             try {
                 msg.setPayload(MessageOper.packData(content));
             } catch (Exception e) {
@@ -372,15 +393,18 @@ public class IMService extends Service {
     private void connectIM() {
         if (NetUtils.isConnect(getBaseContext())) {
             imConnection = new IMConnection();
-            if (imConnectCallback == null) {
+            /*if (imConnectCallback == null) {
                 imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
             }
             if (imMessageCallback == null) {
                 imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
-            }
+            }*/
+            imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
+            imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
             try {
                 imConnection.connect(getBaseContext(), imConnectCallback, imMessageCallback);
             } catch (Exception e) {
+                IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
                 e.printStackTrace();
             }
         }

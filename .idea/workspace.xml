@@ -1,43 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="增加文件群发功能">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/founction.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/masstexting.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/controller_founction.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/templates/founction.html" />
+    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/libs/org.eclipse.paho.client.mqttv3-1.0.1-20141007.040217-92.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/libs/imApi2.0.jar" afterPath="$PROJECT_DIR$/platforms/android/libs/imApi2.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.json" afterPath="$PROJECT_DIR$/platforms/android/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/Protocol.xml" afterPath="$PROJECT_DIR$/platforms/android/assets/Protocol.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/cordova_plugins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/common.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/common.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/rj.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/rj.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_select_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_select_othergroup.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/lib/ionic/css/ionic.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-fifth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-seventh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-sixth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/contact-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-webpage.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-webpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/android/platform_www/cordova_plugins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" afterPath="$PROJECT_DIR$/platforms/android/platform_www/plugins/ThriftApiClient/www/thrift_api_client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/values/jpush_style.xml" afterPath="$PROJECT_DIR$/platforms/android/res/values/jpush_style.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/bean/IMParams.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/bean/IMParams.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMConnectCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMConnectCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/params/ConstantsParams.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/params/ConstantsParams.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMReceiver.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoGenerator.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoPlugin.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/base/GreenDaoPlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatListDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ChatListDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/DaoMaster.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/DaoMaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/DaoSession.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/DaoSession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePicture.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePicture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePictureDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/FilePictureDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GesturePwd.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GesturePwd.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GesturePwdDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GesturePwdDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChats.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChats.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChatsDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/GroupChatsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhone.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhoneDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/LocalPhoneDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Messages.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Messages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MessagesDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MessagesDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCount.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCountDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ModuleCountDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistory.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistoryDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/MsgHistoryDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyListDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/NotifyListDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Otherpichead.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/Otherpichead.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/OtherpicheadDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/OtherpicheadDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDept.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDeptDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/ParentDeptDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedId.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedId.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedIdDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SelectedIdDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyList.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyListDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SlowNotifyListDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDept.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDeptDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SubDeptDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsg.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsgDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/SystemMsgDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContacts.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContacts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContactsDao.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/TopContactsDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/BaseApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MessageOper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttTopicRW.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttTopicRW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/bean/MessageBean.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/bean/MessageBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/receiver/NetStatusReceiver.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/receiver/NetStatusReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/protocol/factory/IMMsgFactory.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/protocol/factory/IMMsgFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/protocol/model/IMPFields.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/protocol/model/IMPFields.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/android.json" afterPath="$PROJECT_DIR$/plugins/android.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/fetch.json" afterPath="$PROJECT_DIR$/plugins/fetch.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/common.css" afterPath="$PROJECT_DIR$/www/css/common.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/myattention.css" afterPath="$PROJECT_DIR$/www/css/myattention.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/rj.css" afterPath="$PROJECT_DIR$/www/css/rj.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/www/js/controller_contacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_founction.js" afterPath="$PROJECT_DIR$/www/js/controller_founction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_masstexting.js" afterPath="$PROJECT_DIR$/www/js/controller_masstexting.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/www/js/controller_select_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/www/js/controller_select_othergroup.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes.js" afterPath="$PROJECT_DIR$/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_common.js" afterPath="$PROJECT_DIR$/www/js/service_common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_message.js" afterPath="$PROJECT_DIR$/www/js/service_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services_group.js" afterPath="$PROJECT_DIR$/www/js/services_group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-fifth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-forth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-second.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-seventh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-sixth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/www/templates/addNewPerson-third.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/www/templates/contact-eighth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/founction.html" afterPath="$PROJECT_DIR$/www/templates/founction.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/mass_texting.html" afterPath="$PROJECT_DIR$/www/templates/mass_texting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/www/templates/message-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/message-group.html" afterPath="$PROJECT_DIR$/www/templates/message-group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/www/templates/notifyDetail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/www/templates/tab-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/www/templates/tab-message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/www/templates/tab-notification.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-webpage.html" afterPath="$PROJECT_DIR$/www/templates/tab-webpage.html" />
     </list>
-    <list id="d78619c9-e67d-4cec-8685-88176fa8994e" name="Failed commit: Default" comment="加入 轻门户功能" />
-    <list id="c849977c-4924-446a-9cfa-319ac3a44196" name="Failed commit: Default (2)" comment="aaa" />
-    <list id="23f6f40d-7841-489e-9755-9885827e5673" name="Failed commit: Default (3)" comment="增加   打包轻门户模块" />
-    <list id="60b36012-cad9-4cd9-a12a-9bb2992443e9" name="Failed commit: Default (4)" comment="增加 打包轻门户" />
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/platforms/" />
@@ -54,103 +206,27 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="IM">
-      <favorite_root url="file://$PROJECT_DIR$/app-settings.json" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-    </favorites_list>
+    <favorites_list name="IM" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="message-group.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
+      <file leaf-file-name="controller_founction.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controller_founction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tab-account.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="886">
-              <caret line="91" column="17" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="founction.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/founction.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+            <state relative-caret-position="375">
+              <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
               <folding>
-                <marker date="1495441625438" expanded="false" signature="1027:1061" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1105:1128" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1203:1234" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1345:1361" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1563:1579" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1679:1713" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1757:1780" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1849:1880" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="1991:2007" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2209:2225" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2325:2359" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2431:2454" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2523:2554" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2663:2679" ph="..." />
-                <marker date="1495441625438" expanded="false" signature="2881:2897" ph="..." />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller_founction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/controller_founction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller_my.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controller_my.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="684" column="39" lean-forward="false" selection-start-line="684" selection-start-column="39" selection-end-line="684" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="344" column="19" lean-forward="false" selection-start-line="344" selection-start-column="19" selection-end-line="344" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="311" lean-forward="false" selection-start-line="10" selection-start-column="311" selection-end-line="10" selection-end-column="311" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="81" column="39" lean-forward="false" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
+            <state relative-caret-position="387">
+              <caret line="135" column="0" lean-forward="true" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -163,108 +239,113 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>messagedetailc</find>
-      <find>sendM</find>
-      <find>chatarr</find>
-      <find>messageType</find>
-      <find>isPersonSend</find>
-      <find>msgs.update</find>
-      <find>backf</find>
-      <find>$ionicLoading</find>
-      <find>SelectIdService</find>
-      <find>$greendao.saveObj('SelectIdService',</find>
-      <find>userSaveId.name</find>
-      <find>$scope.loginName=$contacts.getLoignInfo().userName;</find>
-      <find>deptSaveId.name</find>
+      <find>update</find>
+      <find>loading</find>
+      <find>$ionicLoading.show</find>
+      <find>confirm</find>
+      <find>confirmPopup</find>
+      <find>disconnect</find>
+      <find>$mqtt.disconnect</find>
+      <find>哈哈</find>
+      <find>关网时走不走</find>
+      <find>哈哈哈哈哈啊哈哈哈哈</find>
+      <find>disconn</find>
+      <find>record</find>
+      <find>正在登录</find>
+      <find>登录中</find>
+      <find>login</find>
+      <find>105</find>
+      <find>$broadcast</find>
       <find>sendsuccess.update</find>
-      <find>sendFilesuccess</find>
-      <find>tab-</find>
-      <find>tab</find>
-      <find>item.imgSrc</find>
-      <find>$scope.otherheadpicurl</find>
-      <find>count</find>
-      <find>tab-m</find>
-      <find>back</find>
-      <find>ma</find>
-      <find>acc</find>
-      <find>account</find>
-      <find>reg</find>
-      <find>mass</find>
-      <find>abou</find>
-      <find>founc</find>
-      <find>regi</find>
+      <find>sendMsg</find>
+      <find>send_content</find>
+      <find>msgs.update</find>
+      <find>netStatus</find>
+      <find>netstatus.update</find>
+      <find>isconn</find>
+      <find>MessageCtrl</find>
+      <find>setonn</find>
+      <find>$rootScope</find>
+      <find>isnet</find>
+      <find>......</find>
+      <find>setonnet</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/www/lib/ngCordova/dist</dir>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="NewLiuxiaowei" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/platforms/android/CordovaLib/build.gradle" />
-        <option value="$PROJECT_DIR$/www/js/service_common.js" />
-        <option value="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
-        <option value="$PROJECT_DIR$/www/templates/login.html" />
-        <option value="$PROJECT_DIR$/www/templates/tab_work.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_work.js" />
-        <option value="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/BaseApplication.java" />
-        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
-        <option value="$PROJECT_DIR$/www/templates/aa.html" />
-        <option value="$PROJECT_DIR$/www/templates/notifyApplication.html" />
-        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
-        <option value="$PROJECT_DIR$/www/templates/tab-notification.html" />
-        <option value="$PROJECT_DIR$/www/templates/tab-work.html" />
-        <option value="$PROJECT_DIR$/www/templates/tabs.html" />
         <option value="$PROJECT_DIR$/www/js/controller_newnotification.js" />
-        <option value="$PROJECT_DIR$/www/templates/notifyDetail.html" />
-        <option value="$PROJECT_DIR$/www/templates/swith_account.html" />
-        <option value="$PROJECT_DIR$/www/templates/switch_account.html" />
-        <option value="$PROJECT_DIR$/www/css/rj.css" />
-        <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_badge.js" />
-        <option value="$PROJECT_DIR$/www/js/controller_portal.js" />
-        <option value="$PROJECT_DIR$/www/js/service_portal.js" />
-        <option value="$PROJECT_DIR$/www/js/controller_login.js" />
-        <option value="$PROJECT_DIR$/www/templates/contact-eighth.html" />
+        <option value="$PROJECT_DIR$/www/templates/group-notice.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_application.js" />
+        <option value="$PROJECT_DIR$/www/templates/tab-chats.html" />
+        <option value="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/dao/DaoMaster.java" />
+        <option value="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
+        <option value="$PROJECT_DIR$/www/templates/tab-notification.html" />
+        <option value="$PROJECT_DIR$/www/templates/top_contacts.html" />
+        <option value="$PROJECT_DIR$/www/templates/my_attention.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_localphone.js" />
+        <option value="$PROJECT_DIR$/www/templates/login.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-local.html" />
+        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/templates/addNewPerson-first.html" />
-        <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
-        <option value="$PROJECT_DIR$/www/templates/mess_file.html" />
-        <option value="$PROJECT_DIR$/www/js/Controller_masstexting.js" />
-        <option value="$PROJECT_DIR$/www/templates/addNewPerson-fifth.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_contacts.js" />
-        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
-        <option value="$PROJECT_DIR$/www/templates/mass_texting.html" />
-        <option value="$PROJECT_DIR$/www/js/service_message.js" />
-        <option value="$PROJECT_DIR$/www/templates/addNewPerson-forth.html" />
         <option value="$PROJECT_DIR$/www/templates/addNewPerson-third.html" />
-        <option value="$PROJECT_DIR$/www/templates/addNewPerson-second.html" />
+        <option value="$PROJECT_DIR$/www/templates/addNewPerson-forth.html" />
+        <option value="$PROJECT_DIR$/www/templates/addNewPerson-fifth.html" />
         <option value="$PROJECT_DIR$/www/templates/addNewPerson-sixth.html" />
         <option value="$PROJECT_DIR$/www/templates/addNewPerson-seventh.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_select_othergroup.js" />
         <option value="$PROJECT_DIR$/www/templates/addNewPerson-eighth.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_select_group.js" />
-        <option value="$PROJECT_DIR$/www/js/controller_masstexting.js" />
-        <option value="$PROJECT_DIR$/www/templates/message-group.html" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/js/controller_founction.js" />
+        <option value="$PROJECT_DIR$/www/templates/contact-third.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-second.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-forth.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-fifth.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-sixth.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-seventh.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-eighth.html" />
+        <option value="$PROJECT_DIR$/www/templates/contact-group.html" />
+        <option value="$PROJECT_DIR$/www/templates/tab-contacts.html" />
+        <option value="$PROJECT_DIR$/www/css/common.css" />
+        <option value="$PROJECT_DIR$/www/templates/addNewPerson-second.html" />
+        <option value="$PROJECT_DIR$/www/templates/personal-setting.html" />
+        <option value="$PROJECT_DIR$/www/templates/group-setting.html" />
+        <option value="$PROJECT_DIR$/www/templates/person-detail.html" />
+        <option value="$PROJECT_DIR$/www/css/rj.css" />
         <option value="$PROJECT_DIR$/www/js/controller_my.js" />
+        <option value="$PROJECT_DIR$/www/templates/tabs.html" />
+        <option value="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
+        <option value="$PROJECT_DIR$/www/js/controller_badge.js" />
+        <option value="$PROJECT_DIR$/www/js/directives.js" />
+        <option value="$PROJECT_DIR$/www/js/service_portal.js" />
+        <option value="$PROJECT_DIR$/www/js/controller_portal.js" />
         <option value="$PROJECT_DIR$/www/js/routes.js" />
-        <option value="$PROJECT_DIR$/www/templates/tab-account.html" />
-        <option value="$PROJECT_DIR$/www/templates/founction.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_contacts.js" />
+        <option value="$PROJECT_DIR$/www/js/service_contacts.js" />
+        <option value="$PROJECT_DIR$/www/js/controller_login.js" />
+        <option value="$PROJECT_DIR$/www/js/service_message.js" />
+        <option value="$PROJECT_DIR$/www/templates/tab-message.html" />
+        <option value="$PROJECT_DIR$/www/templates/message-detail.html" />
+        <option value="$PROJECT_DIR$/www/js/controller_message.js" />
+        <option value="$PROJECT_DIR$/www/templates/message-group.html" />
       </list>
     </option>
   </component>
@@ -272,11 +353,6 @@
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <gulpfiles>
-      <GulpfileState>
-        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
-      </GulpfileState>
-    </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
@@ -300,6 +376,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -340,24 +418,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -372,41 +432,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
+              <option name="myItemId" value="platforms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="js-jscs-nodeInterpreter" value="E:\nodejs\node.exe" />
+    <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
     <property name="editor.config.accepted" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
+    <property name="last_opened_file_path" value="E:/IM" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\AndroidStudio_tky_Application\IM\www\img" />
-      <recent name="D:\AndroidStudio_tky_Application\IM\www" />
-      <recent name="D:\AndroidStudio_tky_Application\IM\platforms\android" />
-      <recent name="D:\AndroidStudio_tky_Application\IM\www\css" />
+      <recent name="F:\jst\IM\www\img" />
+      <recent name="F:\jst\IM\www\css" />
+      <recent name="E:\jishitong\IM\www\js" />
+      <recent name="E:\jishitong\IM\www\templates" />
+      <recent name="E:\jishitong\IM\www\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -492,626 +546,528 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f0e6a2ab-cbb6-4fb4-b8d8-b57157029ca5" name="Default" comment="" />
-      <created>1478161702817</created>
+      <changelist id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="" />
+      <created>1478160773331</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1478161702817</updated>
-      <workItem from="1478161703926" duration="50000" />
-      <workItem from="1478161765718" duration="21000" />
-      <workItem from="1478161821762" duration="9028000" />
-      <workItem from="1478179054063" duration="824000" />
-      <workItem from="1478222605712" duration="16577000" />
-      <workItem from="1478478608401" duration="5721000" />
-      <workItem from="1478564647304" duration="16180000" />
-      <workItem from="1478650855874" duration="7639000" />
-      <workItem from="1478737444994" duration="5769000" />
-      <workItem from="1478823552780" duration="9979000" />
-      <workItem from="1479082919961" duration="20565000" />
-      <workItem from="1479170094991" duration="12986000" />
-      <workItem from="1479194396169" duration="10856000" />
-      <workItem from="1479212464335" duration="3740000" />
-      <workItem from="1479256873815" duration="26508000" />
-      <workItem from="1479342615910" duration="21189000" />
-      <workItem from="1479429428611" duration="21711000" />
-      <workItem from="1479688690785" duration="12393000" />
-      <workItem from="1479774869009" duration="16003000" />
-      <workItem from="1479861026763" duration="1839000" />
-      <workItem from="1479881361796" duration="12086000" />
-      <workItem from="1479946966241" duration="15267000" />
-      <workItem from="1480033824118" duration="17443000" />
-      <workItem from="1480292620121" duration="18469000" />
-      <workItem from="1480379199624" duration="23488000" />
-      <workItem from="1480465261892" duration="15336000" />
-      <workItem from="1480551930680" duration="19598000" />
-      <workItem from="1480638507422" duration="18372000" />
-      <workItem from="1480897979880" duration="18367000" />
-      <workItem from="1480983734660" duration="15321000" />
-      <workItem from="1481070684928" duration="17434000" />
-      <workItem from="1481156632160" duration="19733000" />
-      <workItem from="1481243681355" duration="18497000" />
-      <workItem from="1481502652710" duration="14438000" />
-      <workItem from="1481588960731" duration="20035000" />
-      <workItem from="1481675506457" duration="22041000" />
-      <workItem from="1481761837429" duration="14100000" />
-      <workItem from="1481848279801" duration="18243000" />
-      <workItem from="1482107737121" duration="20115000" />
-      <workItem from="1482194023218" duration="23073000" />
-      <workItem from="1482279953540" duration="14945000" />
-      <workItem from="1482366357841" duration="19322000" />
-      <workItem from="1482453021269" duration="25382000" />
-      <workItem from="1482712093732" duration="24916000" />
-      <workItem from="1482798587135" duration="19626000" />
-      <workItem from="1482884625845" duration="23384000" />
-      <workItem from="1482971154238" duration="2253000" />
-      <workItem from="1482976089266" duration="20708000" />
-      <workItem from="1483057508140" duration="18692000" />
-      <workItem from="1483403508321" duration="19327000" />
-      <workItem from="1483489723390" duration="16496000" />
-      <workItem from="1483576818879" duration="13462000" />
-      <workItem from="1483602614780" duration="5584000" />
-      <workItem from="1483662889278" duration="10184000" />
-      <workItem from="1483689129420" duration="6443000" />
-      <workItem from="1483921468103" duration="21112000" />
-      <workItem from="1484008157854" duration="19393000" />
-      <workItem from="1484094243495" duration="4446000" />
-      <workItem from="1484103896696" duration="14985000" />
-      <workItem from="1484181024903" duration="21629000" />
-      <workItem from="1484267179656" duration="19382000" />
-      <workItem from="1484298475479" duration="3189000" />
-      <workItem from="1484527782376" duration="20969000" />
-      <workItem from="1484614040958" duration="20259000" />
-      <workItem from="1484700301412" duration="19438000" />
-      <workItem from="1484786775029" duration="14187000" />
-      <workItem from="1484871836981" duration="17071000" />
-      <workItem from="1485046723145" duration="12485000" />
-      <workItem from="1485071659631" duration="6923000" />
-      <workItem from="1485130837551" duration="13114000" />
-      <workItem from="1485217386083" duration="5565000" />
-      <workItem from="1485304858087" duration="4714000" />
-      <workItem from="1486083471073" duration="1198000" />
-      <workItem from="1486167758551" duration="1273000" />
-      <workItem from="1486341431477" duration="4172000" />
-      <workItem from="1486449044043" duration="1302000" />
-      <workItem from="1486513454747" duration="1289000" />
-      <workItem from="1486520452183" duration="61000" />
-      <workItem from="1486525172017" duration="12000" />
-      <workItem from="1486525482645" duration="16000" />
-      <workItem from="1486525529782" duration="3866000" />
-      <workItem from="1486536598411" duration="965000" />
-      <workItem from="1486537640544" duration="1448000" />
-      <workItem from="1486542710129" duration="2591000" />
-      <workItem from="1486603811463" duration="6405000" />
-      <workItem from="1486687772856" duration="1911000" />
-      <workItem from="1486694263020" duration="5895000" />
-      <workItem from="1486947355724" duration="6562000" />
-      <workItem from="1487034552196" duration="2033000" />
-      <workItem from="1487119969124" duration="2973000" />
-      <workItem from="1487206250906" duration="1309000" />
-      <workItem from="1487210289841" duration="617000" />
-      <workItem from="1487211085517" duration="53000" />
-      <workItem from="1487211251687" duration="1379000" />
-      <workItem from="1487227557855" duration="2193000" />
-      <workItem from="1487232003858" duration="7004000" />
-      <workItem from="1487241798379" duration="251000" />
-      <workItem from="1487293955028" duration="2292000" />
-      <workItem from="1487301217784" duration="2673000" />
-      <workItem from="1487315561605" duration="3436000" />
-      <workItem from="1487555801923" duration="806000" />
-      <workItem from="1487557581487" duration="509000" />
-      <workItem from="1487558223770" duration="1127000" />
-      <workItem from="1487577522710" duration="636000" />
-      <workItem from="1487643834774" duration="751000" />
-      <workItem from="1487658666516" duration="264000" />
-      <workItem from="1487660404340" duration="10116000" />
-      <workItem from="1487726159215" duration="1141000" />
-      <workItem from="1487727316494" duration="18727000" />
-      <workItem from="1487813221559" duration="886000" />
-      <workItem from="1487815594208" duration="10635000" />
-      <workItem from="1487898189280" duration="14485000" />
-      <workItem from="1487923380331" duration="2385000" />
-      <workItem from="1487925784300" duration="4893000" />
-      <workItem from="1487930710038" duration="1317000" />
-      <workItem from="1488156696322" duration="15299000" />
-      <workItem from="1488182107119" duration="6164000" />
-      <workItem from="1488241945950" duration="3601000" />
-      <workItem from="1488246578179" duration="12028000" />
-      <workItem from="1488269160592" duration="5557000" />
-      <workItem from="1488329702911" duration="3585000" />
-      <workItem from="1488337192162" duration="892000" />
-      <workItem from="1488422103081" duration="2342000" />
-      <workItem from="1488437711234" duration="4483000" />
-      <workItem from="1488502312803" duration="4227000" />
-      <workItem from="1488766957184" duration="970000" />
-      <workItem from="1488767950800" duration="8658000" />
-      <workItem from="1488966072824" duration="655000" />
-      <workItem from="1489014924805" duration="5992000" />
-      <workItem from="1489106344687" duration="1068000" />
-      <workItem from="1489127516868" duration="115000" />
-      <workItem from="1489133026186" duration="2239000" />
-      <workItem from="1489371735600" duration="1722000" />
-      <workItem from="1489389582009" duration="3000" />
-      <workItem from="1489389603138" duration="1879000" />
-      <workItem from="1489451291491" duration="3458000" />
-      <workItem from="1489538193267" duration="605000" />
-      <workItem from="1489623906634" duration="4590000" />
-      <workItem from="1489649193822" duration="2433000" />
-      <workItem from="1489669891735" duration="3000" />
-      <workItem from="1489711560663" duration="142000" />
-      <workItem from="1489711731299" duration="3780000" />
-      <workItem from="1489970657027" duration="2371000" />
-      <workItem from="1489979902191" duration="6416000" />
-      <workItem from="1490055924079" duration="4969000" />
-      <workItem from="1490066982887" duration="3782000" />
-      <workItem from="1490143213250" duration="1482000" />
-      <workItem from="1490228977068" duration="3728000" />
-      <workItem from="1490251225773" duration="4315000" />
-      <workItem from="1490317833074" duration="3430000" />
-      <workItem from="1490336363758" duration="1955000" />
-      <workItem from="1490405677415" duration="10047000" />
-      <workItem from="1490489563626" duration="4104000" />
-      <workItem from="1490517069289" duration="1071000" />
-      <workItem from="1490585261959" duration="916000" />
-      <workItem from="1490748930041" duration="3028000" />
-      <workItem from="1490756394580" duration="1219000" />
-      <workItem from="1490772467904" duration="9124000" />
-      <workItem from="1490788060585" duration="1825000" />
-      <workItem from="1490834519146" duration="1895000" />
-      <workItem from="1490840840978" duration="580000" />
-      <workItem from="1490842268978" duration="1434000" />
-      <workItem from="1490883214136" duration="598000" />
-      <workItem from="1490935113828" duration="7344000" />
-      <workItem from="1490953271395" duration="1936000" />
-      <workItem from="1490957690358" duration="1741000" />
-      <workItem from="1491007843185" duration="494000" />
-      <workItem from="1491355764507" duration="1948000" />
-      <workItem from="1491376766406" duration="429000" />
-      <workItem from="1491377229186" duration="924000" />
-      <workItem from="1491378413599" duration="1371000" />
-      <workItem from="1491439702893" duration="1467000" />
-      <workItem from="1491470200179" duration="545000" />
-      <workItem from="1491527183263" duration="4668000" />
-      <workItem from="1491615206448" duration="2206000" />
-      <workItem from="1491633463481" duration="129000" />
-      <workItem from="1491634871229" duration="2702000" />
-      <workItem from="1491782948429" duration="2702000" />
-      <workItem from="1491830434791" duration="5000" />
-      <workItem from="1491870110826" duration="3164000" />
-      <workItem from="1491876304725" duration="685000" />
-      <workItem from="1491877100982" duration="1949000" />
-      <workItem from="1491898647889" duration="51000" />
-      <workItem from="1491898764599" duration="5000" />
-      <workItem from="1491981508938" duration="274000" />
-      <workItem from="1491982169881" duration="136000" />
-      <workItem from="1491982404112" duration="1433000" />
-      <workItem from="1491987377162" duration="1237000" />
-      <workItem from="1492043244533" duration="1690000" />
-      <workItem from="1492130717484" duration="5033000" />
-      <workItem from="1492137423360" duration="5225000" />
-      <workItem from="1492412128647" duration="269000" />
-      <workItem from="1492412676283" duration="1937000" />
-      <workItem from="1492499608782" duration="1551000" />
-      <workItem from="1492507231325" duration="584000" />
-      <workItem from="1492507944176" duration="1456000" />
-      <workItem from="1492593152474" duration="463000" />
-      <workItem from="1492593673931" duration="1529000" />
-      <workItem from="1492649797772" duration="4659000" />
-      <workItem from="1492657864364" duration="198000" />
-      <workItem from="1492658279799" duration="10798000" />
-      <workItem from="1492736356002" duration="3693000" />
-      <workItem from="1492778210022" duration="1283000" />
-      <workItem from="1492779526910" duration="1342000" />
-      <workItem from="1492782135697" duration="1805000" />
-      <workItem from="1493002576360" duration="52000" />
-      <workItem from="1493003000835" duration="667000" />
-      <workItem from="1493003701647" duration="63000" />
-      <workItem from="1493088591678" duration="380000" />
-      <workItem from="1493090530122" duration="2101000" />
-      <workItem from="1493101365749" duration="436000" />
-      <workItem from="1493103352671" duration="2217000" />
-      <workItem from="1493106667602" duration="63000" />
-      <workItem from="1493108193014" duration="1060000" />
-      <workItem from="1493116083885" duration="585000" />
-      <workItem from="1493168566443" duration="1589000" />
-      <workItem from="1493170417555" duration="1032000" />
-      <workItem from="1493171579583" duration="962000" />
-      <workItem from="1493174339359" duration="175000" />
-      <workItem from="1493190628761" duration="11803000" />
-      <workItem from="1493255311053" duration="606000" />
-      <workItem from="1493258201277" duration="283000" />
-      <workItem from="1493258516073" duration="490000" />
-      <workItem from="1493267432129" duration="2901000" />
-      <workItem from="1493273339395" duration="1438000" />
-      <workItem from="1493772946285" duration="1611000" />
-      <workItem from="1493886230251" duration="793000" />
-      <workItem from="1493970453055" duration="1995000" />
-      <workItem from="1494224678992" duration="2707000" />
-      <workItem from="1494227866904" duration="1050000" />
-      <workItem from="1494229434424" duration="5085000" />
-      <workItem from="1494290843389" duration="842000" />
-      <workItem from="1494292732368" duration="20458000" />
-      <workItem from="1494377673522" duration="23646000" />
-      <workItem from="1494464487087" duration="6476000" />
-      <workItem from="1494473064653" duration="823000" />
-      <workItem from="1494474361703" duration="19429000" />
-      <workItem from="1494550704278" duration="18720000" />
-      <workItem from="1494580205458" duration="708000" />
-      <workItem from="1494581403444" duration="2587000" />
-      <workItem from="1494812778904" duration="2565000" />
-      <workItem from="1494817897977" duration="9321000" />
-      <workItem from="1494838347614" duration="525000" />
-      <workItem from="1494838996403" duration="267000" />
-      <workItem from="1494839631403" duration="954000" />
-      <workItem from="1494841093664" duration="687000" />
-      <workItem from="1494842426825" duration="1807000" />
-      <workItem from="1494895928615" duration="18484000" />
-      <workItem from="1494923604527" duration="7017000" />
-      <workItem from="1494982670793" duration="2417000" />
-      <workItem from="1494985750928" duration="1803000" />
-      <workItem from="1494988684157" duration="9417000" />
-      <workItem from="1495005875140" duration="938000" />
-      <workItem from="1495007068233" duration="308000" />
-      <workItem from="1495007728624" duration="7739000" />
-      <workItem from="1495068933458" duration="5627000" />
-      <workItem from="1495077457014" duration="206000" />
-      <workItem from="1495077722449" duration="2870000" />
-      <workItem from="1495088692967" duration="638000" />
-      <workItem from="1495089703975" duration="10437000" />
-      <workItem from="1495100893962" duration="1411000" />
-      <workItem from="1495156226194" duration="14409000" />
-      <workItem from="1495415636700" duration="7446000" />
-      <workItem from="1495439800138" duration="2107000" />
+      <updated>1478160773331</updated>
+      <workItem from="1478160774581" duration="11128000" />
+      <workItem from="1478220088367" duration="22023000" />
+      <workItem from="1478480484490" duration="22179000" />
+      <workItem from="1478565829416" duration="25132000" />
+      <workItem from="1478652010359" duration="13919000" />
+      <workItem from="1478739434989" duration="29660000" />
+      <workItem from="1478824758753" duration="21695000" />
+      <workItem from="1479084604983" duration="19084000" />
+      <workItem from="1479170315483" duration="35257000" />
+      <workItem from="1479258083282" duration="35364000" />
+      <workItem from="1479343450487" duration="35906000" />
+      <workItem from="1479438218636" duration="15342000" />
+      <workItem from="1479689031901" duration="10844000" />
+      <workItem from="1479775545740" duration="20658000" />
+      <workItem from="1479861294704" duration="14037000" />
+      <workItem from="1479947641826" duration="23862000" />
+      <workItem from="1480034222060" duration="19389000" />
+      <workItem from="1480293416109" duration="19265000" />
+      <workItem from="1480379483325" duration="16393000" />
+      <workItem from="1480466237208" duration="16750000" />
+      <workItem from="1480552746121" duration="11545000" />
+      <workItem from="1480639347132" duration="19126000" />
+      <workItem from="1480898451654" duration="23148000" />
+      <workItem from="1480984759774" duration="34276000" />
+      <workItem from="1481071428158" duration="24971000" />
+      <workItem from="1481156973790" duration="29849000" />
+      <workItem from="1481243862242" duration="25000000" />
+      <workItem from="1481434315291" duration="283000" />
+      <workItem from="1481503015359" duration="28304000" />
+      <workItem from="1481589300615" duration="27315000" />
+      <workItem from="1481675152437" duration="17569000" />
+      <workItem from="1481761583540" duration="25482000" />
+      <workItem from="1481848418285" duration="25119000" />
+      <workItem from="1481888510782" duration="513000" />
+      <workItem from="1481889041678" duration="27000" />
+      <workItem from="1482107434350" duration="22501000" />
+      <workItem from="1482193719648" duration="25461000" />
+      <workItem from="1482280756668" duration="30269000" />
+      <workItem from="1482367399431" duration="30003000" />
+      <workItem from="1482453407620" duration="2706000" />
+      <workItem from="1482456955598" duration="8811000" />
+      <workItem from="1482479989579" duration="2392000" />
+      <workItem from="1482712811080" duration="28441000" />
+      <workItem from="1482799055613" duration="5878000" />
+      <workItem from="1482885468513" duration="4968000" />
+      <workItem from="1482918175934" duration="2023000" />
+      <workItem from="1482920531988" duration="5871000" />
+      <workItem from="1482971519587" duration="14361000" />
+      <workItem from="1482988151604" duration="9281000" />
+      <workItem from="1483013476535" duration="40000" />
+      <workItem from="1483403581423" duration="1370000" />
+      <workItem from="1483685936125" duration="559000" />
+      <workItem from="1483686573271" duration="10485000" />
+      <workItem from="1483922067500" duration="3584000" />
+      <workItem from="1488511995518" duration="3977000" />
+      <workItem from="1488523030295" duration="200000" />
+      <workItem from="1488523712691" duration="74000" />
+      <workItem from="1488534726991" duration="915000" />
+      <workItem from="1488592406170" duration="4223000" />
+      <workItem from="1488760443236" duration="4759000" />
+      <workItem from="1488770265995" duration="115000" />
+      <workItem from="1488770389411" duration="25000" />
+      <workItem from="1488770439311" duration="52000" />
+      <workItem from="1488770500630" duration="14566000" />
+      <workItem from="1488846869021" duration="1029000" />
+      <workItem from="1488849950375" duration="19366000" />
+      <workItem from="1489014815119" duration="1429000" />
+      <workItem from="1489016472793" duration="39000" />
+      <workItem from="1489016731734" duration="19716000" />
+      <workItem from="1489106343198" duration="7649000" />
+      <workItem from="1489129305656" duration="707000" />
+      <workItem from="1489130019021" duration="123000" />
+      <workItem from="1489130208185" duration="1788000" />
+      <workItem from="1489132468701" duration="5672000" />
+      <workItem from="1489364935470" duration="15824000" />
+      <workItem from="1489451303139" duration="13824000" />
+      <workItem from="1489538310896" duration="14783000" />
+      <workItem from="1489624055437" duration="12632000" />
+      <workItem from="1489710510632" duration="20216000" />
+      <workItem from="1489970645068" duration="4342000" />
+      <workItem from="1490056034232" duration="16185000" />
+      <workItem from="1490147381400" duration="9402000" />
+      <workItem from="1490192997808" duration="1884000" />
+      <workItem from="1490228999728" duration="3673000" />
+      <workItem from="1490253853979" duration="1368000" />
+      <workItem from="1490323421872" duration="4517000" />
+      <workItem from="1490338828227" duration="223000" />
+      <workItem from="1490339084585" duration="884000" />
+      <workItem from="1490341613188" duration="8164000" />
+      <workItem from="1490575750346" duration="6917000" />
+      <workItem from="1490583003365" duration="20523000" />
+      <workItem from="1490662081506" duration="7685000" />
+      <workItem from="1490670877720" duration="3894000" />
+      <workItem from="1490695533956" duration="4297000" />
+      <workItem from="1490749454030" duration="3504000" />
+      <workItem from="1490776266079" duration="14879000" />
+      <workItem from="1490836703886" duration="4118000" />
+      <workItem from="1490860361695" duration="3095000" />
+      <workItem from="1490922571001" duration="3488000" />
+      <workItem from="1490927551332" duration="3710000" />
+      <workItem from="1491824277053" duration="3619000" />
+      <workItem from="1491872958401" duration="2548000" />
+      <workItem from="1491875774807" duration="1856000" />
+      <workItem from="1491877655542" duration="13974000" />
+      <workItem from="1491959455690" duration="6737000" />
+      <workItem from="1491982827404" duration="6769000" />
+      <workItem from="1492047884782" duration="3789000" />
+      <workItem from="1492072644445" duration="517000" />
+      <workItem from="1492073221230" duration="2078000" />
+      <workItem from="1492075310222" duration="106000" />
+      <workItem from="1492075563178" duration="2063000" />
+      <workItem from="1492077637150" duration="68000" />
+      <workItem from="1492077754808" duration="172000" />
+      <workItem from="1492077937572" duration="5018000" />
+      <workItem from="1492132348320" duration="2198000" />
+      <workItem from="1492134665122" duration="2203000" />
+      <workItem from="1492166449239" duration="147000" />
+      <workItem from="1492391449261" duration="1795000" />
+      <workItem from="1492479492316" duration="8947000" />
+      <workItem from="1492564588685" duration="6358000" />
+      <workItem from="1492591828781" duration="6463000" />
+      <workItem from="1492650103135" duration="335000" />
+      <workItem from="1492650489694" duration="106000" />
+      <workItem from="1492650709941" duration="115000" />
+      <workItem from="1492652270446" duration="2199000" />
+      <workItem from="1492657529172" duration="9699000" />
+      <workItem from="1492736368870" duration="16916000" />
+      <workItem from="1493000170089" duration="675000" />
+      <workItem from="1493002137099" duration="2854000" />
+      <workItem from="1493025280942" duration="1609000" />
+      <workItem from="1493035436835" duration="2061000" />
+      <workItem from="1493080846611" duration="2245000" />
+      <workItem from="1493103029703" duration="562000" />
+      <workItem from="1493119359058" duration="343000" />
+      <workItem from="1493166307731" duration="7600000" />
+      <workItem from="1493207528373" duration="760000" />
+      <workItem from="1493706161719" duration="1591000" />
+      <workItem from="1493805402772" duration="123000" />
+      <workItem from="1493857188263" duration="97000" />
+      <workItem from="1493944469938" duration="89000" />
+      <workItem from="1494204198103" duration="5896000" />
+      <workItem from="1494231692551" duration="3154000" />
+      <workItem from="1494242424481" duration="1203000" />
+      <workItem from="1494290074135" duration="598000" />
+      <workItem from="1494324967817" duration="184000" />
+      <workItem from="1494376080939" duration="473000" />
+      <workItem from="1494396718633" duration="174000" />
+      <workItem from="1494470799640" duration="5207000" />
+      <workItem from="1494494286932" duration="5732000" />
+      <workItem from="1494549679080" duration="12221000" />
+      <workItem from="1494809097774" duration="804000" />
+      <workItem from="1494831782664" duration="1359000" />
+      <workItem from="1494895912611" duration="6006000" />
+      <workItem from="1494980646808" duration="2813000" />
+      <workItem from="1495067463734" duration="3052000" />
+      <workItem from="1495153299517" duration="1786000" />
+      <workItem from="1495413334793" duration="1400000" />
+      <workItem from="1495435281454" duration="4698000" />
+      <workItem from="1495448838991" duration="1105000" />
+      <workItem from="1495499253418" duration="1304000" />
+      <workItem from="1495503140809" duration="1769000" />
+      <workItem from="1495522056932" duration="2013000" />
+      <workItem from="1495524136216" duration="134000" />
     </task>
-    <task id="LOCAL-00043" summary="增加 打包轻门户1">
-      <created>1487748848290</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+    <task id="LOCAL-00122" summary="commit：重新提交代码">
+      <created>1488523107534</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
       <option name="project" value="LOCAL" />
-      <updated>1487748848290</updated>
+      <updated>1488523107534</updated>
     </task>
-    <task id="LOCAL-00044" summary="1，修改通知详情界面">
-      <created>1488165566678</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+    <task id="LOCAL-00123" summary="commit：重新提交代码">
+      <created>1488523186015</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
       <option name="project" value="LOCAL" />
-      <updated>1488165566678</updated>
+      <updated>1488523186016</updated>
     </task>
-    <task id="LOCAL-00045" summary="1，删除关注">
-      <created>1488243891491</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+    <task id="LOCAL-00124" summary="commit：重新提交代码">
+      <created>1488523466106</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
       <option name="project" value="LOCAL" />
-      <updated>1488243891491</updated>
+      <updated>1488523466106</updated>
     </task>
-    <task id="LOCAL-00046" summary="1，删除关注">
-      <created>1488244605456</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+    <task id="LOCAL-00125" summary="commit：重新提交代码11111">
+      <created>1488523558887</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
       <option name="project" value="LOCAL" />
-      <updated>1488244605456</updated>
+      <updated>1488523558887</updated>
     </task>
-    <task id="LOCAL-00047" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488335755191</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+    <task id="LOCAL-00126" summary="commit：重新提交代码11111">
+      <created>1488523621793</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
       <option name="project" value="LOCAL" />
-      <updated>1488335755191</updated>
+      <updated>1488523621793</updated>
     </task>
-    <task id="LOCAL-00048" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488767573587</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+    <task id="LOCAL-00127" summary="commit：重新提交代码11111">
+      <created>1488523674181</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
       <option name="project" value="LOCAL" />
-      <updated>1488767573587</updated>
+      <updated>1488523674181</updated>
     </task>
-    <task id="LOCAL-00049" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488767605340</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+    <task id="LOCAL-00128" summary="commit：重新提交代码11111">
+      <created>1488523721523</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
       <option name="project" value="LOCAL" />
-      <updated>1488767605340</updated>
+      <updated>1488523721523</updated>
     </task>
-    <task id="LOCAL-00050" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488767850070</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
+    <task id="LOCAL-00129" summary="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知">
+      <created>1488763840860</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
       <option name="project" value="LOCAL" />
-      <updated>1488767850071</updated>
+      <updated>1488763840863</updated>
     </task>
-    <task id="LOCAL-00051" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488768176716</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
+    <task id="LOCAL-00130" summary="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知">
+      <created>1488770190143</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
       <option name="project" value="LOCAL" />
-      <updated>1488768176721</updated>
+      <updated>1488770190143</updated>
     </task>
-    <task id="LOCAL-00052" summary="1，修改通知 ，调通轻门户链接">
-      <created>1488768219571</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+    <task id="LOCAL-00131" summary="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知">
+      <created>1488770344102</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
       <option name="project" value="LOCAL" />
-      <updated>1488768219571</updated>
+      <updated>1488770344102</updated>
     </task>
-    <task id="LOCAL-00053" summary="更新liuxiaowei代码">
-      <created>1488769775286</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+    <task id="LOCAL-00132" summary="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知">
+      <created>1488770514731</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
       <option name="project" value="LOCAL" />
-      <updated>1488769775286</updated>
+      <updated>1488770514732</updated>
     </task>
-    <task id="LOCAL-00054" summary="更新liuxiaowei代码">
-      <created>1488787988960</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
+    <task id="LOCAL-00133" summary="commit:修改bug（头像、、、）">
+      <created>1489015803726</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
       <option name="project" value="LOCAL" />
-      <updated>1488787988960</updated>
+      <updated>1489015803729</updated>
     </task>
-    <task id="LOCAL-00055" summary="更新liuxiaowei代码">
-      <created>1489015568356</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
+    <task id="LOCAL-00134" summary="commit:修改bug（头像、、、）">
+      <created>1489015944547</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
       <option name="project" value="LOCAL" />
-      <updated>1489015568358</updated>
+      <updated>1489015944547</updated>
     </task>
-    <task id="LOCAL-00056" summary="提交">
-      <created>1489390020731</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
+    <task id="LOCAL-00135" summary="提交代码">
+      <created>1489050162154</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
       <option name="project" value="LOCAL" />
-      <updated>1489390020731</updated>
+      <updated>1489050162154</updated>
     </task>
-    <task id="LOCAL-00057" summary="提交">
-      <created>1490067096586</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
+    <task id="LOCAL-00136" summary="提交代码">
+      <created>1489050180881</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
       <option name="project" value="LOCAL" />
-      <updated>1490067096587</updated>
+      <updated>1489050180881</updated>
     </task>
-    <task id="LOCAL-00058" summary="提交">
-      <created>1490748946397</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
+    <task id="LOCAL-00137" summary="提交代码">
+      <created>1489050226182</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
       <option name="project" value="LOCAL" />
-      <updated>1490748946399</updated>
+      <updated>1489050226182</updated>
     </task>
-    <task id="LOCAL-00059" summary="提交">
-      <created>1490754282313</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
+    <task id="LOCAL-00138" summary="commit：修改头像">
+      <created>1489129700340</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
       <option name="project" value="LOCAL" />
-      <updated>1490754282314</updated>
+      <updated>1489129700341</updated>
     </task>
-    <task id="LOCAL-00060" summary="commit：切换账号、修改登录bug">
-      <created>1490757084367</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
+    <task id="LOCAL-00139" summary="commit：修改头像">
+      <created>1489132164138</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
       <option name="project" value="LOCAL" />
-      <updated>1490757084368</updated>
+      <updated>1489132164142</updated>
     </task>
-    <task id="LOCAL-00061" summary="commit：修改语音bug">
-      <created>1490788154810</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
+    <task id="LOCAL-00140" summary="commit：修改头像">
+      <created>1489132216753</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
       <option name="project" value="LOCAL" />
-      <updated>1490788154811</updated>
+      <updated>1489132216753</updated>
     </task>
-    <task id="LOCAL-00062" summary="commit：修改语音bug">
-      <created>1490941435773</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
+    <task id="LOCAL-00141" summary="提交合并后的最终代码并提交">
+      <created>1489132853997</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
       <option name="project" value="LOCAL" />
-      <updated>1490941435775</updated>
+      <updated>1489132853998</updated>
     </task>
-    <task id="LOCAL-00063" summary="commit：修改语音bug">
-      <created>1490952695852</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
+    <task id="LOCAL-00142" summary="提交合并后的最终代码并提交">
+      <created>1490167755534</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
       <option name="project" value="LOCAL" />
-      <updated>1490952695852</updated>
+      <updated>1490167755535</updated>
     </task>
-    <task id="LOCAL-00064" summary="commit：修改语音bug">
-      <created>1490952918916</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
+    <task id="LOCAL-00143" summary="提交合并后的最终代码并提交">
+      <created>1490167816815</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
       <option name="project" value="LOCAL" />
-      <updated>1490952918916</updated>
+      <updated>1490167816815</updated>
     </task>
-    <task id="LOCAL-00065" summary="commit：修改郑虎切换模块">
-      <created>1490953683057</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
+    <task id="LOCAL-00144" summary="提交合并后的最终代码并提交">
+      <created>1490255125575</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
       <option name="project" value="LOCAL" />
-      <updated>1490953683057</updated>
+      <updated>1490255125576</updated>
     </task>
-    <task id="LOCAL-00066" summary="commit：修改郑虎切换模块">
-      <created>1490955621381</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
+    <task id="LOCAL-00145" summary="合并程丽丽的代码">
+      <created>1490335709946</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
       <option name="project" value="LOCAL" />
-      <updated>1490955621381</updated>
+      <updated>1490335710002</updated>
     </task>
-    <task id="LOCAL-00067" summary="commit：修改郑虎切换模块">
-      <created>1491377349837</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
+    <task id="LOCAL-00146" summary="合并程丽丽的代码">
+      <created>1490341263948</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
       <option name="project" value="LOCAL" />
-      <updated>1491377349839</updated>
+      <updated>1490341263949</updated>
     </task>
-    <task id="LOCAL-00068" summary="commit：修改郑虎切换模块">
-      <created>1491377615662</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
+    <task id="LOCAL-00147" summary="1，合并宋亚代码">
+      <created>1490676074172</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
       <option name="project" value="LOCAL" />
-      <updated>1491377615663</updated>
+      <updated>1490676074172</updated>
     </task>
-    <task id="LOCAL-00069" summary="commit：强制踢人">
-      <created>1491875631320</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
+    <task id="LOCAL-00148" summary="合并后最新代码提交">
+      <created>1490698129757</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
       <option name="project" value="LOCAL" />
-      <updated>1491875631320</updated>
+      <updated>1490698129758</updated>
     </task>
-    <task id="LOCAL-00070" summary="commit：强制踢人">
-      <created>1491875705071</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
+    <task id="LOCAL-00149" summary="样式修改">
+      <created>1490781066407</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
       <option name="project" value="LOCAL" />
-      <updated>1491875705071</updated>
+      <updated>1490781066407</updated>
     </task>
-    <task id="LOCAL-00071" summary="commit">
-      <created>1491898680422</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
+    <task id="LOCAL-00150" summary="合并宋亚 （最新代码">
+      <created>1490927704172</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
       <option name="project" value="LOCAL" />
-      <updated>1491898680422</updated>
+      <updated>1490927704172</updated>
     </task>
-    <task id="LOCAL-00072" summary="commit">
-      <created>1491984367013</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
+    <task id="LOCAL-00151" summary="。。">
+      <created>1490929670114</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
       <option name="project" value="LOCAL" />
-      <updated>1491984367013</updated>
+      <updated>1490929670114</updated>
     </task>
-    <task id="LOCAL-00073" summary="commit">
-      <created>1491984398572</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
+    <task id="LOCAL-00152" summary="最新代码提交">
+      <created>1491904977661</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
       <option name="project" value="LOCAL" />
-      <updated>1491984398572</updated>
+      <updated>1491904977669</updated>
     </task>
-    <task id="LOCAL-00074" summary="commit">
-      <created>1492072441257</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
+    <task id="LOCAL-00153" summary="小bug更改提交">
+      <created>1491981914492</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
       <option name="project" value="LOCAL" />
-      <updated>1492072441258</updated>
+      <updated>1491981914499</updated>
     </task>
-    <task id="LOCAL-00075" summary="commit">
-      <created>1492073144443</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
+    <task id="LOCAL-00154" summary="提交最新代码">
+      <created>1492073060562</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
       <option name="project" value="LOCAL" />
-      <updated>1492073144444</updated>
+      <updated>1492073060562</updated>
     </task>
-    <task id="LOCAL-00076" summary="commit">
-      <created>1492073853653</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
+    <task id="LOCAL-00155" summary="最新代码commit">
+      <created>1492656112911</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
       <option name="project" value="LOCAL" />
-      <updated>1492073853653</updated>
+      <updated>1492656112912</updated>
     </task>
-    <task id="LOCAL-00077" summary="增加极光推送">
-      <created>1492500100398</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
+    <task id="LOCAL-00156" summary="修改手机通讯录界面">
+      <created>1492670502645</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
       <option name="project" value="LOCAL" />
-      <updated>1492500100399</updated>
+      <updated>1492670502645</updated>
     </task>
-    <task id="LOCAL-00078" summary="增加极光推送">
-      <created>1492500224904</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
+    <task id="LOCAL-00157" summary="新版本mqtt">
+      <created>1493014832294</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
       <option name="project" value="LOCAL" />
-      <updated>1492500224904</updated>
+      <updated>1493014832296</updated>
     </task>
-    <task id="LOCAL-00079" summary="增加极光推送">
-      <created>1492500269012</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
+    <task id="LOCAL-00158" summary="commit">
+      <created>1493036906068</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
       <option name="project" value="LOCAL" />
-      <updated>1492500269012</updated>
+      <updated>1493036906069</updated>
     </task>
-    <task id="LOCAL-00080" summary="合并最新代码">
-      <created>1492508849792</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
+    <task id="LOCAL-00159" summary="commit">
+      <created>1493102166040</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
       <option name="project" value="LOCAL" />
-      <updated>1492508849793</updated>
+      <updated>1493102166041</updated>
     </task>
-    <task id="LOCAL-00081" summary="合并最新代码">
-      <created>1492508886703</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
+    <task id="LOCAL-00160" summary="commit">
+      <created>1493193324347</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
       <option name="project" value="LOCAL" />
-      <updated>1492508886703</updated>
+      <updated>1493193324348</updated>
     </task>
-    <task id="LOCAL-00082" summary="合并最新代码">
-      <created>1492658721001</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
+    <task id="LOCAL-00161" summary="commit">
+      <created>1493193354871</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
       <option name="project" value="LOCAL" />
-      <updated>1492658721002</updated>
+      <updated>1493193354871</updated>
     </task>
-    <task id="LOCAL-00083" summary="合并最新代码">
-      <created>1492658745305</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
+    <task id="LOCAL-00162" summary="commit">
+      <created>1493194085067</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
       <option name="project" value="LOCAL" />
-      <updated>1492658745305</updated>
+      <updated>1493194085067</updated>
     </task>
-    <task id="LOCAL-00084" summary="..">
-      <created>1492670670459</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00163" summary="commit：合并后的代码">
+      <created>1493207617330</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
       <option name="project" value="LOCAL" />
-      <updated>1492670670459</updated>
+      <updated>1493207617330</updated>
     </task>
-    <task id="LOCAL-00085" summary="..">
-      <created>1492670835288</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
+    <task id="LOCAL-00164" summary="commit：合并后的代码">
+      <created>1493207691815</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
       <option name="project" value="LOCAL" />
-      <updated>1492670835288</updated>
+      <updated>1493207691815</updated>
     </task>
-    <task id="LOCAL-00086" summary="合并最新mqtt">
-      <created>1493170958337</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
+    <task id="LOCAL-00165" summary="commit：合并后的代码">
+      <created>1493706506775</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
       <option name="project" value="LOCAL" />
-      <updated>1493170958337</updated>
+      <updated>1493706506776</updated>
     </task>
-    <task id="LOCAL-00087" summary="五一前最新代码">
-      <created>1493258947867</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
+    <task id="LOCAL-00166" summary="commit：合并后的代码">
+      <created>1493706527345</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
       <option name="project" value="LOCAL" />
-      <updated>1493258947868</updated>
+      <updated>1493706527346</updated>
     </task>
-    <task id="LOCAL-00088" summary="添加 退出登录后发送离线消息">
-      <created>1493273466671</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
+    <task id="LOCAL-00167" summary="commit：合并后的代码">
+      <created>1494214694343</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
       <option name="project" value="LOCAL" />
-      <updated>1493273466671</updated>
+      <updated>1494214694344</updated>
     </task>
-    <task id="LOCAL-00089" summary="将jcenter添加JPush改成sdk集成">
-      <created>1493886923891</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
+    <task id="LOCAL-00168" summary="commit:合并">
+      <created>1495438356792</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
       <option name="project" value="LOCAL" />
-      <updated>1493886923892</updated>
+      <updated>1495438356792</updated>
     </task>
-    <task id="LOCAL-00090" summary="合并孙林松代码 修改Thrift">
-      <created>1494293146315</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
+    <task id="LOCAL-00169" summary="commit">
+      <created>1495501671189</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
       <option name="project" value="LOCAL" />
-      <updated>1494293146315</updated>
+      <updated>1495501671189</updated>
     </task>
-    <task id="LOCAL-00091" summary="增加文件群发功能">
-      <created>1495160524900</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
+    <task id="LOCAL-00170" summary="commit">
+      <created>1495504866677</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
       <option name="project" value="LOCAL" />
-      <updated>1495160524900</updated>
+      <updated>1495504866677</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1694734000" />
+    <option name="totallyTimeSpent" value="1418362000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1125,44 +1081,25 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15753424" sideWeight="0.4941957" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49729145" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2524377" sideWeight="0.5479452" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60455036" sideWeight="0.5094837" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24918744" sideWeight="0.4520548" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15276273" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21759747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17009751" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.24377032" sideWeight="0.40687162" order="7" side_tool="false" content_ui="tabs" x="-8" y="263" width="1924" height="491" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.4978903" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5232163" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08676307" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5906217" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31444445" sideWeight="0.4093783" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23444444" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32999474" sideWeight="0.4941957" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18871903" sideWeight="0.5058043" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1185,430 +1122,419 @@
       </map>
     </option>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1，修改通知 ，调通轻门户链接" />
-    <MESSAGE value="更新liuxiaowei代码" />
-    <MESSAGE value="Merge branch 'labliuxiaowei' of http://192.168.100.25/jishitong/IM into change_sunlinsong&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin&#10;#&#9;platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_1_20141007_040217_92.xml&#10;#&#9;platforms/android/.idea/workspace.xml&#10;#&#9;platforms/android/build.gradle&#10;" />
-    <MESSAGE value="提交" />
-    <MESSAGE value="commit：切换账号、修改登录bug" />
-    <MESSAGE value="commit：修改语音bug" />
-    <MESSAGE value="commit：修改郑虎切换模块" />
-    <MESSAGE value="commit：强制踢人" />
+    <MESSAGE value="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)" />
+    <MESSAGE value="1.6commit：修改登陆界面字母大小写" />
+    <MESSAGE value="commit：重新提交代码" />
+    <MESSAGE value="commit：重新提交代码11111" />
+    <MESSAGE value="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知" />
+    <MESSAGE value="commit:修改bug（头像、、、）" />
+    <MESSAGE value="提交代码" />
+    <MESSAGE value="commit：修改头像" />
+    <MESSAGE value="提交合并后的最终代码并提交" />
+    <MESSAGE value="合并程丽丽的代码" />
+    <MESSAGE value="1，合并宋亚代码" />
+    <MESSAGE value="合并后最新代码提交" />
+    <MESSAGE value="样式修改" />
+    <MESSAGE value="合并宋亚 （最新代码" />
+    <MESSAGE value="。。" />
+    <MESSAGE value="最新代码提交" />
+    <MESSAGE value="小bug更改提交" />
+    <MESSAGE value="提交最新代码" />
+    <MESSAGE value="最新代码commit" />
+    <MESSAGE value="修改手机通讯录界面" />
+    <MESSAGE value="新版本mqtt" />
+    <MESSAGE value="commit：合并后的代码" />
+    <MESSAGE value="commit:合并" />
     <MESSAGE value="commit" />
-    <MESSAGE value="增加极光推送" />
-    <MESSAGE value="合并宋亚最新代码  极光简测通过" />
-    <MESSAGE value="合并宋亚最新代码" />
-    <MESSAGE value="合并宋亚代码" />
-    <MESSAGE value="..." />
-    <MESSAGE value="合并最新代码" />
-    <MESSAGE value="合并" />
-    <MESSAGE value=".." />
-    <MESSAGE value="。。。" />
-    <MESSAGE value="合并新mqtt" />
-    <MESSAGE value="合并最新mqtt" />
-    <MESSAGE value="五一前最新代码" />
-    <MESSAGE value="添加 退出登录后发送离线消息" />
-    <MESSAGE value="将jcenter添加JPush改成sdk集成" />
-    <MESSAGE value="合并孙林松代码 修改Thrift" />
-    <MESSAGE value="增加文件群发功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加文件群发功能" />
+    <MESSAGE value="拷贝孙林松代码提交以上" />
+    <option name="LAST_COMMIT_MESSAGE" value="拷贝孙林松代码提交以上" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/www/js/controller_login.js</url>
-          <line>491</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/www/js/service_contacts.js</url>
+          <line>243</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/www/js/service_common.js</url>
+          <line>154</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <option name="time" value="16" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plugins/MqttChat/www/mqtt_chat.js">
+    <entry file="file://$PROJECT_DIR$/www/templates/contact-third.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        <state relative-caret-position="858">
+          <caret line="33" column="98" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="98" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-notification.html">
+    <entry file="file://$PROJECT_DIR$/www/templates/contact-eighth.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="65" column="88" lean-forward="true" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_checkbox.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="78" column="1" lean-forward="false" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/person-detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/cxtx.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/welcome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/gradlew.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1950">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_newnotification.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_work.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_portal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="53" column="106" lean-forward="false" selection-start-line="53" selection-start-column="106" selection-end-line="53" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_portal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-portal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="29" lean-forward="true" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3900">
-          <caret line="156" column="11" lean-forward="false" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_contacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16400">
-          <caret line="656" column="46" lean-forward="false" selection-start-line="656" selection-start-column="46" selection-end-line="656" selection-end-column="46" />
+        <state relative-caret-position="858">
+          <caret line="33" column="98" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/css/myattention.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13200">
-          <caret line="528" column="1" lean-forward="false" selection-start-line="528" selection-start-column="1" selection-end-line="528" selection-end-column="1" />
+        <state relative-caret-position="228">
+          <caret line="178" column="1" lean-forward="false" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
+    <entry file="file://$PROJECT_DIR$/www/css/common.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9350">
-          <caret line="632" column="18" lean-forward="true" selection-start-line="632" selection-start-column="18" selection-end-line="632" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="600">
+          <caret line="78" column="1" lean-forward="false" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-chats.html">
+    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-second.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="62" lean-forward="false" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/contact-group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/person-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/group-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="83" column="93" lean-forward="false" selection-start-line="83" selection-start-column="93" selection-end-line="83" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/personal-setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-first.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/rj.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/MqttChat/src/android/MqttChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1092">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/luban/Preconditions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-contacts.html">
+    <entry file="file://$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/luban/Luban.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="52" column="11" lean-forward="false" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
+        <state relative-caret-position="-1872">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-forth.html">
+    <entry file="file://$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/luban/OnCompressListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="55" column="117" lean-forward="false" selection-start-line="55" selection-start-column="117" selection-end-line="55" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-third.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="53" column="113" lean-forward="false" selection-start-line="53" selection-start-column="113" selection-end-line="53" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-first.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="55" lean-forward="false" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-second.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="55" column="10" lean-forward="true" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-sixth.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="56" column="115" lean-forward="false" selection-start-line="56" selection-start-column="115" selection-end-line="56" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-seventh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="61" column="113" lean-forward="false" selection-start-line="61" selection-start-column="113" selection-end-line="61" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-eighth.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="71" column="114" lean-forward="false" selection-start-line="71" selection-start-column="114" selection-end-line="71" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="1986" column="4" lean-forward="false" selection-start-line="1986" selection-start-column="4" selection-end-line="1986" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="124" lean-forward="false" selection-start-line="7" selection-start-column="124" selection-end-line="7" selection-end-column="124" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/group-member.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="554" column="19" lean-forward="true" selection-start-line="554" selection-start-column="19" selection-end-line="554" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_select_group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-737">
-          <caret line="1870" column="14" lean-forward="false" selection-start-line="1870" selection-start-column="10" selection-end-line="1870" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19650">
-          <caret line="787" column="0" lean-forward="false" selection-start-line="787" selection-start-column="0" selection-end-line="788" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_select_othergroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="267" column="13" lean-forward="false" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addNewPerson-fifth.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="55" column="117" lean-forward="false" selection-start-line="55" selection-start-column="117" selection-end-line="55" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2950">
-          <caret line="2517" column="47" lean-forward="true" selection-start-line="2517" selection-start-column="47" selection-end-line="2517" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/guany.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="81" column="39" lean-forward="false" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="311" lean-forward="false" selection-start-line="10" selection-start-column="311" selection-end-line="10" selection-end-column="311" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_masstexting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/aboutours.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/mass_texting.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="175" lean-forward="false" selection-start-line="9" selection-start-column="165" selection-end-line="9" selection-end-column="175" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/masstexting.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/masstexting.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="344" column="19" lean-forward="false" selection-start-line="344" selection-start-column="19" selection-end-line="344" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="684" column="39" lean-forward="false" selection-start-line="684" selection-start-column="39" selection-end-line="684" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controller_founction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/founction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-          <folding>
-            <marker date="1495441625438" expanded="false" signature="1027:1061" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1105:1128" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1203:1234" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1345:1361" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1563:1579" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1679:1713" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1757:1780" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1849:1880" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="1991:2007" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2209:2225" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2325:2359" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2431:2454" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2523:2554" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2663:2679" ph="..." />
-            <marker date="1495441625438" expanded="false" signature="2881:2897" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/tab-account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="886">
-          <caret line="91" column="17" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
+        <state relative-caret-position="260">
+          <caret line="10" column="45" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-contacts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1508">
+          <caret line="58" column="48" lean-forward="false" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tabs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="47" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2314">
+          <caret line="89" column="48" lean-forward="false" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/elastic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_badge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="30" column="40" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/newsPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="11" column="94" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-312">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_portal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="57" column="13" lean-forward="false" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="85" column="28" lean-forward="false" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4155">
+          <caret line="277" column="48" lean-forward="false" selection-start-line="277" selection-start-column="42" selection-end-line="277" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_portal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="119" column="44" lean-forward="false" selection-start-line="119" selection-start-column="44" selection-end-line="119" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-hdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-ldpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-mdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-xhdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-xxhdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/android/icon/drawable-xxxhdpi-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/js/ionic-angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="3398" column="9" lean-forward="false" selection-start-line="3398" selection-start-column="9" selection-end-line="3398" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/cordova-plugin-camera/src/android/CameraLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="1195" column="22" lean-forward="false" selection-start-line="1195" selection-start-column="22" selection-end-line="1195" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
+    <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2800">
+          <caret line="112" column="17" lean-forward="false" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2375">
+          <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ngCordova/dist/ng-cordova.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="1665" column="11" lean-forward="false" selection-start-line="1665" selection-start-column="11" selection-end-line="1665" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tab-message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="119" lean-forward="false" selection-start-line="18" selection-start-column="119" selection-end-line="18" selection-end-column="119" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1100">
+          <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4425">
+          <caret line="177" column="31" lean-forward="false" selection-start-line="177" selection-start-column="18" selection-end-line="177" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23200">
+          <caret line="928" column="35" lean-forward="false" selection-start-line="928" selection-start-column="35" selection-end-line="928" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/message-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5675">
+          <caret line="227" column="63" lean-forward="false" selection-start-line="227" selection-start-column="58" selection-end-line="227" selection-end-column="63" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59625">
+          <caret line="2385" column="53" lean-forward="false" selection-start-line="2385" selection-start-column="53" selection-end-line="2385" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/message-group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1775">
+          <caret line="569" column="40" lean-forward="false" selection-start-line="569" selection-start-column="40" selection-end-line="569" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#1;n#div#0;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_founction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="135" column="0" lean-forward="true" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
           <folding />
         </state>
       </provider>

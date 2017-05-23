@@ -113,16 +113,16 @@ public class MqttTopicRW {
 	/**
 	 * 发布主题，必须是启动Mqtt之后
 	 * @param topic
-	 * @param qos
+	 * @param qos 为使消息不发生重复，此处直接改为2
 	 */
 	public static void append(String topic, int qos) {
 		Intent intent = new Intent();
 //		intent.setAction(ReceiverParams.SUBSCRIBE);
 		intent.setAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
 		intent.putExtra("topic", topic);
-		intent.putExtra("qos", qos);
+		intent.putExtra("qos", 2);
 		UIUtils.getContext().sendBroadcast(intent);
-		SPUtils.save(getKey(), SPUtils.getString(getKey(), "") + ";" + topic + "#" + qos);
+		SPUtils.save(getKey(), SPUtils.getString(getKey(), "") + ";" + topic + "#" + 2);
 	}
 
 	public static String getKey() {

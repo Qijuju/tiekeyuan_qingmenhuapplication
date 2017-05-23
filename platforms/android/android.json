@@ -111,6 +111,10 @@
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Clipboard\"><param name=\"android-package\" value=\"com.verso.cordova.clipboard.Clipboard\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -298,6 +302,9 @@
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "com.verso.cordova.clipboard": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
@@ -655,6 +662,13 @@
             "clobbers": [
                 "navigator.splashscreen"
             ]
+        },
+        {
+            "file": "plugins/com.verso.cordova.clipboard/www/clipboard.js",
+            "id": "com.verso.cordova.clipboard.Clipboard",
+            "clobbers": [
+                "cordova.plugins.clipboard"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -685,6 +699,7 @@
         "ScalePhoto": "1.0.0",
         "GridPhoto": "1.0.0",
         "cordova-plugin-inappbrowser": "1.5.0",
-        "cordova-plugin-splashscreen": "4.0.1"
+        "cordova-plugin-splashscreen": "4.0.1",
+        "com.verso.cordova.clipboard": "0.1.0"
     }
 }

@@ -292,7 +292,7 @@ public class MqttChat extends CordovaPlugin {
             });*/
       int[] qoss = new int[topics.length];
       for (int i = 0; i < topics.length; i++) {
-        qoss[i] = 1;
+        qoss[i] = 2;
                 /*if (!"zhuanjiazu".equals(topics[i].trim())){
                     qoss[i] = 2;
                 } else {
@@ -1089,7 +1089,6 @@ public class MqttChat extends CordovaPlugin {
         @Override
         public void onConnected() {
           try {
-            ToastUtil.showSafeToast("MQTT起来了~~~");
             SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
             Log.e("getstarttime", format.format(new Date()));
             setResult("true", PluginResult.Status.OK, callbackContext);
@@ -1099,7 +1098,6 @@ public class MqttChat extends CordovaPlugin {
 
         @Override
         public void onConnectFailure() {//连接失败
-          ToastUtil.showSafeToast("MQTT连接失败~~~");
           SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
           Log.e("getendtime", format.format(new Date()));
           setResult("false", PluginResult.Status.ERROR, callbackContext);
@@ -1108,7 +1106,6 @@ public class MqttChat extends CordovaPlugin {
       imReceiver.setOnConnectDownListener(new IMReceiver.OnConnectDownListener() {//连接中断
         @Override
         public void onConnectDown() {
-          ToastUtil.showSafeToast("MQTT挂掉了~~~");
           SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
           Log.e("getendtime", format.format(new Date()));
           setResult("false", PluginResult.Status.ERROR, callbackContext);

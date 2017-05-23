@@ -36,8 +36,15 @@
 }
 .rj-push-rightright {
   position: absolute;
-  right: 40px;
+  right: 36px;
   top: 10px;
+  color: #8c8c8c;
+  font-size: 13px;
+}
+.rj-push-rightright2 {
+  position: absolute;
+  right: 36px;
+  top: 13px;
   color: #8c8c8c;
   font-size: 13px;
 }

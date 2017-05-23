@@ -67,4 +67,9 @@ public class ConstantsParams {
      * 反订阅topic
      */
     public static final String PARAM_TOPIC_UNSUBSCRIBE = BASE_PARAM + "param_topic_unsubscribe";
+
+    /**
+     * 重置IM（断开MQTT）
+     */
+    public static final String PARAM_BASH_IM = BASE_PARAM + "param_bash_im";
 }

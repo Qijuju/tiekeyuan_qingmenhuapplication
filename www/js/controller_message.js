@@ -2,7 +2,33 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location,$cordovaClipboard) {
+
+    /**
+     * 长按事件
+     */
+    $scope.longtab = function (msgSingle) {
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '复制'}
+        ],
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $cordovaClipboard
+              .copy(msgSingle.message)
+              .then(function () {
+                // success
+                $ToastUtils.showToast("复制成功", null, null);
+              }, function () {
+                $ToastUtils.showToast("复制失败", null, null);
+                // error
+              });
+          }
+          return true;
+        }
+      });
+    };
 
     $scope.$on('netstatus.update', function (event) {
       /*$scope.$apply(function () {
@@ -1135,7 +1161,7 @@ angular.module('message.controllers', [])
           }
           if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleMsg(topic, content, id,localuser,localuserId,sqlid);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File' || msgSingle.messagetype === 'Vedio')) {
             for(var i=0;i<$mqtt.getDanliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getDanliao()[i]._id === sqlid){
@@ -2329,7 +2355,33 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard) {
+
+    /**
+     * 长按事件
+     */
+    $scope.longtabGroup = function (msgSingle) {
+      $ionicActionSheet.show({
+        buttons: [
+          {text: '复制'}
+        ],
+        cancelText: '取消',
+        buttonClicked: function (index) {
+          if (index == 0) {
+            $cordovaClipboard
+              .copy(msgSingle.message)
+              .then(function () {
+                // success
+                $ToastUtils.showToast("复制成功", null, null);
+              }, function () {
+                $ToastUtils.showToast("复制失败", null, null);
+                // error
+              });
+          }
+          return true;
+        }
+      });
+    };
 
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
@@ -3360,7 +3412,7 @@ angular.module('message.controllers', [])
           // alert('msgSingle.messagetype' + msgSingle);
           if (index === 0 && (msgSingle.messagetype === 'normal' || msgSingle.messagetype === 'Text')) {
             $scope.sendSingleGroupMsg(topic, content, id,msgSingle.type,localuser,localuserId,sqlid, msgSingle.messagetype);
-          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File')) {
+          } else if (index === 0 && (msgSingle.messagetype === 'Image' || msgSingle.messagetype === 'File' || msgSingle.messagetype === 'Vedio')) {
             for(var i=0;i<$mqtt.getQunliao().length;i++){
               // alert(sqlid+i+"来了" );
               if($mqtt.getQunliao()[i]._id === sqlid){
@@ -4261,6 +4313,15 @@ angular.module('message.controllers', [])
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
 
+    $scope.isNetConnectNow = $mqtt.getIMStatus();
+
+    //监听MQTT状态的变化
+    $scope.$on('netStatusNow.update', function (event) {
+      $scope.$apply(function () {
+        $scope.isNetConnectNow = $mqtt.getIMStatus();
+      })
+    });
+
     $mqtt.getUserInfo(function (msg) {
       $scope.UserID = msg.userID;
 
@@ -4746,29 +4807,31 @@ angular.module('message.controllers', [])
       var id=value.split(',')[0];
       var sessionid=value.split(',')[1];
       $greendao.queryData('ChatListService','where id =?',id,function (data) {
-        var chatitem={};
-        chatitem.id=data[0].id;
-        chatitem.chatName=data[0].chatName;
-        chatitem.isDelete=data[0].isDelete;
-        chatitem.lastText=data[0].lastText;
-        chatitem.count=data[0].count;
-        chatitem.lastDate=data[0].lastDate;
-        chatitem.chatType=data[0].chatType;
-        chatitem.senderId=data[0].senderId;
-        chatitem.senderName=data[0].senderName;
-        chatitem.daytype=data[0].daytype;
-        chatitem.imgSrc=data[0].imgSrc;
-        chatitem.isSuccess='true';
-        chatitem.isFailure=data[0].isFailure;
-        chatitem.messagetype=data[0].messagetype;
-        chatitem.isRead=data[0].isRead;
-        $greendao.saveObj('ChatListService',chatitem,function (suc) {
-          $chatarr.updatedatanosort(chatitem);
-        },function (err) {
-        });
+        $scope.$apply(function () {
+            var chatitem={};
+            chatitem.id=data[0].id;
+            chatitem.chatName=data[0].chatName;
+            chatitem.isDelete=data[0].isDelete;
+            chatitem.lastText=data[0].lastText;
+            chatitem.count=data[0].count;
+            chatitem.lastDate=data[0].lastDate;
+            chatitem.chatType=data[0].chatType;
+            chatitem.senderId=data[0].senderId;
+            chatitem.senderName=data[0].senderName;
+            chatitem.daytype=data[0].daytype;
+            chatitem.imgSrc=data[0].imgSrc;
+            chatitem.isSuccess='true';
+            chatitem.isFailure=data[0].isFailure;
+            chatitem.messagetype=data[0].messagetype;
+            chatitem.isRead=data[0].isRead;
+            $greendao.saveObj('ChatListService',chatitem,function (suc) {
+              $chatarr.updatedatanosort(chatitem);
+            },function (err) {
+            });
 
-      },function (err) {
-      });
+          },function (err) {
+          });
+        });
     });
 
 

@@ -342,7 +342,16 @@ angular.module('common.services', [])
       },
       readMessage:function(sessionType, sessionID, sendWhen, success, error) {//确认消息回复
         api.readMessage(sessionType, sessionID, sendWhen, success, error);
-      }
+      },
+      getNotifyMsg:function (date, isAttention, formId,pageNum,pageCount,success, error) {//获取通知消息
+        api.getNotifyMsg(date, isAttention, formId,pageNum,pageCount,success, error)
+      },
+      setNotifyMsg:function (msgId, setReaded, setToped,setAttention,success, error) {//设置已读未读消息
+        api.setNotifyMsg(msgId, setReaded, setToped,setAttention,success, error)
+      },
+      getMsgReadList:function (msgId, isReaded,success, error) {//获取确认 未确认列表
+        api.getMsgReadList(msgId, isReaded,success, error)
+      },
     };
   })
 
