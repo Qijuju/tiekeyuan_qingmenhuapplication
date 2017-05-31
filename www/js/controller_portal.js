@@ -59,6 +59,7 @@ angular.module('portal.controllers', [])
 
     //rxy 跳转页面详情
     $scope.jumpUrl = function (appId) {
+
       $http({
         method: 'get',
         timeout: 5000,

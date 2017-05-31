@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app3/cqdzyb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app3/cqdzyb_f.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app3/gdsys.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app3/gdsys_f.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -14,13 +10,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_portal.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-portal.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-portal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes.js" afterPath="$PROJECT_DIR$/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_portal.js" afterPath="$PROJECT_DIR$/www/js/service_portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-portal.html" afterPath="$PROJECT_DIR$/www/templates/tab-portal.html" />
     </list>
     <ignored path="IM.iws" />
@@ -46,8 +36,18 @@
       <file leaf-file-name="tab-portal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-portal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="186" column="12" lean-forward="false" selection-start-line="186" selection-start-column="12" selection-end-line="186" selection-end-column="12" />
+            <state relative-caret-position="616">
+              <caret line="168" column="52" lean-forward="true" selection-start-line="168" selection-start-column="52" selection-end-line="168" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="147" column="27" lean-forward="false" selection-start-line="147" selection-start-column="27" selection-end-line="147" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -56,8 +56,8 @@
       <file leaf-file-name="controller_portal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state relative-caret-position="620">
+              <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -66,7 +66,7 @@
       <file leaf-file-name="service_portal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/service_portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
+            <state relative-caret-position="4100">
               <caret line="164" column="60" lean-forward="false" selection-start-line="164" selection-start-column="51" selection-end-line="164" selection-end-column="60" />
               <folding />
             </state>
@@ -195,8 +195,8 @@
         <option value="$PROJECT_DIR$/www/templates/message-group.html" />
         <option value="$PROJECT_DIR$/www/js/routes.js" />
         <option value="$PROJECT_DIR$/www/js/service_portal.js" />
-        <option value="$PROJECT_DIR$/www/templates/tab-portal.html" />
         <option value="$PROJECT_DIR$/www/js/controller_portal.js" />
+        <option value="$PROJECT_DIR$/www/templates/tab-portal.html" />
       </list>
     </option>
   </component>
@@ -268,47 +268,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app3" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,14 +559,8 @@
       <workItem from="1495587708664" duration="14970000" />
       <workItem from="1495673778472" duration="14405000" />
       <workItem from="1495758697871" duration="23392000" />
-      <workItem from="1495846228584" duration="13767000" />
-    </task>
-    <task id="LOCAL-00124" summary="commit：重新提交代码">
-      <created>1488523466106</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1488523466106</updated>
+      <workItem from="1495846228584" duration="18514000" />
+      <workItem from="1496190725042" duration="1667000" />
     </task>
     <task id="LOCAL-00125" summary="commit：重新提交代码11111">
       <created>1488523558887</created>
@@ -944,11 +898,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495524536126</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="轻门户改造">
+      <created>1495872190541</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1495872190542</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1491723000" />
+    <option name="totallyTimeSpent" value="1498137000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -961,16 +922,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21759747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17009751" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17009751" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.16576381" sideWeight="0.40687162" order="9" side_tool="false" content_ui="tabs" x="-8" y="263" width="1924" height="491" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.4978903" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1015,8 +977,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.6commit：拉取宋亚代码(设置界面、详情界面、联系人界面等)" />
-    <MESSAGE value="1.6commit：修改登陆界面字母大小写" />
     <MESSAGE value="commit：重新提交代码" />
     <MESSAGE value="commit：重新提交代码11111" />
     <MESSAGE value="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知" />
@@ -1040,7 +1000,9 @@
     <MESSAGE value="commit:合并" />
     <MESSAGE value="commit" />
     <MESSAGE value="拷贝孙林松代码提交以上" />
-    <option name="LAST_COMMIT_MESSAGE" value="拷贝孙林松代码提交以上" />
+    <MESSAGE value="轻门户改造" />
+    <MESSAGE value="轻门户修改完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="轻门户修改完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1335,15 +1297,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1125">
           <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="127" column="51" lean-forward="false" selection-start-line="127" selection-start-column="51" selection-end-line="127" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1351,7 +1304,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="649" column="82" lean-forward="true" selection-start-line="649" selection-start-column="82" selection-end-line="649" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1359,6 +1311,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/app3/gdsys.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/service_portal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4100">
+          <caret line="164" column="60" lean-forward="false" selection-start-line="164" selection-start-column="51" selection-end-line="164" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="147" column="27" lean-forward="false" selection-start-line="147" selection-start-column="27" selection-end-line="147" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1371,31 +1343,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/app3/gdsys.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/tab-portal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="186" column="12" lean-forward="false" selection-start-line="186" selection-start-column="12" selection-end-line="186" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/service_portal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="164" column="60" lean-forward="false" selection-start-line="164" selection-start-column="51" selection-end-line="164" selection-end-column="60" />
+        <state relative-caret-position="616">
+          <caret line="168" column="52" lean-forward="true" selection-start-line="168" selection-start-column="52" selection-end-line="168" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_portal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+        <state relative-caret-position="620">
+          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
           <folding />
         </state>
       </provider>
