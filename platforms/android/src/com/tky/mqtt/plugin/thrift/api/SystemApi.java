@@ -45,7 +45,7 @@ import im.server.attention.IMAttention;
 public class SystemApi {
 
 
-  //public static final String url = Constants.formalbasemobile; //正式
+//  public static final String url = Constants.formalbasemobile; //正式
   public static final String url = Constants.testbasemobile;//测试
   //public static final String url = Constants.JINGWAIURL;
 

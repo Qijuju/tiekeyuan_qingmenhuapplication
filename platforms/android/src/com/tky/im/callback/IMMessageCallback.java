@@ -75,15 +75,14 @@ public class IMMessageCallback implements MqttCallback {
         if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
             //设置连接失败状态
             IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN);
-            //发送重连广播
-            IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
         }
-        /*UIUtils.getHandler().postDelayed(new Runnable() {
+        UIUtils.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                IMBroadOper.broad(imConnection.isConnected() ? ConstantsParams.PARAM_CONNECT_SUCCESS : ConstantsParams.PARAM_CONNECT_FAILURE);
+              //发送重连广播
+              IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
             }
-        }, 2000);*/
+        }, 10);
     }
 
     @Override
