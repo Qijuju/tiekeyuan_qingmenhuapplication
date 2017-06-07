@@ -1957,30 +1957,38 @@ angular.module('message.controllers', [])
       if($scope.islisten === 'true'){
         // alert("播放语音啦");
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
-          $scope.isshowgif='false';
-          $scope.isshowgPng ='true';
-          $scope.islisten='false';
-          $scope.audioid='';
+          $scope.$apply(function () {
+            $scope.isshowgif = 'false';
+            $scope.isshowgPng = 'true';
+            $scope.islisten = 'false';
+            $scope.audioid = '';
+          });
         }, function (err) {
-          $scope.isshowgif='false';
-          $scope.islisten='false';
-          $scope.isshowgPng ='true';
-          $scope.audioid='';
-          $ToastUtils.showToast(err,null,null);
+          $scope.$apply(function () {
+            $scope.isshowgif = 'false';
+            $scope.islisten = 'false';
+            $scope.isshowgPng = 'true';
+            $scope.audioid = '';
+            $ToastUtils.showToast(err, null, null);
+          });
         });
 
       }else{
         $mqtt.stopPlayRecord(function (data) {
-          $scope.isshowgif='false';
-          $scope.islisten='false';
-          $scope.isshowgPng ='true';
-          $scope.audioid='';
-          $scope.islisten='false';
+          $scope.$apply(function () {
+            $scope.isshowgif='false';
+            $scope.islisten='false';
+            $scope.isshowgPng ='true';
+            $scope.audioid='';
+            $scope.islisten='false';
+          });
         },function (err) {
-          $scope.isshowgif='false';
-          $scope.islisten='false';
-          $scope.isshowgPng ='true';
-          $scope.audioid='';
+          $scope.$apply(function () {
+            $scope.isshowgif = 'false';
+            $scope.islisten = 'false';
+            $scope.isshowgPng = 'true';
+            $scope.audioid = '';
+          });
         });
       }
 
