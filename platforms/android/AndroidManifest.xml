@@ -76,7 +76,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.tky.mqtt.DocsManagerActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity android:name="com.tky.photohelper.PhotoScaleActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.photoview.PhotoScaleActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.grid.GridActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:exported="false" android:finishOnTaskLaunch="false" android:launchMode="singleInstance" android:name=".OnePxActivity" android:process=":newtask_onepx" android:theme="@style/liveActivityStyle" />

@@ -3,6 +3,7 @@ package com.tky.mqtt.paho.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -76,6 +77,17 @@ public class GsonUtils {
 	private static boolean jsonIsNoData(String result, String spId1, String spId2) {
 		return result.trim().startsWith(spId1) && result.trim().endsWith(spId2) && "".equals(result.substring(1, result.length() - 1).trim());
 	}
+
+  /**
+   * 获取类的类型
+   * @param clazz
+   * @return
+   */
+  public static Type getType(Class<?> clazz) {
+    Type mySuperClass = clazz.getGenericSuperclass();
+    Type type = ((ParameterizedType)mySuperClass).getActualTypeArguments()[0];
+    return type;
+  }
 
 	public enum JsonStatus {
 		/**

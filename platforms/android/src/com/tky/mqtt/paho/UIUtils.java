@@ -286,9 +286,9 @@ public class UIUtils {
 	 * @return
 	 */
 	public static String getDeviceId() {
-     return JPushInterface.getRegistrationID(getContext());
-//		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
-//		return TelephonyMgr.getDeviceId();
+//     return JPushInterface.getRegistrationID(getContext());
+		TelephonyManager TelephonyMgr = (TelephonyManager)UIUtils.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+		return TelephonyMgr.getDeviceId();
 	}
 
 	public static String getPhoneImsiNum(Context context) {

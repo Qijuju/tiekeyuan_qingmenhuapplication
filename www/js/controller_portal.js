@@ -63,10 +63,11 @@ angular.module('portal.controllers', [])
       $http({
         method: 'get',
         timeout: 5000,
-        url: "http://61.237.239.152:8080/apiman-gateway/jishitong/getsession/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
+        // url: "http://61.237.239.152:8080/apiman-gateway/jishitong/getsession/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
+        url: "http://61.237.239.60:8081/im/secret/getsession?id=" + userID
       }).success(function (data, status) {
 
-        if (data.sessionid == null && typeof(data.sessionid) == "undefined") {
+        if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
           $ToastUtils.showToast("获取用户权限失败!");
           return;
         }

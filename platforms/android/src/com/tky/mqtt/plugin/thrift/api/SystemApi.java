@@ -45,8 +45,8 @@ import im.server.attention.IMAttention;
 public class SystemApi {
 
 
-//  public static final String url = Constants.formalbasemobile; //正式
-  public static final String url = Constants.testbasemobile;//测试
+  public static final String url = Constants.formalbasemobile; //正式
+//  public static final String url = Constants.testbasemobile;//测试
   //public static final String url = Constants.JINGWAIURL;
 
   /**
@@ -60,11 +60,11 @@ public class SystemApi {
         clientManager.stop();
       }*/
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 5000);
-//        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6001, 40000);
+//        TNonblockingSocket transport = new TNonblockingSocket("61.237.239.152", 6001, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMSystem.AsyncClient asyncClient = new IMSystem.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
@@ -80,10 +80,10 @@ public class SystemApi {
       }*/
     //172.25.26.165
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6002, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMDepartment.AsyncClient asyncClient = new IMDepartment.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
@@ -95,10 +95,10 @@ public class SystemApi {
    */
   private static MyAsyncClient getUserClient() throws IOException {
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6003, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMUser.AsyncClient asyncClient = new IMUser.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
@@ -116,17 +116,17 @@ public class SystemApi {
         clientManager3.stop();
       }*/
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6006, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMFile.AsyncClient asyncClient = new IMFile.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
   public static FileSyncClient getFileSyncClient() throws IOException {
 
 //        if (fileSyncClient == null) {
-    TTransport transport2 = new TFramedTransport(new TSocket(url, 6006, 5000));
+    TTransport transport2 = new TFramedTransport(new TSocket(url, 6006, 40000));
     TProtocol protocol2 = new TCompactProtocol(transport2);
     IMFile.Client fileClient = new IMFile.Client(protocol2);
     try {
@@ -150,10 +150,10 @@ public class SystemApi {
         clientManager4.stop();
       }*/
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6007, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMAttention.AsyncClient asyncClient = new IMAttention.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
@@ -168,10 +168,10 @@ public class SystemApi {
         clientManager5.stop();
       }*/
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6005, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMMessage.AsyncClient asyncClient = new IMMessage.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
@@ -186,10 +186,10 @@ public class SystemApi {
         clientManager6.stop();
       }*/
     TAsyncClientManager clientManager = new TAsyncClientManager();
-    TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 5000);
+    TNonblockingSocket transport = new TNonblockingSocket(url, 6004, 40000);
     TCompactProtocol.Factory protocol = new TCompactProtocol.Factory();
     IMGroup.AsyncClient asyncClient = new IMGroup.AsyncClient(protocol, clientManager, transport);
-    asyncClient.setTimeout(5000);
+    asyncClient.setTimeout(40000);
     return new MyAsyncClient(clientManager, transport, asyncClient);
   }
 
