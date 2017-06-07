@@ -158,6 +158,8 @@ public class RecorderManager {
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         recorder.setOutputFile(filePath);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        //设置声音采样频率
+        recorder.setAudioEncodingBitRate(44100);
         recorder.setMaxDuration((int) interval);
         try {
             recorder.prepare();

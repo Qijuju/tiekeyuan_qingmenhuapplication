@@ -114,12 +114,14 @@ angular.module('login.controllers', [])
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
+                  $ionicLoading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
               }
             } else {
+              $ionicLoading.hide();
               $state.go('login');
             }
           });
@@ -131,6 +133,7 @@ angular.module('login.controllers', [])
             $api.activeUser(message.userID, function (message) {
               loginM();
             }, function (message) {
+              $ionicLoading.hide();
               $ToastUtils.showToast(message);
             });
           } else {
@@ -183,6 +186,7 @@ angular.module('login.controllers', [])
             $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
+            $ionicLoading.hide();
             $ToastUtils.showToast(err, function (success) {
             }, function (err) {
             });
@@ -511,6 +515,7 @@ angular.module('login.controllers', [])
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
+                    $ionicLoading.hide();
                     $ToastUtils.showToast(message);
                     $state.go('login');
                   });
@@ -518,6 +523,7 @@ angular.module('login.controllers', [])
                   loginM();
                 }
               } else {
+                $ionicLoading.hide();
                 $state.go('login');
               }
             });
@@ -533,6 +539,7 @@ angular.module('login.controllers', [])
               $api.activeUser(message.userID, function (message) {
                 loginM();
               }, function (message) {
+                $ionicLoading.hide();
                 $ToastUtils.showToast(message);
                 $state.go('login');
               });
@@ -541,6 +548,7 @@ angular.module('login.controllers', [])
             }
           }
         }, function (message) {
+          $ionicLoading.hide();
           $ToastUtils.showToast(message);
           $state.go('login');
         });
@@ -741,6 +749,7 @@ angular.module('login.controllers', [])
                       $api.activeUser(message.userID, function (message) {
                         loginM();
                       }, function (message) {
+                        $ionicLoading.hide();
                         $ToastUtils.showToast(message);
                       });
                     } else {
@@ -757,6 +766,7 @@ angular.module('login.controllers', [])
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
+                    $ionicLoading.hide();
                     $ToastUtils.showToast(message);
                   });
                 } else {
@@ -764,6 +774,7 @@ angular.module('login.controllers', [])
                 }
               }
             }, function (message) {
+              $ionicLoading.hide();
               $state.go('login');
               $ToastUtils.showToast(message);
             });
@@ -841,6 +852,7 @@ angular.module('login.controllers', [])
                       $ionicLoading.hide();
                       $state.go('tab.message');
                     }, function (message) {
+                      $ionicLoading.hide();
                       $ToastUtils.showToast(message);
                     });
                   } else {
@@ -849,6 +861,7 @@ angular.module('login.controllers', [])
                     $state.go('tab.message');
                   }
                 } else {
+                  $ionicLoading.hide();
                   $state.go('login');
                 }
               });
@@ -859,6 +872,7 @@ angular.module('login.controllers', [])
                   $ionicLoading.hide();
                   $state.go('tab.message');
                 }, function (message) {
+                  $ionicLoading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
