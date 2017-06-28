@@ -46,7 +46,11 @@
             </intent-filter>
         </activity>
         <service android:exported="false" android:name="com.tky.mytinker.service.SampleResultService" />
-        <service android:name="com.tky.im.service.IMService" />
+        <service android:name="com.tky.im.service.IMService">
+            <intent-filter android:priority="999">
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
         <service android:name="com.tky.im.service.IMProtectService" />
         <receiver android:name="com.tky.im.receiver.IMNetStatusChangeReceiver">
             <intent-filter>

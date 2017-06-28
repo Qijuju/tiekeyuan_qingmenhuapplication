@@ -14,6 +14,7 @@ import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tky.mqtt.dao.DaoMaster;
 import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.paho.http.Request;
 import com.tky.mytinker.util.SampleApplicationContext;
 import com.tky.mytinker.util.TinkerManager;
 import com.yixia.camera.VCamera;
@@ -78,6 +79,8 @@ public class BaseApplication extends DefaultApplicationLike {
   @Override
   public void onCreate() {
     super.onCreate();
+    //设置默认的URL
+    Request.initBaseUrl("http://61.237.239.152:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16");
     //Context
     context = getApplication();
     //mainThreadId

@@ -53,8 +53,6 @@ public class IMConnectCallback implements IMqttActionListener {
 
     @Override
     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-        LogPrint.print("MQTT", "启动失败~~~");
-        LogPrint.print2("MQTT", "启动失败~~~");
         DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
         disconnectedBufferOptions.setBufferEnabled(true);
         disconnectedBufferOptions.setBufferSize(100);
@@ -71,12 +69,6 @@ public class IMConnectCallback implements IMqttActionListener {
             IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
           }
         }, 10);
-        /*UIUtils.getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                IMBroadOper.broad(imConnection.isConnected() ? ConstantsParams.PARAM_CONNECT_SUCCESS : ConstantsParams.PARAM_CONNECT_FAILURE);
-            }
-        }, 2000);*/
     }
 
     /**

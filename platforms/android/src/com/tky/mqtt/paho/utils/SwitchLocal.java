@@ -79,7 +79,7 @@ public class SwitchLocal {
     }
 
     public static MType getType(String type) {
-        if ("User" == type) {
+        if ("ChildJSBean" == type) {
             return MType.U;
         } else if ("Group" == type) {
             return MType.G;

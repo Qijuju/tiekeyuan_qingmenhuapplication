@@ -7,5 +7,5 @@ package com.tky.mqtt.paho;
  * 描述：
  */
 public enum MType {
-    U/*User*/,G/*Group*/,D/*Department*/
+    U/*ChildJSBean*/,G/*Group*/,D/*Department*/
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 
 import com.tky.im.params.ConstantsParams;
+import com.tky.im.service.IMService;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
@@ -23,9 +24,13 @@ public class IMBroadOper {
      */
     public static void broad(final String status) {
         if (status != ConstantsParams.PARAM_RE_CONNECT) {
-            Intent intent = new Intent();
-            intent.setAction(status);
-            UIUtils.getContext().sendBroadcast(intent);
+            if (UIUtils.isServiceWorked(IMService.class.getName())) {
+              Intent intent = new Intent();
+              intent.setAction(status);
+              UIUtils.getContext().sendBroadcast(intent);
+            } else {
+              UIUtils.getContext().startService(new Intent(UIUtils.getContext(), IMService.class));
+            }
         } else {
             if (startTime == 0) {
                 startTime = System.currentTimeMillis();
@@ -66,7 +71,15 @@ public class IMBroadOper {
         UIUtils.getContext().sendBroadcast(intent);
     }
 
+  /**
+   * 发送消息
+   * @param topic
+   * @param content
+   */
     public static void broadSendMsg(String topic, String content) {
+        if (!UIUtils.isServiceWorked(IMService.class.getName())) {
+          UIUtils.getContext().startService(new Intent(UIUtils.getContext(), IMService.class));
+        }
         Intent intent = new Intent();
         intent.setAction(ConstantsParams.PARAM_SEND_MESSAGE);
         intent.putExtra("topic", topic);

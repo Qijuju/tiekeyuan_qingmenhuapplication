@@ -33,13 +33,6 @@ public class HeartbeatUtils {
     }
 
     /**
-     * 检测将要跨天时，调整心跳周期；跨天之后，调回默认值
-     */
-    /*private void checkDateChanging() {
-
-    }*/
-
-    /**
      * 停止心跳
      */
     public void stopLoop() {

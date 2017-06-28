@@ -2,7 +2,7 @@ package com.tky.localContact;
 
 /**
  * Created with IntelliJ IDEA.
- * User: tangyan
+ * ChildJSBean: tangyan
  * Date: 15-8-18
  */
 public class CharacterParser {

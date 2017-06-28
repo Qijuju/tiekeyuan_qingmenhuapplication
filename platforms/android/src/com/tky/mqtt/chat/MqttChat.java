@@ -31,6 +31,10 @@ import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.callback.OKHttpCallBack2;
+import com.tky.mqtt.paho.http.OKAsyncPostClient;
+import com.tky.mqtt.paho.http.Request;
+import com.tky.mqtt.paho.httpbean.ParamsMap;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.DocFileReceiver;
 import com.tky.mqtt.paho.receiver.MqttSendMsgReceiver;
@@ -43,6 +47,7 @@ import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
 import com.tky.mqtt.paho.utils.RecorderManager;
+import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 import com.tky.mqtt.services.ChatListService;
@@ -473,48 +478,95 @@ public class MqttChat extends CordovaPlugin {
       return;
     }
     hasLogin = false;
-
     final long start = System.currentTimeMillis();
-    MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback = null;
-    try {
-      callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
-        @Override
-        public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+
+
+
+
+
+
+
+
+
+
+    if (ThriftApiClient.isHttp) {
+      try {
+        Request request = new Request(cordova.getActivity());
+        Map<String, Object> paramsMap = ParamsMap.getInstance("LoginOff").getParamsMap();
+        request.addParamsMap(paramsMap);
+        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+          @Override
+          public void onSuccess(Request request, String result) {
+            try {
+              JSONObject obj = new JSONObject(result);
+              if (obj.getBoolean("Succeed")) {
+                IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
+                MqttNotification.cancelAll();
+                MqttRobot.setIsStarted(false);
+                setResult("success", PluginResult.Status.OK, callbackContext);
+              } else {
+                setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+              }
+            } catch (JSONException e) {
+              setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            }
+          }
+
+          @Override
+          public void onFailure(Request request, Exception e) {
+            setResult("网络异常，退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+          }
+        });
+      } catch (JSONException e) {
+        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (Exception e) {
+        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } else {
+      MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback = null;
+      try {
+        callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
+          @Override
+          public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
 //          ToastUtil.showSafeToast("调用接口耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
-          try {
-            RST result = cancelUser_call.getResult();
-            if (result.result || "105".equals(result.getResultCode()) || "106".equals(result.getResultCode())) {
+            try {
+              RST result = cancelUser_call.getResult();
+              if (result.result || "105".equals(result.getResultCode()) || "106".equals(result.getResultCode())) {
 //              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
 //              MqttOper.closeMqttConnection();
 //              IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-              IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
-              MqttNotification.cancelAll();
-              MqttRobot.setIsStarted(false);
+                IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
+                MqttNotification.cancelAll();
+                MqttRobot.setIsStarted(false);
 //              ToastUtil.showSafeToast("执行完退出登录耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
-              setResult("success", PluginResult.Status.OK, callbackContext);
-            } else {
+                setResult("success", PluginResult.Status.OK, callbackContext);
+              } else {
+                setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+              }
+            } catch (TException e) {
               setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
             }
-          } catch (TException e) {
-            setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-            e.printStackTrace();
+            close();
           }
-          close();
-        }
 
-        @Override
-        public void onError(Exception e) {
-          close();
-          setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+          @Override
+          public void onError(Exception e) {
+            close();
+            setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+          }
+        };
+        SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), callback);
+      } catch (Exception e) {
+        if (callback != null) {
+          callback.close();
         }
-      };
-      SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), callback);
-    } catch (Exception e) {
-      if (callback != null) {
-        callback.close();
+        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
       }
-      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
     }
   }
 
@@ -1468,7 +1520,7 @@ public class MqttChat extends CordovaPlugin {
   }
 
   public static MType getType(String type) {
-    if ("User".equals(type)) {
+    if ("ChildJSBean".equals(type)) {
       return MType.U;
     } else if ("Group".equals(type)) {
       return MType.G;

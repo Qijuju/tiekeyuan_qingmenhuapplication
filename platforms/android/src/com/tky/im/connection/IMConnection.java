@@ -69,7 +69,7 @@ public class IMConnection {
      * @param message
      * @param callback
      */
-    public void publish(String tosb, MqttMessage message, final IMqttActionListener callback) {
+    /*public void publish(String tosb, MqttMessage message, final IMqttActionListener callback) {
         if (isConnected()) {
             try {
                 mqttAsyncClient.publish(tosb, message, null, new IMqttActionListener() {
@@ -90,7 +90,7 @@ public class IMConnection {
         } else {
             callback.onFailure(null, null);
         }
-    }
+    }*/
 
     /**
      * 转换消息
