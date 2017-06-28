@@ -142,6 +142,8 @@ angular.module('newnotification.controllers', [])
       if (index == 0 && $scope.appstatus == true) {
         //已确认模块改成关注模块(Liuxw
         $scope.go(1)
+        viewScroll.scrollTop();
+
 
       } else if (index == 0 && $scope.appstatus == false) {
         $scope.go(0)

@@ -64,6 +64,9 @@ public class LogPrint {
     }
 
     public static void print2(String obj, String things) {
+      if (!isLog) {
+        return;
+      }
         try {
             saveToFile("时间：" + getDateTime() + "    userID：" + IMSwitchLocal.getUserID() + "    功能：" + obj + "     做了什么：" + things + getRegexLine() + "\r\n");
         } catch (IOException e) {
