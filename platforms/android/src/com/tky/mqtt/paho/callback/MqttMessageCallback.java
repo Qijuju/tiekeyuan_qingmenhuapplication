@@ -81,7 +81,7 @@ public class MqttMessageCallback implements MqttCallback {
             mPlayer.setLooping(false);
             // 开始播放
             mPlayer.start();*/
-        final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+        final MessageTypeBean bean = MessageOper.unpack(msg);
         if (bean != null && bean instanceof MessageBean) {
             final MessageBean map = (MessageBean) bean;
             String fromUserId = map.get_id();

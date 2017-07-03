@@ -1,25 +1,59 @@
 package com.tky.mqtt.paho.httpbean;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by r on 2017/6/27.
+ * Created by r on 2017/6/29.
  */
 
-public class HistoryMsgBean extends BaseBean {
-  private Map<String, String> member;
-  private int current;
-  private long dateTime;
-  private String sessionId;
-  private int total;
-  private List<Value> value;
+public class LatestMsgBean extends BaseBean {
 
-  public class Value {
+  private Event Event;
+
+  public static class Event {
+    private String sessionId;
+    private String type;
+    private int total;
+    private List<Msg> msgList;
+
+    public String getSessionId() {
+      return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+      this.sessionId = sessionId;
+    }
+
+    public String getType() {
+      return type;
+    }
+
+    public void setType(String type) {
+      this.type = type;
+    }
+
+    public List<Msg> getMsgList() {
+      return msgList;
+    }
+
+    public void setMsgList(List<Msg> msgList) {
+      this.msgList = msgList;
+    }
+
+    public int getTotal() {
+      return total;
+    }
+
+    public void setTotal(int total) {
+      this.total = total;
+    }
+  }
+
+  public static class Msg {
     private String account;
     private int fileSize;
     private String from;
+    private String fromName;
     private String id;
     private String mediaType;
     private String message;
@@ -29,7 +63,6 @@ public class HistoryMsgBean extends BaseBean {
     private String sessionid;
     private String type;
     private long when;
-    private String fromName;
 
     public String getAccount() {
       return account;
@@ -53,6 +86,14 @@ public class HistoryMsgBean extends BaseBean {
 
     public void setFrom(String from) {
       this.from = from;
+    }
+
+    public String getFromName() {
+      return fromName;
+    }
+
+    public void setFromName(String fromName) {
+      this.fromName = fromName;
     }
 
     public String getId() {
@@ -126,66 +167,13 @@ public class HistoryMsgBean extends BaseBean {
     public void setWhen(long when) {
       this.when = when;
     }
-
-    public void setFromName(String fromName) {
-      this.fromName = fromName;
-    }
-
-    public String getFromName() {
-      return fromName;
-    }
   }
 
-  public Map<String, String> getMember() {
-    return member;
+  public LatestMsgBean.Event getEvent() {
+    return Event;
   }
 
-  public void setMember(Map<String, String> member) {
-    this.member = member;
-  }
-
-  public int getCurrent() {
-    return current;
-  }
-
-  public void setCurrent(int current) {
-    this.current = current;
-  }
-
-  public long getDateTime() {
-    return dateTime;
-  }
-
-  public void setDateTime(long dateTime) {
-    this.dateTime = dateTime;
-  }
-
-  public String getSessionId() {
-    return sessionId;
-  }
-
-  public void setSessionId(String sessionId) {
-    this.sessionId = sessionId;
-  }
-
-  public int getTotal() {
-    return total;
-  }
-
-  public void setTotal(int total) {
-    this.total = total;
-  }
-
-  public List<Value> getValue() {
-    if (value == null || value.size() <= 0) {
-      return value;
-    } else {
-      Collections.reverse(value);
-      return value;
-    }
-  }
-
-  public void setValue(List<Value> value) {
-    this.value = value;
+  public void setEvent(LatestMsgBean.Event event) {
+    Event = event;
   }
 }

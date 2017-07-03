@@ -442,8 +442,6 @@ angular.module('common.services', [])
 
 })
 
-
-
   .factory('$okhttp',function () {//上传下载
     var okhttp;
     document.addEventListener('deviceready',function () {
@@ -453,8 +451,11 @@ angular.module('common.services', [])
       upload:function(messageDetail,objectTP,objectID,filepath,url,success, error) {
         okhttp.upload(messageDetail,objectTP,objectID,filepath,url,success,error)
       },
-      download:function (fileid,imagename,smallfilepath, succsee, error) {
-        okhttp.netScale(fileid,imagename,smallfilepath,succsee,error)
+      download:function (fileId,type,picSize,offset, succsee, error) {
+        okhttp.download(fileId,type,picSize,offset,succsee,error)
+      },
+      downloadFile:function (messagedetail,offset, succsee, error) {
+        okhttp.downloadFile(messagedetail,offset,succsee,error)
       }
     }
 

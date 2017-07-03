@@ -10,10 +10,13 @@ import android.provider.MediaStore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ionicframework.im366077.Constants;
+import com.tky.im.connection.IMConnection;
+import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.ConnectionType;
+import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.MqttReceiver;
 import com.tky.mqtt.paho.MqttTopicRW;
@@ -35,6 +38,7 @@ import com.tky.mqtt.paho.httpbean.DepartmentBean;
 import com.tky.mqtt.paho.httpbean.GetUser;
 import com.tky.mqtt.paho.httpbean.GroupUpdate;
 import com.tky.mqtt.paho.httpbean.HistoryMsgBean;
+import com.tky.mqtt.paho.httpbean.LatestMsgBean;
 import com.tky.mqtt.paho.httpbean.LoginInfoBean;
 import com.tky.mqtt.paho.httpbean.MsgEvent;
 import com.tky.mqtt.paho.httpbean.ParamsMap;
@@ -46,6 +50,7 @@ import com.tky.mqtt.paho.jsbean.ChildJSBean;
 import com.tky.mqtt.paho.jsbean.GroupUpdateJS;
 import com.tky.mqtt.paho.jsbean.GroupsJS;
 import com.tky.mqtt.paho.jsbean.HistoryMsgJS;
+import com.tky.mqtt.paho.jsbean.MsgJS;
 import com.tky.mqtt.paho.jsbean.RootJSDept;
 import com.tky.mqtt.paho.jsbean.SearchJSUser;
 import com.tky.mqtt.paho.jsbean.UserJSDetail;
@@ -54,7 +59,6 @@ import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
-import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -402,6 +406,8 @@ public class ThriftApiClient extends CordovaPlugin {
    * @param infoBean
    */
   private String switchLoginUser(LoginInfoBean infoBean) {
+//    SystemApi.url = infoBean.getMqtt();
+    IMConnection.setURL(infoBean.getMqtt());
     //主张号
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("result", infoBean.isSucceed());
@@ -2511,8 +2517,8 @@ public class ThriftApiClient extends CordovaPlugin {
   public void getHistoryMsg(final JSONArray args, final CallbackContext callbackContext) {
     if (isHttp) {
       try {
-        String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
-        String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
+        final String sessionType = args.getString(0);//会话类型(U:个人，D：部门，G：群组)
+        final String sessionID = args.getString(1);//会话ID(U:对方ID，D&G:部门&群组ID)
         int pageNum = args.getInt(2);//搜索的页数(0时为末页)
         int pageCount = args.getInt(3);//每页的数目(0时为10)
         Request request = new Request(cordova.getActivity());
@@ -2526,16 +2532,29 @@ public class ThriftApiClient extends CordovaPlugin {
         OKAsyncPostClient.post(request, new OKHttpCallBack2<HistoryMsgBean>() {
           @Override
           public void onSuccess(Request request, HistoryMsgBean result) {
-            List<HistoryMsgBean.Value> value = result.getValue();
-            switchHistoryMsg(value);
+            try {
+              List<HistoryMsgBean.Value> value = result.getValue();
+              HistoryMsgJS msgJS = switchHistoryMsg(value, sessionID, sessionType);
+              List<HistoryMsgJS.Msg> attentions = msgJS.getMsglist();
+              String jsonStr = GsonUtils.toJson(attentions, new TypeToken<List<HistoryMsgJS.Msg>>() {
+              }.getType());
+              setResult(new JSONArray(jsonStr), PluginResult.Status.OK, callbackContext);
+            } catch (Exception e) {
+              setResult("历史消息请求失败！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            }
           }
 
           @Override
           public void onFailure(Request request, Exception e) {
-            ToastUtil.showSafeToast("err");
+            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
           }
         });
       } catch (JSONException e) {
+        setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (Exception e) {
+        setResult("历史消息请求失败！", PluginResult.Status.ERROR, callbackContext);
         e.printStackTrace();
       }
     } else {
@@ -2608,9 +2627,30 @@ public class ThriftApiClient extends CordovaPlugin {
   /**
    * 转换历史消息
    * @param value
+   * @param sessionID
+   * @param sessionType
    */
-  private void switchHistoryMsg(List<HistoryMsgBean.Value> value) {
-//    HistoryMsgJS
+  private HistoryMsgJS switchHistoryMsg(List<HistoryMsgBean.Value> value, String sessionID, String sessionType) {
+    HistoryMsgJS msgJS = new HistoryMsgJS();
+    msgJS.setResult(true);
+    boolean flag = value != null && value.size() > 0;
+    msgJS.setMsgCount(flag ? 0 : value.size());
+    msgJS.setSessionID(sessionID);
+    msgJS.setSessionType(sessionType);
+    List<HistoryMsgJS.Msg> msgList = new ArrayList<HistoryMsgJS.Msg>();
+    if (flag) {
+      for (HistoryMsgBean.Value bean : value) {
+        HistoryMsgJS.Msg msg = new HistoryMsgJS.Msg();
+        msg.setFromID(bean.getFrom());
+        msg.setFromName(bean.getFromName());
+        msg.setMsg(bean.getMessage());
+        msg.setMsgDate(bean.getWhen());
+        msg.setMsgType(bean.getMediaType());
+        msgList.add(msg);
+      }
+    }
+    msgJS.setMsglist(msgList);
+    return msgJS;
   }
 
   /**
@@ -2641,19 +2681,20 @@ public class ThriftApiClient extends CordovaPlugin {
             paramsMap.put("fileName", messages[4]);
           } else if("T".equals(paramsMap.get("mediaType"))) {
             paramsMap.put("message", obj.getString("message"));
-          } else if ("L".equals(paramsMap.get("mediaType"))) {
-            paramsMap.put("message", obj.getString("message").split(",")[0]);
+          } else if ("P".equals(paramsMap.get("mediaType"))) {
+            paramsMap.put("message", obj.getString("message").split(",")[0] + "," + obj.getString("message").split(",")[1]);
+          } else {
+            paramsMap.put("message", messages[0]);
           }
-          if ("F".equals(paramsMap.get("mediaType")) || "I".equals(paramsMap.get("mediaType"))
-            || "A".equals(paramsMap.get("mediaType")) || "V".equals(paramsMap.get("mediaType"))) {
+          if ("F".equals(paramsMap.get("mediaType")) || "A".equals(paramsMap.get("mediaType")) || "V".equals(paramsMap.get("mediaType"))) {
             File file = new File(messages[1]);
             paramsMap.put("fileSize", file.length());
           }
           if ("A".equals(paramsMap.get("mediaType"))) {
             paramsMap.put("playLength", messages[2]);
           }
-          if ("L".equals(paramsMap.get("mediaType"))) {
-            paramsMap.put("address", obj.getString("message").split(",")[1]);
+          if ("P".equals(paramsMap.get("mediaType"))) {
+            paramsMap.put("address", obj.getString("message").split(",")[2]);
           }
           paramsMap.put("receipt", "F");
           request.addParamsMap(paramsMap);
@@ -2684,189 +2725,454 @@ public class ThriftApiClient extends CordovaPlugin {
    * 将登录成功以后，订阅群组topic之前的历史消息入库并展示在界面上
    */
   public static void getLatestMsg(final String groupID, long when, final String groupName) {
-    MyAsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call> callback = null;
-    try {
-      callback = new MyAsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call>() {
-        @Override
-        public void onComplete(IMMessage.AsyncClient.GetLatestMsg_call getLatestMsg_call) {
-          if (getLatestMsg_call != null) {
-            try {
-              RSTgetMsg result = getLatestMsg_call.getResult();
-              if (result == null) {
-//                                setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
-              } else {
-                if (result.result) {
-                  MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
-                  List<Msg> messagesList = result.getMsglist();
+    if (isHttp) {
+      try {
+        Request request = new Request();
+        Map<String, Object> paramsMap = ParamsMap.getInstance("GetLatestMsg").getParamsMap();
+        paramsMap.put("sessionId", groupID);
+        paramsMap.put("type", "G");
+        paramsMap.put("sendWhen", when);
+        paramsMap.put("msgCount", "50");
+        request.addParamsMap(paramsMap);
+        OKAsyncPostClient.post(request, new OKHttpCallBack2<LatestMsgBean>() {
+          @Override
+          public void onSuccess(Request request, LatestMsgBean result) {
+            if (result.isSucceed()) {
+              MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+              List<MsgJS> messagesList = switchLatestMsg(result);
 //                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
-                  for (int i = 0; i < messagesList.size(); i++) {
-                    Msg msg = messagesList.get(i);
-                    Messages messages = new Messages();
-                    String id = UUID.randomUUID().toString();
-                    messages.set_id(id);
-                    messages.setSessionid(result.getSessionID());
-                    messages.setIstime("false");
-                    messages.setDaytype("1");
-                    String message = msg.getMsg();
-                    if ("File".equals(getMediaTypeStr(msg.getMsgType()))) {
-                      message = message.substring(0, message.lastIndexOf("###")) + "###0";
-                    }
-                    messages.setMessage(message);
-                    messages.setFrom("false");
-                    messages.setImgSrc("");
-                    messages.setIsDelete("false");
-                    messages.setIsFailure("false");
-                    messages.setIsread("0");
-                    messages.setIsSuccess("true");
-                    messages.setMessagetype(getMediaTypeStr(msg.getMsgType()));
-                    messages.setPlatform("Windows");
-                    messages.setSenderid(msg.getFromID());
-                    messages.setType("Group");
-                    messages.setUsername(msg.getFromName());
-                    messages.setWhen(msg.getMsgDate());
-                    messagesService.saveObj(messages);
+              for (int i = 0; i < messagesList.size(); i++) {
+                MsgJS msg = messagesList.get(i);
+                Messages messages = new Messages();
+                String id = UUID.randomUUID().toString();
+                messages.set_id(id);
+                messages.setSessionid(result.getEvent().getSessionId());
+                messages.setIstime("false");
+                messages.setDaytype("1");
+                String message = msg.getMsg();
+                if ("File".equals(getMediaTypeStr(msg.getMsgType()))) {
+                  message = message.substring(0, message.lastIndexOf("###")) + "###0";
+                }
+                messages.setMessage(message);
+                messages.setFrom("false");
+                messages.setImgSrc("");
+                messages.setIsDelete("false");
+                messages.setIsFailure("false");
+                messages.setIsread("0");
+                messages.setIsSuccess("true");
+                messages.setMessagetype(getMediaTypeStr(msg.getMsgType()));
+                messages.setPlatform("Windows");
+                messages.setSenderid(msg.getFromID());
+                messages.setType("Group");
+                messages.setUsername(msg.getFromName());
+                messages.setWhen(msg.getMsgDate());
+                messagesService.saveObj(messages);
 
-                    MessageBean messageBean = new MessageBean();
-                    messageBean.set_id(id);
-                    messageBean.setSessionid(result.getSessionID());
-                    messageBean.setIstime("false");
-                    messageBean.setDaytype("1");
-                    messageBean.setMessage(message);
-                    messageBean.setFrom("false");
-                    messageBean.setImgSrc("");
-                    messageBean.setIsDelete("false");
-                    messageBean.setIsFailure("false");
-                    messageBean.setIsread("0");
-                    messageBean.setIsSuccess("true");
-                    messageBean.setMessagetype(getMediaTypeStr(msg.getMsgType()));
+                MessageBean messageBean = new MessageBean();
+                messageBean.set_id(id);
+                messageBean.setSessionid(result.getEvent().getSessionId());
+                messageBean.setIstime("false");
+                messageBean.setDaytype("1");
+                messageBean.setMessage(message);
+                messageBean.setFrom("false");
+                messageBean.setImgSrc("");
+                messageBean.setIsDelete("false");
+                messageBean.setIsFailure("false");
+                messageBean.setIsread("0");
+                messageBean.setIsSuccess("true");
+                messageBean.setMessagetype(getMediaTypeStr(msg.getMsgType()));
 
-                    messageBean.setPlatform("Windows");
-                    messageBean.setSenderid(msg.getFromID());
-                    messageBean.setType("Group");
-                    messageBean.setUsername(msg.getFromName());
-                    messageBean.setWhen(msg.getMsgDate());
-                    sendArriveMsgToFront(result.getSessionID(), messageBean);
-                  }
-                  //离线新建群，获取最新群名
-                  GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
-                  List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", groupID);
-                  String groupName = groupChatsList.get(0).getGroupName();
+                messageBean.setPlatform("Windows");
+                messageBean.setSenderid(msg.getFromID());
+                messageBean.setType("Group");
+                messageBean.setUsername(msg.getFromName());
+                messageBean.setWhen(msg.getMsgDate());
+                sendArriveMsgToFront(result.getEvent().getSessionId(), messageBean);
+              }
+              //离线新建群，获取最新群名
+              GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+              List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", groupID);
+              String groupName = groupChatsList.get(0).getGroupName();
 //                                    ToastUtil.showSafeToast("最新群名"+groupName);
-                  //统计未读数量
-                  int count = 0;
-                  List<Messages> messagesList1 = messagesService.queryData("where sessionid =?", result.getSessionID());
-                  for (int i = 0; i < messagesList.size(); i++) {
-                    Messages messages = messagesList1.get(i);
-                    if ("0".equals(messages.getIsread())) {
-                      count++;
-                    }
-                  }
-
-                  //取出消息表的最后一条数据保存在chat表里面
-                  List<Messages> messagesLists = messagesService.queryData("where sessionid =?", result.getSessionID());
-                  Messages lastmessages = messagesLists.get(messagesLists.size() - 1);
-                  //将对话最后一条入库到chat表
-                  /**s
-                   * 1.先从数据库查询是否存在当前会话列表
-                   * 2.如果没有该会话，创建会话
-                   * 3.如果有该会话，则保存最后一条消息到chat表
-                   */
-                  ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
-                  List<ChatList> chatLists = chatListService.queryData("where id =?", lastmessages.getSessionid());
-                  ChatList chatList = new ChatList();
-                  chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
-//                                    System.out.println("消息类型" + lastmessages.getMessagetype());
-                  if (lastmessages.getMessagetype() == "Image") {
-                    // alert("返回即时通");
-                    chatList.setLastText("[图片]");//从数据库里取最后一条消息
-                  } else if (lastmessages.getMessagetype() == "LOCATION") {
-                    chatList.setLastText("[位置]");//从数据库里取最后一条消息
-//                                        System.out.println("消息类型weizhi");
-                  } else if (lastmessages.getMessagetype() == "File") {
-                    chatList.setLastText("[文件]");//从数据库里取最后一条消息
-                  } else if (lastmessages.getMessagetype() == "Audio") {
-                    chatList.setLastText("[语音]");//从数据库里取最后一条消息
-                  } else if (lastmessages.getMessagetype() == "Vedio") {
-                    chatList.setLastText("[小视频]");//从数据库里取最后一条消息
-                  } else {
-                    chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
-                  }
-                  chatList.setCount(count + "");//将统计的count未读数量存进去
-//                                    ToastUtil.showSafeToast("未读数"+count);
-                  chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
-                  chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
-                  chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
-                  if (chatLists.size() > 0) {
-                    chatList.setId(chatLists.get(0).getId());
-                    if (lastmessages.getType() == "Group") {
-                      GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
-                      List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-                      chatList.setChatName(groupName);
-                    }
-                    chatList.setIsDelete(chatLists.get(0).getIsDelete());
-                    chatList.setChatType(chatLists.get(0).getChatType());
-                    chatList.setDaytype(chatLists.get(0).getDaytype());
-                    chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
-                    chatList.setIsFailure(chatLists.get(0).getIsFailure());
-                    chatList.setIsRead(chatLists.get(0).getIsRead());
-                    chatList.setMessagetype(chatLists.get(0).getMessagetype());
-                  } else {
-                    chatList.setId(lastmessages.getSessionid());
-                    if (lastmessages.getType() == "Group") {
-                      GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
-                      List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
-                      try {
-                        JSONObject userInfo = getUserInfo();
-                      } catch (JSONException e) {
-                        e.printStackTrace();
-                      }
-                      chatList.setChatName(groupName);
-                    }
-                    chatList.setIsDelete(lastmessages.getIsDelete());
-                    chatList.setChatType(lastmessages.getType());
-                    chatList.setDaytype(lastmessages.getDaytype());
-                    chatList.setIsSuccess(lastmessages.getIsSuccess());
-                    chatList.setIsFailure(lastmessages.getIsFailure());
-                    chatList.setIsRead(lastmessages.getIsread());
-                    chatList.setMessagetype(lastmessages.getMessagetype());
-                  }
-                  chatListService.saveObj(chatList);//保存chatlist对象
+              //统计未读数量
+              int count = 0;
+              List<Messages> messagesList1 = messagesService.queryData("where sessionid =?", result.getEvent().getSessionId());
+              for (int i = 0; i < messagesList.size(); i++) {
+                Messages messages = messagesList1.get(i);
+                if ("0".equals(messages.getIsread())) {
+                  count++;
                 }
               }
-            } catch (TException e) {
-              e.printStackTrace();
-            }
-          } else {
-//                        setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
-          }
-          close();
-        }
 
-        @Override
-        public void onError(Exception e) {
-          close();
+              //取出消息表的最后一条数据保存在chat表里面
+              List<Messages> messagesLists = messagesService.queryData("where sessionid =?", result.getEvent().getSessionId());
+              Messages lastmessages = messagesLists.get(messagesLists.size() - 1);
+              //将对话最后一条入库到chat表
+              /**s
+               * 1.先从数据库查询是否存在当前会话列表
+               * 2.如果没有该会话，创建会话
+               * 3.如果有该会话，则保存最后一条消息到chat表
+               */
+              ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+              List<ChatList> chatLists = chatListService.queryData("where id =?", lastmessages.getSessionid());
+              ChatList chatList = new ChatList();
+              chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+//                                    System.out.println("消息类型" + lastmessages.getMessagetype());
+              if (lastmessages.getMessagetype() == "Image") {
+                // alert("返回即时通");
+                chatList.setLastText("[图片]");//从数据库里取最后一条消息
+              } else if (lastmessages.getMessagetype() == "LOCATION") {
+                chatList.setLastText("[位置]");//从数据库里取最后一条消息
+//                                        System.out.println("消息类型weizhi");
+              } else if (lastmessages.getMessagetype() == "File") {
+                chatList.setLastText("[文件]");//从数据库里取最后一条消息
+              } else if (lastmessages.getMessagetype() == "Audio") {
+                chatList.setLastText("[语音]");//从数据库里取最后一条消息
+              } else if (lastmessages.getMessagetype() == "Vedio") {
+                chatList.setLastText("[小视频]");//从数据库里取最后一条消息
+              } else {
+                chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+              }
+              chatList.setCount(count + "");//将统计的count未读数量存进去
+//                                    ToastUtil.showSafeToast("未读数"+count);
+              chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+              chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+              chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+              if (chatLists.size() > 0) {
+                chatList.setId(chatLists.get(0).getId());
+                if (lastmessages.getType() == "Group") {
+                  GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
+                  List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                  chatList.setChatName(groupName);
+                }
+                chatList.setIsDelete(chatLists.get(0).getIsDelete());
+                chatList.setChatType(chatLists.get(0).getChatType());
+                chatList.setDaytype(chatLists.get(0).getDaytype());
+                chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                chatList.setIsFailure(chatLists.get(0).getIsFailure());
+                chatList.setIsRead(chatLists.get(0).getIsRead());
+                chatList.setMessagetype(chatLists.get(0).getMessagetype());
+              } else {
+                chatList.setId(lastmessages.getSessionid());
+                if (lastmessages.getType() == "Group") {
+                  GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
+                  List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                  try {
+                    JSONObject userInfo = getUserInfo();
+                  } catch (JSONException e) {
+                    e.printStackTrace();
+                  }
+                  chatList.setChatName(groupName);
+                }
+                chatList.setIsDelete(lastmessages.getIsDelete());
+                chatList.setChatType(lastmessages.getType());
+                chatList.setDaytype(lastmessages.getDaytype());
+                chatList.setIsSuccess(lastmessages.getIsSuccess());
+                chatList.setIsFailure(lastmessages.getIsFailure());
+                chatList.setIsRead(lastmessages.getIsread());
+                chatList.setMessagetype(lastmessages.getMessagetype());
+              }
+              chatListService.saveObj(chatList);//保存chatlist对象
+            } else {
+              //TODO 保存新群组信息失败
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          }
+
+          @Override
+          public void onFailure(Request request, Exception e) {
+            ToastUtil.showSafeToast("");
+          }
+        });
+      } catch (JSONException e) {
+        e.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } else {
+      MyAsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call> callback = null;
+      try {
+        callback = new MyAsyncMethodCallback<IMMessage.AsyncClient.GetLatestMsg_call>() {
+          @Override
+          public void onComplete(IMMessage.AsyncClient.GetLatestMsg_call getLatestMsg_call) {
+            if (getLatestMsg_call != null) {
+              try {
+                RSTgetMsg result = getLatestMsg_call.getResult();
+                if (result == null) {
+//                                setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+                } else {
+                  if (result.result) {
+                    MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+                    List<Msg> messagesList = result.getMsglist();
+//                                    ToastUtil.showSafeToast("取出最新的消息条数"+messagesList.size());
+                    for (int i = 0; i < messagesList.size(); i++) {
+                      Msg msg = messagesList.get(i);
+                      Messages messages = new Messages();
+                      String id = UUID.randomUUID().toString();
+                      messages.set_id(id);
+                      messages.setSessionid(result.getSessionID());
+                      messages.setIstime("false");
+                      messages.setDaytype("1");
+                      String message = msg.getMsg();
+                      if ("File".equals(getMediaTypeStr(msg.getMsgType()))) {
+                        message = message.substring(0, message.lastIndexOf("###")) + "###0";
+                      }
+                      messages.setMessage(message);
+                      messages.setFrom("false");
+                      messages.setImgSrc("");
+                      messages.setIsDelete("false");
+                      messages.setIsFailure("false");
+                      messages.setIsread("0");
+                      messages.setIsSuccess("true");
+                      messages.setMessagetype(getMediaTypeStr(msg.getMsgType()));
+                      messages.setPlatform("Windows");
+                      messages.setSenderid(msg.getFromID());
+                      messages.setType("Group");
+                      messages.setUsername(msg.getFromName());
+                      messages.setWhen(msg.getMsgDate());
+                      messagesService.saveObj(messages);
+
+                      MessageBean messageBean = new MessageBean();
+                      messageBean.set_id(id);
+                      messageBean.setSessionid(result.getSessionID());
+                      messageBean.setIstime("false");
+                      messageBean.setDaytype("1");
+                      messageBean.setMessage(message);
+                      messageBean.setFrom("false");
+                      messageBean.setImgSrc("");
+                      messageBean.setIsDelete("false");
+                      messageBean.setIsFailure("false");
+                      messageBean.setIsread("0");
+                      messageBean.setIsSuccess("true");
+                      messageBean.setMessagetype(getMediaTypeStr(msg.getMsgType()));
+
+                      messageBean.setPlatform("Windows");
+                      messageBean.setSenderid(msg.getFromID());
+                      messageBean.setType("Group");
+                      messageBean.setUsername(msg.getFromName());
+                      messageBean.setWhen(msg.getMsgDate());
+                      sendArriveMsgToFront(result.getSessionID(), messageBean);
+                    }
+                    //离线新建群，获取最新群名
+                    GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+                    List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", groupID);
+                    String groupName = groupChatsList.get(0).getGroupName();
+//                                    ToastUtil.showSafeToast("最新群名"+groupName);
+                    //统计未读数量
+                    int count = 0;
+                    List<Messages> messagesList1 = messagesService.queryData("where sessionid =?", result.getSessionID());
+                    for (int i = 0; i < messagesList.size(); i++) {
+                      Messages messages = messagesList1.get(i);
+                      if ("0".equals(messages.getIsread())) {
+                        count++;
+                      }
+                    }
+
+                    //取出消息表的最后一条数据保存在chat表里面
+                    List<Messages> messagesLists = messagesService.queryData("where sessionid =?", result.getSessionID());
+                    Messages lastmessages = messagesLists.get(messagesLists.size() - 1);
+                    //将对话最后一条入库到chat表
+                    /**s
+                     * 1.先从数据库查询是否存在当前会话列表
+                     * 2.如果没有该会话，创建会话
+                     * 3.如果有该会话，则保存最后一条消息到chat表
+                     */
+                    ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+                    List<ChatList> chatLists = chatListService.queryData("where id =?", lastmessages.getSessionid());
+                    ChatList chatList = new ChatList();
+                    chatList.setImgSrc(lastmessages.getImgSrc());//从数据库里取最后一条消息的头像
+//                                    System.out.println("消息类型" + lastmessages.getMessagetype());
+                    if (lastmessages.getMessagetype() == "Image") {
+                      // alert("返回即时通");
+                      chatList.setLastText("[图片]");//从数据库里取最后一条消息
+                    } else if (lastmessages.getMessagetype() == "LOCATION") {
+                      chatList.setLastText("[位置]");//从数据库里取最后一条消息
+//                                        System.out.println("消息类型weizhi");
+                    } else if (lastmessages.getMessagetype() == "File") {
+                      chatList.setLastText("[文件]");//从数据库里取最后一条消息
+                    } else if (lastmessages.getMessagetype() == "Audio") {
+                      chatList.setLastText("[语音]");//从数据库里取最后一条消息
+                    } else if (lastmessages.getMessagetype() == "Vedio") {
+                      chatList.setLastText("[小视频]");//从数据库里取最后一条消息
+                    } else {
+                      chatList.setLastText(lastmessages.getMessage());//从数据库里取最后一条消息
+                    }
+                    chatList.setCount(count + "");//将统计的count未读数量存进去
+//                                    ToastUtil.showSafeToast("未读数"+count);
+                    chatList.setLastDate(lastmessages.getWhen());//从数据库里取最后一条消息对应的时间
+                    chatList.setSenderId(lastmessages.getSenderid());//从数据库里取最后一条消息对应发送者id
+                    chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
+                    if (chatLists.size() > 0) {
+                      chatList.setId(chatLists.get(0).getId());
+                      if (lastmessages.getType() == "Group") {
+                        GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
+                        List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                        chatList.setChatName(groupName);
+                      }
+                      chatList.setIsDelete(chatLists.get(0).getIsDelete());
+                      chatList.setChatType(chatLists.get(0).getChatType());
+                      chatList.setDaytype(chatLists.get(0).getDaytype());
+                      chatList.setIsSuccess(chatLists.get(0).getIsSuccess());
+                      chatList.setIsFailure(chatLists.get(0).getIsFailure());
+                      chatList.setIsRead(chatLists.get(0).getIsRead());
+                      chatList.setMessagetype(chatLists.get(0).getMessagetype());
+                    } else {
+                      chatList.setId(lastmessages.getSessionid());
+                      if (lastmessages.getType() == "Group") {
+                        GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
+                        List<GroupChats> groupChatsLists = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
+                        try {
+                          JSONObject userInfo = getUserInfo();
+                        } catch (JSONException e) {
+                          e.printStackTrace();
+                        }
+                        chatList.setChatName(groupName);
+                      }
+                      chatList.setIsDelete(lastmessages.getIsDelete());
+                      chatList.setChatType(lastmessages.getType());
+                      chatList.setDaytype(lastmessages.getDaytype());
+                      chatList.setIsSuccess(lastmessages.getIsSuccess());
+                      chatList.setIsFailure(lastmessages.getIsFailure());
+                      chatList.setIsRead(lastmessages.getIsread());
+                      chatList.setMessagetype(lastmessages.getMessagetype());
+                    }
+                    chatListService.saveObj(chatList);//保存chatlist对象
+                  }
+                }
+              } catch (TException e) {
+                e.printStackTrace();
+              }
+            } else {
+//                        setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+            }
+            close();
+          }
+
+          @Override
+          public void onError(Exception e) {
+            close();
 //                    setResult("获取新建群历史消息失败！", PluginResult.Status.ERROR, callbackContext);
+          }
+        };
+        SystemApi.getLatestMsg(getUserID(), "G", groupID, when, 0, callback);
+      } catch (JSONException e) {
+        if (callback != null) {
+          callback.close();
         }
-      };
-      SystemApi.getLatestMsg(getUserID(), "G", groupID, when, 0, callback);
-    } catch (JSONException e) {
-      if (callback != null) {
-        callback.close();
-      }
-      e.printStackTrace();
-    } catch (TException e) {
-      if (callback != null) {
-        callback.close();
-      }
+        e.printStackTrace();
+      } catch (TException e) {
+        if (callback != null) {
+          callback.close();
+        }
 //            setResult("网络异常！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (IOException e) {
-      if (callback != null) {
-        callback.close();
-      }
+        e.printStackTrace();
+      } catch (IOException e) {
+        if (callback != null) {
+          callback.close();
+        }
 //            setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
+        e.printStackTrace();
+      }
     }
+  }
+
+  /**
+   * 转换LatestMsg
+   * @param result
+   * @return
+   */
+  private static List<MsgJS> switchLatestMsg(LatestMsgBean result) {
+    List<MsgJS> msgList = new ArrayList<MsgJS>();
+    LatestMsgBean.Event event = result.getEvent();
+    if (event != null && event.getMsgList() != null && event.getMsgList().size() > 0) {
+      for (LatestMsgBean.Msg msg : event.getMsgList()) {
+        MsgJS reqMsg = new MsgJS();
+        reqMsg.setFromID(msg.getFrom());
+        reqMsg.setFromName(msg.getFromName());
+        reqMsg.setMsg(msg.getMessage());
+        reqMsg.setMsgDate(msg.getWhen());
+        reqMsg.setMsgType(msg.getMediaType());
+        msgList.add(reqMsg);
+      }
+    }
+    return msgList;
   }
 
   /**
@@ -3307,7 +3613,7 @@ public class ThriftApiClient extends CordovaPlugin {
             if (result.isSucceed()) {
               String groupID = result.getEvent();
               if (groupID != null && !"".equals(groupID.trim())) {
-                MqttTopicRW.append("LN/G/" + groupID, 1);
+                MqttTopicRW.append(IMSwitchLocal.getATopic(MType.G, groupID), 2);
               }
               setResult(groupID, PluginResult.Status.OK, callbackContext);
             } else if (result != null && "711".equals(result.getErrCode())) {
@@ -3625,18 +3931,29 @@ public class ThriftApiClient extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("RemoveGroup").getParamsMap();
         paramsMap.put("groupId", groupID);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
-          public void onSuccess(Request request, String result) {
-            ToastUtil.showSafeToast("success");
+          public void onSuccess(Request request, AddGroup result) {
+            if (result.isSucceed()) {
+              String groupIDN = result.getEvent();
+              setResult(groupIDN, PluginResult.Status.OK, callbackContext);
+            } else if ("741".equals(result.getErrCode())) {
+              setResult("无解散群组权限！", PluginResult.Status.ERROR, callbackContext);
+            } else {
+              setResult("解散群组失败！", PluginResult.Status.ERROR, callbackContext);
+            }
           }
 
           @Override
           public void onFailure(Request request, Exception e) {
-            ToastUtil.showSafeToast("err");
+            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
           }
         });
       } catch (JSONException e) {
+        setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (Exception e) {
+        setResult("解散群组失败！", PluginResult.Status.ERROR, callbackContext);
         e.printStackTrace();
       }
     } else {
@@ -4413,9 +4730,9 @@ public class ThriftApiClient extends CordovaPlugin {
                     groupChatsService.saveObj(groupChats1);
                   }
                   if (i != groupList.size() - 1) {
-                    sb.append(SwitchLocal.getLocal() + "/G/" + group.getId() + ",");
+                    sb.append(IMSwitchLocal.getATopic(MType.G, group.getId()) + ",");
                   } else {
-                    sb.append(SwitchLocal.getLocal() + "/G/" + group.getId());
+                    sb.append(IMSwitchLocal.getATopic(MType.G, group.getId()));
                   }
                 }
                 setResult(sb.toString(), PluginResult.Status.OK, callbackContext);
@@ -4467,9 +4784,9 @@ public class ThriftApiClient extends CordovaPlugin {
                       groupChatsService.saveObj(groupChats1);
                     }
                     if (i != groupList.size() - 1) {
-                      sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID() + ",");
+                      sb.append(IMSwitchLocal.getATopic(MType.G, group.getGroupID()) + ",");
                     } else {
-                      sb.append(SwitchLocal.getLocal() + "/G/" + group.getGroupID());
+                      sb.append(IMSwitchLocal.getATopic(MType.G, group.getGroupID()));
                     }
                   }
                   setResult(sb.toString(), PluginResult.Status.OK, callbackContext);

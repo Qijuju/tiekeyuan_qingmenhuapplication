@@ -6,11 +6,16 @@ import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.paho.bean.EventMessageBean;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.bean.MessageTypeBean;
+import com.tky.mqtt.paho.httpbean.EventBean;
+import com.tky.mqtt.paho.httpbean.MsgBean;
+import com.tky.mqtt.paho.utils.GsonUtils;
+import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
 import com.tky.protocol.model.IMPFields;
 
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,12 +61,96 @@ public class MessageOper {
   /**
    * 将别人发过来的消息转成本地需要的数据
    *
-   * @param msg
+   * @param message
    * @return
    * @throws IMPException
    * @throws JSONException
    */
-  public static MessageTypeBean unpack(byte[] msg) throws IMPException, JSONException {
+  public static MessageTypeBean unpack(MqttMessage message) throws IMPException, JSONException {
+    String msgStr = message.toString();
+    JSONObject obj = new JSONObject(msgStr);
+    if (!obj.has("NotifyType")) {
+      return null;
+    }
+    String notifyType = obj.getString("NotifyType");
+    if ("M".equals(notifyType)) {
+      MsgBean msgBean = GsonUtils.fromJson(msgStr, MsgBean.class);
+
+      //是部门群或者群组吗
+      boolean isDeptOrGroup = msgBean.getType().equals("Dept") || msgBean.getType().equals("Group");
+
+      MessageBean bean = new MessageBean();
+      bean.set_id(msgBean.getMsgId());
+      bean.setFrom(getUserID().equals(msgBean.getFrom()) ? "true" : "false");
+      bean.setFromMe(getUserID().equals(msgBean.getFrom()));//通知模块
+      bean.setImgSrc("");
+      bean.setIsDelete("false");
+      bean.setIsFailure("false");
+      bean.setIsFromMe(getUserID().equals(msgBean.getFrom()));
+      bean.setLevelName("");
+      bean.setMsgLevel("0");
+      bean.setLink("");
+      bean.setLinkType("");
+
+
+      if ("Text".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage());
+      } else if ("File".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage() + "###..###" + msgBean.getFileSize() + "###" + UIUtils.getFormatSize(msgBean.getFileSize()) + "###" + msgBean.getFileName() + "###0");
+      } else if ("Image".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage() + "###..###..###..###..###0");
+      } else if ("Audio".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage() + "###..###" + msgBean.getPlayLength() + "###0");
+      } else if ("Vedio".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage() + "###..###" + msgBean.getPlayLength() + "###0");
+      } else if ("LOCATION".equals(msgBean.getMediaType())) {
+        bean.setMessage(msgBean.getMessage() + "," + msgBean.getAddress());
+      }
+
+
+
+      bean.setMessagetype(msgBean.getMediaType());
+      bean.setPlatform(msgBean.getPlatform());
+      bean.setSessionid(isDeptOrGroup ? msgBean.getTo() : msgBean.getFrom());
+      bean.setType(msgBean.getType());
+      bean.setUsername(msgBean.getFromName());
+      bean.setTitle("");
+      bean.setWhen(msgBean.getWhen());
+      bean.setDaytype("1");
+      bean.setIsread("false");
+      bean.setIsSuccess("true");
+      bean.setIstime("true");
+      bean.setMsgId(msgBean.getMsgId());
+      bean.setSenderid(msgBean.getFrom());
+
+      return bean;
+    } else if ("E".equals(notifyType)) {
+      EventBean msgBean = GsonUtils.fromJson(msgStr, EventBean.class);
+      EventMessageBean bean = new EventMessageBean();
+      bean.setNotifyType(IMPFields.N_Type_Event);
+      bean.setEventCode(msgBean.getEventCode());
+      bean.setWhen(msgBean.getWhen());
+      bean.setGroupID(msgBean.getGroupID());
+      bean.setUserName(msgBean.getUserName());
+      bean.setGroupName(msgBean.getGroupName());
+      bean.setSenderid(msgBean.getSenderid());
+      bean.setMepID(msgBean.getMepID());
+      return bean;
+    }
+    return null;
+
+
+
+
+
+
+
+
+
+
+
+
+    /*byte[] msg = message.getPayload();
     Map<String, Object> msgMap = IMMsgFactory.createNotify(msg);
     Object notifyType = msgMap.get(IMPFields.NotifyType);
     MessageTypeBean msgBean = null;
@@ -134,7 +223,7 @@ public class MessageOper {
       }
       msgBean = bean;
     }
-    return msgBean;
+    return msgBean;*/
   }
 
   /**
@@ -311,7 +400,7 @@ public class MessageOper {
     } else if ("Vedio".equals(type)) {
       mediaType = "V";
     } else if ("LOCATION".equals(type)) {
-      mediaType = "L";
+      mediaType = "P";
     } else {
       mediaType = "T";
     }

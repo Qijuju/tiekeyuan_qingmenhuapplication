@@ -527,7 +527,7 @@ angular.module('message.services', [])
           msgDetail = qunliao[qunliao.length - 1];
         }*/
 
-        var uploadurl="http://imtest.crbim.win:1666/IMFile/UploadFile";
+        var uploadurl="http://imtest.crbim.win:1666/UploadFile";
         $okhttp.upload(messageDetail, sendType, null, fileContent,uploadurl,function (sdata) {
           var msgDetail = sdata[3];
           msgDetail.message = sdata[1] + '###' + content;
@@ -678,6 +678,8 @@ angular.module('message.services', [])
         });
 
 
+
+
         /*$api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
           // $ToastUtils.showToast(fileContent, null, null);
           var msgDetail = sdata[3];
@@ -826,16 +828,13 @@ angular.module('message.services', [])
         }, function (err) {
 
         });*/
-
-
-
-
         return "啥也不是";
       },
 
       arriveMsg:function (topic) {
         // alert('arriveMsg');
         mqtt.getChats(topic,function (message) {
+          alert("jinllaiele")
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
@@ -981,7 +980,7 @@ angular.module('message.services', [])
                 });
 
             } else if(objectTP === 'I' || objectTP === 'A' || objectTP === 'V'){        //当发送消息的为图片时
-                $api.getFile(objectTP, newMessage, '100', function (data) {
+                /*$api.getFile(objectTP, newMessage, '100', function (data) {
                   // alert("图片下载成功");
                   // arriveMessage.message = data;
                   // alert("图片下载成功了啊的的的大的的的的的的的")
@@ -1026,7 +1025,70 @@ angular.module('message.services', [])
 
                 }, function (err) {
                   $ToastUtils.showToast("图片下载失败" + err);
+                });*/
+
+                $okhttp.download(arriveMessage,newMessage,'100',0, function (data) {
+                  // alert("图片下载成功");
+                  // arriveMessage.message = data;
+                  // alert("图片下载成功了啊的的的大的的的的的的的")
+                  //if (data === '100') {
+                    arriveMessage.message = data;
+                    //当图片下载完了，入数组，无需入库(因为在java后端已经入库了)
+                    if(message.type==="User"){
+                      danliao.push(arriveMessage);
+                      $rootScope.$broadcast('msgs.update');
+                    }else if(message.type ==="Group" || message.type ==="Dept"){
+                      qunliao.push(arriveMessage);
+                      $rootScope.$broadcast('msgs.update');
+                    }
+
+                    if (arriveMessage.messagetype!="Audio" && arriveMessage.messagetype!="Vedio") {
+                      var arrivepic={};
+                      arrivepic.filepicid=arriveMessage.message.split('###')[0];
+                      arrivepic._id=arriveMessage._id;
+                      arrivepic.from="false";
+                      arrivepic.sessionid=arriveMessage.sessionid;
+                      arrivepic.fromname=arriveMessage.username;
+                      arrivepic.toname="";
+                      arrivepic.smallurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bigurl=arriveMessage.message.split('###')[1];
+                      arrivepic.bytesize=arriveMessage.message.split('###')[2];
+                      arrivepic.megabyte=arriveMessage.message.split('###')[3];
+                      arrivepic.filename=arriveMessage.message.split('###')[4];
+                      if(arriveMessage.messagetype=="Image"){
+                        arrivepic.type="image";
+                      }else if(arriveMessage.messagetype=="File"){
+                        arrivepic.type="file";
+                      }
+                      arrivepic.when=0;
+
+                      $greendao.saveObj("FilePictureService",arrivepic,function (data) {
+
+                      },function (err) {
+
+                      });
+                    }
+                 // }
+
+                }, function (err) {
+                  $ToastUtils.showToast("图片下载失败" + err);
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               }
 
             }else if(message.messagetype === "LOCATION"){         //当消息为定位时
