@@ -100,13 +100,13 @@ public class BarcodeScanner extends CordovaPlugin {
                 }
 
                 if (data == null) {
-                    callbackContext.error("User did not specify data to encode");
+                    callbackContext.error("ChildJSBean did not specify data to encode");
                     return true;
                 }
 
                 encode(type, data);
             } else {
-                callbackContext.error("User did not specify data to encode");
+                callbackContext.error("ChildJSBean did not specify data to encode");
                 return true;
             }
         } else if (action.equals(SCAN)) {

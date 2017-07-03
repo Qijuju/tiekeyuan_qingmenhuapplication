@@ -240,7 +240,7 @@ angular.module('message.services', [])
     }
   })
 
-  .factory('$mqtt',function ($rootScope,$greendao,$api,$ToastUtils,$state) {
+  .factory('$mqtt',function ($rootScope,$greendao,$api,$ToastUtils,$state,$okhttp) {
     var mqtt;
     var msgs=new Array();
     var danliao=new Array();
@@ -526,7 +526,159 @@ angular.module('message.services', [])
         } else {
           msgDetail = qunliao[qunliao.length - 1];
         }*/
-        $api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
+
+        var uploadurl="http://imtest.crbim.win:1666/IMFile/UploadFile";
+        $okhttp.upload(messageDetail, sendType, null, fileContent,uploadurl,function (sdata) {
+          var msgDetail = sdata[3];
+          msgDetail.message = sdata[1] + '###' + content;
+          //图片上传过程中失败了，从图片管理器删除该图片
+          if (sdata[2] === '-1') {
+            //如果图片发送失败，就更新数组(界面根据-1去展示叹号)
+            msgDetail.message = msgDetail.message + "###-1";
+            if (type === 'User') {
+              $mqtt.updateDanliao(msgDetail);
+            } else {
+              $mqtt.updateQunliao(msgDetail);
+            }
+            $rootScope.$broadcast('sendprogress.update');
+            // msgDetail.message = msgDetail.message.substring(0, msgDetail.message.lastIndexOf('###') - 1) + "###-1";
+            // alert("估计就将计就计")
+
+
+            $greendao.deleteDataByArg('FilePictureService',sdata[1],function (msg) {
+              // alert("清除数据成功")
+            },function (err) {
+
+            });
+            msgDetail.isFailure='true';
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
+              $rootScope.$broadcast('msgs.error');
+            },function (err) {
+            });
+            return;
+          }
+
+          //重发时删除
+          // if (sqlid != undefined && sqlid != null && sqlid != '') {
+          //   for(var i=0;i<danliao.length;i++){
+          //     if(danliao[i]._id === sqlid){
+          //       danliao.splice(i, 1);
+          //       $rootScope.$broadcast('msgs.update');
+          //       break;
+          //     }
+          //   }
+          // }
+          //为了让用户能立即看到图片，并发送监听
+
+          // $rootScope.$broadcast('msgs.update');
+          //图片没发完
+          if (!isNaN(sdata[2])) {
+            var sendProgress = parseInt(parseFloat(sdata[2])*100+'');
+            msgDetail.message = msgDetail.message + "###" + sendProgress;
+          }
+          if (sdata[2] != '1') {
+            $greendao.saveObj('MessagesService',msgDetail,function (data) {
+              // msgDetail.sendProgress = sdata[2];
+              if (type === 'User') {
+                $mqtt.updateDanliao(msgDetail);
+                $rootScope.$broadcast('sendprogress.update');
+              } else {
+                $mqtt.updateQunliao(msgDetail);
+                $rootScope.$broadcast('sendgroupprogress.update');
+              }
+            },function (err) {
+            });
+          } else {
+            // msgDetail.sendProgress = sdata[2];
+            var myMsg = msgDetail.message.split('###');
+            var newMsg = msgDetail.message  ;
+            if (myMsg != undefined && myMsg != null && myMsg != '' && myMsg.length > 0) {
+              newMsg = '';
+              for (var i = 0; i < myMsg.length; i++) {
+                if (i === 0) {
+                  newMsg += myMsg[i];
+                } else if (i === 1) {
+                  newMsg += '###' + sdata[0];
+                } else {
+                  newMsg += '###' + myMsg[i];
+                }
+              }
+            }
+            msgDetail.message = newMsg;
+            mqtt.sendMsg(topic, msgDetail, function (message) {
+              // alert("群发图片回执"+JSON.stringify(message));
+
+              // alert("发送图片成功前数组长度"+danliao.length+"========="+content);
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
+              // message.isSuccess='true';
+              //alert("message"+message)
+
+              if (msgDetail.messagetype != 'Audio' && msgDetail.messagetype != 'Vedio') {
+                var savefilepic = {};
+                savefilepic.filepicid = sdata[1];
+                savefilepic._id = msgDetail._id;
+                savefilepic.from = "true";
+                savefilepic.sessionid = id;
+                savefilepic.fromname = localuser;
+                savefilepic.toname = "你好"
+                savefilepic.smallurl = sdata[0];
+                savefilepic.bigurl = sdata[0];
+                savefilepic.bytesize = content.split('###')[1];
+                savefilepic.megabyte = content.split('###')[2];
+                // alert("语音文件大小" + savefilepic.megabyte);
+                savefilepic.filename = content.split('###')[3];
+                if (sendType == "F") {
+                  savefilepic.type = "file";
+                } else if (sendType == "I") {
+                  savefilepic.type = "image";
+                }
+                savefilepic.when = 0;
+                $greendao.saveObj("FilePictureService", savefilepic, function (data) {
+                }, function (err) {
+                })
+              }
+              // danliao.push(message);
+              // alert("发送图片成功后数组长度"+danliao.length);
+              $greendao.saveObj('MessagesService',message,function (data) {
+                // alert("保存messgae表"+data);
+                $rootScope.$broadcast('msgs.update');
+                //往消息主界面发送一个监听
+                $rootScope.$broadcast('sendsuccess.update');
+                $rootScope.$broadcast('sendFilesuccess.update',message.sessionid);
+              },function (err) {
+              });
+
+              $rootScope.firstSendId=message.sessionid;
+              return "成功";
+            },function (message) {
+              // alert("发送图片直接失败前数组长度"+danliao.length);
+              if (type === 'User') {
+                $mqtt.updateDanliao(message);
+              } else {
+                $mqtt.updateQunliao(message);
+              }
+              // message.isFailure='true';
+              // danliao.push(message);
+              // alert("发送图片直接失败后数组长度"+danliao.length);
+              $greendao.saveObj('MessagesService',message,function (data) {
+                $rootScope.$broadcast('msgs.error');
+              },function (err) {
+              });
+              return "失败";
+            });
+
+          }
+
+        },function (error) {
+
+        });
+
+
+        /*$api.sendDocFile(messageDetail, sendType, null, fileContent, function (sdata) {
           // $ToastUtils.showToast(fileContent, null, null);
           var msgDetail = sdata[3];
           msgDetail.message = sdata[1] + '###' + content;
@@ -673,7 +825,11 @@ angular.module('message.services', [])
           }
         }, function (err) {
 
-        });
+        });*/
+
+
+
+
         return "啥也不是";
       },
 

@@ -85,7 +85,7 @@ public class MqttMessageCallback implements MqttCallback {
         if (bean != null && bean instanceof MessageBean) {
             final MessageBean map = (MessageBean) bean;
             String fromUserId = map.get_id();
-            if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId)) {
+            if (fromUserId != null && MqttTopicRW.isFromMe("ChildJSBean", fromUserId)) {
                 return;
             }
             //接收到消息时的铃声

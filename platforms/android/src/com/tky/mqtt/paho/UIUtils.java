@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -578,4 +579,12 @@ public class UIUtils {
 		}
 		return false;
 	}
+
+  /**
+   * 获取UUID
+   * @return
+   */
+  public static String getUUID() {
+    return UUID.randomUUID().toString();
+  }
 }

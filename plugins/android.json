@@ -90,10 +90,16 @@
         },
         "com.verso.cordova.clipboard": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "Okhttpload": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.im366077"
+        },
+        "cordova-plugin-add-swift-support": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         }
     }

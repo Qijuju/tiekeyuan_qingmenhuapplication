@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="Okhttpload" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>Okhttpload</name>
+    <js-module name="okhttpload" src="www/okhttpload.js">
+        <clobbers target="cordova.plugins.Okhttpload" />
+    </js-module>
+    <dependency id="cordova-plugin-add-swift-support" version="1.6.0" />
+    <!-- android -->
+    <platform name="android">
+        <!--需要引入到config.xml的内容-->
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Okhttpload">
+                <!--name表示Service名称，JS接口中将调用-->
+                <param name="android-package" value="com.tky.okhttpload.Okhttpload" />
+                <!--App启动时加载插件-->
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <!--需要引入到AndroidManifest.xml中的内容,一般是开启一些权限-->
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <!--java文件路径-->
+        <source-file src="src/android/Okhttpload.java" target-dir="src\com/tky/okhttpload" />
+		<source-file src="src/android/MqttPluginResult.java" target-dir="src\com/tky/okhttpload" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Okhttpload">
+                <param name="ios-package" value="TkyOkhttpload" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Okhttpload-Bridging-Header.h" />
+        <source-file src="src/ios/Okhttpload.swift" />
+
+    </platform>
+</plugin>

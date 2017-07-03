@@ -74,7 +74,7 @@ public class MessageOper {
 //			boolean isGroupOrDept = "Group".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type"))) || "Dept".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
       bean.set_id((String) msgMap.get("from"));
 //			bean.set_id((fromMe) ? (String) msgMap.get("to") : (String) msgMap.get("from"));
-      boolean flag = "User".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
+      boolean flag = "ChildJSBean".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
         || "Alarm".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
         || "Platform".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")))
         || "System".equals(getMsgTypeStr((IMMsgFactory.MsgType) msgMap.get("type")));
@@ -180,7 +180,7 @@ public class MessageOper {
    * @param type
    * @return
    */
-  private static IMMsgFactory.MsgType getMsgType(String type) {
+  public static IMMsgFactory.MsgType getMsgType(String type) {
     IMMsgFactory.MsgType msgType = IMMsgFactory.MsgType.User;
     if ("User".equals(type)) {
       msgType = IMMsgFactory.MsgType.User;
@@ -203,12 +203,40 @@ public class MessageOper {
   }
 
   /**
+   * 消息类型转换：简写
+   *
+   * @param type
+   * @return
+   */
+  public static String getMsgType2(String type) {
+    String msgType = "U";
+    if ("User".equals(type)) {
+      msgType = "U";
+    } else if ("Group".equals(type)) {
+      msgType = "G";
+    } else if ("Dept".equals(type)) {
+      msgType = "D";
+    } else if ("Radio".equals(type)) {
+      msgType = "R";
+    } else if ("Receipt".equals(type)) {
+      msgType = "C";
+    } else if ("System".equals(type)) {
+      msgType = "S";
+    } else if ("Platform".equals(type)) {
+      msgType = "P";
+    } else {
+      msgType = "U";
+    }
+    return msgType;
+  }
+
+  /**
    * 消息类型转换
    *
    * @param type
    * @return
    */
-  private static String getMsgTypeStr(IMMsgFactory.MsgType type) {
+  public static String getMsgTypeStr(IMMsgFactory.MsgType type) {
     String msgType = "User";
     if (IMMsgFactory.MsgType.User.equals(type)) {
       msgType = "User";
@@ -256,6 +284,36 @@ public class MessageOper {
       mediaType = IMMsgFactory.MediaType.Position;
     } else {
       mediaType = IMMsgFactory.MediaType.Text;
+    }
+    return mediaType;
+  }
+
+  /**
+   * 获取消息媒体类型（简写）
+   *
+   * @param type
+   * @return
+   */
+  public static String getMediaType2(String type) {
+    String mediaType = "A";
+    if ("Audio".equals(type)) {
+      mediaType = "A";
+    } else if ("Emote".equals(type)) {
+      mediaType = "E";
+    } else if ("File".equals(type)) {
+      mediaType = "F";
+    } else if ("Image".equals(type)) {
+      mediaType = "I";
+    } else if ("Shake".equals(type)) {
+      mediaType = "S";
+    } else if ("Text".equals(type) || "normal".equals(type)) {
+      mediaType = "T";
+    } else if ("Vedio".equals(type)) {
+      mediaType = "V";
+    } else if ("LOCATION".equals(type)) {
+      mediaType = "L";
+    } else {
+      mediaType = "T";
     }
     return mediaType;
   }
