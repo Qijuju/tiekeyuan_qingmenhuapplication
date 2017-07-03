@@ -76,7 +76,7 @@ public class IMUtils {
    * 发送上线消息
    */
   public static void sendOnOffState(String str, IMConnection imConnection) {
-    ThriftApiClient.sendMsg(SwitchLocal.getOnOffTopic(), new String(IMUtils.getOnOffState(str)), new IMqttActionListener() {
+    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), new String(IMUtils.getOnOffState(str)), new IMqttActionListener() {
       @Override
       public void onSuccess(IMqttToken asyncActionToken) {
       }

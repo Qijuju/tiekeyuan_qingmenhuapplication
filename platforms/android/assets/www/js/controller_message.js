@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location,$cordovaClipboard) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location,$cordovaClipboard,$okhttp) {
 
     /**
      * 长按事件
@@ -891,7 +891,7 @@ angular.module('message.controllers', [])
 
     //打开文件
     $scope.openAllFile = function (path, msg) {
-      $api.openFileByPath(path,msg, function (message) {
+      /*$api.openFileByPath(path,msg, function (message) {
         $greendao.saveObj('MessagesService',message,function (data) {
           $mqtt.updateDanliao(message);
           $rootScope.$broadcast('sendprogress.update');
@@ -899,7 +899,18 @@ angular.module('message.controllers', [])
         });
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
-      });
+      });*/
+
+      $okhttp.downloadFile(msg,100,function (success) {
+        msg.message=success;
+        $greendao.saveObj('MessagesService',message,function (data) {
+          $mqtt.updateDanliao(msg);
+          $rootScope.$broadcast('sendprogress.update');
+        },function (err) {
+        });
+      },function (err) {
+
+      })
 
     };
     //弹出测试
@@ -1107,6 +1118,10 @@ angular.module('message.controllers', [])
                           }, 100);
                         },function (err) {
                         });
+                      }else{
+                        // $timeout(function () {
+                          viewScroll.scrollBottom();
+                        // }, 100);
                       }
                     }
                   }
@@ -1955,7 +1970,7 @@ angular.module('message.controllers', [])
       }
       $scope.audioid=sqlid;
       if($scope.islisten === 'true'){
-        // alert("播放语音啦");
+        alert("播放语音啦");
         $mqtt.playRecord(filepath.substring(filepath.lastIndexOf('/') + 1, filepath.length), function (succ) {
           $scope.$apply(function () {
             $scope.isshowgif = 'false';

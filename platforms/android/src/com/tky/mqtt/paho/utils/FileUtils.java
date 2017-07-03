@@ -40,6 +40,14 @@ public class FileUtils {
 		return getDir("voice");
 	}
 
+  public static String getVideoDir(){
+    return getDir("video");
+  }
+
+  public static String getFileDir(){
+    return getDir("file");
+  }
+
 	private static String getDir(String string) {
 		if (isSDAvailable()) {
 			return getSDDir(string);

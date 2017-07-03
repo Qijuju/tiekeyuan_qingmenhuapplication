@@ -29,6 +29,7 @@ public class HistoryMsgBean extends BaseBean {
     private String sessionid;
     private String type;
     private long when;
+    private String fromName;
 
     public String getAccount() {
       return account;
@@ -124,6 +125,14 @@ public class HistoryMsgBean extends BaseBean {
 
     public void setWhen(long when) {
       this.when = when;
+    }
+
+    public void setFromName(String fromName) {
+      this.fromName = fromName;
+    }
+
+    public String getFromName() {
+      return fromName;
     }
   }
 

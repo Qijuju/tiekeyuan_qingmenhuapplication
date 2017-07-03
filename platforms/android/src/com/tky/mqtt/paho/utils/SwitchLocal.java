@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.tky.im.connection.IMConnection;
 import com.tky.mqtt.chat.MqttChat;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
@@ -46,9 +47,9 @@ public class SwitchLocal {
         String localIp = "";
         //目前路内和路外localIp都是相同的
         if ("LW".equals(getLocal())) {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL() + ":1883";
         } else {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL() + ":1883";
         }
         return localIp;
     }
@@ -64,7 +65,7 @@ public class SwitchLocal {
     }
     //固定的上下线发送Topic
     public static String getOnOffTopic(){
-      return  getLocal()+"/"+"s/LoginEvent";
+      return  getLocal()+"/A/"+"s/LoginEvent";
     }
     public static String getType(MType type) {
         if (MType.U == type) {

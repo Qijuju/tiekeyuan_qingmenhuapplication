@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.tky.im.bean.IMParams;
 import com.tky.im.test.LogPrint;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.utils.GsonUtils;
 
@@ -203,4 +204,20 @@ public class IMConnection {
     public boolean isConnected() {
         return mqttAsyncClient != null && mqttAsyncClient.isConnected();
     }
+
+  /**
+   * 设置mqtt地址
+   * @param mqtt
+   */
+  public static void setURL(String mqtt) {
+    SPUtils.save("mqtt_url", mqtt);
+  }
+
+  /**
+   * 获取MQTT地址
+   * @return
+   */
+  public static String getURL() {
+    return SPUtils.getString("mqtt_url", "");
+  }
 }

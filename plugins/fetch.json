@@ -245,5 +245,21 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "Okhttpload": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\r\\Desktop\\Okhttpload"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-add-swift-support": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-add-swift-support"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

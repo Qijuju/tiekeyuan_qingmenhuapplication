@@ -3,6 +3,7 @@ package com.tky.im.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.service.IMService;
@@ -42,23 +43,23 @@ import im.server.System.IMSystem;
  */
 
 public class IMSwitchLocal {
-    private static String local;
+    private static String local = "TEST";
 
     public static void setLocal(String local) {
         IMSwitchLocal.local = local;
     }
 
     public static String getLocal() {
-        return (local == null || "".equals(local.trim()) ? "LN" : "LW");
+        return local;//(local == null || "".equals(local.trim()) ? "LN" : "LW");
     }
 
     public static String getLocalIp() {
         String localIp = "";
         //目前路内和路外localIp都是相同的
         if ("LW".equals(getLocal())) {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL();
         } else {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL();
         }
         return localIp;
     }
@@ -70,7 +71,7 @@ public class IMSwitchLocal {
      * @return
      */
     public static String getATopic(MType type, String id) {
-        return getLocal() + "/" + getType(type) + "/" + id;
+        return getLocal() + "/A/" + getType(type) + "/" + id;
     }
 
   /**
@@ -78,7 +79,12 @@ public class IMSwitchLocal {
    * @return
    */
   public static String fromTopic(String topic, String type) {
-    return topic.substring((getLocal() + "/" + type).length());
+    return topic.substring((getLocal() + "/A/" + type).length());
+  }
+
+  //固定的上下线发送Topic
+  public static String getOnOffTopic(){
+    return  getLocal()+"/A/"+"s/LoginEvent";
   }
 
     public static String getType(MType type) {

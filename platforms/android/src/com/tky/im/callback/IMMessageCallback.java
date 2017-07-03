@@ -98,15 +98,22 @@ public class IMMessageCallback implements MqttCallback {
       if (msg.getPayload() == null || "".equals(new String(msg.getPayload()).trim())) {
         return;
       }
-      final MessageTypeBean bean = MessageOper.unpack(msg.getPayload());
+      final MessageTypeBean bean = MessageOper.unpack(msg);
+      if (bean == null) {
+        return;
+      }
       if (bean != null && bean instanceof MessageBean) {
         final MessageBean map = (MessageBean) bean;
+        boolean isMe = IMSwitchLocal.getUserID().equals(map.getSenderid());
+        if(isMe) {
+          return;
+        }
         if ("File".equals(map.getMessagetype()) || "Image".equals(map.getMessagetype())) {
           String message = map.getMessage().substring(0, map.getMessage().lastIndexOf("###"));
           map.setMessage(message + "###0");
         }
         final String fromUserId = map.get_id();
-        if (fromUserId != null && MqttTopicRW.isFromMe("ChildJSBean", fromUserId) && "Android".equals(map.getPlatform())) {
+        if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId) && "Android".equals(map.getPlatform())) {
           return;
         }
         if (fromUserId != null && !map.isFromMe()) {
@@ -142,7 +149,7 @@ public class IMMessageCallback implements MqttCallback {
             //消息转化完毕就入库
             int count = 0;
             //平台推送消息
-            if ("ChildJSBean".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {
+            if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {
               Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
               String year = c.get(Calendar.YEAR) + "";
               String month = c.get(Calendar.MONTH) + 1 + "";
@@ -292,7 +299,7 @@ public class IMMessageCallback implements MqttCallback {
                 chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
                 if (chatLists.size() > 0) {
                   chatList.setId(chatLists.get(0).getId());
-                  if ("ChildJSBean".equals(lastmessages.getType())) {
+                  if ("User".equals(lastmessages.getType())) {
                     chatList.setChatName(chatLists.get(0).getChatName());
                     Log.i("you对话创建对话后台====", chatLists.get(0).getChatName());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
@@ -308,7 +315,7 @@ public class IMMessageCallback implements MqttCallback {
                   chatList.setIsRead("0");
                 } else {
                   chatList.setId(lastmessages.getSessionid());
-                  if ("ChildJSBean".equals(lastmessages.getType())) {
+                  if ("User".equals(lastmessages.getType())) {
                     Log.i("无对话创建对话后台====", lastmessages.getUsername());
                     chatList.setChatName(lastmessages.getUsername());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
@@ -479,8 +486,12 @@ public class IMMessageCallback implements MqttCallback {
         messages.setIsFailure(eventBean.getIsFailure());
         messages.setIsDelete(eventBean.getIsDelete());
         OtherHeadPicService otherHeadPicService = OtherHeadPicService.getInstance(UIUtils.getContext());
-        List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
-        if (otherpicheadList.size() == 0) {
+        List<Otherpichead> otherpicheadList = null;
+        try {
+          otherpicheadList = otherHeadPicService.queryData("where id =?", eventBean.getSenderid());
+        } catch (Exception e) {
+        }
+        if (otherpicheadList == null || otherpicheadList.size() == 0) {
           messages.setImgSrc("1");
         } else {
           messages.setImgSrc(otherpicheadList.get(0).getPicurl());
@@ -543,7 +554,7 @@ public class IMMessageCallback implements MqttCallback {
         chatList.setSenderName(lastmessages.getUsername());//从数据库里取最后一条消息发送者名字
         if (chatLists.size() > 0) {
           chatList.setId(chatLists.get(0).getId());
-          if ("ChildJSBean".equals(lastmessages.getType())) {
+          if ("User".equals(lastmessages.getType())) {
             chatList.setChatName(chatLists.get(0).getChatName());
           } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
             GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
@@ -558,7 +569,7 @@ public class IMMessageCallback implements MqttCallback {
           chatList.setIsRead("0");
         } else {
           chatList.setId(lastmessages.getSessionid());
-          if ("ChildJSBean".equals(lastmessages.getType())) {
+          if ("User".equals(lastmessages.getType())) {
             chatList.setChatName(lastmessages.getUsername());
           } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
             GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());

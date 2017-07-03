@@ -166,7 +166,7 @@ public class IMService extends Service {
             public void onTopicSubscribe(String topic) {
                 try {
                     if (imConnection != null) {
-                        imConnection.subscribe(topic, 1);
+                        imConnection.subscribe(topic, 2);
                     }
                 } catch (MqttException e) {
                     e.printStackTrace();
