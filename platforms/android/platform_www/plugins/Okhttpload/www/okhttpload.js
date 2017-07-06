@@ -7,8 +7,8 @@ cordova.define("Okhttpload.okhttpload", function(require, exports, module) {
   exports.download = function(fileId,type,picSize,offset, success, error) {
     exec(success, error, "Okhttpload", "download", [fileId,type,picSize,offset]);
   };
-   exports.downloadFile = function(messageDetail,offset, success, error) {
-      exec(success, error, "Okhttpload", "downloadFile", [messageDetail,offset]);
+   exports.downloadFile = function(messageDetail,offset,isrightpath, success, error) {
+      exec(success, error, "Okhttpload", "downloadFile", [messageDetail,offset,isrightpath]);
     };
 
 });

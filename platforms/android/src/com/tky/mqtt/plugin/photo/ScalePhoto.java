@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.dao.FilePicture;
 import com.tky.mqtt.dao.FilePictureDao;
@@ -17,6 +18,10 @@ import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
+import com.tky.mqtt.services.FilePictureService;
+import com.tky.okhttpload.ImFileCallBack;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.FileCallBack;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -38,6 +43,7 @@ import java.util.UUID;
 
 import im.server.File.IMFile;
 import im.server.File.RSTgetFile;
+import okhttp3.Call;
 
 /**
  * 作者：
@@ -101,12 +107,11 @@ public class ScalePhoto extends CordovaPlugin {
      * @param callbackContext 插件回调
      */
     public void netScale(final JSONArray args, final CallbackContext callbackContext) {
-    	//图片的id
-        new Thread(new Runnable() {
+    	  //图片的id
+       /* new Thread(new Runnable() {
             String imageid=null;
             @Override
             public void run() {
-                MyAsyncMethodCallback<IMFile.AsyncClient.GetFile_call> callback = null;
                 try {
                     imageid = args.getString(0);
                     final String imagename=args.getString(1);
@@ -207,6 +212,71 @@ public class ScalePhoto extends CordovaPlugin {
                                 AnimationUtils.execShrinkAnim(cordova.getActivity());
                             }
                         });
+
+                      //用post做文件的下载
+                      String url="http://imtest.crbim.win:1666/DownloadFile";
+                      String tempUserPic = FileUtils.getIconDir() + File.separator + "original";
+                      String imcode= UIUtils.getDeviceId();
+                      String loginid= IMUtils.getUserID();
+                      OkHttpUtils
+                        .get()
+                        .addParams("id",loginid)
+                        .addParams("mepId",imcode)
+                        .addParams("fileId",imageid)
+                        .addParams("type","Image")
+                        .addParams("size","0")
+                        .addParams("offset",String.valueOf(0))
+                        .addParams("platform","A")
+                        .url(url)
+                        .build()
+                        .execute(new FileCallBack(tempUserPic,imagename) {
+                          @Override
+                          public void onError(Call call, Exception e, int id) {
+                            downList.remove(imageid);
+                          }
+
+                          @Override
+                          public void onResponse(final File response, int id) {
+
+
+                            UIUtils.runInMainThread(new Runnable() {
+
+                              @Override
+                              public void run() {
+                                Intent intent1 = new Intent();
+                                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent1.setAction("com.tky.updatefilepath");
+                                intent1.putExtra("filepath", response.getAbsolutePath());
+                                cordova.getActivity().sendBroadcast(intent1);
+                              }
+                            });
+
+                            //成功以后修改数据库
+                            FilePictureService filePictureService=FilePictureService.getInstance(UIUtils.getContext());
+                            FilePicture filePicture=filePictureService.queryData("where filepicid =?",imageid).get(0);
+                            filePicture.setBigurl(response.getAbsolutePath());
+                            filePicture.setBytesize(String.valueOf(response.length()));
+                            filePictureService.saveObj(filePicture);
+
+
+
+
+                            setResult(response.getAbsolutePath(), PluginResult.Status.OK, callbackContext);
+                            setResult("100", PluginResult.Status.OK, callbackContext);
+
+
+                          }
+
+                          @Override
+                          public void inProgress(float progress, long total, int id) {
+                            super.inProgress(progress, total, id);
+
+
+                          }
+                        });
+
+
+
 
 
                         //将正在下载状态改为false
@@ -324,33 +394,173 @@ public class ScalePhoto extends CordovaPlugin {
                         SystemApi.getFile(getUserID(), "I", imageid, "00", 0, 0, callback);
 
                     }
-                } catch (IOException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if(imageid!=null){
-                        downList.remove(imageid);
-                    }
-                    e.printStackTrace();
-                } catch (TException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if(imageid!=null){
-                        downList.remove(imageid);
-                    }
-                    e.printStackTrace();
                 } catch (JSONException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
+
                     if(imageid!=null){
                         downList.remove(imageid);
                     }
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
+
+
+
+
+      try {
+
+          final String imageid= args.getString(0);
+          final String imagename=args.getString(1);
+          final String samllfilepath=args.getString(2);
+
+          File filesmall=new File(samllfilepath);
+
+          final long xiaotu=filesmall.length();
+
+          final FilePictureService filePictureService=FilePictureService.getInstance(UIUtils.getContext());
+
+          final FilePicture filePicture=filePictureService.queryData("where filepicid= ?",imageid).get(0);
+
+
+          String fileurl=filePicture.getBigurl();
+          String filebyte=filePicture.getBytesize();
+
+          long daxiao=Long.parseLong(filebyte);
+
+          File file=new File(fileurl);
+
+          final long yuantu=file.length();
+
+          if (downList.contains(imageid)){
+
+            //刚进来时候判断文件的大小 是否
+            if (file.exists() && file.length()==daxiao && file.length()!=-1){
+
+              UIUtils.runInMainThread(new Runnable() {
+                @Override
+                public void run() {
+                  final Intent intent3=new Intent(cordova.getActivity(),com.tky.photoview.PhotoScaleActivity.class);
+                  intent3.putExtra("filePath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                  intent3.putExtra("filefactsize",yuantu);
+                  intent3.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                  cordova.getActivity().startActivity(intent3);
+                  AnimationUtils.execShrinkAnim(cordova.getActivity());
+                }
+              });
+
+            }
+            return;
+          }else {
+            downList.add(imageid);
+
+            File filenew=new File(FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+
+            if(filenew.exists()){
+              filenew.delete();
+            }
+
+            UIUtils.runInMainThread(new Runnable() {
+              @Override
+              public void run() {
+                final Intent intent=new Intent(cordova.getActivity(),com.tky.photoview.PhotoScaleActivity.class);
+                //传入的是小图路径
+                intent.putExtra("filePath", samllfilepath);
+                intent.putExtra("filefactsize",xiaotu);
+
+                //传入的是大图路径
+                intent.putExtra("bigfilepath",FileUtils.getIconDir() + File.separator + "original" + File.separator + imagename);
+                cordova.getActivity().startActivity(intent);
+                AnimationUtils.execShrinkAnim(cordova.getActivity());
+              }
+            });
+
+
+
+
+            //用post做文件的下载
+            String downurl="http://imtest.crbim.win:1666/DownloadFile";
+            String tempUserPic = FileUtils.getIconDir() + File.separator + "original";
+            String imcode= UIUtils.getDeviceId();
+            String loginid= IMUtils.getUserID();
+            OkHttpUtils
+              .get()
+              .addParams("id",loginid)
+              .addParams("mepId",imcode)
+              .addParams("fileId",imageid)
+              .addParams("type","Image")
+              .addParams("size","0")
+              .addParams("offset",String.valueOf(0))
+              .addParams("platform","A")
+              .url(downurl)
+              .build()
+              .execute(new FileCallBack(tempUserPic,imagename) {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                  filePicture.setBytesize(String.valueOf(-1));
+                  filePictureService.saveObj(filePicture);
+                  downList.remove(imageid);
+                }
+
+                @Override
+                public void onResponse(final File response, int id) {
+
+
+                  UIUtils.runInMainThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                      Intent intent1 = new Intent();
+                      intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                      intent1.setAction("com.tky.updatefilepath");
+                      intent1.putExtra("filepath", response.getAbsolutePath());
+                      cordova.getActivity().sendBroadcast(intent1);
+                    }
+                  });
+
+                  //成功以后修改数据库
+                  filePicture.setBigurl(response.getAbsolutePath());
+                  filePicture.setBytesize(String.valueOf(response.length()));
+                  filePictureService.saveObj(filePicture);
+
+
+
+
+                  setResult(response.getAbsolutePath(), PluginResult.Status.OK, callbackContext);
+                  setResult("100", PluginResult.Status.OK, callbackContext);
+
+
+                }
+
+                @Override
+                public void inProgress(float progress, long total, int id) {
+                  super.inProgress(progress, total, id);
+
+
+                }
+              });
+
+          }
+
+
+
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {

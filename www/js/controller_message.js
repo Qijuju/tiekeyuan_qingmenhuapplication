@@ -43,7 +43,7 @@ angular.module('message.controllers', [])
 
     $scope.$on('sendprogress.update', function (event) {
       $scope.$apply(function () {
-        // $ToastUtils.showToast("进度进行中~~~",null,null);
+        //$ToastUtils.showToast("进度进行中~~~",null,null);
         $scope.msgs=$mqtt.getDanliao();
       });
     });
@@ -815,6 +815,7 @@ angular.module('message.controllers', [])
 
     //判断文件是否是图片
     $scope.getFileType = function (message) {
+
       var msg = message.split('###')[1];
       var suffix = msg.lastIndexOf("\.");
       var lastIndex = msg.substr(suffix, msg.length);
@@ -901,9 +902,9 @@ angular.module('message.controllers', [])
         $ToastUtils.showToast("参数错误！", null, null);
       });*/
 
-      $okhttp.downloadFile(msg,100,function (success) {
+      $okhttp.downloadFile(msg,0,path,function (success) {
         msg.message=success;
-        $greendao.saveObj('MessagesService',message,function (data) {
+        $greendao.saveObj('MessagesService',msg,function (data) {
           $mqtt.updateDanliao(msg);
           $rootScope.$broadcast('sendprogress.update');
         },function (err) {
@@ -1238,7 +1239,9 @@ angular.module('message.controllers', [])
 
     //判断文件是否是视频格式
     $scope.isMsgVideo = function (filePath) {
-      return $mqtt.isVideo(filePath);
+      if(filePath!=null && filePath!="undefined" && filePath!=""){
+        return $mqtt.isVideo(filePath);
+      }
     };
 
     $scope.backFirstMenu = function (groupType) {
@@ -2378,7 +2381,7 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard,$okhttp) {
 
     /**
      * 长按事件
@@ -2881,6 +2884,7 @@ angular.module('message.controllers', [])
       $mqtt.setQunliao(data);
       $scope.groupmsgs = $mqtt.getQunliao();
 
+
       if($scope.groupmsgs.length>0 && $mqtt.getQunliao()[$scope.groupmsgs.length-1].when< millions){
         // alert("群聊改时间进来了吗");
         for(var i=0;i<data.length;i++){
@@ -2993,6 +2997,9 @@ angular.module('message.controllers', [])
         // alert("群组id"+$scope.groupid);
 
         $scope.groupmsgs=$mqtt.getQunliao();
+        $timeout(function () {
+          viewScroll.scrollBottom();
+        }, 100);
         // alert("进来群聊界面吗？长度"+$mqtt.getQunliao()[$scope.groupmsgs.length-1].istime);
         // 获取当天日期
         var myDate = new Date();//
@@ -4275,7 +4282,7 @@ angular.module('message.controllers', [])
 
     //打开文件
     $scope.openGroupAllFile = function (path, msg) {
-      $api.openFileByPath(path,msg, function (message) {
+      /*$api.openFileByPath(path,msg, function (message) {
         $greendao.saveObj('MessagesService',message,function (data) {
           $mqtt.updateQunliao(message);
           $rootScope.$broadcast('sendgroupprogress.update');
@@ -4283,12 +4290,28 @@ angular.module('message.controllers', [])
         });
       },function (err) {
         $ToastUtils.showToast("参数错误！", null, null);
-      });
+      });*/
+
+      $okhttp.downloadFile(msg,0,path,function (success) {
+        msg.message=success;
+        $greendao.saveObj('MessagesService',msg,function (data) {
+          $mqtt.updateQunliao(msg);
+          $rootScope.$broadcast('sendgroupprogress.update');
+        },function (err) {
+        });
+      },function (err) {
+
+      })
+
+
+
     };
 
     //判断文件是否是视频格式
     $scope.isGroupVideo = function (filePath) {
-      return $mqtt.isVideo(filePath);
+      if(filePath!=null && filePath!="undefined" && filePath!=""){
+        return $mqtt.isVideo(filePath);
+      }
     };
 
     //发送图片的时候打开图片查看大图

@@ -89,7 +89,7 @@ public class Okhttpload extends CordovaPlugin {
         }
 
         //发送文件的类型 文件 图片 viedo
-        String messagetype = messageDetail.getString("messagetype");
+        final String messagetype = messageDetail.getString("messagetype");
         //发送者id
         String senderid=messageDetail.getString("senderid");
         //接受者id
@@ -175,6 +175,7 @@ public class Okhttpload extends CordovaPlugin {
           .params(map)
           .build()
           .execute(new StringCallback() {
+            int procount=0;
             @Override
             public void onError(Call call, Exception e, int id) {
               JSONArray retnObj = null;
@@ -197,8 +198,11 @@ public class Okhttpload extends CordovaPlugin {
             @Override
             public void inProgress(final float progress, long total, int id) {
               super.inProgress(progress, total, id);
-              if (((int)(progress * 100) % 5) == 0) {
-                System.out.print(progress+"+++++++++++++++++++++++++++++++++");
+
+              int jindu=Math.round(progress * 100);
+              if (jindu != 0 && procount != jindu) {
+                  procount = jindu;
+
                 JSONArray retnObj = null;
                 try {
                   retnObj = new JSONArray("['" + savePath + "','" + finalObjectID + "','" + String.valueOf(progress) + "']");
@@ -208,10 +212,12 @@ public class Okhttpload extends CordovaPlugin {
                 if (messageDetail != null) {
                   retnObj.put(messageDetail);
                 }
-                setResult(retnObj, PluginResult.Status.OK, callbackContext);
+                if ("Vedio".equals(messagetype) && jindu % 5==0){
+                  setResult(retnObj, PluginResult.Status.OK, callbackContext);
+                }else if (!"Vedio".equals(messagetype)){
+                  setResult(retnObj, PluginResult.Status.OK, callbackContext);
+                }
               }
-
-
             }
 
             @Override
@@ -236,8 +242,7 @@ public class Okhttpload extends CordovaPlugin {
 
 
               setResult(retnObj, PluginResult.Status.OK, callbackContext);
-              System.out.print((lasttime/1000)+"======================================");
-              ToastUtil.showSafeToast((lasttime)+"dddddddddddddddddd");
+              ToastUtil.showSafeToast((lasttime)+"发送用的时间");
             }
           });
       } catch (JSONException e) {
@@ -327,7 +332,7 @@ public class Okhttpload extends CordovaPlugin {
             @Override
             public void onError(Call call, Exception e, int id) {
               System.out.print("下载的shibai+++++++++++++++++++++++++++++++++");
-
+              setResult("失败", PluginResult.Status.OK, callbackContext);
             }
 
             @Override
@@ -344,9 +349,11 @@ public class Okhttpload extends CordovaPlugin {
 
               }else if ("Vedio".equals(filetype)){
                 lastresult=fileid+"###"+response.getAbsolutePath()+"###";
+                needMsg.setMessage(lastresult);
+                messageservice.saveObj(needMsg);
               } else if ("Image".equals(filetype)) {
                 long filesize=response.length();
-                lastresult=fileid+"###"+response.getAbsolutePath()+"###"+response.getName()+"###"+response.length()+"###"+FileUtils.formatFileSize(response.length());
+                lastresult=fileid+"###"+response.getAbsolutePath()+"###"+response.length()+"###"+FileUtils.formatFileSize(response.length())+"###"+response.getName();
                 needMsg.setMessage(lastresult);
                 messageservice.saveObj(needMsg);
               }
@@ -382,16 +389,30 @@ public class Okhttpload extends CordovaPlugin {
     String fileID = "";
     try {
 
+      String isrightpath=args.getString(2);
       final JSONObject msg = args.getJSONObject(0);
+      String isfilepath=msg.getString("message");
+
+      if (isrightpath != null && !"".equals(isrightpath.trim())&&!"..".equals(isrightpath)){
+        File rightPaht=new File(isrightpath);
+        if (rightPaht.exists()){
+          openFile(isrightpath,isfilepath,callbackContext);
+          return;
+        }
+      }
+
+
+
       final String id = msg.getString("_id");
       final String fileid = msg.getString("message").split("###")[0];
+      String filename=msg.getString("message").split("###")[4];
       fileID = fileid;
       String filetype = msg.getString("messagetype");
       long offset=args.getLong(1);
       String imcode= UIUtils.getDeviceId();
       String loginid=IMUtils.getUserID();
 
-      String tempUserPic = FileUtils.getFileDir() + File.separator;
+      String tempUserPic = FileUtils.getFileDir() + File.separator+fileid+File.separator;
       File directory = new File(tempUserPic);
       if (!directory.exists()) {
         directory.mkdirs();
@@ -404,7 +425,14 @@ public class Okhttpload extends CordovaPlugin {
       final String zuihou=msg.getString("message").substring(0, msg.getString("message").lastIndexOf("###"));
 
 
+      //根据文件的路径来判断是否需要再次下载
+      String linshi=tempUserPic+filename;
+      File file=new File(linshi);
 
+
+      if (file.exists()){
+        return;
+      }
 
       if (downList.contains(fileid)) {
         return;
@@ -444,8 +472,10 @@ public class Okhttpload extends CordovaPlugin {
           @Override
           public void onResponse(File response, int id) {
             downList.remove(fileid);
-            System.out.print(response.getAbsoluteFile()+"下载的路径+++++++++++++++++++++++++++++++++");
-            setResult(zuihou+"###"+100, PluginResult.Status.OK, callbackContext);
+
+            String nihao = zuihou.replace("..",response.getAbsolutePath());
+
+            setResult(nihao+"###"+100, PluginResult.Status.OK, callbackContext);
           }
 
           @Override
@@ -456,11 +486,10 @@ public class Okhttpload extends CordovaPlugin {
 
             if (procount != jindu) {
               procount = jindu;
-              System.out.print((progress % 1)+"下载的进度+++++++++++++++++++++++++++++++++");
-            }
+              //System.out.print((progress % 1)+"下载的进度+++++++++++++++++++++++++++++++++");
 
-             /*lastresult=zuihou+"###"+jindu;*/
-            setResult(zuihou+"###"+jindu, PluginResult.Status.OK, callbackContext);
+              setResult(zuihou+"###"+jindu, PluginResult.Status.OK, callbackContext);
+            }
 
           }
         });
@@ -480,7 +509,14 @@ public class Okhttpload extends CordovaPlugin {
 
 
 
-
+  private void openFile(String path, String isallpath,CallbackContext callbackContext) {
+    boolean flag = UIUtils.openFile(path);
+    if (flag) {
+      setResult(isallpath, PluginResult.Status.OK, callbackContext);
+    } else {
+      setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
 
 
 

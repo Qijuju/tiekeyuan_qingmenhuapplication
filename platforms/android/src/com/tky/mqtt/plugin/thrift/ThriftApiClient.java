@@ -1483,6 +1483,8 @@ public class ThriftApiClient extends CordovaPlugin {
           }
           if ("A".equals(paramsMap.get("mediaType"))) {
             paramsMap.put("playLength", messages[2]);
+          } else if ("V".equals(paramsMap.get("mediaType"))) {
+            paramsMap.put("playLength", "100");
           }
           if ("P".equals(paramsMap.get("mediaType"))) {
             paramsMap.put("address", obj.getString("message").split(",")[2]);

@@ -83,7 +83,13 @@ public class MessageOper {
       bean.set_id(msgBean.getMsgId());
       bean.setFrom(getUserID().equals(msgBean.getFrom()) ? "true" : "false");
       bean.setFromMe(getUserID().equals(msgBean.getFrom()));//通知模块
-      bean.setImgSrc("");
+      OtherHeadPicService otherHeadPicService=OtherHeadPicService.getInstance(UIUtils.getContext());
+      List<Otherpichead> otherpicheadList = otherHeadPicService.queryData("where id =?",msgBean.getFrom());
+      if (otherpicheadList.size() == 0) {
+        bean.setImgSrc("1");
+      } else {
+        bean.setImgSrc(otherpicheadList.get(0).getPicurl());
+      }
       bean.setIsDelete("false");
       bean.setIsFailure("false");
       bean.setIsFromMe(getUserID().equals(msgBean.getFrom()));

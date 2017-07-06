@@ -15,8 +15,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 
 public class IMParams {
-    private String serverURI = IMSwitchLocal.getATopic(MType.U, IMSwitchLocal.getLocalIp());
-    private String clientId = IMUtils.getUserID();//设备唯一标识码
+    private String serverURI = IMSwitchLocal.getLocalIp();
+    private String clientId = IMSwitchLocal.getATopic(MType.U, IMUtils.getUserID());//设备唯一标识码
     private String userName = "lb";
     private String password = "lb";
     private MqttClientPersistence persistence = new MemoryPersistence();
