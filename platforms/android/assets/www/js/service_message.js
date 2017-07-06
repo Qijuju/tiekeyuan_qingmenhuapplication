@@ -832,9 +832,9 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
-        // alert('arriveMsg');
+
+
         mqtt.getChats(topic,function (message) {
-          alert("jinllaiele")
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;

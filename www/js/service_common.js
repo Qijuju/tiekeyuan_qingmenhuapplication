@@ -454,8 +454,8 @@ angular.module('common.services', [])
       download:function (fileId,type,picSize,offset, succsee, error) {
         okhttp.download(fileId,type,picSize,offset,succsee,error)
       },
-      downloadFile:function (messagedetail,offset, succsee, error) {
-        okhttp.downloadFile(messagedetail,offset,succsee,error)
+      downloadFile:function (messagedetail,offset,isrightpath, succsee, error) {
+        okhttp.downloadFile(messagedetail,offset,isrightpath,succsee,error)
       }
     }
 

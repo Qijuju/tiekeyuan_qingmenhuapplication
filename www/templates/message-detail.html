@@ -90,7 +90,7 @@
         </div>
         <!--图片内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'Image' || (msgSingle.messagetype === 'File' && getFileType(msgSingle.message))">
-          <img style="background-color: transparent;border-radius: 10px;width: 110px;" src="{{msgSingle.message.split('###')[1]}}" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[2],msgSingle.message.split('###')[1])" />
+          <img style="background-color: transparent;border-radius: 10px;width: 110px;" src="{{msgSingle.message.split('###')[1]}}" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])" />
         </div>
         <!--接收###文件内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message) && !isMsgVideo(msgSingle.message.split('###')[1])">
@@ -204,7 +204,7 @@
             <div class="col" style="margin-top: 5px;margin-bottom: -10px;">
               <h2 style="font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;">{{msgSingle.message.split('###')[4]}}</h2>
               <!--进度条-->
-              <div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-left: 7px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
+                <div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar" style="margin-left: 7px;"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
               <!--进度百分比-->
               <div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" style="font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;">{{msgSingle.message.split('###')[5]}}%</div>
               <!--发送成功-->
