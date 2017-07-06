@@ -2,6 +2,7 @@ package com.tky.im.bean;
 
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.im.utils.IMUtils;
+import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttChatPingSender;
 import com.tky.mqtt.paho.utils.SwitchLocal;
 
@@ -14,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 
 public class IMParams {
-    private String serverURI = IMSwitchLocal.getLocalIp();
+    private String serverURI = IMSwitchLocal.getATopic(MType.U, IMSwitchLocal.getLocalIp());
     private String clientId = IMUtils.getUserID();//设备唯一标识码
     private String userName = "lb";
     private String password = "lb";

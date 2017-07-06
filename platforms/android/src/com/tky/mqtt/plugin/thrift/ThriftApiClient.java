@@ -1,7 +1,6 @@
 package com.tky.mqtt.plugin.thrift;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
@@ -109,40 +108,15 @@ import java.util.Map;
 import java.util.UUID;
 
 import im.model.DeptInfo;
-import im.model.Group;
-import im.model.Msg;
 import im.model.RST;
-import im.model.User;
-import im.model.UserCheck;
-import im.server.Department.IMDepartment;
-import im.server.Department.RSTgetChild;
 import im.server.Department.RSTgetDept;
-import im.server.Department.RSTgetRoot;
 import im.server.File.IMFile;
 import im.server.File.RSTSendFile;
 import im.server.File.RSTgetFile;
 import im.server.File.RSTversionInfo;
-import im.server.Group.IMGroup;
-import im.server.Group.RSTChangeGroup;
-import im.server.Group.RSTaddGroup;
-import im.server.Group.RSTgetGroup;
-import im.server.Group.RSTgetGroupUpdate;
 import im.server.Message.IMMessage;
-import im.server.Message.RSTgetMsg;
 import im.server.Message.RSTgetMsgCount;
-import im.server.Message.RSTgetNotifyMsg;
-import im.server.Message.RSTgetReadList;
 import im.server.Message.RSTreadMsg;
-import im.server.Message.RSTsetNotifyMsg;
-import im.server.System.IMSystem;
-import im.server.System.RSTlogin;
-import im.server.System.RSTsearch;
-import im.server.System.RSTsysTime;
-import im.server.User.IMUser;
-import im.server.User.RSTCheckUser;
-import im.server.User.RSTgetUser;
-import im.server.attention.IMAttention;
-import im.server.attention.RSTgetAttention;
 
 /**
  * 作者：
@@ -246,7 +220,6 @@ public class ThriftApiClient extends CordovaPlugin {
                 chatListService.deleteAllData();
                 groupChatsService.deleteAllData();
                 systemMsgService.deleteAllData();
-//                                      System.out.println("删除本地缓存成功");
               }
 
               LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
@@ -285,14 +258,12 @@ public class ThriftApiClient extends CordovaPlugin {
    * @param infoBean
    */
   private String switchLoginUser(LoginInfoBean infoBean) {
-//    SystemApi.url = infoBean.getMqtt();
     IMConnection.setURL(infoBean.getMqtt());
     //主张号
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("result", infoBean.isSucceed());
     map.put("resultCode", infoBean.getErrCode());
     map.put("isActive", true);
-//    map.put("isActive", infoBean.getUser().isActive());
     map.put("sDatetime", System.currentTimeMillis());
     map.put("userID", infoBean.getUser().getId());
     map.put("userName", infoBean.getUser().getDisplayName());
@@ -322,7 +293,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
   public void seachUsers(final JSONArray args, final CallbackContext callbackContext) {
     try {
-      String userId = args.getString(0);
+//      String userId = args.getString(0);
       String searchText = args.getString(1);
       int pageNum = args.getInt(2);
       int pageCount = args.getInt(3);
@@ -806,7 +777,6 @@ public class ThriftApiClient extends CordovaPlugin {
               }
             } else {
               if ("501".equals(result.getErrCode())) {
-//                  setResult("没有传入任何修改项参数或参数格式不对", PluginResult.Status.ERROR, callbackContext);
                 setResult("传入参数格式不正确！", PluginResult.Status.ERROR, callbackContext);
               } else if ("502".equals(result.getErrCode())) {
                 setResult("修改后的内容不能为空", PluginResult.Status.ERROR, callbackContext);
@@ -1069,84 +1039,93 @@ public class ThriftApiClient extends CordovaPlugin {
   public void getVersionInfo(final JSONArray args, final CallbackContext callbackContext) {
 
     //TODO 接口没有，所以暂时走Thrift接口
-    if (!isHttp) {
+    if (isHttp) {
       try {
-        Request request = new Request(cordova.getActivity());
+        Request request = new Request(cordova.getActivity(), SystemApi.FILE_URL);
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetVersionInfo").getParamsMap();
+        paramsMap.put("platform", "A");//当前版本
         paramsMap.put("version", UIUtils.getVersion());//当前版本
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncPostClient.get(request, new OKHttpCallBack2<String>() {
           @Override
           public void onSuccess(Request request, String result) {
-            ToastUtil.showSafeToast("success");
+            try {
+              setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+            } catch (Exception e) {
+              setResult("请求版本信息失败！", PluginResult.Status.OK, callbackContext);
+              e.printStackTrace();
+            }
           }
 
           @Override
           public void onFailure(Request request, Exception e) {
-            ToastUtil.showSafeToast("err");
+            setResult("网络错误！", PluginResult.Status.OK, callbackContext);
           }
         });
       } catch (JSONException e) {
+        setResult("参数错误！", PluginResult.Status.OK, callbackContext);
         e.printStackTrace();
       } catch (Exception e) {
+        setResult("请求版本信息失败！", PluginResult.Status.OK, callbackContext);
         e.printStackTrace();
       }
-    }
-    MyAsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call> callback = null;
-    try {
-      callback = new MyAsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call>() {
-        @Override
-        public void onComplete(IMFile.AsyncClient.GetVersionInfo_call getVersionInfo_call) {
-          try {
-            RSTversionInfo result = getVersionInfo_call.getResult();
-            if (result != null && result.result) {
-              String info = result.getInfo();
-              setResult(new JSONObject(info), PluginResult.Status.OK, callbackContext);
-            } else {
-              setResult("网络异常！", PluginResult.Status.OK, callbackContext);
+    } else {
+      MyAsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call> callback = null;
+      try {
+        callback = new MyAsyncMethodCallback<IMFile.AsyncClient.GetVersionInfo_call>() {
+          @Override
+          public void onComplete(IMFile.AsyncClient.GetVersionInfo_call getVersionInfo_call) {
+            try {
+              RSTversionInfo result = getVersionInfo_call.getResult();
+              if (result != null && result.result) {
+                String info = result.getInfo();
+                setResult(new JSONObject(info), PluginResult.Status.OK, callbackContext);
+              } else {
+                setResult("网络异常！", PluginResult.Status.OK, callbackContext);
+              }
+            } catch (TException e) {
+              setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            } catch (JSONException e) {
+              setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
+              e.printStackTrace();
+            } catch (Exception e) {
+              setResult("未知错误！", PluginResult.Status.ERROR, callbackContext);
             }
-          } catch (TException e) {
-            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
-            e.printStackTrace();
-          } catch (JSONException e) {
-            setResult("JSON数据解析异常！", PluginResult.Status.ERROR, callbackContext);
-            e.printStackTrace();
-          } catch (Exception e) {
-            setResult("未知错误！", PluginResult.Status.ERROR, callbackContext);
+            close();
           }
-          close();
-        }
 
-        @Override
-        public void onError(Exception e) {
-          close();
-          setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+          @Override
+          public void onError(Exception e) {
+            close();
+            setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+          }
+        };
+        SystemApi.getVersionInfo(getUserID(), callback);
+      } catch (JSONException e) {
+        if (callback != null) {
+          callback.close();
         }
-      };
-      SystemApi.getVersionInfo(getUserID(), callback);
-    } catch (JSONException e) {
-      if (callback != null) {
-        callback.close();
+        setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (TException e) {
+        if (callback != null) {
+          callback.close();
+        }
+        setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (IOException e) {
+        if (callback != null) {
+          callback.close();
+        }
+        setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      } catch (Exception e) {
+        if (callback != null) {
+          callback.close();
+        }
+        setResult("未知错误！", PluginResult.Status.ERROR, callbackContext);
       }
-      setResult("JSON数据解析错误！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (TException e) {
-      if (callback != null) {
-        callback.close();
-      }
-      setResult("请求失败！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (IOException e) {
-      if (callback != null) {
-        callback.close();
-      }
-      setResult("数据异常！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (Exception e) {
-      if (callback != null) {
-        callback.close();
-      }
-      setResult("未知错误！",PluginResult.Status.ERROR,callbackContext);
     }
   }
 
@@ -2144,9 +2123,9 @@ public class ThriftApiClient extends CordovaPlugin {
               MqttTopicRW.append(IMSwitchLocal.getATopic(MType.G, groupID), 2);
             }
             setResult(groupID, PluginResult.Status.OK, callbackContext);
-          } else if (result != null && "711".equals(result.getErrCode())) {
+          } else if ("711".equals(result.getErrCode())) {
             setResult("创建的群组必须大于2人（包括自己）！", PluginResult.Status.ERROR, callbackContext);
-          } else if (result != null && "712".equals(result.getErrCode())) {
+          } else if ("712".equals(result.getErrCode())) {
             setResult("创建的群组超过了20人！", PluginResult.Status.ERROR, callbackContext);
           } else {
             setResult("创建群组失败！", PluginResult.Status.ERROR, callbackContext);
@@ -3267,7 +3246,7 @@ public class ThriftApiClient extends CordovaPlugin {
     try {
       String fileName = args.getString(0);
       String path = Environment.getExternalStorageDirectory().getPath() + "/" + fileName;
-      if (path != null && !"".equals(path)) {
+      if (fileName != null && !"".equals(fileName)) {
         boolean flag = UIUtils.openFile(path);
         if (flag) {
           setResult("true", PluginResult.Status.OK, callbackContext);
@@ -3275,7 +3254,7 @@ public class ThriftApiClient extends CordovaPlugin {
           setResult("文件不存在！", PluginResult.Status.ERROR, callbackContext);
         }
       } else {
-        setResult("文件路径不能为空！", PluginResult.Status.ERROR, callbackContext);
+        setResult("文件名称不能为空！", PluginResult.Status.ERROR, callbackContext);
       }
     } catch (JSONException e) {
       setResult("参数错误！", PluginResult.Status.ERROR, callbackContext);

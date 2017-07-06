@@ -1,5 +1,6 @@
 package com.tky.mqtt.paho.http;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -28,15 +29,75 @@ import okhttp3.Response;
 
 public class OKAsyncPostClient {
 
+  public static <T> void get(@NonNull final com.tky.mqtt.paho.http.Request request, final OKHttpCallBack2<T> callBack) {
+    if (request == null) {
+      throw new NullPointerException("Request could be not null");
+    }
+    String url = request.getUrl();
+    StringBuilder urlBuilder = new StringBuilder();
+    urlBuilder.append(url);
+    Map<String, Object> paramsMap = request.getParamsMap();
+    if (paramsMap != null && paramsMap.size() > 0) {
+      urlBuilder.append("/" + paramsMap.get("Action").toString() + "?");
+      for (Map.Entry<String, Object> entry : paramsMap.entrySet()) {
+        String key = entry.getKey();
+        Object value = entry.getValue();
+        if (!"Action".equals(key)) {
+          urlBuilder.append(key + "=" + value.toString() + "&");
+        }
+      }
+      url = urlBuilder.toString().substring(0, urlBuilder.toString().length() - 1);
+    }
+    Request.Builder builder = new Request.Builder().url(url);
+    Request okRequest = builder.build();
+    OkHttpClient client = request.getClient();
+    Call call = client.newCall(okRequest);
+    request.setCall(call);
+    call.enqueue(new Callback() {
+      @Override
+      public void onFailure(Call call, IOException e) {
+        request.setErrorState(com.tky.mqtt.paho.http.Request.ErrorState.NET_ERROR);
+        callBack.onFailure(request, e);
+      }
+
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+        if (response.isSuccessful()) {
+          String decode = URLDecoder.decode(response.body().string(), "UTF-8");
+          try {
+            Type type = callBack.getType();
+            //默认返回String
+            if (type == null || String.class.equals(type)) {
+              callBack.onSuccess(request, (T) decode);
+            }if (!String.class.equals(type)) {
+              Gson gson = new Gson();
+              T obj = gson.fromJson(decode, type);
+              callBack.onSuccess(request, obj);
+            }
+          } catch (ClassCastException e) {
+            callBack.onSuccess(request, (T) decode);
+          } catch (Exception e) {
+            //设置数据解析失败状态
+            request.setErrorState(com.tky.mqtt.paho.http.Request.ErrorState.PARSE_ERROR);
+            callBack.onFailure(request, new IllegalStateException("Data parse has error,please check your entity class!"));
+            e.printStackTrace();
+          }
+        } else {
+          //设置网络请求失败状态
+          request.setErrorState(com.tky.mqtt.paho.http.Request.ErrorState.REQUEST_ERROR);
+          callBack.onFailure(request, new IllegalStateException("Request is not successful!"));
+        }
+      }
+    });
+  }
+
   /**
    * OKHttpClient请求数据
    * @param request 里面包含了所有输入的请求参数，网络请求对象，取消网络请求方法，请求失败原因等
    * @param callBack 回调根据用户传入的泛型T对象解析成对应的对象，如果不传泛型或者为String，直接将请求到的数据的JSON字符串传回去
    */
-  public static <T> void post(final com.tky.mqtt.paho.http.Request request, final OKHttpCallBack2<T> callBack) {
+  public static <T> void post(@NonNull final com.tky.mqtt.paho.http.Request request, final OKHttpCallBack2<T> callBack) {
     if (request == null) {
-      request.setErrorState(com.tky.mqtt.paho.http.Request.ErrorState.PARAM_ERROR);
-      callBack.onFailure(request, new NullPointerException("Request could be not null"));
       throw new NullPointerException("Request could be not null");
     }
     callBack.onStart();

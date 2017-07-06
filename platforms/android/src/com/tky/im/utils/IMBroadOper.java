@@ -23,7 +23,10 @@ public class IMBroadOper {
      * @param status
      */
     public static void broad(final String status) {
-        if (status != ConstantsParams.PARAM_RE_CONNECT) {
+      UIUtils.runInMainThread(new Runnable() {
+        @Override
+        public void run() {
+          if (status != ConstantsParams.PARAM_RE_CONNECT) {
             if (UIUtils.isServiceWorked(IMService.class.getName())) {
               Intent intent = new Intent();
               intent.setAction(status);
@@ -31,44 +34,51 @@ public class IMBroadOper {
             } else {
               UIUtils.getContext().startService(new Intent(UIUtils.getContext(), IMService.class));
             }
-        } else {
+          } else {
             if (startTime == 0) {
-                startTime = System.currentTimeMillis();
+              startTime = System.currentTimeMillis();
             }
             long during = System.currentTimeMillis() - startTime;
             //保证两次重连IM超过1s
             if (during >= 1000) {
-                UIUtils.runInMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent();
-                        intent.setAction(status);
-                        UIUtils.getContext().sendBroadcast(intent);
-                    }
-                });
+              UIUtils.runInMainThread(new Runnable() {
+                @Override
+                public void run() {
+                  Intent intent = new Intent();
+                  intent.setAction(status);
+                  UIUtils.getContext().sendBroadcast(intent);
+                }
+              });
             } else {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent();
-                        intent.setAction(status);
-                        UIUtils.getContext().sendBroadcast(intent);
-                    }
-                }, 1000 - during);
+              new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                  Intent intent = new Intent();
+                  intent.setAction(status);
+                  UIUtils.getContext().sendBroadcast(intent);
+                }
+              }, 1000 - during);
             }
+          }
         }
+      });
     }
 
     /**
      * 广播接收成功的消息
      */
-    public static void broadArrivedMsg(String topic, int qos, String content) {
-        Intent intent=new Intent();
-        intent.setAction(ConstantsParams.PARAM_RECEIVE_MESSAGE);
-        intent.putExtra("topic", topic);
-        intent.putExtra("content", content);
-        intent.putExtra("qos", qos);
-        UIUtils.getContext().sendBroadcast(intent);
+    public static void broadArrivedMsg(final String topic, final int qos, final String content) {
+        UIUtils.runInMainThread(new Runnable() {
+          @Override
+          public void run() {
+            Intent intent=new Intent();
+            intent.setAction(ConstantsParams.PARAM_RECEIVE_MESSAGE);
+            intent.putExtra("topic", topic);
+            intent.putExtra("content", content);
+            intent.putExtra("qos", qos);
+            UIUtils.getContext().sendBroadcast(intent);
+          }
+        });
     }
 
   /**
@@ -76,14 +86,19 @@ public class IMBroadOper {
    * @param topic
    * @param content
    */
-    public static void broadSendMsg(String topic, String content) {
-        if (!UIUtils.isServiceWorked(IMService.class.getName())) {
-          UIUtils.getContext().startService(new Intent(UIUtils.getContext(), IMService.class));
-        }
-        Intent intent = new Intent();
-        intent.setAction(ConstantsParams.PARAM_SEND_MESSAGE);
-        intent.putExtra("topic", topic);
-        intent.putExtra("content", content);
-        UIUtils.getContext().sendBroadcast(intent);
+    public static void broadSendMsg(final String topic, final String content) {
+        UIUtils.runInMainThread(new Runnable() {
+          @Override
+          public void run() {
+            if (!UIUtils.isServiceWorked(IMService.class.getName())) {
+              UIUtils.getContext().startService(new Intent(UIUtils.getContext(), IMService.class));
+            }
+            Intent intent = new Intent();
+            intent.setAction(ConstantsParams.PARAM_SEND_MESSAGE);
+            intent.putExtra("topic", topic);
+            intent.putExtra("content", content);
+            UIUtils.getContext().sendBroadcast(intent);
+          }
+        });
     }
 }
