@@ -32,7 +32,7 @@ import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.callback.OKHttpCallBack2;
-import com.tky.mqtt.paho.http.OKAsyncPostClient;
+import com.tky.mqtt.paho.http.OKAsyncClient;
 import com.tky.mqtt.paho.http.Request;
 import com.tky.mqtt.paho.httpbean.ParamsMap;
 import com.tky.mqtt.paho.main.MqttRobot;
@@ -494,7 +494,7 @@ public class MqttChat extends CordovaPlugin {
         Request request = new Request(cordova.getActivity());
         Map<String, Object> paramsMap = ParamsMap.getInstance("LoginOff").getParamsMap();
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
           @Override
           public void onSuccess(Request request, String result) {
             try {
