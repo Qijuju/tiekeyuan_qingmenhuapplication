@@ -91,4 +91,8 @@ exports.hasParttimeAccount =function(success, error){//判断是否有兼职账�
     exec(success, error, "MqttChat", "hasParttimeAccount", [])
 };
 
+exports.getImcode =function(success, error){//获取imcode
+    exec(success, error, "MqttChat", "getImcode", [])
+};
+
 });

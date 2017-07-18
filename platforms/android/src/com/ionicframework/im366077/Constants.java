@@ -17,7 +17,9 @@ public class Constants {
   //境外
   public static final String JINGWAIURL = "202.137.140.133";
 
+  //http开发环境  imtest.crbim.win
 
+  public static final String httptestbasemobile= "imtest.crbim.win";
 
 
 
@@ -26,28 +28,24 @@ public class Constants {
 
   public static final String formalwelcome="http://61.237.239.60:8081/loginpic/loginpic/get";
 
-  //补丁包下载
-
-
-//  //请求补丁版本信息
-//  String patchUrl = "http://61.237.239.152:8080/patch/patch/json";
-//  //下载补丁的地址http://61.237.239.60:8081/Im_Interfacer/loginpic/download?id=0
-//  final String downurl = "http://61.237.239.152:8080/patch/patch/get";
-
-
-
-  public static final String testpatch=TESTBASEURL+"/patch/patch/json";
-  public static final String testpatchdownload=TESTBASEURL+"/patch/patch/get";
-
-  public static final String formalpatch=FORMALBASEURL+"/patch/patch/json";
-  public static final String formalpatchdownload=FORMALBASEURL+"/patch/patch/get";
 
 
 
 
 
 
+  //生产环境文件服务器
+  public static final String commonfileurl= "http://immobile.r93535.com:8086";
+
+  //测试环境文件服务器
+  //public static final String commonfileurl= "http://imtest.crbim.win:1666";
 
 
+  //消息服务生产环境
+  public static final String commonmsgurl= "http://immobile.r93535.com:8088/crbim/imApi/1.0";
+
+  //消息服务测试环境
+
+  //public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
 
 }

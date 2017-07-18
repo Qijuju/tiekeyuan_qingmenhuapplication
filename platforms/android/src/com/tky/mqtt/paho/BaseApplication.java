@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
+import com.ionicframework.im366077.Constants;
 import com.tencent.tinker.anno.DefaultLifeCycle;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
@@ -37,10 +38,10 @@ public class BaseApplication extends DefaultApplicationLike {
   private static BaseApplication mInstance;
   private static DaoMaster daoMaster;
   private static DaoSession daoSession;
-  public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
-    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
+ /* public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
+    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径*/
   private boolean isInBackground;
- // public static final String DB_NAME = "KKK";//正式发布版本数据库路径
+  public static final String DB_NAME = "KKK";//正式发布版本数据库路径
 
 
 
@@ -80,7 +81,7 @@ public class BaseApplication extends DefaultApplicationLike {
   public void onCreate() {
     super.onCreate();
     //设置默认的URL
-    Request.initBaseUrl("http://61.237.239.152:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16");
+    Request.initBaseUrl(Constants.commonmsgurl);//生产环境
     //Context
     context = getApplication();
     //mainThreadId

@@ -188,27 +188,7 @@ angular.module('localphone.controllers', [])
       });
 
     }
-
-   /* $scope.isis=false;
-    $scope.$on('selectedCity', function (e, data) {
-      $scope.isis=true;
-      $scope.daxie=data;
-      $timeout(function () {
-        $scope.isis=false;
-      },1500);
-
-    });*/
-
-
-
-
-
-
-
-
-    /*function init(){
-    }
-*/
+    
 
 // 点击按钮触发，或一些其他的触发条件
     $scope.tanchuang = function(phonenumber,name) {

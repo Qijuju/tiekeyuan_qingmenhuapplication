@@ -394,7 +394,7 @@ public class RecorderManager {
                 player = new MediaPlayer();
             }
         }
-        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", false);
+        boolean proxyMode = SPUtils.getBoolean("set_proxy_mode", true);
         UIUtils.switchEarphone(context, !proxyMode);
         try {
             player.setDataSource(getFilePathByVoiceName(playVoiceName));

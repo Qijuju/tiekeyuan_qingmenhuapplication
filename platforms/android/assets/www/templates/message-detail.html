@@ -9,12 +9,6 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <!--<md-icon class="icon ion-volume-medium"  style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong ==='false'" ng-click="openSingleYangshengqiMode();"></md-icon>
-      <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size:25px;line-height: 1;position: relative; top:4px;right:8px;" ng-show="showsingleTingtong !='false'" ng-click="openSingleTingtongMode();"></md-icon>
-      <img src="img/personal_phone.png" style="height:36px;width:36px;padding-right:0px;padding-left: 0px;" ng-click="callperson()" />
-      <img src="img/personal_setting.png" ng-click="personalSetting()" style="margin-right: 5px;height:36px;width:36px;" />
-      <button class="button button-icon icon ion-ios-person-outline" ng-click="personalSetting()"
-              style="margin-right: 5px"></button>-->
       <div align="center" style="margin-top: 7px">
         <img src="img/laba.png" style="height:18px;margin-right: 12px" ng-if="showsingleTingtong =='false'" ng-click="openSingleYangshengqiMode();"/>
         <img src="img/tingt.png" style="height:18px;margin-right: 12px"  ng-if="showsingleTingtong =='true'" ng-click="openSingleTingtongMode();"/>
@@ -106,7 +100,7 @@
               <!--接收成功-->
               <div ng-show="msgSingle.message.split('###')[5] === '100'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">{{msgSingle.message.split('###')[3]}}</div>
               <!--接收失败-->
-              <div ng-show="msgSingle.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">发送失败！</div>
+              <div ng-show="msgSingle.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">接收失败！</div>
               <!--未下载-->
               <div ng-show="msgSingle.message.split('###')[5] === '0'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">未下载</div>
             </div>
@@ -242,10 +236,6 @@
             <div class="col col-center item" ng-if="msgSingle.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendshow(userId,msgSingle.message, userId, localusr,myUserID,msgSingle._id,msgSingle)" />
             </div>
-            <!--<div class="col col-center item" ng-if="msgSingle.isSuccess === 'false'&& msgSingle.isFailure === 'false' " style="background: none !important; border: none;float: right;">
-              <ion-spinner icon="ios-small"
-                           style="background-color: transparent;vertical-align: middle"></ion-spinner>
-            </div>-->
           </div>
         </div>
         <!--发送###音频内容-->
@@ -256,9 +246,6 @@
           </div>
           <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
             <div class="col col-center item" style="background: none !important; border: none;float: right;">
-              <!--<div class="row row-center item" style="background: none !important; border: none;vertical-align: top !important;margin-top:-8px;margin-bottom: 8px;">
-                <img src="img/redpoint.png" style="height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>
-              </div>-->
               <div class="row row-center item" style="background: none !important; border: none;float: right;">
                 {{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"
               </div>
@@ -303,7 +290,6 @@
             </div>
           </div>
         </div>
-        <!--<div class="col col-12"><button class="circle1test" style="border: none;font-size: 12px;">林松</button></div>-->
       </div>
     </div>
     <br />
@@ -333,23 +319,6 @@
             </textarea>
           </div>
         </div>
-
-
-
-
-
-        <!--高机型适配-->
-        <!--<div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">-->
-          <!--<div class="buttons" ng-show="!send_content || send_content === ''"  style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="gengduo()">-->
-            <!--<button class="button-icon icon ion-ios-plus-outline"   style="position:absolute;right:137%;width:100%;height:100%;bottom:6px;" >-->
-            <!--</button>-->
-          <!--</div>-->
-          <!--<div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">-->
-          <!--<p>发送</p>-->
-          <!--</div>-->
-        <!--</div>-->
-
-
         <div align="right" style="position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;">
 
           <div class="buttons" ng-show="!send_content || send_content === ''"
@@ -364,18 +333,7 @@
                ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">
             <p>发送</p>
           </div>
-
-
-
         </div>
-
-
-
-
-
-
-
-
 
       </div>
 

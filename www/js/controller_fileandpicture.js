@@ -288,25 +288,4 @@ angular.module('fileandpicture.controllers', [])
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   })

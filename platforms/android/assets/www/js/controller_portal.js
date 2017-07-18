@@ -23,6 +23,7 @@ angular.module('portal.controllers', [])
     });
 
     var userID;
+    var imCode;
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (succ) {
         userID = succ.userID;
@@ -30,7 +31,16 @@ angular.module('portal.controllers', [])
         // userID = 770;
 
         //获取人员所在部门，点亮图标
-        NetData.getInfo(userID);
+
+        $mqtt.getImcode(function (imcode) {
+          NetData.getInfo(userID,imcode);
+          imCode=imcode;
+
+        },function (err) {
+
+        })
+
+
 
 
       }, function (err) {
@@ -61,11 +71,14 @@ angular.module('portal.controllers', [])
     $scope.jumpUrl = function (appId) {
 
       $http({
-        method: 'get',
+        method: 'post',
         timeout: 5000,
-        // url: "http://61.237.239.152:8080/apiman-gateway/jishitong/getsession/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
-        url: "http://61.237.239.60:8081/im/secret/getsession?id=" + userID
+        //url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",
+        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",
+        data:{"Action":"GetSession","id":userID,"mepId":imCode}
       }).success(function (data, status) {
+
+        var data=JSON.parse(decodeURIComponent(data));
 
         if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
           $ToastUtils.showToast("获取用户权限失败!");

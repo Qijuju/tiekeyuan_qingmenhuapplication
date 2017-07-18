@@ -6,21 +6,13 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-
-
-
   <ion-content overflow-scroll="false" delegate-handle="historyGroupScroll" style="background-color:#e5e5e5 ">
-    <!--<ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="获取数据中..."-->
-    <!--pulling-text="更多消息" id="refresh">-->
-    <!--</ion-refresher>-->
-    <!--<p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipmessagebox()">没有更多消息了，请查询消息盒子</p>-->
     <ion-refresher
       pulling-text="下拉刷新..."
       on-refresh="doRefreshhisGro()">
     </ion-refresher>
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
-      <!--ng-if="!(historyduifangaaa.FromID == UserID)&&(historyduifangaaa.MsgType=='T')-->
       <div class="rj-message-wrap" ng-if="!(historyduifangaaa.FromID == UserID)&&((historyduifangaaa.MsgType=='T'))" style="margin-top: 8px">
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
         <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>

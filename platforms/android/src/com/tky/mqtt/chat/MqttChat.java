@@ -1484,7 +1484,7 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
-    setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
+    setResult(SPUtils.getBoolean("set_proxy_mode", true) ? 0 : 1, PluginResult.Status.OK, callbackContext);
   }
 
   /**
@@ -1539,6 +1539,14 @@ public class MqttChat extends CordovaPlugin {
   public String getUserID() throws JSONException {
     JSONObject userInfo = getUserInfo();
     return userInfo.getString("userID");
+  }
+
+  /**
+   * 获取imcode
+   * @return
+     */
+  public void getImcode(final JSONArray args, final CallbackContext callbackContext){
+    setResult(UIUtils.getDeviceId(), PluginResult.Status.OK, callbackContext);
   }
 
   /**

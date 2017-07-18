@@ -43,7 +43,7 @@ import im.server.System.IMSystem;
  */
 
 public class IMSwitchLocal {
-    private static String local = "TEST";
+    private static String local = "LN";
 
     public static void setLocal(String local) {
         IMSwitchLocal.local = local;

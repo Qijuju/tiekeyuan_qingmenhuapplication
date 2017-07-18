@@ -8,9 +8,6 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <!--<md-icon class="icon ion-volume-medium" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();" ></md-icon>
-      <md-icon class="icon ion-headphone" style="background-color: #FFFFFF;border: none;padding-left: 0px;font-size: 25px;line-height: 1;position: relative; top:4px;right:5px;" ng-show="showTingtong !='false'" ng-click="openTingtongMode();"></md-icon>
-      <img src="img/group_setting.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)" style="margin-right: 5px;height:36px;width:36px;" />-->
       <div align="center" style="margin-top: 7px">
         <img src="img/laba.png" style="height:18px;margin-right: 12px" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();"/>
         <img src="img/tingt.png" style="height:18px;margin-right: 12px"  ng-show="showTingtong !='false'" ng-click="openTingtongMode();"/>
@@ -103,7 +100,7 @@
               <!--接收成功-->
               <div ng-show="msg.message.split('###')[5] === '100'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">{{msg.message.split('###')[3]}}</div>
               <!--接收失败-->
-              <div ng-show="msg.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">发送失败！</div>
+              <div ng-show="msg.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">接收失败！</div>
               <!--未下载-->
               <div ng-show="msg.message.split('###')[5] === '0'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">未下载</div>
             </div>
@@ -242,10 +239,6 @@
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
-            <!--<div class="col col-center item" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' " style="background: none !important; border: none;float: right;">
-              <ion-spinner icon="ios-small"
-                           style="background-color: transparent;vertical-align: middle"></ion-spinner>
-            </div>-->
           </div>
         </div>
         <!--发送###音频内容-->
@@ -256,9 +249,6 @@
           </div>
           <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
             <div class="col col-center item" style="background: none !important; border: none;float: right;">
-              <!--<div class="row row-center item" style="background: none !important; border: none;vertical-align: top !important;margin-top:-8px;margin-bottom: 8px;">
-                <img src="img/redpoint.png" style="height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;" ng-if="msg.messagetype === 'Audio'&&msg.isread === '0'"/>
-              </div>-->
               <div class="row row-center item" style="background: none !important; border: none;float: right;">
                 {{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"
               </div>

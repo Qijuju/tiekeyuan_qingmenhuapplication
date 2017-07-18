@@ -20,6 +20,11 @@ public class MsgBean extends BaseMsgBean {
   private int fileSize;
   private String address;
   private String fileName;
+  private String levelName;
+  private String msgLevel;
+  private String link;
+  private String linkType;
+  private String title;
 
   public String getMsgId() {
     return msgId;
@@ -184,5 +189,45 @@ public class MsgBean extends BaseMsgBean {
 
   public void setFileName(String fileName) {
     this.fileName = fileName;
+  }
+
+  public String getLevelName() {
+    return levelName;
+  }
+
+  public void setLevelName(String levelName) {
+    this.levelName = levelName;
+  }
+
+  public String getMsgLevel() {
+    return msgLevel;
+  }
+
+  public void setMsgLevel(String msgLevel) {
+    this.msgLevel = msgLevel;
+  }
+
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
+  }
+
+  public String getLinkType() {
+    return linkType;
+  }
+
+  public void setLinkType(String linkType) {
+    this.linkType = linkType;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 }

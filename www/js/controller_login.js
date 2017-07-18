@@ -47,28 +47,7 @@ angular.module('login.controllers', [])
         }, function (msg) {
         });
       }
-      /*$cordovaPreferences.fetch('name')
-       .success(function(value) {
-       if(value != null && value != ''){
-       $mqtt.startMqttChat(value + ',zhuanjiazu');
-       $state.go('tab.message');
-       return;
-       }
-       })
-       .error(function(error) {
-       })*/
     });
-
-
-    //保存用户名(注：value==$scope.name)
-    /*$scope.store = function() {
-     $cordovaPreferences.store('name', $scope.name)
-     .success(function(value) {
-     })
-     .error(function(error) {
-     })
-     };*/
-
     //保存密码的方法
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
@@ -159,8 +138,6 @@ angular.module('login.controllers', [])
         }, function (err) {
 
         });
-        // alert(message.toString());
-        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         $scope.names = [];
         $ionicLoading.hide();
         //调用保存用户名方法
@@ -250,12 +227,6 @@ angular.module('login.controllers', [])
     $scope.startApp = function () {
       $state.go('newspage');
     };
-    // $scope.next = function() {
-    //   $ionicSlideBoxDelegate.next();
-    // };
-    // $scope.previous = function() {
-    //   $ionicSlideBoxDelegate.previous();
-    // };
 
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
@@ -265,16 +236,6 @@ angular.module('login.controllers', [])
         }, 1500);
       }
     };
-    // //倒计时
-    // $scope.time = 5;
-    // var timer = null;
-    // timer = $interval(function(){
-    //   $scope.time = $scope.time - 1;
-    //   $scope.codetime = $scope.time+"秒后跳转";
-    //   if($scope.time === 0) {
-    //     $state.go('login');
-    //   }
-    // }, 1000);
   })
 
   .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
@@ -300,21 +261,9 @@ angular.module('login.controllers', [])
         }, function (err) {
         });
       });
-      // $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
-      //   // alert(data[0].pwd)
-      //
-      // },function (err) {
-      // });
-
-      // mqtt.getString('gesturePwd', function (pwd) {
-      //   passworda=pwd;
-      // }, function (msg) {
-      //   // $ToastUtils.showToast("还未设置手势密码");
-      // });
-
 
       mqtt.getString('welcomePic', function (picurl) {
-        var firsturl="http://61.237.239.60:8081/loginpic/loginpic/json";
+        var firsturl=" http://61.237.239.60:8081/loginpic/loginpic/json";
 
         //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
@@ -351,12 +300,6 @@ angular.module('login.controllers', [])
 
 
           });
-
-
-
-
-
-
 
         } else {
           // 查询到的图片不为空
@@ -669,19 +612,7 @@ angular.module('login.controllers', [])
       $scope.userNameabc = message;
       $scope.userNamea = $scope.userNameabc.substring(($scope.userNameabc.length - 2), $scope.userNameabc.length);
     });
-    // getHeadPic: function (picUserID, picSize, success, error) {
-    //   api.getHeadPic(picUserID, picSize, success, error);
-    // },
-    // $mqtt.getMqtt().getString('securlpicaa', function (message) {
-    //   if(message==null||message.length==0||message==undefined){
-    //     $scope.picyoumeiyoua=false;
-    //   }else {
-    //     $scope.picyoumeiyoua=true;
-    //     $scope.$apply(function () {
-    //       $scope.securlpica=message;
-    //     })
-    //   }
-    // });
+
 
     $api.getHeadPic($scope.UserID, "60", function (srcurl) {
       // alert(srcurl)
@@ -705,16 +636,6 @@ angular.module('login.controllers', [])
     $scope.meizuo = function () {
       $ToastUtils.showToast("此功能暂未开发");
     };
-
-    // $scope.$apply(function () {
-    //   $scope.a=2
-    // })
-    // $mqtt.getMqtt().getString('gesturePwd', function (pwd) {
-    //   password=pwd;
-    //   // $ToastUtils.showToast("手势密码:"+pwd);
-    // }, function (msg) {
-    //   $ToastUtils.showToast("手势密码获取失败"+msg);
-    // });
 
 
     //登录成功之后获取用户姓名（昵称）

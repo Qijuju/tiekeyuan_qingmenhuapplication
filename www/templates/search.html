@@ -43,7 +43,6 @@
       <ion-item ng-repeat="persondetail1 in personsren" style="height: 60px" >
         <div class="row" >
           <div   class="col-20" style="text-align: center" ng-click="tanchuangsearch(persondetail1.UserID)">
-            <!--<img src="img/icon_status_andriod.png" style="position: absolute;left: 11%;top: 40%;width: 30px;height: 30px">-->
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==3||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
@@ -53,21 +52,11 @@
           <div class="col-80" align="left" ng-click="goPersonDetail(persondetail1.UserID)">
           <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="goPersonDetail(persondetail1.UserID)"></span>
           </div>
-          <!--<div class="col-80" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">-->
-            <!--<span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>-->
-          <!--</div>-->
         </div>
       </ion-item>
-      <!--<ion-option-button class="button-assertive" ng-click="removeattention(item.UserID)">-->
-      <!--Delete-->
-      <!--</ion-option-button>-->
-      <!--<ion-item ng-repeat="persondetail1 in persons" >-->
-      <!--<img src="img/icon_org.png"  style="display: inline;width: 27px;height: 27px" ng-click="tanchuangsearch(persondetail1.UserID)">&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="jumpSearch(persondetail1.UserID)"></span>-->
-      <!--</ion-item>-->
     </ion-list>
     <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMoreaa()" distance="1%"></ion-infinite-scroll>
-    <!--<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>-->
-    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+
   </ion-content>
 </ion-view>
 

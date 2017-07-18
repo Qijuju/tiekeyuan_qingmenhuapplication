@@ -44,6 +44,7 @@ import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
+import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
@@ -64,6 +65,7 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.apache.cordova.CordovaActivity;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -145,16 +147,13 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
    * 热修复初始化
    */
   private void inithotfix() {
-
-    /*//请求补丁版本信息
-    String patchUrl = Constants.testpatch;
-    //下载补丁的地址
-    final String downurl =Constants.testpatchdownload;*/
-
-
     //生产
-    String patchUrl = Constants.formalpatch;
-    final String downurl =Constants.formalpatchdownload;
+    //String patchUrl ="http://imtest.crbim.win:1666/GetPatchInfo";
+    String patchUrl =Constants.commonfileurl+"/GetPatchInfo";
+    final String downurl =Constants.commonfileurl+"/DownloadFile";
+
+
+
 
 
     Tinker tinker = Tinker.with(getApplicationContext());
@@ -172,61 +171,84 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     final String localversion = UIUtils.getVersion();
 
     //通过http请求把需要的参数请求下来
-    OkHttpUtils.get().url(patchUrl).build().execute(new StringCallback() {
-      @Override
-      public void onError(Call call, Exception e, int id) {
-        //Toast.makeText(getApplicationContext(), "获取热修复信息失败", Toast.LENGTH_LONG).show();
-      }
+    try {
+      final String loginid=IMSwitchLocal.getUserID();
+      final String imcode=UIUtils.getDeviceId();
 
-      @Override
-      public void onResponse(String response, int id) {
-
-
-        Log.d("tinkerTag", "成功" + response);
-
-        Type type = new TypeToken<PatchBean>() {
-        }.getType();
-
-        Gson gson = new Gson();
-
-        PatchBean patchBean = gson.fromJson(response, type);
-
-        //服务器的app的版本号
-        String webVersion = patchBean.getVersionName();
-        String webPatchVersionName = patchBean.getPatchVersionName();
-
-
-        //热修复信息获取成功
-
-        /**
-         * 1 下载文件地址不为空
-         * 2 服务器的版本号和本地的版本号一致
-         * 3 服务器的补丁版本号和本地的补丁版本号不一致  方可进行热修复
-         */
-        if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
-
-
-          //开始下载文件
-
-          OkHttpUtils.get().url(downurl).build().execute(
-            new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
-              @Override
-              public void onError(Call call, Exception e, int id) {
-                Log.d("tinkerTag", "下载失败");
-              }
-
-              @Override
-              public void onResponse(File response, int id) {
-                Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
-                //开启热修复
-                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
-
-              }
-            }
-          );
+        OkHttpUtils
+        .post()
+        .url(patchUrl)
+        .addParams("platform","A")
+        .addParams("id", loginid)
+        .addParams("mepId",imcode)
+        .build()
+        .execute(new StringCallback() {
+        @Override
+        public void onError(Call call, Exception e, int id) {
+          //Toast.makeText(getApplicationContext(), "获取热修复信息失败", Toast.LENGTH_LONG).show();
         }
-      }
-    });
+
+        @Override
+        public void onResponse(String response, int id) {
+
+
+          Log.d("tinkerTag", "成功" + response);
+
+          Type type = new TypeToken<PatchBean>() {
+          }.getType();
+
+          Gson gson = new Gson();
+
+          PatchBean patchBean = gson.fromJson(response, type);
+
+          //服务器的app的版本号
+          String webVersion = patchBean.getVersionName();
+          String webPatchVersionName = patchBean.getPatchVersionName();
+
+
+          //热修复信息获取成功
+
+          /**
+           * 1 下载文件地址不为空
+           * 2 服务器的版本号和本地的版本号一致
+           * 3 服务器的补丁版本号和本地的补丁版本号不一致  方可进行热修复
+           */
+          if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
+
+
+            //开始下载文件
+
+            OkHttpUtils
+              .get()
+              .addParams("id",loginid)
+              .addParams("mepId",imcode)
+              .addParams("fileId",localversion)
+              .addParams("type","Patch")
+              .addParams("offset","0")
+              .addParams("platform","A")
+              .url(downurl)
+              .build()
+              .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                  Log.d("tinkerTag", "下载失败");
+                }
+
+                @Override
+                public void onResponse(File response, int id) {
+                  Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
+                  //开启热修复
+                  TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
+
+                }
+              }
+            );
+          }
+        }
+      });
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
 
 
   }

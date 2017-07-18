@@ -245,13 +245,8 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('first.update');
 
         }, function (err) {
-          /*$timeout(function () {
-
-          },1000);
-*/
           rootList = null;
           $rootScope.$broadcast('first.update');
-          // $ToastUtils.showToast("获取数据失败")
         });
 
 
@@ -810,15 +805,8 @@ angular.module('contacts.services', [])
                 // alert("进了")
                 for(var j=0;j<msgbbb.length;j++) {
                   var key = msgbbb[j]._id;
-                  // alert(key + "今个")
-                  // $ToastUtils.showToast("消息对象"+key);
                   $greendao.deleteDataByArg('MsgHistoryService', key, function (data) {
-                    // alert(data.length+":length")
-
-                    // getHistorymsg("person");
-                    // $ToastUtils.showToast("清空搜索记录成功");
                   }, function (err) {
-                    // $ToastUtils.showToast("清空消息记录失败");
                   });
                 }
                 var msghistory={};
@@ -834,9 +822,7 @@ angular.module('contacts.services', [])
               },function (msgbbb) {
               })
             }
-            // $rootScope.$broadcast('persons.history');
           },function (msgaaa) {
-            // $rootScope.$broadcast('persons.history');
           });
           if(query.length==0||query==""){
             persons=new Array();
@@ -845,12 +831,10 @@ angular.module('contacts.services', [])
           }
 
           if(msg.searchResult==null||msg.searchResult.length==0||msg.searchResult==""){
-            // $ToastUtils.showToast("无该搜索数据")
           }
           $rootScope.$broadcast('persons.update');
 
         },function (msg) {
-          // $ToastUtils.showToast("无该搜索数据")
           $timeout(function () {
             $ionicLoading.hide();
           },5000);
@@ -995,45 +979,13 @@ angular.module('contacts.services', [])
           messagesss=data;
 
           if(messagesss==null||messagesss.length==0||messagesss==""){
-            // $ToastUtils.showToast("无该搜索数据")
           }
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
-          // $ToastUtils.showToast("无该搜索数据")
           $timeout(function () {
             $ionicLoading.hide();
           },5000);
         })
-
-        // $greendao.queryData('MessagesService', 'where USERNAME LIKE ?', quey, function (data) {
-        //   for(var i=0;i<data.length;i++){
-        //     messagesss.push(data[i]);
-        //   }
-        //   // if(messagesss==null||messagesss.length==0||messagesss==""){
-        //   //   $ToastUtils.showToast("无该搜索数据")
-        //   // }
-        //   $rootScope.$broadcast('messagesss.search');
-        // },function (msg) {
-        //   $ToastUtils.showToast("无该搜索数据")
-        //   $timeout(function () {
-        //     $ionicLoading.hide();
-        //   },5000);
-        // })
-        // if(messagesss==null||messagesss.length==0||messagesss==""){
-        //   $ToastUtils.showToast("无该搜索数据")
-        // }
-        // $greendao.queryDataByquery(quey, function (data) {
-        //   messagesss=data;
-        //   if(messagesss==null||messagesss.length==0||messagesss==""){
-        //     $ToastUtils.showToast("无该搜索数据")
-        //   }
-        //   $rootScope.$broadcast('messagesss.search');
-        // },function (msg) {
-        //   $ToastUtils.showToast("无该搜索数据")
-        //   $timeout(function () {
-        //     $ionicLoading.hide();
-        //   },5000);
-        // })
       },
 
       searchmessagesbyperson:function (name,message) {

@@ -287,7 +287,6 @@ public class ThriftApiClient extends CordovaPlugin {
     }
     Gson gson = new Gson();
     String loginJson = gson.toJson(map);
-    SPUtils.save("login_info", loginJson);
     return loginJson;
   }
 
@@ -1041,7 +1040,7 @@ public class ThriftApiClient extends CordovaPlugin {
     //TODO 接口没有，所以暂时走Thrift接口
     if (isHttp) {
       try {
-        Request request = new Request(cordova.getActivity(), SystemApi.FILE_URL);
+        Request request = new Request(cordova.getActivity(), Constants.commonfileurl);
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetVersionInfo").getParamsMap();
         paramsMap.put("platform", "A");//当前版本
         paramsMap.put("version", UIUtils.getVersion());//当前版本

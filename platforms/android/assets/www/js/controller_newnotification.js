@@ -31,14 +31,6 @@ angular.module('newnotification.controllers', [])
 
     $scope.notifyNewList=[];
 
-    /*$ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
-*/
     $scope.gonet=function (net) {
 
       $state.go('netconfirm',{
@@ -94,33 +86,9 @@ angular.module('newnotification.controllers', [])
 
 
 
-    //初始状态
-/*
-    $scope.startA = false;
-*/
-/*
-    $scope.titleAll = ['通知', '应用'];
-*/
     $scope.newdex = 0;
     //滑块的状态
     $scope.appstatus = false;
-
-
-    //当滑动时候改变title的值
-   /* $scope.go_changed = function (index) {
-      if (index == 0 || index == 1) {
-        $scope.newdex = 0
-        if (index == 0) {
-          $scope.appstatus = false;
-
-        } else if (index == 1) {
-          $scope.appstatus = true;
-
-        }
-      }
-    }*/
-
-
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
       $ionicSlideBoxDelegate.enableSlide(false);
@@ -152,97 +120,13 @@ angular.module('newnotification.controllers', [])
 
     }
 
-
-    /*//打开下拉列表
-    $scope.openNext = function () {
-      if (!$scope.startA) {
-        $scope.startA = true
-      } else {
-        $scope.startA = false
-      }
-    };
-*/
-    /*//点击界面的任何地方，或者活动时候就把他们隐藏
-    $scope.clickAny = function () {
-      $scope.startA = false
-    };*/
-
-   /* //跳转到默认的全部  index 是0；
-    $scope.goAll = function (index) {
-
-      $scope.appstatus = false;
-      $scope.startA = false;
-      $scope.newdex = 0;
-
-      $ionicSlideBoxDelegate.slide(index);
-
-
-    };
-*/
     $scope.go=function (index) {
 
       $ionicSlideBoxDelegate.slide(index);
 
     }
 
-   /* //全部已经确认  index 是 1
-    $scope.goConfirmAll = function (index) {
 
-      //$scope.appstatus=true;
-      $scope.startA = false;
-      $scope.newdex = 0;
-      $ionicSlideBoxDelegate.slide(index);
-
-    };
-
-
-    //我的应用(未确认) index 是2
-    $scope.goApp = function (index) {
-
-      $scope.appstatus = false;
-
-      $scope.startA = false;
-      $scope.newdex = 1;
-
-      $ionicSlideBoxDelegate.slide(index);
-
-
-    };
-    //我的应用(已经确认) index 是3
-    $scope.goConfirmApp = function (index) {
-
-      //$scope.appstatus=true;
-      $scope.startA = false;
-      $scope.newdex = 1;
-
-      $ionicSlideBoxDelegate.slide(index);
-
-    };
-
-    //我的关注划分(关注未确认)    index 是4
-    $scope.goFocus = function (index) {
-
-
-      $scope.startA = false;
-      // $scope.appstatus=false;
-      // $scope.newdex=2; //之前是2,false  后改成 0 true
-      $scope.appstatus = true;
-      $scope.newdex = 0;
-      $ionicSlideBoxDelegate.slide(index);
-
-    };
-    // 我的关注划分(关注已经确认) index 是5
-    $scope.goConfirmFocus = function (index) {
-
-
-      //$scope.appstatus=true;
-      $scope.startA = false;
-      $scope.newdex = 2;
-
-      $ionicSlideBoxDelegate.slide(index);
-
-
-    };*/
 
     $scope.$on('newnotify.update', function (event,msg) {
 
@@ -617,20 +501,6 @@ angular.module('newnotification.controllers', [])
     }
 
 
-    /*$scope.$on('newnotify.update', function (event) {
-     $scope.$apply(function () {
-     $greendao.queryByConditions("SystemMsgService",function (msg) {
-
-     $scope.appmsg=msg;
-
-     },function (err) {
-
-     });
-     })
-     });
-     */
-
-
   })
 
   .controller('confirmornotCtrl', function ($scope, $stateParams,$api,$ToastUtils,$ionicScrollDelegate,$timeout,$ionicSlideBoxDelegate,$ionicHistory) {
@@ -738,14 +608,7 @@ angular.module('newnotification.controllers', [])
 
 
   .controller('netconfirmCtrl', function ($scope, $stateParams,$sce) {
-
-
-   //$scope.neturl=$stateParams.url;
-    //$scope.neturl="https://www.baidu.com";
     $scope.neturl=$sce.trustAsResourceUrl($stateParams.url);
-
-    // alert( $scope.neturl)
-
 
   })
 

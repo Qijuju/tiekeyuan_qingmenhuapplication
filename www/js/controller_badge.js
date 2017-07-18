@@ -158,17 +158,5 @@ angular.module('badge.controllers',[])
         })
       })
     });
-
-
-
-
-
-
-
-
-
-
-
-
   })
 

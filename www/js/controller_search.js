@@ -183,16 +183,7 @@ angular.module('search.controllers', [])
 
     //点击头像发送消息
     $scope.createchatwai = function (name,id) {
-      // $scope.phoneattention=$searchdatadianji.getPersonDetaildianji().Mobile;
-      // $scope.nameattention=$searchdatadianji.getPersonDetaildianji().UserName;
-      // $scope.idattention=$searchdatadianji.getPersonDetaildianji().UserID;
-      // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // alert("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      // $state.go('tab.message', {
-      //   "id": id,
-      //   "sessionid": name
-      // });
       if(id ===null || name ===null || id === '' ||name ===''){
         $ToastUtils.showToast("当前用户信息不全");
       }else if($scope.myid==id) {
@@ -215,13 +206,7 @@ angular.module('search.controllers', [])
 
         //点击头像发送消息
         $scope.createchat = function (id, phone,name) {
-          // $saveMessageContacts.saveMessageContacts(id,phone,name);
-          // alert("进来创建聊天");
           $rootScope.isPersonSend = 'true';
-          // $state.go('tab.message', {
-          //   "id": id,
-          //   "sessionid": name
-          // });
           if(id ===null || name ===null || id === '' ||name ===''){
             $ToastUtils.showToast("当前用户信息不全");
           }else if($scope.myid==id) {
@@ -235,15 +220,6 @@ angular.module('search.controllers', [])
           }
 
         };
-        // $scope.createchat = function (id,phone, name) {
-        //   $saveMessageContacts.saveMessageContacts(id,phone,name);
-        //
-        //   $rootScope.isPersonSend = 'true';
-        //   $state.go('tab.message', {
-        //     "id": id,
-        //     "sessionid": name
-        //   });
-        // };
         // 显示操作表
         $ionicActionSheet.show({
           buttons: [
@@ -277,7 +253,6 @@ angular.module('search.controllers', [])
           }
 
         });
-        // $scope.youmeiyou= $searchdata.getyesorno($scope.personsdetail111.Mobile)
       })
     });
 
@@ -393,16 +368,7 @@ angular.module('search.controllers', [])
 
   })
 
-  // .controller('searchmessageCtrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage,$mqtt,$search111,$ionicLoading,$timeout) {
-  //
-  //
-  //   // $greendao.queryData('MessagesService', 'where message like', $scope.receiverssid, function (data) {
-  //   //
-  //   // },function (msg) {
-  //   //   alert("失败")
-  //   // })
-  //
-  // })
+
   .controller('searchmessage22Ctrl',function ($scope, $http, $state, $stateParams,$greendao,$searchmessage) {
 
     $scope.Username2 = $stateParams.Username2;

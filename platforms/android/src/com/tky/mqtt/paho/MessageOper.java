@@ -93,10 +93,10 @@ public class MessageOper {
       bean.setIsDelete("false");
       bean.setIsFailure("false");
       bean.setIsFromMe(getUserID().equals(msgBean.getFrom()));
-      bean.setLevelName("");
-      bean.setMsgLevel("0");
-      bean.setLink("");
-      bean.setLinkType("");
+      bean.setLevelName(msgBean.getLevelName());
+      bean.setMsgLevel(msgBean.getMsgLevel());
+      bean.setLink(msgBean.getLink());
+      bean.setLinkType(msgBean.getLinkType());
 
 
       if ("Text".equals(msgBean.getMediaType())) {
@@ -120,7 +120,7 @@ public class MessageOper {
       bean.setSessionid(isDeptOrGroup ? msgBean.getTo() : msgBean.getFrom());
       bean.setType(msgBean.getType());
       bean.setUsername(msgBean.getFromName());
-      bean.setTitle("");
+      bean.setTitle(msgBean.getTitle());
       bean.setWhen(msgBean.getWhen());
       bean.setDaytype("1");
       bean.setIsread("false");
