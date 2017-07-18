@@ -312,8 +312,8 @@ public class MqttChat extends CordovaPlugin {
         public void run() {
           //链接mqtt
 //          cordova.getActivity().startService(new Intent(cordova.getActivity(), MqttService.class));
-          IMStatusManager.setImStatus(IMEnums.INIT);
-          cordova.getActivity().startService(new Intent(cordova.getActivity(), IMService.class));
+          IMStatusManager.setImStatus(IMEnums.INIT);//设置MQTT初始状态
+          cordova.getActivity().startService(new Intent(cordova.getActivity(), IMService.class));//启动mqtt服务
           hasLogin = true;
           MqttPluginResult pluginResult = new MqttPluginResult(PluginResult.Status.OK, "success");
           pluginResult.setKeepCallback(true);
@@ -479,19 +479,10 @@ public class MqttChat extends CordovaPlugin {
     }
     hasLogin = false;
     final long start = System.currentTimeMillis();
-
-
-
-
-
-
-
-
-
-
     if (ThriftApiClient.isHttp) {
       try {
         Request request = new Request(cordova.getActivity());
+        //退出登录，成功：停止mqtt服务，取消通知栏通知，并设置登录状态为false，清空登录信息；失败：返回一个结果
         Map<String, Object> paramsMap = ParamsMap.getInstance("LoginOff").getParamsMap();
         request.addParamsMap(paramsMap);
         OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
@@ -503,6 +494,8 @@ public class MqttChat extends CordovaPlugin {
                 IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
                 MqttNotification.cancelAll();
                 MqttRobot.setIsStarted(false);
+                //清空登录信息
+                IMSwitchLocal.clearUserInfo();
                 setResult("success", PluginResult.Status.OK, callbackContext);
               } else {
                 setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
@@ -1484,7 +1477,7 @@ public class MqttChat extends CordovaPlugin {
    * @param callbackContext
    */
   public void getProxyMode(final JSONArray args, final CallbackContext callbackContext) {
-    setResult(SPUtils.getBoolean("set_proxy_mode", false) ? 0 : 1, PluginResult.Status.OK, callbackContext);
+    setResult(SPUtils.getBoolean("set_proxy_mode", true) ? 0 : 1, PluginResult.Status.OK, callbackContext);
   }
 
   /**

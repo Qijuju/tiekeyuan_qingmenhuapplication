@@ -64,7 +64,8 @@ angular.module('portal.controllers', [])
         method: 'get',
         timeout: 5000,
         // url: "http://61.237.239.152:8080/apiman-gateway/jishitong/getsession/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
-        url: "http://61.237.239.60:8081/im/secret/getsession?id=" + userID
+        // url: "http://immobile.r93535.com:8081/im/secret/getsession?id=" + userID
+        url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/getsessionintest/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
       }).success(function (data, status) {
 
         if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {

@@ -127,6 +127,14 @@ public class IMSwitchLocal {
         return userInfo.getString("deptID");
     }
 
+  /**
+   * 将登录信息清空
+   * @throws JSONException
+   */
+    public static void clearUserInfo() throws JSONException {
+      SPUtils.save("login_info", "");
+    }
+
     public static JSONObject getUserInfo() throws JSONException {
         String login_info = SPUtils.getString("login_info", "");
         return new JSONObject(login_info);
@@ -379,6 +387,8 @@ public class IMSwitchLocal {
         IMBroadOper.broadArrivedMsg("", 1, json);
         MqttChat.setHasLogin(false);
         try {
+            //清空登录信息
+            clearUserInfo();
             if (!UIUtils.isServiceWorked(IMService.class.getName())) {
                 IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
             }

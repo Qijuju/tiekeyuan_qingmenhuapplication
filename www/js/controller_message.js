@@ -2052,7 +2052,7 @@ angular.module('message.controllers', [])
     /**
      * 单聊扬声器和听筒模式切换
      */
-    $scope.showsingleTingtong='false';
+    $scope.showsingleTingtong='true';
     $mqtt.getProxyMode(function (suc) {
       if(suc === 1){
         $scope.proxyMode='false';
@@ -4155,7 +4155,7 @@ angular.module('message.controllers', [])
     }
 
 
-    $scope.showTingtong='false';
+    $scope.showTingtong='true';
     /**
      * 扬声器与听筒模式切换
      */

@@ -19,7 +19,10 @@
 
 package com.ionicframework.im366077;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,6 +30,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -52,6 +56,7 @@ import com.tky.mqtt.paho.constant.ResumeParams;
 import com.tky.mqtt.paho.receiver.ProxySensorReceiver;
 import com.tky.mqtt.paho.receiver.UserPresentReceiver;
 import com.tky.mqtt.paho.utils.AnimationUtils;
+import com.tky.mqtt.paho.utils.BadgeUtil;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.MediaFile;
 import com.tky.mqtt.paho.utils.RecorderManager;
@@ -139,6 +144,10 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     // ATTENTION: This was auto-generated to implement the App Indexing API.
     // See https://g.co/AppIndexing/AndroidStudio for more information.
     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(UIUtils.getContext());
+    //设置点击一次后消失（如果没有点击事件，则该方法无效。）
+    Notification notification = notificationCompat.build();
+    BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 100);
   }
 
   /**

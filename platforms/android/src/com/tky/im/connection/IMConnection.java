@@ -38,7 +38,7 @@ public class IMConnection {
     public void connect(@NonNull Context context, @NonNull IMqttActionListener connectCallback, @NonNull MqttCallback messageCallback) throws MqttException {
         this.context = context;
         if (this.context == null) {
-            throw new NullPointerException("上下文不能为空！");
+            throw new NullPointerException("The context can not be null！");
         }
 
         if (connectCallback == null) {

@@ -80,7 +80,8 @@ public class BaseApplication extends DefaultApplicationLike {
   public void onCreate() {
     super.onCreate();
     //设置默认的URL
-    Request.initBaseUrl("http://61.237.239.152:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16");
+    Request.initBaseUrl("http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16");
+//    Request.initBaseUrl("http://61.237.239.152:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16");
     //Context
     context = getApplication();
     //mainThreadId
