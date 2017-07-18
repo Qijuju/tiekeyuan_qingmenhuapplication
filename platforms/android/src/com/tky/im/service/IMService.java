@@ -38,6 +38,7 @@ import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
 
 /**
  * Created by tkysls on 2017/4/11.
@@ -74,14 +75,14 @@ public class IMService extends Service {
 
         //注册广播（发送消息和重连）
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ConstantsParams.PARAM_RE_CONNECT);
-        filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);
+        filter.addAction(ConstantsParams.PARAM_RE_CONNECT);//重新启动MQTT
+        filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);//发送消息
 
-        filter.addAction(ConstantsParams.PARAM_KILL_IM);
-        filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);
-        filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
-        filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);
-        filter.addAction(ConstantsParams.PARAM_BASH_IM);
+        filter.addAction(ConstantsParams.PARAM_KILL_IM);//杀死MQTT
+        filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);//停止MQTT
+        filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);//订阅TOPIC
+        filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);//注销TOPIC
+        filter.addAction(ConstantsParams.PARAM_BASH_IM);//断开MQTT，让其自动重启
         receiver = new IMReceiver();
         registerReceiver(receiver, filter);
 
@@ -100,7 +101,14 @@ public class IMService extends Service {
             private final ReconnectRunnable reconnectRunnable = new ReconnectRunnable();
             @Override
             public void onReconnect() {
-
+              try {
+                  if (IMSwitchLocal.getUserID() == null || "".equals(IMSwitchLocal.getUserID().trim())) {
+                  return;
+                }
+              } catch (JSONException e) {
+                e.printStackTrace();
+                return;
+              }
                 if (imConnection != null && imConnection.isConnected()) {
                     IMStatusManager.setImStatus(IMEnums.CONNECTED);
                     IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);

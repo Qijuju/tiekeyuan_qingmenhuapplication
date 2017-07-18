@@ -16,12 +16,18 @@ import static com.tky.im.utils.IMUtils.getUserID;
 
 public class ParamsMap {
 
-  private static final ParamsMap INSTANCE = new ParamsMap();
-  private static String actionName;
+  private String actionName;
 
   private ParamsMap(){}
+
+  /**
+   * 获取实例并且
+   * @param actionName
+   * @return
+   */
   public static ParamsMap getInstance(String actionName) {
-    ParamsMap.actionName = actionName;
+    ParamsMap INSTANCE = new ParamsMap();
+    INSTANCE.actionName = actionName;
     return INSTANCE;
   }
 

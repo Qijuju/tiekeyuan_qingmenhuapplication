@@ -263,7 +263,7 @@ angular.module('login.controllers', [])
       });
 
       mqtt.getString('welcomePic', function (picurl) {
-        var firsturl="http://61.237.239.60:8081/loginpic/loginpic/json";
+        var firsturl=" http://61.237.239.60:8081/loginpic/loginpic/json";
 
         //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
@@ -300,12 +300,6 @@ angular.module('login.controllers', [])
 
 
           });
-
-
-
-
-
-
 
         } else {
           // 查询到的图片不为空

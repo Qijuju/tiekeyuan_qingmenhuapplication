@@ -26,7 +26,7 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.callback.OKHttpCallBack2;
-import com.tky.mqtt.paho.http.OKAsyncPostClient;
+import com.tky.mqtt.paho.http.OKAsyncClient;
 import com.tky.mqtt.paho.http.OKSyncGetClient;
 import com.tky.mqtt.paho.http.Request;
 import com.tky.mqtt.paho.httpbean.AddGroup;
@@ -226,7 +226,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("version", "1");
         paramsMap.put("imCode", imCode);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<LoginInfoBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<LoginInfoBean>() {
           @Override
           public void onSuccess(Request request, LoginInfoBean result) {
             if (result.isSucceed()) {
@@ -457,7 +457,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("ID", userId);
         paramsMap.put("imCode", imCode);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
           @Override
           public void onSuccess(Request request, String result) {
             ToastUtil.showSafeToast("success");
@@ -621,7 +621,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("pageSize", pageCount);
         paramsMap.put("pageNo", pageNum);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<SearchUser>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<SearchUser>() {
           @Override
           public void onSuccess(Request request, SearchUser result) {
             SearchJSUser jsUser = switchSearchUser(result);
@@ -835,7 +835,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("pageNo", String.valueOf(pageNum));
         paramsMap.put("pageSize", String.valueOf(pageCount));
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<ChildsBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<ChildsBean>() {
           @Override
           public void onSuccess(Request request, ChildsBean result) {
             if (result.isSucceed()) {
@@ -991,7 +991,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetDepartment").getParamsMap();
         paramsMap.put("deptId", deptID);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<DepartmentBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<DepartmentBean>() {
           @Override
           public void onSuccess(Request request, DepartmentBean result) {
             if (result.isSucceed()) {
@@ -1120,7 +1120,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("idType", "U");
         paramsMap.put("objId", getUserID());
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<RootDept>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<RootDept>() {
           @Override
           public void onSuccess(Request request, RootDept result) {
             if (result.isSucceed()) {
@@ -1254,7 +1254,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetUser").getParamsMap();
         paramsMap.put("userId", userID);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<GetUser>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<GetUser>() {
           @Override
           public void onSuccess(Request request, GetUser result) {
             if (result.isSucceed()) {
@@ -1472,7 +1472,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("oldPwd", orgPWD);
         paramsMap.put("newPwd", newPWD);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
           @Override
           public void onSuccess(Request request, BaseBean result) {
             String json = GsonUtils.toJson(result, BaseBean.class);
@@ -1654,7 +1654,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         }
         request.addParamsMap(paramsMap);
         if (count > 0) {
-          OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+          OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
             @Override
             public void onSuccess(Request request, BaseBean result) {
               String json = GsonUtils.toJson(result, BaseBean.class);
@@ -2017,7 +2017,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetVersionInfo").getParamsMap();
         paramsMap.put("version", UIUtils.getVersion());//当前版本
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
           @Override
           public void onSuccess(Request request, String result) {
             ToastUtil.showSafeToast("success");
@@ -2204,7 +2204,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         List<String> members = jsonArray2List(membersArr);
         paramsMap.put("members", members);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
           @Override
           public void onSuccess(Request request, BaseBean result) {
             if (result.isSucceed()) {
@@ -2303,7 +2303,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         List<String> members = jsonArray2List(membersArr);
         paramsMap.put("members", members);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
           @Override
           public void onSuccess(Request request, BaseBean result) {
             if (result.isSucceed()) {
@@ -2400,7 +2400,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Request request = new Request(cordova.getActivity());
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetAttention").getParamsMap();
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AttentionBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AttentionBean>() {
           @Override
           public void onSuccess(Request request, AttentionBean result) {
             try {
@@ -2533,7 +2533,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("pageSize", pageCount);
         paramsMap.put("platform", "A");
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<HistoryMsgBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<HistoryMsgBean>() {
           @Override
           public void onSuccess(Request request, HistoryMsgBean result) {
             try {
@@ -2702,7 +2702,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
           }
           paramsMap.put("receipt", "F");
           request.addParamsMap(paramsMap);
-          OKAsyncPostClient.post(request, new OKHttpCallBack2<MsgEvent>() {
+          OKAsyncClient.post(request, new OKHttpCallBack2<MsgEvent>() {
             @Override
             public void onSuccess(Request request, MsgEvent result) {
               if (result.isSucceed()) {
@@ -2738,7 +2738,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("sendWhen", when);
         paramsMap.put("msgCount", "50");
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<LatestMsgBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<LatestMsgBean>() {
           @Override
           public void onSuccess(Request request, LatestMsgBean result) {
             if (result.isSucceed()) {
@@ -3322,7 +3322,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("pageNo", pageNum);
         paramsMap.put("pageSize", pageCount);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<ExtMsgBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<ExtMsgBean>() {
           @Override
           public void onSuccess(Request request, ExtMsgBean result) {
             if (result.isSucceed()) {
@@ -3486,7 +3486,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
           paramsMap.put("setAttention", false);
         }
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<Map<String, Object>>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<Map<String, Object>>() {
           @Override
           public void onSuccess(Request request, Map<String, Object> result) {
             Object succeed = result.get("Succeed");
@@ -3599,7 +3599,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("msgId", msgId);
         paramsMap.put("isReaded", isReaded);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<ReadList>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<ReadList>() {
           @Override
           public void onSuccess(Request request, ReadList result) {
             if (result.isSucceed()) {
@@ -3797,7 +3797,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("depts", depts);
         paramsMap.put("members", members);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -3909,7 +3909,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Request request = new Request(cordova.getActivity());
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetGroup").getParamsMap();
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<String>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
           @Override
           public void onSuccess(Request request, String result) {
             ToastUtil.showSafeToast("success");
@@ -4017,7 +4017,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("groupName", groupName);
         paramsMap.put("groupText", groupText);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4121,7 +4121,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("RemoveGroup").getParamsMap();
         paramsMap.put("groupId", groupID);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4226,7 +4226,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("getObjects", objects);
         paramsMap.put("platform", "A");
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<GroupUpdate>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<GroupUpdate>() {
           @Override
           public void onSuccess(Request request, GroupUpdate result) {
             if (result.isSucceed()) {
@@ -4368,7 +4368,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("depts", deptsArr);
         paramsMap.put("members", membersArr);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4467,7 +4467,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("groupId", groupID);
         paramsMap.put("members", membersArr);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4566,7 +4566,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("groupId", groupID);
         paramsMap.put("admins", adminsArr);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4665,7 +4665,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         paramsMap.put("groupId", groupID);
         paramsMap.put("admins", adminsArr);
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AddGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AddGroup>() {
           @Override
           public void onSuccess(Request request, AddGroup result) {
             if (result.isSucceed()) {
@@ -4760,7 +4760,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Request request = new Request(cordova.getActivity());
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetAllGroup").getParamsMap();
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AllGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AllGroup>() {
           @Override
           public void onSuccess(Request request, AllGroup result) {
             if (result.isSucceed()) {
@@ -4892,7 +4892,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Request request = new Request(cordova.getActivity());
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetAllGroup").getParamsMap();
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<AllGroup>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<AllGroup>() {
           @Override
           public void onSuccess(Request request, AllGroup result) {
             if (result.isSucceed()) {
@@ -5823,7 +5823,7 @@ public class ThriftApiClient_baks20170703 extends CordovaPlugin {
         Map<String, Object> paramsMap = ParamsMap.getInstance("GetDepartment").getParamsMap();
         paramsMap.put("deptId", getDeptID());
         request.addParamsMap(paramsMap);
-        OKAsyncPostClient.post(request, new OKHttpCallBack2<DepartmentBean>() {
+        OKAsyncClient.post(request, new OKHttpCallBack2<DepartmentBean>() {
           @Override
           public void onSuccess(Request request, DepartmentBean result) {
             if (result.isSucceed()) {

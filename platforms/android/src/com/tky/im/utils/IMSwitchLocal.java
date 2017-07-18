@@ -1,35 +1,29 @@
 package com.tky.im.utils;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.service.IMService;
 import com.tky.mqtt.chat.MqttChat;
-import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttNotification;
-import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.callback.OKHttpCallBack2;
-import com.tky.mqtt.paho.http.OKAsyncPostClient;
+import com.tky.mqtt.paho.http.OKAsyncClient;
 import com.tky.mqtt.paho.http.Request;
 import com.tky.mqtt.paho.httpbean.BaseBean;
 import com.tky.mqtt.paho.httpbean.ParamsMap;
 import com.tky.mqtt.paho.utils.GsonUtils;
-import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -133,6 +127,14 @@ public class IMSwitchLocal {
         return userInfo.getString("deptID");
     }
 
+  /**
+   * 将登录信息清空
+   * @throws JSONException
+   */
+    public static void clearUserInfo() throws JSONException {
+      SPUtils.save("login_info", "");
+    }
+
     public static JSONObject getUserInfo() throws JSONException {
         String login_info = SPUtils.getString("login_info", "");
         return new JSONObject(login_info);
@@ -164,7 +166,7 @@ public class IMSwitchLocal {
                 Request request = new Request();
                 Map<String, Object> paramsMap = ParamsMap.getInstance("ReloginCheck").getParamsMap();
                 request.addParamsMap(paramsMap);
-                OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+                OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
                   @Override
                   public void onSuccess(Request request, BaseBean result) {
                     if (result.isSucceed()) {
@@ -253,7 +255,7 @@ public class IMSwitchLocal {
                 Request request = new Request();
                 Map<String, Object> paramsMap = ParamsMap.getInstance("ReloginCheck").getParamsMap();
                 request.addParamsMap(paramsMap);
-                OKAsyncPostClient.post(request, new OKHttpCallBack2<BaseBean>() {
+                OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
                   @Override
                   public void onSuccess(Request request, BaseBean result) {
                     if (result.isSucceed()) {
@@ -385,6 +387,8 @@ public class IMSwitchLocal {
         IMBroadOper.broadArrivedMsg("", 1, json);
         MqttChat.setHasLogin(false);
         try {
+            //清空登录信息
+            clearUserInfo();
             if (!UIUtils.isServiceWorked(IMService.class.getName())) {
                 IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
             }

@@ -176,56 +176,6 @@ angular.module('newnotification.controllers', [])
     };
 
 
-
-    //公有方法：点击确认以后更改数据库/数组的item
-    $scope.updateitemdata = function (id, array) {
-      for (var i = 0; i <= array.length - 1; i++) {
-        if (array[i]._id === id) {
-          array[i].isread = 'true';
-          array[i].isconfirm = 'true';
-          $greendao.saveObj('SystemMsgService', array[i], function (succ) {
-            $rootScope.$broadcast('newnotify.update');
-          }, function (err) {
-          });
-        }
-      }
-    }
-    //详情确认
-    $scope.mainconfirm = function (id, flag) {
-      if (flag === 'today') {
-        $scope.updateitemdata(id, $scope.todayTime);
-      } else if (flag === 'week') {
-        $scope.updateitemdata(id, $scope.weektimeday);
-      } else if (flag === 'ago') {
-        $scope.updateitemdata(id, $scope.otherDay);
-      }
-    };
-
-    //公有方法：更改关注状态的数据库/数组
-    $scope.updatefocusitem = function (id, array) {
-      for (var i = 0; i <= array.length - 1; i++) {
-        if (array[i]._id === id) {
-          array[i].isfocus = !array[i].isfocus;
-          $greendao.saveObj('SystemMsgService', array[i], function (succ) {
-            $rootScope.$broadcast('newnotify.update');
-          }, function (err) {
-          });
-        }
-      }
-    }
-
-    //点击关注按钮，修改关注状态事件
-    $scope.onchangefocus = function (id, flag) {
-      if (flag === 'today') {
-        $scope.updatefocusitem(id, $scope.todayTime);
-      } else if (flag === 'week') {
-        $scope.updatefocusitem(id, $scope.weektimeday);
-      } else if (flag === 'ago') {
-        $scope.updatefocusitem(id, $scope.otherDay);
-      }
-    };
-
-
     $scope.gotoFocus = function (id, isfirm) {
       if (isfirm == 0) {
         switch (id) {
@@ -267,12 +217,7 @@ angular.module('newnotification.controllers', [])
 
   })
 
-
-
-
-
-
-
+    
 
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $ionicLoading, $ToastUtils,$state,$ionicScrollDelegate) {
