@@ -263,44 +263,12 @@ angular.module('login.controllers', [])
       });
 
       mqtt.getString('welcomePic', function (picurl) {
-        var firsturl=" http://61.237.239.60:8081/loginpic/loginpic/json";
 
         //欢迎界面图片
         if (picurl == "" || picurl == null || picurl.length == 0) {
           $scope.$apply(function () {
             $scope.securlpic = "img/im1.png";
           })
-
-          $http({
-            method: 'get',
-            url: firsturl,
-          }).success(function(data, status) {
-
-            var varyname=data.loginpicName;
-            var varysize=data.size;
-
-            //调用下载的接口
-            $api.getWelcomePic(varyname,varysize,function (suc) {
-
-              //图片下载成功
-              //$ToastUtils.showToast("欢迎页面下载成功")
-
-
-            },function (error) {
-
-              //图片下载失败
-              $ToastUtils.showToast("欢迎页面下载失败")
-
-            })
-
-
-          }).error(function(data, status) {
-
-            $ToastUtils.showToast("服务器网络异常")
-
-
-          });
-
         } else {
           // 查询到的图片不为空
 
@@ -308,53 +276,32 @@ angular.module('login.controllers', [])
 
             //先设置好值再去判断
             $scope.securlpic = picurl;
-
-            //从网络上拿下来图片的基本信息 图片的号码
-            mqtt.getString("varyName",function (latest) {
-
-
-              $http({
-                method: 'get',
-                url: firsturl,
-              }).success(function(data, status) {
-
-
-                if (latest!=data.loginpicName){
-
-                  //调用接口去下载图片
-                  //读取当前 app的欢迎界面
-                  $api.getWelcomePic(data.loginpicName,data.size,function (srcurl) {
-
-
-                  },function (error) {
-                    $ToastUtils.showToast("欢迎页面下载失败")
-
-                  })
-
-                }
-
-              }).error(function(data, status) {
-                $ToastUtils.showToast("服务器网络异常")
-
-              });
-
-
-
-            })
-
-
-
-
           })
         }
+
+        mqtt.getString('varyName',function (varyname) {
+
+          //调用下载的接口
+          $api.getWelcomePic("",varyname,function (suc) {
+
+            //图片下载成功
+            //$ToastUtils.showToast("欢迎页面下载成功")
+
+
+          },function (error) {
+
+            //图片下载失败
+            $ToastUtils.showToast("欢迎页面下载失败")
+
+          })
+
+
+        },function () {
+
+        });
       }, function (msg) {
 
       });
-
-
-
-
-
 
 
 

@@ -11,8 +11,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import com.ionicframework.im366077.MainActivity;
-import com.ionicframework.im366077.R;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
 import com.tky.im.callback.IMConnectCallback;
 import com.tky.im.callback.IMMessageCallback;
 import com.tky.im.connection.IMConnection;

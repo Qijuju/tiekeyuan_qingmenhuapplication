@@ -6,8 +6,8 @@ import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.util.Log;
 
-import com.ionicframework.im366077.MainActivity;
-import com.ionicframework.im366077.R;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;

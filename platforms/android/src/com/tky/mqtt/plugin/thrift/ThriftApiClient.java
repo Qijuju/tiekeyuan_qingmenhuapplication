@@ -8,7 +8,7 @@ import android.provider.MediaStore;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ionicframework.im366077.Constants;
+import com.r93535.im.Constants;
 import com.tky.im.connection.IMConnection;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.ChatList;
@@ -1050,7 +1050,7 @@ public class ThriftApiClient extends CordovaPlugin {
             try {
               setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
             } catch (Exception e) {
-              setResult("请求版本信息失败！", PluginResult.Status.OK, callbackContext);
+              setResult("请求版本信息失败！", PluginResult.Status.ERROR, callbackContext);
               e.printStackTrace();
             }
           }
@@ -3487,57 +3487,69 @@ public class ThriftApiClient extends CordovaPlugin {
     try {
       String picUserID = args.getString(0);//查询的是谁的图片
       String picSize = args.getString(1);//图片尺寸，40*40，60*60，120*120
-      //URL url = new URL(Constants.testwelcome);
-      URL url = new URL(Constants.formalwelcome);
+      //String downloadpath="http://imtest.crbim.win:1666/DownloadFile?fileId="+picUserID+"&type=StartPic&offset=0";
+      String downloadpath=Constants.commonfileurl+"/DownloadFile?fileId="+picUserID+"&type=StartPic&offset=0";
+      URL url = new URL(downloadpath);
       HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
       httpURLConnection.setDoInput(true);
       httpURLConnection.setRequestMethod("GET");
       httpURLConnection.connect();
       if (httpURLConnection.getResponseCode() == 200) {
-        bis = new BufferedInputStream(httpURLConnection.getInputStream());
-        byte[] buffer = new byte[1024 * 8];
 
-        int c = bis.read(buffer);
-        if (c == -1) {
-          SPUtils.save("welcomePic","");
-          SPUtils.save("varyName","");
-          return;
-        } else {
-          baos.write(buffer, 0, c);
-          baos.flush();
-        }
-        while ((c = bis.read(buffer)) != -1) {
+        String filenamedd=httpURLConnection.getHeaderField("filename");
+        String filesize=httpURLConnection.getHeaderField("filesize");
+        if (filenamedd==null && filesize==null){
+          //说明是最新图片
 
-          baos.write(buffer, 0, c);
 
-          baos.flush();
+        }else {
+          bis = new BufferedInputStream(httpURLConnection.getInputStream());
+          byte[] buffer = new byte[1024 * 8];
 
-        }
-        String iconDir = FileUtils.getIconDir() + File.separator + "welcome";
-        File directory = new File(iconDir);
-        if (!directory.exists()) {
-          directory.mkdirs();
-        }
-
-        String[] listarr = directory.list();
-        if (listarr.length > 0 || listarr != null) {
-          for (int i = 0; i < listarr.length; i++) {
-            File temp = new File(iconDir + File.separator + listarr[i]);
-            temp.delete();
+          int c = bis.read(buffer);
+          if (c == -1) {
+            SPUtils.save("welcomePic","");
+            SPUtils.save("varyName","");
+            return;
+          } else {
+            baos.write(buffer, 0, c);
+            baos.flush();
           }
-        }
-        String fileName = iconDir + File.separator + picUserID + picSize + ".png";
-        File file = new File(fileName);
-        if (!file.exists()) {
-          file.createNewFile();
-        }
-        byte[] fileByte = baos.toByteArray();
-        fos = new FileOutputStream(file);
-        fos.write(fileByte);
-        SPUtils.save("welcomePic",fileName);
-        SPUtils.save("varyName",picUserID);
+          while ((c = bis.read(buffer)) != -1) {
 
-        setResult("成功", PluginResult.Status.OK, callbackContext);
+            baos.write(buffer, 0, c);
+
+            baos.flush();
+
+          }
+          String iconDir = FileUtils.getIconDir() + File.separator + "welcome";
+          File directory = new File(iconDir);
+          if (!directory.exists()) {
+            directory.mkdirs();
+          }
+
+          String[] listarr = directory.list();
+          if (listarr.length > 0 || listarr != null) {
+            for (int i = 0; i < listarr.length; i++) {
+              File temp = new File(iconDir + File.separator + listarr[i]);
+              temp.delete();
+            }
+          }
+          String fileName = iconDir + File.separator + filenamedd;
+          File file = new File(fileName);
+          if (!file.exists()) {
+            file.createNewFile();
+          }
+          byte[] fileByte = baos.toByteArray();
+          fos = new FileOutputStream(file);
+          fos.write(fileByte);
+          SPUtils.save("welcomePic",fileName);
+          SPUtils.save("varyName",filenamedd);
+
+          setResult("成功", PluginResult.Status.OK, callbackContext);
+        }
+
       }else {
         SPUtils.save("varyName","");
       }

@@ -1,4 +1,4 @@
-package com.ionicframework.im366077;
+package com.r93535.im;
 
 /**
  * Created by Administrator on 2017/4/20.
@@ -16,21 +16,7 @@ public class Constants {
 
   //境外
   public static final String JINGWAIURL = "202.137.140.133";
-
-  //http开发环境  imtest.crbim.win
-
   public static final String httptestbasemobile= "imtest.crbim.win";
-
-
-
-  //首页欢迎界面
-  public static final String testwelcome=TESTBASEURL+"/Im_Interface/loginpic/download?Id=0";
-
-  public static final String formalwelcome="http://61.237.239.60:8081/loginpic/loginpic/get";
-
-
-
-
 
 
 

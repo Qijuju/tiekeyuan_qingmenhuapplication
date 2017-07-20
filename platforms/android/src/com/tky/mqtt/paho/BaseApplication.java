@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
-import com.ionicframework.im366077.Constants;
+import com.r93535.im.Constants;
 import com.tencent.tinker.anno.DefaultLifeCycle;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;

@@ -7,8 +7,8 @@ import android.media.RingtoneManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.ionicframework.im366077.MainActivity;
-import com.ionicframework.im366077.R;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
 import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;

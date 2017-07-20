@@ -1,4 +1,4 @@
-package com.ionicframework.im366077;
+package com.r93535.im;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

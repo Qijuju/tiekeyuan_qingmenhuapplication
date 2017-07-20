@@ -155,14 +155,14 @@ task cdvPrintProps << {
 }
 
 android {
-  /*signingConfigs {
+  signingConfigs {
     release {
       keyAlias 'IMKey'
       keyPassword '123456'
-      storeFile file('E:/yy/IM/platforms/android/keystore/IM.jks')
+      storeFile file('D:/jst/IM/platforms/android/keystore/IM.jks')
       storePassword '123456'
     }
-  }*/
+  }
 
 
   dexOptions {
@@ -287,14 +287,14 @@ android {
   if (cdvDebugSigningPropertiesFile) {
     addSigningProps(cdvDebugSigningPropertiesFile, signingConfigs.debug)
   }
-  /*buildTypes {
+  buildTypes {
     debug {
       signingConfig signingConfigs.release
     }
     release {
       signingConfig signingConfigs.release
     }
-  }*/
+  }
 }
 
 dependencies {

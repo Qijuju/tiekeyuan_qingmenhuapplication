@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ionicframework.im366077.R;
+import com.r93535.im.R;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.constant.ImageTypeConstants;
 import com.tky.mqtt.paho.utils.FileUtils;

@@ -1,21 +1,14 @@
 package com.tky.okhttpload;
 
-import android.os.Environment;
-import android.os.Looper;
-import android.provider.Contacts;
-import android.util.Log;
-
 import com.google.gson.Gson;
-import com.ionicframework.im366077.Constants;
+import com.r93535.im.Constants;
 import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.Messages;
-import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.services.MessagesService;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.apache.cordova.CallbackContext;

@@ -495,7 +495,7 @@ public class MqttChat extends CordovaPlugin {
                 MqttNotification.cancelAll();
                 MqttRobot.setIsStarted(false);
                 //清空登录信息
-                IMSwitchLocal.clearUserInfo();
+//                IMSwitchLocal.clearUserInfo();
                 setResult("success", PluginResult.Status.OK, callbackContext);
               } else {
                 setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);

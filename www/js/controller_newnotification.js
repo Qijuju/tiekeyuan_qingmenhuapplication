@@ -15,6 +15,14 @@ angular.module('newnotification.controllers', [])
       })
     });
 
+
+
+    $scope.$on("allnotify.update.error",function () {
+      $scope.$apply(function () {
+        $scope.shownetstatus=true;
+      })
+    })
+
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         $greendao.queryByConditions('ChatListService',function (data) {
@@ -41,7 +49,7 @@ angular.module('newnotification.controllers', [])
 
     $scope.$on('allnotify.update', function (event) {
       $scope.$apply(function () {
-
+        $scope.shownetstatus=false;
        $scope.notifyjson= $notify.getAllNotify();
        var notifyList= $notify.getAllNotify().msgList;
 
@@ -91,6 +99,7 @@ angular.module('newnotification.controllers', [])
     $scope.appstatus = false;
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
+      $scope.shownetstatus=false;
       $ionicSlideBoxDelegate.enableSlide(false);
       $notify.clearDefaultCount();
       $notify.allNotify();
@@ -217,7 +226,7 @@ angular.module('newnotification.controllers', [])
 
   })
 
-    
+
 
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $ionicLoading, $ToastUtils,$state,$ionicScrollDelegate) {
@@ -225,6 +234,8 @@ angular.module('newnotification.controllers', [])
     $scope.notifyObj =$stateParams.obj.bean;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
+
+    $scope.showlevel=$scope.notifyObj.Level;
 
     if ($scope.notifyObj.Level ==0 ) {
       $scope.levelName = "一般";

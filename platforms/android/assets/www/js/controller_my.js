@@ -51,7 +51,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
       long = position.coords.longitude + 0.012647;//  116.329102
       locationaaa = long + "," + lat;
-      $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+      $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.r93535.im")
         .success(function (response) {
           $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
           $scope.currentcity = response.results[0].currentCity;
