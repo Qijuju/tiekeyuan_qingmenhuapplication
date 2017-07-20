@@ -1,96 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="commit：合并后的代码最新的">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/MainActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient_baks.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient_baks20170703.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
+    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/grid/GridActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/grid/GridActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMReceiver.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/receiver/IMReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/DocsManagerActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/DocsManagerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/BaseApplication.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/BaseApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttService.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/callback/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/callback/MqttMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/constant/ImageTypeConstants.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/constant/ImageTypeConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/receiver/AlarmRecevier.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/receiver/AlarmRecevier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/AnimationUtils.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/utils/AnimationUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/api/SystemApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mytinker/BaseBuildInfo.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mytinker/BaseBuildInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mytinker/BuildInfo.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mytinker/BuildInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/okhttpload/Okhttpload.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/okhttpload/Okhttpload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoScaleActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/photoview/PhotoScaleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/android.json" afterPath="$PROJECT_DIR$/plugins/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services_group.js" afterPath="$PROJECT_DIR$/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/www/templates/tab-notification.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/Constants.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/Constants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/platforms/android/src/com/ionicframework/im366077/OnePxActivity.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/OnePxActivity.java" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -209,8 +123,8 @@
       <file leaf-file-name="controller_my.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            <state relative-caret-position="442">
+              <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -707,14 +621,7 @@
       <workItem from="1500345856881" duration="152000" />
       <workItem from="1500346498050" duration="9477000" />
       <workItem from="1500426894575" duration="10404000" />
-      <workItem from="1500512703360" duration="2923000" />
-    </task>
-    <task id="LOCAL-00138" summary="commit：修改头像">
-      <created>1489129700340</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1489129700341</updated>
+      <workItem from="1500512703360" duration="3810000" />
     </task>
     <task id="LOCAL-00139" summary="commit：修改头像">
       <created>1489132164138</created>
@@ -1052,11 +959,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500347678663</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="修改包名 优化通知">
+      <created>1500516079693</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1500516079709</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1622356000" />
+    <option name="totallyTimeSpent" value="1623243000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1068,10 +982,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21812434" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21812434" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63169163" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1124,7 +1038,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit：重新提交代码" />
     <MESSAGE value="commit：重新提交代码11111" />
     <MESSAGE value="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知" />
     <MESSAGE value="commit:修改bug（头像、、、）" />
@@ -1149,7 +1062,8 @@
     <MESSAGE value="commit:合并后的代码" />
     <MESSAGE value="commit：合并后的代码（孙林松、宋亚）" />
     <MESSAGE value="commit：合并后的代码最新的" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit：合并后的代码最新的" />
+    <MESSAGE value="修改包名 优化通知" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改包名 优化通知" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1439,6 +1353,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1461,6 +1376,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="281" column="55" selection-start-line="281" selection-start-column="55" selection-end-line="281" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1496,6 +1412,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="12" column="169" selection-start-line="12" selection-start-column="169" selection-end-line="12" selection-end-column="169" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#ion-item#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,6 +1467,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1593,8 +1513,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="442">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
           <folding />
         </state>
       </provider>
