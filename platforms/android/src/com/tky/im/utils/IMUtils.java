@@ -1,11 +1,8 @@
 package com.tky.im.utils;
 
 import com.tky.im.connection.IMConnection;
-import com.tky.im.service.IMService;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
-import com.tky.mqtt.paho.utils.MqttOper;
-import com.tky.mqtt.paho.utils.SwitchLocal;
 import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;

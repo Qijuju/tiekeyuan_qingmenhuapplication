@@ -9,7 +9,6 @@ import com.tky.mqtt.paho.bean.MessageTypeBean;
 import com.tky.mqtt.paho.httpbean.EventBean;
 import com.tky.mqtt.paho.httpbean.MsgBean;
 import com.tky.mqtt.paho.utils.GsonUtils;
-import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
@@ -20,7 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.tky.protocol.factory.IMMsgFactory.LinkType.File;
 import static com.tky.protocol.factory.IMMsgFactory.LinkType.NoLink;
