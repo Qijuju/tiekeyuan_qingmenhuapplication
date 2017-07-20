@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.tky.im.bean.TopicsCoupleQoss;
 import com.tky.im.params.ConstantsParams;
-import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.im.utils.IMSwitchLocal;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -85,7 +85,7 @@ public class MqttTopicRW {
 	 */
 	public static void remove(String groupID) {
 		Map<String, Integer> topicsAndQoss = getTopicsAndQoss();
-		String aTopic = SwitchLocal.getATopic(MType.G, groupID);
+		String aTopic = IMSwitchLocal.getATopic(MType.G, groupID);
 		topicsAndQoss.remove(aTopic);
 		StringBuilder sb = new StringBuilder();
 		Iterator iterator = topicsAndQoss.keySet().iterator();
@@ -106,7 +106,7 @@ public class MqttTopicRW {
 	 * @return
 	 */
 	public static boolean isFromMe(String type, String from) {
-		String aTopic = SwitchLocal.getATopic(SwitchLocal.getType(type), from);
+		String aTopic = IMSwitchLocal.getATopic(IMSwitchLocal.getType(type), from);
 		return getTopicsAndQoss().containsKey(aTopic);
 	}
 

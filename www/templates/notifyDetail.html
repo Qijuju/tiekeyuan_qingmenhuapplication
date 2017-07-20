@@ -10,7 +10,10 @@
   </ion-nav-bar>
   <ion-content delegate-handle="scrollTop" overflow-scroll="false" style="background-color:#e5e5e5 " >
       <ion-item class="item-remove-animate item-avatar rj-notify1-bg" style="max-height: 100%" >
-        <div class="center square10" style=" position: absolute;left: 3%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+        <div ng-if="showlevel=='1'" class="center square9" style=" position: absolute;left: 3%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;color: gray">通知</div>
+        <div ng-if="showlevel=='2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+        <div ng-if="showlevel=='3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
+        <div ng-if="showlevel=='0'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
         <h2 style="margin-left: -12px">{{notifyObj.FromName}}&nbsp;&nbsp;&nbsp;&nbsp;{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: indianred;font-size: 14px">{{notifyObj.LevelName}}</span></h2>
         <h3 style="margin-top: 6px;;margin-left: -12px">标题：{{notifyObj.Title}}</h3>
 

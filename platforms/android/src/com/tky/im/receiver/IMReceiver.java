@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ionicframework.im366077.Constants;
 import com.tky.im.params.ConstantsParams;
 
 /**

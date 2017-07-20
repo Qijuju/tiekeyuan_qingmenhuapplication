@@ -83,39 +83,10 @@
           <!--</div>-->
         </div>
         <!--</div>-->
-
-
-        <!--<img src={{item.imgSrc}} width="80px" height="80px">-->
-        <!--<span class="rj-sm-red-icon" ng-if="item.count > 0 && item.count <100"><p>{{item.count}}</p></span>-->
-        <!--<span class="rj-sm-red-icon" ng-if="item.count > 99" ><p style="font-size: 10px;">99+</p></span>-->
-        <!--<h2>{{item.chatName}}</h2>-->
-        <!--<p>-->
-        <!--<font style="padding-bottom: 1px;"><img style="background-color: transparent;padding-right: 5px" src="img/jiantou.png" ng-if="item.isSuccess === 'false'"/>{{item.lastText}}</font>-->
-        <!--</p>-->
-        <!--<span class="rj-push-right" ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd' }}</span>-->
-        <!--<span class="rj-push-right" ng-if="item.lastDate != 0 && item.daytype === '1'">{{ item.lastDate | date:'HH:mm' }}</span>-->
-        <!--<span class="rj-push-right" ng-if="item.lastDate === 0"></span>-->
-        <!--这个就是来了新消息, 头像上的小红数字-->
-        <!--<span class="rj-sm-red-icon" ng-show="lastCount > 0"><p>{{lastCount}}</p></span>-->
-        <!--<h2>{{ danliaomsg[danliaomsg.length-1]._id}}</h2>-->
-        <!--<p> {{danliaomsg[danliaomsg.length-1].message}}</p>-->
-        <!--<span class="rj-push-right">6月8日</span>-->
         <ion-option-button class="button-assertive" ng-click="removechat(item.id,item.name)">
           删除
         </ion-option-button>
       </ion-item>
-      <!--<ion-item class=" item-remove-animate item-avatar" ng-repeat="groupitem in groupitems" ng-click="goGroupMessage(groupitem.id,groupitem.chatName)">-->
-      <!--<img src="{{groupitem.imgSrc}}" width="80px" height="80px">-->
-      <!--&lt;!&ndash;这个就是来了新消息, 头像上的小红数字&ndash;&gt;-->
-      <!--<span class="rj-sm-red-icon" ng-show="groupitem.count > 0"><p>{{groupitem.count}}</p></span>-->
-      <!--<h2>{{groupitem.chatName}}</h2>-->
-      <!--<p> {{groupitem.lastText}}</p>-->
-      <!--<span class="rj-push-right" ng-if="groupitem.lastDate != 0">{{ groupitem.lastDate | date:'HH:mm:ss' }}</span>-->
-      <!--<span class="rj-push-right" ng-if="groupitem.lastDate === 0"></span>-->
-      <!--<ion-option-button class="button-assertive" ng-click="remove(chat)">-->
-      <!--删 除-->
-      <!--</ion-option-button>-->
-      <!--</ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>

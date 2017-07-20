@@ -1,9 +1,12 @@
 package com.tky.im.utils;
 
 import com.tky.im.connection.IMConnection;
+import com.tky.im.service.IMService;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.SwitchLocal;
+import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
 
@@ -73,7 +76,18 @@ public class IMUtils {
    * 发送上线消息
    */
   public static void sendOnOffState(String str, IMConnection imConnection) {
-    MqttMessage event = new MqttMessage();
+    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), new String(IMUtils.getOnOffState(str)), new IMqttActionListener() {
+      @Override
+      public void onSuccess(IMqttToken asyncActionToken) {
+      }
+
+      @Override
+      public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+      }
+    });
+
+
+    /*MqttMessage event = new MqttMessage();
     event.setPayload(IMUtils.getOnOffState(str));
     imConnection.publish(SwitchLocal.getOnOffTopic(), event, new IMqttActionListener() {
       @Override
@@ -85,7 +99,7 @@ public class IMUtils {
       public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
 
       }
-    });
+    });*/
   }
 
 

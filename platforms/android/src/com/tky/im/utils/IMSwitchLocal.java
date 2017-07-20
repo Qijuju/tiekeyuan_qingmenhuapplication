@@ -1,32 +1,34 @@
 package com.tky.im.utils;
 
 import android.content.Context;
-import android.content.Intent;
 
+import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.service.IMService;
 import com.tky.mqtt.chat.MqttChat;
-import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MqttNotification;
-import com.tky.mqtt.paho.MqttService;
-import com.tky.mqtt.paho.ReceiverParams;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
+import com.tky.mqtt.paho.callback.OKHttpCallBack2;
+import com.tky.mqtt.paho.http.OKAsyncClient;
+import com.tky.mqtt.paho.http.Request;
+import com.tky.mqtt.paho.httpbean.BaseBean;
+import com.tky.mqtt.paho.httpbean.ParamsMap;
 import com.tky.mqtt.paho.utils.GsonUtils;
-import com.tky.mqtt.paho.utils.MqttOper;
+import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Map;
 
 import im.server.System.IMSystem;
 
@@ -35,23 +37,24 @@ import im.server.System.IMSystem;
  */
 
 public class IMSwitchLocal {
-    private static String local;
+    //private static String local = "TEST";
+    private static String local = "LN";
 
     public static void setLocal(String local) {
         IMSwitchLocal.local = local;
     }
 
     public static String getLocal() {
-        return (local == null || "".equals(local.trim()) ? "LN" : "LW");
+        return local;//(local == null || "".equals(local.trim()) ? "LN" : "LW");
     }
 
     public static String getLocalIp() {
         String localIp = "";
         //目前路内和路外localIp都是相同的
         if ("LW".equals(getLocal())) {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL();
         } else {
-            localIp = "tcp://" + SystemApi.url + ":1883";
+            localIp = "tcp://" + IMConnection.getURL();
         }
         return localIp;
     }
@@ -63,8 +66,21 @@ public class IMSwitchLocal {
      * @return
      */
     public static String getATopic(MType type, String id) {
-        return getLocal() + "/" + getType(type) + "/" + id;
+        return getLocal() + "/A/" + getType(type) + "/" + id;
     }
+
+  /**
+   * 用topic获取ID
+   * @return
+   */
+  public static String fromTopic(String topic, String type) {
+    return topic.substring((getLocal() + "/A/" + type).length());
+  }
+
+  //固定的上下线发送Topic
+  public static String getOnOffTopic(){
+    return  getLocal()+"/A/"+"s/LoginEvent";
+  }
 
     public static String getType(MType type) {
         if (MType.U == type) {
@@ -79,7 +95,7 @@ public class IMSwitchLocal {
     }
 
     public static MType getType(String type) {
-        if ("User" == type) {
+        if ("ChildJSBean" == type) {
             return MType.U;
         } else if ("Group" == type) {
             return MType.G;
@@ -112,6 +128,14 @@ public class IMSwitchLocal {
         return userInfo.getString("deptID");
     }
 
+  /**
+   * 将登录信息清空
+   * @throws JSONException
+   */
+    public static void clearUserInfo() throws JSONException {
+      SPUtils.save("login_info", "");
+    }
+
     public static JSONObject getUserInfo() throws JSONException {
         String login_info = SPUtils.getString("login_info", "");
         return new JSONObject(login_info);
@@ -135,57 +159,88 @@ public class IMSwitchLocal {
      * @param reloginCheck
      */
     public static void reloginCheck(final String userID, final IReloginCheck reloginCheck) {
-        new Thread(new Runnable() {
+        if (ThriftApiClient.isHttp) {
+          new Thread(new Runnable() {
             @Override
             public void run() {
-                MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback = null;
-                try {
-                    callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
-                        @Override
-                        public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
-                            try {
-                                if (reloginCheck_call != null && reloginCheck != null) {
-                                    if (reloginCheck_call.getResult().result) {
-                                        reloginCheck.onCheck(true);
-                                    } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
-                                        reloginCheck.onCheck(false);
-                                    }
-                                }
-                            } catch (Exception e) {
-                                ToastUtil.showSafeToast("重连失败！");
-                                e.printStackTrace();
-                            }
-                            close();
-                        }
+              try {
+                Request request = new Request();
+                Map<String, Object> paramsMap = ParamsMap.getInstance("ReloginCheck").getParamsMap();
+                request.addParamsMap(paramsMap);
+                OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
+                  @Override
+                  public void onSuccess(Request request, BaseBean result) {
+                    if (result.isSucceed()) {
+                      reloginCheck.onCheck(true);
+                    } else if ("106".equals(result.getErrCode()) || "107".equals(result.getErrCode())) {
+                      reloginCheck.onCheck(false);
+                    }
+                  }
 
-                        @Override
-                        public void onError(Exception e) {
-                            close();
-                            ToastUtil.showSafeToast("重连失败！");
-                        }
-                    };
-                    SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), callback);
-                } catch (IOException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    ToastUtil.showSafeToast("重连失败！");
-                    e.printStackTrace();
-                } catch (TException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    ToastUtil.showSafeToast("重连失败！");
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    ToastUtil.showSafeToast("重连失败！");
-                    e.printStackTrace();
-                }
+                  @Override
+                  public void onFailure(Request request, Exception e) {
+                  }
+                });
+              } catch (JSONException e) {
+                e.printStackTrace();
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
             }
-        }).start();
+          }).start();
+        } else {
+          new Thread(new Runnable() {
+            @Override
+            public void run() {
+              MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback = null;
+              try {
+                callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+                  @Override
+                  public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                    try {
+                      if (reloginCheck_call != null && reloginCheck != null) {
+                        if (reloginCheck_call.getResult().result) {
+                          reloginCheck.onCheck(true);
+                        } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
+                          reloginCheck.onCheck(false);
+                        }
+                      }
+                    } catch (Exception e) {
+                      ToastUtil.showSafeToast("重连失败！");
+                      e.printStackTrace();
+                    }
+                    close();
+                  }
+
+                  @Override
+                  public void onError(Exception e) {
+                    close();
+                    ToastUtil.showSafeToast("重连失败！");
+                  }
+                };
+                SystemApi.reloginCheck(userID, UIUtils.getDeviceId(), callback);
+              } catch (IOException e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                ToastUtil.showSafeToast("重连失败！");
+                e.printStackTrace();
+              } catch (TException e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                ToastUtil.showSafeToast("重连失败！");
+                e.printStackTrace();
+              } catch (Exception e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                ToastUtil.showSafeToast("重连失败！");
+                e.printStackTrace();
+              }
+            }
+          }).start();
+        }
     }
 
     /**
@@ -193,75 +248,109 @@ public class IMSwitchLocal {
      * @param reloginCheckStatus
      */
     public static void reloginCheckStatus(final IReloginCheckStatus reloginCheckStatus) {
-        new Thread(new Runnable() {
+        if (ThriftApiClient.isHttp) {
+          new Thread(new Runnable() {
             @Override
             public void run() {
-                MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback = null;
-                try {
-                    callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
-                        @Override
-                        public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
-                            try {
-                                if (reloginCheck_call != null && reloginCheckStatus != null) {
-                                    if (reloginCheck_call.getResult().result) {
-                                        reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
-                                    } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
-                                        reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
-                                    }
-                                }
-                            } catch (Exception e) {
-                                if (reloginCheck_call != null && reloginCheckStatus != null) {
-                                    reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                                }
-                                e.printStackTrace();
-                            }
-                            close();
-                        }
+              try {
+                Request request = new Request();
+                Map<String, Object> paramsMap = ParamsMap.getInstance("ReloginCheck").getParamsMap();
+                request.addParamsMap(paramsMap);
+                OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
+                  @Override
+                  public void onSuccess(Request request, BaseBean result) {
+                    if (result.isSucceed()) {
+                      reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
+                    } else if ("106".equals(result.getErrCode()) || "107".equals(result.getErrCode())) {
+                      reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
+                    }
+                  }
 
-                        @Override
-                        public void onError(Exception e) {
-                            close();
-                            if (reloginCheckStatus != null) {
-                                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                            }
-                        }
-                    };
-                    SystemApi.reloginCheck(IMSwitchLocal.getUserID(), UIUtils.getDeviceId(), callback);
-                } catch (IOException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if (reloginCheckStatus != null) {
-                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                    }
-                    e.printStackTrace();
-                } catch (TException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if (reloginCheckStatus != null) {
-                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                    }
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if (reloginCheckStatus != null) {
-                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                    }
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    if (callback != null) {
-                        callback.close();
-                    }
-                    if (reloginCheckStatus != null) {
-                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
-                    }
-                    e.printStackTrace();
-                }
+                  @Override
+                  public void onFailure(Request request, Exception e) {
+                    reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                  }
+                });
+              } catch (JSONException e) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                e.printStackTrace();
+              } catch (Exception e) {
+                reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                e.printStackTrace();
+              }
             }
-        }).start();
+          }).start();
+        } else {
+          new Thread(new Runnable() {
+            @Override
+            public void run() {
+              MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call> callback = null;
+              try {
+                callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ReloginCheck_call>() {
+                  @Override
+                  public void onComplete(IMSystem.AsyncClient.ReloginCheck_call reloginCheck_call) {
+                    try {
+                      if (reloginCheck_call != null && reloginCheckStatus != null) {
+                        if (reloginCheck_call.getResult().result) {
+                          reloginCheckStatus.onCheck(EReloginCheckStatus.CAN_RECONNECT);
+                        } else if ("106".equals(reloginCheck_call.getResult().getResultCode()) || "107".equals(reloginCheck_call.getResult().getResultCode())) {
+                          reloginCheckStatus.onCheck(EReloginCheckStatus.NEED_LOGOUT);
+                        }
+                      }
+                    } catch (Exception e) {
+                      if (reloginCheck_call != null && reloginCheckStatus != null) {
+                        reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                      }
+                      e.printStackTrace();
+                    }
+                    close();
+                  }
+
+                  @Override
+                  public void onError(Exception e) {
+                    close();
+                    if (reloginCheckStatus != null) {
+                      reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                    }
+                  }
+                };
+                SystemApi.reloginCheck(IMSwitchLocal.getUserID(), UIUtils.getDeviceId(), callback);
+              } catch (IOException e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                if (reloginCheckStatus != null) {
+                  reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                }
+                e.printStackTrace();
+              } catch (TException e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                if (reloginCheckStatus != null) {
+                  reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                }
+                e.printStackTrace();
+              } catch (JSONException e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                if (reloginCheckStatus != null) {
+                  reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                }
+                e.printStackTrace();
+              } catch (Exception e) {
+                if (callback != null) {
+                  callback.close();
+                }
+                if (reloginCheckStatus != null) {
+                  reloginCheckStatus.onCheck(EReloginCheckStatus.ERROR);
+                }
+                e.printStackTrace();
+              }
+            }
+          }).start();
+        }
     }
 
     public interface IReloginCheck {
@@ -299,7 +388,8 @@ public class IMSwitchLocal {
         IMBroadOper.broadArrivedMsg("", 1, json);
         MqttChat.setHasLogin(false);
         try {
-//            IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
+            //清空登录信息
+            clearUserInfo();
             if (!UIUtils.isServiceWorked(IMService.class.getName())) {
                 IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
             }

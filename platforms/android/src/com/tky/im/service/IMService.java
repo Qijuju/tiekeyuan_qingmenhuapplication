@@ -11,8 +11,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import com.ionicframework.im366077.MainActivity;
-import com.ionicframework.im366077.R;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
 import com.tky.im.callback.IMConnectCallback;
 import com.tky.im.callback.IMMessageCallback;
 import com.tky.im.connection.IMConnection;
@@ -32,11 +32,13 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
+import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
 
 /**
  * Created by tkysls on 2017/4/11.
@@ -73,14 +75,14 @@ public class IMService extends Service {
 
         //注册广播（发送消息和重连）
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ConstantsParams.PARAM_RE_CONNECT);
-        filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);
+        filter.addAction(ConstantsParams.PARAM_RE_CONNECT);//重新启动MQTT
+        filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);//发送消息
 
-        filter.addAction(ConstantsParams.PARAM_KILL_IM);
-        filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);
-        filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);
-        filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);
-        filter.addAction(ConstantsParams.PARAM_BASH_IM);
+        filter.addAction(ConstantsParams.PARAM_KILL_IM);//杀死MQTT
+        filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);//停止MQTT
+        filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);//订阅TOPIC
+        filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);//注销TOPIC
+        filter.addAction(ConstantsParams.PARAM_BASH_IM);//断开MQTT，让其自动重启
         receiver = new IMReceiver();
         registerReceiver(receiver, filter);
 
@@ -99,7 +101,14 @@ public class IMService extends Service {
             private final ReconnectRunnable reconnectRunnable = new ReconnectRunnable();
             @Override
             public void onReconnect() {
-
+              try {
+                  if (IMSwitchLocal.getUserID() == null || "".equals(IMSwitchLocal.getUserID().trim())) {
+                  return;
+                }
+              } catch (JSONException e) {
+                e.printStackTrace();
+                return;
+              }
                 if (imConnection != null && imConnection.isConnected()) {
                     IMStatusManager.setImStatus(IMEnums.CONNECTED);
                     IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
@@ -165,7 +174,7 @@ public class IMService extends Service {
             public void onTopicSubscribe(String topic) {
                 try {
                     if (imConnection != null) {
-                        imConnection.subscribe(topic, 1);
+                        imConnection.subscribe(topic, 2);
                     }
                 } catch (MqttException e) {
                     e.printStackTrace();
@@ -285,7 +294,23 @@ public class IMService extends Service {
                 return;
             }
             if (timeCount++ >= 20) {
-                IMService.this.imConnection.publish(topic, msg, new IMqttActionListener() {
+              ThriftApiClient.sendMsg(topic, content, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                  //发送中，消息发送成功，回调
+                  String swithedMsg = switchMsg(content, true);
+                  MqttOper.sendSuccNotify(swithedMsg);
+                  handler.removeCallbacks(MessageRunnable.this);
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                  String swithedMsg = switchMsg(content, false);
+                  MqttOper.sendErrNotify(swithedMsg);
+                  handler.removeCallbacks(MessageRunnable.this);
+                }
+              });
+              /*IMService.this.imConnection.publish(topic, msg, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
                         //发送中，消息发送成功，回调
@@ -300,7 +325,7 @@ public class IMService extends Service {
                         MqttOper.sendErrNotify(swithedMsg);
                         handler.removeCallbacks(MessageRunnable.this);
                     }
-                });
+                });*/
                 return;
             }
             if (IMService.this.imConnection == null || !IMService.this.imConnection.isConnected()) {
@@ -309,8 +334,25 @@ public class IMService extends Service {
                 handler.removeCallbacks(MessageRunnable.this);
                 handler.postDelayed(this, 1000);
             } else {
+              //IM连接成功，发送消息
+              ThriftApiClient.sendMsg(topic, content, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                  //发送中，消息发送成功，回调
+                  String swithedMsg = switchMsg(content, true);
+                  MqttOper.sendSuccNotify(swithedMsg);
+                  handler.removeCallbacks(MessageRunnable.this);
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                  String swithedMsg = switchMsg(content, false);
+                  MqttOper.sendErrNotify(swithedMsg);
+                  handler.removeCallbacks(MessageRunnable.this);
+                }
+              });
                 //IM连接成功，发送消息
-                IMService.this.imConnection.publish(topic, msg, new IMqttActionListener() {
+                /*IMService.this.imConnection.publish(topic, msg, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
                         //发送中，消息发送成功，回调
@@ -325,7 +367,7 @@ public class IMService extends Service {
                         MqttOper.sendErrNotify(swithedMsg);
                         handler.removeCallbacks(MessageRunnable.this);
                     }
-                });
+                });*/
 
             }
         }
@@ -337,7 +379,28 @@ public class IMService extends Service {
      * @param content
      */
     private void sendMsg(final String topic, final String content) {
-        if (imConnection == null || !imConnection.isConnected()) {
+      if (NetUtils.getNetWorkState(getBaseContext()) != -1) {
+        ThriftApiClient.sendMsg(topic, content, new IMqttActionListener() {
+          @Override
+          public void onSuccess(IMqttToken asyncActionToken) {
+            //发送中，消息发送成功，回调
+            String swithedMsg = switchMsg(content, true);
+            MqttOper.sendSuccNotify(swithedMsg);
+          }
+
+          @Override
+          public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+            String swithedMsg = switchMsg(content, false);
+            MqttOper.sendErrNotify(swithedMsg);
+          }
+        });
+      } else {
+        //每隔1s检测一次IM是否已经连接，如果连接了，直接发送消息，如果没连接，重连IM，再隔1s再次检测，以此类推
+        Handler handler = new Handler();
+        MessageRunnable messageRunnable = new MessageRunnable(topic, content, handler);
+        handler.postDelayed(messageRunnable, 1000);
+      }
+        /*if (imConnection == null || !imConnection.isConnected()) {
             //每隔1s检测一次IM是否已经连接，如果连接了，直接发送消息，如果没连接，重连IM，再隔1s再次检测，以此类推
             Handler handler = new Handler();
             MessageRunnable messageRunnable = new MessageRunnable(topic, content, handler);
@@ -369,7 +432,7 @@ public class IMService extends Service {
                     MqttOper.sendErrNotify(swithedMsg);
                 }
             });
-        }
+        }*/
     }
 
     /**
@@ -393,12 +456,6 @@ public class IMService extends Service {
     private void connectIM() {
         if (NetUtils.isConnect(getBaseContext())) {
             imConnection = new IMConnection();
-            /*if (imConnectCallback == null) {
-                imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
-            }
-            if (imMessageCallback == null) {
-                imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
-            }*/
             imConnectCallback = new IMConnectCallback(getBaseContext(), imConnection);
             imMessageCallback = new IMMessageCallback(getBaseContext(), imConnection);
             try {

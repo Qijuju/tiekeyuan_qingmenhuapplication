@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.ionicframework.im366077" xmlns:android="http://schemas.android.com/apk/res/android">
-    <permission android:name="com.ionicframework.im366077.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
+<manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission android:name="com.r93535.im.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="com.ionicframework.im366077.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -46,7 +46,11 @@
             </intent-filter>
         </activity>
         <service android:exported="false" android:name="com.tky.mytinker.service.SampleResultService" />
-        <service android:name="com.tky.im.service.IMService" />
+        <service android:name="com.tky.im.service.IMService">
+            <intent-filter android:priority="999">
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
         <service android:name="com.tky.im.service.IMProtectService" />
         <receiver android:name="com.tky.im.receiver.IMNetStatusChangeReceiver">
             <intent-filter>

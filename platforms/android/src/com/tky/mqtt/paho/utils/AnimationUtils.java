@@ -10,7 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
-import com.ionicframework.im366077.R;
+import com.r93535.im.R;
 
 public class AnimationUtils {
 	/**

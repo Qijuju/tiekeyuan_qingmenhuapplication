@@ -359,6 +359,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.clipboard"
         ]
+    },
+    {
+        "file": "plugins/Okhttpload/www/okhttpload.js",
+        "id": "Okhttpload.okhttpload",
+        "clobbers": [
+            "cordova.plugins.Okhttpload"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -392,7 +399,9 @@ module.exports.metadata =
     "GridPhoto": "1.0.0",
     "cordova-plugin-inappbrowser": "1.5.0",
     "cordova-plugin-splashscreen": "4.0.1",
-    "com.verso.cordova.clipboard": "0.1.0"
+    "com.verso.cordova.clipboard": "0.1.0",
+    "cordova-plugin-add-swift-support": "1.6.2",
+    "Okhttpload": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

@@ -9,11 +9,13 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 
+import com.r93535.im.Constants;
 import com.tencent.tinker.anno.DefaultLifeCycle;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tky.mqtt.dao.DaoMaster;
 import com.tky.mqtt.dao.DaoSession;
+import com.tky.mqtt.paho.http.Request;
 import com.tky.mytinker.util.SampleApplicationContext;
 import com.tky.mytinker.util.TinkerManager;
 import com.yixia.camera.VCamera;
@@ -36,8 +38,8 @@ public class BaseApplication extends DefaultApplicationLike {
   private static BaseApplication mInstance;
   private static DaoMaster daoMaster;
   private static DaoSession daoSession;
-//  public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
-//    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
+ /* public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
+    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径*/
   private boolean isInBackground;
   public static final String DB_NAME = "KKK";//正式发布版本数据库路径
 
@@ -78,6 +80,8 @@ public class BaseApplication extends DefaultApplicationLike {
   @Override
   public void onCreate() {
     super.onCreate();
+    //设置默认的URL
+    Request.initBaseUrl(Constants.commonmsgurl);//生产环境
     //Context
     context = getApplication();
     //mainThreadId

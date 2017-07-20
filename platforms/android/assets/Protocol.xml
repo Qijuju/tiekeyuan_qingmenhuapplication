@@ -49,14 +49,14 @@
 		 	<nDependency>type</nDependency>
 		</Node>
 	</Protocol>
-	
+
 	<Dependencies>
 		<Dependency id = "type">
 			<dProtocol>CommonMsg</dProtocol>
 			<dProtocol value = "P">PMsg</dProtocol>
 		</Dependency>
 	</Dependencies>
-	
+
 	<Protocol id="PMsg">
 		<Node id="msgLevel">
 		 	<nLength>1</nLength>
@@ -93,7 +93,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="CommonMsg">
 		<Node id="message">
 		 	<nLength>-1</nLength>
@@ -101,7 +101,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="EventProtocol">
 		<Node id="NotifyType">
 		 	<nLength>1</nLength>
@@ -122,7 +122,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're add to group's admin-->
 	<Protocol id="YAA">
 		<Node id="GroupID">
@@ -130,7 +130,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're add to group's member-->
 	<Protocol id="YAM">
 		<Node id="GroupID">
@@ -143,7 +143,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group's name changed-->
 	<Protocol id="GN0">
 		<Node id="GroupID">
@@ -156,7 +156,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The member's info changed-->
 	<Protocol id="G00">
 		<Node id="GroupID">
@@ -169,7 +169,7 @@
 		 	<nType>A</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're removed from group's admin-->
 	<Protocol id="YRA">
 		<Node id="GroupID">
@@ -177,7 +177,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--You're removed from group's member-->
 	<Protocol id="YRM">
 		<Node id="GroupID">
@@ -185,7 +185,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group add some member.-->
 	<Protocol id="GAM">
 		<Node id="GroupID">
@@ -198,7 +198,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group remove some member.-->
 	<Protocol id="GRM">
 		<Node id="GroupID">
@@ -211,7 +211,7 @@
 		 	<nType>C</nType>
 		</Node>
 	</Protocol>
-	
+
 	<!--The group be removed .-->
 	<Protocol id="RG0">
 		<Node id="GroupID">
@@ -219,15 +219,15 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
-	<!--Kick User oFFline .-->
+
+	<!--Kick ChildJSBean oFFline .-->
 	<Protocol id="KUF">
 		<Node id="MepID">
 		 	<nLength>-1</nLength>
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="UOF">
 		<Node id="UserID">
 		 	<nLength>1</nLength>
@@ -238,7 +238,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="UOL">
 		<Node id="UserID">
 		 	<nLength>1</nLength>
@@ -249,7 +249,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	<!-- 
+	<!--
 	<Protocol id="US0">
 		<Node id="UserID">
 		 	<nLength>1</nLength>
@@ -260,7 +260,7 @@
 		 	<nFixed>false</nFixed>
 		</Node>
 	</Protocol>
-	
+
 	<Protocol id="UU0">
 		<Node id="UserID">
 		 	<nLength>1</nLength>

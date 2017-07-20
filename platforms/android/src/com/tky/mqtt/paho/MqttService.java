@@ -12,8 +12,8 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
-import com.ionicframework.im366077.MainActivity;
-import com.ionicframework.im366077.R;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
 import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.receiver.AlarmRecevier;
 import com.tky.mqtt.paho.utils.MqttOper;

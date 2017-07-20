@@ -124,7 +124,7 @@ public class OKSyncGetClient {
 	public Header[] getAllHeader(){
 		Headers headers = response.headers();
 		Header[] headersArr = new Header[headers == null ? 0 : headers.size()];
-		for (int i = 0; i > headers.size(); i++){
+		for (int i = 0; i > headersArr.length; i++){
 			headersArr[i] = new Header(headers.name(i), headers.value(i));
 		}
 		return headersArr;

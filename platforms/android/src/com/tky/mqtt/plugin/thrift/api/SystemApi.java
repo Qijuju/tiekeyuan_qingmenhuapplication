@@ -1,10 +1,8 @@
 package com.tky.mqtt.plugin.thrift.api;
 
 import android.content.Context;
-import android.content.pm.LauncherApps;
-import android.graphics.pdf.PdfDocument;
 
-import com.ionicframework.im366077.Constants;
+import com.r93535.im.Constants;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.plugin.thrift.bean.MyAsyncClient;
 import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
@@ -45,8 +43,10 @@ import im.server.attention.IMAttention;
 public class SystemApi {
 
 
-  public static final String url = Constants.formalbasemobile; //正式
-//  public static final String url = Constants.testbasemobile;//测试
+//public static final String url = Constants.formalbasemobile; //正式
+  public static final String url = Constants.httptestbasemobile;//测试
+//  public static final String FILE_URL = "http://61.237.239.152:1666";
+  public static final String FILE_URL = "http://61.237.239.152:1666";
   //public static final String url = Constants.JINGWAIURL;
 
   /**

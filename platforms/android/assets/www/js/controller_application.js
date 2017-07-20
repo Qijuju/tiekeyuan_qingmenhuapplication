@@ -6,26 +6,16 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
 
 
     $scope.pdfshow=function () {
-       // $ToastUtils.showToast($cordovaFileOpener2)
-      // /storage/emulated/0/pdf11.pdf
       $api.openFile('pdf11.pdf',function (msg) {
       },function (msg) {
         $ToastUtils.showToast(msg)
       })
-      // $cordovaFileOpener2.open('../img/pdf11.pdf','application/pdf').then(function () {
-      //   // 成功
-      //   $ToastUtils.showToast("成功")
-      // }, function (err) {
-      //   // 错误
-      //   $ToastUtils.showToast("失败")
-      // });
     }
 
     $scope.a=0;
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
         $scope.a=1;
-        // Setup the loader
         $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',
@@ -104,18 +94,6 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
 
         });
     }
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
-    // /*$scope.chats = Chats.all();
-    // $scope.remove = function (chat) {
-    //   Chats.remove(chat);
-    // };*/
     // 一个提示对话框
     $scope.showToast = function(msg) {
       $ToastUtils.showToast(msg);
@@ -241,18 +219,6 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
 
       // 创建地理编码实例
       var myGeo = new BMap.Geocoder();
-      // // 根据坐标得到地址描述
-      // myGeo.getLocation(new BMap.Point(long, lat), function(result){
-      //   if (result){
-      //     alert(result.address);
-      //   }
-      // });
-      //查询功能
-      // var local = new BMap.LocalSearch(map, {
-      //   renderOptions: {map: map, panel: "results"},
-      //   pageCapacity: 10
-      // });
-      // local.searchInBounds(" ", map.getBounds());
       var mOption = {
         poiRadius : 100,           //半径为1000米内的POI,默认100米
         numPois : 5                //列举出50个POI,默认10个
@@ -288,29 +254,6 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.goApplication = function () {
       $state.go("tab.chats");
     };
-    // //横向二维柱型
-    // var option = {};
-    // option.chart = {};
-    // option.chart.type="bar";
-    // option.chart.renderTo="container";
-    // option.title={title:"水果的摄入"};
-    // option.xAxis={categories:['苹果','香蕉','桔子'],gridLineWidth:1};
-    // option.yAxis={title:{text:"吃水果的量"},tickInterval:1};
-    // option.series = [];
-    // option.series[0] = {};
-    // option.series[0].name="张三";
-    // option.series[0].data=[1,3,5];
-    // option.series[1] = {};
-    // option.series[1].name="李四";
-    // option.series[1].data=[6,1,5.5];
-    // option.series[2] = {};
-    // option.series[2].name="刘能";
-    // option.series[2].data=[3,1,0.3];
-    // var chart = new Highcharts.Chart(option);
-
-    // $('#container').highcharts
-    // var container=document.getElementById("container");
-    // var containeraa=$(container);
     $('#container').highcharts({
       chart: {
         zoomType: 'xy'

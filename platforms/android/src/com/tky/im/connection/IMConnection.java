@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.tky.im.bean.IMParams;
 import com.tky.im.test.LogPrint;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.utils.GsonUtils;
 
@@ -37,7 +38,7 @@ public class IMConnection {
     public void connect(@NonNull Context context, @NonNull IMqttActionListener connectCallback, @NonNull MqttCallback messageCallback) throws MqttException {
         this.context = context;
         if (this.context == null) {
-            throw new NullPointerException("上下文不能为空！");
+            throw new NullPointerException("The context can not be null！");
         }
 
         if (connectCallback == null) {
@@ -69,7 +70,7 @@ public class IMConnection {
      * @param message
      * @param callback
      */
-    public void publish(String tosb, MqttMessage message, final IMqttActionListener callback) {
+    /*public void publish(String tosb, MqttMessage message, final IMqttActionListener callback) {
         if (isConnected()) {
             try {
                 mqttAsyncClient.publish(tosb, message, null, new IMqttActionListener() {
@@ -90,7 +91,7 @@ public class IMConnection {
         } else {
             callback.onFailure(null, null);
         }
-    }
+    }*/
 
     /**
      * 转换消息
@@ -203,4 +204,20 @@ public class IMConnection {
     public boolean isConnected() {
         return mqttAsyncClient != null && mqttAsyncClient.isConnected();
     }
+
+  /**
+   * 设置mqtt地址
+   * @param mqtt
+   */
+  public static void setURL(String mqtt) {
+    SPUtils.save("mqtt_url", mqtt);
+  }
+
+  /**
+   * 获取MQTT地址
+   * @return
+   */
+  public static String getURL() {
+    return SPUtils.getString("mqtt_url", "");
+  }
 }

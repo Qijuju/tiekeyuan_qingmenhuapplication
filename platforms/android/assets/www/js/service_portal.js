@@ -153,13 +153,15 @@ angular.module('portal.services', [])
     return {
 
       //获取人员所在公司，点亮图标，图片更改信息
-      getInfo: function (userID) {
+      getInfo: function (userID,imcode) {
         $http({
-          method: 'get',
+          method: 'post',
           timeout: 5000,
-          // url: "http://61.237.239.152:8080/apiman-gateway/jishitong/getdetail/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16&id=" + userID
-          url: "http://61.237.239.60:8081/im/secret/getdetail?id=" + userID
+          //url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",
+          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",
+          data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
+          var data=JSON.parse(decodeURIComponent(data));
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
           companyName = "";

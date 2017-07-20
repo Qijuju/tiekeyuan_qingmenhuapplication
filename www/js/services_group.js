@@ -70,6 +70,8 @@ angular.module('group.services', [])
         defaultCount++;
       }, function (err) {
         $ToastUtils.showToast(err)
+        $rootScope.$broadcast('allnotify.update.error');
+
       });
     },
 

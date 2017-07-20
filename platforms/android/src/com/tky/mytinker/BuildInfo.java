@@ -17,7 +17,7 @@
 package com.tky.mytinker;
 
 
-import com.ionicframework.im366077.BuildConfig;
+import com.r93535.im.BuildConfig;
 
 /**
  * Created by zhangshaowen on 16/6/30.

@@ -15,13 +15,8 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  style="background-color:#e5e5e5 " >
-   <!-- <label class="item item-input ">
-      <input type="text" id="nameId"  ng-model="send_name">
-    </label>-->
     <h1 style="font-size: 22px;margin: 5px"ng-if="islook==1">{{noticeText}}</h1>
     <h1 style="font-size: 20px;color: initial;" class="isss" ng-if="islook==0">暂无群公告</h1>
-
-
   </ion-content>
   <ion-footer-bar ng-if="islook==1 && isMygroup=='true'" >
     <div style="width: 100%;"  ng-click="editnotice()">
