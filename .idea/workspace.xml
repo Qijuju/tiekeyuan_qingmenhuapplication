@@ -2,6 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/aosp_dexutils_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/appcompat_v7_23_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/barcodescanner_.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/bsdiff_util_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/dom4j_1_6_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/freemarker_2_3_20.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_1_3_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_generator_1_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/gson_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/imApi2_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/jcore_android_v1_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/jpush_android_v3_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/libthrift_0_9_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/locSDK_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/log4j_1_2_14.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/nineoldandroids_2_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_2_6_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_3_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttputils_2_6_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okio_1_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_appindexing_8_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_base_8_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_basement_8_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxandroid_1_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxjava_1_1_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/slf4j_api_1_7_12.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/slf4j_log4j12_1_6_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/sqlite_connector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_annotations_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_compat_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_ui_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_core_utils_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_fragment_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_media_compat_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_v4_25_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_anno_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_lib_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_android_loader_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/tinker_commons_1_7_7.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/MainActivity.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="" />
@@ -409,7 +451,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/misc.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/modules.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
@@ -418,6 +462,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/common.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/common.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/dash.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/dash.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.svg" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/fonts/tky.svg" />
@@ -579,18 +624,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/welcome.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/welcome.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/service/IMService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMUtils.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/chat/MqttChat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MessageOper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/MqttMessageCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/okhttpload/Okhttpload.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/okhttpload/Okhttpload.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1191,14 +1234,7 @@
       <workItem from="1500346498050" duration="9477000" />
       <workItem from="1500426894575" duration="10404000" />
       <workItem from="1500512703360" duration="3810000" />
-      <workItem from="1500517137760" duration="791000" />
-    </task>
-    <task id="LOCAL-00139" summary="commit：修改头像">
-      <created>1489132164138</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1489132164142</updated>
+      <workItem from="1500517137760" duration="1285000" />
     </task>
     <task id="LOCAL-00140" summary="commit：修改头像">
       <created>1489132216753</created>
@@ -1536,11 +1572,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500516079709</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="7.20commit；稳定版本(修改包名)">
+      <created>1500518854632</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1500518854633</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1624034000" />
+    <option name="totallyTimeSpent" value="1624528000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1555,12 +1598,12 @@
     <frame x="0" y="23" width="1680" height="946" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21760097" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21760097" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5135135" sideWeight="0.5931284" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27751756" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="true" show_stripe_button="true" weight="0.25058547" sideWeight="0.40687162" order="8" side_tool="false" content_ui="tabs" x="19" y="847" width="1929" height="167" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.25058547" sideWeight="0.40687162" order="8" side_tool="false" content_ui="tabs" x="19" y="847" width="1929" height="167" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.4978903" order="9" side_tool="false" content_ui="tabs" />
@@ -1608,7 +1651,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit：重新提交代码11111" />
     <MESSAGE value="commit：3.6正常跑起来没有问题，准备合并小伟代码继续改通知" />
     <MESSAGE value="commit:修改bug（头像、、、）" />
     <MESSAGE value="提交代码" />
@@ -1633,7 +1675,8 @@
     <MESSAGE value="commit：合并后的代码（孙林松、宋亚）" />
     <MESSAGE value="commit：合并后的代码最新的" />
     <MESSAGE value="修改包名 优化通知" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改包名 优化通知" />
+    <MESSAGE value="7.20commit；稳定版本(修改包名)" />
+    <option name="LAST_COMMIT_MESSAGE" value="7.20commit；稳定版本(修改包名)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
