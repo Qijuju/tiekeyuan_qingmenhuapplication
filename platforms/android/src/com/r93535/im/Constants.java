@@ -21,17 +21,17 @@ public class Constants {
 
 
   //生产环境文件服务器
-  public static final String commonfileurl= "http://immobile.r93535.com:8086";
+  //public static final String commonfileurl= "http://immobile.r93535.com:8086";
 
   //测试环境文件服务器
-  //public static final String commonfileurl= "http://imtest.crbim.win:1666";
+  public static final String commonfileurl= "http://imtest.crbim.win:1666";
 
 
   //消息服务生产环境
-  public static final String commonmsgurl= "http://immobile.r93535.com:8088/crbim/imApi/1.0";
+  //public static final String commonmsgurl= "http://immobile.r93535.com:8088/crbim/imApi/1.0";
 
   //消息服务测试环境
 
-  //public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
+  public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
 
 }
