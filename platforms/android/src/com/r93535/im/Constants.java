@@ -1,5 +1,7 @@
 package com.r93535.im;
 
+import java.net.URL;
+
 /**
  * Created by Administrator on 2017/4/20.
  */
@@ -34,4 +36,5 @@ public class Constants {
 
   public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
 
+  public static final String formalwelcome="http://61.237.239.60:8081/loginpic/loginpic/get";
 }

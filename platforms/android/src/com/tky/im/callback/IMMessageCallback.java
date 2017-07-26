@@ -65,19 +65,27 @@ public class IMMessageCallback implements MqttCallback {
 
   @Override
   public void connectionLost(Throwable throwable) {
-    LogPrint.print("MQTT", "异常断开或手动断开~~~");
-    LogPrint.print2("MQTT", "异常断开或手动断开~~~");
-    //断开IM
-    IMBroadOper.broad(ConstantsParams.PARAM_IM_DOWN);
+    final long start = System.currentTimeMillis();
     if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-      //设置连接失败状态
-      IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN);
+      UIUtils.getHandler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          if (!imConnection.isConnected()) {
+            //断开IM
+            IMBroadOper.broad(ConstantsParams.PARAM_IM_DOWN);
+          }
+          UIUtils.getHandler().removeCallbacks(this);
+        }
+      }, 10000);
     }
+    //设置连接失败状态
+    IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN);
     UIUtils.getHandler().postDelayed(new Runnable() {
       @Override
       public void run() {
         //发送重连广播
         IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
+        UIUtils.getHandler().removeCallbacks(this);
       }
     }, 10);
   }

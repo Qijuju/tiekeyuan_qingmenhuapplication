@@ -5,7 +5,7 @@
       <!--<img  src="img/saom.png" width="20px" height="20px" style="margin-top: 6px;margin-left: 6px" ng-click="saoyisao()">-->
     <!--</ion-nav-buttons>-->
     <ion-nav-buttons side="right" >
-      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 8px;margin-right: 16px"  ng-click="createGroupChats()">
+      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 8px;margin-right: 2%"  ng-click="createGroupChats()">
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
@@ -49,14 +49,14 @@
         <!---对话名称、最后一条消息的内容、日期、未读数--->
         <div style="float: left;padding-top:0px;margin-top: -4px;margin-bottom: 3px; height: 30px;width: 100%;">
           <!--<div>-->
-          <span style="float: left;"><font style="font-size: 17px;color: #000;">{{item.chatName}}</font></span>
+          <span style="float: left;position: relative;left: 8px;"><font style="font-size: 17px;color: #000;">{{item.chatName}}</font></span>
           <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd' }}</span>
           <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate != 0 && item.daytype === '1'">{{ item.lastDate | date:'HH:mm' }}</span>
           <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate === 0"></span>
           <!--</div>-->
           <br/>
           <!--<div>-->
-              <span style="float: left;">
+              <span style="float: left;position: relative;left: 8px;">
                 <!---已读语音--->
                 <font style="font-size: 14px;color: #777777" ng-if="item.isRead === '1'">
                   <div style="display: inline-block">

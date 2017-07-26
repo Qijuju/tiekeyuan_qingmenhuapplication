@@ -2,8 +2,6 @@ package com.tky.mqtt.paho.jsbean;
 
 import java.util.List;
 
-import im.model.NMsg;
-
 /**
  * Created by r on 2017/7/3.
  */

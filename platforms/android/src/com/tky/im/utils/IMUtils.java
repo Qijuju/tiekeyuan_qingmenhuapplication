@@ -49,6 +49,21 @@ public class IMUtils {
         return new JSONObject(login_info);
     }
 
+    /**
+     * 获取上下线状态
+     * @return
+     */
+    public static String getOnOffObject() {
+        byte[] data=null;
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("MepID", JPushInterface.getRegistrationID(BaseApplication.getContext()));
+        map.put("UserID",getUserID());
+        map.put("NotifyType","E");
+        map.put("EventCode","UOF");
+        map.put("when", System.currentTimeMillis());
+        return new JSONObject(map).toString();
+    }
+
 
   /**
    * 获取上下线状态
@@ -73,7 +88,7 @@ public class IMUtils {
    * 发送上线消息
    */
   public static void sendOnOffState(String str, IMConnection imConnection) {
-    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), new String(IMUtils.getOnOffState(str)), new IMqttActionListener() {
+    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), IMUtils.getOnOffObject(), new IMqttActionListener() {
       @Override
       public void onSuccess(IMqttToken asyncActionToken) {
       }

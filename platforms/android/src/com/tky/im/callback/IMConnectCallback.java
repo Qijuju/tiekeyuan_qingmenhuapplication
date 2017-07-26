@@ -59,8 +59,15 @@ public class IMConnectCallback implements IMqttActionListener {
         disconnectedBufferOptions.setPersistBuffer(false);
         disconnectedBufferOptions.setDeleteOldestMessages(false);
         imConnection.getClient().setBufferOpts(disconnectedBufferOptions);
-        //广播当前连接状态
-        IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_FAILURE);
+        UIUtils.getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!imConnection.isConnected()) {
+                    //广播当前连接状态
+                    IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_FAILURE);
+                }
+            }
+        }, 10000);
 
         UIUtils.getHandler().postDelayed(new Runnable() {
           @Override

@@ -7,7 +7,7 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao) {
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao,$window) {
     /*document.getElementById("loginpic").style.height=(window.screen.height)+'px';
      document.getElementById("loginpic").style.width=(window.screen.width)+'px';*/
     $mqtt.save('loginpage', "passwordlogin");
@@ -48,6 +48,21 @@ angular.module('login.controllers', [])
         });
       }
     });
+    //监听键盘弹起事件，将整体布局上移
+    var tKeyH = $window.innerHeight;;
+    window.addEventListener('native.keyboardshow',function (e){
+      $scope.intervalH=(tKeyH - 305 -e.keyboardHeight);//弹出的bottom=(屏幕的高度-键盘的高度-div的高度:高度为累加和banner+用户名高度+密码高度)/2
+      alert("屏幕的高度"+$scope.intervalH);
+      if($scope.intervalH <0){
+        document.getElementById("tHeight").style.bottom = 41 +'px';
+      }
+      return ;
+    });
+
+    //监听键盘关闭事件，将bottom设置为0
+    window.addEventListener('native.keyboardhide',function (e){
+      document.getElementById("tHeight").style.bottom = 0 +'px';
+    });
     //保存密码的方法
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
@@ -66,7 +81,6 @@ angular.module('login.controllers', [])
     };
 
     $scope.login = function (name, password) {
-
       if (name == '' || password == '') {
         $ToastUtils.showToast('用户名或密码不能为空！');
         return;
