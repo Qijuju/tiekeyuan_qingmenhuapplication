@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap', 'ngCordova'])
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api, $searchdata, $ToastUtils, $rootScope, $timeout, $mqtt, $chatarr, $greendao, $cordovaImagePicker, $ionicPlatform, $location, $cordovaGeolocation, $ionicHistory) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api, $searchdata, $ToastUtils, $rootScope, $timeout, $mqtt, $chatarr, $greendao, $cordovaImagePicker, $ionicPlatform, $location, $cordovaGeolocation, $ionicHistory) {
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (msg) {
         $scope.UserID = msg.userID;
@@ -159,13 +159,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         var picPath = imageData;
         if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
@@ -177,7 +171,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $scope.securlpic = msg;
               // alert($scope.picyoumeiyou)
             })
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           });
 
         }, function (msg) {
@@ -212,13 +206,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
       $cordovaCamera.getPicture(options).then(function (imageData) {
 
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         var picPath = imageData;
         if (isAndroid) {
           picPath = imageData.substring(0, (imageData.indexOf('?') != -1 ? imageData.indexOf('?') : imageData.length));
@@ -234,7 +222,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $scope.securlpic = msg;
 
             })
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           });
         }, function (msg) {
           $ToastUtils.showToast("设置头像失败")
@@ -300,7 +288,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji, $ionicPopup, $api, $ToastUtils, $cordovaGeolocation, $location, $ionicPlatform, $ionicHistory, $ionicLoading, $mqtt, $ionicActionSheet, $timeout, $cordovaCamera, $ionicScrollDelegate) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji, $ionicPopup, $api, $ToastUtils, $cordovaGeolocation, $location, $ionicPlatform, $ionicHistory, $pubionicloading, $mqtt, $ionicActionSheet, $timeout, $cordovaCamera, $ionicScrollDelegate) {
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('myinformationScroll');
     $scope.$on('$ionicView.enter', function () {
@@ -357,13 +345,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
 
         var picPath = imageData;
         if (isAndroid) {
@@ -377,7 +359,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $scope.securlpic = msg;
               // alert($scope.picyoumeiyou)
             })
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           });
 
         }, function (msg) {
@@ -411,13 +393,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         correctOrientation: true
       };
       $cordovaCamera.getPicture(options).then(function (imageData) {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
 
         var picPath = imageData;
         if (isAndroid) {
@@ -431,7 +407,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $scope.picyoumeiyou = true;
               $scope.securlpic = msg;
             })
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           });
         }, function (msg) {
           $ToastUtils.showToast("设置头像失败")
@@ -465,7 +441,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }
       } else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -626,7 +602,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     });
   })
 
-  .controller('switchAccountCtrl', function ($scope, $state, $mqtt,$ionicLoading,$ToastUtils, $api) {
+  .controller('switchAccountCtrl', function ($scope, $state, $mqtt,$pubionicloading,$ToastUtils, $api) {
 
     $scope.accountItems = [];
 
@@ -657,18 +633,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
      * @param userID
      */
     $scope.switchAccount = function (userID) {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       //切换账号开始
       $mqtt.switchAccount(userID, function (msg) {
         if (msg === "-1") {
           $ToastUtils.showToast("无需切换当前账号！", null, null)
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           return;
         }
         //切换账号成功，启动MQTT
@@ -678,19 +648,19 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               $mqtt.startMqttChat(msg + ',' + groups);
               $mqtt.setLogin(true);
               $state.go('tab.message');
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               return;
             }
           },function (err) {
-            $ToastUtils.showToast(err, null, null)
+            $ToastUtils.showToast(err)
           });
         }, function (msg) {
-          $ionicLoading.hide();
-          $ToastUtils.showToast("切换账号出现异常！", null, null)
+          $pubionicloading.hide();
+          $ToastUtils.showToast("切换账号出现异常！")
         });
       }, function (err) {//切换账号失败
-        $ionicLoading.hide();
-        $ToastUtils.showToast(err, null, null)
+        $pubionicloading.hide();
+        $ToastUtils.showToast(err)
       });
 
     };
@@ -700,7 +670,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   })
 
 
-  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt, $ToastUtils, $cordovaBarcodeScanner, $location, $ionicPlatform, $ionicHistory, $ionicLoading,$greendao) {
+  .controller('accountsettionCtrl', function ($scope, $http, $state, $stateParams, $api, $ionicPopup, $mqtt, $ToastUtils, $cordovaBarcodeScanner, $location, $ionicPlatform, $ionicHistory, $pubionicloading,$greendao) {
 
     $scope.UserIDsethou = $stateParams.UserIDset;
 
@@ -727,7 +697,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }
       } else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -815,7 +785,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     }
 
   })
-  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, $ToastUtils, $mqtt, $api, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $rootScope) {
+  .controller('aboutoursCtrl', function ($scope, $http, $state, $stateParams, $ToastUtils, $mqtt, $api, $ionicPopup, $pubionicloading, $cordovaFileOpener2, $rootScope) {
     $scope.UserIDabouthou = $stateParams.UserIDabout;
     $scope.goAcount = function () {
       $state.go("tab.account");
@@ -823,7 +793,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //在线升级
     $scope.zaixianshengji = function () {
       $mqtt.save('local_versionname', '');
-      $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+      $api.checkUpdate($ionicPopup, $pubionicloading, $cordovaFileOpener2, $mqtt);
     }
   })
   .controller('gesturepasswordCtrl', function ($scope, $http, $state, $stateParams, $mqtt, $ToastUtils, $timeout, $rootScope,$greendao) {
@@ -1210,7 +1180,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count, $location, $ionicPlatform, $ionicLoading, $ionicHistory, $ToastUtils, $mqtt, $timeout, $http) {
+  .controller('webpageCtrl', function ($scope, $stateParams, Indicators, Projects, Count, $location, $ionicPlatform, $pubionicloading, $ionicHistory, $ToastUtils, $mqtt, $timeout, $http) {
     $ionicPlatform.registerBackButtonAction(function (e) {
       if ($location.path() == ('/tab/webpage')) {
         window.close();
@@ -1227,7 +1197,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         }
       } else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;

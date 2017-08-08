@@ -93,6 +93,27 @@
         },
         "Okhttpload": {
             "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-fullscreen": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-document-viewer": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "com.r93535.im"
         }
     },
     "dependent_plugins": {
@@ -100,6 +121,9 @@
             "PACKAGE_NAME": "com.r93535.im"
         },
         "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "com.r93535.im"
         }
     }

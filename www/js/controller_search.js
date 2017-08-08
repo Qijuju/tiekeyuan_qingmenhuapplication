@@ -2,13 +2,13 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('search.controllers', [])
-  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao,$ionicLoading,$searchmessage) {
+  .controller('searchCtrl',function ($scope, $http, $state, $stateParams, $timeout,$ionicBackdrop,$rootScope,$mqtt,$search111,$ionicPopup,$search222,$searchdata,$api,$ionicActionSheet,$phonepluin,$searchdatadianji,$ionicHistory,$ToastUtils,$saveMessageContacts,$greendao,$pubionicloading,$searchmessage) {
      // document.getElementById("searchdata").value =1;
     $search111.getHistorymsg("person");
     $scope.$on('persons.history',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.historymsgs=$search111.getHistorymsgs();
           $scope.$broadcast('scroll.infiniteScrollComplete');
         });
@@ -69,22 +69,10 @@ angular.module('search.controllers', [])
         $scope.lastMsg=[];
         $scope.namess=[];
         $scope.messagess=[];
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         $search111.getHistorymsg("person");
       }else {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         $search111.search1111($scope.id,$scope.page,$scope.count,query);
 
         $greendao.qureyHistoryMsg("person",function (msgaaa) {
@@ -135,7 +123,7 @@ angular.module('search.controllers', [])
     $scope.$on('persons.update',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.personsren=$search111.getPersons().searchResult;
           if ($scope.personsren.length>=15){
             $scope.hasmore=true

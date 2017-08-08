@@ -14,6 +14,7 @@ import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -189,11 +190,13 @@ public class ThriftApiClient extends CordovaPlugin {
             try {
               //转换登录信息
               String loginJson = switchLoginUser(result);
+//              System.out.println("新登录用户信息"+loginJson);
               //登录成功 标示
               MqttRobot.setIsStarted(true);
               JSONObject newUserObj = new JSONObject(loginJson);
               String newuserID = newUserObj.getString("userID");//新登陆用户名
               String userID = getUserID();//旧用户名
+//              System.out.println("切换用户进来了吗?老用户"+userID+"====新用户"+newuserID);
               //若前后两次用户名不一致,清楚本地数据库数据库缓存
               if (userID != null && !(newuserID.equals(userID))) {
                 MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());

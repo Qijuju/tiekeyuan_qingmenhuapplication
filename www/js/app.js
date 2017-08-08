@@ -11,9 +11,34 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
   'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers','newnotification.controllers','work.controllers','portal.services','portal.controllers','sendfile.controllers','fountion.controllers'])
 
 /*'im.controllers', 'starter.services',*/
-  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
+  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$pubionicloading,$ToastUtils,$greendao) {
     $ionicPlatform.ready(function() {
       $api.init();
+      // $greendao.loadAllData('ChatListService',function (msg) {
+      //   var allNoRead=0;
+      //   if (msg.length>0){
+      //     for(var i=0;i<msg.length;i++){
+      //       allNoRead=allNoRead+parseInt(msg[i].count, 10);
+      //     }
+      //
+      //     // $ToastUtils.showToast($scope.allNoRead)
+      //   }
+      //   cordova.plugins.notification.badge.hasPermission(function (granted) {
+      //     alert("granted"+granted);
+      //   });
+      //   cordova.plugins.notification.badge.set(allNoRead,function (succ) {
+      //     alert("成功"+succ);
+      //   },function (err) {
+      //     alert("失败"+err);
+      //   });
+      //
+      // },function (err) {
+      //
+      // })
+        // cordova.plugins.notification.badge.increase(1, function (badge) {
+        //   // badge is now 11 (10 + 1)
+        //   alert("成功"+badge);
+        // });
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -59,11 +84,12 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
 
       } else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
     }, 501);
+
 
 
 

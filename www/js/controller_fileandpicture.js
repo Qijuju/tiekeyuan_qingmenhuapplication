@@ -13,7 +13,7 @@ angular.module('fileandpicture.controllers', [])
 
   })
 
-  .controller('personfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams,$ionicLoading,$timeout) {
+  .controller('personfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams,$pubionicloading,$timeout) {
 
     $scope.ssionid=$stateParams.sessionid;
 
@@ -71,13 +71,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.weekInit=false;
     $scope.openWeek=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.weekInit){
           $scope.weekInit=true
@@ -85,20 +79,14 @@ angular.module('fileandpicture.controllers', [])
           $scope.weekInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
     }
 
     $scope.monthInit=false;
     $scope.openMonth=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.monthInit){
           $scope.monthInit=true
@@ -106,7 +94,7 @@ angular.module('fileandpicture.controllers', [])
           $scope.monthInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
 
@@ -115,13 +103,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.longInit=false;
     $scope.openLong=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.longInit){
           $scope.longInit=true
@@ -129,7 +111,7 @@ angular.module('fileandpicture.controllers', [])
           $scope.longInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
 
@@ -167,7 +149,7 @@ angular.module('fileandpicture.controllers', [])
 
   })
 
-  .controller('groupfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams,$ionicLoading,$timeout) {
+  .controller('groupfileCtrl', function ($scope, $state,$ionicHistory,$greendao,$api,$stateParams,$pubionicloading,$timeout) {
 
     $scope.ssionid=$stateParams.sessionid;
 
@@ -224,13 +206,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.weekInit=false;
     $scope.openWeek=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.weekInit){
           $scope.weekInit=true
@@ -238,20 +214,14 @@ angular.module('fileandpicture.controllers', [])
           $scope.weekInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
     }
 
     $scope.monthInit=false;
     $scope.openMonth=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.monthInit){
           $scope.monthInit=true
@@ -259,7 +229,7 @@ angular.module('fileandpicture.controllers', [])
           $scope.monthInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
 
@@ -268,13 +238,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.longInit=false;
     $scope.openLong=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       $timeout(function () {
         if(!$scope.longInit){
           $scope.longInit=true
@@ -282,7 +246,7 @@ angular.module('fileandpicture.controllers', [])
           $scope.longInit=false;
 
         }
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
       },400)
 

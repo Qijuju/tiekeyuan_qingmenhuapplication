@@ -776,7 +776,7 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$search111',function ($api,$rootScope,$greendao,$ionicLoading,$timeout,$ToastUtils) {
+  .factory('$search111',function ($api,$rootScope,$greendao,$pubionicloading,$timeout,$ToastUtils) {
     var persons;
     var historymsg;
     return{
@@ -836,7 +836,7 @@ angular.module('contacts.services', [])
 
         },function (msg) {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           },5000);
           $rootScope.$broadcast('persons.update');
         });
@@ -966,7 +966,7 @@ angular.module('contacts.services', [])
     }
 
   })
-  .factory('$searchmessage',function ($greendao,$rootScope,$timeout,$ionicLoading,$ToastUtils) {
+  .factory('$searchmessage',function ($greendao,$rootScope,$timeout,$pubionicloading,$ToastUtils) {
     var messagesss;
     var messagenamess;
     return{
@@ -983,7 +983,7 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           },5000);
         })
       },

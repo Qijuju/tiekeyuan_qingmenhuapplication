@@ -3,7 +3,7 @@
  */
 angular.module('badge.controllers',[])
 
-  .controller('tabsCtrl', function ($scope,$greendao,$ionicLoading,$ToastUtils) {
+  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$ToastUtils) {
 
     $scope.allNoRead=0;
     $scope.badge=function () {
@@ -64,7 +64,7 @@ angular.module('badge.controllers',[])
     });
 
     $scope.onTabSelected=function () {
-      $ionicLoading.hide();
+      $pubionicloading.hide();
       $greendao.loadAllData('ChatListService',function (msg) {
         $scope.allNoRead=0;
         if (msg.length>0){

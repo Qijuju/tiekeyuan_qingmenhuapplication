@@ -5,7 +5,7 @@
  * Created by Administrator on 2017/5/11.
  */
 angular.module('fountion.controllers', [])
-  .controller('founctionCtrl', function ($mqtt, $scope, $ToastUtils, $greendao, $stateParams, $cordovaDevice, $chatarr, $ionicLoading, $state,$timeout,$location,$ionicPlatform,$ionicHistory) {
+  .controller('founctionCtrl', function ($mqtt, $scope, $ToastUtils, $greendao, $stateParams, $cordovaDevice, $chatarr, $state,$timeout,$location,$ionicPlatform,$ionicHistory) {
 
     $scope.$on('$ionicView.enter', function () {
       $mqtt.getUserInfo(function (msg) {

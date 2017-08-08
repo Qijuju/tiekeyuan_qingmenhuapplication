@@ -3,16 +3,10 @@
  */
 angular.module('localphone.controllers', [])
 
-  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$ionicLoading,$timeout,$greendao) {
+  .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$pubionicloading,$timeout,$greendao) {
 
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.goLocalSearch= function () {
       $state.go("searchlocal");
@@ -145,7 +139,7 @@ angular.module('localphone.controllers', [])
           }
 
         }
-          $ionicLoading.hide();
+          $pubionicloading.hide();
       });
       },function (err) {
 
@@ -188,7 +182,7 @@ angular.module('localphone.controllers', [])
       });
 
     }
-    
+
 
 // 点击按钮触发，或一些其他的触发条件
     $scope.tanchuang = function(phonenumber,name) {

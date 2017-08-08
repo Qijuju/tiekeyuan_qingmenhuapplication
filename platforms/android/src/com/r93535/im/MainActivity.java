@@ -34,6 +34,7 @@ import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -49,7 +50,9 @@ import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
+import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.PatchBean;
@@ -64,6 +67,7 @@ import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
+import com.tky.mqtt.services.ChatListService;
 import com.tky.mytinker.util.Utils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -77,8 +81,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener {
@@ -148,8 +154,33 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(UIUtils.getContext());
     //设置点击一次后消失（如果没有点击事件，则该方法无效。）
-    Notification notification = notificationCompat.build();
-    BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 100);
+    //从sharedpreferences取出badgecount值
+//    int badgeCount=0;
+    try{
+      Integer badgeCount = SPUtils.getInt("badgeCount",0);
+      System.out.println("后端取出存的count值22222"+badgeCount);
+      //从数据库获取未读数量
+      ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+      List<ChatList> chatLists=chatListService.loadAllData();
+      int count=0;
+      for (int i=0;i<chatLists.size();i++){
+        count += Integer.parseInt(chatLists.get(i).getCount()) ;
+      }
+      if(badgeCount != count){
+        badgeCount=count;
+      }
+      boolean success=ShortcutBadger.applyCount(MainActivity.this, badgeCount);
+      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
+      startService(
+              new Intent(MainActivity.this, BadgeIntentService.class).putExtra("badgeCount", badgeCount)
+      );
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+
+//    Notification notification = notificationCompat.build();
+//    BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
+
   }
 
   /**

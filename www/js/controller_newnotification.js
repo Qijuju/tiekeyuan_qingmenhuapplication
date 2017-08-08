@@ -4,7 +4,7 @@
 angular.module('newnotification.controllers', [])
 
 
-  .controller('newnotificationCtrl', function ($scope, $state,  $ionicLoading,$api, $timeout, $rootScope,$notify,$mqtt,$ionicScrollDelegate,$ionicSlideBoxDelegate) {
+  .controller('newnotificationCtrl', function ($scope, $state,  $pubionicloading,$api, $timeout, $rootScope,$notify,$mqtt,$ionicScrollDelegate,$ionicSlideBoxDelegate) {
 
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
@@ -229,7 +229,7 @@ angular.module('newnotification.controllers', [])
 
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $ionicLoading, $ToastUtils,$state,$ionicScrollDelegate) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils,$state,$ionicScrollDelegate) {
 
     $scope.notifyObj =$stateParams.obj.bean;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
@@ -341,18 +341,12 @@ angular.module('newnotification.controllers', [])
 
     //详情确认
     $scope.confirmDetail = function (id) {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
 
       //调用接口确认回复详情
       $timeout(function () {
         $api.setNotifyMsg(id,true,"","",function (suc) {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.notifyObj.IsReaded=true;
 
           $timeout(function () {
@@ -361,7 +355,7 @@ angular.module('newnotification.controllers', [])
           }, 100);
 
         },function (err) {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $ToastUtils.showToast("确认失败")
 
         })
@@ -401,18 +395,12 @@ angular.module('newnotification.controllers', [])
 
   //应用列表的详情
 
-  .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $ionicLoading, $timeout, $ionicHistory) {
+  .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $pubionicloading, $timeout, $ionicHistory) {
 
     $scope.hahaha = $stateParams.isfirm;
 
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
 
     $scope.ididididi = $stateParams.id;
@@ -440,7 +428,7 @@ angular.module('newnotification.controllers', [])
 
         $greendao.queryByConditions("SystemMsgService", function (msg) {
 
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.appmsg = msg;
 
         }, function (err) {

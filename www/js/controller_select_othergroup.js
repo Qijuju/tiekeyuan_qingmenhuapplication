@@ -3,14 +3,8 @@
  */
 angular.module('selectothergroup.controllers', [])
 
-  .controller('addNewPersonfifthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('addNewPersonfifthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
+    $pubionicloading.showloading('','Loading...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
 
@@ -54,7 +48,7 @@ angular.module('selectothergroup.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount7();
           //首先是对部门的操作
           if ($scope.count1 > 0) {
@@ -528,14 +522,8 @@ angular.module('selectothergroup.controllers', [])
 
 
   //对六级目录的操作
-  .controller('addNewPersonsixthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('addNewPersonsixthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
+    $pubionicloading.showloading('','Loading...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
@@ -579,7 +567,7 @@ angular.module('selectothergroup.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
 
           $scope.count1 = $contacts.getCount9();
           //对部门的操作
@@ -1074,15 +1062,9 @@ angular.module('selectothergroup.controllers', [])
 
   //七级界面创建群聊
 
-  .controller('addNewPersonseventhCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+  .controller('addNewPersonseventhCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -1129,7 +1111,7 @@ angular.module('selectothergroup.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
 
           $scope.count1 = $contacts.getCount11();
 
@@ -1635,15 +1617,9 @@ angular.module('selectothergroup.controllers', [])
 
   //八级界面的展示
 
-  .controller('addNewPersoneighthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$ionicLoading,$timeout) {
+  .controller('addNewPersoneighthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -1696,7 +1672,7 @@ angular.module('selectothergroup.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
 
           $scope.count1 = $contacts.getCount13();
           if ($scope.count1 > 0) {

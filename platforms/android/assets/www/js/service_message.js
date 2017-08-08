@@ -1062,6 +1062,12 @@ angular.module('message.services', [])
       save:function (key,value) {
         mqtt.save(key,value);
       },
+      saveInt:function (key,value) {
+        mqtt.saveInt(key,value);
+      },
+      getInt:function (key,success,error) {
+        mqtt.getInt(key,success,error);
+      },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);
       },

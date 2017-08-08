@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
-    <permission android:name="com.r93535.im.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="com.r93535.im.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
@@ -45,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:exported="false" android:name="com.r93535.im.BadgeIntentService" />
         <service android:exported="false" android:name="com.tky.mytinker.service.SampleResultService" />
         <service android:name="com.tky.im.service.IMService">
             <intent-filter android:priority="999">
@@ -88,53 +87,9 @@
         <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
         <uses-permission android:name="android.permission.WRITE_SETTINGS" />
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.PushService">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-            </intent-filter>
-        </service>
-        <service android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.DaemonService">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="com.r93535.im" />
-            </intent-filter>
-        </service>
-        <receiver android:enabled="true" android:name="cn.jpush.android.service.PushReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-                <category android:name="com.r93535.im" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-        <activity android:configChanges="orientation|keyboardHidden" android:exported="false" android:name="cn.jpush.android.ui.PushActivity" android:theme="@android:style/Theme.NoTitleBar">
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.r93535.im" />
-            </intent-filter>
-        </activity>
-        <activity android:configChanges="orientation|keyboardHidden" android:exported="false" android:name="cn.jpush.android.ui.PopWinActivity" android:theme="@style/MyDialogStyle">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.r93535.im" />
-            </intent-filter>
-        </activity>
-        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.DownloadService">
-        </service>
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
-        <meta-data android:name="JPUSH_APPKEY" android:value="466074b30b38240e62898a77" />
+        <provider android:authorities="com.r93535.im.DocumentViewerPlugin.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="de.sitewaerts.cordova.documentviewer.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/documentviewer_file_paths" />
+        </provider>
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />

@@ -139,17 +139,7 @@ public class IMMessageCallback implements MqttCallback {
             tip = "Audio".equals(messagetype) ? "【语音】" : tip;
             tip = "Vedio".equals(messagetype) ? "【小视频】" : tip;
             GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
-            if (fromUserId != null && !map.isFromMe()) {
-              if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
-                List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
-                if (groupChatsList.size() != 0) {
-                  String chatname = groupChatsList.get(0).getGroupName();
-                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
-                }
-              } else {
-                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
-              }
-            }
+
             //入库(MESSAGE和CHATLIST表)
             //消息转化完毕就入库
             int count = 0;
@@ -170,13 +160,13 @@ public class IMMessageCallback implements MqttCallback {
               try {
                 long stmill = formatter.parse(start).getTime();
                 long etmill = formatter.parse(end).getTime();
-                System.out.println("单聊时间：" + stmill + "/" + etmill);
+//                System.out.println("单聊时间：" + stmill + "/" + etmill);
                 /**
                  * 根据sessionid取出该对话的聊天列表
                  */
                 MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                 List<Messages> messagesList = messagesService.queryData("where sessionid =?", map.getSessionid());
-                System.out.println("查询聊天记录条数" + messagesList.size());
+//                System.out.println("查询聊天记录条数" + messagesList.size());
                 Messages messages = new Messages();
                 //取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将istime为true的数据的daytype置为"0"
                 if (messagesList.size() > 0) {
@@ -266,7 +256,7 @@ public class IMMessageCallback implements MqttCallback {
                   }
                 }
                 Messages lastmessages = messagesList.get(messagesList.size() - 1);
-                Log.i("最后一条消息的对话名称", lastmessages.getUsername());
+//                Log.i("最后一条消息的对话名称", lastmessages.getUsername());
                 //将对话最后一条入库到chat表
                 /**
                  * 1.先从数据库查询是否存在当前会话列表
@@ -306,7 +296,7 @@ public class IMMessageCallback implements MqttCallback {
                   chatList.setId(chatLists.get(0).getId());
                   if ("User".equals(lastmessages.getType())) {
                     chatList.setChatName(chatLists.get(0).getChatName());
-                    Log.i("you对话创建对话后台====", chatLists.get(0).getChatName());
+//                    Log.i("you对话创建对话后台====", chatLists.get(0).getChatName());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
                     GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
                     List<GroupChats> groupChatsList = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
@@ -321,7 +311,7 @@ public class IMMessageCallback implements MqttCallback {
                 } else {
                   chatList.setId(lastmessages.getSessionid());
                   if ("User".equals(lastmessages.getType())) {
-                    Log.i("无对话创建对话后台====", lastmessages.getUsername());
+//                    Log.i("无对话创建对话后台====", lastmessages.getUsername());
                     chatList.setChatName(lastmessages.getUsername());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
                     GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
@@ -350,6 +340,18 @@ public class IMMessageCallback implements MqttCallback {
             String json = GsonUtils.toJson(map, MessageBean.class);
             //将消息广播出去
             IMBroadOper.broadArrivedMsg(topic, msg.getQos(), json);
+            if (fromUserId != null && !map.isFromMe()) {
+              if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
+                List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
+                if (groupChatsList.size() != 0) {
+                  String chatname = groupChatsList.get(0).getGroupName();
+                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
+                }
+              } else {
+                System.out.println("是不是经常进来");
+                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
+              }
+            }
           }
         });
       } else if (bean != null && bean instanceof EventMessageBean) {
@@ -430,7 +432,7 @@ public class IMMessageCallback implements MqttCallback {
 
         long stmill = formatter.parse(start).getTime();
         long etmill = formatter.parse(end).getTime();
-        System.out.println("群聊时间：" + stmill + "/" + etmill);
+//        System.out.println("群聊时间：" + stmill + "/" + etmill);
         //根据sessionid取出该对话的聊天列表
         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
         List<Messages> messagesList = messagesService.queryData("where sessionid =?", eventBean.getSessionid());

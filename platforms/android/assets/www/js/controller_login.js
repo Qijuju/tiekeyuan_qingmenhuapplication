@@ -7,9 +7,10 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao,$window) {
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading,$timeout, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao,$window) {
     /*document.getElementById("loginpic").style.height=(window.screen.height)+'px';
      document.getElementById("loginpic").style.width=(window.screen.width)+'px';*/
+
     $mqtt.save('loginpage', "passwordlogin");
 
     $mqtt.setLogin(false);
@@ -49,20 +50,21 @@ angular.module('login.controllers', [])
       }
     });
     //监听键盘弹起事件，将整体布局上移
-    var tKeyH = $window.innerHeight;;
-    window.addEventListener('native.keyboardshow',function (e){
-      $scope.intervalH=(tKeyH - 305 -e.keyboardHeight);//弹出的bottom=(屏幕的高度-键盘的高度-div的高度:高度为累加和banner+用户名高度+密码高度)/2
-      alert("屏幕的高度"+$scope.intervalH);
-      if($scope.intervalH <0){
-        document.getElementById("tHeight").style.bottom = 41 +'px';
-      }
-      return ;
-    });
+    // var tKeyH = $window.innerHeight;;
+    // window.addEventListener('native.keyboardshow',function (e){
+    //   $scope.intervalH=(tKeyH - 305 -e.keyboardHeight);//弹出的bottom=(屏幕的高度-键盘的高度-div的高度:高度为累加和banner+用户名高度+密码高度)/2
+    //   // alert("屏幕的高度"+$scope.intervalH);
+    //   if($scope.intervalH <0){
+    //     document.getElementById("tHeight").style.bottom = 41 +'px';
+    //   }
+    //   return ;
+    // });
+
 
     //监听键盘关闭事件，将bottom设置为0
-    window.addEventListener('native.keyboardhide',function (e){
-      document.getElementById("tHeight").style.bottom = 0 +'px';
-    });
+    // window.addEventListener('native.keyboardhide',function (e){
+    //   document.getElementById("tHeight").style.bottom = 0 +'px';
+    // });
     //保存密码的方法
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
@@ -100,33 +102,32 @@ angular.module('login.controllers', [])
           });
           confirmPopup.then(function (isConfirm) {
             if (isConfirm) {
-              $ionicLoading.show({
-                template: '登录中...'
-              });
+              $pubionicloading.showloading('','登录中...');
+              // $ionicLoading.show({
+              //   template: '登录中...'
+              // });
               if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
               }
             } else {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('login');
             }
           });
         } else {
-          $ionicLoading.show({
-            template: '登录中...'
-          });
+          $pubionicloading.showloading('','登录中...');
           if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
             $api.activeUser(message.userID, function (message) {
               loginM();
             }, function (message) {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $ToastUtils.showToast(message);
             });
           } else {
@@ -137,7 +138,7 @@ angular.module('login.controllers', [])
       }, function (message) {
         $state.go('login');
         $ToastUtils.showToast(message);
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         // $state.go('tab.message');
       });
 
@@ -153,7 +154,7 @@ angular.module('login.controllers', [])
 
         });
         $scope.names = [];
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         //调用保存用户名方法
         $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
 
@@ -177,14 +178,14 @@ angular.module('login.controllers', [])
             $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $ToastUtils.showToast(err, function (success) {
             }, function (err) {
             });
           });
         }, function (err) {
           $ToastUtils.showToast(message);
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         });
       }, function (err) {
       });
@@ -252,7 +253,7 @@ angular.module('login.controllers', [])
     };
   })
 
-  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
@@ -408,18 +409,19 @@ angular.module('login.controllers', [])
             });
             confirmPopup.then(function (isConfirm) {
               if (isConfirm) {
-                $ionicLoading.show({
-                  content: 'Loading',
-                  animation: 'fade-in',
-                  showBackdrop: false,
-                  maxWidth: 100,
-                  showDelay: 0
-                });
+                $pubionicloading.showloading('','Loading...');
+                // $ionicLoading.show({
+                //   content: 'Loading',
+                //   animation: 'fade-in',
+                //   showBackdrop: false,
+                //   maxWidth: 100,
+                //   showDelay: 0
+                // });
                 if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $ToastUtils.showToast(message);
                     $state.go('login');
                   });
@@ -427,23 +429,17 @@ angular.module('login.controllers', [])
                   loginM();
                 }
               } else {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $state.go('login');
               }
             });
           } else {
-            $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: false,
-              maxWidth: 100,
-              showDelay: 0
-            });
+            $pubionicloading.showloading('','Loading...');
             if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
               $api.activeUser(message.userID, function (message) {
                 loginM();
               }, function (message) {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $ToastUtils.showToast(message);
                 $state.go('login');
               });
@@ -452,7 +448,7 @@ angular.module('login.controllers', [])
             }
           }
         }, function (message) {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $ToastUtils.showToast(message);
           $state.go('login');
         });
@@ -505,28 +501,28 @@ angular.module('login.controllers', [])
               $mqtt.save('pwdgesture', pwdgesturea);
               $mqtt.save('namegesture', namegesturea);
               $state.go('tab.message');
-              $ionicLoading.hide();
+              $pubionicloading.hide();
             });
 
           }, function (err) {
-            $ionicLoading.hide()
+            $pubionicloading.hide()
             $ToastUtils.showToast(err, function (success) {
-              $ionicLoading.hide()
+              $pubionicloading.hide()
               $state.go('login');
             }, function (err) {
               $ToastUtils.showToast(err);
-              $ionicLoading.hide()
+              $pubionicloading.hide()
               $state.go('login');
             });
           });
         }, function (err) {
           $ToastUtils.showToast(err);
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('login');
         });
       }, function (err) {
         $ToastUtils.showToast(err);
-        $ionicLoading.hide()
+        $pubionicloading.hide()
         $state.go('login');
       });
     }
@@ -539,7 +535,7 @@ angular.module('login.controllers', [])
       });
     };
   })
-  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
+  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
 
     var password = "";
     var count = 6;
@@ -631,7 +627,7 @@ angular.module('login.controllers', [])
                       $api.activeUser(message.userID, function (message) {
                         loginM();
                       }, function (message) {
-                        $ionicLoading.hide();
+                        $pubionicloading.hide();
                         $ToastUtils.showToast(message);
                       });
                     } else {
@@ -648,7 +644,7 @@ angular.module('login.controllers', [])
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $ToastUtils.showToast(message);
                   });
                 } else {
@@ -656,21 +652,15 @@ angular.module('login.controllers', [])
                 }
               }
             }, function (message) {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('login');
               $ToastUtils.showToast(message);
             });
 
             secondlock.drawStatusPoint('right')
-            $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: false,
-              maxWidth: 100,
-              showDelay: 0
-            });
+            $pubionicloading.showloading('','Loading...');
             $timeout(function () {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('tab.message');
             });
             $timeout(function () {
@@ -731,19 +721,19 @@ angular.module('login.controllers', [])
                   if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                     $api.activeUser(message.userID, function (message) {
                       loginM();
-                      $ionicLoading.hide();
+                      $pubionicloading.hide();
                       $state.go('tab.message');
                     }, function (message) {
-                      $ionicLoading.hide();
+                      $pubionicloading.hide();
                       $ToastUtils.showToast(message);
                     });
                   } else {
                     loginM();
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $state.go('tab.message');
                   }
                 } else {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $state.go('login');
                 }
               });
@@ -751,20 +741,20 @@ angular.module('login.controllers', [])
               if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $state.go('tab.message');
                 }, function (message) {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $state.go('tab.message');
               }
             }
           }, function (message) {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $state.go('login');
             $ToastUtils.showToast(message);
 
@@ -772,13 +762,7 @@ angular.module('login.controllers', [])
 
           firstlock.drawStatusPoint('right')
           // $ToastUtils.showToast("输入密码正确,logining...")
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
+          $pubionicloading.showloading('','Loading...');
 
           $timeout(function () {
             firstlock.reset();
@@ -811,8 +795,7 @@ angular.module('login.controllers', [])
           // alert("bbbbbb:"+count);
           $timeout(function () {
             firstlock.reset();
-            metho
-            d();
+            method();
           }, 300);
         }
       }

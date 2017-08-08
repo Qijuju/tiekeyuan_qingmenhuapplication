@@ -93,6 +93,8 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "phonegap-plugin-barcodescanner/im366077-barcodescanner.gradle"
+apply from: "cordova-plugin-badge/im-badge.gradle"
+apply from: "cordova-plugin-browsertab/im-BrowserTab.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -300,8 +302,10 @@ android {
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     // SUB-PROJECT DEPENDENCIES START
-    debugCompile project(path: 'CordovaLib', configuration: 'debug')
-    releaseCompile project(path: 'CordovaLib', configuration: 'release')
+    debugCompile project(path: "CordovaLib", configuration: "debug")
+    releaseCompile project(path: "CordovaLib", configuration: "release")
+    compile "com.android.support:support-v4:+"
+    compile "com.android.support:customtabs:23.3.0"
     // SUB-PROJECT DEPENDENCIES END
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:appcompat-v7:23.0.1'
@@ -324,6 +328,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+//    compile project(':ShortcutBadger')//添加角标jar(为了适配小米手机)
 }
 
 def promptForReleaseKeyPassword() {

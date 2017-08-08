@@ -105,7 +105,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
+  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
     // alert("网络状态"+$rootScope.isNetConnect);
 
     $scope.$on('netstatus.update', function (event) {
@@ -135,7 +135,7 @@ angular.module('contacts.controllers', [])
         }
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -145,18 +145,12 @@ angular.module('contacts.controllers', [])
 
     $scope.goLocalContact=function () {
 
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
 
       $greendao.loadAllData('LocalPhoneService',function (msg) {
 
         if(msg.length>0){
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('localContacts');
         }else {
           localContact.getContact();
@@ -172,7 +166,7 @@ angular.module('contacts.controllers', [])
 
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('localContacts');
         });
       })
@@ -183,7 +177,7 @@ angular.module('contacts.controllers', [])
 
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $ToastUtils.showToast("请求数据异常")
           $greendao.deleteAllData('LocalPhoneService',function () {
 
@@ -196,13 +190,7 @@ angular.module('contacts.controllers', [])
 
     });
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
@@ -239,7 +227,7 @@ angular.module('contacts.controllers', [])
 
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         $timeout(function () {
           $scope.depts = $contacts.getRootDept();
         });
@@ -354,7 +342,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
     $scope.contactId = $stateParams.contactId;//传过来的id；
 
@@ -363,20 +351,14 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
 
     },501)
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -389,7 +371,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
 
           $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
 
@@ -493,15 +475,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -517,7 +493,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -536,7 +512,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.parentID = $contacts.getDeptThirdInfo().deptID;
           $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
 
@@ -648,15 +624,9 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -673,7 +643,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -686,7 +656,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount5();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptForthInfo().deptList;
@@ -811,15 +781,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -835,7 +799,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -848,7 +812,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount7();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptFifthInfo().deptList;
@@ -986,14 +950,8 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
+    $pubionicloading.showloading('','Loading...');
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -1010,7 +968,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -1027,7 +985,7 @@ angular.module('contacts.controllers', [])
 
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount9();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptSixthInfo().deptList;
@@ -1176,15 +1134,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.nihao = [];
     $scope.buhao = [];
@@ -1202,7 +1154,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -1219,7 +1171,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount11();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptSeventhInfo().deptList;
@@ -1375,15 +1327,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$location,$ionicPlatform) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$location,$ionicPlatform) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
 
     $scope.eightDept = [];
@@ -1404,7 +1350,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -1418,7 +1364,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount13();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptEighthInfo().deptList;
@@ -1579,16 +1525,10 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao,$ionicPlatform) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$pubionicloading,$api,$greendao,$ionicPlatform) {
 
     // Setup the loader
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
     // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
 
 
@@ -1719,7 +1659,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('personDetail.update', function (event) {
       $scope.$apply(function () {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $scope.persondsfs = $contacts.getPersonDetail();
             if ($scope.persondsfs.UserName.length > 2) {
               $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
@@ -1740,7 +1680,7 @@ angular.module('contacts.controllers', [])
     $ionicPlatform.registerBackButtonAction(function (e) {
 
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+      $pubionicloading.hide();
         e.preventDefault();
       return false;
     },501)
@@ -1877,14 +1817,8 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$ionicLoading,$timeout) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$pubionicloading,$timeout) {
+    $pubionicloading.showloading('','Loading...');
 
 
 
@@ -1916,7 +1850,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.grouplist=$group.getAllGroup();
           $scope.ismycreat=0;
 
@@ -2021,14 +1955,8 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$pubionicloading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+    $pubionicloading.showloading('','Loading...');
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -2130,7 +2058,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.contactsListatten=$myattentionser.getAttentionaaList();
         });
       })
@@ -2139,13 +2067,7 @@ angular.module('contacts.controllers', [])
 
     //取消关注
     $scope.removeattention = function (id) {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
       if ($scope.myid==id){
         $ToastUtils.showToast("无法对自己进行该项操作")
       }else {

@@ -205,6 +205,28 @@ public class MqttChat extends CordovaPlugin {
   }
 
   /**
+   * 保存数据
+   *
+   * @param args
+   * @param callbackContext
+   */
+  public void saveInt(final JSONArray args, final CallbackContext callbackContext) {
+    if (args != null) {
+      try {
+        String key = args.getString(0);
+        int value = args.getInt(1);
+        SPUtils.save(key,value);
+        setResult(key + "#" + value, PluginResult.Status.OK, callbackContext);
+      } catch (JSONException e) {
+        setResult("JSONError", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } else {
+      setResult("NULLPointerException", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+  /**
    * 保存登录的用户名
    *
    * @param args
@@ -241,6 +263,25 @@ public class MqttChat extends CordovaPlugin {
         String key = args.getString(0);
         if (key != null) {
           setResult(SPUtils.getString(key, ""), PluginResult.Status.OK, callbackContext);
+        } else {
+          setResult("key is null", PluginResult.Status.ERROR, callbackContext);
+        }
+      } catch (JSONException e) {
+        setResult("JSONError", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } else {
+      setResult("args is null", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+
+  public void getInt(final JSONArray args, final CallbackContext callbackContext) {
+    if (args != null) {
+      try {
+        String key = args.getString(0);
+        if (key != null) {
+          setResult(SPUtils.getInt(key, 0), PluginResult.Status.OK, callbackContext);
         } else {
           setResult("key is null", PluginResult.Status.ERROR, callbackContext);
         }

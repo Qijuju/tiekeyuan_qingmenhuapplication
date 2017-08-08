@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('message.controllers', [])
-  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$ionicLoading,$ionicPlatform,$location,$cordovaClipboard,$okhttp) {
+  .controller('MessageDetailCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout, $rootScope, $stateParams,$chatarr,$ToastUtils, $cordovaCamera,$api,$searchdata,$phonepluin,$ScalePhoto,$ionicHistory,$pubionicloading,$ionicPlatform,$location,$cordovaClipboard,$okhttp) {
 
     /**
      * 长按事件
@@ -407,7 +407,7 @@ angular.module('message.controllers', [])
         });
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -429,6 +429,23 @@ angular.module('message.controllers', [])
     $scope.$on('$ionicView.enter', function () {
       $timeout(function () {
         viewScroll.scrollBottom();
+        //进入聊天界面就将该聊天的count值给减掉
+        $greendao.queryData('ChatListService','where id =?',$scope.userId,function (succ) {
+          var count=succ[0].count;//取出该对话的count值
+          //取出保存的badgecount值并减去
+          $mqtt.getInt('badgeCount',function (newcount) {
+            var lastcount=newcount-count;
+            cordova.plugins.notification.badge.set(lastcount,function (succ) {
+              // alert("成功"+succ);
+              $mqtt.saveInt('badgeCount',lastcount);
+            },function (err) {
+              // alert("失败"+err);
+            });
+            // alert("聊天详情界面取出存储的count值"+lastcount);
+          },function (err) {
+          });
+        },function (err) {
+        })
       }, 100);
     });
 
@@ -467,16 +484,10 @@ angular.module('message.controllers', [])
 
       $scope.showLoadingToast = function () {
         // Setup the loader
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 10,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
       }
       $scope.hideLoadingToast = function () {
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
 
 
@@ -941,6 +952,24 @@ angular.module('message.controllers', [])
           },function (err) {
 
           });
+
+
+        $greendao.loadAllData('ChatListService',function (msg) {
+          $scope.allNoRead=0;
+          if (msg.length>0){
+            for(var i=0;i<msg.length;i++){
+              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+            }
+            cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
+              // alert("刷新监听成功"+succ);
+              $mqtt.saveInt("badgeCount",$scope.allNoRead);
+            },function (err) {
+              // alert("失败"+err);
+            });
+          }
+        },function (err) {
+
+        })
       })
     });
 
@@ -1586,7 +1615,7 @@ angular.module('message.controllers', [])
               $scope.rate = 0;
             }else if($scope.type === "rateChange"){
               $scope.rate=succ.rate;
-              // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+              // $ToastUtils.showToast("rate=====>"+$scope.rate);
             }else if($scope.type === "error"){
               $scope.error=succ.error;
             }
@@ -1706,7 +1735,7 @@ angular.module('message.controllers', [])
             $scope.islisten = 'false';
             $scope.isshowgPng = 'true';
             $scope.audioid = '';
-            $ToastUtils.showToast(err, null, null);
+            $ToastUtils.showToast(err);
           });
         });
 
@@ -2032,7 +2061,7 @@ angular.module('message.controllers', [])
 
 
 
-  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$ionicLoading,$cordovaClipboard,$okhttp) {
+  .controller('MessageGroupCtrl', function ($scope, $state, $http, $ionicScrollDelegate, $mqtt, $ionicActionSheet, $greendao, $timeout,$stateParams,$rootScope,$chatarr,$ToastUtils,$ionicHistory,$ScalePhoto,$api,$location,$ionicPlatform,$pubionicloading,$cordovaClipboard,$okhttp) {
 
     /**
      * 长按事件
@@ -2049,9 +2078,9 @@ angular.module('message.controllers', [])
               .copy(msgSingle.message)
               .then(function () {
                 // success
-                $ToastUtils.showToast("复制成功", null, null);
+                $ToastUtils.showToast("复制成功");
               }, function () {
-                $ToastUtils.showToast("复制失败", null, null);
+                $ToastUtils.showToast("复制失败");
                 // error
               });
           }
@@ -2403,7 +2432,7 @@ angular.module('message.controllers', [])
         });
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -3429,7 +3458,7 @@ angular.module('message.controllers', [])
           $scope.grouprate = 0;
         }else if($scope.type === "rateChange"){
           $scope.grouprate=succ.rate;
-          // $ToastUtils.showToast("rate=====>"+$scope.rate,null,null);
+          // $ToastUtils.showToast("rate=====>"+$scope.rate);
         }else if($scope.type === "error"){
           $scope.error=succ.error;
         }
@@ -3550,7 +3579,7 @@ angular.module('message.controllers', [])
           $scope.isGrouplisten='false';
           $scope.isshowgroupPng='true';
           $scope.groupaudioid='';
-          $ToastUtils.showToast(err,null,null);
+          $ToastUtils.showToast(err);
         });
 
       }else{
@@ -3775,7 +3804,7 @@ angular.module('message.controllers', [])
         },function (err) {
         });
       },function (err) {
-        $ToastUtils.showToast("参数错误！", null, null);
+        $ToastUtils.showToast("参数错误！");
       });
 
     };
@@ -3783,7 +3812,70 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$ionicLoading,$ionicPopup,$cordovaFileOpener2) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2) {
+    //spinner dailog Loading
+    // window.plugins.spinnerDialog.show("标题","loading.....", true, {overlayOpacity: 0.35,  textColorRed: 1, textColorGreen: 1, textColorBlue: 1});
+
+
+    //pdf阅读器(test failure)
+    // document.addEventListener('deviceready', function () {
+    //   // cordova.plugins.SitewaertsDocumentViewer is now available
+    //   file:///android_asset/www/plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js
+    //     var url = "file:///android_asset/www/www/file1.pdf";//文件的路径
+    //   var options = {
+    //     title: 'MY PDF'
+    //   };
+    //   cordova.plugins.SitewaertsDocumentViewer.canViewDocument(url, 'application/pdf', options,function onPossible(){
+    //     window.console.log('document can be shown');
+    //     //e.g. track document usage
+    //   }, function onMissingApp(appId, installer)
+    //   {
+    //     if(confirm("Do you want to install the free PDF Viewer App "
+    //         + appId + " for Android?"))
+    //     {
+    //       installer();
+    //     }
+    //   }, function onImpossible(){
+    //     window.console.log('document cannot be shown');
+    //     //e.g. track document usage
+    //   } , function onError(error){
+    //     window.console.log(error);
+    //     alert("Sorry! Cannot show document.");
+    //   });
+    //
+    // },false);
+
+
+    //toast plugin
+    // $ToastUtils.showToast("哈哈哈哈");
+
+    //screen orientation
+    // cordova.plugins.screenorientation.lock('portrait').then(function(obj) {
+    //   console.log(obj);
+    // }, function(obj) {
+    //   console.log(obj);
+    // });
+    // cordova.plugins.screenorientation.unlock();
+
+
+    //badge number
+    // document.addEventListener('deviceready', function () {
+    //   // cordova.plugins.notification.badge is now available
+    //   cordova.plugins.notification.badge.hasPermission(function (granted) {
+    //     alert("granted"+granted);
+    //   });
+    //   cordova.plugins.notification.badge.set(10,function (succ) {
+    //     alert("成功"+succ);
+    //   },function (err) {
+    //     alert("失败"+err);
+    //   });
+    //   // cordova.plugins.notification.badge.increase(1, function (badge) {
+    //   //   // badge is now 11 (10 + 1)
+    //   //
+    //   // });
+    //
+    // }, false);
+
 
     $scope.isNetConnectNow = $mqtt.getIMStatus();
 
@@ -3798,7 +3890,7 @@ angular.module('message.controllers', [])
       $scope.UserID = msg.userID;
 
       $mqtt.save('zuinewID',  $scope.UserID);
-      $scope.mymypersonname = msg.userName
+      $scope.mymypersonname = msg.userName;
       $mqtt.save('userNamea', $scope.mymypersonname);
       $greendao.queryData('GesturePwdService','where id=?',$scope.UserID ,function (data) {
         if(data[0].pwd==null||data[0].pwd==undefined||data[0].pwd.length==0){
@@ -3816,7 +3908,7 @@ angular.module('message.controllers', [])
     });
 
     //登录成功后第一件事：检测升级
-    $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
+    $api.checkUpdate($ionicPopup, $pubionicloading, $cordovaFileOpener2, $mqtt);
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 
@@ -3837,6 +3929,24 @@ angular.module('message.controllers', [])
       }, function (msg) {
       });
 
+      //进入消息主界面通过调用badge插件重新设置badgeCount(以防万一)
+      $greendao.loadAllData('ChatListService',function (msg) {
+        $scope.allNoRead=0;
+        if (msg.length>0){
+          for(var i=0;i<msg.length;i++){
+            $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+          }
+          cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
+            // alert("成功"+succ);
+            $mqtt.saveInt("badgeCount",$scope.allNoRead);
+          },function (err) {
+            // alert("失败"+err);
+          });
+        }
+      },function (err) {
+
+      })
+
     });
 
 
@@ -3849,9 +3959,7 @@ angular.module('message.controllers', [])
             return;
           }
         },function (err) {
-          $ToastUtils.showToast(err, function (success) {
-          },function (err) {
-          })
+          $ToastUtils.showToast(err)
         });
       }, function (msg) {
       });
@@ -3872,7 +3980,7 @@ angular.module('message.controllers', [])
         }
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -3887,7 +3995,7 @@ angular.module('message.controllers', [])
     },function (err) {
       // alert("进来了吗？no");
       $rootScope.isNetConnect='false';
-      $ToastUtils.showToast("当前网络不可用",null,null);
+      $ToastUtils.showToast("当前网络不可用");
     });
 
 
@@ -4367,6 +4475,23 @@ angular.module('message.controllers', [])
 
         });
         $timeout(function () {
+          //当检测到消息时，从数据库取出角标进行设置并展示到桌面应用角标上
+          $greendao.loadAllData('ChatListService',function (msg) {
+            $scope.allNoRead=0;
+            if (msg.length>0){
+              for(var i=0;i<msg.length;i++){
+                $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+              }
+              cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
+                // alert("主界面消息刷新成功"+succ);
+                $mqtt.saveInt("badgeCount",$scope.allNoRead);
+              },function (err) {
+                // alert("失败"+err);
+              });
+            }
+          },function (err) {
+
+          })
           viewScroll.scrollBottom();
         }, 100);
       })
@@ -5063,15 +5188,9 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$ionicLoading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
+  .controller('groupSettingCtrl', function ($scope, $state, $stateParams,$ionicHistory,$ToastUtils,$api,$greendao,$group,$pubionicloading,$timeout,$ionicActionSheet,$chatarr,$GridPhoto,$location,$ionicPlatform) {
     //群设置
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
 
     $scope.groupId = $stateParams.groupid;
     $scope.groupType = $stateParams.grouptype;
@@ -5086,7 +5205,7 @@ angular.module('message.controllers', [])
         });
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -5103,7 +5222,7 @@ angular.module('message.controllers', [])
     $scope.$on('groupdetail.update', function (event) {
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.groupName=$group.getGroupDetail().groupName;
 
         });
@@ -5136,17 +5255,10 @@ angular.module('message.controllers', [])
     //解散群
     $scope.dissolveGroup=function (aa) {
 
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
-
+      $pubionicloading.showloading('','Loading...');
       $api.removeGroup($scope.groupId,function (msg) {
 
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         $greendao.deleteDataByArg('ChatListService',$scope.groupId,function (msg) {
 
           $state.go('tab.message',{
@@ -5161,7 +5273,7 @@ angular.module('message.controllers', [])
 
       },function (err) {
         $ToastUtils.showToast('解散群失败')
-        $ionicLoading.hide();
+        $pubionicloading.hide();
 
 
       });
@@ -5442,14 +5554,8 @@ angular.module('message.controllers', [])
 
   })
 
-  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$rootScope,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$ionicLoading,$greendao) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('sendGelocationCtrl',function ($scope,$state,$ToastUtils,$rootScope,$cordovaGeolocation,$stateParams,$mqtt,$ionicNavBarDelegate,$timeout,$pubionicloading,$greendao) {
+    $pubionicloading.showloading('','Loading...');
     document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
     $scope.topic=$stateParams.topic;
@@ -5492,7 +5598,7 @@ angular.module('message.controllers', [])
 
       $timeout(function () {
         // $ToastUtils.showToast("请检查网！");
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       },7000);
 
       // // 根据坐标得到地址描述
@@ -5501,7 +5607,7 @@ angular.module('message.controllers', [])
         if (result){
           $scope.$apply(function () {
             $timeout(function () {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $scope.weizhiss=result.address;
             });
           });
@@ -5509,13 +5615,7 @@ angular.module('message.controllers', [])
       });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         lat=e.point.lat;
         long=e.point.lng;
         // 创建地理编码实例
@@ -5523,7 +5623,7 @@ angular.module('message.controllers', [])
 
         $timeout(function () {
           // $ToastUtils.showToast("请检查网络！")
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         },7000);
 
         // // 根据坐标得到地址描述
@@ -5532,7 +5632,7 @@ angular.module('message.controllers', [])
           if (result){
             $scope.$apply(function () {
               $timeout(function () {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $scope.weizhiss=result.address;
               });
             });
@@ -5574,18 +5674,12 @@ angular.module('message.controllers', [])
 
     //发送
     $scope.sendgeloction=function () {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','Loading...');
 
         $ionicNavBarDelegate.showBar(false);
       var url = new Date().getTime()+"";
       $timeout(function () {
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         document.getElementById("container").style.height=(window.screen.height-95)+'px';
       },800);
 
@@ -5682,7 +5776,7 @@ angular.module('message.controllers', [])
     });
   })
 
-  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$ionicLoading,$timeout) {
+  .controller('mapdetailCtrl',function ($scope,$state,$ToastUtils,$cordovaGeolocation,$stateParams,$pubionicloading,$timeout) {
     $scope.latitude=$stateParams.latitude;
     $scope.longitude=$stateParams.longitude;
     $scope.userId=$stateParams.id;//对方用户id
@@ -5691,13 +5785,7 @@ angular.module('message.controllers', [])
     // alert("地图详情界面的grouptype"+$stateParams.grouptype);
     $scope.ismygroup=$stateParams.ismygroup;//是否为自建群
     // alert("地图界面详情信息"+$scope.userId+$scope.userName+$scope.grouptype);
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','Loading...');
     document.getElementById("container").style.height=(window.screen.height-140)+'px';
     //取出聊天界面带过来的id和ssid
 
@@ -5724,14 +5812,14 @@ angular.module('message.controllers', [])
       var myGeo = new BMap.Geocoder();
       $timeout(function () {
         // $ToastUtils.showToast("网络超时")
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       },7000);
       // // 根据坐标得到地址描述
       myGeo.getLocation(new BMap.Point(long, lat), function(result){
         if (result){
           $scope.$apply(function () {
             $timeout(function () {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $scope.weizhiss=result.address;
             });
           });
@@ -5739,27 +5827,21 @@ angular.module('message.controllers', [])
       });
       marker.addEventListener("dragend", function(e){           //116.341749   39.959682
         // alert("当前位置：" + e.point.lng + ", " + e.point.lat);// 116.341951   39.959632
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','Loading...');
         lat=e.point.lat;
         long=e.point.lng;
         // 创建地理编码实例
         var myGeo = new BMap.Geocoder();
         $timeout(function () {
           // $ToastUtils.showToast("网络超时")
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         },7000);
         // // 根据坐标得到地址描述
         myGeo.getLocation(new BMap.Point(long, lat), function(result){
           if (result){
             $scope.$apply(function () {
               $timeout(function () {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $scope.weizhiss=result.address;
               });
             });

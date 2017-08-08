@@ -196,7 +196,7 @@ angular.module('common.services', [])
       getWelcomePic: function (picUserID, picSize, success, error) {
         api.getWelcomePic(picUserID, picSize, success, error);
       },
-      checkUpdate:function ($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt) {
+      checkUpdate:function ($ionicPopup, $cordovaFileOpener2, $mqtt) {
 
 
           //从网络请求数据  获取版本号和各种信息
@@ -356,13 +356,31 @@ angular.module('common.services', [])
   })
 
   .factory('$ToastUtils', function () {//系统接口。
-    var toast_utils;
-    document.addEventListener('deviceready',function () {
-      toast_utils = cordova.require('ToastUtils.toast_utils');
-    });
+    /*原生提供的插件调用方法*/
+    // var toast_utils;
+    // document.addEventListener('deviceready',function () {
+    //   toast_utils = cordova.require('ToastUtils.toast_utils');
+    // });
     return{
-      showToast:function(content,success, error) {
-        toast_utils.showToast(content,success,error);
+      // showToast:function(content,success, error) {
+      //   toast_utils.showToast(content,success,error);
+      // }
+      /**cordova-totast 插件提供公共方法**/
+      showToast:function (messgaeText) {
+        window.plugins.toast.showWithOptions({
+          message: messgaeText,
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+            opacity: 1, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+            backgroundColor: '#808080', // make sure you use #RRGGBB. Default #333333
+            textColor: '#FFFFFF', // Ditto. Default #FFFFFF
+            textSize: 10, // Default is approx. 13.
+            cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+            horizontalPadding: 20, // iOS default 16, Android default 50
+            verticalPadding: 16 // iOS default 12, Android default 30
+          }
+        });
       }
     }
   })
@@ -460,4 +478,61 @@ angular.module('common.services', [])
     }
 
   })
+
+  .factory('$judgeAOrI',function () {
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    // alert('是否是Android：'+isAndroid);
+    // alert('是否是iOS：'+isiOS);
+      return{
+        judgeAndroid:function () {
+          return isAndroid;
+        },
+        judgeIos:function () {
+          return isiOS;
+        }
+      }
+  })
+
+  .factory('$pubionicloading',function ($judgeAOrI) {
+    return{
+      showloading:function (title,content) {
+        // alert("进来了吗"+$judgeAOrI.judgeAndroid());
+        if($judgeAOrI.judgeAndroid()){
+          // alert("aaaa");
+          window.plugins.spinnerDialog.show(title,content, true);
+        }else if($judgeAOrI.judgeIos()){
+          window.plugins.spinnerDialog.show(title,content, true, {overlayOpacity: 0.35,  textColorRed: 1, textColorGreen: 1, textColorBlue: 1});
+        }
+      },
+      hide:function () {
+        window.plugins.spinnerDialog.hide();
+      }
+    }
+})
+  .factory('$BadgeCount',function ($greendao,$scope,$mqtt) {
+    return{
+      getBadgeCount:function () {
+        $greendao.loadAllData('ChatListService',function (msg) {
+          $scope.allNoRead=0;
+          if (msg.length>0){
+            for(var i=0;i<msg.length;i++){
+              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+            }
+            cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
+              alert("刷新监听成功"+succ);
+              $mqtt.saveInt("badgeCount",$scope.allNoRead);
+            },function (err) {
+              alert("失败"+err);
+            });
+          }
+        },function (err) {
+
+        })
+      }
+    }
+  })
+
+
 
