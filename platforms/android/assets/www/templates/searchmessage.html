@@ -1,56 +1,64 @@
+
+
+
 <ion-view  view-title="搜索">
   <ion-content overflow-scroll="false" on-drag="onDrag()">
 
-    <div id="search-bar" class=" item-input-inset" style="height: 50px;background-color: white">
+    <div id="search-bar" class=" item-input-inset">
       <label class="item-input-wrapper" id="search-input">
-        <i class="icon ion-ios-search" style="position: relative;color: gray;font-size: 1.5em;top: 1px;"></i>
+        <i class="icon ion-ios-search"></i>
         <form  onsubmit="dosearch(query)">
-          <input  id="searchdata" style="padding-top: 3px;" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
+          <input  id="searchdata" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
         </form>
       </label>
-      <button class="button button-clear" style="color: #1D95D4;" ng-click="backSearchSM()" >取消</button>
+      <button class="button button-clear" ng-click="backSearchSM()" >取消</button>
     </div>
     <div ng-if="((lastMsg=='')||(lastMsg.length==0)||(lastMsg==null))&&((personsren=='')||(personsren.length==0)||(personsren==null))">
-      <div style="text-align: center;background-color: rgba(222, 222, 222, 0.79);width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae">历史搜索记录</div>
+      <div  class="historySearchMessage" >历史搜索记录</div>
       <div ng-repeat="historymsg in historymsgs">
-        <div style="width: auto;margin-left: 10px;padding-top: 20px;font-size: 20px" ng-click="dosearch(historymsg.msg)">
+        <div  class="historymsg" ng-click="dosearch(historymsg.msg)">
           <i class="ion-ios-search"></i>
           {{historymsg.msg}}
         </div>
       </div>
-      <div style="text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #1D95D4" ng-click="deletehistorymsg()">清空历史记录</div>
+      <div class="clearHistorymsg" ng-click="deletehistorymsg()">清空历史记录</div>
     </div>
-    <div ng-if="lastMsg.length>0" style="background-color: rgba(222, 222, 222, 0.79);padding-left: 5px">聊天记录</div>
+    <div class="chatHistorymsg" ng-if="lastMsg.length>0">聊天记录</div>
     <ion-list>
-      <ion-item ng-repeat="item in lastMsg" style="height: 60px" >
+      <ion-item ng-repeat="item in lastMsg">
         <div class="row" >
-          <div  class="col-20" style="text-align: center" ng-click="goSearchMsgDetail(item.name)">
-            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==1||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==2||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==3||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==4||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==5||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+          <div  class="col col-20 tal" ng-click="goSearchMsgDetail(item.name)">
+            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==1||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==9" class="center circle1 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==2||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==8" class="center circle2 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==3||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==7" class="center circle3 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==4||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==6" class="center circle4 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+            <div ng-if="item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==5||item.sessionid.substring((item.sessionid.length-1),item.sessionid.length)==0" class="center circle5 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
+
+            <p class="resultName">{{item.name}}</p>
+
           </div>
-          <div class="col-80 text-center" align="left" ng-click="goSearchMsgDetail(item.name)">
-            <p style="font-size: 15px;position: absolute;left: 25%;top: 35%">{{item.name}}</p>
-            <p  style="font-size: 15px;position: absolute;left: 45%;top: 35%">{{item.count}}条相关的聊天记录</p>
+          <div class="col col-80 text-center" align="left" ng-click="goSearchMsgDetail(item.name)">
+            <p  class="historymsgCount">{{item.count}}条相关的聊天记录</p>
           </div>
         </div>
       </ion-item>
     </ion-list>
-    <div ng-if="personsren.length>0" style="background-color: rgba(222, 222, 222, 0.79);padding-left: 5px">联系人</div>
+    <div class="chatHistorymsg" ng-if="personsren.length>0" >联系人</div>
     <ion-list>
-      <ion-item ng-repeat="persondetail1 in personsren" style="height: 60px" >
+      <ion-item ng-repeat="persondetail1 in personsren">
         <div class="row" >
-          <div   class="col-20" style="text-align: center" ng-click="tanchuangsearch(persondetail1.UserID)">
-            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
-            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
-            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==3||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
-            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==4||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
-            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==5||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+          <div   class="col col-20 tal"  ng-click="tanchuangsearch(persondetail1.UserID)">
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==3||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==7" class="center circle3 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==4||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==6" class="center circle4 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+            <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==5||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==0" class="center circle5 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
+
+            <p class="resultName" ng-bind="persondetail1.UserName" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
+
           </div>
-          <div class="col-80" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
-            <span ng-bind="persondetail1.UserName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="persondetail1.DeptName" style="vertical-align: center;font-size: 15px" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></span>
+          <div class="col col-80 text-center" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
+            <p class="historymsgCount" ng-bind="persondetail1.DeptName" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
           </div>
         </div>
       </ion-item>

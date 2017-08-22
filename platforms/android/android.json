@@ -85,18 +85,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BaiduLocation\"><param name=\"android-package\" value=\"com.spout.phonegap.plugins.baidulocation.BaiduLocation\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"NfcPlugin\"><param name=\"android-package\" value=\"com.chariotsolutions.nfc.plugin.NfcPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"ScalePhoto\"><param name=\"android-package\" value=\"com.tky.mqtt.plugin.photo.ScalePhoto\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -147,6 +135,18 @@
                         {
                             "xml": "<feature name=\"BrowserTab\"><param name=\"android-package\" value=\"com.google.cordova.plugin.browsertab.BrowserTab\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BaiduLocation\"><param name=\"android-package\" value=\"com.spout.phonegap.plugins.baidulocation.BaiduLocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NfcPlugin\"><param name=\"android-package\" value=\"com.chariotsolutions.nfc.plugin.NfcPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -175,18 +175,18 @@
                             "count": 1
                         },
                         {
-                            "xml": "<service android:enabled=\"true\" android:name=\"com.baidu.location.f\" android:process=\":remote\" />",
+                            "xml": "<provider android:authorities=\"com.r93535.im.DocumentViewerPlugin.fileprovider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.sitewaerts.cordova.documentviewer.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/documentviewer_file_paths\" /></provider>",
                             "count": 1
                         },
                         {
-                            "xml": "<provider android:authorities=\"com.r93535.im.DocumentViewerPlugin.fileprovider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.sitewaerts.cordova.documentviewer.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/documentviewer_file_paths\" /></provider>",
+                            "xml": "<service android:enabled=\"true\" android:name=\"com.baidu.location.f\" android:process=\":remote\" />",
                             "count": 1
                         }
                     ],
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 5
+                            "count": 4
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -243,15 +243,15 @@
                             "count": 1
                         },
                         {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
                             "xml": "<uses-permission android:name=\"android.permission.NFC\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.nfc\" android:required=\"false\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ]
@@ -323,15 +323,6 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
-        "com.spout.phonegap.plugins.baidulocation": {
-            "PACKAGE_NAME": "com.ionicframework.im366077"
-        },
-        "phonegap-nfc": {
-            "PACKAGE_NAME": "com.ionicframework.im366077"
-        },
-        "com.darktalker.cordova.screenshot": {
-            "PACKAGE_NAME": "com.ionicframework.im366077"
-        },
         "ScalePhoto": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
@@ -375,6 +366,15 @@
             "PACKAGE_NAME": "com.r93535.im"
         },
         "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "com.spout.phonegap.plugins.baidulocation": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "phonegap-nfc": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "com.darktalker.cordova.screenshot": {
             "PACKAGE_NAME": "com.r93535.im"
         }
     },
@@ -686,25 +686,6 @@
             "runs": true
         },
         {
-            "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
-            "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
-            "clobbers": [
-                "window.baiduLocation"
-            ]
-        },
-        {
-            "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
-            "id": "phonegap-nfc.NFC",
-            "runs": true
-        },
-        {
-            "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
-            "id": "com.darktalker.cordova.screenshot.screenshot",
-            "merges": [
-                "navigator.screenshot"
-            ]
-        },
-        {
             "file": "plugins/ScalePhoto/www/scale_photo.js",
             "id": "ScalePhoto.scale_photo",
             "clobbers": [
@@ -805,6 +786,25 @@
             "clobbers": [
                 "cordova.plugins.browsertab"
             ]
+        },
+        {
+            "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
+            "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
+            "clobbers": [
+                "window.baiduLocation"
+            ]
+        },
+        {
+            "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+            "id": "phonegap-nfc.NFC",
+            "runs": true
+        },
+        {
+            "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+            "id": "com.darktalker.cordova.screenshot.screenshot",
+            "merges": [
+                "navigator.screenshot"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -829,9 +829,6 @@
         "cordova-plugin-file-transfer": "1.5.2-dev",
         "phonegap-plugin-barcodescanner": "6.0.1",
         "cordova-plugin-geolocation": "2.2.0",
-        "com.spout.phonegap.plugins.baidulocation": "0.1.0",
-        "phonegap-nfc": "0.6.6",
-        "com.darktalker.cordova.screenshot": "0.1.5",
         "ScalePhoto": "1.0.0",
         "GridPhoto": "1.0.0",
         "cordova-plugin-inappbrowser": "1.5.0",
@@ -846,6 +843,9 @@
         "es6-promise-plugin": "4.1.0",
         "cordova-plugin-screen-orientation": "2.0.1",
         "cordova-plugin-badge": "0.8.1",
-        "cordova-plugin-browsertab": "0.2.0"
+        "cordova-plugin-browsertab": "0.2.0",
+        "com.spout.phonegap.plugins.baidulocation": "0.1.0",
+        "phonegap-nfc": "0.6.6",
+        "com.darktalker.cordova.screenshot": "0.1.5"
     }
 }

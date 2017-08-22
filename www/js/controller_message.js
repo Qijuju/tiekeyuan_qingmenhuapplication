@@ -432,6 +432,7 @@ angular.module('message.controllers', [])
         //进入聊天界面就将该聊天的count值给减掉
         $greendao.queryData('ChatListService','where id =?',$scope.userId,function (succ) {
           var count=succ[0].count;//取出该对话的count值
+          // alert("进入消息界面的count"+count);
           //取出保存的badgecount值并减去
           $mqtt.getInt('badgeCount',function (newcount) {
             var lastcount=newcount-count;
@@ -955,6 +956,7 @@ angular.module('message.controllers', [])
 
 
         $greendao.loadAllData('ChatListService',function (msg) {
+          // alert("拿到的cunt"+JSON.stringify(msg));
           $scope.allNoRead=0;
           if (msg.length>0){
             for(var i=0;i<msg.length;i++){
@@ -4491,7 +4493,7 @@ angular.module('message.controllers', [])
             }
           },function (err) {
 
-          })
+          });
           viewScroll.scrollBottom();
         }, 100);
       })
@@ -4517,6 +4519,19 @@ angular.module('message.controllers', [])
         $greendao.queryData('ChatListService','where id =?',id,function (data) {
           if(data.length>0){
             // alert("进来查询了吗？"+data.length);
+            // alert("取出的聊天记录"+JSON.stringify(data));
+            var count=data[0].count;//取出该对话的count值
+            //取出保存的badgecount值并减去
+            $mqtt.getInt('badgeCount',function (newcount) {
+              var lastcount=newcount-count;
+              // alert("老count"+newcount+"新count"+count);
+              cordova.plugins.notification.badge.set(lastcount,function (succ) {
+                // alert("会话内减值成功"+succ);
+                $mqtt.saveInt('badgeCount',lastcount);
+              },function (err) {
+              });
+            },function (err) {
+            });
             var chatitem = {};
             chatitem.id = data[0].id;
             chatitem.chatName = data[0].chatName;
@@ -5684,13 +5699,14 @@ angular.module('message.controllers', [])
       },800);
 
       $timeout(function () {
-        navigator.screenshot.save(function(error,res){
-          // alert("进不进截屏");
-          if(error){
-            console.error(error);
-          }else{
+        //该插件已没用，故注释并删除
+        // navigator.screenshot.save(function(error,res){
+        //   // alert("进不进截屏");
+        //   if(error){
+        //     console.error(error);
+        //   }else{
             // alert('ok'+res.filePath); //should be path/to/myScreenshot.jpg
-            $scope.screenpath=res.filePath;
+            // $scope.screenpath=res.filePath;
             $mqtt.getMqtt().getTopic($scope.topic, $scope.grouptype, function (userTopic) {
               // alert("单聊topic"+userTopic+$scope.grouptype);
               $greendao.getUUID(function (data) {
@@ -5737,8 +5753,8 @@ angular.module('message.controllers', [])
             }, function (msg) {
 
             });
-          }
-        },'jpg',100,url);
+        //   }
+        // },'jpg',100,url);
         $state.go(($scope.grouptype === 'User') ? 'messageDetail' : 'messageGroup', {
           id: $scope.userId,
           ssid:$scope.userName,

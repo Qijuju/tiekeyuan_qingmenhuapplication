@@ -128,6 +128,7 @@ angular.module('login.controllers', [])
               loginM();
             }, function (message) {
               $pubionicloading.hide();
+              alert("22222");
               $ToastUtils.showToast(message);
             });
           } else {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
+import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.receiver.IMReceiver;
@@ -103,7 +104,6 @@ public class MqttChat extends CordovaPlugin {
     super.initialize(cordova, webView);
     setHasLogin(false);
 //    mqttReceiver = MqttReceiver.getInstance();
-
     docFileReceiver = new DocFileReceiver();
     IntentFilter filter = new IntentFilter();
     filter.addAction(ReceiverParams.DOC_FILE_GET);

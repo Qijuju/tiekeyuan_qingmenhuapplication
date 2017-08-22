@@ -149,7 +149,9 @@ exports.getMsgReadList = function(msgId, isReaded,success, error) {//获取确�
   exec(success, error, "ThriftApiClient", "getMsgReadList", [msgId, isReaded]);
 };
 
-
+exports.sendOperateLog = function(type, when,appId,success, error) {//新增一个客户端操作记录的接口
+  exec(success, error, "ThriftApiClient", "sendOperateLog", [type, when,appId]);
+};
 
 
 });

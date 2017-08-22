@@ -1,55 +1,67 @@
 <ion-view >
+  <ion-content overflow-scroll="false">
 
-  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
-    <div>
-      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="gobackmsgdetail(userId,userName)"/>
+    <!--返回←箭头-->
+    <div class="back">
+      <img src="img/backmain.png" ng-click="gobackmsgdetail(userId,userName)"/>
     </div>
 
-    <div style="height: 255px;background-color: white;text-align: center;width:100%">
-      <img src="img/personsetting.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
-      <P style="font-size: 18px;margin-top: 10px;text-align-all: center">{{userName}}</P>
+    <!---->
+    <div class="personDetailDiv">
 
-     <div style="position: absolute;top: 185px;"  class="row">
-       <div class="col" align="center" ng-click="gohistoryMessage()">
-         <a >
-           <ul>
-             <li><img src="img/im_new_chat.png" width="30" height="30"></li>
-             <li style="color: black;">消息</li>
-           </ul>
-         </a>
-       </div>
+      <!--头像-->
+      <img src="img/personsetting.png" ng-click="godetailaa()">
 
-       <div class="col" align="center" ng-click="personFile()">
-         <a >
-           <ul>
-             <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
-             <li style="color: black;margin-top: -2px">文件</li>
-           </ul>
-         </a>
-       </div>
-
-       <div class="col" align="center" ng-click="goLocation()">
-         <a >
-           <ul>
-             <li><img src="img/im_new_map.png" width="32" height="32"></li>
-             <li style="color: black;margin-top: -3px">定位</li>
-           </ul>
-         </a>
-       </div>
-
-     </div>
-    </div>
-    <ul class="list" style="margin-top: 15px">
-      <div ng-click="perosnPicture()">
-        <a class="item item-icon-left item-icon-right" >
-          <i class=" icon ion-images"></i>
-          聊天图片
-          <i class="button button-dark button-clear icon ion-ios-arrow-right" ></i>
-        </a>
+      <!--用户姓名-->
+      <div class="personDetailUserName">
+        <p>{{userName}}</p>
       </div>
-    </ul>
 
-    <div class="list" style="margin-top: -15px">
+      <!--发消息、保存手机、打电话、发短信-->
+      <div  class="row ">
+
+        <div class="col" align="center" >
+          <a ng-click="gohistoryMessage()">
+            <ul>
+              <li><img src="img/im_new_chat.png" width="30" height="30"></li>
+              <li style="color: black;">消息</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="personFile()">
+          <a >
+            <ul>
+              <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
+              <li style="color: black;margin-top: -2px">文件</li>
+            </ul>
+          </a>
+        </div>
+
+        <div class="col" align="center" ng-click="goLocation()">
+          <a >
+            <ul>
+              <li><img src="img/im_new_map.png" width="32" height="32"></li>
+              <li style="color: black;margin-top: -3px">定位</li>
+            </ul>
+          </a>
+        </div>
+      </div>
     </div>
+
+
+    <!--聊天图片-->
+    <div class="row chartImages" ng-click="perosnPicture()" style="margin-top:10px;">
+      <div class="col">
+        <img src="img/images.png" alt="图片库">
+        <span>聊天图片</span>
+        <i class="button button-dark button-clear icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+
+
+    <div class="personalSetting list">
+    </div>
+
   </ion-content>
 </ion-view>

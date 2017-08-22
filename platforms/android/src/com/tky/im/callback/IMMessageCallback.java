@@ -16,6 +16,7 @@ import com.tky.im.test.LogPrint;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
+import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
@@ -65,6 +66,9 @@ public class IMMessageCallback implements MqttCallback {
 
   @Override
   public void connectionLost(Throwable throwable) {
+    //链接失败后 发送下线状态
+    IMUtils.sendOnOffState("UOF",imConnection);
+
     final long start = System.currentTimeMillis();
     if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
       UIUtils.getHandler().postDelayed(new Runnable() {
@@ -118,6 +122,7 @@ public class IMMessageCallback implements MqttCallback {
           map.setMessage(message + "###0");
         }
         final String fromUserId = map.get_id();
+
         if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId) && "Android".equals(map.getPlatform())) {
           return;
         }
@@ -352,6 +357,7 @@ public class IMMessageCallback implements MqttCallback {
                 MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
               }
             }
+
           }
         });
       } else if (bean != null && bean instanceof EventMessageBean) {

@@ -8,6 +8,431 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
+      <div align="center">
+        <img class="messageDetailTopImg" src="img/laba.png"  ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();"/>
+        <img class="messageDetailTopImg" src="img/tingt.png"   ng-show="showTingtong !='false'" ng-click="openTingtongMode();"/>
+        <img class="messageDetailTopImg" src="img/qun.png" ng-click="goGroupDetail(groupid,chatname,grouptype,ismygroup)"  />
+      </div>
+    </ion-nav-buttons>
+
+  </ion-nav-bar>
+
+  <div class="yuanjiao messageDetail"  ng-if="isGroupShow === 'true'">
+    <!---若录音时间小于1s，则展示这个--->
+    <img ng-show= "isGroupshowless ==='true'" src="img/chat_icon_voice_short.png"/>
+
+    <!---分贝的六个等级--->
+    <img ng-show="isGroupshowless === 'false' && grouprate ===0" src="img/chat_icon_voice2.png" />
+    <img ng-show="isGroupshowless === 'false' && grouprate ===1" src="img/chat_icon_voice3.png" />
+    <img ng-show="isGroupshowless === 'false' && grouprate ===2" src="img/chat_icon_voice4.png" />
+    <img ng-show="isGroupshowless === 'false' && grouprate ===3"src="img/chat_icon_voice5.png" />
+    <img ng-show="(isGroupshowless === 'false')&& (grouprate ===4 || grouprate ===5)"src="img/chat_icon_voice6.png" />
+    <img ng-show="(isGroupshowless === 'back')"src="img/back.png" />
+    <br />
+    <p ng-show="isGroupshowless ==='false' && (grouprate >= 0 && grouprate <=6)">手指上滑,取消发送</p>
+    <p ng-show="isGroupshowless ==='back'">松开手指,取消发送</p>
+    <!---若录音时间小于1s，则展示这个--->
+    <p ng-show= "isGroupshowless ==='true'">说话时间太短</p>
+  </div>
+
+
+
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()"
+               ng-click="zhilinggroup()" id="contentbb">
+    <ion-refresher refreshing-icon="ion-loading-c" on-refresh="doRefresh()" refreshing-text="正在加载···"
+                   pulling-text="释放加载" id="refresh"></ion-refresher>
+
+
+    <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipgroupmessagebox()">更多消息请在历史消息中查阅</p>
+
+
+    <div class="msgSingle" ng-repeat="msg in groupmsgs">
+      <!--1、发送与接收的时间戳-->
+      <div class="row msgSingleIsTime" ng-if="msg.istime === 'true' && (!(msg.messagetype.substr(0,5)==='Event'))">
+        <div class="col">
+          <span>{{msg.daytype ==='1' ? (msg.when | date:'HH:mm') : (msg.when | date:'yyyy-MM-dd HH:mm')}}</span>
+        </div>
+      </div>
+
+      <!--群事件-->
+      <div class="row groupEvent" ng-if="msg.messagetype.substr(0,5)==='Event' && (msg.sessionid === groupid)">
+        <div class="col">
+          <span>{{msg.message}}</span>
+        </div>
+      </div>
+
+      <!--接收-->
+      <!--2、对方的消息-->
+      <div class="row msgSingleForm" ng-if="(msg.from === 'false') &&(msg.senderid != myUserID)">
+
+        <div class="col col-12" ng-if="(msg.imgSrc !='1') &&(msg.imgSrc != null)" ng-click="godetail(msg.senderid)">
+          <img  src="{{msg.imgSrc}}" class="yuanjiao4">
+        </div>
+
+        <!--头像-->
+        <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)">
+          <button class="circle1 headerImg">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+        <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)">
+          <button class="circle2 headerImg">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+        <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)">
+          <button class="circle3 headerImg">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+        <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)">
+          <button class="circle4 headerImg">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+        <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)">
+          <button class="circle5 headerImg">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+
+        <!--接收###文本内容-->
+        <div class="col receiveText" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
+          <div class="rj-message-new-left" on-hold="longtabGroup({{msg}})">
+            <p>{{msg.message}}</p></div>
+        </div>
+
+        <!--图片内容-->
+        <div class="col receiveImg" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
+          <img src="{{msg.message.split('###')[1]}}" ng-click="netScaleImage(msg.message.split('###')[0],msg.message.split('###')[4],msg.message.split('###')[1])" />
+        </div>
+
+        <!--接收###文件内容-->
+        <div class="col receiveFile" ng-if="msg.messagetype === 'File' && !getFileType(msg.message) && !isGroupVideo(msg.message.split('###')[1])">
+          <div class="row item"  ng-click="openGroupAllFile(msg.message.split('###')[1], msg,this)">
+            <div class="col col-20">
+              <img src="{{getFileTypeImg(msg.message)}}"/>
+            </div>
+
+            <div class="col">
+              <h2 >{{getFileName(msg.message)}}</h2>
+              <!--进度条-->
+              <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar">
+                <div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div>
+              </div>
+              <!--进度百分比-->
+              <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'">{{msg.message.split('###')[5]}}%</div>
+              <!--接收成功-->
+              <div ng-show="msg.message.split('###')[5] === '100'">{{msg.message.split('###')[3]}}</div>
+              <!--接收失败-->
+              <div ng-show="msg.message.split('###')[5] === '-1'">接收失败！</div>
+              <!--未下载-->
+              <div ng-show="msg.message.split('###')[5] === '0'">未下载</div>
+            </div>
+          </div>
+        </div>
+        <!--接收###视频内容-->
+        <div class="col receiveVideo" ng-if="msg.messagetype === 'Vedio' || isGroupVideo(msg.message.split('###')[1])">
+          <div>
+            <video controls preload="auto">
+              <source src="{{msg.message.split('###')[1]}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!--接收###音频内容-->
+        <div class="col receiveAudio" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id,msg.isread);">
+          <div class="rj-message-voice-left" style="max-width:250px;width: {{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:left;vertical-align: middle !important;height:auto;float: left;">
+            <img src="img/turnrightstatic.jpg" class="yuanjiao" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
+            <img src="img/turnright.gif" class="yuanjiao" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''"/>
+          </div>
+          <div class="row receiveAudioDiv">
+            <div class="col col-center item">
+              <div class="row row-center item">
+                <img src="img/redpoint.png" ng-if="msg.messagetype === 'Audio'&&msg.isread === '0'"/>
+              </div>
+              <div class="row row-center item">
+                {{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--接收###地图内容-->
+        <div class="col receiveMap" ng-if="msg.messagetype === 'LOCATION'">
+          <div class="row item" ng-click="entergroupmap(msg.message)">
+            <div class="col  col-20">
+              <img src="img/location.jpg"/>
+            </div>
+            <div class="col receive">
+              <h2>{{msg.message.split(',')[2]}}</h2>
+              <!--进度条-->
+              <div class="outbar"><div class="inbar"></div></div>
+              <!--进度百分比-->
+              <div class="percent">70%</div>
+              <!--接收成功-->
+              <div class="receiveSuccess">已接收</div>
+              <!--接收失败-->
+              <div class="receiveError">发送失败！</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!--发送-->
+      <!--3、我的消息-->
+      <div ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)" class="row messageDetailSendmsg">
+        <!--发送###文本内容-->
+        <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
+          <div class="rj-message-new-right messageGroupsendText" on-hold="longtabGroup({{msg}})">
+            <p>{{msg.message}}</p>
+
+            <!--容错处理-->
+            <div class="faultTolerantText">
+              <div class="alertImg" ng-if="msg.isFailure ==='true'">
+                <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+              </div>
+
+              <div class="" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+                <ion-spinner icon="ios-small"></ion-spinner>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!--发送###图片内容-->
+        <div class="col" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
+          <img class="sendImg" src="{{msg.message.split('###')[1]}}" ng-click="boostImage(msg.message.split('###')[1])" />
+          <!--容错处理-->
+          <div class="row faultTolerant">
+            <div class="col col-center item" ng-if="msg.isFailure ==='true'">
+              <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+            </div>
+            <div class="col col-center item" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false'">
+              <ion-spinner icon="ios-small"></ion-spinner>
+            </div>
+          </div>
+        </div>
+        <!--发送###文件内容-->
+        <div class="col" ng-if="msg.messagetype === 'File' && !getFileType(msg.message) && !isGroupVideo(msg.message.split('###')[1])">
+          <div class="row item sentfile" ng-click="openGroupAllFile(msg.message.split('###')[1], msg,this)">
+            <div class="col col-20">
+              <img class="sendFileImg"  src="{{getFileTypeImg(msg.message)}}"/>
+            </div>
+            <div class="col sendPromptMsg">
+              <h2>{{msg.message.split('###')[4]}}</h2>
+              <!--进度条-->
+              <div ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
+              <!--进度百分比-->
+              <div class="sendPercentage" ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'">{{msg.message.split('###')[5]}}%</div>
+              <!--发送成功-->
+              <div class="sendSuccess" ng-if="msg.isFailure === 'false' && msg.message.split('###')[5] === '100'" >{{msg.message.split('###')[3]}}</div>
+              <!--发送失败-->
+              <div class="sendError" ng-if="msg.isFailure === 'true' || msg.message.split('###')[5] === '-1'">发送失败！</div>
+            </div>
+          </div>
+          <!--容错处理-->
+          <div class="row faultTolerant">
+            <div class="col col-center item" ng-if="msg.isFailure ==='true'">
+              <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+            </div>
+            <div class="col col-center item" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+              <ion-spinner icon="ios-small"></ion-spinner>
+            </div>
+          </div>
+        </div>
+
+        <!--发送###视频内容-->
+        <div class="col" ng-if="msg.messagetype ==='Vedio' || isGroupVideo(msg.message.split('###')[1])">
+          <div class="sendVideo">
+            <video id="vedio1" ng-if="msg.message.split('###')[5] != '100'" preload="auto">
+              <source src="{{msg.message.split('###')[1]}}" type="video/mp4">
+            </video>
+            <video id="vedio" ng-if="msg.message.split('###')[5] === '100'" controls preload="auto">
+              <source src="{{msg.message.split('###')[1]}}" type="video/mp4">
+            </video>
+            <div class="sendVideoDiv">
+              <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
+            </div>
+          </div>
+          <!--容错处理-->
+          <div class="row faultTolerant">
+            <div class="col col-center item" ng-if="msg.isFailure ==='true'">
+              <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+            </div>
+          </div>
+        </div>
+
+        <!--发送###音频内容-->
+        <div class="col" ng-if="msg.messagetype === 'Audio'">
+          <div class="rj-message-voice-left" style="max-width:250px;width: {{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:right;vertical-align: middle !important;height:auto;background: #38ADFF;float: right;" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
+            <img class="sendAudioImg" src="img/turnleftstatic.png" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
+            <img class="sendAudioImg" src="img/turnleft.gif" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''"/>
+          </div>
+          <div class="row faultTolerant">
+            <div class="col col-center item" >
+              <div class="row row-center item" >
+                {{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"
+              </div>
+            </div>
+          </div>
+          <!--容错处理-->
+          <div class="row faultTolerant">
+            <div class="col col-center item" ng-if="msg.isFailure ==='true'" >
+              <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+            </div>
+            <div class="col col-center item" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' " >
+              <ion-spinner icon="ios-small"></ion-spinner>
+            </div>
+          </div>
+        </div>
+
+        <!--发送###地图内容-->
+        <div class="col sendMap" ng-if="msg.messagetype === 'LOCATION'">
+          <div class="row item" ng-click="entergroupmap(msg.message.substring(0, msg.message.lastIndexOf(',')))">
+            <div class="col-20">
+              <img  class="sendMapImg" src="img/location.jpg"/>
+            </div>
+
+            <div class="col sendMapPromptMsg">
+              <h2>{{msg.message.split(',')[2]}}</h2>
+              <!--进度条-->
+              <div class="outbar"><div class="inbar"></div></div>
+              <!--进度百分比-->
+              <div class="sendMapPercentage">70%</div>
+              <!--发送成功-->
+              <div class="sendMapSuccess">点击查看</div>
+              <!--发送失败-->
+              <div class="sendMapError">发送失败！</div>
+            </div>
+          </div>
+          <!--容错处理-->
+          <div class="row faultTolerant">
+            <div class="col col-center item" ng-if="msg.isFailure ==='true'">
+              <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
+            </div>
+            <div class="col col-center item" ng-if="msg.isSuccess === 'false'&& msg.isFailure === 'false' ">
+              <ion-spinner icon="ios-small"></ion-spinner>
+            </div>
+          </div>
+        </div>
+
+        <!---->
+        <div class="col col-12 picyoumeiyoumsg" ng-if="!picyoumeiyoumsg">
+          <button class="circle6">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button>
+        </div>
+        <div class="col col-12" ng-if="picyoumeiyoumsg">
+          <img  src="{{securlpicmsg}}" class="yuanjiao4">
+        </div>
+
+      </div>
+    </div>
+    <br />
+    <div>&nbsp;</div>
+
+  </ion-content>
+
+  <ion-footer-bar class="bar-light messageDetailFooter">
+    <div class="footerContainer">
+      <div  class="footerInnerContainer">
+
+        <!--左边-->
+        <div  class="footLeft">
+          <div class="leftYuYin" ng-click="groupclickOn()" ng-hide="isGroupYuYin === 'true'">
+            <md-icon  class="icon ion-ios-mic-outline rj-footer-btn-left leftMdIcon">
+            </md-icon>
+          </div>
+          <img src="img/keyborad.png" class="icon ion-ios-mic-outline rj-footer-btn-left footLeftImg" ng-show="isGroupYuYin === 'true'" ng-click="groupclickOnChange()" />
+        </div>
+
+        <!--中间-->
+        <div class="footCenter">
+          <div class="enterSay" ng-show="isGroupYuYin === 'true'">
+            <button on-touch="showGroupYuyin('Audio',_id)" on-release="releaseGroupYuyin('Audio',_id)" on-drag="onDragGroupVoiceBtn($event)">
+              <span>按住 说话</span>
+            </button>
+          </div>
+          <div class="centerYuYin" ng-show="isGroupYuYin != 'true'" ng-click="zhilinggroup()">
+            <textarea ng-model="send_content"  rows="3" contenteditable="false"></textarea>
+          </div>
+        </div>
+
+        <!--右边-->
+        <div class="footRight">
+          <div class="buttons" ng-show="!send_content || send_content === ''" ng-click="gengduogropu()">
+            <button class="button-icon icon ion-ios-plus-outline footRightBtn"></button>
+          </div>
+
+          <div ng-hide="!send_content || send_content === ''" ng-click="sendSingleGroupMsg(groupid,send_content,groupid,grouptype,localusr,myUserID,_id,'Text')">
+            <p class="sendMessage">发送</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sendType" ng-if="bgroup==1">
+        <div class="row" >
+          <div class="col col-25" ng-click="takeGroupPhoto(groupid,send_content, groupid,localusr,myUserID,_id, grouptype)">
+            <ul>
+              <li>
+                <img class="sendTypeImg" src="img/ddpaizhao.png">
+              </li>
+              <li>拍照</li>
+            </ul>
+          </div>
+          <div class="col col-25" ng-click="openGroupDocumentWindow('image', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)">
+            <ul>
+              <li>
+                <img class="sendTypeImg" src="img/ddtupian.png">
+              </li>
+              <li>相册</li>
+            </ul>
+          </div>
+          <div class="col col-25" ng-click="takeGroupVideo(groupid,send_content, groupid,localusr,myUserID,_id, grouptype)" >
+            <ul>
+              <li>
+                <img class="sendTypeImg" src="img/ddxiaoshipin.png">
+              </li>
+              <li>视频</li>
+            </ul>
+          </div>
+          <div class="col col-25" ng-click="gogegrouplocation('LOCATION',groupid,send_content, groupid,localusr,myUserID,_id,grouptype,ismygroup)">
+            <ul>
+              <li>
+                <img class="sendTypeImg" src="img/dddingwei.png">
+              </li>
+              <li>定位</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row magDetailFootFileRow" ng-click="openGroupDocumentWindow('*', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)" >
+          <div class="col col-25">
+            <ul>
+              <li>
+                <img class="sendTypeImg" src="img/ddwenjian.png">
+              </li>
+              <li>文件</li>
+            </ul>
+          </div>
+          <div class="col col-25"></div>
+          <div class="col col-25"></div>
+          <div class="col col-25"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </ion-footer-bar>
+</ion-view>
+
+
+<!--
+<ion-view id="messageGroupDetail" view-title={{chatname}} class="common-view-color">
+  <ion-nav-bar align-title="center" class="newbarhead">
+
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backSecondMenu(grouptype)">
+
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
       <div align="center" style="margin-top: 7px">
         <img src="img/laba.png" style="height:18px;margin-right: 12px" ng-show="showTingtong ==='false'" ng-click="openYangshengqiMode();"/>
         <img src="img/tingt.png" style="height:18px;margin-right: 12px"  ng-show="showTingtong !='false'" ng-click="openTingtongMode();"/>
@@ -18,11 +443,10 @@
   </ion-nav-bar>
   <div style="position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;" class="yuanjiao"
        ng-if="isGroupShow === 'true'">
-    <!---若录音时间小于1s，则展示这个--->
+    &lt;!&ndash;-若录音时间小于1s，则展示这个-&ndash;&gt;
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show= "isGroupshowless ==='true'" src="img/chat_icon_voice_short.png"/>
 
-    <!---分贝的六个等级--->
-    <!--<img style="padding-top:20px;width:100px;height: 100px;" ng-show="rate ===0" src="img/chat_icon_voice1.png" />-->
+    &lt;!&ndash;-分贝的六个等级-&ndash;&gt;
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isGroupshowless === 'false' && grouprate ===0" src="img/chat_icon_voice2.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isGroupshowless === 'false' && grouprate ===1" src="img/chat_icon_voice3.png" />
     <img style="padding-top:20px;width:100px;height: 100px;" ng-show="isGroupshowless === 'false' && grouprate ===2" src="img/chat_icon_voice4.png" />
@@ -32,7 +456,7 @@
     <br />
     <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show="isGroupshowless ==='false' && (grouprate >= 0 && grouprate <=6)">手指上滑,取消发送</p>
     <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;background: #ffa199;text-align: center;margin-left: 8px;margin-right: 8px;" align="center" ng-show="isGroupshowless ==='back'">松开手指,取消发送</p>
-    <!---若录音时间小于1s，则展示这个--->
+    &lt;!&ndash;-若录音时间小于1s，则展示这个-&ndash;&gt;
     <p style="color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;" align="center" ng-show= "isGroupshowless ==='true'">说话时间太短</p>
   </div>
   <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll" on-drag="onDrag()"
@@ -42,71 +466,64 @@
     <p style="text-align: center" ng-if="nomore === 'true'" ng-click="skipgroupmessagebox()">更多消息请在历史消息中查阅</p>
 
 
-
-
-
-
-
-
-
-
     <div ng-repeat="msg in groupmsgs" style="margin: 0px auto;padding: 0px auto;padding-top: 10px;">
-      <!--1、发送与接收的时间戳-->
+      &lt;!&ndash;1、发送与接收的时间戳&ndash;&gt;
       <div class="row" ng-if="msg.istime === 'true' && (!(msg.messagetype.substr(0,5)==='Event'))">
         <div class="col" style="text-align: center;vertical-align: middle;">
           <span style="text-align: center;vertical-align: middle;border-radius: 3px;background: lightgrey;padding: 2px;padding-left:4px;padding-right:4px;color: #ffffff;font-size: 12px;width: 100px;">{{msg.daytype ==='1' ? (msg.when | date:'HH:mm') : (msg.when | date:'yyyy-MM-dd HH:mm')}}</span>
         </div>
       </div>
 
-      <!--群事件-->
+      &lt;!&ndash;群事件&ndash;&gt;
       <div class="row" ng-if="msg.messagetype.substr(0,5)==='Event' && (msg.sessionid === groupid)">
         <div class="col" style="text-align: center;vertical-align: middle;">
           <span style="text-align: center;vertical-align: middle;border-radius: 3px;background: lightgrey;padding: 2px;padding-left:4px;padding-right:4px;color: #ffffff;font-size: 12px;width: 100px;">{{msg.message}}</span>
         </div>
       </div>
 
-      <!--接收-->
-      <!--2、对方的消息-->
+      &lt;!&ndash;接收&ndash;&gt;
+      &lt;!&ndash;2、对方的消息&ndash;&gt;
       <div class="row" ng-if="(msg.from === 'false') &&(msg.senderid != myUserID)" style="float: left;">
         <div class="col col-12" ng-if="(msg.imgSrc !='1') &&(msg.imgSrc != null)" ng-click="godetail(msg.senderid)">
           <img  src="{{msg.imgSrc}}" class="yuanjiao4">
         </div>
-        <!--头像-->
+        &lt;!&ndash;头像&ndash;&gt;
         <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==1||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==9)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)"><button class="circle1" style="border: none;font-size: 12px;">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button></div>
         <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==2||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==8)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)"><button class="circle2" style="border: none;font-size: 12px;">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button></div>
         <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==3||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==7)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)"><button class="circle3" style="border: none;font-size: 12px;">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button></div>
         <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==4||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==6)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)"><button class="circle4" style="border: none;font-size: 12px;">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button></div>
         <div class="col col-12" ng-click="godetail(msg.senderid)" ng-if="(msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==5||msg.senderid.substring((msg.senderid.length-1),msg.senderid.length)==0)&&(msg.imgSrc =='1')&&(msg.imgSrc != null)"><button class="circle5" style="border: none;font-size: 12px;">{{msg.username.length > 2 ? msg.username.substring((msg.username.length-2),msg.username.length):msg.username}}</button></div>
 
-        <!--接收###文本内容-->
+        &lt;!&ndash;接收###文本内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
-          <div class="rj-message-new-left" on-hold="longtabGroup({{msg}})" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
+          <div class="rj-message-new-left" on-hold="longtabGroup({{msg}})" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: left;color: black">
+            <p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
         </div>
-        <!--图片内容-->
+        &lt;!&ndash;图片内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
           <img style="background-color: transparent;border-radius: 10px;width: 110px;" src="{{msg.message.split('###')[1]}}" ng-click="netScaleImage(msg.message.split('###')[0],msg.message.split('###')[4],msg.message.split('###')[1])" />
         </div>
-        <!--接收###文件内容-->
+        &lt;!&ndash;接收###文件内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'File' && !getFileType(msg.message) && !isGroupVideo(msg.message.split('###')[1])">
           <div class="row item" style="width: 230px!important;border-radius: 3px;" ng-click="openGroupAllFile(msg.message.split('###')[1], msg,this)">
             <div class="col-20"><img src="{{getFileTypeImg(msg.message)}}"
                                      style="width: 55px;height: 55px;"/></div>
             <div class="col" style="margin-top: 5px;margin-bottom: -10px;">
               <h2 style="font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;">{{getFileName(msg.message)}}</h2>
-              <!--进度条-->
+              &lt;!&ndash;进度条&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar" style="margin-left: 7px;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
-              <!--进度百分比-->
+              &lt;!&ndash;进度百分比&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" style="font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;">{{msg.message.split('###')[5]}}%</div>
-              <!--接收成功-->
+              &lt;!&ndash;接收成功&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] === '100'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">{{msg.message.split('###')[3]}}</div>
-              <!--接收失败-->
+              &lt;!&ndash;接收失败&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">接收失败！</div>
-              <!--未下载-->
+              &lt;!&ndash;未下载&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] === '0'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;">未下载</div>
             </div>
           </div>
         </div>
-        <!--接收###视频内容-->
+        &lt;!&ndash;接收###视频内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'Vedio' || isGroupVideo(msg.message.split('###')[1])">
           <div style="width: 250px;float: left;">
             <video style="width: 100%;height:100%;" controls preload="auto">
@@ -114,7 +531,7 @@
             </video>
           </div>
         </div>
-        <!--接收###音频内容-->
+        &lt;!&ndash;接收###音频内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'Audio'" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id,msg.isread);" style="vertical-align: middle !important;">
           <div class="rj-message-voice-left" style="max-width:250px;width: {{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:left;vertical-align: middle !important;height:auto;float: left;">
             <img src="img/turnrightstatic.jpg" style="height: 25px;" class="yuanjiao" align="left" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
@@ -131,44 +548,36 @@
             </div>
           </div>
         </div>
-        <!--接收###地图内容-->
+        &lt;!&ndash;接收###地图内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'LOCATION'">
           <div class="row item" style="width: 230px!important;border-radius: 3px;" ng-click="entergroupmap(msg.message)">
             <div class="col-20"><img src="img/location.jpg"
                                      style="width: 45px;height: 55px;margin-left: 5px;"/></div>
             <div class="col" style="margin-top: 5px;margin-bottom: -10px;">
               <h2 style="font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;">{{msg.message.split(',')[2]}}</h2>
-              <!--进度条-->
+              &lt;!&ndash;进度条&ndash;&gt;
               <div class="outbar" style="margin-left: 7px;display: none;"><div class="inbar" style="width:70%;background:#5CB85C;display: none;"></div></div>
-              <!--进度百分比-->
+              &lt;!&ndash;进度百分比&ndash;&gt;
               <div style="font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;display: none;">70%</div>
-              <!--接收成功-->
+              &lt;!&ndash;接收成功&ndash;&gt;
               <div style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">已接收</div>
-              <!--接收失败-->
+              &lt;!&ndash;接收失败&ndash;&gt;
               <div style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;display: none;">发送失败！</div>
             </div>
           </div>
         </div>
 
-<!--        <div class="col" style="text-align: left;">
-
-        </div>-->
       </div>
 
 
-
-
-
-
-
-      <!--发送-->
-      <!--3、我的消息-->
+      &lt;!&ndash;发送&ndash;&gt;
+      &lt;!&ndash;3、我的消息&ndash;&gt;
       <div ng-if="(msg.from === 'true') &&(msg.senderid === myUserID)" class="row" style="float: right;">
-        <!--发送###文本内容-->
+        &lt;!&ndash;发送###文本内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'normal' || msg.messagetype === 'Text'">
           <div class="rj-message-new-right" on-hold="longtabGroup({{msg}})" style="max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;"><p style="text-align: left;padding: 0 auto;">{{msg.message}}</p></div>
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
@@ -179,11 +588,11 @@
           </div>
         </div>
 
-        <!--发送###图片内容-->
+        &lt;!&ndash;发送###图片内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'Image' || (msg.messagetype === 'File' && getFileType(msg.message))">
           <img style="background-color: transparent;border-radius: 10px;width: 110px;float: right;" src="{{msg.message.split('###')[1]}}" ng-click="boostImage(msg.message.split('###')[1])" />
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
@@ -193,25 +602,25 @@
             </div>
           </div>
         </div>
-        <!--发送###文件内容-->
+        &lt;!&ndash;发送###文件内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'File' && !getFileType(msg.message) && !isGroupVideo(msg.message.split('###')[1])">
           <div class="row item" style="width: 230px!important;border-radius: 3px;float: right;" ng-click="openGroupAllFile(msg.message.split('###')[1], msg,this)">
             <div class="col-20"><img src="{{getFileTypeImg(msg.message)}}"
                                      style="width: 55px;height: 55px;"/></div>
             <div class="col" style="margin-top: 5px;margin-bottom: -10px;">
               <h2 style="font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;">{{msg.message.split('###')[4]}}</h2>
-              <!--进度条-->
+              &lt;!&ndash;进度条&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar" style="margin-left: 7px;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
-              <!--进度百分比-->
+              &lt;!&ndash;进度百分比&ndash;&gt;
               <div ng-show="msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" style="font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;">{{msg.message.split('###')[5]}}%</div>
-              <!--发送成功-->
+              &lt;!&ndash;发送成功&ndash;&gt;
               <div ng-if="msg.isFailure === 'false' && msg.message.split('###')[5] === '100'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">{{msg.message.split('###')[3]}}</div>
-              <!--发送失败-->
+              &lt;!&ndash;发送失败&ndash;&gt;
               <div ng-if="msg.isFailure === 'true' || msg.message.split('###')[5] === '-1'" style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;display: none;">发送失败！</div>
             </div>
           </div>
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
@@ -221,7 +630,7 @@
             </div>
           </div>
         </div>
-        <!--发送###视频内容-->
+        &lt;!&ndash;发送###视频内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype ==='Vedio' || isGroupVideo(msg.message.split('###')[1])">
           <div style="width: 250px;float: right;">
             <video id="vedio1" style="width: 100%;height:100%;" ng-if="msg.message.split('###')[5] != '100'" preload="auto">
@@ -234,28 +643,28 @@
               <div ng-show="msg.message.split('###')[5] != '0' && msg.message.split('###')[5] != '100' && msg.message.split('###')[5] != '-1'" class="outbar" style="width: 100%;"><div class="inbar" style="width:{{msg.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
             </div>
           </div>
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
           </div>
         </div>
-        <!--发送###音频内容-->
+        &lt;!&ndash;发送###音频内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'Audio'">
           <div class="rj-message-voice-left" style="max-width:250px;width: {{((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:right;vertical-align: middle !important;height:auto;background: #38ADFF;float: right;" ng-click="showgroupanimation(msg.message.split('###')[1], msg._id);">
             <img src="img/turnleftstatic.png" style="height: 25px;" class="yuanjiao" align="right" ng-show="msg._id != groupaudioid || isshowgroupPng === 'true'"/>
             <img src="img/turnleft.gif" style="height: 25px;" class="yuanjiao" align="right" ng-show="isshowGroupgif === 'true' && msg._id === groupaudioid && groupaudioid != undefined && groupaudioid != null && groupaudioid != ''"/>
           </div>
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" style="background: none !important; border: none;float: right;">
               <div class="row row-center item" style="background: none !important; border: none;float: right;">
                 {{(msg.message.split('###')[2] - msg.message.split('###')[2]%1000)/1000}}"
               </div>
             </div>
           </div>
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
@@ -265,25 +674,25 @@
             </div>
           </div>
         </div>
-        <!--发送###地图内容-->
+        &lt;!&ndash;发送###地图内容&ndash;&gt;
         <div class="col" ng-if="msg.messagetype === 'LOCATION'">
           <div class="row item" style="width: 230px!important;border-radius: 3px;float: right;" ng-click="entergroupmap(msg.message.substring(0, msg.message.lastIndexOf(',')))">
             <div class="col-20"><img src="img/location.jpg"
                                      style="width: 45px;height: 55px;margin-left: 5px;"/></div>
             <div class="col" style="margin-top: 5px;margin-bottom: 5px;">
               <h2 style="font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;">{{msg.message.split(',')[2]}}</h2>
-              <!--进度条-->
+              &lt;!&ndash;进度条&ndash;&gt;
               <div class="outbar" style="margin-left: 7px;display: none;"><div class="inbar" style="width:70%;background:#5CB85C;"></div></div>
-              <!--进度百分比-->
+              &lt;!&ndash;进度百分比&ndash;&gt;
               <div style="font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;display: none;">70%</div>
-              <!--发送成功-->
+              &lt;!&ndash;发送成功&ndash;&gt;
               <div style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;">点击查看</div>
-              <!--发送失败-->
+              &lt;!&ndash;发送失败&ndash;&gt;
               <div style="font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;display: none;">发送失败！</div>
             </div>
           </div>
-          <!--容错处理-->
-          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -5px;">
+          &lt;!&ndash;容错处理&ndash;&gt;
+          <div class="row" style="max-width:250px;width: auto !important;text-align:center;height:auto;float: right;margin-right: -3px;margin-top:7px;">
             <div class="col col-center item" ng-if="msg.isFailure ==='true'" style="background: none !important; border: none;float: right;">
               <img src="img/red.png" align="center" ng-click="resendgroupshow(groupid,msg.message, groupid,grouptype, localusr,myUserID,msg._id,msg)" />
             </div>
@@ -299,12 +708,6 @@
         </div>
 
       </div>
-
-
-
-
-
-
     </div>
     <br />
     <div>&nbsp;</div>
@@ -338,7 +741,7 @@
             </button>
           </div>
           <div ng-hide="!send_content || send_content === ''" style="width: 80%;height:80%;position: absolute;bottom: 0px;" ng-click="sendSingleGroupMsg(groupid,send_content,groupid,grouptype,localusr,myUserID,_id,'Text')">
-            <p>发送</p>
+            <p class="sendMessage">发送</p>
           </div>
         </div>
       </div>
@@ -378,20 +781,31 @@
             </ul>
           </div>
         </div>
-        <div class="row" style="width:100%;height: 85px;"  ng-click="openGroupDocumentWindow('*', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)" >
-          <div class="col col-25" align="center" style="margin: 7px 0" >
+
+        &lt;!&ndash;？？？？？&ndash;&gt;
+
+
+
+        &lt;!&ndash;？？？？？？&ndash;&gt;
+
+
+        <div class="row magDetailFootFileRow" ng-click="openGroupDocumentWindow('*', groupid,send_content, groupid,localusr,myUserID,_id, grouptype)" >
+          <div class="col col-25">
             <ul>
-              <li style="height: 50px;width: 50px;align-content: center" >
-                <img src="img/ddwenjian.png" style="width: 48px;height: 48px;align-content: center;">
+              <li>
+                <img class="sendTypeImg" src="img/ddwenjian.png">
               </li>
-              <li style="color: #b2b2b2;font-size: 12px">文件</li>
+              <li>文件</li>
             </ul>
           </div>
-          <div class="col col-25" align="center" style="margin:auto 0"></div>
-          <div class="col col-25" align="center" style="margin:auto 0"></div>
-          <div class="col col-25" align="center" style="margin:auto 0"></div>
+          <div class="col col-25"></div>
+          <div class="col col-25"></div>
+          <div class="col col-25"></div>
         </div>
+
       </div>
+
     </div>
   </ion-footer-bar>
 </ion-view>
+-->

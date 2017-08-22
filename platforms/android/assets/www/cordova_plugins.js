@@ -306,25 +306,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
-        "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
-        "clobbers": [
-            "window.baiduLocation"
-        ]
-    },
-    {
-        "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
-        "id": "phonegap-nfc.NFC",
-        "runs": true
-    },
-    {
-        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
-        "id": "com.darktalker.cordova.screenshot.screenshot",
-        "merges": [
-            "navigator.screenshot"
-        ]
-    },
-    {
         "file": "plugins/ScalePhoto/www/scale_photo.js",
         "id": "ScalePhoto.scale_photo",
         "clobbers": [
@@ -425,6 +406,25 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.browsertab"
         ]
+    },
+    {
+        "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
+        "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
+        "clobbers": [
+            "window.baiduLocation"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+        "id": "phonegap-nfc.NFC",
+        "runs": true
+    },
+    {
+        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+        "id": "com.darktalker.cordova.screenshot.screenshot",
+        "merges": [
+            "navigator.screenshot"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -451,9 +451,6 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.5.2-dev",
     "phonegap-plugin-barcodescanner": "6.0.1",
     "cordova-plugin-geolocation": "2.2.0",
-    "com.spout.phonegap.plugins.baidulocation": "0.1.0",
-    "phonegap-nfc": "0.6.6",
-    "com.darktalker.cordova.screenshot": "0.1.5",
     "ScalePhoto": "1.0.0",
     "GridPhoto": "1.0.0",
     "cordova-plugin-inappbrowser": "1.5.0",
@@ -468,7 +465,10 @@ module.exports.metadata =
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-screen-orientation": "2.0.1",
     "cordova-plugin-badge": "0.8.1",
-    "cordova-plugin-browsertab": "0.2.0"
+    "cordova-plugin-browsertab": "0.2.0",
+    "com.spout.phonegap.plugins.baidulocation": "0.1.0",
+    "phonegap-nfc": "0.6.6",
+    "com.darktalker.cordova.screenshot": "0.1.5"
 };
 // BOTTOM OF METADATA
 });

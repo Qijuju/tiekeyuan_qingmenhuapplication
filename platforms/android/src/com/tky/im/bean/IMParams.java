@@ -1,5 +1,6 @@
 package com.tky.im.bean;
 
+import com.tky.im.connection.IMConnection;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.paho.MType;
@@ -25,6 +26,7 @@ public class IMParams {
     private int keepAliveInterval = 300;//20;//Integer.MAX_VALUE;
     private MqttConnectOptions options;
     private boolean cleanSession = false;
+
 
     public IMParams(){
         options = new MqttConnectOptions();
@@ -120,4 +122,15 @@ public class IMParams {
         this.cleanSession = cleanSession;
     }
 
+  public void setOptions(MqttConnectOptions options) {
+    this.options = options;
+  }
+
+//  public IMConnection getImConnection() {
+//    return imConnection;
+//  }
+//
+//  public void setImConnection(IMConnection imConnection) {
+//    this.imConnection = imConnection;
+//  }
 }

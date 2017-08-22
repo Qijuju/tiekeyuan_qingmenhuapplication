@@ -1,0 +1,53 @@
+#search-bar{
+  height: 50px;background-color: #fff;
+}
+#search-input > i.icon{
+  position: relative;color: gray;font-size: 1.5em;top: 1px;
+}
+input#searchdata{
+  padding-top: 3px;
+}
+#search-bar > button.button.button-clear{
+  color: #1D95D4;
+}
+.historySearchMessage{
+  text-align: center;width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae;
+}
+
+.historymsg{
+  width: auto;margin-left: 10px;padding-top: 20px;font-size: 20px;
+}
+/* 清空历史记录 */
+.clearHistorymsg{
+  text-align: center;width: 100%;font-size: 15px;padding-top: 20px;color: #1D95D4;
+}
+/* 聊天记录 */
+.chatHistorymsg{
+  padding-left: 10px;padding-top:15px;
+
+}
+
+/* 文本居中 */
+.tal{
+  text-align: center;
+}
+
+/* 姓名 */
+p.resultName{
+  font-size: 15px;position: absolute;left: 55px;top: 30%;
+}
+
+/* 聊天记录条数 */
+.historymsgCount{
+  font-size: 15px;position: absolute;left: 45%;top: 35%;
+}
+
+/* 联系人 */
+.searchContactor{
+  padding-left: 10px;margin-top:15px;
+}
+
+.searchUserName{
+  vertical-align: center;font-size: 15px;
+}
+

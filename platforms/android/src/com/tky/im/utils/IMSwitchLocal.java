@@ -30,8 +30,8 @@ import java.util.Map;
  */
 
 public class IMSwitchLocal {
-    private static String local = "TEST";
-    //private static String local = "LN";
+//    private static String local = "TEST";//开发环境
+    private static String local = "LN";//生产环境
 
     public static void setLocal(String local) {
         IMSwitchLocal.local = local;
@@ -72,7 +72,7 @@ public class IMSwitchLocal {
 
   //固定的上下线发送Topic
   public static String getOnOffTopic(){
-    return  getLocal()+"/A/"+"s/LoginEvent";
+    return  getLocal()+"/A/"+"SI/LoginEventHandler";
   }
 
     public static String getType(MType type) {

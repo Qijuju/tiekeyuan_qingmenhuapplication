@@ -1,4 +1,6 @@
 <ion-view class="common-view-color common-bg-color" view-title="我的资料 ">
+
+  <!--导航-->
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="goAcount()">
@@ -7,46 +9,88 @@
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 " delegate-handle="myinformationScroll">
-    <ion-item  class=" rj-notify-bgggg "   style="height: 70px" >
-      <p style="position: absolute;margin-top: 2%;font-size: 15px;color: #2682AB">头像</p>
-      <div  ng-if="!picyoumeiyou" class="center circle12" style=" position: absolute;right: 6%;top: 7%;font-size: 16px;text-align: center;padding-top: 19px;z-index: 1" ng-click="setpic()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
+  <!--内容-->
+  <ion-content overflow-scroll="false" delegate-handle="myinformationScroll">
+
+    <ion-item  class=" rj-notify-bgggg ">
+      <h2 class="headerText">头像</h2>
+      <div  ng-if="!picyoumeiyou" class="center circle12 picyoumeiyou" ng-click="setpic()">{{mypersons.UserName.length > 2 ? mypersons.UserName.substring((mypersons.UserName.length-2),mypersons.UserName.length):mypersons.UserName}}</div>
       <img  ng-if="picyoumeiyou" src="{{securlpic}}" class="yuanjiao3"  ng-click="setpic()">
     </ion-item>
-    <ul class="list" style="margin-top: 16px">
+
+    <ul class="list" style="margin-top: 10px">
       <li class="item ">
-        <p>姓名</p>
-        <h2>{{mypersons.UserName}}</h2>
+        <div class="row">
+          <div class="col col-50">
+            <h2>姓名</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{mypersons.UserName}}</p>
+          </div>
+        </div>
       </li>
       <li class="item ">
-        <p>部门</p>
-        <h2>{{mypersons.DeptName}}</h2>
+        <div class="row">
+          <div class="col col-50">
+            <h2>部门</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{mypersons.DeptName}}</p>
+          </div>
+        </div>
       </li>
       <li class="item">
-        <p>职务</p>
-        <h2>{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</h2>
+        <div class="row">
+          <div class="col col-50">
+            <h2>职务</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{(mypersons.Duty==0||mypersons.Duty==""||mypersons.Duty==undefined) ? "未填写":mypersons.Duty}}</p>
+          </div>
+        </div>
       </li>
       <li class="item " ng-click="updateinformation()">
-        <p>手机号</p>
-        <h2>{{mypersons.Mobile}}</h2>
-        <img src="img/newjiantou.png" height="16px" style=" position: absolute;right: 6%;top: 38%">
+        <div class="row">
+          <div class="col col-50">
+            <h2>手机号</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{mypersons.Mobile}}<img class="myInformationImg" src="img/newjiantou.png"></p>
+          </div>
+        </div>
       </li>
       <li class="item " ng-click="updateinformation()">
-        <p>办公电话</p>
-        <h2>{{mypersons.FixPhone}}</h2>
-        <img src="img/newjiantou.png" height="16px" style=" position: absolute;right: 6%;top: 38%">
+        <div class="row">
+          <div class="col col-50">
+            <h2>办公电话</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{mypersons.FixPhone}}<img class="myInformationImg" src="img/newjiantou.png"></p>
+          </div>
+        </div>
       </li>
       <li class="item " ng-click="updateinformation()">
-        <p>邮箱</p>
-        <h2>{{mypersons.Email}}</h2>
-        <img src="img/newjiantou.png" height="16px" style=" position: absolute;right: 6%;top: 38%">
+        <div class="row">
+          <div class="col col-50">
+            <h2>邮箱</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{mypersons.Email}}<img class="myInformationImg" src="img/newjiantou.png"></p>
+          </div>
+        </div>
       </li>
       <li class="item item-button-right">
-        <p>定位</p>
-        <h2>{{geolocation}}</h2>
-        <img src="img/dingw.png" height="16px" width="16px" style=" position: absolute;right: 6%;top: 38%">
+        <div class="row">
+          <div class="col col-50">
+            <h2>定位</h2>
+          </div>
+          <div class="col col-50 myInformationCol">
+            <p>{{geolocation}}<img class="myInformationImg" src="img/dingw.png"></p>
+          </div>
+        </div>
       </li>
 
     </ul>
+
   </ion-content>
 </ion-view>

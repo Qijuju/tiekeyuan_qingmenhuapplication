@@ -30,6 +30,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.text.format.Formatter;
@@ -43,8 +44,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
-import com.tencent.tinker.lib.tinker.Tinker;
-import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
@@ -68,7 +67,6 @@ import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
 import com.tky.mqtt.services.ChatListService;
-import com.tky.mytinker.util.Utils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -106,6 +104,11 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+//    String url = "https://www.baidu.com";
+//    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+//    CustomTabsIntent customTabsIntent = builder.build();
+//    customTabsIntent.launchUrl(MainActivity.this, Uri.parse(url));
+//    System.out.println("已加载");
 /*    try {
       stopService(new Intent(MainActivity.this, MqttService.class));
     } catch (Exception e) {
@@ -196,16 +199,16 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
 
 
-    Tinker tinker = Tinker.with(getApplicationContext());
-
-    final boolean tinkerload = tinker.isTinkerLoaded();
-     String loaclPatchVersion = "";
-
-    if (tinkerload) {
-      loaclPatchVersion = tinker.getTinkerLoadResultIfPresent().getPackageConfigByName("patchVersion");
-
-    }
-    final String finalPathchVersion=loaclPatchVersion;
+//    Tinker tinker = Tinker.with(getApplicationContext());
+//
+//    final boolean tinkerload = tinker.isTinkerLoaded();
+//     String loaclPatchVersion = "";
+//
+//    if (tinkerload) {
+//      loaclPatchVersion = tinker.getTinkerLoadResultIfPresent().getPackageConfigByName("patchVersion");
+//
+//    }
+//    final String finalPathchVersion=loaclPatchVersion;
 
     //当前版本的版本号
     final String localversion = UIUtils.getVersion();
@@ -254,37 +257,37 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
              * 2 服务器的版本号和本地的版本号一致
              * 3 服务器的补丁版本号和本地的补丁版本号不一致  方可进行热修复
              */
-            if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
-
-
-              //开始下载文件
-
-              OkHttpUtils
-                .get()
-                .addParams("id",loginid)
-                .addParams("mepId",imcode)
-                .addParams("fileId",localversion)
-                .addParams("type","Patch")
-                .addParams("offset","0")
-                .addParams("platform","A")
-                .url(downurl)
-                .build()
-                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
-                           @Override
-                           public void onError(Call call, Exception e, int id) {
-                             Log.d("tinkerTag", "下载失败");
-                           }
-
-                           @Override
-                           public void onResponse(File response, int id) {
-                             Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
-                             //开启热修复
-                             TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
-
-                           }
-                         }
-                );
-            }
+//            if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
+//
+//
+//              //开始下载文件
+//
+//              OkHttpUtils
+//                .get()
+//                .addParams("id",loginid)
+//                .addParams("mepId",imcode)
+//                .addParams("fileId",localversion)
+//                .addParams("type","Patch")
+//                .addParams("offset","0")
+//                .addParams("platform","A")
+//                .url(downurl)
+//                .build()
+//                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
+//                           @Override
+//                           public void onError(Call call, Exception e, int id) {
+//                             Log.d("tinkerTag", "下载失败");
+//                           }
+//
+//                           @Override
+//                           public void onResponse(File response, int id) {
+//                             Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
+//                             //开启热修复
+//                             TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
+//
+//                           }
+//                         }
+//                );
+//            }
           } catch (Exception e) {
           }
         }
@@ -348,7 +351,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
       AnimationUtils.execShrinkAnim(this);
       ResumeParams.IMG_RESUME = false;
     }
-    Utils.setBackground(false);
+//    Utils.setBackground(false);
     if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
       IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
     }
@@ -550,7 +553,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   protected void onPause() {
     super.onPause();
-    Utils.setBackground(true);
+//    Utils.setBackground(true);
   }
 
   /**

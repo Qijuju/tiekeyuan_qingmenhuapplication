@@ -204,10 +204,8 @@ angular.module('common.services', [])
             var versionName = msg.versionName;
             var versionDesc = msg.versionDesc;
             var filesize=msg.size;
-
             //判断此版本是否需要升级
             api.needUpgrade(versionName,function (msg) {
-
               if(msg=='true'){
                 //需要升级
                 var confirmPopup = $ionicPopup.confirm({
@@ -333,7 +331,7 @@ angular.module('common.services', [])
       },
       checkLocalUser:function(userMBList, success, error) {//通讯录验证接口    userMBObj：通讯录联系人集合
         api.checkLocalUser(userMBList, success, error);
-  },
+      },
       openFileByPath:function (path, msg, success, error) {//打开文件
         api.openFileByPath(path, msg, success, error);
       },
@@ -351,6 +349,9 @@ angular.module('common.services', [])
       },
       getMsgReadList:function (msgId, isReaded,success, error) {//获取确认 未确认列表
         api.getMsgReadList(msgId, isReaded,success, error)
+      },
+      sendOperateLog:function(type, when,appId,success, error) {//新增一个客户端操作记录的接口
+      api.sendOperateLog(type, when,appId,success, error);
       },
     };
   })

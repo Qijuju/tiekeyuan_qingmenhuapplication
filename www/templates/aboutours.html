@@ -8,53 +8,49 @@
   </ion-nav-bar>
 
 <ion-content overflow-scroll="false">
-  <div style="background: white">
+
+  <div class="common-margin-top">
     <ul>
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white"  ng-click="gomyinformation()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/guanyu.png" width="24px" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">功能介绍</p>
-          </div>
-          <div class="col-10">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+      <li>
+        <div class="row" ng-click="gomyinformation()">
+          <div class="col">
+            <img src="img/guanyu.png" height="24px">
+            <span class="common-contact-bigp">功能介绍</span>
+            <img src="img/newjiantou.png">
           </div>
         </div>
       </li>
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white" ng-click="goacountsettion()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/banb.png" width="24px" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">版本信息</p>
-          </div>
-          <div class="col-10">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
-          </div>
-        </div>
-      </li>
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white" ng-click="goaboutus()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/banq.png" width="24px" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">版权所有</p>
-          </div>
-          <div class="col-10">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+
+      <li>
+        <div class="row" ng-click="goacountsettion()">
+          <div class="col">
+            <img src="img/banb.png" height="24px">
+            <span class="common-contact-bigp">版本信息</span>
+            <img src="img/newjiantou.png">
           </div>
         </div>
       </li>
-      <li style="border-bottom: 1px solid gainsboro" ng-click="zaixianshengji()">
-        <div class="row" style="background-color: white" ng-click="goaboutus()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/sj.png" width="24px" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">在线升级</p>
+      <li class="bb" >
+        <div class="row" ng-click="goaboutus()">
+          <div class="col">
+            <img src="img/banq.png" height="24px">
+            <span class="common-contact-bigp">版权所有</span>
+            <img src="img/newjiantou.png">
           </div>
-          <div class="col-10">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 16px">
+        </div>
+      </li>
+
+      <li class="bb" ng-click="zaixianshengji()">
+        <div class="row">
+          <div class="col">
+            <img src="img/sj.png" height="24px">
+            <span class="common-contact-bigp">在线升级</span>
+            <img src="img/newjiantou.png">
           </div>
         </div>
       </li>
     </ul>
   </div>
+
 </ion-content>
 </ion-view >

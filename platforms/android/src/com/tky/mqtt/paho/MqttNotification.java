@@ -42,8 +42,10 @@ public class MqttNotification {
 		/*if (manager == null) {
 			manager = (NotificationManager) UIUtils.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		}*/
-		manager.cancel(calcMsgID(userID));
+//		manager.cancel(calcMsgID(userID));
+    //判断当前是否在应用里面
 		if (!UIUtils.isApplicationBroughtToBackground(UIUtils.getContext())) {
+      System.out.println("未读数量112");
 			return;
 		}
 		try{

@@ -1,12 +1,18 @@
 <ion-view view-title={{companyName}} hide-tabs class="common-view-color">
 
+<!--导航条-->
 <ion-nav-bar align-title="center" class="newbarhead">
   <ion-nav-buttons>
   </ion-nav-buttons>
 </ion-nav-bar>
-<!--style="background: #EFEFF4"-->
-<ion-content scroll="true" overflow-scroll="true" style="background:#EFEFF4">
-  <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="2000" does-continue="true"
+
+  <!--动画图-->
+  <!--<div id="animImgBox"></div>-->
+
+<ion-content scroll="true" class="animScrollContent" overflow-scroll="true">
+
+  <!--banner图-->
+ <!-- <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="2000" does-continue="true"
                  active-slide="myActiveSlide" show-pager="true" auto-play="true">
     <ion-slide>
       <div>
@@ -23,47 +29,67 @@
         <img class="slide-img" src="img/img.jpg">
       </div>
     </ion-slide>
-  </ion-slide-box>
-  <div class="content">
+  </ion-slide-box>-->
 
+
+  <!--列表-->
+  <div class="content">
     <p class="h5-p">综合管理</p>
 
     <div class="row  row1">
       <div class="col col1 ">
-        <img src="img/app1/xmxx_f.png" width="45px" height="45px">
+        <img class="portalImg" src="img/app1/xmxx_f.png">
         <p class="h5-p2">项目信息</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(35)">
-        <img id="35" src="img/app1/cxtx_f.png" width="45px" height="45px">
+        <img  class="portalImg"id="35" src="img/app1/cxtx_f.png">
         <p class="h5-p2">诚信体系</p>
       </div>
 
       <div class="col col1" ng-click="jumpUrl(22)">
-        <img id="22" src="img/app1/hygl_f.png" width="45px" height="45px" style="border-radius: 8px">
+        <img  class="portalImg br" id="22" src="img/app1/hygl_f.png" >
         <p class="h5-p2">会议管理</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(148)">
-        <img id="148" src="img/app1/clgl_f.png" width="45px" height="45px" style="border-radius: 8px">
+        <img  class="portalImg br" id="148" src="img/app1/clgl_f.png">
         <p class="h5-p2">车辆管理</p>
       </div>
     </div>
 
     <div class="row row1">
       <div class="col col1" ng-click="jumpUrl()">
-        <img src="img/app1/zlgl_f.png" width="45px" height="45px">
+        <img class="portalImg" src="img/app1/zlgl_f.png">
         <p class="h5-p2">资料管理</p>
       </div>
       <div class="col col1">
-        <img src="img/app1/lwggzxt_f.png" width="45px" height="45px">
+        <img  class="portalImg" src="img/app1/lwggzxt_f.png">
         <p class="h5-p2">工资系统</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(10)">
-        <img id="10" src="img/app1/xmdt_f.png" width="45px" height="45px">
+        <img class="portalImg" id="10" src="img/app1/xmdt_f.png">
         <p class="h5-p2">项目动态</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(99)">
-        <img id="99" src="img/app1/xxfb_f.png" width="45px" height="45px">
+        <img class="portalImg" id="99" src="img/app1/xxfb_f.png">
         <p class="h5-p2">信息发布</p>
+      </div>
+    </div>
+    <div class="row row1">
+      <div class="col col1" ng-click="jumpUrl(194)">
+        <img class="portalImg" id="194" src="img/app1/wtjs_f.png">
+        <p class="h5-p2">武铁建设</p>
+      </div>
+      <div class="col col1">
+        <!--<img  class="portalImg" src="img/app1/lwggzxt_f.png">-->
+        <!--<p class="h5-p2">工资系统</p>-->
+      </div>
+      <div class="col col1">
+        <!--<img class="portalImg" id="10" src="img/app1/xmdt_f.png">-->
+        <!--<p class="h5-p2">项目动态</p>-->
+      </div>
+      <div class="col col1">
+        <!--<img class="portalImg" id="99" src="img/app1/xxfb_f.png">-->
+        <!--<p class="h5-p2">信息发布</p>-->
       </div>
     </div>
 
@@ -75,38 +101,38 @@
 
     <div class="row row1">
       <div class="col col1" ng-click="jumpUrl(12)">
-        <img id="12" src="img/app2/sgzz_f.png" width="45px" height="45px">
+        <img class="portalImg" id="12" src="img/app2/sgzz_f.png" >
         <p class="h5-p2">施工组织</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(16)">
-        <img id="16" src="img/app2/sgtsh_f.png" width="45px" height="45px">
+        <img class="portalImg" id="16" src="img/app2/sgtsh_f.png">
         <p class="h5-p2">施工图审核</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(21)">
-        <img id="21" src="img/app2/sgrz_f.png" width="45px" height="45px">
+        <img class="portalImg" id="21" src="img/app2/sgrz_f.png">
         <p class="h5-p2">施工日志</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(112)">
-        <img id="112" src="img/app2/ygjj_f.png" width="45px" height="45px">
+        <img class="portalImg" id="112" src="img/app2/ygjj_f.png">
         <p class="h5-p2">验工计价</p>
       </div>
     </div>
 
     <div class="row row1">
       <div class="col col1">
-        <img  src="img/app2/tzkz_f.png" width="45px" height="45px" style="border-radius: 8px">
+        <img class="portalImg br" src="img/app2/tzkz_f.png">
         <p class="h5-p2">投资控制</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(49)">
-        <img id="49" src="img/app2/zdcq_f.png" width="45px" height="45px">
+        <img class="portalImg" id="49" src="img/app2/zdcq_f.png">
         <p class="h5-p2">征地拆迁</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(82)">
-        <img id="82" src="img/app2/ddzh_f.png" width="45px" height="45px">
+        <img class="portalImg" id="82" src="img/app2/ddzh_f.png">
         <p class="h5-p2">调度指挥</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(132)">
-        <img id="132" src="img/app2/wzsb_f.png" width="45px" height="45px">
+        <img class="portalImg" id="132" src="img/app2/wzsb_f.png">
         <p class="h5-p2">物资设备</p>
       </div>
     </div>
@@ -118,76 +144,76 @@
 
     <div class="row row1" >
       <div class="col col1" ng-click="jumpUrl(18)">
-        <img id="18" src="img/app3/bhz_f.png" width="45px" height="45px">
+        <img class="portalImg" id="18" src="img/app3/bhz_f.png">
         <p class="h5-p2">拌和站</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(17)">
-        <img id="17" src="img/app3/sys_f.png" width="45px" height="45px">
+        <img class="portalImg" id="17" src="img/app3/sys_f.png">
         <p class="h5-p2">试验室</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(24)">
-        <img id="24" src="img/app3/cjgc_f.png" width="45px" height="45px">
+        <img class="portalImg" id="24" src="img/app3/cjgc_f.png">
         <p class="h5-p2">沉降观测</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(134)">
-        <img id="134" src="img/app3/jyp_f.png" width="45px" height="45px">
+        <img class="portalImg" id="134" src="img/app3/jyp_f.png">
         <p class="h5-p2">检验批</p>
       </div>
     </div>
 
     <div class="row row1">
       <div class="col col1" ng-click="jumpUrl(25)">
-        <img id="25" src="img/app3/sdxxh_f.png" width="45px" height="45px">
+        <img class="portalImg" id="25" src="img/app3/sdxxh_f.png">
         <p class="h5-p2">隧道形象化</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(83)">
-        <img id="83" src="img/app3/sdjk_f.png" width="45px" height="45px">
+        <img class="portalImg" id="83" src="img/app3/sdjk_f.png">
         <p class="h5-p2">围岩量测</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(144)">
-        <img id="144" src="img/app3/qljz_f.png" width="45px" height="45px">
+        <img class="portalImg" id="144" src="img/app3/qljz_f.png">
         <p class="h5-p2">桥梁静载</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(109)">
-        <img id="109" src="img/app3/zdzl_f.png" width="45px" height="45px">
+        <img class="portalImg" id="109" src="img/app3/zdzl_f.png">
         <p class="h5-p2">自动张拉</p>
       </div>
     </div>
 
     <div class="row row1" >
       <div class="col col1" ng-click="jumpUrl(137)">
-        <img id="137" src="img/app3/lc_f.png" width="45px" height="45px">
+        <img class="portalImg" id="137" src="img/app3/lc_f.png">
         <p class="h5-p2">梁场</p>
       </div>
       <div class="col col1">
-        <img  src="img/app3/qlxxh_f.png" width="45px" height="45px">
+        <img class="portalImg" src="img/app3/qlxxh_f.png">
         <p class="h5-p2">桥梁形象化</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(200)">
-        <img id="200" src="img/app3/zjjc_f.png" width="45px" height="45px">
+        <img class="portalImg" id="200" src="img/app3/zjjc_f.png">
         <p class="h5-p2">桩基检测</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(136)">
-        <img id="136" src="img/app3/lxys_f.png" width="45px" height="45px">
+        <img class="portalImg" id="136" src="img/app3/lxys_f.png" >
         <p class="h5-p2">路基压实</p>
       </div>
     </div>
 
     <div class="row row1">
       <div class="col col1" ng-click="jumpUrl(106)">
-        <img id="106" src="img/app3/lxl_f.png" width="45px" height="45px">
+        <img class="portalImg" id="106" src="img/app3/lxl_f.png" >
         <p class="h5-p2">连续梁</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(138)">
-        <img id="138" src="img/app3/bc_f.png" width="45px" height="45px">
+        <img class="portalImg" id="138" src="img/app3/bc_f.png" >
         <p class="h5-p2">板厂</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(168)">
-        <img id="168" src="img/app3/cqdzyb_f.png" width="45px" height="45px">
+        <img class="portalImg"  id="168" src="img/app3/cqdzyb_f.png">
         <p class="h5-p2">超前地质预报</p>
       </div>
       <div class="col col1" ng-click="jumpUrl(174)">
-        <img id="174" src="img/app3/gdsys_f.png" width="45px" height="45px">
+        <img class="portalImg" id="174" src="img/app3/gdsys_f.png" >
         <p class="h5-p2">全项试验</p>
       </div>
     </div>

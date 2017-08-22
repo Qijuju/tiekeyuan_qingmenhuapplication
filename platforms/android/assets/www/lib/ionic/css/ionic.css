@@ -1071,7 +1071,7 @@
 }
 
 .ion-android-home:before {
-  content: "";
+  conten: "";
 }
 
 .ion-android-image:before {
@@ -4415,7 +4415,7 @@ ion-infinite-scroll:not(.active) .icon:before {
  * --------------------------------------------------
  */
 p {
-  margin: 0 0 10px;
+  /*margin: 0 0 10px;*/
 }
 
 small {
@@ -7396,7 +7396,8 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   z-index: 2;
   display: block;
   margin: -1px;
-  padding: 16px;
+  /*padding: 16px;*/
+  padding:0px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px;
@@ -8165,8 +8166,9 @@ button.item.item-button-right {
 .item-avatar .item-content,
 .item-avatar-left,
 .item-avatar-left .item-content {
-  padding-left: 72px;
-  max-height: 180px;
+  /*padding-left: 72px;*/
+  padding-left:0px;
+  /*max-height: 180px;*/
 }
 
 .item-avatar > img:first-child,
@@ -10981,7 +10983,7 @@ progress {
   margin: 0;
   padding: 0 12px;
   min-width: 52px;
-  min-height: 47px;
+  min-height: 40px;
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
@@ -11696,8 +11698,8 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 
 .row + .row {
-  margin-top: -5px;
-  padding-top: 0;
+  /*margin-top: -5px;*/
+  /*padding-top: 0;*/
 }
 
 .col {
@@ -12640,17 +12642,16 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   width: 21px;
   height: 21px;
   /*background: blue;*/
-  background-image: url("../../../img/unfocus1.png");
+  /*background-image: url("../../../img/unfocus1.png");*/
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
 .toggle-small input:checked + .track .handle1 {
   -webkit-transform: translate3d(16px, 0, 0);
   transform: translate3d(16px, 0, 0);
-  background-image: url("../../../img/focus1.png");
+  /*background-image: url("../../../img/focus1.png");*/
 }
 
-/*background: #009689; }*/
 
 .toggle-small .toggle-light input:checked + .track .handle1 {
   background-color: #ddd;

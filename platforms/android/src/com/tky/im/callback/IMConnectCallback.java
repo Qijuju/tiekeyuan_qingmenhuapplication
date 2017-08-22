@@ -49,10 +49,13 @@ public class IMConnectCallback implements IMqttActionListener {
 
         //订阅topic
         subscribeTopics();
+
     }
 
     @Override
     public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+        //链接失败后 发送下线状态
+        IMUtils.sendOnOffState("UOF",imConnection);
         DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
         disconnectedBufferOptions.setBufferEnabled(true);
         disconnectedBufferOptions.setBufferSize(100);

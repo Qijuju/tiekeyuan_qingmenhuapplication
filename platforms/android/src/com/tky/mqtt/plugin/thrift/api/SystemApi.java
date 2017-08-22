@@ -15,8 +15,7 @@ public class SystemApi {
 
 //public static final String url = Constants.formalbasemobile; //正式
 //  public static final String url = Constants.httptestbasemobile;//测试
-//  public static final String FILE_URL = "http://61.237.239.152:1666";
-  public static final String FILE_URL = "http://88.1.1.22:1666";
+  public static final String FILE_URL = Constants.commonfileurl;
   //public static final String url = Constants.JINGWAIURL;
 
 }

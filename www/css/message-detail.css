@@ -1,0 +1,445 @@
+
+/*导航条右上角内容*/
+ion-nav-buttons .messageDetailRightTop > div {
+  margin-top: 7px;
+}
+ img.messageDetailTopImg{
+  width:22px;height:18px;margin-right: 12px;margin-top:7px;
+}
+/*内容*/
+.yuanjiao.messageDetail{
+  position:fixed;left: 0px;right: 0px;top: 0px;bottom: 0px;width: 150px;height: 160px;margin: auto;background-color: #2c2c2c;z-index: 1000;text-align:center;
+}
+.yuanjiao.messageDetail > img{
+  padding-top:20px;width:100px;height: 100px;
+}
+
+.yuanjiao.messageDetail > p{
+  color: #FFFFFF;size: 13px;margin-right: auto;margin-right: auto;margin-top: 10px;text-align: center;
+
+}
+.yuanjiao.messageDetail > p:nth-child(2) {
+  background: #ffa199;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+ion-content.rj-stable-content p:first-child{
+  text-align: center;
+}
+ion-content.rj-stable-content > div.msgSingle{
+  margin: 0px auto;padding: 0px auto;padding-top: 10px;
+}
+
+/* 发送与接收的时间戳 */
+.msgSingle > div.row.msgSingleIsTime .col {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.msgSingle > div.row.msgSingleIsTime .col span{
+  text-align: center;vertical-align: middle;border-radius: 3px;background: lightgrey;padding: 2px;padding-left:4px;padding-right:4px;color: #ffffff;font-size: 12px;width: 100px;
+}
+
+/* 接收-对方的消息 */
+.msgSingle > div.row.msgsingleform{
+  float: left;
+}
+
+/* 接收###文本内容 */
+
+.rj-message-new-left,
+.rj-message-new-right,
+.faultTolerant{
+  max-width:250px;
+  width: auto !important;
+  text-align:center;
+  height:auto;
+
+}
+.faultTolerant{
+  text-align: right;
+}
+
+.rj-message-new-left,
+.rj-message-new-right{
+  margin-top: 3px;
+  padding: 6px 10px;
+}
+.rj-message-new-left{
+  float: left;
+  color: #000;
+}
+
+.msgSingle > div.row.msgsingleform .receiveText > div.rj-message-new-left > p,
+.msgSingle > div.row.msgsingleform .receiveText > div.rj-message-new-right > p{
+  text-align: left;padding: 0 auto;line-height:20px;
+
+}
+
+/* 图片内容 */
+.msgSingle > div.row.msgsingleform .receiveImg > img{
+  background-color: transparent;border-radius: 10px;width: 110px;
+}
+
+/* 接收###文件内容 */
+.msgSingle > div.row.msgsingleform  .receiveFile > .item{
+  width: 230px!important;border-radius: 3px;
+}
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col.col-20{
+  width: 55px;height: 55px;
+}
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col {
+  margin-top: 5px;
+  margin-bottom: -10px
+}
+
+.msgSingle > div.row.msgsingleform  .receiveFile > .item h2,
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive h2{
+  font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;
+}
+
+
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col > div:nth-child(1){
+  margin-left: 7px;
+}
+
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col > div:nth-child(2){
+  font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;
+}
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col > div:nth-child(3),
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col > div:nth-child(4),
+.msgSingle > div.row.msgsingleform  .receiveFile > .item > div.col > div:nth-child(5) {
+  font-size: 10px;
+  margin-left: 7px;
+  height: 10px;
+  margin-top: -4px;
+  float: left;
+  color: #5CB85C;
+}
+
+/* 接收###视频内容 */
+.msgSingle > div.row.msgsingleform  .receiveVideo > div {
+  width: 250px;
+  float: left;
+}
+.msgSingle > div.row.msgsingleform  .receiveVideo video{
+  width: 100%;height:100%;
+}
+
+.msgSingle > div.row.msgsingleform  .receiveVideo video source {
+  height: 100%;
+  width: 100%;
+  background-color: #DD5044
+}
+
+
+/* 接收###音频内容 */
+.msgSingle > div.row.msgsingleform  .receiveAudio {
+  vertical-align: middle !important;
+}
+.msgSingle > div.row.msgsingleform  .receiveAudio img.yuanjiao{
+  height: 25px;text-align: left;
+}
+.msgSingle > div.row.msgsingleform  .receiveAudio > div.receiveAudioDiv{
+  max-width:250px;width: auto !important;text-align:center;height:auto;float: left;margin-left: -5px;
+}
+.msgSingle > div.row.msgsingleform  .receiveAudio > div.receiveAudioDiv > div.col.col-center.item{
+  background: none !important; border: none;
+}
+.msgSingle > div.row.msgsingleform  .receiveAudio > div.receiveAudioDiv > div.col.col-center.item > div.row row-center item:first-child{
+  background: none !important; border: none;vertical-align: top !important;margin-top:-8px;margin-bottom: 8px;
+}
+.msgSingle > div.row.msgsingleform  .receiveAudio > div.receiveAudioDiv > div.col.col-center.item > div.row row-center item:first-child img{
+  height: 8px;width: 8px;margin-left: 3px;margin-top: 0px;padding-top: 0px;
+}
+
+.msgSingle > div.row.msgsingleform  .receiveAudio > div.receiveAudioDiv > div.col.col-center.item > div.row row-center item:last-child{
+  background: none !important; border: none;
+}
+
+/* 接收###地图内容 */
+.msgSingle > div.row.msgsingleform  .receiveMap .item{
+  width: 230px!important;border-radius: 3px;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.col-20 img{
+  width: 45px;height: 55px;margin-left: 5px;
+}
+
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive{
+  margin-top: 5px;margin-bottom: -10px;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive .outbar{
+  margin-left: 7px;display: none;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive .outbar .inbar{
+  width:70%;background:#5CB85C;display: none;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive .percent{
+  font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;display: none;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive .receiveSuccess{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;
+}
+.msgSingle > div.row.msgsingleform  .receiveMap .item .col.receive .receiveError{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;display: none;
+}
+
+/****发送****/
+.messageDetailSendmsg{
+  float: right;
+}
+
+.rj-message-new-right{
+  float: right;background: #38ADFF;color: #fff;
+
+
+}
+/* 发送###文本内容 */
+.rj-message-new-right .sendtext{
+  text-align: left;padding: 0 auto;line-height:20px;
+}
+.faultTolerant {
+  margin-right: -3px;margin-top:7px;
+}
+.faultTolerant .item{
+  background: none !important; border: none;float: right;
+
+}
+.faultTolerant .item ion-spinner{
+  background-color: transparent;vertical-align: middle;
+}
+/* 发送###图片内容 */
+img.sendImg {
+  background-color: transparent;
+  border-radius: 10px;
+  width: 110px;
+  float: right;
+}
+
+/*发送文件内容*/
+.sentfile{
+  width: 230px!important;border-radius: 3px;float: right;
+}
+.sendFileImg{
+  width: 55px;height: 55px;
+}
+.sendPromptMsg{
+  margin-top: 5px;margin-bottom: -10px;
+}
+.sendPromptMsg h2{
+  font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;
+}
+.sendPromptMsg h2 .outbar{
+  margin-left: 7px;
+}
+
+/* 发送百分比 */
+.sendPromptMsg .sendPercentage{
+  font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;
+}
+/* 发送成功 */
+.sendPercentage .sendSuccess{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;
+}
+/* 发送失败 */
+.sendPromptMsg .sendError{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;
+}
+/*  发送###视频内容 */
+.sendVideo{
+  width: 250px;float: right;
+}
+#vedio1,#vedio,.sendVideo > .sendVideoDiv{
+  width: 100%;height:100%;
+}
+#vedio1 > source,
+#vedio > source{
+  height: 100%;width: 100%;background-color: #DD5044;
+}
+
+.sendVideo > .sendVideoDiv{
+ margin-top: -7px;
+}
+.sendVideo > .sendVideoDiv > .outbar{
+  width: 100%;
+}
+/*发送###音频内容*/
+img.sendAudioImg{
+  height: 25px;
+  text-align: right;
+}
+
+/* 发送地图信息 */
+.sendMapImg{
+  width: 45px;height: 55px;margin-left: 5px;
+}
+.sendMap > .item{
+  width: 230px!important;border-radius: 3px;float: right;
+}
+.sendMap .sendMapPromptMsg{
+  margin-top: 5px;margin-bottom: 5px;
+}
+.sendMap .sendMapPromptMsg > h2{
+  font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;
+}
+.sendMap .sendMapPromptMsg .outbar{
+  margin-left: 7px;display: none;
+}
+.sendMap .sendMapPromptMsg .inbar{
+  width:70%;background:#5CB85C;
+}
+.sendMap .sendPromptMsg .sendMapPercentage{
+  font-size: 10px;margin-left: 2px;height: 10px;margin-top:-4px;float: left;display: none;
+}
+.sendMap .sendPromptMsg .sendMapSuccess{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #5CB85C;
+}
+.sendMap .sendPromptMsg .sendMapError{
+  font-size: 10px;margin-left: 7px;height: 10px;margin-top:-4px;float: left;color: #ee0500;display: none;
+}
+
+/* 尾部 */
+.messageDetailFooter{
+  height: auto;padding: 0 0;margin:0 0;
+}
+.messageDetailFooter .footerContainer{
+  height: auto;width: 100%;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer{
+  height: 50px;width: 100%;background-color: #F5F5F5
+}
+/* 左边 */
+.messageDetailFooter .footerContainer  .footerInnerContainer .footLeft{
+  position: relative;width: 10%;height: 80%;display: inline-block;top:5px;left:5px;right: 5px;
+  text-align: left;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footLeft .leftYuYin{
+  height: 40px;width:40px;bottom:5px;position: absolute;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footLeft .leftYuYin .leftMdIcon{
+  border: none;background-color: #F5F5F5;font-size:28px;line-height:1;position:relative;left:12px;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footLeft  .footLeftImg{
+  width: 36px;height: 36px;position: relative;bottom: 2px;left: 2px;
+}
+
+/* 中间 */
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter{
+  position: relative;width: 76%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;
+  text-align: center;
+
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter .enterSay ,
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter .centerYuYin {
+  width: 100%;height: 100%;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter .enterSay button{
+  width: 100%;height: 100%;position: absolute;bottom: 0px;left: 0px;right: 0px;top: 0px;border: none;border:1px solid #F5F5F5;border-radius: 5px;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter .enterSay button span{
+  font-size:16px;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footCenter .centerYuYin textarea{
+  width: 100%;height: 40px;border: 1px solid #F5F5F5;border-radius: 5px;font-size: 16px;padding-top: 10px;padding-left: 3px
+}
+
+/* 右边 */
+.messageDetailFooter .footerContainer  .footerInnerContainer .footRight{
+  position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;
+  text-align: right;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footRight .buttons{
+  width: 80%;height:80%;position: absolute;bottom: 0px;
+}
+.messageDetailFooter .footerContainer  .footerInnerContainer .footRight .buttons .footRightBtn{
+  position:absolute;right:85%;bottom:2px;
+}
+
+/* 发送类型 */
+.messageDetailFooter .footerContainer .sendType{
+  height: 170px;width: 100%;background-color: #fff;
+}
+
+.messageDetailFooter .footerContainer .sendType .row{
+  width:100%;height: 85px;
+}
+.messageDetailFooter .footerContainer .sendType .row .col.col-25{
+  margin:auto 0;
+  text-align: center;
+}
+.messageDetailFooter .footerContainer .sendType .row .col.col-25 ul li:first-child,
+.row.magDetailFootFileRow .col.col-25 ul li:first-child{
+  width:100%;
+  height: 50px;
+  /*width: 50px;*/
+  text-align: center;
+}
+.messageDetailFooter .footerContainer .sendType .row .col.col-25 ul li:last-child,
+.row.magDetailFootFileRow .col.col-25 ul li:last-child{
+  width:100%;
+  height: 50px;
+  color: #b2b2b2;font-size: 12px;
+}
+
+img.sendTypeImg{
+  width: 48px;height: 48px;text-align: center;
+}
+
+/* 文件 */
+.row.magDetailFootFileRow{
+  width:100%;height: 85px;
+}
+.row.magDetailFootFileRow .col.col-25:first-child{
+  margin: 7px 0;
+  text-align: center;
+}
+
+.row.magDetailFootFileRow .col.col-25{
+  margin:auto 0;
+  text-align: center;
+}
+
+.row.magDetailFootFileRow .col.col-25 ul li{
+  width:100%;
+  height: 50px;text-align: center;
+}
+
+/* 群聊样式补充*/
+.messageGroupsendText{
+  max-width:250px;width: auto !important;height:auto;float: right;text-align: center;background: #38ADFF;color: #ffffff;
+  position: relative;
+}
+.messageGroupsendText > p{
+  text-align: left;padding: 0 auto;
+}
+
+/* */
+.picyoumeiyoumsg button{
+  border: none;font-size: 12px;
+}
+
+/* 群事件 */
+.groupEvent .col {
+  text-align: center;
+  vertical-align: middle;
+}
+.groupEvent .col span{
+  text-align: center;vertical-align: middle;border-radius: 3px;background: lightgrey;padding: 2px;padding-left:4px;padding-right:4px;color: #ffffff;font-size: 12px;width: 100px;
+
+}
+/*文本容错处理*/
+.faultTolerantText{
+  position:absolute;top:5px;left:-25px;
+}
+.faultTolerantText .alertImg{
+  width:20px;height:20px;
+}
+
+
+
+
+
+
+
+
+

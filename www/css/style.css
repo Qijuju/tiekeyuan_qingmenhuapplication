@@ -94,7 +94,7 @@ translateY(- 50 %)
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 10px;
-  overflow: auto;
+  /*overflow: auto;*/
   background: #ffffff;
   border-radius: 3px;
 }

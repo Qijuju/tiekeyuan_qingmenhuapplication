@@ -102,7 +102,10 @@ public class InAppBrowser extends CordovaPlugin {
     private boolean mediaPlaybackRequiresUserGesture = false;
     private boolean shouldPauseInAppBrowser = false;
 
-    /**
+    //upload
+    private InAppChromeClient chromeClient;
+
+  /**
      * Executes the request and returns PluginResult.
      *
      * @param action the action to execute.
@@ -710,7 +713,10 @@ public class InAppBrowser extends CordovaPlugin {
                 inAppWebView = new WebView(cordova.getActivity());
                 inAppWebView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 inAppWebView.setId(Integer.valueOf(6));
-                inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView));
+                //inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView));//為了upload
+                //upload add
+                chromeClient = new InAppChromeClient(thatWebView, InAppBrowser.this);
+                inAppWebView.setWebChromeClient(chromeClient);
                 WebViewClient client = new InAppBrowserClient(thatWebView, edittext);
                 inAppWebView.setWebViewClient(client);
                 WebSettings settings = inAppWebView.getSettings();
@@ -830,6 +836,18 @@ public class InAppBrowser extends CordovaPlugin {
                 callbackContext = null;
             }
         }
+    }
+
+    //upload add
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+      if (requestCode == InAppChromeClient.Controller.FILE_SELECTED) {
+        // Chose a file from the file picker.
+        if (chromeClient != null && chromeClient.mUploadHandler != null) {
+          chromeClient.mUploadHandler.onResult(resultCode, intent);
+        }
+      }
+      super.onActivityResult(requestCode, resultCode, intent);
     }
 
     /**

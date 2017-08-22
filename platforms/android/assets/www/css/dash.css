@@ -9,7 +9,11 @@
   font-size:14px;
 }
 .font_16{
-  font-size:17px;
+  font-size:16px;
+  margin-left:10px;
+  display: inline-block;
+  height:24px;
+  line-height:24px;
 }
 .font_18{
   font-size:18px;

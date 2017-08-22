@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 
 import com.tky.im.bean.IMParams;
 import com.tky.im.test.LogPrint;
+import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.GsonUtils;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -70,12 +72,13 @@ public class IMConnection {
      * @param message
      * @param callback
      */
-    /*public void publish(String tosb, MqttMessage message, final IMqttActionListener callback) {
+    public void publish(final String tosb, final MqttMessage message, final IMqttActionListener callback) {
         if (isConnected()) {
             try {
                 mqttAsyncClient.publish(tosb, message, null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
+                      System.out.println("有没有发消息"+tosb+message);
                         callback.onSuccess(iMqttToken);
                     }
 
@@ -91,7 +94,7 @@ public class IMConnection {
         } else {
             callback.onFailure(null, null);
         }
-    }*/
+    }
 
     /**
      * 转换消息
@@ -121,6 +124,8 @@ public class IMConnection {
      */
     public void closeIM() {
         if (mqttAsyncClient != null) {
+            //手动退出登录，往服务器传送下线状态
+            IMUtils.sendOnOffState("UOF",this);
             LogPrint.print("MQTT", "断开连接~~~");
             try {
                 mqttAsyncClient.close();
@@ -142,21 +147,25 @@ public class IMConnection {
 
     //订阅主题
     public void subscribe(String topic, int qos) throws MqttException {
-        if (mqttAsyncClient != null) {
+        if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
             try {
                 mqttAsyncClient.subscribe(topic, qos);
             } catch (Exception e) {
-                ToastUtil.showSafeToast("订阅TOPIC失败！");
+              //mqtt在线才显示订阅失败
+                if(MqttRobot.isStarted())
+                  ToastUtil.showSafeToast("订阅TOPIC失败！");
             }
         }
     }
     //订阅多个主题
     public void subscribe(String[] topics, int[] qoss) throws MqttException {
-        if (mqttAsyncClient != null) {
+        if (mqttAsyncClient != null && mqttAsyncClient.isConnected()) {
             try {
                 mqttAsyncClient.subscribe(topics, qoss);
             } catch (Exception e) {
-                ToastUtil.showSafeToast("订阅TOPIC失败！");
+              //mqtt在线才显示订阅失败
+                if(MqttRobot.isStarted())
+                  ToastUtil.showSafeToast("订阅TOPIC失败！");
             }
         }
     }

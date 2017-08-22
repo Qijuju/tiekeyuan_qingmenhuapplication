@@ -54,6 +54,10 @@ angular.module('portal.services', [])
       appId: 35,
       appName: '诚信体系',
       appIcon: 'img/app1/cxtx.png',
+    },{
+      appId: 194,
+      appName: '武铁建设',
+      appIcon: 'img/app1/wtjs.png',
     }, {
       appId: 82,
       appName: '调度指挥',
@@ -163,7 +167,7 @@ angular.module('portal.services', [])
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
           var data=JSON.parse(decodeURIComponent(data));
-          // alert("getdetail"+JSON.stringify(data));
+          // alert("getdetail22222"+JSON.stringify(data));
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
           companyName = "";
@@ -191,9 +195,9 @@ angular.module('portal.services', [])
                 lightApps.push(sysmenu[i]);
               }
             }
+            // alert("getdetail22222"+JSON.stringify(sysmenu));
           }
           //获取变动的图片，名称（暂时不用改动
-
           $rootScope.$broadcast('succeed.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');

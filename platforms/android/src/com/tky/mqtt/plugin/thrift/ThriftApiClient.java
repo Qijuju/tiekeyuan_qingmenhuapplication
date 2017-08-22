@@ -105,6 +105,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static java.lang.Long.parseLong;
+
 /**
  * 作者：
  * 包名：com.tky.mqtt.plugin.thrift
@@ -180,7 +182,8 @@ public class ThriftApiClient extends CordovaPlugin {
       paramsMap.put("loginName", username);
       paramsMap.put("passwd", password);
       paramsMap.put("platform", "A");
-      paramsMap.put("version", "1");
+      paramsMap.put("version", UIUtils.getVersion());//app应用版本号
+//      paramsMap.put("sysVersion",UIUtils.getSystemVersion());//android/ios 系统的版本号(例如：android 4.4)
       paramsMap.put("imCode", imCode);
       request.addParamsMap(paramsMap);
       OKAsyncClient.post(request, new OKHttpCallBack2<LoginInfoBean>() {
@@ -2251,6 +2254,48 @@ public class ThriftApiClient extends CordovaPlugin {
     }
 
   }
+
+
+  /**
+   * 客户端操作记录接口
+   * @param callbackContext
+   */
+  public void sendOperateLog(final JSONArray args,final CallbackContext callbackContext) {
+    try {
+      String type=args.getString(0);
+      String when=args.getString(1);
+      String appId=args.getString(2);
+      Request request = new Request();
+      Map<String, Object> paramsMap = ParamsMap.getInstance("OperateLog").getParamsMap();
+      paramsMap.put("type",type);//操作类型：AppVisit：应用访问;Other：其他
+      paramsMap.put("platform","A");//来源于哪个客户端
+      paramsMap.put("when",when);//点击时间
+      paramsMap.put("appId",appId);//来源应用的唯一标识id
+      request.addParamsMap(paramsMap);
+      OKAsyncClient.post(request, new OKHttpCallBack2<BaseBean>() {
+        @Override
+        public void onSuccess(Request request, BaseBean result) {//以后有需要再完善
+          if(result.isSucceed()){
+            setResult("success", PluginResult.Status.OK, callbackContext);
+          }else{
+            setResult("error",PluginResult.Status.ERROR,callbackContext);
+          }
+
+        }
+
+        @Override
+        public void onFailure(Request request, Exception e) {//以后有需要再完善
+          setResult("error",PluginResult.Status.ERROR,callbackContext);
+        }
+      });
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+
+
 
   //以下为工具方法
 

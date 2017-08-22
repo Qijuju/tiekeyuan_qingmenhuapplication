@@ -1,4 +1,6 @@
-<ion-view view-title="我的群组" class="common-view-color common-bg-color">
+<ion-view view-title="我的群组" class="common-view-color">
+
+  <!--导航条-->
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ui-sref="tab.contacts">
@@ -6,44 +8,111 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class=" button button-icon " ng-click="createGroupChats()" style="color: white">创建聊天</button>
+      <button class=" button button-icon" ng-click="createGroupChats()" style="color: white">创建聊天</button>
     </ion-nav-buttons>
   </ion-nav-bar>
+
   <ion-content 　overflow-scroll="false">
-    <ion-item class="rj-contacts-item" ng-if="!ismycreat==0">
-      <div class="rj-contacts-index-bar">我创建的</div>
-      <ion-list>
-        <ion-item style="height: 65px;" class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
-                  ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName,item.isMyGroup)">
+    <ion-list>
 
-          <img  src="img/quntouxiang.png"  style=" position: absolute;left: 4%;width: 42px;height: 42px">
-          <h2 style="margin-top: -4px">{{item.GroupName}}</h2>
-          <p>{{item.MemsCount}}人</p>
-        </ion-item>
-      </ion-list>
-    </ion-item>
+      <!--我创建的-->
+      <ion-item class="rj-contacts-item" ng-if="!ismycreat==0">
+        <div class="rj-contacts-index-bar">我创建的</div>
+        <ion-list>
+          <ion-item class="item-remove-animate item-avatar" ng-repeat="item in grouplist"
+                    ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName,item.isMyGroup)">
+
+            <div class="row" >
+              <div class="col myHeader">
+
+                <!--头像-->
+                <div class="headerDiv">
+                  <img class="groupImg"  src="img/quntouxiang.png" >
+                </div>
+
+                <!--姓名、最后一条消息-->
+                <div class="myUserName" >
+
+                  <!--姓名-->
+                  <div class="chatName">
+                    <h2>{{item.GroupName}}</h2>
+                  </div>
+
+                  <!--最后一条消息-->
+                  <div class="lastMessage">
+                    <span>{{item.MemsCount}}人</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ion-item>
+        </ion-list>
+      </ion-item>
 
 
-    <ion-item class="rj-contacts-item">
-      <div class="rj-contacts-index-bar">我加入的</div>
-      <ion-list>
-        <ion-item style="height: 65px" class="item-remove-animate item-avatar item-icon-right" ng-click="goDepartmentGroup(depid,deptinfo,false)">
-          <img  src="img/quntouxiang.png"  style=" position: absolute;left: 4%;width: 42px;height: 42px">          <!--<img src="img/default_org_icon.png">-->
-          <h2 style="margin-top: -4px">{{deptinfo}}</h2>
-          <p >部门群</p>
+      <!--我加入的-->
+      <ion-item class="rj-contacts-item">
+        <div class="rj-contacts-index-bar">我加入的</div>
+        <ion-list>
+          <ion-item class="item-remove-animate item-avatar"  ng-click="goDepartmentGroup(depid,deptinfo,false)">
+            <div class="row" >
+              <div class="col myHeader">
 
-        </ion-item>
-        <ion-item style="height: 65px" class="item-remove-animate item-avatar item-icon-right " ng-repeat="item in grouplist"
-                  ng-if="!item.isMyGroup" ng-click="goJoinGroup(item.GroupID,item.GroupName,item.isMyGroup)">
-          <img  src="img/quntouxiang.png"  style=" position: absolute;left: 4%;width: 42px;height: 42px">
-          <h2 style="margin-top: -4px">{{item.GroupName}}</h2>
-          <p >{{item.MemsCount}}人</p>
-        </ion-item>
-      </ion-list>
-    </ion-item>
+                <!--头像-->
+                <div class="headerDiv">
+                  <img  class="groupImg" src="img/quntouxiang.png">
+                </div>
+
+                <!--姓名、最后一条消息-->
+                <div class="myUserName" >
+
+                  <!--姓名-->
+                  <div class="chatName">
+                    <h2>{{deptinfo}}</h2>
+                  </div>
+
+                  <!--最后一条消息-->
+                  <div class="lastMessage">
+                    <span>部门群</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item class="item-remove-animate item-avatar" ng-repeat="item in grouplist"
+                    ng-if="!item.isMyGroup" ng-click="goJoinGroup(item.GroupID,item.GroupName,item.isMyGroup)">
+
+            <div class="row" >
+              <div class="col myHeader">
+
+                <!--头像-->
+                <div class="headerDiv">
+                  <img  class="groupImg"  src="img/quntouxiang.png">
+                </div>
+
+                <!--姓名、最后一条消息-->
+                <div class="myUserName" >
+
+                  <!--姓名-->
+                  <div class="chatName">
+                    <h2>{{item.GroupName}}</h2>
+                  </div>
+
+                  <!--最后一条消息-->
+                  <div class="lastMessage">
+                    <span>{{item.MemsCount}}人</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ion-item>
+        </ion-list>
+      </ion-item>
+
+    </ion-list>
 
   </ion-content>
 </ion-view>
-
-
-

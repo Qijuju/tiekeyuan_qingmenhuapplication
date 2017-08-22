@@ -294,6 +294,5 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("id").primaryKey();
         msgHistory.addStringProperty("username");//用户姓名
         msgHistory.addStringProperty("pwd");//手势密码
-
     }
 }

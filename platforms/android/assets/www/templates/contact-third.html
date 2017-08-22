@@ -7,22 +7,36 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content >
+
     <ion-scroll zooming="true" direction="x" style="width: 100%" >
-      <div id="thirdscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a2" class="a-style" ng-click="backSecond()" style="font-size: 15px">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
-        <a id="a3" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo2}}</a>
+      <div id="scrollDiv" class="div-a-style">
+        <a id="a1" class="a-style" href="#/tab/contacts">联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a2" class="a-style" ng-click="backSecond()">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
+        <a id="a3" class="a-style">{{deptinfo2}}</a>
       </div>
     </ion-scroll>
-    <div>
+
+    <!--列表-->
+    <div class="background_white">
       <ion-list>
-        <ion-item ng-repeat=" item in departthirdlist"   ng-click="jumpForth(item.DeptID,pppid,deptinfo2)" class="item-remove-animate item-avatar rj-contact-new ">
-          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
-          <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        <ion-item ng-repeat=" item in departthirdlist"   ng-click="jumpForth(item.DeptID,pppid,deptinfo2)">
+          <div class="row">
+            <div class="col">
+              <img  src="img/im_contact_con.png" class="addNewMemberImg">
+              <span class="font_16">{{item.DeptName}}</span>
+            </div>
+          </div>
+
         </ion-item>
-        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in userthirdlist"  ng-click="goThirdDetail(item.UserID)">
-          <img  src="img/icon_friends.png" style="width: 38px;height: 38px;align-content: center">
-          <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
+        <ion-item ng-repeat=" item in userthirdlist"  ng-click="goThirdDetail(item.UserID)">
+          <div class="row">
+            <div class="col">
+              <img  src="img/icon_friends.png" class="addNewMemberImg">
+              <span class="font_16">{{item.UserName}}</span>
+
+            </div>
+          </div>
+
         </ion-item>
       </ion-list>
     </div>

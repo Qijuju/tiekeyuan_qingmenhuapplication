@@ -1,17 +1,29 @@
-<ion-view >
-  <ion-content  style="background-color:#e5e5e5 " >
 
-    <div>
-      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="backAny()"/>
+
+<ion-view >
+  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
+
+    <!--返回←箭头-->
+    <div class="back">
+      <img src="img/backmain.png" ng-click="backAny()"/>
     </div>
 
-    <div style="height: 255px;background-color: white;text-align: center;width:100%">
-      <img src="img/quntouxiang.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
-      <P style="font-size: 18px;margin-top: 10px;text-align-all: center">{{groupName}}</P>
+    <!---->
+    <div class="personDetailDiv">
 
-      <div style="position: absolute;top: 185px;"  class="row">
-        <div class="col" align="center" ng-click="gohistoryMessagea()">
-          <a >
+      <!--头像-->
+      <img src="img/quntouxiang.png">
+
+      <!--用户姓名-->
+      <div class="personDetailUserName">
+        <p>{{groupName}}</p>
+      </div>
+
+      <!--发消息、保存手机、打电话、发短信-->
+      <div  class="row ">
+
+        <div class="col" align="center" >
+          <a ng-click="gohistoryMessagea()">
             <ul>
               <li><img src="img/im_new_chat.png" width="30" height="30"></li>
               <li style="color: black;">消息</li>
@@ -36,45 +48,56 @@
             </ul>
           </a>
         </div>
-
       </div>
     </div>
 
-    <ul class="list " style="margin-top: 15px">
+    <!--群图片、群公告、群成员、修改群名称（if）-->
+    <ion-list style="margin-top:10px;">
+      <ion-item >
+        <div class="row chartImages" ng-click="groupPicture()" >
+          <div class="col">
+            <img src="img/images.png" alt="图片库">
+            <span>群图片</span>
+            <i class="button button-dark button-clear icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
 
-      <div ng-click="groupPicture()">
-        <li class="item item-toggle item-button-right" >
-          群图片
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
+      </ion-item>
+      <ion-item>
+        <div class="row chartImages" ng-click="groupNotice()">
+          <div class="col">
+            <img src="img/groupAnnouncement.png" alt="群公告图">
+            <span>群公告</span>
+            <i class="button button-dark button-clear icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
 
-      <div ng-click="groupNotice()">
-        <li class="item item-toggle item-button-right" >
-          群公告
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
+      </ion-item>
+      <ion-item>
+        <div class="row chartImages" ng-click="goGroupPerson(groupId,groupName,groupType)">
+          <div class="col">
+            <img src="img/groupMembers.png" alt="群成员">
+            <span>群成员</span>
+            <i class="button button-dark button-clear icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
 
-      <div ng-click="goGroupPerson(groupId,groupName,groupType)">
-        <li class="item item-toggle item-button-right" >
-          群成员
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
+      </ion-item>
+      <ion-item>
+        <div class="row chartImages" ng-if="ismygroupaaa=='true'" ng-click="goGroupName(groupId,groupName)">
+          <div class="col">
+            <img src="img/modifyGroupName.png" alt="修改群名称">
+            <span>修改群名称</span>
+            <i class="button button-dark button-clear icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
 
-      <div ng-if="ismygroupaaa=='true'" ng-click="goGroupName(groupId,groupName)">
-        <li class="item item-toggle item-button-right">
-          修改群名称
-          <a class="button button-dark button-clear icon ion-ios-arrow-right" ></a>
-        </li>
-      </div>
-    </ul>
-
-    <div class="list" style="margin-top: -8px">
+    <div class="personalSetting list">
     </div>
 
-
+    <!--解散该群-->
     <div class="list" style="margin-top: -8px;margin-left: 8px;margin-right: 8px" ng-if="ismygroupaaa=='true'">
 
       <button class="button button-block button-positive" ng-click="dissolveGroup()"
@@ -82,5 +105,6 @@
         解散该群
       </button>
     </div>
+
   </ion-content>
 </ion-view>

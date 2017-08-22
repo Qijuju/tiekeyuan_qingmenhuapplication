@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate,$pubionicloading, $pubionicloading, NetData, $greendao, FinshedApp, $rootScope, $http) {
+  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $pubionicloading, NetData, $greendao, FinshedApp, $rootScope, $http,$api) {
 
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
@@ -37,14 +37,13 @@ angular.module('portal.controllers', [])
     })
 
     $scope.$on('succeed.update', function (event) {
-
+      $pubionicloading.hide();
       $scope.companyName = NetData.getName();
       //点亮图标
       var lightApps = NetData.getLightApps();
       for (var i = 0; i < lightApps.length; i++) {
         document.getElementById("" + lightApps[i].appId).src = lightApps[i].appIcon;
       }
-      $pubionicloading.hide();
     });
 
 
@@ -56,7 +55,6 @@ angular.module('portal.controllers', [])
 
     //rxy 跳转页面详情
     $scope.jumpUrl = function (appId) {
-
       //获取当前用户的session(存储在基础平台)
       $http({
         method: 'post',
@@ -66,66 +64,165 @@ angular.module('portal.controllers', [])
         url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         data:{"Action":"GetSession","id":userID,"mepId":imCode}
       }).success(function (data, status) {
-
-        var data=JSON.parse(decodeURIComponent(data));
-
+        var data = JSON.parse(decodeURIComponent(data));
+        // alert("122"+appId+"======"+JSON.stringify(data));
         if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
           $ToastUtils.showToast("获取用户权限失败!");
           return;
         }
 
-        if (NetData.get(appId) != null) {
-          // NetData.get(appId).appUrl + data.sessionid
-          //信息发布url:http://172.25.28.128:8080/gatewayh/base/security/userinfo!loginForBaseHtml.action?sessionid=f101d7f9-7063-4d13-85a2-75837dc1243f
-          /**
-           * inappbrowser
-           */
+        //进行统计埋点
+        $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+          // alert("埋点成功"+succ);
+        },function(err){
+
+        })
+
+        if(NetData.get(appId) != null && NetData.get(appId) !=""){
           document.addEventListener("deviceready", onDeviceReady, false);
           function onDeviceReady() {
-            // alert("window.open works well");
-            var ref = cordova.InAppBrowser.open(NetData.get(appId).appUrl + data.sessionid, '_blank', 'location=no,closebuttoncaption=My Button Name');
+
+            /**
+             * 打开浏览器时先判断是否支持browserTab
+             * 否则采用inappbrowser
+             * @type {string}
+             */
+            var testURL = NetData.get(appId).appUrl + data.sessionid;
+            // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
+            cordova.plugins.browsertab.isAvailable(function (result) {
+                if (!result) {
+                  // alert("1111"+result);
+                  cordova.InAppBrowser.open(testURL, '_blank', 'location=no,closebuttoncaption=返回');
+                } else {
+                  // alert("2222"+result);
+                  cordova.plugins.browsertab.openUrl(
+                    testURL,
+                    function (successResp) {
+                    },
+                    function (failureResp) {
+                      // alert('failed to launch browser tab');
+                      // error.textContent = 'failed to launch browser tab';
+                      // error.style.display = '';
+                    });
+                }
+              },
+              function (isAvailableError) {
+                // alert('failed to query availability of in-app browser tab');
+                // error.textContent = 'failed to query availability of in-app browser tab';
+                // error.style.display = '';
+              });
           }
-          /**
-           * 原始做法
-           */
-          // $state.go("cxtx", {
-          //   "appId": appId,
-          //   "userId": userID,
-          //   // "appUrl": "http://61.237.239.105:18190/h5app/DMSAppPage/UI/index.aspx?token=" + data.sessionid
-          //   "appUrl": NetData.get(appId).appUrl + data.sessionid
-          // });
-          /**
-           * file transfer
-           */
-          // var fileURL="file:///storage/emulated/0/Download/123.css";
-          // var win = function (r) {
-          //   console.log("Code = " + r.responseCode);
-          //   console.log("Response = " + r.response);
-          //   console.log("Sent = " + r.bytesSent);
-          // }
-          //
-          // var fail = function (error) {
-          //   alert("An error has occurred: Code = " + error.code);
-          //   console.log("upload error source " + error.source);
-          //   console.log("upload error target " + error.target);
-          // }
-          //
-          // var options = new FileUploadOptions();
-          // options.fileKey = "file";
-          // options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-          // options.mimeType = "text/plain";
-          // alert("fileurl===="+fileURL+"===="+options.fileName);
-          // var ft = new FileTransfer();
-          // ft.download(encodeURI("http://172.25.28.128:8080/gateway/theme/default/css/login.css"),fileURL, win, fail, options);
-          // console.log(fileURL+" :   "+fileURL);
-          /**
-           * custom tabs browser(默认就是选择打开手机内置浏览器)
-           */
-          // cordova.plugins.browsertab.openUrl('https://www.baidu.com');
         }
 
+        /**
+         * 用于所有子应用都测试通过并正式上线再启用
+         */
+      //   if (NetData.get(appId).type === '1') {
+      //
+      //     $mqtt.getUserInfo(function (userinfo) {
+      //       // alert("用户登录信息"+JSON.stringify(userinfo));
+      //       // if (username != null || username != '' || username != undefined) {
+      //         // var parArr=[];
+      //         // parArr=NetData.get(appId).parameters;
+      //         // for (var i=0;i<parArr.length;i++){
+      //         // }
+      //
+      //         var ref = cordova.InAppBrowser.open(NetData.get(appId).appUrl + '&UserName=' + 'liubolb' + '&RealName='
+      //           + '刘博' + '&GUID=c95c77759ba60769d55cf441508ee342' + '&DATE=' + new Date().getTime(),
+      //           '_blank', 'location=no,closebuttoncaption=返回');
+      //       // }
+      //     });
+      //     // $SPUtils.getUsername(function (username) {
+      //
+      //     // }, function (err) {
+      //     //
+      //     // });
+      //
+      //   } else  if(NetData.get(appId).type==='0'){
+      //     alert("哈哈哈哈");
+      //     // NetData.get(appId).appUrl + data.sessionid
+      //     //信息发布url:http://172.25.28.128:8080/gatewayh/base/security/userinfo!loginForBaseHtml.action?sessionid=f101d7f9-7063-4d13-85a2-75837dc1243f
+      //     /**
+      //      * inappbrowser
+      //      */
+      //     // document.addEventListener("deviceready", onDeviceReady, false);
+      //     // function onDeviceReady() {
+      //     //   // alert("window.open works well");
+      //     //   var ref = cordova.InAppBrowser.open(NetData.get(appId).appUrl + data.sessionid, '_blank', 'location=no,closebuttoncaption=My Button Name');
+      //     // }
+      //     /**
+      //      * 原始做法
+      //      */
+      //     // $state.go("cxtx", {
+      //     //   "appId": appId,
+      //     //   "userId": userID,
+      //     //   // "appUrl": "http://61.237.239.105:18190/h5app/DMSAppPage/UI/index.aspx?token=" + data.sessionid
+      //     //   "appUrl": NetData.get(appId).appUrl + data.sessionid
+      //     // });
+      //     /**
+      //      * file transfer
+      //      */
+      //     // var fileURL="file:///storage/emulated/0/Download/123.css";
+      //     // var win = function (r) {
+      //     //   console.log("Code = " + r.responseCode);
+      //     //   console.log("Response = " + r.response);
+      //     //   console.log("Sent = " + r.bytesSent);
+      //     // }
+      //     //
+      //     // var fail = function (error) {
+      //     //   alert("An error has occurred: Code = " + error.code);
+      //     //   console.log("upload error source " + error.source);
+      //     //   console.log("upload error target " + error.target);
+      //     // }
+      //     //
+      //     // var options = new FileUploadOptions();
+      //     // options.fileKey = "file";
+      //     // options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+      //     // options.mimeType = "text/plain";
+      //     // alert("fileurl===="+fileURL+"===="+options.fileName);
+      //     // var ft = new FileTransfer();
+      //     // ft.download(encodeURI("http://172.25.28.128:8080/gateway/theme/default/css/login.css"),fileURL, win, fail, options);
+      //     // console.log(fileURL+" :   "+fileURL);
+      //     /**
+      //      * custom tabs browser(默认就是选择打开手机内置浏览器)
+      //      */
+      //     // cordova.plugins.browsertab.openUrl('https://www.baidu.com');
+      //   document.addEventListener("deviceready", onDeviceReady, false);
+      //   function onDeviceReady() {
+      //
+      //       /**
+      //        * 打开浏览器时先判断是否支持browserTab
+      //        * 否则采用inappbrowser
+      //        * @type {string}
+      //        */
+      //       var testURL = NetData.get(appId).appUrl + data.sessionid;
+      //       // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
+      //       cordova.plugins.browsertab.isAvailable(function (result) {
+      //           if (!result) {
+      //             // alert("1111"+result);
+      //             cordova.InAppBrowser.open(testURL, '_blank', 'location=no,closebuttoncaption=返回');
+      //           } else {
+      //             // alert("2222"+result);
+      //             cordova.plugins.browsertab.openUrl(
+      //               testURL,
+      //               function (successResp) {
+      //               },
+      //               function (failureResp) {
+      //                 // alert('failed to launch browser tab');
+      //                 // error.textContent = 'failed to launch browser tab';
+      //                 // error.style.display = '';
+      //               });
+      //           }
+      //         },
+      //         function (isAvailableError) {
+      //           // alert('failed to query availability of in-app browser tab');
+      //           // error.textContent = 'failed to query availability of in-app browser tab';
+      //           // error.style.display = '';
+      //         });
+      //   }
+      // }
       }).error(function (data, status) {
-        $ToastUtils.showToast("获取用户权限失败!")
+        $ToastUtils.showToast("获取用户权限失败!");
       });
     };
 

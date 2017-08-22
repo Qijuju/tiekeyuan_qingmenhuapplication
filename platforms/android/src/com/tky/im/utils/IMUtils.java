@@ -1,8 +1,10 @@
 package com.tky.im.utils;
 
+import com.google.gson.Gson;
 import com.tky.im.connection.IMConnection;
 import com.tky.mqtt.paho.BaseApplication;
 import com.tky.mqtt.paho.SPUtils;
+import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.protocol.factory.IMMsgFactory;
 import com.tky.protocol.model.IMPException;
@@ -71,32 +73,76 @@ public class IMUtils {
    * @return
    */
   public static byte[] getOnOffState(String onoff) {
+    //之前的做法
+//    byte[] data=null;
+//    Map<String,Object> map=new HashMap<String, Object>();
+//    map.put("MepID", JPushInterface.getRegistrationID(BaseApplication.getContext()));
+//    map.put("UserID",getUserID());
+//    try {
+//      data=  IMMsgFactory.createEvent(onoff,map);
+//    } catch (IMPException e) {
+//      e.printStackTrace();
+//    }
     byte[] data=null;
-    Map<String,Object> map=new HashMap<String, Object>();
-    map.put("MepID", JPushInterface.getRegistrationID(BaseApplication.getContext()));
-    map.put("UserID",getUserID());
     try {
-      data=  IMMsgFactory.createEvent(onoff,map);
-    } catch (IMPException e) {
+      String json=getOnOffJson(onoff);
+      data = json.getBytes();
+    } catch (JSONException e) {
       e.printStackTrace();
     }
     return data;
   }
 
+  /**
+   * 上下线json格式拼装抽取公共方法
+   * @param state
+   * @return
+   */
+  private static String getOnOffJson(String state) throws JSONException {
+    JSONObject obj = new JSONObject();
+    obj.put("NotifyType", "E");
+    obj.put("UserID", IMSwitchLocal.getUserID());
+    obj.put("when",System.currentTimeMillis());
+    obj.put("EventCode",state);
+    obj.put("MepID", UIUtils.getDeviceId());
+    String json = obj.toString();
+    return json;
+  }
 
   /**
-   * 发送上线消息
+   * 发送上线/下线事件方法
    */
-  public static void sendOnOffState(String str, IMConnection imConnection) {
-    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), IMUtils.getOnOffObject(), new IMqttActionListener() {
-      @Override
-      public void onSuccess(IMqttToken asyncActionToken) {
-      }
+  public static void sendOnOffState(String state, IMConnection imConnection) {
+    /**
+     {"NotifyType":"E","UserID":"232277","when":1502935429550,"EventCode":"UOF","MepID":"1a1018970a931829587"}*/
+    try {
+      String json = getOnOffJson(state);
+      MqttMessage mqttMessage = new MqttMessage();
+      mqttMessage.setPayload(json.getBytes());
+      imConnection.publish(IMSwitchLocal.getOnOffTopic(), mqttMessage, new IMqttActionListener() {
+        @Override
+        public void onSuccess(IMqttToken asyncActionToken) {
+          //可以不用处理
+        }
 
-      @Override
-      public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-      }
-    });
+        @Override
+        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+          //失败也可以不用
+        }
+      });
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+//    ThriftApiClient.sendMsg(IMSwitchLocal.getOnOffTopic(), IMUtils.getOnOffObject(), new IMqttActionListener() {
+//      @Override
+//      public void onSuccess(IMqttToken asyncActionToken) {
+//      }
+//
+//      @Override
+//      public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+//      }
+//    });
 
 
     /*MqttMessage event = new MqttMessage();

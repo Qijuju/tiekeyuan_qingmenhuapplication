@@ -1,4 +1,6 @@
 <ion-view >
+
+  <!-- 导航条 -->
   <ion-nav-bar align-title="center">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-back" ng-click="backSearchMessage()">
@@ -6,29 +8,43 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
+
+  <!--内容-->
   <ion-content overflow-scroll="false">
-    <div class="background_white">
-      <p class="company_contacts_title padding_10 font_18" style="margin-top: 20px">共{{lengtha}}条与"{{Usermessage3}}"相关的聊天记录</p>
+
+    <!--提示信息-->
+    <div class="background_white" style="margin-top:10px;">
+      <p class="company_contacts_title padding_10 font_18">共{{lengtha}}条与"{{Usermessage3}}"相关的聊天记录</p>
     </div>
+
     <ion-list>
-      <ion-item ng-repeat="messageaname in messagessname" style="height: 60px" >
+      <ion-item class="item-remove-animate item-avatar" id="myItemAvatar" ng-repeat="messageaname in messagessname">
         <div class="row" >
-          <div  class="col-20" style="text-align: center">
-            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==1||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
-            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==2||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
-            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==3||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
-            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==4||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
-            <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==5||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 19%;font-size: 14px;text-align: center;padding-top: 8px">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
-          </div>
-          <div class="col-80" align="left" ng-click="">
-            <p  ng-if="item.lastDate != 0" style="font-size: 15px;margin-top: -12px">{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-            <p ng-if="messageaname.messagetype=='File'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message.split("###")[4]}}</p>
-            <p ng-if="messageaname.messagetype=='Image'" style="font-size: 15px;margin-bottom: -5px" > [图片]</p>
-            <p ng-if="messageaname.messagetype=='Vedio'" style="font-size: 15px;margin-bottom: -5px" > [小视频]</p>
-            <p ng-if="messageaname.messagetype=='Audio'" style="font-size: 15px;margin-bottom: -5px" > [语音]</p>
-            <p ng-if="messageaname.messagetype=='LOCATION'" style="font-size: 15px;margin-bottom: -5px" > [位置]</p>
-            <p ng-if="messageaname.messagetype=='normal'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message}}</p>
-            <p ng-if="messageaname.messagetype=='Text'" style="font-size: 15px;margin-bottom: -5px" > {{messageaname.message}}</p>
+          <div  class="col col-90 myHeader">
+            <!--头像-->
+            <div class="headerDiv">
+              <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==1||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==9" class="center circle1 myHeaderDiv">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+              <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==2||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==8" class="center circle2 myHeaderDiv">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+              <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==3||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==7" class="center circle3 myHeaderDiv">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+              <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==4||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==6" class="center circle4 myHeaderDiv">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+              <div ng-if="messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==5||messageaname.sessionid.substring((messageaname.sessionid.length-1),messageaname.sessionid.length)==0" class="center circle5 myHeaderDiv">{{messageaname.username.length > 2 ? messageaname.username.substring((messageaname.username.length-2),messageaname.username.length):messageaname.username}}</div>
+
+            </div>
+
+            <div class="myUserName">
+              <!--时间-->
+              <div class="chatName lastMessage">
+                <p ng-if="item.lastDate != 0" >{{messageaname.when | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                <p ng-if="messageaname.messagetype=='File'" > {{messageaname.message.split("###")[4]}}</p>
+                <p ng-if="messageaname.messagetype=='Image'" > [图片]</p>
+                <p ng-if="messageaname.messagetype=='Vedio'" > [小视频]</p>
+                <p ng-if="messageaname.messagetype=='Audio'" > [语音]</p>
+                <p ng-if="messageaname.messagetype=='LOCATION'" > [位置]</p>
+                <p ng-if="messageaname.messagetype=='normal'" > {{messageaname.message}}</p>
+                <p ng-if="messageaname.messagetype=='Text'" > {{messageaname.message}}</p>
+              </div>
+
+            </div>
           </div>
         </div>
       </ion-item>
