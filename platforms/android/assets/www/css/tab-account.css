@@ -1,0 +1,85 @@
+.tabAccount{
+  background-color:#e5e5e5
+}
+
+/*头像、姓名、天气*/
+.myDiv{
+  background-color: white;margin-top: 16px;
+}
+.myDiv ion-item span.weather{
+  color: #6495ED;
+}
+.myDiv ion-item p{
+  margin-left: 90px;
+  margin-top: 35px;
+  font-size: 18px;
+  color: #000;
+  display: inline-block;
+
+}
+.myDiv ion-item.item-avatar.rj-notify-bggg{
+  height: 88px
+}
+.myDiv ion-item div.center.circle11.jiename{
+  position: absolute;left: 3%;top: 10%;font-size: 16px;text-align: center;padding-top: 22px;z-index: 1
+}
+
+/*列表：我的资料、设置、关于、功能*/
+div.common-margin-top{
+  background-color: #fff;
+}
+div.common-margin-top ul li{
+  border-bottom: 1px solid gainsboro;
+}
+div.common-margin-top ul li > div{
+  width: 100%;
+  /*height:auto;*/
+  color: ghostwhite;
+}
+div.common-margin-top ul li > div.row{
+  background-color: white;
+}
+div.common-margin-top ul li > div.row > div.col{
+  margin-left: 10px;padding: 10px
+}
+div.common-margin-top ul li > div.row > div.col span{
+  margin-left:10px;
+  margin-top:-4px;
+}
+/*箭头*/
+div.common-margin-top ul li > div.row > div.col > img{
+  margin-top:3px;
+  vertical-align: bottom;
+
+}
+div.common-margin-top ul li > div.row > div.col > img:last-child{
+  height:14px;
+  /*width:14px;*/
+  float: right;
+  margin-top:8px;
+}
+
+/*退出登录按钮*/
+button.button.button-block.button-stable{
+  color: #1D95D4;font-size: 16px;height: 60px; margin-top: 32px
+}
+/* 我的资料页面部分样式 */
+/* 图片大小*/
+.myInformationCol > p  > img.myInformationImg{
+  float: right;margin-left:10px;height:15px;
+}
+
+ .myInformationCol{
+  text-align: right;
+}
+
+ /*头像*/
+.rj-notify-bgggg > h2.headerText{
+  width:50px;height:100%;text-align: center;line-height:60px;
+}
+.picyoumeiyou{
+  position: absolute;right: 6%;top: 7%;font-size: 16px;text-align: center;padding-top: 19px;z-index: 1;
+}
+
+
+
