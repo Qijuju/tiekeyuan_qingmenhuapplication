@@ -3,7 +3,7 @@
   <ion-nav-bar align-title="center" class="newbarhead">
   </ion-nav-bar>
 
-  <ion-content class="tabAccount" overflow-scroll="false">
+  <ion-content class="tabAccount" overflow-scroll="false" >
 
     <!--头像、姓名、天气 -->
     <div class="myDiv">
@@ -22,19 +22,15 @@
         <span class="rj-weather-rightsmall weather">{{pm25aa}}</span>
         <span class="rj-weather-rightsmallsamll weather">{{weatherzhen}}</span>
 
-        <!--<span class="rj-weather-rightbig weather">29.C</span>-->
-        <!--<span class="rj-weather-rightbigsmall weather">北京市</span>-->
-        <!--<span class="rj-weather-rightsmall weather">pm2.5:65</span>-->
-        <!--<span class="rj-weather-rightsmallsamll weather">雷阵雨转阴</span>-->
-
       </ion-item>
     </div>
 
     <!--列表：我的资料、设置、关于、功能-->
+    <!-- menu-close ：用来关闭菜单-->
     <div class="common-margin-top">
       <ul>
-        <li>
-          <div class="row" ng-click="gomyinformation()">
+        <li menu-close>
+          <div  class="row" ng-click="gomyinformation()">
             <div class="col">
               <img src="img/zil.png" height="24px">
               <span class="common-contact-bigp">我的资料</span>
@@ -43,7 +39,7 @@
           </div>
         </li>
 
-        <li>
+        <li menu-close>
           <div class="row" ng-click="goacountsettion()">
             <div class="col">
               <img src="img/shez.png" height="24px">
@@ -52,7 +48,7 @@
             </div>
           </div>
         </li>
-        <li class="bb" >
+        <li menu-close class="bb" >
           <div class="row" ng-click="goaboutus()">
             <div class="col">
               <img src="img/guany.png" height="24px">
@@ -62,7 +58,7 @@
           </div>
         </li>
 
-        <li class="bb">
+        <li menu-close class="bb">
           <div class="row" ng-click="goFounction()">
             <div class="col">
               <img src="img/founction.png" height="24px">

@@ -4,24 +4,34 @@
 
 /*头像、姓名、天气*/
 .myDiv{
-  background-color: white;margin-top: 16px;
+  background-color: white;
+  /*margin-top: 16px;*/
 }
 .myDiv ion-item span.weather{
-  color: #6495ED;
+  color: #fff;
 }
 .myDiv ion-item p{
-  margin-left: 90px;
-  margin-top: 35px;
-  font-size: 18px;
+  margin-left: 65px;
+  /*margin-bottom: 42%;*/
+  font-size: 24px;
   color: #000;
   display: inline-block;
+}
 
+.myDiv ion-item p#mymypersonname{
+  position: absolute;
+  left:15px;
+  top:50%;
+  margin-top:-10px;
+  color:#fff;
 }
 .myDiv ion-item.item-avatar.rj-notify-bggg{
-  height: 88px
+  height: 150px
 }
 .myDiv ion-item div.center.circle11.jiename{
-  position: absolute;left: 3%;top: 10%;font-size: 16px;text-align: center;padding-top: 22px;z-index: 1
+  position: absolute;
+  left:15px;top:50%;margin-top: -25px;font-size: 16px;text-align: center;z-index: 1;
+  line-height:50px;
 }
 
 /*列表：我的资料、设置、关于、功能*/
@@ -61,7 +71,7 @@ div.common-margin-top ul li > div.row > div.col > img:last-child{
 
 /*退出登录按钮*/
 button.button.button-block.button-stable{
-  color: #1D95D4;font-size: 16px;height: 60px; margin-top: 32px
+  color: #1D95D4;font-size: 16px;height: 60px; margin-top: 16px;
 }
 /* 我的资料页面部分样式 */
 /* 图片大小*/

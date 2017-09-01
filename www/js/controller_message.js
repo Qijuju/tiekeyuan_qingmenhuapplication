@@ -3814,69 +3814,41 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2) {
-    //spinner dailog Loading
-    // window.plugins.spinnerDialog.show("标题","loading.....", true, {overlayOpacity: 0.35,  textColorRed: 1, textColorGreen: 1, textColorBlue: 1});
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover) {
+
+    $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
+      scope: $scope
+    });
+
+    // .fromTemplateUrl() 方法
+    $ionicPopover.fromTemplateUrl('my-popover.html', {
+      scope: $scope
+    }).then(function(popover) {
+      $scope.popover = popover;
+    });
 
 
-    //pdf阅读器(test failure)
-    // document.addEventListener('deviceready', function () {
-    //   // cordova.plugins.SitewaertsDocumentViewer is now available
-    //   file:///android_asset/www/plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js
-    //     var url = "file:///android_asset/www/www/file1.pdf";//文件的路径
-    //   var options = {
-    //     title: 'MY PDF'
-    //   };
-    //   cordova.plugins.SitewaertsDocumentViewer.canViewDocument(url, 'application/pdf', options,function onPossible(){
-    //     window.console.log('document can be shown');
-    //     //e.g. track document usage
-    //   }, function onMissingApp(appId, installer)
-    //   {
-    //     if(confirm("Do you want to install the free PDF Viewer App "
-    //         + appId + " for Android?"))
-    //     {
-    //       installer();
-    //     }
-    //   }, function onImpossible(){
-    //     window.console.log('document cannot be shown');
-    //     //e.g. track document usage
-    //   } , function onError(error){
-    //     window.console.log(error);
-    //     alert("Sorry! Cannot show document.");
-    //   });
-    //
-    // },false);
+    $scope.openPopover = function($event) {
+      $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+      $scope.popover.hide();
+    };
+    // 清除浮动框
+    $scope.$on('$destroy', function() {
+      $scope.popover.remove();
+     
+    });
 
-
-    //toast plugin
-    // $ToastUtils.showToast("哈哈哈哈");
-
-    //screen orientation
-    // cordova.plugins.screenorientation.lock('portrait').then(function(obj) {
-    //   console.log(obj);
-    // }, function(obj) {
-    //   console.log(obj);
-    // });
-    // cordova.plugins.screenorientation.unlock();
-
-
-    //badge number
-    // document.addEventListener('deviceready', function () {
-    //   // cordova.plugins.notification.badge is now available
-    //   cordova.plugins.notification.badge.hasPermission(function (granted) {
-    //     alert("granted"+granted);
-    //   });
-    //   cordova.plugins.notification.badge.set(10,function (succ) {
-    //     alert("成功"+succ);
-    //   },function (err) {
-    //     alert("失败"+err);
-    //   });
-    //   // cordova.plugins.notification.badge.increase(1, function (badge) {
-    //   //   // badge is now 11 (10 + 1)
-    //   //
-    //   // });
-    //
-    // }, false);
+    // 在隐藏浮动框后执行
+    $scope.$on('popover.hidden', function() {
+      // 执行代码
+    });
+    // 移除浮动框后执行
+    $scope.$on('popover.removed', function() {
+      // 执行代码
+      
+    });
 
 
     $scope.isNetConnectNow = $mqtt.getIMStatus();
@@ -4001,9 +3973,6 @@ angular.module('message.controllers', [])
     });
 
 
-
-
-
     //一进来就检查mqtt是否连接
     $mqtt.setOnNetStatusChangeListener(function (succ) {
       $rootScope.netStatus = 'true';
@@ -4031,8 +4000,14 @@ angular.module('message.controllers', [])
     $scope.shefalse=function () {
       $scope.a=false
     }
-    //发起群聊
+
+   //发起群聊
     $scope.createGroupChats=function () {
+
+     
+      // 隐藏浮动框
+      $scope.popover.hide();
+      
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;
@@ -4045,7 +4020,7 @@ angular.module('message.controllers', [])
 
       },function (err) {
 
-      })
+      });
 
       $state.go('addnewpersonfirst',{
         "createtype":'single',
@@ -4053,6 +4028,8 @@ angular.module('message.controllers', [])
         "groupname":'',
         "functiontag":'groupchat'
       });
+
+
     }
     //紧急呼叫
     $scope.gozhuan=function () {

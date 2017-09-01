@@ -4,11 +4,28 @@ ion-nav-bar.myMessage  img{
   width:30px;height:24px;margin-top: 4px;
 }
 
+/* i 图标样式 */
+.ion-ios-search-strong:before ,.ion-navicon:before{
+  display: inline-block;
+  width:25px;
+  text-align: right;
+}
+.ion-ios-search-strong:before{
+  font-size:25px;
+  margin-right:10px;
+  margin-top:6px;
+}
+.ion-navicon:before{
+  font-size:30px;
+  margin-right:5px;
+  margin-top:2px;
+}
+
 /*网络连接判断*/
 .row.myNetwork{
   background-color:#F8D5D9;
   height: 42px;
-  margin-bottom: 12px
+  margin-top: 10px
 }
 .myNetwork > div:first-child{
   margin-left: 36px;
@@ -29,19 +46,20 @@ ion-nav-bar.myMessage  img{
   /*height:58px;*/
   vertical-align: middle;
 }
+
 /*头像和姓名*/
 
 .row > div.col.myHeader > div.headerDiv{
   width:38px;
   height:38px;
   margin-right:10px;
-  margin-top:2px;
+  margin-top:3px;
   float: left;
-
 }
 .row > div.col.myHeader > div.myUserName{
   float: left;
   width:220px;
+  height:38px;margin-top:5px;
 }
 /*姓名。最后一条消息*/
 .row > div.col.myHeader > div.myUserName  div.chatName span:nth-child(1){
@@ -100,6 +118,7 @@ ion-nav-bar.myMessage  img{
 /*其他页面补充样式  -- top_contacts.html 页面*/
 .item-complex .item-content{
   padding:0px;
+  height:100%;
 }
 
 /* 群组页面头像样式补充 */
@@ -114,5 +133,86 @@ img.addNewMemberImg{
   width:38px;
   height:38px;
 }
+/* 侧边栏退出按钮背景色 */
+.loginOut{
+  border-radius:0px;
+}
 
+/* tabs 的样式补充 */
+.tabs-striped .tabs{
+  background-color: #f8f8f8;
+  box-shadow: 0 0px 5px #9E9E9E;
+}
 
+/* 导航条阴影 */
+.newbarhead.bar-header{
+  box-shadow: 0 0px 3px #9E9E9E;
+}
+
+/* 8.25 修改的样式 */
+/*重写ionic.css样式，隐藏边框线 */
+.item{
+  /*border-color:#fff;*/
+}
+
+.item#tabMsgItemFirst:first-child{
+  /*margin-top:55px;*/
+}
+.item:last-child{
+  border-bottom-color:#ddd;
+}
+.item .infoTime{
+  position: absolute;top:0px;left: 60px;bottom:0px;border-bottom: 1px solid #ddd;padding: 5px;padding-left:0px;
+}
+.item:last-child .infoTime{
+  border-bottom:none;
+  /*bottom:-1px;*/
+}
+/* 头像样式 */
+.msgHeaderImg{
+  margin-top:10px;margin-left:10px;
+}
+
+/* item 的样式 */
+.listItem{
+  position: relative;height:60px;
+}
+
+.avatar{
+  position: absolute;top:0px;left: 0px;width:50px;height:50px;padding:10px;
+}
+
+.infoTimeDiv{
+  width:70%;float:left;height:100%;overflow: hidden;
+}
+.infoTimeDiv  > h2{
+  margin-top:3px;
+}
+
+.infoTimeDiv  > p.lastInfoMsg{
+  width:220px;;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;
+}
+.lastInfoTime{
+  width:30%;height:100%;float:right;text-align: right;
+}
+ion-note{
+  margin-right:15px;
+}
+span.rj-sm-red-icon{
+  line-height:20px;color:#fff;
+}
+
+/* 浮动框 */
+.popover{
+  width:100px;
+  height:auto;
+  position: absolute;
+  right:15px;
+  top:33px;
+}
+.platform-android .popover{
+  margin-top:0px;
+}
+#scrollContent{
+  padding-top:0px;
+}

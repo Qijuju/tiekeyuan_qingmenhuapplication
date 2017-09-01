@@ -20,12 +20,20 @@ div.row.contacts,contacts{
   text-align: left;
 }
 
-.contacts .row .col img.part2Img{
-  width:30px;height:30px;
-  margin-right:10px;
-  margin-left:10px;
-  vertical-align: top;
+/* 图标大小设置 */
+.ion-briefcase:before{
+  display: inline-block;
+  width:25px;
+  height:30px;
 }
+.contacts .row .col span.part2Img{
+  font-size:30px; margin-right:10px; margin-left:10px;color:#106B9A;
+  /*width:30px;height:30px;*/
+  /*margin-right:10px;*/
+  /*margin-left:10px;*/
+  /*vertical-align: top;*/
+}
+
 .contacts .row .col span{
   display: inline-block;
   height:30px;

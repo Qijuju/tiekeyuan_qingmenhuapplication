@@ -3,7 +3,7 @@
  */
 angular.module('sendfile.controllers', [])
   .controller('masstextingCtrl', function ($mqtt, $scope, $ToastUtils, $greendao, $stateParams, $cordovaDevice, $chatarr, $pubionicloading, $state,$timeout,$location,$ionicPlatform,$ionicHistory) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     $scope.topicids = [];
     $scope.userIds = [];//接受者ID
     $scope.users = [];//接收者信息
@@ -30,7 +30,7 @@ angular.module('sendfile.controllers', [])
     //type *  topic： 他人id  id：他人id  localuser:我的姓名  localuserID:我的 id  sqlid:重发为空
     $scope.openDocumentWindow = function (type, topic, content, id, localuser, localuserId, sqlid) {
       $mqtt.openDocWindow(type, function (fileData) {
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
 
           for (var i = 0; i < userTopic.length; i++) {

@@ -145,7 +145,7 @@ angular.module('contacts.controllers', [])
 
     $scope.goLocalContact=function () {
 
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
 
       $greendao.loadAllData('LocalPhoneService',function (msg) {
 
@@ -190,7 +190,7 @@ angular.module('contacts.controllers', [])
 
     });
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
@@ -358,7 +358,7 @@ angular.module('contacts.controllers', [])
 
     },501)
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -477,7 +477,7 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
@@ -626,7 +626,7 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departlist = [];
     $scope.userlist = [];
@@ -783,7 +783,7 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -951,7 +951,7 @@ angular.module('contacts.controllers', [])
 
 
   .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
@@ -1136,7 +1136,7 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.nihao = [];
     $scope.buhao = [];
@@ -1329,7 +1329,7 @@ angular.module('contacts.controllers', [])
 
   .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$location,$ionicPlatform) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
 
     $scope.eightDept = [];
@@ -1528,7 +1528,7 @@ angular.module('contacts.controllers', [])
   .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$pubionicloading,$api,$greendao,$ionicPlatform) {
 
     // Setup the loader
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
 
 
@@ -1818,7 +1818,7 @@ angular.module('contacts.controllers', [])
   })
 
   .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$pubionicloading,$timeout) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
 
 
@@ -1956,7 +1956,7 @@ angular.module('contacts.controllers', [])
 
 
   .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$pubionicloading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -2067,7 +2067,7 @@ angular.module('contacts.controllers', [])
 
     //取消关注
     $scope.removeattention = function (id) {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       if ($scope.myid==id){
         $ToastUtils.showToast("无法对自己进行该项操作")
       }else {

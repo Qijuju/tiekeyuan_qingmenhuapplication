@@ -33,47 +33,17 @@
   <link rel="stylesheet" href="css/message-detail.css">
   <link rel="stylesheet" href="css/group-member.css">
   <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/about.css">
 
 </head>
 <body ng-app="starter" class="platform-android platform-cordova platform-webview">
-<!--
-  The nav bar that will be updated as we navigate between views.
--->
-<!--
-  The views will be rendered in the <ion-nav-view> directive below
-  Templates are in the /templates folder (but you could also
-  have templates inline in this html file if you'd like).
--->
-
-
-<!-------------------test fullscreen---------------------------->
-<!--<h1>Android 4.0+</h1>-->
-<!--<button id="leanModeButton">Lean Mode</button>-->
-<!--<button id="showUiButton">Show UI</button>-->
-
-<!--<h1>Android 4.4+</h1>-->
-<!--<button id="immersiveModeButton">Immersive Mode</button>-->
-<!--<button id="showUnderUiButton">Show Under UI</button>-->
-
-<!-------------------screen orientation------------------------->
-<!--<button onclick='screen.orientation.unlock()'>-->
-  <!--Unlock-->
-<!--</button>-->
-<!--<button onclick="screen.orientation.lock('portrait')">-->
-  <!--Lock to portrait-->
-<!--</button>-->
-<!--<button onclick="screen.orientation.lock('landscape')">-->
-  <!--Lock to landscape-->
-<!--</button>-->
 
 <ion-nav-view></ion-nav-view>
-
 
 <script src="js/jquery-3.0.0.min.js"></script>
 <!-- ionic/angularjs js -->
 <script src="lib/ionic/js/ionic.bundle.js"></script>
-<!--<script src="lib/ionic/js/ionic1.bundle.js"></script>-->
-<!-- cordova script (this will be a 404 during development) -->
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 <script src="cordova.js"></script>
 <!-- your app's js -->
@@ -123,59 +93,6 @@
 <script src="js/controller_founction.js"></script>
 <script type="text/javascript" src="js/Toast.js"></script>
 <script type="text/javascript">
-//---------------------------------test fullscreen------------------------------//
-//  AndroidFullScreen.leanMode(successFunction, errorFunction);
-//  document.addEventListener('deviceready', function (event) {
-//    var leanModeButton = document.getElementById('leanModeButton'),
-//      immersiveModeButton = document.getElementById('immersiveModeButton'),
-//      showUnderUiButton = document.getElementById('showUnderUiButton'),
-//      showUiButton = document.getElementById('showUiButton');
-//
-//    function successFunction() {
-//      console.log("It worked!");
-//    }
-//
-//    function errorFunction(error) {
-//      console.log(error);
-//    }
-//
-//    function trace(value) {
-//      console.log(value);
-//    }
-//
-//    leanModeButton.addEventListener('click', function (event) {
-//      AndroidFullScreen.leanMode(successFunction, errorFunction);
-//    });
-//
-//    immersiveModeButton.addEventListener('click', function (event) {
-//      AndroidFullScreen.immersiveMode(successFunction, errorFunction);
-//    });
-//
-//    showUnderUiButton.addEventListener('click', function (event) {
-//      AndroidFullScreen.showUnderSystemUI(successFunction, errorFunction);
-//    });
-//
-//    showUiButton.addEventListener('click', function (event) {
-//      AndroidFullScreen.showSystemUI(successFunction, errorFunction);
-//    });
-//
-//  });
-
-//------------------------------------screen orientation-----------------------//
-//var show = function() {
-//  console.log("Orientation type is " + screen.orientation.type);
-//  console.log("Orientation angle is " + screen.orientation.angle);
-//}
-//
-//screen.orientation.addEventListener("change", show);
-//window.onload = show;
-
-//-----------------------------------判断是哪个平台----------------------------//
-//var u = navigator.userAgent;
-//var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-//var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-//alert('是否是Android：'+isAndroid);
-//alert('是否是iOS：'+isiOS);
 
 
 </script>

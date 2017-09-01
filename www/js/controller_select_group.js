@@ -14,7 +14,7 @@ angular.module('selectgroup.controllers', [])
     return false;
   },501)
 
-  $pubionicloading.showloading('','Loading...');
+  $pubionicloading.showloading('','正在加载...');
 
   //创建的类型看到底是从哪里过来的
   $scope.createType=$stateParams.createtype;
@@ -55,7 +55,7 @@ angular.module('selectgroup.controllers', [])
   //二级界面
   .controller('addNewPersonsecondCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout){
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -526,7 +526,7 @@ angular.module('selectgroup.controllers', [])
 
   .controller('addNewPersonthirdCtrl',function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ionicPopup,$api,$ToastUtils,$greendao,$rootScope,$pubionicloading,$timeout) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
@@ -1024,7 +1024,7 @@ angular.module('selectgroup.controllers', [])
 
 
   .controller('addNewPersonforthCtrl', function ($scope, $state, $stateParams,$contacts,$ionicHistory,$api,$ToastUtils,$greendao,$ionicPopup,$rootScope,$pubionicloading,$timeout) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
@@ -1595,7 +1595,7 @@ angular.module('selectgroup.controllers', [])
   //普通群的展示
   .controller('groupMemberCtrl',function ($scope,$state,$group,$stateParams,$api,$ToastUtils,$greendao,$contacts,$pubionicloading,$timeout,$location,$ionicPlatform) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     //进入界面先清除数据库表
     $greendao.deleteAllData('SelectIdService',function (data) {
 
@@ -1744,7 +1744,7 @@ angular.module('selectgroup.controllers', [])
 
     //删除群聊里面的人
     $scope.removeGroupPerson=function (id) {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       var idList=[];
       idList.push(id);
       $api.groupRemoveMember($scope.groupId,idList,function (msg) {
@@ -1759,7 +1759,7 @@ angular.module('selectgroup.controllers', [])
     //添加管理员
 
     $scope.addAdmin=function (id) {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       var addId=[];
       addId.push(id);
       $api.groupAddAdmin($scope.groupId,addId,function (msg) {
@@ -1774,7 +1774,7 @@ angular.module('selectgroup.controllers', [])
 
     //取消管理员
     $scope.cancelAdmin=function (id) {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
 
       var ids=[];
       ids.push(id);
@@ -1817,7 +1817,7 @@ angular.module('selectgroup.controllers', [])
   //部门群展示
   .controller('groupDeptMemberCtrl',function ($scope,$state,$group,$stateParams,$ionicHistory,$pubionicloading,$timeout) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     $scope.groupId = $stateParams.groupid;
     $scope.groupName = $stateParams.chatname;
     $scope.groupType = $stateParams.grouptype;

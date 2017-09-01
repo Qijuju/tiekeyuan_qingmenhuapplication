@@ -58,6 +58,10 @@ angular.module('portal.services', [])
       appId: 194,
       appName: '武铁建设',
       appIcon: 'img/app1/wtjs.png',
+    },{
+      appId: 236,
+      appName: '公文处理',
+      appIcon: 'img/app1/gwcl.png',
     }, {
       appId: 82,
       appName: '调度指挥',
@@ -70,7 +74,7 @@ angular.module('portal.services', [])
     }, {
       appId: 99,
       appName: '信息发布',
-      appIcon: 'img/app1/xxfb.png',
+      appIcon: 'img/app1/xwtz.png',
     }, {
       appId: 106,
       appName: '连续梁',
@@ -93,7 +97,7 @@ angular.module('portal.services', [])
       appIcon: 'img/app3/jyp.png',
     }, {
       appId: 136,
-      appName: '路基压实',
+      appName: '连续压实',
       appIcon: 'img/app3/lxys.png',
     }, {
       appId: 137,
@@ -101,7 +105,7 @@ angular.module('portal.services', [])
       appIcon: 'img/app3/lc.png',
     }, {
       appId: 138,
-      appName: '板厂',
+      appName: '板场',
       appIcon: 'img/app3/bc.png',
     }, {
       appId: 144,
@@ -121,12 +125,20 @@ angular.module('portal.services', [])
       appIcon: 'img/app3/cqdzyb.png',
     }, {
       appId: 174,
-      appName: '全项试验',
+      appName: '工地试验室',
       appIcon: 'img/app3/gdsys.png',
     }, {
       appId: 200,
       appName: '桩基检测',
       appIcon: 'img/app3/zjjc.png',
+    }, {
+      appId: 135,
+      appName: '问题库',
+      appIcon: 'img/app2/wtk.png',
+    }, {
+      appId: 186,
+      appName: '工程影像',
+      appIcon: 'img/app3/gcyx.png',
     }];
 
     return {

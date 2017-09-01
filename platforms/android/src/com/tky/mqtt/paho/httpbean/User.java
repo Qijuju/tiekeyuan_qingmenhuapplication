@@ -26,6 +26,8 @@ public class User extends BaseBean {
   private String type;
   private Im im;
   private boolean isAttention;
+  private String loginAccount;
+  private String loginName;
 
   public class Im {
     private String im;
@@ -205,5 +207,23 @@ public class User extends BaseBean {
 
   public void setAttention(boolean attention) {
     isAttention = attention;
+  }
+
+
+  public String getLoginAccount() {
+    return loginAccount;
+  }
+
+  public void setLoginAccount(String loginAccount) {
+    this.loginAccount = loginAccount;
+  }
+
+
+  public String getLoginName() {
+    return loginName;
+  }
+
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
   }
 }

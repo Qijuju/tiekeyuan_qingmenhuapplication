@@ -6,7 +6,7 @@ angular.module('localphone.controllers', [])
   .controller('LocalContactCtrl',function ($scope,$state,localContact,$ionicActionSheet,$phonepluin,$ionicPopover,$ionicBackdrop,$mqtt,$ToastUtils,$pubionicloading,$timeout,$greendao) {
 
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.goLocalSearch= function () {
       $state.go("searchlocal");

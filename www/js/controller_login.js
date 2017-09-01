@@ -410,7 +410,7 @@ angular.module('login.controllers', [])
             });
             confirmPopup.then(function (isConfirm) {
               if (isConfirm) {
-                $pubionicloading.showloading('','Loading...');
+                $pubionicloading.showloading('','正在加载...');
                 // $ionicLoading.show({
                 //   content: 'Loading',
                 //   animation: 'fade-in',
@@ -435,7 +435,7 @@ angular.module('login.controllers', [])
               }
             });
           } else {
-            $pubionicloading.showloading('','Loading...');
+            $pubionicloading.showloading('','正在加载...');
             if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
               $api.activeUser(message.userID, function (message) {
                 loginM();
@@ -659,7 +659,7 @@ angular.module('login.controllers', [])
             });
 
             secondlock.drawStatusPoint('right')
-            $pubionicloading.showloading('','Loading...');
+            $pubionicloading.showloading('','正在加载...');
             $timeout(function () {
               $pubionicloading.hide();
               $state.go('tab.message');
@@ -763,7 +763,7 @@ angular.module('login.controllers', [])
 
           firstlock.drawStatusPoint('right')
           // $ToastUtils.showToast("输入密码正确,logining...")
-          $pubionicloading.showloading('','Loading...');
+          $pubionicloading.showloading('','正在加载...');
 
           $timeout(function () {
             firstlock.reset();

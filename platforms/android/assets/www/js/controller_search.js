@@ -69,10 +69,10 @@ angular.module('search.controllers', [])
         $scope.lastMsg=[];
         $scope.namess=[];
         $scope.messagess=[];
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $search111.getHistorymsg("person");
       }else {
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $search111.search1111($scope.id,$scope.page,$scope.count,query);
 
         $greendao.qureyHistoryMsg("person",function (msgaaa) {

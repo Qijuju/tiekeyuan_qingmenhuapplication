@@ -4,7 +4,7 @@
 angular.module('selectothergroup.controllers', [])
 
   .controller('addNewPersonfifthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
 
@@ -523,7 +523,7 @@ angular.module('selectothergroup.controllers', [])
 
   //对六级目录的操作
   .controller('addNewPersonsixthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
     $scope.gourpId=$stateParams.groupid;
@@ -1064,7 +1064,7 @@ angular.module('selectothergroup.controllers', [])
 
   .controller('addNewPersonseventhCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;
@@ -1619,7 +1619,7 @@ angular.module('selectothergroup.controllers', [])
 
   .controller('addNewPersoneighthCtrl', function ($scope,$state, $stateParams,$contacts,$ionicHistory,$greendao,$ToastUtils,$ionicPopup,$api,$rootScope,$pubionicloading,$timeout) {
 
-    $pubionicloading.showloading('','Loading...');
+    $pubionicloading.showloading('','正在加载...');
 
     //创建的类型看到底是从哪里过来的
     $scope.createType=$stateParams.createtype;

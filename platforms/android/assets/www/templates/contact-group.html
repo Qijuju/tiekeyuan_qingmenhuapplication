@@ -16,8 +16,9 @@
     <ion-list>
 
       <!--我创建的-->
+      <div class="rj-contacts-index-bar">我创建的</div>
       <ion-item class="rj-contacts-item" ng-if="!ismycreat==0">
-        <div class="rj-contacts-index-bar">我创建的</div>
+
         <ion-list>
           <ion-item class="item-remove-animate item-avatar" ng-repeat="item in grouplist"
                     ng-if="item.isMyGroup" ng-click="goCreateGroup(item.GroupID,item.GroupName,item.isMyGroup)">
@@ -52,8 +53,8 @@
 
 
       <!--我加入的-->
+      <div class="rj-contacts-index-bar">我加入的</div>
       <ion-item class="rj-contacts-item">
-        <div class="rj-contacts-index-bar">我加入的</div>
         <ion-list>
           <ion-item class="item-remove-animate item-avatar"  ng-click="goDepartmentGroup(depid,deptinfo,false)">
             <div class="row" >

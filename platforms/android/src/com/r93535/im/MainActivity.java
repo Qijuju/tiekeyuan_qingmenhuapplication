@@ -117,7 +117,8 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     }*/
 //    startService(new Intent(this, ProtectService.class));
     // Set by <content src="index.html" /> in config.xml
-    inithotfix();
+    //热更新已经不用了
+//    inithotfix();
     loadUrl(launchUrl);
     //自动登录测试（测完注释掉
     //SPUtils.save("login_info", "{\"__isset_bitfield\":7,\"deptID\":\"37253\",\"isActive\":false,\"result\":true,\"resultCode\":\"100\",\"sDatetime\":1487237555948,\"userID\":\"232099\",\"userName\":\"程丽丽\"}");
@@ -161,7 +162,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 //    int badgeCount=0;
     try{
       Integer badgeCount = SPUtils.getInt("badgeCount",0);
-      System.out.println("后端取出存的count值22222"+badgeCount);
+//      System.out.println("后端取出存的count值22222"+badgeCount);
       //从数据库获取未读数量
       ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
       List<ChatList> chatLists=chatListService.loadAllData();
@@ -173,16 +174,17 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
         badgeCount=count;
       }
       boolean success=ShortcutBadger.applyCount(MainActivity.this, badgeCount);
-      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
+//      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
       startService(
               new Intent(MainActivity.this, BadgeIntentService.class).putExtra("badgeCount", badgeCount)
       );
+//      Notification notification = notificationCompat.build();
+//      BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
     }catch (Exception e){
       e.printStackTrace();
     }
 
-//    Notification notification = notificationCompat.build();
-//    BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
+
 
   }
 

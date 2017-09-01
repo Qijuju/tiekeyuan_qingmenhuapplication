@@ -71,7 +71,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.weekInit=false;
     $scope.openWeek=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.weekInit){
           $scope.weekInit=true
@@ -86,7 +86,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.monthInit=false;
     $scope.openMonth=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.monthInit){
           $scope.monthInit=true
@@ -103,7 +103,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.longInit=false;
     $scope.openLong=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.longInit){
           $scope.longInit=true
@@ -206,7 +206,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.weekInit=false;
     $scope.openWeek=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.weekInit){
           $scope.weekInit=true
@@ -221,7 +221,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.monthInit=false;
     $scope.openMonth=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.monthInit){
           $scope.monthInit=true
@@ -238,7 +238,7 @@ angular.module('fileandpicture.controllers', [])
 
     $scope.longInit=false;
     $scope.openLong=function () {
-      $pubionicloading.showloading('','Loading...');
+      $pubionicloading.showloading('','正在加载...');
       $timeout(function () {
         if(!$scope.longInit){
           $scope.longInit=true

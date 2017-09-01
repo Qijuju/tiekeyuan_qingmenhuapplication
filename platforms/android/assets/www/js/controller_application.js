@@ -16,7 +16,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
         $scope.a=1;
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
           $pubionicloading.hide();
         },500);
@@ -32,7 +32,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       if ($scope.b==0){
         $scope.b=1;
         // Setup the loader
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
           $pubionicloading.hide();
         },500);
@@ -45,7 +45,7 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.dianjiccc=function () {
       if ($scope.c==0){
         $scope.c=1;
-        $pubionicloading.showloading('','Loading...');
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
           $pubionicloading.hide();
         },500);

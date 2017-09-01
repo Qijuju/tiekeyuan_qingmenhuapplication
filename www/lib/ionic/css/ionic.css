@@ -4887,7 +4887,8 @@ a.subdued:last-child {
 @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
   .bar {
     border: none;
-    background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%);
+    /*background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%);*/
+    background-color: #3F51B5;
     background-position: bottom;
     background-size: 100% 1px;
     /*background-repeat: no-repeat;*/
@@ -5102,7 +5103,7 @@ a.subdued:last-child {
 .bar button .icon:before, .bar button.icon:before, .bar button.icon-left:before, .bar button.icon-right:before {
   padding-right: 2px;
   padding-left: 2px;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 32px;
 }
 
@@ -5466,7 +5467,8 @@ a.subdued:last-child {
   top: 0;
   border-top-width: 0;
   border-bottom-width: 1px;
-  background-image: url("../../../img/top.jpg");
+  background-color: #3F51B5;
+  /*background-image: url("../../../img/top.jpg");*/
 }
 .secondbar.bar-header{
   top: 0;
@@ -6473,9 +6475,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
   color: #38ADFF;
 }
 
+/* 修改tans的颜色 */
 ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
-  border-color: #38ADFF;
-  color: #38ADFF;
+  border-color: #3F51B5;
+  color: #3F51B5
 }
 
 ion-tabs.tabs-color-active-calm .tab-item {
@@ -10318,8 +10321,8 @@ input:checked + .checkbox-icon:after {
 }
 
 .toggle input:checked + .track {
-  border-color: #4cd964;
-  background-color: #4cd964;
+  border-color: #9e9e9e;
+  background-color: #9e9e9e;
 }
 
 .toggle.dragging .handle {
@@ -10465,7 +10468,7 @@ input:checked + .checkbox-icon:after {
 }
 
 .toggle-small input:checked + .track {
-  background: #57A8D7;
+  /*background: #57A8D7;*/
 }
 
 .toggle-small .handle {
@@ -12249,7 +12252,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 
 .balanced-bg {
-  background-color: #33cd5f;
+  /*background-color: #33cd5f;*/
 }
 
 .balanced-border {
@@ -12633,23 +12636,21 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .toggle input:checked + .track .handle1 {
   -webkit-transform: translate3d(20px, 0, 0);
   transform: translate3d(20px, 0, 0);
-  background-color: #fff;
+  background-color: #F44336;
 }
 
 .toggle-small .handle1 {
   top: 2px;
   left: 4px;
-  width: 21px;
-  height: 21px;
-  /*background: blue;*/
-  /*background-image: url("../../../img/unfocus1.png");*/
+  width: 20px;
+  height: 20px;
+  background: #00BCD4;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
 .toggle-small input:checked + .track .handle1 {
   -webkit-transform: translate3d(16px, 0, 0);
   transform: translate3d(16px, 0, 0);
-  /*background-image: url("../../../img/focus1.png");*/
 }
 
 

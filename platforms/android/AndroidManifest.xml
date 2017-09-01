@@ -77,7 +77,6 @@
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:exported="false" android:finishOnTaskLaunch="false" android:launchMode="singleInstance" android:name=".OnePxActivity" android:process=":newtask_onepx" android:theme="@style/liveActivityStyle" />
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
         <provider android:authorities="com.r93535.im.DocumentViewerPlugin.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="de.sitewaerts.cordova.documentviewer.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/documentviewer_file_paths" />

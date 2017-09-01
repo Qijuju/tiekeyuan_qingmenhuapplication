@@ -147,6 +147,10 @@
                         {
                             "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"OAIntegration\"><param name=\"android-package\" value=\"com.tky.oaintegration.OAIntegration\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -375,6 +379,9 @@
             "PACKAGE_NAME": "com.r93535.im"
         },
         "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "OAIntegration": {
             "PACKAGE_NAME": "com.r93535.im"
         }
     },
@@ -805,6 +812,13 @@
             "merges": [
                 "navigator.screenshot"
             ]
+        },
+        {
+            "file": "plugins/OAIntegration/www/o_a_integration.js",
+            "id": "OAIntegration.o_a_integration",
+            "clobbers": [
+                "cordova.plugins.OAIntegration"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -846,6 +860,7 @@
         "cordova-plugin-browsertab": "0.2.0",
         "com.spout.phonegap.plugins.baidulocation": "0.1.0",
         "phonegap-nfc": "0.6.6",
-        "com.darktalker.cordova.screenshot": "0.1.5"
+        "com.darktalker.cordova.screenshot": "0.1.5",
+        "OAIntegration": "1.0.0"
     }
 }

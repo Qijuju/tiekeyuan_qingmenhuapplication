@@ -1,6 +1,6 @@
 
 /*清楚浮动*/
-.clearfix:after{
+.clearfix:after,.clearfix:before{
   content: '';
   clear: both;
   display: block;
@@ -61,7 +61,7 @@ div.row.notificationRow .typeTime p{
   height:20px;line-height:20px;
 }
 div.row.notificationRow .alert.col span{
-  float: right;margin-right:10px;
+  float: right;margin-right:10px;color:#FF5722;
 }
 
 div.row.notificationDetail > .col.col-85 > div > img{
@@ -76,23 +76,31 @@ div.row.notificationDetail > .col.col-85 > div > img{
 /*确认信息居中显示*/
 div.confirm{
   text-align: center;
-  border-top:1px dashed #E4E4E3;border-bottom: 1px dashed #E4E4E3;padding:5px 0px;
+  /*border-top:1px dashed #E4E4E3;*/
+  /*border-bottom: 1px dashed #E4E4E3;*/
+  padding:5px 0px;
 }
 div.confirm img{
   float: right;margin-right:20px;
 }
 /*去除置顶关注一行的列的内边距，控制高度*/
+.topFocus{
+  /*height:40px;*/
+}
 .topFocus .row .col{
   padding-top:0px;
   padding-bottom:0px;
 }
-.topFocus .row .col img{
+.topFocus .col img{
   width:20px; height:20px;
+}
+.topFocus .col{
+  text-align: center;
 }
 
 /*标题*/
 pre.preTitle{
-  margin-bottom:4px;
+  /*margin-bottom:4px;*/
 }
 
 /*切换按钮*/
@@ -100,8 +108,8 @@ pre.preTitle{
   margin:0px;
 }
 .toggle div.track{
-  width:39px;
-  height:23px;
+  width:36px;
+  height:14px;
 
 }
 .toggle-small .handle{
@@ -113,12 +121,12 @@ pre.preTitle{
 
 }
 .toggle-small.item-toggle .toggle{
-  top:15px;
+  top:20px;
 }
 /*切换按钮-圆*/
 .toggle-small .handle1{ /* 重写ionic.css样式*/
-  top:6px;
-  left:6px;
+  top:2px;
+  left:5px;
 }
 /*********通知-确认、未确认点击进入页面样式补充notifyDetail.html***********/
 /*字体颜色*/
@@ -126,7 +134,7 @@ div.notifyDetail span{
   color: #e98f36;
 }
 div.notifyDetail span.detailConfirm{
-  color: teal;
+  color: #000;
 }
 .row.focus.notifyDetailFocusTop{
   height:90px;
@@ -145,7 +153,15 @@ div.notifyDetail span.detailConfirm{
   padding-left:15px;
 }
 .item:first-child{
-  margin-top:-1px;
+  margin-top:-2px;
+}
+
+.item.ionItemFirst:first-child{
+  margin-top:10px;
+
+}
+.notificationItem:first-child{
+  /*margin-top:43px;*/
 }
 img.notifyConfirmBackImg{
   height:36px;
@@ -171,11 +187,8 @@ a#rightbt{
 
 
 
-/* 通知页图标 */
-.notificationRow img{
-  width:30px;
-  height:30px;
-}
+/* gu */
+
 
 
 

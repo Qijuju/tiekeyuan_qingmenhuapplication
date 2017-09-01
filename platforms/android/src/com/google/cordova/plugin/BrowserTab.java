@@ -18,8 +18,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.provider.SyncStateContract;
 import android.support.customtabs.CustomTabsIntent;
 import android.util.Log;
+
+import com.r93535.im.Constants;
+import com.r93535.im.R;
+import com.tky.mqtt.paho.UIUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +38,8 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.r93535.im.Constants.commonmsgurl;
 
 /**
  * Cordova plugin which provides the ability to launch a URL in an
@@ -101,17 +108,20 @@ public class BrowserTab extends CordovaPlugin {
       callbackContext.error("no in app browser tab implementation available");
     }
     //初始化builder
-    //int color = getColor("#980e03");
+    //int color = getColor("#      980e03");
     //int secondaryColor = getColor("#980e03");
 
     CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
     //添加默认的菜单栏
-    intentBuilder.addDefaultShareMenuItem();
+//    intentBuilder.addDefaultShareMenuItem();
     //添加标题
+    if(Constants.commonmsgurl.equals("")){
+
+    }
+    intentBuilder.enableUrlBarHiding();
     intentBuilder.setShowTitle(true);
-    intentBuilder.setToolbarColor(-6812157);
-    intentBuilder.setSecondaryToolbarColor(-6812157);
-    Log.d(LOG_TAG, "intentBuilder");
+    intentBuilder.setToolbarColor(UIUtils.getResources().getColor(R.color.bule));
+    intentBuilder.setSecondaryToolbarColor(UIUtils.getResources().getColor(R.color.bule2));
    //添加菜单
      //PendingIntent menuItemPendingIntent =
                          //createPendingIntent(ActionBroadcastReceiver.ACTION_MENU_ITEM);

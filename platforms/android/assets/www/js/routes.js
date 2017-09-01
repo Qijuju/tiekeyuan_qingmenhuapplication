@@ -4,6 +4,7 @@
 angular.module('im.routes', [])
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
+    // 根据不同设备，tabs位置、样式不同设置
     $ionicConfigProvider.platform.ios.tabs.style('standard');
     $ionicConfigProvider.platform.ios.tabs.position('bottom');
     $ionicConfigProvider.platform.android.tabs.style('standard');
@@ -22,9 +23,16 @@ angular.module('im.routes', [])
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
+
+
+    // if none of the above states are matched, use this as the fallback
+    //入口默认路径
+    // $urlRouterProvider.otherwise('/welcome');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/newsPage');
+
     $stateProvider
 
-    // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
         abstract: true,
@@ -48,7 +56,7 @@ angular.module('im.routes', [])
         url: '/login',
         cache: false,
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
+        controller: 'LoginCtrl'
       })
       .state('gesturelogin', {
         url: '/gesturelogin',
@@ -364,6 +372,7 @@ angular.module('im.routes', [])
         cache:false
       })
 
+      // 我的群组
       .state('group', {
         url: '/group',
         templateUrl: 'templates/contact-group.html',
@@ -407,7 +416,7 @@ angular.module('im.routes', [])
         views: {
           'tab-account': {
             templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl',
+            controller: 'AccountCtrl'
           }
         }
       })
@@ -615,14 +624,26 @@ angular.module('im.routes', [])
 
       })
 
+      // 关于我们
+      .state('aboutOur', {
+        templateUrl: 'templates/aboutour.html',
+        controller: 'aboutOurCtrl'
+      })
+      // 关于平台
+      .state('aboutPlatform', {
+        templateUrl: 'templates/aboutPlatform.html',
+        controller: 'aboutPlatformCtrl'
+      })
+      // 关于推荐
+      .state('aboutRecommend', {
+        templateUrl: 'templates/aboutRecommend.html',
+        controller: 'aboutPlatformCtrl'
+      })
 
 
 
 
-    // if none of the above states are matched, use this as the fallback
-    //入口
-    // $urlRouterProvider.otherwise('/welcome');
-    // $urlRouterProvider.otherwise('/login');
-    $urlRouterProvider.otherwise('/newsPage');
+
+
 
   });

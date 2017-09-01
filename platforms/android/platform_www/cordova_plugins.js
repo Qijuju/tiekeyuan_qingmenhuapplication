@@ -425,6 +425,13 @@ module.exports = [
         "merges": [
             "navigator.screenshot"
         ]
+    },
+    {
+        "file": "plugins/OAIntegration/www/o_a_integration.js",
+        "id": "OAIntegration.o_a_integration",
+        "clobbers": [
+            "cordova.plugins.OAIntegration"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -468,7 +475,8 @@ module.exports.metadata =
     "cordova-plugin-browsertab": "0.2.0",
     "com.spout.phonegap.plugins.baidulocation": "0.1.0",
     "phonegap-nfc": "0.6.6",
-    "com.darktalker.cordova.screenshot": "0.1.5"
+    "com.darktalker.cordova.screenshot": "0.1.5",
+    "OAIntegration": "1.0.0"
 };
 // BOTTOM OF METADATA
 });
