@@ -28,10 +28,14 @@ div#animImgBox{
   width:45px;
   height:45px;
 }
+img.portalImg{
+  width:45px;
+  height:45px;
+}
+
 .content div.row.row1 div.col.col1 img.portalImg.br{
   border-radius: 8px;
 }
-
 
 /*定义动画*/
 @keyframes animatedBackground {

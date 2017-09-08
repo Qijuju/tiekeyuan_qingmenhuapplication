@@ -18,170 +18,111 @@
       <div class="col col-80">网络连接不可用，请检查网络设置。</div>
     </div>
 
-    <ion-item  class="item-remove-animate item-avatar rj-notify-bg">
+    <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst">
 
       <div>
 
-
         <!--通知-->
-        <div class="row" ng-if="notifyObj.IsReaded" style="background:#E0E0E0;margin-top:-1px;">
+        <!--已经确认-->
+        <div class="row itemIsReadedYes" ng-if="notifyObj.IsReaded">
           <div class="col clearfix" >
-
-
             <!--通知显示相应的图片信息-->
 
-            <div class="notifyImgInfo" style="float: left;margin-right:10px;">
-              <img src="{{notifyObj.appIcon}}" alt="通知类型头像" style="width:55px;height:55px;">
+            <div class="notifyImgInfo">
+              <img src="{{notifyObj.appIcon}}" alt="通知类型头像">
             </div>
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='99'"><img  style="width:55px;height:55px;" src="img/app1/xxfb.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="c.FromID=='22'"><img  style="width:55px;height:55px;" src="img/app1/hygl.png" alt=""></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='35'"><img  style="width:55px;height:55px;" src="img/app1/cxtx.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='16'"><img  style="width:55px;height:55px;" src="img/app2/sgtsh.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='49'"><img  style="width:55px;height:55px;" src="img/app2/zdcq.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='10'"><img  style="width:55px;height:55px;" src="img/app1/xmdt.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='12'"><img  style="width:55px;height:55px;" src="img/app2/sgzz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='21'"><img  style="width:55px;height:55px;" src="img/app2/sgrz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='134'"><img style="width:55px;height:55px;"  src="img/app3/jyp.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='24'"><img  style="width:55px;height:55px;" src="img/app3/cjgc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='83'"><img  style="width:55px;height:55px;" src="img/app3/sdjk.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='144'"><img style="width:55px;height:55px;"  src="img/app3/qljz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='106'"><img style="width:55px;height:55px;"  src="img/app3/lxl.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='168'"><img style="width:55px;height:55px;"  src="img/app3/cqdzyb.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='200'"><img style="width:55px;height:55px;"  src="img/app3/zjjc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='138'"><img style="width:55px;height:55px;"  src="img/app3/bc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='137'"><img style="width:55px;height:55px;"  src="img/app3/lc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='17'"><img  style="width:55px;height:55px;" src="img/app3/sys.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='148'"><img style="width:55px;height:55px;"  src="img/app1/clgl.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='18'"><img  style="width:55px;height:55px;" src="img/app3/bhz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='82'"><img  style="width:55px;height:55px;" src="img/app2/ddzh.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='174'"><img style="width:55px;height:55px;"  src="img/app3/gdsys.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='136'"><img style="width:55px;height:55px;"  src="img/app3/.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='132'"><img style="width:55px;height:55px;"  src="img/appq2/wzsb.png" alt="" ></div>-->
-            <!--通知显示相应的图片信息-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;">-->
-              <!--<img src="{{item.appIcon}}" alt="通知类型头像" style="width:80px;height:80px;">-->
-            <!--</div>-->
-
 
             <!--通知的详细信息-->
-            <div class="notifyDetailInfo" style="width:100%;">
+            <div class="notifyDetailInfo">
 
-              <div class="infoTop" style="width:100%;position: relative;">
+              <div class="infoTop">
 
                 <!--名称-->
                 <h3>{{notifyObj.FromName}}</h3>
                 <!--时间-->
-                <span style="position: absolute;top:0px;right:0px;">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</span>
+                <pre class="preTitle preTime">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</pre>
                 <!--报警等级-->
-                <span style="color:#FF5722;position: absolute;top:20px;right:0px;">{{notifyObj.LevelName}}</span>
+                <span class="levelName">{{notifyObj.LevelName}}</span>
               </div>
 
               <!--标题-->
-              <div class="notifyTitle">
-                <pre class="preTitle" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">标题：{{notifyObj.Title}}</pre>
+              <div>
+                <pre class="preTitle">标题：{{notifyObj.Title}}</pre>
               </div>
 
               <!--附件-->
               <div class="notify">
-                <pre ng-click="!notifyObj.Link==''" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;"><a ng-click="gonet(item.Link)">{{notifyObj.Link}}</a></pre>
-                <pre style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{notifyObj.Msg}}</pre>
+                <pre ng-click="!notifyObj.Link==''"><a ng-click="gonet(item.Link)">{{notifyObj.Link}}</a></pre>
               </div>
             </div>
+            <pre>{{notifyObj.Msg}}</pre>
           </div>
         </div>
-        <div class="row" ng-if="!notifyObj.IsReaded" style="background:#E0E0E0;margin-top:-1px;">
+
+        <!--详情确认-->
+        <div class="row itemIsReadedNo" ng-if="!notifyObj.IsReaded">
           <div class="col clearfix" >
 
             <!--通知显示相应的图片信息-->
-            <div class="notifyImgInfo" style="float: left;margin-right:10px;">
-              <img src="{{notifyObj.appIcon}}" alt="通知类型头像" style="width:55px;height:55px;">
+            <div class="notifyImgInfo">
+              <img src="{{notifyObj.appIcon}}" alt="通知类型头像">
             </div>
 
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='99'"><img  style="width:55px;height:55px;" src="img/app1/xxfb.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='22'"><img  style="width:55px;height:55px;" src="img/app1/hygl.png" alt=""></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='35'"><img  style="width:55px;height:55px;" src="img/app1/cxtx.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='16'"><img  style="width:55px;height:55px;" src="img/app2/sgtsh.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='49'"><img  style="width:55px;height:55px;" src="img/app2/zdcq.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='10'"><img  style="width:55px;height:55px;" src="img/app1/xmdt.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='12'"><img  style="width:55px;height:55px;" src="img/app2/sgzz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='21'"><img  style="width:55px;height:55px;" src="img/app2/sgrz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='134'"><img style="width:55px;height:55px;"  src="img/app3/jyp.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='24'"><img  style="width:55px;height:55px;" src="img/app3/cjgc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='83'"><img  style="width:55px;height:55px;" src="img/app3/sdjk.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='144'"><img style="width:55px;height:55px;"  src="img/app3/qljz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='106'"><img style="width:55px;height:55px;"  src="img/app3/lxl.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='168'"><img style="width:55px;height:55px;"  src="img/app3/cqdzyb.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='200'"><img style="width:55px;height:55px;"  src="img/app3/zjjc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='138'"><img style="width:55px;height:55px;"  src="img/app3/bc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='137'"><img style="width:55px;height:55px;"  src="img/app3/lc.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='17'"><img  style="width:55px;height:55px;" src="img/app3/sys.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='148'"><img style="width:55px;height:55px;"  src="img/app1/clgl.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='18'"><img  style="width:55px;height:55px;" src="img/app3/bhz.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='82'"><img  style="width:55px;height:55px;" src="img/app2/ddzh.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='174'"><img style="width:55px;height:55px;"  src="img/app3/gdsys.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='136'"><img style="width:55px;height:55px;"  src="img/app3/.png" alt="" ></div>-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;" ng-if="notifyObj.FromID=='132'"><img style="width:55px;height:55px;"  src="img/appq2/wzsb.png" alt="" ></div>-->
-            <!--通知显示相应的图片信息-->
-            <!--<div class="notifyImgInfo" style="float: left;margin-right:10px;">-->
-            <!--<img src="{{item.appIcon}}" alt="通知类型头像" style="width:80px;height:80px;">-->
-            <!--</div>-->
-
-
             <!--通知的详细信息-->
-            <div class="notifyDetailInfo" style="width:100%;">
+            <div class="notifyDetailInfo">
 
-              <div class="infoTop" style="width:100%;position: relative;">
+              <div class="infoTop">
 
                 <!--名称-->
                 <h3>{{notifyObj.FromName}}</h3>
                 <!--时间-->
-                <span style="position: absolute;top:0px;right:0px;">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</span>
+                <pre class="preTitle preTime">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</pre>
                 <!--报警等级-->
-                <span style="color:#FF5722;position: absolute;top:20px;right:0px;">{{notifyObj.LevelName}}</span>
+                <span class="levelName">{{notifyObj.LevelName}}</span>
               </div>
 
               <!--标题-->
-              <div class="notifyTitle">
-                <pre class="preTitle" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">标题：{{notifyObj.Title}}</pre>
+              <div>
+                <pre class="preTitle">标题：{{notifyObj.Title}}</pre>
               </div>
 
               <!--附件-->
               <div class="notify">
-                <pre ng-click="!notifyObj.Link==''" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;"><a ng-click="gonet(item.Link)">{{notifyObj.Link}}</a></pre>
-                <pre style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{notifyObj.Msg}}</pre>
+                <pre ng-click="!notifyObj.Link ==''"><a ng-click="gonet(item.Link)">{{notifyObj.Link}}</a></pre>
               </div>
             </div>
+            <pre>{{notifyObj.Msg}}</pre>
+
           </div>
         </div>
-        <div  class="confirm notifyDetail" ng-click="goNotifyDetail(item)"  ng-if="!notifyObj.IsReaded" style="background:#1D95D4;height:40px;">
+
+        <div  class="confirm notifyDetail itemIsReadedNo" ng-click="goNotifyDetail(item)"  ng-if="!notifyObj.IsReaded">
           <div></div>
-          <span class="detailConfirm" ng-click="confirmDetail(notifyObj.MsgId)" style="display: inline-block;line-height:28px;color:#444;;">详情确认</span>
+          <span class="detailConfirm" ng-click="confirmDetail(notifyObj.MsgId)">详情确认</span>
         </div>
 
-        <div  class="confirm notifyDetail"  ng-click="goNotifyDetail(item)" ng-if="notifyObj.IsReaded" style="background:#00BCD4;height:40px;">
+        <div  class="confirm notifyDetail itemIsReadedYes"  ng-click="goNotifyDetail(item)" ng-if="notifyObj.IsReaded">
           <div></div>
-          <span ng-if="notifyObj.IsReaded" style="display: inline-block;line-height:28px;;;">已经确认</span>
+          <span class="detailConfirm" ng-if="notifyObj.IsReaded">已经确认</span>
         </div>
 
         <!--置顶和关注-->
-        <div class="topFocus">
-          <div class="row" align="center" style="margin-bottom:5px;padding:0px;">
-            <div class="col" style="padding:0px;">
+          <div class="row topFocusDetail" >
+            <div class="col">
               <!--置顶-->
-              <img class="rj-push-rightright" ng-if="notifyObj.IsToped" src="img/toptp.png" style="margin-top:5px;margin-bottom:5px;">
+              <img class="rj-push-rightright" ng-if="notifyObj.IsToped" src="img/toptp.png" >
             </div>
 
-            <div class="col" style="padding:0px;">
+            <div class="col">
               <!--关注-->
-              <img ng-if="notifyObj.IsAttention" src="img/focuseye.png" style="margin-top:5px;margin-bottom:5px;">
+              <img ng-if="notifyObj.IsAttention" src="img/focuseye.png">
             </div>
           </div>
-        </div>
       </div>
 
 
       <!--添加或取消关注-->
-      <div class="row focus notifyDetailFocusTop" style="border-top:1px solid #E4E4E3;">
+      <div class="row focus notifyDetailFocusTop">
         <div class="col">
 
           <ion-toggle1  ng-checked="notifyObj.IsToped ? true : false" ng-click="notifyTop(notifyObj.MsgId, (notifyObj.IsToped  ? 'F' : 'T'))">
@@ -194,13 +135,11 @@
 
         </div>
       </div>
-
     </ion-item>
 
-    <button class="button button-block button-stable " ng-click="openconfirm(notifyObj.MsgId)" style="color: #1D95D4;font-size: 16px;height: 40px; margin-top: 32px">
+    <button class="button button-block button-stable checkConfirmedDetails" ng-click="openconfirm(notifyObj.MsgId)">
       查看确认详情
     </button>
-
-
   </ion-content>
+
 </ion-view>

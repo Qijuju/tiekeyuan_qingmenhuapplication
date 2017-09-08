@@ -270,7 +270,7 @@ angular.module('contacts.services', [])
             count2 = msg.userCount;
             //返回的一级目录的id ，也就是rootId
             firstId = msg.deptID
-            $rootScope.$broadcast('second.update');
+            $rootScope.$broadcast('second.update',{"pageNo":secondCount,"pageSize":10});
             secondCount++;
 
           }, function (msg) {
@@ -319,7 +319,7 @@ angular.module('contacts.services', [])
             secondId = msg.deptID;
             count3 = msg.deptCount;
             count4 = msg.userCount;
-            $rootScope.$broadcast('third.update');
+            $rootScope.$broadcast('third.update',{"pageNo":thirdCount,"pageSize":10});
             thirdCount++;
 
 
@@ -371,7 +371,7 @@ angular.module('contacts.services', [])
             thirdId = msg.deptID;
             count5 = msg.deptCount;
             count6 = msg.userCount;
-            $rootScope.$broadcast('forth.update');
+            $rootScope.$broadcast('forth.update',{"pageNo":forthCount,"pageSize":10});
             forthCount++;
           }, function (msg) {
             count5 = 0;
@@ -421,7 +421,7 @@ angular.module('contacts.services', [])
             forthId = msg.deptID;
             count7 = msg.deptCount;
             count8 = msg.userCount;
-            $rootScope.$broadcast('fifth.update');
+            $rootScope.$broadcast('fifth.update',{"pageNo":fifthCount,"pageSize":10});
             fifthCount++;
 
 
@@ -475,7 +475,7 @@ angular.module('contacts.services', [])
             fifthId = msg.deptID;
             count9 = msg.deptCount;
             count10 = msg.userCount;
-            $rootScope.$broadcast('sixth.update');
+            $rootScope.$broadcast('sixth.update',{"pageNo":sixthCount,"pageSize":10});
             sixthCount++;
           }, function (msg) {
             count9 = 0;
@@ -528,7 +528,7 @@ angular.module('contacts.services', [])
             sixthId = msg.deptID;
             count11 = msg.deptCount;
             count12 = msg.userCount;
-            $rootScope.$broadcast('seventh.update');
+            $rootScope.$broadcast('seventh.update',{"pageNo":seventhCount,"pageSize":10});
             seventhCount++;
           }, function (err) {
             count11 = 0;
@@ -579,7 +579,7 @@ angular.module('contacts.services', [])
             seventhId = msg.deptID;
             count13 = msg.deptCount;
             count14 = msg.userCount;
-            $rootScope.$broadcast('eighth.update');
+            $rootScope.$broadcast('eighth.update',{"pageNo":eighthCount,"pageSize":10});
             eighthCount++;
           }, function (err) {
             count13 = 0;

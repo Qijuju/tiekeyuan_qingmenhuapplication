@@ -6,7 +6,6 @@
       <img src="img/backmain.png" ng-click="gobackmsgdetail(userId,userName)"/>
     </div>
 
-    <!---->
     <div class="personDetailDiv">
 
       <!--头像-->
@@ -23,8 +22,8 @@
         <div class="col" align="center" >
           <a ng-click="gohistoryMessage()">
             <ul>
-              <li><img src="img/im_new_chat.png" width="30" height="30"></li>
-              <li style="color: black;">消息</li>
+              <li><img class="personDetailImg" src="img/im_new_chat.png"></li>
+              <li class="liColor">消息</li>
             </ul>
           </a>
         </div>
@@ -32,8 +31,8 @@
         <div class="col" align="center" ng-click="personFile()">
           <a >
             <ul>
-              <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
-              <li style="color: black;margin-top: -2px">文件</li>
+              <li><img class="personDetailImg" src="img/im_chat_btn_file.png"></li>
+              <li class="liColor">文件</li>
             </ul>
           </a>
         </div>
@@ -41,17 +40,16 @@
         <div class="col" align="center" ng-click="goLocation()">
           <a >
             <ul>
-              <li><img src="img/im_new_map.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">定位</li>
+              <li><img class="personDetailImg" src="img/im_new_map.png"></li>
+              <li class="liColor">定位</li>
             </ul>
           </a>
         </div>
       </div>
     </div>
 
-
     <!--聊天图片-->
-    <div class="row chartImages" ng-click="perosnPicture()" style="margin-top:10px;">
+    <div class="row chartImages" ng-click="perosnPicture()">
       <div class="col">
         <img src="img/images.png" alt="图片库">
         <span>聊天图片</span>
@@ -59,9 +57,7 @@
       </div>
     </div>
 
-
-    <div class="personalSetting list">
-    </div>
+    <div class="personalSetting list"></div>
 
   </ion-content>
 </ion-view>

@@ -56,7 +56,7 @@
 
       <!--接收-->
       <!--2、对方的消息-->
-      <div class="row msgSingleForm" ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
+      <div class="row msgSingleForm"  ng-if="(msgSingle.from==='false') &&(msgSingle.sessionid === userId)">
 
         <div class="col col-12" ng-click="godetail(msgSingle.sessionid)" ng-if="otheryoumeiyou" >
           <img  src="{{otherheadpicurl}}" class="yuanjiao4" >
@@ -90,18 +90,26 @@
 
         <!--接收###文件内容-->
         <div class="col receiveFile" ng-if="msgSingle.messagetype === 'File' && !getFileType(msgSingle.message) && !isMsgVideo(msgSingle.message.split('###')[1])">
-          <div class="row item" ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle)">
+          <!--接收的文件box-->
+          <div class="row item sentfile sentfile2" ng-click="openAllFile(msgSingle.message.split('###')[1], msgSingle)">
+            <!--图标-->
+            <div class="col col-20">
+              <img class="getFileTypeImg" src="{{getFileTypeImg(msgSingle.message)}}"/>
+            </div>
 
-            <div class="col col-20"><img src="{{getFileTypeImg(msgSingle.message)}}" /></div>
-
-            <div class="col">
+            <!--详情box-->
+            <div class="col col-80">
+              <!--详情标题-->
               <h2>{{getFileName(msgSingle.message)}}</h2>
+
               <!--进度条-->
               <div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar">
                 <div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div>
               </div>
+
               <!--进度百分比-->
               <div ng-show="msgSingle.message.split('###')[5] != '0' && msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'">{{msgSingle.message.split('###')[5]}}%</div>
+
               <!--接收成功-->
               <div ng-show="msgSingle.message.split('###')[5] === '100'">{{msgSingle.message.split('###')[3]}}</div>
               <!--接收失败-->
@@ -124,22 +132,24 @@
 
         <!--接收###音频内容-->
         <div class="col receiveAudio" ng-if="msgSingle.messagetype === 'Audio'">
+          <div class="rj-message-voice-left" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id,msgSingle.isread);" style="max-width:260px;width: {{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 60 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:left;vertical-align: middle !important;height:40px;line-height:40px;float: left;position: relative;">
+            <img style="width:20px;height:20px;" src="img/turnrightstatic.jpg"  class="yuanjiao sendAudioImg" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
+            <img src="img/turnright.gif" class="yuanjiao sendAudioImg" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''"/>
 
-          <div class="rj-message-voice-left" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id,msgSingle.isread);" style="max-width:250px;width: {{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:left;vertical-align: middle !important;height:auto;float: left;">
-            <img src="img/turnrightstatic.jpg"  class="yuanjiao" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
-            <img src="img/turnright.gif" class="yuanjiao" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''"/>
+            <span style="color:#000;margin-left:5px;"> {{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
+            <img style="position: absolute;top:0px;right:-15px;width:10px;height:10px;" src="img/redpoint.png" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>
           </div>
 
-          <div class="row receiveAudioDiv">
-            <div class="col col-center item">
-              <div class="row row-center item">
-                <img src="img/redpoint.png" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>
-              </div>
-              <div class="row row-center item">
-                {{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"
-              </div>
-            </div>
-          </div>
+          <!--<div class="row receiveAudioDiv">-->
+            <!--<div class="col col-center item">-->
+              <!--<div class="row row-center item">-->
+                <!--<img src="img/redpoint.png" ng-if="msgSingle.messagetype === 'Audio'&&msgSingle.isread === '0'"/>-->
+              <!--</div>-->
+              <!--<div class="row row-center item">-->
+                <!--{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
 
         <!--接收###地图内容-->
@@ -150,7 +160,7 @@
               <img src="img/location.jpg"/>
             </div>
 
-            <div class="col receive">
+            <div class="col col-80 receive">
               <h2>{{msgSingle.message.split(',')[2]}}</h2>
               <!--进度条-->
               <div class="outbar"><div class="inbar"></div></div>
@@ -210,7 +220,7 @@
             <div class="col col-20">
               <img class="sendFileImg" src="{{getFileTypeImg(msgSingle.message)}}"/>
             </div>
-            <div class="col sendPromptMsg">
+            <div class="col col-80 sendPromptMsg">
               <h2>{{msgSingle.message.split('###')[4]}}</h2>
               <!--进度条-->
                 <div ng-show="msgSingle.message.split('###')[5] != '100' && msgSingle.message.split('###')[5] != '-1'" class="outbar"><div class="inbar" style="width:{{msgSingle.message.split('###')[5]}}%;background:#5CB85C;"></div></div>
@@ -260,17 +270,11 @@
 
         <!--发送###音频内容-->
         <div class="col" ng-if="msgSingle.messagetype === 'Audio'">
-          <div class="rj-message-voice-left" style="max-width:250px;width: {{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 40 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:right;vertical-align: middle !important;height:auto;background: #38ADFF;float: right;" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+          <div class="rj-message-voice-left" style="max-width:260px;width: {{((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000) < 7 ? 60 :(((msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000)*7) }}px !important;text-align:right;vertical-align: middle !important;height:40px;line-height:40px;background: #38ADFF;float: right;" ng-click="showanimation(msgSingle.message.split('###')[1], msgSingle._id);">
+           <span>{{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"</span>
             <img class="sendAudioImg" src="img/turnleftstatic.png" class="yuanjiao" ng-show="msgSingle._id != audioid || isshowgPng === 'true'"/>
             <img class="sendAudioImg" src="img/turnleft.gif" class="yuanjiao" ng-show="isshowgif === 'true' && msgSingle._id === audioid && audioid != undefined && audioid != null && audioid != ''"/>
-          </div>
 
-          <div class="row faultTolerant">
-            <div class="col col-center item">
-              <div class="row row-center item">
-                {{(msgSingle.message.split('###')[2] - msgSingle.message.split('###')[2]%1000)/1000}}"
-              </div>
-            </div>
           </div>
 
           <!--容错处理-->
@@ -316,11 +320,8 @@
         </div>
       </div>
     </div>
-
     <br />
     <div>&nbsp;</div>
-
-
   </ion-content>
 
   <ion-footer-bar class="bar-light messageDetailFooter">
@@ -356,7 +357,6 @@
             <button class="button-icon icon ion-ios-plus-outline footRightBtn">
             </button>
           </div>
-
 
           <div ng-hide="!send_content || send_content === ''"
                ng-click="sendSingleMsg(userId,send_content, userId,localusr,myUserID,_id)">

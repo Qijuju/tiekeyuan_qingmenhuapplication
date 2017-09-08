@@ -34,12 +34,12 @@
 .circle1,.circle1test, .circle2 ,.circle3,.circle4,.circle5,.circle6,.circle7,.circle8{
   border-radius: 50%;
   color: #FFFFFF;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  line-height:38px;
+  line-height:40px;
   text-align: center;
 
 }
@@ -90,9 +90,9 @@
  .square1,.square2,.square3,.square4,.square5,.square6,.square7,.square8,.square9,.square10{
    border-radius: 6px;
    color: #FFFFFF;
-   width: 38px;
-   height: 38px;
-   line-height:38px;
+   width: 40px;
+   height: 40px;
+   line-height:40px;
    background-position: 35% 35%;
    background-repeat: no-repeat;
    background-attachment: fixed;
@@ -275,8 +275,8 @@
 
 .tongzhi1{
   background-image:url(../img/oa.png);
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -314,8 +314,8 @@
 
 .yuanjiao4{
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -395,41 +395,29 @@
 
 .zhuan{
   width:300px;
-
   height:300px;
-
   border:3px solid green;
   margin:40px;
-
   border-radius:50%;
-
   -webkit-animation:circle 1s infinite linear;/*匀速 循环*/
 
 }
 
 @-webkit-keyframes circle{
-
   0%{ transform:rotate(0deg); }
-
   100%{ transform:rotate(-360deg); }
 }
 
 .zhuan1{
   width:1px;
-
   height:150px;
-
   border:1px solid yellow;
   margin: 150px;
-
   -webkit-animation:circle 1s infinite linear;/*匀速 循环*/
-
 }
 
 @-webkit-keyframes circle{
-
   0%{ transform:rotate(0deg); }
-
   100%{ transform:rotate(-360deg); }
 }
 .father{

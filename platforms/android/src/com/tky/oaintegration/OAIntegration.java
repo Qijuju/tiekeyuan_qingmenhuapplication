@@ -1,9 +1,11 @@
 package com.tky.oaintegration;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
@@ -49,7 +51,8 @@ import okhttp3.Call;
  */
 public class OAIntegration extends CordovaPlugin {
     private static String TAG=OAIntegration.class.getSimpleName();
-    private String s1 = "oa.app";//actionname
+    private String s1 = "oa.app";//公文处理actionname
+    private String s2 = "hideicon.yy";//物资设备actionname
 
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -113,7 +116,12 @@ public class OAIntegration extends CordovaPlugin {
                 });
 
             }else{
-                startAppByAction(s1,name);
+                if(name.equals("公文处理")){
+                    startAppByAction(s1,name);
+                }else if(name.equals("物资设备")){
+                    startAppByAction(s2,name);
+                }
+
             }
             setResult("success",PluginResult.Status.OK,callbackContext);
         } catch (JSONException e) {
@@ -158,6 +166,15 @@ public class OAIntegration extends CordovaPlugin {
                     intent.putExtra("key_elearning_default_login", true);
                 }
                 intent.setAction(actionname);
+                cordova.getActivity().startActivity(intent);
+            }else if(actionname.equals("hideicon.yy")){//物资设备
+                Intent intent=new Intent();
+                ComponentName cn = new ComponentName("com.mengyou.myplatforms",
+                        "com.mengyou.myplatforms.MainActivity");
+                intent.setComponent(cn);
+                Uri uri = Uri.parse("wzsb");// 此处应与物资设备程序中Data中标签一致
+                intent.setData(uri);
+                intent.putExtra("wzsb_url", "http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342");
                 cordova.getActivity().startActivity(intent);
             }else{
                 Toast.makeText(UIUtils.getContext(), "应用程序异常", Toast.LENGTH_SHORT).show();

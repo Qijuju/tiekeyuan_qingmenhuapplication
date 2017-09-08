@@ -1,18 +1,16 @@
-
-
-
 <ion-view  view-title="搜索">
-  <ion-content overflow-scroll="false" on-drag="onDrag()">
 
-    <div id="search-bar" class=" item-input-inset">
-      <label class="item-input-wrapper" id="search-input">
-        <i class="icon ion-ios-search"></i>
-        <form  onsubmit="dosearch(query)">
-          <input  id="searchdata" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
-        </form>
-      </label>
-      <button class="button button-clear" ng-click="backSearchSM()" >取消</button>
-    </div>
+  <div id="search-bar" class=" item-input-inset">
+    <label class="item-input-wrapper" id="search-input">
+      <i class="icon ion-ios-search"></i>
+      <form  onsubmit="dosearch(query)">
+        <input  id="searchdata" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
+      </form>
+    </label>
+    <button class="button button-clear " ng-click="backSearchSM()" >取消</button>
+  </div>
+
+  <ion-content id="searchContent" overflow-scroll="false" on-drag="onDrag()">
     <div ng-if="((lastMsg=='')||(lastMsg.length==0)||(lastMsg==null))&&((personsren=='')||(personsren.length==0)||(personsren==null))">
       <div  class="historySearchMessage" >历史搜索记录</div>
       <div ng-repeat="historymsg in historymsgs">

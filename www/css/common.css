@@ -73,21 +73,11 @@
   height: 65px;
 }
 .common-add-img{
-  /*position: absolute;*/
-  /*width: 38px;*/
-  /*height: 38px;*/
-  /*top: 14%;*/
-  /*left:55px;*/
-  float: left;width:38px;height:38px;margin-right:10px;margin-left:10px;
+  float: left;width:40px;height:40px;margin-right:10px;margin-left:10px;
 }
 
 .common-add-span{
-  /*position: absolute;*/
-  /*left: 105px;*/
-  /*top:30%;*/
-  /*width: 200px;*/
   text-overflow: ellipsis;
-  /*overflow: hidden;*/
   white-space:nowrap;
   float: left;display: inline-block;height:40px;line-height:40px;
 
@@ -112,7 +102,7 @@
 
 /*界面背景色*/
 ion-view ion-content{
-  background-color:#e5e5e5;
+  background-color:#EFEFF4;
 }
 /* 复选框 */
 label.item.item-checkbox{
@@ -121,7 +111,8 @@ label.item.item-checkbox{
 
 /* 键盘发送按钮样式*/
 p.sendMessage{
-  width: 40px;height:40px;position: absolute;bottom: 0px;background:#1296db;border-radius:4px;text-align: center;line-height:40px;color:#fff;
+  position: absolute;bottom: 0px;right:10px;
+  width: 40px;height:40px;background:#1296db;border-radius:4px;text-align: center;line-height:40px;color:#fff;
 }
 
 

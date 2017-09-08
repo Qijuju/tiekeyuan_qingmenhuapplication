@@ -1,7 +1,22 @@
-
+.detail-top{
+  color: #387EF5;
+  font-size: 15px;
+  font-family: Algerian;
+}
+/*顶部四个图标的大小 */
+img.personDetailImg{
+  width:32px;
+  height:32px;
+}
+li.liColor{
+  color:#000;
+}
+li.liColorGray{
+  color: #A3A3A3;
+}
 /*切换按钮位置*/
 .row.focus .col .item.item-toggle.toggle-small label.toggle.disable-user-behavior{
-  top:4px;
+  top:11px;
   right:0px;
 }
 /*去border*/
@@ -16,10 +31,12 @@
 .sex img{
   position: absolute;right:3%;top:3%;width: 22px;height: 22px;
 }
-/**/
 .personDetailDiv{
   background-color: white;width:100%;
   text-align: center;
+}
+.mt{
+  margin-bottom:10px;
 }
 /*头像*/
 .personDetailDiv >img{
@@ -58,8 +75,11 @@
 
 /*添加关注、取消关注*/
 .row.focus{
-  height:60px;background:#fff;margin-top:10px;
+  height:60px;background:#fff;
 }
 .row.focus .col >div{
   height:45px;line-height:45px;
+}
+.row.chartImages{
+  margin-top:10px;
 }

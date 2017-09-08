@@ -5094,7 +5094,7 @@ a.subdued:last-child {
   min-width: initial;
   min-height: 31px;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 32px;
 }
 
@@ -7413,7 +7413,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
 }
 
 .item h3 {
-  margin: 0 0 4px 0;
+  margin: 0 0 0px 0;
   font-size: 14px;
 }
 
@@ -11155,7 +11155,6 @@ progress {
   border-color: transparent;
   background: none;
 }
-
 .button.button-positive.button-outline {
   border-color: #387ef5;
   background: transparent;
@@ -11250,7 +11249,7 @@ progress {
 
 .button.button-balanced {
   border-color: transparent;
-  background-color: #33cd5f;
+  background-color: #0097A7;
   color: #fff;
 }
 

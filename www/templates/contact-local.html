@@ -11,14 +11,14 @@
 
   <ion-content scrollbar-y="false">
 
-    <div class=" item-input-inset" id="searchbutton" ng-click="goLocalSearch()" style="margin-top: 16px;background-color: white">
+    <div class=" item-input-inset" id="searchbutton" ng-click="goLocalSearch()">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
         <input type="search" placeholder="搜索" ng-model="query" id="searchdata1" >
       </label>
     </div>
 
-    <ion-list  citybox-select style="margin-top: 16px"  >
+    <ion-list  citybox-select id="contactLocalList">
 
 
       <ion-item id="contact-A" class="rj-contacts-item" ng-show="contactsA.length>0" >
@@ -26,8 +26,8 @@
         <ion-list class="rj-list" ng-repeat="contact in contactsA" >
           <ion-item class="rj-item">
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class="circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)" >{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -42,8 +42,8 @@
           <ion-item class="rj-item" ng-repeat="contact in contactsB" >
             <div class="rj-contacts-pic">
 
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -58,8 +58,8 @@
           <ion-item class="rj-item" ng-repeat="contact in contactsC" >
             <div class="rj-contacts-pic">
 
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -73,8 +73,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsD" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -88,8 +88,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsE" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -102,8 +102,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsF" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -117,8 +117,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsG" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -132,8 +132,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsH" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -147,8 +147,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsI" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -162,8 +162,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsJ">
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2  ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p  ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -177,8 +177,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsK" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -192,8 +192,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsL" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -207,8 +207,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsM" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -222,8 +222,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsN" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -236,8 +236,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsO" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -251,8 +251,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsP" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -266,8 +266,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsQ" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -281,8 +281,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsR" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -296,8 +296,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsS" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -311,8 +311,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsT" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -326,8 +326,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsU" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -341,8 +341,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsV" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal ">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -356,8 +356,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsW" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -370,8 +370,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsX" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -384,8 +384,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsY" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -398,8 +398,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsZ" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>
@@ -412,8 +412,8 @@
         <ion-list class="rj-list">
           <ion-item class="rj-item" ng-repeat="contact in contactsNoSuch" >
             <div class="rj-contacts-pic">
-              <div ng-if="!contact.isplatform" class=" circle8" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">本地</div>
-              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7" style=" position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;">平台</div>
+              <div ng-if="!contact.isplatform" class=" circle8 contactLocal">本地</div>
+              <div ng-click="localgoDetail(contact.platformid)" ng-if="contact.isplatform" class=" circle7 contactLocal">平台</div>
             </div>
             <h2 ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.name}}</h2>
             <p ng-click="tanchuang(contact.phonenumber,contact.name)">{{contact.phonenumber}}</p>

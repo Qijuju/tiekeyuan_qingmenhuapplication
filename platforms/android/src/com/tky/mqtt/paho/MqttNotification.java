@@ -45,12 +45,12 @@ public class MqttNotification {
 //		manager.cancel(calcMsgID(userID));
     //判断当前是否在应用里面
 		if (!UIUtils.isApplicationBroughtToBackground(UIUtils.getContext())) {
-      System.out.println("未读数量112");
+//      System.out.println("未读数量112");
 			return;
 		}
 		try{
 			int badgeCount = SPUtils.getInt("badgeCount",0);
-			System.out.println("后端取出存的count值11111"+badgeCount);
+//			System.out.println("后端取出存的count值11111"+badgeCount);
 			//从数据库获取未读数量
 			ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
 			List<ChatList> chatLists=chatListService.loadAllData();
@@ -62,7 +62,7 @@ public class MqttNotification {
 				badgeCount=count;
 			}
 			boolean success= ShortcutBadger.applyCount(UIUtils.getContext(), badgeCount);
-			System.out.println("未读数量222222"+badgeCount);
+//			System.out.println("未读数量222222"+badgeCount);
 			UIUtils.getContext().startService(
 					new Intent(UIUtils.getContext(), BadgeIntentService.class).putExtra("badgeCount", badgeCount));
 		}catch (Exception e){

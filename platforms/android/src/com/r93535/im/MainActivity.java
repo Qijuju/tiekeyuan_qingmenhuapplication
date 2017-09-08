@@ -160,29 +160,29 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     //设置点击一次后消失（如果没有点击事件，则该方法无效。）
     //从sharedpreferences取出badgecount值
 //    int badgeCount=0;
-    try{
-      Integer badgeCount = SPUtils.getInt("badgeCount",0);
-//      System.out.println("后端取出存的count值22222"+badgeCount);
-      //从数据库获取未读数量
-      ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
-      List<ChatList> chatLists=chatListService.loadAllData();
-      int count=0;
-      for (int i=0;i<chatLists.size();i++){
-        count += Integer.parseInt(chatLists.get(i).getCount()) ;
-      }
-      if(badgeCount != count){
-        badgeCount=count;
-      }
-      boolean success=ShortcutBadger.applyCount(MainActivity.this, badgeCount);
-//      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
-      startService(
-              new Intent(MainActivity.this, BadgeIntentService.class).putExtra("badgeCount", badgeCount)
-      );
-//      Notification notification = notificationCompat.build();
-//      BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+//    try{
+//      Integer badgeCount = SPUtils.getInt("badgeCount",0);
+////      System.out.println("后端取出存的count值22222"+badgeCount);
+//      //从数据库获取未读数量
+//      ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+//      List<ChatList> chatLists=chatListService.loadAllData();
+//      int count=0;
+//      for (int i=0;i<chatLists.size();i++){
+//        count += Integer.parseInt(chatLists.get(i).getCount()) ;
+//      }
+//      if(badgeCount != count){
+//        badgeCount=count;
+//      }
+//      boolean success=ShortcutBadger.applyCount(MainActivity.this, badgeCount);
+////      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
+//      startService(
+//              new Intent(MainActivity.this, BadgeIntentService.class).putExtra("badgeCount", badgeCount)
+//      );
+////      Notification notification = notificationCompat.build();
+////      BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
+//    }catch (Exception e){
+//      e.printStackTrace();
+//    }
 
 
 

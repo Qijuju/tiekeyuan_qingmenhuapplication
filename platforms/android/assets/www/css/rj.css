@@ -28,11 +28,17 @@
   font-size: 16px;
 }
 .rj-push-right {
+  /*888*/
+  /*position: absolute;*/
+  /*right: 10px;*/
+  /*top: 10px;*/
   color: #8c8c8c;
   font-size: 13px;
 }
 .rj-push-rightright {
-
+  /*position: absolute;*/
+  /*right: 36px;*/
+  /*top: 10px;*/
   color: #8c8c8c;
   font-size: 13px;
 }
@@ -236,7 +242,7 @@
   text-align: center;
   position: absolute;
   bottom: 3px;
-  width: 38px;
+  width: 40px;
   left: 4px;
 }
 
@@ -377,7 +383,7 @@
 }
 
 .rj-notify-bgggg{
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   margin-top: 5px;
   /*margin-bottom: 5px;*/
   height: 70px;

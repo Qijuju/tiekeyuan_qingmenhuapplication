@@ -7,7 +7,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-    <ion-scroll zooming="true" direction="x" style="width: 100%">
+    <ion-scroll zooming="true" direction="x">
       <div id="scrollDiv" class="div-a-style">
         <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}/{{functionTag}}" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style" ng-click="fromSixthToSecond(firstidInSix)">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
@@ -70,11 +70,11 @@
     <ion-infinite-scroll  ng-if="sixthStatus" on-infinite="loadSixthMore()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
   <ion-footer-bar>
-    <div style="position: absolute;right: 5px;width: 50px">
-      <button ng-if="functionTag=='groupchat'" class="button button-balanced " ng-click="sixthConfirm()">
+    <div>
+      <button ng-if="functionTag=='groupchat'" class="button button-balanced btnCenter" ng-click="sixthConfirm()">
         确定
       </button>
-      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced " ng-click="gosixthMesstexting()">
+      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced btnCenter" ng-click="gosixthMesstexting()">
         提交
       </button>
     </div>

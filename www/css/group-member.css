@@ -12,6 +12,18 @@ p.groupMemberManager{
   font-size: 18px ;text-align: right;line-height:40px;
 }
 
+/* group-setting.html  start */
+li.groupSettingLi{
+  color:#444;
+}
+
+.list.dissolutionGroup{
+  margin-top: -8px;margin-left: 8px;margin-right: 8px
+}
+.list.dissolutionGroup > button.button.button-block.button-positive{
+  background-color:#2B83B7;height: 52px;border-radius: 2px;margin-top: 14px
+}
+
 
 
 

@@ -1,24 +1,29 @@
-
-
 <!--消息页面-->
 <ion-view class="common-view-color" view-title="消息">
 
   <!--消息图标-->
   <ion-nav-bar align-title="center"  class="newbarhead myMessage">
 
+    <!--<ion-nav-buttons side="left" >-->
+      <!--<button ng-click="goVerify()">验证</button>-->
+    <!--</ion-nav-buttons>-->
+
     <ion-nav-buttons side="right">
       <i class="icon ion-ios-search-strong"  ng-click="goSearch()"></i>
-      <!--<i class="icon ion-
-      " ng-click="createGroupChats()"></i>-->
-
+      <!--<i class="icon ion-navicon" ng-click="createGroupChats()"></i>-->
       <p>
-        <button ng-click="openPopover($event)" style="background: transparent;border:none;color:#fff;"><i class="icon ion-navicon"></i></button>
+        <button id="ionNaviconBtn" ng-click="openPopover($event)">
+          <i class="icon ion-navicon"></i>
+        </button>
       </p>
+
       <script id="my-popover.html" type="text/ng-template">
         <ion-popover-view style="float: right;top:33px;">
-          <ion-content id="scrollContent" style="overflow: visible;">
-            <ul style="width:100%;background: #3F51B5;margin-top:5px;border-radius:2px;box-shadow: 0 0 5px #9e9e9e;">
-              <li ng-click="createGroupChats()" style="width:100%;text-align: center;color:#fff;"><img src="img/qunl.png" alt="" style="width:20px;height:20px;margin-top:4px;"></li>
+          <ion-content id="scrollContent">
+            <ul>
+              <li ng-click="createGroupChats()">
+                <img src="img/qunl4.png" alt="">
+              </li>
             </ul>
           </ion-content>
         </ion-popover-view>
@@ -45,7 +50,7 @@
     </div>
 
     <ion-list ng-click="shefalse()">
-      <ion-item id="tabMsgItemFirst" item-start class="listItem" style="border-color:#fff;" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">
+      <ion-item id="tabMsgItemFirst" item-start class="listItem tabMsgItem" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">
         <!-- 头像 -->
         <ion-avatar item-start item-left class="avatar">
 
@@ -69,7 +74,7 @@
         </ion-avatar>
 
         <!-- 信息和时间-->
-        <div class="infoTime">
+        <div id="tabMsgInfoTime11" class="infoTime">
           <div class="infoTimeDiv">
             <h2>{{item.chatName}}</h2>
             <p class="lastInfoMsg">

@@ -1,5 +1,5 @@
 #search-bar{
-  height: 50px;background-color: #fff;
+  height: 50px;background: #3F51B5;box-shadow: 0 0 3px #EFEFF4;
 }
 #search-input > i.icon{
   position: relative;color: gray;font-size: 1.5em;top: 1px;
@@ -7,13 +7,14 @@
 input#searchdata{
   padding-top: 3px;
 }
+/*搜索页的取消按钮*/
 #search-bar > button.button.button-clear{
-  color: #1D95D4;
+  color:#fff;
+  font-size:14px;
 }
 .historySearchMessage{
   text-align: center;width: 100%;font-size: 15px;padding-top: 5px;padding-bottom: 5px;color: #aeaeae;
 }
-
 .historymsg{
   width: auto;margin-left: 10px;padding-top: 20px;font-size: 20px;
 }
@@ -23,8 +24,8 @@ input#searchdata{
 }
 /* 聊天记录 */
 .chatHistorymsg{
-  padding-left: 10px;padding-top:15px;
-
+  padding:10px 15px;
+  font-size:16px;
 }
 
 /* 文本居中 */

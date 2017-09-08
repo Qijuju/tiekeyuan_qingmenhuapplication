@@ -4,7 +4,7 @@ ion-nav-buttons .messageDetailRightTop > div {
   margin-top: 7px;
 }
  img.messageDetailTopImg{
-  width:22px;height:18px;margin-right: 12px;margin-top:7px;
+  width:20px;height:20px;margin-right: 12px;margin-top:7px;
 }
 /*内容*/
 .yuanjiao.messageDetail{
@@ -43,6 +43,7 @@ ion-content.rj-stable-content > div.msgSingle{
 /* 接收-对方的消息 */
 .msgSingle > div.row.msgsingleform{
   float: left;
+  overflow: hidden;
 }
 
 /* 接收###文本内容 */
@@ -203,7 +204,6 @@ ion-content.rj-stable-content > div.msgSingle{
 }
 .faultTolerant .item{
   background: none !important; border: none;float: right;
-
 }
 .faultTolerant .item ion-spinner{
   background-color: transparent;vertical-align: middle;
@@ -215,10 +215,15 @@ img.sendImg {
   width: 110px;
   float: right;
 }
-
+div.receiveImg img{
+  border-radius:10px;
+}
 /*发送文件内容*/
 .sentfile{
-  width: 230px!important;border-radius: 3px;float: right;
+  width: 260px !important;border-radius: 10px;float: right;
+}
+.sentfile2{
+  float: left;
 }
 .sendFileImg{
   width: 55px;height: 55px;
@@ -227,7 +232,11 @@ img.sendImg {
   margin-top: 5px;margin-bottom: -10px;
 }
 .sendPromptMsg h2{
-  font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;overflow: hidden;
+  font-size: 10px;margin-left: 7px;padding-bottom: 8px;margin-right: 50px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sendPromptMsg h2 .outbar{
   margin-left: 7px;
@@ -265,8 +274,10 @@ img.sendImg {
 }
 /*发送###音频内容*/
 img.sendAudioImg{
-  height: 25px;
+  width:26px;
+  height: 24px;
   text-align: right;
+  vertical-align:middle;
 }
 
 /* 发送地图信息 */
@@ -306,7 +317,7 @@ img.sendAudioImg{
   height: auto;width: 100%;
 }
 .messageDetailFooter .footerContainer  .footerInnerContainer{
-  height: 50px;width: 100%;background-color: #F5F5F5
+  height: 50px;width: 100%;background-color: #3F51B5;
 }
 /* 左边 */
 .messageDetailFooter .footerContainer  .footerInnerContainer .footLeft{
@@ -317,7 +328,7 @@ img.sendAudioImg{
   height: 40px;width:40px;bottom:5px;position: absolute;
 }
 .messageDetailFooter .footerContainer  .footerInnerContainer .footLeft .leftYuYin .leftMdIcon{
-  border: none;background-color: #F5F5F5;font-size:28px;line-height:1;position:relative;left:12px;
+  border: none;background-color: transparent;font-size:28px;line-height:1;position:relative;left:12px;color:#fff;
 }
 .messageDetailFooter .footerContainer  .footerInnerContainer .footLeft  .footLeftImg{
   width: 36px;height: 36px;position: relative;bottom: 2px;left: 2px;
@@ -325,7 +336,7 @@ img.sendAudioImg{
 
 /* 中间 */
 .messageDetailFooter .footerContainer  .footerInnerContainer .footCenter{
-  position: relative;width: 76%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;
+  position: relative;width: 74%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;
   text-align: center;
 
 }
@@ -347,14 +358,19 @@ img.sendAudioImg{
 .messageDetailFooter .footerContainer  .footerInnerContainer .footRight{
   position: relative;width: 10%;height: 80%;display: inline-block;top: 5px;left: 5px;right: 5px;
   text-align: right;
+  float: right;
 }
 .messageDetailFooter .footerContainer  .footerInnerContainer .footRight .buttons{
   width: 80%;height:80%;position: absolute;bottom: 0px;
 }
 .messageDetailFooter .footerContainer  .footerInnerContainer .footRight .buttons .footRightBtn{
-  position:absolute;right:85%;bottom:2px;
+  position:absolute;right:0px;bottom:0px;
 }
 
+/*右边按钮颜色*/ /*重写ionic*/
+.ion-ios-mic-outline:before,.ion-ios-plus-outline:before{
+  color:#fff;
+}
 /* 发送类型 */
 .messageDetailFooter .footerContainer .sendType{
   height: 170px;width: 100%;background-color: #fff;
@@ -402,6 +418,10 @@ img.sendTypeImg{
 .row.magDetailFootFileRow .col.col-25 ul li{
   width:100%;
   height: 50px;text-align: center;
+}
+/* 文件logo大小 */
+img.getFileTypeImg{
+  width:50px;height:50px;
 }
 
 /* 群聊样式补充*/

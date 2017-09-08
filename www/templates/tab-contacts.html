@@ -51,10 +51,10 @@
         <div class="col">
           <span class="icon ion-android-contacts part2Img" ></span>
           <!--<img src="img/company_tx.png" class="part2Img"/>-->
-          <span>公司通讯录</span>
+          <span style="color:#BDBDBD;">公司通讯录</span>
         </div>
       </div>
-      <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID)">
+      <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID,item.ChildCount)">
         <div class="col">
 
           <span class="icon ion-ios-people part2Img"></span>
@@ -77,7 +77,7 @@
         <div class="col">
           <span class="icon ion-ios-person part2Img" ></span>
           <!--<img src="img/common_lxr.png" class="part2Img">-->
-          <span> 常用联系人</span>
+          <span style="color:#9E9E9E;"> 常用联系人</span>
         </div>
       </div>
     </div>

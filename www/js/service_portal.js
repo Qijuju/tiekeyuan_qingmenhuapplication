@@ -120,7 +120,7 @@ angular.module('portal.services', [])
       appName: '投资控制',
       appIcon: 'img/app2/tzkz.png',
     }, {
-      appId: 168,
+      appId: 173,
       appName: '超前地质预报',
       appIcon: 'img/app3/cqdzyb.png',
     }, {
@@ -174,8 +174,8 @@ angular.module('portal.services', [])
           method: 'post',
           timeout: 5000,
           // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
+          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
           var data=JSON.parse(decodeURIComponent(data));
@@ -192,6 +192,13 @@ angular.module('portal.services', [])
                 companyName = jsdept[i].name;
               } else if (jsdept[i].grade == 30) {
                 companyName = "中国铁路总公司";
+                /**
+                 * 将要关闭的应用id定义成一个数组，然后遍历数组，隐藏图标
+                 */
+                var hiddenApps=["gwcl","hygl","clgl","xwtz","sgzz","wzsb","wtk","bc","zjjc","bhz","sys","jyp","lc"];
+                for(var i=0;i<hiddenApps.length;i++){
+                  document.getElementById(hiddenApps[i]).style.display = "none";
+                }
               }
             }
           }

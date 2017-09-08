@@ -26,7 +26,8 @@ div.deleteWhiteLineDiv{
 
 /* 用户、密码输入框 */
 #nameabc , #passwordabc{
-  width:100%;height:100%;font-size: 16px;
+  display:inline-block;width:100%;height:45px;line-height:45px;
+  font-size: 16px;
 }
 
 /* 下划线 */

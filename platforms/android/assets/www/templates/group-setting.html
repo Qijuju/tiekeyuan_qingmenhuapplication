@@ -1,7 +1,7 @@
 
 
 <ion-view >
-  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
+  <ion-content overflow-scroll="false">
 
     <!--返回←箭头-->
     <div class="back">
@@ -9,7 +9,7 @@
     </div>
 
     <!---->
-    <div class="personDetailDiv">
+    <div class="personDetailDiv mt">
 
       <!--头像-->
       <img src="img/quntouxiang.png">
@@ -26,7 +26,7 @@
           <a ng-click="gohistoryMessagea()">
             <ul>
               <li><img src="img/im_new_chat.png" width="30" height="30"></li>
-              <li style="color: black;">消息</li>
+              <li class="groupSettingLi">消息</li>
             </ul>
           </a>
         </div>
@@ -35,7 +35,7 @@
           <a >
             <ul>
               <li><img src="img/im_chat_btn_file.png" width="30" height="30"></li>
-              <li style="color: black;margin-top: -2px">文件</li>
+              <li class="groupSettingLi">文件</li>
             </ul>
           </a>
         </div>
@@ -44,7 +44,7 @@
           <a >
             <ul>
               <li><img src="img/im_new_map.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">定位</li>
+              <li class="groupSettingLi">定位</li>
             </ul>
           </a>
         </div>
@@ -52,7 +52,7 @@
     </div>
 
     <!--群图片、群公告、群成员、修改群名称（if）-->
-    <ion-list style="margin-top:10px;">
+    <ion-list>
       <ion-item >
         <div class="row chartImages" ng-click="groupPicture()" >
           <div class="col">
@@ -98,10 +98,9 @@
     </div>
 
     <!--解散该群-->
-    <div class="list" style="margin-top: -8px;margin-left: 8px;margin-right: 8px" ng-if="ismygroupaaa=='true'">
+    <div class="list dissolutionGroup" ng-if="ismygroupaaa=='true'">
 
-      <button class="button button-block button-positive" ng-click="dissolveGroup()"
-              style="background-color:#2B83B7;height: 52px;border-radius: 10px;margin-top: 14px">
+      <button class="button button-block button-positive" ng-click="dissolveGroup()">
         解散该群
       </button>
     </div>

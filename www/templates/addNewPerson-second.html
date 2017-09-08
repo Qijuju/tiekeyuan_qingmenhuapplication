@@ -80,11 +80,11 @@
 
   <!--页面尾部-->
   <ion-footer-bar>
-    <div style="position: absolute;right: 5px;width: 50px">
-      <button ng-if="functionTag=='groupchat'"  class="button  button-balanced " ng-click="secondConfirm()">
+    <div>
+      <button ng-if="functionTag=='groupchat'"  class="button  button-balanced btnCenter" ng-click="secondConfirm()">
         确定
       </button>
-      <button ng-if="functionTag=='file'&&userlist.length!=0"  class="button  button-balanced " ng-click="gosecondMesstexting()">
+      <button ng-if="functionTag=='file'&&userlist.length!=0"  class="button  button-balanced btnCenter" ng-click="gosecondMesstexting()">
         提交
       </button>
     </div>

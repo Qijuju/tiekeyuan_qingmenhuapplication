@@ -120,7 +120,7 @@ angular.module('portal.services', [])
       appName: '投资控制',
       appIcon: 'img/app2/tzkz.png',
     }, {
-      appId: 168,
+      appId: 173,
       appName: '超前地质预报',
       appIcon: 'img/app3/cqdzyb.png',
     }, {
@@ -174,8 +174,8 @@ angular.module('portal.services', [])
           method: 'post',
           timeout: 5000,
           // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
+          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
           var data=JSON.parse(decodeURIComponent(data));
@@ -192,6 +192,29 @@ angular.module('portal.services', [])
                 companyName = jsdept[i].name;
               } else if (jsdept[i].grade == 30) {
                 companyName = "中国铁路总公司";
+                /**
+                 * 将要关闭的应用id定义成一个数组，然后遍历数组，隐藏图标
+                 */
+                var hiddenApps=["gwcl","hygl","clgl","xwtz","sgzz","wzsb","wtk","bc","zjjc","bhz","sys","jyp","lc"];
+                for(var i=0;i<hiddenApps.length;i++){
+                  document.getElementById(hiddenApps[i]).style.display = "none";
+                }
+                //关闭会议管理和公文处理和板场
+                // document.getElementById("23").style.borderRight = "none";//取消公文处理右侧线
+                // document.getElementById("236").style.display = "none";
+                // document.getElementById("2362").style.display = "none";
+                // document.getElementById("22").style.display = "none";
+                // document.getElementById("222").style.display = "none";
+                // document.getElementById("138").style.display = "none";
+                // document.getElementById("1381").style.display = "none";
+                // //关闭新闻通知和车辆管理
+                // document.getElementById("zhgl").style.display = "none";
+                // //关闭过程控制施工组织、物资设备、问题库图标
+                // document.getElementById("gckz").style.display = "none";
+                // //关闭现场控制拌和站、试验室、检验批、桩基检测、梁场、板场
+                // document.getElementById("xckz").style.display = "none";
+                // //关闭现场控制最后一个div
+                // document.getElementById("xckz1").style.display = "none";
               }
             }
           }

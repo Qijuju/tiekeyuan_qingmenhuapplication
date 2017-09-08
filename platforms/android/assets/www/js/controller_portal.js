@@ -63,8 +63,8 @@ angular.module('portal.controllers', [])
         method: 'post',
         timeout: 5000,
         // url:"http://88.1.1.22:8081",//测试环境
-        // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         data: {"Action": "GetSession", "id": userID, "mepId": imCode}
       }).success(function (data, status) {
         var data = JSON.parse(decodeURIComponent(data));
@@ -73,22 +73,35 @@ angular.module('portal.controllers', [])
           return;
         }
 
-        //进行统计埋点
-        $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
-          // alert("埋点成功"+succ);
-        }, function (err) {
 
-        })
 
         if (NetData.get(appId) != null && NetData.get(appId) != "") {
           document.addEventListener("deviceready", onDeviceReady, false);
           function onDeviceReady() {
+
             //先测oa流程
             if (appId === 236) {
               //oa包名：com.r93535.oa
               //爱加密包名：com.thundersec.encwechat
               cordova.plugins.OAIntegration.getApk("com.thundersec.encwechat", "236", "公文处理", function (succ) {
+                //进行统计埋点
+                $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                  // alert("埋点成功"+succ);
+                }, function (err) {
 
+                })
+              }, function (err) {
+              });
+            }else if( appId === 132){//物资设备
+              //物资设备包名：com.mengyou.myplatforms
+              //物资设备action名：hideicon.yy
+              cordova.plugins.OAIntegration.getApk("com.mengyou.myplatforms", "132", "物资设备", function (succ) {
+                //进行统计埋点
+                $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                  // alert("埋点成功"+succ);
+                }, function (err) {
+
+                })
               }, function (err) {
               });
             } else {
@@ -115,6 +128,12 @@ angular.module('portal.controllers', [])
                         // error.style.display = '';
                       });
                   }
+                  //进行统计埋点
+                  $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                    // alert("埋点成功"+succ);
+                  }, function (err) {
+
+                  })
                 },
                 function (isAvailableError) {
                   // alert('failed to query availability of in-app browser tab');

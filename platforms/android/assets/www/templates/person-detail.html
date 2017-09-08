@@ -12,9 +12,7 @@
       <img ng-show="persondsfs.Sex=='女'" src="img/im_new_female.png">
     </div>
 
-    <!---->
     <div class="personDetailDiv">
-
       <!--头像-->
       <img ng-if="!picyoumeiyoudet" src="img/personsetting.png" ng-click="godetailaa()">
 
@@ -30,14 +28,14 @@
         <div class="col" align="center" >
           <a ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)" ng-show="persondsfs.IsActive==true">
             <ul>
-              <li><img src="img/im_new_message.png" width="30" height="30"></li>
-              <li style="color: black;">发消息</li>
+              <li><img class="personDetailImg" src="img/im_new_message.png"></li>
+              <li class="liColor">发消息</li>
             </ul>
           </a>
           <a ng-show="persondsfs.IsActive==false" ng-click="showalert()">
             <ul>
-              <li><img src="img/im_gray_message.png" width="30" height="30"></li>
-              <li style="color: #A3A3A3;">发消息</li>
+              <li><img class="personDetailImg" src="img/im_gray_message.png"></li>
+              <li class="liColorGray">发消息</li>
             </ul>
           </a>
         </div>
@@ -45,8 +43,8 @@
         <div class="col" align="center" ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)">
           <a >
             <ul>
-              <li><img src="img/im_new_local.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">保存手机</li>
+              <li><img class="personDetailImg" src="img/im_new_local.png"></li>
+              <li class="liColor">保存手机</li>
             </ul>
           </a>
         </div>
@@ -54,8 +52,8 @@
         <div class="col" align="center" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
           <a >
             <ul>
-              <li><img src="img/im_new_phone.png" width="30" height="30"></li>
-              <li style="color: black;margin-top: -2px">打电话</li>
+              <li><img class="personDetailImg" src="img/im_new_phone.png"></li>
+              <li class="liColor">打电话</li>
             </ul>
           </a>
         </div>
@@ -63,14 +61,12 @@
         <div class="col" align="center" ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
           <a >
             <ul>
-              <li><img src="img/im_new_duanxin.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">发短信</li>
+              <li><img class="personDetailImg" src="img/im_new_duanxin.png"></li>
+              <li class="liColor">发短信</li>
             </ul>
           </a>
         </div>
-
       </div>
-
     </div>
 
     <!--个人信息-->

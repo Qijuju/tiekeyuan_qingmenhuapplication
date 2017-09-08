@@ -23,57 +23,94 @@
       <ion-slide  class="notificationIonSide">
 
         <ion-list no-lines>
-          <ion-item  class="item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" >
 
+          <ion-item  class="item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" >
             <div>
               <!--item顶部的长条-->
               <!--<div class="topBg clearfix" style="background:#DADADA;" ng-if="item.IsReaded"><img  class="itemTopBgImg" src="img/upnotificgray.png"></div>-->
               <!--<div class="topBg clearfix" style="background:#1D95D4;" ng-if="!item.IsReaded"><img class="itemTopBgImg" src="img/upnotific.png"></div>-->
-
               <!--通知-->
-              <div class="row" style="background:#E0E0E0;">
+              <div class="row itemIsReadedYes" ng-if="item.IsReaded">
                 <div class="col clearfix">
 
                   <!--通知类型对应的图片信息-->
-                  <div class="notifyImgInfo" style="float: left;margin-right:10px;">
-                    <img src="{{item.appIcon}}" alt="通知类型头像" style="width:55px;height:55px;">
+                  <div class="notifyImgInfo">
+                    <img src="{{item.appIcon}}" alt="通知类型头像">
                   </div>
 
                   <!--通知的详细信息-->
-                  <div class="notifyDetailInfo" style="width:100%;">
+                  <div class="notifyDetailInfo">
 
-                    <div class="infoTop" style="width:100%;position: relative;">
+                    <div class="infoTop">
 
                       <!--名称-->
                       <h3>{{item.FromName}}</h3>
                       <!--时间-->
-                      <span style="position: absolute;top:0px;right:0px;">{{item.MsgDate | date:'MM-dd HH:mm'}}</span>
+                      <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                       <!--报警等级-->
-                      <span style="color:#FF5722;position: absolute;top:20px;right:0px;">{{item.LevelName}}</span>
+                      <span class="levelName">{{item.LevelName}}</span>
+
                     </div>
 
                     <!--标题-->
-                    <div class="notifyTitle">
-                      <pre class="preTitle" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">标题:{{item.Title}}</pre>
+                    <div>
+                      <pre class="preTitle">标题:{{item.Title}}</pre>
                     </div>
 
                     <!--附件-->
                     <div class="notify">
-                      <pre style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;"><a ng-click="gonet(item.Link)">点击查看附件</a></pre>
+                      <pre class="preTitle">
+                        <a ng-click="gonet(item.Link)">点击查看附件</a>
+                      </pre>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="row itemIsReadedNo" ng-if="!item.IsReaded">
+                <div class="col clearfix">
+
+                  <!--通知类型对应的图片信息-->
+                  <div class="notifyImgInfo">
+                    <img src="{{item.appIcon}}" alt="通知类型头像">
+                  </div>
+
+                  <!--通知的详细信息-->
+                  <div class="notifyDetailInfo">
+
+                    <div class="infoTop">
+
+                      <!--名称-->
+                      <h3>{{item.FromName}}</h3>
+                      <!--时间-->
+                      <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                      <!--报警等级-->
+                      <span class="levelName">{{item.LevelName}}</span>
+                    </div>
+
+                    <!--标题-->
+                    <div>
+                      <pre class="preTitle">标题:{{item.Title}}</pre>
+                    </div>
+
+                    <!--附件-->
+                    <div class="notify">
+                      <pre class="preTitle">
+                        <a ng-click="gonet(item.Link)">点击查看附件</a>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+                </div>
 
               <!-- 已确认、未确认-->
-              <div class="row confirm" ng-if="item.IsReaded" style="background:#00BCD4;" ng-click="goNotifyDetail(item)">
+              <div class="row confirm itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
                 <div class="col">
                   <span ng-if="item.IsReaded">已确认</span>
                   <span ng-if="!item.IsReaded">未确认</span>
                   <img src="img/notificationArrow.png" height="14px">
                 </div>
               </div>
-              <div class="row confirm"  ng-if="!item.IsReaded" style="background:#1D95D4;" ng-click="goNotifyDetail(item)">
+              <div class="row confirm itemIsReadedNo"  ng-if="!item.IsReaded" ng-click="goNotifyDetail(item)">
                 <div class="col">
                   <span ng-if="item.IsReaded">已确认</span>
                   <span ng-if="!item.IsReaded">未确认</span>
@@ -93,14 +130,22 @@
                   <!--关注-->
                   <img ng-if="item.IsAttention" src="img/focuseye.png">
                   <img ng-if="!item.IsAttention" src="img/focuseye1.png">
-
                 </div>
                 <div class="col">
                   <!--等级-->
-                  <span class="rj-push-rightdown" ng-if="item.Level=='3'" ><img src="img/alert.png" alt=""><span>3</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='2'" ><img src="img/alert.png" alt=""><span>2</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='1'" ><img src="img/alert.png" alt=""><span>1</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='0'" ></span>
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='3'" >
+                    <img src="img/alert.png" alt="">
+                    <span>3</span>
+                  </p>
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='2'" >
+                    <img src="img/alert.png" alt="">
+                    <span>2</span>
+                  </p>
+                  <p style="" class="rj-push-rightdown level" ng-if="item.Level=='1'" >
+                    <img src="img/alert.png" alt="">
+                    <span>1</span>
+                  </p>
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>
                 </div>
               </div>
             </div>
@@ -111,62 +156,102 @@
 
       <ion-slide class="notificationIonSide">
         <ion-list no-lines>
-          <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in notifyNewList" ng-if="item.IsAttention" >
+          <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" ng-if="item.IsAttention" >
             <div>
               <!--item顶部的长条-->
               <!--<div class="topBg clearfix" ng-if="item.IsReaded"><img  class="itemTopBgImg" src="img/upnotificgray.png"></div>-->
               <!--<div class="topBg classlearfix" ng-if="!item.IsReaded"><img class="itemTopBgImg" src="img/upnotific.png"></div>-->
 
               <!--通知-->
-              <div class="row">
+              <div class="row itemIsReadedYes" ng-if="item.IsReaded">
                 <div class="col clearfix" >
 
                   <!--通知显示相应的图片信息-->
-                  <div class="notifyImgInfo" style="float: left;margin-right:10px;">
-                    <img src="{{item.appIcon}}" alt="通知类型头像" style="width:55px;height:55px;">
+                  <div class="notifyImgInfo">
+                    <img src="{{item.appIcon}}" alt="通知类型头像">
                   </div>
 
                   <!--通知的详细信息-->
-                  <div class="notifyDetailInfo" style="width:100%;">
+                  <div class="notifyDetailInfo">
 
-                    <div class="infoTop" style="width:100%;position: relative;">
+                    <div class="infoTop">
 
                       <!--名称-->
                       <h3>{{item.FromName}}</h3>
                       <!--时间-->
-                      <span style="position: absolute;top:0px;right:0px;">{{item.MsgDate | date:'MM-dd HH:mm'}}</span>
+                      <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                       <!--报警等级-->
-                      <span style="color:#FF5722;position: absolute;top:20px;right:0px;">{{item.LevelName}}</span>
+                      <span class="levelName">{{item.LevelName}}</span>
                     </div>
 
                     <!--标题-->
-                    <div class="notifyTitle">
-                      <pre class="preTitle" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">标题:{{item.Title}}</pre>
+                    <div>
+                      <pre class="preTitle">标题:{{item.Title}}</pre>
                     </div>
 
                     <!--附件-->
                     <div class="notify">
-                      <pre style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;"><a ng-click="gonet(item.Link)">点击查看附件</a></pre>
+                      <pre class="preTitle">
+                        <a ng-click="gonet(item.Link)">点击查看附件</a>
+                      </pre>
                     </div>
                   </div>
+                </div>
               </div>
+
+              <div class="row itemIsReadedNo" ng-if="!item.IsReaded">
+                <div class="col clearfix" >
+
+                  <!--通知显示相应的图片信息-->
+                  <div class="notifyImgInfo">
+                    <img src="{{item.appIcon}}" alt="通知类型头像">
+                  </div>
+
+                  <!--通知的详细信息-->
+                  <div class="notifyDetailInfo">
+
+                    <div class="infoTop">
+
+                      <!--名称-->
+                      <h3>{{item.FromName}}</h3>
+                      <!--时间-->
+                      <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                      <!--报警等级-->
+                      <span class="levelName">{{item.LevelName}}</span>
+                    </div>
+
+                    <!--标题-->
+                    <div>
+                      <pre class="preTitle">标题:{{item.Title}}</pre>
+                    </div>
+
+                    <!--附件-->
+                    <div>
+                      <pre class="preTitle">
+                        <a ng-click="gonet(item.Link)">点击查看附件</a>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!--确认信息：已确认、未确认、箭头-->
-              <div class="row confirm" ng-if="item.IsReaded" style="background:#00BCD4;" ng-click="goNotifyDetail(item)">
+              <div class="row confirm itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
                 <div class="col">
                   <span ng-if="item.IsReaded">已确认</span>
                   <span ng-if="!item.IsReaded">未确认</span>
                   <img src="img/notificationArrow.png" height="14px">
                 </div>
               </div>
-              <div class="row confirm"  ng-if="!item.IsReaded" style="background:#1D95D4;" ng-click="goNotifyDetail(item)">
+
+              <div class="row confirm itemIsReadedNo"  ng-if="!item.IsReaded" ng-click="goNotifyDetail(item)">
                 <div class="col">
                   <span ng-if="item.IsReaded">已确认</span>
                   <span ng-if="!item.IsReaded">未确认</span>
                   <img src="img/notificationArrow.png" height="14px">
                 </div>
               </div>
+
               <!-- 操作按钮-->
               <div class="row topFocus">
                 <div class="col">
@@ -183,11 +268,19 @@
                 </div>
                 <div class="col">
                   <!--等级-->
-                  <span class="rj-push-rightdown" ng-if="item.Level=='3'" ><img src="img/alert.png" alt=""><span>3</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='2'" ><img src="img/alert.png" alt=""><span>2</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='1'" ><img src="img/alert.png" alt=""><span>1</span></span>
-                  <span class="rj-push-rightdown" ng-if="item.Level=='0'" ></span>
-
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='3'" >
+                    <img src="img/alert.png" alt="">
+                    <span>3</span>
+                  </p>
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='2'" >
+                    <img src="img/alert.png" alt="">
+                    <span>2</span>
+                  </p>
+                  <p style="" class="rj-push-rightdown level" ng-if="item.Level=='1'" >
+                    <img src="img/alert.png" alt="">
+                    <span>1</span>
+                  </p>
+                  <p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>
                 </div>
               </div>
             </div>
