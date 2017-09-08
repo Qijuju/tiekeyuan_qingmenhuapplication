@@ -1,0 +1,11 @@
+.row.groupDeptmemberRow{
+  height:60px;
+  line-height:60px;
+}
+.row.groupDeptmemberRow img{
+  position: absolute;left: 7%;font-size: 14px;width: 40px;height: 40px
+}
+.row.groupDeptmemberRow p{
+  height:40px;line-height:40px;font-size: 18px;
+  text-align: left;
+}
