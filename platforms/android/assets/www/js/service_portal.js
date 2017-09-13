@@ -199,22 +199,6 @@ angular.module('portal.services', [])
                 for(var i=0;i<hiddenApps.length;i++){
                   document.getElementById(hiddenApps[i]).style.display = "none";
                 }
-                //关闭会议管理和公文处理和板场
-                // document.getElementById("23").style.borderRight = "none";//取消公文处理右侧线
-                // document.getElementById("236").style.display = "none";
-                // document.getElementById("2362").style.display = "none";
-                // document.getElementById("22").style.display = "none";
-                // document.getElementById("222").style.display = "none";
-                // document.getElementById("138").style.display = "none";
-                // document.getElementById("1381").style.display = "none";
-                // //关闭新闻通知和车辆管理
-                // document.getElementById("zhgl").style.display = "none";
-                // //关闭过程控制施工组织、物资设备、问题库图标
-                // document.getElementById("gckz").style.display = "none";
-                // //关闭现场控制拌和站、试验室、检验批、桩基检测、梁场、板场
-                // document.getElementById("xckz").style.display = "none";
-                // //关闭现场控制最后一个div
-                // document.getElementById("xckz1").style.display = "none";
               }
             }
           }

@@ -13,11 +13,14 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.r93535.im.Constants;
 import com.tky.im.utils.IMSwitchLocal;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.callback.OKHttpCallBack2;
 import com.tky.mqtt.paho.http.OKAsyncClient;
 import com.tky.mqtt.paho.http.Request;
+import com.tky.mqtt.paho.httpbean.LoginInfoBean;
 import com.tky.mqtt.paho.httpbean.ParamsMap;
+import com.tky.mqtt.paho.httpbean.User;
 import com.tky.mqtt.paho.httpbean.VersionInfo;
 import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -168,13 +171,23 @@ public class OAIntegration extends CordovaPlugin {
                 intent.setAction(actionname);
                 cordova.getActivity().startActivity(intent);
             }else if(actionname.equals("hideicon.yy")){//物资设备
+                //取出当前用户的username和realname
+                String logininfo= SPUtils.getString("login_info","");
+              JSONObject jsonObject=new JSONObject(logininfo);
+//              JSONObject userStr=jsonObject.getJSONObject("user");
+              String username = jsonObject.getString("loginAccount");
+              String realname = jsonObject.getString("userName");
+//              System.out.println("用户名"+username+realname);
                 Intent intent=new Intent();
                 ComponentName cn = new ComponentName("com.mengyou.myplatforms",
                         "com.mengyou.myplatforms.MainActivity");
                 intent.setComponent(cn);
                 Uri uri = Uri.parse("wzsb");// 此处应与物资设备程序中Data中标签一致
                 intent.setData(uri);
-                intent.putExtra("wzsb_url", "http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342");
+                String wzsbUrl="http://123.56.187.121:60/interfaceLogin.aspx?UserName="+username+"&RealName="+realname+"&GUID=c95c77759ba60769d55cf441508ee342";
+//              System.out.println("用户名url "+wzsbUrl);
+
+              intent.putExtra("wzsb_url", wzsbUrl);
                 cordova.getActivity().startActivity(intent);
             }else{
                 Toast.makeText(UIUtils.getContext(), "应用程序异常", Toast.LENGTH_SHORT).show();
