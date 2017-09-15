@@ -103,6 +103,8 @@ pre.preTitle{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  height:25px;
+  line-height:25px;
 }
 pre.preTime{
   position: absolute;
@@ -111,7 +113,7 @@ pre.preTime{
 }
 span.levelName{
   position: absolute;
-  top:20px;
+  top:25px;
   right:0px;
   color:#FF5722;
 }
@@ -121,8 +123,8 @@ div.notifyImgInfo{
   margin-right:10px;
 }
 div.notifyImgInfo > img{
-  width:55px;
-  height:55px;
+  width:50px;
+  height:50px;
 }
 div.notifyDetailInfo{
   width:100%;
@@ -130,6 +132,8 @@ div.notifyDetailInfo{
 div.notifyDetailInfo > .infoTop{
   position: relative;
   width:100%;
+  height:25px;
+  line-height:25px;
 }
 p.level{
   position: relative;
@@ -239,6 +243,12 @@ a#rightbt{
 .confirm.itemIsReadedNo{
   border-top:1px solid #90CAF9;
 }
+/* 点击查看附件 */
+.topFocus .col img.fujian{
+  width:24px;
+  height:24px;
+}
+
 
 
 

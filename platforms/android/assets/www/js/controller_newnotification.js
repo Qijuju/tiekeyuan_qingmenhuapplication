@@ -6,8 +6,79 @@ angular.module('newnotification.controllers', [])
 
   .controller('newnotificationCtrl', function ($scope, $state, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
-    //  通知页面数据源
-    // alert( "all=--" + FinshedApp.all()[0].appIcon);
+    //  已确认、未确认图标的点击事件
+    $scope.confirmImgClickEvent = function (item) {
+
+
+    }
+
+    // 通知置顶操作
+    $scope.goIsTopEvent = function (item) {
+      var id = item.MsgId;
+      var istop = item.IsToped  ? 'F' : 'T';
+
+      $api.setNotifyMsg(id, false, istop, "", function (suc) {
+        if (istop == "T") {
+          item.IsToped = true;
+        } else if (istop == "F") {
+          item.IsToped = false;
+        }
+        $timeout(function () {
+          // 消息置顶
+          viewScroll.scrollTop();
+          // 刷新页面
+          $state.go('tab.notification',{},{reload:true});
+        }, 100);
+      }, function (err) {
+        $ToastUtils.showToast("置顶更改失败");
+        if (istop == "T") {
+          item.IsToped = false;
+
+        } else if (istop == "F") {
+          item.IsToped = true;
+        }
+
+        $timeout(function () {
+          // 消息置顶
+          viewScroll.scrollTop();
+          // 刷新页面
+          $state.go('tab.notification',{},{reload:true});
+
+        }, 100);
+      })
+    };
+
+    // 添加关注操作
+    $scope.goIsAttentionEvent = function (item) {
+
+      var id = item.MsgId;
+      var isattention = item.IsAttention  ? 'F' : 'T';
+
+        $api.setNotifyMsg(id, false, "", isattention, function (suc) {
+          if (isattention == "T") {
+            item.IsAttention = true;
+          } else if (isattention == "F") {
+            item.IsAttention = false;
+          }
+
+          // $timeout(function () {
+          //   viewScroll.scrollTop();
+          // }, 100);
+
+        }, function (err) {
+          $ToastUtils.showToast("关注更改失败");
+          if (isattention == "T") {
+            item.IsAttention = false;
+          } else if (isattention == "F") {
+            item.IsAttention = true;
+          }
+          //
+          // $timeout(function () {
+          //   viewScroll.scrollTop();
+          // }, 100);
+        })
+    }
+
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -156,8 +227,6 @@ angular.module('newnotification.controllers', [])
         }
       })
     };
-
-
   })
 
 
@@ -166,6 +235,7 @@ angular.module('newnotification.controllers', [])
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
+
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -228,7 +298,6 @@ angular.module('newnotification.controllers', [])
         }, 100);
 
       })
-
     }
 
     //添加关注
@@ -285,24 +354,18 @@ angular.module('newnotification.controllers', [])
 
           $timeout(function () {
             viewScroll.scrollTop();
-
           }, 100);
 
         }, function (err) {
           $pubionicloading.hide();
           $ToastUtils.showToast("确认失败")
-
         })
-
-
       })
-
-
     };
 
     $scope.openconfirm = function (id) {
       $state.go("confirmornot", {
-        id: id,
+        id: id
       })
     }
 

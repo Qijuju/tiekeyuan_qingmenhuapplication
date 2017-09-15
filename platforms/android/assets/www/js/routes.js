@@ -115,7 +115,8 @@ angular.module('im.routes', [])
             templateUrl: 'templates/tab-notification.html',
             controller: 'newnotificationCtrl'
           }
-        }
+        },
+        reload:true
       })
       .state('tab.webpage', {
         url: '/webpage',
