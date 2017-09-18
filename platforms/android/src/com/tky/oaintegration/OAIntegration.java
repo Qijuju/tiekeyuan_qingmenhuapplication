@@ -214,7 +214,7 @@ public class OAIntegration extends CordovaPlugin {
             map.put("type",type);
             map.put("appId", appId);
             map.put("platform", platform);
-            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "NewEMCAPP";
+            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "LPREMPLAT";
             OkHttpUtils.get()
                     .url(Constants.commonfileurl + "/DownloadFile")
                     .params(map)
@@ -251,7 +251,8 @@ public class OAIntegration extends CordovaPlugin {
                         @Override
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
-                            progress = (progress * (-1.0f)) / filesize * 100;
+                            progress = progress *  100;
+//                            progress = (progress * (-1.0f)) / filesize * 100;
                             final float finalProgress = progress;
                             UIUtils.runInMainThread(new Runnable() {
                                 @Override

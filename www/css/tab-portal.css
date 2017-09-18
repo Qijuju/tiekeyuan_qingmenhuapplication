@@ -2,7 +2,12 @@
 ion-content{
   background:#EFEFF4;
 }
-
+/* 头标题*/
+.platform-android .bar .title{
+  left:0px;right:65px;
+  font-size:1.3em;
+  text-align: left;
+}
 /*动画div*/
 div#animImgBox{
 
