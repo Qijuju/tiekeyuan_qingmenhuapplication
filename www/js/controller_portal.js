@@ -106,8 +106,8 @@ angular.module('portal.controllers', [])
     document.getElementById('iframe').style.display = "block";
 
     // 动态设置iframe的宽高
-    $("#iframe").width(  window.screen.width  );
-    $("#iframe").height( window.screen.height  );
+    $("#iframe").width(  window.screen.width );
+    $("#iframe").height( window.screen.height );
 
     var isShow = false;
     $scope.rightBtnTitle = "工作";
