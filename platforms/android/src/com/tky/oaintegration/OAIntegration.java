@@ -177,7 +177,8 @@ public class OAIntegration extends CordovaPlugin {
 //              JSONObject userStr=jsonObject.getJSONObject("user");
               String username = jsonObject.getString("loginAccount");
               String realname = jsonObject.getString("userName");
-//              System.out.println("用户名"+username+realname);
+              System.out.println("用户名"+username+realname);
+              System.out.println("数据源字符串-- "+logininfo);
                 Intent intent=new Intent();
                 ComponentName cn = new ComponentName("com.mengyou.myplatforms",
                         "com.mengyou.myplatforms.MainActivity");
@@ -185,7 +186,7 @@ public class OAIntegration extends CordovaPlugin {
                 Uri uri = Uri.parse("wzsb");// 此处应与物资设备程序中Data中标签一致
                 intent.setData(uri);
                 String wzsbUrl="http://123.56.187.121:60/interfaceLogin.aspx?UserName="+username+"&RealName="+realname+"&GUID=c95c77759ba60769d55cf441508ee342";
-//              System.out.println("用户名url "+wzsbUrl);
+              System.out.println("用户名url "+wzsbUrl);
 
               intent.putExtra("wzsb_url", wzsbUrl);
                 cordova.getActivity().startActivity(intent);
