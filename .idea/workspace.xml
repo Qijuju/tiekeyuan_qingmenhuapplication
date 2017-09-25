@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
+    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/phonegap-plugin-barcodescanner/im-barcodescanner.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
@@ -871,14 +871,7 @@
       <workItem from="1505695125871" duration="750000" />
       <workItem from="1505701864062" duration="60503000" />
       <workItem from="1505958960414" duration="878000" />
-      <workItem from="1505959914004" duration="21182000" />
-    </task>
-    <task id="LOCAL-00151" summary="。。">
-      <created>1490929670114</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1490929670114</updated>
+      <workItem from="1505959914004" duration="21273000" />
     </task>
     <task id="LOCAL-00152" summary="最新代码提交">
       <created>1491904977661</created>
@@ -1216,11 +1209,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506327478907</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
+      <created>1506327504091</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1506327504091</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2342942000" />
+    <option name="totallyTimeSpent" value="2343033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
