@@ -15,7 +15,7 @@ public class User extends BaseBean {
   private String fixedphone;
   private String id;
   private String imCode;
-  private Integer lastupdate;
+  private long lastupdate;
   private String mobile;
   private Integer priority;
   private String proname;
@@ -121,11 +121,11 @@ public class User extends BaseBean {
     this.imCode = imCode;
   }
 
-  public Integer getLastupdate() {
+  public long getLastupdate() {
     return lastupdate;
   }
 
-  public void setLastupdate(Integer lastupdate) {
+  public void setLastupdate(long lastupdate) {
     this.lastupdate = lastupdate;
   }
 

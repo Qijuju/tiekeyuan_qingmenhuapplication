@@ -128,7 +128,7 @@ angular.module('login.controllers', [])
               loginM();
             }, function (message) {
               $pubionicloading.hide();
-              alert("22222");
+              // alert("22222");
               $ToastUtils.showToast(message);
             });
           } else {
@@ -137,10 +137,31 @@ angular.module('login.controllers', [])
         }
 
       }, function (message) {
-        $state.go('login');
-        $ToastUtils.showToast(message);
         $pubionicloading.hide();
-        // $state.go('tab.message');
+        var errorArr=message.split('#');
+        var errCode=errorArr[0];
+        /**
+         * 若登陆时发现该用户第一次注册111
+         * 若登陆时发现该用户在不同设备登陆112
+         * 若登陆时发现该用户长时间未登录113
+         * 若登陆时发现该用户未绑定手机号114
+         */
+        if(errCode === '111' || errCode === '112' || errCode === '113' || errCode === '114'){
+          var userId=errorArr[1];
+          var mobile=errorArr[2];
+          var mepId= errorArr[3];
+          // alert("短信验证first界面"+JSON.stringify(message)+"1111"+errCode+"2222"+userId+"3333"+mobile+"==="+mepId);
+          $state.go('msgCheck',{
+            "errCode":errCode,
+            "mobile":mobile,
+            "userId":userId,
+            "mepId":mepId,
+            "remPwd":$scope.remPwd
+          });
+        }else{//先跑通流程
+          $state.go('login');
+          $ToastUtils.showToast(message.Message);
+        }
       });
 
     };
@@ -175,8 +196,8 @@ angular.module('login.controllers', [])
             $mqtt.setLogin(true);
             $scope.getUserName();
             $mqtt.save('passlogin', "1");
-            $mqtt.save('pwdgesture', $scope.password);
-            $mqtt.save('namegesture', $scope.name);
+            // $mqtt.save('pwdgesture', $scope.password);
+            // $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
             $pubionicloading.hide();
@@ -345,8 +366,8 @@ angular.module('login.controllers', [])
               $scope.timea = $scope.timea - 1;
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
-            if ($scope.timea == 1 && !isClickGo) {//此处需要判断是否已经走了登录的方法
-              $scope.timea = 1;
+            if ($scope.timea < 1 ) {//此处需要判断是否已经走了登录的方法
+              // $scope.timea = 1;
               //取消定时器
               $interval.cancel(timer);
               isClickGo = true;
@@ -387,7 +408,7 @@ angular.module('login.controllers', [])
       }
       // alert("dianjile");
       //防止重复点击
-      isClickGo = true;
+      isClickGo = false;
       $interval.cancel(timer);
       ifyuju();
     };
@@ -450,8 +471,29 @@ angular.module('login.controllers', [])
           }
         }, function (message) {
           $pubionicloading.hide();
-          $ToastUtils.showToast(message);
-          $state.go('login');
+          var errorArr=message.split('#');
+          /**
+           * 若登陆时发现该用户第一次注册111
+           * 若登陆时发现该用户在不同设备登陆112
+           * 若登陆时发现该用户长时间未登录113
+           * 若登陆时发现该用户未绑定手机号114
+           */
+          if(errCode === '111' || errCode === '112' || errCode === '113' || errCode === '114'){
+            var errCode= errorArr[0];
+            var userId= errorArr[1];
+            var mobile= errorArr[2];
+            var mepId= errorArr[3];
+            // alert("短信验证first界面"+JSON.stringify(message)+"1111"+errCode+"2222"+userId+"3333"+mobile+"==="+mepId);
+            $state.go('msgCheck',{
+              "errCode":errCode,
+              "mobile":mobile,
+              "userId":userId,
+              "mepId":mepId
+            });
+          }else{//先跑通流程
+            $state.go('login');
+            $ToastUtils.showToast(message.Message);
+          }
         });
       }
       else if ((passworda == null || passworda == "" || passworda.length == 0) && passlogin == "2") {
@@ -499,8 +541,8 @@ angular.module('login.controllers', [])
               $mqtt.setLogin(true);
               $scope.getUserName();
               $mqtt.save('passlogin', "1");
-              $mqtt.save('pwdgesture', pwdgesturea);
-              $mqtt.save('namegesture', namegesturea);
+              // $mqtt.save('pwdgesture', pwdgesturea);
+              // $mqtt.save('namegesture', namegesturea);
               $state.go('tab.message');
               $pubionicloading.hide();
             });

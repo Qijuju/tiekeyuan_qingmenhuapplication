@@ -77,10 +77,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BarcodeScanner\"><param name=\"android-package\" value=\"com.phonegap.plugins.barcodescanner.BarcodeScanner\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
                             "count": 1
                         },
@@ -133,10 +129,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BrowserTab\"><param name=\"android-package\" value=\"com.google.cordova.plugin.browsertab.BrowserTab\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"BaiduLocation\"><param name=\"android-package\" value=\"com.spout.phonegap.plugins.baidulocation.BaiduLocation\" /></feature>",
                             "count": 1
                         },
@@ -150,6 +142,18 @@
                         },
                         {
                             "xml": "<feature name=\"OAIntegration\"><param name=\"android-package\" value=\"com.tky.oaintegration.OAIntegration\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BrowserTab\"><param name=\"android-package\" value=\"com.google.cordova.plugin.browsertab.BrowserTab\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Flashlight\"><param name=\"android-package\" value=\"nl.xservices.plugins.Flashlight\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BarcodeScanner\"><param name=\"android-package\" value=\"com.phonegap.plugins.barcodescanner.BarcodeScanner\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -167,23 +171,19 @@
                             "count": 1
                         },
                         {
-                            "xml": "<activity android:clearTaskOnLaunch=\"true\" android:configChanges=\"orientation|keyboardHidden|screenSize\" android:exported=\"false\" android:name=\"com.google.zxing.client.android.CaptureActivity\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\" android:windowSoftInputMode=\"stateAlwaysHidden\"><intent-filter><action android:name=\"com.google.zxing.client.android.SCAN\" /><category android:name=\"android.intent.category.DEFAULT\" /></intent-filter></activity>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<activity android:label=\"Share\" android:name=\"com.google.zxing.client.android.encode.EncodeActivity\"><intent-filter><action android:name=\"com.phonegap.plugins.barcodescanner.ENCODE\" /><category android:name=\"android.intent.category.DEFAULT\" /></intent-filter></activity>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<activity android:label=\"Share\" android:name=\"com.google.zxing.client.android.HelpActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /></intent-filter></activity>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<provider android:authorities=\"com.r93535.im.DocumentViewerPlugin.fileprovider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.sitewaerts.cordova.documentviewer.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/documentviewer_file_paths\" /></provider>",
                             "count": 1
                         },
                         {
                             "xml": "<service android:enabled=\"true\" android:name=\"com.baidu.location.f\" android:process=\":remote\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:clearTaskOnLaunch=\"true\" android:configChanges=\"orientation|keyboardHidden|screenSize\" android:exported=\"false\" android:name=\"com.google.zxing.client.android.CaptureActivity\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\" android:windowSoftInputMode=\"stateAlwaysHidden\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:label=\"Share\" android:name=\"com.google.zxing.client.android.encode.EncodeActivity\" />",
                             "count": 1
                         }
                     ],
@@ -236,15 +236,7 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.FLASHLIGHT\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"false\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
@@ -256,6 +248,14 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.nfc\" android:required=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.FLASHLIGHT\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"true\" />",
                             "count": 1
                         }
                     ]
@@ -321,9 +321,6 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
-        "phonegap-plugin-barcodescanner": {
-            "PACKAGE_NAME": "com.ionicframework.im366077"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.im366077"
         },
@@ -369,9 +366,6 @@
         "cordova-plugin-badge": {
             "PACKAGE_NAME": "com.r93535.im"
         },
-        "cordova-plugin-browsertab": {
-            "PACKAGE_NAME": "com.r93535.im"
-        },
         "com.spout.phonegap.plugins.baidulocation": {
             "PACKAGE_NAME": "com.r93535.im"
         },
@@ -382,6 +376,15 @@
             "PACKAGE_NAME": "com.r93535.im"
         },
         "OAIntegration": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "cordova-plugin-flashlight": {
+            "PACKAGE_NAME": "com.r93535.im"
+        },
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.r93535.im"
         }
     },
@@ -674,13 +677,6 @@
             ]
         },
         {
-            "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-            "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-            "clobbers": [
-                "cordova.plugins.barcodeScanner"
-            ]
-        },
-        {
             "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
             "id": "cordova-plugin-geolocation.geolocation",
             "clobbers": [
@@ -788,13 +784,6 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-browsertab/www/browsertab.js",
-            "id": "cordova-plugin-browsertab.BrowserTab",
-            "clobbers": [
-                "cordova.plugins.browsertab"
-            ]
-        },
-        {
             "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
             "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
             "clobbers": [
@@ -819,6 +808,27 @@
             "clobbers": [
                 "cordova.plugins.OAIntegration"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-browsertab/www/browsertab.js",
+            "id": "cordova-plugin-browsertab.BrowserTab",
+            "clobbers": [
+                "cordova.plugins.browsertab"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
+            "id": "cordova-plugin-flashlight.Flashlight",
+            "clobbers": [
+                "window.plugins.flashlight"
+            ]
+        },
+        {
+            "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+            "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+            "clobbers": [
+                "cordova.plugins.barcodeScanner"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -841,7 +851,6 @@
         "cordova-plugin-image-picker": "1.1.1",
         "cordova-plugin-file": "4.2.0",
         "cordova-plugin-file-transfer": "1.5.2-dev",
-        "phonegap-plugin-barcodescanner": "6.0.1",
         "cordova-plugin-geolocation": "2.2.0",
         "ScalePhoto": "1.0.0",
         "GridPhoto": "1.0.0",
@@ -857,10 +866,12 @@
         "es6-promise-plugin": "4.1.0",
         "cordova-plugin-screen-orientation": "2.0.1",
         "cordova-plugin-badge": "0.8.1",
-        "cordova-plugin-browsertab": "0.2.0",
         "com.spout.phonegap.plugins.baidulocation": "0.1.0",
         "phonegap-nfc": "0.6.6",
         "com.darktalker.cordova.screenshot": "0.1.5",
-        "OAIntegration": "1.0.0"
+        "OAIntegration": "1.0.0",
+        "cordova-plugin-browsertab": "0.2.0",
+        "cordova-plugin-flashlight": "3.2.0",
+        "phonegap-plugin-barcodescanner": "6.0.8"
     }
 }

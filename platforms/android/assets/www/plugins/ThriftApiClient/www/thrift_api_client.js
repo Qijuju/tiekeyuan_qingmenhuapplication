@@ -4,6 +4,10 @@ var exec = require('cordova/exec');
 exports.login = function(username,password, success, error) {
   exec(success, error, "ThriftApiClient", "login", [username,password]);
 };
+
+exports.confirmSecretText = function(id,mepId,secretText, success, error) {
+  exec(success, error, "ThriftApiClient", "confirmSecretText", [id,mepId,secretText]);
+};
 exports.activeUser = function(userId, success, error) {
   exec(success, error, "ThriftApiClient", "activeUser", [userId]);
 };
@@ -155,6 +159,5 @@ exports.getMsgReadList = function(msgId, isReaded,success, error) {//获取确�
 exports.sendOperateLog = function(type, when,appId,success, error) {//新增一个客户端操作记录的接口
   exec(success, error, "ThriftApiClient", "sendOperateLog", [type, when,appId]);
 };
-
 
 });

@@ -35,7 +35,12 @@
     "cordova-plugin-x-toast",
     "cordova-plugin-screen-orientation",
     "cordova-plugin-badge",
-    "cordova-plugin-browsertab"
+    {
+      "id": "cordova-plugin-browsertab",
+      "locator": "/Users/bim/Desktop/即时通相关文档/插件/cordova-plugin-browsertab"
+    },
+    "cordova-plugin-flashlight",
+    "phonegap-plugin-barcodescanner"
   ],
   "cordovaPlatforms": [
     "android"

@@ -63,7 +63,7 @@ public class BrowserTab extends CordovaPlugin {
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-    Log.d(LOG_TAG, "executing " + action);
+    Log.d(LOG_TAG, "executing ====" + action);
     if ("isAvailable".equals(action)) {
       isAvailable(callbackContext);
     } else if ("openUrl".equals(action)) {
@@ -82,8 +82,8 @@ public class BrowserTab extends CordovaPlugin {
     String browserPackage = findCustomTabBrowser();
     Log.d(LOG_TAG, "browser package: " + browserPackage);
     callbackContext.sendPluginResult(new PluginResult(
-        PluginResult.Status.OK,
-        browserPackage != null));
+            PluginResult.Status.OK,
+            browserPackage != null));
   }
 
   private void openUrl(JSONArray args, CallbackContext callbackContext) {
@@ -122,10 +122,10 @@ public class BrowserTab extends CordovaPlugin {
     intentBuilder.setShowTitle(true);
     intentBuilder.setToolbarColor(UIUtils.getResources().getColor(R.color.bule));
     intentBuilder.setSecondaryToolbarColor(UIUtils.getResources().getColor(R.color.bule2));
-   //添加菜单
-     //PendingIntent menuItemPendingIntent =
-                         //createPendingIntent(ActionBroadcastReceiver.ACTION_MENU_ITEM);
-     //intentBuilder.addMenuItem(menuItemTitle, menuItemPendingIntent);
+    //添加菜单
+    //PendingIntent menuItemPendingIntent =
+    //createPendingIntent(ActionBroadcastReceiver.ACTION_MENU_ITEM);
+    //intentBuilder.addMenuItem(menuItemTitle, menuItemPendingIntent);
 
     Log.d(LOG_TAG,"ok");
 
@@ -142,12 +142,12 @@ public class BrowserTab extends CordovaPlugin {
 
   //添加PendingIntent方法
   //private PendingIntent createPendingIntent(int actionSourceId) {
-          //Intent actionIntent = new Intent(
-                  //cordova.getActivity(), //ActionBroadcastReceiver.class);
-          //actionIntent.putExtra(ActionBroadcastReceiver.KEY_ACTION_SOURCE, //actionSourceId);
-          //return PendingIntent.getBroadcast(
-                 // getApplicationContext(), actionSourceId, //actionIntent, 0);
-      //}
+  //Intent actionIntent = new Intent(
+  //cordova.getActivity(), //ActionBroadcastReceiver.class);
+  //actionIntent.putExtra(ActionBroadcastReceiver.KEY_ACTION_SOURCE, //actionSourceId);
+  //return PendingIntent.getBroadcast(
+  // getApplicationContext(), actionSourceId, //actionIntent, 0);
+  //}
 
 
   private String findCustomTabBrowser() {
@@ -157,10 +157,10 @@ public class BrowserTab extends CordovaPlugin {
 
     PackageManager pm = cordova.getActivity().getPackageManager();
     Intent webIntent = new Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse("http://www.example.com"));
+            Intent.ACTION_VIEW,
+            Uri.parse("http://www.example.com"));
     List<ResolveInfo> resolvedActivityList =
-        pm.queryIntentActivities(webIntent, PackageManager.GET_RESOLVED_FILTER);
+            pm.queryIntentActivities(webIntent, PackageManager.GET_RESOLVED_FILTER);
 
     for (ResolveInfo info : resolvedActivityList) {
       if (!isFullBrowser(info)) {
@@ -182,12 +182,12 @@ public class BrowserTab extends CordovaPlugin {
     if (!resolveInfo.filter.hasAction(Intent.ACTION_VIEW)
             || !resolveInfo.filter.hasCategory(Intent.CATEGORY_BROWSABLE)
             || resolveInfo.filter.schemesIterator() == null) {
-        return false;
+      return false;
     }
 
     // The filter must not be restricted to any particular set of authorities
     if (resolveInfo.filter.authoritiesIterator() != null) {
-        return false;
+      return false;
     }
 
     // The filter must support both HTTP and HTTPS.
@@ -195,13 +195,13 @@ public class BrowserTab extends CordovaPlugin {
     boolean supportsHttps = false;
     Iterator<String> schemeIter = resolveInfo.filter.schemesIterator();
     while (schemeIter.hasNext()) {
-        String scheme = schemeIter.next();
-        supportsHttp |= "http".equals(scheme);
-        supportsHttps |= "https".equals(scheme);
+      String scheme = schemeIter.next();
+      supportsHttp |= "http".equals(scheme);
+      supportsHttps |= "https".equals(scheme);
 
-        if (supportsHttp && supportsHttps) {
-            return true;
-        }
+      if (supportsHttp && supportsHttps) {
+        return true;
+      }
     }
 
     // at least one of HTTP or HTTPS is not supported

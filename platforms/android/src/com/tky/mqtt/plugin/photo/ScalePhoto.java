@@ -533,27 +533,9 @@ public class ScalePhoto extends CordovaPlugin {
               });
 
           }
-
-
-
       } catch (JSONException e) {
         e.printStackTrace();
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {

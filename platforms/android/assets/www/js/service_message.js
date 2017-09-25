@@ -1062,6 +1062,9 @@ angular.module('message.services', [])
       save:function (key,value) {
         mqtt.save(key,value);
       },
+      getString:function (key,success,error) {
+        mqtt.getString(key,success,error);
+      },
       saveInt:function (key,value) {
         mqtt.saveInt(key,value);
       },

@@ -640,6 +640,12 @@ angular.module('im.routes', [])
         controller: 'aboutPlatformCtrl'
       })
 
+      //短信验证界面
+      .state('msgCheck',{
+        url: '/msgCheck/:errCode/:mobile/:userId/:mepId/:remPwd',
+        templateUrl: 'templates/verify.html',
+        controller: 'msgcheckCtrl'
+      })
 
 
 

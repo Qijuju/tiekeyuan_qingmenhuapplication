@@ -5,7 +5,3 @@ if(cdvMinSdkVersion == null) {
 } else if (cdvMinSdkVersion.toInteger() < minSdkVersion) {
     ext.cdvMinSdkVersion = minSdkVersion;
 }
-
-dependencies {
-    compile "me.leolin:ShortcutBadger:${appShortcutBadgerVersion}@aar"
-}

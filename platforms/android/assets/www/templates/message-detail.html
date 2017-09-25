@@ -85,7 +85,7 @@
 
         <!--图片内容-->
         <div class="col receiveImg" ng-if="msgSingle.messagetype === 'Image' || (msgSingle.messagetype === 'File' && getFileType(msgSingle.message))">
-          <img src="{{msgSingle.message.split('###')[1]}}" ng-click="netScaleImage(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])" />
+          <img src="{{msgSingle.message.split('###')[1]}}" ng-click="netScaleImageDetail(msgSingle.message.split('###')[0],msgSingle.message.split('###')[4],msgSingle.message.split('###')[1])" />
         </div>
 
         <!--接收###文件内容-->
