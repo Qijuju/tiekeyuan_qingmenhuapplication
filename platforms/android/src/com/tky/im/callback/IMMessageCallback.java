@@ -148,8 +148,19 @@ public class IMMessageCallback implements MqttCallback {
             //入库(MESSAGE和CHATLIST表)
             //消息转化完毕就入库
             int count = 0;
-            //平台推送消息
-            if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {
+
+            if("Platform".equals(map.getType())){
+              map.set_id(map.getFrom());
+              map.setUsername(map.getFromName());
+              map.setLevelName(map.getLevelName());
+              map.setMsgLevel(map.getMsgLevel());
+              map.setLink(map.getLink());
+              map.setLinkType(map.getLinkType());
+              map.setMessage(map.getMessage());
+              map.setWhen(map.getWhen());
+              map.setTitle(map.getTitle());
+              map.setMsgId(map.getMsgId());
+            } else if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {//平台推送消息
               Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
               String year = c.get(Calendar.YEAR) + "";
               String month = c.get(Calendar.MONTH) + 1 + "";
@@ -353,7 +364,7 @@ public class IMMessageCallback implements MqttCallback {
                   MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
                 }
               } else {
-                System.out.println("是不是经常进来");
+//                System.out.println("是不是经常进来");
                 MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
               }
             }

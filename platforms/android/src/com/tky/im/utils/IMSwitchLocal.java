@@ -30,8 +30,9 @@ import java.util.Map;
  */
 
 public class IMSwitchLocal {
-    private static String local = "TEST";//开发环境
+//    private static String local = "TEST";//开发环境
 //    private static String local = "LN";//生产环境
+    private static String local = "LW";//老挝正式环境
 
     public static void setLocal(String local) {
         IMSwitchLocal.local = local;

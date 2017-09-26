@@ -367,7 +367,7 @@ angular.module('login.controllers', [])
             }
             // $scope.codetime = $scope.timea+"秒后跳转";
             if ($scope.timea < 1 ) {//此处需要判断是否已经走了登录的方法
-              // $scope.timea = 1;
+              $scope.timea = 1;
               //取消定时器
               $interval.cancel(timer);
               isClickGo = true;

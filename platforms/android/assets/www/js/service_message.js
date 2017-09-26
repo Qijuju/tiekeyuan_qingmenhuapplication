@@ -606,10 +606,8 @@ angular.module('message.services', [])
             return;
           }
           if(message.type === 'Platform'){
-
             var notifyMessage={};
-
-              notifyMessage.FromID=message._id;
+              notifyMessage.FromID=message.sessionid;
               notifyMessage.FromName=message.username;
               notifyMessage.IsReaded=false;
               notifyMessage.IsToped=false;
@@ -623,7 +621,7 @@ angular.module('message.services', [])
               notifyMessage.msgId=message.msgId;
               notifyMessage.IsAttention=false;
               notifyMessage.__isset_bitfield="";
-            $rootScope.$broadcast('newnotify.update',notifyMessage);
+            $rootScope.$broadcast('allnotify.update',notifyMessage);
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
             },function (err) {
