@@ -158,8 +158,11 @@ angular.module('portal.controllers', [])
             data: {"Action": "GetSession", "id": userID, "mepId": imCode}
           }).success(function (data, status) {
 
+            alert("调接口成功的回调函数数据源=="+ data);
+
 
             var data = JSON.parse(decodeURIComponent(data));
+            alert("转换后-调接口成功的回调函数数据源=="+ data);
             if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
               $ToastUtils.showToast("获取用户权限失败!");
               return;

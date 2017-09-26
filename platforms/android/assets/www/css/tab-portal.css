@@ -4,9 +4,10 @@ ion-content{
 }
 /* 头标题*/
 .platform-android .bar .title{
-  left:0px;right:65px;
+  left:0px;
+  /*right:65px;*/
   font-size:1.3em;
-  text-align: left;
+  text-align: center;
 }
 /*动画div*/
 div#animImgBox{
