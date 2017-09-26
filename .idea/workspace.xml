@@ -40,17 +40,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/bean/MessageBean.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/bean/MessageBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_message.js" afterPath="$PROJECT_DIR$/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_portal.js" afterPath="$PROJECT_DIR$/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/aboutour.html" afterPath="$PROJECT_DIR$/www/templates/aboutour.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/aboutours.html" afterPath="$PROJECT_DIR$/www/templates/aboutours.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-portal.html" afterPath="$PROJECT_DIR$/www/templates/tab-portal.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -880,14 +869,7 @@
       <workItem from="1505695125871" duration="750000" />
       <workItem from="1505701864062" duration="60503000" />
       <workItem from="1505958960414" duration="878000" />
-      <workItem from="1505959914004" duration="48664000" />
-    </task>
-    <task id="LOCAL-00153" summary="小bug更改提交">
-      <created>1491981914492</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1491981914499</updated>
+      <workItem from="1505959914004" duration="48788000" />
     </task>
     <task id="LOCAL-00154" summary="提交最新代码">
       <created>1492073060562</created>
@@ -1225,11 +1207,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506327878923</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题">
+      <created>1506420256558</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1506420256558</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2370424000" />
+    <option name="totallyTimeSpent" value="2370548000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1319,7 +1308,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1，合并宋亚代码" />
     <MESSAGE value="合并后最新代码提交" />
     <MESSAGE value="样式修改" />
     <MESSAGE value="合并宋亚 （最新代码" />
@@ -1344,7 +1332,8 @@
     <MESSAGE value="commit:生产环境上线第一版0831" />
     <MESSAGE value="0908commit:生产环境第二版" />
     <MESSAGE value="0925commit:准备建立老挝项目单独分支，先将代码提交至最新" />
-    <option name="LAST_COMMIT_MESSAGE" value="0925commit:准备建立老挝项目单独分支，先将代码提交至最新" />
+    <MESSAGE value="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
