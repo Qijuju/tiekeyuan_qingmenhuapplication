@@ -915,7 +915,8 @@ public class ThriftApiClient extends CordovaPlugin {
                         @Override
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
-                            progress = (progress * (-1.0f)) / filesize * 100;
+//                            progress = (progress * (-1.0f)) / filesize * 100;
+                            progress = progress * 100;
                             final float finalProgress = progress;
                             UIUtils.runInMainThread(new Runnable() {
                                 @Override
@@ -2365,7 +2366,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             /**
              * 1.登陆成功以后，调用getsession接口获取sessionid
-             * 2.定义xml文件存放的路径，将ssid和userid写进emcTemp.xml
+             * 2.定义xml文件存放的路径，将ssid和userid写进qmhapp.xml
              */
             Request request1 = new Request();
             Map<String, Object> paramsMap = ParamsMap.getInstance("GetSession").getParamsMap();
@@ -2375,13 +2376,13 @@ public class ThriftApiClient extends CordovaPlugin {
                 public void onSuccess(Request request, BaseBean result) {//以后有需要再完善
                     if (result.isSucceed()) {
                         //调用createxml方法将ssid存进xml文件
-                        String path = "/NewEMCAPP";
+                        String path = "/LPREMPLAT";
                         Log.i("获取存入的xml路径", path + "");
                         // 判断emcTemp.xml文件的存在
                         try {
                             ArrayList<String> pathList = new CreateXml().getAllMountedPath();
                             for (String devicePath : pathList) {
-                                new CreateXml().createXML(devicePath + path, "emcTemp.xml", getUserID(), loginAccount, loginName);
+                                new CreateXml().createXML(devicePath + path, "qmhapp.xml", getUserID(), loginAccount, loginName);
                             }
                         } catch (Exception e) {
                         }

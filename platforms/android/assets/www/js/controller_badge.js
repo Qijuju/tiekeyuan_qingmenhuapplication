@@ -3,14 +3,18 @@
  */
 angular.module('badge.controllers',[])
 
-  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$ToastUtils) {
+  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$ToastUtils,$rootScope) {
+
+    // 门户新闻列表通知
+    $rootScope.menHuTitle = "门户";
+
 
     $scope.allNoRead=0;
     $scope.badge=function () {
 
 
       if($scope.allNoRead>99){
-        $scope.allNoRead=99+'+'
+        $scope.allNoRead=99+'+';
         return $scope.allNoRead;
       }else {
         return $scope.allNoRead;

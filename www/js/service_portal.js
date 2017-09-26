@@ -4,7 +4,6 @@
 angular.module('portal.services', [])
   .factory('FinshedApp', function () {
     // Might use a resource here that returns a JSON array
-
     // Some fake testing data
     var finshedApps = [{
       appId: 10,
@@ -59,7 +58,7 @@ angular.module('portal.services', [])
       appName: '武铁建设',
       appIcon: 'img/app1/wtjs.png',
     },{
-      appId: 236,
+      appId: 199,
       appName: '公文处理',
       appIcon: 'img/app1/gwcl.png',
     }, {
@@ -160,28 +159,28 @@ angular.module('portal.services', [])
   })
   .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
     // var userID;
-
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;
     var lightApps = new Array();
     var jsdept = [];
     var sysmenu = [];
     return {
-
       //获取人员所在公司，点亮图标，图片更改信息
       getInfo: function (userID,imcode) {
         $http({
           method: 'post',
           timeout: 5000,
           // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
+          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
-          var data=JSON.parse(decodeURIComponent(data));
-          // alert("getdetail22222"+JSON.stringify(data));
+          var data = JSON.parse(decodeURIComponent(data));
+
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
+
+          // alert("哈哈哈"+jsdept);
           companyName = "";
           if (jsdept != null && typeof(jsdept) != "undefined") {
             for (var i = 0; i < jsdept.length; i++) {
@@ -214,7 +213,6 @@ angular.module('portal.services', [])
                 lightApps.push(sysmenu[i]);
               }
             }
-            // alert("getdetail22222"+JSON.stringify(sysmenu));
           }
           //获取变动的图片，名称（暂时不用改动
           $rootScope.$broadcast('succeed.update');

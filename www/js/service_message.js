@@ -580,8 +580,6 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
-
-
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
           arriveMessage._id=message._id;

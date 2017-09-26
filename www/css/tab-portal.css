@@ -2,7 +2,12 @@
 ion-content{
   background:#EFEFF4;
 }
-
+/* 头标题*/
+.platform-android .bar .title{
+  left:0px;right:65px;
+  font-size:1.3em;
+  text-align: left;
+}
 /*动画div*/
 div#animImgBox{
 
@@ -17,10 +22,6 @@ div#animImgBox{
 
   animation: animatedBackground 10s linear infinite;
 
-}
-/*设置滚动区域距离上面的内容高度*/
-.animScrollContent{
-  /*margin-top:142px;*/
 }
 
 /*图片img大小*/
@@ -37,9 +38,18 @@ img.portalImg{
   border-radius: 8px;
 }
 
+/* iframe */
+div#iframe{
+  min-width: 100%; min-height: 100%;
+}
+div#iframe iframe{
+  min-width: 100%; min-height: 100%;
+}
+
 /*定义动画*/
 @keyframes animatedBackground {
   from { background-position: 0 0; }
   to { background-position: 100% 0; }
 }
+
 
