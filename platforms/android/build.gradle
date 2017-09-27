@@ -95,6 +95,7 @@ ext {
 apply from: "phonegap-plugin-barcodescanner/im366077-barcodescanner.gradle"
 apply from: "cordova-plugin-badge/im-badge.gradle"
 apply from: "cordova-plugin-browsertab/im-BrowserTab.gradle"
+apply from: "phonegap-plugin-barcodescanner/im-barcodescanner.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

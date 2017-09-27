@@ -138,6 +138,14 @@ angular.module('portal.services', [])
       appId: 186,
       appName: '工程影像',
       appIcon: 'img/app3/gcyx.png',
+    }, {
+      appId: 237,//测试环境
+      appName: '工程部位',
+      appIcon: 'img/app3/gcbw.png',
+    }, {
+      appId: 168,//测试环境
+      appName: '视频监控',
+      appIcon: 'img/app3/spjk.png',
     }];
 
     return {
@@ -173,6 +181,7 @@ angular.module('portal.services', [])
           // url:"http://88.1.1.22:8081",//测试环境
           url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
           // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
+          // url: "http://202.137.140.133:6001",//老挝正式环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
 
@@ -205,6 +214,7 @@ angular.module('portal.services', [])
           }
           //获取该用户可以查看的应用将其点亮
           sysmenu = eval(data.sysmenu);
+          // alert("点亮后的图标"+JSON.stringify(sysmenu));
           if (lightApps.length > 0) {
             lightApps = new Array();
           }
@@ -238,7 +248,15 @@ angular.module('portal.services', [])
             return lightApps[i];
           }
         }
-        return null;
+        // return null;
+      },
+      //获取应用名称
+      getAppName:function (appId) {
+        for(var i=0;i<lightApps.length;i++){
+          if(appId == lightApps[i].appId){
+            return lightApps[i].appName;
+          }
+        }
       }
     };
   })

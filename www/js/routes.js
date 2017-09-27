@@ -58,12 +58,13 @@ angular.module('im.routes', [])
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       })
-      .state('gesturelogin', {
-        url: '/gesturelogin',
-        cache: false,
-        templateUrl: 'templates/gesturelogin.html',
-        controller: 'gestureloginCtrl'
-      })
+        //暂时关闭手势密码登陆的功能
+      // .state('gesturelogin', {
+      //   url: '/gesturelogin',
+      //   cache: false,
+      //   templateUrl: 'templates/gesturelogin.html',
+      //   controller: 'gestureloginCtrl'
+      // })
       .state('datapicture', {
         url: '/datapicture',
         templateUrl: 'templates/datapicture.html',
@@ -650,6 +651,12 @@ angular.module('im.routes', [])
         controller: 'aboutPlatformCtrl'
       })
 
+      //短信验证界面
+      .state('msgCheck',{
+        url: '/msgCheck/:errCode/:mobile/:userId/:mepId/:remPwd',
+        templateUrl: 'templates/verify.html',
+        controller: 'msgcheckCtrl'
+      })
 
 
 

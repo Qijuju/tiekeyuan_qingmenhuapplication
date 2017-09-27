@@ -3,7 +3,7 @@
  */
 angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bootstrap', 'ngCordova'])
 
-  .controller('AccountCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api, $searchdata, $ToastUtils, $rootScope, $timeout, $mqtt, $chatarr, $greendao, $cordovaImagePicker, $ionicPlatform, $location, $cordovaGeolocation, $ionicHistory) {
+  .controller('AccountCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $http, $contacts, $cordovaCamera, $ionicActionSheet, $phonepluin, $api, $searchdata, $ToastUtils, $rootScope, $timeout, $mqtt, $chatarr, $greendao) {
 
     /*// alert("我的页面");
     alert("$rootScope.rootUserId ---- " + $rootScope.rootUserId  );
@@ -89,24 +89,28 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       }, function (err) {                       //没有兼职账号，不显示按钮
         $scope.hasParttimeAccount = false;
       });
-    });
-    window.baiduLocation.getCurrentPosition(function (position) {
-      lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
-      long = position.coords.longitude + 0.012647;//  116.329102
-      locationaaa = long + "," + lat;
-      // alert("经纬度"+lat+long);
-      $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
-        .success(function (response) {
-          // alert("天气预报"+JSON.stringify(response));
-          $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
-          $scope.currentcity = response.results[0].currentCity;
-          $scope.weathdate = response.results[0].weather_data[0].date.substring(response.results[0].weather_data[0].date.length - 4, response.results[0].weather_data[0].date.length - 1);
-          $scope.weatherzhen = response.results[0].weather_data[0].weather;
 
-        });
-    }, function (err) {
-      $ToastUtils.showToast("请开启定位功能");
+      //查看用户的当前所在地理位置及pm值及天气
+      navigator.geolocation.getCurrentPosition(function (position) {
+        lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
+        long = position.coords.longitude + 0.012647;//  116.329102
+        locationaaa = long + "," + lat;
+        $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+          .success(function (response) {
+            // alert("天气预报"+JSON.stringify(response));
+            $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
+            $scope.currentcity = response.results[0].currentCity;
+            $scope.weathdate = response.results[0].weather_data[0].date.substring(response.results[0].weather_data[0].date.length - 4, response.results[0].weather_data[0].date.length - 1);
+            $scope.weatherzhen = response.results[0].weather_data[0].weather;
+
+          });
+      }, function (err) {
+        // $ToastUtils.showToast("请开启定位功能");
+      });
+
+
     });
+
 
     $scope.gomyinformation = function () {
       $state.go("myinformation", {
@@ -334,7 +338,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   })
 
-  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji, $ionicPopup, $api, $ToastUtils, $cordovaGeolocation, $location, $ionicPlatform, $ionicHistory, $pubionicloading, $mqtt, $ionicActionSheet, $timeout, $cordovaCamera, $ionicScrollDelegate) {
+  .controller('myinformationCtrl', function ($scope, $http, $state, $stateParams, $searchdatadianji, $ionicPopup, $api, $ToastUtils, $cordovaGeolocation, $location, $ionicPlatform, $ionicHistory, $pubionicloading, $mqtt, $ionicActionSheet, $timeout, $cordovaCamera, $ionicScrollDelegate,$formalurlapi) {
 
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('myinformationScroll');
@@ -559,11 +563,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               var string1 = "";
               var string2 = "";
               var string3 = "";
+              var phoneflag='false';
 
               if ($scope.data.phonea != ""&&$scope.data.phonea!=null) {
                 string1 = $scope.data.phonea;
                 if(isMB(string1)){
                   arr.MB = string1;
+                  phoneflag='true';
                 }else{
                   $ToastUtils.showToast("请输入正确的手机号！");
                   return;
@@ -589,12 +595,33 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
               }
 
-              $api.updateUserInfo(arr, function (msg) {
-                // $ToastUtils.showToast("修改个人资料成功");
-                $searchdatadianji.personDetaildianji($scope.UserIDforhou);
-              }, function (msg) {
-                $ToastUtils.showToast(msg)
-              })
+              if(phoneflag === 'true'){
+                $mqtt.getUserInfo(function (userinfo) {
+                  $http({
+                    method: 'post',
+                    url: $formalurlapi.getBaseUrl(),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: {
+                      Action: 'SendSecretText',
+                      id:userinfo.userID,
+                      mepId:window.device.uuid,
+                      funcCode: "ModifyMobile",
+                      mobile:arr
+                    }
+                  }).success(function (succ) {
+                    $searchdatadianji.personDetaildianji($scope.UserIDforhou);
+                  }).error(function (err) {
+                  });
+                },function (err) {
+                });
+              }else{
+                $api.updateUserInfo(arr, function (msg) {
+                  // $ToastUtils.showToast("修改个人资料成功");
+                  $searchdatadianji.personDetaildianji($scope.UserIDforhou);
+                }, function (msg) {
+                  $ToastUtils.showToast(msg)
+                })
+              }
             }
           }
         ]
@@ -606,28 +633,18 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     };
     //地理位置
     //获取定位的经纬度
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
-    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-      var lat = position.coords.latitude + 0.006954;//   39.952728
-      var long = position.coords.longitude + 0.012647;//  116.329102
-
-      // 创建地理编码实例
-      var myGeo = new BMap.Geocoder();
-      // 根据坐标得到地址描述
-      myGeo.getLocation(new BMap.Point(long, lat), function (result) {
-        if (result) {
-          // alert(result.address);
-          $scope.$apply(function () {
-            $scope.geolocation = result.address;
-          });
-        }
-      });
-
+    navigator.geolocation.getCurrentPosition(function (position) {
+     var lat = position.coords.latitude + 0.006954;//   116.329102,39.952728,
+     var long = position.coords.longitude + 0.012647;//  116.329102
+     var locationaaa = lat + "," +long;
+      $http.get("http://api.map.baidu.com/geocoder/v2/?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
+        .success(function (response) {
+          // console.log("天气预报"+JSON.stringify(response));
+          $scope.geolocation = response.result.formatted_address;
+        });
     }, function (err) {
-      $ToastUtils.showToast("请开启定位功能");
-      // error
+      // $ToastUtils.showToast("请开启定位功能");
     });
-
 
     /**
      * 监听消息
@@ -860,7 +877,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //在线升级
     $scope.zaixianshengji = function () {
       $mqtt.save('local_versionname', '');
-      $api.checkUpdate($ionicPopup, $pubionicloading, $cordovaFileOpener2, $mqtt);
+      $scope.isFromMy=true;
+      $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
     }
 
   })

@@ -78,7 +78,7 @@ public class IMConnection {
                 mqttAsyncClient.publish(tosb, message, null, new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken iMqttToken) {
-                      System.out.println("有没有发消息"+tosb+message);
+//                      System.out.println("有没有发消息"+tosb+message);
                         callback.onSuccess(iMqttToken);
                     }
 

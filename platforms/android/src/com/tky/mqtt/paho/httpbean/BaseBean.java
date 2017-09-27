@@ -13,7 +13,6 @@ public class BaseBean implements Serializable {
   private String ErrCode;
   private String Message;
   private String sessionid;
-
   public String getActionID() {
     return ActionID;
   }
@@ -61,4 +60,6 @@ public class BaseBean implements Serializable {
   public void setSessionid(String sessionid) {
     this.sessionid = sessionid;
   }
+
+
 }

@@ -114,6 +114,7 @@ public class InAppBrowser extends CordovaPlugin {
      * @return A PluginResult object with a status and message.
      */
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
+        LOG.d(LOG_TAG, "啦啦啦啦" );
         if (action.equals("open")) {
             this.callbackContext = callbackContext;
             final String url = args.getString(0);
@@ -944,6 +945,7 @@ public class InAppBrowser extends CordovaPlugin {
             super.onPageStarted(view, url, favicon);
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
+                LOG.e(LOG_TAG, "come on");
                 newloc = url;
             }
             else

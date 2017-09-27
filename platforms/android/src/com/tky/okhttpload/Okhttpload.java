@@ -442,6 +442,7 @@ public class Okhttpload extends CordovaPlugin {
         .addParams("platform","A")
         .url(url)
         .build()
+              .connTimeOut(10000)
         .execute(new ImFileCallBack(tempUserPic,"") {
           private long procount = -1;
 

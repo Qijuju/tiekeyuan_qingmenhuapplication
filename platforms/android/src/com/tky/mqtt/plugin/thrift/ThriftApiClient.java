@@ -167,24 +167,19 @@ public class ThriftApiClient extends CordovaPlugin {
         }
         //新的HTTP请求
         try {
-
             MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
-
             List<Messages> list = messagesService.queryFailure();
             if (list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
-
                     list.get(i).setIsFailure("true");
-
                     messagesService.saveObj(list.get(i));
-
                 }
             }
             MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
             MqttOper.closeMqttConnection();
             MqttReceiver.hasRegister = false;
-            String username = args.getString(0);
-            String password = args.getString(1);
+            final String username = args.getString(0);
+            final String password = args.getString(1);
             String imCode = UIUtils.getDeviceId();
             Request request = new Request(cordova.getActivity());
             Map<String, Object> paramsMap = new HashMap<String, Object>();
@@ -240,6 +235,11 @@ public class ThriftApiClient extends CordovaPlugin {
                     } else {
                         if ("104".equals(result.getErrCode())) {
                             setResult("用户或密码错误！", PluginResult.Status.ERROR, callbackContext);
+                        } else if("111".equals(result.getErrCode()) ||"112".equals(result.getErrCode()) || "113".equals(result.getErrCode()) || "114".equals(result.getErrCode())){
+                            System.out.println("需要短信验证"+result.getMessage()+UIUtils.getDeviceId());
+                            SPUtils.save("historyusername",username);
+                            SPUtils.save("pwd",password);
+                            setResult(result.getErrCode()+"#"+result.getUserId()+"#"+result.getMobile()+"#"+UIUtils.getDeviceId(), PluginResult.Status.ERROR, callbackContext);
                         } else {
                             setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                         }
@@ -248,7 +248,7 @@ public class ThriftApiClient extends CordovaPlugin {
 
                 @Override
                 public void onFailure(Request request, Exception e) {
-                    setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
+                    setResult("连接服务器超时！", PluginResult.Status.ERROR, callbackContext);
                 }
             });
 
@@ -259,6 +259,78 @@ public class ThriftApiClient extends CordovaPlugin {
             setResult("未知错误！", PluginResult.Status.ERROR, callbackContext);
         }
     }
+
+
+    /**
+     * 短信确认验证(新增接口)
+     */
+    public void confirmSecretText(final JSONArray args,final CallbackContext callbackContext){
+        try {
+            String id=args.getString(0);
+            String mepId=args.getString(1);
+            String secretText=args.getString(2);
+            String funcCode="Login";
+            Request request = new Request(cordova.getActivity());
+            Map<String, Object> paramsMap = new HashMap<String, Object>();
+            paramsMap.put("Action", "ConfirmSecretText");
+            paramsMap.put("id", id);
+            paramsMap.put("mepId", mepId);
+            paramsMap.put("secretText",secretText);
+            paramsMap.put("funcCode",funcCode);
+            request.addParamsMap(paramsMap);
+            OKAsyncClient.post(request, new OKHttpCallBack2<LoginInfoBean>() {
+                @Override
+                public void onSuccess(Request request, LoginInfoBean result) {
+                    if (result.isSucceed()) {
+                        try {
+                            String userID = getUserID();//旧用户名
+                            //转换登录信息
+                            String loginJson = switchLoginUser(result);
+//              System.out.println("新登录用户信息"+loginJson);
+                            //登录成功 标示
+                            MqttRobot.setIsStarted(true);
+                            JSONObject newUserObj = new JSONObject(loginJson);
+                            String newuserID = newUserObj.getString("userID");//新登陆用户名
+//              System.out.println("切换用户进来了吗?老用户"+userID+"====新用户"+newuserID);
+                            //若前后两次用户名不一致,清楚本地数据库数据库缓存
+                            if (userID != null && !(newuserID.equals(userID))) {
+                                MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
+                                ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
+                                TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
+                                GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
+                                SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+                                topContactsService.deleteAllData();
+                                messagesService.deleteAllData();
+                                chatListService.deleteAllData();
+                                groupChatsService.deleteAllData();
+                                systemMsgService.deleteAllData();
+                            }
+
+                            LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
+                            localPhoneService.deleteAllData();
+                            //保存登录信息
+                            SPUtils.save("login_info", loginJson);
+                            System.out.println("登陆成功++++"+loginJson);
+                            setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
+
+                            //调用getSession方法,获取sessionid
+                            getSession(result.getUser().getLoginAccount(), result.getUser().getLoginName());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Request request, Exception e) {
+                    setResult("连接服务器超时！", PluginResult.Status.ERROR, callbackContext);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 将拿到的登录信息转换成原先Thrift获取到的登录信息一样的格式
@@ -870,6 +942,7 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String fileid = args.getString(0);//应用版本名
             final long filesize = args.getLong(1);//应用大小
+//            final long filesize = 8388608;
             Map<String, String> map = new HashMap<String, String>();
             map.put("id", IMSwitchLocal.getUserID());
             map.put("mepId", UIUtils.getDeviceId());
@@ -881,6 +954,7 @@ public class ThriftApiClient extends CordovaPlugin {
                     .url(Constants.commonfileurl + "/DownloadFile")
                     .params(map)
                     .build()
+                    .connTimeOut(10000)
                     .execute(new ImFileCallBack(filePath, "") {
                         ProgressDialog pdDialog;
 
@@ -918,6 +992,7 @@ public class ThriftApiClient extends CordovaPlugin {
 //                            progress = (progress * (-1.0f)) / filesize * 100;
                             progress = progress * 100;
                             final float finalProgress = progress;
+//                            System.out.println("文件进度"+Math.round(finalProgress));
                             UIUtils.runInMainThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -927,6 +1002,57 @@ public class ThriftApiClient extends CordovaPlugin {
 
                         }
                     });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 下载轻应用icon接口
+     */
+    public void downloadQYYIcon(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String fileid = args.getString(0);//应用图标名称可以不带后缀，一般为应用名称缩写
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", IMSwitchLocal.getUserID());
+            map.put("mepId", UIUtils.getDeviceId());
+            map.put("fileId", fileid);
+            map.put("type", "ExtAppIcon");
+            map.put("platform", "A");
+            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
+            final String iconFilePath = filePath+File.separator+fileid+".png";
+            File iconFile = new File(iconFilePath);
+          if(!iconFile.exists()){
+            OkHttpUtils.get()
+              .url(Constants.commonfileurl + "/DownloadFile")
+              .params(map)
+              .build()
+              .connTimeOut(10000)
+              .execute(new ImFileCallBack(filePath, "") {
+                @Override
+                public void onBefore(okhttp3.Request request, int id) {
+                  super.onBefore(request, id);
+                }
+
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                  setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                }
+
+                @Override
+                public void onResponse(File response, int id) {
+                  setResult(iconFilePath, PluginResult.Status.OK, callbackContext);
+                }
+
+                @Override
+                public void inProgress(float progress, long total, int id) {
+                  super.inProgress(progress, total, id);
+                }
+              });
+          }else{
+            setResult(iconFilePath, PluginResult.Status.OK, callbackContext);
+          }
         } catch (JSONException e) {
             e.printStackTrace();
         }

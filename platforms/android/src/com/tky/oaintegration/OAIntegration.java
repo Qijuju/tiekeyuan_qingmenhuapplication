@@ -18,9 +18,7 @@ import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.callback.OKHttpCallBack2;
 import com.tky.mqtt.paho.http.OKAsyncClient;
 import com.tky.mqtt.paho.http.Request;
-import com.tky.mqtt.paho.httpbean.LoginInfoBean;
 import com.tky.mqtt.paho.httpbean.ParamsMap;
-import com.tky.mqtt.paho.httpbean.User;
 import com.tky.mqtt.paho.httpbean.VersionInfo;
 import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.plugin.thrift.api.ProgressDialogFactory;
@@ -252,7 +250,6 @@ public class OAIntegration extends CordovaPlugin {
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
                             progress = progress *  100;
-//                            progress = (progress * (-1.0f)) / filesize * 100;
                             final float finalProgress = progress;
                             UIUtils.runInMainThread(new Runnable() {
                                 @Override

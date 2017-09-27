@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils) {
+  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api) {
     // $scope, $state, $ionicSlideBoxDelegate, $pubionicloading, $greendao, FinshedApp, $rootScope, $api,$sce
 
     var userID; // userID = 232099
@@ -36,6 +36,9 @@ angular.module('portal.controllers', [])
             $scope.name = $scope.dataSource.jsdept.name;
           }
 
+          // 图片的显示
+
+
 
 
         }).error(function (data, status) {
@@ -46,7 +49,19 @@ angular.module('portal.controllers', [])
     }, function (err) {
     });
 
+    // 图片处理，本地有的话直接获取显示，没有的话下载显示并缓存到本地。
+    $api.downloadQYYIcon('hygl',function (success) {
+      // success 返回的是图片的绝对路径
+
+      alert( " 进入本地成功11:" +  success);
+    },function (err) {
+      alert( " 进入本地失败22:" +  err);
+    });
+
     $scope.logoClick = function (obj) {
+
+      // 已经拿到数据源
+      //  alert( "接收的数据为appIcon：" + obj.appIcon + "<br>appId: " + obj.appId  + "<br>appName: " +obj.appName + "<br>appNum: " +obj.appNum+ "<br>flag: " +obj.flag+ "<br>type: " +obj.type );
 
       function CheckImgExists(imgurl) {
         var ImgObj = new Image(); //判断图片是否存在
@@ -59,8 +74,7 @@ angular.module('portal.controllers', [])
         }
       }
 
-      // 已经拿到数据源
-     //  alert( "接收的数据为appIcon：" + obj.appIcon + "<br>appId: " + obj.appId  + "<br>appName: " +obj.appName + "<br>appNum: " +obj.appNum+ "<br>flag: " +obj.flag+ "<br>type: " +obj.type );
+
     }
 
 

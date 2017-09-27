@@ -18,9 +18,9 @@
           <img class="phoneVerify" src="img/phoneVerify.png"  alt="手机号">
         </div>
         <div class="col col-75">
-          <input type="text" placeholder="手机号" class="verifyInput" ng-model="password" onfocus="true">
+          <input id="getMobile" type="text" placeholder="手机号" class="verifyInput"  ng-model="mobile" onfocus="true">
         </div>
-        <div class="col col-10" align="center" ng-click="chapassword()">
+        <div class="col col-10" align="center" ng-click="changeMobile()">
           <img class="phoneVerifyX" src="img/x.png">
         </div>
       </div>
@@ -32,25 +32,25 @@
           <img class="verify2" src="img/verify2.png"  alt="验证码">
         </div>
         <div class="col col-75">
-          <input type="text" placeholder="短信验证码" class="verifyInput" ng-model="password" onfocus="true">
+          <input id="secret" type="text" placeholder="短信验证码" class="verifyInput" ng-model="secret" onfocus="true">
         </div>
-        <div class="col col-10" align="center" ng-click="chapassword()">
+        <div class="col col-10" align="center" ng-click="clearSecret()">
           <img class="phoneVerifyX" src="img/x.png">
         </div>
       </div>
 
       <div class="row verifyRow verifyRowBtn verifyRowBtn1">
         <div class="col" align="left">
-          <button class="button sendVerifyBtn">重置手机号</button>
+          <button class="button sendVerifyBtn" ng-click="resetMobile()">重置手机号</button>
         </div>
         <div class="col" align="right">
-          <button class="button sendVerifyBtn">发送验证码</button>
+          <button id="sendsecret" class="button sendVerifyBtn" ng-click="sendSecretText()">发送验证码</button>
         </div>
       </div>
 
       <div class="row verifyRow verifyRowBtn">
         <div class="col" align="center">
-          <button class="button button-block button-positive verifyBtn" ng-click="">登录</button>
+          <button class="button button-block button-positive verifyBtn" ng-click="relogin()">登录</button>
         </div>
       </div>
 

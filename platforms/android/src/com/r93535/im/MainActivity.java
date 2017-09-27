@@ -19,18 +19,22 @@
 
 package com.r93535.im;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.text.format.Formatter;
@@ -79,11 +83,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
+
+import static com.tky.mqtt.paho.BaseApplication.getContext;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener {
   /**
@@ -498,6 +505,32 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     }
 
   }
+
+  /**
+   * android 6.0以后，请求权限
+   */
+/*
+  public static void requestPermissions(Activity actitity) throws PackageManager.NameNotFoundException {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//SDK版本大于M（6.0）时
+      String[] requestedPermissions = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_PERMISSIONS).requestedPermissions;
+      List<String> noGrantPermissions = new ArrayList<String>();
+      if (requestedPermissions != null && requestedPermissions.length > 0) {
+        for (String requestedPermission : requestedPermissions) {
+          if (getContext().checkSelfPermission(requestedPermission) != PackageManager.PERMISSION_GRANTED) {
+            noGrantPermissions.add(requestedPermission);
+          }
+        }
+      }
+      if (noGrantPermissions.size() > 0) {
+        ActivityCompat.requestPermissions(actitity, noGrantPermissions.toArray(new String[noGrantPermissions.size()]), 10);
+        return;
+      }
+    }
+  }
+*/
+
+
+
 
   @Override
   public void onSensorChanged(SensorEvent event) {

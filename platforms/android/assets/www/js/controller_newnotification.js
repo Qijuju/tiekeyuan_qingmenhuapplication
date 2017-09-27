@@ -4,7 +4,7 @@
 angular.module('newnotification.controllers', [])
 
 
-  .controller('newnotificationCtrl', function ($scope, $state, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
     // 通知置顶操作
     $scope.goIsTopEvent = function (item) {
@@ -115,26 +115,25 @@ angular.module('newnotification.controllers', [])
 
     };
 
-    $scope.$on('allnotify.update', function (event) {
+    $scope.$on('allnotify.update', function (event,data) {
       $scope.$apply(function () {
         $scope.shownetstatus = false;
-        $scope.notifyjson = $notify.getAllNotify();
-        var notifyList = $notify.getAllNotify().msgList;
+        if(data != null && data !=undefined && data != ''){
+            $scope.notifyNewList.unshift(data);
+        }else{
+          var notifyList = $notify.getAllNotify().msgList;
+          $scope.lastCount = notifyList.length;
+          if ($scope.lastCount == 5) {
+            $scope.notifyStatus = true;
+          } else if ($scope.lastCount < 5) {
+            $scope.notifyStatus = false;
 
-        $scope.lastCount = $notify.getAllNotify().msgList.length;
+          }
 
-        if ($scope.lastCount == 5) {
-          $scope.notifyStatus = true;
-
-        } else if ($scope.lastCount < 5) {
-          $scope.notifyStatus = false;
-
+          for (var i = 0; i < notifyList.length; i++) {
+            $scope.notifyNewList.push(notifyList[i]);
+          }
         }
-
-        for (var i = 0; i < notifyList.length; i++) {
-          $scope.notifyNewList.push(notifyList[i]);
-        }
-
         // 根据id，往数据源中追加图片路径字段信息
         var finshedAppsArr = FinshedApp.all();  // 取出原始数据源信息
 
@@ -154,8 +153,6 @@ angular.module('newnotification.controllers', [])
             }
           }
         }
-
-        $scope.$broadcast('scroll.infiniteScrollComplete');
 
       })
     });

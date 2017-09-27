@@ -287,13 +287,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-        "clobbers": [
-            "cordova.plugins.barcodeScanner"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
         "id": "cordova-plugin-geolocation.geolocation",
         "clobbers": [
@@ -401,13 +394,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-browsertab/www/browsertab.js",
-        "id": "cordova-plugin-browsertab.BrowserTab",
-        "clobbers": [
-            "cordova.plugins.browsertab"
-        ]
-    },
-    {
         "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
         "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
         "clobbers": [
@@ -431,6 +417,27 @@ module.exports = [
         "id": "OAIntegration.o_a_integration",
         "clobbers": [
             "cordova.plugins.OAIntegration"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-browsertab/www/browsertab.js",
+        "id": "cordova-plugin-browsertab.BrowserTab",
+        "clobbers": [
+            "cordova.plugins.browsertab"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
+        "id": "cordova-plugin-flashlight.Flashlight",
+        "clobbers": [
+            "window.plugins.flashlight"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
         ]
     }
 ];
@@ -456,7 +463,6 @@ module.exports.metadata =
     "cordova-plugin-image-picker": "1.1.1",
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-file-transfer": "1.5.2-dev",
-    "phonegap-plugin-barcodescanner": "6.0.1",
     "cordova-plugin-geolocation": "2.2.0",
     "ScalePhoto": "1.0.0",
     "GridPhoto": "1.0.0",
@@ -472,11 +478,13 @@ module.exports.metadata =
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-screen-orientation": "2.0.1",
     "cordova-plugin-badge": "0.8.1",
-    "cordova-plugin-browsertab": "0.2.0",
     "com.spout.phonegap.plugins.baidulocation": "0.1.0",
     "phonegap-nfc": "0.6.6",
     "com.darktalker.cordova.screenshot": "0.1.5",
-    "OAIntegration": "1.0.0"
+    "OAIntegration": "1.0.0",
+    "cordova-plugin-browsertab": "0.2.0",
+    "cordova-plugin-flashlight": "3.2.0",
+    "phonegap-plugin-barcodescanner": "6.0.8"
 };
 // BOTTOM OF METADATA
 });

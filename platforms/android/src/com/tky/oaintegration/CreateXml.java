@@ -73,7 +73,6 @@ public class CreateXml {
                     eroot.setAttributeValue("userId",userAccount);
                     eroot.setAttributeValue("loginAccount", loginAccount);
                     eroot.setAttributeValue("account", loginName);
-//                    eroot.setAttributeValue("compid",compid);
                     // 下面是保存修改过后的文件，直接创建一个xml文件，名字与读取的文件名字一样，直接覆盖
                     XMLWriter out = new XMLWriter(new FileWriter(path
                             + file.separator + filename));

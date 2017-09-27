@@ -963,7 +963,7 @@ angular.module('message.controllers', [])
               $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
             }
             cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
-              // alert("刷新监听成功"+succ);
+              // alert("刷新监听成功messagedetail"+succ);
               $mqtt.saveInt("badgeCount",$scope.allNoRead);
             },function (err) {
               // alert("失败"+err);
@@ -3837,7 +3837,7 @@ angular.module('message.controllers', [])
     // 清除浮动框
     $scope.$on('$destroy', function() {
       $scope.popover.remove();
-     
+
     });
 
     // 在隐藏浮动框后执行
@@ -3847,7 +3847,7 @@ angular.module('message.controllers', [])
     // 移除浮动框后执行
     $scope.$on('popover.removed', function() {
       // 执行代码
-      
+
     });
 
 
@@ -3882,7 +3882,7 @@ angular.module('message.controllers', [])
     });
 
     //登录成功后第一件事：检测升级
-    $api.checkUpdate($ionicPopup, $pubionicloading, $cordovaFileOpener2, $mqtt);
+    $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 
@@ -3911,7 +3911,7 @@ angular.module('message.controllers', [])
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
           }
           cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
-            // alert("成功"+succ);
+            // alert("成功主界面"+succ);
             $mqtt.saveInt("badgeCount",$scope.allNoRead);
           },function (err) {
             // alert("失败"+err);
@@ -4004,10 +4004,10 @@ angular.module('message.controllers', [])
    //发起群聊
     $scope.createGroupChats=function () {
 
-     
+
       // 隐藏浮动框
       $scope.popover.hide();
-      
+
       var selectInfo={};
       //当创建群聊的时候先把登录的id和信息  存到数据库上面
       selectInfo.id=$scope.loginId;

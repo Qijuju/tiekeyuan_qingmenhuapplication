@@ -136,6 +136,9 @@ angular.module('common.services', [])
       login: function (username, password, success, error) {
         api.login(username, password, success, error);
       },
+      confirmSecretText: function (id,mepId,secretText, success, error) {
+        api.confirmSecretText(id,mepId,secretText, success, error);
+      },
       activeUser: function (userId, success, error) {
         api.activeUser(userId, success, error);
       },
@@ -196,52 +199,71 @@ angular.module('common.services', [])
       downloadMHApk: function (fileid, filesize, success, error) {//升级应用(包含下载和安装，http)
         api.downloadMHApk(fileid, filesize, success, error);
       },
+      downloadQYYIcon: function (fileid, success, error) {//下载轻应用图标
+        api.downloadQYYIcon(fileid,success, error);
+      },
       getWelcomePic: function (picUserID, picSize, success, error) {
         api.getWelcomePic(picUserID, picSize, success, error);
       },
-      checkUpdate: function ($ionicPopup, $cordovaFileOpener2, $mqtt) {
+      checkUpdate: function ($ionicPopup, $cordovaFileOpener2,isFromMy) {
 
 
         //从网络请求数据  获取版本号和各种信息
         api.getVersionInfo(function (msg) {
+          var flag ;
           var versionName = msg.versionName;
           var versionDesc = msg.versionDesc;
           var filesize = msg.size;
+
+          if(isFromMy){
+            flag = false;
+          }else{
+            cordova.plugins.MqttChat.getString('isShowConfirm',function (succ) {
+              if(succ != null ||succ != '' || succ != undefined){
+                flag = succ;
+              }
+              // alert("是否弹提示11111"+flag);
+            },function (err) {
+              flag = false;
+            });
+          }
+
           // alert("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(msg));
           //判断此版本是否需要升级
           api.needUpgrade(versionName, function (msg) {
-            if (msg == 'true') {
-              //需要升级
-              var confirmPopup = $ionicPopup.confirm({
-                title: '版本升级',
-                template: versionDesc, //从服务端获取更新的内容
-                cancelText: '忽略',
-                okText: '升级'
-              });
+            if(!flag){
+              if (msg == 'true') {
+                //需要升级
+                var confirmPopup = $ionicPopup.confirm({
+                  title: '版本升级',
+                  template: versionDesc, //从服务端获取更新的内容
+                  cancelText: '忽略',
+                  okText: '升级'
+                });
 
-              confirmPopup.then(function (res) {
-                if (res) {
-                  //点击升级走的方法
-                  api.downloadMHApk(versionName, filesize, function (succ) {
-                    // 成功
-                    $mqtt.save('local_versionname', versionName);
-                  }, function (err) {
-                    // 错误
-                    $mqtt.save('local_versionname', "");
-                  });
-                } else {
-                  //点击取消更新走的方法
-                  $mqtt.save('local_versionname', versionName);
+                confirmPopup.then(function (res) {
+                  if (res) {
+                    //点击升级走的方法
+                    api.downloadMHApk(versionName, filesize, function (succ) {
+                      // 成功
+                      cordova.plugins.MqttChat.save('local_versionname', versionName);
+                    }, function (err) {
+                      // 错误
+                      cordova.plugins.MqttChat.save('local_versionname', "");
+                    });
+                  } else {
+                    //点击取消更新走的方法
+                    flag = true;
+                    cordova.plugins.MqttChat.save('isShowConfirm',flag);
+                    cordova.plugins.MqttChat.save('local_versionname', versionName);
+                  }
 
-                }
-
-              });
-            } else if (msg != 'false' && msg != '') {
-              //不需要升级
-              $ToastUtils.showToast(msg)
+                });
+              } else if (msg != 'false' && msg != '') {
+                //不需要升级
+                $ToastUtils.showToast(msg)
+              }
             }
-
-
           }, function (err) {
             //判断是否能升级失败
           })
@@ -344,6 +366,9 @@ angular.module('common.services', [])
       sendOperateLog: function (type, when, appId, success, error) {//新增一个客户端操作记录的接口
         api.sendOperateLog(type, when, appId, success, error);
       },
+      switchLoginUser : function(infoBean,success, error) {//新增一个登陆返回信息转换接口
+        api.switchLoginUser(infoBean, success, error);
+      }
     };
   })
 
@@ -507,7 +532,7 @@ angular.module('common.services', [])
       }
     }
   })
-  .factory('$BadgeCount', function ($greendao, $scope, $mqtt) {
+  .factory('$BadgeCount', function ($greendao, $scope) {
     return {
       getBadgeCount: function () {
         $greendao.loadAllData('ChatListService', function (msg) {
@@ -517,8 +542,8 @@ angular.module('common.services', [])
               $scope.allNoRead = $scope.allNoRead + parseInt(msg[i].count, 10);
             }
             cordova.plugins.notification.badge.set($scope.allNoRead, function (succ) {
-              alert("刷新监听成功" + succ);
-              $mqtt.saveInt("badgeCount", $scope.allNoRead);
+              // alert("刷新监听成功" + succ);
+              cordova.plugins.MqttChat.saveInt("badgeCount", $scope.allNoRead);
             }, function (err) {
               alert("失败" + err);
             });
@@ -526,6 +551,16 @@ angular.module('common.services', [])
         }, function (err) {
 
         })
+      }
+    }
+  })
+
+  .factory('$formalurlapi',function () {
+    var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
+    // var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/newMsgCheck/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
+    return{
+      getBaseUrl:function () {
+        return baseurl;
       }
     }
   })

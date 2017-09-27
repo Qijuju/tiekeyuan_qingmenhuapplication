@@ -63,7 +63,6 @@ public abstract class ImFileCallBack extends Callback<File> {
                 OkHttpUtils.getInstance().getDelivery().execute(new Runnable() {
                     @Override
                     public void run() {
-
                         inProgress(finalSum * 1.0f / total, total, id);
                     }
                 });
