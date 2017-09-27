@@ -134,6 +134,7 @@ angular.module('newnotification.controllers', [])
         for (var i = 0; i < notifyList.length; i++) {
           $scope.notifyNewList.push(notifyList[i]);
         }
+
         // 根据id，往数据源中追加图片路径字段信息
         var finshedAppsArr = FinshedApp.all();  // 取出原始数据源信息
 
