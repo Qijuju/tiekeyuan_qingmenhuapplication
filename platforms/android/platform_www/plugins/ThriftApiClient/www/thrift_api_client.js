@@ -113,6 +113,9 @@ exports.getAllGroup = function(success, error) {//获取用户所有群组
 exports.downloadMHApk = function(fileid,filesize, success, error) {//升级应用(包含下载和安装，http)
   exec(success, error, "ThriftApiClient", "downloadMHApk", [fileid,filesize]);
 };
+exports.downloadQYYIcon = function(fileid,success, error) {//下载轻应用图标
+  exec(success, error, "ThriftApiClient", "downloadQYYIcon", [fileid]);
+};
 exports.installApk = function(targetPath, success, error) {//安装应用
   exec(success, error, "ThriftApiClient", "installApk", [targetPath]);
 };

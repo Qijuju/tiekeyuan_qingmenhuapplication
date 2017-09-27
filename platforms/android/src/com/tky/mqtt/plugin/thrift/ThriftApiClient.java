@@ -1009,6 +1009,54 @@ public class ThriftApiClient extends CordovaPlugin {
 
 
     /**
+     * 下载轻应用icon接口
+     */
+    public void downloadQYYIcon(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            String fileid = args.getString(0);//应用图标名称可以不带后缀，一般为应用名称缩写
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", IMSwitchLocal.getUserID());
+            map.put("mepId", UIUtils.getDeviceId());
+            map.put("fileId", fileid);
+            map.put("type", "ExtAppIcon");
+            map.put("platform", "A");
+            String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
+            OkHttpUtils.get()
+                    .url(Constants.commonfileurl + "/DownloadFile")
+                    .params(map)
+                    .build()
+                    .connTimeOut(10000)
+                    .execute(new ImFileCallBack(filePath, "") {
+                        ProgressDialog pdDialog;
+
+                        @Override
+                        public void onBefore(okhttp3.Request request, int id) {
+                            super.onBefore(request, id);
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                        }
+
+                        @Override
+                        public void onResponse(File response, int id) {
+                            pdDialog.dismiss();
+                            setResult("success", PluginResult.Status.OK, callbackContext);
+                        }
+
+                        @Override
+                        public void inProgress(float progress, long total, int id) {
+                            super.inProgress(progress, total, id);
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
      * 应用安装
      *
      * @param args

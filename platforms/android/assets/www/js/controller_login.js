@@ -196,8 +196,8 @@ angular.module('login.controllers', [])
             $mqtt.setLogin(true);
             $scope.getUserName();
             $mqtt.save('passlogin', "1");
-            // $mqtt.save('pwdgesture', $scope.password);
-            // $mqtt.save('namegesture', $scope.name);
+            $mqtt.save('pwdgesture', $scope.password);
+            $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
             $pubionicloading.hide();
@@ -541,8 +541,8 @@ angular.module('login.controllers', [])
               $mqtt.setLogin(true);
               $scope.getUserName();
               $mqtt.save('passlogin', "1");
-              // $mqtt.save('pwdgesture', pwdgesturea);
-              // $mqtt.save('namegesture', namegesturea);
+              $mqtt.save('pwdgesture', pwdgesturea);
+              $mqtt.save('namegesture', namegesturea);
               $state.go('tab.message');
               $pubionicloading.hide();
             });
@@ -578,7 +578,7 @@ angular.module('login.controllers', [])
       });
     };
   })
-  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
+ /* .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
 
     var password = "";
     var count = 6;
@@ -875,4 +875,4 @@ angular.module('login.controllers', [])
       });
     }
   })
-
+*/
