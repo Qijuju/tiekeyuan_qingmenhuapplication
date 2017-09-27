@@ -3911,7 +3911,7 @@ angular.module('message.controllers', [])
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
           }
           cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
-            alert("成功主界面"+succ);
+            // alert("成功主界面"+succ);
             $mqtt.saveInt("badgeCount",$scope.allNoRead);
           },function (err) {
             // alert("失败"+err);

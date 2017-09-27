@@ -58,12 +58,13 @@ angular.module('im.routes', [])
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       })
-      .state('gesturelogin', {
-        url: '/gesturelogin',
-        cache: false,
-        templateUrl: 'templates/gesturelogin.html',
-        controller: 'gestureloginCtrl'
-      })
+        //暂时关闭手势密码登陆的功能
+      // .state('gesturelogin', {
+      //   url: '/gesturelogin',
+      //   cache: false,
+      //   templateUrl: 'templates/gesturelogin.html',
+      //   controller: 'gestureloginCtrl'
+      // })
       .state('datapicture', {
         url: '/datapicture',
         templateUrl: 'templates/datapicture.html',

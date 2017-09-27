@@ -105,7 +105,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
           });
       }, function (err) {
-        $ToastUtils.showToast("请开启定位功能");
+        // $ToastUtils.showToast("请开启定位功能");
       });
 
 
@@ -596,9 +596,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
               }
 
               if(phoneflag === 'true'){
-                alert("进来准备调用修改手机号接口");
                 $mqtt.getUserInfo(function (userinfo) {
-                  alert("当前用户id"+userinfo.userID+window.device.uuid);
                   $http({
                     method: 'post',
                     url: $formalurlapi.getBaseUrl(),
@@ -611,10 +609,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
                       mobile:arr
                     }
                   }).success(function (succ) {
-                    alert("修改手机号调用成功"+JSON.stringify(succ));
                     $searchdatadianji.personDetaildianji($scope.UserIDforhou);
                   }).error(function (err) {
-                    alert("修改手机号不成功"+JSON.stringify(err));
                   });
                 },function (err) {
                 });
@@ -647,7 +643,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
           $scope.geolocation = response.result.formatted_address;
         });
     }, function (err) {
-      $ToastUtils.showToast("请开启定位功能");
+      // $ToastUtils.showToast("请开启定位功能");
     });
 
     /**

@@ -18,13 +18,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.provider.SyncStateContract;
 import android.support.customtabs.CustomTabsIntent;
 import android.util.Log;
-
-import com.r93535.im.Constants;
-import com.r93535.im.R;
-import com.tky.mqtt.paho.UIUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -38,8 +33,6 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static com.r93535.im.Constants.commonmsgurl;
 
 /**
  * Cordova plugin which provides the ability to launch a URL in an
@@ -63,7 +56,7 @@ public class BrowserTab extends CordovaPlugin {
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-    Log.d(LOG_TAG, "executing ====" + action);
+    Log.d(LOG_TAG, "executing " + action);
     if ("isAvailable".equals(action)) {
       isAvailable(callbackContext);
     } else if ("openUrl".equals(action)) {
@@ -82,8 +75,8 @@ public class BrowserTab extends CordovaPlugin {
     String browserPackage = findCustomTabBrowser();
     Log.d(LOG_TAG, "browser package: " + browserPackage);
     callbackContext.sendPluginResult(new PluginResult(
-            PluginResult.Status.OK,
-            browserPackage != null));
+        PluginResult.Status.OK,
+        browserPackage != null));
   }
 
   private void openUrl(JSONArray args, CallbackContext callbackContext) {
@@ -107,48 +100,15 @@ public class BrowserTab extends CordovaPlugin {
       Log.d(LOG_TAG, "openUrl: no in app browser tab available");
       callbackContext.error("no in app browser tab implementation available");
     }
-    //初始化builder
-    //int color = getColor("#      980e03");
-    //int secondaryColor = getColor("#980e03");
 
-    CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-    //添加默认的菜单栏
-//    intentBuilder.addDefaultShareMenuItem();
-    //添加标题
-    if(Constants.commonmsgurl.equals("")){
-
-    }
-    intentBuilder.enableUrlBarHiding();
-    intentBuilder.setShowTitle(true);
-    intentBuilder.setToolbarColor(UIUtils.getResources().getColor(R.color.bule));
-    intentBuilder.setSecondaryToolbarColor(UIUtils.getResources().getColor(R.color.bule2));
-    //添加菜单
-    //PendingIntent menuItemPendingIntent =
-    //createPendingIntent(ActionBroadcastReceiver.ACTION_MENU_ITEM);
-    //intentBuilder.addMenuItem(menuItemTitle, menuItemPendingIntent);
-
-    Log.d(LOG_TAG,"ok");
-
-    Intent customTabsIntent = intentBuilder.build().intent;
+    Intent customTabsIntent = new CustomTabsIntent.Builder().build().intent;
     customTabsIntent.setData(Uri.parse(urlStr));
     customTabsIntent.setPackage(mCustomTabsBrowser);
-
     cordova.getActivity().startActivity(customTabsIntent);
 
-    Log.d(LOG_TAG, "123456789");
+    Log.d(LOG_TAG, "in app browser call dispatched");
     callbackContext.success();
   }
-
-
-  //添加PendingIntent方法
-  //private PendingIntent createPendingIntent(int actionSourceId) {
-  //Intent actionIntent = new Intent(
-  //cordova.getActivity(), //ActionBroadcastReceiver.class);
-  //actionIntent.putExtra(ActionBroadcastReceiver.KEY_ACTION_SOURCE, //actionSourceId);
-  //return PendingIntent.getBroadcast(
-  // getApplicationContext(), actionSourceId, //actionIntent, 0);
-  //}
-
 
   private String findCustomTabBrowser() {
     if (mFindCalled) {
@@ -157,10 +117,10 @@ public class BrowserTab extends CordovaPlugin {
 
     PackageManager pm = cordova.getActivity().getPackageManager();
     Intent webIntent = new Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("http://www.example.com"));
+        Intent.ACTION_VIEW,
+        Uri.parse("http://www.example.com"));
     List<ResolveInfo> resolvedActivityList =
-            pm.queryIntentActivities(webIntent, PackageManager.GET_RESOLVED_FILTER);
+        pm.queryIntentActivities(webIntent, PackageManager.GET_RESOLVED_FILTER);
 
     for (ResolveInfo info : resolvedActivityList) {
       if (!isFullBrowser(info)) {
@@ -182,12 +142,12 @@ public class BrowserTab extends CordovaPlugin {
     if (!resolveInfo.filter.hasAction(Intent.ACTION_VIEW)
             || !resolveInfo.filter.hasCategory(Intent.CATEGORY_BROWSABLE)
             || resolveInfo.filter.schemesIterator() == null) {
-      return false;
+        return false;
     }
 
     // The filter must not be restricted to any particular set of authorities
     if (resolveInfo.filter.authoritiesIterator() != null) {
-      return false;
+        return false;
     }
 
     // The filter must support both HTTP and HTTPS.
@@ -195,13 +155,13 @@ public class BrowserTab extends CordovaPlugin {
     boolean supportsHttps = false;
     Iterator<String> schemeIter = resolveInfo.filter.schemesIterator();
     while (schemeIter.hasNext()) {
-      String scheme = schemeIter.next();
-      supportsHttp |= "http".equals(scheme);
-      supportsHttps |= "https".equals(scheme);
+        String scheme = schemeIter.next();
+        supportsHttp |= "http".equals(scheme);
+        supportsHttps |= "https".equals(scheme);
 
-      if (supportsHttp && supportsHttps) {
-        return true;
-      }
+        if (supportsHttp && supportsHttps) {
+            return true;
+        }
     }
 
     // at least one of HTTP or HTTPS is not supported

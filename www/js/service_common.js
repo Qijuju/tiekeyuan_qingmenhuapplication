@@ -199,6 +199,9 @@ angular.module('common.services', [])
       downloadMHApk: function (fileid, filesize, success, error) {//升级应用(包含下载和安装，http)
         api.downloadMHApk(fileid, filesize, success, error);
       },
+      downloadQYYIcon: function (fileid, success, error) {//下载轻应用图标
+        api.downloadQYYIcon(fileid,success, error);
+      },
       getWelcomePic: function (picUserID, picSize, success, error) {
         api.getWelcomePic(picUserID, picSize, success, error);
       },

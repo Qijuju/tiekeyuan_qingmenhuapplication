@@ -116,6 +116,8 @@ angular.module('im.routes', [])
             controller: 'newnotificationCtrl'
           }
         }
+        // ,
+        // reload:true
       })
       .state('tab.webpage', {
         url: '/webpage',
