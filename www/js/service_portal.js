@@ -175,6 +175,8 @@ angular.module('portal.services', [])
           // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
+
+
           var data = JSON.parse(decodeURIComponent(data));
 
           //获取人员的所在公司
@@ -219,8 +221,6 @@ angular.module('portal.services', [])
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
         });
-
-
       },
 
 

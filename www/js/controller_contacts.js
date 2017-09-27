@@ -1554,7 +1554,6 @@ angular.module('contacts.controllers', [])
 
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
         if(data[0].count>0){
-          // alert("进来查询了吗？"+data.length);
           var chatitem = {};
           chatitem.id = data[0].id;
           chatitem.chatName = data[0].chatName;
@@ -1685,7 +1684,6 @@ angular.module('contacts.controllers', [])
     $scope.backAny = function () {
 
       $ionicHistory.goBack();
-
     };
 
 
@@ -1767,6 +1765,7 @@ angular.module('contacts.controllers', [])
           });
         }
       }
+
     }
     //取消关注
     $scope.removeattention = function (id) {

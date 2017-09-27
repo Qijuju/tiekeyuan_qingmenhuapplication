@@ -1,0 +1,33 @@
+<ion-view id="portalTitle"  view-title="{{name}}"   class="common-view-color">
+
+  <!--导航条-->
+  <ion-nav-bar align-title="left" class="newbarhead">
+    <ion-nav-buttons side="right">
+      <button  class="button  button-icon icon  common-color-white"  style="color: white;font-size: 1.3em;" ng-click="rightButtonAction()">
+        {{rightBtnTitle}}切换
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <!--内容区域-->
+  <ion-content scroll="true" class="animScrollContent portalIonContent" overflow-scroll="true">
+    <!--列表-->
+    <div id="menHu" ng-repeat="item in sysmenu">
+      <div class="content clearfix">
+        <p class="h5-p">{{item.seriesName}}</p>
+
+        <div class="appsCol1" ng-repeat="obj in item.items">
+          <div class="appsCol12" ng-click="logoClick( obj )">
+            <img  class="portalImg" id="35" src="img/app1/cxtx_f.png">
+            <p class="h5-p2">{{obj.appName}}</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- 分割线条-->
+      <div class="fengeLine"></div>
+
+    </div>
+
+  </ion-content>
+</ion-view>

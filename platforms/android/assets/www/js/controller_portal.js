@@ -158,19 +158,13 @@ angular.module('portal.controllers', [])
             data: {"Action": "GetSession", "id": userID, "mepId": imCode}
           }).success(function (data, status) {
 
-            alert("调接口成功的回调函数数据源=="+ data);
-
-
             var data = JSON.parse(decodeURIComponent(data));
-            alert("转换后-调接口成功的回调函数数据源=="+ data);
             if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
               $ToastUtils.showToast("获取用户权限失败!");
               return;
             }
 
             $scope.appurl = $sce.trustAsResourceUrl("http://www.r93535.com/im_gateway/base/security/userinfo!loginForBaseHtml.action?sessionid="+data.sessionid);
-            // alert("数据库的appurl ==" + appurl);
-
 
             if (NetData.get(appId) != null && NetData.get(appId) != "") {
               document.addEventListener("deviceready", onDeviceReady, false);
@@ -261,16 +255,16 @@ angular.module('portal.controllers', [])
 
       $scope.companyName = NetData.getName();
 
-      console.log("公司名称:" + $scope.companyName );
-
       if($scope.companyName === "" || $scope.companyName === null ||$scope.companyName === undefined){
         $scope.companyName="门户";
       }
+
       //点亮图标
       var lightApps = NetData.getLightApps();
       for (var i = 0; i < lightApps.length; i++) {
         document.getElementById("" + lightApps[i].appId).src = lightApps[i].appIcon;
       }
+
     });
 
     $scope.$on('error.update', function () {
