@@ -88,6 +88,8 @@ public class OAIntegration extends CordovaPlugin {
             final String appId = args.getString(1);
             //应用的名称
             String name = args.getString(2);
+            //当集成的应用是物资设备时，需要拿到URL
+            String url= args.getString(3);
 //            Log.i("传进来的包名：", packagename + "");
             if(!(isAppInstalled(UIUtils.getContext(),packagename == null ? "" : packagename.trim()))){
                 DialogUtils.alertDialog(cordova.getActivity(), "下载", "确认下载吗", new DialogUtils.DialogCallBack() {
@@ -118,9 +120,9 @@ public class OAIntegration extends CordovaPlugin {
 
             }else{
                 if(name.equals("公文处理")){
-                    startAppByAction(s1,name);
+                    startAppByAction(s1,name,url);
                 }else if(name.equals("物资设备")){
-                    startAppByAction(s2,name);
+                    startAppByAction(s2,name,url);
                 }
 
             }
@@ -158,35 +160,20 @@ public class OAIntegration extends CordovaPlugin {
 
 
     //启动APP
-    public void startAppByAction(String actionname,String name){
+    public void startAppByAction(String actionname,String name,String url){
         try {
             if(actionname.equals("oa.app")){
                 Intent intent=new Intent();
-                //判断是否为在线培训
-                if(actionname.equals("elearning.a")){
-                    intent.putExtra("key_elearning_default_login", true);
-                }
                 intent.setAction(actionname);
                 cordova.getActivity().startActivity(intent);
             }else if(actionname.equals("hideicon.yy")){//物资设备
-                //取出当前用户的username和realname
-                String logininfo= SPUtils.getString("login_info","");
-              JSONObject jsonObject=new JSONObject(logininfo);
-//              JSONObject userStr=jsonObject.getJSONObject("user");
-              String username = jsonObject.getString("loginAccount");
-              String realname = jsonObject.getString("userName");
-              System.out.println("用户名"+username+realname);
-              System.out.println("数据源字符串-- "+logininfo);
                 Intent intent=new Intent();
                 ComponentName cn = new ComponentName("com.mengyou.myplatforms",
                         "com.mengyou.myplatforms.MainActivity");
                 intent.setComponent(cn);
                 Uri uri = Uri.parse("wzsb");// 此处应与物资设备程序中Data中标签一致
                 intent.setData(uri);
-                String wzsbUrl="http://123.56.187.121:60/interfaceLogin.aspx?UserName="+username+"&RealName="+realname+"&GUID=c95c77759ba60769d55cf441508ee342";
-              System.out.println("用户名url "+wzsbUrl);
-
-              intent.putExtra("wzsb_url", wzsbUrl);
+              intent.putExtra("wzsb_url", url);
                 cordova.getActivity().startActivity(intent);
             }else{
                 Toast.makeText(UIUtils.getContext(), "应用程序异常", Toast.LENGTH_SHORT).show();

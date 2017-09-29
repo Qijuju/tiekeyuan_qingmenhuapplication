@@ -2,9 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api) {
-    // $scope, $state, $ionicSlideBoxDelegate, $pubionicloading, $greendao, FinshedApp, $rootScope, $api,$sce
-
+  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$timeout) {
     var userID; // userID = 232099
     var imCode; //  imCode = 866469025308438
     $scope.dataSource = {}; // 请求回来的数据源 json格式
@@ -27,6 +25,7 @@ angular.module('portal.controllers', [])
         }).success(function (data, status) {
           // 数据源赋值
           $scope.dataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
+          console.log("所有数据:"+JSON.stringify($scope.dataSource));
           $scope.sysmenu =  $scope.dataSource.sysmenu;
 
           // 从数据源中获取公司名称，当数据源为空时，默认显示门户。
@@ -36,11 +35,92 @@ angular.module('portal.controllers', [])
             $scope.name = $scope.dataSource.jsdept.name;
           }
 
-          // 图片的显示
+          // 图片的处理
+          angular.element(document).ready(function(){
+            // 获取到所有的logo标签img
+            var imgObjs = document.getElementsByClassName("portalImg");
+            var protalAppsCol12s = document.getElementsByClassName("protalAppsCol12");
+            $scope.appIconArr = [];
+            $scope.focusIndex ;
+            $scope.allData =[] ;
+            $scope.clickData =[];
 
+            // 根据数据源的flag标志判断图片是否点亮
+            for(var i=0;i<$scope.sysmenu.length;i++){
+              // 获取每一组的元素
+              var items =  $scope.sysmenu[i].items;
+              for(var j=0;j<items.length;j++){
+                $scope.allData.push(items[j]);
+                var flag = items[j].flag;
+                var appIcon = items[j].appIcon;
 
+                if(flag){
+                  $scope.clickObj = {};
+                  $scope.item = items[j];
+                  $scope.focusIndex=0;
+                  if (i === 0 ){
+                    $scope.focusIndex = j;
+                  }else if (  i > 0){
+                    for (var k=0;k<i;k++){
+                      $scope.focusIndex += $scope.sysmenu[k].items.length ;
+                    }
+                    $scope.focusIndex = $scope.focusIndex + j;
+                  }
+                  $scope.appIconArr.push( appIcon );
+                  $scope.clickData.push($scope.focusIndex);
 
+                }else {
+                  $scope.appIconArr.push(appIcon+'_f');
+                }
+              }
+            }
 
+            // 给点亮图标添加点击事件
+            for( var num=0;num< $scope.clickData.length;num++){
+              var index = $scope.clickData[num];
+              getConsole(index);
+            }
+            // 定义点亮图标的点击事件
+            function getConsole(index){
+              protalAppsCol12s[index].onclick = function() {
+                logoClick($scope.allData[index]);
+              };
+            }
+
+            // 调插件，获取所有的图片路径
+            $api.downloadQYYIcon($scope.appIconArr ,function (success) {
+              for (var i=0;i<success.length;i++){
+                imgObjs[i].src = success[i];
+                // $scope.allData[i].imgSrc = success[i];
+                // 通过便利，修改数据源
+                // for(var m=0;m<$scope.sysmenu.length;m++){
+                //   var items =  $scope.sysmenu[m].items;
+                //   for(var n=0;n<items.length;n++){
+                //     // 通过 m  和 n 计算出每个图标在所有图标中的位置
+                //     $scope.logoIndex = 0;
+                //     if (m === 0 ){
+                //       $scope.logoIndex = n;
+                //     }else if (  m > 0){
+                //       for (var k=0;k<m;k++){
+                //         $scope.logoIndex += $scope.sysmenu[k].items.length ;
+                //       }
+                //       $scope.logoIndex = $scope.logoIndex + n;
+                //     }
+                //     // alert( "每个图标在所有图标中的位置：" + $scope.logoIndex );
+                //
+                //   }
+                // }
+                // alert("数据源的所有的数据item111111: " + JSON.stringify($scope.allData));
+              }
+
+            },function (err) {
+
+            });
+
+            // alert("数据源的所有的数据item长度: " + $scope.allData.length);
+            // alert("数据源的所有的数据item22222: " + JSON.stringify($scope.allData));
+
+          });
         }).error(function (data, status) {
           $ToastUtils.showToast("获取用户权限失败!");
         });
@@ -49,171 +129,148 @@ angular.module('portal.controllers', [])
     }, function (err) {
     });
 
-    // 图片处理，本地有的话直接获取显示，没有的话下载显示并缓存到本地。
-    $api.downloadQYYIcon('hygl',function (success) {
-      // success 返回的是图片的绝对路径
-
-      alert( " 进入本地成功11:" +  success);
-    },function (err) {
-      alert( " 进入本地失败22:" +  err);
-    });
-
-    $scope.logoClick = function (obj) {
-
-      // 已经拿到数据源
-      //  alert( "接收的数据为appIcon：" + obj.appIcon + "<br>appId: " + obj.appId  + "<br>appName: " +obj.appName + "<br>appNum: " +obj.appNum+ "<br>flag: " +obj.flag+ "<br>type: " +obj.type );
-
-      function CheckImgExists(imgurl) {
-        var ImgObj = new Image(); //判断图片是否存在
-        ImgObj.src = imgurl;
-        //没有图片，则返回-1
-        if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {
-          return true;
+    //pubilc：选择调用谷歌还是其他浏览器
+    $scope.chooseBrowser = function (testUrl,appId) {
+      cordova.plugins.browsertab.isAvailable(function (result) {
+        if (!result) {
+          var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
         } else {
-          return false;
+          cordova.plugins.browsertab.openUrl(
+            testUrl,
+            function (successResp) {
+            }, function (failureResp) {
+            });
         }
-      }
-
-
+        //进行统计埋点
+        $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+        }, function (err) {
+        })
+      }, function (isAvailableError) {
+      });
     }
 
+    //通过接口得到访问应用的url
+    $scope.getQyyUrl=function (appId,params) {
+      //点击应用图标时调用getapplink的接口获取跳转的url
+      $http({
+        method: 'post',
+        timeout: 5000,
+        url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
+      }).success(function (data) {
+        var data =JSON.parse(decodeURIComponent(data));
+        $scope.chooseBrowser(data.url,appId);
+      }).error(function (err) {
 
-    // // 取出原始数据源信息
-    // var finshedAppsArr = FinshedApp.all();
-    //
-    // // 循环遍历数据源，根据id查找相应的图片信息。有的话，设置为相应的图片信息；没有的话，设置一个默认显示图片的路径。
-    // for (var i = 0; i < $scope.notifyNewList.length; i++) {
-    //
-    //   // 取出一条数据的id
-    //   var fromId = $scope.notifyNewList[i].FromID;
-    //
-    //   // 默认显示的图片
-    //   $scope.notifyNewList[i].appIcon = "img/notify.png";
-    //
-    //   // 查找数据源，设置图片信息
-    //   for (var j = 0; j < finshedAppsArr.length; j++) {
-    //     if (finshedAppsArr[j].appId == fromId) {
-    //       $scope.notifyNewList[i].appIcon = finshedAppsArr[j].appIcon;
-    //     }
-    //   }
-    // }
+      });
+    }
 
-    // $scope.$on('succeed.update', function (event) {
-    //   $pubionicloading.hide();
-    //
-    //   $scope.companyName = NetData.getName();
-    //
-    //   console.log("公司名称:" + $scope.companyName );
-    //
-    //   if($scope.companyName === "" || $scope.companyName === null ||$scope.companyName === undefined){
-    //     $scope.companyName="门户";
-    //   }
-    //   //点亮图标
-    //   var lightApps = NetData.getLightApps();
-    //   for (var i = 0; i < lightApps.length; i++) {
-    //     document.getElementById("" + lightApps[i].appId).src = lightApps[i].appIcon;
-    //   }
-    // });
-    //
-    // $scope.$on('error.update', function () {
-    //   $pubionicloading.hide();
-    //   // $ToastUtils.showToast("网络错误");
-    // });
-    //
-    //
-    // //rxy 跳转页面详情
-    // $scope.jumpUrl = function (appId) {
-    //   //获取当前用户的session(存储在基础平台)
-    //   $http({
-    //     method: 'post',
-    //     timeout: 5000,
-    //     // url:"http://88.1.1.22:8081",//测试环境
-    //     // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-    //     url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
-    //     data: {"Action": "GetSession", "id": userID, "mepId": imCode}
-    //   }).success(function (data, status) {
-    //
-    //
-    //     var data = JSON.parse(decodeURIComponent(data));
-    //     if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
-    //       $ToastUtils.showToast("获取用户权限失败!");
-    //       return;
-    //     }
-    //     //
-    //     // $scope.appurl = $sce.trustAsResourceUrl("http://www.r93535.com/im_gateway/base/security/userinfo!loginForBaseHtml.action?sessionid="+data.sessionid);
-    //     // alert("数据库的appurl ==" + appurl);
-    //
-    //
-    //     if (NetData.get(appId) != null && NetData.get(appId) != "") {
-    //       document.addEventListener("deviceready", onDeviceReady, false);
-    //       function onDeviceReady() {
-    //
-    //         //先测oa流程
-    //         if (appId === 199) {
-    //           //oa包名：com.r93535.oa
-    //           //爱加密包名：com.thundersec.encwechat
-    //           cordova.plugins.OAIntegration.getApk("com.thundersec.encwechat", "199", "公文处理", function (succ) {
-    //             //进行统计埋点
-    //             $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
-    //               // alert("埋点成功"+succ);
-    //             }, function (err) {
-    //
-    //             })
-    //           }, function (err) {
-    //           });
-    //         }else if( appId === 132){//物资设备
-    //           //物资设备包名：com.mengyou.myplatforms
-    //           //物资设备action名：hideicon.yy
-    //           cordova.plugins.OAIntegration.getApk("com.mengyou.myplatforms", "132", "物资设备", function (succ) {
-    //             //进行统计埋点
-    //             $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
-    //               // alert("埋点成功"+succ);
-    //             }, function (err) {
-    //
-    //             })
-    //           }, function (err) {
-    //           });
-    //         } else {
-    //           /**
-    //            * 打开浏览器时先判断是否支持browserTab
-    //            * 否则采用inappbrowser
-    //            * @type {string}
-    //            */
-    //           var testURL = NetData.get(appId).appUrl + data.sessionid;
-    //           // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
-    //           cordova.plugins.browsertab.isAvailable(function (result) {
-    //               if (!result) {
-    //
-    //                 cordova.InAppBrowser.open(testURL, '_blank', 'location=no,closebuttoncaption=返回');
-    //               } else {
-    //
-    //                 cordova.plugins.browsertab.openUrl(
-    //                   testURL,
-    //                   function (successResp) {
-    //                   },
-    //                   function (failureResp) {
-    //                     // alert('failed to launch browser tab');
-    //                     // error.textContent = 'failed to launch browser tab';
-    //                     // error.style.display = '';
-    //                   });
-    //               }
-    //               //进行统计埋点
-    //               $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
-    //                 // alert("埋点成功"+succ);
-    //               }, function (err) {
-    //
-    //               })
-    //             },
-    //             function (isAvailableError) {
-    //             });
-    //         }
-    //       }
-    //     }
-    //   }).error(function (data, status) {
-    //     $ToastUtils.showToast("获取用户权限失败!");
-    //   });
-    // };
+    function logoClick(item) {
+      var params = '';
+      //判断该应用图标是否是“工程部位”，若是则通过二维码扫描拿到入参并赋值给params
+      if (item.appId === "237") {
+        cordova.plugins.barcodeScanner.scan(function (success) {
+            if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+              var result = angular.fromJson(success.text);
+              params = result;
+            } else {
+              $ToastUtils.showToast("请扫描工程部位的二维码！");
+            }
+          }, function (err) {
+            $ToastUtils.showToast("请扫描工程部位的二维码！");
+          }, {
+            preferFrontCamera: false, // iOS and Android
+            showFlipCameraButton: true, // iOS and Android
+            showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+            torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+            saveHistory: false,//保存扫描历史（默认为false）
+            prompt: "请将二维码放在扫描框中", // Android 提示信息
+            resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+            formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+            orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+          }
+        );
+      }
+      switch (item.type) {
+        //普通h5应用
+        case "0":
+          alert("普通h5");
+          $scope.getQyyUrl(item.appId, params);
+          break;
+        //普通外部应用(url带参数访问,例：物资设备)
+        case "11":
+          //物资设备包名：com.mengyou.myplatforms
+          //物资设备action名：hideicon.yy
+          /**
+           * 先获取物资设备的访问的url
+           * 再调用插件判断该应用是否存在，并进行相应的下载及跳转
+           */
+          alert("物资设备");
+          $http({
+            method: 'post',
+            timeout: 5000,
+            url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            data: {
+              "Action": "GetAppLink",
+              "id": userID,
+              "mepId": imCode,
+              "platform": "A",
+              "appId": appId,
+              "params": params
+            }
+          }).success(function (data) {
+            var data = JSON.parse(decodeURIComponent(data));
+            cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, data.url, function (succ) {
+              //进行统计埋点
+              $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
+                alert("物资设备埋点成功" + succ);
+              }, function (err) {
+              })
+            }, function (err) {
+            });
+          }).error(function (err) {
 
+          });
+          break;
+        //特殊外部应用（android原生集成，例：公文处理）
+        case "12":
+          alert("公文处理");
+          //oa包名：com.r93535.oa
+          //爱加密包名：com.thundersec.encwechat
+          cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, '', function (succ) {
+            //进行统计埋点
+            $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
+              alert("埋点成功" + succ);
+            }, function (err) {
+            })
+          }, function (err) {
+          });
+          break;
+        //VPN应用
+        case "2":
+          alert("vpn应用");
+          var confirmPopup = $ionicPopup.confirm({
+            title: "友情提示",
+            template: item.appName + "需通过VPN访问，请确认是否安装VPN并连接成功!", //从服务端获取更新的内容
+            cancelText: '取消',
+            okText: '确定'
+          });
+
+          confirmPopup.then(function (res) {
+            if (res) {
+              $scope.getQyyUrl(item.appId, params);
+            }
+          });
+          break;
+        //二维码应用
+        case "3":
+          alert("二维码");
+          $scope.getQyyUrl(item.appId, params);
+          break;
+      }
+    }
   })
 
 

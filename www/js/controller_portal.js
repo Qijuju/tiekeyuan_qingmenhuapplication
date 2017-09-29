@@ -280,8 +280,6 @@ angular.module('portal.controllers', [])
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          // alert("呀呀inAPPbrowser");
-          // hardwareback=no
           var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
         } else {
           // alert("呀呀browsertab");

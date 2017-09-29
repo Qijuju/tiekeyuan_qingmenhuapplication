@@ -1014,50 +1014,61 @@ public class ThriftApiClient extends CordovaPlugin {
     public void downloadQYYIcon(final JSONArray args, final CallbackContext callbackContext) {
         try {
             String fileid = args.getString(0);//应用图标名称可以不带后缀，一般为应用名称缩写
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("id", IMSwitchLocal.getUserID());
-            map.put("mepId", UIUtils.getDeviceId());
-            map.put("fileId", fileid);
-            map.put("type", "ExtAppIcon");
-            map.put("platform", "A");
+            JSONArray jsonArray=new JSONArray(fileid);
+          System.out.println("数据总长度："+jsonArray.length());
+          final List<String> iconList=new ArrayList<String>();
+          for(int i=0;i<jsonArray.length();i++){
+            System.out.println("数据index："+i);
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
-            final String iconFilePath = filePath+File.separator+fileid+".png";
+            final String iconFilePath = filePath+File.separator+jsonArray.get(i)+".png";
             File iconFile = new File(iconFilePath);
-          if(!iconFile.exists()){
-            OkHttpUtils.get()
-              .url(Constants.commonfileurl + "/DownloadFile")
-              .params(map)
-              .build()
-              .connTimeOut(10000)
-              .execute(new ImFileCallBack(filePath, "") {
-                @Override
-                public void onBefore(okhttp3.Request request, int id) {
-                  super.onBefore(request, id);
-                }
+            if(!iconFile.exists()){
+              fileid = jsonArray.get(i).toString();
+              Map<String, String> map = new HashMap<String, String>();
+              map.put("id", IMSwitchLocal.getUserID());
+              map.put("mepId", UIUtils.getDeviceId());
+              map.put("fileId", fileid);
+              map.put("type", "ExtAppIcon");
+              map.put("platform", "A");
+              OkHttpUtils.get()
+                .url(Constants.commonfileurl + "/DownloadFile")
+                .params(map)
+                .build()
+                .connTimeOut(10000)
+                .execute(new ImFileCallBack(filePath, "") {
+                  @Override
+                  public void onBefore(okhttp3.Request request, int id) {
+                    super.onBefore(request, id);
+                  }
 
-                @Override
-                public void onError(Call call, Exception e, int id) {
-                  setResult("failure", PluginResult.Status.ERROR, callbackContext);
-                }
+                  @Override
+                  public void onError(Call call, Exception e, int id) {
+                    setResult("failure", PluginResult.Status.ERROR, callbackContext);
+                  }
 
-                @Override
-                public void onResponse(File response, int id) {
-                  setResult(iconFilePath, PluginResult.Status.OK, callbackContext);
-                }
+                  @Override
+                  public void onResponse(File response, int id) {
+                    iconList.add(iconFilePath);
+                  }
 
-                @Override
-                public void inProgress(float progress, long total, int id) {
-                  super.inProgress(progress, total, id);
-                }
-              });
-          }else{
-            setResult(iconFilePath, PluginResult.Status.OK, callbackContext);
+                  @Override
+                  public void inProgress(float progress, long total, int id) {
+                    super.inProgress(progress, total, id);
+
+                  }
+                });
+            }else{
+              iconList.add(iconFilePath);
+            }
           }
+          for(int i=0;i<iconList.size();i++){
+            System.out.println("iconPath："+iconList.get(i).toString());
+          }
+          setResult(new JSONArray(iconList), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * 应用安装
