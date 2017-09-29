@@ -52,7 +52,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
         StatusBar.styleDefault();
       }
 
-
     });
     var backButtonPressedOnceToExit=false;
     //登陆界面直接退出

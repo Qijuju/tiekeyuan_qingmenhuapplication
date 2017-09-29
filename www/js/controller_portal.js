@@ -2,7 +2,131 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $pubionicloading, NetData, $greendao, $ionicPopup, FinshedApp, $rootScope, $http, $api) {
+  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $pubionicloading, NetData, $greendao, FinshedApp, $rootScope, $http, $api,$sce) {
+
+    // $mqtt.getUserInfo(function (succ) {
+    //   userID = succ.userID;
+    //
+    //   //获取人员所在部门，点亮图标
+    //   $mqtt.getImcode(function (imcode) {
+    //     NetData.getInfo(userID, imcode);
+    //     imCode = imcode;
+    //     $http({
+    //       method: 'post',
+    //       timeout: 5000,
+    //       // url:"http://88.1.1.22:8081",//测试环境
+    //       url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+    //       // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+    //       data: {"Action": "GetSession", "id": userID, "mepId": imCode}
+    //     }).success(function (data, status) {
+    //
+    //       var data = JSON.parse(decodeURIComponent(data));
+    //       if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
+    //         $ToastUtils.showToast("获取用户权限失败!");
+    //         return;
+    //       }
+    //       $scope.xinWenTongZhiURL = $sce.trustAsResourceUrl("http://www.r93535.com/im_gateway/base/security/userinfo!loginForBaseHtml.action?sessionid="+ data.sessionid);
+    //
+    //       if (NetData.get(appId) != null && NetData.get(appId) != "") {
+    //         document.addEventListener("deviceready", onDeviceReady, false);
+    //         function onDeviceReady() {
+    //
+    //           //先测oa流程
+    //           if (appId === 199) {
+    //             //oa包名：com.r93535.oa
+    //             //爱加密包名：com.thundersec.encwechat
+    //             cordova.plugins.OAIntegration.getApk("com.thundersec.encwechat", "199", "公文处理", function (succ) {
+    //               //进行统计埋点
+    //               $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+    //                 // alert("埋点成功"+succ);
+    //               }, function (err) {
+    //
+    //               })
+    //             }, function (err) {
+    //             });
+    //           }else if( appId === 132){//物资设备
+    //             //物资设备包名：com.mengyou.myplatforms
+    //             //物资设备action名：hideicon.yy
+    //             cordova.plugins.OAIntegration.getApk("com.mengyou.myplatforms", "132", "物资设备", function (succ) {
+    //               //进行统计埋点
+    //               $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+    //                 // alert("埋点成功"+succ);
+    //               }, function (err) {
+    //               })
+    //             }, function (err) {
+    //             });
+    //           } else {
+    //             /**
+    //              * 打开浏览器时先判断是否支持browserTab
+    //              * 否则采用inappbrowser
+    //              * @type {string}
+    //              */
+    //             var testURL = NetData.get(appId).appUrl + data.sessionid;
+    //             // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
+    //             cordova.plugins.browsertab.isAvailable(function (result) {
+    //                 if (!result) {
+    //
+    //                   cordova.InAppBrowser.open(testURL, '_blank', 'location=no,closebuttoncaption=返回');
+    //                 } else {
+    //                   cordova.plugins.browsertab.openUrl(
+    //                     testURL,
+    //                     function (successResp) {
+    //                     },
+    //                     function (failureResp) {
+    //                     });
+    //                 }
+    //                 //进行统计埋点
+    //                 $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+    //                   // alert("埋点成功"+succ);
+    //                 }, function (err) {
+    //                 })
+    //               },
+    //               function (isAvailableError) {
+    //               });
+    //           }
+    //         }
+    //       }
+    //     }).error(function (data, status) {
+    //       $ToastUtils.showToast("获取用户权限失败!");
+    //     });
+    //
+    //   }, function (err) {
+    //
+    //   })
+    // }, function (err) {
+    //   $pubionicloading.hide();
+    // })
+    //
+    // // 门户默认显示新闻通知列表
+    // document.getElementById("menHu").style.display = "none";
+    // document.getElementById('iframe').style.display = "block";
+    //
+    // // 动态设置iframe的宽高
+    // $("#iframe").width(  window.screen.width );
+    // $("#iframe").height( window.screen.height );
+    //
+    // var isShow = false;
+    // $scope.rightBtnTitle = "工作";
+    //
+    // $scope.rightButtonAction = function () {
+    //   isShow = !isShow;
+    //   showAndHidden();
+    // };
+    //
+    // function showAndHidden() {
+    //   if(isShow){
+    //     document.getElementById('iframe').style.display = "none";
+    //     document.getElementById('menHu').style.display = "block";
+    //     $scope.rightBtnTitle = "门户";
+    //     $rootScope.menHuTitle = "工作";
+    //
+    //   }else {
+    //     document.getElementById('iframe').style.display = "block";
+    //     document.getElementById('menHu').style.display = "none";
+    //     $scope.rightBtnTitle = "工作";
+    //     $rootScope.menHuTitle = "门户";
+    //   }
+    // }
 
     $mqtt.getUserInfo(function (succ) {
       userID = succ.userID;
@@ -29,6 +153,96 @@ angular.module('portal.controllers', [])
         $mqtt.getImcode(function (imcode) {
           NetData.getInfo(userID, imcode);
           imCode = imcode;
+          $http({
+            method: 'post',
+            timeout: 5000,
+            // url:"http://88.1.1.22:8081",//测试环境
+            url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            data: {"Action": "GetSession", "id": userID, "mepId": imCode}
+          }).success(function (data, status) {
+
+            var data = JSON.parse(decodeURIComponent(data));
+            if (data.sessionid == null && typeof(data.sessionid) == "undefined" && data.sessionid == "") {
+              $ToastUtils.showToast("获取用户权限失败!");
+              return;
+            }
+
+            $scope.appurl = $sce.trustAsResourceUrl("http://www.r93535.com/im_gateway/base/security/userinfo!loginForBaseHtml.action?sessionid="+data.sessionid);
+
+            if (NetData.get(appId) != null && NetData.get(appId) != "") {
+              document.addEventListener("deviceready", onDeviceReady, false);
+              function onDeviceReady() {
+
+                //先测oa流程
+                if (appId === 199) {
+                  //oa包名：com.r93535.oa
+                  //爱加密包名：com.thundersec.encwechat
+                  cordova.plugins.OAIntegration.getApk("com.thundersec.encwechat", "199", "公文处理", function (succ) {
+                    //进行统计埋点
+                    $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                      // alert("埋点成功"+succ);
+                    }, function (err) {
+
+                    })
+                  }, function (err) {
+                  });
+                }else if( appId === 132){//物资设备
+                  //物资设备包名：com.mengyou.myplatforms
+                  //物资设备action名：hideicon.yy
+                  cordova.plugins.OAIntegration.getApk("com.mengyou.myplatforms", "132", "物资设备", function (succ) {
+                    //进行统计埋点
+                    $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                      // alert("埋点成功"+succ);
+                    }, function (err) {
+
+                    })
+                  }, function (err) {
+                  });
+                } else {
+                  /**
+                   * 打开浏览器时先判断是否支持browserTab
+                   * 否则采用inappbrowser
+                   * @type {string}
+                   */
+                  var testURL = NetData.get(appId).appUrl + data.sessionid;
+                  // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
+                  cordova.plugins.browsertab.isAvailable(function (result) {
+                      if (!result) {
+
+                        cordova.InAppBrowser.open(testURL, '_blank', 'location=no,closebuttoncaption=返回');
+                      } else {
+
+                        cordova.plugins.browsertab.openUrl(
+                          testURL,
+                          function (successResp) {
+                          },
+                          function (failureResp) {
+                            // alert('failed to launch browser tab');
+                            // error.textContent = 'failed to launch browser tab';
+                            // error.style.display = '';
+                          });
+                      }
+                      //进行统计埋点
+                      $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+                        // alert("埋点成功"+succ);
+                      }, function (err) {
+
+                      })
+                    },
+                    function (isAvailableError) {
+                      // alert('failed to query availability of in-app browser tab');
+                      // error.textContent = 'failed to query availability of in-app browser tab';
+                      // error.style.display = '';
+                    });
+                }
+              }
+            }
+
+          }).error(function (data, status) {
+            $ToastUtils.showToast("获取用户权限失败!");
+          });
+
         }, function (err) {
 
         })
@@ -38,19 +252,24 @@ angular.module('portal.controllers', [])
     })
 
 
+
+
     $scope.$on('succeed.update', function (event) {
       $pubionicloading.hide();
+
       $scope.companyName = NetData.getName();
-      if ($scope.companyName === "" || $scope.companyName === null || $scope.companyName === undefined) {
-        $scope.companyName = "门户";
+
+      if($scope.companyName === "" || $scope.companyName === null ||$scope.companyName === undefined){
+        $scope.companyName="门户";
       }
+
       //点亮图标
       var lightApps = NetData.getLightApps();
       for (var i = 0; i < lightApps.length; i++) {
         document.getElementById("" + lightApps[i].appId).src = lightApps[i].appIcon;
       }
-    });
 
+    });
 
     $scope.$on('error.update', function () {
       $pubionicloading.hide();
@@ -61,8 +280,6 @@ angular.module('portal.controllers', [])
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          // alert("呀呀inAPPbrowser");
-          // hardwareback=no
           var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
         } else {
           // alert("呀呀browsertab");

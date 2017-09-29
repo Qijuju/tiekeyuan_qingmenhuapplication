@@ -4,7 +4,6 @@
 angular.module('portal.services', [])
   .factory('FinshedApp', function () {
     // Might use a resource here that returns a JSON array
-
     // Some fake testing data
     var finshedApps = [{
       appId: 10,
@@ -168,14 +167,12 @@ angular.module('portal.services', [])
   })
   .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
     // var userID;
-
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;
     var lightApps = new Array();
     var jsdept = [];
     var sysmenu = [];
     return {
-
       //获取人员所在公司，点亮图标，图片更改信息
       getInfo: function (userID,imcode) {
         $http({
@@ -187,10 +184,14 @@ angular.module('portal.services', [])
           // url: "http://202.137.140.133:6001",//老挝正式环境
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
-          var data=JSON.parse(decodeURIComponent(data));
-          // alert("getdetail22222"+JSON.stringify(data));
+
+
+          var data = JSON.parse(decodeURIComponent(data));
+
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
+
+          // alert("哈哈哈"+jsdept);
           companyName = "";
           if (jsdept != null && typeof(jsdept) != "undefined") {
             for (var i = 0; i < jsdept.length; i++) {
@@ -224,15 +225,12 @@ angular.module('portal.services', [])
                 lightApps.push(sysmenu[i]);
               }
             }
-            // alert("getdetail22222"+JSON.stringify(sysmenu));
           }
           //获取变动的图片，名称（暂时不用改动
           $rootScope.$broadcast('succeed.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
         });
-
-
       },
 
 
