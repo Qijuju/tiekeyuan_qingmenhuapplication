@@ -31,19 +31,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/contact-third.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/contact-third.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/jsbean/ChildJSBean.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/paho/jsbean/ChildJSBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/dash.css" afterPath="$PROJECT_DIR$/www/css/dash.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_portal.js" afterPath="$PROJECT_DIR$/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/aboutRecommend.html" afterPath="$PROJECT_DIR$/www/templates/aboutRecommend.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/www/templates/contact-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/www/templates/contact-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/www/templates/contact-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/www/templates/contact-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/www/templates/contact-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/www/templates/contact-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-third.html" afterPath="$PROJECT_DIR$/www/templates/contact-third.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -871,14 +858,7 @@
       <workItem from="1505701864062" duration="60503000" />
       <workItem from="1505958960414" duration="878000" />
       <workItem from="1505959914004" duration="51145000" />
-      <workItem from="1506476450127" duration="22315000" />
-    </task>
-    <task id="LOCAL-00156" summary="修改手机通讯录界面">
-      <created>1492670502645</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1492670502645</updated>
+      <workItem from="1506476450127" duration="23025000" />
     </task>
     <task id="LOCAL-00157" summary="新版本mqtt">
       <created>1493014832294</created>
@@ -1216,11 +1196,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506481343453</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="0929commit:修改联系人八级目录添加职务展示">
+      <created>1506652572870</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1506652572870</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2395220000" />
+    <option name="totallyTimeSpent" value="2395930000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1310,7 +1297,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="样式修改" />
     <MESSAGE value="合并宋亚 （最新代码" />
     <MESSAGE value="。。" />
     <MESSAGE value="最新代码提交" />
@@ -1335,7 +1321,8 @@
     <MESSAGE value="0925commit:准备建立老挝项目单独分支，先将代码提交至最新" />
     <MESSAGE value="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题" />
     <MESSAGE value="0926commit:添加下载轻应用图标接口，并修改登陆接口每次登陆都报登陆失败的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="0926commit:添加下载轻应用图标接口，并修改登陆接口每次登陆都报登陆失败的bug" />
+    <MESSAGE value="0929commit:修改联系人八级目录添加职务展示" />
+    <option name="LAST_COMMIT_MESSAGE" value="0929commit:修改联系人八级目录添加职务展示" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
