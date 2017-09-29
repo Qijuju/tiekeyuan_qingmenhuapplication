@@ -96,7 +96,6 @@ angular.module('im.routes', [])
         cache:false
       })
       // Each tab has its own nav history stack:
-
       .state('tab.message', {
         url: '/message/:id/:sessionid/:grouptype',
         cache:false,
@@ -116,7 +115,8 @@ angular.module('im.routes', [])
             templateUrl: 'templates/tab-notification.html',
             controller: 'newnotificationCtrl'
           }
-        }
+        },
+        reload:true
       })
       .state('tab.webpage', {
         url: '/webpage',
@@ -140,13 +140,23 @@ angular.module('im.routes', [])
         }
       })
       //rxy 页面首页动态获取路由
+      // .state('tab.portal', {
+      //   url: '/portal',
+      //   cache:false,
+      //   views: {
+      //     'tab-portal': {
+      //       templateUrl: 'templates/tab-portal.html',
+      //       controller: 'portalCtrl'
+      //     }
+      //   }
+      // })
       .state('tab.portal', {
         url: '/portal',
         cache:false,
         views: {
           'tab-portal': {
-            templateUrl: 'templates/tab-portal.html',
-            controller: 'portalCtrl'
+            templateUrl: 'templates/tab-portal2.html',
+            controller: 'portalCtrl2'
           }
         }
       })

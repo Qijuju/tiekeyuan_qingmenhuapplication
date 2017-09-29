@@ -10,7 +10,7 @@ public class User extends BaseBean {
   private boolean admin;
   private String deptName;
   private String deptid;
-  private String displayName;
+  private String displayName;//用户中文名字
   private String email;
   private String fixedphone;
   private String id;
@@ -26,7 +26,7 @@ public class User extends BaseBean {
   private String type;
   private Im im;
   private boolean isAttention;
-  private String loginAccount;
+  private String loginAccount;//用户登录账号
   private String loginName;
 
   public class Im {

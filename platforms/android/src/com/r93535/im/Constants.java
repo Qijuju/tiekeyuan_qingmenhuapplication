@@ -41,8 +41,6 @@ public class Constants {
   //老挝消息服务器环境
 //  public static final String commonmsgurl= "http://202.137.140.133:6001";
 
-
-
   //消息服务生产环境
 //  public static final String commonmsgurl= "http://immobile.r93535.com:8088/crbim/imApi/1.0";
 

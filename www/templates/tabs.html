@@ -5,7 +5,7 @@ navigation history that also transitions its views in and out.
 -->
 
 <!-- 页面切换功tab-->
-<ion-tabs class="tabs-icon-top  tabs-color-active-positive tabs-striped">
+<ion-tabs id="ionTabs" class="tabs-icon-top  tabs-color-active-positive tabs-striped">
   <!--消息-->
   <ion-tab class="newtabs newtab"  badge="badge()" badge-style="badge-assertive" on-select="onTabSelected()" on-deselect="onTabDeselected()"
            title="消息" icon-off="tkyiconmessage-off" icon-on="tkyiconmessage-on" href="#/tab/message">
@@ -17,7 +17,7 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-notification"></ion-nav-view>
   </ion-tab>
   <!--轻门户-->
-  <ion-tab  class=" newtab" title="门户" icon-off="tkyiconwork-off" icon-on="tkyiconwork-on" href="#/tab/portal">
+  <ion-tab id="tab__MenHu2123456789"  class=" newtab" title="{{menHuTitle}}" icon-off="tkyiconwork-off" icon-on="tkyiconwork-on" href="#/tab/portal">
     <ion-nav-view name="tab-portal"></ion-nav-view>
   </ion-tab>
 
