@@ -3864,19 +3864,14 @@ angular.module('message.controllers', [])
             $rootScope.appIconPaths = success;
             console.log("后端拿到的icon路径集合:"+JSON.stringify($rootScope.appIconPaths));
           },function (err) {
-
           });
-
         });
-
       }).error(function (data, status) {
         $ToastUtils.showToast("获取用户权限失败!");
       });
     }, function (err) {
-    })
+    });
     // 门户代码结束
-
-
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope

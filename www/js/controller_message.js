@@ -3864,19 +3864,14 @@ angular.module('message.controllers', [])
             $rootScope.appIconPaths = success;
             console.log("后端拿到的icon路径集合:"+JSON.stringify($rootScope.appIconPaths));
           },function (err) {
-
           });
-
         });
-
       }).error(function (data, status) {
         $ToastUtils.showToast("获取用户权限失败!");
       });
     }, function (err) {
-    })
+    });
     // 门户代码结束
-
-
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope
@@ -3973,10 +3968,10 @@ angular.module('message.controllers', [])
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
           }
           cordova.plugins.notification.badge.set($scope.allNoRead,function (succ) {
-            // alert("成功主界面"+succ);
+
             $mqtt.saveInt("badgeCount",$scope.allNoRead);
           },function (err) {
-            // alert("失败"+err);
+
           });
         }
       },function (err) {
@@ -4027,9 +4022,9 @@ angular.module('message.controllers', [])
     //一进来就检查网络是否连接
     $mqtt.setOnNetChangeListener(function (success) {
       $rootScope.isNetConnect='true';
-      // alert("进来了吗？ok");
+
     },function (err) {
-      // alert("进来了吗？no");
+
       $rootScope.isNetConnect='false';
       $ToastUtils.showToast("当前网络不可用");
     });
