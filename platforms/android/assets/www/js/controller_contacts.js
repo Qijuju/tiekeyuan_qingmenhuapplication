@@ -343,7 +343,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+  .controller('ContactSecondCtrl', function ($scope, $state,$chatarr, $stateParams, $contacts,$greendao,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
     $rootScope.totalSecondCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;//传过来的id；

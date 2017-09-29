@@ -89,8 +89,6 @@ angular.module('login.controllers', [])
       }
       $scope.name = name;
       $scope.password = password;
-      // alert(name);
-      // alert(password);
       $api.login($scope.name, $scope.password, function (message) {
 
         if (message.resultCode === '105') {
@@ -103,9 +101,6 @@ angular.module('login.controllers', [])
           confirmPopup.then(function (isConfirm) {
             if (isConfirm) {
               $pubionicloading.showloading('','登录中...');
-              // $ionicLoading.show({
-              //   template: '登录中...'
-              // });
               if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
@@ -128,7 +123,6 @@ angular.module('login.controllers', [])
               loginM();
             }, function (message) {
               $pubionicloading.hide();
-              // alert("22222");
               $ToastUtils.showToast(message);
             });
           } else {
@@ -292,7 +286,6 @@ angular.module('login.controllers', [])
       mqtt = cordova.require('MqttChat.mqtt_chat');
 
       $mqtt.getMqtt().getString('zuinewID', function (message) {
-        // alert(message)
         $greendao.queryData('GesturePwdService', 'where id=?', message, function (data) {
           passworda = data[0].pwd;
         }, function (err) {
@@ -347,12 +340,10 @@ angular.module('login.controllers', [])
       mqtt.getString('loginpage', function (loginpagea) {
         loginpageaa = loginpagea;
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       mqtt.getString('passlogin', function (passlogina) {
         passlogin = passlogina;
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       mqtt.getString('namegesture', function (namegesture) {
         namegesturea = namegesture;
@@ -365,7 +356,6 @@ angular.module('login.controllers', [])
             if ($scope.timea > 0 && $scope.timea < 5) {
               $scope.timea = $scope.timea - 1;
             }
-            // $scope.codetime = $scope.timea+"秒后跳转";
             if ($scope.timea < 1 ) {//此处需要判断是否已经走了登录的方法
               $scope.timea = 1;
               //取消定时器
@@ -375,19 +365,15 @@ angular.module('login.controllers', [])
             }
           }, 1000);
         }, function (msg) {
-          // $ToastUtils.showToast("还未设置手势密码");
         });
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       if ($mqtt.isLogin()) {
-        // alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           $api.getAllGroupIds(function (groups) {
             if (msg != null && msg != '') {
               $mqtt.startMqttChat(msg + ',' + groups);
               $mqtt.setLogin(true);
-              // $state.go('tab.message');
               return;
             }
           }, function (err) {
@@ -406,7 +392,6 @@ angular.module('login.controllers', [])
       if (isClickGo) {
         return;
       }
-      // alert("dianjile");
       //防止重复点击
       isClickGo = false;
       $interval.cancel(timer);
@@ -415,12 +400,7 @@ angular.module('login.controllers', [])
 
     var ifyuju = function () {
       //测试自动登录
-      // passlogin = 1;
       if (passlogin == "1") {
-        // $ToastUtils.showToast("网路异常！");
-
-        // namegesturea = 'chenglilicll';
-        // pwdgesturea = 'password';
         $api.login(namegesturea, pwdgesturea, function (message) {
           if (message.resultCode === '105') {
             var confirmPopup = $ionicPopup.confirm({
@@ -432,13 +412,6 @@ angular.module('login.controllers', [])
             confirmPopup.then(function (isConfirm) {
               if (isConfirm) {
                 $pubionicloading.showloading('','正在加载...');
-                // $ionicLoading.show({
-                //   content: 'Loading',
-                //   animation: 'fade-in',
-                //   showBackdrop: false,
-                //   maxWidth: 100,
-                //   showDelay: 0
-                // });
                 if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                   $api.activeUser(message.userID, function (message) {
                     loginM();
@@ -506,7 +479,6 @@ angular.module('login.controllers', [])
         $state.go('gesturelogin');
       }
       else {
-        // $ToastUtils.showToast("网路异常！");
         $state.go('login');
       }
     }
@@ -517,14 +489,9 @@ angular.module('login.controllers', [])
       $api.SetDeptInfo(function (msg) {
 
         mqtt.getUserId(function (userID) {
-
           $rootScope.rootUserId = userID;
-
-          // alert("当前用户的id"+userID);
         }, function (err) {
         });
-        // alert(message.toString());
-        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         //调用保存用户名方法
         mqtt.saveLogin('name', namegesturea, function (message) {
         }, function (message) {

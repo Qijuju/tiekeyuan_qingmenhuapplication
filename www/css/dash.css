@@ -36,3 +36,11 @@
 .padding_10{
   padding:10px;
 }
+/**显示职务样式**/
+.proname{
+  margin-top: 3px;
+  margin-left: 10px;
+  margin-bottom: 3px;
+  font-size: 13px;
+  color: #a9a9a9
+}

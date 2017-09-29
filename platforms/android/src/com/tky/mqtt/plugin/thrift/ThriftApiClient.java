@@ -515,6 +515,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 userList.setActive(user.isActive());
                 userList.setUserID(user.getId());
                 userList.setUserName(user.getDisplayName());
+                userList.setProName(user.getProname());
                 usersList.add(userList);
             }
         }
