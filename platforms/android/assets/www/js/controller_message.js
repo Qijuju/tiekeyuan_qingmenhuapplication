@@ -3814,7 +3814,69 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
+
+    /*门户页数据请求代码开始。
+     * 1.写在此处的原因：
+     * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
+     *
+     * */
+
+    // 门户页面数据请求
+    var userID; // userID = 232099
+    var imCode; //  imCode = 866469025308438
+
+    $mqtt.getUserInfo(function (succ) {
+      userID = succ.userID;
+      //获取人员所在部门，点亮图标
+      $mqtt.getImcode(function (imcode) {
+        NetData.getInfo(userID, imcode);
+        imCode = imcode;
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
+        }).success(function (data, status) {
+          // 门户页面对应的所有的数据源
+          $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
+          $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
+
+          // 定义一个存放 appIcon 的数组对象
+          $scope.appIconArr = [];
+          // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
+          for(var i=0;i<$scope.sysmenu.length;i++){
+            var items =  $scope.sysmenu[i].items;
+            for(var j=0;j<items.length;j++){
+              var flag = items[j].flag;
+              var appIcon = items[j].appIcon;
+              if(flag){
+                $scope.appIconArr.push( appIcon );
+              }else {
+                $scope.appIconArr.push(appIcon+'_f');
+              }
+            }
+          }
+
+          // 调插件，获取所有的图片路径
+          $api.downloadQYYIcon($scope.appIconArr ,function (success) {
+            $rootScope.appIconPaths = success;
+            console.log("后端拿到的icon路径集合:"+JSON.stringify($rootScope.appIconPaths));
+          },function (err) {
+
+          });
+
+        });
+
+      }).error(function (data, status) {
+        $ToastUtils.showToast("获取用户权限失败!");
+      });
+    }, function (err) {
+    })
+    // 门户代码结束
+
+
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope
@@ -4829,6 +4891,8 @@ angular.module('message.controllers', [])
         });
       }
     });
+
+
 
   })
 

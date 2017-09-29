@@ -158,7 +158,8 @@ angular.module('im.routes', [])
             templateUrl: 'templates/tab-portal2.html',
             controller: 'portalCtrl2'
           }
-        }
+        },
+        reload:true
       })
       //rxy 页面详情路由
       .state('cxtx', {

@@ -1014,14 +1014,14 @@ public class ThriftApiClient extends CordovaPlugin {
     public void downloadQYYIcon(final JSONArray args, final CallbackContext callbackContext) {
         try {
             String fileid = args.getString(0);//应用图标名称可以不带后缀，一般为应用名称缩写
-            JSONArray jsonArray=new JSONArray(fileid);
+            final JSONArray jsonArray=new JSONArray(fileid);
           System.out.println("数据总长度："+jsonArray.length());
           final List<String> iconList=new ArrayList<String>();
           for(int i=0;i<jsonArray.length();i++){
             System.out.println("数据index："+i);
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
             final String iconFilePath = filePath+File.separator+jsonArray.get(i)+".png";
-            File iconFile = new File(iconFilePath);
+            final File iconFile = new File(iconFilePath);
             if(!iconFile.exists()){
               fileid = jsonArray.get(i).toString();
               Map<String, String> map = new HashMap<String, String>();
@@ -1030,15 +1030,19 @@ public class ThriftApiClient extends CordovaPlugin {
               map.put("fileId", fileid);
               map.put("type", "ExtAppIcon");
               map.put("platform", "A");
+              iconList.add("-1");
+              final int finalI = i;
               OkHttpUtils.get()
                 .url(Constants.commonfileurl + "/DownloadFile")
                 .params(map)
                 .build()
                 .connTimeOut(10000)
                 .execute(new ImFileCallBack(filePath, "") {
+                  int position = 0;
                   @Override
                   public void onBefore(okhttp3.Request request, int id) {
                     super.onBefore(request, id);
+                    position = finalI;
                   }
 
                   @Override
@@ -1048,7 +1052,10 @@ public class ThriftApiClient extends CordovaPlugin {
 
                   @Override
                   public void onResponse(File response, int id) {
-                    iconList.add(iconFilePath);
+                    iconList.set(position, iconFilePath);
+                    if (jsonArray.length() == iconList.size()) {
+                      setResult(new JSONArray(iconList), PluginResult.Status.OK, callbackContext);
+                    }
                   }
 
                   @Override
@@ -1061,10 +1068,12 @@ public class ThriftApiClient extends CordovaPlugin {
               iconList.add(iconFilePath);
             }
           }
-          for(int i=0;i<iconList.size();i++){
+          /*for(int i=0;i<iconList.size();i++){
             System.out.println("iconPath："+iconList.get(i).toString());
+          }*/
+          if (jsonArray.length() == iconList.size()) {
+            setResult(new JSONArray(iconList), PluginResult.Status.OK, callbackContext);
           }
-          setResult(new JSONArray(iconList), PluginResult.Status.OK, callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
         }
