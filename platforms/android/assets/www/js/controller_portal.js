@@ -397,7 +397,6 @@ angular.module('portal.controllers', [])
                   // var testURL="http://123.56.187.121:60/interfaceLogin.aspx?UserName=liubolb&RealName=刘博&GUID=c95c77759ba60769d55cf441508ee342";
                   $scope.chooseBrowser(testURL,appId);
                 }
-
               });
             }
             // else if( appId === 237){

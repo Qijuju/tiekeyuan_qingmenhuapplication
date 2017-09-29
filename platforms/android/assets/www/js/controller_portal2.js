@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$timeout) {
+  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading) {
     var userID; // userID = 232099
     var imCode; //  imCode = 866469025308438
     $scope.dataSource = {}; // 请求回来的数据源 json格式
@@ -19,8 +19,8 @@ angular.module('portal.controllers', [])
         $http({
           method: 'post',
           timeout: 5000,
-          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
           data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
         }).success(function (data, status) {
           // 数据源赋值
@@ -134,6 +134,12 @@ angular.module('portal.controllers', [])
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
           var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
+          ref.addEventListener('loadstart', function () {
+            $pubionicloading.showloading('','正在加载...');
+          });
+          ref.addEventListener('loadstop', function () {
+            $pubionicloading.hide();
+          });
         } else {
           cordova.plugins.browsertab.openUrl(
             testUrl,
@@ -155,8 +161,8 @@ angular.module('portal.controllers', [])
       $http({
         method: 'post',
         timeout: 5000,
-        url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
@@ -168,34 +174,9 @@ angular.module('portal.controllers', [])
 
     function logoClick(item) {
       var params = '';
-      //判断该应用图标是否是“工程部位”，若是则通过二维码扫描拿到入参并赋值给params
-      if (item.appId === "237") {
-        cordova.plugins.barcodeScanner.scan(function (success) {
-            if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
-              var result = angular.fromJson(success.text);
-              params = result;
-            } else {
-              $ToastUtils.showToast("请扫描工程部位的二维码！");
-            }
-          }, function (err) {
-            $ToastUtils.showToast("请扫描工程部位的二维码！");
-          }, {
-            preferFrontCamera: false, // iOS and Android
-            showFlipCameraButton: true, // iOS and Android
-            showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
-            torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
-            saveHistory: false,//保存扫描历史（默认为false）
-            prompt: "请将二维码放在扫描框中", // Android 提示信息
-            resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
-            formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
-            orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
-          }
-        );
-      }
       switch (item.type) {
         //普通h5应用
         case "0":
-          alert("普通h5");
           $scope.getQyyUrl(item.appId, params);
           break;
         //普通外部应用(url带参数访问,例：物资设备)
@@ -206,18 +187,17 @@ angular.module('portal.controllers', [])
            * 先获取物资设备的访问的url
            * 再调用插件判断该应用是否存在，并进行相应的下载及跳转
            */
-          alert("物资设备");
           $http({
             method: 'post',
             timeout: 5000,
-            url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
             data: {
               "Action": "GetAppLink",
               "id": userID,
               "mepId": imCode,
               "platform": "A",
-              "appId": appId,
+              "appId": item.appId,
               "params": params
             }
           }).success(function (data) {
@@ -225,7 +205,6 @@ angular.module('portal.controllers', [])
             cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, data.url, function (succ) {
               //进行统计埋点
               $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
-                alert("物资设备埋点成功" + succ);
               }, function (err) {
               })
             }, function (err) {
@@ -236,13 +215,13 @@ angular.module('portal.controllers', [])
           break;
         //特殊外部应用（android原生集成，例：公文处理）
         case "12":
-          alert("公文处理");
+          // alert("公文处理");
           //oa包名：com.r93535.oa
           //爱加密包名：com.thundersec.encwechat
           cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, '', function (succ) {
             //进行统计埋点
             $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
-              alert("埋点成功" + succ);
+              // alert("埋点成功" + succ);
             }, function (err) {
             })
           }, function (err) {
@@ -266,8 +245,30 @@ angular.module('portal.controllers', [])
           break;
         //二维码应用
         case "3":
-          alert("二维码");
-          $scope.getQyyUrl(item.appId, params);
+          //判断该应用图标是否是“工程部位”，若是则通过二维码扫描拿到入参并赋值给params
+          if (item.appId === "237") {
+            cordova.plugins.barcodeScanner.scan(function (success) {
+                if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+                  params = success.text;
+                  $scope.getQyyUrl(item.appId, params);
+                } else {
+                  $ToastUtils.showToast("请扫描工程部位的二维码！");
+                }
+              }, function (err) {
+                $ToastUtils.showToast("请扫描工程部位的二维码！");
+              }, {
+                preferFrontCamera: false, // iOS and Android
+                showFlipCameraButton: true, // iOS and Android
+                showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+                torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+                saveHistory: false,//保存扫描历史（默认为false）
+                prompt: "请将二维码放在扫描框中", // Android 提示信息
+                resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+                formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+                orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+              }
+            );
+          }
           break;
       }
     }
