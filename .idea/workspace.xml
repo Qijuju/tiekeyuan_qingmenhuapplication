@@ -2,139 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-portal2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/projectFilesBackup/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/img/fujian.png" afterPath="$PROJECT_DIR$/platforms/android/assets/www/img/fujian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$1.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$Builder.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs$Builder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/RecoderAttrs.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$1.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$2.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$3.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$4.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$5.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/recoder/WechatRecoderActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/ConvertToUtils.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/ConvertToUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/IsUtils.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/utils/IsUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/CircleBackgroundTextView.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/CircleBackgroundTextView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app/gckz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app/xckz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/app/zhgl.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/ShortcutBadger_1_1_17.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/ShortcutBadger_1_1_17.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/appcompat_v7_23_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/barcodescanner_.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/barcodescanner_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/freemarker_2_3_20.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/freemarker_2_3_20.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_1_3_7.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_1_3_7.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/greendao_generator_1_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_3_3_1.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttp_3_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttputils_2_6_2.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okhttputils_2_6_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/okio_1_8_0.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/okio_1_8_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_1.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_appindexing_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_base_8_4_0.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/play_services_base_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxandroid_1_1_0.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxandroid_1_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxjava_1_1_6.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/libraries/rxjava_1_1_6.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/portal.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/portal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/tab-notification.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/tab-notification.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/tab-portal.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/tab-portal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_badge.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_badge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_portal.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/plugins/OAIntegration/www/o_a_integration.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/plugins/OAIntegration/www/o_a_integration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/aboutRecommend.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/aboutRecommend.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tabs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/Constants.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/r93535/im/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/utils/IMSwitchLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/oaintegration/OAIntegration.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/oaintegration/OAIntegration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build.gradle" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/tab-portal.css" afterPath="$PROJECT_DIR$/www/css/tab-portal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes.js" afterPath="$PROJECT_DIR$/www/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-portal2.html" afterPath="$PROJECT_DIR$/www/templates/tab-portal2.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,7 +36,88 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1065">
               <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
-              <folding />
+              <folding>
+                <marker date="1506678251000" expanded="true" signature="4633:4866" ph="{&quot;url&quot;: '/portal'...}" />
+                <marker date="1506678251000" expanded="true" signature="4695:4858" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="4908:5059" ph="{&quot;url&quot;: '/cxtx/:appId/:userId/:appUrl'...}" />
+                <marker date="1506678251000" expanded="true" signature="5097:5335" ph="{&quot;url&quot;: '/notifications'...}" />
+                <marker date="1506678251000" expanded="true" signature="5166:5327" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="5199:5317" ph="{&quot;templateUrl&quot;: 'templates/tab-notifications.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="5373:5561" ph="{&quot;url&quot;: '/notificationDetail/:id/:name/:type'...}" />
+                <marker date="1506678251000" expanded="true" signature="5593:5792" ph="{&quot;url&quot;: '/notifyDetail'...}" />
+                <marker date="1506678251000" expanded="true" signature="5753:5783" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="5829:6007" ph="{&quot;url&quot;: '/notifyApplication/:id/:isfirm'...}" />
+                <marker date="1506678251000" expanded="true" signature="6041:6238" ph="{&quot;url&quot;: '/messageDetail/:id/:ssid/:grouptype/:longitude/:latitude'...}" />
+                <marker date="1506678251000" expanded="true" signature="6271:6461" ph="{&quot;url&quot;: '/messageGroup/:id/:chatName/:grouptype/:ismygroup'...}" />
+                <marker date="1506678251000" expanded="true" signature="6492:6643" ph="{&quot;url&quot;: '/topContacts'...}" />
+                <marker date="1506678251000" expanded="true" signature="6673:6832" ph="{&quot;url&quot;: '/myAttention'...}" />
+                <marker date="1506678251000" expanded="true" signature="6870:7051" ph="{&quot;url&quot;: '/personalSetting/:id/:ssid/:sessionid'...}" />
+                <marker date="1506678251000" expanded="true" signature="7083:7276" ph="{&quot;url&quot;: '/groupSetting/:groupid/:chatname/:grouptype/:ismygroup'...}" />
+                <marker date="1506678251000" expanded="true" signature="7310:7492" ph="{&quot;url&quot;: '/groupModifyName/:groupid/:groupname'...}" />
+                <marker date="1506678251000" expanded="true" signature="7522:7714" ph="{&quot;url&quot;: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup'...}" />
+                <marker date="1506678251000" expanded="true" signature="7750:7960" ph="{&quot;url&quot;: '/groupCreateNotice/:groupid/:grouptype/:groupname/:grouptext'...}" />
+                <marker date="1506678251000" expanded="true" signature="7991:8182" ph="{&quot;url&quot;: '/groupMember/:groupid/:chatname/:grouptype/:ismygroup'...}" />
+                <marker date="1506678251000" expanded="true" signature="8217:8409" ph="{&quot;url&quot;: '/groupDeptMember/:groupid/:chatname/:grouptype'...}" />
+                <marker date="1506678251000" expanded="true" signature="8443:8661" ph="{&quot;url&quot;: '/contacts'...}" />
+                <marker date="1506678251000" expanded="true" signature="8507:8653" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="8535:8643" ph="{&quot;templateUrl&quot;: 'templates/tab-contacts.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="8687:8859" ph="{&quot;url&quot;: '/second/:contactId/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="8883:9064" ph="{&quot;url&quot;: '/third/:contactId/:secondname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="9088:9280" ph="{&quot;url&quot;: '/forth/:contactId/:secondname/:thirdname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="9304:9507" ph="{&quot;url&quot;: '/fifth/:contactId/:secondname/:thirdname/:forthname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="9531:9745" ph="{&quot;url&quot;: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="9771:10002" ph="{&quot;url&quot;: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="10027:10268" ph="{&quot;url&quot;: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:childcount'...}" />
+                <marker date="1506678251000" expanded="true" signature="10298:10454" ph="{&quot;url&quot;: '/masstexting/:topicids'...}" />
+                <marker date="1506678251000" expanded="true" signature="10482:10621" ph="{&quot;url&quot;: '/founction'...}" />
+                <marker date="1506678251000" expanded="true" signature="10654:10806" ph="{&quot;url&quot;: '/mydepartment'...}" />
+                <marker date="1506678251000" expanded="true" signature="10832:10980" ph="{&quot;url&quot;: '/person/:userId'...}" />
+                <marker date="1506678251000" expanded="true" signature="11019:11158" ph="{&quot;url&quot;: '/group'...}" />
+                <marker date="1506678251000" expanded="true" signature="11191:11323" ph="{&quot;url&quot;: '/localContacts'...}" />
+                <marker date="1506678251000" expanded="true" signature="11352:11559" ph="{&quot;url&quot;: '/chats'...}" />
+                <marker date="1506678251000" expanded="true" signature="11414:11551" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="11439:11541" ph="{&quot;templateUrl&quot;: 'templates/tab-chats.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="11593:11814" ph="{&quot;url&quot;: '/chats/:chatId'...}" />
+                <marker date="1506678251000" expanded="true" signature="11662:11806" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="11687:11796" ph="{&quot;templateUrl&quot;: 'templates/chat-detail.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="11847:12062" ph="{&quot;url&quot;: '/account'...}" />
+                <marker date="1506678251000" expanded="true" signature="11911:12054" ph="{...}" />
+                <marker date="1506678251000" expanded="true" signature="11938:12044" ph="{&quot;templateUrl&quot;: 'templates/tab-account.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="12088:12221" ph="{&quot;url&quot;: '/search'...}" />
+                <marker date="1506678251000" expanded="true" signature="12254:12423" ph="{&quot;url&quot;: '/searchmessage/:UserIDSM/:UserNameSM'...}" />
+                <marker date="1506678251000" expanded="true" signature="12457:12663" ph="{&quot;url&quot;: '/searchmessage22/:UserIDSM/:UserNameSM/:Username2/:Usermessage2'...}" />
+                <marker date="1506678251000" expanded="true" signature="12733:12946" ph="{&quot;url&quot;: '/addnewpersonfirst/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="12983:13211" ph="{&quot;url&quot;: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="13247:13483" ph="{&quot;url&quot;: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="13519:13766" ph="{&quot;url&quot;: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="13802:14060" ph="{&quot;url&quot;: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="14096:14365" ph="{&quot;url&quot;: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="14403:14689" ph="{&quot;url&quot;: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="14727:15023" ph="{&quot;url&quot;: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype/:groupid/:groupname/:functiontag'...}" />
+                <marker date="1506678251000" expanded="true" signature="15056:15204" ph="{&quot;url&quot;: '/searchlocal'...}" />
+                <marker date="1506678251000" expanded="true" signature="15239:15412" ph="{&quot;url&quot;: '/attentionDetail/:UserIDatten'...}" />
+                <marker date="1506678251000" expanded="true" signature="15446:15624" ph="{&quot;url&quot;: '/historyMessage/:id/:ssid/:grouptype'...}" />
+                <marker date="1506678251000" expanded="true" signature="15662:15855" ph="{&quot;url&quot;: '/historymessagegroup/:id/:ssid/:grouptype'...}" />
+                <marker date="1506678251000" expanded="true" signature="15887:16051" ph="{&quot;url&quot;: '/myinformation/:UserIDfor'...}" />
+                <marker date="1506678251000" expanded="true" signature="16084:16240" ph="{&quot;url&quot;: '/switch_account'...}" />
+                <marker date="1506678251000" expanded="true" signature="16273:16441" ph="{&quot;url&quot;: '/accountsettion/:UserIDset'...}" />
+                <marker date="1506678251000" expanded="true" signature="16469:16624" ph="{&quot;url&quot;: '/aboutours/:UserIDabout'...}" />
+                <marker date="1506678251000" expanded="true" signature="16657:16907" ph="{&quot;url&quot;: '/sendGelocation/:topic/:id/:ssid/:localuser/:localuserId/:sqlid/:grouptype/:messagetype/:ismygroup/:chatname'...}" />
+                <marker date="1506678251000" expanded="true" signature="16935:17130" ph="{&quot;url&quot;: '/mapdetail/:id/:ssid/:grouptype/:longitude/:latitude/:ismygroup'...}" />
+                <marker date="1506678251000" expanded="true" signature="17163:17318" ph="{&quot;url&quot;: '/personpicture'...}" />
+                <marker date="1506678251000" expanded="true" signature="17348:17505" ph="{&quot;url&quot;: '/personfile/:sessionid'...}" />
+                <marker date="1506678251000" expanded="true" signature="17537:17689" ph="{&quot;url&quot;: '/grouppicture'...}" />
+                <marker date="1506678251000" expanded="true" signature="17718:17872" ph="{&quot;url&quot;: '/groupfile/:sessionid'...}" />
+                <marker date="1506678251000" expanded="true" signature="17907:18075" ph="{&quot;url&quot;: '/personlocation/:id/:ssid'...}" />
+                <marker date="1506678251000" expanded="true" signature="18108:18284" ph="{&quot;url&quot;: '/grouplocation/:id/:grouptype'...}" />
+                <marker date="1506678251000" expanded="true" signature="18316:18470" ph="{&quot;url&quot;: '/emergencycall'...}" />
+                <marker date="1506678251000" expanded="true" signature="18502:18639" ph="{&quot;url&quot;: '/confirmornot/:id'...}" />
+                <marker date="1506678251000" expanded="true" signature="18668:18820" ph="{&quot;url&quot;: '/netconfirm/:url'...}" />
+                <marker date="1506678251000" expanded="true" signature="18862:18954" ph="{&quot;templateUrl&quot;: 'templates/aboutour.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="19000:19102" ph="{&quot;templateUrl&quot;: 'templates/aboutPlatform.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="19149:19252" ph="{&quot;templateUrl&quot;: 'templates/aboutRecommend.html'...}" />
+                <marker date="1506678251000" expanded="true" signature="19294:19450" ph="{&quot;url&quot;: '/msgCheck/:errCode/:mobile/:userId/:mepId/:remPwd'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,8 +125,8 @@
       <file leaf-file-name="controller_portal2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_portal2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="26" column="86" lean-forward="false" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
+            <state relative-caret-position="480">
+              <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -822,14 +778,7 @@
       <workItem from="1506672686632" duration="63000" />
       <workItem from="1506672891928" duration="129000" />
       <workItem from="1506673026332" duration="132000" />
-      <workItem from="1506673169238" duration="3753000" />
-    </task>
-    <task id="LOCAL-00156" summary="修改手机通讯录界面">
-      <created>1492670502645</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1492670502645</updated>
+      <workItem from="1506673169238" duration="4061000" />
     </task>
     <task id="LOCAL-00157" summary="新版本mqtt">
       <created>1493014832294</created>
@@ -1167,11 +1116,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506677943205</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="0929commit:点击应用图标跳转应用的5种情况全都没问题">
+      <created>1506678064508</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1506678064508</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2391676000" />
+    <option name="totallyTimeSpent" value="2391984000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1585,7 +1541,88 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
           <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
-          <folding />
+          <folding>
+            <marker date="1506678251000" expanded="true" signature="4633:4866" ph="{&quot;url&quot;: '/portal'...}" />
+            <marker date="1506678251000" expanded="true" signature="4695:4858" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="4908:5059" ph="{&quot;url&quot;: '/cxtx/:appId/:userId/:appUrl'...}" />
+            <marker date="1506678251000" expanded="true" signature="5097:5335" ph="{&quot;url&quot;: '/notifications'...}" />
+            <marker date="1506678251000" expanded="true" signature="5166:5327" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="5199:5317" ph="{&quot;templateUrl&quot;: 'templates/tab-notifications.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="5373:5561" ph="{&quot;url&quot;: '/notificationDetail/:id/:name/:type'...}" />
+            <marker date="1506678251000" expanded="true" signature="5593:5792" ph="{&quot;url&quot;: '/notifyDetail'...}" />
+            <marker date="1506678251000" expanded="true" signature="5753:5783" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="5829:6007" ph="{&quot;url&quot;: '/notifyApplication/:id/:isfirm'...}" />
+            <marker date="1506678251000" expanded="true" signature="6041:6238" ph="{&quot;url&quot;: '/messageDetail/:id/:ssid/:grouptype/:longitude/:latitude'...}" />
+            <marker date="1506678251000" expanded="true" signature="6271:6461" ph="{&quot;url&quot;: '/messageGroup/:id/:chatName/:grouptype/:ismygroup'...}" />
+            <marker date="1506678251000" expanded="true" signature="6492:6643" ph="{&quot;url&quot;: '/topContacts'...}" />
+            <marker date="1506678251000" expanded="true" signature="6673:6832" ph="{&quot;url&quot;: '/myAttention'...}" />
+            <marker date="1506678251000" expanded="true" signature="6870:7051" ph="{&quot;url&quot;: '/personalSetting/:id/:ssid/:sessionid'...}" />
+            <marker date="1506678251000" expanded="true" signature="7083:7276" ph="{&quot;url&quot;: '/groupSetting/:groupid/:chatname/:grouptype/:ismygroup'...}" />
+            <marker date="1506678251000" expanded="true" signature="7310:7492" ph="{&quot;url&quot;: '/groupModifyName/:groupid/:groupname'...}" />
+            <marker date="1506678251000" expanded="true" signature="7522:7714" ph="{&quot;url&quot;: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup'...}" />
+            <marker date="1506678251000" expanded="true" signature="7750:7960" ph="{&quot;url&quot;: '/groupCreateNotice/:groupid/:grouptype/:groupname/:grouptext'...}" />
+            <marker date="1506678251000" expanded="true" signature="7991:8182" ph="{&quot;url&quot;: '/groupMember/:groupid/:chatname/:grouptype/:ismygroup'...}" />
+            <marker date="1506678251000" expanded="true" signature="8217:8409" ph="{&quot;url&quot;: '/groupDeptMember/:groupid/:chatname/:grouptype'...}" />
+            <marker date="1506678251000" expanded="true" signature="8443:8661" ph="{&quot;url&quot;: '/contacts'...}" />
+            <marker date="1506678251000" expanded="true" signature="8507:8653" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="8535:8643" ph="{&quot;templateUrl&quot;: 'templates/tab-contacts.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="8687:8859" ph="{&quot;url&quot;: '/second/:contactId/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="8883:9064" ph="{&quot;url&quot;: '/third/:contactId/:secondname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="9088:9280" ph="{&quot;url&quot;: '/forth/:contactId/:secondname/:thirdname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="9304:9507" ph="{&quot;url&quot;: '/fifth/:contactId/:secondname/:thirdname/:forthname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="9531:9745" ph="{&quot;url&quot;: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="9771:10002" ph="{&quot;url&quot;: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="10027:10268" ph="{&quot;url&quot;: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:childcount'...}" />
+            <marker date="1506678251000" expanded="true" signature="10298:10454" ph="{&quot;url&quot;: '/masstexting/:topicids'...}" />
+            <marker date="1506678251000" expanded="true" signature="10482:10621" ph="{&quot;url&quot;: '/founction'...}" />
+            <marker date="1506678251000" expanded="true" signature="10654:10806" ph="{&quot;url&quot;: '/mydepartment'...}" />
+            <marker date="1506678251000" expanded="true" signature="10832:10980" ph="{&quot;url&quot;: '/person/:userId'...}" />
+            <marker date="1506678251000" expanded="true" signature="11019:11158" ph="{&quot;url&quot;: '/group'...}" />
+            <marker date="1506678251000" expanded="true" signature="11191:11323" ph="{&quot;url&quot;: '/localContacts'...}" />
+            <marker date="1506678251000" expanded="true" signature="11352:11559" ph="{&quot;url&quot;: '/chats'...}" />
+            <marker date="1506678251000" expanded="true" signature="11414:11551" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="11439:11541" ph="{&quot;templateUrl&quot;: 'templates/tab-chats.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="11593:11814" ph="{&quot;url&quot;: '/chats/:chatId'...}" />
+            <marker date="1506678251000" expanded="true" signature="11662:11806" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="11687:11796" ph="{&quot;templateUrl&quot;: 'templates/chat-detail.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="11847:12062" ph="{&quot;url&quot;: '/account'...}" />
+            <marker date="1506678251000" expanded="true" signature="11911:12054" ph="{...}" />
+            <marker date="1506678251000" expanded="true" signature="11938:12044" ph="{&quot;templateUrl&quot;: 'templates/tab-account.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="12088:12221" ph="{&quot;url&quot;: '/search'...}" />
+            <marker date="1506678251000" expanded="true" signature="12254:12423" ph="{&quot;url&quot;: '/searchmessage/:UserIDSM/:UserNameSM'...}" />
+            <marker date="1506678251000" expanded="true" signature="12457:12663" ph="{&quot;url&quot;: '/searchmessage22/:UserIDSM/:UserNameSM/:Username2/:Usermessage2'...}" />
+            <marker date="1506678251000" expanded="true" signature="12733:12946" ph="{&quot;url&quot;: '/addnewpersonfirst/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="12983:13211" ph="{&quot;url&quot;: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="13247:13483" ph="{&quot;url&quot;: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="13519:13766" ph="{&quot;url&quot;: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="13802:14060" ph="{&quot;url&quot;: '/addnewpersonfifth/:contactId/:secondname/:thirdname/:forthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="14096:14365" ph="{&quot;url&quot;: '/addnewpersonsixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="14403:14689" ph="{&quot;url&quot;: '/addnewpersonseventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="14727:15023" ph="{&quot;url&quot;: '/addnewpersoneighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:createtype/:groupid/:groupname/:functiontag'...}" />
+            <marker date="1506678251000" expanded="true" signature="15056:15204" ph="{&quot;url&quot;: '/searchlocal'...}" />
+            <marker date="1506678251000" expanded="true" signature="15239:15412" ph="{&quot;url&quot;: '/attentionDetail/:UserIDatten'...}" />
+            <marker date="1506678251000" expanded="true" signature="15446:15624" ph="{&quot;url&quot;: '/historyMessage/:id/:ssid/:grouptype'...}" />
+            <marker date="1506678251000" expanded="true" signature="15662:15855" ph="{&quot;url&quot;: '/historymessagegroup/:id/:ssid/:grouptype'...}" />
+            <marker date="1506678251000" expanded="true" signature="15887:16051" ph="{&quot;url&quot;: '/myinformation/:UserIDfor'...}" />
+            <marker date="1506678251000" expanded="true" signature="16084:16240" ph="{&quot;url&quot;: '/switch_account'...}" />
+            <marker date="1506678251000" expanded="true" signature="16273:16441" ph="{&quot;url&quot;: '/accountsettion/:UserIDset'...}" />
+            <marker date="1506678251000" expanded="true" signature="16469:16624" ph="{&quot;url&quot;: '/aboutours/:UserIDabout'...}" />
+            <marker date="1506678251000" expanded="true" signature="16657:16907" ph="{&quot;url&quot;: '/sendGelocation/:topic/:id/:ssid/:localuser/:localuserId/:sqlid/:grouptype/:messagetype/:ismygroup/:chatname'...}" />
+            <marker date="1506678251000" expanded="true" signature="16935:17130" ph="{&quot;url&quot;: '/mapdetail/:id/:ssid/:grouptype/:longitude/:latitude/:ismygroup'...}" />
+            <marker date="1506678251000" expanded="true" signature="17163:17318" ph="{&quot;url&quot;: '/personpicture'...}" />
+            <marker date="1506678251000" expanded="true" signature="17348:17505" ph="{&quot;url&quot;: '/personfile/:sessionid'...}" />
+            <marker date="1506678251000" expanded="true" signature="17537:17689" ph="{&quot;url&quot;: '/grouppicture'...}" />
+            <marker date="1506678251000" expanded="true" signature="17718:17872" ph="{&quot;url&quot;: '/groupfile/:sessionid'...}" />
+            <marker date="1506678251000" expanded="true" signature="17907:18075" ph="{&quot;url&quot;: '/personlocation/:id/:ssid'...}" />
+            <marker date="1506678251000" expanded="true" signature="18108:18284" ph="{&quot;url&quot;: '/grouplocation/:id/:grouptype'...}" />
+            <marker date="1506678251000" expanded="true" signature="18316:18470" ph="{&quot;url&quot;: '/emergencycall'...}" />
+            <marker date="1506678251000" expanded="true" signature="18502:18639" ph="{&quot;url&quot;: '/confirmornot/:id'...}" />
+            <marker date="1506678251000" expanded="true" signature="18668:18820" ph="{&quot;url&quot;: '/netconfirm/:url'...}" />
+            <marker date="1506678251000" expanded="true" signature="18862:18954" ph="{&quot;templateUrl&quot;: 'templates/aboutour.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="19000:19102" ph="{&quot;templateUrl&quot;: 'templates/aboutPlatform.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="19149:19252" ph="{&quot;templateUrl&quot;: 'templates/aboutRecommend.html'...}" />
+            <marker date="1506678251000" expanded="true" signature="19294:19450" ph="{&quot;url&quot;: '/msgCheck/:errCode/:mobile/:userId/:mepId/:remPwd'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1653,8 +1690,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_portal2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="26" column="86" lean-forward="false" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
+        <state relative-caret-position="480">
+          <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
