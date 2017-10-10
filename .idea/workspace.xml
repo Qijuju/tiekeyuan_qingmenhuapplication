@@ -256,6 +256,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -288,11 +310,11 @@
       <recent name="$PROJECT_DIR$/www/img" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workplace\android\IM\www\img" />
       <recent name="D:\workplace\android\IM\platforms\android\.gradle\2.14.1\taskArtifacts" />
       <recent name="D:\workplace\android\IM\platforms\android\.gradle\2.14.1\tasks\_compileDebugJavaWithJavac" />
       <recent name="$PROJECT_DIR$/www/img/app3" />
       <recent name="$PROJECT_DIR$/www/js" />
-      <recent name="$PROJECT_DIR$/www/img/app1" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -642,20 +664,6 @@
       <workItem from="1506476450127" duration="1904000" />
       <workItem from="1506483556018" duration="6671000" />
     </task>
-    <task id="LOCAL-00156" summary="修改手机通讯录界面">
-      <created>1492670502645</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1492670502645</updated>
-    </task>
-    <task id="LOCAL-00157" summary="新版本mqtt">
-      <created>1493014832294</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1493014832296</updated>
-    </task>
     <task id="LOCAL-00158" summary="commit">
       <created>1493036906068</created>
       <option name="number" value="00158" />
@@ -985,11 +993,25 @@
       <option name="project" value="LOCAL" />
       <updated>1507601762732</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="1.删除门户默认显示的图片文件夹">
+      <created>1507601806282</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1507601806282</updated>
+    </task>
+    <task id="LOCAL-00206" summary="1.添加门户默认显示的图片文件夹">
+      <created>1507601907157</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1507601907157</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2381642000" />
+    <option name="totallyTimeSpent" value="2381808000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1087,8 +1109,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="合并宋亚 （最新代码" />
-    <MESSAGE value="。。" />
     <MESSAGE value="最新代码提交" />
     <MESSAGE value="小bug更改提交" />
     <MESSAGE value="提交最新代码" />
@@ -1112,7 +1132,9 @@
     <MESSAGE value="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题" />
     <MESSAGE value="0926commit:添加下载轻应用图标接口，并修改登陆接口每次登陆都报登陆失败的bug" />
     <MESSAGE value="1.删除门户默认显示的图片6张" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.删除门户默认显示的图片6张" />
+    <MESSAGE value="1.删除门户默认显示的图片文件夹" />
+    <MESSAGE value="1.添加门户默认显示的图片文件夹" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.添加门户默认显示的图片文件夹" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
