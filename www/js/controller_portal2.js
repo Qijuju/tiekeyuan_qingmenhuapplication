@@ -2,142 +2,106 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading) {
-    var userID; // userID = 232099
-    var imCode; //  imCode = 866469025308438
-    $scope.dataSource = {}; // 请求回来的数据源 json格式
-    $scope.name =  "";// 公司名称
-    $scope.sysmenu = []; // 豆腐块数据源
+  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup) {
 
-    // 数据源请求
+    // 门户页原始数据源
+    $scope.dataSource = $rootScope.portalDataSource;
+    $scope.sysmenu = $scope.dataSource.sysmenu;
+
+    // 存放所有的item对象
+    $scope.allData=[];
+
+    // 轻应用logo图片地址数组
+    $scope.appIcon = $rootScope.appIconPaths;
+
+    var userID,imCode;
+
     $mqtt.getUserInfo(function (succ) {
       userID = succ.userID;
       //获取人员所在部门，点亮图标
       $mqtt.getImcode(function (imcode) {
         NetData.getInfo(userID, imcode);
         imCode = imcode;
-        $http({
-          method: 'post',
-          timeout: 5000,
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
-          data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
-        }).success(function (data, status) {
-          // 数据源赋值
-          $scope.dataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
-          $scope.sysmenu =  $scope.dataSource.sysmenu;
-
-          // 从数据源中获取公司名称，当数据源为空时，默认显示门户。
-          if ($scope.dataSource.jsdept.name === "" || $scope.dataSource.jsdept.name === null || $scope.dataSource.jsdept.name === undefined) {
-            $scope.name = "门户";
-          }else {
-            $scope.name = $scope.dataSource.jsdept.name;
-          }
-
-          // 图片的处理
-          angular.element(document).ready(function(){
-            // 获取到所有的logo标签img
-            var imgObjs = document.getElementsByClassName("portalImg");
-            var protalAppsCol12s = document.getElementsByClassName("protalAppsCol12");
-            $scope.appIconArr = [];
-            $scope.focusIndex ;
-            $scope.allData =[] ;
-            $scope.clickData =[];
-
-            // 根据数据源的flag标志判断图片是否点亮
-            for(var i=0;i<$scope.sysmenu.length;i++){
-              // 获取每一组的元素
-              var items =  $scope.sysmenu[i].items;
-              for(var j=0;j<items.length;j++){
-                $scope.allData.push(items[j]);
-                var flag = items[j].flag;
-                var appIcon = items[j].appIcon;
-
-                if(flag){
-                  $scope.clickObj = {};
-                  $scope.item = items[j];
-                  $scope.focusIndex=0;
-                  if (i === 0 ){
-                    $scope.focusIndex = j;
-                  }else if (  i > 0){
-                    for (var k=0;k<i;k++){
-                      $scope.focusIndex += $scope.sysmenu[k].items.length ;
-                    }
-                    $scope.focusIndex = $scope.focusIndex + j;
-                  }
-                  $scope.appIconArr.push( appIcon );
-                  $scope.clickData.push($scope.focusIndex);
-
-                }else {
-                  $scope.appIconArr.push(appIcon+'_f');
-                }
-              }
-            }
-
-            // 给点亮图标添加点击事件
-            for( var num=0;num< $scope.clickData.length;num++){
-              var index = $scope.clickData[num];
-              getConsole(index);
-            }
-            // 定义点亮图标的点击事件
-            function getConsole(index){
-              protalAppsCol12s[index].onclick = function() {
-                logoClick($scope.allData[index]);
-              };
-            }
-
-            // 调插件，获取所有的图片路径
-            $api.downloadQYYIcon($scope.appIconArr ,function (success) {
-              for (var i=0;i<success.length;i++){
-                imgObjs[i].src = success[i];
-                // $scope.allData[i].imgSrc = success[i];
-                // 通过便利，修改数据源
-                // for(var m=0;m<$scope.sysmenu.length;m++){
-                //   var items =  $scope.sysmenu[m].items;
-                //   for(var n=0;n<items.length;n++){
-                //     // 通过 m  和 n 计算出每个图标在所有图标中的位置
-                //     $scope.logoIndex = 0;
-                //     if (m === 0 ){
-                //       $scope.logoIndex = n;
-                //     }else if (  m > 0){
-                //       for (var k=0;k<m;k++){
-                //         $scope.logoIndex += $scope.sysmenu[k].items.length ;
-                //       }
-                //       $scope.logoIndex = $scope.logoIndex + n;
-                //     }
-                //     // alert( "每个图标在所有图标中的位置：" + $scope.logoIndex );
-                //
-                //   }
-                // }
-                // alert("数据源的所有的数据item111111: " + JSON.stringify($scope.allData));
-              }
-
-            },function (err) {
-
-            });
-
-            // alert("数据源的所有的数据item长度: " + $scope.allData.length);
-            // alert("数据源的所有的数据item22222: " + JSON.stringify($scope.allData));
-
-          });
-        }).error(function (data, status) {
-          $ToastUtils.showToast("获取用户权限失败!");
-        });
-      }, function (err) {
       })
-    }, function (err) {
+    })
+
+    // 公司名称显示。没有数据时,默认显示门户
+    if ($scope.dataSource.jsdept.name === "" || $scope.dataSource.jsdept.name === null || $scope.dataSource.jsdept.name === undefined) {
+      $scope.name = "门户";
+    }else {
+      $scope.name = $scope.dataSource.jsdept.name;
+    }
+    angular.element(document).ready(function(){
+      // 获取所有的图片标签
+      $scope.imgs = document.getElementsByClassName("portalImg");
+      $scope.protalAppsCol12s = document.getElementsByClassName("protalAppsCol12");
+      // 存放点亮图标的数组
+      $scope.clickData=[];
+
+      // 给 src 赋值
+      for (var i=0;i<$scope.appIconPaths.length;i++){
+        $scope.imgs[i].src =  $scope.appIconPaths[i];
+      }
+
+      for(var i=0;i<$scope.sysmenu.length;i++){
+        // 获取每一组的元素
+        var items =  $scope.sysmenu[i].items;
+        for(var j=0;j<items.length;j++){
+          $scope.allData.push(items[j]);
+        }
+      }
+
+      // 获取点亮图标的下标,并添加点击事件
+      for(var i=0;i<$scope.sysmenu.length;i++){
+        // 获取每一组的元素
+        var items =  $scope.sysmenu[i].items;
+        for(var j=0;j<items.length;j++){
+          var flag = items[j].flag;
+          if(flag){
+            $scope.focusIndex=0;
+            if (i === 0 ){
+              $scope.focusIndex = j;
+            }else if (  i > 0){
+              for (var k=0;k<i;k++){
+                $scope.focusIndex += $scope.sysmenu[k].items.length ;
+              }
+              $scope.focusIndex = $scope.focusIndex + j;
+            }
+            $scope.clickData.push( $scope.focusIndex );
+          }
+        }
+      }
+
+      // 给点亮图标添加点击事件
+      for( var num=0;num< $scope.clickData.length;num++){
+        lightItemClickE($scope.clickData[num]);
+      }
+      // 定义点亮图标的点击事件
+      function lightItemClickE(index){
+        $scope.protalAppsCol12s[index].onclick = function() {
+          logoClick( $scope.allData[index]);
+        };
+      }
     });
+
+
 
     //pubilc：选择调用谷歌还是其他浏览器
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
           var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
+          var index = 0;
           ref.addEventListener('loadstart', function () {
+            if (index > 0) {
+              return;
+            }
+            index = 1;
             $pubionicloading.showloading('','正在加载...');
           });
           ref.addEventListener('loadstop', function () {
-            $pubionicloading.hide();
+            // $pubionicloading.hide();
+            window.plugins.spinnerDialog.hide();
           });
         } else {
           cordova.plugins.browsertab.openUrl(
@@ -228,7 +192,6 @@ angular.module('portal.controllers', [])
           break;
         //VPN应用
         case "2":
-          alert("vpn应用");
           var confirmPopup = $ionicPopup.confirm({
             title: "友情提示",
             template: item.appName + "需通过VPN访问，请确认是否安装VPN并连接成功!", //从服务端获取更新的内容

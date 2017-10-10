@@ -48,10 +48,10 @@ div#iframe iframe{
 }
 /* 功能模块之间的分割线*/
 .fengeLine{
-  width:100%;
+  width:90%;
   height:1px;
   background: #ddd;
-  margin:10px 0 0 20px;
+  margin:10px auto;
 }
 /*定义动画*/
 @keyframes animatedBackground {

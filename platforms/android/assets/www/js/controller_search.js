@@ -40,9 +40,10 @@ angular.module('search.controllers', [])
       keyboard.show();
       document.getElementById("searchdata").focus();
     });
-    $scope.onDrag = function () {
-      keyboard.close();
-    };
+    // $scope.onDrag = function () {
+    //   console.log("11111");
+    //   keyboard.close();
+    // };
 
     $mqtt.getUserInfo(function (msg) {
       $scope.id=msg.userID;
@@ -116,14 +117,24 @@ angular.module('search.controllers', [])
         },function (msgaaa) {
           // $rootScope.$broadcast('persons.history');
         });
-        $scope.query1 ="%"+query+"%";
-        $searchmessage.searchmessagessss($scope.query1);
+        // $timeout(function () {
+        //   console.log("zoumeizou");
+          $scope.query1 ="%"+query+"%";
+          $searchmessage.searchmessagessss($scope.query1);
+        // },300000);
       }
     }
     $scope.$on('persons.update',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
           $pubionicloading.hide();
+          window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+          function keyboardShowHandler(e){
+            alert('Keyboard height is: ' + e.keyboardHeight);
+            keyboard.show();
+            document.getElementById("searchdata").focus();
+          }
           $scope.personsren=$search111.getPersons().searchResult;
           if ($scope.personsren.length>=15){
             $scope.hasmore=true
@@ -266,9 +277,10 @@ angular.module('search.controllers', [])
       keyboard.show();
       document.getElementById("searchdata").focus();
     });
-    $scope.onDrag = function () {
-      keyboard.close();
-    };
+    // $scope.onDrag = function () {
+    //   console.log("222222");
+    //   keyboard.close();
+    // };
     $scope.UserIDSM = $stateParams.UserIDSM;
     $scope.UserNameSM = $stateParams.UserNameSM;
     $scope.backSearchSM = function () {

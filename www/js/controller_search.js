@@ -41,6 +41,7 @@ angular.module('search.controllers', [])
       document.getElementById("searchdata").focus();
     });
     $scope.onDrag = function () {
+      console.log("11111");
       keyboard.close();
     };
 
@@ -116,8 +117,11 @@ angular.module('search.controllers', [])
         },function (msgaaa) {
           // $rootScope.$broadcast('persons.history');
         });
-        $scope.query1 ="%"+query+"%";
-        $searchmessage.searchmessagessss($scope.query1);
+        // $timeout(function () {
+        //   console.log("zoumeizou");
+          $scope.query1 ="%"+query+"%";
+          $searchmessage.searchmessagessss($scope.query1);
+        // },300000);
       }
     }
     $scope.$on('persons.update',function (event) {
@@ -267,6 +271,7 @@ angular.module('search.controllers', [])
       document.getElementById("searchdata").focus();
     });
     $scope.onDrag = function () {
+      console.log("222222");
       keyboard.close();
     };
     $scope.UserIDSM = $stateParams.UserIDSM;

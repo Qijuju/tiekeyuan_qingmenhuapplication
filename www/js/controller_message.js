@@ -3835,8 +3835,8 @@ angular.module('message.controllers', [])
         $http({
           method: 'post',
           timeout: 5000,
-          url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
           data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
@@ -3862,7 +3862,6 @@ angular.module('message.controllers', [])
           // 调插件，获取所有的图片路径
           $api.downloadQYYIcon($scope.appIconArr ,function (success) {
             $rootScope.appIconPaths = success;
-            console.log("后端拿到的icon路径集合:"+JSON.stringify($rootScope.appIconPaths));
           },function (err) {
 
           });

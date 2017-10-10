@@ -1672,11 +1672,6 @@ angular.module('contacts.controllers', [])
           $timeout(function () {
             $pubionicloading.hide();
             $scope.persondsfs = $contacts.getPersonDetail();
-
-
-            alert("人员的详细信息persondsfs "  + $scope.persondsfs);
-            alert("人员的详细信息persondsfs  Str :  "  + JSON.stringify( $scope.persondsfs) ) ;
-
             if ($scope.persondsfs.UserName.length > 2) {
               $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
             } else {
@@ -2122,9 +2117,6 @@ angular.module('contacts.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
       })
     });
 
