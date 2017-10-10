@@ -235,7 +235,8 @@ public class ThriftApiClient extends CordovaPlugin {
                     } else {
                         if ("104".equals(result.getErrCode())) {
                             setResult("用户或密码错误！", PluginResult.Status.ERROR, callbackContext);
-                        } else if("111".equals(result.getErrCode()) ||"112".equals(result.getErrCode()) || "113".equals(result.getErrCode()) || "114".equals(result.getErrCode())){
+                        }
+                        else if("111".equals(result.getErrCode()) ||"112".equals(result.getErrCode()) || "113".equals(result.getErrCode()) || "114".equals(result.getErrCode())){
                             System.out.println("需要短信验证"+result.getMessage()+UIUtils.getDeviceId());
                             SPUtils.save("historyusername",username);
                             SPUtils.save("pwd",password);
@@ -515,6 +516,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 userList.setActive(user.isActive());
                 userList.setUserID(user.getId());
                 userList.setUserName(user.getDisplayName());
+                userList.setProName(user.getProname());
                 usersList.add(userList);
             }
         }
@@ -1015,14 +1017,14 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String fileid = args.getString(0);//应用图标名称可以不带后缀，一般为应用名称缩写
             final JSONArray jsonArray=new JSONArray(fileid);
-          System.out.println("数据总长度："+jsonArray.length());
           final List<String> iconList=new ArrayList<String>();
+          boolean needDown = false;
           for(int i=0;i<jsonArray.length();i++){
-            System.out.println("数据index："+i);
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
             final String iconFilePath = filePath+File.separator+jsonArray.get(i)+".png";
             final File iconFile = new File(iconFilePath);
             if(!iconFile.exists()){
+                needDown = true;
               fileid = jsonArray.get(i).toString();
               Map<String, String> map = new HashMap<String, String>();
               map.put("id", IMSwitchLocal.getUserID());
@@ -1071,7 +1073,7 @@ public class ThriftApiClient extends CordovaPlugin {
           /*for(int i=0;i<iconList.size();i++){
             System.out.println("iconPath："+iconList.get(i).toString());
           }*/
-          if (jsonArray.length() == iconList.size()) {
+          if (jsonArray.length() == iconList.size() && !needDown) {
             setResult(new JSONArray(iconList), PluginResult.Status.OK, callbackContext);
           }
         } catch (JSONException e) {

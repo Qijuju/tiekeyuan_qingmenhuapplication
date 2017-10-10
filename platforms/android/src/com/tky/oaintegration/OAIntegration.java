@@ -84,6 +84,7 @@ public class OAIntegration extends CordovaPlugin {
         try {
             //应用的包名
             String packagename = args.getString(0);
+//            System.out.println("拿到的包名"+packagename);
             //应用的appid
             final String appId = args.getString(1);
             //应用的名称

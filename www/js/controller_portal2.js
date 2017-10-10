@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$timeout,$state,$ionicScrollDelegate,$rootScope) {
+  .controller('portalCtrl2', function ($scope,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup) {
 
     // 门户页原始数据源
     $scope.dataSource = $rootScope.portalDataSource;
@@ -14,13 +14,23 @@ angular.module('portal.controllers', [])
     // 轻应用logo图片地址数组
     $scope.appIcon = $rootScope.appIconPaths;
 
+    var userID,imCode;
+
+    $mqtt.getUserInfo(function (succ) {
+      userID = succ.userID;
+      //获取人员所在部门，点亮图标
+      $mqtt.getImcode(function (imcode) {
+        NetData.getInfo(userID, imcode);
+        imCode = imcode;
+      })
+    })
+
     // 公司名称显示。没有数据时,默认显示门户
     if ($scope.dataSource.jsdept.name === "" || $scope.dataSource.jsdept.name === null || $scope.dataSource.jsdept.name === undefined) {
       $scope.name = "门户";
     }else {
       $scope.name = $scope.dataSource.jsdept.name;
     }
-
     angular.element(document).ready(function(){
       // 获取所有的图片标签
       $scope.imgs = document.getElementsByClassName("portalImg");
@@ -30,7 +40,6 @@ angular.module('portal.controllers', [])
 
       // 给 src 赋值
       for (var i=0;i<$scope.appIconPaths.length;i++){
-        console.log("下标对应的图片logo--：" +i +'--'+  $scope.appIconPaths[i]);
         $scope.imgs[i].src =  $scope.appIconPaths[i];
       }
 
@@ -75,11 +84,25 @@ angular.module('portal.controllers', [])
       }
     });
 
+
+
     //pubilc：选择调用谷歌还是其他浏览器
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
           var ref = cordova.InAppBrowser.open(testUrl, '_blank','hidden = no,location= no');
+          var index = 0;
+          ref.addEventListener('loadstart', function () {
+            if (index > 0) {
+              return;
+            }
+            index = 1;
+            $pubionicloading.showloading('','正在加载...');
+          });
+          ref.addEventListener('loadstop', function () {
+            // $pubionicloading.hide();
+            window.plugins.spinnerDialog.hide();
+          });
         } else {
           cordova.plugins.browsertab.openUrl(
             testUrl,
@@ -101,8 +124,8 @@ angular.module('portal.controllers', [])
       $http({
         method: 'post',
         timeout: 5000,
-        url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
@@ -114,30 +137,6 @@ angular.module('portal.controllers', [])
 
     function logoClick(item) {
       var params = '';
-      //判断该应用图标是否是“工程部位”，若是则通过二维码扫描拿到入参并赋值给params
-      if (item.appId === "237") {
-        cordova.plugins.barcodeScanner.scan(function (success) {
-            if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
-              var result = angular.fromJson(success.text);
-              params = result;
-            } else {
-              $ToastUtils.showToast("请扫描工程部位的二维码！");
-            }
-          }, function (err) {
-            $ToastUtils.showToast("请扫描工程部位的二维码！");
-          }, {
-            preferFrontCamera: false, // iOS and Android
-            showFlipCameraButton: true, // iOS and Android
-            showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
-            torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
-            saveHistory: false,//保存扫描历史（默认为false）
-            prompt: "请将二维码放在扫描框中", // Android 提示信息
-            resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
-            formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
-            orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
-          }
-        );
-      }
       switch (item.type) {
         //普通h5应用
         case "0":
@@ -154,14 +153,14 @@ angular.module('portal.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
             data: {
               "Action": "GetAppLink",
               "id": userID,
               "mepId": imCode,
               "platform": "A",
-              "appId": appId,
+              "appId": item.appId,
               "params": params
             }
           }).success(function (data) {
@@ -179,11 +178,13 @@ angular.module('portal.controllers', [])
           break;
         //特殊外部应用（android原生集成，例：公文处理）
         case "12":
+          // alert("公文处理");
           //oa包名：com.r93535.oa
           //爱加密包名：com.thundersec.encwechat
           cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, '', function (succ) {
             //进行统计埋点
             $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
+              // alert("埋点成功" + succ);
             }, function (err) {
             })
           }, function (err) {
@@ -206,7 +207,30 @@ angular.module('portal.controllers', [])
           break;
         //二维码应用
         case "3":
-          $scope.getQyyUrl(item.appId, params);
+          //判断该应用图标是否是“工程部位”，若是则通过二维码扫描拿到入参并赋值给params
+          if (item.appId === "237") {
+            cordova.plugins.barcodeScanner.scan(function (success) {
+                if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+                  params = success.text;
+                  $scope.getQyyUrl(item.appId, params);
+                } else {
+                  $ToastUtils.showToast("请扫描工程部位的二维码！");
+                }
+              }, function (err) {
+                $ToastUtils.showToast("请扫描工程部位的二维码！");
+              }, {
+                preferFrontCamera: false, // iOS and Android
+                showFlipCameraButton: true, // iOS and Android
+                showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+                torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+                saveHistory: false,//保存扫描历史（默认为false）
+                prompt: "请将二维码放在扫描框中", // Android 提示信息
+                resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+                formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+                orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+              }
+            );
+          }
           break;
       }
     }

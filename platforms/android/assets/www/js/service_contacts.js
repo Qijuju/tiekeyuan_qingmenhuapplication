@@ -316,6 +316,7 @@ angular.module('contacts.services', [])
           secondname = msg.deptInfo
           $api.getChild(deptId, thirdCount, 10, function (msg) {
             deptThirdInfo = msg;
+            // alert("拿到第san层级的数据"+JSON.stringify(deptThirdInfo));
             secondId = msg.deptID;
             count3 = msg.deptCount;
             count4 = msg.userCount;
@@ -368,6 +369,7 @@ angular.module('contacts.services', [])
           thirdname = msg.deptInfo
           $api.getChild(deptId, forthCount, 10, function (msg) {
             deptForthInfo = msg;
+            // alert("拿到第四层级的数据"+JSON.stringify(deptForthInfo));
             thirdId = msg.deptID;
             count5 = msg.deptCount;
             count6 = msg.userCount;
@@ -418,6 +420,7 @@ angular.module('contacts.services', [])
           forthname = msg.deptInfo
           $api.getChild(deptId, fifthCount, 10, function (msg) {
             deptFifhtInfo = msg;
+            // alert("拿到第五层级的数据"+JSON.stringify(deptFifhtInfo));
             forthId = msg.deptID;
             count7 = msg.deptCount;
             count8 = msg.userCount;
@@ -472,6 +475,7 @@ angular.module('contacts.services', [])
           fifthname = msg.deptInfo
           $api.getChild(deptId, sixthCount, 10, function (msg) {
             deptSixthInfo = msg;
+            // alert("拿到第六层级的数据"+JSON.stringify(deptSixthInfo));
             fifthId = msg.deptID;
             count9 = msg.deptCount;
             count10 = msg.userCount;

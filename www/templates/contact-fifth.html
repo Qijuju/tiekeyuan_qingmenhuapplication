@@ -31,9 +31,16 @@
         </ion-item>
         <ion-item ng-repeat=" item in userfifthlist"  ng-click="goFifthDetail(item.UserID)" >
           <div class="row">
-            <div class="col">
-              <img  src="img/icon_friends.png" class="addNewMemberImg">
-              <span class="font_16">{{item.UserName}}</span>
+            <div class="col-15">
+              <img src="img/icon_friends.png"  class="addNewMemberImg">
+
+            </div>
+            <div class="col-85">
+              <!--当该员工有职务时直接显示-->
+              <span class="font_16" >{{item.UserName}}</span>
+              <p class="proname" ng-if="item.ProName != '未填写'">
+                {{item.ProName}}
+              </p>
             </div>
           </div>
         </ion-item>
