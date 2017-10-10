@@ -7,10 +7,8 @@
     </ion-nav-buttons>
   </ion-nav-bar>
 
-
   <ion-content overflow-scroll="false">
-
-    <!--手机通讯录、常用联系人、我的群组、特别关注-->
+    <!--第一部分-->
     <div class="row contacts">
       <div class="col" ng-click="goLocalContact()">
         <img class="contactImg1" src="img/tel.png" />
@@ -35,27 +33,23 @@
         </a>
       </div>
     </div>
-    <!--公司通讯录、我的部门。。。-->
+    <!--第二部分-->
     <div class="contacts">
       <div class="row">
         <div class="col">
-          <span class="icon ion-android-contacts part2Img" ></span>
-          <!--<img src="img/company_tx.png" class="part2Img"/>-->
+          <img class="contactImg2" src="img/cengji.png" />
           <span style="color:#BDBDBD;">公司通讯录</span>
         </div>
       </div>
       <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID,item.ChildCount)">
         <div class="col">
-
-          <span class="icon ion-ios-people part2Img"></span>
-          <!--<img src="img/jishu_cs.png" class="part2Img" />-->
+          <img class="contactImg2" src="img/cengji.png" />
           <span>{{item.DeptName}}</span>
         </div>
       </div>
       <div class="row" ng-click="gogosecond(loginid)">
         <div class="col">
-          <span class="icon ion-briefcase part2Img"></span>
-          <!--<img src="img/my.png" class="part2Img"/>-->
+          <img class="contactImg2" src="img/cengji.png" style=""/>
           <span>我的部门</span>
         </div>
       </div>
@@ -65,8 +59,7 @@
     <div class="contacts">
       <div class="row contacts">
         <div class="col">
-          <span class="icon ion-ios-person part2Img" ></span>
-          <!--<img src="img/common_lxr.png" class="part2Img">-->
+          <img class="contactImg2" src="img/cengji.png" />
           <span style="color:#9E9E9E;"> 常用联系人</span>
         </div>
       </div>
