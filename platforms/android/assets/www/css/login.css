@@ -36,10 +36,18 @@ div.deleteWhiteLineDiv{
 }
 
 /* 登录页按钮 */
-.button.button-block.button-positive.loginInBtn{
-  background-color:#1D95D4;width: 90%;margin-left: 5%;margin-right: 5%;height: 52px;border-radius: 4px;margin-top: 16px;font-size:18px;
+.button.button-block.button-positive.logout{
+  width: 90%;
+  margin:20px auto;
+  font-size:18px;
 }
-
+.button.button-block.button-positive.logoutBtn{
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+  margin:10px auto;
+  font-size:18px;
+}
 /* 记住密码 */
 .rememberInfor{
   font-size: 14px;margin-top: 20px;

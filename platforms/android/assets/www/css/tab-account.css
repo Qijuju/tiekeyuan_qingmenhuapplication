@@ -4,15 +4,14 @@
 
 /*头像、姓名、天气*/
 .myDiv{
-  background-color: white;
+  background-color: #fff;
   /*margin-top: 16px;*/
 }
 .myDiv ion-item span.weather{
-  color: #fff;
+  color: #000;
 }
 .myDiv ion-item p{
   margin-left: 65px;
-  /*margin-bottom: 42%;*/
   font-size: 24px;
   color: #000;
   display: inline-block;
@@ -23,7 +22,6 @@
   left:15px;
   top:50%;
   margin-top:-20px;
-  color:#fff;
   height:40px;
   line-height:40px;
 }

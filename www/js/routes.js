@@ -458,19 +458,19 @@ angular.module('im.routes', [])
         url: '/addnewpersonfirst/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-first.html',
         controller: 'addNewPersonfirstCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonsecond', {
         url: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-second.html',
         controller: 'addNewPersonsecondCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonthird', {
         url: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-third.html',
         controller: 'addNewPersonthirdCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonforth', {
         url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname/:functiontag',
