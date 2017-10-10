@@ -4,7 +4,6 @@
     <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_search.js" afterPath="$PROJECT_DIR$/www/js/controller_search.js" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -839,14 +838,7 @@
       <workItem from="1506672891928" duration="129000" />
       <workItem from="1506673026332" duration="132000" />
       <workItem from="1506673169238" duration="19801000" />
-      <workItem from="1507511000169" duration="11430000" />
-    </task>
-    <task id="LOCAL-00159" summary="commit">
-      <created>1493102166040</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1493102166041</updated>
+      <workItem from="1507511000169" duration="11461000" />
     </task>
     <task id="LOCAL-00160" summary="commit">
       <created>1493193324347</created>
@@ -1184,11 +1176,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506678320505</updated>
     </task>
-    <option name="localTasksCounter" value="208" />
+    <task id="LOCAL-00208" summary="10.10commit：合并代码and亓菊菊">
+      <created>1507601352796</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1507601352796</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2419154000" />
+    <option name="totallyTimeSpent" value="2419185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1278,7 +1277,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="合并宋亚 （最新代码" />
     <MESSAGE value="。。" />
     <MESSAGE value="最新代码提交" />
     <MESSAGE value="小bug更改提交" />
@@ -1303,7 +1301,8 @@
     <MESSAGE value="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题" />
     <MESSAGE value="0926commit:添加下载轻应用图标接口，并修改登陆接口每次登陆都报登陆失败的bug" />
     <MESSAGE value="0929commit:点击应用图标跳转应用的5种情况全都没问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="0929commit:点击应用图标跳转应用的5种情况全都没问题" />
+    <MESSAGE value="10.10commit：合并代码and亓菊菊" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.10commit：合并代码and亓菊菊" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
