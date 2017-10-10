@@ -3,10 +3,13 @@
   <div id="search-bar" class=" item-input-inset">
     <label class="item-input-wrapper" id="search-input">
       <i class="icon ion-ios-search"></i>
-      <form  onsubmit="dosearch(query)">
-        <input  id="searchdata" type="search" placeholder="搜索" ng-model="query" ng-change="dosearch(query)" autocorrect="off" >
+      <form>
+        <div id="main">
+          <input id="searchdata" class="koala" type="text" placeholder="搜索"/>
+        </div>
       </form>
     </label>
+
     <button class="button button-clear " ng-click="backSearchSM()" >取消</button>
   </div>
 

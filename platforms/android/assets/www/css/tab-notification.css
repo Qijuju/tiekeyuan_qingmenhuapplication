@@ -3,10 +3,16 @@ ion-nav-bar.newbarhead ion-nav-buttons ion-toggle1.item-borderless{
   position: absolute;left: 70%;height: 45px;margin-top: -10px;background: transparent;
 }
 
-/*页面背景色*/
-ion-content#notification{
-  background-color: #F0EFF4
+/* 全部、关注tabs*/
+.tabs-striped.tabs-positive .tabs{
+  background-color: #fff;
 }
+.tabs-striped.tabs-positive .tab-item{
+  color:#000;
+  /*font-size:16px;*/
+}
+/*页面背景色*/
+ion-content#notification,
 ion-side.notificationIonSide{
   background-color: #F0EFF4
 }

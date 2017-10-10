@@ -141,7 +141,6 @@ angular.module('portal.controllers', [])
       switch (item.type) {
         //普通h5应用
         case "0":
-          alert("普通h5");
           $scope.getQyyUrl(item.appId, params);
           break;
         //普通外部应用(url带参数访问,例：物资设备)
@@ -152,7 +151,6 @@ angular.module('portal.controllers', [])
            * 先获取物资设备的访问的url
            * 再调用插件判断该应用是否存在，并进行相应的下载及跳转
            */
-          alert("物资设备");
           $http({
             method: 'post',
             timeout: 5000,
@@ -171,7 +169,6 @@ angular.module('portal.controllers', [])
             cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, data.url, function (succ) {
               //进行统计埋点
               $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
-                alert("物资设备埋点成功" + succ);
               }, function (err) {
               })
             }, function (err) {
@@ -182,13 +179,11 @@ angular.module('portal.controllers', [])
           break;
         //特殊外部应用（android原生集成，例：公文处理）
         case "12":
-          alert("公文处理");
           //oa包名：com.r93535.oa
           //爱加密包名：com.thundersec.encwechat
           cordova.plugins.OAIntegration.getApk(item.signId, item.appId, item.appName, '', function (succ) {
             //进行统计埋点
             $api.sendOperateLog("AppVisit", new Date().getTime(), item.appId, function (succ) {
-              alert("埋点成功" + succ);
             }, function (err) {
             })
           }, function (err) {
@@ -196,7 +191,6 @@ angular.module('portal.controllers', [])
           break;
         //VPN应用
         case "2":
-          alert("vpn应用");
           var confirmPopup = $ionicPopup.confirm({
             title: "友情提示",
             template: item.appName + "需通过VPN访问，请确认是否安装VPN并连接成功!", //从服务端获取更新的内容
@@ -212,7 +206,6 @@ angular.module('portal.controllers', [])
           break;
         //二维码应用
         case "3":
-          alert("二维码");
           $scope.getQyyUrl(item.appId, params);
           break;
       }

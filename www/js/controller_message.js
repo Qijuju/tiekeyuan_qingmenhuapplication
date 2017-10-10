@@ -4724,10 +4724,10 @@ angular.module('message.controllers', [])
 
         });
 
-      }else if(chatType === "Group"){
-        $greendao.queryData('GroupChatsService','where id =?',id,function (dataa) {
-          $greendao.queryData('ChatListService','where id =?',id,function (data) {
-            if(data.length>0){
+      }else if(chatType === "Group") {
+        $greendao.queryData('GroupChatsService', 'where id =?', id, function (dataa) {
+          $greendao.queryData('ChatListService', 'where id =?', id, function (data) {
+            if (data.length > 0) {
               // alert("进来查询了吗？"+data.length);
               var chatitem = {};
               chatitem.id = data[0].id;
@@ -4741,85 +4741,80 @@ angular.module('message.controllers', [])
               // alert("chatype"+chatitem.chatType);
               chatitem.senderId = data[0].senderId;//发送者id
               chatitem.senderName = data[0].senderName;//发送者名字
-              chatitem.daytype=data[0].daytype;
-              chatitem.isSuccess=data[0].isSuccess;
-              chatitem.isFailure=data[0].isFailure;
-              chatitem.messagetype=data[0].messagetype;
-              chatitem.isRead=data[0].isRead;
-              $greendao.saveObj('ChatListService',chatitem,function (data) {
-                $greendao.queryDataByIdAndIsread(id,'0',function (data) {
-                  for(var i=0;i<data.length;i++){
+              chatitem.daytype = data[0].daytype;
+              chatitem.isSuccess = data[0].isSuccess;
+              chatitem.isFailure = data[0].isFailure;
+              chatitem.messagetype = data[0].messagetype;
+              chatitem.isRead = data[0].isRead;
+              $greendao.saveObj('ChatListService', chatitem, function (data) {
+                $greendao.queryDataByIdAndIsread(id, '0', function (data) {
+                  for (var i = 0; i < data.length; i++) {
                     // alert("进入for循环的长度"+data.length);
-                    var messaegeitem={};
-                    messaegeitem._id=data[i]._id;
-                    messaegeitem.sessionid=data[i].sessionid;
-                    messaegeitem.type=data[i].type;
+                    var messaegeitem = {};
+                    messaegeitem._id = data[i]._id;
+                    messaegeitem.sessionid = data[i].sessionid;
+                    messaegeitem.type = data[i].type;
                     // alert("监听消息类型"+messaegeitem.type+messaegeitem._id);
-                    messaegeitem.from=data[i].from;
-                    messaegeitem.message=data[i].message;
-                    messaegeitem.messagetype=data[i].messagetype;
-                    messaegeitem.platform=data[i].platform;
-                    messaegeitem.when=data[i].when;
-                    messaegeitem.isFailure=data[i].isFailure;
-                    messaegeitem.isDelete=data[i].isDelete;
-                    messaegeitem.imgSrc=data[i].imgSrc;
-                    messaegeitem.username=data[i].username;
-                    messaegeitem.senderid=data[i].senderid;
-                    messaegeitem.isSuccess=data[i].isSuccess;
-                    messaegeitem.daytype=data[i].daytype;
-                    messaegeitem.istime=data[i].istime;
-                    if(data[i].isread ==='0'){
-                      if(data[i].messagetype != 'Audio'){
+                    messaegeitem.from = data[i].from;
+                    messaegeitem.message = data[i].message;
+                    messaegeitem.messagetype = data[i].messagetype;
+                    messaegeitem.platform = data[i].platform;
+                    messaegeitem.when = data[i].when;
+                    messaegeitem.isFailure = data[i].isFailure;
+                    messaegeitem.isDelete = data[i].isDelete;
+                    messaegeitem.imgSrc = data[i].imgSrc;
+                    messaegeitem.username = data[i].username;
+                    messaegeitem.senderid = data[i].senderid;
+                    messaegeitem.isSuccess = data[i].isSuccess;
+                    messaegeitem.daytype = data[i].daytype;
+                    messaegeitem.istime = data[i].istime;
+                    if (data[i].isread === '0') {
+                      if (data[i].messagetype != 'Audio') {
                         // alert("拿到库里的消息阅读状态"+data[i].isread);
-                        data[i].isread ='1';
-                        messaegeitem.isread=data[i].isread;
+                        data[i].isread = '1';
+                        messaegeitem.isread = data[i].isread;
                         // alert("拿到库里的消息阅读状态后"+messaegeitem.isread);
-                        $greendao.saveObj('MessagesService',messaegeitem,function (data) {
+                        $greendao.saveObj('MessagesService', messaegeitem, function (data) {
                           // alert("保存成功");
-                        },function (err) {
+                        }, function (err) {
                         });
                       }
 
                     }
                   }
-                },function (err) {
+                }, function (err) {
 
                 });
-                $state.go('messageGroup',{
-                  "id":id,
-                  "chatName":dataa[0].groupName,
-                  "grouptype":dataa[0].groupType,
-                  "ismygroup":dataa[0].ismygroup,
+                $state.go('messageGroup', {
+                  "id": id,
+                  "chatName": dataa[0].groupName,
+                  "grouptype": dataa[0].groupType,
+                  "ismygroup": dataa[0].ismygroup,
                 });
-              },function (err) {
+              }, function (err) {
 
               });
-            }else{
+            } else {
               // alert("是不是没有数据");
 
-              $state.go('messageGroup',{
-                "id":id,
-                "chatName":dataa[0].groupName,
-                "grouptype":dataa[0].groupType,
-                "ismygroup":dataa[0].ismygroup,
+              $state.go('messageGroup', {
+                "id": id,
+                "chatName": dataa[0].groupName,
+                "grouptype": dataa[0].groupType,
+                "ismygroup": dataa[0].ismygroup,
               });
             }
-          },function (err) {
+          }, function (err) {
 
           });
-        },function (err) {
+        }, function (err) {
 
         });
       }
-
-      $scope.clearAllCount=function () {
-
-      }
-
     };
 
     $scope.goSearch = function () {
-      $scope.a=false;
+      // $scope.a=false;
       $state.go("searchmessage",{
         "UserIDSM":$scope.userId,
         "UserNameSM":$scope.userName
