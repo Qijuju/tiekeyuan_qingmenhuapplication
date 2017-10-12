@@ -116,7 +116,7 @@ angular.module('login.controllers', [])
               $state.go('login');
             }
           });
-        } else {
+        }else {
           $pubionicloading.showloading('','登录中...');
           if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
             $api.activeUser(message.userID, function (message) {
@@ -154,7 +154,7 @@ angular.module('login.controllers', [])
           });
         }else{//先跑通流程
           $state.go('login');
-          $ToastUtils.showToast(message.Message);
+          $ToastUtils.showToast(message);
         }
       });
 

@@ -1,6 +1,7 @@
 package com.tky.im.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
@@ -30,8 +31,8 @@ import java.util.Map;
  */
 
 public class IMSwitchLocal {
-//    private static String local = "TEST";//开发环境
-    private static String local = "LN";//生产环境
+    private static String local = "TEST";//开发环境
+//    private static String local = "LN";//生产环境
 //    private static String local = "LW";//老挝正式环境
 
     public static void setLocal(String local) {
@@ -108,7 +109,11 @@ public class IMSwitchLocal {
      */
     public static String getUserID() throws JSONException {
         JSONObject userInfo = getUserInfo();
-        return userInfo.getString("userID");
+        String userid="";
+        if(userInfo != null){
+            userid =userInfo.getString("userID");
+        }
+        return userid;
     }
 
     /**
@@ -119,7 +124,11 @@ public class IMSwitchLocal {
      */
     public static String getDeptID() throws JSONException {
         JSONObject userInfo = getUserInfo();
-        return userInfo.getString("deptID");
+        String deptid ="";
+        if(userInfo != null ){
+            deptid =userInfo.getString("deptID");
+        }
+        return deptid;
     }
 
   /**
@@ -131,8 +140,13 @@ public class IMSwitchLocal {
     }
 
     public static JSONObject getUserInfo() throws JSONException {
+        JSONObject obj=new JSONObject();
         String login_info = SPUtils.getString("login_info", "");
-        return new JSONObject(login_info);
+        if(!TextUtils.isEmpty(login_info)) {
+            obj = new JSONObject(login_info);
+
+        }
+        return obj;
     }
 
     /**

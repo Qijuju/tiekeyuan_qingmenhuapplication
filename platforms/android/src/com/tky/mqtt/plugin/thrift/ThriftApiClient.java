@@ -726,6 +726,7 @@ public class ThriftApiClient extends CordovaPlugin {
         UserJSDetail.User user = new UserJSDetail.User();
         user.setUserID(event.getId());
         user.setActive(true);//(event.isActive());
+        user.setDeptPath(event.getDeptPath());
         user.setUserName(event.getDisplayName());
         user.setDeptName(event.getDeptName());
         user.setDeptID(event.getDeptid());

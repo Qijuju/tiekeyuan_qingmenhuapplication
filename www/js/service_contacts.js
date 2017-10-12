@@ -417,7 +417,8 @@ angular.module('contacts.services', [])
 
       deptFifthInfo: function (deptId) {
         $api.getDeparment(deptId, function (msg) {
-          forthname = msg.deptInfo
+          forthname = msg.deptInfo.DeptName;
+          console.log("五级名称service"+forthname+"接口返回的数据"+JSON.stringify(msg));
           $api.getChild(deptId, fifthCount, 10, function (msg) {
             deptFifhtInfo = msg;
             // alert("拿到第五层级的数据"+JSON.stringify(deptFifhtInfo));
@@ -472,7 +473,7 @@ angular.module('contacts.services', [])
       deptSixthInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          fifthname = msg.deptInfo
+          fifthname = msg.deptInfo.DeptName;
           $api.getChild(deptId, sixthCount, 10, function (msg) {
             deptSixthInfo = msg;
             // alert("拿到第六层级的数据"+JSON.stringify(deptSixthInfo));
@@ -526,7 +527,7 @@ angular.module('contacts.services', [])
       deptSeventhInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          sixthname = msg.deptInfo
+          sixthname = msg.deptInfo.DeptName;
           $api.getChild(deptId, seventhCount, 10, function (msg) {
             deptSeventhInfo = msg;
             sixthId = msg.deptID;
@@ -577,7 +578,7 @@ angular.module('contacts.services', [])
       deptEighthInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          seventhname = msg.deptInfo
+          seventhname = msg.deptInfo.DeptName;
           $api.getChild(deptId, eighthCount, 10, function (msg) {
             deptEighthInfo = msg;
             seventhId = msg.deptID;

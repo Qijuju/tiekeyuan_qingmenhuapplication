@@ -28,6 +28,15 @@ public class User extends BaseBean {
   private boolean isAttention;
   private String loginAccount;//用户登录账号
   private String loginName;
+  private String deptPath;//用户所在部门路径
+
+  public String getDeptPath() {
+    return deptPath;
+  }
+
+  public void setDeptPath(String deptPath) {
+    this.deptPath = deptPath;
+  }
 
   public class Im {
     private String im;

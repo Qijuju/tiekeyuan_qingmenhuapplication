@@ -411,6 +411,7 @@ public class InAppBrowser extends CordovaPlugin {
                 childView.setWebViewClient(new WebViewClient() {
                     // NB: wait for about:blank before dismissing
                     public void onPageFinished(WebView view, String url) {
+                        LOG.d(LOG_TAG, "go go go");
                         if (dialog != null) {
                             dialog.dismiss();
                             dialog = null;
@@ -832,6 +833,7 @@ public class InAppBrowser extends CordovaPlugin {
         if (callbackContext != null) {
             PluginResult result = new PluginResult(status, obj);
             result.setKeepCallback(keepCallback);
+            LOG.e(LOG_TAG, "Error callback");
             callbackContext.sendPluginResult(result);
             if (!keepCallback) {
                 callbackContext = null;
@@ -975,7 +977,6 @@ public class InAppBrowser extends CordovaPlugin {
 
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-
             // CB-10395 InAppBrowser's WebView not storing cookies reliable to local device storage
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager.getInstance().flush();
@@ -1003,7 +1004,6 @@ public class InAppBrowser extends CordovaPlugin {
                 obj.put("url", failingUrl);
                 obj.put("code", errorCode);
                 obj.put("message", description);
-
                 sendUpdate(obj, true, PluginResult.Status.ERROR);
             } catch (JSONException ex) {
                 LOG.d(LOG_TAG, "Should never happen");

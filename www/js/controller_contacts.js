@@ -833,7 +833,6 @@ angular.module('contacts.controllers', [])
           // var pageNo = data.pageNo;
           // var pageSize =data.pageSize;
           // var num= pageNo * pageSize;
-          // alert("controller拿到的页码"+pageSize+"==="+pageNo+"====="+num);
           $scope.count1 = $contacts.getCount7();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptFifthInfo().deptList;
@@ -853,8 +852,7 @@ angular.module('contacts.controllers', [])
             }
           }
           $scope.parentID = $contacts.getDeptFifthInfo().deptID;
-          $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
-
+          $scope.deptinfo5 = $contacts.getForthDeptName();
           if (($rootScope.totalFifthCount - (data.pageNo*data.pageSize)) >0 ) {
             // alert("能不能继续点");
             $scope.fifthStatus = true;
@@ -993,7 +991,7 @@ angular.module('contacts.controllers', [])
 
     //根据id获取子部门和人员信息
     $contacts.deptSixthInfo($scope.contactId);
-    $scope.$on('sixth.update', function (event) {
+    $scope.$on('sixth.update', function (event,data) {
       $scope.$apply(function () {
 
 
@@ -1027,8 +1025,7 @@ angular.module('contacts.controllers', [])
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
           $scope.parentID = $contacts.getDeptSixthInfo().deptID;
-          $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
-
+          $scope.deptinfo6 = $contacts.getFifthDeptName();
 
           // $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
           //   $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
@@ -1184,7 +1181,7 @@ angular.module('contacts.controllers', [])
     //根据id获取子部门和人员信息
 
     $contacts.deptSeventhInfo($scope.contactId);
-    $scope.$on('seventh.update', function (event) {
+    $scope.$on('seventh.update', function (event,data) {
       $scope.$apply(function () {
 
         $timeout(function () {
@@ -1215,8 +1212,7 @@ angular.module('contacts.controllers', [])
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
           $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
-          $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
-
+          $scope.deptinfo7 = $contacts.getSixthDeptName();
 
           // $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
           //   + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
@@ -1378,7 +1374,7 @@ angular.module('contacts.controllers', [])
 
     //根据id获取子部门和人员信息
     $contacts.deptEighthInfo($scope.contactId);
-    $scope.$on('eighth.update', function (event) {
+    $scope.$on('eighth.update', function (event,data) {
       $scope.$apply(function () {
 
         $timeout(function () {
@@ -1410,8 +1406,7 @@ angular.module('contacts.controllers', [])
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
           $scope.parentID = $contacts.getDeptEighthInfo().deptID;
-          $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
-
+          $scope.deptinfo8 = $contacts.getSeventhDeptName();
 
           // $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
           //   + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
