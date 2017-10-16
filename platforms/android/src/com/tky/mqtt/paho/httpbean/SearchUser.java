@@ -16,6 +16,15 @@ public class SearchUser extends BaseBean {
     private String userName;
     private String rootDeptId;
     private String rootDeptName;
+    private String deptPath;
+
+    public String getDeptPath() {
+      return deptPath;
+    }
+
+    public void setDeptPath(String deptPath) {
+      this.deptPath = deptPath;
+    }
 
     public String getId() {
       return id;

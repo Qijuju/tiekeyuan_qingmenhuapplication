@@ -47,8 +47,8 @@
     <div class="chatHistorymsg" ng-if="personsren.length>0" >联系人</div>
     <ion-list>
       <ion-item ng-repeat="persondetail1 in personsren">
-        <div class="row" >
-          <div   class="col col-20 tal"  ng-click="tanchuangsearch(persondetail1.UserID)">
+        <div class="row" style="background: #EFEFF4;">
+          <div class="col col-30 tal"  ng-click="tanchuangsearch(persondetail1.UserID)">
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==3||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==7" class="center circle3 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
@@ -56,10 +56,15 @@
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==5||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==0" class="center circle5 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
 
             <p class="resultName" ng-bind="persondetail1.UserName" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
-
           </div>
-          <div class="col col-80 text-center" align="left" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
-            <p class="historymsgCount" ng-bind="persondetail1.DeptName" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
+
+          <div class="col col-70" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
+            <p class="historymsgCount"  ng-bind="persondetail1.DeptName" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col"  ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
+            <p class="deptPath" ng-bind="persondetail1.DeptPath" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
           </div>
         </div>
       </ion-item>

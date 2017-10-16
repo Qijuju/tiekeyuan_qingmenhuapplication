@@ -54,9 +54,9 @@ angular.module('search.controllers', [])
       };
 
       $('#main .koala').koala({
-        delay: 1000,
+        delay: 800,
         keyup: function (event) {
-          dosearch(this.value);
+          $scope.dosearch(this.value);
         }
       });
 
@@ -74,7 +74,6 @@ angular.module('search.controllers', [])
       $greendao.queryData("MsgHistoryService",'where type =?',"person",function (msg) {
         for(var i=0;i<msg.length;i++){
           var key=msg[i]._id;
-          // $ToastUtils.showToast("消息对象"+key);
           $greendao.deleteDataByArg('MsgHistoryService',key,function (data) {
             $search111.getHistorymsg("person");
             $ToastUtils.showToast("清空搜索记录成功");
@@ -116,7 +115,7 @@ angular.module('search.controllers', [])
     $scope.query2="";
 
     // 查询函数调用
-   function dosearch(query) {
+   $scope.dosearch = function (query) {
         $scope.query = "";
         $scope.query=query;
         document.getElementById("searchdata").value = query;
@@ -140,7 +139,6 @@ angular.module('search.controllers', [])
               msgs.push(msgaaa[i].msg);
             }
             if(msgs.indexOf(query)==-1){
-              // alert(query)
               var msghistory={};
               msghistory._id="";
               msghistory.msg=query;
@@ -164,30 +162,30 @@ angular.module('search.controllers', [])
                 msghistory.type="person";
                 msghistory.when=0;
                 $greendao.saveObj("MsgHistoryService",msghistory,function (message) {
-                  // alert("存取成功");
                 },function (message) {
 
                 })
               },function (msgbbb) {
               })
             }
-            // $rootScope.$broadcast('persons.history');
           },function (msgaaa) {
-            // $rootScope.$broadcast('persons.history');
           });
           $scope.query1 ="%"+query+"%";
           $searchmessage.searchmessagessss($scope.query1);
         }
-      // },5000)
-    }
+    };
 
     $scope.$on('persons.update',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
           $pubionicloading.hide();
+          // 拿到数据源
           $scope.personsren=$search111.getPersons().searchResult;
+
+
+
           if ($scope.personsren.length>=15){
-            $scope.hasmore=true
+            $scope.hasmore=true;
             $scope.page++
           }else {
             $scope.hasmore=false
@@ -210,7 +208,7 @@ angular.module('search.controllers', [])
     $scope.$on('persons2.update2',function (event) {
       $scope.$apply(function () {
         if ($search222.getPersons2()===null){
-          $scope.hasmore=false
+          $scope.hasmore=false;
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }else {
           var person=$search222.getPersons2().searchResult;
@@ -219,6 +217,8 @@ angular.module('search.controllers', [])
         for (var i = 0; i < person.length; i++) {
           $scope.personsren.push(person[i]);
         }
+
+
         if (person.length>=15){
           $scope.hasmore=true;
           $scope.page++
@@ -230,6 +230,8 @@ angular.module('search.controllers', [])
         $scope.$broadcast('scroll.infiniteScrollComplete');
       })
     });
+
+
 
     //点击头像发送消息
     $scope.createchatwai = function (name,id) {

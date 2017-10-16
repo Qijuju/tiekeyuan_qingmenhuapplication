@@ -3841,6 +3841,39 @@ angular.module('message.controllers', [])
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
+
+          // 点亮图标、置灰图标分类显示
+          // 实现：针对每一组数据，置灰的往后放置
+          for(var j = 0; j <  $rootScope.portalDataSource.sysmenu.length; j++){
+            var item1 =  $rootScope.portalDataSource.sysmenu[j].items;
+
+            var falseIndexArr = []; // 置灰图标的下标数组
+            var trueIndexArr = []; // 点亮图标的下标数组
+            var newItem = []; // 重新排列后的数组
+
+            // 将点亮图标和置灰图标的下标分别放入不同数组里
+            for (var i=0;i<item1.length;i++){
+              if (item1[i].flag === false){
+                falseIndexArr.push(i);
+              }else {
+                trueIndexArr.unshift(i);
+              }
+            }
+
+            // 将置灰图标元素追加到新的数组的后面。
+            for (var i=0;i<falseIndexArr.length;i++){
+              var index = falseIndexArr[i];
+              newItem.push(item1[index])
+            }
+            // 将点亮图标元素追加到新的数组的前面。
+            for (var i=0;i<trueIndexArr.length;i++){
+              var index = trueIndexArr[i];
+              newItem.unshift(item1[index])
+            }
+
+            $rootScope.portalDataSource.sysmenu[j].items = newItem;
+          }
+
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
 
           // 定义一个存放 appIcon 的数组对象

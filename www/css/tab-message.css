@@ -235,3 +235,8 @@ span.rj-sm-red-icon{
 #searchContent{
   margin-top:52px;
 }
+
+/*搜索结果*/
+.item p.deptPath{
+  white-space:normal;
+}

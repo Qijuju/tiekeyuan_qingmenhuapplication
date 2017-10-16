@@ -431,6 +431,7 @@ public class ThriftApiClient extends CordovaPlugin {
             for (int i = 0; i < event.size(); i++) {
                 SearchUser.Event eventi = event.get(i);
                 SearchJSUser.SearchResult searchResult = new SearchJSUser.SearchResult();
+                searchResult.setDeptPath(eventi.getDeptPath());
                 searchResult.setUserID(eventi.getId());
                 searchResult.setDeptID(eventi.getDeptid());
                 searchResult.setDeptName(eventi.getDeptName());

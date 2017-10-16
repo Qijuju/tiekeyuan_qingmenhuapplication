@@ -53,7 +53,7 @@
     <div class="chatHistorymsg" ng-if="personsren.length>0">联系人</div>
     <ion-list>
       <ion-item ng-repeat="persondetail1 in personsren">
-        <div class="row" >
+        <div class="row" style="background: #EFEFF4;">
           <div  class="col col-20 tal" ng-click="tanchuangsearch(persondetail1.UserID)">
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==1||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==9" class="center circle1 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
             <div ng-if="persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==2||persondetail1.UserID.substring((persondetail1.UserID.length-1),persondetail1.UserID.length)==8" class="center circle2 myHeaderDiv">{{persondetail1.UserName.length > 2 ? persondetail1.UserName.substring((persondetail1.UserName.length-2),persondetail1.UserName.length):persondetail1.UserName}}</div>
@@ -68,6 +68,12 @@
           <div class="col col-80 text-center" align="left" ng-click="goPersonDetail(persondetail1.UserID)">
           <!--<span class="searchUserName" ng-bind="persondetail1.UserName" ng-click="goPersonDetail(persondetail1.UserID)"></span>&nbsp;&nbsp;&nbsp;&nbsp;-->
             <p class="historymsgCount" ng-bind="persondetail1.DeptName" ng-click="goPersonDetail(persondetail1.UserID)"></p>
+          </div>
+        </div>
+
+        <div class="row" >
+          <div class="col"  ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)">
+            <p class="deptPath" ng-bind="persondetail1.DeptPath" ng-click="createchatwai(persondetail1.UserName,persondetail1.UserID)"></p>
           </div>
         </div>
       </ion-item>

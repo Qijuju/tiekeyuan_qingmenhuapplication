@@ -17,9 +17,18 @@ div.row.contacts,contacts{
   height:40px;
 }
 .contacts .col img.contactImg2{
-  width:20px;
-  height:20px;
+  width:25px;
+  height:25px;
   vertical-align:middle;
+  margin-right:10px;
+}
+
+.contacts .col img.contactImg3{
+  width:30px;
+  height:30px;
+  vertical-align:middle;
+  margin-right:15px;
+
 }
 .contacts .row .col{
   text-align: left;
@@ -50,9 +59,17 @@ div.row.contacts,contacts{
   margin-left:20px;
   margin-right:10px;
 }
-.icon_friends img{
-  width:36px;height:36px;
-
+.icon_friends span.friendsIcon{
+  display: inline-block;
+  width:40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  background: #FFE7BA;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }
 
 /*列内容居中显示*/

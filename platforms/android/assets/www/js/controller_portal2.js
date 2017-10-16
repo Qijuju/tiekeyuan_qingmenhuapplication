@@ -129,7 +129,11 @@ angular.module('portal.controllers', [])
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
-        $scope.chooseBrowser(data.url,appId);
+        if(data.Succeed){
+          $scope.chooseBrowser(data.url,appId);
+        }else{
+          $ToastUtils.showToast(data.Message);
+        }
       }).error(function (err) {
 
       });

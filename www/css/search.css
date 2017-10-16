@@ -35,12 +35,12 @@ input#searchdata{
 
 /* 姓名 */
 p.resultName{
-  font-size: 15px;position: absolute;left: 55px;top: 30%;
+  font-size: 15px;position: absolute;left: 55px;top: 20px;
 }
 
 /* 聊天记录条数 */
-.historymsgCount{
-  font-size: 15px;position: absolute;left: 45%;top: 35%;
+p.historymsgCount{
+  font-size: 15px;position: absolute;left: 45%;top: 20px;
 }
 
 /* 联系人 */

@@ -105,7 +105,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
+  .controller('ContactsCtrl', function ($scope, $state,$api, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
     // alert("网络状态"+$rootScope.isNetConnect);
 
     $scope.$on('netstatus.update', function (event) {
@@ -153,11 +153,12 @@ angular.module('contacts.controllers', [])
           $pubionicloading.hide();
           $state.go('localContacts');
         }else {
+          $pubionicloading.hide();
           localContact.getContact();
         }
 
       },function (err) {
-
+        $pubionicloading.hide();
       });
 
     }
@@ -201,6 +202,10 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
 
+        for(var i=0;i<$scope.topContactLists.length;i++){
+          $scope.topContactLists[i].shotName = $scope.topContactLists[i].name.slice(-2);
+
+        }
 
 
       })
@@ -210,8 +215,14 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $scope.logId = $contacts.getLoignInfo();
-
         $scope.loginid=$contacts.getLoignInfo().deptID;
+        //取出我的部门的人数的长度，供我的部门上拉加载
+        $api.getDeparment($scope.loginid,function (data) {
+          if(data.result){
+            $scope.mydeptlength=data.deptInfo.ChildCount;
+          }
+        },function (err) {
+        });
 
       })
     });
@@ -300,13 +311,7 @@ angular.module('contacts.controllers', [])
     };
 
     $scope.createchat = function (id, phone,name) {
-      // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // $ToastUtils.showToast("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      // $state.go('tab.message', {
-      //   "id": id,
-      //   "sessionid": name
-      // });
       if(id ===null || name ===null || id === '' ||name ===''){
         $ToastUtils.showToast("当前用户信息不全");
       }else if($scope.myid==id) {
@@ -333,10 +338,11 @@ angular.module('contacts.controllers', [])
      $ToastUtils.showToast(err);
      });*/
 
+
     $scope.gogosecond=function (id,childcount) {
       $state.go("second", {
         "contactId": id,
-        "childcount":childcount,
+        "childcount":childcount
       });
     }
 
@@ -406,8 +412,10 @@ angular.module('contacts.controllers', [])
           $scope.parentID = $contacts.getDeptInfo().deptID;
 
           if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) >0 ) {
+            console.log("二级目录的总数和count"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = true;
           } else if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) <=0 ) {
+            console.log("二级目录的总数和count11111"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = false;
 
           }

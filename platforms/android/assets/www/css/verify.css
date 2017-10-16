@@ -51,8 +51,8 @@ img.verify2{
   padding:0px;
 }
 .button.button-block{
-  margin-top:0px;
-  margin-bottom:0px;
+  width:90%;
+  margin:10px 5%;
 }
 .button.sendVerifyBtn{
   border-color:#dcdcdc;

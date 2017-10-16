@@ -37,7 +37,7 @@
     <div class="contacts">
       <div class="row">
         <div class="col">
-          <img class="contactImg2" src="img/cengji.png" />
+          <img class="contactImg2" src="img/company_tx.png" />
           <span style="color:#BDBDBD;">公司通讯录</span>
         </div>
       </div>
@@ -47,7 +47,7 @@
           <span>{{item.DeptName}}</span>
         </div>
       </div>
-      <div class="row" ng-click="gogosecond(loginid)">
+      <div class="row" ng-click="gogosecond(loginid,mydeptlength)">
         <div class="col">
           <img class="contactImg2" src="img/cengji.png" style=""/>
           <span>我的部门</span>
@@ -59,7 +59,7 @@
     <div class="contacts">
       <div class="row contacts">
         <div class="col">
-          <img class="contactImg2" src="img/cengji.png" />
+          <img class="contactImg2" src="img/common_lxr.png" />
           <span style="color:#9E9E9E;"> 常用联系人</span>
         </div>
       </div>
@@ -70,9 +70,9 @@
       <div class="row">
         <div class="col">
           <div class="icon_friends">
-            <img  src="img/icon_friends.png" >
+            <!--<img  src="img/icon_friends.png" >-->
+            <span class="friendsIcon">{{item.shotName}}</span>
           </div>
-
           <div class="common-contact-detail">
             <p>{{item.name}}</p>
             <p>{{item.phone}}</p>
