@@ -1023,7 +1023,7 @@ public class ThriftApiClient extends CordovaPlugin {
           boolean needDown = false;
           for(int i=0;i<jsonArray.length();i++){
             String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "tkyjst" + File.separator + "download" + File.separator + "icon";
-            final String iconFilePath = filePath+File.separator+jsonArray.get(i)+".png";
+              final String iconFilePath = filePath+File.separator+jsonArray.get(i)+".png";
             final File iconFile = new File(iconFilePath);
             if(!iconFile.exists()){
                 needDown = true;

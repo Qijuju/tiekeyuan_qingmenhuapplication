@@ -3816,16 +3816,16 @@ angular.module('message.controllers', [])
 
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
 
+
     /*门户页数据请求代码开始。
      * 1.写在此处的原因：
      * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
      *
      * */
-
     // 门户页面数据请求
     var userID; // userID = 232099
     var imCode; //  imCode = 866469025308438
-
+    var qyyobject = {};// 一条logo数据
     $mqtt.getUserInfo(function (succ) {
       userID = succ.userID;
       //获取人员所在部门，点亮图标
@@ -3841,41 +3841,8 @@ angular.module('message.controllers', [])
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
-
-          // 点亮图标、置灰图标分类显示
-          // 实现：针对每一组数据，置灰的往后放置
-          for(var j = 0; j <  $rootScope.portalDataSource.sysmenu.length; j++){
-            var item1 =  $rootScope.portalDataSource.sysmenu[j].items;
-
-            var falseIndexArr = []; // 置灰图标的下标数组
-            var trueIndexArr = []; // 点亮图标的下标数组
-            var newItem = []; // 重新排列后的数组
-
-            // 将点亮图标和置灰图标的下标分别放入不同数组里
-            for (var i=0;i<item1.length;i++){
-              if (item1[i].flag === false){
-                falseIndexArr.push(i);
-              }else {
-                trueIndexArr.unshift(i);
-              }
-            }
-
-            // 将置灰图标元素追加到新的数组的后面。
-            for (var i=0;i<falseIndexArr.length;i++){
-              var index = falseIndexArr[i];
-              newItem.push(item1[index])
-            }
-            // 将点亮图标元素追加到新的数组的前面。
-            for (var i=0;i<trueIndexArr.length;i++){
-              var index = trueIndexArr[i];
-              newItem.unshift(item1[index])
-            }
-
-            $rootScope.portalDataSource.sysmenu[j].items = newItem;
-          }
-
+          // console.log("applist"+JSON.stringify($rootScope.portalDataSource));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
-
           // 定义一个存放 appIcon 的数组对象
           $scope.appIconArr = [];
           // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
@@ -3884,6 +3851,13 @@ angular.module('message.controllers', [])
             for(var j=0;j<items.length;j++){
               var flag = items[j].flag;
               var appIcon = items[j].appIcon;
+              qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
+              qyyobject.appId = items[j].appId;
+              // console.log("每一条obj"+JSON.stringify(qyyobject));
+              $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+                // console.log("存储好一条数据是否成功"+succ);
+              },function (err) {
+              });
               if(flag){
                 $scope.appIconArr.push( appIcon );
               }else {
@@ -3891,7 +3865,6 @@ angular.module('message.controllers', [])
               }
             }
           }
-
           // 调插件，获取所有的图片路径
           $api.downloadQYYIcon($scope.appIconArr ,function (success) {
             $rootScope.appIconPaths = success;

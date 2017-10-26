@@ -148,7 +148,7 @@ angular.module('contacts.controllers', [])
       $pubionicloading.showloading('','正在加载...');
 
       $greendao.loadAllData('LocalPhoneService',function (msg) {
-
+        console.log("看看本地有多少数据"+JSON.stringify(msg));
         if(msg.length>0){
           $pubionicloading.hide();
           $state.go('localContacts');

@@ -5,4 +5,9 @@ var exec = require('cordova/exec');
 	exec(success, error, "OAIntegration", "getApk", [packagename, appId, name,url]);
  };
 
+ //创建桌面快捷方式
+ exports.createDsk = function(packagename, appId, name, success, error) {
+ 	exec(success, error, "OAIntegration", "createDsk", [packagename, appId, name]);
+  };
+
 });

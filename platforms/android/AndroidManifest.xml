@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-    <manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="1.1.1013.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest android:hardwareAccelerated="true" android:installLocation="auto" android:versionCode="1" android:versionName="0.0.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -29,6 +28,14 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.SET_PROCESS_LIMIT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher2.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher3.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher2.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher3.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
     <application android:hardwareAccelerated="true" android:label="@string/app_name" android:name="com.tky.mqtt.paho.BaseApplication" android:persistent="true" android:supportsRtl="true">
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter android:label="@string/launcher_name">
@@ -59,15 +66,13 @@
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        <provider android:authorities="com.r93535.im.DocumentViewerPlugin.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="de.sitewaerts.cordova.documentviewer.FileProvider">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/documentviewer_file_paths" />
-        </provider>
         <provider android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
         </provider>
         <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
         <activity android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize" android:exported="false" android:name="com.google.zxing.client.android.CaptureActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:label="Share" android:name="com.google.zxing.client.android.encode.EncodeActivity" />
+        <activity android:name=".TestActivity" />
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

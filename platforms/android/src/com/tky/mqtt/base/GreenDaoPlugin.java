@@ -10,9 +10,11 @@ import com.tky.mqtt.dao.LocalPhone;
 import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.dao.ModuleCount;
 import com.tky.mqtt.dao.MsgHistory;
+import com.tky.mqtt.dao.NewNotifyList;
 import com.tky.mqtt.dao.NotifyList;
 import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.dao.ParentDept;
+import com.tky.mqtt.dao.QYYIconPath;
 import com.tky.mqtt.dao.SelectedId;
 import com.tky.mqtt.dao.SlowNotifyList;
 import com.tky.mqtt.dao.SubDept;
@@ -28,9 +30,11 @@ import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
 import com.tky.mqtt.services.ModuleCountService;
 import com.tky.mqtt.services.MsgHistoryService;
+import com.tky.mqtt.services.NewNotifyListService;
 import com.tky.mqtt.services.NotifyListService;
 import com.tky.mqtt.services.OtherHeadPicService;
 import com.tky.mqtt.services.ParentDeptService;
+import com.tky.mqtt.services.QYYIconPathService;
 import com.tky.mqtt.services.SelectIdService;
 import com.tky.mqtt.services.SlowNotifyListService;
 import com.tky.mqtt.services.SubDeptService;
@@ -274,6 +278,18 @@ public class GreenDaoPlugin extends CordovaPlugin {
       gesturePwd.setUsername(jsonobj.getString("username"));
       gesturePwd.setPwd(jsonobj.getString("pwd"));
       obj = gesturePwd;
+    }else if("NewNotifyListService".equals(services)){
+      NewNotifyList newNotifyList = new NewNotifyList();
+      newNotifyList.setMsgId(jsonobj.getString("msgId"));
+      newNotifyList.setAppId(jsonobj.getString("appId"));
+      newNotifyList.setAppName(jsonobj.getString("appName"));
+      newNotifyList.setIsRead(jsonobj.getString("isRead"));
+      obj = newNotifyList;
+    }else if("QYYIconPathService".equals(services)){
+      QYYIconPath qyyIconPath=new QYYIconPath();
+      qyyIconPath.setAppId(jsonobj.getString("appId"));
+      qyyIconPath.setPath(jsonobj.getString("path"));
+      obj = qyyIconPath;
     }
     return obj;
   }
@@ -373,6 +389,10 @@ public class GreenDaoPlugin extends CordovaPlugin {
       baseInterface = OtherHeadPicService.getInstance(UIUtils.getContext());
     } else if ("GesturePwdService".equals(services)) {
       baseInterface = GesturePwdService.getInstance(UIUtils.getContext());
+    }else if ("NewNotifyListService".equals(services)){
+      baseInterface = NewNotifyListService.getInstance(UIUtils.getContext());
+    }else if("QYYIconPathService".equals(services)){
+      baseInterface = QYYIconPathService.getInstance(UIUtils.getContext());
     }
     return baseInterface;
   }

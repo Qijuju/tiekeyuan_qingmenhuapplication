@@ -1,6 +1,7 @@
 package com.tky.oaintegration;
 
 import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 
 import org.dom4j.Document;
@@ -11,10 +12,18 @@ import org.dom4j.io.XMLWriter;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.attr.path;
+import static com.tky.protocol.factory.IMMsgFactory.PlatType.Android;
 
 /**
  * Created by bim on 2017/8/22.
@@ -80,6 +89,16 @@ public class CreateXml {
                     out.write(doc);
                     // 关闭IO流
                     out.close();
+                    /*FileInputStream fis = new FileInputStream(ef);
+                    int len = 0;
+                    byte[] bys = new byte[1024];
+                    StringBuilder sw = new StringBuilder();
+                    while ((len = fis.read(bys)) != -1) {
+                        String str = new String(bys, 0, len);
+                        sw.append(str);
+                        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LPREMPLAT/qmhapp.xml");
+                    }*/
+                    System.out.println("读取文件的路径:" + ef.getAbsolutePath());
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -139,6 +158,7 @@ public class CreateXml {
                 .getAbsolutePath());
         Log.d(TAG, "外部存储路径："
                 + Environment.getExternalStorageDirectory().getAbsolutePath());
+
         File file = new File("/system/etc/vold.fstab");
         if (file.exists()) {
             FileReader fr = null;

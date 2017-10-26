@@ -659,7 +659,12 @@ angular.module('im.routes', [])
         controller: 'msgcheckCtrl'
       })
 
-
+      //轻门户--工程部位应用选择功能模块
+      .state('projectPart', {
+        url: '/projectPart/:appId/:imCode/:userId',
+        templateUrl: 'templates/projectPart.html',
+        controller: 'projectPartCtrl'
+      })
 
 
 

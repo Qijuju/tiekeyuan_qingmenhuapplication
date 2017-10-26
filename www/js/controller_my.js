@@ -132,6 +132,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       $state.go("founction");
     }
 
+    $scope.goDesktop = function () {
+      //调用插件方法创建桌面快捷方式
+      cordova.plugins.OAIntegration.createDsk(" ", " ","公文处理",function (succ) {
+        console.log("运行成功"+JSON.stringify(succ));
+      }, function (err) {
+      });
+    }
+
 
 
     //文件群发

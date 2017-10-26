@@ -60,7 +60,6 @@ angular.module('group.services', [])
   var allNotify;
   var defaultNumber=5;
 
-
   return{
 
     allNotify:function () {

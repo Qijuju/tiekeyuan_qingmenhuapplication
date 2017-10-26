@@ -20,6 +20,7 @@ import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.NewNotifyList;
 import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -35,6 +36,7 @@ import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.NewNotifyListService;
 import com.tky.mqtt.services.OtherHeadPicService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -151,7 +153,7 @@ public class IMMessageCallback implements MqttCallback {
 
             if("Platform".equals(map.getType())){
               map.set_id(map.getFrom());
-              map.setUsername(map.getFromName());
+              map.setFromName(map.getFromName());
               map.setLevelName(map.getLevelName());
               map.setMsgLevel(map.getMsgLevel());
               map.setLink(map.getLink());
@@ -160,6 +162,14 @@ public class IMMessageCallback implements MqttCallback {
               map.setWhen(map.getWhen());
               map.setTitle(map.getTitle());
               map.setMsgId(map.getMsgId());
+              //将通知消息入库
+              NewNotifyListService newNotifyListService=NewNotifyListService.getInstance(UIUtils.getContext());
+              NewNotifyList newNotifyList=new NewNotifyList();
+              newNotifyList.setAppId(map.getSenderid());//应用的appid
+              newNotifyList.setMsgId(map.getMsgId());//通知消息的唯一标识id
+              newNotifyList.setIsRead("0");//通知消息已读未读状态： 0:未读；1：已读
+              newNotifyList.setAppName(map.getUsername());//应用名称
+              newNotifyListService.saveObj(newNotifyList);
             } else if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {//平台推送消息
               Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
               String year = c.get(Calendar.YEAR) + "";

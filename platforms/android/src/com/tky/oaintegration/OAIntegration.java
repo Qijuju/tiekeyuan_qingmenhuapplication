@@ -7,11 +7,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.r93535.im.Constants;
+import com.r93535.im.MainActivity;
+import com.r93535.im.R;
+import com.r93535.im.TestActivity;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -127,6 +131,53 @@ public class OAIntegration extends CordovaPlugin {
                 }
 
             }
+            setResult("success",PluginResult.Status.OK,callbackContext);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 创建桌面快捷方式
+     */
+    public void createDsk(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+            //应用的包名
+            final String packagename = args.getString(0);
+//            System.out.println("拿到的包名"+packagename);
+            //应用的appid
+            final String appId = args.getString(1);
+            //应用的名称
+            final String name = args.getString(2);
+
+            UIUtils.runInMainThread(new Runnable() {
+                @Override
+                public void run() {
+                    // 创建添加快捷方式的Intent
+                    Intent addShortCut = new Intent(
+                            "com.android.launcher.action.INSTALL_SHORTCUT");
+                    addShortCut.putExtra("duplicate", false);
+                    // 加载app的logo
+                    Parcelable icon = Intent.ShortcutIconResource.fromContext(
+                            cordova.getActivity(), R.drawable.ems_book);
+                    //点击快捷方式后操作Intent,快捷方式建立后，再次启动该程序
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.setAction("oa.app");
+//                    intent.setClass(cordova.getActivity(), TestActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    //设置快捷方式的标题
+                    addShortCut.putExtra(Intent.EXTRA_SHORTCUT_NAME, "公文处理");
+                    //设置快捷方式的图标
+                    addShortCut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+                    //设置快捷方式对应的Intent
+                    addShortCut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intent);
+                    //发送广播添加快捷方式
+                    cordova.getActivity().sendBroadcast(addShortCut);
+                }
+            });
+            System.out.println("进来创建桌面快捷方式");
             setResult("success",PluginResult.Status.OK,callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();

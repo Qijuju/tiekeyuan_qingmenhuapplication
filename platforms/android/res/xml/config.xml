@@ -94,9 +94,6 @@
     <feature name="SpinnerDialog">
         <param name="android-package" value="hu.dpal.phonegap.plugins.SpinnerDialog" />
     </feature>
-    <feature name="SitewaertsDocumentViewer">
-        <param name="android-package" value="de.sitewaerts.cordova.documentviewer.DocumentViewerPlugin" />
-    </feature>
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
@@ -143,7 +140,7 @@
     <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
-    <name>轻门户</name>
+    <name>铁路工程管理平台</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>

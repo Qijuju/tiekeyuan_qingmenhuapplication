@@ -356,14 +356,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
-        "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
-        "clobbers": [
-            "cordova.plugins.SitewaertsDocumentViewer",
-            "SitewaertsDocumentViewer"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "id": "cordova-plugin-x-toast.Toast",
         "clobbers": [
@@ -473,7 +465,6 @@ module.exports.metadata =
     "Okhttpload": "1.0.0",
     "cordova-plugin-fullscreen": "1.1.0",
     "cordova-plugin-spinner-dialog": "1.3.1",
-    "cordova-plugin-document-viewer": "0.9.5",
     "cordova-plugin-x-toast": "2.6.0",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-screen-orientation": "2.0.1",
