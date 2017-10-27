@@ -159,7 +159,7 @@ android {
     release {
       keyAlias 'IMKey'
       keyPassword '123456'
-      storeFile file('/Users/bim/WebstormProjects/IM/platforms/android/keystore/IM.jks')
+      storeFile file('D:/workplace/projectWork/IM/platforms/android/keystore/IM.jks')
       storePassword '123456'
     }
   }
