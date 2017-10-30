@@ -22,13 +22,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" afterPath="$PROJECT_DIR$/platforms/android/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_badge.js" afterPath="$PROJECT_DIR$/www/js/controller_badge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/www/js/controller_portal2.js" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,7 +58,7 @@
       <file leaf-file-name="controller_badge.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_badge.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1218">
+            <state relative-caret-position="1158">
               <caret line="143" column="36" lean-forward="true" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
               <folding />
             </state>
@@ -743,14 +736,7 @@
       <workItem from="1507511000169" duration="76823000" />
       <workItem from="1508314679934" duration="4762000" />
       <workItem from="1508375236504" duration="43987000" />
-      <workItem from="1508896580399" duration="54537000" />
-    </task>
-    <task id="LOCAL-00173" summary="commit">
-      <created>1496212118854</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1496212118854</updated>
+      <workItem from="1508896580399" duration="54827000" />
     </task>
     <task id="LOCAL-00174" summary="commit">
       <created>1496212135362</created>
@@ -1088,11 +1074,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509328367628</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="commit：10.30：完成通知底部数量刷新解决数量无法及时刷新的问题。">
+      <created>1509355366163</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1509355366163</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2587833000" />
+    <option name="totallyTimeSpent" value="2588123000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1182,7 +1175,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="最新代码commit" />
     <MESSAGE value="修改手机通讯录界面" />
     <MESSAGE value="新版本mqtt" />
     <MESSAGE value="commit：合并后的代码" />
@@ -1207,7 +1199,8 @@
     <MESSAGE value="commit：10.12发完版本" />
     <MESSAGE value="commit：10.26通知两张表全部入库并取出准备动态加载通知的平台logo" />
     <MESSAGE value="commit：10.30：拉取菊菊代码给下载轻应用logo多添加一个数组。" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit：10.30：拉取菊菊代码给下载轻应用logo多添加一个数组。" />
+    <MESSAGE value="commit：10.30：完成通知底部数量刷新解决数量无法及时刷新的问题。" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit：10.30：完成通知底部数量刷新解决数量无法及时刷新的问题。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1630,7 +1623,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_badge.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
+        <state relative-caret-position="1158">
           <caret line="143" column="36" lean-forward="true" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
           <folding />
         </state>
