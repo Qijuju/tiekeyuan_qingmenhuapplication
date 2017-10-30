@@ -1824,7 +1824,7 @@ angular.module('message.controllers', [])
       })
     });
 
-      $scope.$on('$ionicView.afterLeave', function () {
+    $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
       $rootScope.$broadcast('netstatus.update');
@@ -3840,11 +3840,12 @@ angular.module('message.controllers', [])
           data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
-          $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data)); // 请求回来的数据源 json格式
-          // console.log("applist"+JSON.stringify($rootScope.portalDataSource));
+          $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
-          // 定义一个存放 appIcon 的数组对象
-          $scope.appIconArr = [];
+
+          $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
+          $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
+
           // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
           for(var i=0;i<$scope.sysmenu.length;i++){
             var items =  $scope.sysmenu[i].items;
@@ -3853,23 +3854,32 @@ angular.module('message.controllers', [])
               var appIcon = items[j].appIcon;
               qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
               qyyobject.appId = items[j].appId;
-              // console.log("每一条obj"+JSON.stringify(qyyobject));
               $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
-                // console.log("存储好一条数据是否成功"+succ);
               },function (err) {
               });
+
               if(flag){
                 $scope.appIconArr.push( appIcon );
+                $scope.appIconArr2.push(appIcon+'_f')
               }else {
                 $scope.appIconArr.push(appIcon+'_f');
+                $scope.appIconArr2.push(appIcon)
               }
             }
           }
-          // 调插件，获取所有的图片路径
-          $api.downloadQYYIcon($scope.appIconArr ,function (success) {
+          // 调插件，获取门户页需要的所有的图片路径
+          $api.downloadQYYIcon($scope.appIconArr,function (success) {
             $rootScope.appIconPaths = success;
           },function (err) {
           });
+
+          // 调插件，获取门户页不需要的所有的图片路径--下载所有的图片到本地，解决通知页logo找不到的问题
+          $api.downloadQYYIcon($scope.appIconArr2,function (success) {
+            $rootScope.appIconPaths2 = success;
+          },function (err) {
+          });
+
+
         });
       }).error(function (data, status) {
         $ToastUtils.showToast("获取用户权限失败!");
@@ -3879,7 +3889,14 @@ angular.module('message.controllers', [])
     // 门户代码结束
 
     // 通知 icon 对应的路径集合 start
+    // // 根据id，往数据源中追加图片路径字段信息
+    //进来通知界面取出icon对应的路径集合
+    $greendao.loadAllData('QYYIconPathService',function (succ) {
+      // 获取 icon 对应的路径集合
+      $rootScope.notificationAppIcons = succ;
+    },function (err) {
 
+    });
     // 通知页 icon 对应的路径集合 end
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
@@ -4105,7 +4122,6 @@ angular.module('message.controllers', [])
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
-
         //部门id
         $scope.loginId=$contacts.getLoignInfo().userID;
         $scope.departmentId=$contacts.getLoignInfo().deptID;
@@ -4119,6 +4135,25 @@ angular.module('message.controllers', [])
         });
       })
     });
+
+
+    /**
+     * 监听通知消息
+     */
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            console.log("及时推送主界面"+$scope.NotifyNoRead);
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+      });
+    })
+
 
     /**
      * 监听聊天界面返回

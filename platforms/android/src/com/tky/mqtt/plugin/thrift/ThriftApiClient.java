@@ -77,6 +77,7 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.QYYIconPathService;
 import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
 import com.tky.oaintegration.CreateXml;
@@ -214,6 +215,8 @@ public class ThriftApiClient extends CordovaPlugin {
                                 TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
                                 GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
                                 SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
+                                QYYIconPathService qyyIconPathService = QYYIconPathService.getInstance(UIUtils.getContext());
+                                qyyIconPathService.deleteAllData();
                                 topContactsService.deleteAllData();
                                 messagesService.deleteAllData();
                                 chatListService.deleteAllData();

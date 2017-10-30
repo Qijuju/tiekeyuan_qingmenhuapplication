@@ -666,7 +666,4 @@ angular.module('im.routes', [])
         controller: 'projectPartCtrl'
       })
 
-
-
-
   });

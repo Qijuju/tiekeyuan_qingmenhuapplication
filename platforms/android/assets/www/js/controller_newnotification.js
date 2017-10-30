@@ -5,8 +5,11 @@ angular.module('newnotification.controllers', [])
 
   .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
-    // 定义icon对应的路径集合数组
+    // 定义 icon 对应的路径集合数组
     $scope.appIcons = new Array();
+
+    // 获取通知模块的 logo 的路径集合
+    $scope.appIcons = $rootScope.notificationAppIcons;
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
@@ -136,19 +139,18 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
-        // // 根据id，往数据源中追加图片路径字段信息
-        //进来通知界面取出icon对应的路径集合
-        $greendao.loadAllData('QYYIconPathService',function (succ) {
+        // // // 根据id，往数据源中追加图片路径字段信息
+        // //进来通知界面取出icon对应的路径集合
+        // $greendao.loadAllData('QYYIconPathService',function (succ) {
+        //
+        //   // 获取 icon 对应的路径集合
+        //   $scope.appIcons = succ;
 
-          // 获取 icon 对应的路径集合
-          $scope.appIcons = succ;
 
-          console.log(" 路径集合appIcons---" + $scope.appIcons.length +"=="+JSON.stringify($scope.appIcons));
-          console.log("集合notifyNewList---" + $scope.notifyNewList.length +"=="+JSON.stringify($scope.notifyNewList));
+          console.log(" conTr中获取的notificationAppIcons---" + $scope.appIcons.length +"=="+JSON.stringify($scope.appIcons));
           // 循环遍历数据源，根据id查找相应的图片信息。有的话，设置为相应的图片信息；没有的话，设置一个默认显示图片的路径。
           for (var i = 0; i < $scope.notifyNewList.length; i++) {
             var fromId = $scope.notifyNewList[i].FromID;
-            console.log("元素的FromID = " + fromId );
 
             // 查找数据源，设置图片信息
             for (var j = 0; j < $scope.appIcons.length; j++) {
@@ -159,13 +161,12 @@ angular.module('newnotification.controllers', [])
               }
             }
           }
-          console.log("修改后的集合---" + $scope.notifyNewList.length +"=="+JSON.stringify($scope.notifyNewList));
-
-
-
-        },function (err) {
-
-        });
+        //
+        //
+        //
+        // },function (err) {
+        //
+        // });
       })
     });
 
