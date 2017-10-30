@@ -1,0 +1,265 @@
+
+ion-nav-bar.newbarhead ion-nav-buttons ion-toggle1.item-borderless{
+  position: absolute;left: 70%;height: 45px;margin-top: -10px;background: transparent;
+}
+
+/* 全部、关注tabs*/
+.tabs-striped.tabs-positive .tabs{
+  background-color: #fff;
+}
+.tabs-striped.tabs-positive .tab-item{
+  color:#000;
+  /*font-size:16px;*/
+}
+/*页面背景色*/
+ion-content#notification,
+ion-side.notificationIonSide{
+  background-color: #F0EFF4
+}
+/*item顶部长条*/
+ion-list ion-item img.itemTopBgImg{
+  width:100%;
+  height:6px;
+  float: left;
+  margin-top:-1px;
+  /*position: absolute;*/
+  /*top: 0%;left: 0%;*/
+}
+/*去掉边框*/
+ion-item.item-remove-animate.item-avatar.rj-notify-bg{
+  border:none;
+}
+
+
+/*通知*/
+.notificationBtn{
+  height:40px;
+  line-height:40px;
+  padding:5px 10px;
+}
+.notificationBtn >div{
+  float: left;
+}
+.notificationBtn > div.dingdingImg{
+  float: right;
+}
+div.row.notificationRow{
+  border-bottom: 1px dashed #E4E4E3;
+  height:50px;
+}
+div.row.notificationRow .typeTime{
+  position: absolute;top:7px;left:50px;
+}
+div.row.notificationRow .typeTime h3{
+  margin-top:8px;margin-bottom:0px;
+}
+div.row.notificationRow .typeTime p{
+  height:20px;line-height:20px;
+}
+div.row.notificationRow .alert.col span{
+  float: right;margin-right:10px;color:#FF5722;
+}
+
+div.row.notificationDetail > .col.col-85 > div > img{
+  margin-top:6px;
+}
+
+/*平台通知 、 标题、查看附件*/
+.centerText{
+  padding:5px 10px;
+  border-bottom:none;margin-bottom:0px;
+}
+/*确认信息居中显示*/
+div.confirm{
+  text-align: center;
+  padding:5px 0px;
+}
+div.confirm img{
+  float: right;margin-right:20px;
+}
+/*去除置顶关注一行的列的内边距，控制高度*/
+.topFocus{
+  text-align: center;
+  height:40px;
+}
+.topFocus .col,
+.topFocus,
+.topFocusDetail .col,
+.topFocus{
+  padding:0px;
+}
+.topFocus  .col img,
+.topFocusDetail  .col img{
+  width:20px;
+  height:20px;
+  margin-top:10px;
+  margin-bottom:5px;
+}
+.topFocus .col,
+.topFocusDetail .col{
+  text-align: center;
+}
+.topFocusDetail{
+  padding:0px;
+  border-bottom:1px solid #E0E0E0;
+}
+
+/*标题*/
+pre.preTitle{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height:25px;
+  line-height:25px;
+}
+pre.preTime{
+  position: absolute;
+  top:0px;
+  right:0px;
+}
+span.levelName{
+  position: absolute;
+  top:25px;
+  right:0px;
+  color:#FF5722;
+}
+div.notifyImgInfo{
+  height:55px;
+  float: left;
+  margin-right:10px;
+}
+div.notifyImgInfo > img{
+  width:50px;
+  height:50px;
+}
+div.notifyDetailInfo{
+  width:100%;
+}
+div.notifyDetailInfo > .infoTop{
+  position: relative;
+  width:100%;
+  height:25px;
+  line-height:25px;
+}
+p.level{
+  position: relative;
+}
+p.level span{
+  position:absolute;left:60%;top:0px;display: inline-block;height:40px;line-height: 50px;
+  color:#444;
+}
+
+/*切换按钮*/
+.toggle{
+  margin:0px;
+}
+.toggle div.track{
+  width:36px;
+  height:14px;
+  position: relative;
+
+}
+.toggle-small .handle{
+  height:25px;
+  width:25px;
+  top:6px;
+  background-image: url(../img/unfocus1.png);
+  background-size: cover;
+}
+.toggle-small.item-toggle .toggle{
+  top:20px;
+}
+/*切换按钮-圆*/
+.toggle-small .handle1{ /* 重写ionic.css样式*/
+  position: absolute;
+  top:-3px;
+  left:0px;
+}
+/*********通知-确认、未确认点击进入页面样式补充notifyDetail.html***********/
+/*字体颜色*/
+div.notifyDetail{
+  height:40px;
+}
+div.notifyDetail span{
+  color: #e98f36;
+}
+div.notifyDetail span.detailConfirm{
+  display: inline-block;line-height:28px;color:#444;
+}
+.row.focus.notifyDetailFocusTop{
+  height:90px;
+  padding-top:0px;
+}
+.row.focus.notifyDetailFocusTop .col > div{
+  height:35px;
+  border-top:1px solid #E4E4E3;
+}
+.button.button-block.button-stable.checkConfirmedDetails{
+  color: #1D95D4;font-size: 16px;height: 40px; margin-top: 10px;box-shadow: 0 0 3px #9e9e9e;border-radius:0px;
+}
+
+/**** notify-confirm.html  确认详情页面样式补充 *****/
+
+.item p.confirmUnconfirm{
+  height:40px;
+  line-height:40px;
+  padding-left:15px;
+}
+.item:first-child{
+  margin-top:-2px;
+}
+.item.ionItemFirst:first-child{
+  margin-top:10px;
+
+}
+.notificationItem:first-child{
+  /*margin-top:43px;*/
+}
+img.notifyConfirmBackImg{
+  height:36px;
+  margin-top: 4px;margin-left: -10px;
+}
+p.notifyConfirmP{
+  margin-top: -32px;margin-left: 36px;font-size: 17px
+}
+ion-content.notifyConfirmIonContent{
+  background-color:white; margin-top: 6px;
+}
+a#leftbt{
+  border-bottom: solid 3px #6c9aff;background-color: #fff;border-top: ghostwhite;border-right: ghostwhite;border-left: ghostwhite;
+}
+a#rightbt{
+  background-color: white;border-top: ghostwhite;border-right: ghostwhite;border-left: ghostwhite;
+}
+.notifyConfirmIonContent .list:first-child{
+  margin-top:0px;
+}
+.item h3{
+  font-size:16px;
+}
+.itemIsReadedYes{
+  background:#B2EBF2;
+}
+.confirm.itemIsReadedYes{
+  border-top:1px solid #80DEEA;
+}
+.itemIsReadedNo{
+  background:#BBDEFB;
+}
+.confirm.itemIsReadedNo{
+  border-top:1px solid #90CAF9;
+}
+/* 点击查看附件 */
+.topFocus .col img.fujian{
+  width:24px;
+  height:24px;
+}
+
+
+
+
+
+
+
+
+

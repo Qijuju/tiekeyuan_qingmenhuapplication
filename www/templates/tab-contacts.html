@@ -1,92 +1,86 @@
 <ion-view class="dashbody common-view-color" view-title="联系人"  >
-  <ion-nav-bar align-title="center" class="newbarhead" >
+
+  <!--搜索图标-->
+  <ion-nav-bar align-title="center"  class="newbarhead myMessage">
+    <ion-nav-buttons side="right" >
+      <i class="icon ion-ios-search-strong" ng-click="goSearch()"></i>
+    </ion-nav-buttons>
   </ion-nav-bar>
+
   <ion-content overflow-scroll="false">
-    <div class=" item-input-inset common-search-all" ng-click="goSearch()" >
-      <label class="item-input-wrapper common-search">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input  type="search" placeholder="搜索" ng-model="query">
-      </label>
-    </div>
-    <div class="row common-contact-top">
-      <div class="col" align="center"ng-click="goLocalContact()" >
-          <ul>
-            <li><img src="img/tel.png" width="48" height="48"></li>
-            <li class="common-contact-li">手机通讯录</li>
-          </ul>
+    <!--第一部分-->
+    <div class="row contacts">
+      <div class="col" ng-click="goLocalContact()">
+        <img class="contactImg1" src="img/tel.png" />
+        <p>手机通讯录</p>
       </div>
-      <div class="col" align="center">
+      <div class="col">
         <a href="#/topContacts" >
-          <ul>
-            <li><img src="img/contact.png" width="48" height="48"></li>
-            <li class="common-contact-li">常用联系人</li>
-          </ul>
+          <img class="contactImg1" src="img/contact.png" >
+          <p>常用联系人</p>
         </a>
       </div>
-      <div class="col" align="center">
+      <div class="col">
         <a href="#/group">
-          <ul>
-            <li><img src="img/group.png" width="48" height="48"></li>
-            <li class="common-contact-li">我的群组</li>
-          </ul>
+          <img class="contactImg1" src="img/group.png" >
+          <p>我的群组</p>
         </a>
       </div>
-      <div class="col" align="center">
-        <a href="#/myAttention" >
-          <ul>
-            <li><img src="img/guanz.png" width="48" height="48"></li>
-            <li class="common-contact-li">特别关注</li>
-          </ul>
+      <div class="col">
+        <a href="#/myAttention">
+          <img class="contactImg1" src="img/guanz.png" >
+          <p>特别关注</p>
         </a>
       </div>
     </div>
-
-    <div class="common-margin-top">
-      <ul>
-      <li>
-        <div class="row" style="background-color: white">
-          <div class="col" style="margin-left: 10px;"> <img src="img/company_tx.png" height="32px"></div>
-          <div class="col col-80" style="margin-top: 10px;margin-top: 2px">
-            <p class="common-contact-bigp">公司通讯录</p>
-          </div>
+    <!--第二部分-->
+    <div class="contacts">
+      <div class="row">
+        <div class="col">
+          <img class="contactImg2" src="img/company_tx.png" />
+          <span style="color:#BDBDBD;">公司通讯录</span>
         </div>
-      </li>
-      <li>
-        <div style="width: 100%;height: 1px;color: ghostwhite; margin-left: 10px"></div>
-      </li>
-      <li>
-        <div class="row" style="background-color: white" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID)">
-          <div class="col"style="margin-left: 24px;margin-top: 2px"> <img src="img/jishu_cs.png" height="32px"></div>
-          <div class="col col-80" style="margin-top: 12px">
-            <p  class="common-contact-p">{{item.DeptName}}</p>
-          </div>
+      </div>
+      <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID,item.ChildCount)">
+        <div class="col">
+          <img class="contactImg2" src="img/cengji.png" />
+          <span>{{item.DeptName}}</span>
         </div>
-      </li>
-        <li>
-          <div style="width: 100%;height: 1px;color: ghostwhite;margin-left: 10px"></div>
-        </li>
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white"  ng-click="gogosecond(loginid)">
-          <div class="col"style="margin-left: 24px;margin-top: 2px"> <img src="img/my.png" height="32px"></div>
-          <div class="col col-80" style="margin-top: 12px">
-            <p class="common-contact-p">我的部门</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-    </div>
-
-    <div style="height: 64px;margin-top: 16px;margin-bottom: -4px">
-      <div class="row" style="background-color: white;">
-        <div class="col"style="margin-left: 10px"> <img src="img/common_lxr.png" height="32px"></div>
-        <div class="col col-80" style="margin-top: 10px">
-          <p class="common-contact-bigp">常用联系人</p>
+      </div>
+      <div class="row" ng-click="gogosecond(loginid,mydeptlength)">
+        <div class="col">
+          <img class="contactImg2" src="img/cengji.png" style=""/>
+          <span>我的部门</span>
         </div>
       </div>
     </div>
-      <ion-item  class=" item-avatar rj-contact-new "  ng-repeat="item in topContactLists"ng-click="topGoDetail(item._id)" >
-        <img  src="img/icon_friends.png"  style=" position: absolute;left: 8%;top: 16%;font-size: 14px;text-align: center;width: 36px;height: 36px;align-content: center">
-        <p   class="common-contact-detail">{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.phone}}</p>
-      </ion-item>
+
+    <!--常用联系人-->
+    <div class="contacts">
+      <div class="row contacts">
+        <div class="col">
+          <img class="contactImg2" src="img/common_lxr.png" />
+          <span style="color:#9E9E9E;"> 常用联系人</span>
+        </div>
+      </div>
+    </div>
+
+    <!--联系人列表-->
+    <ion-item  class=" item-avatar rj-contact-new contactsList"  ng-repeat="item in topContactLists"ng-click="topGoDetail(item._id)" >
+      <div class="row">
+        <div class="col">
+          <div class="icon_friends">
+            <!--<img  src="img/icon_friends.png" >-->
+            <span class="friendsIcon">{{item.shotName}}</span>
+          </div>
+          <div class="common-contact-detail">
+            <p>{{item.name}}</p>
+            <p>{{item.phone}}</p>
+          </div>
+        </div>
+      </div>
+
+    </ion-item>
   </ion-content>
 </ion-view>
+

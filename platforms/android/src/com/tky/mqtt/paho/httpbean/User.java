@@ -10,12 +10,12 @@ public class User extends BaseBean {
   private boolean admin;
   private String deptName;
   private String deptid;
-  private String displayName;
+  private String displayName;//用户中文名字
   private String email;
   private String fixedphone;
   private String id;
   private String imCode;
-  private Integer lastupdate;
+  private long lastupdate;
   private String mobile;
   private Integer priority;
   private String proname;
@@ -26,6 +26,17 @@ public class User extends BaseBean {
   private String type;
   private Im im;
   private boolean isAttention;
+  private String loginAccount;//用户登录账号
+  private String loginName;
+  private String deptPath;//用户所在部门路径
+
+  public String getDeptPath() {
+    return deptPath;
+  }
+
+  public void setDeptPath(String deptPath) {
+    this.deptPath = deptPath;
+  }
 
   public class Im {
     private String im;
@@ -119,11 +130,11 @@ public class User extends BaseBean {
     this.imCode = imCode;
   }
 
-  public Integer getLastupdate() {
+  public long getLastupdate() {
     return lastupdate;
   }
 
-  public void setLastupdate(Integer lastupdate) {
+  public void setLastupdate(long lastupdate) {
     this.lastupdate = lastupdate;
   }
 
@@ -205,5 +216,23 @@ public class User extends BaseBean {
 
   public void setAttention(boolean attention) {
     isAttention = attention;
+  }
+
+
+  public String getLoginAccount() {
+    return loginAccount;
+  }
+
+  public void setLoginAccount(String loginAccount) {
+    this.loginAccount = loginAccount;
+  }
+
+
+  public String getLoginName() {
+    return loginName;
+  }
+
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
   }
 }

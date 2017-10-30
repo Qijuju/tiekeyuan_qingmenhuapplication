@@ -19,21 +19,27 @@
 
 package com.r93535.im;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -42,14 +48,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
-import com.tencent.tinker.lib.tinker.Tinker;
-import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
+import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.paho.ReceiverParams;
+import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.PatchBean;
@@ -64,7 +70,7 @@ import com.tky.mqtt.paho.utils.RecorderManager;
 import com.tky.mqtt.paho.utils.luban.Luban;
 import com.tky.mqtt.paho.utils.luban.OnCompressListener;
 import com.tky.mqtt.plugin.thrift.api.SystemApi;
-import com.tky.mytinker.util.Utils;
+import com.tky.mqtt.services.ChatListService;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -77,9 +83,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Call;
+
+import static com.tky.mqtt.paho.BaseApplication.getContext;
 
 public class MainActivity extends CordovaActivity implements SensorEventListener {
   /**
@@ -100,6 +111,11 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+//    String url = "https://www.baidu.com";
+//    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+//    CustomTabsIntent customTabsIntent = builder.build();
+//    customTabsIntent.launchUrl(MainActivity.this, Uri.parse(url));
+//    System.out.println("已加载");
 /*    try {
       stopService(new Intent(MainActivity.this, MqttService.class));
     } catch (Exception e) {
@@ -108,7 +124,8 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     }*/
 //    startService(new Intent(this, ProtectService.class));
     // Set by <content src="index.html" /> in config.xml
-    inithotfix();
+    //热更新已经不用了
+//    inithotfix();
     loadUrl(launchUrl);
     //自动登录测试（测完注释掉
     //SPUtils.save("login_info", "{\"__isset_bitfield\":7,\"deptID\":\"37253\",\"isActive\":false,\"result\":true,\"resultCode\":\"100\",\"sDatetime\":1487237555948,\"userID\":\"232099\",\"userName\":\"程丽丽\"}");
@@ -148,8 +165,34 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(UIUtils.getContext());
     //设置点击一次后消失（如果没有点击事件，则该方法无效。）
-    Notification notification = notificationCompat.build();
-    BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), 100);
+    //从sharedpreferences取出badgecount值
+//    int badgeCount=0;
+//    try{
+//      Integer badgeCount = SPUtils.getInt("badgeCount",0);
+////      System.out.println("后端取出存的count值22222"+badgeCount);
+//      //从数据库获取未读数量
+//      ChatListService chatListService=ChatListService.getInstance(UIUtils.getContext());
+//      List<ChatList> chatLists=chatListService.loadAllData();
+//      int count=0;
+//      for (int i=0;i<chatLists.size();i++){
+//        count += Integer.parseInt(chatLists.get(i).getCount()) ;
+//      }
+//      if(badgeCount != count){
+//        badgeCount=count;
+//      }
+//      boolean success=ShortcutBadger.applyCount(MainActivity.this, badgeCount);
+////      System.out.println("未读数量1111"+badgeCount+"是否成功"+success);
+//      startService(
+//              new Intent(MainActivity.this, BadgeIntentService.class).putExtra("badgeCount", badgeCount)
+//      );
+////      Notification notification = notificationCompat.build();
+////      BadgeUtil.setBadgeCount(notification, UIUtils.getContext(), badgeCount);
+//    }catch (Exception e){
+//      e.printStackTrace();
+//    }
+
+
+
   }
 
   /**
@@ -165,16 +208,16 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
 
 
-    Tinker tinker = Tinker.with(getApplicationContext());
-
-    final boolean tinkerload = tinker.isTinkerLoaded();
-     String loaclPatchVersion = "";
-
-    if (tinkerload) {
-      loaclPatchVersion = tinker.getTinkerLoadResultIfPresent().getPackageConfigByName("patchVersion");
-
-    }
-    final String finalPathchVersion=loaclPatchVersion;
+//    Tinker tinker = Tinker.with(getApplicationContext());
+//
+//    final boolean tinkerload = tinker.isTinkerLoaded();
+//     String loaclPatchVersion = "";
+//
+//    if (tinkerload) {
+//      loaclPatchVersion = tinker.getTinkerLoadResultIfPresent().getPackageConfigByName("patchVersion");
+//
+//    }
+//    final String finalPathchVersion=loaclPatchVersion;
 
     //当前版本的版本号
     final String localversion = UIUtils.getVersion();
@@ -223,37 +266,37 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
              * 2 服务器的版本号和本地的版本号一致
              * 3 服务器的补丁版本号和本地的补丁版本号不一致  方可进行热修复
              */
-            if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
-
-
-              //开始下载文件
-
-              OkHttpUtils
-                .get()
-                .addParams("id",loginid)
-                .addParams("mepId",imcode)
-                .addParams("fileId",localversion)
-                .addParams("type","Patch")
-                .addParams("offset","0")
-                .addParams("platform","A")
-                .url(downurl)
-                .build()
-                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
-                           @Override
-                           public void onError(Call call, Exception e, int id) {
-                             Log.d("tinkerTag", "下载失败");
-                           }
-
-                           @Override
-                           public void onResponse(File response, int id) {
-                             Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
-                             //开启热修复
-                             TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
-
-                           }
-                         }
-                );
-            }
+//            if (!TextUtils.isEmpty(downurl) && webVersion.equals(localversion) && !finalPathchVersion.equals(webPatchVersionName)){
+//
+//
+//              //开始下载文件
+//
+//              OkHttpUtils
+//                .get()
+//                .addParams("id",loginid)
+//                .addParams("mepId",imcode)
+//                .addParams("fileId",localversion)
+//                .addParams("type","Patch")
+//                .addParams("offset","0")
+//                .addParams("platform","A")
+//                .url(downurl)
+//                .build()
+//                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "im.patch") {
+//                           @Override
+//                           public void onError(Call call, Exception e, int id) {
+//                             Log.d("tinkerTag", "下载失败");
+//                           }
+//
+//                           @Override
+//                           public void onResponse(File response, int id) {
+//                             Log.d("tinkerTag", response.getAbsolutePath() + "文件下载成功");
+//                             //开启热修复
+//                             TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), response.getAbsolutePath());
+//
+//                           }
+//                         }
+//                );
+//            }
           } catch (Exception e) {
           }
         }
@@ -317,7 +360,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
       AnimationUtils.execShrinkAnim(this);
       ResumeParams.IMG_RESUME = false;
     }
-    Utils.setBackground(false);
+//    Utils.setBackground(false);
     if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
       IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
     }
@@ -463,6 +506,32 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
 
   }
 
+  /**
+   * android 6.0以后，请求权限
+   */
+/*
+  public static void requestPermissions(Activity actitity) throws PackageManager.NameNotFoundException {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//SDK版本大于M（6.0）时
+      String[] requestedPermissions = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), PackageManager.GET_PERMISSIONS).requestedPermissions;
+      List<String> noGrantPermissions = new ArrayList<String>();
+      if (requestedPermissions != null && requestedPermissions.length > 0) {
+        for (String requestedPermission : requestedPermissions) {
+          if (getContext().checkSelfPermission(requestedPermission) != PackageManager.PERMISSION_GRANTED) {
+            noGrantPermissions.add(requestedPermission);
+          }
+        }
+      }
+      if (noGrantPermissions.size() > 0) {
+        ActivityCompat.requestPermissions(actitity, noGrantPermissions.toArray(new String[noGrantPermissions.size()]), 10);
+        return;
+      }
+    }
+  }
+*/
+
+
+
+
   @Override
   public void onSensorChanged(SensorEvent event) {
     float range = event.values[0];
@@ -519,7 +588,7 @@ public class MainActivity extends CordovaActivity implements SensorEventListener
   @Override
   protected void onPause() {
     super.onPause();
-    Utils.setBackground(true);
+//    Utils.setBackground(true);
   }
 
   /**

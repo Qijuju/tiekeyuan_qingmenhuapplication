@@ -287,13 +287,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-        "clobbers": [
-            "cordova.plugins.barcodeScanner"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
         "id": "cordova-plugin-geolocation.geolocation",
         "clobbers": [
@@ -304,25 +297,6 @@ module.exports = [
         "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
         "id": "cordova-plugin-geolocation.PositionError",
         "runs": true
-    },
-    {
-        "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
-        "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
-        "clobbers": [
-            "window.baiduLocation"
-        ]
-    },
-    {
-        "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
-        "id": "phonegap-nfc.NFC",
-        "runs": true
-    },
-    {
-        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
-        "id": "com.darktalker.cordova.screenshot.screenshot",
-        "merges": [
-            "navigator.screenshot"
-        ]
     },
     {
         "file": "plugins/ScalePhoto/www/scale_photo.js",
@@ -366,6 +340,97 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.Okhttpload"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-fullscreen/www/AndroidFullScreen.js",
+        "id": "cordova-plugin-fullscreen.AndroidFullScreen",
+        "clobbers": [
+            "AndroidFullScreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-spinner-dialog/www/spinner.js",
+        "id": "cordova-plugin-spinner-dialog.SpinnerDialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "clobbers": [
+            "window.plugins.toast"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests"
+    },
+    {
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "id": "es6-promise-plugin.Promise",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+        "id": "cordova-plugin-screen-orientation.screenorientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/www/badge.js",
+        "id": "cordova-plugin-badge.Badge",
+        "clobbers": [
+            "cordova.plugins.notification.badge"
+        ]
+    },
+    {
+        "file": "plugins/com.spout.phonegap.plugins.baidulocation/www/baidulocation.js",
+        "id": "com.spout.phonegap.plugins.baidulocation.BiaduLocation",
+        "clobbers": [
+            "window.baiduLocation"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+        "id": "phonegap-nfc.NFC",
+        "runs": true
+    },
+    {
+        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+        "id": "com.darktalker.cordova.screenshot.screenshot",
+        "merges": [
+            "navigator.screenshot"
+        ]
+    },
+    {
+        "file": "plugins/OAIntegration/www/o_a_integration.js",
+        "id": "OAIntegration.o_a_integration",
+        "clobbers": [
+            "cordova.plugins.OAIntegration"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-browsertab/www/browsertab.js",
+        "id": "cordova-plugin-browsertab.BrowserTab",
+        "clobbers": [
+            "cordova.plugins.browsertab"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
+        "id": "cordova-plugin-flashlight.Flashlight",
+        "clobbers": [
+            "window.plugins.flashlight"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -390,18 +455,27 @@ module.exports.metadata =
     "cordova-plugin-image-picker": "1.1.1",
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-file-transfer": "1.5.2-dev",
-    "phonegap-plugin-barcodescanner": "6.0.1",
     "cordova-plugin-geolocation": "2.2.0",
-    "com.spout.phonegap.plugins.baidulocation": "0.1.0",
-    "phonegap-nfc": "0.6.6",
-    "com.darktalker.cordova.screenshot": "0.1.5",
     "ScalePhoto": "1.0.0",
     "GridPhoto": "1.0.0",
     "cordova-plugin-inappbrowser": "1.5.0",
     "cordova-plugin-splashscreen": "4.0.1",
     "com.verso.cordova.clipboard": "0.1.0",
     "cordova-plugin-add-swift-support": "1.6.2",
-    "Okhttpload": "1.0.0"
+    "Okhttpload": "1.0.0",
+    "cordova-plugin-fullscreen": "1.1.0",
+    "cordova-plugin-spinner-dialog": "1.3.1",
+    "cordova-plugin-x-toast": "2.6.0",
+    "es6-promise-plugin": "4.1.0",
+    "cordova-plugin-screen-orientation": "2.0.1",
+    "cordova-plugin-badge": "0.8.1",
+    "com.spout.phonegap.plugins.baidulocation": "0.1.0",
+    "phonegap-nfc": "0.6.6",
+    "com.darktalker.cordova.screenshot": "0.1.5",
+    "OAIntegration": "1.0.0",
+    "cordova-plugin-browsertab": "0.2.0",
+    "cordova-plugin-flashlight": "3.2.0",
+    "phonegap-plugin-barcodescanner": "6.0.8"
 };
 // BOTTOM OF METADATA
 });

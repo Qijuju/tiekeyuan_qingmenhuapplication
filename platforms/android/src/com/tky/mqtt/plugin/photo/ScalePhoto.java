@@ -16,8 +16,6 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.utils.AnimationUtils;
 import com.tky.mqtt.paho.utils.FileUtils;
-import com.tky.mqtt.plugin.thrift.api.SystemApi;
-import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
 import com.tky.mqtt.services.FilePictureService;
 import com.tky.okhttpload.ImFileCallBack;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -26,8 +24,6 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
-import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +36,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import im.server.File.IMFile;
-import im.server.File.RSTgetFile;
 import okhttp3.Call;
 
 /**
@@ -540,27 +533,9 @@ public class ScalePhoto extends CordovaPlugin {
               });
 
           }
-
-
-
       } catch (JSONException e) {
         e.printStackTrace();
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void takePhoto(final JSONArray args, final CallbackContext callbackContext) {

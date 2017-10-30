@@ -7,9 +7,10 @@ angular.module('login.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('LoginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao) {
+  .controller('LoginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading,$timeout, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $greendao,$window) {
     /*document.getElementById("loginpic").style.height=(window.screen.height)+'px';
      document.getElementById("loginpic").style.width=(window.screen.width)+'px';*/
+
     $mqtt.save('loginpage', "passwordlogin");
 
     $mqtt.setLogin(false);
@@ -48,6 +49,22 @@ angular.module('login.controllers', [])
         });
       }
     });
+    //监听键盘弹起事件，将整体布局上移
+    // var tKeyH = $window.innerHeight;;
+    // window.addEventListener('native.keyboardshow',function (e){
+    //   $scope.intervalH=(tKeyH - 305 -e.keyboardHeight);//弹出的bottom=(屏幕的高度-键盘的高度-div的高度:高度为累加和banner+用户名高度+密码高度)/2
+    //   // alert("屏幕的高度"+$scope.intervalH);
+    //   if($scope.intervalH <0){
+    //     document.getElementById("tHeight").style.bottom = 41 +'px';
+    //   }
+    //   return ;
+    // });
+
+
+    //监听键盘关闭事件，将bottom设置为0
+    // window.addEventListener('native.keyboardhide',function (e){
+    //   document.getElementById("tHeight").style.bottom = 0 +'px';
+    // });
     //保存密码的方法
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
@@ -66,15 +83,12 @@ angular.module('login.controllers', [])
     };
 
     $scope.login = function (name, password) {
-
       if (name == '' || password == '') {
         $ToastUtils.showToast('用户名或密码不能为空！');
         return;
       }
       $scope.name = name;
       $scope.password = password;
-      // alert(name);
-      // alert(password);
       $api.login($scope.name, $scope.password, function (message) {
 
         if (message.resultCode === '105') {
@@ -86,33 +100,29 @@ angular.module('login.controllers', [])
           });
           confirmPopup.then(function (isConfirm) {
             if (isConfirm) {
-              $ionicLoading.show({
-                template: '登录中...'
-              });
+              $pubionicloading.showloading('','登录中...');
               if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
                 }, function (message) {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
               }
             } else {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('login');
             }
           });
-        } else {
-          $ionicLoading.show({
-            template: '登录中...'
-          });
+        }else {
+          $pubionicloading.showloading('','登录中...');
           if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
             $api.activeUser(message.userID, function (message) {
               loginM();
             }, function (message) {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $ToastUtils.showToast(message);
             });
           } else {
@@ -121,10 +131,31 @@ angular.module('login.controllers', [])
         }
 
       }, function (message) {
-        $state.go('login');
-        $ToastUtils.showToast(message);
-        $ionicLoading.hide();
-        // $state.go('tab.message');
+        $pubionicloading.hide();
+        var errorArr=message.split('#');
+        var errCode=errorArr[0];
+        /**
+         * 若登陆时发现该用户第一次注册111
+         * 若登陆时发现该用户在不同设备登陆112
+         * 若登陆时发现该用户长时间未登录113
+         * 若登陆时发现该用户未绑定手机号114
+         */
+        if(errCode === '111' || errCode === '112' || errCode === '113' || errCode === '114'){
+          var userId=errorArr[1];
+          var mobile=errorArr[2];
+          var mepId= errorArr[3];
+          // alert("短信验证first界面"+JSON.stringify(message)+"1111"+errCode+"2222"+userId+"3333"+mobile+"==="+mepId);
+          $state.go('msgCheck',{
+            "errCode":errCode,
+            "mobile":mobile,
+            "userId":userId,
+            "mepId":mepId,
+            "remPwd":$scope.remPwd
+          });
+        }else{//先跑通流程
+          $state.go('login');
+          $ToastUtils.showToast(message);
+        }
       });
 
     };
@@ -139,7 +170,7 @@ angular.module('login.controllers', [])
 
         });
         $scope.names = [];
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         //调用保存用户名方法
         $mqtt.getMqtt().saveLogin('name', $scope.name, function (message) {
 
@@ -163,14 +194,14 @@ angular.module('login.controllers', [])
             $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
           }, function (err) {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $ToastUtils.showToast(err, function (success) {
             }, function (err) {
             });
           });
         }, function (err) {
           $ToastUtils.showToast(message);
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         });
       }, function (err) {
       });
@@ -238,7 +269,7 @@ angular.module('login.controllers', [])
     };
   })
 
-  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http) {
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
@@ -255,7 +286,6 @@ angular.module('login.controllers', [])
       mqtt = cordova.require('MqttChat.mqtt_chat');
 
       $mqtt.getMqtt().getString('zuinewID', function (message) {
-        // alert(message)
         $greendao.queryData('GesturePwdService', 'where id=?', message, function (data) {
           passworda = data[0].pwd;
         }, function (err) {
@@ -310,12 +340,10 @@ angular.module('login.controllers', [])
       mqtt.getString('loginpage', function (loginpagea) {
         loginpageaa = loginpagea;
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       mqtt.getString('passlogin', function (passlogina) {
         passlogin = passlogina;
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       mqtt.getString('namegesture', function (namegesture) {
         namegesturea = namegesture;
@@ -328,8 +356,7 @@ angular.module('login.controllers', [])
             if ($scope.timea > 0 && $scope.timea < 5) {
               $scope.timea = $scope.timea - 1;
             }
-            // $scope.codetime = $scope.timea+"秒后跳转";
-            if ($scope.timea == 1 && !isClickGo) {//此处需要判断是否已经走了登录的方法
+            if ($scope.timea < 1 ) {//此处需要判断是否已经走了登录的方法
               $scope.timea = 1;
               //取消定时器
               $interval.cancel(timer);
@@ -338,19 +365,15 @@ angular.module('login.controllers', [])
             }
           }, 1000);
         }, function (msg) {
-          // $ToastUtils.showToast("还未设置手势密码");
         });
       }, function (msg) {
-        // $ToastUtils.showToast("还未设置手势密码");
       });
       if ($mqtt.isLogin()) {
-        // alert($mqtt.isLogin());
         $mqtt.getMqtt().getMyTopic(function (msg) {
           $api.getAllGroupIds(function (groups) {
             if (msg != null && msg != '') {
               $mqtt.startMqttChat(msg + ',' + groups);
               $mqtt.setLogin(true);
-              // $state.go('tab.message');
               return;
             }
           }, function (err) {
@@ -369,21 +392,15 @@ angular.module('login.controllers', [])
       if (isClickGo) {
         return;
       }
-      // alert("dianjile");
       //防止重复点击
-      isClickGo = true;
+      isClickGo = false;
       $interval.cancel(timer);
       ifyuju();
     };
 
     var ifyuju = function () {
       //测试自动登录
-      // passlogin = 1;
       if (passlogin == "1") {
-        // $ToastUtils.showToast("网路异常！");
-
-        // namegesturea = 'chenglilicll';
-        // pwdgesturea = 'password';
         $api.login(namegesturea, pwdgesturea, function (message) {
           if (message.resultCode === '105') {
             var confirmPopup = $ionicPopup.confirm({
@@ -394,18 +411,12 @@ angular.module('login.controllers', [])
             });
             confirmPopup.then(function (isConfirm) {
               if (isConfirm) {
-                $ionicLoading.show({
-                  content: 'Loading',
-                  animation: 'fade-in',
-                  showBackdrop: false,
-                  maxWidth: 100,
-                  showDelay: 0
-                });
+                $pubionicloading.showloading('','正在加载...');
                 if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $ToastUtils.showToast(message);
                     $state.go('login');
                   });
@@ -413,23 +424,17 @@ angular.module('login.controllers', [])
                   loginM();
                 }
               } else {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $state.go('login');
               }
             });
           } else {
-            $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: false,
-              maxWidth: 100,
-              showDelay: 0
-            });
+            $pubionicloading.showloading('','正在加载...');
             if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
               $api.activeUser(message.userID, function (message) {
                 loginM();
               }, function (message) {
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $ToastUtils.showToast(message);
                 $state.go('login');
               });
@@ -438,9 +443,30 @@ angular.module('login.controllers', [])
             }
           }
         }, function (message) {
-          $ionicLoading.hide();
-          $ToastUtils.showToast(message);
-          $state.go('login');
+          $pubionicloading.hide();
+          var errorArr=message.split('#');
+          /**
+           * 若登陆时发现该用户第一次注册111
+           * 若登陆时发现该用户在不同设备登陆112
+           * 若登陆时发现该用户长时间未登录113
+           * 若登陆时发现该用户未绑定手机号114
+           */
+          if(errCode === '111' || errCode === '112' || errCode === '113' || errCode === '114'){
+            var errCode= errorArr[0];
+            var userId= errorArr[1];
+            var mobile= errorArr[2];
+            var mepId= errorArr[3];
+            // alert("短信验证first界面"+JSON.stringify(message)+"1111"+errCode+"2222"+userId+"3333"+mobile+"==="+mepId);
+            $state.go('msgCheck',{
+              "errCode":errCode,
+              "mobile":mobile,
+              "userId":userId,
+              "mepId":mepId
+            });
+          }else{//先跑通流程
+            $state.go('login');
+            $ToastUtils.showToast(message.Message);
+          }
         });
       }
       else if ((passworda == null || passworda == "" || passworda.length == 0) && passlogin == "2") {
@@ -453,7 +479,6 @@ angular.module('login.controllers', [])
         $state.go('gesturelogin');
       }
       else {
-        // $ToastUtils.showToast("网路异常！");
         $state.go('login');
       }
     }
@@ -464,14 +489,9 @@ angular.module('login.controllers', [])
       $api.SetDeptInfo(function (msg) {
 
         mqtt.getUserId(function (userID) {
-
           $rootScope.rootUserId = userID;
-
-          // alert("当前用户的id"+userID);
         }, function (err) {
         });
-        // alert(message.toString());
-        // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
         //调用保存用户名方法
         mqtt.saveLogin('name', namegesturea, function (message) {
         }, function (message) {
@@ -491,28 +511,28 @@ angular.module('login.controllers', [])
               $mqtt.save('pwdgesture', pwdgesturea);
               $mqtt.save('namegesture', namegesturea);
               $state.go('tab.message');
-              $ionicLoading.hide();
+              $pubionicloading.hide();
             });
 
           }, function (err) {
-            $ionicLoading.hide()
+            $pubionicloading.hide()
             $ToastUtils.showToast(err, function (success) {
-              $ionicLoading.hide()
+              $pubionicloading.hide()
               $state.go('login');
             }, function (err) {
               $ToastUtils.showToast(err);
-              $ionicLoading.hide()
+              $pubionicloading.hide()
               $state.go('login');
             });
           });
         }, function (err) {
           $ToastUtils.showToast(err);
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('login');
         });
       }, function (err) {
         $ToastUtils.showToast(err);
-        $ionicLoading.hide()
+        $pubionicloading.hide()
         $state.go('login');
       });
     }
@@ -525,7 +545,7 @@ angular.module('login.controllers', [])
       });
     };
   })
-  .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
+ /* .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
 
     var password = "";
     var count = 6;
@@ -617,7 +637,7 @@ angular.module('login.controllers', [])
                       $api.activeUser(message.userID, function (message) {
                         loginM();
                       }, function (message) {
-                        $ionicLoading.hide();
+                        $pubionicloading.hide();
                         $ToastUtils.showToast(message);
                       });
                     } else {
@@ -634,7 +654,7 @@ angular.module('login.controllers', [])
                   $api.activeUser(message.userID, function (message) {
                     loginM();
                   }, function (message) {
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $ToastUtils.showToast(message);
                   });
                 } else {
@@ -642,21 +662,15 @@ angular.module('login.controllers', [])
                 }
               }
             }, function (message) {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('login');
               $ToastUtils.showToast(message);
             });
 
             secondlock.drawStatusPoint('right')
-            $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: false,
-              maxWidth: 100,
-              showDelay: 0
-            });
+            $pubionicloading.showloading('','正在加载...');
             $timeout(function () {
-              $ionicLoading.hide();
+              $pubionicloading.hide();
               $state.go('tab.message');
             });
             $timeout(function () {
@@ -717,19 +731,19 @@ angular.module('login.controllers', [])
                   if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                     $api.activeUser(message.userID, function (message) {
                       loginM();
-                      $ionicLoading.hide();
+                      $pubionicloading.hide();
                       $state.go('tab.message');
                     }, function (message) {
-                      $ionicLoading.hide();
+                      $pubionicloading.hide();
                       $ToastUtils.showToast(message);
                     });
                   } else {
                     loginM();
-                    $ionicLoading.hide();
+                    $pubionicloading.hide();
                     $state.go('tab.message');
                   }
                 } else {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $state.go('login');
                 }
               });
@@ -737,20 +751,20 @@ angular.module('login.controllers', [])
               if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
                 $api.activeUser(message.userID, function (message) {
                   loginM();
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $state.go('tab.message');
                 }, function (message) {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $ToastUtils.showToast(message);
                 });
               } else {
                 loginM();
-                $ionicLoading.hide();
+                $pubionicloading.hide();
                 $state.go('tab.message');
               }
             }
           }, function (message) {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $state.go('login');
             $ToastUtils.showToast(message);
 
@@ -758,13 +772,7 @@ angular.module('login.controllers', [])
 
           firstlock.drawStatusPoint('right')
           // $ToastUtils.showToast("输入密码正确,logining...")
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 100,
-            showDelay: 0
-          });
+          $pubionicloading.showloading('','正在加载...');
 
           $timeout(function () {
             firstlock.reset();
@@ -797,8 +805,7 @@ angular.module('login.controllers', [])
           // alert("bbbbbb:"+count);
           $timeout(function () {
             firstlock.reset();
-            metho
-            d();
+            method();
           }, 300);
         }
       }
@@ -835,4 +842,4 @@ angular.module('login.controllers', [])
       });
     }
   })
-
+*/

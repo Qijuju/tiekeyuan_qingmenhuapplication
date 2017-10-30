@@ -40,6 +40,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.DownloadListener;
 import android.webkit.HttpAuthHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -101,7 +102,10 @@ public class InAppBrowser extends CordovaPlugin {
     private boolean mediaPlaybackRequiresUserGesture = false;
     private boolean shouldPauseInAppBrowser = false;
 
-    /**
+    //upload
+    private InAppChromeClient chromeClient;
+
+  /**
      * Executes the request and returns PluginResult.
      *
      * @param action the action to execute.
@@ -110,6 +114,7 @@ public class InAppBrowser extends CordovaPlugin {
      * @return A PluginResult object with a status and message.
      */
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
+        LOG.d(LOG_TAG, "啦啦啦啦" );
         if (action.equals("open")) {
             this.callbackContext = callbackContext;
             final String url = args.getString(0);
@@ -258,6 +263,7 @@ public class InAppBrowser extends CordovaPlugin {
         return true;
     }
 
+
     /**
      * Called when the view navigates.
      */
@@ -405,6 +411,7 @@ public class InAppBrowser extends CordovaPlugin {
                 childView.setWebViewClient(new WebViewClient() {
                     // NB: wait for about:blank before dismissing
                     public void onPageFinished(WebView view, String url) {
+                        LOG.d(LOG_TAG, "go go go");
                         if (dialog != null) {
                             dialog.dismiss();
                             dialog = null;
@@ -469,12 +476,22 @@ public class InAppBrowser extends CordovaPlugin {
     private void navigate(String url) {
         InputMethodManager imm = (InputMethodManager)this.cordova.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(edittext.getWindowToken(), 0);
-
         if (!url.startsWith("http") && !url.startsWith("file:")) {
             this.inAppWebView.loadUrl("http://" + url);
         } else {
             this.inAppWebView.loadUrl(url);
         }
+        //新增
+
+        this.inAppWebView.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype,
+                                        long contentLength) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                cordova.getActivity().startActivity(i);
+            }
+        });
         this.inAppWebView.requestFocus();
     }
 
@@ -566,7 +583,6 @@ public class InAppBrowser extends CordovaPlugin {
                 if (dialog != null) {
                     dialog.dismiss();
                 };
-
                 // Let's create the main dialog
                 dialog = new InAppBrowserDialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
                 dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
@@ -619,6 +635,7 @@ public class InAppBrowser extends CordovaPlugin {
                         goBack();
                     }
                 });
+
 
                 // Forward button
                 ImageButton forward = new ImageButton(cordova.getActivity());
@@ -697,7 +714,10 @@ public class InAppBrowser extends CordovaPlugin {
                 inAppWebView = new WebView(cordova.getActivity());
                 inAppWebView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 inAppWebView.setId(Integer.valueOf(6));
-                inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView));
+                //inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView));//為了upload
+                //upload add
+                chromeClient = new InAppChromeClient(thatWebView, InAppBrowser.this);
+                inAppWebView.setWebChromeClient(chromeClient);
                 WebViewClient client = new InAppBrowserClient(thatWebView, edittext);
                 inAppWebView.setWebViewClient(client);
                 WebSettings settings = inAppWebView.getSettings();
@@ -737,6 +757,19 @@ public class InAppBrowser extends CordovaPlugin {
                 }
 
                 inAppWebView.loadUrl(url);
+                //新增
+                inAppWebView.setDownloadListener(new DownloadListener() {
+                    public void onDownloadStart(String url, String userAgent,
+                                                String contentDisposition, String mimetype,
+                                                long contentLength) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        cordova.getActivity().startActivity(i);
+                    }
+                });
+
+
+
                 inAppWebView.setId(Integer.valueOf(6));
                 inAppWebView.getSettings().setLoadWithOverviewMode(true);
                 inAppWebView.getSettings().setUseWideViewPort(true);
@@ -799,11 +832,24 @@ public class InAppBrowser extends CordovaPlugin {
         if (callbackContext != null) {
             PluginResult result = new PluginResult(status, obj);
             result.setKeepCallback(keepCallback);
+            LOG.e(LOG_TAG, "Error callback");
             callbackContext.sendPluginResult(result);
             if (!keepCallback) {
                 callbackContext = null;
             }
         }
+    }
+
+    //upload add
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+      if (requestCode == InAppChromeClient.Controller.FILE_SELECTED) {
+        // Chose a file from the file picker.
+        if (chromeClient != null && chromeClient.mUploadHandler != null) {
+          chromeClient.mUploadHandler.onResult(resultCode, intent);
+        }
+      }
+      super.onActivityResult(requestCode, resultCode, intent);
     }
 
     /**
@@ -900,6 +946,7 @@ public class InAppBrowser extends CordovaPlugin {
             super.onPageStarted(view, url, favicon);
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
+                LOG.e(LOG_TAG, "come on");
                 newloc = url;
             }
             else
@@ -929,7 +976,6 @@ public class InAppBrowser extends CordovaPlugin {
 
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-
             // CB-10395 InAppBrowser's WebView not storing cookies reliable to local device storage
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager.getInstance().flush();
@@ -957,7 +1003,6 @@ public class InAppBrowser extends CordovaPlugin {
                 obj.put("url", failingUrl);
                 obj.put("code", errorCode);
                 obj.put("message", description);
-
                 sendUpdate(obj, true, PluginResult.Status.ERROR);
             } catch (JSONException ex) {
                 LOG.d(LOG_TAG, "Should never happen");

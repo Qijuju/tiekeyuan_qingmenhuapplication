@@ -147,9 +147,8 @@
     },
     "cordova-plugin-file-transfer": {
         "source": {
-            "type": "git",
-            "url": "http://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
-            "subdir": "."
+            "type": "registry",
+            "id": "cordova-plugin-file-transfer"
         },
         "is_top_level": true,
         "variables": {}
@@ -158,15 +157,6 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-file"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "phonegap-plugin-barcodescanner": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/wildabeast/BarcodeScanner.git",
-            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
@@ -260,6 +250,87 @@
             "id": "cordova-plugin-add-swift-support"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-fullscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-fullscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-spinner-dialog": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-spinner-dialog"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-x-toast": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-toast"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-screen-orientation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-screen-orientation"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "es6-promise-plugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vstirbu/PromisesPlugin.git",
+            "subdir": "."
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-badge": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-badge"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "OAIntegration": {
+        "source": {
+            "type": "local",
+            "path": "/Users/bim/Desktop/即时通相关文档/o_a_integration"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-browsertab": {
+        "source": {
+            "type": "local",
+            "path": "/Users/bim/Desktop/即时通相关文档/插件/cordova-plugin-browsertab"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-flashlight": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-flashlight"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-barcodescanner": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-barcodescanner"
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

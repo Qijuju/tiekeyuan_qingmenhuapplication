@@ -1,0 +1,66 @@
+.verify{
+  width:90%;
+  height:350px;
+  margin:50px auto;
+}
+img.verifyImg{
+  width:20px;
+  height:20px;
+}
+img.verifyImg2{
+  width:28px;
+  height:30px;
+}
+
+p.verifyTitle{
+  padding:10px 0;
+  color:#000;
+  font-size:16px;
+}
+
+/* 行 */
+.verifyRow{
+  height:55px;
+  line-height:55px;
+  border:1px solid #dcdcdc;
+  border-radius:4px;
+  padding:0px;
+  margin-bottom:10px;
+  background: #fff;
+}
+.verifyRowBtn1{
+  background: transparent;
+
+}
+img.verify2{
+  width:24px;height:26px;
+  margin-top:10px;
+}
+.phoneVerify{
+  height:20px;
+  margin-top:12px;
+}
+.verifyRow.verifyRowBtn{
+  height:44px;
+  line-height:44px;
+  font-size:16px;
+  border:none;
+  margin-top:15px;
+}
+.verifyRow.verifyRowBtn .col{
+  padding:0px;
+}
+.button.button-block{
+  width:90%;
+  margin:10px 5%;
+}
+.button.sendVerifyBtn{
+  border-color:#dcdcdc;
+}
+/* 输入框 */
+input.verifyInput{
+  display: inline-block;width:100%;;height:100%;margin-top:-10px;
+}
+img.phoneVerifyX{
+  height:14px;
+}

@@ -6,15 +6,15 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content  style="background-color:#e5e5e5 " >
+  <ion-content>
     <ion-list>
       <ion-item ng-repeat="item in members" ng-click="groupGoDetail(item.UserID)">
-        <div class="row" >
-          <div class="col-20" align="center">
-            <img src="img/icon_friends.png" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;width: 39px;height: 39px">
+        <div class="row groupDeptmemberRow" >
+          <div class="col col-20" align="center">
+            <img src="img/icon_friends.png">
           </div>
-          <div class="col-80" align="left">
-            <p style="font-size: 18px" align="left">{{item.UserName}}</p>
+          <div class="col col-80">
+            <p>{{item.UserName}}</p>
           </div>
         </div>
       </ion-item>

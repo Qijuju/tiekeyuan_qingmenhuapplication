@@ -8,35 +8,45 @@
   </ion-nav-bar>
   <ion-content>
     <ion-scroll zooming="true" direction="x" style="width: 100%">
-      <div id="seventhscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a2" class="a-style"  ng-click="fromSeventhToSecond(firstidInSeven)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
-        <a id="a3" class="a-style"  ng-click="fromSeventhToThird(secondidInSeven,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a4" class="a-style"  ng-click="fromSeventhToForth(thirdidInSeven,secondName,thirdName)" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a5" class="a-style"  ng-click="formSeventhToFifth(forthidInSeven,secondName,thirdName,forthName)" style="font-size: 15px">{{fifthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a6" class="a-style" ng-click="backSixth()" style="font-size: 15px">{{sixthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a7" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo7}}</a>
+      <div id="scrollDiv" class="div-a-style">
+        <a id="a1" class="a-style" href="#/tab/contacts">联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a2" class="a-style"  ng-click="fromSeventhToSecond(firstidInSeven)" >{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
+        <a id="a3" class="a-style"  ng-click="fromSeventhToThird(secondidInSeven,secondName)">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a4" class="a-style"  ng-click="fromSeventhToForth(thirdidInSeven,secondName,thirdName)" >{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a5" class="a-style"  ng-click="formSeventhToFifth(forthidInSeven,secondName,thirdName,forthName)">{{fifthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a6" class="a-style" ng-click="backSixth()" >{{sixthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a7" class="a-style" >{{deptinfo7}}</a>
 
       </div>
     </ion-scroll>
 
-
-
-    <div>
+    <div class="background_white">
       <ion-list>
-        <ion-item ng-repeat=" item in nihao"   ng-click="jumpEighth(item.DeptID,secondName,thirdName,forthName,fifthName,sixthName,deptinfo7)" class="item-remove-animate item-avatar rj-contact-new ">
-          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
-          <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        <ion-item ng-repeat=" item in nihao"   ng-click="jumpEighth(item.DeptID,secondName,thirdName,forthName,fifthName,sixthName,deptinfo7,item.ChildCount)">
+          <div class="row">
+            <div class="col">
+              <img  src="img/im_contact_con.png" class="addNewMemberImg">
+              <span class="font_16">{{item.DeptName}}</span>
+            </div>
+          </div>
         </ion-item>
-        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in buhao"  ng-click="goSeventhDetail(item.UserID)" >
-          <img  src="img/icon_friends.png" style="width: 38px;height: 38px;align-content: center">
-          <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
+        <ion-item ng-repeat=" item in buhao"  ng-click="goSeventhDetail(item.UserID)" >
+          <div class="row">
+            <div class="col-15">
+              <img src="img/icon_friends.png"  class="addNewMemberImg">
+
+            </div>
+            <div class="col-85">
+              <!--当该员工有职务时直接显示-->
+              <span class="font_16" >{{item.UserName}}</span>
+              <p class="proname" ng-if="item.ProName != '未填写'">
+                {{item.ProName}}
+              </p>
+            </div>
+          </div>
         </ion-item>
       </ion-list>
     </div>
-
-
-
 
     <ion-infinite-scroll  ng-if="seventhStatus" on-infinite="loadSeventhMore()" distance="1%" ></ion-infinite-scroll>
 

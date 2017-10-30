@@ -231,7 +231,6 @@ angular.module('message.services', [])
       mqtt = cordova.require('MqttChat.mqtt_chat');
     });
     return{
-
       startMqttChat:function(topics,success,error){
         if (topics === undefined || topics === null || topics === '') {
           alert('非法登录！');
@@ -242,17 +241,13 @@ angular.module('message.services', [])
         });
         return -1;
       },
-
-
       getMqtt:function(){
         return mqtt;
       },
-
-
       sendMsg:function (topic, content, id,localuser,localuserId,sqlid,messagetype,picPath,$mqtt) {
         var messageDetail={};
+
         messageDetail._id=sqlid;
-        // alert("改造后的id"+sqlid);
         messageDetail.sessionid=id;
         messageDetail.type='User';
         messageDetail.from='true';
@@ -261,19 +256,15 @@ angular.module('message.services', [])
         }
         messageDetail.message=content;
         messageDetail.messagetype=messagetype;
-        // alert("发送的类型"+messagetype);
         messageDetail.platform='Windows';
         messageDetail.when=new Date().getTime();
         messageDetail.isFailure='false';
         messageDetail.isDelete='false';
-        // alert($rootScope.securlpicaaa+";;1")
+
         if($rootScope.securlpicaaa==undefined||$rootScope.securlpicaaa==null||$rootScope.securlpicaaa.length==0){
-          // alert($rootScope.securlpicaaa+";;2")
           messageDetail.imgSrc='';
         }else{
-          // alert($rootScope.securlpicaaa+";;3")
           messageDetail.imgSrc=$rootScope.securlpicaaa;
-          // alert($rootScope.imgSrc+";;4")
         }
         messageDetail.username=localuser;
         messageDetail.senderid=localuserId;
@@ -282,10 +273,8 @@ angular.module('message.services', [])
         messageDetail.daytype='1';
         messageDetail.istime='false';
         if (sqlid != undefined && sqlid != null && sqlid != '') {
-          // alert("SQLID不为空：" + sqlid)
           for(var i=0;i<danliao.length;i++){
             if(danliao[i]._id === sqlid){
-              // alert("SQLID已经找到：" + sqlid)
               danliao.splice(i, 1);
               $rootScope.$broadcast('msgs.update');
               break;
@@ -391,7 +380,7 @@ angular.module('message.services', [])
         messageDetail.isSuccess='false';
         messageDetail.daytype='1';
         messageDetail.istime='false';
-        //alert("发送者id"+localuserId);
+
         if (type === 'User') {
           if (sqlid != undefined && sqlid != null && sqlid != '') {
             for (var i = 0; i < danliao.length; i++) {
@@ -415,7 +404,6 @@ angular.module('message.services', [])
         }
         var progress = '0';
         messageDetail.message = '' + '###' + content;
-        //alert("图片类型"+type);
         if (messageDetail.messagetype === 'Image' || messageDetail.messagetype === 'File' || messageDetail.messagetype === 'Audio' || messageDetail.messagetype === 'Vedio') {
           messageDetail.message = messageDetail.message + '###0';
         }
@@ -433,9 +421,9 @@ angular.module('message.services', [])
         } else {
           qunliao.push(messageDetail);
         }
-        // alert("图片入数组后长度"+danliao.length);
+
         $greendao.saveObj('MessagesService',messageDetail,function (data) {
-          // alert("消息已经入库。。。。")
+
           $rootScope.$broadcast('msgs.update');
         },function (err) {
         });
@@ -443,12 +431,6 @@ angular.module('message.services', [])
         if (messagetype == 'Image') {
           sendType = 'I';
         }
-        /*if (type === 'User') {
-          msgDetail = danliao[danliao.length - 1];
-        } else {
-          msgDetail = qunliao[qunliao.length - 1];
-        }*/
-
         //var uploadurl="http://imtest.crbim.win:1666/UploadFile";
         $okhttp.upload(messageDetail, sendType, null, fileContent,"",function (sdata) {
           var msgDetail = sdata[3];
@@ -464,7 +446,7 @@ angular.module('message.services', [])
             }
             $rootScope.$broadcast('sendprogress.update');
             $greendao.deleteDataByArg('FilePictureService',sdata[1],function (msg) {
-              // alert("清除数据成功")
+
             },function (err) {
 
             });
@@ -580,8 +562,6 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
-
-
         mqtt.getChats(topic,function (message) {
           var arriveMessage={};
           arriveMessage._id=message._id;
@@ -606,10 +586,8 @@ angular.module('message.services', [])
             return;
           }
           if(message.type === 'Platform'){
-
             var notifyMessage={};
-
-              notifyMessage.FromID=message._id;
+              notifyMessage.FromID=message.sessionid;
               notifyMessage.FromName=message.username;
               notifyMessage.IsReaded=false;
               notifyMessage.IsToped=false;
@@ -623,7 +601,7 @@ angular.module('message.services', [])
               notifyMessage.msgId=message.msgId;
               notifyMessage.IsAttention=false;
               notifyMessage.__isset_bitfield="";
-            $rootScope.$broadcast('newnotify.update',notifyMessage);
+            $rootScope.$broadcast('allnotify.update',notifyMessage);
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
             },function (err) {
@@ -631,7 +609,6 @@ angular.module('message.services', [])
             $greendao.queryData("NotifyListService","where id =?",arriveMessage.sessionid,function (data) {
               if(data.length>0){
                 syscount=data[0].count;
-                // alert("有值"+syscount);
                 syscount++;
                 $rootScope.$broadcast('notify.update');
               }else{
@@ -1061,6 +1038,15 @@ angular.module('message.services', [])
       },
       save:function (key,value) {
         mqtt.save(key,value);
+      },
+      getString:function (key,success,error) {
+        mqtt.getString(key,success,error);
+      },
+      saveInt:function (key,value) {
+        mqtt.saveInt(key,value);
+      },
+      getInt:function (key,success,error) {
+        mqtt.getInt(key,success,error);
       },
       getUserInfo:function (success, error) {//获取用户信息（登录之后可以使用该方法）
         mqtt.getUserInfo(success, error);

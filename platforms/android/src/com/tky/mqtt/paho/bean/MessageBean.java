@@ -36,6 +36,8 @@ public class MessageBean extends MessageTypeBean {
 
     private String msgId;
 
+    private String fromName;
+
   public String getLevelName() {
     return levelName;
   }
@@ -192,5 +194,13 @@ public class MessageBean extends MessageTypeBean {
 
     public void setMsgLevel(String msgLevel) {
         this.msgLevel = msgLevel;
+    }
+
+    public String getFromName() {
+        return fromName;
+    }
+
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
     }
 }

@@ -1,0 +1,62 @@
+/*背景色*/
+ion-view ion-content.portalIonContent{
+  background:#fff;
+}
+/* 头标题*/
+.platform-android .bar .title{
+  left:0px;
+  font-size:1.3em;
+  text-align: center;
+}
+div.title.title-left.header-item{
+  text-align: left;
+}
+/*动画div*/
+div#animImgBox{
+
+  width:100%;
+  height:140px;
+  background-image:url("../img/img.jpg");
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  -webkit-background-size:cover;
+  background-size:cover;
+  box-shadow: 0px 3px 3px #F0EFF4;
+  animation: animatedBackground 10s linear infinite;
+}
+
+/*图片img大小*/
+.content div.row.row1 div.col.col1 img.portalImg{
+  width:45px;
+  height:45px;
+}
+img.portalImg{
+  width:45px;
+  height:45px;
+}
+
+.content div.row.row1 div.col.col1 img.portalImg.br{
+  border-radius: 8px;
+}
+
+/* iframe */
+div#iframe{
+  min-width: 100%; min-height: 100%;
+}
+div#iframe iframe{
+  min-width: 100%; min-height: 100%;
+}
+/* 功能模块之间的分割线*/
+.fengeLine{
+  width:90%;
+  height:1px;
+  background: #ddd;
+  margin:10px auto;
+}
+/*定义动画*/
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+

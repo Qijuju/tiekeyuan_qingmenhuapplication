@@ -14,11 +14,19 @@ exports.sendMsg = function(arg0, arg1, success, error) {//arg0：topicId
 exports.save = function(arg0, arg1, success, error) {//arg0：key arg1：value
     exec(success, error, "MqttChat", "save", [arg0,arg1]);
 };
+
+
+exports.saveInt = function(arg0, arg1, success, error) {//arg0：key arg1：value
+    exec(success, error, "MqttChat", "saveInt", [arg0,arg1]);
+};
 exports.saveLogin = function(arg0, arg1, success, error) {//arg0：key arg1：value
     exec(success, error, "MqttChat", "saveLogin", [arg0,arg1]);
 };
 exports.getString = function(arg0, success, error) {//arg0：key
     exec(success, error, "MqttChat", "getString", [arg0]);
+};
+exports.getInt = function(arg0, success, error) {//arg0：key
+    exec(success, error, "MqttChat", "getInt", [arg0]);
 };
 exports.disconnect = function(success, error) {
     exec(success, error, "MqttChat", "disconnect", []);

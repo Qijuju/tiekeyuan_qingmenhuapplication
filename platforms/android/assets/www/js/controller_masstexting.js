@@ -2,14 +2,8 @@
  * Created by Administrator on 2017/5/11.
  */
 angular.module('sendfile.controllers', [])
-  .controller('masstextingCtrl', function ($mqtt, $scope, $ToastUtils, $greendao, $stateParams, $cordovaDevice, $chatarr, $ionicLoading, $state,$timeout,$location,$ionicPlatform,$ionicHistory) {
-    $ionicLoading.show({
-      content: '正在发送...',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('masstextingCtrl', function ($mqtt, $scope, $ToastUtils, $greendao, $stateParams, $cordovaDevice, $chatarr, $pubionicloading, $state,$timeout,$location,$ionicPlatform,$ionicHistory) {
+    $pubionicloading.showloading('','正在加载...');
     $scope.topicids = [];
     $scope.userIds = [];//接受者ID
     $scope.users = [];//接收者信息
@@ -30,13 +24,13 @@ angular.module('sendfile.controllers', [])
     }, function (msg) {
       // $ToastUtils.showToast(msg)
     });
-    $ionicLoading.hide();
+    $pubionicloading.hide();
 
     //自己id 211586
     //type *  topic： 他人id  id：他人id  localuser:我的姓名  localuserID:我的 id  sqlid:重发为空
     $scope.openDocumentWindow = function (type, topic, content, id, localuser, localuserId, sqlid) {
       $mqtt.openDocWindow(type, function (fileData) {
-        $ionicLoading.show();
+        $pubionicloading.showloading('','正在加载...');
         $mqtt.getMqtt().getTopic(topic, "User", function (userTopic) {
 
           for (var i = 0; i < userTopic.length; i++) {
@@ -52,7 +46,7 @@ angular.module('sendfile.controllers', [])
     $scope.$on('msgs.error', function (event) {
       $ToastUtils.showToast("发送失败,请检查网络！")
       $state.go('tab.message');
-      $ionicLoading.hide();
+      $pubionicloading.hide();
     });
     /**
      * 文件发送成功监听
@@ -122,7 +116,7 @@ angular.module('sendfile.controllers', [])
               $greendao.saveObj('ChatListService', chatitem, function (data) {
 
                 if ($scope.users.length == count) {
-                  $ionicLoading.hide();
+                  $pubionicloading.hide();
                   $ToastUtils.showToast("发送成功！")
                   $state.go('tab.message');
                 }

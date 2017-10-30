@@ -1,94 +1,124 @@
-<ion-view class="common-view-color" view-title="消息" >
+<!--消息页面-->
+<ion-view class="common-view-color" view-title="消息">
+  <!--消息图标-->
+  <ion-nav-bar align-title="center"  class="newbarhead myMessage">
 
-  <ion-nav-bar align-title="center"  class="newbarhead ">
-    <!--<ion-nav-buttons side="left" >-->
-      <!--<img  src="img/saom.png" width="20px" height="20px" style="margin-top: 6px;margin-left: 6px" ng-click="saoyisao()">-->
-    <!--</ion-nav-buttons>-->
-    <ion-nav-buttons side="right" >
-      <img  src="img/qunl.png" width="20px" height="20px"  style="margin-top: 8px;margin-right: 16px"  ng-click="createGroupChats()">
+    <ion-nav-buttons side="right">
+      <i class="icon ion-ios-search-strong"  ng-click="goSearch()"></i>
+
+      <p>
+        <button id="ionNaviconBtn" ng-click="openPopover($event)">
+          <i class="icon ion-navicon"></i>
+        </button>
+      </p>
+
+      <script id="my-popover.html" type="text/ng-template">
+        <ion-popover-view style="float: right;top:33px;">
+          <ion-content id="scrollContent">
+            <ul>
+              <li ng-click="createGroupChats()">
+                <img src="img/qunl4.png" alt="">
+              </li>
+            </ul>
+          </ion-content>
+        </ion-popover-view>
+      </script>
+
     </ion-nav-buttons>
   </ion-nav-bar>
+
+  <!--主体内容区域-->
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
-    <div class="item-input-inset "  ng-click="goSearch()">
-      <label class="item-input-wrapper common-search">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="search" placeholder="搜索" ng-model="query">
-      </label>
+
+    <!--搜索框--><!--
+      <div class="item-input-inset "  ng-click="goSearch()">
+        <label class="item-input-wrapper common-search">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="搜索" ng-model="query">
+        </label>
+      </div>-->
+
+    <!--网络连接判断-->
+    <div class="row myNetwork" ng-if="isNetConnectNow === false">
+      <div class="col" align="center"> <img src="img/nonet.png"/></div>
+      <div class="col col-80">网络连接不可用，请检查网络设置。</div>
     </div>
 
-    <div class="row" style="background-color:#F8D5D9;height: 42px;margin-bottom: 12px" ng-if="isNetConnectNow === false">
-      <div class="col" align="center" style="margin-left: 36px;"> <img src="img/nonet.png" width="24px" height="24px" /></div>
-      <div class="col col-80" align="left" style="font-size: 14px;color: #A4A4A4;margin-top: 2px">网络连接不可用，请检查网络设置。</div>
-    </div>
+    <ion-list ng-click="shefalse()">
+      <ion-item id="tabMsgItemFirst" item-start class="listItem tabMsgItem" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">
+        <!-- 头像 -->
+        <ion-avatar item-start item-left class="avatar">
 
-    <ion-list  ng-click="shefalse()" >
-      <ion-item class=" item-remove-animate item-avatar" itemscope="" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)" style="z-index: 1;width: 100%;">
-        <!---item--->
-        <!--<div style="vertical-align: middle;width: 100%;height:100%;padding: 0;margin: 0;background-color: #000000">-->
-        <!---头像，居左--->
-        <div style="display: inline;float: left;background-color: #000000;padding-bottom: 3px;margin-top: -4px;" >
-          <!--个人-->
-
-          <div  style=" position: absolute;left: 5%;top: 5%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;" ng-if="(item.chatType==='User')&&(item.imgSrc!='1')" >
-            <img  src="{{item.imgSrc}}" class="yuanjiao4 center">
+          <div ng-if="(item.chatType==='User')&&(item.imgSrc!='1')">
+            <img  src="{{item.imgSrc}}" class="yuanjiao4 center" id="headerImg">
           </div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9)&&(item.chatType==='User')&&(item.imgSrc== '1')" class="center circle1" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
 
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle1 myHeaderDiv">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
 
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle2" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle3" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==4||item.id.substring((item.id.length-1),item.id.length)==6)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle4" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==5||item.id.substring((item.id.length-1),item.id.length)==0)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle5" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle2 myHeaderDiv">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle3 myHeaderDiv">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==4||item.id.substring((item.id.length-1),item.id.length)==6)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle4 myHeaderDiv">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==5||item.id.substring((item.id.length-1),item.id.length)==0)&&(item.chatType==='User')&&(item.imgSrc=='1')" class="center circle5 myHeaderDiv">{{item.chatName.length > 2 ? item.chatName.substring((item.chatName.length-2),item.chatName.length):item.chatName}}</div>
           <!--群-->
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square1" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">群</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square2" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">群</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square3" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">群</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==4||item.id.substring((item.id.length-1),item.id.length)==6)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square4" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">群</div>
-          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==5||item.id.substring((item.id.length-1),item.id.length)==0)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square5" style=" position: absolute;left: 5%;top: 20%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;bottom: 0px;">群</div>
-        </div>
-        <!---对话名称、最后一条消息的内容、日期、未读数--->
-        <div style="float: left;padding-top:0px;margin-top: -4px;margin-bottom: 3px; height: 30px;width: 100%;">
-          <!--<div>-->
-          <span style="float: left;"><font style="font-size: 17px;color: #000;">{{item.chatName}}</font></span>
-          <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd' }}</span>
-          <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate != 0 && item.daytype === '1'">{{ item.lastDate | date:'HH:mm' }}</span>
-          <span style="float: right;margin-right:-30px;padding-right: 0px;font-size: 14px;color: #777777" ng-if="item.lastDate === 0"></span>
-          <!--</div>-->
-          <br/>
-          <!--<div>-->
-              <span style="float: left;">
-                <!---已读语音--->
-                <font style="font-size: 14px;color: #777777" ng-if="item.isRead === '1'">
-                  <div style="display: inline-block">
-                    <!---发送过程中--->
-                    <img style="background-color: transparent;padding-right: 5px;float: left" src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
-                    <!---发送失败--->
-                    <img style="background-color: transparent;padding-right: 5px;float: left" src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
-                    <span style="font-size: 14px;color: #777777;display:inline-block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;">{{item.lastText}}</span>
-                  </div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==1||item.id.substring((item.id.length-1),item.id.length)==9)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square1 myHeaderDiv">群</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==2||item.id.substring((item.id.length-1),item.id.length)==8)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square2 myHeaderDiv">群</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==3||item.id.substring((item.id.length-1),item.id.length)==7)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square3 myHeaderDiv">群</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==4||item.id.substring((item.id.length-1),item.id.length)==6)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square4 myHeaderDiv">群</div>
+          <div ng-if="(item.id.substring((item.id.length-1),item.id.length)==5||item.id.substring((item.id.length-1),item.id.length)==0)&&(item.chatType==='Group' || item.chatType==='Dept')" class="center square5 myHeaderDiv">群</div>
 
-                </font>
-                <!---未读语音--->
-                <font style="font-size: 14px;color: #DD5044" ng-if="item.messagetype === 'Audio' && item.isRead === '0'">
-                  {{item.lastText}}
-                </font>
-                <!---未读文本等--->
-                <font style="font-size: 14px;color: #777777;display:block;width: 250px;text-overflow:ellipsis;white-space:nowrap; overflow:hidden;" ng-if="item.messagetype != 'Audio' && item.isRead === '0'">
-                  {{item.lastText}}
-                </font>
-                <!--<font style="font-size: 14px;">{{item.lastText}}</font>-->
-              </span>
-          <span class="rj-sm-red-icon" style="float: right;margin-right:8px;margin-top:2px;padding-right: 0px;" ng-if="item.count > 0 && item.count <100"><p>{{item.count}}</p></span>
-          <span class="rj-sm-red-icon" style="float: right;margin-right:8px;margin-top:2px;padding-right: 0px;" ng-if="item.count > 99" ><p style="font-size: 10px;">99+</p></span>
-          <!--</div>-->
+        </ion-avatar>
+
+        <!-- 信息和时间-->
+        <div id="tabMsgInfoTime11" class="infoTime">
+          <div class="infoTimeDiv">
+            <h2>{{item.chatName}}</h2>
+            <p class="lastInfoMsg">
+              <!---已读语音--->
+                  <span ng-if="item.isRead === '1'">
+                    <div style="position: relative;">
+
+                      <!---发送过程中--->
+                      <img src="img/jiantou.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'false'"/>
+                      <!---发送失败--->
+                      <img  src="img/red.png" ng-if="item.isSuccess === 'false' && item.isFailure === 'true'"/>
+                      <span >{{item.lastText}}</span>
+                    </div>
+                  </span>
+
+              <!---未读语音--->
+                  <span ng-if="item.messagetype === 'Audio' && item.isRead === '0'">
+                    {{item.lastText}}
+                  </span>
+
+              <!---未读文本等--->
+                  <span ng-if="item.messagetype != 'Audio' && item.isRead === '0'">
+                    {{item.lastText}}
+                  </span>
+            </p>
+          </div>
+
+          <div class="lastInfoTime">
+            <ion-note item-end>
+              <!--最后一条消息的时间-->
+              <span  ng-if="item.lastDate != 0 && item.daytype === '0'">{{ item.lastDate | date:'yyyy-MM-dd' }}</span>
+              <span  ng-if="item.lastDate != 0 && item.daytype === '1'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.lastDate | date:'HH:mm' }}</span>
+              <span  ng-if="item.lastDate === 0"></span>
+              <!--消息数量提示-->
+              <p>
+                <span class="rj-sm-red-icon" ng-if=" item.count > 0 && item.count <100 ">{{item.count}}</span>
+                <span class="rj-sm-red-icon" ng-if="item.count > 99" >99+</span>
+              </p>
+            </ion-note>
+          </div>
         </div>
-        <!--</div>-->
-        <ion-option-button class="button-assertive" ng-click="removechat(item.id,item.name)">
+
+        <!--删除单元格-->
+        <ion-option-button class="button-assertive" ng-click="removechat(item.id,item.chatName)">
           删除
         </ion-option-button>
+
       </ion-item>
     </ion-list>
+
   </ion-content>
 </ion-view>
-
-

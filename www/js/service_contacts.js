@@ -270,7 +270,7 @@ angular.module('contacts.services', [])
             count2 = msg.userCount;
             //返回的一级目录的id ，也就是rootId
             firstId = msg.deptID
-            $rootScope.$broadcast('second.update');
+            $rootScope.$broadcast('second.update',{"pageNo":secondCount,"pageSize":10});
             secondCount++;
 
           }, function (msg) {
@@ -316,10 +316,11 @@ angular.module('contacts.services', [])
           secondname = msg.deptInfo
           $api.getChild(deptId, thirdCount, 10, function (msg) {
             deptThirdInfo = msg;
+            // alert("拿到第san层级的数据"+JSON.stringify(deptThirdInfo));
             secondId = msg.deptID;
             count3 = msg.deptCount;
             count4 = msg.userCount;
-            $rootScope.$broadcast('third.update');
+            $rootScope.$broadcast('third.update',{"pageNo":thirdCount,"pageSize":10});
             thirdCount++;
 
 
@@ -368,10 +369,11 @@ angular.module('contacts.services', [])
           thirdname = msg.deptInfo
           $api.getChild(deptId, forthCount, 10, function (msg) {
             deptForthInfo = msg;
+            // alert("拿到第四层级的数据"+JSON.stringify(deptForthInfo));
             thirdId = msg.deptID;
             count5 = msg.deptCount;
             count6 = msg.userCount;
-            $rootScope.$broadcast('forth.update');
+            $rootScope.$broadcast('forth.update',{"pageNo":forthCount,"pageSize":10});
             forthCount++;
           }, function (msg) {
             count5 = 0;
@@ -415,13 +417,15 @@ angular.module('contacts.services', [])
 
       deptFifthInfo: function (deptId) {
         $api.getDeparment(deptId, function (msg) {
-          forthname = msg.deptInfo
+          forthname = msg.deptInfo.DeptName;
+          console.log("五级名称service"+forthname+"接口返回的数据"+JSON.stringify(msg));
           $api.getChild(deptId, fifthCount, 10, function (msg) {
             deptFifhtInfo = msg;
+            // alert("拿到第五层级的数据"+JSON.stringify(deptFifhtInfo));
             forthId = msg.deptID;
             count7 = msg.deptCount;
             count8 = msg.userCount;
-            $rootScope.$broadcast('fifth.update');
+            $rootScope.$broadcast('fifth.update',{"pageNo":fifthCount,"pageSize":10});
             fifthCount++;
 
 
@@ -469,13 +473,14 @@ angular.module('contacts.services', [])
       deptSixthInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          fifthname = msg.deptInfo
+          fifthname = msg.deptInfo.DeptName;
           $api.getChild(deptId, sixthCount, 10, function (msg) {
             deptSixthInfo = msg;
+            // alert("拿到第六层级的数据"+JSON.stringify(deptSixthInfo));
             fifthId = msg.deptID;
             count9 = msg.deptCount;
             count10 = msg.userCount;
-            $rootScope.$broadcast('sixth.update');
+            $rootScope.$broadcast('sixth.update',{"pageNo":sixthCount,"pageSize":10});
             sixthCount++;
           }, function (msg) {
             count9 = 0;
@@ -522,13 +527,13 @@ angular.module('contacts.services', [])
       deptSeventhInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          sixthname = msg.deptInfo
+          sixthname = msg.deptInfo.DeptName;
           $api.getChild(deptId, seventhCount, 10, function (msg) {
             deptSeventhInfo = msg;
             sixthId = msg.deptID;
             count11 = msg.deptCount;
             count12 = msg.userCount;
-            $rootScope.$broadcast('seventh.update');
+            $rootScope.$broadcast('seventh.update',{"pageNo":seventhCount,"pageSize":10});
             seventhCount++;
           }, function (err) {
             count11 = 0;
@@ -573,13 +578,13 @@ angular.module('contacts.services', [])
       deptEighthInfo: function (deptId) {
 
         $api.getDeparment(deptId, function (msg) {
-          seventhname = msg.deptInfo
+          seventhname = msg.deptInfo.DeptName;
           $api.getChild(deptId, eighthCount, 10, function (msg) {
             deptEighthInfo = msg;
             seventhId = msg.deptID;
             count13 = msg.deptCount;
             count14 = msg.userCount;
-            $rootScope.$broadcast('eighth.update');
+            $rootScope.$broadcast('eighth.update',{"pageNo":eighthCount,"pageSize":10});
             eighthCount++;
           }, function (err) {
             count13 = 0;
@@ -776,7 +781,7 @@ angular.module('contacts.services', [])
 
   })
 
-  .factory('$search111',function ($api,$rootScope,$greendao,$ionicLoading,$timeout,$ToastUtils) {
+  .factory('$search111',function ($api,$rootScope,$greendao,$pubionicloading,$timeout,$ToastUtils) {
     var persons;
     var historymsg;
     return{
@@ -836,7 +841,7 @@ angular.module('contacts.services', [])
 
         },function (msg) {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           },5000);
           $rootScope.$broadcast('persons.update');
         });
@@ -966,7 +971,7 @@ angular.module('contacts.services', [])
     }
 
   })
-  .factory('$searchmessage',function ($greendao,$rootScope,$timeout,$ionicLoading,$ToastUtils) {
+  .factory('$searchmessage',function ($greendao,$rootScope,$timeout,$pubionicloading,$ToastUtils) {
     var messagesss;
     var messagenamess;
     return{
@@ -983,7 +988,7 @@ angular.module('contacts.services', [])
           $rootScope.$broadcast('messagesss.search');
         },function (msg) {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
           },5000);
         })
       },

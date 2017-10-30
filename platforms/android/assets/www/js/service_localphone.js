@@ -54,7 +54,7 @@ angular.module('localphone.services', [])
                     newobj.platformid=newList[m].UserID;
 
                     $greendao.saveObj("LocalPhoneService",newobj,function (msg) {
-
+                      console.log("入库数据"+JSON.stringify(msg));
                     },function (err) {
 
                     })

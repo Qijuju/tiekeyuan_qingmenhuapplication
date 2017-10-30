@@ -1,79 +1,254 @@
-<ion-view view-title="通知" style="color: white">
-  <ion-nav-bar align-title="center" class="newbarhead">
-    <ion-nav-buttons >
-      <ion-toggle1 ng-checked="appstatus" class="item-borderless"
-                  style="position: absolute;left: 70%;height: 45px;margin-top: -10px;background: transparent;"
-                  ng-click="changeSlide(newdex)">
-      </ion-toggle1>
-    </ion-nav-buttons>
-  </ion-nav-bar>
-  <ion-content delegate-handle="scrollTop" overflow-scroll="false" ng-click="clickAny()" on-drag="clickAny()" style="background-color: #F0EFF4">
-    <div class="row" style="background-color:#F8D5D9;height: 42px;margin-bottom: 12px" ng-if=shownetstatus>
-      <div class="col" align="center" style="margin-left: 36px;"> <img src="img/nonet.png" width="24px" height="24px" /></div>
-      <div class="col col-80" align="left" style="font-size: 14px;color: #A4A4A4;margin-top: 2px">网络连接不可用，请检查网络设置。</div>
-    </div>
-    <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
-                   pager-click="go(index)" on-slide-changed="go_changed(index)" >
-      <ion-slide style="background-color: #F0EFF4" >
-        <ion-list>
-          <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in notifyNewList"  style="height: 100% " >
-          <div >
-            <div ng-if="item.IsReaded"><img src="img/upnotificgray.png" width="100%" height="6px" style=" position: absolute;top: 0%;left: 0%"></div>
-            <div ng-if="!item.IsReaded"><img src="img/upnotific.png" width="100%" height="6px" style=" position: absolute;top: 0%;left: 0%"></div>
-            <div ng-if="item.Level=='1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;color: gray">通知</div>
-            <div ng-if="item.Level=='2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-            <div ng-if="item.Level=='3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-            <div ng-if="item.Level=='0'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-            <h3 style="margin-left: -12px">{{item.FromName}}&nbsp;&nbsp;&nbsp;<span style="color: #AAAAAC">{{item.MsgDate | date:'MM-dd HH:mm'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: indianred">{{item.LevelName }}</span></h3>
-            <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 4px">标题：{{item.Title}}</pre>
-            <pre style="margin-left: -12px;max-height: 40px;overflow: hidden; margin-bottom: 30px"><a ng-click="gonet(item.Link)">点击查看附件</a></pre>
-            <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.IsToped" src="img/dingding.png" width="18px" height="18px">
-            <img style="padding-right: 3px;position: absolute;right: 14px;top: 14px;"  ng-if="item.IsAttention" src="img/focus.png" width="18px" height="18px" >
-            <span class="rj-push-rightdown" ng-if="item.Level=='3'" style="color: red;margin-top: 2px">!!!</span>
-            <span class="rj-push-rightdown" ng-if="item.Level=='2'" style="color: orange;margin-top: 2px">!!</span>
-            <span class="rj-push-rightdown" ng-if="item.Level=='1'" style="color: #cec62a;margin-top: 2px">!</span>
-            <span class="rj-push-rightdown" ng-if="item.Level=='0'" style="margin-top: 2px"></span>
-          </div>
-          <div  style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%;" ng-click="goNotifyDetail(item)" >
-            <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%" ></div>
-            <span style="color: #e98f36" ng-if="item.IsReaded">已确认</span>
-            <span style="color: #1D95D4" ng-if="!item.IsReaded">未确认</span>
-            <img src="img/newjiantou.png" height="14px" style="padding: 1px;margin-left: 8px" >
-          </div>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
 
-      <ion-slide style="background-color: #F0EFF4" >
-        <ion-list>
-          <ion-item  class="item-remove-animate item-avatar rj-notify-bg " ng-repeat="item in notifyNewList" ng-if="item.IsAttention" style="height: 100% " >
-            <div >
-              <div ng-if="item.IsReaded"><img src="img/upnotificgray.png" width="100%" height="6px" style=" position: absolute;top: 0%;left: 0%"></div>
-              <div ng-if="!item.IsReaded"><img src="img/upnotific.png" width="100%" height="6px" style=" position: absolute;top: 0%;left: 0%"></div>
-              <div ng-if="item.Level=='1'" class="center square9" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.Level=='2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.Level=='3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <div ng-if="item.Level=='0'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-              <h3 style="margin-left: -12px">{{item.FromName}}&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #AAAAAC">{{item.MsgDate | date:'MM-dd HH:mm'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: indianred">{{item.LevelName }}</span></h3>
-              <pre style="margin-left: -12px;font-size: 14px;max-height: 40px;overflow: hidden; margin-bottom: 4px">{{item.Title}}</pre>
-              <pre style="margin-left: -12px;max-height: 40px;overflow: hidden; margin-bottom: 30px"><a ng-click="gonet(item.Link)">{{item.Link}}</a></pre>
-              <img style="margin-top: 2px" class="rj-push-rightright" ng-if="item.IsToped" src="img/dingding.png" width="18px" height="18px">
-              <img style="padding-right: 3px;position: absolute;right: 14px;top: 14px;"  ng-if="item.IsAttention" src="img/focus.png" width="18px" height="18px" >
-              <span class="rj-push-rightdown" ng-if="item.Level=='3'" style="color: red;margin-top: 2px">!!!</span>
-              <span class="rj-push-rightdown" ng-if="item.Level=='2'" style="color: orange;margin-top: 2px">!!</span>
-              <span class="rj-push-rightdown" ng-if="item.Level=='1'" style="color: #cec62a;margin-top: 2px">!</span>
-              <span class="rj-push-rightdown" ng-if="item.Level=='0'" style="margin-top: 2px"></span>
-            </div>
-            <div  style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%;" ng-click="goNotifyDetail(item)" >
-              <div style="border-top: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 3%" ></div>
-              <span style="color: #e98f36" ng-if="item.IsReaded">已确认</span>
-              <span style="color: #1D95D4" ng-if="!item.IsReaded">未确认</span>
-              <img src="img/newjiantou.png" height="14px" style="padding: 1px;margin-left: 8px" >
-            </div>
-          </ion-item>
-        </ion-list>
-      </ion-slide>
-    </ion-slide-box>
-    <ion-infinite-scroll immediate-check="false" ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
-  </ion-content>
+<ion-view  class="common-view-color" view-title="通知">
+
+  <ion-nav-bar align-title="right" class="newbarhead">
+      <!--<ion-toggle1 ng-checked="appstatus" class="item-borderless"-->
+                   <!--style="position: absolute;top:0px;right:0px;height: 45px;width:160px;margin-top: -10px;background: transparent;z-index: 99;"-->
+                   <!--ng-click="changeSlide(newdex)">-->
+      <!--</ion-toggle1>-->
+  </ion-nav-bar>
+  <ion-tabs class="tabs-positive tabs-striped tabs-top" >
+    <ion-tab title="全部">
+      <ion-view >
+        <ion-content delegate-handle="scrollTop" overflow-scroll="false">
+          <!--网络状态-->
+          <div class="row myNetwork" ng-if=shownetstatus>
+            <div class="col" align="center"> <img src="img/nonet.png"/></div>
+            <div class="col col-80">网络连接不可用，请检查网络设置。</div>
+          </div>
+
+          <!--全部通知-->
+          <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
+                         pager-click="go(index)" on-slide-changed="go_changed(index)" >
+            <ion-slide  class="notificationIonSide">
+
+              <ion-list no-lines>
+                <ion-item  class="item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" >
+
+                  <div>
+                    <!--已确认的通知-->
+                    <div class="row itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
+                      <div class="col clearfix">
+
+                        <!--通知logo-->
+                        <div class="notifyImgInfo">
+                          <img src="{{item.appIcon}}" alt="通知logo">
+                        </div>
+
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+
+                          <div class="infoTop">
+
+                            <!--名称-->
+                            <h3>{{item.FromName}}</h3>
+                            <!--时间-->
+                            <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <span class="levelName">{{item.LevelName}}</span>
+                          </div>
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">标题:{{item.Title}}</pre>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!--未确认的通知-->
+                    <div class="row itemIsReadedNo" ng-if="!item.IsReaded" ng-click="goNotifyDetail(item)">
+                      <div class="col clearfix">
+
+                        <!--通知类型对应的图片信息-->
+                        <div class="notifyImgInfo">
+                          <img src="{{item.appIcon}}" alt="logo">
+                        </div>
+
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+
+                          <div class="infoTop">
+
+                            <!--名称-->
+                            <h3>{{item.FromName}}</h3>
+                            <!--时间-->
+                            <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <span class="levelName">{{item.LevelName}}</span>
+                          </div>
+
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">标题:{{item.Title}}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                     <!--操作按钮-->
+                    <div class="row topFocus" >
+                      <div class="col" ng-click="goIsTopEvent(item)">
+                        <!--置顶-->
+                        <img class="rj-push-rightright" ng-if="item.IsToped" src="img/toptp.png">
+                        <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
+                      </div>
+                      <div class="col" ng-click="goIsAttentionEvent(item)">
+                        <!--关注-->
+                        <img ng-if="item.IsAttention" src="img/focuseye.png">
+                        <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+                      </div>
+                      <div class="col">
+                        <!--等级-->
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='3'" >
+                          <img src="img/alert.png" alt="">
+                          <span>3</span>
+                        </p>
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='2'" >
+                          <img src="img/alert.png" alt="">
+                          <span>2</span>
+                        </p>
+                        <p style="" class="rj-push-rightdown level" ng-if="item.Level=='1'" >
+                          <img src="img/alert.png" alt="">
+                          <span>1</span>
+                        </p>
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>
+                      </div>
+                      <!--点击查看附件-->
+                      <div class="col" style="font-weight: 600;">
+                        <img class="fujian" src="img/fujian.png" alt="点击查看附件" ng-click="gonet(item.Link)">
+                      </div>
+                      <!--已确认、未确认-->
+                      <div class="col" ng-click="confirmImgClickEvent(item)">
+                        <img ng-if="!item.IsReaded" src="img/confirmBtnGray.png" alt="未确认">
+                        <img ng-if="item.IsReaded" src="img/confirmBtn.png" alt="已确认">
+                      </div>
+                    </div>
+                  </div>
+                </ion-item>
+              </ion-list>
+
+            </ion-slide>
+          </ion-slide-box>
+
+          <ion-infinite-scroll immediate-check="false" ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+    <ion-tab title="关注">
+      <ion-view>
+        <ion-content delegate-handle="scrollTop">
+
+          <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
+                         pager-click="go(index)" >
+            <ion-slide class="notificationIonSide">
+              <ion-list no-lines>
+                <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" ng-if="item.IsAttention" >
+                  <div>
+                    <!--已确认的通知-->
+                    <div class="row itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
+                      <div class="col clearfix">
+
+                        <!--通知显示相应的图片信息-->
+                        <div class="notifyImgInfo">
+                          <img src="{{item.appIcon}}" alt="logo">
+                        </div>
+
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+                          <div class="infoTop">
+                            <!--名称-->
+                            <h3>{{item.FromName}}</h3>
+                            <!--时间-->
+                            <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <span class="levelName">{{item.LevelName}}</span>
+                          </div>
+
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">标题:{{item.Title}}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--未确认的通知-->
+                    <div class="row itemIsReadedNo" ng-if="!item.IsReaded" ng-click="goNotifyDetail(item)">
+                      <div class="col clearfix" >
+
+                        <!--通知显示相应的图片信息-->
+                        <div class="notifyImgInfo">
+                          <img src="{{item.appIcon}}" alt="logo">
+                        </div>
+
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+                          <div class="infoTop">
+                            <!--名称-->
+                            <h3>{{item.FromName}}</h3>
+                            <!--时间-->
+                            <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <span class="levelName">{{item.LevelName}}</span>
+                          </div>
+
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">标题:{{item.Title}}</pre>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 操作按钮-->
+                    <div class="row topFocus">
+                      <div class="col" ng-click="goIsTopEvent(item)">
+                        <!--置顶-->
+                        <img class="rj-push-rightright" ng-if="item.IsToped" src="img/toptp.png">
+                        <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
+
+                      </div>
+                      <div class="col" ng-click="goIsAttentionEvent(item)">
+                        <!--关注-->
+                        <img ng-if="item.IsAttention" src="img/focuseye.png">
+                        <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+
+                      </div>
+                      <div class="col">
+                        <!--等级-->
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='3'" >
+                          <img src="img/alert.png" alt="">
+                          <span>3</span>
+                        </p>
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='2'" >
+                          <img src="img/alert.png" alt="">
+                          <span>2</span>
+                        </p>
+                        <p style="" class="rj-push-rightdown level" ng-if="item.Level=='1'" >
+                          <img src="img/alert.png" alt="">
+                          <span>1</span>
+                        </p>
+                        <p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>
+                      </div>
+                      <!--点击查看附件-->
+                      <div class="col" style="font-weight: 600;">
+                        <img class="fujian" src="img/fujian.png" alt="点击查看附件" ng-click="gonet(item.Link)">
+                      </div>
+                      <!--已确认、未确认-->
+                      <div class="col">
+                        <img ng-if="!item.IsReaded" src="img/confirmBtnGray.png" alt="未确认">
+                        <img ng-if="item.IsReaded" src="img/confirmBtn.png" alt="已确认">
+                      </div>
+                    </div>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </ion-slide>
+          </ion-slide-box>
+
+          <ion-infinite-scroll immediate-check="false" ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+  </ion-tabs>
 </ion-view>

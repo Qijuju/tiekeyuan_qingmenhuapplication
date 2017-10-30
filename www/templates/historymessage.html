@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content overflow-scroll="false"  delegate-handle="historyScroll" style="background-color:#e5e5e5 ">
+  <ion-content overflow-scroll="false"  delegate-handle="historyScroll" >
     <ion-refresher
       pulling-text="下拉刷新..."
       on-refresh="doRefreshhis()">
@@ -14,23 +14,23 @@
 
     <div ng-repeat="historyduifangaaa in historyduifangsss">
       <!--对方发送消息时必须判断接收者id是否跟userId一致：聊天对象id-->
-      <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)&& ((historyduifangaaa.MsgType=='T'))" style="margin-top: 8px" >
-        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
-        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
-        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==3||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==7" class=" circle3" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
-        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==4||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==6" class=" circle4" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
-        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==5||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==0" class=" circle5" style=" position: absolute;left: 8px;font-size: 14px;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
-        <p class="rj-message" style="margin-left: 14%;color: black;background-color: #FFFFFF" >{{historyduifangaaa.Msg}}</p>
-        <div style="clear:both;float: left;margin-left: 14%;color:slategray;margin-top: -1px">接收时间：{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==id)&& ((historyduifangaaa.MsgType=='T'))" >
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==1||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==9" class=" circle1">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==2||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==8" class=" circle2">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==3||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==7" class=" circle3">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==4||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==6" class=" circle4">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div ng-if="historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==5||historyduifangaaa.FromID.substring((historyduifangaaa.FromID.length-1),historyduifangaaa.FromID.length)==0" class=" circle5">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <p class="rj-message">{{historyduifangaaa.Msg}}</p>
+        <div class="historyMessageTime">接收时间：{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</div>
 
       </div>
-      <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==UserID) && ((historyduifangaaa.MsgType=='T'))" style="margin-top: 10px">
+      <div class="rj-message-wrap" ng-if="(historyduifangaaa.FromID==UserID) && ((historyduifangaaa.MsgType=='T'))">
 
-        <div class="circle6" style=" position: absolute;left: 88%;top: 6%;font-size: 14px;text-align: center;padding-top: 8px">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
+        <div class="circle6 historyMessageCircle6">{{historyduifangaaa.FromName.length > 2 ? historyduifangaaa.FromName.substring((historyduifangaaa.FromName.length-2),historyduifangaaa.FromName.length):historyduifangaaa.FromName}}</div>
 
-        <div style="float: right;margin-right: 10%;color: black; "><p class="rj-message-right" style="background-color: lightgoldenrodyellow">{{historyduifangaaa.Msg}}</p></div>
+        <div class="historyduifangaaaMsg"><p class="rj-message-right">{{historyduifangaaa.Msg}}</p></div>
 
-        <div style="clear:both;float: right;margin-right: 14%;color:slategray;margin-top: -1px">发送时间：{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+        <div class="historyduifangaaaMsgDate">发送时间：{{ historyduifangaaa.MsgDate | date:'yyyy-MM-dd HH:mm:ss'}}</div>
 
       </div>
     </div>

@@ -18,13 +18,8 @@ import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
 import com.tky.mqtt.paho.bean.MessageBean;
 import com.tky.mqtt.paho.main.MqttRobot;
-import com.tky.mqtt.plugin.thrift.api.SystemApi;
-
-import org.apache.thrift.async.AsyncMethodCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import im.server.System.IMSystem;
 
 /**
  * 作者：

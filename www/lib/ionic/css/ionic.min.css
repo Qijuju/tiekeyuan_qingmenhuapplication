@@ -3178,7 +3178,8 @@ body.grade-b, body.grade-c {
 }
 
 .content {
-  position: relative
+  position: relative；
+  /*定位内容*/
 }
 
 .scroll-content {

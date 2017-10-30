@@ -1,0 +1,85 @@
+.detail-top{
+  color: #387EF5;
+  font-size: 15px;
+  font-family: Algerian;
+}
+/*顶部四个图标的大小 */
+img.personDetailImg{
+  width:32px;
+  height:32px;
+}
+li.liColor{
+  color:#000;
+}
+li.liColorGray{
+  color: #A3A3A3;
+}
+/*切换按钮位置*/
+.row.focus .col .item.item-toggle.toggle-small label.toggle.disable-user-behavior{
+  top:11px;
+  right:0px;
+}
+/*去border*/
+.row.focus .col .item.item-toggle.toggle-small{
+  border:none;
+}
+/*返回←箭头*/
+.back img{
+  position: absolute;left:1%;top:2%;width: 48px;height: 36px;
+}
+/*性别*/
+.sex img{
+  position: absolute;right:3%;top:3%;width: 22px;height: 22px;
+}
+.personDetailDiv{
+  background-color: white;width:100%;
+  text-align: center;
+}
+.mt{
+  margin-bottom:10px;
+}
+/*头像*/
+.personDetailDiv >img{
+  width:75px;height:75px;margin-top:45px;
+}
+/*用户姓名*/
+.personDetailUserName{
+  margin-top: 2px;
+}
+.personDetailUserName p{
+  text-align-all: center;font-size: 17px;
+}
+/*row*/
+.row.personInfo{
+  background:#e5e5e5;
+}
+.row.personInfo .col p{
+  font-size: 14px;
+}
+
+.row.personInfoRow{
+  background: #fff;border-bottom: 1px solid #E4E4E3;
+}
+.row.personInfoRow  p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.row.personInfoRow .col p.phoneNumber{
+  color:#1296db;
+  font-weight:300;
+}
+.row.personInfoRow .col img{
+  float:right;margin-right:10px;margin-top:-8px;" height="14px;
+  width:13px;height:15px;
+}
+
+/*添加关注、取消关注*/
+.row.focus{
+  height:60px;background:#fff;
+}
+.row.focus .col >div{
+  height:45px;line-height:45px;
+}
+.row.chartImages{
+  margin-top:10px;
+}

@@ -11,6 +11,9 @@ public class LoginInfoBean extends BaseBean {
   private String mqtt;
   private User user;
   private List<ViceUser> viceUser;
+  private String userId;
+  private String mobile;
+
 
   public String getMepId() {
     return mepId;
@@ -42,5 +45,21 @@ public class LoginInfoBean extends BaseBean {
 
   public void setViceUser(List<ViceUser> viceUser) {
     this.viceUser = viceUser;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
   }
 }

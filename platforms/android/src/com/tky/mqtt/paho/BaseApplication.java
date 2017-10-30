@@ -10,27 +10,22 @@ import android.os.Handler;
 import android.support.multidex.MultiDex;
 
 import com.r93535.im.Constants;
-import com.tencent.tinker.anno.DefaultLifeCycle;
-import com.tencent.tinker.loader.app.DefaultApplicationLike;
-import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tky.mqtt.dao.DaoMaster;
 import com.tky.mqtt.dao.DaoSession;
 import com.tky.mqtt.paho.http.Request;
-import com.tky.mytinker.util.SampleApplicationContext;
-import com.tky.mytinker.util.TinkerManager;
 import com.yixia.camera.VCamera;
 import com.yixia.camera.util.DeviceUtils;
 
 import java.io.File;
 
+/**暂时不用Tinker**/
+//@DefaultLifeCycle(
+//  application ="ook.yzx.tinker.Application",
+//  flags = ShareConstants.TINKER_ENABLE_ALL
+//)
 
-@DefaultLifeCycle(
-  application ="ook.yzx.tinker.Application",
-  flags = ShareConstants.TINKER_ENABLE_ALL
-)
-
-
-public class BaseApplication extends DefaultApplicationLike {
+//注释掉：继承tinker类：DefaultApplicationLike
+public class BaseApplication extends Application{
   private static Context context;
   private static int mainThreadId;
   private static Thread mainThread;
@@ -38,44 +33,111 @@ public class BaseApplication extends DefaultApplicationLike {
   private static BaseApplication mInstance;
   private static DaoMaster daoMaster;
   private static DaoSession daoSession;
- /* public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
-    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径*/
+  public static final String DB_NAME= Environment.getExternalStorageDirectory().getPath()
+    + File.separator+"TKY"+ File.separator+"KKK";//测试版本数据库路径
   private boolean isInBackground;
-  public static final String DB_NAME = "KKK";//正式发布版本数据库路径
+//  public static final String DB_NAME = "KKK";//正式发布版本数据库路径
 
 
 
 
 
 
-  public BaseApplication(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
-    super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
-  }
+//  public BaseApplication(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
+//    super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
+//  }
 
 
-  @Override
-  public void onBaseContextAttached(Context base) {
-    super.onBaseContextAttached(base);
-    /*MultiDex.install(base);
-    TinkerInstaller.install(this);*/
+//  @Override
+//  public void onBaseContextAttached(Context base) {
+//    super.onBaseContextAttached(base);
+//    /*MultiDex.install(base);
+//    TinkerInstaller.install(this);*/
+//
+//    MultiDex.install(base);
+//
+//    SampleApplicationContext.application = getApplication();
+//    SampleApplicationContext.context = getApplication();
+//    TinkerManager.setTinkerApplicationLike(this);
+//
+//    TinkerManager.initFastCrashProtect();
+//    //should set before tinker is installed
+//    TinkerManager.setUpgradeRetryEnable(true);
+//
+//    //optional set logIml, or you can use default debug log
+//    //TinkerInstaller.setLogIml(new MyLogImp());
+//
+//    //installTinker after load multiDex
+//    //or you can put com.tencent.tinker.** to main dex
+//    TinkerManager.installTinker(this);
+//  }
 
-    MultiDex.install(base);
-
-    SampleApplicationContext.application = getApplication();
-    SampleApplicationContext.context = getApplication();
-    TinkerManager.setTinkerApplicationLike(this);
-
-    TinkerManager.initFastCrashProtect();
-    //should set before tinker is installed
-    TinkerManager.setUpgradeRetryEnable(true);
-
-    //optional set logIml, or you can use default debug log
-    //TinkerInstaller.setLogIml(new MyLogImp());
-
-    //installTinker after load multiDex
-    //or you can put com.tencent.tinker.** to main dex
-    TinkerManager.installTinker(this);
-  }
+//  @Override
+//  public void onCreate() {
+//    super.onCreate();
+//    //设置默认的URL
+//    Request.initBaseUrl(Constants.commonmsgurl);//生产环境
+//    //Context
+//    context = getApplication();
+//    //mainThreadId
+//    mainThreadId = android.os.Process.myTid();
+//    //Thread-->object
+//    mainThread = Thread.currentThread();
+//    //Handler
+//    handler = new Handler();
+//    if (mInstance == null) {
+//      mInstance = this;
+//    }
+//    getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+//      @Override
+//      public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+//      }
+//
+//      @Override
+//      public void onActivityStarted(Activity activity) {
+//      }
+//
+//      @Override
+//      public void onActivityResumed(Activity activity) {
+//        if (isInBackground) {
+//          MqttNotification.cancelAll();
+//          isInBackground = false;
+//        }
+//      }
+//
+//      @Override
+//      public void onActivityPaused(Activity activity) {
+//      }
+//
+//      @Override
+//      public void onActivityStopped(Activity activity) {
+//        //判断应用是否进入后台
+//        if (UIUtils.isApplicationBroughtToBackground(getApplication())) {
+//          isInBackground = true;
+//        }
+//      }
+//
+//      @Override
+//      public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+//      }
+//
+//      @Override
+//      public void onActivityDestroyed(Activity activity) {
+//      }
+//    });
+//    //初始化摄像机
+//    initDCIM();
+//
+//   /* okhttp3.OkHttpClient okHttpClient=new okhttp3.OkHttpClient.Builder().
+//      connectTimeout(10000L, TimeUnit.MICROSECONDS).
+//      readTimeout(10000L,TimeUnit.MICROSECONDS).build();
+//
+//    OkHttpUtils.initClient(okHttpClient);*/
+//
+////    JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+////    JPushInterface.init(context);     		// 初始化 JPush
+//
+//  }
 
   @Override
   public void onCreate() {
@@ -83,17 +145,17 @@ public class BaseApplication extends DefaultApplicationLike {
     //设置默认的URL
     Request.initBaseUrl(Constants.commonmsgurl);//生产环境
     //Context
-    context = getApplication();
+    context = getApplicationContext();
     //mainThreadId
     mainThreadId = android.os.Process.myTid();
     //Thread-->object
     mainThread = Thread.currentThread();
     //Handler
     handler = new Handler();
-    if (mInstance == null) {
+    if(mInstance == null){
       mInstance = this;
     }
-    getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+    registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
       @Override
       public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
       }
@@ -116,8 +178,8 @@ public class BaseApplication extends DefaultApplicationLike {
 
       @Override
       public void onActivityStopped(Activity activity) {
-        //判断应用是否进入后台
-        if (UIUtils.isApplicationBroughtToBackground(getApplication())) {
+
+        if (UIUtils.isApplicationBroughtToBackground(getApplicationContext())) {
           isInBackground = true;
         }
       }
@@ -132,17 +194,9 @@ public class BaseApplication extends DefaultApplicationLike {
     });
     //初始化摄像机
     initDCIM();
-
-   /* okhttp3.OkHttpClient okHttpClient=new okhttp3.OkHttpClient.Builder().
-      connectTimeout(10000L, TimeUnit.MICROSECONDS).
-      readTimeout(10000L,TimeUnit.MICROSECONDS).build();
-
-    OkHttpUtils.initClient(okHttpClient);*/
-
-//    JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
-//    JPushInterface.init(context);     		// 初始化 JPush
-
   }
+
+
 
   /**
    * 初始化摄像机
@@ -167,7 +221,7 @@ public class BaseApplication extends DefaultApplicationLike {
     // 开启log输出,ffmpeg输出到logcat
     VCamera.setDebugMode(true);
     // 初始化拍摄SDK，必须
-    VCamera.initialize(getApplication());
+    VCamera.initialize(getApplicationContext());
   }
 
   public static Context getContext() {

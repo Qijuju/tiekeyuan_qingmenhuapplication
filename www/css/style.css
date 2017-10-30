@@ -83,20 +83,18 @@ translateY(- 50 %)
 .rj-message-voice-left {
   padding-left: 5px;
   padding-right: 5px;
-  padding-top: 10px;
   padding-bottom: 10px;
-  overflow: auto;
+  /*overflow: auto;*/
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 .rj-message-new-right {
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 10px;
-  overflow: auto;
   background: #ffffff;
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 

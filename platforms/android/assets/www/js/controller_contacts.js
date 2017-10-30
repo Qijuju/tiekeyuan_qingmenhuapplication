@@ -105,7 +105,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$ionicLoading,$ionicPlatform,$ionicHistory,$location,localContact) {
+  .controller('ContactsCtrl', function ($scope, $state,$api, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
     // alert("网络状态"+$rootScope.isNetConnect);
 
     $scope.$on('netstatus.update', function (event) {
@@ -135,7 +135,7 @@ angular.module('contacts.controllers', [])
         }
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -145,25 +145,20 @@ angular.module('contacts.controllers', [])
 
     $scope.goLocalContact=function () {
 
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','正在加载...');
 
       $greendao.loadAllData('LocalPhoneService',function (msg) {
-
+        console.log("看看本地有多少数据"+JSON.stringify(msg));
         if(msg.length>0){
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('localContacts');
         }else {
+          $pubionicloading.hide();
           localContact.getContact();
         }
 
       },function (err) {
-
+        $pubionicloading.hide();
       });
 
     }
@@ -172,7 +167,7 @@ angular.module('contacts.controllers', [])
 
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $state.go('localContacts');
         });
       })
@@ -183,7 +178,7 @@ angular.module('contacts.controllers', [])
 
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $ToastUtils.showToast("请求数据异常")
           $greendao.deleteAllData('LocalPhoneService',function () {
 
@@ -196,13 +191,7 @@ angular.module('contacts.controllers', [])
 
     });
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $contacts.topContactsInfo();
     $mqtt.getUserInfo(function (msg) {
@@ -213,6 +202,10 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $scope.topContactLists = $contacts.getTopContactsInfo();
 
+        for(var i=0;i<$scope.topContactLists.length;i++){
+          $scope.topContactLists[i].shotName = $scope.topContactLists[i].name.slice(-2);
+
+        }
 
 
       })
@@ -222,8 +215,14 @@ angular.module('contacts.controllers', [])
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
         $scope.logId = $contacts.getLoignInfo();
-
         $scope.loginid=$contacts.getLoignInfo().deptID;
+        //取出我的部门的人数的长度，供我的部门上拉加载
+        $api.getDeparment($scope.loginid,function (data) {
+          if(data.result){
+            $scope.mydeptlength=data.deptInfo.ChildCount;
+          }
+        },function (err) {
+        });
 
       })
     });
@@ -239,7 +238,7 @@ angular.module('contacts.controllers', [])
 
     $scope.$on('first.update', function (event) {
       $scope.$apply(function () {
-        $ionicLoading.hide();
+        $pubionicloading.hide();
         $timeout(function () {
           $scope.depts = $contacts.getRootDept();
         });
@@ -312,13 +311,7 @@ angular.module('contacts.controllers', [])
     };
 
     $scope.createchat = function (id, phone,name) {
-      // $saveMessageContacts.saveMessageContacts(id,phone,name);
-      // $ToastUtils.showToast("进来创建聊天");
       $rootScope.isPersonSend = 'true';
-      // $state.go('tab.message', {
-      //   "id": id,
-      //   "sessionid": name
-      // });
       if(id ===null || name ===null || id === '' ||name ===''){
         $ToastUtils.showToast("当前用户信息不全");
       }else if($scope.myid==id) {
@@ -345,17 +338,20 @@ angular.module('contacts.controllers', [])
      $ToastUtils.showToast(err);
      });*/
 
-    $scope.gogosecond=function (id) {
+
+    $scope.gogosecond=function (id,childcount) {
       $state.go("second", {
         "contactId": id,
+        "childcount":childcount
       });
     }
 
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactSecondCtrl', function ($scope, $state,$chatarr, $stateParams, $contacts,$greendao,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
+    $rootScope.totalSecondCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;//传过来的id；
 
     $ionicPlatform.registerBackButtonAction(function (e) {
@@ -363,33 +359,31 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
 
     },501)
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departlist = [];
     $scope.userlist = [];
     $scope.secondStatus;
 
 
+    $scope.loadMoreSecond = function () {
+      $contacts.deptInfo($scope.contactId);
+    };
+
     //根据id获取子部门和人员信息
     $contacts.deptInfo($scope.contactId);
-    $scope.$on('second.update', function (event) {
+    $scope.$on('second.update', function (event,data) {
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
 
           $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
 
@@ -415,22 +409,17 @@ angular.module('contacts.controllers', [])
             }
           }
 
+          $scope.parentID = $contacts.getDeptInfo().deptID;
 
-          if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) === 10) {
+          if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) >0 ) {
+            console.log("二级目录的总数和count"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = true;
-          } else if (($scope.activeSecondDeptCount + $scope.activeSecondUserCount) < 10) {
+          } else if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) <=0 ) {
+            console.log("二级目录的总数和count11111"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = false;
 
           }
-
-
-          $scope.parentID = $contacts.getDeptInfo().deptID;
-
-
           $scope.$broadcast('scroll.infiniteScrollComplete');
-
-
-
         });
 
 
@@ -463,9 +452,7 @@ angular.module('contacts.controllers', [])
     });
 
 
-    $scope.loadMoreSecond = function () {
-      $contacts.deptInfo($scope.contactId);
-    };
+
 
 
     //在二级目录跳转到联系人界面
@@ -474,10 +461,11 @@ angular.module('contacts.controllers', [])
     }
 
     //在二级目录跳转到三级目录
-    $scope.jumpThird = function (id, pname) {
+    $scope.jumpThird = function (id, pname,childcount) {
       $state.go("third", {
         "contactId": id,
-        "secondname": pname
+        "secondname": pname,
+        "childcount":childcount
       });
     };
 
@@ -493,20 +481,16 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departthirdlist = [];
     $scope.userthirdlist = [];
     $scope.thirdStatus;
 
+    $rootScope.totalThirdCount = $stateParams.childcount;//当前目录的数据总条数
+    // alert("三级目录总条数"+$rootScope.totalThirdCount);
     //点击当前点击部门的id
     $scope.contactId = $stateParams.contactId;
     //一级的名字
@@ -517,7 +501,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -526,17 +510,22 @@ angular.module('contacts.controllers', [])
 
 
 
+    $scope.loadThirdMore = function () {
+
+      $contacts.deptThirdInfo($scope.contactId);
+
+    };
 
     //根据id获取子部门的数据
     $contacts.deptThirdInfo($scope.contactId);
 
 
-    $scope.$on('third.update', function (event) {
+    $scope.$on('third.update', function (event,data) {
 
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.parentID = $contacts.getDeptThirdInfo().deptID;
           $scope.deptinfo2 = $contacts.getSecondDeptName().DeptName;
 
@@ -560,19 +549,19 @@ angular.module('contacts.controllers', [])
             }
           }
 
-
-
-          $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
-          var thirddiv = document.getElementById("thirdscroll");
-          thirddiv.style.width = $scope.thirdlength + "px";
-
-          if (($scope.count1 + $scope.count2) === 10) {
+          if (($rootScope.totalThirdCount - (data.pageNo*data.pageSize)) >0 ) {
             $scope.thirdStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
+          } else if (($rootScope.totalThirdCount - (data.pageNo*data.pageSize)) <=0 ) {
             $scope.thirdStatus = false;
 
           }
           $scope.$broadcast('scroll.infiniteScrollComplete');
+
+
+          // $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
+          // var thirddiv = document.getElementById("thirdscroll");
+          // thirddiv.style.width = $scope.thirdlength + "px";
+
 
         })
 
@@ -603,11 +592,7 @@ angular.module('contacts.controllers', [])
     });
 
 
-    $scope.loadThirdMore = function () {
 
-      $contacts.deptThirdInfo($scope.contactId);
-
-    };
 
 
     $scope.$on('$ionicView.leave', function () {
@@ -619,7 +604,8 @@ angular.module('contacts.controllers', [])
 
     $scope.backSecond = function () {
       $state.go("second", {
-        "contactId": $scope.idddd
+        "contactId": $scope.idddd,
+        "childcount":$rootScope.totalSecondCount
       });
     }
     /*$scope.backSecond = function () {
@@ -628,11 +614,12 @@ angular.module('contacts.controllers', [])
 
 
     //在第二级目录跳转到第四级目录
-    $scope.jumpForth = function (id, sname, tname) {
+    $scope.jumpForth = function (id, sname, tname,childcount) {
       $state.go("forth", {
         "contactId": id,
         "secondname": sname,
-        "thirdname": tname
+        "thirdname": tname,
+        "childcount":childcount
       });
     }
 
@@ -648,23 +635,19 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departlist = [];
     $scope.userlist = [];
 
     $scope.forthStatus;
 
-
+    $rootScope.totalForthCount = $stateParams.childcount;//当前目录的数据总条数
+    // alert("第四级目录的总长度"+$rootScope.totalForthCount);
     $scope.contactId = $stateParams.contactId;
+    // alert("三级进四级"+$scope.contactId);
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
 
@@ -673,20 +656,24 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
 
     },501)
 
+    $scope.loadForthMore = function () {
+      $contacts.deptForthInfo($scope.contactId);
+
+    }
+
     //根据id获取子部门和人员信息
     $contacts.deptForthInfo($scope.contactId);
-    $scope.$on('forth.update', function (event) {
+    $scope.$on('forth.update', function (event,data) {
       $scope.$apply(function () {
-
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount5();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptForthInfo().deptList;
@@ -706,23 +693,25 @@ angular.module('contacts.controllers', [])
             }
           }
 
+          if (($rootScope.totalForthCount - (data.pageNo*data.pageSize)) >0 ) {
+            // alert("能不能继续点");
+            $scope.forthStatus = true;
+          } else if (($rootScope.totalForthCount - (data.pageNo*data.pageSize)) <=0 ) {
+            // alert("不能继续点");
+            $scope.forthStatus = false;
+
+          }
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
           $scope.parentID = $contacts.getDeptForthInfo().deptID;
           $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
 
 
-          $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
+          // $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
+          //
+          // var forthdiv = document.getElementById("forthscroll");
+          // forthdiv.style.width = $scope.forthlength + "px";
 
-          var forthdiv = document.getElementById("forthscroll");
-          forthdiv.style.width = $scope.forthlength + "px";
-
-          if (($scope.count1 + $scope.count2) === 10) {
-            $scope.forthStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
-            $scope.forthStatus = false;
-
-          }
-
-          $scope.$broadcast('scroll.infiniteScrollComplete');
 
         });
 
@@ -732,10 +721,7 @@ angular.module('contacts.controllers', [])
 
     });
 
-    $scope.loadForthMore = function () {
-      $contacts.deptForthInfo($scope.contactId);
 
-    }
 
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearForthCount();
@@ -771,7 +757,8 @@ angular.module('contacts.controllers', [])
 
       $state.go("third", {
         "contactId": $scope.idididi,
-        "secondname": $scope.secondName
+        "secondname": $scope.secondName,
+        "childcount":$rootScope.totalThirdCount
       });
 
     };
@@ -786,17 +773,19 @@ angular.module('contacts.controllers', [])
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
     $scope.fromForthToSecond = function (sd) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": sd,
+        "childcount":$rootScope.totalSecondCount
       });
     };
 
     //从四级目录跳入五级目录
-    $scope.jumpFifth = function (id, sname, tname, fname) {
+    $scope.jumpFifth = function (id, sname, tname, fname,childcount) {
       $state.go("fifth", {
         "contactId": id,
         "secondname": sname,
         "thirdname": tname,
         "forthname": fname,
+        "childcount":childcount
       });
     };
 
@@ -811,15 +800,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactFifthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departfifthlist = [];
     $scope.userfifthlist = [];
@@ -829,26 +812,35 @@ angular.module('contacts.controllers', [])
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
     $scope.forthName = $stateParams.forthname;
+    $rootScope.totalFifthCount =$stateParams.childcount;//当前目录的数据总条数
+    // alert("第五级目录的总长度"+$rootScope.totalFifthCount);
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/fifth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName+'/'+$scope.forthName)){
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
 
     },501)
 
+
+    $scope.loadFifthMore = function () {
+      $contacts.deptFifthInfo($scope.contactId);
+    }
+
     //根据id获取子部门和人员信息
     $contacts.deptFifthInfo($scope.contactId);
-    $scope.$on('fifth.update', function (event) {
+    $scope.$on('fifth.update',function (event,data) {
       $scope.$apply(function () {
-
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
+          // var pageNo = data.pageNo;
+          // var pageSize =data.pageSize;
+          // var num= pageNo * pageSize;
           $scope.count1 = $contacts.getCount7();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptFifthInfo().deptList;
@@ -867,37 +859,28 @@ angular.module('contacts.controllers', [])
               $scope.userfifthlist.push(oldusers[i]);
             }
           }
-
-
-          if (($scope.count1 + $scope.count2) === 10) {
-            $scope.fifthStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
-            $scope.fifthStatus = false;
-
-          }
-
           $scope.parentID = $contacts.getDeptFifthInfo().deptID;
-          $scope.deptinfo5 = $contacts.getForthDeptName().DeptName;
-
-          $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
-
-
-          var fifthdiv = document.getElementById("fifthscroll");
-          fifthdiv.style.width = $scope.fifthlength + "px";
-
+          $scope.deptinfo5 = $contacts.getForthDeptName();
+          if (($rootScope.totalFifthCount - (data.pageNo*data.pageSize)) >0 ) {
+            // alert("能不能继续点");
+            $scope.fifthStatus = true;
+          } else if (($rootScope.totalFifthCount - (data.pageNo*data.pageSize)) <=0) {
+            $scope.fifthStatus = false;
+          }
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
+
+          // $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
+          //
+          //
+          // var fifthdiv = document.getElementById("fifthscroll");
+          // fifthdiv.style.width = $scope.fifthlength + "px";
+
+
         });
-
-
-
-
-
-
       })
 
     });
-
 
     /**
      * 监听消息
@@ -919,12 +902,6 @@ angular.module('contacts.controllers', [])
     });
 
 
-    $scope.loadFifthMore = function () {
-      $contacts.deptFifthInfo($scope.contactId);
-
-    }
-
-
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearFifthCount();
     });
@@ -936,7 +913,8 @@ angular.module('contacts.controllers', [])
 
     $scope.fromFifthToSecond = function (sd) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": sd,
+        "childcount":$rootScope.totalSecondCount
       });
 
     };
@@ -947,6 +925,7 @@ angular.module('contacts.controllers', [])
       $state.go("third", {
         "contactId": sd,
         "secondname": sname,
+        "childcount":$rootScope.totalThirdCount
       });
     };
 
@@ -957,6 +936,7 @@ angular.module('contacts.controllers', [])
         "contactId": $scope.thirdid,
         "secondname": $scope.secondName,
         "thirdname": $scope.thirdName,
+        "childcount":$rootScope.totalForthCount
       });
     };
     /*$scope.backForth = function () {
@@ -964,13 +944,14 @@ angular.module('contacts.controllers', [])
      };*/
 
     //从五级部门跳转到六级部门
-    $scope.jumpSixth = function (id, sname, tname, fname, dd) {
+    $scope.jumpSixth = function (id, sname, tname, fname, dd,childcount) {
       $state.go("sixth", {
         "contactId": id,
         "secondname": sname,
         "thirdname": tname,
         "forthname": fname,
-        "fifthname": dd
+        "fifthname": dd,
+        "childcount":childcount
       });
     };
 
@@ -986,19 +967,14 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.departsixthlist = [];
     $scope.usersixthlist = [];
     $scope.sixthStatus;
 
+    $rootScope.totalSixthCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
@@ -1010,24 +986,25 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
 
     },501)
 
-
-    //根据id获取子部门和人员信息
+    $scope.loadSixthMore = function () {
+      $contacts.deptSixthInfo($scope.contactId);
+    }
 
     //根据id获取子部门和人员信息
     $contacts.deptSixthInfo($scope.contactId);
-    $scope.$on('sixth.update', function (event) {
+    $scope.$on('sixth.update', function (event,data) {
       $scope.$apply(function () {
 
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount9();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptSixthInfo().deptList;
@@ -1047,26 +1024,24 @@ angular.module('contacts.controllers', [])
             }
           }
 
-
-          if (($scope.count1 + $scope.count2) === 10) {
+          if (($rootScope.totalSixthCount - (data.pageNo*data.pageSize)) >0 ) {
+            // alert("能不能继续点");
             $scope.sixthStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
+          } else if (($rootScope.totalSixthCount - (data.pageNo*data.pageSize)) <=0) {
             $scope.sixthStatus = false;
-
           }
-
+          $scope.$broadcast('scroll.infiniteScrollComplete');
 
           $scope.parentID = $contacts.getDeptSixthInfo().deptID;
-          $scope.deptinfo6 = $contacts.getFifthDeptName().DeptName;
+          $scope.deptinfo6 = $contacts.getFifthDeptName();
+
+          // $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
+          //   $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
+          //
+          // var sixthdiv = document.getElementById("sixthscroll");
+          // sixthdiv.style.width = $scope.sixthlength + "px";
 
 
-          $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
-            $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
-
-          var sixthdiv = document.getElementById("sixthscroll");
-          sixthdiv.style.width = $scope.sixthlength + "px";
-
-          $scope.$broadcast('scroll.infiniteScrollComplete');
 
         });
 
@@ -1096,11 +1071,6 @@ angular.module('contacts.controllers', [])
     });
 
 
-    $scope.loadSixthMore = function () {
-      $contacts.deptSixthInfo($scope.contactId);
-
-    }
-
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearSixthCount();
     });
@@ -1114,21 +1084,23 @@ angular.module('contacts.controllers', [])
 
 
     //从六级部门跳转到七级部门
-    $scope.jumpSeventh = function (id, sname, tname, fname, sixname, ddd) {
+    $scope.jumpSeventh = function (id, sname, tname, fname, sixname, ddd,childcount) {
       $state.go("seventh", {
         "contactId": id,
         "secondname": sname,
         "thirdname": tname,
         "forthname": fname,
         "fifthname": sixname,
-        "sixthname": ddd
+        "sixthname": ddd,
+        "childcount":childcount
       });
     };
 
     //从六级界面跳转到2级界面 只需要一个参数
     $scope.fromSixthToSecond = function (sd) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": sd,
+        "childcount":$rootScope.totalSecondCount
       });
     };
 
@@ -1137,6 +1109,7 @@ angular.module('contacts.controllers', [])
       $state.go("third", {
         "contactId": sd,
         "secondname": sname,
+        "childcount":$rootScope.totalThirdCount
       });
     };
 
@@ -1147,6 +1120,7 @@ angular.module('contacts.controllers', [])
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
+        "childcount":$rootScope.totalForthCount
       });
     };
 
@@ -1157,7 +1131,8 @@ angular.module('contacts.controllers', [])
         "contactId": $scope.forthidInSix,
         "secondname": $scope.secondName,
         "thirdname": $scope.thirdName,
-        "forthname": $scope.forthName
+        "forthname": $scope.forthName,
+        "childcount":$rootScope.totalFifthCount
       });
     };
 
@@ -1176,20 +1151,15 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$ionicLoading,$timeout,$ionicPlatform,$location) {
+  .controller('ContactSeventhCtrl', function ($scope, $state, $stateParams, $contacts, $ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
     $scope.nihao = [];
     $scope.buhao = [];
     $scope.seventhStatus;
 
+    $rootScope.totalSeventhCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
@@ -1202,7 +1172,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -1210,16 +1180,20 @@ angular.module('contacts.controllers', [])
     },501)
 
 
+    $scope.loadSeventhMore = function () {
+      $contacts.deptSeventhInfo($scope.contactId);
+    }
+
 
 
     //根据id获取子部门和人员信息
 
     $contacts.deptSeventhInfo($scope.contactId);
-    $scope.$on('seventh.update', function (event) {
+    $scope.$on('seventh.update', function (event,data) {
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount11();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptSeventhInfo().deptList;
@@ -1237,27 +1211,23 @@ angular.module('contacts.controllers', [])
               $scope.buhao.push(oldusers[i]);
             }
           }
-
-
-          if (($scope.count1 + $scope.count2) === 10) {
+          if (($rootScope.totalSeventhCount - (data.pageNo*data.pageSize)) >0 ) {
+            // alert("能不能继续点");
             $scope.seventhStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
+          } else if (($rootScope.totalSeventhCount - (data.pageNo*data.pageSize)) <=0) {
             $scope.seventhStatus = false;
-
           }
-
+          $scope.$broadcast('scroll.infiniteScrollComplete');
 
           $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
-          $scope.deptinfo7 = $contacts.getSixthDeptName().DeptName;
+          $scope.deptinfo7 = $contacts.getSixthDeptName();
 
+          // $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+          //   + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
+          //
+          // var seventhdiv = document.getElementById("seventhscroll");
+          // seventhdiv.style.width = $scope.seventhlength + "px";
 
-          $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-            + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
-
-          var seventhdiv = document.getElementById("seventhscroll");
-          seventhdiv.style.width = $scope.seventhlength + "px";
-
-          $scope.$broadcast('scroll.infiniteScrollComplete');
         });
 
       })
@@ -1283,13 +1253,6 @@ angular.module('contacts.controllers', [])
       })
     });
 
-
-
-    $scope.loadSeventhMore = function () {
-      $contacts.deptSeventhInfo($scope.contactId);
-
-    }
-
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearSeventhCount();
     });
@@ -1300,7 +1263,7 @@ angular.module('contacts.controllers', [])
     $scope.forthidInSeven = $contacts.getForthID();
     $scope.fifthidInSeven = $contacts.getFifthID();
 
-    $scope.jumpEighth=function (id, sname, tname, fname, sixname, ddd,zuihou) {
+    $scope.jumpEighth=function (id, sname, tname, fname, sixname, ddd,zuihou,childcount) {
       $state.go("eighth", {
         "contactId": id,
         "secondname": sname,
@@ -1308,7 +1271,8 @@ angular.module('contacts.controllers', [])
         "forthname": fname,
         "fifthname": sixname,
         "sixthname": ddd,
-        "seventhname":zuihou
+        "seventhname":zuihou,
+        "childcount":childcount
       });
     }
 
@@ -1321,7 +1285,8 @@ angular.module('contacts.controllers', [])
         "secondname": $scope.secondName,
         "thirdname": $scope.thirdName,
         "forthname": $scope.forthName,
-        "fifthname":$scope.fifthName
+        "fifthname":$scope.fifthName,
+        "childcount":$rootScope.totalSixthCount
       });
 
     }
@@ -1333,7 +1298,8 @@ angular.module('contacts.controllers', [])
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
-        "forthname": ttname
+        "forthname": ttname,
+        "childcount":$rootScope.totalFifthCount
       });
     }
 
@@ -1343,6 +1309,7 @@ angular.module('contacts.controllers', [])
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
+        "childcount":$rootScope.totalForthCount
       });
     };
 
@@ -1353,6 +1320,7 @@ angular.module('contacts.controllers', [])
       $state.go("third", {
         "contactId": sd,
         "secondname": sname,
+        "childcount":$rootScope.totalThirdCount
       });
     };
 
@@ -1360,7 +1328,8 @@ angular.module('contacts.controllers', [])
 
     $scope.fromSeventhToSecond = function (sd) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": sd,
+        "childcount":$rootScope.totalSecondCount
       });
     };
 
@@ -1375,15 +1344,9 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$ionicLoading,$timeout,$location,$ionicPlatform) {
+  .controller('ContactEighthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$location,$ionicPlatform,$rootScope) {
 
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
 
 
     $scope.eightDept = [];
@@ -1391,6 +1354,7 @@ angular.module('contacts.controllers', [])
     $scope.eighthStatus;
 
 
+    $rootScope.totalEighthCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
@@ -1404,7 +1368,7 @@ angular.module('contacts.controllers', [])
         $state.go("tab.contacts");
       }else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
@@ -1412,13 +1376,17 @@ angular.module('contacts.controllers', [])
     },501)
 
 
+    $scope.loadEighthMore = function () {
+      $contacts.deptEighthInfo($scope.contactId);
+    }
+
     //根据id获取子部门和人员信息
     $contacts.deptEighthInfo($scope.contactId);
-    $scope.$on('eighth.update', function (event) {
+    $scope.$on('eighth.update', function (event,data) {
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.count1 = $contacts.getCount13();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptEighthInfo().deptList;
@@ -1437,32 +1405,25 @@ angular.module('contacts.controllers', [])
             }
           }
 
-
-          if (($scope.count1 + $scope.count2) === 10) {
+          if (($rootScope.totalEighthCount - (data.pageNo*data.pageSize)) >0 ) {
+            // alert("能不能继续点");
             $scope.eighthStatus = true;
-          } else if (($scope.count1 + $scope.count2) < 10) {
+          } else if (($rootScope.totalEighthCount - (data.pageNo*data.pageSize)) <=0) {
             $scope.eighthStatus = false;
-
           }
-
-
-          $scope.parentID = $contacts.getDeptEighthInfo().deptID;
-          $scope.deptinfo8 = $contacts.getSeventhDeptName().DeptName;
-
-
-          $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-            + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
-
-          var eighthdiv = document.getElementById("eighthscroll");
-          eighthdiv.style.width = $scope.eighthlength + "px";
-
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
+          $scope.parentID = $contacts.getDeptEighthInfo().deptID;
+          $scope.deptinfo8 = $contacts.getSeventhDeptName();
+
+          // $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
+          //   + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
+          //
+          // var eighthdiv = document.getElementById("eighthscroll");
+          // eighthdiv.style.width = $scope.eighthlength + "px";
+
+
         });
-
-
-
-
       })
 
     });
@@ -1485,12 +1446,6 @@ angular.module('contacts.controllers', [])
         }, 100);
       })
     });
-
-
-    $scope.loadEighthMore = function () {
-      $contacts.deptEighthInfo($scope.contactId);
-
-    }
 
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearEngithCount();
@@ -1519,7 +1474,8 @@ angular.module('contacts.controllers', [])
         "secondname": sname,
         "thirdname": tname,
         "forthname": ttname,
-        "fifthname":tttname
+        "fifthname":tttname,
+        "childcount":$rootScope.totalSixthCount
       });
     }
 
@@ -1530,7 +1486,8 @@ angular.module('contacts.controllers', [])
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
-        "forthname": ttname
+        "forthname": ttname,
+        "childcount":$rootScope.totalFifthCount
       });
     }
 
@@ -1540,6 +1497,7 @@ angular.module('contacts.controllers', [])
         "contactId": sd,
         "secondname": sname,
         "thirdname": tname,
+        "childcount":$rootScope.totalForthCount
       });
     };
 
@@ -1550,6 +1508,7 @@ angular.module('contacts.controllers', [])
       $state.go("third", {
         "contactId": sd,
         "secondname": sname,
+        "childcount":$rootScope.totalThirdCount
       });
     };
 
@@ -1557,7 +1516,8 @@ angular.module('contacts.controllers', [])
 
     $scope.fromEighthToSecond = function (sd) {
       $state.go("second", {
-        "contactId": sd
+        "contactId": sd,
+        "childcount":$rootScope.totalSecondCount
       });
     };
 
@@ -1568,7 +1528,8 @@ angular.module('contacts.controllers', [])
         "thirdname": $scope.thirdName,
         "forthname": $scope.forthName,
         "fifthname":$scope.fifthName,
-        "sixthname":$scope.sixthName
+        "sixthname":$scope.sixthName,
+        "childcount":$rootScope.totalSeventhCount
       });
 
 
@@ -1579,16 +1540,10 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$ionicLoading,$api,$greendao,$ionicPlatform) {
+  .controller('PersonCtrl', function ($scope, $stateParams, $state, $phonepluin, $savaLocalPlugin, $contacts, $ionicHistory, $rootScope, $addattentionser,$saveMessageContacts,$ToastUtils,$mqtt,$timeout,$pubionicloading,$api,$greendao,$ionicPlatform) {
 
     // Setup the loader
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+    $pubionicloading.showloading('','正在加载...');
     // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
 
 
@@ -1602,7 +1557,6 @@ angular.module('contacts.controllers', [])
 
       $greendao.queryData('ChatListService','where id =?',$scope.userId,function (data) {
         if(data[0].count>0){
-          // alert("进来查询了吗？"+data.length);
           var chatitem = {};
           chatitem.id = data[0].id;
           chatitem.chatName = data[0].chatName;
@@ -1719,7 +1673,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('personDetail.update', function (event) {
       $scope.$apply(function () {
           $timeout(function () {
-            $ionicLoading.hide();
+            $pubionicloading.hide();
             $scope.persondsfs = $contacts.getPersonDetail();
             if ($scope.persondsfs.UserName.length > 2) {
               $scope.simpleName = $scope.persondsfs.UserName.substr(($scope.persondsfs.UserName.length-2), $scope.persondsfs.UserName.length);
@@ -1733,14 +1687,13 @@ angular.module('contacts.controllers', [])
     $scope.backAny = function () {
 
       $ionicHistory.goBack();
-
     };
 
 
     $ionicPlatform.registerBackButtonAction(function (e) {
 
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+      $pubionicloading.hide();
         e.preventDefault();
       return false;
     },501)
@@ -1815,6 +1768,7 @@ angular.module('contacts.controllers', [])
           });
         }
       }
+
     }
     //取消关注
     $scope.removeattention = function (id) {
@@ -1877,14 +1831,8 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$ionicLoading,$timeout) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$pubionicloading,$timeout) {
+    $pubionicloading.showloading('','正在加载...');
 
 
 
@@ -1916,7 +1864,7 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
 
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.grouplist=$group.getAllGroup();
           $scope.ismycreat=0;
 
@@ -2021,14 +1969,8 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$ionicLoading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: false,
-      maxWidth: 100,
-      showDelay: 0
-    });
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$pubionicloading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+    $pubionicloading.showloading('','正在加载...');
 
     $mqtt.getUserInfo(function (msg) {
       $scope.myid=msg.userID;
@@ -2130,7 +2072,7 @@ angular.module('contacts.controllers', [])
     $scope.$on('attention.update',function (event) {
       $scope.$apply(function () {
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
           $scope.contactsListatten=$myattentionser.getAttentionaaList();
         });
       })
@@ -2139,13 +2081,7 @@ angular.module('contacts.controllers', [])
 
     //取消关注
     $scope.removeattention = function (id) {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 100,
-        showDelay: 0
-      });
+      $pubionicloading.showloading('','正在加载...');
       if ($scope.myid==id){
         $ToastUtils.showToast("无法对自己进行该项操作")
       }else {
@@ -2184,9 +2120,6 @@ angular.module('contacts.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
       })
     });
 

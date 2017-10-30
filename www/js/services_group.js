@@ -60,7 +60,6 @@ angular.module('group.services', [])
   var allNotify;
   var defaultNumber=5;
 
-
   return{
 
     allNotify:function () {
@@ -69,7 +68,7 @@ angular.module('group.services', [])
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {
-        $ToastUtils.showToast(err)
+        $ToastUtils.showToast(err);
         $rootScope.$broadcast('allnotify.update.error');
 
       });

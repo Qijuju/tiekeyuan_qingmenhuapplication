@@ -1,0 +1,31 @@
+
+/* 我的群组、我的关注 */
+img.groupMemberImg,div.myAttentionImg{
+  font-size: 14px;width: 38px;height: 38px;float: left;margin-right:10px;
+}
+
+span.groupMemberUserName,span.myAttentionUserName{
+  font-size: 18px;float: left;line-height:40px;
+}
+
+p.groupMemberManager{
+  font-size: 18px ;text-align: right;line-height:40px;
+}
+
+/* group-setting.html  start */
+li.groupSettingLi{
+  color:#444;
+}
+
+.list.dissolutionGroup{
+  margin-top: -8px;margin-left: 8px;margin-right: 8px
+}
+.list.dissolutionGroup > button.button.button-block.button-positive{
+  background-color:#2B83B7;height: 52px;border-radius: 2px;margin-top: 14px
+}
+
+
+
+
+
+

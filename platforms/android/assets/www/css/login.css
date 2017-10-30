@@ -1,0 +1,70 @@
+
+/* banner 图 */
+img.loginBanner{
+  width:100%;
+  height:244px;
+}
+/* 用户、密码 */
+img.yongh , .mima{
+  margin-top: 10px;margin-left: 14px;
+  height:20px;
+}
+
+/* 重置用户信息 */
+img.resetInfo{
+  margin-top: 18px;margin-right: 6px;
+  width:12px;height:12px;
+}
+
+/* 去除前段线条 */
+.common-login-row{
+  position: relative;
+}
+div.deleteWhiteLineDiv{
+  background: #fff;position: absolute;bottom: -2px;left:0px;width:30px;height:2px;
+}
+
+/* 用户、密码输入框 */
+#nameabc , #passwordabc{
+  display:inline-block;width:100%;height:45px;line-height:45px;
+  font-size: 16px;
+}
+
+/* 下划线 */
+.loginLine{
+  width: 90%;height: 1px;color: #F8F8F8;margin-left: 30px;
+}
+
+/* 登录页按钮 */
+.button.button-block.button-positive.logout{
+  width: 90%;
+  margin:20px auto;
+  font-size:18px;
+}
+.button.button-block.button-positive.logoutBtn{
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+  margin:10px auto;
+  font-size:18px;
+}
+/* 记住密码 */
+.rememberInfor{
+  font-size: 14px;margin-top: 20px;
+}
+
+input#check{
+  margin-left: 5%;width: 18px;height: 18px;float: left;
+}
+
+label.rememberPW{
+  color: #595957;font-size: 14px;padding: 10px;padding-left: 2px;
+}
+
+span.changeLunchMothod{
+  float: right;color: #595957;margin-right: 6%;
+}
+
+.lunchFooterInfo{
+  text-align: center;font-size: 16px;color: #9E9E9F;margin-top:60px;
+}

@@ -1,3 +1,5 @@
+
+
 <ion-view view-title={{deptinfo5}} class="common-view-color ">
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
@@ -8,25 +10,39 @@
   </ion-nav-bar>
   <ion-content  >
     <ion-scroll zooming="true" direction="x" style="width: 100%">
-    <div id="fifthscroll" class="div-a-style">
-      <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
-      <a id="a2" class="a-style" ng-click="fromFifthToSecond(firstid)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
-      <a id="a3" class="a-style"  ng-click="fromFifthToThird(secondid,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
-      <a id="a4" class="a-style" ng-click="backForth()" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-      <a id="a5" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo5}}</a>
+    <div id="scrollDiv" class="div-a-style">
+      <a id="a1" class="a-style" href="#/tab/contacts">联系人</a><img src="img/arrow-right.png" class="i-style"/>
+      <a id="a2" class="a-style" ng-click="fromFifthToSecond(firstid)">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
+      <a id="a3" class="a-style"  ng-click="fromFifthToThird(secondid,secondName)">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
+      <a id="a4" class="a-style" ng-click="backForth()">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+      <a id="a5" class="a-style">{{deptinfo5}}</a>
     </div>
     </ion-scroll>
-
-
-    <div>
+    <div class="background_white">
       <ion-list>
-        <ion-item ng-repeat=" item in departfifthlist"   ng-click="jumpSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5)"  class="item-remove-animate item-avatar rj-contact-new ">
-          <img  src="img/im_contact_con.png" style="width: 38px;height: 38px;align-content: center">
-          <p style="margin-top: 4px;margin-left: 3px;font-size: 17px;color: black;text-align-all: center">{{item.DeptName}}</p>
+        <ion-item ng-repeat="item in departfifthlist"   ng-click="jumpSixth(item.DeptID,secondName,thirdName,forthName,deptinfo5,item.ChildCount)">
+
+          <div class="row">
+            <div class="col">
+              <img  src="img/im_contact_con.png" class="addNewMemberImg">
+              <span class="font_16">{{item.DeptName}}</span>
+            </div>
+          </div>
         </ion-item>
-        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat=" item in userfifthlist"  ng-click="goFifthDetail(item.UserID)" >
-          <img  src="img/icon_friends.png" style="width: 38px;height: 38px;align-content: center">
-          <p   style="margin-top: 4px;margin-left: 3px;font-size: 17px;text-align-all: center">{{item.UserName}}</p>
+        <ion-item ng-repeat=" item in userfifthlist"  ng-click="goFifthDetail(item.UserID)" >
+          <div class="row">
+            <div class="col-15">
+              <img src="img/icon_friends.png"  class="addNewMemberImg">
+
+            </div>
+            <div class="col-85">
+              <!--当该员工有职务时直接显示-->
+              <span class="font_16" >{{item.UserName}}</span>
+              <p class="proname" ng-if="item.ProName != '未填写'">
+                {{item.ProName}}
+              </p>
+            </div>
+          </div>
         </ion-item>
       </ion-list>
     </div>

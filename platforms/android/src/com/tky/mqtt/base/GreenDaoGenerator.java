@@ -33,9 +33,11 @@ public class GreenDaoGenerator {
         addSlowNotifyLists(schema);
         addOtherpichead(schema);
         addGesturePwd(schema);
+        addQYYIconPath(schema);
+        addNewNotifyList(schema);
         //addTestData(schema);
 
-        new DaoGenerator().generateAll(schema,  "D:/AndroidStudio_tky_Application/IM/platforms/android/src");//项目绝对路径
+        new DaoGenerator().generateAll(schema,  "/Users/bim/WebstormProjects/IM/platforms/android/src");//项目绝对路径
     }
 
 
@@ -294,6 +296,26 @@ public class GreenDaoGenerator {
         msgHistory.addStringProperty("id").primaryKey();
         msgHistory.addStringProperty("username");//用户姓名
         msgHistory.addStringProperty("pwd");//手势密码
+    }
 
+
+    /**
+     *  保存各应用的本地存放路径
+     */
+    private static void addQYYIconPath(Schema schema){
+        Entity msgHistory=schema.addEntity("QYYIconPath");
+        msgHistory.addStringProperty("appId").primaryKey();//各应用的id
+        msgHistory.addStringProperty("path");//各应用存在本地的路径
+    }
+
+    /**
+     *  保存各应用的通知信息
+     */
+    private static void addNewNotifyList(Schema schema){
+        Entity msgHistory=schema.addEntity("NewNotifyList");
+        msgHistory.addStringProperty("msgId").primaryKey();//通知的消息id
+        msgHistory.addStringProperty("isRead");//通知已读未读状态
+        msgHistory.addStringProperty("appId");//应用id
+        msgHistory.addStringProperty("appName");//应用名称
     }
 }

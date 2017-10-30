@@ -10,6 +10,8 @@ import android.os.Build;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import static java.lang.System.err;
+
 /**
  * 应用启动图标未读消息数显示 工具类  (效果如：QQ、微信、未读短信 等应用图标)
 
@@ -31,15 +33,25 @@ public class BadgeUtil {
     public static void setBadgeCount(Notification notification,Context context, int count) {
         if (count <= 0) {
             count = 0;
-        } else {
-            count = Math.max(0, Math.min(count, 99));
         }
+//        else {
+//            count = Math.max(0, Math.min(count, 99));
+//        }
 
         if (Build.MANUFACTURER.equalsIgnoreCase("Xiaomi")) {
             sendToXiaoMi(notification, context, count);
+//            cordova.plugins.notification.badge.hasPermission(function (granted) {
+//                alert("granted"+granted);
+//            });
+//            cordova.plugins.notification.badge.set(10,function (succ) {
+//                alert("成功"+succ);
+//            },function (err) {
+//                alert("失败"+err);
+//            });
         } else if (Build.MANUFACTURER.equalsIgnoreCase("sony")) {
             sendToSony(context, count);
         } else if (Build.MANUFACTURER.toLowerCase().contains("samsung")) {
+            System.out.println("未读数量"+count);
             sendToSamsumg(context, count);
         }
     }
@@ -142,7 +154,6 @@ public class BadgeUtil {
      */
     private static String getLauncherClassName(Context context) {
         PackageManager packageManager = context.getPackageManager();
-
         Intent intent = new Intent(Intent.ACTION_MAIN);
         // To limit the components this Intent will resolve to, by setting an
         // explicit package name.
