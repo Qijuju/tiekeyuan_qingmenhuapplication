@@ -174,6 +174,8 @@ angular.module('newnotification.controllers', [])
         }
 
       })
+      $timeout(function () {
+      }, 100);
     });
 
     $scope.loadMoreNotify = function () {

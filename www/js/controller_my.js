@@ -331,10 +331,28 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
         });
         $timeout(function () {
-          viewScroll.scrollBottom();
         }, 100);
       })
     });
+
+
+    /**
+     * 监听通知消息
+     */
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+        $timeout(function () {
+        }, 100);
+      });
+    })
 
     //监听网络状态的变化
     $scope.$on('netstatus.update', function (event) {

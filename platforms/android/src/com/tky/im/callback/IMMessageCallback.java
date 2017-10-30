@@ -170,6 +170,9 @@ public class IMMessageCallback implements MqttCallback {
               newNotifyList.setIsRead("0");//通知消息已读未读状态： 0:未读；1：已读
               newNotifyList.setAppName(map.getUsername());//应用名称
               newNotifyListService.saveObj(newNotifyList);
+              //将未读数量提前存
+              List<NewNotifyList> newNotifyLists=newNotifyListService.queryData("where IS_READ =?","0");
+              SPUtils.save("badgeNotifyCount",newNotifyLists.size());
             } else if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {//平台推送消息
               Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
               String year = c.get(Calendar.YEAR) + "";
@@ -186,13 +189,11 @@ public class IMMessageCallback implements MqttCallback {
               try {
                 long stmill = formatter.parse(start).getTime();
                 long etmill = formatter.parse(end).getTime();
-//                System.out.println("单聊时间：" + stmill + "/" + etmill);
                 /**
                  * 根据sessionid取出该对话的聊天列表
                  */
                 MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                 List<Messages> messagesList = messagesService.queryData("where sessionid =?", map.getSessionid());
-//                System.out.println("查询聊天记录条数" + messagesList.size());
                 Messages messages = new Messages();
                 //取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将istime为true的数据的daytype置为"0"
                 if (messagesList.size() > 0) {
