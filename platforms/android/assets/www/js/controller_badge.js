@@ -3,7 +3,7 @@
  */
 angular.module('badge.controllers',[])
 
-  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$ToastUtils,$rootScope) {
+  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$mqtt,$ToastUtils,$rootScope) {
 
     // 门户新闻列表通知
     $rootScope.menHuTitle = "门户";
@@ -56,7 +56,7 @@ angular.module('badge.controllers',[])
         if (msg.length>0){
           for(var i=0;i<msg.length;i++){
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
-
+            // console.log("底部消息tab数量显示"+$scope.allNoRead);
           }
 
         }
@@ -83,84 +83,132 @@ angular.module('badge.controllers',[])
     };
 
 
+    //实时刷新通知数量显示在tab底部
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            console.log("及时推送"+$scope.NotifyNoRead);
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+      });
+    })
 
-    $scope.notifyNoRead=0;
 
+
+
+    $scope.NotifyNoRead=0;
+    /**新版通知数量显示**/
     $scope.notifyBadge=function () {
+      // $mqtt.getInt('badgeNotifyCount',function (count) {
+      //   console.log("啦啦啦"+$scope.NotifyNoRead);
+      //   $scope.NotifyNoRead=count;
+      //   if($scope.NotifyNoRead>99){
+      //     $scope.NotifyNoRead=99+'+';
+      //   }
+      // },function (err) {
+      // });
+      $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+        $scope.NotifyNoRead=0;
+        if (msg.length > 0) {
+          $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+          $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          $mqtt.getInt("badgeNotifyCount",function (succ) {
+            console.log("在badge方法中取出保存的int值"+succ);
+          },function (err) {
+          });
 
-      return $scope.notifyNoRead;
+        }
+      }, function (err) {
+      });
+      console.log("初始化时最后要返回的count值"+$scope.NotifyNoRead);
+      return $scope.NotifyNoRead;
     }
 
-    $scope.$on('newnotify.update', function (event) {
-
-      $scope.$apply(function () {
-
-        $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
-          $scope.notifyNoRead=0;
-
-          if (msg.length>0){
-              $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
-          }
-
-        },function (msg) {
-
-        });
-
-
-
-
-      })
-    });
-
-
-
+    //点击选中通知模块的tab时
     $scope.onNotifyTabSelected=function () {
-
-      $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
-        $scope.notifyNoRead=0;
-
-        if (msg.length>0){
-          $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+      $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+        $scope.NotifyNoRead = 0;
+        if (msg.length > 0) {
+          $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+          console.log("底部tab11111数量显示"+$scope.NotifyNoRead);
+          $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          $mqtt.getInt("badgeNotifyCount",function (succ) {
+            console.log("取出保存的int值"+succ);
+          },function (err) {
+          });
         }
-
-      },function (msg) {
-
+      }, function (err) {
       });
     };
 
-    $scope.$on('second.notify', function (event) {
 
-      $scope.$apply(function () {
 
-        $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
-          $scope.notifyNoRead=0;
+    /**老版通知的未读数量显示**/
 
-          if (msg.length>0){
-            $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
-          }
+    /*$scope.notifyNoRead=0;
 
-        },function (msg) {
+     $scope.notifyBadge=function () {
 
-        });
+     return $scope.notifyNoRead;
+     }
 
-      })
-    });
+     $scope.$on('newnotify.update', function (event) {
 
-    //删除成功
-    $scope.$on('lastcount.update', function (event) {
+     $scope.$apply(function () {
 
-      $scope.$apply(function () {
-        $greendao.loadAllData('ChatListService',function (msg) {
-          $scope.allNoRead=0;
-          if (msg.length>0){
-            for(var i=0;i<msg.length;i++){
-              $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
-            }
-          }
-        },function (err) {
+     $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
+     $scope.notifyNoRead=0;
 
-        })
-      })
-    });
+     if (msg.length>0){
+     $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+     }
+
+     },function (msg) {
+
+     });
+     })
+     });*/
+
+
+    /**暂时用不到**/
+    // $scope.$on('second.notify', function (event) {
+    //
+    //   $scope.$apply(function () {
+    //
+    //     $greendao.queryData('SystemMsgService',"where isread =?","false",function (msg) {
+    //       $scope.notifyNoRead=0;
+    //
+    //       if (msg.length>0){
+    //         $scope.notifyNoRead=$scope.notifyNoRead+msg.length;
+    //       }
+    //
+    //     },function (msg) {
+    //
+    //     });
+    //
+    //   })
+    // });
+
+    //删除成功(现在通知模块没有删除功能)
+    // $scope.$on('lastcount.update', function (event) {
+    //
+    //   $scope.$apply(function () {
+    //     $greendao.loadAllData('ChatListService',function (msg) {
+    //       $scope.allNoRead=0;
+    //       if (msg.length>0){
+    //         for(var i=0;i<msg.length;i++){
+    //           $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
+    //         }
+    //       }
+    //     },function (err) {
+    //
+    //     })
+    //   })
+    // });
   })
 

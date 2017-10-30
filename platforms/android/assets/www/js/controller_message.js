@@ -1824,7 +1824,7 @@ angular.module('message.controllers', [])
       })
     });
 
-      $scope.$on('$ionicView.afterLeave', function () {
+    $scope.$on('$ionicView.afterLeave', function () {
       // alert("单聊after离开");
       $rootScope.$broadcast('noread.update');
       $rootScope.$broadcast('netstatus.update');
@@ -4115,6 +4115,25 @@ angular.module('message.controllers', [])
         });
       })
     });
+
+
+    /**
+     * 监听通知消息
+     */
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            console.log("及时推送主界面"+$scope.NotifyNoRead);
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+      });
+    })
+
 
     /**
      * 监听聊天界面返回

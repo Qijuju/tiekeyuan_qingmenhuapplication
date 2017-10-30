@@ -8,15 +8,21 @@ angular.module('newnotification.controllers', [])
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
-      console.log("拿到的通知未读数量"+JSON.stringify(data)+"==="+data.length);
+      $scope.noreadcount=data.length;
+      // console.log("拿到的通知未读数量"+$scope.noreadcount);
       //拿到的未读数量展示在tab底部及桌面角标
+      cordova.plugins.notification.badge.set($scope.noreadcount,function (succ) {
 
+        $mqtt.saveInt("badgeNotifyCount",$scope.noreadcount);
+      },function (err) {
+
+      });
     },function (err) {
     });
 
     //进来通知界面取出icon对应的路径集合
     $greendao.loadAllData('QYYIconPathService',function (succ) {
-      console.log("拿到所有icon的path集合"+JSON.stringify(succ));
+      // console.log("拿到所有icon的path集合"+JSON.stringify(succ));
     },function (err) {
     });
     // 通知置顶操作
@@ -218,26 +224,48 @@ angular.module('newnotification.controllers', [])
         }
       })
     };
+
+    $scope.$on('$ionicView.afterLeave', function () {
+      // alert("单聊after离开");
+      $rootScope.$broadcast('noread.update');
+    });
   })
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams,$mqtt, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
     console.log("详情信息"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
-    //只要进入通知详情界面，就将该条通知置为已读
-    var newnotifyobj={};
-    newnotifyobj.msgId=$scope.notifyObj.MsgId;
-    newnotifyobj.appId=$scope.notifyObj.FromID;
-    newnotifyobj.isRead="1";
-    newnotifyobj.appName=$scope.notifyObj.FromName;
-    $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-      // console.log("更新一条数据是否成功"+succ);
-    },function (err) {
+    $scope.$on('$ionicView.enter', function () {
+      $timeout(function () {
+        //只要进入通知详情界面，就将该条通知置为已读
+        var newnotifyobj={};
+        newnotifyobj.msgId=$scope.notifyObj.MsgId;
+        newnotifyobj.appId=$scope.notifyObj.FromID;
+        newnotifyobj.isRead="1";
+        newnotifyobj.appName=$scope.notifyObj.FromName;
+        $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
+          //取出保存的badgecount值并减去
+          $mqtt.getInt('badgeNotifyCount',function (newcount) {
+            var lastcount=newcount-1;
+            console.log("通知详情界面取出存储的count值"+lastcount);
+            cordova.plugins.notification.badge.set(lastcount,function (succ) {
+              // alert("成功"+succ);
+              $mqtt.saveInt('badgeNotifyCount',lastcount);
+            },function (err) {
+
+            });
+          },function (err) {
+          });
+        },function (err) {
+        });
+      }, 100);
     });
+
+
 
     // 根据id，往数据源中追加图片路径字段信息
     var finshedAppsArr = FinshedApp.all();  // 取出原始数据源信息
