@@ -23,8 +23,8 @@
             <ion-slide  class="notificationIonSide">
 
               <ion-list no-lines>
-
                 <ion-item  class="item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" >
+
                   <div>
                     <!--已确认的通知-->
                     <div class="row itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
@@ -61,7 +61,7 @@
 
                         <!--通知类型对应的图片信息-->
                         <div class="notifyImgInfo">
-                          <img src="{{item.appIcon}}" alt="通知类型头像">
+                          <img src="{{item.appIcon}}" alt="logo">
                         </div>
 
                         <!--通知的详细信息-->
@@ -85,7 +85,7 @@
                       </div>
                     </div>
 
-                    <!-- 操作按钮-->
+                     <!--操作按钮-->
                     <div class="row topFocus" >
                       <div class="col" ng-click="goIsTopEvent(item)">
                         <!--置顶-->
@@ -146,18 +146,16 @@
                   <div>
                     <!--已确认的通知-->
                     <div class="row itemIsReadedYes" ng-if="item.IsReaded" ng-click="goNotifyDetail(item)">
-                      <div class="col clearfix" >
+                      <div class="col clearfix">
 
                         <!--通知显示相应的图片信息-->
                         <div class="notifyImgInfo">
-                          <img src="{{item.appIcon}}" alt="通知类型头像">
+                          <img src="{{item.appIcon}}" alt="logo">
                         </div>
 
                         <!--通知的详细信息-->
                         <div class="notifyDetailInfo">
-
                           <div class="infoTop">
-
                             <!--名称-->
                             <h3>{{item.FromName}}</h3>
                             <!--时间-->
@@ -179,14 +177,12 @@
 
                         <!--通知显示相应的图片信息-->
                         <div class="notifyImgInfo">
-                          <img src="{{item.appIcon}}" alt="通知类型头像">
+                          <img src="{{item.appIcon}}" alt="logo">
                         </div>
 
                         <!--通知的详细信息-->
                         <div class="notifyDetailInfo">
-
                           <div class="infoTop">
-
                             <!--名称-->
                             <h3>{{item.FromName}}</h3>
                             <!--时间-->
