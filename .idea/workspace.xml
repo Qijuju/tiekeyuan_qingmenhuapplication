@@ -12,7 +12,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_portal2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/www/js/controller_portal2.js" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -727,14 +726,7 @@
       <workItem from="1507511000169" duration="76823000" />
       <workItem from="1508314679934" duration="4762000" />
       <workItem from="1508375236504" duration="43987000" />
-      <workItem from="1508896580399" duration="62285000" />
-    </task>
-    <task id="LOCAL-00177" summary="commit:合并后的代码">
-      <created>1496819210143</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1496819210144</updated>
+      <workItem from="1508896580399" duration="62354000" />
     </task>
     <task id="LOCAL-00178" summary="commit:合并后的代码">
       <created>1496820663369</created>
@@ -1072,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509410869820</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="commit：10.31：inappbrowser添加浏览器清楚缓存">
+      <created>1509416835284</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1509416835284</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2595581000" />
+    <option name="totallyTimeSpent" value="2595650000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1166,7 +1165,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改手机通讯录界面" />
     <MESSAGE value="新版本mqtt" />
     <MESSAGE value="commit：合并后的代码" />
     <MESSAGE value="commit:合并" />
@@ -1191,7 +1189,8 @@
     <MESSAGE value="commit：10.26通知两张表全部入库并取出准备动态加载通知的平台logo" />
     <MESSAGE value="commit：10.30：拉取菊菊代码给下载轻应用logo多添加一个数组。" />
     <MESSAGE value="commit：10.30：完成通知底部数量刷新解决数量无法及时刷新的问题。" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit：10.30：完成通知底部数量刷新解决数量无法及时刷新的问题。" />
+    <MESSAGE value="commit：10.31：inappbrowser添加浏览器清楚缓存" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit：10.31：inappbrowser添加浏览器清楚缓存" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
