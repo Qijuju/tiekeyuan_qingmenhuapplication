@@ -4146,11 +4146,12 @@ angular.module('message.controllers', [])
           $scope.NotifyNoRead = 0;
           if (msg.length > 0) {
             $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
-            console.log("及时推送主界面"+$scope.NotifyNoRead);
             $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
           }
         }, function (err) {
         });
+        $timeout(function () {
+        }, 100);
       });
     })
 

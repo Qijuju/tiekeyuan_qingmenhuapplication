@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup) {
+  .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup,$greendao,$timeout) {
 
     // 门户页原始数据源
     $scope.dataSource = $rootScope.portalDataSource;
@@ -235,6 +235,42 @@ angular.module('portal.controllers', [])
           break;
       }
     }
+
+
+    /**
+     * 监听通知消息
+     */
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+        $timeout(function () {
+        }, 100);
+      });
+    })
+
+    /**
+     * 监听消息
+     */
+    $scope.$on('msgs.update', function (event) {
+      $scope.$apply(function () {
+        $greendao.queryByConditions('ChatListService', function (data) {
+          $chatarr.setData(data);
+          $scope.items = data;
+        }, function (err) {
+
+        });
+        $timeout(function () {
+        }, 100);
+      })
+    });
+
   })
 
 

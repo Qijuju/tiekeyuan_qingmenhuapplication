@@ -259,11 +259,28 @@ angular.module('contacts.controllers', [])
         },function (err) {
 
         });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
       })
     });
+
+    /**
+     * 监听通知
+     * @param id
+     */
+    $scope.$on('allnotify.update', function (event, data) {
+      $scope.$apply(function () {
+        $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
+          $scope.NotifyNoRead = 0;
+          if (msg.length > 0) {
+            $scope.NotifyNoRead = $scope.NotifyNoRead + msg.length;
+            $mqtt.saveInt("badgeNotifyCount",$scope.NotifyNoRead);
+          }
+        }, function (err) {
+        });
+        $timeout(function () {
+        }, 100);
+      });
+    })
+
 
     $scope.topGoDetail = function (id) {
       $state.go("person", {
