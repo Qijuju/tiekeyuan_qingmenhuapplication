@@ -366,10 +366,9 @@ angular.module('contacts.services', [])
 
       deptForthInfo: function (deptId) {
         $api.getDeparment(deptId, function (msg) {
-          thirdname = msg.deptInfo
+          thirdname = msg.deptInfo;
           $api.getChild(deptId, forthCount, 10, function (msg) {
             deptForthInfo = msg;
-            // alert("拿到第四层级的数据"+JSON.stringify(deptForthInfo));
             thirdId = msg.deptID;
             count5 = msg.deptCount;
             count6 = msg.userCount;
@@ -378,7 +377,7 @@ angular.module('contacts.services', [])
           }, function (msg) {
             count5 = 0;
             count6 = 0;
-            $rootScope.$broadcast('forth.update');
+            $rootScope.$broadcast('forth.update',{"pageNo":0,"pageSize":0});
           });
 
 
@@ -386,7 +385,7 @@ angular.module('contacts.services', [])
           $timeout(function () {
             thirdname = null;
             deptForthInfo=null;
-            $rootScope.$broadcast('forth.update');
+            $rootScope.$broadcast('forth.update',{"pageNo":0,"pageSize":0});
             // $ToastUtils.showToast("获取数据失败")
           },4000);
         });
@@ -418,7 +417,6 @@ angular.module('contacts.services', [])
       deptFifthInfo: function (deptId) {
         $api.getDeparment(deptId, function (msg) {
           forthname = msg.deptInfo.DeptName;
-          console.log("五级名称service"+forthname+"接口返回的数据"+JSON.stringify(msg));
           $api.getChild(deptId, fifthCount, 10, function (msg) {
             deptFifhtInfo = msg;
             // alert("拿到第五层级的数据"+JSON.stringify(deptFifhtInfo));

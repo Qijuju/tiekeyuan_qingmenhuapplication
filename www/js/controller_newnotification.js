@@ -14,6 +14,12 @@ angular.module('newnotification.controllers', [])
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
       //拿到的未读数量展示在tab底部及桌面角标
+      cordova.plugins.notification.badge.set(data.length,function (succ) {
+        console.log("成功设置成功"+succ);
+        $mqtt.saveInt('badgeNotifyCount',data.length);
+      },function (err) {
+        // alert("失败"+err);
+      });
     },function (err) {
 
     });
@@ -220,21 +226,38 @@ angular.module('newnotification.controllers', [])
 
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
-    //只要进入通知详情界面，就将该条通知置为已读
-    var newnotifyobj={};
-    newnotifyobj.msgId=$scope.notifyObj.MsgId;
-    newnotifyobj.appId=$scope.notifyObj.FromID;
-    newnotifyobj.isRead="1";
-    newnotifyobj.appName=$scope.notifyObj.FromName;
-    $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-    },function (err) {
+    $scope.$on('$ionicView.enter', function () {
+      $timeout(function () {
+        //只要进入通知详情界面，就将该条通知置为已读
+        var newnotifyobj={};
+        newnotifyobj.msgId=$scope.notifyObj.MsgId;
+        newnotifyobj.appId=$scope.notifyObj.FromID;
+        newnotifyobj.isRead="1";
+        newnotifyobj.appName=$scope.notifyObj.FromName;
+        $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
+          console.log("更新数据库表"+JSON.stringify(succ));
+          $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
+            //拿到的未读数量展示在tab底部及桌面角标
+            cordova.plugins.notification.badge.set(data.length,function (msg) {
+              console.log("进入详情界面"+data.length);
+              $mqtt.saveInt('badgeNotifyCount',data.length);
+            },function (err) {
+              // alert("失败"+err);
+            });
+          },function (err) {
+
+          });
+        },function (err) {
+        });
+      },100);
     });
+
 
     // 根据id，往数据源中追加图片路径字段信息
     var finshedAppsArr = FinshedApp.all();  // 取出原始数据源信息

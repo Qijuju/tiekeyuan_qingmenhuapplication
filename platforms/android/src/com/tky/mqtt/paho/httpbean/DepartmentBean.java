@@ -20,7 +20,7 @@ public class DepartmentBean {
     private int childCount;
     private String grade;
     private String id;
-    private int lastupdate;
+    private long lastupdate;
     private String name;
     private String parentid;
     private int priority;
@@ -69,11 +69,11 @@ public class DepartmentBean {
       this.id = id;
     }
 
-    public int getLastupdate() {
+    public long getLastupdate() {
       return lastupdate;
     }
 
-    public void setLastupdate(int lastupdate) {
+    public void setLastupdate(long lastupdate) {
       this.lastupdate = lastupdate;
     }
 

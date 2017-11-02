@@ -512,6 +512,7 @@ angular.module('contacts.controllers', [])
     $scope.contactId = $stateParams.contactId;
     //一级的名字
     $scope.pppid = $stateParams.secondname;
+    console.log("二级的名字"+$scope.pppid+$scope.contactId);
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/third/'+$scope.contactId+'/'+$scope.pppid)){
@@ -603,7 +604,6 @@ angular.module('contacts.controllers', [])
 
         });
         $timeout(function () {
-          viewScroll.scrollBottom();
         }, 100);
       })
     });
@@ -667,7 +667,7 @@ angular.module('contacts.controllers', [])
     // alert("三级进四级"+$scope.contactId);
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
-
+    console.log("三级目录名字"+$scope.thirdName+"==="+$scope.contactId);
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/forth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName)){
         $state.go("tab.contacts");
@@ -689,13 +689,13 @@ angular.module('contacts.controllers', [])
     $contacts.deptForthInfo($scope.contactId);
     $scope.$on('forth.update', function (event,data) {
       $scope.$apply(function () {
+        console.log("四级目录的页码和数量"+data.pageNo+"===="+data.pageSize);
         $timeout(function () {
           $pubionicloading.hide();
           $scope.count1 = $contacts.getCount5();
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptForthInfo().deptList;
             for (var i = 0; i < olddepts.length; i++) {
-
               $scope.departlist.push(olddepts[i]);
             }
           }

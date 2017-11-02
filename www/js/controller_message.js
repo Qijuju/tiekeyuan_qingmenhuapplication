@@ -3868,20 +3868,14 @@ angular.module('message.controllers', [])
             }
           }
 
-          console.log("门户logo前端name数组1:"+"-长度："+$scope.appIconArr.length+"--" + JSON.stringify($scope.appIconArr) );
-          console.log("门户logo前端name数组2:"+"-长度："+$scope.appIconArr2.length+"--" + JSON.stringify($scope.appIconArr2) );
-
           // 调插件，获取门户页需要的所有的图片路径
           $api.downloadQYYIcon($scope.appIconArr,function (success) {
-            console.log("name数组1拿到的path集合:"+"-长度："+success.length+"--" + JSON.stringify(success) );
             $rootScope.appIconPaths = success;
           },function (err) {
           });
 
           // 调插件，获取门户页不需要的所有的图片路径--下载所有的图片到本地，解决通知页logo找不到的问题
           $api.downloadQYYIcon($scope.appIconArr2,function (success) {
-
-            console.log("name数组1拿到的path集合:"+"-长度："+success.length+"--" + JSON.stringify(success) );
             $rootScope.appIconPaths2 = success;
           },function (err) {
           });
