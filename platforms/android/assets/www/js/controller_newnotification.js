@@ -2,18 +2,10 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-
   .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
-
-    // 定义 icon 对应的路径集合数组
-    $scope.appIcons = new Array();
-
-    // 获取通知模块的 logo 的路径集合
-    $scope.appIcons = $rootScope.notificationAppIcons;
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
-      console.log("拿到的通知未读数量"+JSON.stringify(data)+"==="+data.length);
       //拿到的未读数量展示在tab底部及桌面角标
     },function (err) {
 
@@ -119,15 +111,13 @@ angular.module('newnotification.controllers', [])
 
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
-
-      console.log("allnotify.update的数据源--:" + JSON.stringify(data));
       $scope.$apply(function () {
         $scope.shownetstatus = false;
         if(data != null && data !=undefined && data != ''){
           $scope.notifyNewList.unshift(data);
         }else{
           var notifyList = $notify.getAllNotify().msgList;
-          console.log("拿到的数据==" + JSON.stringify(notifyList));
+
           $scope.lastCount = notifyList.length;
           if ($scope.lastCount == 5) {
             $scope.notifyStatus = true;
@@ -139,37 +129,28 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
-        // // // 根据id，往数据源中追加图片路径字段信息
-        // //进来通知界面取出icon对应的路径集合
-        // $greendao.loadAllData('QYYIconPathService',function (succ) {
-        //
-        //   // 获取 icon 对应的路径集合
-        //   $scope.appIcons = succ;
 
+        // 进来通知界面取出icon对应的路径集合
+        $greendao.loadAllData('QYYIconPathService',function (succ) {
 
-          console.log(" conTr中获取的notificationAppIcons---" + $scope.appIcons.length +"=="+JSON.stringify($scope.appIcons));
-          // 循环遍历数据源，根据id查找相应的图片信息。有的话，设置为相应的图片信息；没有的话，设置一个默认显示图片的路径。
+         // 根据id，往数据源中追加图片路径字段信息
           for (var i = 0; i < $scope.notifyNewList.length; i++) {
             var fromId = $scope.notifyNewList[i].FromID;
-
-            // 查找数据源，设置图片信息
-            for (var j = 0; j < $scope.appIcons.length; j++) {
-              if (  $scope.appIcons[j].appId === fromId ) {
-                $scope.notifyNewList[i].appIcon = $scope.appIcons[j].path;
+            for (var j = 0; j <succ.length; j++) {
+              if (  succ[j].appId === fromId ) {
+                $scope.notifyNewList[i].appIcon = succ[j].path;
               }else {
-                console.log("没有相同的id" + $scope.appIcons[j].appId);
               }
             }
           }
-        //
-        //
-        //
-        // },function (err) {
-        //
-        // });
-      })
-      $timeout(function () {
-      }, 100);
+          // 刷新页面
+           $scope.$apply();
+
+        },function (err) {
+
+        });
+      });
+
     });
 
     $scope.loadMoreNotify = function () {
@@ -228,7 +209,6 @@ angular.module('newnotification.controllers', [])
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
-    console.log("详情信息"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -239,7 +219,6 @@ angular.module('newnotification.controllers', [])
     newnotifyobj.isRead="1";
     newnotifyobj.appName=$scope.notifyObj.FromName;
     $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-      // console.log("更新一条数据是否成功"+succ);
     },function (err) {
     });
 

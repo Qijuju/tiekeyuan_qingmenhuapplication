@@ -1,7 +1,7 @@
 /*
  * Created by Administrator on 2017/3/24.
  */
-angular.module('portal.controllers', [])
+angular.module('portal.controllers', ["templateCache","serviceModule","directiveModule","templateCache2","directiveModule2","serviceModule2"])
   .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup,$greendao,$timeout) {
 
     // 门户页原始数据源
@@ -145,9 +145,9 @@ angular.module('portal.controllers', [])
       $http({
         method: 'post',
         timeout: 5000,
-        url:"http://88.1.1.22:8081",//测试环境
+        // url:"http://88.1.1.22:8081",//测试环境
         // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
@@ -173,9 +173,9 @@ angular.module('portal.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            url:"http://88.1.1.22:8081",//测试环境
+            // url:"http://88.1.1.22:8081",//测试环境
             // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
             data: {
               "Action": "GetAppLink",
               "id": userID,
@@ -270,43 +270,22 @@ angular.module('portal.controllers', [])
         }, 100);
       })
     });
-
   })
 
-
-  .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
-
-
-
-    // var btn=document.querySelector(".btnSearch");
-    // btn.ontouchstart=function(){
-    //   this.style.background = "blue";
-    //   // this.style.transform = "skew(180deg,180deg);";
-    // }
-    // btn.ontouchend=function(){
-    //   this.style.background = "green";
-    //   // this.style.transform = "skew(180deg,180deg);";
-    // }
-
-    // var btn=document.querySelector(".btnSearch");
-    // btn.ontouchstart=function(){
-    //   this.className="btnSearch btnSearch-on";
-    // }
-    // btn.ontouchend=function(){
-    //   this.className="btnSearch";
-    // }
+  .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams,createEffect,createEffect2) {
 
     var imCode = $stateParams.imCode;
     var userID = $stateParams.userId;
+
     //通过接口得到访问应用的url
     $scope.getSingleQyyUrl=function (appId,params,optionId) {
       //点击应用图标时调用getapplink的接口获取跳转的url
         $http({
           method: 'post',
           timeout: 5000,
-          url:"http://88.1.1.22:8081",//测试环境
+          // url:"http://88.1.1.22:8081",//测试环境
           // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
           data: {
             "Action": "GetAppLink",
             "id": userID,
@@ -368,6 +347,7 @@ angular.module('portal.controllers', [])
     //扫一扫
     $scope.scanQRcode=function () {
 
+      // alert("弹出扫一扫");
       cordova.plugins.barcodeScanner.scan(function (success) {
           if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
             params = success.text;
@@ -389,7 +369,6 @@ angular.module('portal.controllers', [])
           orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
         }
       );
-
     }
 
     //返回
@@ -397,6 +376,88 @@ angular.module('portal.controllers', [])
       $state.go('tab.portal');
     }
 
+  })
+
+var service=angular.module("serviceModule",[])
+  .factory("createEffect",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
+    var x;
+    var y;
+    var span=angular.element("<span class='animateSpan'></span>");
+    var scopeNew=$rootScope.$new(true);
+    var spanEffect=$compile(span)(scopeNew);
+    return{
+      addEffect: function (obj) {
+        obj.on("click", function (e) {
+          // alert("点击搜索");
+          var e=e||event;
+          obj.empty();
+          $animate.enter(spanEffect,obj);
+          x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
+          y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
+          $(obj).find("span").css("left",x);
+          $(obj).find("span").css("top",y);
+          obj.find("span").addClass("animate");
+          console.log("fgryfgryf999999999");
+        })
+      }
+    }
+  }]);
+var service2=angular.module("serviceModule2",[])
+  .factory("createEffect2",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
+    var x;
+    var y;
+    var span=angular.element("<span class='animateSpan'></span>");
+    var scopeNew=$rootScope.$new(true);
+    var spanEffect=$compile(span)(scopeNew);
+    return{
+      addEffect2: function (obj) {
+        obj.on("click", function (e) {
+          // alert("点击扫一扫");
+          var e=e||event;
+          obj.empty();
+          $animate.enter(spanEffect,obj);
+          x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
+          y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
+          $(obj).find("span").css("left",x);
+          $(obj).find("span").css("top",y);
+          obj.find("span").addClass("animate");
+          console.log("8888");
+        })
+      }
+    }
+  }]);
+
+var directive=angular.module("directiveModule",["serviceModule"])
+  .directive("spanClick",["$animate","$compile","createEffect", function ($animate,$compile,createEffect) {
+    return{
+      restrict:'EA',
+      replace:true,
+      templateUrl:'spanClick.html',
+      link: function (scope, ele, attr) {
+        createEffect.addEffect(ele)
+      }
+    }
+  }])
+var directive2=angular.module("directiveModule2",["serviceModule2"])
+  .directive("spanClick2",["$animate","$compile","createEffect2", function ($animate,$compile,createEffect2) {
+    return{
+      restrict:'EA',
+      replace:true,
+      templateUrl:'spanClick2.html',
+      link: function (scope, ele, attr) {
+        createEffect2.addEffect2(ele)
+      }
+    }
+  }])
+
+var templateCache=angular.module('templateCache',[])
+  .run(function ($templateCache) {
+    $templateCache.put("spanClick.html","<div class='spanStyle'></div>")
+  })
+
+var templateCache2=angular.module('templateCache2',[])
+  .run(function ($templateCache) {
+    $templateCache.put("spanClick2.html","<div class='spanStyle2'></div>")
   })
 
 

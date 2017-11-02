@@ -3855,6 +3855,7 @@ angular.module('message.controllers', [])
               qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
               qyyobject.appId = items[j].appId;
               $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+
               },function (err) {
               });
 
@@ -3868,20 +3869,14 @@ angular.module('message.controllers', [])
             }
           }
 
-          console.log("门户logo前端name数组1:"+"-长度："+$scope.appIconArr.length+"--" + JSON.stringify($scope.appIconArr) );
-          console.log("门户logo前端name数组2:"+"-长度："+$scope.appIconArr2.length+"--" + JSON.stringify($scope.appIconArr2) );
-
           // 调插件，获取门户页需要的所有的图片路径
           $api.downloadQYYIcon($scope.appIconArr,function (success) {
-            console.log("name数组1拿到的path集合:"+"-长度："+success.length+"--" + JSON.stringify(success) );
             $rootScope.appIconPaths = success;
           },function (err) {
           });
 
           // 调插件，获取门户页不需要的所有的图片路径--下载所有的图片到本地，解决通知页logo找不到的问题
           $api.downloadQYYIcon($scope.appIconArr2,function (success) {
-
-            console.log("name数组1拿到的path集合:"+"-长度："+success.length+"--" + JSON.stringify(success) );
             $rootScope.appIconPaths2 = success;
           },function (err) {
           });
@@ -3894,17 +3889,6 @@ angular.module('message.controllers', [])
     }, function (err) {
     });
     // 门户代码结束
-
-    // 通知 icon 对应的路径集合 start
-    // // 根据id，往数据源中追加图片路径字段信息
-    //进来通知界面取出icon对应的路径集合
-    $greendao.loadAllData('QYYIconPathService',function (succ) {
-      // 获取 icon 对应的路径集合
-      $rootScope.notificationAppIcons = succ;
-    },function (err) {
-
-    });
-    // 通知页 icon 对应的路径集合 end
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope
