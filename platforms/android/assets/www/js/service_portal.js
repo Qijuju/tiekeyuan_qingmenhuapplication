@@ -152,9 +152,6 @@ angular.module('portal.services', [])
       all: function () {
         return finshedApps;
       },
-      // remove: function(chat) {
-      //   chats.splice(chats.indexOf(chat), 1);
-      // },
       get: function (appId) {
         for (var i = 0; i < finshedApps.length; i++) {
           if (finshedApps[i].appId === parseInt(appId)) {
@@ -185,9 +182,7 @@ angular.module('portal.services', [])
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
 
-
           var data = JSON.parse(decodeURIComponent(data));
-
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
 

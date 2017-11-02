@@ -195,7 +195,7 @@ angular.module('im.routes', [])
         controller: 'notifyDetailCtrl',
         params:{
           obj:null
-        },
+        }
       })
 
       .state('notifyApplication', {
@@ -665,8 +665,5 @@ angular.module('im.routes', [])
         templateUrl: 'templates/projectPart.html',
         controller: 'projectPartCtrl'
       })
-
-
-
 
   });

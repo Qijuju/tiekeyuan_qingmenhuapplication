@@ -275,6 +275,27 @@ angular.module('portal.controllers', [])
 
 
   .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
+
+
+
+    // var btn=document.querySelector(".btnSearch");
+    // btn.ontouchstart=function(){
+    //   this.style.background = "blue";
+    //   // this.style.transform = "skew(180deg,180deg);";
+    // }
+    // btn.ontouchend=function(){
+    //   this.style.background = "green";
+    //   // this.style.transform = "skew(180deg,180deg);";
+    // }
+
+    // var btn=document.querySelector(".btnSearch");
+    // btn.ontouchstart=function(){
+    //   this.className="btnSearch btnSearch-on";
+    // }
+    // btn.ontouchend=function(){
+    //   this.className="btnSearch";
+    // }
+
     var imCode = $stateParams.imCode;
     var userID = $stateParams.userId;
     //通过接口得到访问应用的url
@@ -377,26 +398,6 @@ angular.module('portal.controllers', [])
     }
 
   })
-
-
-  //rxy 详情的控制器
-  // .controller('OhterCtrl', function ($scope, $state, $stateParams, $sce, FinshedApp) {
-  //   var str;
-  //   // $scope.userid=$stateParams.userId;    + "?userId=" + $stateParams.userId;
-  //   $scope.appurl = $sce.trustAsResourceUrl("http://198.25.1.21:8080/gatewayh/base/security/userinfo!loginForBaseHtml.action?sessionid=2d3d3a72-68d0-4a67-9e61-ae195ac9cded");
-  //   // $scope.appurl = $sce.trustAsResourceUrl($stateParams.appUrl+"?userId=499");
-  //   $scope.appName = FinshedApp.get($stateParams.appId).appName;
-  //   // str=$stateParams.appUrl+"?userId="+$stateParams.userId;
-  //   console.log($scope.appurl);
-  //
-  //
-  //   $scope.goBack = function () {
-  //     // window.history.back();
-  //     $state.go("tab.portal");
-  //   }
-  //
-  // });
-
 
 
 
