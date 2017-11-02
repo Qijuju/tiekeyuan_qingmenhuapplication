@@ -3,7 +3,7 @@
  */
 angular.module('newnotification.controllers', [])
 
-  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
     // 定义 icon 对应的路径集合数组
     $scope.appIcons = new Array();
@@ -15,7 +15,6 @@ angular.module('newnotification.controllers', [])
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
       //拿到的未读数量展示在tab底部及桌面角标
       cordova.plugins.notification.badge.set(data.length,function (succ) {
-        console.log("成功设置成功"+succ);
         $mqtt.saveInt('badgeNotifyCount',data.length);
       },function (err) {
         // alert("失败"+err);
