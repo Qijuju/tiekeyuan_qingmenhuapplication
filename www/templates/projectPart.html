@@ -8,17 +8,17 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content overflow-scroll="false">
-      <span-click ng-click="searchQRcode()"></span-click>
-      <span-click2 ng-click="scanQRcode()" ></span-click2>
-    <!--<div class="newScroll">-->
-     <!--<button class="button button-positive projectPartSearch" ng-click="searchQRcode()">-->
-        <!--搜索-->
-      <!--</button>-->
 
-      <!--<button class="button button-balanced projectPartSaoYiSao" ng-click="scanQRcode()">-->
-        <!--扫一扫-->
-      <!--</button>-->
-    <!--</div>-->
+    <div ng-click="searchQRcode()" class="QRcode">
+      <!--<div class="searchQRcode"></div>-->
+      <button class="button button-positive searchQRcode"></button>
+      <p class="gcbwQRcode">搜索</p>
+    </div>
+
+     <div ng-click="scanQRcode()" class="QRcode">
+       <button class="button button-positive scanQRcode"></button>
+       <p class="gcbwQRcode" ng-click="gcbwQRcode(this)">扫一扫</p>
+     </div>
   </ion-content>
 
 </ion-view >

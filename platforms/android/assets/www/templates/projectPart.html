@@ -1,5 +1,5 @@
 <!--<ion-view class="common-view-color common-bg-color" view-title="工程部位" >-->
-<ion-view class="common-view-color common-bg-color" view-title="基于工程部位的综合查询" >
+<ion-view class="common-view-color common-bg-color" view-title="综合查询">
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-left common-color-white" style="color:#fff;" ng-click="goBackPortal()">
@@ -7,20 +7,18 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content  overflow-scroll="false">
+  <ion-content overflow-scroll="false">
 
-      <span-click ng-click="searchQRcode()"></span-click>
-      <span-click2 ng-click="scanQRcode()" ></span-click2>
+    <div ng-click="searchQRcode()" class="QRcode">
+      <!--<div class="searchQRcode"></div>-->
+      <button class="button button-positive searchQRcode"></button>
+      <p class="gcbwQRcode">搜索</p>
+    </div>
 
-    <!--<div class="newScroll">-->
-     <!--<button class="button button-positive projectPartSearch" ng-click="searchQRcode()">-->
-        <!--搜索-->
-      <!--</button>-->
-
-      <!--<button class="button button-balanced projectPartSaoYiSao" ng-click="scanQRcode()">-->
-        <!--扫一扫-->
-      <!--</button>-->
-    <!--</div>-->
+     <div ng-click="scanQRcode()" class="QRcode">
+       <button class="button button-positive scanQRcode"></button>
+       <p class="gcbwQRcode" ng-click="gcbwQRcode(this)">扫一扫</p>
+     </div>
   </ion-content>
 
 </ion-view >

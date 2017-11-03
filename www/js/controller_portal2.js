@@ -1,7 +1,7 @@
 /*
  * Created by Administrator on 2017/3/24.
  */
-angular.module('portal.controllers', ["templateCache","serviceModule","directiveModule","templateCache2","directiveModule2","serviceModule2"])
+angular.module('portal.controllers', [])
   .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup,$greendao,$timeout) {
 
     // 门户页原始数据源
@@ -272,7 +272,7 @@ angular.module('portal.controllers', ["templateCache","serviceModule","directive
     });
   })
 
-  .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams,createEffect,createEffect2) {
+  .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
 
     var imCode = $stateParams.imCode;
     var userID = $stateParams.userId;
@@ -346,8 +346,6 @@ angular.module('portal.controllers', ["templateCache","serviceModule","directive
 
     //扫一扫
     $scope.scanQRcode=function () {
-
-      // alert("弹出扫一扫");
       cordova.plugins.barcodeScanner.scan(function (success) {
           if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
             params = success.text;
@@ -377,88 +375,88 @@ angular.module('portal.controllers', ["templateCache","serviceModule","directive
     }
 
   })
-
-var service=angular.module("serviceModule",[])
-  .factory("createEffect",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
-    var x;
-    var y;
-    var span=angular.element("<span class='animateSpan'></span>");
-    var scopeNew=$rootScope.$new(true);
-    var spanEffect=$compile(span)(scopeNew);
-    return{
-      addEffect: function (obj) {
-        obj.on("click", function (e) {
-          // alert("点击搜索");
-          var e=e||event;
-          obj.empty();
-          $animate.enter(spanEffect,obj);
-          x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
-          y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
-          $(obj).find("span").css("left",x);
-          $(obj).find("span").css("top",y);
-          obj.find("span").addClass("animate");
-          console.log("fgryfgryf999999999");
-        })
-      }
-    }
-  }]);
-var service2=angular.module("serviceModule2",[])
-  .factory("createEffect2",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
-    var x;
-    var y;
-    var span=angular.element("<span class='animateSpan'></span>");
-    var scopeNew=$rootScope.$new(true);
-    var spanEffect=$compile(span)(scopeNew);
-    return{
-      addEffect2: function (obj) {
-        obj.on("click", function (e) {
-          // alert("点击扫一扫");
-          var e=e||event;
-          obj.empty();
-          $animate.enter(spanEffect,obj);
-          x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
-          y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
-          $(obj).find("span").css("left",x);
-          $(obj).find("span").css("top",y);
-          obj.find("span").addClass("animate");
-          console.log("8888");
-        })
-      }
-    }
-  }]);
-
-var directive=angular.module("directiveModule",["serviceModule"])
-  .directive("spanClick",["$animate","$compile","createEffect", function ($animate,$compile,createEffect) {
-    return{
-      restrict:'EA',
-      replace:true,
-      templateUrl:'spanClick.html',
-      link: function (scope, ele, attr) {
-        createEffect.addEffect(ele)
-      }
-    }
-  }])
-var directive2=angular.module("directiveModule2",["serviceModule2"])
-  .directive("spanClick2",["$animate","$compile","createEffect2", function ($animate,$compile,createEffect2) {
-    return{
-      restrict:'EA',
-      replace:true,
-      templateUrl:'spanClick2.html',
-      link: function (scope, ele, attr) {
-        createEffect2.addEffect2(ele)
-      }
-    }
-  }])
-
-var templateCache=angular.module('templateCache',[])
-  .run(function ($templateCache) {
-    $templateCache.put("spanClick.html","<div class='spanStyle'></div>")
-  })
-
-var templateCache2=angular.module('templateCache2',[])
-  .run(function ($templateCache) {
-    $templateCache.put("spanClick2.html","<div class='spanStyle2'></div>")
-  })
-
+//
+// var service=angular.module("serviceModule",[])
+//   .factory("createEffect",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
+//     var x;
+//     var y;
+//     var span=angular.element("<span class='animateSpan'></span>");
+//     var scopeNew=$rootScope.$new(true);
+//     var spanEffect=$compile(span)(scopeNew);
+//     return{
+//       addEffect: function (obj) {
+//         obj.on("click", function (e) {
+//           // alert("点击搜索");
+//           var e=e||event;
+//           obj.empty();
+//           $animate.enter(spanEffect,obj);
+//           x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
+//           y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
+//           $(obj).find("span").css("left",x);
+//           $(obj).find("span").css("top",y);
+//           obj.find("span").addClass("animate");
+//           console.log("fgryfgryf999999999");
+//         })
+//       }
+//     }
+//   }]);
+// var service2=angular.module("serviceModule2",[])
+//   .factory("createEffect2",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
+//     var x;
+//     var y;
+//     var span=angular.element("<span class='animateSpan'></span>");
+//     var scopeNew=$rootScope.$new(true);
+//     var spanEffect=$compile(span)(scopeNew);
+//     return{
+//       addEffect2: function (obj) {
+//         obj.on("click", function (e) {
+//           // alert("点击扫一扫");
+//           var e=e||event;
+//           obj.empty();
+//           $animate.enter(spanEffect,obj);
+//           x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
+//           y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
+//           $(obj).find("span").css("left",x);
+//           $(obj).find("span").css("top",y);
+//           obj.find("span").addClass("animate");
+//           console.log("8888");
+//         })
+//       }
+//     }
+//   }]);
+//
+// var directive=angular.module("directiveModule",["serviceModule"])
+//   .directive("spanClick",["$animate","$compile","createEffect", function ($animate,$compile,createEffect) {
+//     return{
+//       restrict:'EA',
+//       replace:true,
+//       templateUrl:'spanClick.html',
+//       link: function (scope, ele, attr) {
+//         createEffect.addEffect(ele)
+//       }
+//     }
+//   }])
+// var directive2=angular.module("directiveModule2",["serviceModule2"])
+//   .directive("spanClick2",["$animate","$compile","createEffect2", function ($animate,$compile,createEffect2) {
+//     return{
+//       restrict:'EA',
+//       replace:true,
+//       templateUrl:'spanClick2.html',
+//       link: function (scope, ele, attr) {
+//         createEffect2.addEffect2(ele)
+//       }
+//     }
+//   }])
+//
+// var templateCache=angular.module('templateCache',[])
+//   .run(function ($templateCache) {
+//     $templateCache.put("spanClick.html","<div class='spanStyle'></div>")
+//   })
+//
+// var templateCache2=angular.module('templateCache2',[])
+//   .run(function ($templateCache) {
+//     $templateCache.put("spanClick2.html","<div class='spanStyle2'></div>")
+//   })
+//
 
 

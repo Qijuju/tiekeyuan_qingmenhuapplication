@@ -114,6 +114,7 @@ angular.module('newnotification.controllers', [])
       $scope.$apply(function () {
         $scope.shownetstatus = false;
         if(data != null && data !=undefined && data != ''){
+          console.log("通知数据源：" + JSON.stringify(data));
           $scope.notifyNewList.unshift(data);
         }else{
           var notifyList = $notify.getAllNotify().msgList;
@@ -128,11 +129,12 @@ angular.module('newnotification.controllers', [])
           for (var i = 0; i < notifyList.length; i++) {
             $scope.notifyNewList.push(notifyList[i]);
           }
+
+          console.log("通知数据源$scope.notifyNewList：" + JSON.stringify(notifyList));
         }
 
         // 进来通知界面取出icon对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
-
          // 根据id，往数据源中追加图片路径字段信息
           for (var i = 0; i < $scope.notifyNewList.length; i++) {
             var fromId = $scope.notifyNewList[i].FromID;
