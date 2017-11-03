@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope, $state,$chatarr,$ToastUtils, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
@@ -21,6 +21,7 @@ angular.module('newnotification.controllers', [])
       var istop = item.IsToped  ? 'F' : 'T';
 
       $api.setNotifyMsg(id, false, istop, "", function (suc) {
+        console.log("置顶查出来的数据"+JSON.stringify(suc));
         if (istop == "T") {
           item.IsToped = true;
         } else if (istop == "F") {
@@ -164,7 +165,8 @@ angular.module('newnotification.controllers', [])
         });
       });
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      });
+      })
+
 
     $scope.newdex = 0;
     //滑块的状态
@@ -225,11 +227,9 @@ angular.module('newnotification.controllers', [])
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-          console.log("更新数据库表"+JSON.stringify(succ));
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
-              console.log("进入详情界面"+data.length);
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
               // alert("失败"+err);
@@ -254,17 +254,21 @@ angular.module('newnotification.controllers', [])
     }
 
 
-    $scope.showlevel = $scope.notifyObj.Level;
-
-    if ($scope.notifyObj.Level == 0) {
-      $scope.levelName = "一般";
-    } else if ($scope.notifyObj.Level == 1) {
-      $scope.levelName = "一般紧急";
-    } else if ($scope.notifyObj.Level == 2) {
-      $scope.levelName = "非常紧急";
-    } else {
-      $scope.levelName = "超级紧急";
-    }
+    /**
+     * 设置报警等级
+     * @param id
+     * @param istop
+     */
+    // $scope.showlevel = $scope.notifyObj.Level;
+    // if ($scope.notifyObj.Level == 0) {
+    //   $scope.levelName = "一般";
+    // } else if ($scope.notifyObj.Level == 1) {
+    //   $scope.levelName = "一般紧急";
+    // } else if ($scope.notifyObj.Level == 2) {
+    //   $scope.levelName = "非常紧急";
+    // } else {
+    //   $scope.levelName = "超级紧急";
+    // }
 
 
 

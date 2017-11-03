@@ -3835,12 +3835,14 @@ angular.module('message.controllers', [])
         $http({
           method: 'post',
           timeout: 5000,
+          // url:"http://88.1.1.22:8081",
           // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
           url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
           data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
+          // console.log("applist所有数据源"+JSON.stringify($rootScope.portalDataSource));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
 
           $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象

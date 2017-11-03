@@ -151,6 +151,7 @@ angular.module('portal.controllers', [])
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
+        // console.log("看看有没有url"+JSON.stringify(data));
         $scope.chooseBrowser(data.url,appId);
       }).error(function (err) {
       });

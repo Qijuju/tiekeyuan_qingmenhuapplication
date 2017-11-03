@@ -1,32 +1,60 @@
-/*.btnSearch{*/
-  /*width:100px;*/
-  /*height:100px;*/
-  /*background: #f30;*/
-  /*color: #000;*/
+/* 原项目 start */
+/*.projectPartSearch,*/
+/*.projectPartSaoYiSao{*/
+  /*width:200px;*/
+  /*height:200px;*/
+  /*border-radius:4px;*/
+  /*margin:30px auto;*/
+  /*text-align: center;*/
+  /*line-height:200px;*/
+  /*font-size:20px;*/
+  /*color: #fff;*/
 /*}*/
 
-
-
-.projectPartSearch,
-.projectPartSaoYiSao{
-  width:200px;
-  height:200px;
-  border-radius:4px;
-  margin:30px auto;
-  text-align: center;
-  line-height:200px;
-  font-size:20px;
-  color: #fff;
-}
-
-.projectPartSearch{
-  background: #3F51B5;
-}
-.projectPartSaoYiSao{
-  background:#009688;
-}
+/*.projectPartSearch{*/
+  /*background: #3F51B5;*/
+/*}*/
+/*.projectPartSaoYiSao{*/
+  /*background:#009688;*/
+/*}*/
 
 /*整体样式居中*/
-.newScroll{
-  text-align: center;
+/*.newScroll{*/
+  /*text-align: center;*/
+/*}*/
+
+/* 原项目 end  */
+
+/* 测试点击水波效果 start */
+.QRcode{
+  width: 120px;
+  height: 160px;
+  margin:50px auto;
 }
+.button.button-positive.searchQRcode,.button.button-positive.scanQRcode{
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+}
+.button.button-positive.searchQRcode{
+  background: url("../img/search.png") no-repeat 0 0 ;
+  background-size: cover;
+}
+.button.button-positive.scanQRcode{
+  background: url("../img/sao.png") no-repeat 0 0 ;
+  background-size: cover;
+}
+p.gcbwQRcode{
+  text-align: center;
+  line-height:40px;
+  font-size:18px;
+  color: #5777AB;
+  /*color:#fff;*/
+  /*text-shadow:2px 2px 4px #000000;*/
+
+}
+
+
