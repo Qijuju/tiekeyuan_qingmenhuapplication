@@ -22,6 +22,7 @@ angular.module('newnotification.controllers', [])
     },function (err) {
 
     });
+
     // 通知置顶操作
     $scope.goIsTopEvent = function (item) {
       var id = item.MsgId;
@@ -121,6 +122,10 @@ angular.module('newnotification.controllers', [])
       })
     };
 
+    $scope.loadMoreNotify = function () {
+        $notify.allNotify();
+    }
+
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
       $scope.$apply(function () {
@@ -128,12 +133,11 @@ angular.module('newnotification.controllers', [])
         if(data != null && data !=undefined && data != ''){
           $scope.notifyNewList.unshift(data);
         }else{
-          var notifyList = $notify.getAllNotify().msgList;
-
-          $scope.lastCount = notifyList.length;
-          if ($scope.lastCount == 5) {
+          var notifyList= $notify.getAllNotify().msgList;
+          var msgTotal = $notify.getAllNotify().msgTotal;
+          if (msgTotal > 5) {
             $scope.notifyStatus = true;
-          } else if ($scope.lastCount < 5) {
+          } else if (msgTotal <= 5) {
             $scope.notifyStatus = false;
           }
 
@@ -170,16 +174,9 @@ angular.module('newnotification.controllers', [])
       })
       $timeout(function () {
       }, 100);
+      //
+      $scope.$broadcast('scroll.infiniteScrollComplete');
     });
-
-    $scope.loadMoreNotify = function () {
-      if ($notify.getAllNotify().msgLeave === 0) {
-        $scope.notifyStatus = false;
-        return;
-      } else {
-        $notify.allNotify();
-      }
-    }
 
     $scope.newdex = 0;
     //滑块的状态
