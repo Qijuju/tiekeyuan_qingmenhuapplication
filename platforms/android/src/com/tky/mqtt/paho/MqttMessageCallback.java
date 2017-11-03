@@ -157,10 +157,10 @@ public class MqttMessageCallback implements MqttCallback {
                 List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
                 if (groupChatsList.size() != 0) {
                   String chatname = groupChatsList.get(0).getGroupName();
-                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
+                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip,map.getType(), new Intent(context, MainActivity.class));
                 }
               } else {
-                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
+                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip,map.getType(), new Intent(context, MainActivity.class));
               }
             }
             //入库(MESSAGE和CHATLIST表)
@@ -494,10 +494,10 @@ public class MqttMessageCallback implements MqttCallback {
         if (!isKUF) {
           //接收到消息时的铃声
           ring();
-          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()),"", new Intent(context, MainActivity.class));
         } else if (eventMsgBean.getMepID().equals(UIUtils.getDeviceId())) {
           MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！", new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！","", new Intent(context, MainActivity.class));
         } else {
           return;
         }

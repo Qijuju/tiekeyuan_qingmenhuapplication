@@ -429,10 +429,8 @@ angular.module('contacts.controllers', [])
           $scope.parentID = $contacts.getDeptInfo().deptID;
 
           if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) >0 ) {
-            console.log("二级目录的总数和count"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = true;
           } else if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) <=0 ) {
-            console.log("二级目录的总数和count11111"+$rootScope.totalSecondCount+"======="+(data.pageNo*data.pageSize));
             $scope.secondStatus = false;
 
           }
@@ -603,7 +601,6 @@ angular.module('contacts.controllers', [])
 
         });
         $timeout(function () {
-          viewScroll.scrollBottom();
         }, 100);
       })
     });
@@ -667,7 +664,6 @@ angular.module('contacts.controllers', [])
     // alert("三级进四级"+$scope.contactId);
     $scope.secondName = $stateParams.secondname;
     $scope.thirdName = $stateParams.thirdname;
-
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/forth/'+$scope.contactId+'/'+$scope.secondName+'/'+$scope.thirdName)){
         $state.go("tab.contacts");
@@ -695,7 +691,6 @@ angular.module('contacts.controllers', [])
           if ($scope.count1 > 0) {
             var olddepts = $contacts.getDeptForthInfo().deptList;
             for (var i = 0; i < olddepts.length; i++) {
-
               $scope.departlist.push(olddepts[i]);
             }
           }

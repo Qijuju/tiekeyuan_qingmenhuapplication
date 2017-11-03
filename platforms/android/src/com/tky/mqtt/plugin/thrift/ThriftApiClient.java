@@ -17,6 +17,7 @@ import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.NewNotifyList;
 import com.tky.mqtt.dao.SystemMsg;
 import com.tky.mqtt.paho.ConnectionType;
 import com.tky.mqtt.paho.MType;
@@ -77,6 +78,7 @@ import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.LocalPhoneService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.NewNotifyListService;
 import com.tky.mqtt.services.QYYIconPathService;
 import com.tky.mqtt.services.SystemMsgService;
 import com.tky.mqtt.services.TopContactsService;
@@ -216,12 +218,16 @@ public class ThriftApiClient extends CordovaPlugin {
                                 GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
                                 SystemMsgService systemMsgService = SystemMsgService.getInstance(UIUtils.getContext());
                                 QYYIconPathService qyyIconPathService = QYYIconPathService.getInstance(UIUtils.getContext());
+                                NewNotifyListService newNotifyListService = NewNotifyListService.getInstance(UIUtils.getContext());
+                                newNotifyListService.deleteAllData();
+                                System.out.println("是否清楚数据");
                                 qyyIconPathService.deleteAllData();
                                 topContactsService.deleteAllData();
                                 messagesService.deleteAllData();
                                 chatListService.deleteAllData();
                                 groupChatsService.deleteAllData();
                                 systemMsgService.deleteAllData();
+                                SPUtils.save("badgeNotifyCount",0);
                             }
 
                             LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());

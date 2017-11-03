@@ -237,18 +237,6 @@ a#rightbt{
 .item h3{
   font-size:16px;
 }
-.itemIsReadedYes{
-  /*background:#B2EBF2;*/
-}
-.confirm.itemIsReadedYes{
-  /*border-top:1px solid #80DEEA;*/
-}
-.itemIsReadedNo{
-  /*background:#BBDEFB;*/
-}
-.confirm.itemIsReadedNo{
-  /*border-top:1px solid #90CAF9;*/
-}
 /* 点击查看附件 */
 .topFocus .col img.fujian{
   width:24px;

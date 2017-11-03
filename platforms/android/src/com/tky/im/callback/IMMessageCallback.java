@@ -372,11 +372,13 @@ public class IMMessageCallback implements MqttCallback {
                 List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
                 if (groupChatsList.size() != 0) {
                   String chatname = groupChatsList.get(0).getGroupName();
-                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
+                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip,map.getType(), new Intent(context, MainActivity.class));
                 }
-              } else {
-//                System.out.println("是不是经常进来");
-                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
+              } else if("User".equals(map.getType())){
+                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, map.getType(),new Intent(context, MainActivity.class));
+              }else if("Platform".equals(map.getType())){
+                System.out.println("是不是经常进来"+username);
+                MqttNotification.showNotify(map.getFromName()+"推送一条通知", R.drawable.icon, username, tip, map.getType(),new Intent(context, MainActivity.class));
               }
             }
 
@@ -389,10 +391,10 @@ public class IMMessageCallback implements MqttCallback {
         if (!isKUF) {
           //接收到消息时的铃声
           ring();
-          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()),"",new Intent(context, MainActivity.class));
         } else if (eventMsgBean.getMepID().equals(UIUtils.getDeviceId())) {
           IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！", new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！","", new Intent(context, MainActivity.class));
         } else {
           return;
         }

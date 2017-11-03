@@ -1,10 +1,10 @@
 
 <ion-view  class="common-view-color" view-title="通知">
   <ion-nav-bar align-title="right" class="newbarhead">
-      <!--&lt;!&ndash;<ion-toggle1 ng-checked="appstatus" class="item-borderless"&ndash;&gt;-->
-                   <!--&lt;!&ndash;style="position: absolute;top:0px;right:0px;height: 45px;width:160px;margin-top: -10px;background: transparent;z-index: 99;"&ndash;&gt;-->
-                   <!--&lt;!&ndash;ng-click="changeSlide(newdex)">&ndash;&gt;-->
-      <!--&lt;!&ndash;</ion-toggle1>&ndash;&gt;-->
+      <!--<ion-toggle1 ng-checked="appstatus" class="item-borderless"-->
+                   <!--style="position: absolute;top:0px;right:0px;height: 45px;width:160px;margin-top: -10px;background: transparent;z-index: 99;"-->
+                   <!--ng-click="changeSlide(newdex)">-->
+      <!--</ion-toggle1>-->
   </ion-nav-bar>
   <ion-tabs class="tabs-positive tabs-striped tabs-top" >
     <ion-tab title="全部">
@@ -22,8 +22,7 @@
               <ion-list no-lines>
                 <ion-item  class="item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" >
                   <div>
-                    <!--已确认的通知-->
-                    <div class="row itemIsReadedYes" ng-click="goNotifyDetail(item)">
+                    <div class="row" ng-click="goNotifyDetail(item)">
                       <div class="col clearfix">
 
                         <!--通知logo-->
@@ -35,9 +34,12 @@
                         <div class="notifyDetailInfo">
 
                           <div class="infoTop">
-
                             <!--名称-->
                             <h3>{{item.FromName}}</h3>
+                            <!--<div>-->
+                              <!--<h3>{{item.FromName}}</h3>-->
+                              <!--<span ng-if="item.IsReaded">已确认</span>-->
+                            <!--</div>-->
                             <!--时间-->
                             <pre class="preTitle preTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                             <!--报警等级-->
@@ -94,13 +96,14 @@
               </ion-list>
             </ion-slide>
           </ion-slide-box>
-          <ion-infinite-scroll immediate-check="false" ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
+
+          <ion-infinite-scroll ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
         </ion-content>
       </ion-view>
     </ion-tab>
     <ion-tab title="关注">
       <ion-view>
-        <ion-content delegate-handle="scrollTop">
+        <ion-content delegate-handle="scrollTop" overflow-scroll="true">
 
           <ion-slide-box active-slide="index" class="baifenbai" does-continue="false" show-pager="false"
                          pager-click="go(index)" >

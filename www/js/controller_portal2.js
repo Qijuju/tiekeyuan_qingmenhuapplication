@@ -112,7 +112,7 @@ angular.module('portal.controllers', [])
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no');
+          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
           var index = 0;
           ref.addEventListener('loadstart', function () {
             if (index > 0) {
@@ -297,7 +297,7 @@ angular.module('portal.controllers', [])
           }
         }).success(function (data) {
           var data = JSON.parse(decodeURIComponent(data));
-          // console.log('获取的url' + JSON.stringify(data));
+          console.log('获取的url' + JSON.stringify(data));
           $scope.chooseSingleBrowser(data.url, appId);
 
         }).error(function (err) {
@@ -312,7 +312,7 @@ angular.module('portal.controllers', [])
 
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no');
+          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
           var index = 0;
           ref.addEventListener('loadstart', function () {
             if (index > 0) {

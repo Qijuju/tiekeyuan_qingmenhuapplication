@@ -30,6 +30,7 @@ public class User extends BaseBean {
   private String loginName;
   private String deptPath;//用户所在部门路径
 
+
   public String getDeptPath() {
     return deptPath;
   }
