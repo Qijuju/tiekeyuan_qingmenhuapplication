@@ -112,6 +112,10 @@ pre.preTitle{
   height:25px;
   line-height:25px;
 }
+
+.preTitle.preTime.notifyTime{
+  width: 80px;
+}
 pre.preTime{
   position: absolute;
   top:0px;
@@ -123,6 +127,24 @@ span.levelName{
   right:0px;
   color:#FF5722;
 }
+/*确认信息*/
+span.isReaded,.preTitle.preTime.notifyTime{
+  font-size:14px;
+  color: #c6c6c6;
+}
+span.isReaded{
+  background: #eceadf;
+}
+/* 新的通知的红点标志*/
+span.newStatus{
+  display: inline-block;
+  width:5px;
+  height:5px;
+  background: #FF5722;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
 div.notifyImgInfo{
   height:55px;
   float: left;
@@ -131,6 +153,7 @@ div.notifyImgInfo{
 div.notifyImgInfo > img{
   width:50px;
   height:50px;
+  vertical-align: top;
 }
 div.notifyDetailInfo{
   width:100%;

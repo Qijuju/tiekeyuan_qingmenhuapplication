@@ -36,13 +36,17 @@
             <div class="notifyDetailInfo">
 
               <div class="infoTop">
-
                 <!--名称-->
-                <h3>{{notifyObj.FromName}}</h3>
+                <div>
+                  <!--<h3>{{item.FromName}}</h3>-->
+                  <span>{{item.FromName}}</span>
+                  <span ng-if="item.IsReaded" class="isReaded">已确认</span>
+                  {{item.isNewStatus}}
+                </div>
                 <!--时间-->
-                <pre class="preTitle preTime">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                 <!--报警等级-->
-                <span class="levelName">{{notifyObj.LevelName}}</span>
+                <span class="levelName">{{item.LevelName}}</span>
               </div>
 
               <!--标题-->
