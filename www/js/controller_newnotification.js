@@ -2,14 +2,7 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-
-  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
-
-    // 定义 icon 对应的路径集合数组
-    $scope.appIcons = new Array();
-
-    // 获取通知模块的 logo 的路径集合
-    $scope.appIcons = $rootScope.notificationAppIcons;
+  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
@@ -22,7 +15,6 @@ angular.module('newnotification.controllers', [])
     },function (err) {
 
     });
-
     // 通知置顶操作
     $scope.goIsTopEvent = function (item) {
       var id = item.MsgId;
@@ -152,31 +144,27 @@ angular.module('newnotification.controllers', [])
         //   // 获取 icon 对应的路径集合
         //   $scope.appIcons = succ;
 
-
-          // 循环遍历数据源，根据id查找相应的图片信息。有的话，设置为相应的图片信息；没有的话，设置一个默认显示图片的路径。
+        // 进来通知界面取出icon对应的路径集合
+        $greendao.loadAllData('QYYIconPathService',function (succ) {
+         // 根据id，往数据源中追加图片路径字段信息
           for (var i = 0; i < $scope.notifyNewList.length; i++) {
             var fromId = $scope.notifyNewList[i].FromID;
-
-            // 查找数据源，设置图片信息
-            for (var j = 0; j < $scope.appIcons.length; j++) {
-              if (  $scope.appIcons[j].appId === fromId ) {
-                $scope.notifyNewList[i].appIcon = $scope.appIcons[j].path;
+            for (var j = 0; j <succ.length; j++) {
+              if (  succ[j].appId === fromId ) {
+                $scope.notifyNewList[i].appIcon = succ[j].path;
               }else {
               }
             }
           }
-        //
-        //
-        //
-        // },function (err) {
-        //
-        // });
-      })
-      $timeout(function () {
-      }, 100);
-      //
+          // 刷新页面
+           $scope.$apply();
+
+        },function (err) {
+
+        });
+      });
       $scope.$broadcast('scroll.infiniteScrollComplete');
-    });
+      });
 
     $scope.newdex = 0;
     //滑块的状态

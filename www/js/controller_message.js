@@ -3855,6 +3855,7 @@ angular.module('message.controllers', [])
               qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
               qyyobject.appId = items[j].appId;
               $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+
               },function (err) {
               });
 
@@ -3888,17 +3889,6 @@ angular.module('message.controllers', [])
     }, function (err) {
     });
     // 门户代码结束
-
-    // 通知 icon 对应的路径集合 start
-    // // 根据id，往数据源中追加图片路径字段信息
-    //进来通知界面取出icon对应的路径集合
-    $greendao.loadAllData('QYYIconPathService',function (succ) {
-      // 获取 icon 对应的路径集合
-      $rootScope.notificationAppIcons = succ;
-    },function (err) {
-
-    });
-    // 通知页 icon 对应的路径集合 end
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope
