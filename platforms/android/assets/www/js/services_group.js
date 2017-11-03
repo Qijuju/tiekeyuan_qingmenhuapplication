@@ -65,7 +65,7 @@ angular.module('group.services', [])
     allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
-        console.log("通知的数据。。。"+JSON.stringify(msg));
+        // console.log("通知的数据。。。"+JSON.stringify(msg));
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {

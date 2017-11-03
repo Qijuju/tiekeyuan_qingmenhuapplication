@@ -298,7 +298,7 @@ angular.module('portal.controllers', [])
           }
         }).success(function (data) {
           var data = JSON.parse(decodeURIComponent(data));
-          console.log('获取的url' + JSON.stringify(data));
+          // console.log('获取的url' + JSON.stringify(data));
           $scope.chooseSingleBrowser(data.url, appId);
 
         }).error(function (err) {

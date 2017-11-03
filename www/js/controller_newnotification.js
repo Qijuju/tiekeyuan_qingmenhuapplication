@@ -215,6 +215,7 @@ angular.module('newnotification.controllers', [])
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
+    console.log("进入详情拿到当前数据"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -222,12 +223,13 @@ angular.module('newnotification.controllers', [])
       $timeout(function () {
         //只要进入通知详情界面，就将该条通知置为已读
         var newnotifyobj={};
-        newnotifyobj.msgId=$scope.notifyObj.MsgId;
+        newnotifyobj.msgId=$scope.notifyObj.msgId;
         newnotifyobj.appId=$scope.notifyObj.FromID;
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
+            console.log("进入详情统计未读数量"+data.length);
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
               $mqtt.saveInt('badgeNotifyCount',data.length);
