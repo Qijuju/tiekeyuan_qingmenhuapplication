@@ -32,7 +32,7 @@ import com.tky.mqtt.dao.NewNotifyListDao;
  * Master of DAO (schema version 1): knows all DAOs.
 */
 public class DaoMaster extends AbstractDaoMaster {
-    public static final int SCHEMA_VERSION = 12;
+    public static final int SCHEMA_VERSION = 1;
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {

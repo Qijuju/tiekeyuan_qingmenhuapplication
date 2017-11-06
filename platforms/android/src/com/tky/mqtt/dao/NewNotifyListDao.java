@@ -23,7 +23,7 @@ public class NewNotifyListDao extends AbstractDao<NewNotifyList, String> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property MsgId = new Property(0, String.class, "msgId", true, "MSG_ID");
+        public final static Property MsgId = new Property(0, String.class, "MsgId", true, "MSG_ID");
         public final static Property IsRead = new Property(1, String.class, "isRead", false, "IS_READ");
         public final static Property AppId = new Property(2, String.class, "appId", false, "APP_ID");
         public final static Property AppName = new Property(3, String.class, "appName", false, "APP_NAME");
@@ -42,7 +42,7 @@ public class NewNotifyListDao extends AbstractDao<NewNotifyList, String> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'NEW_NOTIFY_LIST' (" + //
-                "'MSG_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: msgId
+                "'MSG_ID' TEXT PRIMARY KEY NOT NULL ," + // 0: MsgId
                 "'IS_READ' TEXT," + // 1: isRead
                 "'APP_ID' TEXT," + // 2: appId
                 "'APP_NAME' TEXT);"); // 3: appName
@@ -59,9 +59,9 @@ public class NewNotifyListDao extends AbstractDao<NewNotifyList, String> {
     protected void bindValues(SQLiteStatement stmt, NewNotifyList entity) {
         stmt.clearBindings();
  
-        String msgId = entity.getMsgId();
-        if (msgId != null) {
-            stmt.bindString(1, msgId);
+        String MsgId = entity.getMsgId();
+        if (MsgId != null) {
+            stmt.bindString(1, MsgId);
         }
  
         String isRead = entity.getIsRead();
@@ -90,7 +90,7 @@ public class NewNotifyListDao extends AbstractDao<NewNotifyList, String> {
     @Override
     public NewNotifyList readEntity(Cursor cursor, int offset) {
         NewNotifyList entity = new NewNotifyList( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // msgId
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // MsgId
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // isRead
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // appId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // appName

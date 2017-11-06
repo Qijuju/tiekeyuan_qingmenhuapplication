@@ -280,7 +280,7 @@ public class GreenDaoPlugin extends CordovaPlugin {
       obj = gesturePwd;
     }else if("NewNotifyListService".equals(services)){
       NewNotifyList newNotifyList = new NewNotifyList();
-      newNotifyList.setMsgId(jsonobj.getString("msgId"));
+        newNotifyList.setMsgId(jsonobj.getString("MsgId"));
       newNotifyList.setAppId(jsonobj.getString("appId"));
       newNotifyList.setAppName(jsonobj.getString("appName"));
       newNotifyList.setIsRead(jsonobj.getString("isRead"));
