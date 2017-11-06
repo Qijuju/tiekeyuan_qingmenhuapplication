@@ -2,7 +2,10 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope, $state,$chatarr,$ToastUtils, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+
+    // 通知数据源
+    $scope.notifyNewList = [];
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
@@ -12,16 +15,20 @@ angular.module('newnotification.controllers', [])
       },function (err) {
         // alert("失败"+err);
       });
+
+      // 未读的通知
+      $scope.noReadData = data;
     },function (err) {
 
     });
+
+    // console.log("修改后的同事的数据：" + JSON.stringify($scope.notifyNewList));
     // 通知置顶操作
     $scope.goIsTopEvent = function (item) {
       var id = item.MsgId;
       var istop = item.IsToped  ? 'F' : 'T';
 
       $api.setNotifyMsg(id, false, istop, "", function (suc) {
-        console.log("置顶查出来的数据"+JSON.stringify(suc));
         if (istop == "T") {
           item.IsToped = true;
         } else if (istop == "F") {
@@ -104,9 +111,6 @@ angular.module('newnotification.controllers', [])
       })
     });
 
-    // 通知数据源
-    $scope.notifyNewList = [];
-
     //根據附件帶的url點擊進入附件
     $scope.gonet = function (net) {
 
@@ -118,14 +122,20 @@ angular.module('newnotification.controllers', [])
     $scope.loadMoreNotify = function () {
         $notify.allNotify();
     }
+    // 定义一个开关按钮状态，标志新的通知，显示小红点
+    // $scope.isNewStatus = false;
 
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
       $scope.$apply(function () {
         $scope.shownetstatus = false;
         if(data != null && data !=undefined && data != ''){
-          $scope.notifyNewList.unshift(data);
+          // $scope.isNewStatus = true;
+          // data.isNewStatus =  $scope.isNewStatus;
+          // data.isNewStatus = true;
+            $scope.notifyNewList.unshift(data);
         }else{
+          // $scope.isNewStatus = false;
           var notifyList= $notify.getAllNotify().msgList;
           var msgTotal = $notify.getAllNotify().msgTotal;
           if (msgTotal > 5) {
@@ -135,15 +145,27 @@ angular.module('newnotification.controllers', [])
           }
 
           for (var i = 0; i < notifyList.length; i++) {
+            // notifyList[i].isNewStatus =  $scope.isNewStatus;
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
-        // // // 根据id，往数据源中追加图片路径字段信息
-        // //进来通知界面取出icon对应的路径集合
-        // $greendao.loadAllData('QYYIconPathService',function (succ) {
+        // console.log("未读的通知-" + $scope.noReadData.length + "---"+ JSON.stringify($scope.noReadData));
+        // console.log("前修改" +$scope.notifyNewList.length +"---" + JSON.stringify($scope.notifyNewList));
+
+        // // 根据未读通知的msgId 判断是否加小红点标志
+        // for(var i=0;i<$scope.noReadData.length;i++){
+        //   var itemMsgId  = $scope.noReadData[i].msgId;
         //
-        //   // 获取 icon 对应的路径集合
-        //   $scope.appIcons = succ;
+        //   for( var j=0;j<$scope.notifyNewList.length;j++){
+        //     if(itemMsgId === $scope.notifyNewList[j].MsgId){
+        //       console.log("相等的msgID--：" + itemMsgId + "--数据源id:" +  $scope.notifyNewList[j].MsgId + $scope.notifyNewList[j].FromName );
+        //       $scope.notifyNewList[j].isNewStatus = true; // 未读
+        //     }else {
+        //       $scope.notifyNewList[j].isNewStatus = false; // 已读
+        //     }
+        //   }
+        // }
+        // console.log("后修改" +$scope.notifyNewList.length +"---" + JSON.stringify($scope.notifyNewList));
 
         // 进来通知界面取出icon对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
@@ -165,7 +187,7 @@ angular.module('newnotification.controllers', [])
         });
       });
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      })
+    })
 
 
     $scope.newdex = 0;
@@ -201,6 +223,8 @@ angular.module('newnotification.controllers', [])
 
     //从全部跳入详情
     $scope.goNotifyDetail = function (obj) {
+      // $scope.isNewStatus = false;
+      // obj.isNewStatus =  $scope.isNewStatus;
       $state.go('notifyDetail', {
         obj: {
           "bean": obj
@@ -209,13 +233,10 @@ angular.module('newnotification.controllers', [])
     };
   })
 
-
-
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
-    console.log("进入详情拿到当前数据"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -228,10 +249,11 @@ angular.module('newnotification.controllers', [])
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
+          // console.log("更新数据库表"+JSON.stringify(succ));
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
-            console.log("进入详情统计未读数量"+data.length);
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
+              // console.log("进入详情界面"+data.length);
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
               // alert("失败"+err);
@@ -257,11 +279,12 @@ angular.module('newnotification.controllers', [])
 
 
     /**
-     * 设置报警等级
+     *暂时不要先注释
      * @param id
      * @param istop
      */
     // $scope.showlevel = $scope.notifyObj.Level;
+    //
     // if ($scope.notifyObj.Level == 0) {
     //   $scope.levelName = "一般";
     // } else if ($scope.notifyObj.Level == 1) {
@@ -385,7 +408,6 @@ angular.module('newnotification.controllers', [])
         url: net,
       })
     }
-
 
     $scope.backNotify = function () {
       $ionicHistory.goBack();
