@@ -58,14 +58,16 @@ angular.module('group.services', [])
 
   var defaultCount=1;
   var allNotify;
+  var attentionNotify;
   var defaultNumber=5;
+  var defaultAttentionCount=1;
 
   return{
 
     allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
-        // console.log("通知的数据。。。"+JSON.stringify(msg));
+        console.log("通知的数据。。。"+JSON.stringify(msg));
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {
@@ -74,19 +76,36 @@ angular.module('group.services', [])
 
       });
     },
+    //获取关注列表
+    getAttentionNotify:function () {
+      $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
+        attentionNotify=data;
+        console.log("已关注的通知。。。"+JSON.stringify(data));
+        $rootScope.$broadcast('attention.update');
+        defaultAttentionCount++;
+      }, function (err) {
+        $ToastUtils.showToast(err);
+        $rootScope.$broadcast('attention.update');
+
+      });
+    },
 
 
     clearDefaultCount:function () {
       defaultCount=1;
     },
-
+    clearDefaultAttentionCount:function () {
+      defaultAttentionCount=1;
+    },
 
 
     getAllNotify:function () {
       return allNotify;
     },
 
-
+    getAllAttentionNotify:function () {
+      return attentionNotify;
+    }
   }
 
 });

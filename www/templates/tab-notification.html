@@ -110,7 +110,7 @@
                          pager-click="go(index)" >
             <ion-slide class="notificationIonSide">
               <ion-list no-lines>
-                <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in notifyNewList" ng-if="item.IsAttention" >
+                <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in allAttentionNotifyList" ng-if="item.IsAttention" >
                   <div>
                     <!--已确认的通知-->
                     <div class="row itemIsReadedYes" ng-click="goNotifyDetail(item)">
@@ -191,7 +191,7 @@
             </ion-slide>
           </ion-slide-box>
 
-          <ion-infinite-scroll  ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
+          <ion-infinite-scroll immediate-check="false" ng-if="notifyAttentionStatus" on-infinite="loadAttentionMoreNotify()" distance="1%" ></ion-infinite-scroll>
         </ion-content>
       </ion-view>
     </ion-tab>

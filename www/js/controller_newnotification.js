@@ -6,6 +6,8 @@ angular.module('newnotification.controllers', [])
 
     // 通知数据源
     $scope.notifyNewList = [];
+    //已关注的通知列表数据源
+    $scope.allAttentionNotifyList = [];
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
@@ -21,6 +23,9 @@ angular.module('newnotification.controllers', [])
     },function (err) {
 
     });
+
+
+
 
     // console.log("修改后的同事的数据：" + JSON.stringify($scope.notifyNewList));
     // 通知置顶操作
@@ -61,7 +66,6 @@ angular.module('newnotification.controllers', [])
 
     // 添加关注操作
     $scope.goIsAttentionEvent = function (item) {
-
       var id = item.MsgId;
       var isattention = item.IsAttention  ? 'F' : 'T';
 
@@ -119,15 +123,42 @@ angular.module('newnotification.controllers', [])
       })
     };
 
+    //上拉加载全部所有数据
     $scope.loadMoreNotify = function () {
+        $pubionicloading.showloading('','正在加载...');
         $notify.allNotify();
     }
     // 定义一个开关按钮状态，标志新的通知，显示小红点
     // $scope.isNewStatus = false;
 
+    //上拉加载关注更多数据
+    $scope.loadAttentionMoreNotify = function () {
+      $pubionicloading.showloading('','正在加载...');
+      $notify.getAttentionNotify();
+    }
+
+    //获取关注通知列表
+    $scope.$on('attention.update', function (event) {
+      $scope.$apply(function () {
+        $pubionicloading.hide();
+        var AttentionNotifyList = $notify.getAllAttentionNotify().msgList;
+        var attentionTotal = $notify.getAllAttentionNotify().msgTotal;
+        if(attentionTotal > 5){
+          $scope.notifyAttentionStatus = true;
+        }else{
+          $scope.notifyAttentionStatus = false;
+        }
+        for(var i=0;i<AttentionNotifyList.length;i++){
+          $scope.allAttentionNotifyList.push(AttentionNotifyList[i]);
+        }
+      })
+    });
+
+
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
       $scope.$apply(function () {
+        $pubionicloading.hide();
         $scope.shownetstatus = false;
         if(data != null && data !=undefined && data != ''){
           // $scope.isNewStatus = true;
@@ -198,7 +229,9 @@ angular.module('newnotification.controllers', [])
       $scope.shownetstatus = false;
       $ionicSlideBoxDelegate.enableSlide(false);
       $notify.clearDefaultCount();
+      $notify.clearDefaultAttentionCount();
       $notify.allNotify();
+      $notify.getAttentionNotify();
     });
 
     //点击滑块执行的方法
@@ -237,7 +270,6 @@ angular.module('newnotification.controllers', [])
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
-    console.log("详情界面的数据"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -250,7 +282,6 @@ angular.module('newnotification.controllers', [])
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-          console.log("更新数据库表"+JSON.stringify(succ));
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
