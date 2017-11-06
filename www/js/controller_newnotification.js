@@ -9,6 +9,7 @@ angular.module('newnotification.controllers', [])
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
+
       //拿到的未读数量展示在tab底部及桌面角标
       cordova.plugins.notification.badge.set(data.length,function (succ) {
         $mqtt.saveInt('badgeNotifyCount',data.length);
@@ -17,28 +18,12 @@ angular.module('newnotification.controllers', [])
       });
 
       // 未读的通知
-
       $scope.noReadData = data;
-      console.log("未读的通知-" + data.length + "---"+ JSON.stringify(data));
+      console.log("未读的通知：" + $scope.noReadData.length + "---" + JSON.stringify($scope.noReadData))
 
     },function (err) {
 
     });
-
-    // console.log("修改前的同事的数据：" +$scope.notifyNewList.length+"--" + JSON.stringify($scope.notifyNewList));
-    // console.log("未读信息的李彪：-"+$scope.noReadData.length+"--" + JSON.stringify($scope.noReadData));
-    // for(var i=0;i<$scope.notifyNewList.length;i++){
-    //   var itemMsgId  = $scope.notifyNewList[i].MsgId;
-    //   for( var j=0;j<$scope.noReadData.length;j++){
-    //     if(itemMsgId === $scope.noReadData[j].msgId){
-    //       console.log("未读通知的信息------"+ $scope.notifyNewList[i].FromName + $scope.notifyNewList[i].MsgId);
-    //       $scope.notifyNewList[i].isNewStatus = true; // 未读
-    //     }else {
-    //       console.log("已读----");
-    //       $scope.notifyNewList[i].isNewStatus = false; // 已读
-    //     }
-    //   }
-    // }
 
     // console.log("修改后的同事的数据：" + JSON.stringify($scope.notifyNewList));
     // 通知置顶操作
@@ -150,10 +135,10 @@ angular.module('newnotification.controllers', [])
         if(data != null && data !=undefined && data != ''){
           // $scope.isNewStatus = true;
           // data.isNewStatus =  $scope.isNewStatus;
-          data.isNewStatus = true;
+          // data.isNewStatus = true;
             $scope.notifyNewList.unshift(data);
         }else{
-          $scope.isNewStatus = false;
+          // $scope.isNewStatus = false;
           var notifyList= $notify.getAllNotify().msgList;
           var msgTotal = $notify.getAllNotify().msgTotal;
           if (msgTotal > 5) {
@@ -167,12 +152,24 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
+        // console.log("未读的通知-" + $scope.noReadData.length + "---"+ JSON.stringify($scope.noReadData));
+        // console.log("前修改" +$scope.notifyNewList.length +"---" + JSON.stringify($scope.notifyNewList));
 
-        console.log("修改后斤斤计较军的数据：" + JSON.stringify($scope.notifyNewList));
-
-
-
-
+        // // 根据未读通知的msgId 判断是否加小红点标志
+        console.log("小红点显示是否");
+        // for(var i=0;i<$scope.noReadData.length;i++){
+        //   var itemMsgId  = $scope.noReadData[i].msgId;
+        //
+        //   for( var j=0;j<$scope.notifyNewList.length;j++){
+        //     if(itemMsgId === $scope.notifyNewList[j].MsgId){
+        //       console.log("相等的msgID--：" + itemMsgId + "--数据源id:" +  $scope.notifyNewList[j].MsgId + $scope.notifyNewList[j].FromName );
+        //       $scope.notifyNewList[j].isNewStatus = true; // 未读
+        //     }else {
+        //       $scope.notifyNewList[j].isNewStatus = false; // 已读
+        //     }
+        //   }
+        // }
+        // console.log("后修改" +$scope.notifyNewList.length +"---" + JSON.stringify($scope.notifyNewList));
 
         // 进来通知界面取出icon对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
@@ -240,8 +237,6 @@ angular.module('newnotification.controllers', [])
     };
   })
 
-
-
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
@@ -253,16 +248,16 @@ angular.module('newnotification.controllers', [])
       $timeout(function () {
         //只要进入通知详情界面，就将该条通知置为已读
         var newnotifyobj={};
-        newnotifyobj.msgId=$scope.notifyObj.MsgId;
+        newnotifyobj.msgId=$scope.notifyObj.msgId;
         newnotifyobj.appId=$scope.notifyObj.FromID;
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-          console.log("更新数据库表"+JSON.stringify(succ));
+          // console.log("更新数据库表"+JSON.stringify(succ));
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
-              console.log("进入详情界面"+data.length);
+              // console.log("进入详情界面"+data.length);
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
               // alert("失败"+err);
@@ -287,17 +282,22 @@ angular.module('newnotification.controllers', [])
     }
 
 
-    $scope.showlevel = $scope.notifyObj.Level;
-
-    if ($scope.notifyObj.Level == 0) {
-      $scope.levelName = "一般";
-    } else if ($scope.notifyObj.Level == 1) {
-      $scope.levelName = "一般紧急";
-    } else if ($scope.notifyObj.Level == 2) {
-      $scope.levelName = "非常紧急";
-    } else {
-      $scope.levelName = "超级紧急";
-    }
+    /**
+     *暂时不要先注释
+     * @param id
+     * @param istop
+     */
+    // $scope.showlevel = $scope.notifyObj.Level;
+    //
+    // if ($scope.notifyObj.Level == 0) {
+    //   $scope.levelName = "一般";
+    // } else if ($scope.notifyObj.Level == 1) {
+    //   $scope.levelName = "一般紧急";
+    // } else if ($scope.notifyObj.Level == 2) {
+    //   $scope.levelName = "非常紧急";
+    // } else {
+    //   $scope.levelName = "超级紧急";
+    // }
 
 
 

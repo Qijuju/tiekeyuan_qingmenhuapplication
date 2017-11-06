@@ -28,7 +28,8 @@
                         <div class="notifyImgInfo">
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
-                          <span class="newStatus" ng-if="item.isNewStatus"></span>
+                          <!-- 小红点-->
+                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
                         </div>
 
                         <!--通知的详细信息-->
@@ -39,7 +40,6 @@
                               <!--<h3>{{item.FromName}}</h3>-->
                               <span>{{item.FromName}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
-                              {{item.isNewStatus}}
                           </div>
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
@@ -118,7 +118,10 @@
 
                         <!--通知显示相应的图片信息-->
                         <div class="notifyImgInfo">
-                          <img src="{{item.appIcon}}" alt="logo">
+                          <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
+                          <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
+                          <!-- 小红点-->
+                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
                         </div>
 
                         <!--通知的详细信息-->
@@ -129,7 +132,6 @@
                               <!--<h3>{{item.FromName}}</h3>-->
                               <span>{{item.FromName}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
-                              {{item.isNewStatus}}
                             </div>
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
