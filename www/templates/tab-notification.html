@@ -29,7 +29,7 @@
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
                           <!-- 小红点-->
-                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
+                          <span class="newStatus" ng-if="item.isNewStatus"></span>
                         </div>
 
                         <!--通知的详细信息-->
@@ -38,7 +38,7 @@
                             <!--名称-->
                             <div>
                               <!--<h3>{{item.FromName}}</h3>-->
-                              <span>{{item.FromName}}</span>
+                              <span>{{item.FromName}}</span><span style="color: #f30;">000--{{item.isNewStatus}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
                           </div>
                             <!--时间-->
@@ -59,13 +59,14 @@
                     <div class="row topFocus" >
                       <div class="col" ng-click="goIsTopEvent(item)">
                         <!--置顶-->
-                        <img class="rj-push-rightright" ng-if="item.IsToped" src="img/toptp.png">
-                        <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
+                        <img ng-if="item.IsToped" src="img/toptp.png" alt="logo">
+                        <img ng-if="!item.IsToped" src="img/toptop1.png" alt="logo">
                       </div>
+
                       <div class="col" ng-click="goIsAttentionEvent(item)">
                         <!--关注-->
-                        <img ng-if="item.IsAttention" src="img/focuseye.png">
-                        <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+                        <img ng-if="item.IsAttention" src="img/focuseye.png" alt="logo">
+                        <img ng-if="!item.IsAttention" src="img/focuseye1.png" alt="logo">
                       </div>
                       <!--等级-->
                       <!--<div class="col"  ng-if="(item.Level=='3')||(item.Level=='2') || (item.Level=='1')||(item.Level=='0')">-->
@@ -121,7 +122,7 @@
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
                           <!-- 小红点-->
-                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
+                          <span class="newStatus" ng-if="item.isNewStatus"></span>
                         </div>
 
                         <!--通知的详细信息-->
@@ -130,7 +131,7 @@
                             <!--名称-->
                             <div>
                               <!--<h3>{{item.FromName}}</h3>-->
-                              <span>{{item.FromName}}</span>
+                              <span>{{item.FromName}}</span> <span style="color: #f30;">000--{{item.isNewStatus}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
                             </div>
                             <!--时间-->
@@ -150,14 +151,14 @@
                     <div class="row topFocus">
                       <div class="col" ng-click="goIsTopEvent(item)">
                         <!--置顶-->
-                        <img class="rj-push-rightright" ng-if="item.IsToped" src="img/toptp.png">
-                        <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
+                        <img ng-if="item.IsToped" src="img/toptp.png" alt="logo">
+                        <img ng-if="!item.IsToped" src="img/toptop1.png" alt="logo">
 
                       </div>
                       <div class="col" ng-click="goIsAttentionEvent(item)">
                         <!--关注-->
-                        <img ng-if="item.IsAttention" src="img/focuseye.png">
-                        <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+                        <img ng-if="item.IsAttention" src="img/focuseye.png" alt="logo">
+                        <img ng-if="!item.IsAttention" src="img/focuseye1.png" alt="logo">
 
                       </div>
                       <!--等级-->
@@ -191,7 +192,7 @@
             </ion-slide>
           </ion-slide-box>
 
-          <ion-infinite-scroll ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
+          <ion-infinite-scroll  ng-if="notifyStatus" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
         </ion-content>
       </ion-view>
     </ion-tab>

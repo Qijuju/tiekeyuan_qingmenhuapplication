@@ -2,14 +2,13 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
     // 通知数据源
     $scope.notifyNewList = [];
 
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
-
       //拿到的未读数量展示在tab底部及桌面角标
       cordova.plugins.notification.badge.set(data.length,function (succ) {
         $mqtt.saveInt('badgeNotifyCount',data.length);
@@ -19,8 +18,6 @@ angular.module('newnotification.controllers', [])
 
       // 未读的通知
       $scope.noReadData = data;
-      console.log("未读的通知：" + $scope.noReadData.length + "---" + JSON.stringify($scope.noReadData))
-
     },function (err) {
 
     });
@@ -156,7 +153,6 @@ angular.module('newnotification.controllers', [])
         // console.log("前修改" +$scope.notifyNewList.length +"---" + JSON.stringify($scope.notifyNewList));
 
         // // 根据未读通知的msgId 判断是否加小红点标志
-        console.log("小红点显示是否");
         // for(var i=0;i<$scope.noReadData.length;i++){
         //   var itemMsgId  = $scope.noReadData[i].msgId;
         //
