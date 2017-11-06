@@ -12,9 +12,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services_group.js" afterPath="$PROJECT_DIR$/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/www/templates/tab-notification.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -725,14 +722,7 @@
       <workItem from="1509521086490" duration="22471000" />
       <workItem from="1509670332593" duration="2902000" />
       <workItem from="1509674584958" duration="10722000" />
-      <workItem from="1509709849712" duration="21786000" />
-    </task>
-    <task id="LOCAL-00191" summary="commit">
-      <created>1501066410497</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1501066410498</updated>
+      <workItem from="1509709849712" duration="21841000" />
     </task>
     <task id="LOCAL-00192" summary="commit">
       <created>1501126106627</created>
@@ -1070,11 +1060,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509953030835</updated>
     </task>
-    <option name="localTasksCounter" value="240" />
+    <task id="LOCAL-00240" summary="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;">
+      <created>1509961071700</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1509961071701</updated>
+    </task>
+    <option name="localTasksCounter" value="241" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2674813000" />
+    <option name="totallyTimeSpent" value="2674868000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1164,7 +1161,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit：合并后的代码最新的" />
     <MESSAGE value="修改包名 优化通知" />
     <MESSAGE value="7.20commit；稳定版本(修改包名)" />
     <MESSAGE value="拉完代码后能正常打包，但是不能调试" />
@@ -1189,7 +1185,8 @@
     <MESSAGE value="11.3commit:注释通知等级代码&#10;" />
     <MESSAGE value="11.6commit:提交代码准备跟菊菊代码合并&#10;" />
     <MESSAGE value="11.6commit:见as&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.6commit:见as&#10;" />
+    <MESSAGE value="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
