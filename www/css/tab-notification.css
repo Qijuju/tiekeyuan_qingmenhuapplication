@@ -79,32 +79,31 @@ div.confirm img{
 }
 /*去除置顶关注一行的列的内边距，控制高度*/
 .topFocus{
-  text-align: center;
-  height:40px;
-}
-.topFocus .col,
-.topFocus,
-.topFocusDetail .col,
-.topFocus{
-  padding:0px;
   border-top:1px solid #EFEFF4;
+  text-align: center;
 }
-.topFocus  .col img,
-.topFocusDetail  .col img{
+.topFocus .col img{
   width:20px;
   height:20px;
-  margin-top:10px;
-  margin-bottom:5px;
+  vertical-align: middle;
 }
-.topFocus .col,
-.topFocusDetail .col{
-  text-align: center;
-}
-.topFocusDetail{
-  padding:0px;
-  border-bottom:1px solid #E0E0E0;
-}
-
+/*.topFocus .col,*/
+/*.topFocusDetail .col,*/
+/*.topFocus{*/
+  /*padding:5px;*/
+  /*border-top:1px solid #EFEFF4;*/
+  /*text-align: center;*/
+/*}*/
+/*.topFocus  .col img,*/
+/*.topFocusDetail  .col img{*/
+  /*width:20px;*/
+  /*height:20px;*/
+  /*margin:0px;*/
+/*}*/
+/*.topFocusDetail{*/
+  /*padding:0px;*/
+  /*border-bottom:1px solid #E0E0E0;*/
+/*}*/
 /*标题*/
 pre.preTitle{
   text-overflow: ellipsis;
@@ -234,6 +233,8 @@ div.notifyDetail span.detailConfirm{
 .row.focus.notifyDetailFocusTop{
   height:90px;
   padding-top:0px;
+  /*border-top:1px solid #EFEFF4;*/
+
 }
 .row.focus.notifyDetailFocusTop .col > div{
   height:35px;

@@ -24,8 +24,11 @@
           <div class="col clearfix" >
             <!--通知显示相应的图片信息-->
             <div class="notifyImgInfo">
-              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
+              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon !== null"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
+
+              <!-- 小红点-->
+              <span class="newStatus" ng-if="notifyObj.isNewStatus"></span>
             </div>
 
             <!--通知的详细信息-->
@@ -70,7 +73,7 @@
         </div>
 
         <!--置顶和关注-->
-          <div class="row topFocusDetail" >
+          <div class="row topFocus" >
             <div class="col">
               <!--置顶-->
               <img ng-if="notifyObj.IsToped" src="img/toptp.png" >

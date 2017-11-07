@@ -1,4 +1,3 @@
-<!--view-title={{levelName}}-->
 <ion-view  class="common-view-color" >
 
   <!--导航条-->
@@ -21,12 +20,15 @@
       <div>
         <!--通知-->
         <!--已经确认-->
-        <div class="row itemIsReadedYes" ng-if="notifyObj.IsReaded">
+        <div class="row">
           <div class="col clearfix" >
             <!--通知显示相应的图片信息-->
             <div class="notifyImgInfo">
-              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
+              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon !== null"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
+
+              <!-- 小红点-->
+              <span class="newStatus" ng-if="notifyObj.isNewStatus"></span>
             </div>
 
             <!--通知的详细信息-->
@@ -41,7 +43,7 @@
                 <!--时间-->
                 <pre class="preTitle preTime notifyTime">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</pre>
                 <!--报警等级-->
-                <span class="levelName">{{notifyObj.LevelName}}</span>
+                <!--<span class="levelName">{{notifyObj.LevelName}}</span>-->
               </div>
 
               <!--标题-->
@@ -60,62 +62,18 @@
           </div>
         </div>
 
-        <!--详情确认-->
-        <div class="row itemIsReadedNo" ng-if="!notifyObj.IsReaded">
-          <div class="col clearfix" >
-
-            <!--通知显示相应的图片信息-->
-            <div class="notifyImgInfo">
-              <!-- 通知logo -->
-              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
-              <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
-
-            </div>
-
-            <!--通知的详细信息-->
-            <div class="notifyDetailInfo">
-
-              <div class="infoTop">
-                <!--名称-->
-                <div>
-                  <span class="FromName">{{notifyObj.FromName}}</span>
-                  <span ng-if="notifyObj.IsReaded" class="isReaded">已确认</span>
-                </div>
-                <!--时间-->
-                <pre class="preTitle preTime notifyTime">{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}</pre>
-                <!--报警等级-->
-                <span class="levelName">{{notifyObj.LevelName}}</span>
-              </div>
-
-              <!--标题-->
-              <div>
-                <pre class="detailTitle">{{notifyObj.Title}}</pre>
-              </div>
-
-              <!--链接点击，暂时屏蔽-->
-              <!--<div class="notify">-->
-                <!--&lt;!&ndash;<pre ng-click="!notifyObj.Link ==''"><a ng-click="gonet(notifyObj.Link)">{{notifyObj.Link}}</a></pre>&ndash;&gt;-->
-                <!--<pre ng-click="!notifyObj.Link==''"><a href="{{notifyObj.Link}}">{{notifyObj.Link}}</a></pre>-->
-
-              <!--</div>-->
-            </div>
-            <pre class="notifyObjMsg">{{notifyObj.Msg}}</pre>
-
-          </div>
-        </div>
-
-        <div  class="confirm notifyDetail itemIsReadedNo" ng-click="goNotifyDetail(notifyObj)"  ng-if="!notifyObj.IsReaded">
+        <div  class="confirm notifyDetail" ng-click="goNotifyDetail(notifyObj)"  ng-if="!notifyObj.IsReaded">
           <div></div>
           <span class="detailConfirm" ng-click="confirmDetail(notifyObj.MsgId)">详情确认</span>
         </div>
 
-        <div  class="confirm notifyDetail itemIsReadedYes"  ng-click="goNotifyDetail(item)" ng-if="notifyObj.IsReaded">
+        <div  class="confirm notifyDetail"  ng-click="goNotifyDetail(item)" ng-if="notifyObj.IsReaded">
           <div></div>
           <span class="detailConfirm" ng-if="notifyObj.IsReaded">已经确认</span>
         </div>
 
         <!--置顶和关注-->
-          <div class="row topFocusDetail" >
+          <div class="row topFocus" >
             <div class="col">
               <!--置顶-->
               <img ng-if="notifyObj.IsToped" src="img/toptp.png" >
