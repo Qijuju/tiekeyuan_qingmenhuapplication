@@ -67,7 +67,6 @@ angular.module('group.services', [])
     allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
-        console.log("通知的数据。。。"+JSON.stringify(msg));
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {
@@ -80,7 +79,6 @@ angular.module('group.services', [])
     getAttentionNotify:function () {
       $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
         attentionNotify=data;
-        console.log("已关注的通知。。。"+JSON.stringify(data));
         $rootScope.$broadcast('attention.update');
         defaultAttentionCount++;
       }, function (err) {

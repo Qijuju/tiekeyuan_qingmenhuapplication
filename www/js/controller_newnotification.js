@@ -285,7 +285,6 @@ angular.module('newnotification.controllers', [])
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
-              console.log("进入详情界面"+data.length);
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
               // alert("失败"+err);
@@ -555,7 +554,6 @@ angular.module('newnotification.controllers', [])
         document.getElementById("leftbt").style.borderBottomColor = "#ffffff";
         document.getElementById("rightbt").style.borderBottomColor = "#6c9aff";
         document.getElementById("rightbt").style.borderWidth = "3px";
-
         $scope.alreadyNofiy();
 
       }

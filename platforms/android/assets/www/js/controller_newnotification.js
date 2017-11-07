@@ -66,7 +66,6 @@ angular.module('newnotification.controllers', [])
 
     // 添加关注操作
     $scope.goIsAttentionEvent = function (item) {
-      console.log("是否添加关注"+JSON.stringify(item));
       var id = item.MsgId;
       var isattention = item.IsAttention  ? 'F' : 'T';
 
@@ -271,7 +270,6 @@ angular.module('newnotification.controllers', [])
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
 
     $scope.notifyObj = $stateParams.obj.bean;
-    console.log("详情界面的数据"+JSON.stringify($scope.notifyObj));
     var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -284,11 +282,9 @@ angular.module('newnotification.controllers', [])
         newnotifyobj.isRead="1";
         newnotifyobj.appName=$scope.notifyObj.FromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
-          console.log("更新数据库表"+JSON.stringify(succ));
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
-              console.log("进入详情界面"+data.length);
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
               // alert("失败"+err);

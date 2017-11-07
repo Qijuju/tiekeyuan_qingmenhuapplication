@@ -11,7 +11,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/templates/tab-notification.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +36,8 @@
       <file leaf-file-name="controller_newnotification.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_newnotification.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+            <state relative-caret-position="121">
+              <caret line="325" column="35" lean-forward="true" selection-start-line="325" selection-start-column="35" selection-end-line="325" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
       <file leaf-file-name="controller_login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1865">
+            <state relative-caret-position="810">
               <caret line="54" column="98" lean-forward="false" selection-start-line="54" selection-start-column="98" selection-end-line="54" selection-end-column="98" />
               <folding />
             </state>
@@ -56,8 +56,8 @@
       <file leaf-file-name="controller_contacts.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="653" column="45" lean-forward="true" selection-start-line="653" selection-start-column="33" selection-end-line="653" selection-end-column="45" />
+            <state relative-caret-position="9795">
+              <caret line="653" column="45" lean-forward="false" selection-start-line="653" selection-start-column="33" selection-end-line="653" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -66,7 +66,7 @@
       <file leaf-file-name="service_common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
+            <state relative-caret-position="5340">
               <caret line="356" column="18" lean-forward="false" selection-start-line="356" selection-start-column="6" selection-end-line="356" selection-end-column="18" />
               <folding />
             </state>
@@ -76,7 +76,7 @@
       <file leaf-file-name="notifyDetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/notifyDetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="2130">
               <caret line="142" column="87" lean-forward="false" selection-start-line="142" selection-start-column="87" selection-end-line="142" selection-end-column="87" />
               <folding />
             </state>
@@ -87,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/aboutour.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,8 +96,8 @@
       <file leaf-file-name="tab-notification.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/tab-notification.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="101" column="22" lean-forward="true" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+            <state relative-caret-position="1515">
+              <caret line="101" column="22" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -106,8 +106,8 @@
       <file leaf-file-name="services_group.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services_group.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+            <state relative-caret-position="1095">
+              <caret line="73" column="53" lean-forward="false" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -117,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/www/js/controller_portal2.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -126,8 +126,8 @@
       <file leaf-file-name="service_message.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/service_message.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="393" column="16" lean-forward="true" selection-start-line="393" selection-start-column="16" selection-end-line="393" selection-end-column="16" />
+            <state relative-caret-position="5895">
+              <caret line="393" column="16" lean-forward="false" selection-start-line="393" selection-start-column="16" selection-end-line="393" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -146,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$scope.allNoRead</find>
       <find>noread.update</find>
       <find>second.notify</find>
       <find>NotifyNoRead</find>
@@ -176,6 +175,7 @@
       <find>getAttentionNotify</find>
       <find>clearDefaultCount</find>
       <find>$scope.notifyNewList</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -282,7 +282,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -324,12 +323,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -722,14 +740,8 @@
       <workItem from="1509521086490" duration="22471000" />
       <workItem from="1509670332593" duration="2902000" />
       <workItem from="1509674584958" duration="10722000" />
-      <workItem from="1509709849712" duration="21851000" />
-    </task>
-    <task id="LOCAL-00193" summary="跟孙合并完代码(剔除thrift相关代码)">
-      <created>1501126318794</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1501126318794</updated>
+      <workItem from="1509709849712" duration="23897000" />
+      <workItem from="1510019309439" duration="11755000" />
     </task>
     <task id="LOCAL-00194" summary="8.8commit:1.添加toast&#10;2.添加spinnerdailog&#10;3.添加inappbrowser&#10;4.添加badge(遗留一点问题)">
       <created>1502155537621</created>
@@ -1067,11 +1079,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509961086089</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;">
+      <created>1509961118713</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1509961118713</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2674878000" />
+    <option name="totallyTimeSpent" value="2688679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1086,7 +1105,7 @@
     <frame x="0" y="23" width="1680" height="951" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2591923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17661242" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17681499" sideWeight="0.5953545" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941452" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1424,7 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9495">
           <caret line="633" column="31" lean-forward="false" selection-start-line="633" selection-start-column="31" selection-end-line="633" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1454,7 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4245">
           <caret line="283" column="29" lean-forward="false" selection-start-line="283" selection-start-column="29" selection-end-line="283" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,7 +1478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="3934" column="12" lean-forward="false" selection-start-line="3934" selection-start-column="12" selection-end-line="3934" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1470,7 +1485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1478,14 +1492,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_portal2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1493,22 +1506,22 @@
     <entry file="file://$PROJECT_DIR$/www/templates/aboutour.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/service_message.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="393" column="16" lean-forward="true" selection-start-line="393" selection-start-column="16" selection-end-line="393" selection-end-column="16" />
+        <state relative-caret-position="5895">
+          <caret line="393" column="16" lean-forward="false" selection-start-line="393" selection-start-column="16" selection-end-line="393" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/notifyDetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="2130">
           <caret line="142" column="87" lean-forward="false" selection-start-line="142" selection-start-column="87" selection-end-line="142" selection-end-column="87" />
           <folding />
         </state>
@@ -1516,7 +1529,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/service_common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
+        <state relative-caret-position="5340">
           <caret line="356" column="18" lean-forward="false" selection-start-line="356" selection-start-column="6" selection-end-line="356" selection-end-column="18" />
           <folding />
         </state>
@@ -1524,7 +1537,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1865">
+        <state relative-caret-position="810">
           <caret line="54" column="98" lean-forward="false" selection-start-line="54" selection-start-column="98" selection-end-line="54" selection-end-column="98" />
           <folding />
         </state>
@@ -1532,32 +1545,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="653" column="45" lean-forward="true" selection-start-line="653" selection-start-column="33" selection-end-line="653" selection-end-column="45" />
+        <state relative-caret-position="9795">
+          <caret line="653" column="45" lean-forward="false" selection-start-line="653" selection-start-column="33" selection-end-line="653" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/tab-notification.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="101" column="22" lean-forward="true" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        <state relative-caret-position="1515">
+          <caret line="101" column="22" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services_group.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+        <state relative-caret-position="1095">
+          <caret line="73" column="53" lean-forward="false" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_newnotification.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="121">
+          <caret line="325" column="35" lean-forward="true" selection-start-line="325" selection-start-column="35" selection-end-line="325" selection-end-column="35" />
           <folding />
         </state>
       </provider>
