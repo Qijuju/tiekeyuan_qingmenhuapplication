@@ -304,9 +304,7 @@ angular.module('portal.controllers', [])
         }).error(function (err) {
 
         });
-
     }
-
 
     //pubilc：选择调用谷歌还是其他浏览器
     $scope.chooseSingleBrowser = function (testUrl,appId) {

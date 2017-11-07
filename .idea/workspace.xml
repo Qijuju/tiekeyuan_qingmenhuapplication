@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="" />
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/platforms/" />
@@ -68,9 +65,12 @@
       <file leaf-file-name="notifyDetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/notifyDetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2130">
-              <caret line="142" column="87" lean-forward="false" selection-start-line="142" selection-start-column="87" selection-end-line="142" selection-end-column="87" />
-              <folding />
+            <state relative-caret-position="1440">
+              <caret line="96" column="87" lean-forward="false" selection-start-line="96" selection-start-column="87" selection-end-line="96" selection-end-column="87" />
+              <folding>
+                <marker date="1510048197000" expanded="true" signature="2999:3229" ph="..." />
+                <marker date="1510048197000" expanded="true" signature="2999:4016" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,7 +90,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1515">
               <caret line="101" column="22" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
-              <folding />
+              <folding>
+                <marker date="1510048197000" expanded="true" signature="7976:8198" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +112,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
               <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1510048197000" expanded="true" signature="8957:12427" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10072:11081" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10138:11034" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10161:10706" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10377:10534" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10406:10443" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10592:10694" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10712:10883" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="10816:10831" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11127:11194" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11240:12337" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11303:11622" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11426:11542" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11548:11612" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11639:11699" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="11701:12322" ph="{&quot;prompt&quot;: &quot;请将二维码放在扫描框中&quot;...}" />
+                <marker date="1510048197000" expanded="true" signature="12384:12422" ph="{...}" />
+                <marker date="1510048197000" expanded="true" signature="12429:15553" ph="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -733,14 +754,7 @@
       <workItem from="1509670332593" duration="2902000" />
       <workItem from="1509674584958" duration="10722000" />
       <workItem from="1509709849712" duration="23897000" />
-      <workItem from="1510019309439" duration="11978000" />
-    </task>
-    <task id="LOCAL-00196" summary="commit:生产环境上线第一版0831">
-      <created>1504248938837</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1504248938839</updated>
+      <workItem from="1510019309439" duration="12039000" />
     </task>
     <task id="LOCAL-00197" summary="0908commit:生产环境第二版">
       <created>1504839826372</created>
@@ -1078,11 +1092,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510048079727</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="11.7commit:准备拉取菊菊代码&#10;">
+      <created>1510048174722</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1510048174722</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2688902000" />
+    <option name="totallyTimeSpent" value="2688963000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1491,7 +1512,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1510048197000" expanded="true" signature="8957:12427" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10072:11081" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10138:11034" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10161:10706" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10377:10534" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10406:10443" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10592:10694" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10712:10883" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="10816:10831" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11127:11194" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11240:12337" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11303:11622" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11426:11542" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11548:11612" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11639:11699" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="11701:12322" ph="{&quot;prompt&quot;: &quot;请将二维码放在扫描框中&quot;...}" />
+            <marker date="1510048197000" expanded="true" signature="12384:12422" ph="{...}" />
+            <marker date="1510048197000" expanded="true" signature="12429:15553" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1513,9 +1553,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/notifyDetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2130">
-          <caret line="142" column="87" lean-forward="false" selection-start-line="142" selection-start-column="87" selection-end-line="142" selection-end-column="87" />
-          <folding />
+        <state relative-caret-position="1440">
+          <caret line="96" column="87" lean-forward="false" selection-start-line="96" selection-start-column="87" selection-end-line="96" selection-end-column="87" />
+          <folding>
+            <marker date="1510048197000" expanded="true" signature="2999:3229" ph="..." />
+            <marker date="1510048197000" expanded="true" signature="2999:4016" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1547,7 +1590,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1515">
           <caret line="101" column="22" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1510048197000" expanded="true" signature="7976:8198" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
