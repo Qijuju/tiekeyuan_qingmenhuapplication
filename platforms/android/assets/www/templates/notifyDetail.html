@@ -27,8 +27,6 @@
             <div class="notifyImgInfo">
               <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
-              <!-- 小红点-->
-              <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
             </div>
 
             <!--通知的详细信息-->
@@ -37,8 +35,7 @@
               <div class="infoTop">
                 <!--名称-->
                 <div>
-                  <!--<h3>{{item.FromName}}</h3>-->
-                  <span>{{notifyObj.FromName}}</span>
+                  <span class="FromName">{{notifyObj.FromName}}</span>
                   <span ng-if="notifyObj.IsReaded" class="isReaded">已确认</span>
                 </div>
                 <!--时间-->
@@ -49,7 +46,7 @@
 
               <!--标题-->
               <div>
-                <pre class="preTitle">标题：{{notifyObj.Title}}</pre>
+                <pre class="detailTitle">{{notifyObj.Title}}</pre>
               </div>
 
               <!--&lt;!&ndash;附件&ndash;&gt;-->
@@ -59,7 +56,7 @@
 
               <!--</div>-->
             </div>
-            <pre>{{notifyObj.Msg}}</pre>
+            <pre class="notifyObjMsg">{{notifyObj.Msg}}</pre>
           </div>
         </div>
 
@@ -69,10 +66,10 @@
 
             <!--通知显示相应的图片信息-->
             <div class="notifyImgInfo">
+              <!-- 通知logo -->
               <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
-              <!-- 小红点-->
-              <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
+
             </div>
 
             <!--通知的详细信息-->
@@ -81,8 +78,7 @@
               <div class="infoTop">
                 <!--名称-->
                 <div>
-                  <!--<h3>{{item.FromName}}</h3>-->
-                  <span>{{notifyObj.FromName}}</span>
+                  <span class="FromName">{{notifyObj.FromName}}</span>
                   <span ng-if="notifyObj.IsReaded" class="isReaded">已确认</span>
                 </div>
                 <!--时间-->
@@ -93,7 +89,7 @@
 
               <!--标题-->
               <div>
-                <pre class="preTitle">标题：{{notifyObj.Title}}</pre>
+                <pre class="detailTitle">{{notifyObj.Title}}</pre>
               </div>
 
               <!--链接点击，暂时屏蔽-->
@@ -103,7 +99,7 @@
 
               <!--</div>-->
             </div>
-            <pre>{{notifyObj.Msg}}</pre>
+            <pre class="notifyObjMsg">{{notifyObj.Msg}}</pre>
 
           </div>
         </div>
@@ -122,7 +118,7 @@
           <div class="row topFocusDetail" >
             <div class="col">
               <!--置顶-->
-              <img class="rj-push-rightright" ng-if="notifyObj.IsToped" src="img/toptp.png" >
+              <img ng-if="notifyObj.IsToped" src="img/toptp.png" >
             </div>
 
             <div class="col">

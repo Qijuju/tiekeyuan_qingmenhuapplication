@@ -26,9 +26,11 @@
                       <div class="col clearfix">
                         <!--通知logo-->
                         <div class="notifyImgInfo">
+                          <!--通知logo-->
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
-                          <!-- 小红点-->
+
+                          <!-- 未读通知标识：小红点-->
                           <span class="newStatus" ng-if="item.isNewStatus"></span>
                         </div>
 
@@ -37,18 +39,17 @@
                           <div class="infoTop">
                             <!--名称-->
                             <div>
-                              <!--<h3>{{item.FromName}}</h3>-->
-                              <span>{{item.FromName}}</span><span style="color: #f30;">000--{{item.isNewStatus}}</span>
+                              <span class="FromName">{{item.FromName}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
-                          </div>
+                            </div>
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                             <!--报警等级-->
-                            <span class="levelName">{{item.LevelName}}</span>
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
                           </div>
                           <!--标题-->
                           <div>
-                            <pre class="preTitle">标题:{{item.Title}}</pre>
+                            <pre class="preTitle">{{item.Title}}</pre>
                           </div>
 
                         </div>
@@ -119,10 +120,13 @@
 
                         <!--通知显示相应的图片信息-->
                         <div class="notifyImgInfo">
+                          <!--通知logo-->
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
-                          <!-- 小红点-->
+
+                          <!-- 未读通知标识：小红点-->
                           <span class="newStatus" ng-if="item.isNewStatus"></span>
+
                         </div>
 
                         <!--通知的详细信息-->
@@ -130,14 +134,13 @@
                           <div class="infoTop">
                             <!--名称-->
                             <div>
-                              <!--<h3>{{item.FromName}}</h3>-->
-                              <span>{{item.FromName}}</span> <span style="color: #f30;">000--{{item.isNewStatus}}</span>
+                              <span class="FromName">{{item.FromName}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
                             </div>
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
-                            <!--报警等级-->
-                            <span class="levelName">{{item.LevelName}}</span>
+                            <!--报警等级:::暂时屏蔽-->
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
                           </div>
                           <!--标题-->
                           <div>

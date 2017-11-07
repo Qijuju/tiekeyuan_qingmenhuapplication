@@ -313,7 +313,7 @@ public class GreenDaoGenerator {
      */
     private static void addNewNotifyList(Schema schema){
         Entity msgHistory=schema.addEntity("NewNotifyList");
-        msgHistory.addStringProperty("msgId").primaryKey();//通知的消息id
+        msgHistory.addStringProperty("MsgId").primaryKey();//通知的消息id
         msgHistory.addStringProperty("isRead");//通知已读未读状态
         msgHistory.addStringProperty("appId");//应用id
         msgHistory.addStringProperty("appName");//应用名称

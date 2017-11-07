@@ -9,7 +9,7 @@ import com.tky.mqtt.base.BaseDao;
  */
 public class NewNotifyList extends BaseDao {
 
-    private String msgId;
+    private String MsgId;
     private String isRead;
     private String appId;
     private String appName;
@@ -17,23 +17,23 @@ public class NewNotifyList extends BaseDao {
     public NewNotifyList() {
     }
 
-    public NewNotifyList(String msgId) {
-        this.msgId = msgId;
+    public NewNotifyList(String MsgId) {
+        this.MsgId = MsgId;
     }
 
-    public NewNotifyList(String msgId, String isRead, String appId, String appName) {
-        this.msgId = msgId;
+    public NewNotifyList(String MsgId, String isRead, String appId, String appName) {
+        this.MsgId = MsgId;
         this.isRead = isRead;
         this.appId = appId;
         this.appName = appName;
     }
 
     public String getMsgId() {
-        return msgId;
+        return MsgId;
     }
 
-    public void setMsgId(String msgId) {
-        this.msgId = msgId;
+    public void setMsgId(String MsgId) {
+        this.MsgId = MsgId;
     }
 
     public String getIsRead() {

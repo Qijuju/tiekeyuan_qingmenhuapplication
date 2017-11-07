@@ -597,7 +597,7 @@ angular.module('message.services', [])
               notifyMessage.Msg=message.message;
               notifyMessage.MsgDate=message.when;
               notifyMessage.Title=message.title;
-              notifyMessage.msgId=message.msgId;
+              notifyMessage.MsgId=message.msgId;
               notifyMessage.IsAttention=false;
               notifyMessage.__isset_bitfield="";
             $rootScope.$broadcast('allnotify.update',notifyMessage);
