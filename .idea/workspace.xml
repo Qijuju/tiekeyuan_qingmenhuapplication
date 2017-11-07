@@ -11,7 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/controller_newnotification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/www/js/controller_newnotification.js" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -741,14 +740,7 @@
       <workItem from="1509670332593" duration="2902000" />
       <workItem from="1509674584958" duration="10722000" />
       <workItem from="1509709849712" duration="23897000" />
-      <workItem from="1510019309439" duration="11755000" />
-    </task>
-    <task id="LOCAL-00194" summary="8.8commit:1.添加toast&#10;2.添加spinnerdailog&#10;3.添加inappbrowser&#10;4.添加badge(遗留一点问题)">
-      <created>1502155537621</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1502155537622</updated>
+      <workItem from="1510019309439" duration="11880000" />
     </task>
     <task id="LOCAL-00195" summary="8.8commit:1.添加toast&#10;2.添加spinnerdailog&#10;3.添加inappbrowser&#10;4.添加badge(遗留一点问题)">
       <created>1502156542121</created>
@@ -1086,11 +1078,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509961118713</updated>
     </task>
-    <option name="localTasksCounter" value="243" />
+    <task id="LOCAL-00243" summary="11.7commit:准备拉取菊菊代码&#10;">
+      <created>1510048065289</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1510048065290</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2688679000" />
+    <option name="totallyTimeSpent" value="2688804000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1180,7 +1179,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改包名 优化通知" />
     <MESSAGE value="7.20commit；稳定版本(修改包名)" />
     <MESSAGE value="拉完代码后能正常打包，但是不能调试" />
     <MESSAGE value="commit" />
@@ -1205,7 +1203,8 @@
     <MESSAGE value="11.6commit:提交代码准备跟菊菊代码合并&#10;" />
     <MESSAGE value="11.6commit:见as&#10;" />
     <MESSAGE value="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;" />
+    <MESSAGE value="11.7commit:准备拉取菊菊代码&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.7commit:准备拉取菊菊代码&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
