@@ -79,32 +79,31 @@ div.confirm img{
 }
 /*去除置顶关注一行的列的内边距，控制高度*/
 .topFocus{
-  text-align: center;
-  height:40px;
-}
-.topFocus .col,
-.topFocus,
-.topFocusDetail .col,
-.topFocus{
-  padding:0px;
   border-top:1px solid #EFEFF4;
+  text-align: center;
 }
-.topFocus  .col img,
-.topFocusDetail  .col img{
+.topFocus .col img{
   width:20px;
   height:20px;
-  margin-top:10px;
-  margin-bottom:5px;
+  vertical-align: middle;
 }
-.topFocus .col,
-.topFocusDetail .col{
-  text-align: center;
-}
-.topFocusDetail{
-  padding:0px;
-  border-bottom:1px solid #E0E0E0;
-}
-
+/*.topFocus .col,*/
+/*.topFocusDetail .col,*/
+/*.topFocus{*/
+  /*padding:5px;*/
+  /*border-top:1px solid #EFEFF4;*/
+  /*text-align: center;*/
+/*}*/
+/*.topFocus  .col img,*/
+/*.topFocusDetail  .col img{*/
+  /*width:20px;*/
+  /*height:20px;*/
+  /*margin:0px;*/
+/*}*/
+/*.topFocusDetail{*/
+  /*padding:0px;*/
+  /*border-bottom:1px solid #E0E0E0;*/
+/*}*/
 /*标题*/
 pre.preTitle{
   text-overflow: ellipsis;
@@ -112,8 +111,12 @@ pre.preTitle{
   overflow: hidden;
   height:25px;
   line-height:25px;
+  font-size:14px;
+  color: #c6c6c6;
 }
-
+pre.detailTitle,pre.notifyObjMsg{
+  font-size:14px;
+}
 .preTitle.preTime.notifyTime{
   width: 80px;
 }
@@ -127,26 +130,39 @@ span.levelName{
   top:25px;
   right:0px;
   color:#FF5722;
+  font-size:14px;
 }
 /*确认信息*/
+.preTitle.preTime.notifyTime,pre.notifyObjMsg{
+  color: #B4B5B4;
+}
 span.isReaded,.preTitle.preTime.notifyTime{
   font-size:14px;
-  color: #c6c6c6;
 }
 span.isReaded{
-  background: #eceadf;
+  background: #B4B5B4;
+  color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding:2px 4px;
+  font-size:12px;
 }
 /* 新的通知的红点标志*/
 span.newStatus{
+  position: absolute;
+  top:-3px;
+  right:-3px;
   display: inline-block;
-  width:5px;
-  height:5px;
+  width:10px;
+  height:10px;
   background: #FF5722;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 div.notifyImgInfo{
+  position: relative;
   height:55px;
   float: left;
   margin-right:10px;
@@ -164,6 +180,10 @@ div.notifyDetailInfo > .infoTop{
   width:100%;
   height:25px;
   line-height:25px;
+}
+
+div.notifyDetailInfo > .infoTop .FromName{
+  font-size:16px;
 }
 p.level{
   position: relative;
@@ -213,6 +233,8 @@ div.notifyDetail span.detailConfirm{
 .row.focus.notifyDetailFocusTop{
   height:90px;
   padding-top:0px;
+  /*border-top:1px solid #EFEFF4;*/
+
 }
 .row.focus.notifyDetailFocusTop .col > div{
   height:35px;

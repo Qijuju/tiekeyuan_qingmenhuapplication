@@ -502,7 +502,6 @@ angular.module('message.services', [])
                 $mqtt.updateQunliao(message);
               }
 
-
               if (msgDetail.messagetype != 'Audio' && msgDetail.messagetype != 'Vedio') {
                 var savefilepic = {};
                 savefilepic.filepicid = sdata[1];

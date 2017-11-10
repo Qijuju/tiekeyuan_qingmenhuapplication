@@ -16,6 +16,8 @@ import com.r93535.im.Constants;
 import com.r93535.im.MainActivity;
 import com.r93535.im.R;
 import com.r93535.im.TestActivity;
+import com.tky.im.enums.IMEnums;
+import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -288,6 +290,11 @@ public class OAIntegration extends CordovaPlugin {
                         @Override
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
+//                            IMEnums imEnums= IMStatusManager.getImStatus();
+//                            if(imEnums == IMEnums.CONNECT_DOWN_BY_HAND){
+//                                IMSwitchLocal.exitLogin(UIUtils.getContext());
+//                                return;
+//                            }
                             progress = progress *  100;
                             final float finalProgress = progress;
                             UIUtils.runInMainThread(new Runnable() {

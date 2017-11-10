@@ -1,10 +1,10 @@
 
 <ion-view  class="common-view-color" view-title="通知">
   <ion-nav-bar align-title="right" class="newbarhead">
-      <!--<ion-toggle1 ng-checked="appstatus" class="item-borderless"-->
-                   <!--style="position: absolute;top:0px;right:0px;height: 45px;width:160px;margin-top: -10px;background: transparent;z-index: 99;"-->
-                   <!--ng-click="changeSlide(newdex)">-->
-      <!--</ion-toggle1>-->
+    <!--<ion-toggle1 ng-checked="appstatus" class="item-borderless"-->
+    <!--style="position: absolute;top:0px;right:0px;height: 45px;width:160px;margin-top: -10px;background: transparent;z-index: 99;"-->
+    <!--ng-click="changeSlide(newdex)">-->
+    <!--</ion-toggle1>-->
   </ion-nav-bar>
   <ion-tabs class="tabs-positive tabs-striped tabs-top" >
     <ion-tab title="全部">
@@ -29,7 +29,7 @@
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
                           <!-- 小红点-->
-                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
+                          <span class="newStatus" ng-if="item.isNewStatus"></span>
                         </div>
 
                         <!--通知的详细信息-->
@@ -40,11 +40,11 @@
                               <!--<h3>{{item.FromName}}</h3>-->
                               <span>{{item.FromName}}</span>
                               <span ng-if="item.IsReaded" class="isReaded">已确认</span>
-                          </div>
+                            </div>
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                             <!--报警等级-->
-                            <span class="levelName">{{item.LevelName}}</span>
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
                           </div>
                           <!--标题-->
                           <div>
@@ -59,8 +59,8 @@
                     <div class="row topFocus" >
                       <div class="col" ng-click="goIsTopEvent(item)">
                         <!--置顶-->
-                        <img class="rj-push-rightright" ng-if="item.IsToped" src="img/toptp.png">
-                        <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
+                        <img ng-if="item.IsToped" src="img/toptp.png">
+                        <img ng-if="!item.IsToped" src="img/toptop1.png">
                       </div>
                       <div class="col" ng-click="goIsAttentionEvent(item)">
                         <!--关注-->
@@ -69,27 +69,27 @@
                       </div>
                       <!--等级-->
                       <!--<div class="col"  ng-if="(item.Level=='3')||(item.Level=='2') || (item.Level=='1')||(item.Level=='0')">-->
-                        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='3'" >-->
-                          <!--<img src="img/alert.png" alt="">-->
-                          <!--<span>3</span>-->
-                        <!--</p>-->
-                        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='2'" >-->
-                          <!--<img src="img/alert.png" alt="">-->
-                          <!--<span>2</span>-->
-                        <!--</p>-->
-                        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='1'" >-->
-                          <!--<img src="img/alert.png" alt="">-->
-                          <!--<span>1</span>-->
-                        <!--</p>-->
-                        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>-->
+                      <!--<p class="rj-push-rightdown level" ng-if="item.Level=='3'" >-->
+                      <!--<img src="img/alert.png" alt="">-->
+                      <!--<span>3</span>-->
+                      <!--</p>-->
+                      <!--<p class="rj-push-rightdown level" ng-if="item.Level=='2'" >-->
+                      <!--<img src="img/alert.png" alt="">-->
+                      <!--<span>2</span>-->
+                      <!--</p>-->
+                      <!--<p class="rj-push-rightdown level" ng-if="item.Level=='1'" >-->
+                      <!--<img src="img/alert.png" alt="">-->
+                      <!--<span>1</span>-->
+                      <!--</p>-->
+                      <!--<p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>-->
                       <!--</div>-->
                       <!--普通网址,即：链接-->
                       <!--<div class="col" ng-if="item.LinkType=='U'">-->
-                        <!--<img  class="fujian"  src="img/web.png" alt="网址" ng-click="gonet(item.Link)">-->
+                      <!--<img  class="fujian"  src="img/web.png" alt="网址" ng-click="gonet(item.Link)">-->
                       <!--</div>-->
                       <!--&lt;!&ndash;文件链接，即：附件&ndash;&gt;-->
                       <!--<div class="col" ng-if="item.LinkType=='F'">-->
-                        <!--<img  class="fujian"  src="img/fujian.png" alt="附件" ng-click="">-->
+                      <!--<img  class="fujian"  src="img/fujian.png" alt="附件" ng-click="">-->
                       <!--</div>-->
                     </div>
                   </div>
@@ -110,7 +110,7 @@
                          pager-click="go(index)" >
             <ion-slide class="notificationIonSide">
               <ion-list no-lines>
-                <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in allAttentionNotifyList" ng-if="item.IsAttention" >
+                <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst" ng-repeat="item in allAttentionNotifyList">
                   <div>
                     <!--已确认的通知-->
                     <div class="row itemIsReadedYes" ng-click="goNotifyDetail(item)">
@@ -121,7 +121,7 @@
                           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
                           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
                           <!-- 小红点-->
-                          <!--<span class="newStatus" ng-if="item.isNewStatus"></span>-->
+                          <span class="newStatus" ng-if="item.isNewStatus"></span>
                         </div>
 
                         <!--通知的详细信息-->
@@ -136,7 +136,7 @@
                             <!--时间-->
                             <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
                             <!--报警等级-->
-                            <span class="levelName">{{item.LevelName}}</span>
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
                           </div>
                           <!--标题-->
                           <div>
@@ -154,7 +154,7 @@
                         <img class="rj-push-rightright" ng-if="!item.IsToped" src="img/toptop1.png">
 
                       </div>
-                      <div class="col" ng-click="goIsAttentionEvent(item)">
+                      <div class="col" ng-click="cancelAttention(item)">
                         <!--关注-->
                         <img ng-if="item.IsAttention" src="img/focuseye.png">
                         <img ng-if="!item.IsAttention" src="img/focuseye1.png">

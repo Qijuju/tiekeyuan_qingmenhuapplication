@@ -627,7 +627,6 @@ public class IMMessageCallback implements MqttCallback {
         IMBroadOper.broadArrivedMsg(topic, msg.getQos(), json);
         //如果是被添加为群成员，应该去服务器获取群组消息
         if ("YAM".equals(eventMsgBean.getEventCode())) {
-
           ThriftApiClient.getLatestMsg(eventMsgBean.getGroupID(), eventMsgBean.getWhen(), eventMsgBean.getGroupName());
         }
 
