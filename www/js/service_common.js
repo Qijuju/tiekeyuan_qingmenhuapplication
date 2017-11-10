@@ -207,14 +207,14 @@ angular.module('common.services', [])
       },
       checkUpdate: function ($ionicPopup, $cordovaFileOpener2,isFromMy) {
 
-
+        // console.log("进来检查升级");
         //从网络请求数据  获取版本号和各种信息
         api.getVersionInfo(function (msg) {
           var flag ;
           var versionName = msg.versionName;
           var versionDesc = msg.versionDesc;
           var filesize = msg.size;
-
+          // console.log("进来检查升级后从服务器取到的版本号"+versionName);
           if(isFromMy){
             flag = false;
           }else{
@@ -227,12 +227,11 @@ angular.module('common.services', [])
               flag = false;
             });
           }
-
-          // alert("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(msg));
           //判断此版本是否需要升级
-          api.needUpgrade(versionName, function (msg) {
+          api.needUpgrade(versionName, function (data) {
+            // console.log("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(data));
             if(!flag){
-              if (msg == 'true') {
+              if (data == 'true') {
                 //需要升级
                 var confirmPopup = $ionicPopup.confirm({
                   title: '版本升级',
@@ -259,9 +258,9 @@ angular.module('common.services', [])
                   }
 
                 });
-              } else if (msg != 'false' && msg != '') {
+              } else {
                 //不需要升级
-                $ToastUtils.showToast(msg)
+                $ToastUtils.showToast(data)
               }
             }
           }, function (err) {
