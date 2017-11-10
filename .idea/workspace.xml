@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e882a122-c7b1-4caa-97df-3a633cb19f20" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_annotations_24_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/.idea/libraries/support_v4_24_0_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_common.js" afterPath="$PROJECT_DIR$/www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/www/templates/tab-message.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -745,14 +741,7 @@
       <workItem from="1509674584958" duration="10722000" />
       <workItem from="1509709849712" duration="23897000" />
       <workItem from="1510019309439" duration="12039000" />
-      <workItem from="1510048482787" duration="22516000" />
-    </task>
-    <task id="LOCAL-00197" summary="0908commit:生产环境第二版">
-      <created>1504839826372</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1504839826374</updated>
+      <workItem from="1510048482787" duration="22547000" />
     </task>
     <task id="LOCAL-00198" summary="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
       <created>1506327172171</created>
@@ -1090,11 +1079,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510048174722</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="11.10commit:准备拉取菊菊代码&#10;">
+      <created>1510305276452</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1510305276452</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2711517000" />
+    <option name="totallyTimeSpent" value="2711548000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1184,7 +1180,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="7.20commit；稳定版本(修改包名)" />
     <MESSAGE value="拉完代码后能正常打包，但是不能调试" />
     <MESSAGE value="commit" />
     <MESSAGE value="跟孙合并完代码(剔除thrift相关代码)" />
@@ -1209,7 +1204,8 @@
     <MESSAGE value="11.6commit:见as&#10;" />
     <MESSAGE value="11.6commit:修改关注通知列表并添加上拉加载和加载数据时弹出loading提示&#10;" />
     <MESSAGE value="11.7commit:准备拉取菊菊代码&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.7commit:准备拉取菊菊代码&#10;" />
+    <MESSAGE value="11.10commit:准备拉取菊菊代码&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.10commit:准备拉取菊菊代码&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
