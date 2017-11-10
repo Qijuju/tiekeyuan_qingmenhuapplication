@@ -56,7 +56,6 @@ angular.module('badge.controllers',[])
     /**新版通知数量显示**/
     $scope.notifyBadge=function () {
       $mqtt.getInt('badgeNotifyCount',function (count) {
-        // console.log("切换账号取出来的count值"+count);
         $scope.NotifyNoRead=count;
         if($scope.NotifyNoRead>99){
           $scope.NotifyNoRead=99+'+';

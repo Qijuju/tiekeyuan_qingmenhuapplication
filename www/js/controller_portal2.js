@@ -38,18 +38,13 @@ angular.module('portal.controllers', [])
     angular.element(document).ready(function(){
       // 获取所有的图片标签
 
-      // console.log("img标签集合11111" + $scope.imgs.length);
       $scope.imgs = document.getElementsByClassName("portalImg");
-      // console.log("img标签集合" + $scope.imgs.length);
-      // for (var i = 0; i < $scope.sysmenu.length; i++) {
-      //   alert($scope.sysmenu[i].length);
-      // }
+
       $scope.protalAppsCol12s = document.getElementsByClassName("protalAppsCol12");
       // 存放点亮图标的数组
       $scope.clickData=[];
       // 给 src 赋值
       for (var i=0;i<$scope.appIcon.length;i++){
-        // console.log("下标对应的图片logo--：" +i +'--'+  $scope.appIcon[i]);
         if (  $scope.imgs.length > $scope.logoLength) {
 
           $scope.imgs[ $scope.logoLength + i].src = $scope.appIcon[i];
@@ -151,12 +146,13 @@ angular.module('portal.controllers', [])
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
-        // console.log("看看有没有url"+JSON.stringify(data));
+
         $scope.chooseBrowser(data.url,appId);
       }).error(function (err) {
       });
     }
     function logoClick(item) {
+
       var params = '';
       switch (item.type) {
         //普通h5应用
@@ -275,187 +271,188 @@ angular.module('portal.controllers', [])
 
   .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
 
-    var imCode = $stateParams.imCode;
-    var userID = $stateParams.userId;
+    angular.element(document).ready(function () {
+      var imCode = $stateParams.imCode;
+      var userID = $stateParams.userId;
 
-    //通过接口得到访问应用的url
-    $scope.getSingleQyyUrl=function (appId,params,optionId) {
-      //点击应用图标时调用getapplink的接口获取跳转的url
-        $http({
-          method: 'post',
-          timeout: 5000,
-          // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
-          data: {
-            "Action": "GetAppLink",
-            "id": userID,
-            "mepId": imCode,
-            "platform": "A",
-            "appId": appId,
-            "params": params,
-            "optionId":optionId
-          }
-        }).success(function (data) {
-          var data = JSON.parse(decodeURIComponent(data));
-          console.log('获取的url' + JSON.stringify(data));
-          $scope.chooseSingleBrowser(data.url, appId);
-
-        }).error(function (err) {
-
-        });
-    }
-
-    //pubilc：选择调用谷歌还是其他浏览器
-    $scope.chooseSingleBrowser = function (testUrl,appId) {
-
-      cordova.plugins.browsertab.isAvailable(function (result) {
-        if (!result) {
-          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
-          var index = 0;
-          ref.addEventListener('loadstart', function () {
-            if (index > 0) {
-              return;
+      //通过接口得到访问应用的url
+      $scope.getSingleQyyUrl=function (appId,params,optionId) {
+        //点击应用图标时调用getapplink的接口获取跳转的url
+          $http({
+            method: 'post',
+            timeout: 5000,
+            // url:"http://88.1.1.22:8081",//测试环境
+            // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            data: {
+              "Action": "GetAppLink",
+              "id": userID,
+              "mepId": imCode,
+              "platform": "A",
+              "appId": appId,
+              "params": params,
+              "optionId":optionId
             }
-            index = 1;
-            $pubionicloading.showloading('','正在加载...');
+          }).success(function (data) {
+            var data = JSON.parse(decodeURIComponent(data));
+            $scope.chooseSingleBrowser(data.url, appId);
+
+          }).error(function (err) {
+
           });
-          ref.addEventListener('loadstop', function () {
-            // $pubionicloading.hide();
-            window.plugins.spinnerDialog.hide();
-          });
-        } else {
-          cordova.plugins.browsertab.openUrl(
-            testUrl,
-            function (successResp) {
-            }, function (failureResp) {
+      }
+
+      //pubilc：选择调用谷歌还是其他浏览器
+      $scope.chooseSingleBrowser = function (testUrl,appId) {
+        cordova.plugins.browsertab.isAvailable(function (result) {
+          if (!result) {
+            var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
+            var index = 0;
+            ref.addEventListener('loadstart', function () {
+              if (index > 0) {
+                return;
+              }
+              index = 1;
+              $pubionicloading.showloading('','正在加载...');
             });
-        }
-        //进行统计埋点
-        $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
-        }, function (err) {
-        })
-      }, function (isAvailableError) {
-      });
-    }
-    //搜索
-    $scope.searchQRcode=function () {
-      $scope.getSingleQyyUrl($stateParams.appId, null,'1');
-    }
-
-    //扫一扫
-    $scope.scanQRcode=function () {
-      cordova.plugins.barcodeScanner.scan(function (success) {
-          if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
-            params = success.text;
-            $scope.getSingleQyyUrl($stateParams.appId, params,'0');
+            ref.addEventListener('loadstop', function () {
+              // $pubionicloading.hide();
+              window.plugins.spinnerDialog.hide();
+            });
           } else {
-            $ToastUtils.showToast("请扫描工程部位的二维码！");
+            cordova.plugins.browsertab.openUrl(
+              testUrl,
+              function (successResp) {
+              }, function (failureResp) {
+              });
           }
-        }, function (err) {
-          $ToastUtils.showToast("请扫描工程部位的二维码！");
-        }, {
-          preferFrontCamera: false, // iOS and Android
-          showFlipCameraButton: true, // iOS and Android
-          showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
-          torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
-          saveHistory: false,//保存扫描历史（默认为false）
-          prompt: "请将二维码放在扫描框中", // Android 提示信息
-          resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
-          formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
-          orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
-        }
-      );
-    }
+          //进行统计埋点
+          $api.sendOperateLog("AppVisit", new Date().getTime(), appId, function (succ) {
+          }, function (err) {
+          })
+        }, function (isAvailableError) {
+        });
+      };
 
-    //返回
-    $scope.goBackPortal=function () {
-      $state.go('tab.portal');
-    }
+      //搜索
+      // $scope.searchQRcode=function () {
+      //   console.log("搜索跳转");
+      //   $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+      // };
 
-  })
-//
-// var service=angular.module("serviceModule",[])
-//   .factory("createEffect",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
-//     var x;
-//     var y;
-//     var span=angular.element("<span class='animateSpan'></span>");
-//     var scopeNew=$rootScope.$new(true);
-//     var spanEffect=$compile(span)(scopeNew);
-//     return{
-//       addEffect: function (obj) {
-//         obj.on("click", function (e) {
-//           // alert("点击搜索");
-//           var e=e||event;
-//           obj.empty();
-//           $animate.enter(spanEffect,obj);
-//           x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
-//           y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
-//           $(obj).find("span").css("left",x);
-//           $(obj).find("span").css("top",y);
-//           obj.find("span").addClass("animate");
-//           console.log("fgryfgryf999999999");
-//         })
-//       }
-//     }
-//   }]);
-// var service2=angular.module("serviceModule2",[])
-//   .factory("createEffect2",["$animate","$compile","$rootScope", function ($animate,$compile,$rootScope) {
-//     var x;
-//     var y;
-//     var span=angular.element("<span class='animateSpan'></span>");
-//     var scopeNew=$rootScope.$new(true);
-//     var spanEffect=$compile(span)(scopeNew);
-//     return{
-//       addEffect2: function (obj) {
-//         obj.on("click", function (e) {
-//           // alert("点击扫一扫");
-//           var e=e||event;
-//           obj.empty();
-//           $animate.enter(spanEffect,obj);
-//           x= e.pageX-this.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
-//           y= e.pageY-this.offsetTop-parseInt($(obj).find("span").css("width"))/2;
-//           $(obj).find("span").css("left",x);
-//           $(obj).find("span").css("top",y);
-//           obj.find("span").addClass("animate");
-//           console.log("8888");
-//         })
-//       }
-//     }
-//   }]);
-//
-// var directive=angular.module("directiveModule",["serviceModule"])
-//   .directive("spanClick",["$animate","$compile","createEffect", function ($animate,$compile,createEffect) {
-//     return{
-//       restrict:'EA',
-//       replace:true,
-//       templateUrl:'spanClick.html',
-//       link: function (scope, ele, attr) {
-//         createEffect.addEffect(ele)
-//       }
-//     }
-//   }])
-// var directive2=angular.module("directiveModule2",["serviceModule2"])
-//   .directive("spanClick2",["$animate","$compile","createEffect2", function ($animate,$compile,createEffect2) {
-//     return{
-//       restrict:'EA',
-//       replace:true,
-//       templateUrl:'spanClick2.html',
-//       link: function (scope, ele, attr) {
-//         createEffect2.addEffect2(ele)
-//       }
-//     }
-//   }])
-//
-// var templateCache=angular.module('templateCache',[])
-//   .run(function ($templateCache) {
-//     $templateCache.put("spanClick.html","<div class='spanStyle'></div>")
-//   })
-//
-// var templateCache2=angular.module('templateCache2',[])
-//   .run(function ($templateCache) {
-//     $templateCache.put("spanClick2.html","<div class='spanStyle2'></div>")
-//   })
-//
+      //扫一扫
+      // $scope.scanQRcode=function () {
+      //   console.log("扫一扫跳转");
+      //   // $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+      //   cordova.plugins.barcodeScanner.scan(function (success) {
+      //       if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+      //         params = success.text;
+      //         $scope.getSingleQyyUrl($stateParams.appId, params,'0');
+      //       } else {
+      //         $ToastUtils.showToast("请扫描工程部位的二维码！");
+      //       }
+      //     }, function (err) {
+      //       $ToastUtils.showToast("请扫描工程部位的二维码！");
+      //     }, {
+      //       preferFrontCamera: false, // iOS and Android
+      //       showFlipCameraButton: true, // iOS and Android
+      //       showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+      //       torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+      //       saveHistory: false,//保存扫描历史（默认为false）
+      //       prompt: "请将二维码放在扫描框中", // Android 提示信息
+      //       resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+      //       formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+      //       orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+      //     }
+      //   );
+      // };
 
+      //返回
+      $scope.goBackPortal=function () {
+        $state.go('tab.portal');
+      };
+
+      // 获取操作对象
+      var oWrap = document.getElementsByClassName("projectPartWrap")[0];
+      var oBox = document.getElementsByClassName("projectPartBox")[0];
+      // var oProjectConta = document.getElementsByClassName("projectConta")[0];
+
+      // var h = document.body.scrollHeight;
+      var h =  (window.innerHeight > 0) ? window.innerHeight : screen.height;
+
+      console.log("屏幕大小：" +h);
+      // $(oProjectConta).height(h);
+
+      var x;
+      var y;
+
+      // 绑定点击事件
+      $scope.click1 =  function (e) {
+        // 点击效果
+        eeee(oWrap,e);
+
+        //  跳转搜索页
+        var time = window.setTimeout(function(){
+          $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+          $(oBox).empty();
+
+        },300);
+
+      };
+
+
+      $scope.click2 =  function (e) {
+        // 点击效果
+        eeee(oBox,e);
+
+        // 1s后清空当前对象的span标签
+        var time = window.setTimeout(function(){
+          //  跳转扫一扫
+          cordova.plugins.barcodeScanner.scan(function (success) {
+              if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+                params = success.text;
+                $scope.getSingleQyyUrl($stateParams.appId, params,'0');
+              } else {
+                $ToastUtils.showToast("请扫描工程部位的二维码！");
+              }
+            }, function (err) {
+              $ToastUtils.showToast("请扫描工程部位的二维码！");
+            }, {
+              preferFrontCamera: false, // iOS and Android
+              showFlipCameraButton: true, // iOS and Android
+              showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+              torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+              saveHistory: false,//保存扫描历史（默认为false）
+              prompt: "请将二维码放在扫描框中", // Android 提示信息
+              resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+              formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+              orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+            }
+          );
+          $(oBox).empty();
+
+        },300);
+      };
+
+      function eeee(obj,e) {
+        var e=e||event;
+        $(obj).empty();
+        var spanEle = document.createElement("span");
+        spanEle.setAttribute("class","animateSpan");
+        obj.appendChild(spanEle);
+        x= e.pageX-obj.offsetLeft-parseInt($(obj).find("span").css("width"))/2;
+        y= e.pageY-obj.offsetTop-parseInt($(obj).find("span").css("height"))/2-180;
+
+        $(obj).find("span").css("left",x+"px");
+        $(obj).find("span").css("top",y+"px");
+        $(obj).find("span").addClass("animate");
+
+        // 300ms后清空当前对象的span标签
+        var time = window.setTimeout(function(){
+          $(obj).empty();
+        },300);
+      }
+
+    });
+  });
 

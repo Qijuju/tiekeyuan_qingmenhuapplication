@@ -30,23 +30,25 @@ angular.module('newnotification.controllers', [])
       var istop = item.IsToped  ? 'F' : 'T';
 
       $api.setNotifyMsg(id, false, istop, "", function (suc) {
-        if (istop == "T") {
+        if (istop === "T") {
           item.IsToped = true;
-        } else if (istop == "F") {
+        } else if (istop === "F") {
           item.IsToped = false;
         }
         $timeout(function () {
           // 消息置顶
           viewScroll.scrollTop();
+
           // 刷新页面(可能存在:从详情页返回全部通知列表页面时刷新两遍的问题？？待解决)
           $state.go('tab.notification',{},{reload:true});
+
         }, 100);
       }, function (err) {
         $ToastUtils.showToast("置顶更改失败");
-        if (istop == "T") {
+        if (istop === "T") {
           item.IsToped = false;
 
-        } else if (istop == "F") {
+        } else if (istop === "F") {
           item.IsToped = true;
         }
 
@@ -136,8 +138,7 @@ angular.module('newnotification.controllers', [])
           viewScroll.scrollTop();
         }, 100);
       })
-
-    }
+    };
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
     $scope.$on('netstatus.update', function (event) {
