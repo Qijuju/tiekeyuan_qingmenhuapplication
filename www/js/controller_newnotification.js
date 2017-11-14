@@ -24,7 +24,7 @@ angular.module('newnotification.controllers', [])
 
     });
 
-    // 通知置顶操作
+    // 置顶操作
     $scope.goIsTopEvent = function (item) {
       var id = item.MsgId;
       var istop = item.IsToped  ? 'F' : 'T';
@@ -58,11 +58,12 @@ angular.module('newnotification.controllers', [])
           // 刷新页面
           $state.go('tab.notification',{},{reload:true});
 
+
         },100);
       })
     };
 
-    // 点击通知全部列表页的关注图标调取的方式,即：添加关注 or 取消关注。
+    // 点击“全部”列表页的“关注图标”调取的方式,即：添加关注 or 取消关注。
     $scope.goIsAttentionEvent = function (item) {
       var id = item.MsgId;
       var isattention = item.IsAttention  ? 'F' : 'T';
@@ -76,14 +77,12 @@ angular.module('newnotification.controllers', [])
           viewScroll.scrollTop();
         }, 100);
 
-        // 将关注的一条数据追加到关注列表中
+        // “关注列表”---将关注的一条数据追加到关注列表中
         if (item.isNewStatus !== null && item.isNewStatus === true){
           $scope.allAttentionNotifyList.unshift(item);
         }else {
           $scope.allAttentionNotifyList.push(item);
         }
-
-
 
       }, function (err) {
         $ToastUtils.showToast("关注更改失败");
@@ -99,7 +98,7 @@ angular.module('newnotification.controllers', [])
       })
     }
 
-    //  点击通知关注列表页的关注图标调取的方式,即：取消关注
+    // 点击“关注”列表页的关注图标调取的方式,即：取消关注
     $scope.cancelAttention = function (item) {
       var id = item.MsgId;
       var isattention = item.IsAttention  ? 'F' : 'T';
@@ -181,8 +180,6 @@ angular.module('newnotification.controllers', [])
         $pubionicloading.showloading('','正在加载...');
         $notify.allNotify();
     }
-    // 定义一个开关按钮状态，标志新的通知，显示小红点
-    // $scope.isNewStatus = false;
 
     //上拉加载关注更多数据
     $scope.loadAttentionMoreNotify = function () {
@@ -190,20 +187,27 @@ angular.module('newnotification.controllers', [])
       $notify.getAttentionNotify();
     }
 
-    //获取关注通知列表
+    // 获取“关注通知列表”
     $scope.$on('attention.update', function (event) {
+
       $scope.$apply(function () {
         $pubionicloading.hide();
         var AttentionNotifyList = $notify.getAllAttentionNotify().msgList;
         var attentionTotal = $notify.getAllAttentionNotify().msgTotal;
+
         if(attentionTotal > 5){
           $scope.notifyAttentionStatus = true;
         }else{
           $scope.notifyAttentionStatus = false;
         }
+
         for(var i=0;i<AttentionNotifyList.length;i++){
           $scope.allAttentionNotifyList.push(AttentionNotifyList[i]);
         }
+
+        // 函数调用，判断是否加小红点标识
+        isNewStatus($scope.allAttentionNotifyList,$scope.noReadData);
+
       })
     });
 
@@ -232,42 +236,19 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
-        // 根据未读通知的msgId 判断是否加小红点标志
-        for(var i=0;i<$scope.notifyNewList.length;i++){
 
-          for( var j=0;j<$scope.noReadData.length;j++){
+        // 函数调用，判断是否加小红点标识
+        isNewStatus($scope.notifyNewList,$scope.noReadData);
 
-            if( $scope.notifyNewList[i].MsgId === $scope.noReadData[j].MsgId){
-              $scope.notifyNewList[i].isNewStatus = true; // 未读
-            }else {
-              continue;
-            }
-          }
-        }
 
-        // 进来通知界面取出icon对应的路径集合
+        // 调插件获取 icon 对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
-         // 根据id，往数据源中追加图片路径字段信息
-          for (var i = 0; i < $scope.notifyNewList.length; i++) {
-            var fromId = $scope.notifyNewList[i].FromID;
-            for (var j = 0; j <succ.length; j++) {
-              if (  succ[j].appId === fromId ) {
-                $scope.notifyNewList[i].appIcon = succ[j].path;
-              }else {
-              }
-            }
-          }
+          // 全部 -- 根据id，往数据源中追加图片路径字段信息
+          isNewStatus($scope.notifyNewList,succ);
 
-          // 根据id，往数据源中追加图片路径字段信息
-          for (var i = 0; i < $scope.allAttentionNotifyList.length; i++) {
-            var fromId = $scope.allAttentionNotifyList[i].FromID;
-            for (var j = 0; j <succ.length; j++) {
-              if (  succ[j].appId === fromId ) {
-                $scope.allAttentionNotifyList[i].appIcon = succ[j].path;
-              }else {
-              }
-            }
-          }
+          // 关注 -- 根据id，往数据源中追加图片路径字段信息
+          isNewStatus($scope.allAttentionNotifyList,succ);
+
           // 刷新页面
            $scope.$apply();
 
@@ -275,15 +256,43 @@ angular.module('newnotification.controllers', [])
 
         });
       });
-      $scope.$broadcast('scroll.infiniteScrollComplete');
-    })
 
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+
+    });
+
+    // 定义一个函数:根据未读通知的 msgId 判断通知是否加小红点标志 or 根据 id，往数据源中追加图片路径字段信息
+    function isNewStatus(obj,targetObj) {
+
+      for(var i=0;i<obj.length;i++){
+        for( var j=0;j<targetObj.length;j++){
+          if( targetObj[j].MsgId ){
+            if( obj[i].MsgId === targetObj[j].MsgId){
+              obj[i].isNewStatus = true; // 未读
+            }else {
+              continue;
+            }
+          }else if (targetObj[j].path){
+            if ( obj[i].FromID   === targetObj[j].appId ) {
+              obj[i].appIcon = targetObj[j].path;
+            }else {
+              continue;
+            }
+          }else {
+            return;
+          }
+        }
+      }
+    }
 
     $scope.newdex = 0;
+
     //滑块的状态
     $scope.appstatus = false;
+
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
+
       $scope.shownetstatus = false;
       $ionicSlideBoxDelegate.enableSlide(false);
       $notify.clearDefaultCount();
@@ -337,9 +346,7 @@ angular.module('newnotification.controllers', [])
 
     $scope.notifyObj = $stateParams.obj.bean;
 
-    console.log("详情页拿到的对象的数据：" + JSON.stringify($scope.notifyObj));
-
-    var fromId = $scope.notifyObj.FromID;
+    // var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
     $scope.$on('$ionicView.enter', function () {
@@ -391,11 +398,11 @@ angular.module('newnotification.controllers', [])
 
       $api.setNotifyMsg(id, false, istop, "", function (suc) {
 
-        if (istop == "T") {
+        if (istop === "T") {
           $scope.notifyObj.IsToped = true;
 
 
-        } else if (istop == "F") {
+        } else if (istop === "F") {
           $scope.notifyObj.IsToped = false;
 
         }
@@ -405,12 +412,12 @@ angular.module('newnotification.controllers', [])
         }, 100);
 
       }, function (err) {
-        $ToastUtils.showToast("置顶更改失败")
-        if (istop == "T") {
+        $ToastUtils.showToast("置顶更改失败");
+        if (istop === "T") {
           $scope.notifyObj.IsToped = false;
 
 
-        } else if (istop == "F") {
+        } else if (istop === "F") {
           $scope.notifyObj.IsToped = true;
 
         }
@@ -437,7 +444,7 @@ angular.module('newnotification.controllers', [])
         }, 100);
 
       }, function (err) {
-        $ToastUtils.showToast("关注更改失败")
+        $ToastUtils.showToast("关注更改失败");
         if (isattention == "T") {
           $scope.notifyObj.IsAttention = false;
 

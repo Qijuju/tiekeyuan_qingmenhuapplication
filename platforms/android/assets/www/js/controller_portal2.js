@@ -335,37 +335,37 @@ angular.module('portal.controllers', [])
       };
 
       //搜索
-      // $scope.searchQRcode=function () {
-      //   console.log("搜索跳转");
-      //   $scope.getSingleQyyUrl($stateParams.appId, null,'1');
-      // };
+      $scope.searchQRcode=function () {
+        searchQRcode();
+      };
 
       //扫一扫
-      // $scope.scanQRcode=function () {
-      //   console.log("扫一扫跳转");
-      //   // $scope.getSingleQyyUrl($stateParams.appId, null,'1');
-      //   cordova.plugins.barcodeScanner.scan(function (success) {
-      //       if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
-      //         params = success.text;
-      //         $scope.getSingleQyyUrl($stateParams.appId, params,'0');
-      //       } else {
-      //         $ToastUtils.showToast("请扫描工程部位的二维码！");
-      //       }
-      //     }, function (err) {
-      //       $ToastUtils.showToast("请扫描工程部位的二维码！");
-      //     }, {
-      //       preferFrontCamera: false, // iOS and Android
-      //       showFlipCameraButton: true, // iOS and Android
-      //       showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
-      //       torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
-      //       saveHistory: false,//保存扫描历史（默认为false）
-      //       prompt: "请将二维码放在扫描框中", // Android 提示信息
-      //       resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
-      //       formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
-      //       orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
-      //     }
-      //   );
-      // };
+      $scope.scanQRcode=function () {
+
+        scanQRcode();
+        // // $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+        // cordova.plugins.barcodeScanner.scan(function (success) {
+        //     if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+        //       params = success.text;
+        //       $scope.getSingleQyyUrl($stateParams.appId, params,'0');
+        //     } else {
+        //       $ToastUtils.showToast("请扫描工程部位的二维码！");
+        //     }
+        //   }, function (err) {
+        //     $ToastUtils.showToast("请扫描工程部位的二维码！");
+        //   }, {
+        //     preferFrontCamera: false, // iOS and Android
+        //     showFlipCameraButton: true, // iOS and Android
+        //     showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+        //     torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+        //     saveHistory: false,//保存扫描历史（默认为false）
+        //     prompt: "请将二维码放在扫描框中", // Android 提示信息
+        //     resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+        //     formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+        //     orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+        //   }
+        // );
+      };
 
       //返回
       $scope.goBackPortal=function () {
@@ -375,13 +375,8 @@ angular.module('portal.controllers', [])
       // 获取操作对象
       var oWrap = document.getElementsByClassName("projectPartWrap")[0];
       var oBox = document.getElementsByClassName("projectPartBox")[0];
-      // var oProjectConta = document.getElementsByClassName("projectConta")[0];
 
-      // var h = document.body.scrollHeight;
-      var h =  (window.innerHeight > 0) ? window.innerHeight : screen.height;
-
-      console.log("屏幕大小：" +h);
-      // $(oProjectConta).height(h);
+      // 获取移动端屏幕大小
 
       var x;
       var y;
@@ -393,9 +388,8 @@ angular.module('portal.controllers', [])
 
         //  跳转搜索页
         var time = window.setTimeout(function(){
-          $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+          searchQRcode();
           $(oBox).empty();
-
         },300);
 
       };
@@ -404,44 +398,11 @@ angular.module('portal.controllers', [])
       $scope.click2 =  function (e) {
         // 点击效果
         eeee(oBox,e);
-        // var e=e||event;
-        // $(oBox).empty();
-        // var spanEle = document.createElement("span");
-        // spanEle.setAttribute("class","animateSpan");
-        // oBox.appendChild(spanEle);
-        // x= e.pageX-oBox.offsetLeft-parseInt($(oBox).find("span").css("width"))/2;
-        // y= e.pageY-oBox.offsetTop-parseInt($(oBox).find("span").css("height"))/2-180;
-        //
-        // $(oBox).find("span").css("left",x+"px");
-        // $(oBox).find("span").css("top",y+"px");
-        // $(oBox).find("span").addClass("animate");
 
         // 1s后清空当前对象的span标签
         var time = window.setTimeout(function(){
-          //  跳转扫一扫
-          cordova.plugins.barcodeScanner.scan(function (success) {
-              if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
-                params = success.text;
-                $scope.getSingleQyyUrl($stateParams.appId, params,'0');
-              } else {
-                $ToastUtils.showToast("请扫描工程部位的二维码！");
-              }
-            }, function (err) {
-              $ToastUtils.showToast("请扫描工程部位的二维码！");
-            }, {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
-              showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
-              torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
-              saveHistory: false,//保存扫描历史（默认为false）
-              prompt: "请将二维码放在扫描框中", // Android 提示信息
-              resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
-              formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
-              orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
-            }
-          );
+          scanQRcode();
           $(oBox).empty();
-
         },300);
       };
 
@@ -458,12 +419,40 @@ angular.module('portal.controllers', [])
         $(obj).find("span").css("top",y+"px");
         $(obj).find("span").addClass("animate");
 
-        // 1s后清空当前对象的span标签
+        // 300ms后清空当前对象的span标签
         var time = window.setTimeout(function(){
           $(obj).empty();
         },300);
       }
 
+      // 扫一扫跳转
+      function scanQRcode() {
+        cordova.plugins.barcodeScanner.scan(function (success) {
+            if (success.text.indexOf("id") >= 0 && success.text.indexOf("name") >= 0 && success.text.indexOf("type") >= 0) {
+              params = success.text;
+              $scope.getSingleQyyUrl($stateParams.appId, params,'0');
+            } else {
+              $ToastUtils.showToast("请扫描工程部位的二维码！");
+            }
+          }, function (err) {
+            $ToastUtils.showToast("请扫描工程部位的二维码！");
+          }, {
+            preferFrontCamera: false, // iOS and Android
+            showFlipCameraButton: true, // iOS and Android
+            showTorchButton: true, // iOS and Android 显示开起手电筒的按钮
+            torchOn: false, // Android, launch with the torch switched on (if available) 启动手电筒开启（如果有）
+            saveHistory: false,//保存扫描历史（默认为false）
+            prompt: "请将二维码放在扫描框中", // Android 提示信息
+            resultDisplayDuration: 500, // Android, 显示X ms的扫描文本。0完全禁止它，默认为1500
+            formats: "QR_CODE,PDF_417", // 默认值：除PDF_417和RSS_EXPANDED之外的所有
+            orientation: "portrait" // 仅Android（纵向|横向），默认未设置，因此它随设备旋转   portrait|landscape
+          }
+        );
+      }
+
+      function searchQRcode() {
+        $scope.getSingleQyyUrl($stateParams.appId, null,'1');
+      }
 
     });
   });

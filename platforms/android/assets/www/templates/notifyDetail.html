@@ -11,7 +11,8 @@
   <!--内容-->
   <ion-content id="notification" delegate-handle="scrollTop" overflow-scroll="false" >
 
-    <div class="row myNetwork" ng-if=shownetstatus>
+    <!--<div class="row myNetwork"  ng-if=shownetstatus>-->
+    <div class="row myNetwork" ng-if="shownetstatus">
       <div class="col" align="center"> <img src="img/nonet.png"/></div>
       <div class="col col-80">网络连接不可用，请检查网络设置。</div>
     </div>
@@ -27,8 +28,6 @@
               <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon !== null"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
 
-              <!-- 小红点-->
-              <span class="newStatus" ng-if="notifyObj.isNewStatus"></span>
             </div>
 
             <!--通知的详细信息-->
