@@ -51,6 +51,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.r93535.im.R;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
 import org.apache.cordova.CordovaArgs;
@@ -664,13 +666,16 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // Edit Text Box
                 edittext = new EditText(cordova.getActivity());
-                RelativeLayout.LayoutParams textLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+                RelativeLayout.LayoutParams textLayoutParams = new RelativeLayout.LayoutParams( LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
                 textLayoutParams.addRule(RelativeLayout.RIGHT_OF, 1);
                 textLayoutParams.addRule(RelativeLayout.LEFT_OF, 5);
                 edittext.setLayoutParams(textLayoutParams);
                 edittext.setId(Integer.valueOf(4));
+                edittext.setBackground(null);//去掉底部下划线
                 edittext.setSingleLine(true);
-                edittext.setText(url);
+                edittext.setText(url);//将标题url换成"铁路工程管理平台"的变量为newloc
+                edittext.setTextSize(18);//设置标题的文本大小
+//                edittext.setGravity(Gravity.CENTER);//标题据中
                 edittext.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
                 edittext.setImeOptions(EditorInfo.IME_ACTION_GO);
                 edittext.setInputType(InputType.TYPE_NULL); // Will not except input... Makes the text NON-EDITABLE
@@ -772,7 +777,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 inAppWebView.setId(Integer.valueOf(6));
                 inAppWebView.getSettings().setLoadWithOverviewMode(true);
-                inAppWebView.getSettings().setUseWideViewPort(true);
+                inAppWebView.getSettings().setUseWideViewPort(false);
                 inAppWebView.requestFocus();
                 inAppWebView.requestFocusFromTouch();
 
@@ -781,9 +786,10 @@ public class InAppBrowser extends CordovaPlugin {
                 actionButtonContainer.addView(forward);
 
                 // Add the views to our toolbar
-                toolbar.addView(actionButtonContainer);
+//                toolbar.addView(actionButtonContainer);//去掉原本带的前进和后退按钮
                 toolbar.addView(edittext);
                 toolbar.addView(close);
+                toolbar.setBackgroundColor(cordova.getActivity().getResources().getColor(R.color.toolbar));
 
                 // Don't add the toolbar if its been disabled
                 if (getShowLocationBar()) {
@@ -947,18 +953,20 @@ public class InAppBrowser extends CordovaPlugin {
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 LOG.e(LOG_TAG, "come on");
-                newloc = url;
+                newloc = "铁路工程管理平台";
             }
             else
             {
                 // Assume that everything is HTTP at this point, because if we don't specify,
                 // it really should be.  Complain loudly about this!!!
                 LOG.e(LOG_TAG, "Possible Uncaught/Unknown URI");
-                newloc = "http://" + url;
+//                newloc = "http://" + url;
+                newloc = "铁路工程管理平台";
             }
 
             // Update the UI if we haven't already
             if (!newloc.equals(edittext.getText().toString())) {
+                newloc = "铁路工程管理平台";
                 edittext.setText(newloc);
              }
 

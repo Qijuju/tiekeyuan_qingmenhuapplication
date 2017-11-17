@@ -555,8 +555,11 @@ angular.module('common.services', [])
   })
 
   .factory('$formalurlapi',function () {
-    var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
-    // var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/newMsgCheck/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
+
+    // var baseurl="http://immobile.r93535.com:8088/crbim/imApi/1.0";//门户模块正式环境地址
+    // var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";//门户模块开发环境地址
+    // var baseurl="http://88.1.1.22:8081";//门户模块测试环境地址
+    var baseurl="http://chuannanims.r93535.com:8088";
     return{
       getBaseUrl:function () {
         return baseurl;

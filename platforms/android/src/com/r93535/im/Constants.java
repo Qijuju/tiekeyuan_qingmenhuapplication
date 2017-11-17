@@ -36,7 +36,13 @@ public class Constants {
   //老挝文件服务器地址
 //  public static final String commonfileurl= "http://202.137.140.133:6002";
 
+  //京津冀文件服务器地址
+//  public static final String commonfileurl= "http://chuannanims.r93535.com:8086";
+
   //------------------------------消息服务器地址--------------------------------------------//
+
+  //京津冀环境消息服务器(内网用)
+//  public static final String commonmsgurl= "http://chuannanims.r93535.com:8088";
 
   //老挝消息服务器环境
 //  public static final String commonmsgurl= "http://202.137.140.133:6001";

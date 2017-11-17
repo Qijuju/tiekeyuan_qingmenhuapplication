@@ -239,6 +239,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
 
                             //调用getSession方法,获取sessionid
+                            System.out.println("hahahahahaha");
                             getSession(result.getUser().getLoginAccount(), result.getUser().getLoginName());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -2541,7 +2542,7 @@ public class ThriftApiClient extends CordovaPlugin {
             OKAsyncClient.post(request1, new OKHttpCallBack2<BaseBean>() {
                 @Override
                 public void onSuccess(Request request, BaseBean result) {//以后有需要再完善
-                    if (result.isSucceed()) {
+                    if (!(result.isSucceed())) {
                         //调用createxml方法将ssid存进xml文件
                         String path = "/LPREMPLAT";
                         Log.i("获取存入的xml路径", path + "");

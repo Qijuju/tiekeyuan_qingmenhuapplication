@@ -2,37 +2,78 @@
   background-color:#e5e5e5
 }
 
-/*头像、姓名、天气*/
-.myDiv{
-  background-color: #fff;
-  /*margin-top: 16px;*/
+/*我的模块：头像、姓名、天气*/
+.countInfo{
+  padding:15px;
+  margin-bottom: 10px;
+  background: #fff;
 }
-.myDiv ion-item span.weather{
+.countInfo > .headName,
+.countInfo > .headName > .head,
+.countInfo > .headName > .name{
+  float: left;
+}
+.countInfo > .headName{
+  height:75px;
+}
+.countInfo > .headName > .head{
+  width:40px;
+  height: 75px;
+  line-height: 75px;
+  margin-right:10px;
+}
+.countInfo > .headName > .head > div{
+  position: relative;
+  top:50%;
+  left:50%;
+  margin-top:-20px;
+  margin-left: -20px;
+  width:40px;
+  height: 40px;
+  background: #1296db;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+}
+.countInfo > .headName > .head > img{
+  width:40px;
+  height: 40px;
+  margin-top:18px;
+}
+.countInfo > .headName > .head > div,
+.countInfo > .headName > .head > img{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.countInfo > .headName > .name > p{
+  width:120px;
+  height:75px;
   color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: left;
+  line-height: 75px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.myDiv ion-item p{
-  margin-left: 65px;
+.weatherInfo,
+.weatherInfo > div{
+  float: right;
+  color: #1296db;
+}
+.weatherInfo > div >.weather{
+  line-height: 25px;
+  font-size:16px;
+}
+.weatherInfo > div >.weathdate{
+  line-height: 75px;
   font-size: 24px;
-  color: #000;
-  display: inline-block;
+  margin-right:10px;
 }
 
-.myDiv ion-item p#mymypersonname{
-  position: absolute;
-  left:15px;
-  top:50%;
-  margin-top:-20px;
-  height:40px;
-  line-height:40px;
-}
-.myDiv ion-item.item-avatar.rj-notify-bggg{
-  height: 150px
-}
-.myDiv ion-item div.center.circle11.jiename{
-  position: absolute;
-  left:15px;top:50%;margin-top: -25px;font-size: 16px;text-align: center;z-index: 1;
-  line-height:50px;
-}
 
 /*列表：我的资料、设置、关于、功能*/
 div.common-margin-top{

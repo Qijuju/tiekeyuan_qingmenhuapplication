@@ -47,6 +47,8 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.DeptID=msg.deptID;
 
         $scope.mymypersonname = msg.userName;
+        console.log("我的账户名3333:" + JSON.stringify(msg));
+        console.log("我的账户名：" + $scope.mymypersonname );
 
         if ($scope.mymypersonname.length > 2) {
           $scope.jiename = $scope.mymypersonname.substring(($scope.mymypersonname.length - 2), $scope.mymypersonname.length);
@@ -97,11 +99,12 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         locationaaa = long + "," + lat;
         $http.get("http://api.map.baidu.com/telematics/v3/weather?location=" + locationaaa + "&output=json&ak=MLNi9vTMbPzdVrgBGXPVOd91lW05QmBY&mcode=E9:68:71:4C:B1:A4:DA:23:CD:2E:C2:1B:0E:19:A0:54:6F:C7:5E:D0;com.ionicframework.im366077")
           .success(function (response) {
-            // alert("天气预报"+JSON.stringify(response));
+
             $scope.pm25aa = "pm2.5:" + response.results[0].pm25;
             $scope.currentcity = response.results[0].currentCity;
-            console.log("天气：" +JSON.stringify(response.results[0].weather_data[0].date) );
-            $scope.weathdate = response.results[0].weather_data[0].date.substring(response.results[0].weather_data[0].date.length - 3, response.results[0].weather_data[0].date.length - 1);
+
+            var weathdateStr = JSON.stringify(response.results[0].weather_data[0].date);
+            $scope.weathdate = weathdateStr.substring( weathdateStr.lastIndexOf("：")+1,weathdateStr.lastIndexOf("℃")+1);
 
             $scope.weatherzhen = response.results[0].weather_data[0].weather;
 
@@ -1342,10 +1345,18 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       window.open("http://immobile.r93535.com:8081/sgtsh/index.html", "_self", "location=no")
 
     }
+
   })
 
   // 关于我们
   .controller('aboutOurCtrl',function ($scope,$state) {
+
+    //获取版本号的动态日期
+    cordova.plugins.OAIntegration.getCurrentVersion(function (data) {
+      $scope.nowTime = data;
+    },function (err) {
+    });
+
 
     // 返回操作调取函数
     $scope.goAboutOurs = function () {
@@ -1355,10 +1366,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   // 关于平台
   .controller('aboutPlatformCtrl',function ($scope,$state) {
+
+
     // 返回操作调取函数
     $scope.goAboutOurs = function () {
       $state.go("aboutours");
     }
+
   })
 
   // 关于推荐

@@ -5,23 +5,29 @@
 
   <ion-content class="tabAccount" overflow-scroll="false" >
 
-    <!--头像、姓名、天气 -->
-    <div class="myDiv">
-      <ion-item  class="item-avatar rj-notify-bggg">
+    <div class="countInfo clearfix">
+      <!--头像和姓名-->
+      <div class="headName clearfix">
+        <div class="head">
+          <div ng-if="!picyoumeiyou" ng-click="setpic()">{{jiename}}</div>
+          <img ng-if="picyoumeiyou" src="{{securlpic}}"  ng-click="setpic()" alt="headLogo">
+        </div>
+        <div class="name">
+          <p>{{mymypersonname}}</p>
+        </div>
+      </div>
 
-        <!--头像-->
-        <div ng-if="!picyoumeiyou" class="center circle11 jiename" ng-click="setpic()">{{jiename}}</div>
-        <img ng-if="picyoumeiyou" src="{{securlpic}}" class="yuanjiao2"  ng-click="setpic()">
-
-        <!--姓名-->
-        <p id="mymypersonname">{{mymypersonname}}</p>
-
-        <!--天气-->
-        <span class="rj-weather-rightbig weather">{{weathdate}}</span>
-        <span class="rj-weather-rightbigsmall weather">{{currentcity}}</span>
-        <span class="rj-weather-rightsmall weather">{{pm25aa}}</span>
-        <span class="rj-weather-rightsmallsamll weather">{{weatherzhen}}</span>
-      </ion-item>
+      <!--天气-->
+      <div class="weatherInfo">
+        <div>
+          <p class="weather">{{currentcity}}</p>
+          <p class="weather">{{pm25aa}}</p>
+          <p class="weather">{{weatherzhen}}</p>
+        </div>
+        <div>
+          <p class="weathdate">{{weathdate}}</p>
+        </div>
+      </div>
     </div>
 
     <!--列表：我的资料、设置、关于、功能-->
