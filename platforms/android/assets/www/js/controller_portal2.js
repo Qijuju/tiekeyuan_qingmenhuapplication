@@ -107,7 +107,7 @@ angular.module('portal.controllers', [])
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
+          var ref = cordova.InAppBrowser.open(testUrl, '_blank','hardwareback=yes,clearsessioncache=yes,clearcache=yse');
           var index = 0;
           ref.addEventListener('loadstart', function () {
             if (index > 0) {
@@ -180,7 +180,7 @@ angular.module('portal.controllers', [])
               "id": userID,
               "mepId": imCode,
               "platform": "A",
-              "appId": appId,
+              "appId": item.appId,
               "params": params
             }
           }).success(function (data) {
@@ -309,7 +309,7 @@ angular.module('portal.controllers', [])
       $scope.chooseSingleBrowser = function (testUrl,appId) {
         cordova.plugins.browsertab.isAvailable(function (result) {
           if (!result) {
-            var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
+            var ref = cordova.InAppBrowser.open(testUrl, '_blank','hardwareback=yes,clearsessioncache=yes,clearcache=yse');
             var index = 0;
             ref.addEventListener('loadstart', function () {
               if (index > 0) {
