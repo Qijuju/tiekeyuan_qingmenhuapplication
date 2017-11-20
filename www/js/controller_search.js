@@ -379,6 +379,7 @@ angular.module('search.controllers', [])
             messages=$searchmessage.getmessagessss()[i];
             $scope.messagess.push(messages)
           }
+
           namea=$searchmessage.getmessagessss()[0].username;
           $scope.namess.push(namea);
           for (var i=0;i<$searchmessage.getmessagessss().length;i++){

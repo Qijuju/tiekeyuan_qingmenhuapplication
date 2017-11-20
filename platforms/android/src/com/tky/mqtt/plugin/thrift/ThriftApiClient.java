@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.r93535.im.Constants;
 import com.tky.im.connection.IMConnection;
+import com.tky.im.enums.IMEnums;
+import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
@@ -237,6 +239,7 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
 
                             //调用getSession方法,获取sessionid
+                            System.out.println("hahahahahaha");
                             getSession(result.getUser().getLoginAccount(), result.getUser().getLoginName());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1002,6 +1005,12 @@ public class ThriftApiClient extends CordovaPlugin {
                         @Override
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
+//                            IMEnums imEnums=IMStatusManager.getImStatus();
+//                            if(imEnums == IMEnums.CONNECT_DOWN_BY_HAND){
+//                                System.out.println("进来强踢了");
+//                                IMSwitchLocal.exitLogin(cordova.getActivity());
+//                                return;
+//                            }
 //                            progress = (progress * (-1.0f)) / filesize * 100;
                             progress = progress * 100;
                             final float finalProgress = progress;
@@ -1126,13 +1135,13 @@ public class ThriftApiClient extends CordovaPlugin {
         try {
             String newVersion = args.getString(0);
             //第一次就是本地的versionname
-            String install_cancel = SPUtils.getString("local_versionname", "");
+//            String install_cancel = SPUtils.getString("local_versionname", "");
 
             //第一次进来的时候肯定进不来这边
-            if (install_cancel.equals(newVersion)) {
-                setResult("false", PluginResult.Status.OK, callbackContext);
-                return;
-            }
+//            if (install_cancel.equals(newVersion)) {
+//                setResult("已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+//                return;
+//            }
 
             boolean needsUpgrade = isNeedsUpgrade(UIUtils.getVersion(), newVersion);
 
@@ -1144,7 +1153,7 @@ public class ThriftApiClient extends CordovaPlugin {
                 //保存服务器的版本号到sp中
                 SPUtils.save("local_versionname", newVersion);
 
-                setResult("已是最新版本，无需更新！", PluginResult.Status.OK, callbackContext);
+                setResult("已是最新版本!", PluginResult.Status.OK, callbackContext);
             }
 
 
@@ -2533,7 +2542,7 @@ public class ThriftApiClient extends CordovaPlugin {
             OKAsyncClient.post(request1, new OKHttpCallBack2<BaseBean>() {
                 @Override
                 public void onSuccess(Request request, BaseBean result) {//以后有需要再完善
-                    if (result.isSucceed()) {
+                    if (!(result.isSucceed())) {
                         //调用createxml方法将ssid存进xml文件
                         String path = "/LPREMPLAT";
                         Log.i("获取存入的xml路径", path + "");

@@ -256,7 +256,7 @@ public class IMService extends Service {
         //右上角的时间显示
         builder.setShowWhen(true);
         //设置通知栏的标题内容
-        builder.setContentTitle("轻门户正在运行");
+        builder.setContentTitle("铁路工程管理平台正在运行");
         //创建通知
         Notification notification = builder.build();
         //设置为前台服务

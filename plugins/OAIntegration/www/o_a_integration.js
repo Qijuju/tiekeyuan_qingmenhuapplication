@@ -6,4 +6,10 @@ var exec = require('cordova/exec');
 
 exports.createDsk = function(packagename, appId, name,success, error) {
   exec(success, error, "OAIntegration", "createDsk", [packagename, appId, name]);
+
+
+  //获取当前版本号
+  exports.getCurrentVersion = function(success, error) {
+    exec(success, error, "OAIntegration", "getCurrentVersion");
+  };
 };

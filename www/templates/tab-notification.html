@@ -50,6 +50,23 @@
               <div>
                 <pre class="preTitle">{{item.Title}}</pre>
               </div>
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+                          <div class="infoTop">
+                            <!--名称-->
+                            <div>
+                              <span>{{item.FromName}}</span>
+                              <span ng-if="item.IsReaded" class="isReaded">已确认</span>
+                            </div>
+                            <!--时间-->
+                            <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
+                          </div>
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">{{item.Title}}</pre>
+                          </div>
 
             </div>
           </div>
@@ -129,6 +146,27 @@
             </div>
           </div>
         </div>
+                        <!--通知的详细信息-->
+                        <div class="notifyDetailInfo">
+                          <div class="infoTop">
+                            <!--名称-->
+                            <div>
+                              <!--<h3>{{item.FromName}}</h3>-->
+                              <span>{{item.FromName}}</span>
+                              <span ng-if="item.IsReaded" class="isReaded">已确认</span>
+                            </div>
+                            <!--时间-->
+                            <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+                            <!--报警等级-->
+                            <!--<span class="levelName">{{item.LevelName}}</span>-->
+                          </div>
+                          <!--标题-->
+                          <div>
+                            <pre class="preTitle">{{item.Title}}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
         <!-- 操作按钮-->
         <div class="row topFocus">

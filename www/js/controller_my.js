@@ -1345,10 +1345,18 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       window.open("http://immobile.r93535.com:8081/sgtsh/index.html", "_self", "location=no")
 
     }
+
   })
 
   // 关于我们
   .controller('aboutOurCtrl',function ($scope,$state) {
+
+    //获取版本号的动态日期
+    cordova.plugins.OAIntegration.getCurrentVersion(function (data) {
+      $scope.nowTime = data;
+    },function (err) {
+    });
+
 
     // 返回操作调取函数
     $scope.goAboutOurs = function () {
@@ -1358,10 +1366,13 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
 
   // 关于平台
   .controller('aboutPlatformCtrl',function ($scope,$state) {
+
+
     // 返回操作调取函数
     $scope.goAboutOurs = function () {
       $state.go("aboutours");
     }
+
   })
 
   // 关于推荐

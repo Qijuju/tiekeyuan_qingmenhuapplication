@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -16,6 +17,8 @@ import com.r93535.im.Constants;
 import com.r93535.im.MainActivity;
 import com.r93535.im.R;
 import com.r93535.im.TestActivity;
+import com.tky.im.enums.IMEnums;
+import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
 import com.tky.mqtt.paho.SPUtils;
 import com.tky.mqtt.paho.UIUtils;
@@ -58,6 +61,7 @@ public class OAIntegration extends CordovaPlugin {
     private static String TAG=OAIntegration.class.getSimpleName();
     private String s1 = "oa.app";//公文处理actionname
     private String s2 = "hideicon.yy";//物资设备actionname
+    private String s3 = "com.ivms.traffic.tainan.launch";//视频监控actionname(路畅均安)
 
   	@Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -128,7 +132,10 @@ public class OAIntegration extends CordovaPlugin {
                     startAppByAction(s1,name,url);
                 }else if(name.equals("物资设备")){
                     startAppByAction(s2,name,url);
+                }else if(name.equals("视频监控")){
+                    startAppByAction(s3,name,url);
                 }
+
 
             }
             setResult("success",PluginResult.Status.OK,callbackContext);
@@ -214,7 +221,7 @@ public class OAIntegration extends CordovaPlugin {
     //启动APP
     public void startAppByAction(String actionname,String name,String url){
         try {
-            if(actionname.equals("oa.app")){
+            if(actionname.equals("oa.app")){//公文处理
                 Intent intent=new Intent();
                 intent.setAction(actionname);
                 cordova.getActivity().startActivity(intent);
@@ -226,6 +233,10 @@ public class OAIntegration extends CordovaPlugin {
                 Uri uri = Uri.parse("wzsb");// 此处应与物资设备程序中Data中标签一致
                 intent.setData(uri);
               intent.putExtra("wzsb_url", url);
+                cordova.getActivity().startActivity(intent);
+            }else if(actionname.equals("com.ivms.traffic.tainan.launch")){//视频监控(路畅均安)
+                Intent intent=new Intent();
+                intent.setAction(actionname);
                 cordova.getActivity().startActivity(intent);
             }else{
                 Toast.makeText(UIUtils.getContext(), "应用程序异常", Toast.LENGTH_SHORT).show();
@@ -288,6 +299,11 @@ public class OAIntegration extends CordovaPlugin {
                         @Override
                         public void inProgress(float progress, long total, int id) {
                             super.inProgress(progress, total, id);
+//                            IMEnums imEnums= IMStatusManager.getImStatus();
+//                            if(imEnums == IMEnums.CONNECT_DOWN_BY_HAND){
+//                                IMSwitchLocal.exitLogin(UIUtils.getContext());
+//                                return;
+//                            }
                             progress = progress *  100;
                             final float finalProgress = progress;
                             UIUtils.runInMainThread(new Runnable() {
@@ -337,6 +353,23 @@ public class OAIntegration extends CordovaPlugin {
         public void setResult(VersionInfo obj);
     }
 
+
+    /**
+     * 插件-给js端提供获取版本号接口
+     */
+    public String getCurrentVersion(final JSONArray args,final CallbackContext callbackContext) {
+        PackageManager manager = UIUtils.getContext().getPackageManager();
+        try {
+            PackageInfo pi = manager.getPackageInfo(UIUtils.getContext().getPackageName(), 0);
+            if (pi != null) {
+                setResult(pi.versionName,PluginResult.Status.OK,callbackContext);
+                return pi.versionName;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * 设置返回信息

@@ -77,7 +77,6 @@ angular.module('newnotification.controllers', [])
           // 刷新页面
           $state.go('tab.notification',{},{reload:true});
 
-
         },100);
       })
     };
@@ -102,6 +101,8 @@ angular.module('newnotification.controllers', [])
         }else {
           $scope.allAttentionNotifyList.push(item);
         }
+
+
 
       }, function (err) {
         $ToastUtils.showToast("关注更改失败");
@@ -196,9 +197,9 @@ angular.module('newnotification.controllers', [])
 
     //上拉加载全部所有数据
     $scope.loadMoreNotify = function () {
-      $pubionicloading.showloading('','正在加载...');
-      $notify.allNotify();
-    };
+        $pubionicloading.showloading('','正在加载...');
+        $notify.allNotify();
+    }
 
     //上拉加载关注更多数据
     $scope.loadAttentionMoreNotify = function () {
@@ -208,6 +209,7 @@ angular.module('newnotification.controllers', [])
 
     // 获取“关注通知列表”
     $scope.$on('attention.update', function (event) {
+
       $scope.$apply(function () {
         $pubionicloading.hide();
         var AttentionNotifyList = $notify.getAllAttentionNotify().msgList;
@@ -228,6 +230,7 @@ angular.module('newnotification.controllers', [])
 
       })
     });
+
 
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
@@ -256,10 +259,19 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
+        // 根据未读通知的msgId 判断是否加小红点标志
+        for(var i=0;i<$scope.notifyNewList.length;i++){
 
         // 函数调用，判断是否加小红点标识
         isNewStatus($scope.notifyNewList,$scope.noReadData);
 
+            if( $scope.notifyNewList[i].MsgId === $scope.noReadData[j].MsgId){
+              $scope.notifyNewList[i].isNewStatus = true; // 未读
+            }else {
+              continue;
+            }
+          }
+        }
 
         // 调插件获取 icon 对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
@@ -276,7 +288,6 @@ angular.module('newnotification.controllers', [])
 
         });
       });
-
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
     });

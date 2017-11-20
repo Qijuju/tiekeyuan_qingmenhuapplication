@@ -3812,7 +3812,14 @@ angular.module('message.controllers', [])
     };
   })
 
+<<<<<<< HEAD
   .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
+=======
+
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt,$formalurlapi, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
+
+
+>>>>>>> 546d7c09dda0b36cc88e2273b856c5cefbb4760b
     /*门户页数据请求代码开始。
      * 1.写在此处的原因：
      * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
@@ -3832,8 +3839,9 @@ angular.module('message.controllers', [])
           method: 'post',
           timeout: 5000,
           // url:"http://88.1.1.22:8081",
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          // url: "htƒtp://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+          url:$formalurlapi.getBaseUrl(),
           data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
         }).success(function (data, status) {
           // 门户页面对应的所有的数据源
@@ -3845,27 +3853,30 @@ angular.module('message.controllers', [])
           $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
 
           // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
-          for(var i=0;i<$scope.sysmenu.length;i++){
-            var items =  $scope.sysmenu[i].items;
-            for(var j=0;j<items.length;j++){
-              var flag = items[j].flag;
-              var appIcon = items[j].appIcon;
-              qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
-              qyyobject.appId = items[j].appId;
-              $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+          if($scope.sysmenu != null || $scope.sysmenu != "" || $scope.sysmenu != undefined){
+            for(var i=0;i<$scope.sysmenu.length;i++){
+              var items =  $scope.sysmenu[i].items;
+              for(var j=0;j<items.length;j++){
+                var flag = items[j].flag;
+                var appIcon = items[j].appIcon;
+                qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
+                qyyobject.appId = items[j].appId;
+                $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
 
-              },function (err) {
-              });
+                },function (err) {
+                });
 
-              if(flag){
-                $scope.appIconArr.push( appIcon );
-                $scope.appIconArr2.push(appIcon+'_f')
-              }else {
-                $scope.appIconArr.push(appIcon+'_f');
-                $scope.appIconArr2.push(appIcon)
+                if(flag){
+                  $scope.appIconArr.push( appIcon );
+                  $scope.appIconArr2.push(appIcon+'_f')
+                }else {
+                  $scope.appIconArr.push(appIcon+'_f');
+                  $scope.appIconArr2.push(appIcon)
+                }
               }
             }
           }
+
 
           // 调插件，获取门户页需要的所有的图片路径
           $api.downloadQYYIcon($scope.appIconArr,function (success) {
