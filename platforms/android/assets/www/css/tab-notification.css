@@ -288,7 +288,32 @@ a#rightbt{
   width:24px;
   height:24px;
 }
-
+/*通知模块的 tabs style start */
+.notifyTabs.col{
+  height:30px;
+  text-align: center;
+  line-height:30px;
+  border:1px solid #3F51B5;
+  color: #3F51B5;
+  margin-left:-1px;
+}
+.notifyTabs:first-child{
+  background: #3F51B5;
+  color: #fff;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius:  4px 0 0 4px;
+  border-radius:  4px 0 0 4px;
+}
+.notifyTabs:last-child{
+  -webkit-border-radius:0 4px 4px 0;
+  -moz-border-radius:0 4px 4px 0;
+  border-radius:0 4px 4px 0;
+}
+.notifyTabs:active{
+  background: #3F51B5;
+  color: #fff;
+}
+/*通知模块的 tabs style end */
 
 
 

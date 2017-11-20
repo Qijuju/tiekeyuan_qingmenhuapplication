@@ -67,6 +67,7 @@ angular.module('group.services', [])
     allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
+        console.log("上拉加载更多接口调用" + defaultCount +"---"+ JSON.stringify(msg) );
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {

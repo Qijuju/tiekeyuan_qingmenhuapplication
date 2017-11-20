@@ -4,6 +4,25 @@
 angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
 
+
+    $scope.showNum = 0;
+    //  tabs切换，重置当前点击对象及兄弟元素的样式
+    $scope.tabClick = function ($event, value) {
+
+      var currentClickObj = $event.target;
+      $(currentClickObj).css({
+        "background":"#3F51B5",
+        "color":"#fff"
+      }).siblings().css({
+        "background":"#fff",
+        "color":"#3F51B5"
+      });
+
+      // 根据value值，改变showNum的值，进而显示不同的页面
+      $scope.showNum = value;
+
+    };
+
     // 全部通知列表数据源
     $scope.notifyNewList = [];
 
@@ -177,15 +196,15 @@ angular.module('newnotification.controllers', [])
 
     //上拉加载全部所有数据
     $scope.loadMoreNotify = function () {
-        $pubionicloading.showloading('','正在加载...');
-        $notify.allNotify();
-    }
+      $pubionicloading.showloading('','正在加载...');
+      $notify.allNotify();
+    };
 
     //上拉加载关注更多数据
     $scope.loadAttentionMoreNotify = function () {
       $pubionicloading.showloading('','正在加载...');
       $notify.getAttentionNotify();
-    }
+    };
 
     // 获取“关注通知列表”
     $scope.$on('attention.update', function (event) {
@@ -211,13 +230,14 @@ angular.module('newnotification.controllers', [])
       })
     });
 
-
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
+
+      console.log("加载更多的事件监听："+JSON.stringify(data));
       $scope.$apply(function () {
         $pubionicloading.hide();
         $scope.shownetstatus = false;
-        if(data != null && data !=undefined && data != ''){
+        if(data !== null && data !==undefined && data !== ''){
           // 将新接收的通知数据追加到列表数据源中
           $scope.notifyNewList.unshift(data);
 
@@ -225,12 +245,16 @@ angular.module('newnotification.controllers', [])
           $scope.noReadData.push(data);
         }else{
           var notifyList= $notify.getAllNotify().msgList;
-          var msgTotal = $notify.getAllNotify().msgTotal;
-          if (msgTotal > 5) {
+          var msgTotal = notifyList.length;
+
+          console.log("else上拉加载更多拿到的数据："+ msgTotal);
+
+          if (msgTotal >= 5 ) {
             $scope.notifyStatus = true;
-          } else if (msgTotal <= 5) {
+          } else if (msgTotal < 5) {
             $scope.notifyStatus = false;
           }
+          console.log("else状态：" + $scope.notifyStatus);
 
           for (var i = 0; i < notifyList.length; i++) {
             $scope.notifyNewList.push(notifyList[i]);
@@ -315,11 +339,11 @@ angular.module('newnotification.controllers', [])
       } else if (index == 0 && $scope.appstatus == false) {
         $scope.go(0)
       }
-    }
+    };
 
     $scope.go = function (index) {
       $ionicSlideBoxDelegate.slide(index);
-    }
+    };
 
     // 跳入详情
     $scope.goNotifyDetail = function (obj ) {

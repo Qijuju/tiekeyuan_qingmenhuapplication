@@ -39,8 +39,7 @@ ion-content#scrollContent ul li img{
 /*网络连接判断*/
 .row.myNetwork{
   background-color:#F8D5D9;
-  height: 42px;
-  margin-top: 10px
+  margin-top:10px;
 }
 .myNetwork > div:first-child{
   margin-left: 36px;
@@ -51,7 +50,7 @@ ion-content#scrollContent ul li img{
 }
 .myNetwork > div:last-child{
   font-size: 14px;
-  color: #A4A4A4;
+  color: #666;
   margin-top: 2px;
   text-align: left;
 }

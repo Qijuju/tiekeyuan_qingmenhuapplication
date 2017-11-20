@@ -3812,7 +3812,7 @@ angular.module('message.controllers', [])
     };
   })
 
-  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {   
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
     /*门户页数据请求代码开始。
      * 1.写在此处的原因：
      * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
