@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao) {
 
 
     $scope.showNum = 0;
@@ -102,8 +102,6 @@ angular.module('newnotification.controllers', [])
           $scope.allAttentionNotifyList.push(item);
         }
 
-
-
       }, function (err) {
         $ToastUtils.showToast("关注更改失败");
         if (isattention === "T") {
@@ -139,13 +137,11 @@ angular.module('newnotification.controllers', [])
         }
 
         // 修改全部通知列表数据源本条数据的关注状态
-        for(var i=0;i<$scope.notifyNewList.length;i++){
-          if ($scope.notifyNewList[i].MsgId === id){
+        for(var i=0;i<$scope.notifyNewList.length;i++) {
+          if ($scope.notifyNewList[i].MsgId === id) {
             $scope.notifyNewList[i].IsAttention = false;
           }
         }
-
-
       }, function (err) {
         $ToastUtils.showToast("关注更改失败");
         if (isattention === "T") {
@@ -197,9 +193,9 @@ angular.module('newnotification.controllers', [])
 
     //上拉加载全部所有数据
     $scope.loadMoreNotify = function () {
-        $pubionicloading.showloading('','正在加载...');
-        $notify.allNotify();
-    }
+      $pubionicloading.showloading('','正在加载...');
+      $notify.allNotify();
+    };
 
     //上拉加载关注更多数据
     $scope.loadAttentionMoreNotify = function () {
@@ -209,15 +205,14 @@ angular.module('newnotification.controllers', [])
 
     // 获取“关注通知列表”
     $scope.$on('attention.update', function (event) {
-
       $scope.$apply(function () {
         $pubionicloading.hide();
         var AttentionNotifyList = $notify.getAllAttentionNotify().msgList;
-        var attentionTotal = $notify.getAllAttentionNotify().AttentionNotifyList.length;
+        var attentionTotal = AttentionNotifyList.length;
 
         if(attentionTotal >= 5){
           $scope.notifyAttentionStatus = true;
-        }else{
+        }else if (attentionTotal < 5){
           $scope.notifyAttentionStatus = false;
         }
 
@@ -228,9 +223,11 @@ angular.module('newnotification.controllers', [])
         // 函数调用，判断是否加小红点标识
         isNewStatus($scope.allAttentionNotifyList,$scope.noReadData);
 
-      })
-    });
+      });
 
+      // 添加监听事件，滚动完成
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
 
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
@@ -246,9 +243,6 @@ angular.module('newnotification.controllers', [])
         }else{
           var notifyList= $notify.getAllNotify().msgList;
           var msgTotal = notifyList.length;
-
-          console.log("else上拉加载更多拿到的数据："+ msgTotal);
-
           if (msgTotal >= 5 ) {
             $scope.notifyStatus = true;
           } else if (msgTotal < 5) {
@@ -259,19 +253,9 @@ angular.module('newnotification.controllers', [])
             $scope.notifyNewList.push(notifyList[i]);
           }
         }
-        // 根据未读通知的msgId 判断是否加小红点标志
-        for(var i=0;i<$scope.notifyNewList.length;i++){
 
         // 函数调用，判断是否加小红点标识
         isNewStatus($scope.notifyNewList,$scope.noReadData);
-
-            if( $scope.notifyNewList[i].MsgId === $scope.noReadData[j].MsgId){
-              $scope.notifyNewList[i].isNewStatus = true; // 未读
-            }else {
-              continue;
-            }
-          }
-        }
 
         // 调插件获取 icon 对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
@@ -282,12 +266,13 @@ angular.module('newnotification.controllers', [])
           isNewStatus($scope.allAttentionNotifyList,succ);
 
           // 刷新页面
-           $scope.$apply();
+          $scope.$apply();
 
         },function (err) {
 
         });
       });
+
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
     });
@@ -373,7 +358,7 @@ angular.module('newnotification.controllers', [])
   })
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate, FinshedApp) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate) {
 
     $scope.notifyObj = $stateParams.obj.bean;
 
@@ -590,8 +575,6 @@ angular.module('newnotification.controllers', [])
     $scope.backApp = function () {
       $ionicHistory.goBack();
     }
-
-
   })
 
   .controller('confirmornotCtrl', function ($scope, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory) {

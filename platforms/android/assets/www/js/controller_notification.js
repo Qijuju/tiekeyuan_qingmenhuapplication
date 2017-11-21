@@ -6,7 +6,8 @@ angular.module('notification.controllers', ['ionic', 'ionic-datepicker'])
     $scope.index = 0;
     $scope.go = function(index){
       $ionicSlideBoxDelegate.slide(index);
-    }
+    };
+
     $scope.go_changed=function(index){
       //第一个页面index=0,第二个页面index=0，第三个页面index=0
       if (index==1){//当选择第二个页面也就是时间页面的时候调用时间选择器

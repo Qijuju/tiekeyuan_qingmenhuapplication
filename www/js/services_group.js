@@ -79,6 +79,8 @@ angular.module('group.services', [])
     //获取关注列表
     getAttentionNotify:function () {
       $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
+
+        console.log("接口请求的获取关注列表页码+数值" +defaultAttentionCount +"---"+ JSON.stringify(data));
         attentionNotify=data;
         $rootScope.$broadcast('attention.update');
         defaultAttentionCount++;

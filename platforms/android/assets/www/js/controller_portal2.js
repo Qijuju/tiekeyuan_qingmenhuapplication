@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup,$greendao,$timeout) {
+  .controller('portalCtrl2', function ($scope,$state,$mqtt,NetData,$http,$ToastUtils,$api,$pubionicloading,$rootScope,$ionicPopup,$greendao,$timeout,$formalurlapi) {
 
     // 门户页原始数据源
     $scope.dataSource = $rootScope.portalDataSource;
@@ -107,7 +107,7 @@ angular.module('portal.controllers', [])
     $scope.chooseBrowser = function (testUrl,appId) {
       cordova.plugins.browsertab.isAvailable(function (result) {
         if (!result) {
-          var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
+          var ref = cordova.InAppBrowser.open(testUrl, '_blank','hardwareback=yes,clearsessioncache=yes,clearcache=yse');
           var index = 0;
           ref.addEventListener('loadstart', function () {
             if (index > 0) {
@@ -140,9 +140,7 @@ angular.module('portal.controllers', [])
       $http({
         method: 'post',
         timeout: 5000,
-        // url:"http://88.1.1.22:8081",//测试环境
-        // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        url:$formalurlapi.getBaseUrl(),
         data: {"Action": "GetAppLink", "id": userID, "mepId": imCode,"platform":"A","appId":appId,"params":params}
       }).success(function (data) {
         var data =JSON.parse(decodeURIComponent(data));
@@ -170,15 +168,13 @@ angular.module('portal.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            // url:"http://88.1.1.22:8081",//测试环境
-            // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            url:$formalurlapi.getBaseUrl(),
             data: {
               "Action": "GetAppLink",
               "id": userID,
               "mepId": imCode,
               "platform": "A",
-              "appId": appId,
+              "appId": item.appId,
               "params": params
             }
           }).success(function (data) {
@@ -269,7 +265,7 @@ angular.module('portal.controllers', [])
     });
   })
 
-  .controller('projectPartCtrl', function ($scope,$api,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
+  .controller('projectPartCtrl', function ($scope,$api,$formalurlapi,$pubionicloading,$state,$ToastUtils,$http,$stateParams) {
 
     angular.element(document).ready(function () {
       var imCode = $stateParams.imCode;
@@ -281,9 +277,7 @@ angular.module('portal.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            // url:"http://88.1.1.22:8081",//测试环境
-            // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            url:$formalurlapi.getBaseUrl(),
             data: {
               "Action": "GetAppLink",
               "id": userID,
@@ -306,7 +300,7 @@ angular.module('portal.controllers', [])
       $scope.chooseSingleBrowser = function (testUrl,appId) {
         cordova.plugins.browsertab.isAvailable(function (result) {
           if (!result) {
-            var ref = cordova.InAppBrowser.open(testUrl, '_blank','location=no,hardwareback=no,clearsessioncache=yes,clearcache=yse');
+            var ref = cordova.InAppBrowser.open(testUrl, '_blank','hardwareback=yes,clearsessioncache=yes,clearcache=yse');
             var index = 0;
             ref.addEventListener('loadstart', function () {
               if (index > 0) {
@@ -403,6 +397,7 @@ angular.module('portal.controllers', [])
         var time = window.setTimeout(function(){
           scanQRcode();
           $(oBox).empty();
+
         },300);
       };
 

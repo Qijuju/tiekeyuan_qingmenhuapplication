@@ -89,11 +89,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
       e.preventDefault();
       return false;
     }, 501);
-
-
-
-
-
   });
 
 

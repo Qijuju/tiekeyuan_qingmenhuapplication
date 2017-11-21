@@ -139,23 +139,12 @@ angular.module('im.routes', [])
           }
         }
       })
-      //rxy 页面首页动态获取路由
-      // .state('tab.portal', {
-      //   url: '/portal',
-      //   cache:false,
-      //   views: {
-      //     'tab-portal': {
-      //       templateUrl: 'templates/tab-portal.html',
-      //       controller: 'portalCtrl'
-      //     }
-      //   }
-      // })
       .state('tab.portal', {
         url: '/portal',
         cache:false,
         views: {
           'tab-portal': {
-            templateUrl: 'templates/tab-portal2.html',
+            templateUrl: 'templates/tab-portal.html',
             controller: 'portalCtrl2'
           }
         },

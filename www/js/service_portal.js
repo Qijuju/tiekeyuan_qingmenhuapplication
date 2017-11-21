@@ -255,4 +255,5 @@ angular.module('portal.services', [])
       }
     };
   })
+
 ;
