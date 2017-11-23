@@ -30,11 +30,19 @@
   <!--主体内容区域-->
   <ion-content overflow-scroll="false" ng-click="shefalse()" on-drag="shefalse()">
 
+    <!--搜索框--><!--
+      <div class="item-input-inset "  ng-click="goSearch()">
+        <label class="item-input-wrapper common-search">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="搜索" ng-model="query">
+        </label>
+      </div>-->
+
     <!--网络连接判断-->
-    <div class="row myNetwork" ng-if="isNetConnectNow === false">
-      <div class="col col-10" align="center"> <img src="img/nonet.png"/></div>
-      <div class="col col-90">网络连接不可用，请检查网络设置。</div>
-    </div>
+    <!--<div class="row myNetwork" ng-if="isNetConnectNow === false">-->
+      <!--<div class="col" align="center"> <img src="img/nonet.png"/></div>-->
+      <!--<div class="col col-80">网络连接不可用，请检查网络设置。</div>-->
+    <!--</div>-->
 
     <ion-list ng-click="shefalse()">
       <ion-item id="tabMsgItemFirst" item-start class="listItem tabMsgItem" ng-repeat="item in items" ng-click="goDetailMessage(item.id,item.chatName,item.chatType)">

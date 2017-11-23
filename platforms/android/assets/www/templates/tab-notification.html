@@ -7,15 +7,14 @@
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,0)">全部</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,1)">关注</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,2)">应用</div>
-      <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,0)">{{notifyAttentionStatus}}{{showNum}}</div>
     </div>
   </div>
-  <ion-content  style="margin-top:40px;background: #fff;">
+  <ion-content  style="margin-top:40px;background: #fff;" overflow-scroll="true">
     <!--网络状态-->
-    <div class="row myNetwork" ng-if=shownetstatus>
-      <div class="col col-10"> <img src="img/nonet.png"/></div>
-      <div class="col col-90">网络连接不可用，请检查网络设置。</div>
-    </div>
+    <!--<div class="row myNetwork" ng-if=shownetstatus>-->
+      <!--<div class="col col-10"> <img src="img/nonet.png"/></div>-->
+      <!--<div class="col col-90">网络连接不可用，请检查网络设置。</div>-->
+    <!--</div>-->
     <!--全部通知-->
     <div ng-repeat="item in notifyNewList" ng-if="showNum === 0" style="background: #fff;-webkit-box-shadow:0 2px 9px 0px #e5e5e5;-moz-box-shadow: 0 2px 9px 0px #e5e5e5;box-shadow: 0 2px 9px 0px #e5e5e5;margin:15px;">
       <div class="row" ng-click="goNotifyDetail(item)">
@@ -158,74 +157,24 @@
     </div>
 
     <!-- 应用模块 -->
-    <div ng-repeat="item in allAttentionNotifyList" ng-if="showNum === 2" style="background: #fff;-webkit-box-shadow:0 2px 9px 0px #e5e5e5;-moz-box-shadow: 0 2px 9px 0px #e5e5e5;box-shadow: 0 2px 9px 0px #e5e5e5;margin:15px;"></div>
+    <div class="application" ng-if="showNum === 2" ng-repeat="item in applicationLists">
 
-      <div class="row" ng-click="goNotifyDetail(item)">
-        <div class="col clearfix">
-          <!--通知显示相应的图片信息-->
-          <div class="notifyImgInfo">
-            <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="通知logo">
-            <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="默认logo">
-            <!-- 小红点-->
-            <span class="newStatus" ng-if="item.isNewStatus"></span>
+      <div class="logoContentBox clearfix">
+
+        <div class="logo">
+          <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="应用logo">
+          <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="应用logo">
+        </div>
+
+        <div class="contentInfo">
+          <div class="row">
+            <div class="col col-67">{{item.appName}}</div>
+            <div class="col col-33">{{item.when}}</div>
           </div>
-          <!--通知的详细信息-->
-          <div class="notifyDetailInfo">
-            <div class="infoTop">
-              <!--名称-->
-              <div>
-                <!--<h3>{{item.FromName}}</h3>-->
-                <span  style="color: #000;">{{item.FromName}}</span>
-                <span ng-if="item.IsReaded" class="isReaded">已确认</span>
-              </div>
-              <!--时间-->
-              <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
-              <!--报警等级-->
-              <!--<span class="levelName">{{item.LevelName}}</span>-->
-            </div>
-            <!--标题-->
-            <div>
-              <pre class="preTitle">{{item.Title}}</pre>
-            </div>
+          <div class="row">
+            <div class="col">[12条]&nbsp;{{item.title}}</div>
           </div>
         </div>
-      </div>
-      <!-- 操作按钮-->
-      <div class="row topFocus">
-        <div class="col" ng-click="goIsTopEvent(item)">
-          <!--置顶-->
-          <img ng-if="item.IsToped" src="img/toptp.png">
-          <img ng-if="!item.IsToped" src="img/toptop1.png">
-        </div>
-        <div class="col" ng-click="cancelAttention(item)">
-          <!--关注-->
-          <img ng-if="item.IsAttention" src="img/focuseye.png">
-          <img ng-if="!item.IsAttention" src="img/focuseye1.png">
-        </div>
-        <!--等级-->
-        <!--<div class="col"  ng-if="(item.Level=='3')||(item.Level=='2') || (item.Level=='1')||(item.Level=='0')">-->
-        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='3'" >-->
-        <!--<img src="img/alert.png" alt="">-->
-        <!--<span>3</span>-->
-        <!--</p>-->
-        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='2'" >-->
-        <!--<img src="img/alert.png" alt="">-->
-        <!--<span>2</span>-->
-        <!--</p>-->
-        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='1'" >-->
-        <!--<img src="img/alert.png" alt="">-->
-        <!--<span>1</span>-->
-        <!--</p>-->
-        <!--<p class="rj-push-rightdown level" ng-if="item.Level=='0'" ></p>-->
-        <!--</div>-->
-        <!--普通网址,即：链接-->
-        <!--<div class="col" ng-if="item.LinkType=='U'">-->
-        <!--<img  class="fujian"  src="img/web.png" alt="网址" ng-click="gonet(item.Link)">-->
-        <!--</div>-->
-        <!--&lt;!&ndash;文件链接，即：附件&ndash;&gt;-->
-        <!--<div class="col" ng-if="item.LinkType=='F'">-->
-        <!--<img  class="fujian"  src="img/fujian.png" alt="附件" ng-click="">-->
-        <!--</div>-->
       </div>
     </div>
 

@@ -2,13 +2,13 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao,NetData,NotifyApplicationData) {
 
+    $scope.applicationLists = []; // 定义一个变量，接收调接口返回的通知应用模块的数据源
+    $scope.showNum = 0;  // 定义参数，标识要显示的模块
 
-    $scope.showNum = 0;
-    //  tabs切换，重置当前点击对象及兄弟元素的样式
+    // tabs切换，重置当前点击对象及兄弟元素的样式
     $scope.tabClick = function ($event, value) {
-
       var currentClickObj = $event.target;
       $(currentClickObj).css({
         "background":"#3F51B5",
@@ -102,6 +102,8 @@ angular.module('newnotification.controllers', [])
           $scope.allAttentionNotifyList.push(item);
         }
 
+
+
       }, function (err) {
         $ToastUtils.showToast("关注更改失败");
         if (isattention === "T") {
@@ -135,6 +137,8 @@ angular.module('newnotification.controllers', [])
             $scope.allAttentionNotifyList.splice(i,1);
           }
         }
+
+
 
         // 修改全部通知列表数据源本条数据的关注状态
         for(var i=0;i<$scope.notifyNewList.length;i++) {
@@ -259,6 +263,7 @@ angular.module('newnotification.controllers', [])
 
         // 调插件获取 icon 对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
+
           // 全部 -- 根据id，往数据源中追加图片路径字段信息
           isNewStatus($scope.notifyNewList,succ);
 
@@ -267,6 +272,9 @@ angular.module('newnotification.controllers', [])
 
           // 刷新页面
           $scope.$apply();
+
+          // 函数调用，通知应用
+          applicationsE(succ);
 
         },function (err) {
 
@@ -354,6 +362,59 @@ angular.module('newnotification.controllers', [])
         })
       }
     };
+
+    // 获取通知应用列表数据
+    function applicationsE( notifyIdAppIcons) {
+      var userID; // userID = 232102
+      var imCode; //  imCode = 860982030647083
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+
+          // 调用接口拿到后台数据
+          NotifyApplicationData.getListInfo(userID,imCode);
+          $scope.$on('succeed.update', function (event) {
+            $pubionicloading.hide();
+
+            $scope.applicationLists = NotifyApplicationData.getApplicationList();
+            console.log("通知应用数据源前" + JSON.stringify($scope.applicationLists ));
+
+            var l1 = notifyIdAppIcons.length;
+            var l2 = $scope.applicationLists.length;
+
+
+            // 往通知应用数据源中追加应用logo路径字段
+            if( l1>0&&l2>0 ){
+              for(var i=0;i<l2;i++){
+                var appId = $scope.applicationLists[i].appId;
+                // 测试
+                var whenStr =new Date( $scope.applicationLists[i].when );
+                $scope.applicationLists[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+
+                for(var j=0;j< l1;j++){
+                  if ( appId===notifyIdAppIcons[j].appId ){
+                    $scope.applicationLists[i].appIcon=notifyIdAppIcons[j].path;
+                  }else {
+                    continue;
+                  }
+                }
+              }
+            }
+            console.log("通知应用数据源后" + JSON.stringify(   $scope.applicationLists ));
+
+          });
+
+        })
+      });
+    }
+
+
+
+
+
+
 
   })
 
@@ -521,21 +582,12 @@ angular.module('newnotification.controllers', [])
 
   })
 
-
-
-
-
   //应用列表的详情
-
   .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $pubionicloading, $timeout, $ionicHistory) {
-
     $scope.hahaha = $stateParams.isfirm;
-
-
     $pubionicloading.showloading('', '正在加载...');
-
-
     $scope.ididididi = $stateParams.id;
+
     if ($scope.ididididi == 1) {
       $scope.appname = "公文处理";
     } else if ($scope.ididididi == 15) {
@@ -553,8 +605,6 @@ angular.module('newnotification.controllers', [])
     }
 
     //当进入页面以后执行的方法
-
-
     $scope.$on('$ionicView.enter', function () {
       $timeout(function () {
 
@@ -673,8 +723,6 @@ angular.module('newnotification.controllers', [])
 
 
   })
-
-
   .controller('netconfirmCtrl', function ($scope, $stateParams, $sce) {
     $scope.neturl = $sce.trustAsResourceUrl($stateParams.url);
 

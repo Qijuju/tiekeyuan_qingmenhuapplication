@@ -144,7 +144,7 @@ angular.module('im.routes', [])
         cache:false,
         views: {
           'tab-portal': {
-            templateUrl: 'templates/tab-portal.html',
+            templateUrl: 'templates/tab-portal2.html',
             controller: 'portalCtrl2'
           }
         },
@@ -157,7 +157,6 @@ angular.module('im.routes', [])
         controller: 'OhterCtrl',
         cache:false
       })
-
 
       .state('tab.notifications', {
         url: '/notifications',

@@ -67,7 +67,6 @@ angular.module('group.services', [])
     allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
-        console.log("上拉加载更多接口调用" + defaultCount +"---"+ JSON.stringify(msg) );
         $rootScope.$broadcast('allnotify.update');
         defaultCount++;
       }, function (err) {
@@ -79,8 +78,6 @@ angular.module('group.services', [])
     //获取关注列表
     getAttentionNotify:function () {
       $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
-
-        console.log("接口请求的获取关注列表页码+数值" +defaultAttentionCount +"---"+ JSON.stringify(data));
         attentionNotify=data;
         $rootScope.$broadcast('attention.update');
         defaultAttentionCount++;

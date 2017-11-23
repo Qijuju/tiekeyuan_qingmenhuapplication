@@ -3,6 +3,7 @@
  */
 angular.module('login.controllers', [])
 
+
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
   })
@@ -638,12 +639,6 @@ angular.module('login.controllers', [])
     };
 
     function getMenHuData() {
-      console.log("获取门户数据源方法调用了");
-      /*门户页数据请求代码开始。
-    * 1.写在此处的原因：
-    * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
-    *
-    * */
       // 门户页面数据请求
       var userID; // userID = 232099
       var imCode; //  imCode = 866469025308438
@@ -657,20 +652,15 @@ angular.module('login.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            // url:"http://88.1.1.22:8081",
-            // url: "htƒtp://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
             url:$formalurlapi.getBaseUrl(),
             data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
           }).success(function (data, status) {
 
             // 成功之后页面跳转
-            // $state.go('tab.message');
             $state.go('tab.notification');
 
             // 门户页面对应的所有的数据源
             $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
-            console.log("applist所有数据源"+JSON.stringify($rootScope.portalDataSource));
             $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
 
             $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
@@ -725,302 +715,4 @@ angular.module('login.controllers', [])
 
     }
 
-  })
- /* .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
-
-    var password = "";
-    var count = 6;
-
-
-    $scope.picyoumeiyoua = false;
-    document.getElementById("loginpica").style.height = (window.screen.height) + 'px';
-    document.getElementById("loginpica").style.width = (window.screen.width) + 'px';
-    $mqtt.save('loginpage', "gesturelogin");
-
-    $mqtt.setLogin(false);
-    $mqtt.getMqtt().getString('pwdgesture', function (message) {
-      $scope.pwdgesturea = message;
-    });
-    $mqtt.getMqtt().getString('namegesture', function (message) {
-      $scope.namegesturea = message;
-    });
-    $mqtt.getMqtt().getString('historyusername', function (message) {
-      $scope.username = message;
-
-    });
-    $mqtt.getMqtt().getString('zuinewID', function (message) {
-      // alert(message)
-      $greendao.queryData('GesturePwdService', 'where id=?', message, function (data) {
-        password = data[0].pwd;
-      }, function (err) {
-      });
-    });
-
-    $mqtt.getMqtt().getString('userNamea', function (message) {
-      $scope.userNameabc = message;
-      $scope.userNamea = $scope.userNameabc.substring(($scope.userNameabc.length - 2), $scope.userNameabc.length);
-    });
-
-
-    $api.getHeadPic($scope.UserID, "60", function (srcurl) {
-      // alert(srcurl)
-      if (message == null || message.length == 0 || message == undefined) {
-        $scope.picyoumeiyoua = false;
-      } else {
-        $scope.picyoumeiyoua = true;
-        $scope.$apply(function () {
-          $scope.securlpica = srcurl;
-        })
-      }
-    }, function (error) {
-      // alert(error)
-      $scope.picyoumeiyoua = false;
-      // alert("没有")
-    })
-
-    $scope.goLogin = function () {
-      $state.go('login');
-    };
-    $scope.meizuo = function () {
-      $ToastUtils.showToast("此功能暂未开发");
-    };
-
-
-    //登录成功之后获取用户姓名（昵称）
-    $scope.getUserName = function () {
-      $mqtt.getUserInfo(function (userInfo) {
-        $rootScope.userName = userInfo.userName;
-      }, function (err) {
-      });
-    };
-
-    var method = function () {
-      var secondopt = {
-        chooseType: 3,
-        width: 400,
-        height: 400,
-        container: 'element',
-        inputEnd: function (psw) {
-          if (psw == password) {
-            $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
-              if (message.resultCode === '105') {
-                var confirmPopup = $ionicPopup.confirm({
-                  title: '强制登录提示',
-                  template: "您的账号在其他终端已登录，是否切换到该设备？",
-                  cancelText: '不登录',
-                  okText: '登录'
-                });
-                confirmPopup.then(function (isConfirm) {
-                  if (isConfirm) {
-                    $mqtt.save('pwdgesture', $scope.pwdgesturea);
-                    $mqtt.save('namegesture', $scope.namegesturea);
-                    if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-                      $api.activeUser(message.userID, function (message) {
-                        loginM();
-                      }, function (message) {
-                        $pubionicloading.hide();
-                        $ToastUtils.showToast(message);
-                      });
-                    } else {
-                      loginM();
-                    }
-                  } else {
-                    $state.go('login');
-                  }
-                });
-              } else {
-                $mqtt.save('pwdgesture', $scope.pwdgesturea);
-                $mqtt.save('namegesture', $scope.namegesturea);
-                if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-                  $api.activeUser(message.userID, function (message) {
-                    loginM();
-                  }, function (message) {
-                    $pubionicloading.hide();
-                    $ToastUtils.showToast(message);
-                  });
-                } else {
-                  loginM();
-                }
-              }
-            }, function (message) {
-              $pubionicloading.hide();
-              $state.go('login');
-              $ToastUtils.showToast(message);
-            });
-
-            secondlock.drawStatusPoint('right')
-            $pubionicloading.showloading('','正在加载...');
-            $timeout(function () {
-              $pubionicloading.hide();
-              $state.go('tab.message');
-            });
-            $timeout(function () {
-              secondlock.reset();
-            }, 300);
-
-          } else {
-            secondlock.drawStatusPoint('notright')
-            $ToastUtils.showToast("输入错误，请再输入一次,还能输入" + (--count) + "次")
-            if (count == 0) {
-              // $mqtt.save('gesturePwd', "");//存
-              $mqtt.getUserInfo(function (msg) {
-                $scope.UserID = msg.userID;
-                $scope.mymypersonname = msg.userName
-                var gestureobj = {};
-                gestureobj.id = $scope.UserID;
-                gestureobj.username = $scope.mymypersonname;
-                gestureobj.pwd = "";
-                $greendao.saveObj('GesturePwdService', gestureobj, function (data) {
-                  // $ToastUtils.showToast("密码修改成功")
-                }, function (err) {
-                });
-              }, function (msg) {
-              });
-              $state.go('login');
-            }
-            $timeout(function () {
-              secondlock.reset();
-              method();
-            }, 300);
-          }
-        }
-      }
-      var secondlock = new H5lock(secondopt);
-      secondlock.init();
-    }
-
-
-    var firstopt = {
-      chooseType: 3,
-      width: 400,
-      height: 400,
-      container: 'element',
-      inputEnd: function (psw) {
-        if (psw == password) {
-          $api.login($scope.namegesturea, $scope.pwdgesturea, function (message) {
-            $mqtt.save('pwdgesture', $scope.pwdgesturea);
-            $mqtt.save('namegesture', $scope.namegesturea);
-            if (message.resultCode === '105') {
-              var confirmPopup = $ionicPopup.confirm({
-                title: '强制登录提示',
-                template: "您的账号在其他终端已登录，是否切换到该设备？",
-                cancelText: '不登录',
-                okText: '登录'
-              });
-              confirmPopup.then(function (isConfirm) {
-                if (isConfirm) {
-                  if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-                    $api.activeUser(message.userID, function (message) {
-                      loginM();
-                      $pubionicloading.hide();
-                      $state.go('tab.message');
-                    }, function (message) {
-                      $pubionicloading.hide();
-                      $ToastUtils.showToast(message);
-                    });
-                  } else {
-                    loginM();
-                    $pubionicloading.hide();
-                    $state.go('tab.message');
-                  }
-                } else {
-                  $pubionicloading.hide();
-                  $state.go('login');
-                }
-              });
-            } else {
-              if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
-                $api.activeUser(message.userID, function (message) {
-                  loginM();
-                  $pubionicloading.hide();
-                  $state.go('tab.message');
-                }, function (message) {
-                  $pubionicloading.hide();
-                  $ToastUtils.showToast(message);
-                });
-              } else {
-                loginM();
-                $pubionicloading.hide();
-                $state.go('tab.message');
-              }
-            }
-          }, function (message) {
-            $pubionicloading.hide();
-            $state.go('login');
-            $ToastUtils.showToast(message);
-
-          });
-
-          firstlock.drawStatusPoint('right')
-          // $ToastUtils.showToast("输入密码正确,logining...")
-          $pubionicloading.showloading('','正在加载...');
-
-          $timeout(function () {
-            firstlock.reset();
-          }, 300);
-
-        } else {
-          firstlock.drawStatusPoint('notright')
-          if (count != 0) {
-            $ToastUtils.showToast("输入错误，请再输入一次,还能输入" + (--count) + "次")
-          } else {
-            $ToastUtils.showToast("请重新设置手势密码！")
-            // $mqtt.save('gesturePwd', "");//存 手势密码清空
-            $mqtt.getUserInfo(function (msg) {
-              $scope.UserID = msg.userID;
-              $scope.mymypersonname = msg.userName
-              var gestureobj = {};
-              gestureobj.id = $scope.UserID;
-              gestureobj.username = $scope.mymypersonname;
-              gestureobj.pwd = "";
-              $greendao.saveObj('GesturePwdService', gestureobj, function (data) {
-                // $ToastUtils.showToast("密码修改成功")
-              }, function (err) {
-              });
-            }, function (msg) {
-            });
-
-
-            $state.go('login');
-          }
-          // alert("bbbbbb:"+count);
-          $timeout(function () {
-            firstlock.reset();
-            method();
-          }, 300);
-        }
-      }
-    }
-    var firstlock = new H5lock(firstopt);
-    firstlock.init();
-    //获取当前用户的id
-    var loginM = function () {
-      $mqtt.getMqtt().getUserId(function (userID) {
-        $rootScope.rootUserId = userID;
-        // alert("当前用户的id"+userID);
-      }, function (err) {
-
-      });
-      // alert(message.toString());
-      // $api.checkUpdate($ionicPopup, $ionicLoading, $cordovaFileOpener2, $mqtt);
-      //调用保存用户名方法
-      $mqtt.getMqtt().saveLogin('name', $scope.namegesturea, function (message) {
-      }, function (message) {
-        $ToastUtils.showToast(message);
-      });
-      $mqtt.getMqtt().getMyTopic(function (msg) {
-        $api.getAllGroupIds(function (groups) {
-          $mqtt.startMqttChat(msg + ',' + groups);
-          $mqtt.setLogin(true);
-          $scope.getUserName();
-        }, function (err) {
-          $ToastUtils.showToast(err, function (success) {
-          }, function (err) {
-          });
-        });
-      }, function (err) {
-        $ToastUtils.showToast(err);
-      });
-    }
-  })
-*/
+  });

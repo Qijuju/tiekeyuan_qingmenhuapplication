@@ -162,7 +162,7 @@ angular.module('portal.services', [])
       }
     };
   })
-  .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
+  .factory('NetData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http, FinshedApp) {
     // var userID;
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;
@@ -175,10 +175,7 @@ angular.module('portal.services', [])
         $http({
           method: 'post',
           timeout: 5000,
-          // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
-          // url: "http://202.137.140.133:6001",//老挝正式环境
+          url:$formalurlapi.getBaseUrl(),
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
 
@@ -256,4 +253,31 @@ angular.module('portal.services', [])
     };
   })
 
+  .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http) {
+    var lists = [];
+    return {
+      // 获取通知所属应用列表及应用的最新一条消息事件和标题
+      getListInfo: function (userID,imcode) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{Action:"GetExtMsgAppList",id:userID,mepId:imcode}
+        }).success(function (data, status) {
+
+          // 获取通知应用列表数据源
+          lists = JSON.parse(decodeURIComponent(data)).Event.appList;
+          console.log("通知应用列表成功的数据：" + JSON.stringify(lists));
+          $rootScope.$broadcast('succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('error.update');
+        });
+      },
+      getApplicationList: function () {
+        return lists;
+      }
+
+
+    };
+  })
 ;
