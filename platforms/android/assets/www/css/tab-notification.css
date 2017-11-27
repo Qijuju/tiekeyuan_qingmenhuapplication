@@ -280,8 +280,8 @@ a#rightbt{
   background: #3F51B5;
   color: #fff;
   -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius:  4px 0 0 4px;
-  border-radius:  4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 .notifyTabs:last-child{
   -webkit-border-radius:0 4px 4px 0;
@@ -307,6 +307,7 @@ a#rightbt{
   margin-left:50px;
 }
 .application .logoContentBox .logo{
+  position: relative;
   height:50px;
   margin-left: -50px;
   margin-top:5px;

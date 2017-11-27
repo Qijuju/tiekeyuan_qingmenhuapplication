@@ -10,10 +10,14 @@ angular.module('newnotification.controllers', [])
     $scope.allAttentionNotifyList = [];   //已关注的通知列表数据源
     $scope.newdex = 0;
     $scope.appstatus = false; //滑块的状态
+    $scope.noReadData = [];// 未读的通知
 
     // tabs切换，重置当前点击对象及兄弟元素的样式
     $scope.tabClick = function ($event, value) {
-      var currentClickObj = $event.target;
+      // 根据value值，改变showNum的值，进而显示不同的页面
+      $scope.showNum = value;
+
+      var currentClickObj = $event.target; // 当前点击对象
       $(currentClickObj).css({
         "background":"#3F51B5",
         "color":"#fff"
@@ -21,9 +25,6 @@ angular.module('newnotification.controllers', [])
         "background":"#fff",
         "color":"#3F51B5"
       });
-
-      // 根据value值，改变showNum的值，进而显示不同的页面
-      $scope.showNum = value;
 
     };
 
@@ -38,6 +39,7 @@ angular.module('newnotification.controllers', [])
 
       // 未读的通知
       $scope.noReadData = data;
+      console.log("未读的通知获取通知列表表信息"+ JSON.stringify(data));
 
     },function (err) {
 
@@ -226,13 +228,43 @@ angular.module('newnotification.controllers', [])
 
         // 函数调用，判断是否加小红点标识
         isNewStatus($scope.allAttentionNotifyList,$scope.noReadData);
-
       });
 
       // 添加监听事件，滚动完成
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
 
+    // start
+    var userID; // userID = 232102
+    var imCode; //  imCode = 860982030647083
+    $mqtt.getUserInfo(function (succ) {
+      userID = succ.userID;
+      //获取人员所在部门，点亮图标
+      $mqtt.getImcode(function (imcode) {
+        imCode = imcode;
+        console.log();
+        // 调用接口拿到后台数据
+        $notify.allNotify(userID,imCode);
+        $scope.$on('succeed.update', function (event) {
+          $pubionicloading.hide();
+          var notifyList = $notify.getAllNotify(); // 获取应用列表数据源
+
+          console.log("拿到的通知全部数据----全部通知："+ JSON.stringify(notifyList));
+
+          // var msgTotal = notifyList.length;
+          // if (msgTotal >= 5 ) {
+          //   $scope.notifyStatus = true;
+          // } else if (msgTotal < 5) {
+          //   $scope.notifyStatus = false;
+          // }
+          //
+          // for (var i = 0; i < notifyList.length; i++) {
+          //   $scope.notifyNewList.push(notifyList[i]);
+          // }
+        });
+      })
+    });
+    // end
     // 接收的新通知
     $scope.$on('allnotify.update', function (event,data) {
       $scope.$apply(function () {
@@ -245,7 +277,7 @@ angular.module('newnotification.controllers', [])
           // 将新推送的通知的数据追加到未读数据中
           $scope.noReadData.push(data);
         }else{
-          var notifyList= $notify.getAllNotify().msgList;
+         /* var notifyList= $notify.getAllNotify().msgList;
           var msgTotal = notifyList.length;
           if (msgTotal >= 5 ) {
             $scope.notifyStatus = true;
@@ -255,8 +287,10 @@ angular.module('newnotification.controllers', [])
 
           for (var i = 0; i < notifyList.length; i++) {
             $scope.notifyNewList.push(notifyList[i]);
-          }
+          }*/
         }
+
+
 
         // 函数调用，判断是否加小红点标识
         isNewStatus($scope.notifyNewList,$scope.noReadData);
@@ -342,7 +376,6 @@ angular.module('newnotification.controllers', [])
             "bean": obj
           }
         })
-        console.log("通知进入详情页面："+ JSON.stringify(obj));
       }else {
         obj.appIcon = "img/notifyDefaultLogo.png";
         $state.go('notifyDetail', {
@@ -369,8 +402,37 @@ angular.module('newnotification.controllers', [])
             $pubionicloading.hide();
 
             $scope.applicationLists = NotifyApplicationData.getApplicationList(); // 获取应用列表数据源
-
             addPathToData(notifyIdAppIcons, $scope.applicationLists); // 往应用列表数据源中追加 logo 路径字段
+
+            console.log("12哈哈获取的应用列表数据： " +JSON.stringify($scope.applicationLists));
+
+            if ($scope.applicationLists.length>0){
+              if ($scope.noReadData.length>0){  // 有未读的通知数据
+              //  用应用列表数据 appName 查询该条应用下有多少条未读通知，并给个有未读通知状态标识
+                for(var i=0;i<$scope.applicationLists.length;i++){
+                  var noReadCount = 0; // 各应用下的未读通知数
+                  var noReadAppIdArr = []; // 各应用下的未读通知的唯一标识集合
+                  var appName = $scope.applicationLists[i].appName;
+                  for(var j=0;j<$scope.noReadData.length;j++){
+                    if($scope.noReadData[j].appName === appName){
+                      noReadCount++;
+                      noReadAppIdArr.push($scope.noReadData[j].MsgId) // 将未读应用通知的唯一标识MsgId传过去，进行数据过滤
+                    }else {
+                      continue;
+                    }
+                  }
+                  $scope.applicationLists[i].noReadCount = noReadCount;
+                  $scope.applicationLists[i].noReadAppIdArr = noReadAppIdArr;
+                }
+
+              }else {
+               return;
+              }
+            }else {
+              return;
+            }
+
+            console.log("12哈哈+修改后+获取的应用列表数据： " +JSON.stringify($scope.applicationLists));
 
           });
         })
@@ -407,13 +469,13 @@ angular.module('newnotification.controllers', [])
         obj:obj
       })
     };
-
   })
 
   //跳转进入详情界面的展示
   .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate) {
 
     $scope.notifyObj = $stateParams.obj.bean;
+    console.log("应用详情页点击item进入一个通知的详情页接收到的数据："+JSON.stringify($scope.notifyObj));
 
     // var fromId = $scope.notifyObj.FromID;
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
@@ -576,12 +638,13 @@ angular.module('newnotification.controllers', [])
   // 通知应用列表详情
   .controller('applicationDetailCtrl', function ($scope,$state,$ionicHistory,$stateParams, $mqtt,NotifyApplicationData,$pubionicloading,$greendao) {
 
+    console.log("传入应用详情页接收的item："+ JSON.stringify($stateParams.obj));
     var fromId = $stateParams.obj.appId;        // 接收上级id
     $scope.appName = $stateParams.obj.appName; // 接收应用名称
     $scope.appIcon = $stateParams.obj.appIcon; // 接收应用 logo 对应的本地路径
+    $scope.noReadAppIdArr =  $stateParams.obj.noReadAppIdArr; // 接收该应用下的未读通知的唯一标识集合
 
-    // 调接口，获取各个应用下的通知列表数据源
-    getAppNotifyLists(fromId);
+    getAppNotifyLists(fromId); // 调接口，获取各个应用下的通知列表数据源
 
     // 获取这个应用下的通知列表数据
     function getAppNotifyLists(fromId) {
@@ -599,12 +662,32 @@ angular.module('newnotification.controllers', [])
 
             $scope.applicationChild = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
 
-            // 转化时间格式、追加logo地址
+            // 转化时间格式 + 追加logo地址
             for(var i=0;i< $scope.applicationChild.length;i++){
+              // 转化时间格式
               var whenStr =new Date($scope.applicationChild[i].when);
               $scope.applicationChild[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+
+              // 追加logo地址
               $scope.applicationChild[i].appIcon =  $scope.appIcon;
+
+              // 判断新旧状态
+             if($scope.noReadAppIdArr.length>0){
+               for (var j=0;j<$scope.noReadAppIdArr.length;j++){
+                 var MsgId = $scope.noReadAppIdArr[j];
+                 if(MsgId=== $scope.applicationChild[i].msgId){
+                   $scope.applicationChild[i].isNewNotify = true;
+                 }else {
+                  continue;
+                 }
+               }
+             }else {
+               return;
+             }
+
             }
+
+            console.log("应用详情页追加path+新旧状态后的数据：" +$scope.applicationChild.length+"--"+ JSON.stringify($scope.applicationChild));
 
           });
         })

@@ -26,9 +26,6 @@
             <div class="notifyImgInfo">
               <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon !== null"  alt="通知logo">
               <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
-
-              <!-- 小红点-->
-              <span class="newStatus" ng-if="notifyObj.isNewStatus"></span>
             </div>
 
             <!--通知的详细信息-->

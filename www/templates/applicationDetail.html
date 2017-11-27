@@ -18,17 +18,19 @@
 
     <div class="application" ng-repeat="item in applicationChild" style="position: relative;overflow: hidden;">
 
-      <!--“新”标识 -->
-      <div style="position: absolute;top:-15px;left: -40px;width:0px;border-top:40px solid #B4B5B4;border-left: 40px solid transparent;border-right:40px solid transparent;transform: rotate(135deg)"></div>
-      <span style="position: absolute;top:0px;left: 3px;color: #fff;font-size: 14px;">新</span>
-
       <div class="logoContentBox clearfix" ng-click="goDetail(item)">
-
         <div class="logo">
           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="应用logo">
           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="应用logo">
         </div>
 
+        <!--“新”标识 -->
+        <div ng-if="item.isNewNotify">
+          <div style="position: absolute;top:-15px;left: -40px;width:0px;border-top:40px solid #B4B5B4;border-left: 40px solid transparent;border-right:40px solid transparent;transform: rotate(135deg)"></div>
+          <span style="position: absolute;top:0px;left: 3px;color: #fff;font-size: 14px;">新</span>
+        </div>
+
+        <!--详细信息-->
         <div class="contentInfo">
           <div class="row">
             <div class="col col-67">

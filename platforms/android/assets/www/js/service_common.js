@@ -114,14 +114,10 @@ angular.module('common.services', [])
       deleteBySessionid: function (sessionid, success, error) {
         greendao.deleteBySessionid(sessionid, success, error);
 
-
       }
-
-
     };
 
   })
-
   .factory('$api', function ($ToastUtils) {//系统接口。
     var api;
     return {

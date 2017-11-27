@@ -12,7 +12,7 @@ angular.module('group.services', [])
     allGroup:function () {
       $api.getAllGroup(function (msg) {
 
-        allGroup=msg.groupList
+        allGroup=msg.groupList;
 
 
         $rootScope.$broadcast('group.update');
@@ -54,7 +54,7 @@ angular.module('group.services', [])
 
 })
 
-.factory('$notify',function ($api,$rootScope,$timeout,$ToastUtils) {
+.factory('$notify',function ($api,$rootScope,$timeout,$ToastUtils,$http,$formalurlapi) {
 
   var defaultCount=1;
   var allNotify;
@@ -63,8 +63,8 @@ angular.module('group.services', [])
   var defaultAttentionCount=1;
 
   return{
-
-    allNotify:function () {
+   // 通过封装的插件调取接口，修改了字段的大小写以及获取的字段的个数
+   /* allNotify:function () {
       $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
         allNotify=msg;
         $rootScope.$broadcast('allnotify.update');
@@ -74,7 +74,25 @@ angular.module('group.services', [])
         $rootScope.$broadcast('allnotify.update.error');
 
       });
-    },
+    }, */
+    // 直接通过http请求拿数据，字段展示形式和后台一致
+    allNotify:function (userID,imcode) {
+      console.log("allNotify接口被调用了--全部通知" + userID +"--" +imcode + "--" + $formalurlapi.getBaseUrl());
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{Action:"GetExtMsg",id:userID,mepId:imcode,date:"A",isAttention:false,pageNo:defaultCount,pageSize:defaultNumber}
+        }).success(function (data, status) {
+          console.log("allNotify接口返回数据---全部通知：" + JSON.stringify(decodeURIComponent(data)));
+          // allNotify=data;
+          // $rootScope.$broadcast('allnotify.update');
+          // defaultCount++;
+        }).error(function (data, status) {
+          // $ToastUtils.showToast(err);
+          // $rootScope.$broadcast('allnotify.update.error');
+        });
+      },
     //获取关注列表
     getAttentionNotify:function () {
       $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
@@ -97,6 +115,7 @@ angular.module('group.services', [])
 
 
     getAllNotify:function () {
+      console.log("getAllNotify返回通知全部数据源方法被调用了----全部通知");
       return allNotify;
     },
 

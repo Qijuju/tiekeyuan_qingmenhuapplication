@@ -49,7 +49,7 @@ public class Constants {
 
   //消息服务生产环境
 //  public static final String commonmsgurl= "http://immobile.r93535.com:8088/crbim/imApi/1.0";
- 
+
   //消息服务开发环境
   public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";
 //  public static final String commonmsgurl= "http://imtest.crbim.win:8080/apiman-gateway/jishitong/newMsgCheck/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";(短信验证)

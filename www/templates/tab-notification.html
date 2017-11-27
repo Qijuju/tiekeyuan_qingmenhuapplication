@@ -6,7 +6,8 @@
     <div class="row">
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,0)">全部</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,1)">关注</div>
-      <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,2)">应用</div>
+      <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,2)">通知应用</div>
+      <!--<div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,3)">平台{{showNum}}</div>-->
     </div>
   </div>
   <ion-content  style="margin-top:40px;background: #fff;" overflow-scroll="true">
@@ -158,12 +159,12 @@
 
     <!-- 应用模块 -->
     <div class="application" ng-if="showNum === 2" ng-repeat="item in applicationLists" ng-click="goApplicationDetail(item)">
-
       <div class="logoContentBox clearfix">
-
         <div class="logo">
           <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="应用logo">
           <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="应用logo">
+          <!-- 有未读通知标识：小红点-->
+          <span class="newStatus" ng-if="item.noReadCount>0"></span>
         </div>
 
         <div class="contentInfo">
@@ -172,7 +173,7 @@
             <div class="col col-33">{{item.when}}</div>
           </div>
           <div class="row">
-            <div class="col">[12条]&nbsp;{{item.title}}</div>
+            <div class="col"><span ng-if="item.noReadCount>0">[{{item.noReadCount}}条]&nbsp;</span>{{item.title}}</div>
           </div>
         </div>
       </div>
