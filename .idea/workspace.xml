@@ -809,14 +809,7 @@
       <workItem from="1510880975133" duration="71120000" />
       <workItem from="1511399943891" duration="19841000" />
       <workItem from="1511483921098" duration="19317000" />
-      <workItem from="1511742373680" duration="12209000" />
-    </task>
-    <task id="LOCAL-00201" summary="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
-      <created>1506327878922</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1506327878923</updated>
+      <workItem from="1511742373680" duration="12218000" />
     </task>
     <task id="LOCAL-00202" summary="0926commit:老挝发版本0926.1，解决通知没法实时刷新的问题">
       <created>1506420256558</created>
@@ -1154,11 +1147,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511769297055</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="11.27commit:修改8级目录为一级，将返回和物理返回改为逐级返回，添加关闭按钮直接返回联系人界面，进入人员详情点击返回和物理返回键都改为逐级返回">
+      <created>1511769315107</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1511769315107</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2882402000" />
+    <option name="totallyTimeSpent" value="2882411000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
