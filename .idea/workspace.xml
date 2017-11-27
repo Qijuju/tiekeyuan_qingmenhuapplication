@@ -36,18 +36,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/inappbrowser/InAppBrowser.java" afterPath="$PROJECT_DIR$/platforms/android/src/org/apache/cordova/inappbrowser/InAppBrowser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/platforms/android/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_contacts2.js" afterPath="$PROJECT_DIR$/www/js/controller_contacts2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_login.js" afterPath="$PROJECT_DIR$/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_message.js" afterPath="$PROJECT_DIR$/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controller_my.js" afterPath="$PROJECT_DIR$/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes.js" afterPath="$PROJECT_DIR$/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_common.js" afterPath="$PROJECT_DIR$/www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/service_portal.js" afterPath="$PROJECT_DIR$/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/aboutRecommend.html" afterPath="$PROJECT_DIR$/www/templates/aboutRecommend.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/aboutour.html" afterPath="$PROJECT_DIR$/www/templates/aboutour.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/www/templates/contact-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/www/templates/tab-contacts.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -821,14 +809,7 @@
       <workItem from="1510880975133" duration="71120000" />
       <workItem from="1511399943891" duration="19841000" />
       <workItem from="1511483921098" duration="19317000" />
-      <workItem from="1511742373680" duration="12071000" />
-    </task>
-    <task id="LOCAL-00200" summary="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
-      <created>1506327504091</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1506327504091</updated>
+      <workItem from="1511742373680" duration="12209000" />
     </task>
     <task id="LOCAL-00201" summary="0925commit:准备建立老挝项目单独分支，先将代码提交至最新">
       <created>1506327878922</created>
@@ -1166,11 +1147,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510910380176</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="11.27commit:修改8级目录为一级，将返回和物理返回改为逐级返回，添加关闭按钮直接返回联系人界面，进入人员详情点击返回和物理返回键都改为逐级返回">
+      <created>1511769297054</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1511769297055</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2882264000" />
+    <option name="totallyTimeSpent" value="2882402000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1260,7 +1248,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit" />
     <MESSAGE value="跟孙合并完代码(剔除thrift相关代码)" />
     <MESSAGE value="8.8commit:1.添加toast&#10;2.添加spinnerdailog&#10;3.添加inappbrowser&#10;4.添加badge(遗留一点问题)" />
     <MESSAGE value="commit:生产环境上线第一版0831" />
@@ -1285,7 +1272,8 @@
     <MESSAGE value="11.7commit:准备拉取菊菊代码&#10;" />
     <MESSAGE value="11.10commit:准备拉取菊菊代码&#10;" />
     <MESSAGE value="11.17commit:修改版本号为获取本地apk版本号；添加inappbrowser顶部导航栏；通知模块bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.17commit:修改版本号为获取本地apk版本号；添加inappbrowser顶部导航栏；通知模块bug修复" />
+    <MESSAGE value="11.27commit:修改8级目录为一级，将返回和物理返回改为逐级返回，添加关闭按钮直接返回联系人界面，进入人员详情点击返回和物理返回键都改为逐级返回" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.27commit:修改8级目录为一级，将返回和物理返回改为逐级返回，添加关闭按钮直接返回联系人界面，进入人员详情点击返回和物理返回键都改为逐级返回" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
