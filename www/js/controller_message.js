@@ -3840,6 +3840,7 @@ angular.module('message.controllers', [])
           // 门户页面对应的所有的数据源
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
+          // console.log("进来拿数据"+JSON.stringify($scope.sysmenu));
 
           $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
           $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象

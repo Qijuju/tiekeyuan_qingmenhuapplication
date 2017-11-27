@@ -162,7 +162,7 @@ angular.module('portal.services', [])
       }
     };
   })
-  .factory('NetData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http, FinshedApp) {
+  .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
     // var userID;
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;

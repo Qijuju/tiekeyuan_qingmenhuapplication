@@ -29,6 +29,7 @@ public class User extends BaseBean {
   private String loginAccount;//用户登录账号
   private String loginName;
   private String deptPath;//用户所在部门路径
+  private String mepId;//设备id(前端http调用接口时需要传参)
 
 
   public String getDeptPath() {
@@ -235,5 +236,13 @@ public class User extends BaseBean {
 
   public void setLoginName(String loginName) {
     this.loginName = loginName;
+  }
+
+  public String getMepId() {
+    return mepId;
+  }
+
+  public void setMepId(String mepId) {
+    this.mepId = mepId;
   }
 }
