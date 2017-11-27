@@ -3845,6 +3845,7 @@ angular.module('message.controllers', [])
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
           // console.log("applist所有数据源"+JSON.stringify($rootScope.portalDataSource));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
+          // console.log("进来拿数据"+JSON.stringify($scope.sysmenu));
 
           $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
           $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象

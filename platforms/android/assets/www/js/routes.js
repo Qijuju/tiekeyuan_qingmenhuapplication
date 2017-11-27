@@ -306,7 +306,7 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second/:contactId/:childcount',
+        url: '/second/:contactId/:contactName/:childcount/:index/:personFlag',
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
@@ -378,7 +378,7 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person/:userId',
+        url: '/person/:userId/:index',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         cache:false

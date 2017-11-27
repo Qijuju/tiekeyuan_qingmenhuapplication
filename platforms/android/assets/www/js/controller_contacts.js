@@ -148,7 +148,6 @@ angular.module('contacts.controllers', [])
       $pubionicloading.showloading('','正在加载...');
 
       $greendao.loadAllData('LocalPhoneService',function (msg) {
-        console.log("看看本地有多少数据"+JSON.stringify(msg));
         if(msg.length>0){
           $pubionicloading.hide();
           $state.go('localContacts');
@@ -214,6 +213,7 @@ angular.module('contacts.controllers', [])
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
+        console.log("返回联系人主界面");
         $scope.logId = $contacts.getLoignInfo();
         $scope.loginid=$contacts.getLoignInfo().deptID;
         //取出我的部门的人数的长度，供我的部门上拉加载
@@ -356,9 +356,10 @@ angular.module('contacts.controllers', [])
      });*/
 
 
-    $scope.gogosecond=function (id,childcount) {
+    $scope.gogosecond=function (id,deptName,childcount) {
       $state.go("second", {
         "contactId": id,
+        "contactName":deptName,
         "childcount":childcount
       });
     }
@@ -366,132 +367,273 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactSecondCtrl', function ($scope, $state,$chatarr, $stateParams, $contacts,$greendao,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+  /**联系人---二级~八级目录**/
+  .controller('ContactSecondCtrl', function ($scope, $state,$mqtt,$ionicPlatform,$ionicScrollDelegate,$stateParams,$pubionicloading,$http,$formalurlapi,$rootScope) {
+    var pageNo=1;
+    var allContactArray;
+    var curDeptId,curIndicate,curDeptName,curChildCount;//为了在同一层级上拉加载数据传递相同的变量
+    $scope.departlist = [];//定义一个全局的部门列表
+    $scope.userlist = [];//定义一个全局的人员列表
+    var overallIndex =0;
+    $scope.loadMoreStatus=false;
+    $scope.personFlag = true;
+    $scope.tempCount =1;
 
-    $rootScope.totalSecondCount = $stateParams.childcount;//当前目录的数据总条数
-    $scope.contactId = $stateParams.contactId;//传过来的id；
-
-    $ionicPlatform.registerBackButtonAction(function (e) {
-      if($location.path()==('/second/'+$scope.contactId)){
-        $state.go("tab.contacts");
-      }else {
-        $ionicHistory.goBack();
-        $pubionicloading.hide();
-      }
-      e.preventDefault();
-      return false;
-
-    },501)
-
-    $pubionicloading.showloading('','正在加载...');
-
-    $scope.departlist = [];
-    $scope.userlist = [];
-    $scope.secondStatus;
-
-
-    $scope.loadMoreSecond = function () {
-      $contacts.deptInfo($scope.contactId);
+    //加载更多的方法
+    $scope.loadContactsMore=function () {
+      console.log("能进来上拉加载吗？");
+      $scope.switchData(curDeptId,curDeptName,curIndicate,curChildCount,false);
     };
 
-    //根据id获取子部门和人员信息
-    $contacts.deptInfo($scope.contactId);
-    $scope.$on('second.update', function (event,data) {
-      $scope.$apply(function () {
+    //一级一级返回联系人主界面
+    $scope.goPrevious = function () {
+      var preIndex=overallIndex-2;
+      console.log("返回时的doclist"+JSON.stringify($scope.docList[overallIndex-2])+"======"+preIndex);
+      if(preIndex >= 0){
+        if ($scope.docList.length - preIndex - 1 > 0) {
+          console.log("返回上一级根目录00000000");
+          $scope.docList.splice(preIndex + 1, $scope.docList.length - preIndex - 1);
+        }
+        pageNo=1;
+        $scope.switchData($scope.docList[preIndex].deptId, $scope.docList[preIndex].deptName, true,$scope.docList[preIndex].childCount,true);
+      }else{ //返回根目录
+        console.log("返回上一级根目录");
+        $state.go("tab.contacts");
+      }
 
-        $timeout(function () {
-          $pubionicloading.hide();
+    };
 
-          $scope.deptinfo = $contacts.getFirstDeptName().DeptName;
-
-          $scope.activeSecondDeptCount = $contacts.getCount1();
-
-          $scope.activeSecondUserCount = $contacts.getCount2();
-
-
-          if ($scope.activeSecondDeptCount > 0) {
-            var olddepts = $contacts.getDeptInfo().deptList;
-            for (var i = 0; i < olddepts.length; i++) {
-
-              $scope.departlist.push(olddepts[i]);
-            }
-          }
-
-
-          if ($scope.activeSecondUserCount) {
-            var oldusers = $contacts.getDeptInfo().userList;
-            for (var i = 0; i < oldusers.length; i++) {
-
-              $scope.userlist.push(oldusers[i]);
-            }
-          }
-
-          $scope.parentID = $contacts.getDeptInfo().deptID;
-
-          if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) >0 ) {
-            $scope.secondStatus = true;
-          } else if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) <=0 ) {
-            $scope.secondStatus = false;
-
-          }
-          $scope.$broadcast('scroll.infiniteScrollComplete');
-        });
-
-
-      })
-
-    });
-
-    /**
-     * 监听消息
-     */
-    $scope.$on('msgs.update', function (event) {
-      $scope.$apply(function () {
-        // alert("进来单聊界面吗？");
-        $chatarr.setData(data);
-        $greendao.queryByConditions('ChatListService',function (data) {
-          $scope.items=data;
-          // alert("数组的长度"+data.length);
-        },function (err) {
-
-        });
-        $timeout(function () {
-          viewScroll.scrollBottom();
-        }, 100);
-      })
-    });
-
-
-    $scope.$on('$ionicView.leave', function () {
-      $contacts.clearSecondCount();
-    });
-
-
-
-
-
-    //在二级目录跳转到联系人界面
-    $scope.backFirst = function () {
-      $state.go("tab.contacts");
+    //直接返回联系人主界面
+    $scope.close=function () {
+      $state.go('tab.contacts');
     }
 
-    //在二级目录跳转到三级目录
-    $scope.jumpThird = function (id, pname,childcount) {
-      $state.go("third", {
-        "contactId": id,
-        "secondname": pname,
-        "childcount":childcount
+    //跳转联系人详情界面
+    $scope.goPersonDetail = function (userID) {
+      $rootScope.tempDocList=$scope.docList;
+      console.log("进入人员详情当前层级信息"+overallIndex+"1111"+curDeptName+"2222"+curDeptId+"-=-----"+curChildCount+"????"+JSON.stringify($rootScope.tempDocList));
+      $state.go('person', {
+        userId: userID,
+        index:overallIndex
       });
     };
 
-    //点击人员进入人员详情
-    $scope.goSecondDetail = function (id) {
-      $state.go("person", {
-        "userId": id,
-      });
+    //物理返回键处理方法(直接返回到联系人主界面)
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      console.log("看看走几次"+$scope.tempCount);
+      if($scope.tempCount == 1){
+        if($stateParams.personFlag){
+          console.log("看看走几次11111111111111111");
+          $scope.docList=$rootScope.tempDocList;
+          var personIndex = $stateParams.index-1;
+          console.log("从个人详情传过来的参数值列表"+personIndex+$scope.docList[personIndex].childCount+$scope.docList[personIndex].deptName+$scope.docList[personIndex].deptId);
+          pageNo=1;
+          $scope.tempCount = 2;
+          $scope.switchData($scope.docList[personIndex].deptId, $scope.docList[personIndex].deptName,true,$scope.docList[personIndex].childCount,true);
 
+        }
+      }
+        $scope.goPrevious();
+      // $state.go("tab.contacts");
+      e.preventDefault();
+      return false;
+    },501);
+
+
+    //请求一级目录
+    allContactArray=function () {
+      //获取登录用户的信息
+      $mqtt.getUserInfo(function (success) {
+        var myDeptName='';
+        if ($stateParams.contactName === '我的部门' ){
+          myDeptName=success.deptName;
+        }else {
+          myDeptName=$stateParams.contactName;
+        }
+
+        $pubionicloading.showloading();
+        $scope.userid = success.userID;
+        var mepId=success.mepId;
+        //获取一级部门的组织机构列表
+        $http({
+          method: 'post',
+          url: $formalurlapi.getBaseUrl(),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          data: {
+            "Action": "GetChilds",
+            "deptId": $stateParams.contactId,
+            "pageNo": pageNo,
+            "pageSize": 100,
+            "id": $scope.userid,
+            "mepId": mepId
+          }
+        }).success(function (succ) {
+          $pubionicloading.hide();
+          var succ = JSON.parse(decodeURIComponent(succ));
+          tempDeptList = succ.Event.depts;
+          tempUserList = succ.Event.users;
+          console.log("二级目录的数据"+JSON.stringify($scope.departlist)+"====="+JSON.stringify($scope.userlist));
+          //添加一级部门指示标
+          $scope.docList.push({
+            index: 0,
+            deptId: $stateParams.contactId,
+            deptName: myDeptName,  //$stateParams.contactName
+            childCount:$stateParams.childcount
+          });
+          //界面主题名字(取出导航栏上一级目录存的deptname)
+          $scope.deptinfo = $scope.docList[$scope.docList.length - 1].deptName;
+          viewScroll.scrollTop();
+          /**
+           * 根据返回的一级目录数据判断是否上拉加载
+           */
+          if(($stateParams.childcount-pageNo*10) >0){
+            $scope.loadMoreStatus = true;
+            curDeptId = $stateParams.contactId;
+            curDeptName = myDeptName;
+            curChildCount = $stateParams.childcount;
+            curIndicate = true;
+            pageNo ++;
+          }else{
+            $scope.loadMoreStatus = false;
+          }
+          if(tempDeptList != null && tempDeptList != "" && tempDeptList != undefined ){
+            for(var i = 0;i<tempDeptList.length;i++){
+              $scope.departlist.push(tempDeptList[i]);
+            }
+          }
+          if(tempUserList !=null && tempUserList != "" && tempUserList != undefined){
+            for(var j = 0;j<tempUserList.length;j++){
+              $scope.userlist.push(tempUserList[j]);
+            }
+          }
+          overallIndex = $scope.docList.length;
+          console.log("当前的层级111111"+overallIndex);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).error(function (err) {
+          $pubionicloading.hide();
+        });
+      }, function (err) {
+
+      });
     };
 
+    //进来界面初始化
+    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
+    $scope.docList = [];
+    document.addEventListener('deviceready', function () {
+      console.log("deviceready"+$scope.personFlag);
+      if(!$stateParams.personFlag){
+        console.log("是不是进来了ready");
+        allContactArray();
+      }
+    });
+
+    //获取多级部门
+    $scope.switchData = function (deptId, deptName, isIndicate,childcount,flag) {
+     $pubionicloading.showloading();
+      var isLoadSuccess = false;
+      if(flag){
+        $scope.departlist = [];
+        $scope.userlist = [];
+        pageNo =1;
+      }
+      //添加N级部门指示标
+      if (!isIndicate) {
+        $scope.docList.push({
+          index: $scope.docList.length,
+          deptId: deptId,
+          deptName: deptName,
+          childCount:childcount
+        });
+      }
+      //获取多级部门下的部门列表
+      $mqtt.getUserInfo(function (success){
+
+        var mepId=success.mepId;
+        $scope.userid = success.userID;
+        $http({
+          method: 'post',
+          url: $formalurlapi.getBaseUrl(),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          data: {
+            "Action": "GetChilds",
+            "deptId": deptId,
+            "pageNo": pageNo,
+            "pageSize": 10,
+            "id": $scope.userid,
+            "mepId": mepId//window.device.uuid
+          }
+        }).success(function (succ) {
+          $pubionicloading.hide();
+          var succ = JSON.parse(decodeURIComponent(succ));
+          console.log("观察返回的数据"+JSON.stringify(succ));
+          if(succ.Event.depts !=undefined && succ.Event.depts !=null && succ.Event.depts !=''){
+            var tempDeptList = succ.Event.depts;
+            console.log("部门的数据"+JSON.stringify(tempDeptList));
+          }
+          if(succ.Event.users !=undefined && succ.Event.users !=null && succ.Event.users !=''){
+            var tempUserList = succ.Event.users;
+            console.log("人员的数据"+JSON.stringify(tempUserList));
+          }
+          // viewScroll.scrollTop();
+          isLoadSuccess = true;
+          //界面主题名字(取出导航栏上一级目录存的deptname)
+          $scope.deptinfo = $scope.docList[$scope.docList.length - 1].deptName;
+          /**
+           * 根据返回的二级-N级目录数据判断是否上拉加载
+           */
+         if((childcount-pageNo*10) >0){
+           $scope.loadMoreStatus = true;
+           curDeptId = deptId;
+           curDeptName = deptName;
+           curChildCount = childcount;
+           curIndicate = true;
+           pageNo ++;
+           console.log("是否能上拉加载"+pageNo);
+         }else{
+           $scope.loadMoreStatus = false;
+         }
+         console.log("统计前部门长度"+$scope.departlist.length+"========="+$scope.userlist.length);
+         if(tempDeptList != null && tempDeptList != "" && tempDeptList != undefined ){
+           for(var i = 0;i<tempDeptList.length;i++){
+             $scope.departlist.push(tempDeptList[i]);
+           }
+         }
+         if(tempUserList !=null && tempUserList != "" && tempUserList != undefined){
+           for(var j = 0;j<tempUserList.length;j++){
+             $scope.userlist.push(tempUserList[j]);
+           }
+         }
+          overallIndex = $scope.docList.length;
+          console.log("当前的层级"+overallIndex+"=========="+JSON.stringify($scope.docList));
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).error(function (err) {
+            $pubionicloading.hide();
+        });
+      },function (error) {
+
+      });
+    };
+
+    //若是从个人详情界面返回，则应该逐级返回
+    if($stateParams.personFlag){
+      $scope.docList=$rootScope.tempDocList;
+      var personIndex = $stateParams.index-1;
+      console.log("从个人详情传过来的参数值列表"+personIndex+$scope.docList[personIndex].childCount+$scope.docList[personIndex].deptName+$scope.docList[personIndex].deptId);
+      pageNo=1;
+      $scope.switchData($scope.docList[personIndex].deptId, $scope.docList[personIndex].deptName,true,$scope.docList[personIndex].childCount,true);
+    }
+
+    //从部门导航切换数据
+    $scope.switchIndicate = function (item) {
+      var index = item.index;
+      console.log("导航下标"+index);
+      if ($scope.docList.length - index - 1 > 0) {
+        $scope.docList.splice(index + 1, $scope.docList.length - index - 1);
+      }
+      pageNo=1;
+      $scope.switchData(item.deptId, item.deptName, true,item.childCount,true);
+    };
 
   })
 
@@ -1695,18 +1837,27 @@ angular.module('contacts.controllers', [])
           });
       })
     });
-
     $scope.backAny = function () {
-
-      $ionicHistory.goBack();
+      $state.go('second',{
+        contactId:"",
+        contactName:"",
+        childcount:"",
+        index:$stateParams.index,
+        personFlag:true
+      })
     };
 
 
     $ionicPlatform.registerBackButtonAction(function (e) {
-
-        $ionicHistory.goBack();
       $pubionicloading.hide();
-        e.preventDefault();
+      $state.go('second',{
+        contactId:"",
+        contactName:"",
+        childcount:"",
+        index:$stateParams.index,
+        personFlag:true
+      })
+      e.preventDefault();
       return false;
     },501)
 

@@ -271,14 +271,12 @@ angular.module('contacts.controller', [])
 
     allContactArray=function () {
 
-      console.log('请求数据的第'+ pageNo+'页数据' );
-
       // $scope.secondStatus=false;
       $SPUtils.getLoginInfo(function (success) {
-
+        console.log('请求数据的第'+ pageNo+'页数据' );
         var myDeptName='';
         if ($stateParams.contactName==='我的部门'){
-          myDeptName=success.user.deptName;
+          myDeptName=success.deptName;
         }else {
           myDeptName=$stateParams.contactName;
         }

@@ -41,13 +41,13 @@
           <span style="color:#BDBDBD;">公司通讯录</span>
         </div>
       </div>
-      <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID,item.ChildCount)">
+      <div class="row" ng-repeat="item in depts"  ng-click="gogosecond(item.DeptID,item.DeptName,item.ChildCount)">
         <div class="col">
           <img class="contactImg2" src="img/cengji.png" />
           <span>{{item.DeptName}}</span>
         </div>
       </div>
-      <div class="row" ng-click="gogosecond(loginid,mydeptlength)">
+      <div class="row" ng-click="gogosecond(loginid,'我的部门',mydeptlength)">
         <div class="col">
           <img class="contactImg2" src="img/cengji.png" style=""/>
           <span>我的部门</span>

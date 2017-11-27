@@ -222,7 +222,6 @@ public class ThriftApiClient extends CordovaPlugin {
                                 QYYIconPathService qyyIconPathService = QYYIconPathService.getInstance(UIUtils.getContext());
                                 NewNotifyListService newNotifyListService = NewNotifyListService.getInstance(UIUtils.getContext());
                                 newNotifyListService.deleteAllData();
-                                System.out.println("是否清楚数据");
                                 qyyIconPathService.deleteAllData();
                                 topContactsService.deleteAllData();
                                 messagesService.deleteAllData();
@@ -239,7 +238,6 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult(new JSONObject(loginJson), PluginResult.Status.OK, callbackContext);
 
                             //调用getSession方法,获取sessionid
-                            System.out.println("hahahahahaha");
                             getSession(result.getUser().getLoginAccount(), result.getUser().getLoginName());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -249,10 +247,12 @@ public class ThriftApiClient extends CordovaPlugin {
                             setResult("用户或密码错误！", PluginResult.Status.ERROR, callbackContext);
                         }
                         else if("111".equals(result.getErrCode()) ||"112".equals(result.getErrCode()) || "113".equals(result.getErrCode()) || "114".equals(result.getErrCode())){
-                            System.out.println("需要短信验证"+result.getMessage()+UIUtils.getDeviceId());
+//                            System.out.println("需要短信验证"+result.getMessage()+UIUtils.getDeviceId());
                             SPUtils.save("historyusername",username);
                             SPUtils.save("pwd",password);
                             setResult(result.getErrCode()+"#"+result.getUserId()+"#"+result.getMobile()+"#"+UIUtils.getDeviceId(), PluginResult.Status.ERROR, callbackContext);
+                        }else if("115".equals(result.getErrCode())){
+                            setResult(result.getMessage(), PluginResult.Status.ERROR, callbackContext);
                         } else {
                             setResult("登录失败！", PluginResult.Status.ERROR, callbackContext);
                         }
@@ -364,6 +364,7 @@ public class ThriftApiClient extends CordovaPlugin {
         map.put("deptName", infoBean.getUser().getDeptName());
         map.put("rootName", infoBean.getUser().getRootDeptName());
         map.put("loginAccount", infoBean.getUser().getLoginAccount());
+        map.put("mepId",UIUtils.getDeviceId());
         //兼职帐号
         List<ViceUser> viceUser = infoBean.getViceUser();
         if (viceUser != null && viceUser.size() > 0) {
@@ -2542,7 +2543,7 @@ public class ThriftApiClient extends CordovaPlugin {
             OKAsyncClient.post(request1, new OKHttpCallBack2<BaseBean>() {
                 @Override
                 public void onSuccess(Request request, BaseBean result) {//以后有需要再完善
-                    if (!(result.isSucceed())) {
+                    if ((result.isSucceed())) {
                         //调用createxml方法将ssid存进xml文件
                         String path = "/LPREMPLAT";
                         Log.i("获取存入的xml路径", path + "");

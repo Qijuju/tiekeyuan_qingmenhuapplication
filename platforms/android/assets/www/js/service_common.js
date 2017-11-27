@@ -385,7 +385,7 @@ angular.module('common.services', [])
       showToast: function (messgaeText) {
         window.plugins.toast.showWithOptions({
           message: messgaeText,
-          duration: "short", // 2000 ms
+          duration: "5000", // 2000 ms
           position: "bottom",
           styling: {
             opacity: 1, // 0.0 (transparent) to 1.0 (opaque). Default 0.8

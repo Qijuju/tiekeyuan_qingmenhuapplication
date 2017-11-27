@@ -37,7 +37,12 @@ angular.module('login.controllers', [])
             if (msg != null && msg != '') {
               $mqtt.startMqttChat(msg + ',' + groups);
               $mqtt.setLogin(true);
+
+              // 函数调用，获取门户页数据源
+              // getMenHuData();
+
               $state.go('tab.message');
+
               return;
             }
           }, function (err) {
@@ -193,6 +198,10 @@ angular.module('login.controllers', [])
             $mqtt.save('pwdgesture', $scope.password);
             $mqtt.save('namegesture', $scope.name);
             $state.go('tab.message');
+            //
+            // 函数调用，获取门户页数据源
+            // getMenHuData();
+
           }, function (err) {
             $pubionicloading.hide();
             $ToastUtils.showToast(err, function (success) {
@@ -273,10 +282,10 @@ angular.module('login.controllers', [])
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
-    var loginpageaa = ""
-    var passlogin = ""
-    var pwdgesturea = ""
-    var namegesturea = ""
+    var loginpageaa = "";
+    var passlogin = "";
+    var pwdgesturea = "";
+    var namegesturea = "";
     //是否点击了立即进入（倒计时）
     var isClickGo = false;
 
@@ -510,18 +519,23 @@ angular.module('login.controllers', [])
               $mqtt.save('passlogin', "1");
               $mqtt.save('pwdgesture', pwdgesturea);
               $mqtt.save('namegesture', namegesturea);
+
+              // 函数调用，获取门户页数据源
+              // getMenHuData();
+
               $state.go('tab.message');
+
               $pubionicloading.hide();
             });
 
           }, function (err) {
-            $pubionicloading.hide()
+            $pubionicloading.hide();
             $ToastUtils.showToast(err, function (success) {
-              $pubionicloading.hide()
+              $pubionicloading.hide();
               $state.go('login');
             }, function (err) {
               $ToastUtils.showToast(err);
-              $pubionicloading.hide()
+              $pubionicloading.hide();
               $state.go('login');
             });
           });
@@ -532,10 +546,11 @@ angular.module('login.controllers', [])
         });
       }, function (err) {
         $ToastUtils.showToast(err);
-        $pubionicloading.hide()
+        $pubionicloading.hide();
         $state.go('login');
       });
-    }
+    };
+
     //登录成功之后获取用户姓名（昵称）
     $scope.getUserName = function () {
       $mqtt.getUserInfo(function (userInfo) {
@@ -544,6 +559,100 @@ angular.module('login.controllers', [])
         $ToastUtils.showToast(err);
       });
     };
+
+    // 登陆成功之后获取门户页面数据源
+    function getMenHuData() {
+      /*门户页数据请求代码开始。
+       * 1.写在此处的原因：
+       * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
+       *
+       * */
+      // 门户页面数据请求
+      var userID; // userID = 232099
+      var imCode; //  imCode = 866469025308438
+      var qyyobject = {};// 一条logo数据
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          NetData.getInfo(userID, imcode);
+          imCode = imcode;
+          $http({
+            method: 'post',
+            timeout: 5000,
+            // url:"http://88.1.1.22:8081",
+            // url: "htƒtp://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
+            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            url:$formalurlapi.getBaseUrl(),
+            data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
+          }).success(function (data, status) {
+
+            // 成功之后页面跳转
+            $state.go('tab.message');
+
+            // 门户页面对应的所有的数据源
+            $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
+            console.log("applist所有数据源"+JSON.stringify($rootScope.portalDataSource));
+            $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
+
+
+            $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
+            $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
+
+            // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
+            if($scope.sysmenu != null || $scope.sysmenu != "" || $scope.sysmenu != undefined){
+              for(var i=0;i<$scope.sysmenu.length;i++){
+                var items =  $scope.sysmenu[i].items;
+                for(var j=0;j<items.length;j++){
+                  var flag = items[j].flag;
+                  var appIcon = items[j].appIcon;
+                  qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
+                  qyyobject.appId = items[j].appId;
+                  $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+
+                  },function (err) {
+                  });
+
+                  if(flag){
+                    $scope.appIconArr.push( appIcon );
+                    $scope.appIconArr2.push(appIcon+'_f')
+                  }else {
+                    $scope.appIconArr.push(appIcon+'_f');
+                    $scope.appIconArr2.push(appIcon)
+                  }
+                }
+              }
+            }
+
+
+            // 调插件，获取门户页需要的所有的图片路径
+            $api.downloadQYYIcon($scope.appIconArr,function (success) {
+              $rootScope.appIconPaths = success;
+              console.log("图片路径 1 数据源：" + JSON.stringify(success));
+            },function (err) {
+            });
+
+            // 调插件，获取门户页不需要的所有的图片路径--下载所有的图片到本地，解决通知页logo找不到的问题
+            $api.downloadQYYIcon($scope.appIconArr2,function (success) {
+              $rootScope.appIconPaths2 = success;
+              console.log("图片路径 2 数据源：" + JSON.stringify(success));
+            },function (err) {
+            });
+
+
+          });
+        }).error(function (data, status) {
+          $ToastUtils.showToast("获取用户权限失败!");
+        });
+      }, function (err) {
+      });
+      // 门户代码结束
+
+    }
+
+
+
+
   })
  /* .controller('gestureloginCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $greendao) {
 

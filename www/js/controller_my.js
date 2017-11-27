@@ -47,8 +47,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
         $scope.DeptID=msg.deptID;
 
         $scope.mymypersonname = msg.userName;
-        console.log("我的账户名3333:" + JSON.stringify(msg));
-        console.log("我的账户名：" + $scope.mymypersonname );
 
         if ($scope.mymypersonname.length > 2) {
           $scope.jiename = $scope.mymypersonname.substring(($scope.mymypersonname.length - 2), $scope.mymypersonname.length);
@@ -288,7 +286,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
             $pubionicloading.hide();
           });
         }, function (msg) {
-          $ToastUtils.showToast("设置头像失败")
+          $ToastUtils.showToast("设置头像失败");
         });
       }, function (err) {
         // error
@@ -306,7 +304,6 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       });
       confirmPopup.then(function (res) {
         if (res) {
-
           $mqtt.getMqtt().save('name', '', function (message) {
             $mqtt.disconnect(function (message) {
               $mqtt.save('passlogin', "0");
@@ -1354,8 +1351,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     //获取版本号的动态日期
     cordova.plugins.OAIntegration.getCurrentVersion(function (data) {
       $scope.nowTime = data;
+      console.log("$scope.nowTime"+$scope.nowTime);
     },function (err) {
     });
+    $scope.nowTime = new Date().getTime();
 
 
     // 返回操作调取函数
