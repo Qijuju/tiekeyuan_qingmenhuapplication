@@ -6,14 +6,15 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="通知应用" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="进入详情页面" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313ca7f9-6aa2-4fdd-a532-4daa5fa4d3a7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/www/templates/tab-portal.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../www/templates/tab-portal.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/bjjb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/img/lianjie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/templates/applicationDetail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -26,6 +27,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/fujian.png" afterPath="$PROJECT_DIR$/assets/www/img/fujian.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/BaseActivity.class" />
@@ -45,277 +47,26 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress$State.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/classes/release/com/maiml/wechatrecodervideolibrary/widget/RecoderProgress.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/img/fujian.png" afterPath="$PROJECT_DIR$/../../www/img/fujian.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/ShortcutBadger_1_1_17.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ShortcutBadger_1_1_17.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" afterPath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/tab-notification.css" afterPath="$PROJECT_DIR$/assets/www/css/tab-notification.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/H5lock.js" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/H5lock.publish.js" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.publish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/Toast.js" afterPath="$PROJECT_DIR$/assets/www/js/Toast.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.js" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.min.js" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/bmap.js" afterPath="$PROJECT_DIR$/assets/www/js/bmap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts2.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_fileandpicture.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_fileandpicture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_founction.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_founction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_localphone.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_masstexting.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_masstexting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_msgcheck.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_msgcheck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_portal2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_search.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_work.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_work.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/directives.js" afterPath="$PROJECT_DIR$/assets/www/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/elastic.js" afterPath="$PROJECT_DIR$/assets/www/js/elastic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/exporting.js" afterPath="$PROJECT_DIR$/assets/www/js/exporting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-3d.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-3d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-more.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-more.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-ng.min.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-ng.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/jquery-3.0.0.min.js" afterPath="$PROJECT_DIR$/assets/www/js/jquery-3.0.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ng-cordova.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ng-cordova.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_localphone.js" afterPath="$PROJECT_DIR$/assets/www/js/service_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_my.js" afterPath="$PROJECT_DIR$/assets/www/js/service_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_portal.js" afterPath="$PROJECT_DIR$/assets/www/js/service_portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ui-bootstrap-tpls-2.2.0.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ui-bootstrap-tpls-2.2.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutPlatform.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutPlatform.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutRecommend.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutRecommend.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutour.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutour.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutours.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutours.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-first.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-first.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/attentionDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/attentionDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/chat-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/chat-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-local.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-local.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/cxtx.html" afterPath="$PROJECT_DIR$/assets/www/templates/cxtx.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/datapicture.html" afterPath="$PROJECT_DIR$/assets/www/templates/datapicture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/founction.html" afterPath="$PROJECT_DIR$/assets/www/templates/founction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/gesturelogin.html" afterPath="$PROJECT_DIR$/assets/www/templates/gesturelogin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" afterPath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-createNotice.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-createNotice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-file.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-location.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-member.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-member.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-notice.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-notice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-picture.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/groupcall.html" afterPath="$PROJECT_DIR$/assets/www/templates/groupcall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessagegroup.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessagegroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/local-details.html" afterPath="$PROJECT_DIR$/assets/www/templates/local-details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/login.html" afterPath="$PROJECT_DIR$/assets/www/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/mapdetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/mapdetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/mass_texting.html" afterPath="$PROJECT_DIR$/assets/www/templates/mass_texting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/my_attention.html" afterPath="$PROJECT_DIR$/assets/www/templates/my_attention.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/my_department.html" afterPath="$PROJECT_DIR$/assets/www/templates/my_department.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/net-confirm.html" afterPath="$PROJECT_DIR$/assets/www/templates/net-confirm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/newsPage.html" afterPath="$PROJECT_DIR$/assets/www/templates/newsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notificationDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/notificationDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notify-confirm.html" afterPath="$PROJECT_DIR$/assets/www/templates/notify-confirm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notifyApplication.html" afterPath="$PROJECT_DIR$/assets/www/templates/notifyApplication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-file.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-location.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-picture.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/projectPart.html" afterPath="$PROJECT_DIR$/assets/www/templates/projectPart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/search.html" afterPath="$PROJECT_DIR$/assets/www/templates/search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/sendGelocation.html" afterPath="$PROJECT_DIR$/assets/www/templates/sendGelocation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/switch_account.html" afterPath="$PROJECT_DIR$/assets/www/templates/switch_account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-webpage.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-webpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-work.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-work.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/twoDimensionPic.html" afterPath="$PROJECT_DIR$/assets/www/templates/twoDimensionPic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/updategespassword.html" afterPath="$PROJECT_DIR$/assets/www/templates/updategespassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/verify.html" afterPath="$PROJECT_DIR$/assets/www/templates/verify.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/welcome.html" afterPath="$PROJECT_DIR$/assets/www/templates/welcome.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/r93535/im/Constants.java" afterPath="$PROJECT_DIR$/src/com/r93535/im/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/css/tab-notification.css" afterPath="$PROJECT_DIR$/../../www/css/tab-notification.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/index.html" afterPath="$PROJECT_DIR$/../../www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/H5lock.js" afterPath="$PROJECT_DIR$/../../www/js/H5lock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/H5lock.publish.js" afterPath="$PROJECT_DIR$/../../www/js/H5lock.publish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/Toast.js" afterPath="$PROJECT_DIR$/../../www/js/Toast.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/angular-openweathermap.js" afterPath="$PROJECT_DIR$/../../www/js/angular-openweathermap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/angular-openweathermap.min.js" afterPath="$PROJECT_DIR$/../../www/js/angular-openweathermap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/bmap.js" afterPath="$PROJECT_DIR$/../../www/js/bmap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_application.js" afterPath="$PROJECT_DIR$/../../www/js/controller_application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_contacts2.js" afterPath="$PROJECT_DIR$/../../www/js/controller_contacts2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_fileandpicture.js" afterPath="$PROJECT_DIR$/../../www/js/controller_fileandpicture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_founction.js" afterPath="$PROJECT_DIR$/../../www/js/controller_founction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_localphone.js" afterPath="$PROJECT_DIR$/../../www/js/controller_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_login.js" afterPath="$PROJECT_DIR$/../../www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_masstexting.js" afterPath="$PROJECT_DIR$/../../www/js/controller_masstexting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_message.js" afterPath="$PROJECT_DIR$/../../www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_msgcheck.js" afterPath="$PROJECT_DIR$/../../www/js/controller_msgcheck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_my.js" afterPath="$PROJECT_DIR$/../../www/js/controller_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_notification.js" afterPath="$PROJECT_DIR$/../../www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_portal.js" afterPath="$PROJECT_DIR$/../../www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_portal2.js" afterPath="$PROJECT_DIR$/../../www/js/controller_portal2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_search.js" afterPath="$PROJECT_DIR$/../../www/js/controller_search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/../../www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller_work.js" afterPath="$PROJECT_DIR$/../../www/js/controller_work.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/directives.js" afterPath="$PROJECT_DIR$/../../www/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/elastic.js" afterPath="$PROJECT_DIR$/../../www/js/elastic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/exporting.js" afterPath="$PROJECT_DIR$/../../www/js/exporting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/highcharts-3d.js" afterPath="$PROJECT_DIR$/../../www/js/highcharts-3d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/highcharts-more.js" afterPath="$PROJECT_DIR$/../../www/js/highcharts-more.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/highcharts-ng.min.js" afterPath="$PROJECT_DIR$/../../www/js/highcharts-ng.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/highcharts.js" afterPath="$PROJECT_DIR$/../../www/js/highcharts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/ionic-datepicker.bundle.min.js" afterPath="$PROJECT_DIR$/../../www/js/ionic-datepicker.bundle.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/jquery-3.0.0.min.js" afterPath="$PROJECT_DIR$/../../www/js/jquery-3.0.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/ng-cordova.min.js" afterPath="$PROJECT_DIR$/../../www/js/ng-cordova.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/routes.js" afterPath="$PROJECT_DIR$/../../www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_common.js" afterPath="$PROJECT_DIR$/../../www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_contacts.js" afterPath="$PROJECT_DIR$/../../www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_localphone.js" afterPath="$PROJECT_DIR$/../../www/js/service_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_message.js" afterPath="$PROJECT_DIR$/../../www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_my.js" afterPath="$PROJECT_DIR$/../../www/js/service_my.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/service_portal.js" afterPath="$PROJECT_DIR$/../../www/js/service_portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/services_group.js" afterPath="$PROJECT_DIR$/../../www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/ui-bootstrap-tpls-2.2.0.min.js" afterPath="$PROJECT_DIR$/../../www/js/ui-bootstrap-tpls-2.2.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/aboutPlatform.html" afterPath="$PROJECT_DIR$/../../www/templates/aboutPlatform.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/aboutRecommend.html" afterPath="$PROJECT_DIR$/../../www/templates/aboutRecommend.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/aboutour.html" afterPath="$PROJECT_DIR$/../../www/templates/aboutour.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/aboutours.html" afterPath="$PROJECT_DIR$/../../www/templates/aboutours.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/acount-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-first.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-first.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/../../www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/attentionDetail.html" afterPath="$PROJECT_DIR$/../../www/templates/attentionDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/chat-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/chat-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-group.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-local.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-local.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-second.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/contact-third.html" afterPath="$PROJECT_DIR$/../../www/templates/contact-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/cxtx.html" afterPath="$PROJECT_DIR$/../../www/templates/cxtx.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/datapicture.html" afterPath="$PROJECT_DIR$/../../www/templates/datapicture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/founction.html" afterPath="$PROJECT_DIR$/../../www/templates/founction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/gesturelogin.html" afterPath="$PROJECT_DIR$/../../www/templates/gesturelogin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/gesturepassword.html" afterPath="$PROJECT_DIR$/../../www/templates/gesturepassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-createNotice.html" afterPath="$PROJECT_DIR$/../../www/templates/group-createNotice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-deptmember.html" afterPath="$PROJECT_DIR$/../../www/templates/group-deptmember.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-file.html" afterPath="$PROJECT_DIR$/../../www/templates/group-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-location.html" afterPath="$PROJECT_DIR$/../../www/templates/group-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-member.html" afterPath="$PROJECT_DIR$/../../www/templates/group-member.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-modifyname.html" afterPath="$PROJECT_DIR$/../../www/templates/group-modifyname.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-notice.html" afterPath="$PROJECT_DIR$/../../www/templates/group-notice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-picture.html" afterPath="$PROJECT_DIR$/../../www/templates/group-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/group-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/groupcall.html" afterPath="$PROJECT_DIR$/../../www/templates/groupcall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/historymessage.html" afterPath="$PROJECT_DIR$/../../www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/historymessagegroup.html" afterPath="$PROJECT_DIR$/../../www/templates/historymessagegroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/local-details.html" afterPath="$PROJECT_DIR$/../../www/templates/local-details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/login.html" afterPath="$PROJECT_DIR$/../../www/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/mapdetail.html" afterPath="$PROJECT_DIR$/../../www/templates/mapdetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/mass_texting.html" afterPath="$PROJECT_DIR$/../../www/templates/mass_texting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/message-group.html" afterPath="$PROJECT_DIR$/../../www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/my_attention.html" afterPath="$PROJECT_DIR$/../../www/templates/my_attention.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/my_department.html" afterPath="$PROJECT_DIR$/../../www/templates/my_department.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/../../www/templates/myinfomation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/net-confirm.html" afterPath="$PROJECT_DIR$/../../www/templates/net-confirm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/newsPage.html" afterPath="$PROJECT_DIR$/../../www/templates/newsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/notificationDetail.html" afterPath="$PROJECT_DIR$/../../www/templates/notificationDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/notify-confirm.html" afterPath="$PROJECT_DIR$/../../www/templates/notify-confirm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/notifyApplication.html" afterPath="$PROJECT_DIR$/../../www/templates/notifyApplication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/../../www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-detail.html" afterPath="$PROJECT_DIR$/../../www/templates/person-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-file.html" afterPath="$PROJECT_DIR$/../../www/templates/person-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-location.html" afterPath="$PROJECT_DIR$/../../www/templates/person-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/person-picture.html" afterPath="$PROJECT_DIR$/../../www/templates/person-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/../../www/templates/personal-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/projectPart.html" afterPath="$PROJECT_DIR$/../../www/templates/projectPart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/search.html" afterPath="$PROJECT_DIR$/../../www/templates/search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchLocal.html" afterPath="$PROJECT_DIR$/../../www/templates/searchLocal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchmessage.html" afterPath="$PROJECT_DIR$/../../www/templates/searchmessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/../../www/templates/searchmessage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/sendGelocation.html" afterPath="$PROJECT_DIR$/../../www/templates/sendGelocation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/switch_account.html" afterPath="$PROJECT_DIR$/../../www/templates/switch_account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-chats.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-message.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-message.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-notifications.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-webpage.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-webpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tab-work.html" afterPath="$PROJECT_DIR$/../../www/templates/tab-work.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/tabs.html" afterPath="$PROJECT_DIR$/../../www/templates/tabs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/top_contacts.html" afterPath="$PROJECT_DIR$/../../www/templates/top_contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/twoDimensionPic.html" afterPath="$PROJECT_DIR$/../../www/templates/twoDimensionPic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/updategespassword.html" afterPath="$PROJECT_DIR$/../../www/templates/updategespassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/verify.html" afterPath="$PROJECT_DIR$/../../www/templates/verify.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/templates/welcome.html" afterPath="$PROJECT_DIR$/../../www/templates/welcome.html" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -376,67 +127,28 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70170">
+            <state relative-caret-position="70620">
               <caret line="2476" column="24" selection-start-line="2476" selection-start-column="21" selection-end-line="2476" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#4914#4922#0" expanded="false" />
-                <element signature="e#5113#5817#0" expanded="false" />
-                <element signature="e#5816#5817#0" expanded="false" />
-                <element signature="e#7088#7104#0" expanded="false" />
-                <element signature="e#12837#12853#0" expanded="false" />
-                <element signature="e#16428#16444#0" expanded="false" />
-                <element signature="e#17219#17240#0" expanded="false" />
-                <element signature="e#17349#17365#0" expanded="false" />
-                <element signature="e#20332#20359#0" expanded="false" />
-                <element signature="e#23984#24006#0" expanded="false" />
-                <element signature="e#24673#24695#0" expanded="false" />
-                <element signature="e#29827#29848#0" expanded="false" />
-                <element signature="e#43067#43083#0" expanded="false" />
-                <element signature="e#44022#44651#0" expanded="false" />
-                <element signature="e#44650#44651#0" expanded="false" />
-                <element signature="e#46156#46415#0" expanded="false" />
-                <element signature="e#46414#46415#0" expanded="false" />
-                <element signature="e#46883#46891#0" expanded="false" />
-                <element signature="e#47476#47492#0" expanded="false" />
-                <element signature="e#56804#56824#0" expanded="false" />
-                <element signature="e#60340#60358#0" expanded="false" />
-                <element signature="e#61098#64726#0" expanded="false" />
-                <element signature="e#64725#64726#0" expanded="false" />
-                <element signature="e#74880#74881#0" expanded="false" />
-                <element signature="e#74947#74948#0" expanded="false" />
-                <element signature="e#75308#75315#0" expanded="false" />
-                <element signature="e#76959#77442#0" expanded="false" />
-                <element signature="e#77441#77442#0" expanded="false" />
-                <element signature="e#80072#80088#0" expanded="false" />
-                <element signature="e#85856#85879#0" expanded="false" />
-                <element signature="e#96431#96451#0" expanded="false" />
-                <element signature="e#106014#106030#0" expanded="false" />
-                <element signature="e#118085#118101#0" expanded="false" />
-                <element signature="e#118663#118671#0" expanded="false" />
-                <element signature="e#119077#119093#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMSwitchLocal.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IMSwitchLocal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="210">
               <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/r93535/im/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="359">
+              <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -3207,7 +2919,7 @@
         <entry key="D:\jst\IM\platforms\android" value="8978802260756" />
         <entry key="D:\qjjworkplace\IM\platforms\android" value="9007475923171" />
         <entry key="D:\workplace\android\IM\platforms\android" value="9035669657672" />
-        <entry key="D:\workplace\projectWork\IM\platforms\android" value="9058986401074" />
+        <entry key="D:\workplace\projectWork\IM\platforms\android" value="9059330155313" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -4119,8 +3831,8 @@
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/SystemMsg.java" />
         <option value="$PROJECT_DIR$/src/com/tky/mqtt/dao/TopContacts.java" />
         <option value="$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java" />
-        <option value="$PROJECT_DIR$/src/com/r93535/im/Constants.java" />
         <option value="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
+        <option value="$PROJECT_DIR$/src/com/r93535/im/Constants.java" />
       </list>
     </option>
   </component>
@@ -4267,11 +3979,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane />
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -4391,34 +4103,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform_www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CordovaLib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -5092,8 +4776,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -5103,7 +4787,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5857461" sideWeight="0.5143923" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6870824" sideWeight="0.48560768" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26057908" sideWeight="0.48560768" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20240964" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.454343" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -5694,46 +5378,9 @@
     <entry file="file://$PROJECT_DIR$/assets/www/js/controller_login.js" />
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70170">
+        <state relative-caret-position="70620">
           <caret line="2476" column="24" selection-start-line="2476" selection-start-column="21" selection-end-line="2476" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4914#4922#0" expanded="false" />
-            <element signature="e#5113#5817#0" expanded="false" />
-            <element signature="e#5816#5817#0" expanded="false" />
-            <element signature="e#7088#7104#0" expanded="false" />
-            <element signature="e#12837#12853#0" expanded="false" />
-            <element signature="e#16428#16444#0" expanded="false" />
-            <element signature="e#17219#17240#0" expanded="false" />
-            <element signature="e#17349#17365#0" expanded="false" />
-            <element signature="e#20332#20359#0" expanded="false" />
-            <element signature="e#23984#24006#0" expanded="false" />
-            <element signature="e#24673#24695#0" expanded="false" />
-            <element signature="e#29827#29848#0" expanded="false" />
-            <element signature="e#43067#43083#0" expanded="false" />
-            <element signature="e#44022#44651#0" expanded="false" />
-            <element signature="e#44650#44651#0" expanded="false" />
-            <element signature="e#46156#46415#0" expanded="false" />
-            <element signature="e#46414#46415#0" expanded="false" />
-            <element signature="e#46883#46891#0" expanded="false" />
-            <element signature="e#47476#47492#0" expanded="false" />
-            <element signature="e#56804#56824#0" expanded="false" />
-            <element signature="e#60340#60358#0" expanded="false" />
-            <element signature="e#61098#64726#0" expanded="false" />
-            <element signature="e#64725#64726#0" expanded="false" />
-            <element signature="e#74880#74881#0" expanded="false" />
-            <element signature="e#74947#74948#0" expanded="false" />
-            <element signature="e#75308#75315#0" expanded="false" />
-            <element signature="e#76959#77442#0" expanded="false" />
-            <element signature="e#77441#77442#0" expanded="false" />
-            <element signature="e#80072#80088#0" expanded="false" />
-            <element signature="e#85856#85879#0" expanded="false" />
-            <element signature="e#96431#96451#0" expanded="false" />
-            <element signature="e#106014#106030#0" expanded="false" />
-            <element signature="e#118085#118101#0" expanded="false" />
-            <element signature="e#118663#118671#0" expanded="false" />
-            <element signature="e#119077#119093#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5745,21 +5392,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/r93535/im/Constants.java">
+    <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
+    <entry file="file://$PROJECT_DIR$/src/com/r93535/im/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="359">
+          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>

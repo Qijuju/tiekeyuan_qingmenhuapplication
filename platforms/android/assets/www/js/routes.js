@@ -185,6 +185,15 @@ angular.module('im.routes', [])
           obj:null
         }
       })
+      .state('applicationDetail', {
+        url: '/applicationDetail',
+        templateUrl: 'templates/applicationDetail.html',
+        cache:false,
+        controller: 'applicationDetailCtrl',
+        params:{
+          obj:null
+        }
+      })
 
       .state('notifyApplication', {
         url: '/notifyApplication/:id/:isfirm',

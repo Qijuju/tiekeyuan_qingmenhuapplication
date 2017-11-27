@@ -2,10 +2,14 @@
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao,NetData,NotifyApplicationData) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData) {
 
-    $scope.applicationLists = []; // 定义一个变量，接收调接口返回的通知应用模块的数据源
-    $scope.showNum = 0;  // 定义参数，标识要显示的模块
+    $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
+    $scope.showNum = 0;                     // 定义参数，标识要显示的模块
+    $scope.notifyNewList = [];             // 全部通知列表数据源
+    $scope.allAttentionNotifyList = [];   //已关注的通知列表数据源
+    $scope.newdex = 0;
+    $scope.appstatus = false; //滑块的状态
 
     // tabs切换，重置当前点击对象及兄弟元素的样式
     $scope.tabClick = function ($event, value) {
@@ -23,14 +27,9 @@ angular.module('newnotification.controllers', [])
 
     };
 
-    // 全部通知列表数据源
-    $scope.notifyNewList = [];
-
-    //已关注的通知列表数据源
-    $scope.allAttentionNotifyList = [];
-
     //进来通知界面就统计数据库通知的未读数量
     $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
+
       //拿到的未读数量展示在tab底部及桌面角标
       cordova.plugins.notification.badge.set(data.length,function (succ) {
         $mqtt.saveInt('badgeNotifyCount',data.length);
@@ -39,6 +38,7 @@ angular.module('newnotification.controllers', [])
 
       // 未读的通知
       $scope.noReadData = data;
+
     },function (err) {
 
     });
@@ -189,7 +189,6 @@ angular.module('newnotification.controllers', [])
 
     //根據附件帶的url點擊進入附件
     $scope.gonet = function (net) {
-
       $state.go('netconfirm', {
         url: net
       })
@@ -199,6 +198,7 @@ angular.module('newnotification.controllers', [])
     $scope.loadMoreNotify = function () {
       $pubionicloading.showloading('','正在加载...');
       $notify.allNotify();
+
     };
 
     //上拉加载关注更多数据
@@ -264,17 +264,12 @@ angular.module('newnotification.controllers', [])
         // 调插件获取 icon 对应的路径集合
         $greendao.loadAllData('QYYIconPathService',function (succ) {
 
-          // 全部 -- 根据id，往数据源中追加图片路径字段信息
-          isNewStatus($scope.notifyNewList,succ);
+          isNewStatus($scope.notifyNewList,succ);  // 全部 -- 根据id，往数据源中追加图片路径字段信息
+          isNewStatus($scope.allAttentionNotifyList,succ); // 关注 -- 根据id，往数据源中追加图片路径字段信息
 
-          // 关注 -- 根据id，往数据源中追加图片路径字段信息
-          isNewStatus($scope.allAttentionNotifyList,succ);
+          $scope.$apply();  // 刷新页面
 
-          // 刷新页面
-          $scope.$apply();
-
-          // 函数调用，通知应用
-          applicationsE(succ);
+          applicationsE(succ);  // 函数调用，通知应用
 
         },function (err) {
 
@@ -287,7 +282,6 @@ angular.module('newnotification.controllers', [])
 
     // 定义一个函数:根据未读通知的 msgId 判断通知是否加小红点标志 or 根据 id，往数据源中追加图片路径字段信息
     function isNewStatus(obj,targetObj) {
-
       for(var i=0;i<obj.length;i++){
         for( var j=0;j<targetObj.length;j++){
           if( targetObj[j].MsgId ){
@@ -308,11 +302,6 @@ angular.module('newnotification.controllers', [])
         }
       }
     }
-
-    $scope.newdex = 0;
-
-    //滑块的状态
-    $scope.appstatus = false;
 
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
@@ -353,6 +342,7 @@ angular.module('newnotification.controllers', [])
             "bean": obj
           }
         })
+        console.log("通知进入详情页面："+ JSON.stringify(obj));
       }else {
         obj.appIcon = "img/notifyDefaultLogo.png";
         $state.go('notifyDetail', {
@@ -365,6 +355,7 @@ angular.module('newnotification.controllers', [])
 
     // 获取通知应用列表数据
     function applicationsE( notifyIdAppIcons) {
+
       var userID; // userID = 232102
       var imCode; //  imCode = 860982030647083
       $mqtt.getUserInfo(function (succ) {
@@ -372,49 +363,50 @@ angular.module('newnotification.controllers', [])
         //获取人员所在部门，点亮图标
         $mqtt.getImcode(function (imcode) {
           imCode = imcode;
-
           // 调用接口拿到后台数据
           NotifyApplicationData.getListInfo(userID,imCode);
           $scope.$on('succeed.update', function (event) {
             $pubionicloading.hide();
 
-            $scope.applicationLists = NotifyApplicationData.getApplicationList();
-            console.log("通知应用数据源前" + JSON.stringify($scope.applicationLists ));
+            $scope.applicationLists = NotifyApplicationData.getApplicationList(); // 获取应用列表数据源
 
-            var l1 = notifyIdAppIcons.length;
-            var l2 = $scope.applicationLists.length;
-
-
-            // 往通知应用数据源中追加应用logo路径字段
-            if( l1>0&&l2>0 ){
-              for(var i=0;i<l2;i++){
-                var appId = $scope.applicationLists[i].appId;
-                // 测试
-                var whenStr =new Date( $scope.applicationLists[i].when );
-                $scope.applicationLists[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
-
-                for(var j=0;j< l1;j++){
-                  if ( appId===notifyIdAppIcons[j].appId ){
-                    $scope.applicationLists[i].appIcon=notifyIdAppIcons[j].path;
-                  }else {
-                    continue;
-                  }
-                }
-              }
-            }
-            console.log("通知应用数据源后" + JSON.stringify(   $scope.applicationLists ));
+            addPathToData(notifyIdAppIcons, $scope.applicationLists); // 往应用列表数据源中追加 logo 路径字段
 
           });
-
         })
       });
     }
 
 
+    // 往数据源中追加 logo字段
+    function addPathToData(notifyIdAppIcons,target) {
+      var l1 = notifyIdAppIcons.length;
+      var l2 = target.length;
 
+      // 往通知应用数据源中追加应用logo路径字段，转换时间格式
+      if( l1>0&&l2>0 ){
+        for(var i=0;i<l2;i++){
+          var appId = target[i].appId;
+          var whenStr =new Date( target[i].when );
+          target[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
 
+          for(var j=0;j< l1;j++){
+            if ( appId===notifyIdAppIcons[j].appId ){
+              target[i].appIcon=notifyIdAppIcons[j].path;
+            }else {
+              continue;
+            }
+          }
+        }
+      }
+    }
 
-
+    // 进入这个应用对应的通知列表页
+    $scope.goApplicationDetail = function (obj) {
+      $state.go("applicationDetail",{
+        obj:obj
+      })
+    };
 
   })
 
@@ -579,53 +571,105 @@ angular.module('newnotification.controllers', [])
     $scope.backNotify = function () {
       $ionicHistory.goBack();
     };
-
   })
 
-  //应用列表的详情
-  .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $pubionicloading, $timeout, $ionicHistory) {
-    $scope.hahaha = $stateParams.isfirm;
-    $pubionicloading.showloading('', '正在加载...');
-    $scope.ididididi = $stateParams.id;
+  // 通知应用列表详情
+  .controller('applicationDetailCtrl', function ($scope,$state,$ionicHistory,$stateParams, $mqtt,NotifyApplicationData,$pubionicloading,$greendao) {
 
-    if ($scope.ididididi == 1) {
-      $scope.appname = "公文处理";
-    } else if ($scope.ididididi == 15) {
-      $scope.appname = "拌和站";
-    } else if ($scope.ididididi == 16) {
-      $scope.appname = "试验室";
-    } else if ($scope.ididididi == 18) {
-      $scope.appname = "围岩量测";
+    var fromId = $stateParams.obj.appId;        // 接收上级id
+    $scope.appName = $stateParams.obj.appName; // 接收应用名称
+    $scope.appIcon = $stateParams.obj.appIcon; // 接收应用 logo 对应的本地路径
+
+    // 调接口，获取各个应用下的通知列表数据源
+    getAppNotifyLists(fromId);
+
+    // 获取这个应用下的通知列表数据
+    function getAppNotifyLists(fromId) {
+      var userID;
+      var imCode;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          // 调用接口拿到后台数据
+          NotifyApplicationData.getApplicationChildE(userID, imCode, fromId);
+          $scope.$on('succeed.update', function (event) {
+            $pubionicloading.hide();
+
+            $scope.applicationChild = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
+
+            // 转化时间格式、追加logo地址
+            for(var i=0;i< $scope.applicationChild.length;i++){
+              var whenStr =new Date($scope.applicationChild[i].when);
+              $scope.applicationChild[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+              $scope.applicationChild[i].appIcon =  $scope.appIcon;
+            }
+
+          });
+        })
+      });
     }
 
-    $scope.appGoNotifyDetail = function (nihao) {
+    $scope.goDetail = function (obj ) {
+      console.log("应用进入详情页面：" + JSON.stringify(obj));
       $state.go('notifyDetail', {
-        "id": nihao
-      });
-    }
+        obj: {
+          "bean": obj
+        }
+      })
+    };
 
-    //当进入页面以后执行的方法
-    $scope.$on('$ionicView.enter', function () {
-      $timeout(function () {
-
-        $greendao.queryByConditions("SystemMsgService", function (msg) {
-
-          $pubionicloading.hide();
-          $scope.appmsg = msg;
-
-        }, function (err) {
-
-        });
-      });
-
-
-    });
-
-
+    // 返回操作调取的方法
     $scope.backApp = function () {
       $ionicHistory.goBack();
     }
+
   })
+  //应用列表的详情
+  // .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $pubionicloading, $timeout, $ionicHistory) {
+  //   $scope.hahaha = $stateParams.isfirm;
+  //   $pubionicloading.showloading('', '正在加载...');
+  //   $scope.ididididi = $stateParams.id;
+  //
+  //   if ($scope.ididididi == 1) {
+  //     $scope.appname = "公文处理";
+  //   } else if ($scope.ididididi == 15) {
+  //     $scope.appname = "拌和站";
+  //   } else if ($scope.ididididi == 16) {
+  //     $scope.appname = "试验室";
+  //   } else if ($scope.ididididi == 18) {
+  //     $scope.appname = "围岩量测";
+  //   }
+  //
+  //   $scope.appGoNotifyDetail = function (nihao) {
+  //     $state.go('notifyDetail', {
+  //       "id": nihao
+  //     });
+  //   }
+  //
+  //   //当进入页面以后执行的方法
+  //   $scope.$on('$ionicView.enter', function () {
+  //     $timeout(function () {
+  //
+  //       $greendao.queryByConditions("SystemMsgService", function (msg) {
+  //
+  //         $pubionicloading.hide();
+  //         $scope.appmsg = msg;
+  //
+  //       }, function (err) {
+  //
+  //       });
+  //     });
+  //
+  //
+  //   });
+  //
+  //
+  //   $scope.backApp = function () {
+  //     $ionicHistory.goBack();
+  //   }
+  // })
 
   .controller('confirmornotCtrl', function ($scope, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory) {
 

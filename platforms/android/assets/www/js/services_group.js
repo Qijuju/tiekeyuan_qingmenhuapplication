@@ -88,7 +88,6 @@ angular.module('group.services', [])
       });
     },
 
-
     clearDefaultCount:function () {
       defaultCount=1;
     },
@@ -105,7 +104,7 @@ angular.module('group.services', [])
       return attentionNotify;
     }
   }
+})
 
-});
 
 

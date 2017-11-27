@@ -300,8 +300,8 @@ a#rightbt{
   -webkit-box-shadow:0 2px 9px 0px #e5e5e5;
   -moz-box-shadow: 0 2px 9px 0px #e5e5e5;
   box-shadow: 0 2px 9px 0px #e5e5e5;
-  margin:15px;
-  padding:5px 10px;
+  margin:10px;
+  padding:5px 10px 0px;
 }
 .application .logoContentBox{
   margin-left:50px;
@@ -335,9 +335,15 @@ a#rightbt{
 .application .logoContentBox .contentInfo .row .col.col-33{
   text-align: right;
 }
-
 /* 通知应用 style end */
 
+/* 各个应用下的通知列表 style start */
+img.smallLogo{
+  with:25px;
+  height:25px;
+  vertical-align: middle;
+}
+/* 各个应用下的通知列表 style end */
 
 
 

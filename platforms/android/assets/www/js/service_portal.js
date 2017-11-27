@@ -254,7 +254,10 @@ angular.module('portal.services', [])
   })
 
   .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http) {
-    var lists = [];
+
+    var applicationLists = []; // 应用列表数据集合
+    var applicationChild = []; // 返回每个应用的通知列表
+
     return {
       // 获取通知所属应用列表及应用的最新一条消息事件和标题
       getListInfo: function (userID,imcode) {
@@ -266,18 +269,37 @@ angular.module('portal.services', [])
         }).success(function (data, status) {
 
           // 获取通知应用列表数据源
-          lists = JSON.parse(decodeURIComponent(data)).Event.appList;
-          console.log("通知应用列表成功的数据：" + JSON.stringify(lists));
+          applicationLists = JSON.parse(decodeURIComponent(data)).Event.appList;
+          console.log("通知应用列表成功的数据：" + JSON.stringify(applicationLists));
           $rootScope.$broadcast('succeed.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
         });
       },
       getApplicationList: function () {
-        return lists;
+        return applicationLists;
+      },
+      getApplicationChildE:function (userID,imcode,fromId) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{Action:"GetExtMsg",id:userID,mepId:imcode,fromId:fromId}
+        }).success(function (data, status) {
+
+          // 获取通知应用列表数据源
+          applicationChild = JSON.parse(decodeURIComponent(data)).msgList;
+          console.log("应用下的所有的通知：" + JSON.stringify(applicationChild));
+          $rootScope.$broadcast('succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('error.update');
+        });
+
+      },
+      applicationChild:function () {
+        return applicationChild;
       }
-
-
     };
   })
+
 ;
