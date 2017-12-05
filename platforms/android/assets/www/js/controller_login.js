@@ -276,9 +276,6 @@ angular.module('login.controllers', [])
           $http({
             method: 'post',
             timeout: 5000,
-            // url:"http://88.1.1.22:8081",
-            // url: "htƒtp://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
             url:$formalurlapi.getBaseUrl(),
             data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
           }).success(function (data, status) {
@@ -289,9 +286,7 @@ angular.module('login.controllers', [])
 
             // 门户页面对应的所有的数据源
             $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
-            console.log("applist所有数据源"+JSON.stringify($rootScope.portalDataSource));
             $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
-
             $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
             $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
 
@@ -319,8 +314,6 @@ angular.module('login.controllers', [])
                 }
               }
             }
-
-
             // 调插件，获取门户页需要的所有的图片路径
             $api.downloadQYYIcon($scope.appIconArr,function (success) {
               $rootScope.appIconPaths = success;
@@ -360,7 +353,7 @@ angular.module('login.controllers', [])
     };
   })
 
-  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,$http,	$formalurlapi,NetData) {
+  .controller('newsPageCtrl', function ($scope, $state, $ionicPopup,$pubionicloading, $cordovaFileOpener2, $http, $mqtt, $cordovaPreferences, $api, $rootScope, $ToastUtils, $timeout, $interval, $greendao,	$formalurlapi,NetData) {
     document.getElementById("imgaaab").style.height = (window.screen.height) + 'px';
     document.getElementById("imgaaab").style.width = (window.screen.width) + 'px';
     var passworda = "";
@@ -376,12 +369,13 @@ angular.module('login.controllers', [])
     document.addEventListener('deviceready', function () {
       mqtt = cordova.require('MqttChat.mqtt_chat');
 
-      $mqtt.getMqtt().getString('zuinewID', function (message) {
-        $greendao.queryData('GesturePwdService', 'where id=?', message, function (data) {
-          passworda = data[0].pwd;
-        }, function (err) {
-        });
-      });
+      //
+      // $mqtt.getMqtt().getString('zuinewID', function (message) {
+      //   $greendao.queryData('GesturePwdService', 'where id=?', message, function (data) {
+      //     passworda = data[0].pwd;
+      //   }, function (err) {
+      //   });
+      // });
 
       mqtt.getString('welcomePic', function (picurl) {
 
@@ -645,8 +639,10 @@ angular.module('login.controllers', [])
       var qyyobject = {};// 一条logo数据
       $mqtt.getUserInfo(function (succ) {
         userID = succ.userID;
+        $rootScope.userID = succ.userID;
         //获取人员所在部门，点亮图标
         $mqtt.getImcode(function (imcode) {
+          $rootScope.imCode = imcode;
           NetData.getInfo(userID, imcode);
           imCode = imcode;
           $http({
@@ -703,10 +699,8 @@ angular.module('login.controllers', [])
               $rootScope.appIconPaths2 = success;
             },function (err) {
             });
-
-
           });
-        }).error(function (data, status) {
+        },function (data, status) {
           $ToastUtils.showToast("获取用户权限失败!");
         });
       }, function (err) {

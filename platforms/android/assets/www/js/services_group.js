@@ -30,7 +30,6 @@ angular.module('group.services', [])
       return allGroup;
     },
 
-
     groupDetail:function (type,id,typelist) {
 
       $api.getGroupUpdate(type,id,typelist,function (msg) {
@@ -49,65 +48,88 @@ angular.module('group.services', [])
 
     getGroupDetail:function () {
       return groupDetails;
-    },
+    }
   }
-
 })
 
 .factory('$notify',function ($api,$rootScope,$timeout,$ToastUtils,$http,$formalurlapi) {
 
   var defaultCount=1;
+  var defaultCount2=1;
   var allNotify;
-  var attentionNotify;
+  var allAttentionNotify;
   var defaultNumber=5;
   var defaultAttentionCount=1;
+  var allApplications = [];
 
   return{
-   // 通过封装的插件调取接口，修改了字段的大小写以及获取的字段的个数
-   /* allNotify:function () {
-      $api.getNotifyMsg('A', false, '', defaultCount, defaultNumber, function (msg) {
-        allNotify=msg;
-        $rootScope.$broadcast('allnotify.update');
-        defaultCount++;
-      }, function (err) {
-        $ToastUtils.showToast(err);
-        $rootScope.$broadcast('allnotify.update.error');
-
-      });
-    }, */
-    // 直接通过http请求拿数据，字段展示形式和后台一致
-    allNotify:function (userID,imcode) {
-      console.log("allNotify接口被调用了--全部通知" + userID +"--" +imcode + "--" + $formalurlapi.getBaseUrl());
+    allNotifications:function (userID,imcode) { // 调接口，获取全部的通知数据
         $http({
           method: 'post',
           timeout: 5000,
           url:$formalurlapi.getBaseUrl(),
-          data:{Action:"GetExtMsg",id:userID,mepId:imcode,date:"A",isAttention:false,pageNo:defaultCount,pageSize:defaultNumber}
+          data:{
+            Action:"GetExtMsg",
+            id:userID,
+            mepId:imcode,
+            date:"A",
+            isAttention:false,
+            pageNo:defaultCount2,
+            pageSize:defaultNumber
+          }
         }).success(function (data, status) {
-          console.log("allNotify接口返回数据---全部通知：" + JSON.stringify(decodeURIComponent(data)));
-          // allNotify=data;
-          // $rootScope.$broadcast('allnotify.update');
-          // defaultCount++;
-        }).error(function (data, status) {
-          // $ToastUtils.showToast(err);
-          // $rootScope.$broadcast('allnotify.update.error');
+
+          allApplications=JSON.parse(decodeURIComponent(data)).msgList;
+          // 转化时间格式
+          for(var i=0;i< allApplications.length;i++) {
+            var whenStr = new Date(allApplications[i].when);
+            allApplications[i].when = (whenStr.getMonth() + 1) + "-" + whenStr.getDate() + " " + whenStr.getHours() + ":" + whenStr.getMinutes();
+          }
+          $rootScope.$broadcast('allNotifications.update','');
+          defaultCount2++;
+        }).error(function (data, status,err) {
+          $ToastUtils.showToast(err);
+          $rootScope.$broadcast('allNotifications.update.error');
         });
       },
-    //获取关注列表
-    getAttentionNotify:function () {
-      $api.getNotifyMsg('A',true, '', defaultAttentionCount, defaultNumber, function (data) {
-        attentionNotify=data;
+    getAllNotifications:function () { // 返回全部通知数据
+      return allApplications;
+    },
+    getAttentionNotify:function (userID,imcode) { // 调接口，获取关注的列表数据
+
+      $http({
+        method: 'post',
+        timeout: 5000,
+        url:$formalurlapi.getBaseUrl(),
+        data:{
+          Action:"GetExtMsg",
+          id:userID,
+          mepId:imcode,
+          date:"A",
+          isAttention:true,
+          pageNo:defaultAttentionCount,
+          pageSize:defaultNumber
+        }
+      }).success(function (data, status) {
+
+        allAttentionNotify  =JSON.parse(decodeURIComponent(data)).msgList;
+
+        // 转化时间格式
+        for(var i=0;i< allAttentionNotify.length;i++) {
+          var whenStr = new Date(allAttentionNotify[i].when);
+          allAttentionNotify[i].when = (whenStr.getMonth() + 1) + "-" + whenStr.getDate() + " " + whenStr.getHours() + ":" + whenStr.getMinutes();
+        }
         $rootScope.$broadcast('attention.update');
         defaultAttentionCount++;
-      }, function (err) {
+      }).error(function (data, status,err) {
         $ToastUtils.showToast(err);
-        $rootScope.$broadcast('attention.update');
-
+        $rootScope.$broadcast('attention.update.error');
       });
     },
 
     clearDefaultCount:function () {
       defaultCount=1;
+      defaultCount2=1;
     },
     clearDefaultAttentionCount:function () {
       defaultAttentionCount=1;
@@ -115,12 +137,11 @@ angular.module('group.services', [])
 
 
     getAllNotify:function () {
-      console.log("getAllNotify返回通知全部数据源方法被调用了----全部通知");
       return allNotify;
     },
 
     getAllAttentionNotify:function () {
-      return attentionNotify;
+      return allAttentionNotify;
     }
   }
 })

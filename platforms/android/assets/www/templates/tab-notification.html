@@ -4,10 +4,9 @@
   <div class="bar bar-subheader" style="background: #fff;">
     <!-- tabs 切换按钮 -->
     <div class="row">
-      <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,0)">全部</div>
+      <div class="notifyTabs col on" tabindex="0" ng-click="tabClick($event,0)">全部</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,1)">关注</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,2)">通知应用</div>
-      <!--<div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,3)">平台{{showNum}}</div>-->
     </div>
   </div>
   <ion-content  style="margin-top:40px;background: #fff;" overflow-scroll="true">
@@ -17,7 +16,7 @@
       <!--<div class="col col-90">网络连接不可用，请检查网络设置。</div>-->
     <!--</div>-->
     <!--全部通知-->
-    <div ng-repeat="item in notifyNewList" ng-if="showNum === 0" style="background: #fff;-webkit-box-shadow:0 2px 9px 0px #e5e5e5;-moz-box-shadow: 0 2px 9px 0px #e5e5e5;box-shadow: 0 2px 9px 0px #e5e5e5;margin:15px;">
+    <div ng-repeat="item in notifyNewListTest" ng-if="showNum === 0" style="background: #fff;-webkit-box-shadow:0 2px 9px 0px #e5e5e5;-moz-box-shadow: 0 2px 9px 0px #e5e5e5;box-shadow: 0 2px 9px 0px #e5e5e5;margin:15px;">
       <div class="row" ng-click="goNotifyDetail(item)">
         <div class="col clearfix">
           <!--通知logo-->
@@ -32,32 +31,32 @@
             <div class="infoTop">
               <!--名称-->
               <div>
-                <span style="color: #000;">{{item.FromName}}</span>
-                <span ng-if="item.IsReaded" class="isReaded">已确认</span>
+                <span style="color: #000;">{{item.fromName}}</span>
+                <span ng-if="item.isRead" class="isReaded">已确认</span>
               </div>
               <!--时间-->
-              <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+              <pre class="preTitle preTime notifyTime">{{item.when | date:'MM-dd HH:mm'}}</pre>
               <!--报警等级-->
               <!--<span class="levelName">{{item.LevelName}}</span>-->
             </div>
             <!--标题-->
             <div>
-              <pre class="preTitle">{{item.Title}}</pre>
+              <pre class="preTitle">{{item.title}}</pre>
             </div>
           </div>
         </div>
       </div>
       <!--操作按钮-->
       <div class="row topFocus" >
-        <div class="col" ng-click="goIsTopEvent(item)">
+        <div class="col" ng-click="goIsTopEvent2(item)">
           <!--置顶-->
-          <img ng-if="item.IsToped" src="img/toptp.png">
-          <img ng-if="!item.IsToped" src="img/toptop1.png">
+          <img ng-if="item.isToped" src="img/toptp.png">
+          <img ng-if="!item.isToped" src="img/toptop1.png">
         </div>
-        <div class="col" ng-click="goIsAttentionEvent(item)">
+        <div class="col" ng-click="goIsAttentionEvent2(item)">
           <!--关注-->
-          <img ng-if="item.IsAttention" src="img/focuseye.png">
-          <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+          <img ng-if="item.isAttention" src="img/focuseye.png">
+          <img ng-if="!item.isAttention" src="img/focuseye1.png">
         </div>
         <!--等级-->
         <!--<div class="col"  ng-if="(item.Level=='3')||(item.Level=='2') || (item.Level=='1')||(item.Level=='0')">-->
@@ -103,17 +102,17 @@
               <!--名称-->
               <div>
                 <!--<h3>{{item.FromName}}</h3>-->
-                <span  style="color: #000;">{{item.FromName}}</span>
-                <span ng-if="item.IsReaded" class="isReaded">已确认</span>
+                <span  style="color: #000;">{{item.fromName}}</span>
+                <span ng-if="item.isRead" class="isReaded">已确认</span>
               </div>
               <!--时间-->
-              <pre class="preTitle preTime notifyTime">{{item.MsgDate | date:'MM-dd HH:mm'}}</pre>
+              <pre class="preTitle preTime notifyTime">{{item.when | date:'MM-dd HH:mm'}}</pre>
               <!--报警等级-->
               <!--<span class="levelName">{{item.LevelName}}</span>-->
             </div>
             <!--标题-->
             <div>
-              <pre class="preTitle">{{item.Title}}</pre>
+              <pre class="preTitle">{{item.title}}</pre>
             </div>
           </div>
         </div>
@@ -122,13 +121,13 @@
       <div class="row topFocus">
         <div class="col" ng-click="goIsTopEvent(item)">
           <!--置顶-->
-          <img ng-if="item.IsToped" src="img/toptp.png">
-          <img ng-if="!item.IsToped" src="img/toptop1.png">
+          <img ng-if="item.isToped" src="img/toptp.png">
+          <img ng-if="!item.isToped" src="img/toptop1.png">
         </div>
+        <!--关注按钮-->
         <div class="col" ng-click="cancelAttention(item)">
-          <!--关注-->
-          <img ng-if="item.IsAttention" src="img/focuseye.png">
-          <img ng-if="!item.IsAttention" src="img/focuseye1.png">
+          <img ng-if="item.isAttention" src="img/focuseye.png">
+          <img ng-if="!item.isAttention" src="img/focuseye1.png">
         </div>
         <!--等级-->
         <!--<div class="col"  ng-if="(item.Level=='3')||(item.Level=='2') || (item.Level=='1')||(item.Level=='0')">-->
@@ -180,8 +179,8 @@
     </div>
 
     <!-- 上拉加载更多 -->
-    <ion-infinite-scroll ng-if="notifyStatus&&(showNum===0)" on-infinite="loadMoreNotify()" distance="1%" ></ion-infinite-scroll>
-    <ion-infinite-scroll ng-if="notifyAttentionStatus&&(showNum===1)" on-infinite="loadAttentionMoreNotify()" distance="1%" ></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="notifyStatus2&&(showNum===0)" on-infinite="loadMoreNotify2()"  distance="1%"></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="notifyAttentionStatus&&(showNum===1)" on-infinite="loadAttentionMoreNotify()" distance="1%"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>

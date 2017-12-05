@@ -1,74 +1,53 @@
-<!--改造后的2-8级页面-->
 <ion-view view-title={{deptinfo}} class="common-view-color ">
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="goPrevious()">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backFirst()" >
         返回
-      </button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-      <button class="button button-icon common-color-white" ng-click="close()">
-        关闭
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content delegate-handle="scrollTop">
+  <ion-content >
 
-    <ion-scroll zooming="true" direction="x">
-      <ul style="overflow: auto;" class="div-a-style">
-        <li style="list-style: none;display: inline;">
-          <a id="a1" class="a-style" href="#/tab/contacts" style="font-size: 15px">联系人</a><img
-          src="img/arrow-right.png" class="i-style"/>
-        </li>
-        <li style="list-style: none;display: inline;" ng-repeat="item in docList">
-          <a id="a2" ng-if="$index != (docList.length - 1)" class="a-style" ng-click="switchIndicate(item)"
-             style="font-size: 15px">{{item.deptName}}</a>
-          <img ng-if="$index != (docList.length - 1)" src="img/arrow-right.png" class="i-style"/>
-          <a id="a3" ng-if="$index === (docList.length - 1)" class="a-style"
-             style="color: #9e9e9e;font-size: 15px">{{item.deptName}}</a>
-        </li>
-      </ul>
+    <!--面包屑-->
+    <ion-scroll zooming="true" direction="x" >
+      <div id="scrollDiv" class="div-a-style">
+        <a id="a1" class="a-style" href="#/tab/contacts" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a2" class="a-style">{{deptinfo}}</a>
+      </div>
     </ion-scroll>
-    <div>
+
+    <!--列表-->
+    <div class="background_white">
       <ion-list>
-        <!--部门列表展示-->
-        <ion-item ng-repeat=" item in departlist" ng-click="switchData(item.id,item.name, false,item.childCount,true)">
+        <ion-item ng-repeat="item in departlist"  ng-click="jumpThird(item.DeptID,deptinfo,item.ChildCount)">
           <div class="row">
-          <div class="col">
-          <img src="img/im_contact_con.png" class="addNewMemberImg">
-          <span class="font_16">
-            {{item.name}}</span>
-          </div>
+            <div class="col">
+              <img src="img/im_contact_con.png"  class="addNewMemberImg">
+              <span class="font_16">{{item.DeptName}}</span>
+            </div>
           </div>
         </ion-item>
 
-        <!--人员列表展示-->
-        <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat="item in userlist"
-                  ng-click="goPersonDetail(item.id)">
+        <ion-item ng-repeat="item in userlist"  ng-click="goSecondDetail(item.UserID)">
           <div class="row">
-          <div class="col-15">
-          <img src="img/icon_friends.png" class="addNewMemberImg">
-          </div>
+            <div class="col-15">
+              <img src="img/icon_friends.png"  class="addNewMemberImg">
+
+            </div>
             <div class="col-85">
               <!--当该员工有职务时直接显示-->
-              <span class="font_16" >{{item.displayName}}</span>
-              <p class="proname" ng-if="item.proname != '未填写'">
-              {{item.proname}}
+              <span class="font_16" >{{item.UserName}}</span>
+              <p class="proname" ng-if="item.ProName != '未填写'">
+                {{item.ProName}}
               </p>
-          </div>
+            </div>
           </div>
         </ion-item>
       </ion-list>
     </div>
 
-
     <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
-    <ion-infinite-scroll  ng-if="loadMoreStatus" on-infinite="loadContactsMore()" distance="1%" ></ion-infinite-scroll>
-    <!--<ion-infinite-scroll   icon="ion-loading-c"  ng-if="moreDataCanBeLoaded()" on-infinite="loadMoreSecond()" distance="5%"></ion-infinite-scroll>-->
-    <!--<ion-infinite-scroll   icon="ion-loading-c"  ng-if="secondStatus" on-infinite="loadMoreSecond()" distance="5%"></ion-infinite-scroll>-->
+    <ion-infinite-scroll  ng-if="secondStatus" on-infinite="loadMoreSecond()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
 </ion-view>
-
-
-

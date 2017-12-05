@@ -3840,7 +3840,6 @@ angular.module('message.controllers', [])
           // 门户页面对应的所有的数据源
           $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
           $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
-          // console.log("进来拿数据"+JSON.stringify($scope.sysmenu));
 
           $scope.appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
           $scope.appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
@@ -4108,9 +4107,9 @@ angular.module('message.controllers', [])
 
     }
     //紧急呼叫
-    $scope.gozhuan=function () {
+    /*$scope.gozhuan=function () {
       $state.go("emergencycall");
-    }
+    }*/
     //刚开始进来先拿到部门的id
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -4133,7 +4132,7 @@ angular.module('message.controllers', [])
     /**
      * 监听通知消息
      */
-    $scope.$on('allnotify.update', function (event, data) {
+    $scope.$on('allNotifications.update', function (event, data) {
       $scope.$apply(function () {
         $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
           $scope.NotifyNoRead = 0;
@@ -5990,7 +5989,8 @@ angular.module('message.controllers', [])
 
 
   })
-  .controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
+  //雷达功能暂时不上线
+  /*.controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
     $scope.topaa=1;
     var viewScroll = $ionicScrollDelegate.$getByHandle('fdsfsdfsd');
     viewScroll.scrollBottom();
@@ -6072,4 +6072,4 @@ angular.module('message.controllers', [])
       $scope.mmm=1;
     }, 19000);
 
-  })
+  })*/

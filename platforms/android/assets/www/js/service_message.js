@@ -561,7 +561,9 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
+        console.log("arriveMsg 方法走进来了");
         mqtt.getChats(topic,function (message) {
+          console.log("是否为通知");
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
@@ -586,21 +588,22 @@ angular.module('message.services', [])
           }
           if(message.type === 'Platform'){
             var notifyMessage={};
-              notifyMessage.FromID=message.sessionid;
-              notifyMessage.FromName=message.username;
-              notifyMessage.IsReaded=false;
-              notifyMessage.IsToped=false;
-              notifyMessage.LevelName=message.levelName;
-              notifyMessage.Level=message.msgLevel
-              notifyMessage.Link=message.link;
-              notifyMessage.LinkType=message.linkType;
-              notifyMessage.Msg=message.message;
-              notifyMessage.MsgDate=message.when;
-              notifyMessage.Title=message.title;
-              notifyMessage.MsgId=message.msgId;
-              notifyMessage.IsAttention=false;
+              notifyMessage.from=message.sessionid;
+              notifyMessage.fromName=message.username;
+              notifyMessage.isRead=false;
+              notifyMessage.isToped=false;
+              notifyMessage.levelName=message.levelName;
+              notifyMessage.level=message.msgLevel;
+              notifyMessage.link=message.link;
+              notifyMessage.linkType=message.linkType;
+              notifyMessage.message=message.message;
+              notifyMessage.when=message.when;
+              notifyMessage.title=message.title;
+              notifyMessage.msgId=message.msgId;
+              notifyMessage.isAttention=false;
               notifyMessage.__isset_bitfield="";
-            $rootScope.$broadcast('allnotify.update',notifyMessage);
+              console.log("mqtt推送过来的通知"+JSON.stringify(notifyMessage));
+            $rootScope.$broadcast('allNotifications.update',notifyMessage);
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
             },function (err) {

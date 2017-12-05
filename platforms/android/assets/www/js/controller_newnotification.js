@@ -1,22 +1,74 @@
+
 /**
  * Created by Administrator on 2016/9/8.
  */
 angular.module('newnotification.controllers', [])
-  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData) {
+  .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData,$http,$formalurlapi,$stateParams) {
+
+    // 获取
 
     $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
     $scope.showNum = 0;                     // 定义参数，标识要显示的模块
     $scope.notifyNewList = [];             // 全部通知列表数据源
+    $scope.notifyNewListTest =[];
     $scope.allAttentionNotifyList = [];   //已关注的通知列表数据源
     $scope.newdex = 0;
-    $scope.appstatus = false; //滑块的状态
-    $scope.noReadData = [];// 未读的通知
+    $scope.appstatus = false;             //滑块的状态
+    $scope.noReadData = [];               // 未读的通知
 
-    // tabs切换，重置当前点击对象及兄弟元素的样式
+
+    // 接收返回的标识模块的showNum字段
+    if($stateParams.obj !== undefined && $stateParams.obj !==null&&$stateParams.obj !== ""){
+      $scope.showNum = $stateParams.obj.showNum;
+    }else {
+      $scope.showNum =0;
+    }
+
+    angular.element(document).ready(function () {
+      var notifyTabs = $(".bar .notifyTabs");
+
+      for(var i=0;i<notifyTabs.length;i++){
+        notifyTabs[i].classList.remove("on");
+      }
+      if (notifyTabs.length >3){
+        notifyTabs[$scope.showNum+3].classList.add("on");
+      }else {
+        notifyTabs[$scope.showNum].classList.add("on");
+      }
+
+
+    });
+
+
+    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
+
+    //接收消息调用方法
+    $mqtt.arriveMsg('');
+
+    //当进入页面以后执行的方法
+    $scope.$on('$ionicView.enter', function () {
+      $scope.shownetstatus = false;
+      $ionicSlideBoxDelegate.enableSlide(false);
+      $notify.clearDefaultCount(); // 数据初始化为加载第一页数据
+      $notify.clearDefaultAttentionCount(); // 数据初始化为加载第一页数据
+
+      // 重新加载数据
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          $notify.allNotifications(userID, imCode);
+          $notify.getAttentionNotify(userID, imCode);
+
+        });
+      })
+    });
+
+    // tab点击后处理的事情
     $scope.tabClick = function ($event, value) {
-      // 根据value值，改变showNum的值，进而显示不同的页面
+      // 当前选中的tab
       $scope.showNum = value;
-
       var currentClickObj = $event.target; // 当前点击对象
       $(currentClickObj).css({
         "background":"#3F51B5",
@@ -25,7 +77,6 @@ angular.module('newnotification.controllers', [])
         "background":"#fff",
         "color":"#3F51B5"
       });
-
     };
 
     //进来通知界面就统计数据库通知的未读数量
@@ -39,142 +90,97 @@ angular.module('newnotification.controllers', [])
 
       // 未读的通知
       $scope.noReadData = data;
-      console.log("未读的通知获取通知列表表信息"+ JSON.stringify(data));
-
     },function (err) {
-
     });
 
+    // test code start
     // 置顶操作
-    $scope.goIsTopEvent = function (item) {
-      var id = item.MsgId;
-      var istop = item.IsToped  ? 'F' : 'T';
-
-      $api.setNotifyMsg(id, false, istop, "", function (suc) {
-        if (istop === "T") {
-          item.IsToped = true;
-        } else if (istop === "F") {
-          item.IsToped = false;
-        }
-        $timeout(function () {
-          // 消息置顶
-          viewScroll.scrollTop();
-
-          // 刷新页面(可能存在:从详情页返回全部通知列表页面时刷新两遍的问题？？待解决)
-          $state.go('tab.notification',{},{reload:true});
-
-        }, 100);
-      }, function (err) {
-        $ToastUtils.showToast("置顶更改失败");
-        if (istop === "T") {
-          item.IsToped = false;
-
-        } else if (istop === "F") {
-          item.IsToped = true;
-        }
-
-        $timeout(function () {
-          // 消息置顶
-          viewScroll.scrollTop();
-          // 刷新页面
-          $state.go('tab.notification',{},{reload:true});
-
-        },100);
-      })
+    $scope.goIsTopEvent2 = function (item) {
+        var userID;
+        var imCode;
+        $mqtt.getUserInfo(function (succ) {
+          userID = succ.userID;
+          $mqtt.getImcode(function (imcode) {
+            imCode = imcode;
+            setExtMsg(userID,imCode,item,0);
+          })
+        })
     };
 
-    // 点击“全部”列表页的“关注图标”调取的方式,即：添加关注 or 取消关注。
-    $scope.goIsAttentionEvent = function (item) {
-      var id = item.MsgId;
-      var isattention = item.IsAttention  ? 'F' : 'T';
-      $api.setNotifyMsg(id, false, "", isattention, function (suc) {
-        if (isattention === "T") { // 添加关注
-          item.IsAttention = true;
-        } else if (isattention === "F") { //  取消关注
-          item.IsAttention = false;
-        }
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
+    // 点击置顶之后要处理的事情
+    function setExtMsg(userID,imCode,obj,num) {
+      var id = obj.msgId;
+      var state;
+      var param ={};
+      if (num===0){ // 置顶操作
+        state = obj.isToped ? false : true;
+        param = {Action: "SetExtMsg", id: userID, mepId: imCode, setToped: state, msgId: id};
+      }else if(num===1){ // 关注操作
+        state = obj.isAttention ? false : true;
+        param = {Action: "SetExtMsg", id: userID, mepId: imCode, setAttention: state, msgId: id};
+      }
 
-        // “关注列表”---将关注的一条数据追加到关注列表中
-        if (item.isNewStatus !== null && item.isNewStatus === true){
-          $scope.allAttentionNotifyList.unshift(item);
-        }else {
-          $scope.allAttentionNotifyList.push(item);
-        }
+      $http({
+        method: 'post',
+        timeout: 5000,
+        url: $formalurlapi.getBaseUrl(),
+        data: param
+      }).success(function (data, status) {
+        // 将置顶和关注状态和后台后刷新页面
+        $state.go('tab.notification',{},{reload:true});
 
+      }).error(function (data, status, err) {
 
-
-      }, function (err) {
-        $ToastUtils.showToast("关注更改失败");
-        if (isattention === "T") {
-          item.IsAttention = false;
-        } else if (isattention === "F") {
-          item.IsAttention = true;
-        }
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
-
-      })
+      });
     }
 
-    // 点击“关注”列表页的关注图标调取的方式,即：取消关注
-    $scope.cancelAttention = function (item) {
-      var id = item.MsgId;
-      var isattention = item.IsAttention  ? 'F' : 'T';
-      $api.setNotifyMsg(id, false, "", isattention, function (suc) {
-        // 取消关注
-        item.IsAttention = false;
-
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
-
-        //  将取消关注的一条数据从关注列表中删除
-        for(var i=0;i<$scope.allAttentionNotifyList.length;i++){
-          if ($scope.allAttentionNotifyList[i].MsgId === id){
-            var deleteIndex = i;
-            $scope.allAttentionNotifyList.splice(i,1);
-          }
-        }
-
-
-
-        // 修改全部通知列表数据源本条数据的关注状态
-        for(var i=0;i<$scope.notifyNewList.length;i++) {
-          if ($scope.notifyNewList[i].MsgId === id) {
-            $scope.notifyNewList[i].IsAttention = false;
-          }
-        }
-      }, function (err) {
-        $ToastUtils.showToast("关注更改失败");
-        if (isattention === "T") {
-          item.IsAttention = false;
-        } else if (isattention === "F") {
-          item.IsAttention = true;
-        }
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
+    $scope.goIsAttentionEvent2 = function (item) {
+      var userID;
+      var imCode;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          setExtMsg(userID,imCode,item,1);
+        })
       })
     };
 
-    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
+    // 取消关注操作。点击“关注”列表页的关注图标调取的方式,即：取消关注
+    $scope.cancelAttention = function (item) {
+      // 取消关注并和后台进行交互
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          setExtMsg(userID,imCode,item,1);
+        })
+      });
+
+      // 将取消关注的数据从数据源中删除
+        for(var i=0;i<$scope.allAttentionNotifyList.length;i++){
+          if ($scope.allAttentionNotifyList[i].msgId === item.msgId){
+            $scope.allAttentionNotifyList.splice(i,1);
+          }else {
+            continue;
+          }
+        }
+    };
+
+    // 网络状态
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
         $rootScope.isConnect = $rootScope.netStatus;
       })
     });
 
-    $scope.$on("allnotify.update.error", function () {
+    $scope.$on("allNotifications.update.error", function () {
       $scope.$apply(function () {
         $scope.shownetstatus = true;
       })
     })
 
-    //消息模塊消息監聽
+    //消息模块消息监听
     $scope.$on('msgs.update', function (event) {
       $scope.$apply(function () {
         $greendao.queryByConditions('ChatListService', function (data) {
@@ -189,125 +195,116 @@ angular.module('newnotification.controllers', [])
       })
     });
 
-    //根據附件帶的url點擊進入附件
+    //根据附件带的url点击进入附件
     $scope.gonet = function (net) {
       $state.go('netconfirm', {
         url: net
       })
     };
 
-    //上拉加载全部所有数据
-    $scope.loadMoreNotify = function () {
+    // 上拉加载更多-全部通知
+    $scope.loadMoreNotify2 = function () {
       $pubionicloading.showloading('','正在加载...');
-      $notify.allNotify();
-
+      var userID; // userID = 232102
+      var imCode; //  imCode = 860982030647083
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          $notify.allNotifications(userID, imCode);
+        })
+      })
     };
 
     //上拉加载关注更多数据
     $scope.loadAttentionMoreNotify = function () {
+
       $pubionicloading.showloading('','正在加载...');
-      $notify.getAttentionNotify();
+      var userID; // userID = 232102
+      var imCode; //  imCode = 860982030647083
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        //获取人员所在部门，点亮图标
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          $notify.getAttentionNotify(userID, imCode);
+        })
+      })
     };
 
-    // 获取“关注通知列表”
+    // 获取关注列表数据源
     $scope.$on('attention.update', function (event) {
-      $scope.$apply(function () {
         $pubionicloading.hide();
-        var AttentionNotifyList = $notify.getAllAttentionNotify().msgList;
-        var attentionTotal = AttentionNotifyList.length;
+        var attentionNotifyList = $notify.getAllAttentionNotify();
+        var attentionNotifyListLength = attentionNotifyList.length;
 
-        if(attentionTotal >= 5){
+        if(attentionNotifyListLength >= 5){
           $scope.notifyAttentionStatus = true;
-        }else if (attentionTotal < 5){
+        }else{
           $scope.notifyAttentionStatus = false;
         }
 
-        for(var i=0;i<AttentionNotifyList.length;i++){
-          $scope.allAttentionNotifyList.push(AttentionNotifyList[i]);
+        for(var i=0;i<attentionNotifyList.length;i++){
+          attentionNotifyList[i].showNum =1; // 自定义一个，作为返回标识用
+          $scope.allAttentionNotifyList.push(attentionNotifyList[i]);
         }
 
         // 函数调用，判断是否加小红点标识
-        isNewStatus($scope.allAttentionNotifyList,$scope.noReadData);
+      isNewStatus2($scope.allAttentionNotifyList,$scope.noReadData);
+
+      // 调插件获取 icon 对应的路径集合
+      $greendao.loadAllData('QYYIconPathService',function (succ) {
+
+        isNewStatus2($scope.allAttentionNotifyList,succ);  // 全部 -- 根据id，往数据源中追加图片路径字段信息
+        applicationsE(succ);  // 函数调用，通知应用
+
+      },function (err) {
+
       });
 
       // 添加监听事件，滚动完成
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
 
-    // start
-    var userID; // userID = 232102
-    var imCode; //  imCode = 860982030647083
-    $mqtt.getUserInfo(function (succ) {
-      userID = succ.userID;
-      //获取人员所在部门，点亮图标
-      $mqtt.getImcode(function (imcode) {
-        imCode = imcode;
-        console.log();
-        // 调用接口拿到后台数据
-        $notify.allNotify(userID,imCode);
-        $scope.$on('succeed.update', function (event) {
-          $pubionicloading.hide();
-          var notifyList = $notify.getAllNotify(); // 获取应用列表数据源
+    //  全部通知数据加载时（包括：进入+加载更多）
+    $scope.$on('allNotifications.update', function (event, data) {
+      $pubionicloading.hide();
+      if(data !== null && data !==undefined && data !== ''){
+        // 将mqtt推送的新通知添加未读标识，并追加到列表数据源中，
+        data.isNewStatus = true;
+        data.showNum = 0; // 自定义一个字段，详情返回标识用
+        $scope.notifyNewListTest.unshift(data);
 
-          console.log("拿到的通知全部数据----全部通知："+ JSON.stringify(notifyList));
+        // 将新推送的通知的数据追加到未读数据中
+        $scope.noReadData.push(data);
 
-          // var msgTotal = notifyList.length;
-          // if (msgTotal >= 5 ) {
-          //   $scope.notifyStatus = true;
-          // } else if (msgTotal < 5) {
-          //   $scope.notifyStatus = false;
-          // }
-          //
-          // for (var i = 0; i < notifyList.length; i++) {
-          //   $scope.notifyNewList.push(notifyList[i]);
-          // }
-        });
-      })
-    });
-    // end
-    // 接收的新通知
-    $scope.$on('allnotify.update', function (event,data) {
-      $scope.$apply(function () {
-        $pubionicloading.hide();
-        $scope.shownetstatus = false;
-        if(data !== null && data !==undefined && data !== ''){
-          // 将新接收的通知数据追加到列表数据源中
-          $scope.notifyNewList.unshift(data);
-
-          // 将新推送的通知的数据追加到未读数据中
-          $scope.noReadData.push(data);
-        }else{
-         /* var notifyList= $notify.getAllNotify().msgList;
-          var msgTotal = notifyList.length;
-          if (msgTotal >= 5 ) {
-            $scope.notifyStatus = true;
-          } else if (msgTotal < 5) {
-            $scope.notifyStatus = false;
-          }
-
-          for (var i = 0; i < notifyList.length; i++) {
-            $scope.notifyNewList.push(notifyList[i]);
-          }*/
+      }else{
+        var notifyList = $notify.getAllNotifications(); // 获取应用列表数据源
+        var msgTotal = notifyList.length;
+        if (msgTotal >= 5 ) {
+          $scope.notifyStatus2 = true;
+        } else {
+          $scope.notifyStatus2 = false;
         }
 
+        for (var i = 0; i < notifyList.length; i++) {
+          notifyList[i].showNum = 0; // 自定义一个字段，详情返回标识用
+          $scope.notifyNewListTest.push(notifyList[i]);
+        }
+      }
 
+      // 函数调用，判断是否加小红点标识
+      isNewStatus2($scope.notifyNewListTest,$scope.noReadData);
 
-        // 函数调用，判断是否加小红点标识
-        isNewStatus($scope.notifyNewList,$scope.noReadData);
+      // 调插件获取 icon 对应的路径集合
+      $greendao.loadAllData('QYYIconPathService',function (succ) {
 
-        // 调插件获取 icon 对应的路径集合
-        $greendao.loadAllData('QYYIconPathService',function (succ) {
+        isNewStatus2($scope.notifyNewListTest,succ);  // 全部 -- 根据id，往数据源中追加图片路径字段信息
+        applicationsE(succ);  // 函数调用，通知应用
 
-          isNewStatus($scope.notifyNewList,succ);  // 全部 -- 根据id，往数据源中追加图片路径字段信息
-          isNewStatus($scope.allAttentionNotifyList,succ); // 关注 -- 根据id，往数据源中追加图片路径字段信息
+      },function (err) {
 
-          $scope.$apply();  // 刷新页面
-
-          applicationsE(succ);  // 函数调用，通知应用
-
-        },function (err) {
-
-        });
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -315,17 +312,17 @@ angular.module('newnotification.controllers', [])
     });
 
     // 定义一个函数:根据未读通知的 msgId 判断通知是否加小红点标志 or 根据 id，往数据源中追加图片路径字段信息
-    function isNewStatus(obj,targetObj) {
+    function isNewStatus2(obj,targetObj) {
       for(var i=0;i<obj.length;i++){
         for( var j=0;j<targetObj.length;j++){
           if( targetObj[j].MsgId ){
-            if( obj[i].MsgId === targetObj[j].MsgId){
-              obj[i].isNewStatus = true; // 未读
+            if( obj[i].msgId === targetObj[j].MsgId){
+              obj[i].isNewStatus = true; // 未读标识状态
             }else {
               continue;
             }
-          }else if (targetObj[j].path){
-            if ( obj[i].FromID   === targetObj[j].appId ) {
+          }else if (targetObj[j].path){ // 追加通知logo
+            if ( obj[i].from   === targetObj[j].appId ) {
               obj[i].appIcon = targetObj[j].path;
             }else {
               continue;
@@ -336,37 +333,9 @@ angular.module('newnotification.controllers', [])
         }
       }
     }
-
-    //当进入页面以后执行的方法
-    $scope.$on('$ionicView.enter', function () {
-
-      $scope.shownetstatus = false;
-      $ionicSlideBoxDelegate.enableSlide(false);
-      $notify.clearDefaultCount();
-      $notify.clearDefaultAttentionCount();
-      $notify.allNotify();
-      $notify.getAttentionNotify();
-    });
-
-    //点击滑块执行的方法
-    $scope.changeSlide = function (index) {
-      if (!$scope.appstatus) {
-        $scope.appstatus = true;
-      } else {
-        $scope.appstatus = false;
-      }
-      if (index == 0 && $scope.appstatus == true) {
-        //已确认模块改成关注模块(Liuxw
-        $scope.go(1)
-        viewScroll.scrollTop();
-      } else if (index == 0 && $scope.appstatus == false) {
-        $scope.go(0)
-      }
-    };
-
-    $scope.go = function (index) {
-      $ionicSlideBoxDelegate.slide(index);
-    };
+    // $scope.go = function (index) {
+    //   $ionicSlideBoxDelegate.slide(index);
+    // };
 
     // 跳入详情
     $scope.goNotifyDetail = function (obj ) {
@@ -387,10 +356,9 @@ angular.module('newnotification.controllers', [])
     };
 
     // 获取通知应用列表数据
-    function applicationsE( notifyIdAppIcons) {
-
-      var userID; // userID = 232102
-      var imCode; //  imCode = 860982030647083
+    function applicationsE(notifyIdAppIcons) {
+      var userID;
+      var imCode;
       $mqtt.getUserInfo(function (succ) {
         userID = succ.userID;
         //获取人员所在部门，点亮图标
@@ -401,39 +369,28 @@ angular.module('newnotification.controllers', [])
           $scope.$on('succeed.update', function (event) {
             $pubionicloading.hide();
 
+
+
             $scope.applicationLists = NotifyApplicationData.getApplicationList(); // 获取应用列表数据源
             addPathToData(notifyIdAppIcons, $scope.applicationLists); // 往应用列表数据源中追加 logo 路径字段
-
-            console.log("12哈哈获取的应用列表数据： " +JSON.stringify($scope.applicationLists));
-
-            if ($scope.applicationLists.length>0){
-              if ($scope.noReadData.length>0){  // 有未读的通知数据
-              //  用应用列表数据 appName 查询该条应用下有多少条未读通知，并给个有未读通知状态标识
-                for(var i=0;i<$scope.applicationLists.length;i++){
-                  var noReadCount = 0; // 各应用下的未读通知数
-                  var noReadAppIdArr = []; // 各应用下的未读通知的唯一标识集合
-                  var appName = $scope.applicationLists[i].appName;
-                  for(var j=0;j<$scope.noReadData.length;j++){
-                    if($scope.noReadData[j].appName === appName){
-                      noReadCount++;
-                      noReadAppIdArr.push($scope.noReadData[j].MsgId) // 将未读应用通知的唯一标识MsgId传过去，进行数据过滤
-                    }else {
-                      continue;
-                    }
-                  }
-                  $scope.applicationLists[i].noReadCount = noReadCount;
-                  $scope.applicationLists[i].noReadAppIdArr = noReadAppIdArr;
+            //  用应用列表数据 appName 查询该条应用下有多少条未读通知，并给个有未读通知状态标识
+            // console.log("应用列表数据源："+$scope.applicationLists.length+"==" + JSON.stringify($scope.applicationLists));
+            // console.log("应用列表未读的通知数据源：" +$scope.noReadData.length+"=="+JSON.stringify($scope.noReadData));
+            for(var i=0;i<$scope.applicationLists.length;i++){
+              var appName = $scope.applicationLists[i].appName;
+              var noReadCount = 0; // 各个应用下的未读通知数
+              for(var j=0;j<$scope.noReadData.length;j++){
+                if($scope.noReadData[j].appName === appName){
+                  noReadCount++;
+                }else {
+                  continue;
                 }
-
-              }else {
-               return;
               }
-            }else {
-              return;
+              $scope.applicationLists[i].noReadCount = noReadCount;
+              $scope.applicationLists[i].showNum = 2;
             }
 
-            console.log("12哈哈+修改后+获取的应用列表数据： " +JSON.stringify($scope.applicationLists));
-
+            console.log("通知应用列表数据源："+JSON.stringify($scope.applicationLists)); ;
           });
         })
       });
@@ -463,38 +420,38 @@ angular.module('newnotification.controllers', [])
       }
     }
 
-    // 进入这个应用对应的通知列表页
+    // 跳转页面
     $scope.goApplicationDetail = function (obj) {
       $state.go("applicationDetail",{
         obj:obj
       })
     };
+
+
   })
 
   //跳转进入详情界面的展示
-  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate) {
+  .controller('notifyDetailCtrl', function ($scope, $stateParams, $ionicHistory, $greendao,$mqtt, $api, $timeout, $pubionicloading, $ToastUtils, $state, $ionicScrollDelegate,$http,$formalurlapi) {
 
     $scope.notifyObj = $stateParams.obj.bean;
-    console.log("应用详情页点击item进入一个通知的详情页接收到的数据："+JSON.stringify($scope.notifyObj));
+    $scope.showNum = $stateParams.obj.bean.showNum;
 
-    // var fromId = $scope.notifyObj.FromID;
-    var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
+    console.log("进入详情额拿大的参数：" + JSON.stringify($stateParams.obj.bean));
 
     $scope.$on('$ionicView.enter', function () {
       $timeout(function () {
         //只要进入通知详情界面，就将该条通知置为已读
         var newnotifyobj={};
-        newnotifyobj.MsgId=$scope.notifyObj.MsgId;
-        newnotifyobj.appId=$scope.notifyObj.FromID;
+        newnotifyobj.MsgId=$scope.notifyObj.msgId;
+        newnotifyobj.appId=$scope.notifyObj.from;
         newnotifyobj.isRead="1";
-        newnotifyobj.appName=$scope.notifyObj.FromName;
+        newnotifyobj.appName=$scope.notifyObj.fromName;
         $greendao.saveObj('NewNotifyListService',newnotifyobj,function (succ) {
           $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
             //拿到的未读数量展示在tab底部及桌面角标
             cordova.plugins.notification.badge.set(data.length,function (msg) {
               $mqtt.saveInt('badgeNotifyCount',data.length);
             },function (err) {
-              // alert("失败"+err);
             });
           },function (err) {
 
@@ -520,84 +477,77 @@ angular.module('newnotification.controllers', [])
     // } else {
     //   $scope.levelName = "超级紧急";
     // }
+     function NotifyDetailSetExtMsg(userID,imCode,msgId,isState,num) {
+      var param ={};
+      if (num===0){ // 置顶操作
+        param = {
+          Action: "SetExtMsg",
+          id: userID,
+          mepId: imCode,
+          setToped: isState,
+          msgId: msgId
+        };
+      }else if(num===1){ // 关注操作
+        param = {
+          Action: "SetExtMsg",
+          id: userID,
+          mepId: imCode,
+          setAttention: isState,
+          msgId: msgId
+        };
+      }
 
+      $http({
+        method: 'post',
+        timeout: 5000,
+        url: $formalurlapi.getBaseUrl(),
+        data: param
+      }).success(function (data, status) {
+        // 将置顶和关注状态和后台后刷新页面
+        console.log("切换按钮数据交互成功？");
+      }).error(function (data, status, err) {
+        console.log("切换按钮数据交互失败");
+      });
+    }
 
+    function ChangeState(notifyObj,num) {
+      // 修改当前置顶状态
+      if(num===0){
+        notifyObj.isToped = notifyObj.isToped?false:true;
+      }else if(num===1){
+        notifyObj.isAttention = notifyObj.isAttention?false:true;
+      }
 
+      // 置顶和关注和后台交互
+      var userID;
+      var imCode;
+      var isState;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
 
-    //通知置顶
-    $scope.notifyTop = function (id, istop) {
-
-      $api.setNotifyMsg(id, false, istop, "", function (suc) {
-
-        if (istop === "T") {
-          $scope.notifyObj.IsToped = true;
-
-
-        } else if (istop === "F") {
-          $scope.notifyObj.IsToped = false;
-
-        }
-
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
-
-      }, function (err) {
-        $ToastUtils.showToast("置顶更改失败");
-        if (istop === "T") {
-          $scope.notifyObj.IsToped = false;
-
-
-        } else if (istop === "F") {
-          $scope.notifyObj.IsToped = true;
-
-        }
-
-        $timeout(function () {
-          viewScroll.scrollTop();
-        }, 100);
-
+          if(num===0){
+            isState =notifyObj.isToped;
+          }else if(num===1){
+            isState =notifyObj.isAttention;
+          }
+          NotifyDetailSetExtMsg(userID,imCode,notifyObj.msgId,isState,num);
+        })
       })
     }
 
-    //添加关注
-    $scope.notifyFocus = function (id, isattention) {
-      $api.setNotifyMsg(id, false, "", isattention, function (suc) {
-        if (isattention == "T") { // 添加关注
-          $scope.notifyObj.IsAttention = true;
 
-        } else if (isattention == "F") { //  取消关注
-          $scope.notifyObj.IsAttention = false;
-        }
-        $timeout(function () {
-          viewScroll.scrollTop();
+    $scope.notifyTop = function (notifyObj,num) {
+      ChangeState(notifyObj,num);
+    };
 
-        }, 100);
+    // 添加关注
+    $scope.notifyFocus = function (notifyObj,num) {
+      ChangeState(notifyObj,num);
+    };
 
-      }, function (err) {
-        $ToastUtils.showToast("关注更改失败");
-        if (isattention == "T") {
-          $scope.notifyObj.IsAttention = false;
-
-
-        } else if (isattention == "F") {
-          $scope.notifyObj.IsAttention = true;
-
-        }
-
-
-        $timeout(function () {
-          viewScroll.scrollTop();
-
-        }, 100);
-
-
-      })
-
-    }
-
-
-    //详情确认
+    // 详情确认
     $scope.confirmDetail = function (id) {
       $pubionicloading.showloading('', '正在加载...');
 
@@ -605,7 +555,7 @@ angular.module('newnotification.controllers', [])
       $timeout(function () {
         $api.setNotifyMsg(id, true, "", "", function (suc) {
           $pubionicloading.hide();
-          $scope.notifyObj.IsReaded = true;
+          $scope.notifyObj.isRead = true;
 
           $timeout(function () {
             viewScroll.scrollTop();
@@ -622,80 +572,140 @@ angular.module('newnotification.controllers', [])
       $state.go("confirmornot", {
         id: id
       })
-    }
+    };
 
     $scope.gonetdetail = function (net) {
       $state.go('netconfirm', {
-        url: net,
+        url: net
       })
+    };
+
+    $scope.backNotify = function (notifyObj) {
+
+      console.log("详情页返回操作所带的数据：" +JSON.stringify(notifyObj));
+
+      // $state.go("tab.notification",{obj:notifyObj});
+      // $ionicHistory.goBack();
+      if ($scope.showNum !== 2) {
+
+        $state.go("tab.notification",{
+          obj:notifyObj
+        })
+      }else {
+        // $ionicHistory.goBack();
+        $state.go('applicationDetail', {
+          obj: notifyObj
+        })
+      }
     }
 
-    $scope.backNotify = function () {
-      $ionicHistory.goBack();
-    };
   })
 
   // 通知应用列表详情
-  .controller('applicationDetailCtrl', function ($scope,$state,$ionicHistory,$stateParams, $mqtt,NotifyApplicationData,$pubionicloading,$greendao) {
+  .controller('applicationDetailCtrl', function ($scope,$state,$ionicHistory,$stateParams,$ionicSlideBoxDelegate, $mqtt,NotifyApplicationData,$pubionicloading,$greendao) {
 
-    console.log("传入应用详情页接收的item："+ JSON.stringify($stateParams.obj));
-    var fromId = $stateParams.obj.appId;        // 接收上级id
-    $scope.appName = $stateParams.obj.appName; // 接收应用名称
-    $scope.appIcon = $stateParams.obj.appIcon; // 接收应用 logo 对应的本地路径
-    $scope.noReadAppIdArr =  $stateParams.obj.noReadAppIdArr; // 接收该应用下的未读通知的唯一标识集合
+    console.log("通知应用列表详情接收到的额参数：" + JSON.stringify($stateParams.obj));
 
-    getAppNotifyLists(fromId); // 调接口，获取各个应用下的通知列表数据源
+    var fromId = $stateParams.obj.appId?$stateParams.obj.appId:$stateParams.obj.from; // 接收上级id
+    $scope.appName = $stateParams.obj.appName?$stateParams.obj.appName:$stateParams.obj.fromName;  // 接收应用名称
+    $scope.appIcon = $stateParams.obj.appIcon;  // 接收应用 logo 对应的本地路径
+    $scope.showNum = $stateParams.obj.showNum;  // 显示模块标识：0：全，1：关注，2：通知应用
+    // var fromId = $stateParams.obj.appId;
+    // $scope.appName = $stateParams.obj.appName;  // 接收应用名称
+    // $scope.appIcon = $stateParams.obj.appIcon;  // 接收应用 logo 对应的本地路径
+    $scope.applicationChild =[];                // 存放请求回来的应用列表数据
+    // $scope.showNum = $stateParams.obj.showNum;  // 显示模块标识：0：全，1：关注，2：通知应用
+    $scope.noReadData = [];
+    var targetObj={};
+    $scope.loadMoreApplication = false; // 是否加载更过
 
-    // 获取这个应用下的通知列表数据
-    function getAppNotifyLists(fromId) {
-      var userID;
-      var imCode;
+    console.log("通知应用列表详情接收到的额参数fromId：" + JSON.stringify(fromId));
+
+    //当进入页面以后执行的方法
+    $scope.$on('$ionicView.enter', function () {
+
+      $ionicSlideBoxDelegate.enableSlide(false);
+      NotifyApplicationData.clearDefaultCount();// 数据初始化为加载第一页数据
+      // 重新加载数据
       $mqtt.getUserInfo(function (succ) {
-        userID = succ.userID;
-        //获取人员所在部门，点亮图标
+        var userID = succ.userID;
         $mqtt.getImcode(function (imcode) {
-          imCode = imcode;
-          // 调用接口拿到后台数据
+          var imCode = imcode;
           NotifyApplicationData.getApplicationChildE(userID, imCode, fromId);
-          $scope.$on('succeed.update', function (event) {
-            $pubionicloading.hide();
+        });
+      })
+    });
 
-            $scope.applicationChild = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
+    // 进来通知界面就统计数据库通知的未读数量
+    $greendao.queryData('NewNotifyListService','where IS_READ =?',"0",function (data) {
+      $scope.noReadData = data;
+    },function (err) {
 
-            // 转化时间格式 + 追加logo地址
-            for(var i=0;i< $scope.applicationChild.length;i++){
-              // 转化时间格式
-              var whenStr =new Date($scope.applicationChild[i].when);
-              $scope.applicationChild[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+    });
 
-              // 追加logo地址
-              $scope.applicationChild[i].appIcon =  $scope.appIcon;
+    $scope.$on('getApplicationChildE.succeed.update', function (event) {
+      $pubionicloading.hide();
 
-              // 判断新旧状态
-             if($scope.noReadAppIdArr.length>0){
-               for (var j=0;j<$scope.noReadAppIdArr.length;j++){
-                 var MsgId = $scope.noReadAppIdArr[j];
-                 if(MsgId=== $scope.applicationChild[i].msgId){
-                   $scope.applicationChild[i].isNewNotify = true;
-                 }else {
-                  continue;
-                 }
-               }
-             }else {
-               return;
-             }
+      var applicationList = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
 
-            }
+      applicationList.forEach(function (item) {
+        console.log("item哈哈哈前" + JSON.stringify(item));
+        // 修改时间格式
+        var whenStr =new Date(item.when);
+        item.when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
 
-            console.log("应用详情页追加path+新旧状态后的数据：" +$scope.applicationChild.length+"--"+ JSON.stringify($scope.applicationChild));
+        // 追加logo地址
+        item.appIcon =  $scope.appIcon;
 
-          });
-        })
+        // 追加显示模块标志数字2字段
+        item.showNum = 2;
       });
-    }
+
+      if ($scope.noReadData.length>0){
+        for (var i=0;i<$scope.noReadData.length;i++){
+          var MsgId = $scope.noReadData[i].MsgId;
+          for (var j=0;j<applicationList.length;j++){
+            if (MsgId === applicationList[j].msgId){
+              applicationList[j].isNewNotify = true;
+            }else {
+               continue;
+            }
+          }
+        }
+      }else {
+        applicationList = applicationList;
+      }
+
+
+      console.log("item哈哈哈后" + JSON.stringify(applicationList));
+      console.log("item哈哈哈未读通知数据：" + JSON.stringify($scope.noReadData));
+
+      // 根据请求回来的数据的个数，判断是否加载更多操作，>=5时，加载更多，反之，取消加载更多操作。
+      if (applicationList.length >= 5 ) {
+        $scope.loadMoreApplication = true;
+      } else {
+        $scope.loadMoreApplication = false;
+      }
+
+
+      for (var i = 0; i < applicationList.length; i++) {
+        $scope.applicationChild.push(applicationList[i]);
+      }
+
+      console.log("通过fromId调用接口前端拿到的数据源梳理后的数据：" + JSON.stringify(applicationList));
+      console.log("通过fromId调用接口前端拿到的数据源梳理后的数据：" + JSON.stringify($scope.applicationChild));
+
+      targetObj = {
+        "showNum" :applicationList[0].showNum,
+        "appId":applicationList[0].appId,
+        "appIcon":applicationList[0].appIcon,
+        "appName":applicationList[0].appName
+      };
+
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
 
     $scope.goDetail = function (obj ) {
-      console.log("应用进入详情页面：" + JSON.stringify(obj));
       $state.go('notifyDetail', {
         obj: {
           "bean": obj
@@ -703,56 +713,28 @@ angular.module('newnotification.controllers', [])
       })
     };
 
+    // 上拉加载更多
+    $scope.loadMoreApplicationEvent = function () {
+
+      console.log("loadMoreApplicationEvent加载更多方法被调用");
+      $pubionicloading.showloading('','正在加载...');
+      var userID;
+      var imCode;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          NotifyApplicationData.getApplicationChildE(userID, imCode, fromId);
+        })
+      })
+    };
+
     // 返回操作调取的方法
     $scope.backApp = function () {
-      $ionicHistory.goBack();
+      $state.go("tab.notification",{obj:targetObj});
     }
 
   })
-  //应用列表的详情
-  // .controller('notifyApplicationCtrl', function ($scope, $stateParams, $greendao, $state, $pubionicloading, $timeout, $ionicHistory) {
-  //   $scope.hahaha = $stateParams.isfirm;
-  //   $pubionicloading.showloading('', '正在加载...');
-  //   $scope.ididididi = $stateParams.id;
-  //
-  //   if ($scope.ididididi == 1) {
-  //     $scope.appname = "公文处理";
-  //   } else if ($scope.ididididi == 15) {
-  //     $scope.appname = "拌和站";
-  //   } else if ($scope.ididididi == 16) {
-  //     $scope.appname = "试验室";
-  //   } else if ($scope.ididididi == 18) {
-  //     $scope.appname = "围岩量测";
-  //   }
-  //
-  //   $scope.appGoNotifyDetail = function (nihao) {
-  //     $state.go('notifyDetail', {
-  //       "id": nihao
-  //     });
-  //   }
-  //
-  //   //当进入页面以后执行的方法
-  //   $scope.$on('$ionicView.enter', function () {
-  //     $timeout(function () {
-  //
-  //       $greendao.queryByConditions("SystemMsgService", function (msg) {
-  //
-  //         $pubionicloading.hide();
-  //         $scope.appmsg = msg;
-  //
-  //       }, function (err) {
-  //
-  //       });
-  //     });
-  //
-  //
-  //   });
-  //
-  //
-  //   $scope.backApp = function () {
-  //     $ionicHistory.goBack();
-  //   }
-  // })
 
   .controller('confirmornotCtrl', function ($scope, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory) {
 
@@ -795,8 +777,6 @@ angular.module('newnotification.controllers', [])
         document.getElementById("leftbt").style.borderBottomColor = "#6c9aff";
         document.getElementById("leftbt").style.borderWidth = "3px";
         $scope.noNotify();
-
-
       }
 
       if (index == 1) {

@@ -162,7 +162,7 @@ angular.module('portal.services', [])
       }
     };
   })
-  .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
+  .factory('NetData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http, FinshedApp) {
     // var userID;
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;
@@ -253,24 +253,27 @@ angular.module('portal.services', [])
     };
   })
 
-  .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http) {
-
+  .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http,$ToastUtils) {
+    var defaultCount=1;
+    var defaultNumber=5;
     var applicationLists = []; // 应用列表数据集合
     var applicationChild = []; // 返回每个应用的通知列表
 
     return {
-      // 获取通知所属应用列表及应用的最新一条消息事件和标题
+      // 获取应用列表及最新一条数据
       getListInfo: function (userID,imcode) {
         $http({
           method: 'post',
           timeout: 5000,
           url:$formalurlapi.getBaseUrl(),
-          data:{Action:"GetExtMsgAppList",id:userID,mepId:imcode}
+          data:{
+            Action:"GetExtMsgAppList",
+            id:userID,
+            mepId:imcode
+          }
         }).success(function (data, status) {
-
           // 获取通知应用列表数据源
           applicationLists = JSON.parse(decodeURIComponent(data)).Event.appList;
-          console.log("通知应用列表成功的数据：" + JSON.stringify(applicationLists));
           $rootScope.$broadcast('succeed.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
@@ -284,20 +287,32 @@ angular.module('portal.services', [])
           method: 'post',
           timeout: 5000,
           url:$formalurlapi.getBaseUrl(),
-          data:{Action:"GetExtMsg",id:userID,mepId:imcode,fromId:fromId}
+          data:{
+            Action:"GetExtMsg",
+            id:userID,
+            mepId:imcode,
+            date:"A",
+            fromId:fromId,
+            pageNo:defaultCount,
+            pageSize:defaultNumber
+          }
         }).success(function (data, status) {
 
           // 获取通知应用列表数据源
           applicationChild = JSON.parse(decodeURIComponent(data)).msgList;
-          console.log("应用下的所有的通知：" + JSON.stringify(applicationChild));
-          $rootScope.$broadcast('succeed.update');
-        }).error(function (data, status) {
-          $rootScope.$broadcast('error.update');
-        });
+          $rootScope.$broadcast('getApplicationChildE.succeed.update');
 
+          defaultCount++;
+        }).error(function (data, status) {
+          $ToastUtils.showToast(err);
+          $rootScope.$broadcast('getApplicationChildE.error.update');
+        });
       },
       applicationChild:function () {
         return applicationChild;
+      },
+      clearDefaultCount:function () {
+        defaultCount=1;
       }
     };
   })

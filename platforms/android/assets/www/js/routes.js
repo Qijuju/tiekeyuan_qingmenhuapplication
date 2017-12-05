@@ -116,6 +116,9 @@ angular.module('im.routes', [])
             controller: 'newnotificationCtrl'
           }
         },
+        params:{
+          obj:null
+        },
         reload:true
       })
       .state('tab.webpage', {
@@ -216,8 +219,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/message-group.html',
         cache:false,
         controller: 'MessageGroupCtrl'
-
-
       })
 
       .state('topContacts', {
@@ -225,8 +226,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/top_contacts.html',
         controller: 'TopContactsCtrl',
         cache:false
-
-
       })
       .state('myAttention', {
         url: '/myAttention',
@@ -234,9 +233,6 @@ angular.module('im.routes', [])
         controller: 'myattentionaaaSelectCtrl',
         cache: false
       })
-
-
-
 
       .state('personalSetting', {
         url: '/personalSetting/:id/:ssid/:sessionid',
@@ -270,7 +266,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-createNotice.html',
         controller: 'groupCreateNoticeCtrl',
         cache:false
-
       })
 
       .state('groupMember', {
@@ -278,7 +273,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-member.html',
         controller: 'groupMemberCtrl',
         cache:false
-
       })
 
       .state('groupDeptMember', {
@@ -288,8 +282,6 @@ angular.module('im.routes', [])
         cache:false
 
       })
-
-
 
       .state('tab.contacts', {
         url: '/contacts',
@@ -303,7 +295,7 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second/:contactId/:contactName/:childcount/:index/:personFlag',
+        url: '/second/:contactId/:childcount',
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
@@ -375,7 +367,7 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person/:userId/:index',
+        url: '/person/:userId',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         cache:false
@@ -416,9 +408,6 @@ angular.module('im.routes', [])
           }
         }
       })
-
-
-
       .state('tab.account', {
         url: '/account',
         cache: false,

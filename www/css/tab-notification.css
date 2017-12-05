@@ -197,6 +197,10 @@ p.level span{
 .toggle-small.item-toggle .toggle{
   top:20px;
 }
+.bar .notifyTabs.on{
+  background: #3F51B5;
+  color: #fff;
+}
 /*切换按钮-圆*/
 .toggle-small .handle1{ /* 重写ionic.css样式*/
   position: absolute;
@@ -277,8 +281,8 @@ a#rightbt{
   margin-left:-1px;
 }
 .notifyTabs:first-child{
-  background: #3F51B5;
-  color: #fff;
+  /*background: #3F51B5;*/
+  /*color: #fff;*/
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
@@ -288,10 +292,10 @@ a#rightbt{
   -moz-border-radius:0 4px 4px 0;
   border-radius:0 4px 4px 0;
 }
-.notifyTabs:active{
-  background: #3F51B5;
-  color: #fff;
-}
+/*.notifyTabs:active{*/
+  /*background: #3F51B5;*/
+  /*color: #fff;*/
+/*}*/
 /*通知模块的 tabs style end */
 
 /* 通知应用模块 style start */
