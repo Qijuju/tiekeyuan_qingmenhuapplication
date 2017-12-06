@@ -6,7 +6,6 @@ angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData,$http,$formalurlapi,$stateParams) {
 
     // 获取
-
     $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
     $scope.showNum = 0;                     // 定义参数，标识要显示的模块
     $scope.notifyNewList = [];             // 全部通知列表数据源
@@ -35,10 +34,7 @@ angular.module('newnotification.controllers', [])
       }else {
         notifyTabs[$scope.showNum].classList.add("on");
       }
-
-
     });
-
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -60,7 +56,6 @@ angular.module('newnotification.controllers', [])
           var imCode = imcode;
           $notify.allNotifications(userID, imCode);
           $notify.getAttentionNotify(userID, imCode);
-
         });
       })
     });
@@ -93,8 +88,7 @@ angular.module('newnotification.controllers', [])
     },function (err) {
     });
 
-    // test code start
-    // 置顶操作
+    // 全部通知的置顶操作
     $scope.goIsTopEvent2 = function (item) {
         var userID;
         var imCode;
@@ -105,6 +99,19 @@ angular.module('newnotification.controllers', [])
             setExtMsg(userID,imCode,item,0);
           })
         })
+    };
+
+    // 关注通知的置顶操作
+    $scope.goIsTopEvent = function (item) {
+      var userID;
+      var imCode;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          setExtMsg(userID,imCode,item,0);
+        })
+      })
     };
 
     // 点击置顶之后要处理的事情
@@ -563,9 +570,11 @@ angular.module('newnotification.controllers', [])
       })
     };
 
-    $scope.openconfirm = function (id) {
+    $scope.openconfirm = function (obj) {
+
+      console.log("查看确认详情：" + JSON.stringify(obj));
       $state.go("confirmornot", {
-        id: id
+        obj: obj
       })
     };
 
@@ -707,41 +716,37 @@ angular.module('newnotification.controllers', [])
 
   })
 
-  .controller('confirmornotCtrl', function ($scope, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory) {
+  .controller('confirmornotCtrl', function ($scope,$state, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory,$http,$formalurlapi,$rootScope,$mqtt,NotifyApplicationData,$pubionicloading) {
 
-    $scope.msgid = $stateParams.id;
+    $scope.obj = $stateParams.obj;
+    $scope.msgid = $stateParams.obj.msgId;
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
     $scope.index = 0;
 
     $scope.$on('$ionicView.enter', function () {
-
       $ionicSlideBoxDelegate.enableSlide(false);
 
-      $api.getMsgReadList($scope.msgid, false, function (suc) {
-        $scope.noNotifyUser = suc.userList;
-        $timeout(function () {
-          viewScroll.scrollTop();
-
-        }, 100);
-
-      }, function (err) {
-        $ToastUtils.showToast("获取失败")
-
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,false);
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.noNotifyUser = NotifyApplicationData.getMsgReadList();
+          });
+        });
       })
+    });
 
-
-    })
-
-
+    // tab切换
     $scope.goConfirm = function (index) {
       $ionicSlideBoxDelegate.slide(index);
-    }
+    };
 
     $scope.go_confirm = function (index) {
-
-
       if (index == 0) {
         $scope.index = 0;
         document.getElementById("rightbt").style.borderBottomColor = "#ffffff";
@@ -757,49 +762,50 @@ angular.module('newnotification.controllers', [])
         document.getElementById("rightbt").style.borderWidth = "3px";
 
         $scope.alreadyNofiy();
-
       }
-
-    }
+    };
 
 
     $scope.alreadyNofiy = function () {
-      $api.getMsgReadList($scope.msgid, true, function (suc) {
 
-        $scope.alreadyUser = suc.userList;
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,true);
 
-        $timeout(function () {
-          viewScroll.scrollTop();
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.alreadyUser = NotifyApplicationData.getMsgReadList();
+          });
 
-        }, 100);
-      }, function (err) {
-
-        $ToastUtils.showToast("获取失败")
+        });
       })
-
-    }
+    };
 
     $scope.noNotify = function () {
-      $api.getMsgReadList($scope.msgid, false, function (suc) {
 
-        $scope.noNotifyUser = suc.userList;
-        $timeout(function () {
-          viewScroll.scrollTop();
-
-        }, 100);
-
-      }, function (err) {
-        $ToastUtils.showToast("获取失败")
-
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,false);
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.noNotifyUser = NotifyApplicationData.getMsgReadList();
+          });
+        });
       })
-    }
+    };
 
-
-    $scope.backAny = function () {
-      $ionicHistory.goBack();
-    }
-
-
+    $scope.backAny = function (obj) {
+      // $ionicHistory.goBack(); // 由于修改切换回来到对应的模
+      $state.go('notifyDetail', {
+        obj: {
+          "bean": obj
+        }
+      })
+    };
   })
   .controller('netconfirmCtrl', function ($scope, $stateParams, $sce) {
     $scope.neturl = $sce.trustAsResourceUrl($stateParams.url);

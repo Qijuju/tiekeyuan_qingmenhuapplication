@@ -1,9 +1,8 @@
-<ion-view  >
-
+<ion-view >
   <!--导航条-->
-  <ion-nav-bar align-title="center" class="secondbar" >
+  <ion-nav-bar align-title="center" class="secondbar">
     <ion-nav-buttons side="left">
-      <div ng-click="backAny()" >
+      <div ng-click="backAny(obj)">
         <img src="img/backmain.png" class="notifyConfirmBackImg">
         <p class="notifyConfirmP">确认详情</p>
       </div>
@@ -24,22 +23,26 @@
 
       <!--未确认-->
       <ion-slide>
-        <!--列表-->
-        <ion-list  style="margin-top:0px;">
-          <!--列表项-->
+        <ion-list>
           <ion-item ng-repeat="item in noNotifyUser">
-            <!--内容-->
-            <p class="confirmUnconfirm">{{item.UserName}}</p>
+            <div class="row">
+              <div class="col col-25">{{item.displayName}}</div>
+              <div class="col">{{item.deptName}}</div>
+              <div class="col" align="right">{{item.when}}</div>
+            </div>
           </ion-item>
         </ion-list>
-
       </ion-slide>
 
       <!--已确认-->
       <ion-slide>
         <ion-list>
-          <ion-item ng-repeat="item in alreadyUser" ng-click="">
-            <p class="confirmUnconfirm">{{item.UserName}}</p>
+          <ion-item ng-repeat="item in alreadyUser">
+            <div class="row">
+              <div class="col col-25">{{item.displayName}}</div>
+              <div class="col">{{item.deptName}}</div>
+              <div class="col" align="right">{{item.when}}</div>
+            </div>
           </ion-item>
         </ion-list>
       </ion-slide>

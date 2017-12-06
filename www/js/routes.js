@@ -610,9 +610,12 @@ angular.module('im.routes', [])
       })
 
       .state('confirmornot', {
-        url: '/confirmornot/:id',
+        url: '/confirmornot',
         templateUrl: 'templates/notify-confirm.html',
         controller: 'confirmornotCtrl',
+        params:{
+          obj:null
+        }
       })
       .state('netconfirm', {
         url: '/netconfirm/:url',

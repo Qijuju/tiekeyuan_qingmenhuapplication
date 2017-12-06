@@ -258,6 +258,7 @@ angular.module('portal.services', [])
     var defaultNumber=5;
     var applicationLists = []; // 应用列表数据集合
     var applicationChild = []; // 返回每个应用的通知列表
+    var noOrYesConfirmList=[];
 
     return {
       // 获取应用列表及最新一条数据
@@ -283,7 +284,6 @@ angular.module('portal.services', [])
         return applicationLists;
       },
       getApplicationChildE:function (userID,imcode,fromId) {
-        console.log("通过fromId调用接口接收到的数据：" + userID +"--" + imcode +"--" + fromId);
         $http({
           method: 'post',
           timeout: 5000,
@@ -300,9 +300,7 @@ angular.module('portal.services', [])
         }).success(function (data, status) {
 
           // 获取通知应用列表数据源
-          console.log("通过fromId调用接口拿到的数据：" +  JSON.stringify(JSON.parse(decodeURIComponent(data))));
           applicationChild = JSON.parse(decodeURIComponent(data)).msgList;
-          console.log("通过fromId调用接口返回到前台的数据："+defaultCount +"--" +applicationChild.length +",,," +JSON.stringify(applicationChild));
           $rootScope.$broadcast('getApplicationChildE.succeed.update');
 
           defaultCount++;
@@ -310,6 +308,42 @@ angular.module('portal.services', [])
           $ToastUtils.showToast(err);
           $rootScope.$broadcast('getApplicationChildE.error.update');
         });
+      },
+      getMsgReadListE:function (userID,imCode,msgid,isReaded) {
+        console.log("确认详情拿到的参数：" + userID +"--" + imCode +"--" + msgid +"--" + isReaded);
+
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsgReadList",
+            id:userID,
+            mepId:imCode,
+            msgId: msgid,
+            isReaded:isReaded
+          }
+        }).success(function (data, status) {
+          noOrYesConfirmList = JSON.parse(decodeURIComponent(data)).Event.userList;
+
+          console.log("确认详情未确认列表数据1：" + JSON.stringify(noOrYesConfirmList));
+          // 循环修改时间格式
+          noOrYesConfirmList.forEach(function (item) {
+            var whenStr =new Date( item.when );
+            item.when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+          });
+
+          console.log("确认详情未确认列表数据2：" + JSON.stringify(noOrYesConfirmList));
+
+          $rootScope.$broadcast('getMsgReadListE.succeed.update');
+        }).error(function (data, status) {
+          console.log("请求失败："+"--"+status +"--" +decodeURIComponent(data) );
+          $rootScope.$broadcast('getMsgReadListE.error.update');
+        });
+      },
+      getMsgReadList:function () {
+        console.log("返回数据：" + JSON.stringify(noOrYesConfirmList));
+        return noOrYesConfirmList;
       },
       applicationChild:function () {
         return applicationChild;

@@ -6,7 +6,6 @@ angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData,$http,$formalurlapi,$stateParams) {
 
     // 获取
-
     $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
     $scope.showNum = 0;                     // 定义参数，标识要显示的模块
     $scope.notifyNewList = [];             // 全部通知列表数据源
@@ -35,10 +34,7 @@ angular.module('newnotification.controllers', [])
       }else {
         notifyTabs[$scope.showNum].classList.add("on");
       }
-
-
     });
-
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
@@ -60,7 +56,6 @@ angular.module('newnotification.controllers', [])
           var imCode = imcode;
           $notify.allNotifications(userID, imCode);
           $notify.getAttentionNotify(userID, imCode);
-
         });
       })
     });
@@ -93,8 +88,7 @@ angular.module('newnotification.controllers', [])
     },function (err) {
     });
 
-    // test code start
-    // 置顶操作
+    // 全部通知的置顶操作
     $scope.goIsTopEvent2 = function (item) {
         var userID;
         var imCode;
@@ -105,6 +99,19 @@ angular.module('newnotification.controllers', [])
             setExtMsg(userID,imCode,item,0);
           })
         })
+    };
+
+    // 关注通知的置顶操作
+    $scope.goIsTopEvent = function (item) {
+      var userID;
+      var imCode;
+      $mqtt.getUserInfo(function (succ) {
+        userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          imCode = imcode;
+          setExtMsg(userID,imCode,item,0);
+        })
+      })
     };
 
     // 点击置顶之后要处理的事情
@@ -374,8 +381,6 @@ angular.module('newnotification.controllers', [])
             $scope.applicationLists = NotifyApplicationData.getApplicationList(); // 获取应用列表数据源
             addPathToData(notifyIdAppIcons, $scope.applicationLists); // 往应用列表数据源中追加 logo 路径字段
             //  用应用列表数据 appName 查询该条应用下有多少条未读通知，并给个有未读通知状态标识
-            // console.log("应用列表数据源："+$scope.applicationLists.length+"==" + JSON.stringify($scope.applicationLists));
-            // console.log("应用列表未读的通知数据源：" +$scope.noReadData.length+"=="+JSON.stringify($scope.noReadData));
             for(var i=0;i<$scope.applicationLists.length;i++){
               var appName = $scope.applicationLists[i].appName;
               var noReadCount = 0; // 各个应用下的未读通知数
@@ -390,7 +395,6 @@ angular.module('newnotification.controllers', [])
               $scope.applicationLists[i].showNum = 2;
             }
 
-            console.log("通知应用列表数据源："+JSON.stringify($scope.applicationLists)); ;
           });
         })
       });
@@ -435,8 +439,6 @@ angular.module('newnotification.controllers', [])
 
     $scope.notifyObj = $stateParams.obj.bean;
     $scope.showNum = $stateParams.obj.bean.showNum;
-
-    console.log("进入详情额拿大的参数：" + JSON.stringify($stateParams.obj.bean));
 
     $scope.$on('$ionicView.enter', function () {
       $timeout(function () {
@@ -568,9 +570,11 @@ angular.module('newnotification.controllers', [])
       })
     };
 
-    $scope.openconfirm = function (id) {
+    $scope.openconfirm = function (obj) {
+
+      console.log("查看确认详情：" + JSON.stringify(obj));
       $state.go("confirmornot", {
-        id: id
+        obj: obj
       })
     };
 
@@ -582,44 +586,30 @@ angular.module('newnotification.controllers', [])
 
     $scope.backNotify = function (notifyObj) {
 
-      console.log("详情页返回操作所带的数据：" +JSON.stringify(notifyObj));
-
-      // $state.go("tab.notification",{obj:notifyObj});
-      // $ionicHistory.goBack();
       if ($scope.showNum !== 2) {
-
         $state.go("tab.notification",{
           obj:notifyObj
         })
       }else {
-        // $ionicHistory.goBack();
+
         $state.go('applicationDetail', {
           obj: notifyObj
         })
       }
     }
-
   })
 
   // 通知应用列表详情
   .controller('applicationDetailCtrl', function ($scope,$state,$ionicHistory,$stateParams,$ionicSlideBoxDelegate, $mqtt,NotifyApplicationData,$pubionicloading,$greendao) {
 
-    console.log("通知应用列表详情接收到的额参数：" + JSON.stringify($stateParams.obj));
-
     var fromId = $stateParams.obj.appId?$stateParams.obj.appId:$stateParams.obj.from; // 接收上级id
     $scope.appName = $stateParams.obj.appName?$stateParams.obj.appName:$stateParams.obj.fromName;  // 接收应用名称
     $scope.appIcon = $stateParams.obj.appIcon;  // 接收应用 logo 对应的本地路径
     $scope.showNum = $stateParams.obj.showNum;  // 显示模块标识：0：全，1：关注，2：通知应用
-    // var fromId = $stateParams.obj.appId;
-    // $scope.appName = $stateParams.obj.appName;  // 接收应用名称
-    // $scope.appIcon = $stateParams.obj.appIcon;  // 接收应用 logo 对应的本地路径
     $scope.applicationChild =[];                // 存放请求回来的应用列表数据
-    // $scope.showNum = $stateParams.obj.showNum;  // 显示模块标识：0：全，1：关注，2：通知应用
+    $scope.loadMoreApplication = false; // 是否加载更过
     $scope.noReadData = [];
     var targetObj={};
-    $scope.loadMoreApplication = false; // 是否加载更过
-
-    console.log("通知应用列表详情接收到的额参数fromId：" + JSON.stringify(fromId));
 
     //当进入页面以后执行的方法
     $scope.$on('$ionicView.enter', function () {
@@ -649,7 +639,6 @@ angular.module('newnotification.controllers', [])
       var applicationList = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
 
       applicationList.forEach(function (item) {
-        console.log("item哈哈哈前" + JSON.stringify(item));
         // 修改时间格式
         var whenStr =new Date(item.when);
         item.when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
@@ -676,10 +665,6 @@ angular.module('newnotification.controllers', [])
         applicationList = applicationList;
       }
 
-
-      console.log("item哈哈哈后" + JSON.stringify(applicationList));
-      console.log("item哈哈哈未读通知数据：" + JSON.stringify($scope.noReadData));
-
       // 根据请求回来的数据的个数，判断是否加载更多操作，>=5时，加载更多，反之，取消加载更多操作。
       if (applicationList.length >= 5 ) {
         $scope.loadMoreApplication = true;
@@ -691,9 +676,6 @@ angular.module('newnotification.controllers', [])
       for (var i = 0; i < applicationList.length; i++) {
         $scope.applicationChild.push(applicationList[i]);
       }
-
-      console.log("通过fromId调用接口前端拿到的数据源梳理后的数据：" + JSON.stringify(applicationList));
-      console.log("通过fromId调用接口前端拿到的数据源梳理后的数据：" + JSON.stringify($scope.applicationChild));
 
       targetObj = {
         "showNum" :applicationList[0].showNum,
@@ -715,8 +697,6 @@ angular.module('newnotification.controllers', [])
 
     // 上拉加载更多
     $scope.loadMoreApplicationEvent = function () {
-
-      console.log("loadMoreApplicationEvent加载更多方法被调用");
       $pubionicloading.showloading('','正在加载...');
       var userID;
       var imCode;
@@ -736,41 +716,39 @@ angular.module('newnotification.controllers', [])
 
   })
 
-  .controller('confirmornotCtrl', function ($scope, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory) {
+  .controller('confirmornotCtrl', function ($scope,$state, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory,$http,$formalurlapi,$rootScope,$mqtt,NotifyApplicationData,$pubionicloading) {
 
-    $scope.msgid = $stateParams.id;
+    console.log("点击查看确认详情传递的数据：" + $stateParams.obj);
+    $scope.obj = $stateParams.obj;
+    $scope.msgid = $stateParams.obj.msgId;
+
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 
     $scope.index = 0;
 
     $scope.$on('$ionicView.enter', function () {
-
       $ionicSlideBoxDelegate.enableSlide(false);
 
-      $api.getMsgReadList($scope.msgid, false, function (suc) {
-        $scope.noNotifyUser = suc.userList;
-        $timeout(function () {
-          viewScroll.scrollTop();
-
-        }, 100);
-
-      }, function (err) {
-        $ToastUtils.showToast("获取失败")
-
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,false);
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.noNotifyUser = NotifyApplicationData.getMsgReadList();
+          });
+        });
       })
+    });
 
-
-    })
-
-
+    // tab切换
     $scope.goConfirm = function (index) {
       $ionicSlideBoxDelegate.slide(index);
-    }
+    };
 
     $scope.go_confirm = function (index) {
-
-
       if (index == 0) {
         $scope.index = 0;
         document.getElementById("rightbt").style.borderBottomColor = "#ffffff";
@@ -786,49 +764,50 @@ angular.module('newnotification.controllers', [])
         document.getElementById("rightbt").style.borderWidth = "3px";
 
         $scope.alreadyNofiy();
-
       }
-
-    }
+    };
 
 
     $scope.alreadyNofiy = function () {
-      $api.getMsgReadList($scope.msgid, true, function (suc) {
 
-        $scope.alreadyUser = suc.userList;
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,true);
 
-        $timeout(function () {
-          viewScroll.scrollTop();
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.alreadyUser = NotifyApplicationData.getMsgReadList();
+          });
 
-        }, 100);
-      }, function (err) {
-
-        $ToastUtils.showToast("获取失败")
+        });
       })
-
-    }
+    };
 
     $scope.noNotify = function () {
-      $api.getMsgReadList($scope.msgid, false, function (suc) {
 
-        $scope.noNotifyUser = suc.userList;
-        $timeout(function () {
-          viewScroll.scrollTop();
-
-        }, 100);
-
-      }, function (err) {
-        $ToastUtils.showToast("获取失败")
-
+      $mqtt.getUserInfo(function (succ) {
+        var userID = succ.userID;
+        $mqtt.getImcode(function (imcode) {
+          var imCode = imcode;
+          NotifyApplicationData.getMsgReadListE(userID, imCode, $scope.msgid,false);
+          $scope.$on('getMsgReadListE.succeed.update', function (event) {
+            $pubionicloading.hide();
+            $scope.noNotifyUser = NotifyApplicationData.getMsgReadList();
+          });
+        });
       })
-    }
+    };
 
-
-    $scope.backAny = function () {
-      $ionicHistory.goBack();
-    }
-
-
+    $scope.backAny = function (obj) {
+      // $ionicHistory.goBack();//
+      $state.go('notifyDetail', {
+        obj: {
+          "bean": obj
+        }
+      })
+    };
   })
   .controller('netconfirmCtrl', function ($scope, $stateParams, $sce) {
     $scope.neturl = $sce.trustAsResourceUrl($stateParams.url);

@@ -11,10 +11,7 @@ angular.module('group.services', [])
   return{
     allGroup:function () {
       $api.getAllGroup(function (msg) {
-
         allGroup=msg.groupList;
-
-
         $rootScope.$broadcast('group.update');
 
       },function (err) {
