@@ -3,7 +3,6 @@
  */
 angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate, $greendao, FinshedApp) {
-
     // 全部通知列表数据源
     $scope.notifyNewList = [];
 

@@ -930,7 +930,11 @@ public class ThriftApiClient extends CordovaPlugin {
                 @Override
                 public void onSuccess(Request request, String result) {
                     try {
-                        setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                        if(result != null && !"".equals(result)){
+                            setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                        }else{
+                            setResult("已是最新版本！", PluginResult.Status.OK, callbackContext);
+                        }
                     } catch (Exception e) {
                         setResult("请求版本信息失败！", PluginResult.Status.OK, callbackContext);
                         e.printStackTrace();

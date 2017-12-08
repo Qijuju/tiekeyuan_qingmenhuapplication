@@ -23,8 +23,6 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       }else {
         $scope.a=0;
       }
-
-
     }
 
     $scope.b=0;

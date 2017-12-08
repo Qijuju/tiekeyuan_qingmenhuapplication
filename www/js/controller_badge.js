@@ -3,7 +3,7 @@
  */
 angular.module('badge.controllers',[])
 
-  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$mqtt,$ToastUtils,$rootScope) {
+  .controller('tabsCtrl', function ($scope,$greendao,$pubionicloading,$mqtt,$ToastUtils,$rootScope,$state) {
 
     // 门户新闻列表通知
     $rootScope.menHuTitle = "门户";
@@ -37,6 +37,7 @@ angular.module('badge.controllers',[])
 
     $scope.onTabSelected=function () {
       $pubionicloading.hide();
+      $state.go('tab.message');
       $greendao.loadAllData('ChatListService',function (msg) {
         $scope.allNoRead=0;
         if (msg.length>0){
@@ -44,8 +45,9 @@ angular.module('badge.controllers',[])
             $scope.allNoRead=$scope.allNoRead+parseInt(msg[i].count, 10);
           }
         }
-      },function (err) {
 
+      },function (err) {
+        $state.go('tab.message');
       })
     };
 

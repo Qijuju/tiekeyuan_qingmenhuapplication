@@ -105,9 +105,10 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactsCtrl', function ($scope, $state,$api, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
+  .controller('ContactsCtrl', function ($scope, $state,$api, $stateParams,$ionicPopup,$cordovaFileOpener2, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
     // alert("网络状态"+$rootScope.isNetConnect);
-
+//登录成功后第一件事：检测升级
+    $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
         //alert("哈哈哈哈哈啊哈哈哈哈");
@@ -213,7 +214,6 @@ angular.module('contacts.controllers', [])
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
-        console.log("返回联系人主界面");
         $scope.logId = $contacts.getLoignInfo();
         $scope.loginid=$contacts.getLoignInfo().deptID;
         //取出我的部门的人数的长度，供我的部门上拉加载
@@ -368,7 +368,7 @@ angular.module('contacts.controllers', [])
   })
 
   /**联系人---二级~八级目录**/
-  .controller('ContactSecondCtrl', function ($scope, $state,$mqtt,$ionicPlatform,$ionicScrollDelegate,$stateParams,$pubionicloading,$http,$formalurlapi,$rootScope) {
+  .controller('ContactSecondCtrl', function ($scope,$http, $state,$mqtt,$ionicPlatform,$ionicScrollDelegate,$stateParams,$pubionicloading,$formalurlapi,$rootScope,$relex) {
     var pageNo=1;
     var allContactArray;
     var curDeptId,curIndicate,curDeptName,curChildCount;//为了在同一层级上拉加载数据传递相同的变量
@@ -381,23 +381,19 @@ angular.module('contacts.controllers', [])
 
     //加载更多的方法
     $scope.loadContactsMore=function () {
-      console.log("能进来上拉加载吗？");
       $scope.switchData(curDeptId,curDeptName,curIndicate,curChildCount,false);
     };
 
     //一级一级返回联系人主界面
     $scope.goPrevious = function () {
       var preIndex=overallIndex-2;
-      console.log("返回时的doclist"+JSON.stringify($scope.docList[overallIndex-2])+"======"+preIndex);
       if(preIndex >= 0){
         if ($scope.docList.length - preIndex - 1 > 0) {
-          console.log("返回上一级根目录00000000");
           $scope.docList.splice(preIndex + 1, $scope.docList.length - preIndex - 1);
         }
         pageNo=1;
         $scope.switchData($scope.docList[preIndex].deptId, $scope.docList[preIndex].deptName, true,$scope.docList[preIndex].childCount,true);
       }else{ //返回根目录
-        console.log("返回上一级根目录");
         $state.go("tab.contacts");
       }
 
@@ -411,7 +407,6 @@ angular.module('contacts.controllers', [])
     //跳转联系人详情界面
     $scope.goPersonDetail = function (userID) {
       $rootScope.tempDocList=$scope.docList;
-      console.log("进入人员详情当前层级信息"+overallIndex+"1111"+curDeptName+"2222"+curDeptId+"-=-----"+curChildCount+"????"+JSON.stringify($rootScope.tempDocList));
       $state.go('person', {
         userId: userID,
         index:overallIndex
@@ -420,13 +415,10 @@ angular.module('contacts.controllers', [])
 
     //物理返回键处理方法(直接返回到联系人主界面)
     $ionicPlatform.registerBackButtonAction(function (e) {
-      console.log("看看走几次"+$scope.tempCount);
       if($scope.tempCount == 1){
         if($stateParams.personFlag){
-          console.log("看看走几次11111111111111111");
           $scope.docList=$rootScope.tempDocList;
           var personIndex = $stateParams.index-1;
-          console.log("从个人详情传过来的参数值列表"+personIndex+$scope.docList[personIndex].childCount+$scope.docList[personIndex].deptName+$scope.docList[personIndex].deptId);
           pageNo=1;
           $scope.tempCount = 2;
           $scope.switchData($scope.docList[personIndex].deptId, $scope.docList[personIndex].deptName,true,$scope.docList[personIndex].childCount,true);
@@ -469,10 +461,9 @@ angular.module('contacts.controllers', [])
           }
         }).success(function (succ) {
           $pubionicloading.hide();
-          var succ = JSON.parse(decodeURIComponent(succ));
+          var succ = JSON.parse(decodeURIComponent($relex.getReplaceAfter(succ)));
           tempDeptList = succ.Event.depts;
           tempUserList = succ.Event.users;
-          console.log("二级目录的数据"+JSON.stringify($scope.departlist)+"====="+JSON.stringify($scope.userlist));
           //添加一级部门指示标
           $scope.docList.push({
             index: 0,
@@ -507,7 +498,6 @@ angular.module('contacts.controllers', [])
             }
           }
           overallIndex = $scope.docList.length;
-          console.log("当前的层级111111"+overallIndex);
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }).error(function (err) {
           $pubionicloading.hide();
@@ -521,9 +511,7 @@ angular.module('contacts.controllers', [])
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
     $scope.docList = [];
     document.addEventListener('deviceready', function () {
-      console.log("deviceready"+$scope.personFlag);
       if(!$stateParams.personFlag){
-        console.log("是不是进来了ready");
         allContactArray();
       }
     });
@@ -565,15 +553,12 @@ angular.module('contacts.controllers', [])
           }
         }).success(function (succ) {
           $pubionicloading.hide();
-          var succ = JSON.parse(decodeURIComponent(succ));
-          console.log("观察返回的数据"+JSON.stringify(succ));
+          var succ = JSON.parse(decodeURIComponent($relex.getReplaceAfter(succ)));
           if(succ.Event.depts !=undefined && succ.Event.depts !=null && succ.Event.depts !=''){
             var tempDeptList = succ.Event.depts;
-            console.log("部门的数据"+JSON.stringify(tempDeptList));
           }
           if(succ.Event.users !=undefined && succ.Event.users !=null && succ.Event.users !=''){
             var tempUserList = succ.Event.users;
-            console.log("人员的数据"+JSON.stringify(tempUserList));
           }
           // viewScroll.scrollTop();
           isLoadSuccess = true;
@@ -589,11 +574,9 @@ angular.module('contacts.controllers', [])
            curChildCount = childcount;
            curIndicate = true;
            pageNo ++;
-           console.log("是否能上拉加载"+pageNo);
          }else{
            $scope.loadMoreStatus = false;
          }
-         console.log("统计前部门长度"+$scope.departlist.length+"========="+$scope.userlist.length);
          if(tempDeptList != null && tempDeptList != "" && tempDeptList != undefined ){
            for(var i = 0;i<tempDeptList.length;i++){
              $scope.departlist.push(tempDeptList[i]);
@@ -605,7 +588,6 @@ angular.module('contacts.controllers', [])
            }
          }
           overallIndex = $scope.docList.length;
-          console.log("当前的层级"+overallIndex+"=========="+JSON.stringify($scope.docList));
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }).error(function (err) {
             $pubionicloading.hide();
@@ -619,7 +601,6 @@ angular.module('contacts.controllers', [])
     if($stateParams.personFlag){
       $scope.docList=$rootScope.tempDocList;
       var personIndex = $stateParams.index-1;
-      console.log("从个人详情传过来的参数值列表"+personIndex+$scope.docList[personIndex].childCount+$scope.docList[personIndex].deptName+$scope.docList[personIndex].deptId);
       pageNo=1;
       $scope.switchData($scope.docList[personIndex].deptId, $scope.docList[personIndex].deptName,true,$scope.docList[personIndex].childCount,true);
     }
@@ -627,7 +608,6 @@ angular.module('contacts.controllers', [])
     //从部门导航切换数据
     $scope.switchIndicate = function (item) {
       var index = item.index;
-      console.log("导航下标"+index);
       if ($scope.docList.length - index - 1 > 0) {
         $scope.docList.splice(index + 1, $scope.docList.length - index - 1);
       }
@@ -638,7 +618,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactThirdCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+  .controller('ContactThirdCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
     $pubionicloading.showloading('','正在加载...');
 
@@ -791,7 +771,7 @@ angular.module('contacts.controllers', [])
 
   })
 
-  .controller('ContactForthCtrl', function ($scope, $http, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+  .controller('ContactForthCtrl', function ($scope, $state, $stateParams,$contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
     $pubionicloading.showloading('','正在加载...');
 
@@ -1121,7 +1101,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('ContactSixthCtrl', function ($scope, $http, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
+  .controller('ContactSixthCtrl', function ($scope, $state, $stateParams, $contacts,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
     $pubionicloading.showloading('','正在加载...');
 
     $scope.departsixthlist = [];
