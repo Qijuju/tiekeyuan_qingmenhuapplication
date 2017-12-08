@@ -325,24 +325,12 @@ angular.module('portal.services', [])
           }
         }).success(function (data, status) {
           noOrYesConfirmList = JSON.parse(decodeURIComponent(data)).Event.userList;
-
-          console.log("确认详情未确认列表数据1：" + JSON.stringify(noOrYesConfirmList));
-          // 循环修改时间格式
-          noOrYesConfirmList.forEach(function (item) {
-            var whenStr =new Date( item.when );
-            item.when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
-          });
-
-          console.log("确认详情未确认列表数据2：" + JSON.stringify(noOrYesConfirmList));
-
           $rootScope.$broadcast('getMsgReadListE.succeed.update');
         }).error(function (data, status) {
-          console.log("请求失败："+"--"+status +"--" +decodeURIComponent(data) );
           $rootScope.$broadcast('getMsgReadListE.error.update');
         });
       },
       getMsgReadList:function () {
-        console.log("返回数据：" + JSON.stringify(noOrYesConfirmList));
         return noOrYesConfirmList;
       },
       applicationChild:function () {

@@ -28,7 +28,7 @@
             <div class="row">
               <div class="col col-25">{{item.displayName}}</div>
               <div class="col">{{item.deptName}}</div>
-              <div class="col" align="right">{{item.when}}</div>
+              <div class="col" align="right">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
             </div>
           </ion-item>
         </ion-list>
@@ -41,7 +41,7 @@
             <div class="row">
               <div class="col col-25">{{item.displayName}}</div>
               <div class="col">{{item.deptName}}</div>
-              <div class="col" align="right">{{item.when}}</div>
+              <div class="col" align="right">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
             </div>
           </ion-item>
         </ion-list>

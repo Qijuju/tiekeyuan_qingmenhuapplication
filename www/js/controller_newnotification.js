@@ -376,8 +376,6 @@ angular.module('newnotification.controllers', [])
           $scope.$on('succeed.update', function (event) {
             $pubionicloading.hide();
 
-
-
             $scope.applicationLists = NotifyApplicationData.getApplicationList(); // 获取应用列表数据源
             addPathToData(notifyIdAppIcons, $scope.applicationLists); // 往应用列表数据源中追加 logo 路径字段
             //  用应用列表数据 appName 查询该条应用下有多少条未读通知，并给个有未读通知状态标识
@@ -406,13 +404,10 @@ angular.module('newnotification.controllers', [])
       var l1 = notifyIdAppIcons.length;
       var l2 = target.length;
 
-      // 往通知应用数据源中追加应用logo路径字段，转换时间格式
+      // 往通知应用数据源中追加应用logo路径字段
       if( l1>0&&l2>0 ){
         for(var i=0;i<l2;i++){
           var appId = target[i].appId;
-          var whenStr =new Date( target[i].when );
-          target[i].when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
-
           for(var j=0;j< l1;j++){
             if ( appId===notifyIdAppIcons[j].appId ){
               target[i].appIcon=notifyIdAppIcons[j].path;
@@ -571,8 +566,6 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.openconfirm = function (obj) {
-
-      console.log("查看确认详情：" + JSON.stringify(obj));
       $state.go("confirmornot", {
         obj: obj
       })
@@ -638,11 +631,9 @@ angular.module('newnotification.controllers', [])
 
       var applicationList = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
 
-      applicationList.forEach(function (item) {
-        // 修改时间格式
-        var whenStr =new Date(item.when);
-        item.when = (whenStr.getMonth() +1)+"-"+whenStr.getDate()+" "+  whenStr.getHours()+":"+whenStr.getMinutes();
+      console.log("应用下的通知列表数据源："+ JSON.stringify(applicationList));
 
+      applicationList.forEach(function (item) {
         // 追加logo地址
         item.appIcon =  $scope.appIcon;
 

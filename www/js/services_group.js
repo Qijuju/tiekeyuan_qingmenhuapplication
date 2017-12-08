@@ -77,11 +77,6 @@ angular.module('group.services', [])
         }).success(function (data, status) {
 
           allApplications=JSON.parse(decodeURIComponent(data)).msgList;
-          // 转化时间格式
-          for(var i=0;i< allApplications.length;i++) {
-            var whenStr = new Date(allApplications[i].when);
-            allApplications[i].when = (whenStr.getMonth() + 1) + "-" + whenStr.getDate() + " " + whenStr.getHours() + ":" + whenStr.getMinutes();
-          }
           $rootScope.$broadcast('allNotifications.update','');
           defaultCount2++;
         }).error(function (data, status,err) {
@@ -110,12 +105,6 @@ angular.module('group.services', [])
       }).success(function (data, status) {
 
         allAttentionNotify  =JSON.parse(decodeURIComponent(data)).msgList;
-
-        // 转化时间格式
-        for(var i=0;i< allAttentionNotify.length;i++) {
-          var whenStr = new Date(allAttentionNotify[i].when);
-          allAttentionNotify[i].when = (whenStr.getMonth() + 1) + "-" + whenStr.getDate() + " " + whenStr.getHours() + ":" + whenStr.getMinutes();
-        }
         $rootScope.$broadcast('attention.update');
         defaultAttentionCount++;
       }).error(function (data, status,err) {

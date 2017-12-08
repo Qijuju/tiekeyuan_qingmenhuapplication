@@ -3,12 +3,22 @@
  */
 angular.module('contacts.controllers', [])
   //常用联系人
-  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$greendao) {
+  .controller('TopContactsCtrl', function ($scope, $state, $contacts, $ionicActionSheet, $phonepluin, $rootScope,$saveMessageContacts,$ToastUtils,$greendao,$RandomColor) {
 
     $contacts.topContactsInfo();
     $scope.$on('topcontacts.update', function (event) {
       $scope.$apply(function () {
         $scope.topall = $contacts.getTopContactsInfo();
+
+
+        console.log("常用联系人列表数据：" + JSON.stringify($scope.topall));
+
+        // 截取字符串显示下头像logo上
+        for(var i=0;i<$scope.topall.length;i++){
+          $scope.topall[i].logoName =  $scope.topall[i].name.slice(-2);
+        }
+
+
       })
     });
 
@@ -103,17 +113,23 @@ angular.module('contacts.controllers', [])
       })
     });
 
+    // 定义头像随机色
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+      console.log("走进来了吗？");
+      var oFriendsIcon=document.getElementsByClassName("friendsIcon");
+      console.log("获取到的对象长度：" + oFriendsIcon.length);
+      for(var i=0;i<oFriendsIcon.length;i++){
+        oFriendsIcon[i].style.background = $RandomColor.randomC();
+      }
+    });
+
   })
 
   .controller('ContactsCtrl', function ($scope, $state,$api, $stateParams, $contacts, $greendao, $ionicActionSheet, $phonepluin,$mqtt, $rootScope,$saveMessageContacts,$ToastUtils,$timeout,$chatarr,$pubionicloading,$ionicPlatform,$ionicHistory,$location,localContact) {
-    // alert("网络状态"+$rootScope.isNetConnect);
 
     $scope.$on('netstatus.update', function (event) {
       $scope.$apply(function () {
-        //alert("哈哈哈哈哈啊哈哈哈哈");
-        //   alert("关网时走不走"+$rootScope.netStatus);
         $rootScope.isConnect=$rootScope.netStatus;
-        // alert("切换网络时"+$scope.isConnect);
       })
     });
 
@@ -362,14 +378,15 @@ angular.module('contacts.controllers', [])
         "childcount":childcount
       });
     }
-
-
   })
 
   .controller('ContactSecondCtrl', function ($scope, $state,$chatarr, $stateParams, $contacts,$greendao,$ionicHistory,$ToastUtils,$pubionicloading,$timeout,$ionicPlatform,$location,$rootScope) {
 
     $rootScope.totalSecondCount = $stateParams.childcount;//当前目录的数据总条数
     $scope.contactId = $stateParams.contactId;//传过来的id；
+    $scope.departlist = [];
+    $scope.userlist = [];
+    $scope.secondStatus;
 
     $ionicPlatform.registerBackButtonAction(function (e) {
       if($location.path()==('/second/'+$scope.contactId)){
@@ -384,11 +401,6 @@ angular.module('contacts.controllers', [])
     },501)
 
     $pubionicloading.showloading('','正在加载...');
-
-    $scope.departlist = [];
-    $scope.userlist = [];
-    $scope.secondStatus;
-
 
     $scope.loadMoreSecond = function () {
       $contacts.deptInfo($scope.contactId);
@@ -408,22 +420,28 @@ angular.module('contacts.controllers', [])
 
           $scope.activeSecondUserCount = $contacts.getCount2();
 
-
           if ($scope.activeSecondDeptCount > 0) {
             var olddepts = $contacts.getDeptInfo().deptList;
             for (var i = 0; i < olddepts.length; i++) {
-
               $scope.departlist.push(olddepts[i]);
             }
           }
+          console.log("列表数据源410departlist：" + JSON.stringify($scope.departlist));
 
 
           if ($scope.activeSecondUserCount) {
             var oldusers = $contacts.getDeptInfo().userList;
+            console.log("点击我得部门获取的联系人列表数据414：" + JSON.stringify(olddepts));
             for (var i = 0; i < oldusers.length; i++) {
 
               $scope.userlist.push(oldusers[i]);
             }
+          }
+
+          console.log("列表数据源422userlist：" + JSON.stringify($scope.userlist));
+
+          for(var i=0;i<$scope.userlist.length;i++){
+            $scope.userlist[i].logoName = $scope.userlist[i].UserName.slice(-2);
           }
 
           $scope.parentID = $contacts.getDeptInfo().deptID;
@@ -432,11 +450,9 @@ angular.module('contacts.controllers', [])
             $scope.secondStatus = true;
           } else if (($rootScope.totalSecondCount - (data.pageNo*data.pageSize)) <=0 ) {
             $scope.secondStatus = false;
-
           }
           $scope.$broadcast('scroll.infiniteScrollComplete');
         });
-
 
       })
 
@@ -461,14 +477,9 @@ angular.module('contacts.controllers', [])
       })
     });
 
-
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearSecondCount();
     });
-
-
-
-
 
     //在二级目录跳转到联系人界面
     $scope.backFirst = function () {
@@ -487,12 +498,9 @@ angular.module('contacts.controllers', [])
     //点击人员进入人员详情
     $scope.goSecondDetail = function (id) {
       $state.go("person", {
-        "userId": id,
+        "userId": id
       });
-
     };
-
-
   })
 
 
@@ -557,11 +565,15 @@ angular.module('contacts.controllers', [])
 
           if ($scope.count2 > 0) {
             var oldusers = $contacts.getDeptThirdInfo().userList;
+            console.log("2哈点系人列表数据567:" + JSON.stringify(oldusers));
 
             for (var i = 0; i < oldusers.length; i++) {
-
+              oldusers[i].logoName =oldusers[i].UserName.slice(-2);
               $scope.userthirdlist.push(oldusers[i]);
             }
+
+            console.log("1哈点系人列表数据573:" + JSON.stringify($scope.userthirdlist));
+
           }
 
           if (($rootScope.totalThirdCount - (data.pageNo*data.pageSize)) >0 ) {
@@ -572,17 +584,8 @@ angular.module('contacts.controllers', [])
           }
           $scope.$broadcast('scroll.infiniteScrollComplete');
 
-
-          // $scope.thirdlength = (document.getElementById('a1').innerText.length + $scope.pppid.length + $scope.deptinfo2.length) * 15 + 80;
-          // var thirddiv = document.getElementById("thirdscroll");
-          // thirddiv.style.width = $scope.thirdlength + "px";
-
-
         })
-
-        });
-
-
+      });
 
     });
 
@@ -622,10 +625,6 @@ angular.module('contacts.controllers', [])
         "childcount":$rootScope.totalSecondCount
       });
     }
-    /*$scope.backSecond = function () {
-      $ionicHistory.goBack();
-    }*/
-
 
     //在第二级目录跳转到第四级目录
     $scope.jumpForth = function (id, sname, tname,childcount) {
@@ -717,23 +716,9 @@ angular.module('contacts.controllers', [])
 
           $scope.parentID = $contacts.getDeptForthInfo().deptID;
           $scope.deptinfo4 = $contacts.getThirdDeptName().DeptName;
-
-
-          // $scope.forthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.deptinfo4.length) * 15 + 120;
-          //
-          // var forthdiv = document.getElementById("forthscroll");
-          // forthdiv.style.width = $scope.forthlength + "px";
-
-
         });
-
-
-
       })
-
     });
-
-
 
     $scope.$on('$ionicView.leave', function () {
       $contacts.clearForthCount();
@@ -774,13 +759,6 @@ angular.module('contacts.controllers', [])
       });
 
     };
-
-    /*$scope.backThird = function () {
-
-      $ionicHistory.goBack();
-
-    };*/
-
 
     // 在四级目录返回二级目录  （二级目录只需要一个id就行）
     $scope.fromForthToSecond = function (sd) {
@@ -880,14 +858,6 @@ angular.module('contacts.controllers', [])
             $scope.fifthStatus = false;
           }
           $scope.$broadcast('scroll.infiniteScrollComplete');
-
-
-          // $scope.fifthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length + $scope.deptinfo5.length) * 15 + 140;
-          //
-          //
-          // var fifthdiv = document.getElementById("fifthscroll");
-          // fifthdiv.style.width = $scope.fifthlength + "px";
-
 
         });
       })
@@ -1047,14 +1017,6 @@ angular.module('contacts.controllers', [])
           $scope.parentID = $contacts.getDeptSixthInfo().deptID;
           $scope.deptinfo6 = $contacts.getFifthDeptName();
 
-          // $scope.sixthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length +
-          //   $scope.forthName.length + $scope.fifthName.length + $scope.deptinfo6.length) * 15 + 180;
-          //
-          // var sixthdiv = document.getElementById("sixthscroll");
-          // sixthdiv.style.width = $scope.sixthlength + "px";
-
-
-
         });
 
 
@@ -1196,8 +1158,6 @@ angular.module('contacts.controllers', [])
       $contacts.deptSeventhInfo($scope.contactId);
     }
 
-
-
     //根据id获取子部门和人员信息
 
     $contacts.deptSeventhInfo($scope.contactId);
@@ -1233,12 +1193,6 @@ angular.module('contacts.controllers', [])
 
           $scope.parentID = $contacts.getDeptSeventhInfo().deptID;
           $scope.deptinfo7 = $contacts.getSixthDeptName();
-
-          // $scope.seventhlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          //   + $scope.fifthName.length + $scope.sixthName.length + $scope.deptinfo7.length) * 15 + 200;
-          //
-          // var seventhdiv = document.getElementById("seventhscroll");
-          // seventhdiv.style.width = $scope.seventhlength + "px";
 
         });
 
@@ -1427,13 +1381,6 @@ angular.module('contacts.controllers', [])
 
           $scope.parentID = $contacts.getDeptEighthInfo().deptID;
           $scope.deptinfo8 = $contacts.getSeventhDeptName();
-
-          // $scope.eighthlength = (document.getElementById('a1').innerText.length + $scope.secondName.length + $scope.thirdName.length + $scope.forthName.length
-          //   + $scope.fifthName.length + $scope.sixthName.length+$scope.seventhName.length + $scope.deptinfo8.length) * 15 + 220;
-          //
-          // var eighthdiv = document.getElementById("eighthscroll");
-          // eighthdiv.style.width = $scope.eighthlength + "px";
-
 
         });
       })
@@ -1845,9 +1792,6 @@ angular.module('contacts.controllers', [])
 
   .controller('GroupCtrl', function ($scope,$state,$contacts,$ToastUtils,$group,$rootScope,$greendao,$pubionicloading,$timeout) {
     $pubionicloading.showloading('','正在加载...');
-
-
-
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
       $scope.$apply(function () {
@@ -1981,7 +1925,7 @@ angular.module('contacts.controllers', [])
   })
 
 
-  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$pubionicloading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser) {
+  .controller('myattentionaaaSelectCtrl',function ($scope,$state,$myattentionser,$api,$pubionicloading,$mqtt,$timeout,$phonepluin,$ionicActionSheet,$searchdata,$searchdatadianji,$ToastUtils,$rootScope,$saveMessageContacts,$addattentionser,$RandomColor) {
     $pubionicloading.showloading('','正在加载...');
 
     $mqtt.getUserInfo(function (msg) {
@@ -2086,6 +2030,11 @@ angular.module('contacts.controllers', [])
         $timeout(function () {
           $pubionicloading.hide();
           $scope.contactsListatten=$myattentionser.getAttentionaaList();
+
+          // 截取字符串显示下头像logo上
+          for(var i=0;i<$scope.contactsListatten.length;i++){
+            $scope.contactsListatten[i].logoName =  $scope.contactsListatten[i].UserName.slice(-2);
+          }
         });
       })
     });
@@ -2106,6 +2055,17 @@ angular.module('contacts.controllers', [])
       $scope.$apply(function () {
         $myattentionser.getAttentionList();
       })
+    });
+
+    // 定义头像随机色
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+
+      console.log("走进来了吗？");
+      var oFriendsIcon=document.getElementsByClassName("friendsIcon");
+      console.log("获取到的对象长度：" + oFriendsIcon.length);
+      for(var i=0;i<oFriendsIcon.length;i++){
+        oFriendsIcon[i].style.background = $RandomColor.randomC();
+      }
     });
 
 

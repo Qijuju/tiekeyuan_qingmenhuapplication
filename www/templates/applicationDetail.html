@@ -11,7 +11,7 @@
 
   <ion-content id="notification" delegate-handle="scrollTop" overflow-scroll="false" >
 
-    <div class="application" ng-repeat="item in applicationChild" style="position: relative;overflow: hidden;">
+    <div class="application" ng-repeat="item in applicationChild">
 
       <div class="logoContentBox clearfix" ng-click="goDetail(item)">
         <div class="logo">
@@ -28,14 +28,17 @@
         <!--详细信息-->
         <div class="contentInfo">
           <div class="row">
-            <div class="col col-67">
-              <img class="smallLogo" src="img/bjjb.png" alt="报警级别">
+            <div class="col col-50">
+              <!--<img class="smallLogo" src="img/bjjb.png" alt="报警级别">-->
+              <span class="notifyName">{{item.fromName}}</span>
               <span class="isReaded" ng-if="item.isRead">已确认</span>
+
             </div>
-            <div class="col col-33">{{item.when}}</div>
+            <div class="col col-50" align="right">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
           </div>
           <div class="row">
-            <div class="col">{{item.title}}</div>
+            <!--<div class="col">{{item.title}}</div>-->
+            <div class="col">{{item.message}}</div>
           </div>
         </div>
       </div>

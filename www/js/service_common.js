@@ -412,6 +412,26 @@ angular.module('common.services', [])
 
   })
 
+  // 定义随机色
+  .factory('$RandomColor', function () {
+    return {
+      randomC:function () {
+        var r = Math.floor(Math.random()*256);
+        var g = Math.floor(Math.random()*256);
+        var b = Math.floor(Math.random()*256);
+
+        if (r>200&&g>200&&b>200){
+          r = Math.floor(Math.random()*201);
+          g = Math.floor(Math.random()*201);
+          b = Math.floor(Math.random()*201);
+        }
+
+        var rgbC = "rgb("+r+","+g+","+b+")";
+        return rgbC;
+      }
+    }
+  })
+
   .factory('$GridPhoto', function () {
     var gridPhoto;
     document.addEventListener('deviceready', function () {

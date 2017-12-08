@@ -919,6 +919,11 @@ angular.module('contacts.services', [])
       getAttentionList:function () {
         $api.getAttention(function (msg) {
           attentionList=msg;
+
+          // 截取后两位显示在头像logo上
+          // for (var i=0;i<attentionList.length();i++){
+          //   attentionList[i].logoName = attentionList[i].UserName.slice(-2);
+          // }
           $rootScope.$broadcast('attention.update');
         },function (msg) {
           $timeout(function () {

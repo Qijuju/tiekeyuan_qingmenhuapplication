@@ -102,7 +102,7 @@ pre.detailTitle,pre.notifyObjMsg{
   font-size:14px;
 }
 .preTitle.preTime.notifyTime{
-  width: 80px;
+  width: 120px;
 }
 pre.preTime{
   position: absolute;
@@ -116,22 +116,29 @@ span.levelName{
   color:#FF5722;
   font-size:14px;
 }
-/*确认信息*/
+/* 已确认 style strat*/
 .preTitle.preTime.notifyTime,pre.notifyObjMsg{
   color: #B4B5B4;
 }
-span.isReaded,.preTitle.preTime.notifyTime{
+.preTitle.preTime.notifyTime{
   font-size:14px;
 }
 span.isReaded{
-  background: #B4B5B4;
-  color: #fff;
+  font-size:1.0em;
+  color: #3296FA;
+  padding:3px;
+  border:1px solid  #3296FA;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  padding:2px 4px;
-  font-size:12px;
 }
+/* 已确认 style end*/
+/* 通知标题 style start*/
+span.notifyName{
+  font-size:1.2em;
+  color: #000;
+}
+/* 通知标题 style start*/
 /* 新的通知的红点标志*/
 span.newStatus{
   position: absolute;
@@ -300,12 +307,14 @@ a#rightbt{
 
 /* 通知应用模块 style start */
 .application{
+  position: relative;
   background: #fff;
   -webkit-box-shadow:0 2px 9px 0px #e5e5e5;
   -moz-box-shadow: 0 2px 9px 0px #e5e5e5;
   box-shadow: 0 2px 9px 0px #e5e5e5;
   margin:10px;
   padding:5px 10px 0px;
+  overflow: hidden;
 }
 .application .logoContentBox{
   margin-left:50px;

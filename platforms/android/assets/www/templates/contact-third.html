@@ -9,7 +9,7 @@
   <ion-content >
 
     <ion-scroll zooming="true" direction="x" style="width: 100%" >
-      <div id="scrollDiv" class="div-a-style">
+      <div id="scrollDiv" class="div-a-style" style="background: #fff;">
         <a id="a1" class="a-style" href="#/tab/contacts">联系人</a><img src="img/arrow-right.png" class="i-style"/>
         <a id="a2" class="a-style" ng-click="backSecond()">{{pppid}}</a><img src="img/arrow-right.png"  class="i-style"/>
         <a id="a3" class="a-style">{{deptinfo2}}</a>
@@ -17,36 +17,40 @@
     </ion-scroll>
 
     <!--列表-->
-    <div class="background_white">
-      <ion-list>
-        <ion-item ng-repeat=" item in departthirdlist"   ng-click="jumpForth(item.DeptID,pppid,deptinfo2,item.ChildCount)">
-          <div class="row">
-            <div class="col">
-              <img  src="img/im_contact_con.png" class="addNewMemberImg">
-              <span class="font_16">{{item.DeptName}}</span>
+    <div >
+      <div class="background_white" style="margin-top:10px;">
+        <ion-list >
+          <ion-item ng-repeat=" item in departthirdlist"   ng-click="jumpForth(item.DeptID,pppid,deptinfo2,item.ChildCount)">
+            <div class="row">
+              <div class="col">
+                <!--<img  src="img/im_contact_con.png" class="addNewMemberImg">-->
+                <span class="font_16">{{item.DeptName}}</span>
+              </div>
             </div>
-          </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="background_white" style="margin-top:10px">
+        <ion-list style="margin-top:10px;">
+          <ion-item ng-repeat=" item in userthirdlist"  ng-click="goThirdDetail(item.UserID)">
+            <div class="row">
+              <div class="col-15">
+                <!--<img src="img/icon_friends.png"  class="addNewMemberImg">-->
+                <span class="friendsIcon friendsIconBg">{{item.logoName}}</span>
 
-        </ion-item>
-        <ion-item ng-repeat=" item in userthirdlist"  ng-click="goThirdDetail(item.UserID)">
-          <div class="row">
-            <div class="col-15">
-              <img src="img/icon_friends.png"  class="addNewMemberImg">
-
+              </div>
+              <div class="col-85">
+                <!--当该员工有职务时直接显示-->
+                <span class="font_16" >{{item.UserName}}</span>
+                <p class="proname" ng-if="item.ProName != '未填写'">
+                  {{item.ProName}}
+                </p>
+              </div>
             </div>
-            <div class="col-85">
-              <!--当该员工有职务时直接显示-->
-              <span class="font_16" >{{item.UserName}}</span>
-              <p class="proname" ng-if="item.ProName != '未填写'">
-                {{item.ProName}}
-              </p>
-            </div>
-          </div>
-
-        </ion-item>
-      </ion-list>
+          </ion-item>
+        </ion-list>
+      </div>
     </div>
-    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
     <ion-infinite-scroll  ng-if="thirdStatus" on-infinite="loadThirdMore()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
 </ion-view>

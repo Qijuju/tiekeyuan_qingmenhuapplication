@@ -23,16 +23,17 @@
         <ion-item ng-repeat="item in departlist"  ng-click="jumpThird(item.DeptID,deptinfo,item.ChildCount)">
           <div class="row">
             <div class="col">
-              <img src="img/im_contact_con.png"  class="addNewMemberImg">
+              <!--<img src="img/im_contact_con.png"  class="addNewMemberImg">-->
               <span class="font_16">{{item.DeptName}}</span>
             </div>
           </div>
         </ion-item>
 
         <ion-item ng-repeat="item in userlist"  ng-click="goSecondDetail(item.UserID)">
-          <div class="row">
+          <div class="row" style="border-bottom: none;">
             <div class="col-15">
-              <img src="img/icon_friends.png"  class="addNewMemberImg">
+              <!--<img src="img/icon_friends.png"  class="addNewMemberImg">-->
+              <span class="friendsIcon friendsIconBg">{{item.logoName}}</span>
 
             </div>
             <div class="col-85">
