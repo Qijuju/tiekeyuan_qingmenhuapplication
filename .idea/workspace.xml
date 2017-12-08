@@ -744,14 +744,7 @@
       <workItem from="1512528130875" duration="258000" />
       <workItem from="1512529702479" duration="2306000" />
       <workItem from="1512541326837" duration="15942000" />
-      <workItem from="1512695142262" duration="12458000" />
-    </task>
-    <task id="LOCAL-00203" summary="0926commit:添加下载轻应用图标接口，并修改登陆接口每次登陆都报登陆失败的bug">
-      <created>1506481269215</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1506481269215</updated>
+      <workItem from="1512695142262" duration="12468000" />
     </task>
     <task id="LOCAL-00204" summary="0929commit:点击应用图标跳转应用的5种情况全都没问题">
       <created>1506677943203</created>
@@ -1089,11 +1082,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512722031720</updated>
     </task>
-    <option name="localTasksCounter" value="252" />
+    <task id="LOCAL-00252" summary="1208commit：1.修改版本升级逻辑(当选择忽略时，若服务端版本更新则重新提示版本升级(待测试))">
+      <created>1512722076347</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1512722076347</updated>
+    </task>
+    <option name="localTasksCounter" value="253" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2982707000" />
+    <option name="totallyTimeSpent" value="2982717000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
