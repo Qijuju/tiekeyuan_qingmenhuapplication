@@ -245,7 +245,7 @@ angular.module('common.services', [])
               }
             },function (err) {
             });
-            console.log("查看flag"+flag);
+            // console.log("查看flag"+flag);
             /**
              * 进入主界面时，判断是升级or忽略，若是忽略则服务端不发布新版本前都不提示升级
              */
