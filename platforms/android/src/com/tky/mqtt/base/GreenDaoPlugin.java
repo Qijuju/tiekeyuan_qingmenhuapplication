@@ -445,7 +445,6 @@ public class GreenDaoPlugin extends CordovaPlugin {
       e.printStackTrace();
       setResult("load by key failure", PluginResult.Status.ERROR, callbackContext);
     }
-
   }
 
   /**

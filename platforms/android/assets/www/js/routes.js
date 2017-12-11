@@ -116,6 +116,9 @@ angular.module('im.routes', [])
             controller: 'newnotificationCtrl'
           }
         },
+        params:{
+          obj:null
+        },
         reload:true
       })
       .state('tab.webpage', {
@@ -139,17 +142,6 @@ angular.module('im.routes', [])
           }
         }
       })
-      //rxy 页面首页动态获取路由
-      // .state('tab.portal', {
-      //   url: '/portal',
-      //   cache:false,
-      //   views: {
-      //     'tab-portal': {
-      //       templateUrl: 'templates/tab-portal.html',
-      //       controller: 'portalCtrl'
-      //     }
-      //   }
-      // })
       .state('tab.portal', {
         url: '/portal',
         cache:false,
@@ -168,7 +160,6 @@ angular.module('im.routes', [])
         controller: 'OhterCtrl',
         cache:false
       })
-
 
       .state('tab.notifications', {
         url: '/notifications',
@@ -197,6 +188,15 @@ angular.module('im.routes', [])
           obj:null
         }
       })
+      .state('applicationDetail', {
+        url: '/applicationDetail',
+        templateUrl: 'templates/applicationDetail.html',
+        cache:false,
+        controller: 'applicationDetailCtrl',
+        params:{
+          obj:null
+        }
+      })
 
       .state('notifyApplication', {
         url: '/notifyApplication/:id/:isfirm',
@@ -219,8 +219,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/message-group.html',
         cache:false,
         controller: 'MessageGroupCtrl'
-
-
       })
 
       .state('topContacts', {
@@ -228,8 +226,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/top_contacts.html',
         controller: 'TopContactsCtrl',
         cache:false
-
-
       })
       .state('myAttention', {
         url: '/myAttention',
@@ -237,9 +233,6 @@ angular.module('im.routes', [])
         controller: 'myattentionaaaSelectCtrl',
         cache: false
       })
-
-
-
 
       .state('personalSetting', {
         url: '/personalSetting/:id/:ssid/:sessionid',
@@ -273,7 +266,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-createNotice.html',
         controller: 'groupCreateNoticeCtrl',
         cache:false
-
       })
 
       .state('groupMember', {
@@ -281,7 +273,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-member.html',
         controller: 'groupMemberCtrl',
         cache:false
-
       })
 
       .state('groupDeptMember', {
@@ -291,8 +282,6 @@ angular.module('im.routes', [])
         cache:false
 
       })
-
-
 
       .state('tab.contacts', {
         url: '/contacts',
@@ -306,7 +295,7 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second/:contactId/:contactName/:childcount/:index/:personFlag',
+        url: '/second/:contactId/:childcount',
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
@@ -378,7 +367,7 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person/:userId/:index',
+        url: '/person/:userId',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         cache:false
@@ -419,9 +408,6 @@ angular.module('im.routes', [])
           }
         }
       })
-
-
-
       .state('tab.account', {
         url: '/account',
         cache: false,
@@ -624,9 +610,12 @@ angular.module('im.routes', [])
       })
 
       .state('confirmornot', {
-        url: '/confirmornot/:id',
+        url: '/confirmornot',
         templateUrl: 'templates/notify-confirm.html',
         controller: 'confirmornotCtrl',
+        params:{
+          obj:null
+        }
       })
       .state('netconfirm', {
         url: '/netconfirm/:url',

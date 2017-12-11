@@ -2097,9 +2097,6 @@ angular.module('message.controllers', [])
       })
     });
 
-
-
-
     //获取用户修改后的头像
     $scope.picyoumeiyoumsg=false;
     $scope.p=$rootScope.securlpicaaa;
@@ -2112,10 +2109,6 @@ angular.module('message.controllers', [])
     }
 
     //获取对方修改后的头像
-
-
-
-
     $scope.$on('sendgroupprogress.update', function (event) {
       $scope.$apply(function () {
         $scope.msg=$mqtt.getQunliao();
@@ -2129,11 +2122,9 @@ angular.module('message.controllers', [])
         $timeout(function () {
           viewScroll.scrollBottom();
         }, 100);
-        // alert("管不管");
         document.getElementById("contentbb").style.marginBottom='165px';
         $scope.bgroup=1;
       }else {
-        // alert("不管不管");
         document.getElementById("contentbb").style.marginBottom='0px';
         $scope.bgroup=0;
       }
@@ -3814,7 +3805,7 @@ angular.module('message.controllers', [])
   })
 
 
-  .controller('MessageCtrl', function ($scope, $state, $mqtt, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
+  .controller('MessageCtrl', function ($scope, $http, $state, $mqtt,$formalurlapi, $chatarr, $stateParams, $rootScope, $greendao,$timeout,$contacts,$ToastUtils,$cordovaBarcodeScanner,$location,$api,$ionicPlatform,$ionicHistory,$pubionicloading,$ionicPopup,$cordovaFileOpener2,$ionicPopover,NetData) {
 
     $scope.popover = $ionicPopover.fromTemplateUrl('my-popover.html', {
       scope: $scope
@@ -3880,9 +3871,9 @@ angular.module('message.controllers', [])
       });
     }, function (msg) {
     });
-    //
-    // //登录成功后第一件事：检测升级
-    // $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
+
+    //登录成功后第一件事：检测升级
+    $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
     $scope.ID=$stateParams.id;
     $scope.SESSIONID=$stateParams.sessionid;
 
@@ -4032,9 +4023,9 @@ angular.module('message.controllers', [])
 
     }
     //紧急呼叫
-    $scope.gozhuan=function () {
+    /*$scope.gozhuan=function () {
       $state.go("emergencycall");
-    }
+    }*/
     //刚开始进来先拿到部门的id
     $contacts.loginInfo();
     $scope.$on('login.update', function (event) {
@@ -4057,7 +4048,7 @@ angular.module('message.controllers', [])
     /**
      * 监听通知消息
      */
-    $scope.$on('allnotify.update', function (event, data) {
+    $scope.$on('allNotifications.update', function (event, data) {
       $scope.$apply(function () {
         $greendao.queryData('NewNotifyListService', 'where IS_READ =?', "0", function (msg) {
           $scope.NotifyNoRead = 0;
@@ -5914,7 +5905,8 @@ angular.module('message.controllers', [])
 
 
   })
-  .controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
+  //雷达功能暂时不上线
+  /*.controller('emergencycallCtrl', function ($scope,$state, $stateParams,$timeout,$ionicScrollDelegate) {
     $scope.topaa=1;
     var viewScroll = $ionicScrollDelegate.$getByHandle('fdsfsdfsd');
     viewScroll.scrollBottom();
@@ -5996,4 +5988,4 @@ angular.module('message.controllers', [])
       $scope.mmm=1;
     }, 19000);
 
-  })
+  })*/

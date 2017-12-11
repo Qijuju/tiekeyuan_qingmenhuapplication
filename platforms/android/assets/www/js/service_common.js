@@ -114,14 +114,10 @@ angular.module('common.services', [])
       deleteBySessionid: function (sessionid, success, error) {
         greendao.deleteBySessionid(sessionid, success, error);
 
-
       }
-
-
     };
 
   })
-
   .factory('$api', function ($ToastUtils) {//系统接口。
     var api;
     return {
@@ -408,7 +404,7 @@ angular.module('common.services', [])
       showToast: function (messgaeText) {
         window.plugins.toast.showWithOptions({
           message: messgaeText,
-          duration: "5000", // 2000 ms
+          duration: "short", // 2000 ms
           position: "bottom",
           styling: {
             opacity: 1, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
@@ -437,6 +433,26 @@ angular.module('common.services', [])
       }
     }
 
+  })
+
+  // 定义随机色
+  .factory('$RandomColor', function () {
+    return {
+      randomC:function () {
+        var r = Math.floor(Math.random()*256);
+        var g = Math.floor(Math.random()*256);
+        var b = Math.floor(Math.random()*256);
+
+        if (r>200&&g>200&&b>200){
+          r = Math.floor(Math.random()*201);
+          g = Math.floor(Math.random()*201);
+          b = Math.floor(Math.random()*201);
+        }
+
+        var rgbC = "rgb("+r+","+g+","+b+")";
+        return rgbC;
+      }
+    }
   })
 
   .factory('$GridPhoto', function () {
@@ -579,8 +595,8 @@ angular.module('common.services', [])
 
   .factory('$formalurlapi',function () {
 
-    var baseurl="http://immobile.r93535.com:8088/crbim/imApi/1.0";//门户模块正式环境地址
-    // var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";//门户模块开发环境地址
+    // var baseurl="http://immobile.r93535.com:8088/crbim/imApi/1.0";//门户模块正式环境地址
+    var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";//门户模块开发环境地址
     // var baseurl="http://88.1.1.22:8081";//门户模块测试环境地址
     // var baseurl="http://chuannanims.r93535.com:8088";
     // var baseurl="http://202.137.140.133:6001";//老挝环境

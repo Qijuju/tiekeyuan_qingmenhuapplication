@@ -87,23 +87,7 @@ div.confirm img{
   height:20px;
   vertical-align: middle;
 }
-/*.topFocus .col,*/
-/*.topFocusDetail .col,*/
-/*.topFocus{*/
-  /*padding:5px;*/
-  /*border-top:1px solid #EFEFF4;*/
-  /*text-align: center;*/
-/*}*/
-/*.topFocus  .col img,*/
-/*.topFocusDetail  .col img{*/
-  /*width:20px;*/
-  /*height:20px;*/
-  /*margin:0px;*/
-/*}*/
-/*.topFocusDetail{*/
-  /*padding:0px;*/
-  /*border-bottom:1px solid #E0E0E0;*/
-/*}*/
+
 /*标题*/
 pre.preTitle{
   text-overflow: ellipsis;
@@ -118,7 +102,7 @@ pre.detailTitle,pre.notifyObjMsg{
   font-size:14px;
 }
 .preTitle.preTime.notifyTime{
-  width: 80px;
+  width: 120px;
 }
 pre.preTime{
   position: absolute;
@@ -132,22 +116,29 @@ span.levelName{
   color:#FF5722;
   font-size:14px;
 }
-/*确认信息*/
+/* 已确认 style strat*/
 .preTitle.preTime.notifyTime,pre.notifyObjMsg{
   color: #B4B5B4;
 }
-span.isReaded,.preTitle.preTime.notifyTime{
+.preTitle.preTime.notifyTime{
   font-size:14px;
 }
 span.isReaded{
-  background: #B4B5B4;
-  color: #fff;
+  font-size:1.0em;
+  color: #3296FA;
+  padding:3px;
+  border:1px solid  #3296FA;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  padding:2px 4px;
-  font-size:12px;
 }
+/* 已确认 style end*/
+/* 通知标题 style start*/
+span.notifyName{
+  font-size:1.2em;
+  color: #000;
+}
+/* 通知标题 style start*/
 /* 新的通知的红点标志*/
 span.newStatus{
   position: absolute;
@@ -213,6 +204,10 @@ p.level span{
 .toggle-small.item-toggle .toggle{
   top:20px;
 }
+.bar .notifyTabs.on{
+  background: #3F51B5;
+  color: #fff;
+}
 /*切换按钮-圆*/
 .toggle-small .handle1{ /* 重写ionic.css样式*/
   position: absolute;
@@ -233,8 +228,6 @@ div.notifyDetail span.detailConfirm{
 .row.focus.notifyDetailFocusTop{
   height:90px;
   padding-top:0px;
-  /*border-top:1px solid #EFEFF4;*/
-
 }
 .row.focus.notifyDetailFocusTop .col > div{
   height:35px;
@@ -257,9 +250,6 @@ div.notifyDetail span.detailConfirm{
 .item.ionItemFirst:first-child{
   margin-top:10px;
 
-}
-.notificationItem:first-child{
-  /*margin-top:43px;*/
 }
 img.notifyConfirmBackImg{
   height:36px;
@@ -288,7 +278,86 @@ a#rightbt{
   width:24px;
   height:24px;
 }
+/*通知模块的 tabs style start */
+.notifyTabs.col{
+  height:30px;
+  text-align: center;
+  line-height:30px;
+  border:1px solid #3F51B5;
+  color: #3F51B5;
+  margin-left:-1px;
+}
+.notifyTabs:first-child{
+  /*background: #3F51B5;*/
+  /*color: #fff;*/
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+.notifyTabs:last-child{
+  -webkit-border-radius:0 4px 4px 0;
+  -moz-border-radius:0 4px 4px 0;
+  border-radius:0 4px 4px 0;
+}
+/*.notifyTabs:active{*/
+  /*background: #3F51B5;*/
+  /*color: #fff;*/
+/*}*/
+/*通知模块的 tabs style end */
 
+/* 通知应用模块 style start */
+.application{
+  position: relative;
+  background: #fff;
+  -webkit-box-shadow:0 2px 9px 0px #e5e5e5;
+  -moz-box-shadow: 0 2px 9px 0px #e5e5e5;
+  box-shadow: 0 2px 9px 0px #e5e5e5;
+  margin:10px;
+  padding:5px 10px 0px;
+  overflow: hidden;
+}
+.application .logoContentBox{
+  margin-left:50px;
+}
+.application .logoContentBox .logo{
+  position: relative;
+  height:50px;
+  margin-left: -50px;
+  margin-top:5px;
+  float: left;
+}
+.application .logoContentBox .logo img{
+  width:50px;
+  height: 50px;
+}
+.application .logoContentBox .contentInfo{
+  width:100%;
+  float: left;
+}
+.application .logoContentBox .contentInfo .row{
+  padding: 0 5px;
+}
+.application .logoContentBox .contentInfo .row .col{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #000;
+}
+.application .logoContentBox .contentInfo .row .col.col-67{
+  font-size: 16px;
+}
+.application .logoContentBox .contentInfo .row .col.col-33{
+  text-align: right;
+}
+/* 通知应用 style end */
+
+/* 各个应用下的通知列表 style start */
+img.smallLogo{
+  with:25px;
+  height:25px;
+  vertical-align: middle;
+}
+/* 各个应用下的通知列表 style end */
 
 
 

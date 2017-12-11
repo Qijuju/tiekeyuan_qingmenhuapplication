@@ -33,10 +33,10 @@
     <div>
       <ion-list>
         <!--部门列表展示-->
-        <ion-item ng-repeat=" item in departlist" ng-click="switchData(item.id,item.name, false,item.childCount,true)">
+        <ion-item ng-repeat=" item in departlist" ng-click="switchData(item.id,item.name, false,item.childCount,true)" on-finish>
           <div class="row">
           <div class="col">
-          <img src="img/im_contact_con.png" class="addNewMemberImg">
+          <!--<img src="img/im_contact_con.png" class="addNewMemberImg">-->
           <span class="font_16">
             {{item.name}}</span>
           </div>
@@ -45,10 +45,11 @@
 
         <!--人员列表展示-->
         <ion-item class="item-remove-animate item-avatar rj-contact-new " ng-repeat="item in userlist"
-                  ng-click="goPersonDetail(item.id)">
+                  ng-click="goPersonDetail(item.id)" on-finish>
           <div class="row">
           <div class="col-15">
-          <img src="img/icon_friends.png" class="addNewMemberImg">
+          <!--<img src="img/icon_friends.png" class="addNewMemberImg">-->
+            <span class="friendsIcon friendsIconBg">{{item.logoName}}</span>
           </div>
             <div class="col-85">
               <!--当该员工有职务时直接显示-->

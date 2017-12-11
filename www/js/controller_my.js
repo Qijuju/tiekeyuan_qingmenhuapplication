@@ -1349,9 +1349,9 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   .controller('aboutOurCtrl',function ($scope,$state) {
 
     //获取版本号的动态日期
-    cordova.plugins.OAIntegration.getCurrentVersion(function (data) {
+    cordova.plugins.OAIntegration.getVersion(function (data) {
       $scope.nowTime = data;
-      console.log("$scope.nowTime"+$scope.nowTime);
+      console.log("");
     },function (err) {
     });
     $scope.nowTime = new Date().getTime();

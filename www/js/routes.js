@@ -223,6 +223,7 @@ angular.module('im.routes', [])
 
       })
 
+      // 常用联系人
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
@@ -231,6 +232,8 @@ angular.module('im.routes', [])
 
 
       })
+
+      // 特别关注
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
@@ -310,49 +313,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
-
-      })
-      .state('third', {
-        url: '/third/:contactId/:secondname/:childcount',
-        templateUrl: 'templates/contact-third.html',
-        controller: 'ContactThirdCtrl',
-        cache:false
-
-      })
-      .state('forth', {
-        url: '/forth/:contactId/:secondname/:thirdname/:childcount',
-        templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl',
-        cache:false
-
-      })
-      .state('fifth', {
-        url: '/fifth/:contactId/:secondname/:thirdname/:forthname/:childcount',
-        templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl',
-        cache:false
-
-      })
-      .state('sixth', {
-        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:childcount',
-        templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl',
-        cache:false
-
-      })
-      .state('seventh', {
-        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:childcount',
-        templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl',
-        cache:false
-
-      })
-      .state('eighth', {
-        url: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:childcount',
-        templateUrl: 'templates/contact-eighth.html',
-        controller: 'ContactEighthCtrl',
-        cache:false
-
       })
 
       .state("masstexting",{

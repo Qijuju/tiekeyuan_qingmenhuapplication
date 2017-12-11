@@ -175,10 +175,6 @@ angular.module('portal.services', [])
         $http({
           method: 'post',
           timeout: 5000,
-          // url:"http://88.1.1.22:8081",//测试环境
-          // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-          // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//生产环境
-          // url: "http://202.137.140.133:6001",//老挝正式环境
           url:$formalurlapi.getBaseUrl(),
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
@@ -253,6 +249,95 @@ angular.module('portal.services', [])
             return lightApps[i].appName;
           }
         }
+      }
+    };
+  })
+
+  .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http,$ToastUtils) {
+    var defaultCount=1;
+    var defaultNumber=5;
+    var applicationLists = []; // 应用列表数据集合
+    var applicationChild = []; // 返回每个应用的通知列表
+    var noOrYesConfirmList=[];
+
+    return {
+      // 获取应用列表及最新一条数据
+      getListInfo: function (userID,imcode) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsgAppList",
+            id:userID,
+            mepId:imcode
+          }
+        }).success(function (data, status) {
+          // 获取通知应用列表数据源
+          applicationLists = JSON.parse(decodeURIComponent(data)).Event.appList;
+          $rootScope.$broadcast('succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('error.update');
+        });
+      },
+      getApplicationList: function () {
+        return applicationLists;
+      },
+      getApplicationChildE:function (userID,imcode,fromId) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsg",
+            id:userID,
+            mepId:imcode,
+            date:"A",
+            fromId:fromId,
+            pageNo:defaultCount,
+            pageSize:defaultNumber
+          }
+        }).success(function (data, status) {
+
+          // 获取通知应用列表数据源
+          applicationChild = JSON.parse(decodeURIComponent(data)).msgList;
+          $rootScope.$broadcast('getApplicationChildE.succeed.update');
+
+          defaultCount++;
+        }).error(function (data, status) {
+          $ToastUtils.showToast(err);
+          $rootScope.$broadcast('getApplicationChildE.error.update');
+        });
+      },
+      getMsgReadListE:function (userID,imCode,msgid,isReaded) {
+        console.log("确认详情拿到的参数：" + userID +"--" + imCode +"--" + msgid +"--" + isReaded);
+
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsgReadList",
+            id:userID,
+            mepId:imCode,
+            msgId: msgid,
+            isReaded:isReaded
+          }
+        }).success(function (data, status) {
+          noOrYesConfirmList = JSON.parse(decodeURIComponent(data)).Event.userList;
+          $rootScope.$broadcast('getMsgReadListE.succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('getMsgReadListE.error.update');
+        });
+      },
+      getMsgReadList:function () {
+        return noOrYesConfirmList;
+      },
+      applicationChild:function () {
+        return applicationChild;
+      },
+      clearDefaultCount:function () {
+        defaultCount=1;
       }
     };
   })

@@ -12,18 +12,18 @@
   <!--内容-->
   <ion-content overflow-scroll="false">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar" id="myItemAvatar" ng-repeat="item in topall" ng-click="topContactGoDetail(item._id)">
+      <ion-item class="item-remove-animate item-avatar" id="myItemAvatar" ng-repeat="item in topall" ng-click="topContactGoDetail(item._id)" on-finish>
         <div class="row" >
           <div class="col myHeader">
-
             <!--头像-->
-            <div class="headerDiv">
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==1||item._id.substring((item._id.length-1),item._id.length)==9" class="center circle1 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==2||item._id.substring((item._id.length-1),item._id.length)==8" class="center circle2 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==3||item._id.substring((item._id.length-1),item._id.length)==7" class="center circle3 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==4||item._id.substring((item._id.length-1),item._id.length)==6" class="center circle4 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-              <div ng-if="item._id.substring((item._id.length-1),item._id.length)==5||item._id.substring((item._id.length-1),item._id.length)==0" class="center circle5 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>
-            </div>
+            <!--<div class="headerDiv">-->
+              <!--<div ng-if="item._id.substring((item._id.length-1),item._id.length)==1||item._id.substring((item._id.length-1),item._id.length)==9" class="center circle1 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>-->
+              <!--<div ng-if="item._id.substring((item._id.length-1),item._id.length)==2||item._id.substring((item._id.length-1),item._id.length)==8" class="center circle2 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>-->
+              <!--<div ng-if="item._id.substring((item._id.length-1),item._id.length)==3||item._id.substring((item._id.length-1),item._id.length)==7" class="center circle3 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>-->
+              <!--<div ng-if="item._id.substring((item._id.length-1),item._id.length)==4||item._id.substring((item._id.length-1),item._id.length)==6" class="center circle4 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>-->
+              <!--<div ng-if="item._id.substring((item._id.length-1),item._id.length)==5||item._id.substring((item._id.length-1),item._id.length)==0" class="center circle5 myHeaderDiv">{{item.name.length > 2 ? item.name.substring((item.name.length-2),item.name.length):item.name}}</div>-->
+            <!--</div>-->
+            <span class="friendsIcon">{{item.logoName}}</span>
 
             <!--姓名、最后一条消息-->
             <div class="myUserName" >

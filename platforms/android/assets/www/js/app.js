@@ -91,9 +91,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
     }, 501);
 
 
-
-
-
   });
 
 

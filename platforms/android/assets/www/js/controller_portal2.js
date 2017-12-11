@@ -26,7 +26,6 @@ angular.module('portal.controllers', [])
         NetData.getInfo(userID, imcode);
         imCode = imcode;
       })
-
     })
 
     // 公司名称显示。没有数据时,默认显示门户
