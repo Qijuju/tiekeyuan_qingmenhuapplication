@@ -12,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
       <change beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/service_common.js" />
-      <change beforePath="$PROJECT_DIR$/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/www/templates/tab-contacts.html" />
     </list>
     <ignored path="IM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -736,14 +735,7 @@
       <workItem from="1512541326837" duration="15942000" />
       <workItem from="1512695142262" duration="19795000" />
       <workItem from="1512953755141" duration="229000" />
-      <workItem from="1512957308464" duration="1878000" />
-    </task>
-    <task id="LOCAL-00206" summary="0929commit:点击应用图标跳转应用的5种情况全都没问题">
-      <created>1506678309529</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1506678309529</updated>
+      <workItem from="1512957308464" duration="1914000" />
     </task>
     <task id="LOCAL-00207" summary="0929commit:点击应用图标跳转应用的5种情况全都没问题">
       <created>1506678320505</created>
@@ -1081,11 +1073,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512726899165</updated>
     </task>
-    <option name="localTasksCounter" value="255" />
+    <task id="LOCAL-00255" summary="1211commit：1.合并代码前">
+      <created>1512960182624</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1512960182625</updated>
+    </task>
+    <option name="localTasksCounter" value="256" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2992151000" />
+    <option name="totallyTimeSpent" value="2992187000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1175,7 +1174,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="8.8commit:1.添加toast&#10;2.添加spinnerdailog&#10;3.添加inappbrowser&#10;4.添加badge(遗留一点问题)" />
     <MESSAGE value="commit:生产环境上线第一版0831" />
     <MESSAGE value="0908commit:生产环境第二版" />
     <MESSAGE value="0925commit:准备建立老挝项目单独分支，先将代码提交至最新" />
@@ -1200,7 +1198,8 @@
     <MESSAGE value="11.17commit:修改版本号为获取本地apk版本号；添加inappbrowser顶部导航栏；通知模块bug修复" />
     <MESSAGE value="11.27commit:修改8级目录为一级，将返回和物理返回改为逐级返回，添加关闭按钮直接返回联系人界面，进入人员详情点击返回和物理返回键都改为逐级返回" />
     <MESSAGE value="1208commit：1.修改版本升级逻辑(当选择忽略时，若服务端版本更新则重新提示版本升级(待测试))" />
-    <option name="LAST_COMMIT_MESSAGE" value="1208commit：1.修改版本升级逻辑(当选择忽略时，若服务端版本更新则重新提示版本升级(待测试))" />
+    <MESSAGE value="1211commit：1.合并代码前" />
+    <option name="LAST_COMMIT_MESSAGE" value="1211commit：1.合并代码前" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
