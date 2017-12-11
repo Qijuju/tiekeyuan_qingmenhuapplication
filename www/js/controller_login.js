@@ -40,7 +40,7 @@ angular.module('login.controllers', [])
               $mqtt.setLogin(true);
 
               getMenHuData();
-              // $state.go('tab.message');
+
               return;
             }
           }, function (err) {
@@ -52,6 +52,7 @@ angular.module('login.controllers', [])
         });
       }
     });
+
     //监听键盘弹起事件，将整体布局上移
     // var tKeyH = $window.innerHeight;;
     // window.addEventListener('native.keyboardshow',function (e){
@@ -68,7 +69,8 @@ angular.module('login.controllers', [])
     // window.addEventListener('native.keyboardhide',function (e){
     //   document.getElementById("tHeight").style.bottom = 0 +'px';
     // });
-    //保存密码的方法
+
+    //记录是否保存密码的状态的方法
     $scope.rememberPwd = function () {
       $mqtt.getMqtt().getString('remPwd', function (pwd) {
         if (pwd === '' || pwd === 'false') {
@@ -257,7 +259,6 @@ angular.module('login.controllers', [])
 
     // 登录成功之后获取门户页数据源
     function getMenHuData() {
-      console.log("获取门户数据源方法调用了");
       /*门户页数据请求代码开始。
     * 1.写在此处的原因：
     * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
@@ -279,11 +280,8 @@ angular.module('login.controllers', [])
             url:$formalurlapi.getBaseUrl(),
             data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
           }).success(function (data, status) {
-
             // 成功之后页面跳转
-            // $state.go('tab.message');
-            $state.go('tab.notification');
-
+            $state.go('tab.contacts');
             // 门户页面对应的所有的数据源
             $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
             $scope.sysmenu =  $rootScope.portalDataSource.sysmenu;
@@ -653,7 +651,7 @@ angular.module('login.controllers', [])
           }).success(function (data, status) {
 
             // 成功之后页面跳转
-            $state.go('tab.notification');
+            $state.go('tab.contacts');
 
             // 门户页面对应的所有的数据源
             $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));

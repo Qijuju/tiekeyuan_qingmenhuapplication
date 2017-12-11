@@ -116,9 +116,6 @@ angular.module('im.routes', [])
             controller: 'newnotificationCtrl'
           }
         },
-        params:{
-          obj:null
-        },
         reload:true
       })
       .state('tab.webpage', {
@@ -142,6 +139,17 @@ angular.module('im.routes', [])
           }
         }
       })
+      //rxy 页面首页动态获取路由
+      // .state('tab.portal', {
+      //   url: '/portal',
+      //   cache:false,
+      //   views: {
+      //     'tab-portal': {
+      //       templateUrl: 'templates/tab-portal.html',
+      //       controller: 'portalCtrl'
+      //     }
+      //   }
+      // })
       .state('tab.portal', {
         url: '/portal',
         cache:false,
@@ -160,6 +168,7 @@ angular.module('im.routes', [])
         controller: 'OhterCtrl',
         cache:false
       })
+
 
       .state('tab.notifications', {
         url: '/notifications',
@@ -188,15 +197,6 @@ angular.module('im.routes', [])
           obj:null
         }
       })
-      .state('applicationDetail', {
-        url: '/applicationDetail',
-        templateUrl: 'templates/applicationDetail.html',
-        cache:false,
-        controller: 'applicationDetailCtrl',
-        params:{
-          obj:null
-        }
-      })
 
       .state('notifyApplication', {
         url: '/notifyApplication/:id/:isfirm',
@@ -219,20 +219,30 @@ angular.module('im.routes', [])
         templateUrl: 'templates/message-group.html',
         cache:false,
         controller: 'MessageGroupCtrl'
+
+
       })
 
+      // 常用联系人
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
         controller: 'TopContactsCtrl',
         cache:false
+
+
       })
+
+      // 特别关注
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
         controller: 'myattentionaaaSelectCtrl',
         cache: false
       })
+
+
+
 
       .state('personalSetting', {
         url: '/personalSetting/:id/:ssid/:sessionid',
@@ -266,6 +276,7 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-createNotice.html',
         controller: 'groupCreateNoticeCtrl',
         cache:false
+
       })
 
       .state('groupMember', {
@@ -273,6 +284,7 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-member.html',
         controller: 'groupMemberCtrl',
         cache:false
+
       })
 
       .state('groupDeptMember', {
@@ -282,6 +294,8 @@ angular.module('im.routes', [])
         cache:false
 
       })
+
+
 
       .state('tab.contacts', {
         url: '/contacts',
@@ -295,53 +309,10 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second/:contactId/:childcount',
+        url: '/second/:contactId/:contactName/:childcount/:index/:personFlag',
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
-
-      })
-      .state('third', {
-        url: '/third/:contactId/:secondname/:childcount',
-        templateUrl: 'templates/contact-third.html',
-        controller: 'ContactThirdCtrl',
-        cache:false
-
-      })
-      .state('forth', {
-        url: '/forth/:contactId/:secondname/:thirdname/:childcount',
-        templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl',
-        cache:false
-
-      })
-      .state('fifth', {
-        url: '/fifth/:contactId/:secondname/:thirdname/:forthname/:childcount',
-        templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl',
-        cache:false
-
-      })
-      .state('sixth', {
-        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:childcount',
-        templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl',
-        cache:false
-
-      })
-      .state('seventh', {
-        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:childcount',
-        templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl',
-        cache:false
-
-      })
-      .state('eighth', {
-        url: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname/:childcount',
-        templateUrl: 'templates/contact-eighth.html',
-        controller: 'ContactEighthCtrl',
-        cache:false
-
       })
 
       .state("masstexting",{
@@ -367,7 +338,7 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person/:userId',
+        url: '/person/:userId/:index',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         cache:false
@@ -408,6 +379,9 @@ angular.module('im.routes', [])
           }
         }
       })
+
+
+
       .state('tab.account', {
         url: '/account',
         cache: false,
@@ -610,12 +584,9 @@ angular.module('im.routes', [])
       })
 
       .state('confirmornot', {
-        url: '/confirmornot',
+        url: '/confirmornot/:id',
         templateUrl: 'templates/notify-confirm.html',
         controller: 'confirmornotCtrl',
-        params:{
-          obj:null
-        }
       })
       .state('netconfirm', {
         url: '/netconfirm/:url',

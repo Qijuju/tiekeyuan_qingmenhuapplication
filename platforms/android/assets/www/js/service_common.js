@@ -203,31 +203,49 @@ angular.module('common.services', [])
       },
       checkUpdate: function ($ionicPopup, $cordovaFileOpener2,isFromMy) {
 
-        // console.log("进来检查升级");
-        //从网络请求数据  获取版本号和各种信息
-        api.getVersionInfo(function (msg) {
-          var flag ;
-          var versionName = msg.versionName;
-          var versionDesc = msg.versionDesc;
-          var filesize = msg.size;
-          // console.log("进来检查升级后从服务器取到的版本号"+versionName);
-          if(isFromMy){
+        var flag ;//请求来源
+        var versionName;//应用版本名
+        var versionDesc;//应用版本描述
+        var filesize ;//应用大小
+
+        /**
+         * 该判断是为了解析该请求来源：若为true,说明来源于关于--在线升级
+         * 若为false，说明来源于应用主界面
+         */
+        if(isFromMy){
+          flag = false;
+        }else{
+          cordova.plugins.MqttChat.getString('isShowConfirm',function (succ) {
+            console.log("进来了吗");
+            if(succ != null ||succ != '' || succ != undefined){
+              flag = succ;
+            }
+          },function (err) {
             flag = false;
-          }else{
-            cordova.plugins.MqttChat.getString('isShowConfirm',function (succ) {
-              if(succ != null ||succ != '' || succ != undefined){
-                flag = succ;
+          });
+        }
+
+        api.getVersionInfo(function (msg) {
+          /**
+           * 若版本号不为空，则表示要提示用户升级
+           * 若版本号为空，则表示当前应用已是最新版本
+           */
+          if(msg.versionName != null && msg.versionName != ''){
+            versionName = msg.versionName;
+            versionDesc = msg.versionDesc;
+            filesize = msg.size;
+
+            api.needUpgrade(versionName,function(isUpdate){
+              if(isUpdate == 'true'){
+                flag = false;
               }
-              // alert("是否弹提示11111"+flag);
             },function (err) {
-              flag = false;
             });
-          }
-          //判断此版本是否需要升级
-          api.needUpgrade(versionName, function (data) {
-            // console.log("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(data));
+            console.log("查看flag"+flag);
+            /**
+             * 进入主界面时，判断是升级or忽略，若是忽略则服务端不发布新版本前都不提示升级
+             */
             if(!flag){
-              if (data == 'true') {
                 //需要升级
                 var confirmPopup = $ionicPopup.confirm({
                   title: '版本升级',
@@ -254,18 +272,23 @@ angular.module('common.services', [])
                   }
 
                 });
-              } else {
-                //不需要升级
-                $ToastUtils.showToast(data)
-              }
             }
-          }, function (err) {
-            //判断是否能升级失败
-          })
+          }else{
+            $ToastUtils.showToast(msg);
+          }
+
+          //判断此版本是否需要升级
+          // api.needUpgrade(versionName, function (data) {
+          //   // console.log("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(data));
+          //
+          // }, function (err) {
+          //   //判断是否能升级失败
+          // })
 
 
         }, function (err) {
           //获取版本信息失败
+          $ToastUtils.showToast(err);
         });
 
       },
@@ -576,9 +599,19 @@ angular.module('common.services', [])
     var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";//门户模块开发环境地址
     // var baseurl="http://88.1.1.22:8081";//门户模块测试环境地址
     // var baseurl="http://chuannanims.r93535.com:8088";
+    // var baseurl="http://202.137.140.133:6001";//老挝环境
     return{
       getBaseUrl:function () {
         return baseurl;
+      }
+    }
+  })
+
+  //由于前端调用的js进行code转换时
+  .factory('$relex',function () {
+    return{
+      getReplaceAfter:function (data) {
+        return data.replace(/\+/g, '%20');
       }
     }
   })
