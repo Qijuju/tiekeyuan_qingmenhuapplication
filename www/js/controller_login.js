@@ -88,12 +88,14 @@ angular.module('login.controllers', [])
     };
 
     $scope.login = function (name, password) {
+      console.log("登录调用的登陆方法"+name+password);
       if (name == '' || password == '') {
         $ToastUtils.showToast('用户名或密码不能为空！');
         return;
       }
       $scope.name = name;
       $scope.password = password;
+
       $api.login($scope.name, $scope.password, function (message) {
 
         if (message.resultCode === '105') {
@@ -121,8 +123,9 @@ angular.module('login.controllers', [])
               $state.go('login');
             }
           });
-        }else {
+        } else {
           $pubionicloading.showloading('','登录中...');
+          console.log("登陆成功"+JSON.stringify(message));
           if (message.isActive === false || message.resultCode === '105' || message.resultCode === '107') {
             $api.activeUser(message.userID, function (message) {
               loginM();
@@ -183,6 +186,7 @@ angular.module('login.controllers', [])
           $ToastUtils.showToast(message);
         });
         $mqtt.getMqtt().getMyTopic(function (msg) {
+          console.log("拿到的topic"+JSON.stringify(msg));
           $api.getAllGroupIds(function (groups) {
             //是否保存密码
             $mqtt.save('remPwd', $scope.remPwd);
@@ -398,7 +402,7 @@ angular.module('login.controllers', [])
           $api.getWelcomePic("",varyname,function (suc) {
 
             //图片下载成功
-            //$ToastUtils.showToast("欢迎页面下载成功")
+            console.log("欢迎页面下载成功"+varyname)
 
 
           },function (error) {

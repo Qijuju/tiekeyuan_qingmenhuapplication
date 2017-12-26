@@ -1,0 +1,63 @@
+<ion-view  class="common-view-color" view-title="{{appName}}">
+
+  <!--导航条-->
+  <ion-nav-bar align-title="center" class="newbarhead">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backApp()">
+        返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content id="notification" delegate-handle="scrollTop" overflow-scroll="false" >
+
+    <div class="application" ng-repeat="item in applicationChild">
+
+      <div class="logoContentBox clearfix" ng-click="goDetail(item)">
+        <div class="logo">
+          <img src="{{item.appIcon}}"  ng-if="item.appIcon"  alt="应用logo">
+          <img src="img/notifyDefaultLogo.png"  ng-if="!item.appIcon"  alt="应用logo">
+        </div>
+
+        <!--“新”标识 -->
+        <div ng-if="item.isNewNotify">
+          <div style="position: absolute;top:-15px;left: -40px;width:0px;border-top:40px solid #F44336;border-left: 40px solid transparent;border-right:40px solid transparent;transform: rotate(135deg)"></div>
+          <span style="position: absolute;top:0px;left: 3px;color: #fff;font-size: 14px;">新</span>
+        </div>
+
+        <!--详细信息-->
+        <div class="contentInfo">
+          <div class="row">
+            <div class="col col-50">
+              <!--<img class="smallLogo" src="img/bjjb.png" alt="报警级别">-->
+              <span class="notifyName">{{item.fromName}}</span>
+              <span class="isReaded" ng-if="item.isRead">已确认</span>
+
+            </div>
+            <div class="col col-50" align="right">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
+          </div>
+          <div class="row">
+            <!--<div class="col">{{item.title}}</div>-->
+            <div class="col">{{item.message}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style=" border-top:1px solid #e5e5e5;">
+        <div class="col" style="text-align: center;border-right: 1px solid #e5e5e5;padding:0;">
+          <img class="smallLogo" src="img/lianjie.png" alt="链接">
+          <span style="color: #000;font-size: 12px;">链接</span>
+        </div>
+        <div class="col" style="text-align: center;font-size: 12px;padding:0;">
+          <img class="smallLogo" src="img/fujian.png" alt="附件">
+          <span style="color: #000;font-size: 12px;">附件</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 上拉加载更多 -->
+    <ion-infinite-scroll ng-if="loadMoreApplication" immediate-check="false" on-infinite="loadMoreApplicationEvent()" distance="10%"></ion-infinite-scroll>
+
+  </ion-content>
+
+</ion-view>

@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/24.
  */
 angular.module('portal.controllers', [])
-  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate, $pubionicloading, NetData, $greendao, FinshedApp, $rootScope, $http, $api,$sce) {
+  .controller('portalCtrl', function ($scope, $ToastUtils, $mqtt, $state, $ionicSlideBoxDelegate,$formalurlapi, $pubionicloading, NetData, $greendao, FinshedApp, $rootScope, $http, $api,$sce) {
 
     // $mqtt.getUserInfo(function (succ) {
     //   userID = succ.userID;
@@ -158,7 +158,8 @@ angular.module('portal.controllers', [])
             timeout: 5000,
             // url:"http://88.1.1.22:8081",//测试环境
             // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-            url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+            url:$formalurlapi.getBaseUrl(),
             data: {"Action": "GetSession", "id": userID, "mepId": imCode}
           }).success(function (data, status) {
 
@@ -339,8 +340,9 @@ angular.module('portal.controllers', [])
         timeout: 5000,
         // url:"http://88.1.1.22:8081",//测试环境
         // url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",//开发环境
-        url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
+        // url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",//正式环境
         // url: "http://202.137.140.133:6001",//老挝正式环境
+        url:$formalurlapi.getBaseUrl(),
         data: {"Action": "GetSession", "id": userID, "mepId": imCode}
       }).success(function (data, status) {
         var data = JSON.parse(decodeURIComponent(data));

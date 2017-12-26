@@ -12,4 +12,10 @@ exports.createDsk = function(packagename, appId, name,success, error) {
   exports.getCurrentVersion = function(success, error) {
     exec(success, error, "OAIntegration", "getCurrentVersion");
   };
+
+
+  //获取当前是否是wifi状态
+  exports.getWifiState = function(success, error) {
+    exec(success, error, "OAIntegration", "getWifiState");
+  };
 };

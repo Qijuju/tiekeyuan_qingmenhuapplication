@@ -1,9 +1,12 @@
 package com.tky.mqtt.plugin.thrift;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -931,7 +934,52 @@ public class ThriftApiClient extends CordovaPlugin {
                 public void onSuccess(Request request, String result) {
                     try {
                         if(result != null && !"".equals(result)){
-                            setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                            String saveVersion = SPUtils.getString("local_versionname","");//保存的上一个版本号
+                            JSONObject jsonObject =new JSONObject(result);
+                            String newVersion = jsonObject.getString("versionName");//服务器返回最新版本号
+                            System.out.println("保存的版本号"+saveVersion+"服务器的版本号"+newVersion);
+                            if(saveVersion != null && !"".equals(saveVersion)){
+                                if(isNeedsUpgrade(UIUtils.getVersion(),saveVersion)){//本地保存版本号>实际应用版本号
+                                    if(isNeedsUpgrade(saveVersion,newVersion)){
+                                        setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                                    }else{
+                                        //提示当前版本已是最新版本
+                                        //保存服务器的版本号到sp中
+                                        SPUtils.save("local_versionname", newVersion);
+                                        setResult("已是最新版本!", PluginResult.Status.OK, callbackContext);
+                                    }
+                                }else{//本地保存版本号<实际应用版本号
+                                    if(isNeedsUpgrade(UIUtils.getVersion(),newVersion)){
+                                        setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                                    }else{
+                                        //提示当前版本已是最新版本
+                                        //保存服务器的版本号到sp中
+                                        SPUtils.save("local_versionname", newVersion);
+                                        setResult("已是最新版本!", PluginResult.Status.OK, callbackContext);
+                                    }
+                                }
+//                                if(isNeedsUpgrade(UIUtils.getVersion(),saveVersion) && isNeedsUpgrade(saveVersion, newVersion)){
+//                                    //先比较本地保存的版本号大于实际的版本号，再跟服务器的进行比较，弹出提示框
+//
+//                                }else if(isNeedsUpgrade(saveVersion,UIUtils.getVersion()) && isNeedsUpgrade(UIUtils.getVersion(),newVersion)){
+//                                    //若实际版本号>本地保存的版本号并且服务器的版本号>实际的版本号则提示升级
+//                                    setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+//                                }else{
+//
+//                                }
+                            }else{
+                                if(isNeedsUpgrade(UIUtils.getVersion(),newVersion)){
+                                    //先比较本地保存的版本号大于实际的版本号，再跟服务器的进行比较，弹出提示框
+                                    setResult(new JSONObject(result), PluginResult.Status.OK, callbackContext);
+                                }else{
+                                    //提示当前版本已是最新版本
+                                    //保存服务器的版本号到sp中
+                                    SPUtils.save("local_versionname", newVersion);
+                                    setResult("已是最新版本!", PluginResult.Status.OK, callbackContext);
+                                }
+                            }
+
+
                         }else{
                             setResult("已是最新版本！", PluginResult.Status.OK, callbackContext);
                         }
@@ -1105,6 +1153,10 @@ public class ThriftApiClient extends CordovaPlugin {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     */
 
     /**
      * 应用安装

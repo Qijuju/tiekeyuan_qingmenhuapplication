@@ -305,6 +305,7 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
       confirmPopup.then(function (res) {
         if (res) {
           $mqtt.getMqtt().save('name', '', function (message) {
+            console.log("");
             $mqtt.disconnect(function (message) {
               $mqtt.save('passlogin', "0");
               $state.go("login");
@@ -906,7 +907,14 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
     $scope.zaixianshengji = function () {
       $mqtt.save('local_versionname', '');
       $scope.isFromMy=true;
-      $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
+      cordova.plugins.OAIntegration.getWifiState(function (succ) {
+        if(succ == 'true'){
+          $api.checkUpdate($ionicPopup, $cordovaFileOpener2,$scope.isFromMy);
+        }else{
+          $ToastUtils.showToast("建议在WI-FI环境下升级至最新版本");
+        }
+      },function (err) {
+      });
     }
 
   })
@@ -1349,13 +1357,10 @@ angular.module('my.controllers', ['angular-openweathermap', 'ngSanitize', 'ui.bo
   .controller('aboutOurCtrl',function ($scope,$state) {
 
     //获取版本号的动态日期
-    cordova.plugins.OAIntegration.getVersion(function (data) {
+    cordova.plugins.OAIntegration.getCurrentVersion(function (data) {
       $scope.nowTime = data;
-      console.log("");
     },function (err) {
     });
-    $scope.nowTime = new Date().getTime();
-
 
     // 返回操作调取函数
     $scope.goAboutOurs = function () {

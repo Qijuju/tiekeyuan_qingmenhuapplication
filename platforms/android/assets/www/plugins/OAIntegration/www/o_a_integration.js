@@ -15,4 +15,10 @@ var exec = require('cordova/exec');
      	exec(success, error, "OAIntegration", "getCurrentVersion",[]);
       };
 
+ //创建桌面快捷方式
+  exports.getWifiState = function(success, error) {
+  	exec(success, error, "OAIntegration", "getWifiState", []);
+   };
+
+
 });

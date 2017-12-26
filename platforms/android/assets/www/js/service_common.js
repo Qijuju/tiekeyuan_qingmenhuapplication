@@ -204,6 +204,7 @@ angular.module('common.services', [])
       checkUpdate: function ($ionicPopup, $cordovaFileOpener2,isFromMy) {
 
         var flag ;//请求来源
+        var isPopup;//记录是否弹出确认框的标志符
         var versionName;//应用版本名
         var versionDesc;//应用版本描述
         var filesize ;//应用大小
@@ -214,14 +215,16 @@ angular.module('common.services', [])
          */
         if(isFromMy){
           flag = false;
+          isPopup = false;
         }else{
           cordova.plugins.MqttChat.getString('isShowConfirm',function (succ) {
-            console.log("进来了吗");
             if(succ != null ||succ != '' || succ != undefined){
               flag = succ;
+              isPopup = true;
             }
           },function (err) {
             flag = false;
+            isPopup = true;
           });
         }
 
@@ -234,18 +237,19 @@ angular.module('common.services', [])
             versionName = msg.versionName;
             versionDesc = msg.versionDesc;
             filesize = msg.size;
-
-            api.needUpgrade(versionName,function(isUpdate){
-              if(isUpdate == 'true'){
-                flag = false;
-              }
-            },function (err) {
-            });
-            // console.log("查看flag"+flag);
             /**
              * 进入主界面时，判断是升级or忽略，若是忽略则服务端不发布新版本前都不提示升级
              */
             if(!flag){
+              if(!isPopup){
+                api.downloadMHApk(versionName, filesize, function (succ) {
+                  // 成功
+                  cordova.plugins.MqttChat.save('local_versionname', versionName);
+                }, function (err) {
+                  // 错误
+                  cordova.plugins.MqttChat.save('local_versionname', "");
+                });
+              } else {
                 //需要升级
                 var confirmPopup = $ionicPopup.confirm({
                   title: '版本升级',
@@ -272,20 +276,14 @@ angular.module('common.services', [])
                   }
 
                 });
+              }
             }
           }else{
-            $ToastUtils.showToast(msg);
+            if(!flag){
+              $ToastUtils.showToast(msg);
+            }
+
           }
-
-          //判断此版本是否需要升级
-          // api.needUpgrade(versionName, function (data) {
-          //   // console.log("文件大小和版本名"+filesize+"====="+versionName+"======="+JSON.stringify(data));
-          //
-          // }, function (err) {
-          //   //判断是否能升级失败
-          // })
-
-
         }, function (err) {
           //获取版本信息失败
           $ToastUtils.showToast(err);
@@ -570,39 +568,195 @@ angular.module('common.services', [])
       }
     }
   })
-  .factory('$BadgeCount', function ($greendao, $scope) {
-    return {
-      getBadgeCount: function () {
-        $greendao.loadAllData('ChatListService', function (msg) {
-          $scope.allNoRead = 0;
-          if (msg.length > 0) {
-            for (var i = 0; i < msg.length; i++) {
-              $scope.allNoRead = $scope.allNoRead + parseInt(msg[i].count, 10);
-            }
-            cordova.plugins.notification.badge.set($scope.allNoRead, function (succ) {
-              // alert("刷新监听成功" + succ);
-              cordova.plugins.MqttChat.saveInt("badgeCount", $scope.allNoRead);
-            }, function (err) {
-              alert("失败" + err);
-            });
-          }
-        }, function (err) {
 
-        })
-      }
-    }
-  })
 
+  //抽取公共url
   .factory('$formalurlapi',function () {
-
     // var baseurl="http://immobile.r93535.com:8088/crbim/imApi/1.0";//门户模块正式环境地址
     var baseurl="http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16";//门户模块开发环境地址
     // var baseurl="http://88.1.1.22:8081";//门户模块测试环境地址
     // var baseurl="http://chuannanims.r93535.com:8088";
     // var baseurl="http://202.137.140.133:6001";//老挝环境
+    // var baseurl = "http://chuannanims.r93535.com:8088";
     return{
       getBaseUrl:function () {
         return baseurl;
+      }
+    }
+  })
+
+
+    //抽取公共login的方法
+  .factory('pubLogin',function ($state,$formalurlapi,$mqtt,NetData,$http,$rootScope,$greendao,$api,$ToastUtils,$pubionicloading,$ionicPopup) {
+
+    return {
+      // 登录成功之后获取门户页数据源
+      getMenHuData:function () {
+        /*门户页数据请求代码开始。
+         * 1.写在此处的原因：
+         * 为了解决根据appIcon异步请求拿到的数据，页面不能实现实时刷新的问题。
+         */
+        var userID; // userID = 232099
+        var imCode; //  imCode = 866469025308438
+        var qyyobject = {};// 一条logo数据
+        var sysmenu;
+        var appIconArr = [];// 定义一个存放门户页需要的 appIcon 的数组对象
+        var appIconArr2 = []; // 定义一个存放门户不需要的 appIcon 的数据对象
+        $mqtt.getUserInfo(function (succ) {
+          userID = succ.userID;
+          //获取人员所在部门，点亮图标
+          $mqtt.getImcode(function (imcode) {
+            NetData.getInfo(userID, imcode);
+            imCode = imcode;
+            $http({
+              method: 'post',
+              timeout: 5000,
+              url:$formalurlapi.getBaseUrl(),
+              data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
+            }).success(function (data, status) {
+              // 成功之后页面跳转
+              $state.go('tab.contacts');
+              // 门户页面对应的所有的数据源
+              $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
+              sysmenu =  $rootScope.portalDataSource.sysmenu;
+
+
+              // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
+              if(sysmenu != null || sysmenu != "" || sysmenu != undefined){
+                for(var i=0;i<sysmenu.length;i++){
+                  var items =  sysmenu[i].items;
+                  for(var j=0;j<items.length;j++){
+                    var flag = items[j].flag;
+                    var appIcon = items[j].appIcon;
+                    qyyobject.path = "/storage/emulated/0/tkyjst/download/icon/"+appIcon+".png";
+                    qyyobject.appId = items[j].appId;
+                    $greendao.saveObj('QYYIconPathService',qyyobject,function (succ) {
+                    },function (err) {
+                    });
+                    if(flag){
+                      appIconArr.push( appIcon );
+                      appIconArr2.push(appIcon+'_f')
+                    }else {
+                      appIconArr.push(appIcon+'_f');
+                      appIconArr2.push(appIcon)
+                    }
+                  }
+                }
+              }
+              // 调插件，获取门户页需要的所有的图片路径
+              $api.downloadQYYIcon(appIconArr,function (success) {
+                $rootScope.appIconPaths = success;
+              },function (err) {
+              });
+
+              // 调插件，获取门户页不需要的所有的图片路径--下载所有的图片到本地，解决通知页logo找不到的问题
+              $api.downloadQYYIcon(appIconArr2,function (success) {
+                $rootScope.appIconPaths2 = success;
+              },function (err) {
+              });
+            });
+          }).error(function (data, status) {
+            $ToastUtils.showToast("获取用户权限失败!");
+          });
+        }, function (err) {
+        });
+      },
+      newlogin:function (username,password,pwdStatus,pubLogin) {
+        //调用登陆接口
+        $api.login(username, password, function (message) {
+          if (message.resultCode === '105') {
+            var confirmPopup = $ionicPopup.confirm({
+              title: '强制登录提示',
+              template: "您的账号在其他终端已登录，是否切换到该设备？",
+              cancelText: '不登录',
+              okText: '登录'
+            });
+            confirmPopup.then(function (isConfirm) {
+              if (isConfirm) {
+                $pubionicloading.showloading('','登录中...');
+                if(message.result){
+                  $pubionicloading.hide();
+                  pubLogin.succLogin(message,password,pwdStatus,pubLogin);//调用登陆成功的后续处理逻辑
+                }
+              } else {
+                $pubionicloading.hide();
+                $state.go('login');
+              }
+            });
+          } else {
+            $pubionicloading.showloading('','登录中...');
+            /**
+             * 判断接口返回值是否正常登陆
+             */
+            if(message.result){
+              $pubionicloading.hide();
+              pubLogin.succLogin(message,password,pwdStatus,pubLogin);
+            }
+          }
+
+        }, function (err) {
+          //登陆失败逻辑处理
+          $pubionicloading.hide();
+          var errorArr=err.split('#');
+          var errCode=errorArr[0];
+          /**
+           * 若登陆时发现该用户第一次注册111
+           * 若登陆时发现该用户在不同设备登陆112
+           * 若登陆时发现该用户长时间未登录113
+           * 若登陆时发现该用户未绑定手机号114
+           */
+          if(errCode === '111' || errCode === '112' || errCode === '113' || errCode === '114'){
+            var userId=errorArr[1];
+            var mobile=errorArr[2];
+            var mepId= errorArr[3];
+            $state.go('msgCheck',{
+              "errCode":errCode,
+              "mobile":mobile,
+              "userId":userId,
+              "mepId":mepId,
+              "remPwd":pwdStatus
+            });
+          }else{
+            $state.go('login');
+            $ToastUtils.showToast(err);
+          }
+        });
+      },
+      /**
+       * 登陆成功以后需要准备的数据
+       */
+      succLogin:function (message,password,pwdStatus,pubLogin) {
+        //登录成功以后根据部门id将部门信息入库
+        $api.SetDeptInfo(function (msg) {
+          //调用保存用户名方法
+          $mqtt.getMqtt().saveLogin('name', message.loginAccount, function (message) {
+          }, function (message) {
+            $ToastUtils.showToast(message);
+          });
+          $mqtt.getMqtt().getMyTopic(function (msg) {
+            $api.getAllGroupIds(function (groups) {
+              //保存是否记住密码状态
+              $mqtt.save('remPwd', pwdStatus);
+              if (pwdStatus === 'true') {//如果需要保存密码，将密码保存到SP中
+                $mqtt.save('password', password);
+              } else {
+                $mqtt.save('password', '');
+              }
+              $mqtt.save('username', message.loginAccount);//保存登陆成功的用户名
+              $mqtt.save('passlogin', "1");//保存登陆成功的一个标志符，下次直接跳过登陆
+              $mqtt.startMqttChat(msg + ',' + groups);
+              //登陆成功以后获取门户模块需要的数据
+              pubLogin.getMenHuData();
+            }, function (err) {
+              $pubionicloading.hide();
+              $ToastUtils.showToast(err);
+            });
+          }, function (err) {
+            $pubionicloading.hide();
+            $ToastUtils.showToast(err);
+          });
+        }, function (err) {
+        });
       }
     }
   })

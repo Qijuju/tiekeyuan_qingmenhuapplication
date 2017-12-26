@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -370,6 +372,37 @@ public class OAIntegration extends CordovaPlugin {
         }
         return null;
     }
+
+    /**
+     * 插件-给js提供判断是否在wifi状态的入口
+     * @return
+     */
+    public String getWifiState(final JSONArray args,final CallbackContext callbackContext) {
+        try {
+            Boolean isWifi = isWifi(cordova.getActivity());
+            if(isWifi){
+                setResult("true",PluginResult.Status.OK,callbackContext);
+            }else{
+                setResult("false",PluginResult.Status.OK,callbackContext);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //判断是否wifi连接
+    private static boolean isWifi(Context mContext) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetInfo != null
+                && activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * 设置返回信息

@@ -307,12 +307,14 @@ a#rightbt{
 
 /* 通知应用模块 style start */
 .application{
+  position: relative;
   background: #fff;
   -webkit-box-shadow:0 2px 9px 0px #e5e5e5;
   -moz-box-shadow: 0 2px 9px 0px #e5e5e5;
   box-shadow: 0 2px 9px 0px #e5e5e5;
   margin:10px;
   padding:5px 10px 0px;
+  overflow: hidden;
 }
 .application .logoContentBox{
   margin-left:50px;

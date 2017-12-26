@@ -27,7 +27,6 @@ public class Constants {
   //生产环境文件服务器
 //  public static final String commonfileurl= "http://immobile.r93535.com:8086";
 
-  //开发环境文件服务器
   public static final String commonfileurl= "http://imtest.crbim.win:1666";
 
   //测试环境文件服务器(内网用)

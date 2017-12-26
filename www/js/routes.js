@@ -56,7 +56,7 @@ angular.module('im.routes', [])
         url: '/login',
         cache: false,
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
+        controller: 'loginCtrl'
       })
         //暂时关闭手势密码登陆的功能
       // .state('gesturelogin', {
