@@ -252,7 +252,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-modifyname.html',
         controller: 'groupModifyNameCtrl',
         cache:false
-
       })
       .state('groupNotice', {
         url: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup',
