@@ -5,9 +5,6 @@
 angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData,$http,$formalurlapi,$stateParams) {
 
-    console.log("接收到的对象的数据为"+JSON.stringify($stateParams.obj));
-
-
     // 获取
     $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
     $scope.showNum = 0;                     // 定义参数，标识要显示的模块
@@ -505,9 +502,7 @@ angular.module('newnotification.controllers', [])
         data: param
       }).success(function (data, status) {
         // 将置顶和关注状态和后台后刷新页面
-        console.log("切换按钮数据交互成功？");
       }).error(function (data, status, err) {
-        console.log("切换按钮数据交互失败");
       });
     }
 
@@ -582,9 +577,6 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.backNotify = function (notifyObj) {
-
-      console.log("点击返回要传的对象参数：" + JSON.stringify(notifyObj));
-
       if ($scope.showNum !== 2) {
         $state.go("tab.notification",{
           obj:notifyObj
@@ -636,8 +628,6 @@ angular.module('newnotification.controllers', [])
       $pubionicloading.hide();
 
       var applicationList = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
-
-      console.log("应用下的通知列表数据源："+ JSON.stringify(applicationList));
 
       applicationList.forEach(function (item) {
         // 追加logo地址

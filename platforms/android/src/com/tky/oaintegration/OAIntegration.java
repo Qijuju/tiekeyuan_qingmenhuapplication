@@ -184,7 +184,6 @@ public class OAIntegration extends CordovaPlugin {
                     cordova.getActivity().sendBroadcast(addShortCut);
                 }
             });
-            System.out.println("进来创建桌面快捷方式");
             setResult("success",PluginResult.Status.OK,callbackContext);
         } catch (JSONException e) {
             e.printStackTrace();
