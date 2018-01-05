@@ -36,8 +36,8 @@
       <file leaf-file-name="controller_contacts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state relative-caret-position="243">
+              <caret line="135" column="13" lean-forward="true" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -723,14 +723,7 @@
       <workItem from="1514854398672" duration="16001000" />
       <workItem from="1515026641151" duration="726000" />
       <workItem from="1515047913651" duration="2752000" />
-      <workItem from="1515115356368" duration="11315000" />
-    </task>
-    <task id="LOCAL-00216" summary="commit：10.26通知两张表全部入库并取出准备动态加载通知的平台logo">
-      <created>1508980883606</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1508980883607</updated>
+      <workItem from="1515115356368" duration="11349000" />
     </task>
     <task id="LOCAL-00217" summary="commit：10.26通知两张表全部入库并取出准备动态加载通知的平台logo">
       <created>1508981095033</created>
@@ -1068,11 +1061,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515134064668</updated>
     </task>
-    <option name="localTasksCounter" value="265" />
+    <task id="LOCAL-00265" summary="0105commit：修改通知模块的bug">
+      <created>1515134449332</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1515134449332</updated>
+    </task>
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3186361000" />
+    <option name="totallyTimeSpent" value="3186395000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1565,8 +1565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controller_contacts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+        <state relative-caret-position="243">
+          <caret line="135" column="13" lean-forward="true" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
           <folding />
         </state>
       </provider>
