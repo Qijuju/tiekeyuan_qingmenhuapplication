@@ -1,0 +1,13 @@
+#searchbutton{
+  margin-top: 16px;background-color:#fff;
+}
+
+#contactLocalList{
+  margin-top: 16px;
+}
+
+.circle8.contactLocal,
+.circle7.contactLocal{
+  position: absolute;left: 1%;top:17%;font-size: 12px;padding-top: 1px;
+
+}

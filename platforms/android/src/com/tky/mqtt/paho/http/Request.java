@@ -3,7 +3,21 @@ package com.tky.mqtt.paho.http;
 import android.app.Activity;
 import android.text.TextUtils;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.CertificateFactory;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+import javax.security.cert.CertificateException;
+import javax.security.cert.X509Certificate;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -43,8 +57,65 @@ public class Request {
       throw new IllegalArgumentException("Wrong argument (that the default url could be not null), please set the default url or use the constructer that contains param url!");
     }
     this.url = DEFAULTURL;
-    client = new OkHttpClient();
+//    client = getHttpsClient();
+    client =new OkHttpClient();
   }
+
+  public OkHttpClient getHttpsClient(){
+    okhttp3.OkHttpClient mOkHttpClient = null;
+    InputStream instream = null;
+    try{
+      KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+      instream = new FileInputStream("D://keystore.jks");
+      keyStore.load(instream, "heyan123".toCharArray());
+//	        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(keyStore, new TrustSelfSignedStrategy()).build();
+      CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+//	        keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
+      SSLContext sslContext = SSLContext.getInstance("TLS");
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+      trustManagerFactory.init(keyStore);
+      sslContext.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+      X509TrustManager tm = new X509TrustManager(){
+
+        @Override
+        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+        }
+
+        @Override
+        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+        }
+
+        @Override
+        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+          return new java.security.cert.X509Certificate[0];
+        }
+      };
+      HostnameVerifier hostV = new HostnameVerifier() {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+          return true;
+        }
+      };
+      //鍒涘缓okHttpClient瀵硅薄
+//	        mOkHttpClient = new okhttp3.OkHttpClient.Builder().sslSocketFactory(sslContext.getSocketFactory(), tm).build();
+
+      mOkHttpClient = new okhttp3.OkHttpClient.Builder().sslSocketFactory(sslContext.getSocketFactory()).hostnameVerifier(hostV).build();
+    } catch (Exception e){
+      e.printStackTrace();
+    } finally {
+      if(instream != null)
+        try {
+          instream.close();
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+    }
+    return mOkHttpClient;
+  }
+
 
   /**
    * 需要手动设置构造函数中的url属性

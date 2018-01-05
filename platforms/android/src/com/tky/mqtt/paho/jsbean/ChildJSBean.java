@@ -19,6 +19,15 @@ public class ChildJSBean {
     private boolean IsActive;
     private String UserID;
     private String UserName;
+    private String ProName;
+
+    public String getProName() {
+      return ProName;
+    }
+
+    public void setProName(String proName) {
+      ProName = proName;
+    }
 
     public String getDeptID() {
       return DeptID;

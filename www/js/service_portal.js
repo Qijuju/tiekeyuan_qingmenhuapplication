@@ -4,7 +4,6 @@
 angular.module('portal.services', [])
   .factory('FinshedApp', function () {
     // Might use a resource here that returns a JSON array
-
     // Some fake testing data
     var finshedApps = [{
       appId: 10,
@@ -54,6 +53,14 @@ angular.module('portal.services', [])
       appId: 35,
       appName: '诚信体系',
       appIcon: 'img/app1/cxtx.png',
+    },{
+      appId: 194,
+      appName: '武铁建设',
+      appIcon: 'img/app1/wtjs.png',
+    },{
+      appId: 199,
+      appName: '公文处理',
+      appIcon: 'img/app1/gwcl.png',
     }, {
       appId: 82,
       appName: '调度指挥',
@@ -66,7 +73,7 @@ angular.module('portal.services', [])
     }, {
       appId: 99,
       appName: '信息发布',
-      appIcon: 'img/app1/xxfb.png',
+      appIcon: 'img/app1/xwtz.png',
     }, {
       appId: 106,
       appName: '连续梁',
@@ -89,7 +96,7 @@ angular.module('portal.services', [])
       appIcon: 'img/app3/jyp.png',
     }, {
       appId: 136,
-      appName: '路基压实',
+      appName: '连续压实',
       appIcon: 'img/app3/lxys.png',
     }, {
       appId: 137,
@@ -97,7 +104,7 @@ angular.module('portal.services', [])
       appIcon: 'img/app3/lc.png',
     }, {
       appId: 138,
-      appName: '板厂',
+      appName: '板场',
       appIcon: 'img/app3/bc.png',
     }, {
       appId: 144,
@@ -112,26 +119,39 @@ angular.module('portal.services', [])
       appName: '投资控制',
       appIcon: 'img/app2/tzkz.png',
     }, {
-      appId: 168,
+      appId: 173,
       appName: '超前地质预报',
       appIcon: 'img/app3/cqdzyb.png',
     }, {
       appId: 174,
-      appName: '全项试验',
+      appName: '工地试验室',
       appIcon: 'img/app3/gdsys.png',
     }, {
       appId: 200,
       appName: '桩基检测',
       appIcon: 'img/app3/zjjc.png',
+    }, {
+      appId: 135,
+      appName: '问题库',
+      appIcon: 'img/app2/wtk.png',
+    }, {
+      appId: 186,
+      appName: '工程影像',
+      appIcon: 'img/app3/gcyx.png',
+    }, {
+      appId: 237,//测试环境
+      appName: '工程部位',
+      appIcon: 'img/app3/gcbw.png',
+    }, {
+      appId: 168,//测试环境
+      appName: '视频监控',
+      appIcon: 'img/app3/spjk.png',
     }];
 
     return {
       all: function () {
         return finshedApps;
       },
-      // remove: function(chat) {
-      //   chats.splice(chats.indexOf(chat), 1);
-      // },
       get: function (appId) {
         for (var i = 0; i < finshedApps.length; i++) {
           if (finshedApps[i].appId === parseInt(appId)) {
@@ -142,28 +162,28 @@ angular.module('portal.services', [])
       }
     };
   })
-  .factory('NetData', function ($mqtt, $rootScope, $timeout, $http, FinshedApp) {
+  .factory('NetData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http, FinshedApp) {
     // var userID;
-
     //109975  qinzhengyang   147272 wubaixinag
     var companyName;
     var lightApps = new Array();
     var jsdept = [];
     var sysmenu = [];
     return {
-
       //获取人员所在公司，点亮图标，图片更改信息
       getInfo: function (userID,imcode) {
         $http({
           method: 'post',
           timeout: 5000,
-          //url: "http://imtest.crbim.win:8080/apiman-gateway/jishitong/interface/1.0?apikey=b8d7adfb-7f2c-47fb-bac3-eaaa1bdd9d16",
-          url: "http://immobile.r93535.com:8088/crbim/imApi/1.0",
+          url:$formalurlapi.getBaseUrl(),
           data:{Action:"GetDetail",id:userID,mepId:imcode}
         }).success(function (data, status) {
-          var data=JSON.parse(decodeURIComponent(data));
+
+          var data = JSON.parse(decodeURIComponent(data));
           //获取人员的所在公司
           jsdept = eval(data.jsdept);
+
+          // alert("哈哈哈"+jsdept);
           companyName = "";
           if (jsdept != null && typeof(jsdept) != "undefined") {
             for (var i = 0; i < jsdept.length; i++) {
@@ -174,11 +194,19 @@ angular.module('portal.services', [])
                 companyName = jsdept[i].name;
               } else if (jsdept[i].grade == 30) {
                 companyName = "中国铁路总公司";
+                /**
+                 * 将要关闭的应用id定义成一个数组，然后遍历数组，隐藏图标
+                 */
+                var hiddenApps=["gwcl","hygl","clgl","xwtz","sgzz","wzsb","wtk","bc","zjjc","bhz","sys","jyp","lc"];
+                for(var i=0;i<hiddenApps.length;i++){
+                  document.getElementById(hiddenApps[i]).style.display = "none";
+                }
               }
             }
           }
           //获取该用户可以查看的应用将其点亮
           sysmenu = eval(data.sysmenu);
+          // alert("点亮后的图标"+JSON.stringify(sysmenu));
           if (lightApps.length > 0) {
             lightApps = new Array();
           }
@@ -191,13 +219,10 @@ angular.module('portal.services', [])
             }
           }
           //获取变动的图片，名称（暂时不用改动
-
           $rootScope.$broadcast('succeed.update');
         }).error(function (data, status) {
           $rootScope.$broadcast('error.update');
         });
-
-
       },
 
 
@@ -215,8 +240,106 @@ angular.module('portal.services', [])
             return lightApps[i];
           }
         }
-        return null;
+        // return null;
+      },
+      //获取应用名称
+      getAppName:function (appId) {
+        for(var i=0;i<lightApps.length;i++){
+          if(appId == lightApps[i].appId){
+            return lightApps[i].appName;
+          }
+        }
       }
     };
   })
+
+  .factory('NotifyApplicationData', function ($mqtt, $rootScope,$formalurlapi, $timeout, $http,$ToastUtils) {
+    var defaultCount=1;
+    var defaultNumber=5;
+    var applicationLists = []; // 应用列表数据集合
+    var applicationChild = []; // 返回每个应用的通知列表
+    var noOrYesConfirmList=[];
+
+    return {
+      // 获取应用列表及最新一条数据
+      getListInfo: function (userID,imcode) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsgAppList",
+            id:userID,
+            mepId:imcode
+          }
+        }).success(function (data, status) {
+          // 获取通知应用列表数据源
+          applicationLists = JSON.parse(decodeURIComponent(data)).Event.appList;
+          $rootScope.$broadcast('succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('error.update');
+        });
+      },
+      getApplicationList: function () {
+        return applicationLists;
+      },
+      getApplicationChildE:function (userID,imcode,fromId) {
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsg",
+            id:userID,
+            mepId:imcode,
+            date:"A",
+            fromId:fromId,
+            pageNo:defaultCount,
+            pageSize:defaultNumber
+          }
+        }).success(function (data, status) {
+
+          // 获取通知应用列表数据源
+          applicationChild = JSON.parse(decodeURIComponent(data)).msgList;
+          $rootScope.$broadcast('getApplicationChildE.succeed.update');
+
+          defaultCount++;
+        }).error(function (data, status) {
+          $ToastUtils.showToast(err);
+          $rootScope.$broadcast('getApplicationChildE.error.update');
+        });
+      },
+      getMsgReadListE:function (userID,imCode,msgid,isReaded) {
+        console.log("确认详情拿到的参数：" + userID +"--" + imCode +"--" + msgid +"--" + isReaded);
+
+        $http({
+          method: 'post',
+          timeout: 5000,
+          url:$formalurlapi.getBaseUrl(),
+          data:{
+            Action:"GetExtMsgReadList",
+            id:userID,
+            mepId:imCode,
+            msgId: msgid,
+            isReaded:isReaded
+          }
+        }).success(function (data, status) {
+          noOrYesConfirmList = JSON.parse(decodeURIComponent(data)).Event.userList;
+          $rootScope.$broadcast('getMsgReadListE.succeed.update');
+        }).error(function (data, status) {
+          $rootScope.$broadcast('getMsgReadListE.error.update');
+        });
+      },
+      getMsgReadList:function () {
+        return noOrYesConfirmList;
+      },
+      applicationChild:function () {
+        return applicationChild;
+      },
+      clearDefaultCount:function () {
+        defaultCount=1;
+      }
+    };
+  })
+
 ;

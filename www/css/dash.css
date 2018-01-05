@@ -9,7 +9,11 @@
   font-size:14px;
 }
 .font_16{
-  font-size:17px;
+  font-size:16px;
+  margin-left:10px;
+  display: inline-block;
+  height:24px;
+  line-height:24px;
 }
 .font_18{
   font-size:18px;
@@ -24,11 +28,19 @@
   color: white;
 }
 .background_white{
-  background: white;
+  background: #fff;
 }
 .margin_10{
   margin:10px;
 }
 .padding_10{
   padding:10px;
+}
+/**显示职务样式**/
+.proname{
+  margin-top: 3px;
+  margin-left: 10px;
+  margin-bottom: 3px;
+  font-size: 13px;
+  color: #a9a9a9
 }

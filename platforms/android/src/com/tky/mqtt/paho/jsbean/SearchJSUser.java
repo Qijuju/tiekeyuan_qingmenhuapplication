@@ -18,6 +18,15 @@ public class SearchJSUser {
     private String RootName;
     private String UserID;
     private String UserName;
+    private String DeptPath;
+
+    public String getDeptPath() {
+      return DeptPath;
+    }
+
+    public void setDeptPath(String deptPath) {
+      DeptPath = deptPath;
+    }
 
     public String getDeptID() {
       return DeptID;

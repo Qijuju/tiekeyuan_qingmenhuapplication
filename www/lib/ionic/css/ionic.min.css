@@ -3178,7 +3178,8 @@ body.grade-b, body.grade-c {
 }
 
 .content {
-  position: relative
+  position: relative；
+  /*定位内容*/
 }
 
 .scroll-content {
@@ -9193,7 +9194,7 @@ progress {
 
 .button.button-calm.activated, .button.button-calm.active {
   border-color: #a2a2a2;
-  background-color: #0a9dc7
+  background-color: #0a9dc7;
 }
 
 .button.button-calm.button-clear {

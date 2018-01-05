@@ -12,7 +12,7 @@ public class BaseBean implements Serializable {
   private boolean Succeed;
   private String ErrCode;
   private String Message;
-
+  private String sessionid;
   public String getActionID() {
     return ActionID;
   }
@@ -52,4 +52,14 @@ public class BaseBean implements Serializable {
   public void setMessage(String message) {
     Message = message;
   }
+
+  public String getSessionid() {
+    return sessionid;
+  }
+
+  public void setSessionid(String sessionid) {
+    this.sessionid = sessionid;
+  }
+
+
 }

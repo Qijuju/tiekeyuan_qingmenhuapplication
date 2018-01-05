@@ -20,6 +20,15 @@ public class UserJSDetail {
     private String Sex;
     private String UserID;
     private String UserName;
+    private String DeptPath;//用户所在部门路径
+
+    public String getDeptPath() {
+      return DeptPath;
+    }
+
+    public void setDeptPath(String deptPath) {
+      DeptPath = deptPath;
+    }
 
     public String getDeptID() {
       return DeptID;

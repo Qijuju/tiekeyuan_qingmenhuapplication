@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.maiml.wechatrecodervideolibrary.recoder.WechatRecoderActivity;
+import com.tky.im.connection.IMConnection;
 import com.tky.im.enums.IMEnums;
 import com.tky.im.params.ConstantsParams;
 import com.tky.im.receiver.IMReceiver;
@@ -47,20 +48,12 @@ import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
 import com.tky.mqtt.paho.utils.PhotoUtils;
 import com.tky.mqtt.paho.utils.RecorderManager;
-import com.tky.mqtt.plugin.thrift.ThriftApiClient;
-import com.tky.mqtt.plugin.thrift.api.SystemApi;
-import com.tky.mqtt.plugin.thrift.callback.MyAsyncMethodCallback;
-import com.tky.mqtt.services.ChatListService;
-import com.tky.mqtt.services.LocalPhoneService;
-import com.tky.mqtt.services.MessagesService;
-import com.tky.mqtt.services.TopContactsService;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
-import org.apache.thrift.TException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,11 +71,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import im.model.RST;
-import im.model.UserDetail;
-import im.server.System.IMSystem;
-import im.server.User.IMUser;
 
 /**
  * 通讯插件
@@ -116,7 +104,6 @@ public class MqttChat extends CordovaPlugin {
     super.initialize(cordova, webView);
     setHasLogin(false);
 //    mqttReceiver = MqttReceiver.getInstance();
-
     docFileReceiver = new DocFileReceiver();
     IntentFilter filter = new IntentFilter();
     filter.addAction(ReceiverParams.DOC_FILE_GET);
@@ -218,6 +205,28 @@ public class MqttChat extends CordovaPlugin {
   }
 
   /**
+   * 保存数据
+   *
+   * @param args
+   * @param callbackContext
+   */
+  public void saveInt(final JSONArray args, final CallbackContext callbackContext) {
+    if (args != null) {
+      try {
+        String key = args.getString(0);
+        int value = args.getInt(1);
+        SPUtils.save(key,value);
+        setResult(key + "#" + value, PluginResult.Status.OK, callbackContext);
+      } catch (JSONException e) {
+        setResult("JSONError", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } else {
+      setResult("NULLPointerException", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+  /**
    * 保存登录的用户名
    *
    * @param args
@@ -254,6 +263,25 @@ public class MqttChat extends CordovaPlugin {
         String key = args.getString(0);
         if (key != null) {
           setResult(SPUtils.getString(key, ""), PluginResult.Status.OK, callbackContext);
+        } else {
+          setResult("key is null", PluginResult.Status.ERROR, callbackContext);
+        }
+      } catch (JSONException e) {
+        setResult("JSONError", PluginResult.Status.ERROR, callbackContext);
+        e.printStackTrace();
+      }
+    } else {
+      setResult("args is null", PluginResult.Status.ERROR, callbackContext);
+    }
+  }
+
+
+  public void getInt(final JSONArray args, final CallbackContext callbackContext) {
+    if (args != null) {
+      try {
+        String key = args.getString(0);
+        if (key != null) {
+          setResult(SPUtils.getInt(key, 0), PluginResult.Status.OK, callbackContext);
         } else {
           setResult("key is null", PluginResult.Status.ERROR, callbackContext);
         }
@@ -479,380 +507,42 @@ public class MqttChat extends CordovaPlugin {
     }
     hasLogin = false;
     final long start = System.currentTimeMillis();
-    if (ThriftApiClient.isHttp) {
-      try {
-        Request request = new Request(cordova.getActivity());
-        //退出登录，成功：停止mqtt服务，取消通知栏通知，并设置登录状态为false，清空登录信息；失败：返回一个结果
-        Map<String, Object> paramsMap = ParamsMap.getInstance("LoginOff").getParamsMap();
-        request.addParamsMap(paramsMap);
-        OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
-          @Override
-          public void onSuccess(Request request, String result) {
-            try {
-              JSONObject obj = new JSONObject(result);
-              if (obj.getBoolean("Succeed")) {
-                IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
-                MqttNotification.cancelAll();
-                MqttRobot.setIsStarted(false);
-                //清空登录信息
-//                IMSwitchLocal.clearUserInfo();
-                setResult("success", PluginResult.Status.OK, callbackContext);
-              } else {
-                setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-              }
-            } catch (JSONException e) {
-              setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-              e.printStackTrace();
-            }
-          }
-
-          @Override
-          public void onFailure(Request request, Exception e) {
-            setResult("网络异常，退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-          }
-        });
-      } catch (JSONException e) {
-        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-        e.printStackTrace();
-      } catch (Exception e) {
-        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-        e.printStackTrace();
-      }
-    } else {
-      MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call> callback = null;
-      try {
-        callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
-          @Override
-          public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
-//          ToastUtil.showSafeToast("调用接口耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
-            try {
-              RST result = cancelUser_call.getResult();
-              if (result.result || "105".equals(result.getResultCode()) || "106".equals(result.getResultCode())) {
-//              MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-//              MqttOper.closeMqttConnection();
-//              IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-                IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
-                MqttNotification.cancelAll();
-                MqttRobot.setIsStarted(false);
-//              ToastUtil.showSafeToast("执行完退出登录耗时：" + (System.currentTimeMillis() - start) * 1.0d / 1000 + "秒");
-                setResult("success", PluginResult.Status.OK, callbackContext);
-              } else {
-                setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-              }
-            } catch (TException e) {
-              setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-              e.printStackTrace();
-            }
-            close();
-          }
-
-          @Override
-          public void onError(Exception e) {
-            close();
-            setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-          }
-        };
-        SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), callback);
-      } catch (Exception e) {
-        if (callback != null) {
-          callback.close();
-        }
-        setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-        e.printStackTrace();
-      }
-    }
-  }
-
-  /**
-   * 切换账号
-   *
-   * @param args
-   * @param callbackContext
-   */
-  public void switchAccount(final JSONArray args, final CallbackContext callbackContext) {
     try {
-      final String userID = args.getString(0);
-      if (getUserID().equals(userID)) {
-        setResult("-1", PluginResult.Status.OK, callbackContext);
-        return;
-      }
-      MyAsyncMethodCallback<IMUser.AsyncClient.GetUser_call> callback = null;
-      try {
-        callback = new MyAsyncMethodCallback<IMUser.AsyncClient.GetUser_call>() {
-          @Override
-          public void onComplete(IMUser.AsyncClient.GetUser_call getUser_call) {
-            UserDetail user = null;
-            try {
-              user = getUser_call.getResult().getUser();
-              final UserDetail finalUser = user;
-              if (finalUser.isIsActive()) {
-                IMSwitchLocal.reloginCheck(user.getUserID(), new IMSwitchLocal.IReloginCheck() {
-                  @Override
-                  public void onCheck(boolean result) {
-                    if (result) {
-                      swithAccount(finalUser, callbackContext);
-                    } else {
-                      MyAsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call> callback = null;
-                      try {
-                        callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
-                          @Override
-                          public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
-                            try {
-                              RST result = activateUser_call.getResult();
-                              if (result.result) {
-                                swithAccount(finalUser, callbackContext);
-                              } else {
-                                setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                              }
-                            } catch (TException e) {
-                              setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                              e.printStackTrace();
-                            }
-                            close();
-                          }
-
-                          @Override
-                          public void onError(Exception e) {
-                            close();
-                            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
-                          }
-                        };
-                        //调用激活账户方法，激活该账号
-                        SystemApi.activeUser(userID, UIUtils.getDeviceId(), callback);
-                      } catch (IOException e) {
-                        if (callback != null) {
-                          callback.close();
-                        }
-                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                      } catch (TException e) {
-                        if (callback != null) {
-                          callback.close();
-                        }
-                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                      }
-                    }
-                  }
-                });
-              } else {
-                MyAsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call> callback = null;
-                try {
-                  callback = new MyAsyncMethodCallback<IMSystem.AsyncClient.ActivateUser_call>() {
-                    @Override
-                    public void onComplete(IMSystem.AsyncClient.ActivateUser_call activateUser_call) {
-                      try {
-                        RST result = activateUser_call.getResult();
-                        if (result.result) {
-                          swithAccount(finalUser, callbackContext);
-                        } else {
-                          setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                        }
-                      } catch (TException e) {
-                        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                        e.printStackTrace();
-                      }
-                      close();
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                      close();
-                      setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
-                    }
-                  };
-                  //调用激活账户方法，激活该账号
-                  SystemApi.activeUser(userID, UIUtils.getDeviceId(), callback);
-                } catch (IOException e) {
-                  if (callback != null) {
-                    callback.close();
-                  }
-                  setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                  e.printStackTrace();
-                } catch (TException e) {
-                  if (callback != null) {
-                    callback.close();
-                  }
-                  setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-                  e.printStackTrace();
-                }
-              }
-
-            } catch (TException e) {
-              e.printStackTrace();
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
-            close();
-          }
-
-          @Override
-          public void onError(Exception e) {
-            close();
-            setResult("网络错误！", PluginResult.Status.ERROR, callbackContext);
-          }
-        };
-        SystemApi.getUser(getUserID(), userID, callback);
-      } catch (IOException e) {
-        if (callback != null) {
-          callback.close();
-        }
-        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-        e.printStackTrace();
-      } catch (TException e) {
-        if (callback != null) {
-          callback.close();
-        }
-        setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-        e.printStackTrace();
-      }
-    } catch (JSONException e) {
-      setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    } catch (Exception e) {
-      setResult("未知异常！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    }
-
-    /*MqttRobot.setIsStarted(false);
-    if (!NetUtils.isConnect(cordova.getActivity())) {
-      setResult("网络未连接！", PluginResult.Status.ERROR, callbackContext);
-      return;
-    }
-    hasLogin = false;
-    MqttOper.closeMqttConnection();
-    UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-    try {
-      SystemApi.cancelUser(getUserID(), UIUtils.getDeviceId(), new MyAsyncMethodCallback<IMSystem.AsyncClient.CancelUser_call>() {
+      Request request = new Request(cordova.getActivity());
+      //退出登录，成功：停止mqtt服务，取消通知栏通知，并设置登录状态为false，清空登录信息；失败：返回一个结果
+      Map<String, Object> paramsMap = ParamsMap.getInstance("LoginOff").getParamsMap();
+      request.addParamsMap(paramsMap);
+      OKAsyncClient.post(request, new OKHttpCallBack2<String>() {
         @Override
-        public void onComplete(IMSystem.AsyncClient.CancelUser_call cancelUser_call) {
+        public void onSuccess(Request request, String result) {
           try {
-            RST result = cancelUser_call.getResult();
-            if (result.result) {
+            JSONObject obj = new JSONObject(result);
+            if (obj.getBoolean("Succeed")) {
+              IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
               MqttNotification.cancelAll();
-              MqttRobot.setIsStarted(true);
+              MqttRobot.setIsStarted(false);
+              //清空登录信息
+//                IMSwitchLocal.clearUserInfo();
               setResult("success", PluginResult.Status.OK, callbackContext);
             } else {
               setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
             }
-          } catch (TException e) {
+          } catch (JSONException e) {
             setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
             e.printStackTrace();
           }
         }
 
         @Override
-        public void onError(Exception e) {
-          setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-        }
-      });
-    } catch (Exception e) {
-      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
-      e.printStackTrace();
-    }*/
-  }
-
-  /**
-   * 激活的账号才可以走该方法（为减少代码量，精简代码，故抽取出该段代码
-   *
-   * @param user
-   * @param callbackContext
-     */
-  private void swithAccount(UserDetail user, final CallbackContext callbackContext) {
-    try {
-      //因切换账号，重新整理登录数据
-      Map<String, Object> map = new HashMap<String, Object>();
-      map.put("result", true);
-      map.put("resultCode", 100);
-      map.put("isActive", true);
-      map.put("sDatetime", System.currentTimeMillis());
-      map.put("userID", user.getUserID());
-      map.put("userName", user.getUserName());
-      map.put("deptID", user.getDeptID());
-      map.put("deptName", user.getDeptName());
-      List<Map<String, String>> viceUserList = new ArrayList<Map<String, String>>();
-      JSONObject userInfo = getUserInfo();
-
-      Map<String, String> selfSubMap = new HashMap<String, String>();
-      selfSubMap.put("deptId", userInfo.has("deptId") ? userInfo.getString("deptId") : "");
-      selfSubMap.put("deptName", userInfo.has("deptName") ? userInfo.getString("deptName") : "");
-      selfSubMap.put("rootName", userInfo.has("rootName") ? userInfo.getString("rootName") : "");
-      selfSubMap.put("userID", userInfo.has("userID") ? userInfo.getString("userID") : "");
-      selfSubMap.put("userName", userInfo.has("userName") ? userInfo.getString("userName") : "");
-      viceUserList.add(selfSubMap);
-
-
-      if (userInfo.has("viceUser")) {
-        JSONArray viceUserArr = userInfo.getJSONArray("viceUser");
-        for (int i = 0; i < viceUserArr.length(); i++) {
-          JSONObject viceUser = viceUserArr.getJSONObject(i);
-          if (!viceUser.getString("userID").equals(user.getUserID())) {
-            Map<String, String> subMap = new HashMap<String, String>();
-            subMap.put("deptId", viceUser.has("deptId") ? viceUser.getString("deptId") : "");
-            subMap.put("deptName", viceUser.has("deptName") ? viceUser.getString("deptName") : "");
-            subMap.put("rootName", viceUser.has("rootName") ? viceUser.getString("rootName") : "");
-            subMap.put("userID", viceUser.has("userID") ? viceUser.getString("userID") : "");
-            subMap.put("userName", viceUser.has("userName") ? viceUser.getString("userName") : "");
-            viceUserList.add(subMap);
-          } else {
-            if (viceUser.has("rootName")) {
-              map.put("rootName", viceUser.getString("rootName"));
-            } else {
-              map.put("rootName", "名称为空");
-            }
-          }
-        }
-      }
-      map.put("viceUser", viceUserList);
-      Gson gson = new Gson();
-      String loginJson = gson.toJson(map);
-      SPUtils.save("login_info", loginJson);
-      //删除数据
-      MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
-      ChatListService chatListService = ChatListService.getInstance(UIUtils.getContext());
-      TopContactsService topContactsService = TopContactsService.getInstance(UIUtils.getContext());
-      topContactsService.deleteAllData();
-      messagesService.deleteAllData();
-      chatListService.deleteAllData();
-      LocalPhoneService localPhoneService = LocalPhoneService.getInstance(UIUtils.getContext());
-      localPhoneService.deleteAllData();
-      //允许启动MQTT之后重新订阅TOPIC
-      MqttReceiver.hasRegister = false;
-      //断开MQTT，启动MQTT交给MQTT去处理
-//      MqttOper.closeMqttConnection();
-      //重连检查
-      UIUtils.runInMainThread(new Runnable() {
-        @Override
-        public void run() {
-          try {
-            hasLogin = false;
-            MqttTopicRW.writeTopicsAndQos(null, null);
-//            IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-            IMBroadOper.broad(ConstantsParams.PARAM_STOP_IMSERVICE);
-//            MqttRobot.setConnectionType(ConnectionType.MODE_CONNECTION_DOWN_MANUAL);
-//            MqttOper.closeMqttConnection();
-            //销毁MqttService
-//              UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-//            UIUtils.getContext().stopService(new Intent(UIUtils.getContext(), MqttService.class));
-          } catch (Exception e) {
-          } finally {
-            MqttNotification.cancelAll();
-            new Thread(new Runnable() {
-              @Override
-              public void run() {
-                try {
-                  Thread.sleep(100);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
-                setResult("success", PluginResult.Status.OK, callbackContext);
-              }
-            }).start();
-          }
+        public void onFailure(Request request, Exception e) {
+          setResult("网络异常，退出登录失败！", PluginResult.Status.ERROR, callbackContext);
         }
       });
     } catch (JSONException e) {
-      setResult("切换账号失败！", PluginResult.Status.ERROR, callbackContext);
+      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
+      e.printStackTrace();
+    } catch (Exception e) {
+      setResult("退出登录失败！", PluginResult.Status.ERROR, callbackContext);
       e.printStackTrace();
     }
   }

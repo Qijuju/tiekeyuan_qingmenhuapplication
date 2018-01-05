@@ -29,6 +29,7 @@ import com.tky.mqtt.dao.Messages;
 import com.tky.mqtt.paho.MessageOper;
 import com.tky.mqtt.paho.ToastUtil;
 import com.tky.mqtt.paho.UIUtils;
+import com.tky.mqtt.paho.main.MqttRobot;
 import com.tky.mqtt.paho.utils.GsonUtils;
 import com.tky.mqtt.paho.utils.MqttOper;
 import com.tky.mqtt.paho.utils.NetUtils;
@@ -63,157 +64,161 @@ public class IMService extends Service {
      */
     public static int posStartCount = 0;
 
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    //注册广播（发送消息和重连）
+    IntentFilter filter = new IntentFilter();
+    filter.addAction(ConstantsParams.PARAM_RE_CONNECT);//重新启动MQTT
+    filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);//发送消息
+
+    filter.addAction(ConstantsParams.PARAM_KILL_IM);//杀死MQTT
+    filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);//停止MQTT
+    filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);//订阅TOPIC
+    filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);//注销TOPIC
+    filter.addAction(ConstantsParams.PARAM_BASH_IM);//断开MQTT，让其自动重启
+    receiver = new IMReceiver();
+    registerReceiver(receiver, filter);
+
+    //消息发送回调
+    receiver.setOnMessageSendListener(new IMReceiver.OnMessageSendListener() {
+      @Override
+      public void onSend(final String topic, final String content) {
+        //发送消息
+        sendMsg(topic, content);
+      }
+    });
+
+
+    //重连回调
+    receiver.setOnIMReconnect(new IMReceiver.OnIMReconnect() {
+      private int count = 0;
+      private final ReconnectRunnable reconnectRunnable = new ReconnectRunnable();
+      @Override
+      public void onReconnect() {
+        try {
+          if (IMSwitchLocal.getUserID() == null || "".equals(IMSwitchLocal.getUserID().trim())) {
+            return;
+          }
+        } catch (JSONException e) {
+          e.printStackTrace();
+          return;
+        }
+        if (imConnection != null && imConnection.isConnected()) {
+          IMStatusManager.setImStatus(IMEnums.CONNECTED);
+          IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
+          return;
+        }
+        if (NetUtils.getNetWorkState(getBaseContext()) == -1) {
+          ToastUtil.showSafeToast("网络问题");
+          return;
+        }
+        if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
+          IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
+            @Override
+            public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
+              if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
+                count = 0;
+                new Thread(new Runnable() {
+                  @Override
+                  public void run() {
+                    connectIM();
+                  }
+                }).start();
+              } else if (status == IMSwitchLocal.EReloginCheckStatus.NEED_LOGOUT) {
+                count = 0;
+                //账号被挤掉，退出登录
+                if(MqttRobot.isStarted()){
+                  IMSwitchLocal.exitLogin(getBaseContext());
+                }
+              } else {
+                handler.postDelayed(reconnectRunnable, 2000 * (count++));
+              }
+            }
+          });
+        }
+      }
+    });
+
+    //杀死IM，如果不需要重启IM，可以手动设置状态为手动断开了IM
+    receiver.setOnKillIM(new IMReceiver.OnKillIM() {
+      @Override
+      public void onKillIM() {
+        if (imConnection != null && imConnection.isConnected()) {
+          imConnection.closeIM();
+        }
+      }
+    });
+
+    //干死IM并且干死IMService、IMProtectService
+    receiver.setOnStopIMService(new IMReceiver.OnStopIMService() {
+      @Override
+      public void onStopIMService() {
+        //向服务起发送离线消息
+        IMUtils.sendOnOffState("UOF", imConnection);
+        IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
+        if (imConnection != null) {
+          imConnection.closeIM();
+        }
+        stopService(new Intent(getBaseContext(), IMProtectService.class));
+        stopSelf();
+      }
+    });
+
+    //订阅topic
+    receiver.setOnTopicSubscribeListener(new IMReceiver.OnTopicSubscribeListener() {
+      @Override
+      public void onTopicSubscribe(String topic) {
+        try {
+          if (imConnection != null) {
+            imConnection.subscribe(topic, 1);
+          }
+        } catch (MqttException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+
+    //反订阅topic
+    receiver.setOnTopicUnSubscribeListener(new IMReceiver.OnTopicUnSubscribeListener() {
+      @Override
+      public void onTopicUnSubscribe(String topic) {
+        if (imConnection != null) {
+          try {
+            imConnection.unsubscribe(topic);
+          } catch (MqttException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
+
+    //断开MQTT，让其自动重启
+    receiver.setOnBashIMListener(new IMReceiver.OnBashIMListener() {
+      @Override
+      public void onBashIM() {
+        if (imConnection != null && imConnection.isConnected()) {
+          imConnection.closeIM();
+        }
+      }
+    });
+
+    //注册亮屏广播
+    screenReceiver = new IMScreenReceiver();
+    IntentFilter screenFilter = new IntentFilter();
+    screenFilter.addAction(Intent.ACTION_SCREEN_ON);
+    registerReceiver(screenReceiver, screenFilter);
+  }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
 
-        //注册广播（发送消息和重连）
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ConstantsParams.PARAM_RE_CONNECT);//重新启动MQTT
-        filter.addAction(ConstantsParams.PARAM_SEND_MESSAGE);//发送消息
-
-        filter.addAction(ConstantsParams.PARAM_KILL_IM);//杀死MQTT
-        filter.addAction(ConstantsParams.PARAM_STOP_IMSERVICE);//停止MQTT
-        filter.addAction(ConstantsParams.PARAM_TOPIC_SUBSCRIBE);//订阅TOPIC
-        filter.addAction(ConstantsParams.PARAM_TOPIC_UNSUBSCRIBE);//注销TOPIC
-        filter.addAction(ConstantsParams.PARAM_BASH_IM);//断开MQTT，让其自动重启
-        receiver = new IMReceiver();
-        registerReceiver(receiver, filter);
-
-        //消息发送回调
-        receiver.setOnMessageSendListener(new IMReceiver.OnMessageSendListener() {
-            @Override
-            public void onSend(final String topic, final String content) {
-                //发送消息
-                sendMsg(topic, content);
-            }
-        });
-
-        //重连回调
-        receiver.setOnIMReconnect(new IMReceiver.OnIMReconnect() {
-            private int count = 0;
-            private final ReconnectRunnable reconnectRunnable = new ReconnectRunnable();
-            @Override
-            public void onReconnect() {
-              try {
-                  if (IMSwitchLocal.getUserID() == null || "".equals(IMSwitchLocal.getUserID().trim())) {
-                  return;
-                }
-              } catch (JSONException e) {
-                e.printStackTrace();
-                return;
-              }
-                if (imConnection != null && imConnection.isConnected()) {
-                    IMStatusManager.setImStatus(IMEnums.CONNECTED);
-                    IMBroadOper.broad(ConstantsParams.PARAM_CONNECT_SUCCESS);
-                    return;
-                }
-                if (NetUtils.getNetWorkState(getBaseContext()) == -1) {
-                    ToastUtil.showSafeToast("网络问题");
-                    return;
-                }
-                if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-                    IMSwitchLocal.reloginCheckStatus(new IMSwitchLocal.IReloginCheckStatus() {
-                        @Override
-                        public void onCheck(IMSwitchLocal.EReloginCheckStatus status) {
-                            if (status == IMSwitchLocal.EReloginCheckStatus.CAN_RECONNECT) {
-                                count = 0;
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        connectIM();
-                                    }
-                                }).start();
-                            } else if (status == IMSwitchLocal.EReloginCheckStatus.NEED_LOGOUT) {
-                                count = 0;
-                                //账号被挤掉，退出登录
-                                IMSwitchLocal.exitLogin(getBaseContext());
-                            } else {
-                                handler.postDelayed(reconnectRunnable, 2000 * (count++));
-                            }
-                        }
-                    });
-                }
-            }
-        });
-
-        //杀死IM，如果不需要重启IM，可以手动设置状态为手动断开了IM
-        receiver.setOnKillIM(new IMReceiver.OnKillIM() {
-            @Override
-            public void onKillIM() {
-                if (imConnection != null && imConnection.isConnected()) {
-                    imConnection.closeIM();
-                }
-            }
-        });
-
-        //干死IM并且干死IMService、IMProtectService
-        receiver.setOnStopIMService(new IMReceiver.OnStopIMService() {
-            @Override
-            public void onStopIMService() {
-              //向服务起发送离线消息
-              IMUtils.sendOnOffState("UOF", imConnection);
-              IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-                if (imConnection != null) {
-                    imConnection.closeIM();
-                }
-                stopService(new Intent(getBaseContext(), IMProtectService.class));
-                stopSelf();
-            }
-        });
-
-        //订阅topic
-        receiver.setOnTopicSubscribeListener(new IMReceiver.OnTopicSubscribeListener() {
-            @Override
-            public void onTopicSubscribe(String topic) {
-                try {
-                    if (imConnection != null) {
-                        imConnection.subscribe(topic, 2);
-                    }
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        //反订阅topic
-        receiver.setOnTopicUnSubscribeListener(new IMReceiver.OnTopicUnSubscribeListener() {
-            @Override
-            public void onTopicUnSubscribe(String topic) {
-                if (imConnection != null) {
-                    try {
-                        imConnection.unsubscribe(topic);
-                    } catch (MqttException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        //断开MQTT，让其自动重启
-        receiver.setOnBashIMListener(new IMReceiver.OnBashIMListener() {
-            @Override
-            public void onBashIM() {
-                if (imConnection != null && imConnection.isConnected()) {
-                    imConnection.closeIM();
-                }
-            }
-        });
-
-        //注册亮屏广播
-        screenReceiver = new IMScreenReceiver();
-        IntentFilter screenFilter = new IntentFilter();
-        screenFilter.addAction(Intent.ACTION_SCREEN_ON);
-        registerReceiver(screenReceiver, screenFilter);
-    }
-
-    private static int count = 0;
+  private static int count = 0;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (imConnection == null || !imConnection.isConnected() && IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
@@ -251,7 +256,7 @@ public class IMService extends Service {
         //右上角的时间显示
         builder.setShowWhen(true);
         //设置通知栏的标题内容
-        builder.setContentTitle("即时通正在运行");
+        builder.setContentTitle("铁路工程管理平台正在运行");
         //创建通知
         Notification notification = builder.build();
         //设置为前台服务

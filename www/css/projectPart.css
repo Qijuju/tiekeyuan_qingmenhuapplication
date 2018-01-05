@@ -1,0 +1,116 @@
+/*.QRcode{*/
+  /*width: 120px;*/
+  /*height: 160px;*/
+  /*margin:50px auto;*/
+/*}*/
+/*.button.button-positive.searchQRcode,.button.button-positive.scanQRcode{*/
+  /*width: 120px;*/
+  /*height: 120px;*/
+  /*-webkit-border-radius: 50%;*/
+  /*-moz-border-radius: 50%;*/
+  /*border-radius: 50%;*/
+
+/*}*/
+/*.button.button-positive.searchQRcode{*/
+  /*background: url("../img/search.png") no-repeat 0 0 ;*/
+  /*background-size: cover;*/
+/*}*/
+/*.button.button-positive.scanQRcode{*/
+  /*background: url("../img/sao.png") no-repeat 0 0 ;*/
+  /*background-size: cover;*/
+/*}*/
+/*p.gcbwQRcode{*/
+  /*text-align: center;*/
+  /*line-height:40px;*/
+  /*font-size:18px;*/
+  /*color: #5777AB;*/
+/*}*/
+
+/* 水波特效 */
+/*.projectConta{*/
+  /*width:100%;*/
+  /*height:1200px;*/
+  /*background: #6bfffa;*/
+/*}*/
+.conta{
+  position: relative;
+  top:50%;
+  width:100%;
+  height:360px;
+  margin-top:-180px;
+}
+.projectPart{
+  width:100%;
+  height:20px;
+  text-align: center;
+  line-height:20px;
+  color: #000;
+  font-size:14px;
+  margin-top:15px;
+}
+.projectPartWrap,
+.projectPartBox{
+  position: relative;
+  width:120px;
+  height:120px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: url(../img/search.png) no-repeat 0 0;
+  background-size: cover;
+  margin:0px auto;
+  overflow: hidden;
+}
+.projectPartBox{
+  background: url(../img/sao.png) no-repeat 0 0;
+  background-size: cover;
+  margin-top:50px;
+}
+
+.animateSpan{
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+
+.animate{
+  -webkit-animation: ripple .3s linear;
+  -moz-animation: ripple .3s linear;
+  -ms-animation: ripple .3s linear;
+  -o-animation: ripple .3s linear;
+  animation: ripple .3s linear
+}
+@-webkit-keyframes ripple {
+  100%{
+    opacity: 0;
+    -webkit-transform: scale(3);
+  }
+}
+@-moz-keyframes ripple {
+  100%{
+    opacity: 0;
+    -moz-transform: scale(3);
+  }
+}
+@-o-keyframes ripple {
+  100%{
+    opacity: 0;
+    -o-transform: scale(3);
+  }
+}
+@keyframes ripple {
+  100%{
+    opacity: 0;
+    transform: scale(3);
+  }
+}

@@ -1,13 +1,13 @@
 .rj-weather-rightbig {
   position: absolute;
-  left: 52%;
+  left: 46%;
   top: 39%;
   color: #8c8c8c;
   font-size: 40px;
 }
 .rj-weather-rightbigsmall {
   position: absolute;
-  left: 78%;
+  left: 76%;
   top: 11%;
   color: #8c8c8c;
   font-size: 16px;
@@ -15,29 +15,30 @@
 
 .rj-weather-rightsmall {
   position: absolute;
-  left: 78%;
+  left: 76%;
   top: 36%;
   color: #8c8c8c;
   font-size: 16px;
 }
 .rj-weather-rightsmallsamll {
   position: absolute;
-  left: 78%;
+  left: 76%;
   top: 63%;
   color: #8c8c8c;
   font-size: 16px;
 }
 .rj-push-right {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  /*888*/
+  /*position: absolute;*/
+  /*right: 10px;*/
+  /*top: 10px;*/
   color: #8c8c8c;
   font-size: 13px;
 }
 .rj-push-rightright {
-  position: absolute;
-  right: 36px;
-  top: 10px;
+  /*position: absolute;*/
+  /*right: 36px;*/
+  /*top: 10px;*/
   color: #8c8c8c;
   font-size: 13px;
 }
@@ -57,9 +58,9 @@
   font-size: 15px;
 }
 .rj-push-rightdown {
-  position: absolute;
-  right: 10px;
-  top: 30px;
+  /*position: absolute;*/
+  /*right: 10px;*/
+  /*top: 30px;*/
   color: #8c8c8c;
   font-size: 16px;
 }
@@ -101,6 +102,7 @@
   padding: 5px;
   overflow: auto;
   position: relative;
+  margin-top:10px;
 }
 .rj-message-wrap .rj-head-pic,
 .rj-message-wrap .rj-head-pic-right{
@@ -149,8 +151,9 @@
 }
 .rj-message-wrap .rj-message{
   float: left;
-  margin-left: 16px;
+  margin-left: 56px;
   background-color: #fff;
+  color: black;
 
 }
 
@@ -170,8 +173,8 @@
   background-color: #DD5044;
   line-height: 16px;
   text-align: center;
-  right: 18px;
-  top: 35px;
+  right: 6px;
+  top: 32px;
 }
 .rj-sm-red-icon11 {
   display: inline-block;
@@ -188,6 +191,7 @@
   color: #FFF;
   font-size: 12px;
   text-align: center;
+  line-height:16px;
 }
 
 .bar-footer {
@@ -228,7 +232,6 @@
 .rj-footer-btn-left {
   position: absolute !important;
   bottom: 0;
-
 }
 
 .rj-footer-btn-wrap .rj-send-button{
@@ -239,7 +242,7 @@
   text-align: center;
   position: absolute;
   bottom: 3px;
-  width: 38px;
+  width: 40px;
   left: 4px;
 }
 
@@ -251,7 +254,7 @@
   background-color: #E8E8E8;
   padding-left: 10px;
   height: 30px;
-  line-height: 25px;
+  line-height: 30px;
   font-size: 100%;
   color: #545454;
 }
@@ -332,16 +335,21 @@
   text-align: left;
   align-self: center;
 
+
 }
 
 
 .rj-notify-bg{
-  border-radius: 8px;
+  /*border-radius: 4px;*/
   margin-left: 12px;
   margin-right: 12px;
   margin-top: 6px;
   margin-bottom: 6px;
   padding-top: -15px;
+  /*设置外阴影*/
+  -webkit-box-shadow:0 0 5px #8C8C8C;
+  -moz-box-shadow:0 0 5px #8C8C8C;
+  box-shadow:0 0 5px #8C8C8C;
 }
 
 .rj-notify1-bg{
@@ -365,19 +373,15 @@
 }
 
 .rj-notify-bggg{
-  border-radius: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
   height: 85px;
   padding-top: -15px;
-
 }
 
 .rj-notify-bgggg{
-  border-radius: 6px;
   margin-top: 5px;
-  /*margin-bottom: 5px;*/
-  height: 85px;
+  height: 70px;
   padding-top: -15px;
 }
 

@@ -1,4 +1,5 @@
 <ion-view view-title="特别关注" class="common-view-color common-bg-color">
+
   <ion-nav-bar align-title="center"class="newbarhead">
     <ion-nav-buttons side="left">
       <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ui-sref="tab.contacts">
@@ -6,28 +7,29 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content overflow-scroll="false" >
+
+  <ion-content overflow-scroll="false">
     <div >
       <ion-list>
-        <ion-item ng-repeat="item in contactsListatten" style="height: 60px" ng-click="jumpattenDetial(item.UserID)">
+        <ion-item ng-repeat="item in contactsListatten" ng-click="jumpattenDetial(item.UserID)" on-finish>
           <div class="row" >
-            <div class="col-20" align="center" >
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==1||item.UserID.substring((item.UserID.length-1),item.UserID.length)==9" class="center circle1" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==2||item.UserID.substring((item.UserID.length-1),item.UserID.length)==8" class="center circle2" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==3||item.UserID.substring((item.UserID.length-1),item.UserID.length)==7" class="center circle3" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==4||item.UserID.substring((item.UserID.length-1),item.UserID.length)==6" class="center circle4" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-              <div ng-if="item.UserID.substring((item.UserID.length-1),item.UserID.length)==5||item.UserID.substring((item.UserID.length-1),item.UserID.length)==0" class="center circle5" style=" position: absolute;left: 7%;top: 20%;font-size: 14px;text-align: center;padding-top: 9px">{{item.UserName.length > 2 ? item.UserName.substring((item.UserName.length-2),item.UserName.length):item.UserName}}</div>
-            </div>
-            <div class="col-80" align="left" >
-              <p style="font-size: 18px" align="left">{{item.UserName}}</p>
+            <div class="col">
+              <!--头像-->
+              <span class="friendsIcon">{{item.logoName}}</span>
+              <!--名称-->
+              <span  class="myAttentionUserName" >{{item.UserName}}</span>
+
             </div>
           </div>
+
           <ion-option-button class="button-assertive" ng-click="removeattention(item.UserID)">
             取消关注
           </ion-option-button>
         </ion-item>
+
       </ion-list>
     </div>
 
   </ion-content>
 </ion-view>
+

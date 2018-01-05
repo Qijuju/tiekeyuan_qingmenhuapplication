@@ -16,9 +16,11 @@ import com.tky.im.test.LogPrint;
 import com.tky.im.utils.IMBroadOper;
 import com.tky.im.utils.IMStatusManager;
 import com.tky.im.utils.IMSwitchLocal;
+import com.tky.im.utils.IMUtils;
 import com.tky.mqtt.dao.ChatList;
 import com.tky.mqtt.dao.GroupChats;
 import com.tky.mqtt.dao.Messages;
+import com.tky.mqtt.dao.NewNotifyList;
 import com.tky.mqtt.dao.Otherpichead;
 import com.tky.mqtt.paho.MType;
 import com.tky.mqtt.paho.MessageOper;
@@ -34,6 +36,7 @@ import com.tky.mqtt.plugin.thrift.ThriftApiClient;
 import com.tky.mqtt.services.ChatListService;
 import com.tky.mqtt.services.GroupChatsService;
 import com.tky.mqtt.services.MessagesService;
+import com.tky.mqtt.services.NewNotifyListService;
 import com.tky.mqtt.services.OtherHeadPicService;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -65,19 +68,30 @@ public class IMMessageCallback implements MqttCallback {
 
   @Override
   public void connectionLost(Throwable throwable) {
-    LogPrint.print("MQTT", "异常断开或手动断开~~~");
-    LogPrint.print2("MQTT", "异常断开或手动断开~~~");
-    //断开IM
-    IMBroadOper.broad(ConstantsParams.PARAM_IM_DOWN);
+    //链接失败后 发送下线状态
+    IMUtils.sendOnOffState("UOF",imConnection);
+
+    final long start = System.currentTimeMillis();
     if (IMStatusManager.getImStatus() != IMEnums.CONNECT_DOWN_BY_HAND) {
-      //设置连接失败状态
-      IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN);
+      UIUtils.getHandler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          if (!imConnection.isConnected()) {
+            //断开IM
+            IMBroadOper.broad(ConstantsParams.PARAM_IM_DOWN);
+          }
+          UIUtils.getHandler().removeCallbacks(this);
+        }
+      }, 10000);
     }
+    //设置连接失败状态
+    IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN);
     UIUtils.getHandler().postDelayed(new Runnable() {
       @Override
       public void run() {
         //发送重连广播
         IMBroadOper.broad(ConstantsParams.PARAM_RE_CONNECT);
+        UIUtils.getHandler().removeCallbacks(this);
       }
     }, 10);
   }
@@ -110,6 +124,7 @@ public class IMMessageCallback implements MqttCallback {
           map.setMessage(message + "###0");
         }
         final String fromUserId = map.get_id();
+
         if (fromUserId != null && MqttTopicRW.isFromMe("User", fromUserId) && "Android".equals(map.getPlatform())) {
           return;
         }
@@ -131,22 +146,34 @@ public class IMMessageCallback implements MqttCallback {
             tip = "Audio".equals(messagetype) ? "【语音】" : tip;
             tip = "Vedio".equals(messagetype) ? "【小视频】" : tip;
             GroupChatsService groupChatsService = GroupChatsService.getInstance(UIUtils.getContext());
-            if (fromUserId != null && !map.isFromMe()) {
-              if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
-                List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
-                if (groupChatsList.size() != 0) {
-                  String chatname = groupChatsList.get(0).getGroupName();
-                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip, new Intent(context, MainActivity.class));
-                }
-              } else {
-                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, new Intent(context, MainActivity.class));
-              }
-            }
+
             //入库(MESSAGE和CHATLIST表)
             //消息转化完毕就入库
             int count = 0;
-            //平台推送消息
-            if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {
+
+            if("Platform".equals(map.getType())){
+              map.set_id(map.getFrom());
+              map.setFromName(map.getFromName());
+              map.setLevelName(map.getLevelName());
+              map.setMsgLevel(map.getMsgLevel());
+              map.setLink(map.getLink());
+              map.setLinkType(map.getLinkType());
+              map.setMessage(map.getMessage());
+              map.setWhen(map.getWhen());
+              map.setTitle(map.getTitle());
+              map.setMsgId(map.getMsgId());
+              //将通知消息入库
+              NewNotifyListService newNotifyListService=NewNotifyListService.getInstance(UIUtils.getContext());
+              NewNotifyList newNotifyList=new NewNotifyList();
+              newNotifyList.setAppId(map.getSenderid());//应用的appid
+              newNotifyList.setMsgId(map.getMsgId());//通知消息的唯一标识id
+              newNotifyList.setIsRead("0");//通知消息已读未读状态： 0:未读；1：已读
+              newNotifyList.setAppName(map.getUsername());//应用名称
+              newNotifyListService.saveObj(newNotifyList);
+              //将未读数量提前存
+              List<NewNotifyList> newNotifyLists=newNotifyListService.queryData("where IS_READ =?","0");
+              SPUtils.save("badgeNotifyCount",newNotifyLists.size());
+            } else if ("User".equals(map.getType()) || "Group".equals(map.getType()) || "Dept".equals(map.getType())) {//平台推送消息
               Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
               String year = c.get(Calendar.YEAR) + "";
               String month = c.get(Calendar.MONTH) + 1 + "";
@@ -162,13 +189,11 @@ public class IMMessageCallback implements MqttCallback {
               try {
                 long stmill = formatter.parse(start).getTime();
                 long etmill = formatter.parse(end).getTime();
-                System.out.println("单聊时间：" + stmill + "/" + etmill);
                 /**
                  * 根据sessionid取出该对话的聊天列表
                  */
                 MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
                 List<Messages> messagesList = messagesService.queryData("where sessionid =?", map.getSessionid());
-                System.out.println("查询聊天记录条数" + messagesList.size());
                 Messages messages = new Messages();
                 //取出数组最后一条数据跟今天的毫秒进行比对，若比今天的最低毫秒数低的话，则将istime为true的数据的daytype置为"0"
                 if (messagesList.size() > 0) {
@@ -258,7 +283,7 @@ public class IMMessageCallback implements MqttCallback {
                   }
                 }
                 Messages lastmessages = messagesList.get(messagesList.size() - 1);
-                Log.i("最后一条消息的对话名称", lastmessages.getUsername());
+//                Log.i("最后一条消息的对话名称", lastmessages.getUsername());
                 //将对话最后一条入库到chat表
                 /**
                  * 1.先从数据库查询是否存在当前会话列表
@@ -298,7 +323,7 @@ public class IMMessageCallback implements MqttCallback {
                   chatList.setId(chatLists.get(0).getId());
                   if ("User".equals(lastmessages.getType())) {
                     chatList.setChatName(chatLists.get(0).getChatName());
-                    Log.i("you对话创建对话后台====", chatLists.get(0).getChatName());
+//                    Log.i("you对话创建对话后台====", chatLists.get(0).getChatName());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
                     GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
                     List<GroupChats> groupChatsList = groupChatsSer.queryData("where id =?", lastmessages.getSessionid());
@@ -313,7 +338,7 @@ public class IMMessageCallback implements MqttCallback {
                 } else {
                   chatList.setId(lastmessages.getSessionid());
                   if ("User".equals(lastmessages.getType())) {
-                    Log.i("无对话创建对话后台====", lastmessages.getUsername());
+//                    Log.i("无对话创建对话后台====", lastmessages.getUsername());
                     chatList.setChatName(lastmessages.getUsername());
                   } else if ("Group".equals(lastmessages.getType()) || "Dept".equals(lastmessages.getType())) {
                     GroupChatsService groupChatsSer = GroupChatsService.getInstance(UIUtils.getContext());
@@ -342,6 +367,21 @@ public class IMMessageCallback implements MqttCallback {
             String json = GsonUtils.toJson(map, MessageBean.class);
             //将消息广播出去
             IMBroadOper.broadArrivedMsg(topic, msg.getQos(), json);
+            if (fromUserId != null && !map.isFromMe()) {
+              if ("Dept".equals(map.getType()) || "Group".equals(map.getType())) {
+                List<GroupChats> groupChatsList = groupChatsService.queryData("where id =?", map.getSessionid());
+                if (groupChatsList.size() != 0) {
+                  String chatname = groupChatsList.get(0).getGroupName();
+                  MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, chatname, tip,map.getType(), new Intent(context, MainActivity.class));
+                }
+              } else if("User".equals(map.getType())){
+                MqttNotification.showNotify(map.getSessionid(), R.drawable.icon, username, tip, map.getType(),new Intent(context, MainActivity.class));
+              }else if("Platform".equals(map.getType())){
+                System.out.println("是不是经常进来"+username);
+                MqttNotification.showNotify(map.getFromName()+"推送一条通知", R.drawable.icon, username, tip, map.getType(),new Intent(context, MainActivity.class));
+              }
+            }
+
           }
         });
       } else if (bean != null && bean instanceof EventMessageBean) {
@@ -351,10 +391,10 @@ public class IMMessageCallback implements MqttCallback {
         if (!isKUF) {
           //接收到消息时的铃声
           ring();
-          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()), new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qunzuxiaoxi", R.drawable.ic_launcher, "群组消息", getMessage(eventMsgBean.getEventCode()),"",new Intent(context, MainActivity.class));
         } else if (eventMsgBean.getMepID().equals(UIUtils.getDeviceId())) {
           IMStatusManager.setImStatus(IMEnums.CONNECT_DOWN_BY_HAND);
-          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！", new Intent(context, MainActivity.class));
+          MqttNotification.showNotify("qiangzhituichu", R.drawable.ic_launcher, "提示", "您已被强制下线！","", new Intent(context, MainActivity.class));
         } else {
           return;
         }
@@ -422,7 +462,7 @@ public class IMMessageCallback implements MqttCallback {
 
         long stmill = formatter.parse(start).getTime();
         long etmill = formatter.parse(end).getTime();
-        System.out.println("群聊时间：" + stmill + "/" + etmill);
+//        System.out.println("群聊时间：" + stmill + "/" + etmill);
         //根据sessionid取出该对话的聊天列表
         MessagesService messagesService = MessagesService.getInstance(UIUtils.getContext());
         List<Messages> messagesList = messagesService.queryData("where sessionid =?", eventBean.getSessionid());
@@ -587,7 +627,6 @@ public class IMMessageCallback implements MqttCallback {
         IMBroadOper.broadArrivedMsg(topic, msg.getQos(), json);
         //如果是被添加为群成员，应该去服务器获取群组消息
         if ("YAM".equals(eventMsgBean.getEventCode())) {
-
           ThriftApiClient.getLatestMsg(eventMsgBean.getGroupID(), eventMsgBean.getWhen(), eventMsgBean.getGroupName());
         }
 

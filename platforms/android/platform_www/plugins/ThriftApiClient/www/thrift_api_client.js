@@ -4,6 +4,10 @@ var exec = require('cordova/exec');
 exports.login = function(username,password, success, error) {
   exec(success, error, "ThriftApiClient", "login", [username,password]);
 };
+
+exports.confirmSecretText = function(id,mepId,secretText, success, error) {
+  exec(success, error, "ThriftApiClient", "confirmSecretText", [id,mepId,secretText]);
+};
 exports.activeUser = function(userId, success, error) {
   exec(success, error, "ThriftApiClient", "activeUser", [userId]);
 };
@@ -106,6 +110,12 @@ exports.groupRemoveAdmin = function(groupID, adminsArr, success, error) {//群�
 exports.getAllGroup = function(success, error) {//获取用户所有群组
   exec(success, error, "ThriftApiClient", "getAllGroup", []);
 };
+exports.downloadMHApk = function(fileid,filesize, success, error) {//升级应用(包含下载和安装，http)
+  exec(success, error, "ThriftApiClient", "downloadMHApk", [fileid,filesize]);
+};
+exports.downloadQYYIcon = function(fileid,success, error) {//下载轻应用图标
+  exec(success, error, "ThriftApiClient", "downloadQYYIcon", [fileid]);
+};
 exports.installApk = function(targetPath, success, error) {//安装应用
   exec(success, error, "ThriftApiClient", "installApk", [targetPath]);
 };
@@ -149,7 +159,8 @@ exports.getMsgReadList = function(msgId, isReaded,success, error) {//获取确�
   exec(success, error, "ThriftApiClient", "getMsgReadList", [msgId, isReaded]);
 };
 
-
-
+exports.sendOperateLog = function(type, when,appId,success, error) {//新增一个客户端操作记录的接口
+  exec(success, error, "ThriftApiClient", "sendOperateLog", [type, when,appId]);
+};
 
 });

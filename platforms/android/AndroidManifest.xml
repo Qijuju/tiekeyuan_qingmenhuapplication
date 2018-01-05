@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<manifest android:hardwareAccelerated="true" android:versionCode="1" android:versionName="0.0.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
-    <permission android:name="com.r93535.im.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="com.ionicframework.im366077.permission.JPUSH_MESSAGE" />
+<manifest android:hardwareAccelerated="true" android:installLocation="auto" android:versionCode="1" android:versionName="0.0.1" package="com.r93535.im" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,15 +8,10 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -31,21 +22,28 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.front" android:required="false" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.SET_PROCESS_LIMIT" />
-    <application android:hardwareAccelerated="true" android:label="@string/app_name" android:name="ook.yzx.tinker.Application" android:persistent="true" android:supportsRtl="true">
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher2.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher3.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher2.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher3.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
+    <application android:hardwareAccelerated="true" android:label="@string/app_name" android:name="com.tky.mqtt.paho.BaseApplication" android:persistent="true" android:supportsRtl="true">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter android:label="@string/launcher_name">
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:exported="false" android:name="com.tky.mytinker.service.SampleResultService" />
+        <service android:exported="false" android:name="com.r93535.im.BadgeIntentService" />
         <service android:name="com.tky.im.service.IMService">
             <intent-filter android:priority="999">
                 <category android:name="android.intent.category.DEFAULT" />
@@ -61,87 +59,33 @@
         </receiver>
         <activity android:name="me.apla.cordova.AppPreferencesActivity" />
         <activity android:label="@string/multi_app_name" android:name="com.synconset.MultiImageChooserActivity" android:theme="@android:style/Theme.Holo.Light" />
-        <activity android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize" android:exported="false" android:name="com.google.zxing.client.android.CaptureActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="com.google.zxing.client.android.SCAN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:label="Share" android:name="com.google.zxing.client.android.encode.EncodeActivity">
-            <intent-filter>
-                <action android:name="com.phonegap.plugins.barcodescanner.ENCODE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:label="Share" android:name="com.google.zxing.client.android.HelpActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name="com.tky.mqtt.DocsManagerActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.photoview.PhotoScaleActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name="com.tky.grid.GridActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:exported="false" android:finishOnTaskLaunch="false" android:launchMode="singleInstance" android:name=".OnePxActivity" android:process=":newtask_onepx" android:theme="@style/liveActivityStyle" />
-        <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-        <uses-permission android:name="android.permission.WRITE_SETTINGS" />
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.PushService">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-            </intent-filter>
-        </service>
-        <service android:enabled="true" android:exported="true" android:name="cn.jpush.android.service.DaemonService">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="com.ionicframework.im366077" />
-            </intent-filter>
-        </service>
-        <receiver android:enabled="true" android:name="cn.jpush.android.service.PushReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-                <category android:name="com.ionicframework.im366077" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-        <activity android:configChanges="orientation|keyboardHidden" android:exported="false" android:name="cn.jpush.android.ui.PushActivity" android:theme="@android:style/Theme.NoTitleBar">
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.ionicframework.im366077" />
-            </intent-filter>
-        </activity>
-        <activity android:configChanges="orientation|keyboardHidden" android:exported="false" android:name="cn.jpush.android.ui.PopWinActivity" android:theme="@style/MyDialogStyle">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.ionicframework.im366077" />
-            </intent-filter>
-        </activity>
-        <service android:enabled="true" android:exported="false" android:name="cn.jpush.android.service.DownloadService">
-        </service>
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
-        <meta-data android:name="JPUSH_APPKEY" android:value="466074b30b38240e62898a77" />
+        <provider android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+        </provider>
+        <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote" />
+        <activity android:clearTaskOnLaunch="true" android:configChanges="orientation|keyboardHidden|screenSize" android:exported="false" android:name="com.google.zxing.client.android.CaptureActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:label="Share" android:name="com.google.zxing.client.android.encode.EncodeActivity" />
+        <activity android:name=".TestActivity" />
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc" android:required="false" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 </manifest>

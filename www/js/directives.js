@@ -75,8 +75,6 @@ angular.module('im.directives', [])
   /**
    * 本地联系人
    */
-
-
   .directive('cityListBox', function ($timeout, $ionicScrollDelegate,$ToastUtils) {
     return {
       restrict: 'A',
@@ -129,6 +127,20 @@ angular.module('im.directives', [])
       }
     }
   })
+  .directive('onFinish', function ($timeout) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attr) {
+        if (scope.$last === true) {
+          $timeout(function () {
+            scope.$emit('ngRepeatFinished');
+          });
+        }
+      }
+    }
+  });
+
+
 
 
 function SimplePubSub() {
