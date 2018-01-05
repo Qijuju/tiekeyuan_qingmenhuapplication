@@ -4,7 +4,7 @@
 
   <div class="bar bar-subheader" style="background: #fff;">
     <!-- tabs 切换按钮 -->
-    <div class="row">
+    <div class="row" id="notifyTab">
       <div class="notifyTabs col on" tabindex="0" ng-click="tabClick($event,0)">全部</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,1)">关注</div>
       <div class="notifyTabs col" tabindex="0" ng-click="tabClick($event,2)">通知应用</div>
@@ -54,7 +54,7 @@
           <img ng-if="item.isToped" src="img/toptp.png">
           <img ng-if="!item.isToped" src="img/toptop1.png">
         </div>
-        <div class="col" ng-click="goIsAttentionEvent2(item)">
+        <div class="col" ng-click="allIsAttention(item)">
           <!--关注-->
           <img ng-if="item.isAttention" src="img/focuseye.png">
           <img ng-if="!item.isAttention" src="img/focuseye1.png">
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <!-- 应用模块 -->
+    <!-- 通知应用模块 -->
     <div class="application" ng-if="showNum === 2" ng-repeat="item in applicationLists" ng-click="goApplicationDetail(item)">
       <div class="logoContentBox clearfix">
         <div class="logo">
@@ -168,8 +168,8 @@
 
         <div class="contentInfo">
           <div class="row">
-            <div class="col col-60">{{item.appName}}</div>
-            <div class="col col-40">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
+            <div class="col col-55">{{item.appName}}</div>
+            <div class="col col-45" align="right">{{item.when | date:'yyyy/MM/dd HH:mm'}}</div>
           </div>
           <div class="row">
             <div class="col"><span ng-if="item.noReadCount>0">[{{item.noReadCount}}条]&nbsp;</span>{{item.title}}</div>

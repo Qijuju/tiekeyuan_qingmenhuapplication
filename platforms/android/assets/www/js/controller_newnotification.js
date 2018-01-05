@@ -5,6 +5,9 @@
 angular.module('newnotification.controllers', [])
   .controller('newnotificationCtrl', function ($scope,$ToastUtils, $state,$chatarr, $pubionicloading, $api, $timeout, $rootScope, $notify, $mqtt, $ionicScrollDelegate, $ionicSlideBoxDelegate,$greendao,NetData,NotifyApplicationData,$http,$formalurlapi,$stateParams) {
 
+    console.log("接收到的对象的数据为"+JSON.stringify($stateParams.obj));
+
+
     // 获取
     $scope.applicationLists = [];           // 定义一个变量，接收调接口返回通知应用模块的的数据源
     $scope.showNum = 0;                     // 定义参数，标识要显示的模块
@@ -25,6 +28,7 @@ angular.module('newnotification.controllers', [])
 
     angular.element(document).ready(function () {
       var notifyTabs = $(".bar .notifyTabs");
+
 
       for(var i=0;i<notifyTabs.length;i++){
         notifyTabs[i].classList.remove("on");
@@ -134,14 +138,14 @@ angular.module('newnotification.controllers', [])
         data: param
       }).success(function (data, status) {
         // 将置顶和关注状态和后台后刷新页面
-        $state.go('tab.notification',{},{reload:true});
+        $state.go('tab.notification',{obj:obj},{reload:true});
 
       }).error(function (data, status, err) {
 
       });
     }
 
-    $scope.goIsAttentionEvent2 = function (item) {
+    $scope.allIsAttention = function (item) {
       var userID;
       var imCode;
       $mqtt.getUserInfo(function (succ) {
@@ -566,9 +570,6 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.openconfirm = function (obj) {
-
-      console.log("查看确认详情按钮触发事件");
-      console.log("传递的参数为："+JSON.stringify(obj));
       $state.go("confirmornot", {
         obj: obj
       })
@@ -581,6 +582,8 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.backNotify = function (notifyObj) {
+
+      console.log("点击返回要传的对象参数：" + JSON.stringify(notifyObj));
 
       if ($scope.showNum !== 2) {
         $state.go("tab.notification",{
@@ -712,12 +715,8 @@ angular.module('newnotification.controllers', [])
 
   .controller('confirmornotCtrl', function ($scope,$state, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory,$http,$formalurlapi,$rootScope,$mqtt,NotifyApplicationData,$pubionicloading) {
 
-    console.log("确认详情页进来了");
-    console.log("确认详情页进来了，接收的参数为："+JSON.stringify($stateParams.obj));
     $scope.obj = $stateParams.obj;
     $scope.msgid = $stateParams.obj.msgId;
-
-
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 

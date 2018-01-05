@@ -116,6 +116,9 @@ angular.module('im.routes', [])
             controller: 'newnotificationCtrl'
           }
         },
+        params:{
+            obj:null
+        },
         reload:true
       })
       .state('tab.webpage', {
@@ -262,7 +265,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-modifyname.html',
         controller: 'groupModifyNameCtrl',
         cache:false
-
       })
       .state('groupNotice', {
         url: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup',
@@ -469,6 +471,15 @@ angular.module('im.routes', [])
 
       })
 
+      .state('applicationDetail', {
+        url: '/applicationDetail',
+        templateUrl: 'templates/applicationDetail.html',
+        cache:false,
+        controller: 'applicationDetailCtrl',
+        params:{
+          obj:null
+        }
+      })
 
 
       .state('searchlocal', {

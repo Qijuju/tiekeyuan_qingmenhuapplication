@@ -561,9 +561,7 @@ angular.module('message.services', [])
       },
 
       arriveMsg:function (topic) {
-        console.log("arriveMsg 方法走进来了");
         mqtt.getChats(topic,function (message) {
-          console.log("是否为通知");
           var arriveMessage={};
           arriveMessage._id=message._id;
           arriveMessage.sessionid=message.sessionid;
@@ -602,7 +600,6 @@ angular.module('message.services', [])
               notifyMessage.msgId=message.msgId;
               notifyMessage.isAttention=false;
               notifyMessage.__isset_bitfield="";
-              console.log("mqtt推送过来的通知"+JSON.stringify(notifyMessage));
             $rootScope.$broadcast('allNotifications.update',notifyMessage);
           } else if (message.type === "Alarm" || message.type === "System") {   //老版的系统报警和推送
             $greendao.saveObj('SystemMsgService',arriveMessage,function (data) {
