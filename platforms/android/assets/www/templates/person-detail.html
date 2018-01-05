@@ -1,36 +1,41 @@
 <ion-view >
-  <ion-content overflow-scroll="false" style="background-color:#e5e5e5 ">
+  <ion-content overflow-scroll="false">
 
-    <div>
-      <img src="img/backmain.png" style="position: absolute;left:1%;top:2%;width: 48px;height: 36px;" ng-click="backAny()"/>
+    <!--返回←箭头-->
+    <div class="back">
+      <img src="img/backmain.png" ng-click="backAny()"/>
     </div>
 
-    <div>
-      <img ng-show="persondsfs.Sex=='男'" src="img/im_new_male.png"  style="position: absolute;right:3%;top:3%;width: 22px;height: 22px;" >
-      <img ng-show="persondsfs.Sex=='女'" src="img/im_new_female.png"  style="position: absolute;right:3%;top:3%;width: 22px;height: 22px;" >
+    <!--性别-->
+    <div class="sex">
+      <img ng-show="persondsfs.Sex=='男'" src="img/im_new_male.png" >
+      <img ng-show="persondsfs.Sex=='女'" src="img/im_new_female.png">
     </div>
 
-    <div style="height: 255px;background-color: white;width:100%" align="center">
-      <img ng-if="!picyoumeiyoudet" src="img/personsetting.png" width="75px" height="75px" style="margin-top: 45px" ng-click="godetailaa()">
+    <div class="personDetailDiv">
+      <!--头像-->
+      <img ng-if="!picyoumeiyoudet" src="img/personsetting.png" ng-click="godetailaa()">
 
-      <img  ng-if="picyoumeiyoudet" width="75px" height="75px" style="margin-top: 45px;" ng-click="godetailaa()"  src="{{securlpicdet}}" class="yuanjiao1">
+      <img  ng-if="picyoumeiyoudet" ng-click="godetailaa()"  src="{{securlpicdet}}" class="yuanjiao1">
 
-      <div style="margin-top: 2px">
-        <P style="text-align-all: center;font-size: 17px">{{persondsfs.UserName}}</P>
-
+      <!--用户姓名-->
+      <div class="personDetailUserName">
+        <p>{{persondsfs.UserName}}</p>
       </div>
-      <div style="position: absolute;top: 185px;"  class="row">
+
+      <!--发消息、保存手机、打电话、发短信-->
+      <div  class="row ">
         <div class="col" align="center" >
           <a ng-click="createchat(userId,persondsfs.Mobile,persondsfs.UserName)" ng-show="persondsfs.IsActive==true">
             <ul>
-              <li><img src="img/im_new_message.png" width="30" height="30"></li>
-              <li style="color: black;">发消息</li>
+              <li><img class="personDetailImg" src="img/im_new_message.png"></li>
+              <li class="liColor">发消息</li>
             </ul>
           </a>
           <a ng-show="persondsfs.IsActive==false" ng-click="showalert()">
             <ul>
-              <li><img src="img/im_gray_message.png" width="30" height="30"></li>
-              <li style="color: #A3A3A3;">发消息</li>
+              <li><img class="personDetailImg" src="img/im_gray_message.png"></li>
+              <li class="liColorGray">发消息</li>
             </ul>
           </a>
         </div>
@@ -38,8 +43,8 @@
         <div class="col" align="center" ng-click="insertPhone(persondsfs.UserName,persondsfs.Mobile)">
           <a >
             <ul>
-              <li><img src="img/im_new_local.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">保存手机</li>
+              <li><img class="personDetailImg" src="img/im_new_local.png"></li>
+              <li class="liColor">保存手机</li>
             </ul>
           </a>
         </div>
@@ -47,8 +52,8 @@
         <div class="col" align="center" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
           <a >
             <ul>
-              <li><img src="img/im_new_phone.png" width="30" height="30"></li>
-              <li style="color: black;margin-top: -2px">打电话</li>
+              <li><img class="personDetailImg" src="img/im_new_phone.png"></li>
+              <li class="liColor">打电话</li>
             </ul>
           </a>
         </div>
@@ -56,51 +61,62 @@
         <div class="col" align="center" ng-click="detailSendSms(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
           <a >
             <ul>
-              <li><img src="img/im_new_duanxin.png" width="32" height="32"></li>
-              <li style="color: black;margin-top: -3px">发短信</li>
+              <li><img class="personDetailImg" src="img/im_new_duanxin.png"></li>
+              <li class="liColor">发短信</li>
             </ul>
           </a>
         </div>
-
       </div>
     </div>
 
-    <div style="margin-top: 20px;margin-left: 15px">
-      <p style="font-size: 14px">个人信息</p>
+    <!--个人信息-->
+    <div class="row personInfo">
+      <div class="col">
+        <p>个人信息</p>
+      </div>
     </div>
 
-    <ul class="list" style="margin-top: 15px">
-
-      <li class="item ">
+    <div class="row personInfoRow">
+      <div class="col">
         <p>部门</p>
-        <h2>{{persondsfs.DeptName}}</h2>
-      </li>
-      <li class="item">
-        <p>职务</p>
-        <h2>{{(persondsfs.Duty==0||persondsfs.Duty==""||persondsfs.Duty==undefined) ? "未填写":persondsfs.Duty}}</h2>
-      </li>
-      <li class="item " ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
-        <p>电话</p>
-        <h2>{{persondsfs.Mobile}}</h2>
-        <i class="button button-dark button-clear icon ion-ios-arrow-right" style=" position: absolute;right: -1%;top: 24%"></i>
-      </li>
-    </ul>
-
-    <div >
-      <ul>
-        <Li ng-if="!persondsfs.IsAttention" >
-          <ion-toggle  ng-checked="persondsfs.IsAttention" ng-click="addattentiondetail(persondsfs.UserID)">
-            添加关注
-          </ion-toggle>
-        </Li>
-        <Li ng-if="persondsfs.IsAttention">
-          <ion-toggle  ng-checked="persondsfs.IsAttention" ng-click="removeattention(persondsfs.UserID)">
-            添加关注
-          </ion-toggle>
-        </Li>
-
-      </ul>
+        <p>{{persondsfs.DeptPath}}</p>
+      </div>
     </div>
+    <div class="row personInfoRow">
+      <div class="col">
+        <p>职务</p>
+        <p>{{(persondsfs.Duty==0||persondsfs.Duty==""||persondsfs.Duty==undefined) ? "未填写":persondsfs.Duty}}</p>
+      </div>
+    </div>
+    <div class="row personInfoRow">
+      <div class="col">
+        <p>电话</p>
+        <p class="phoneNumber" ng-click="detailCall(persondsfs.UserID,persondsfs.Mobile,persondsfs.UserName,1)">
+          {{persondsfs.Mobile}}
+          <img src="img/newjiantou.png">
+        </p>
+      </div>
+    </div>
+
+    <!--添加或取消关注-->
+    <div class="row focus">
+      <div class="col">
+        <div ng-if="!persondsfs.IsAttention">
+          <ion-toggle1 ng-checked="persondsfs.IsAttention"
+                       ng-click="addattentiondetail(persondsfs.UserID)">
+            添加关注
+          </ion-toggle1>
+        </div>
+
+        <div ng-if="persondsfs.IsAttention">
+          <ion-toggle1 ng-checked="persondsfs.IsAttention"
+                       ng-click="removeattention(persondsfs.UserID)">
+            取消关注
+          </ion-toggle1>
+        </div>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
 

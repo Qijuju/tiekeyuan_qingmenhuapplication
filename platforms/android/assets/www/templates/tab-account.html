@@ -1,85 +1,94 @@
+
 <ion-view class="padding common-view-color" view-title="我的">
   <ion-nav-bar align-title="center" class="newbarhead">
   </ion-nav-bar>
 
-  <ion-content overflow-scroll="false" style="background-color:#e5e5e5">
+  <ion-content class="tabAccount" overflow-scroll="false" >
 
-    <div style="background-color: white;margin-top: 16px">
-      <ion-item  class="item-avatar rj-notify-bggg "   style="height: 88px" >
+    <div class="countInfo clearfix">
+      <!--头像和姓名-->
+      <div class="headName clearfix">
+        <div class="head">
+          <div ng-if="!picyoumeiyou" ng-click="setpic()">{{jiename}}</div>
+          <img ng-if="picyoumeiyou" src="{{securlpic}}"  ng-click="setpic()" alt="headLogo">
+        </div>
+        <div class="name">
+          <p>{{mymypersonname}}</p>
+        </div>
+      </div>
 
-        <div ng-if="!picyoumeiyou" class="center circle11" style=" position: absolute;left: 3%;top: 10%;font-size: 16px;text-align: center;padding-top: 22px;z-index: 1" ng-click="setpic()">{{jiename}}</div>
-        <img ng-if="picyoumeiyou" src="{{securlpic}}" class="yuanjiao2"  ng-click="setpic()">
-        <p style="margin-left: 18px;margin-top: 17px;font-size: 19px;color: black">{{mymypersonname}}</p>
-        <span class="rj-weather-rightbig"  style="color: #6495ED;margin-top: 2px">{{weathdate}}</span>
-        <span class="rj-weather-rightbigsmall"  style="color: #6495ED;margin-top: 2px">{{currentcity}}</span>
-        <span class="rj-weather-rightsmall"  style="color: #6495ED;margin-top: 2px">{{pm25aa}}</span>
-        <span class="rj-weather-rightsmallsamll"  style="color: #6495ED;margin-top: 2px">{{weatherzhen}}</span>
-
-      </ion-item>
+      <!--天气-->
+      <div class="weatherInfo">
+        <div>
+          <p class="weather">{{currentcity}}</p>
+          <p class="weather">{{pm25aa}}</p>
+          <p class="weather">{{weatherzhen}}</p>
+        </div>
+        <div>
+          <p class="weathdate">{{weathdate}}</p>
+        </div>
+      </div>
     </div>
 
-
+    <!--列表：我的资料、设置、关于、功能-->
+    <!-- menu-close ：用来关闭菜单-->
     <div class="common-margin-top">
-    <ul>
-      <li>
-        <div class="row" style="background-color: white"  ng-click="gomyinformation()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/zil.png" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">我的资料</p>
+      <ul>
+        <li menu-close>
+          <div  class="row" ng-click="gomyinformation()">
+            <div class="col">
+              <img src="img/zil.png" height="24px">
+              <span class="common-contact-bigp">我的资料</span>
+              <img src="img/newjiantou.png">
+            </div>
           </div>
-          <div class="col-10" style="text-align: center">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div style="width: 100%;height: 1px;color: ghostwhite; margin-left: 10px"></div>
-      </li>
-      <li>
-        <div style="width: 100%;height: 1px;color: ghostwhite; margin-left: 10px"></div>
-      </li>
-      <li>
-        <div class="row" style="background-color: white" ng-click="goacountsettion()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/shez.png" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">设置</p>
-          </div>
-          <div class="col-10" style="text-align: center">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div style="width: 100%;height: 1px;color: ghostwhite;margin-left: 10px"></div>
-      </li>
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white" ng-click="goaboutus()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/guany.png" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">关于</p>
-          </div>
-          <div class="col-10" style="text-align: center">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
-          </div>
-        </div>
-      </li>
+        </li>
 
-      <li style="border-bottom: 1px solid gainsboro">
-        <div class="row" style="background-color: white" ng-click="goFounction()">
-          <div class="col" style="margin-left: 10px;padding: 10px"> <img src="img/founction.png" height="24px"></div>
-          <div class="col col-75" style="margin-top: 10px">
-            <p class="common-contact-bigp">功能</p>
+        <li menu-close>
+          <div class="row" ng-click="goacountsettion()">
+            <div class="col">
+              <img src="img/shez.png" height="24px">
+              <span class="common-contact-bigp">设置</span>
+              <img src="img/newjiantou.png">
+            </div>
           </div>
-          <div class="col-10" style="text-align: center">
-            <img src="img/newjiantou.png" height="14px" style="margin-top: 14px">
+        </li>
+        <li menu-close class="bb" >
+          <div class="row" ng-click="goaboutus()">
+            <div class="col">
+              <img src="img/guany.png" height="24px">
+              <span class="common-contact-bigp">关于</span>
+              <img src="img/newjiantou.png">
+            </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-    </ul>
+        <li menu-close class="bb">
+          <div class="row" ng-click="goFounction()">
+            <div class="col">
+              <img src="img/founction.png" height="24px">
+              <span class="common-contact-bigp">功能</span>
+              <img src="img/newjiantou.png">
+            </div>
+          </div>
+        </li>
+
+        <!--技术探索，暂时不上-->
+        <!--<li menu-close class="bb">-->
+          <!--<div class="row" ng-click="goDesktop()">-->
+            <!--<div class="col">-->
+              <!--<img src="img/founction.png" height="24px">-->
+              <!--<span class="common-contact-bigp">创建快捷方式</span>-->
+              <!--<img src="img/newjiantou.png">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+
+      </ul>
     </div>
-    <button class="button button-block button-stable "  ng-click="showConfirm()" style="color: #1D95D4;font-size: 16px;height: 60px; margin-top: 32px">
-      退出登录
-    </button>
+
+   <!--退出登录按钮-->
+    <button class="button button-block button-positive logoutBtn"  ng-click="showConfirm()">退出登录</button>
+
   </ion-content>
 </ion-view>

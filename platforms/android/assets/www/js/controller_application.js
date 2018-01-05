@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/8/14.
  */
 angular.module('application.controllers', ['ionic', 'ngCordova'])
-  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$ionicActionSheet,$ionicLoading,$ionicPlatform,$location,$ionicHistory) {
+  .controller('ChatsCtrl', function ($scope,$state,$timeout,$mqtt,$greendao,$rootScope,$chatarr,$cordovaFileOpener2,$api,$cordovaBarcodeScanner,$ToastUtils,$ionicActionSheet,$pubionicloading,$ionicPlatform,$location,$ionicHistory) {
 
 
     $scope.pdfshow=function () {
@@ -16,21 +16,13 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.dianjiaaa=function () {
       if ($scope.a==0){
         $scope.a=1;
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         },500);
       }else {
         $scope.a=0;
       }
-
-
     }
 
     $scope.b=0;
@@ -38,15 +30,9 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
       if ($scope.b==0){
         $scope.b=1;
         // Setup the loader
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         },500);
       }else {
         $scope.b=0;
@@ -57,15 +43,9 @@ angular.module('application.controllers', ['ionic', 'ngCordova'])
     $scope.dianjiccc=function () {
       if ($scope.c==0){
         $scope.c=1;
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: false,
-          maxWidth: 100,
-          showDelay: 0
-        });
+        $pubionicloading.showloading('','正在加载...');
         $timeout(function () {
-          $ionicLoading.hide();
+          $pubionicloading.hide();
         },500);
       }else {
         $scope.c=0;

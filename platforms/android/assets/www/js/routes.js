@@ -4,6 +4,7 @@
 angular.module('im.routes', [])
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
+    // 根据不同设备，tabs位置、样式不同设置
     $ionicConfigProvider.platform.ios.tabs.style('standard');
     $ionicConfigProvider.platform.ios.tabs.position('bottom');
     $ionicConfigProvider.platform.android.tabs.style('standard');
@@ -22,9 +23,16 @@ angular.module('im.routes', [])
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
+
+
+    // if none of the above states are matched, use this as the fallback
+    //入口默认路径
+    // $urlRouterProvider.otherwise('/welcome');
+    // $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/newsPage');
+
     $stateProvider
 
-    // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
         abstract: true,
@@ -48,14 +56,15 @@ angular.module('im.routes', [])
         url: '/login',
         cache: false,
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
+        controller: 'loginCtrl'
       })
-      .state('gesturelogin', {
-        url: '/gesturelogin',
-        cache: false,
-        templateUrl: 'templates/gesturelogin.html',
-        controller: 'gestureloginCtrl'
-      })
+        //暂时关闭手势密码登陆的功能
+      // .state('gesturelogin', {
+      //   url: '/gesturelogin',
+      //   cache: false,
+      //   templateUrl: 'templates/gesturelogin.html',
+      //   controller: 'gestureloginCtrl'
+      // })
       .state('datapicture', {
         url: '/datapicture',
         templateUrl: 'templates/datapicture.html',
@@ -87,7 +96,6 @@ angular.module('im.routes', [])
         cache:false
       })
       // Each tab has its own nav history stack:
-
       .state('tab.message', {
         url: '/message/:id/:sessionid/:grouptype',
         cache:false,
@@ -107,7 +115,11 @@ angular.module('im.routes', [])
             templateUrl: 'templates/tab-notification.html',
             controller: 'newnotificationCtrl'
           }
-        }
+        },
+        params:{
+            obj:null
+        },
+        reload:true
       })
       .state('tab.webpage', {
         url: '/webpage',
@@ -131,15 +143,26 @@ angular.module('im.routes', [])
         }
       })
       //rxy 页面首页动态获取路由
+      // .state('tab.portal', {
+      //   url: '/portal',
+      //   cache:false,
+      //   views: {
+      //     'tab-portal': {
+      //       templateUrl: 'templates/tab-portal.html',
+      //       controller: 'portalCtrl'
+      //     }
+      //   }
+      // })
       .state('tab.portal', {
         url: '/portal',
         cache:false,
         views: {
           'tab-portal': {
-            templateUrl: 'templates/tab-portal.html',
-            controller: 'portalCtrl'
+            templateUrl: 'templates/tab-portal2.html',
+            controller: 'portalCtrl2'
           }
-        }
+        },
+        reload:true
       })
       //rxy 页面详情路由
       .state('cxtx', {
@@ -175,7 +198,7 @@ angular.module('im.routes', [])
         controller: 'notifyDetailCtrl',
         params:{
           obj:null
-        },
+        }
       })
 
       .state('notifyApplication', {
@@ -203,6 +226,7 @@ angular.module('im.routes', [])
 
       })
 
+      // 常用联系人
       .state('topContacts', {
         url: '/topContacts',
         templateUrl: 'templates/top_contacts.html',
@@ -211,6 +235,8 @@ angular.module('im.routes', [])
 
 
       })
+
+      // 特别关注
       .state('myAttention', {
         url: '/myAttention',
         templateUrl: 'templates/my_attention.html',
@@ -239,7 +265,6 @@ angular.module('im.routes', [])
         templateUrl: 'templates/group-modifyname.html',
         controller: 'groupModifyNameCtrl',
         cache:false
-
       })
       .state('groupNotice', {
         url: '/groupNotice/:groupid/:grouptype/:groupname/:ismygroup',
@@ -286,53 +311,10 @@ angular.module('im.routes', [])
       })
 
       .state('second', {
-        url: '/second/:contactId',
+        url: '/second/:contactId/:contactName/:childcount/:index/:personFlag',
         templateUrl: 'templates/contact-second.html',
         controller: 'ContactSecondCtrl',
         cache:false
-
-      })
-      .state('third', {
-        url: '/third/:contactId/:secondname',
-        templateUrl: 'templates/contact-third.html',
-        controller: 'ContactThirdCtrl',
-        cache:false
-
-      })
-      .state('forth', {
-        url: '/forth/:contactId/:secondname/:thirdname',
-        templateUrl: 'templates/contact-forth.html',
-        controller: 'ContactForthCtrl',
-        cache:false
-
-      })
-      .state('fifth', {
-        url: '/fifth/:contactId/:secondname/:thirdname/:forthname',
-        templateUrl: 'templates/contact-fifth.html',
-        controller: 'ContactFifthCtrl',
-        cache:false
-
-      })
-      .state('sixth', {
-        url: '/sixth/:contactId/:secondname/:thirdname/:forthname/:fifthname',
-        templateUrl: 'templates/contact-sixth.html',
-        controller: 'ContactSixthCtrl',
-        cache:false
-
-      })
-      .state('seventh', {
-        url: '/seventh/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname',
-        templateUrl: 'templates/contact-seventh.html',
-        controller: 'ContactSeventhCtrl',
-        cache:false
-
-      })
-      .state('eighth', {
-        url: '/eighth/:contactId/:secondname/:thirdname/:forthname/:fifthname/:sixthname/:seventhname',
-        templateUrl: 'templates/contact-eighth.html',
-        controller: 'ContactEighthCtrl',
-        cache:false
-
       })
 
       .state("masstexting",{
@@ -358,12 +340,13 @@ angular.module('im.routes', [])
       })
 
       .state('person', {
-        url: '/person/:userId',
+        url: '/person/:userId/:index',
         templateUrl: 'templates/person-detail.html',
         controller: 'PersonCtrl',
         cache:false
       })
 
+      // 我的群组
       .state('group', {
         url: '/group',
         templateUrl: 'templates/contact-group.html',
@@ -407,7 +390,7 @@ angular.module('im.routes', [])
         views: {
           'tab-account': {
             templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl',
+            controller: 'AccountCtrl'
           }
         }
       })
@@ -437,19 +420,19 @@ angular.module('im.routes', [])
         url: '/addnewpersonfirst/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-first.html',
         controller: 'addNewPersonfirstCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonsecond', {
         url: '/addnewpersonsecond/:contactId:/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-second.html',
         controller: 'addNewPersonsecondCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonthird', {
         url: '/addnewpersonthird/:contactId/:secondname/:createtype/:groupid/:groupname/:functiontag',
         templateUrl: 'templates/addNewPerson-third.html',
         controller: 'addNewPersonthirdCtrl',
-        cache:false,
+        cache:false
       })
       .state('addnewpersonforth', {
         url: '/addnewpersonforth/:contactId/:secondname/:thirdname/:createtype/:groupid/:groupname/:functiontag',
@@ -488,6 +471,15 @@ angular.module('im.routes', [])
 
       })
 
+      .state('applicationDetail', {
+        url: '/applicationDetail',
+        templateUrl: 'templates/applicationDetail.html',
+        cache:false,
+        controller: 'applicationDetailCtrl',
+        params:{
+          obj:null
+        }
+      })
 
 
       .state('searchlocal', {
@@ -606,6 +598,9 @@ angular.module('im.routes', [])
         url: '/confirmornot/:id',
         templateUrl: 'templates/notify-confirm.html',
         controller: 'confirmornotCtrl',
+        params:{
+          obj:null
+        }
       })
       .state('netconfirm', {
         url: '/netconfirm/:url',
@@ -615,14 +610,34 @@ angular.module('im.routes', [])
 
       })
 
+      // 关于我们
+      .state('aboutOur', {
+        templateUrl: 'templates/aboutour.html',
+        controller: 'aboutOurCtrl'
+      })
+      // 关于平台
+      .state('aboutPlatform', {
+        templateUrl: 'templates/aboutPlatform.html',
+        controller: 'aboutPlatformCtrl'
+      })
+      // 关于推荐
+      .state('aboutRecommend', {
+        templateUrl: 'templates/aboutRecommend.html',
+        controller: 'aboutPlatformCtrl'
+      })
 
+      //短信验证界面
+      .state('msgCheck',{
+        url: '/msgCheck/:errCode/:mobile/:userId/:mepId/:remPwd',
+        templateUrl: 'templates/verify.html',
+        controller: 'msgcheckCtrl'
+      })
 
-
-
-    // if none of the above states are matched, use this as the fallback
-    //入口
-    // $urlRouterProvider.otherwise('/welcome');
-    // $urlRouterProvider.otherwise('/login');
-    $urlRouterProvider.otherwise('/newsPage');
+      //轻门户--工程部位应用选择功能模块
+      .state('projectPart', {
+        url: '/projectPart/:appId/:imCode/:userId',
+        templateUrl: 'templates/projectPart.html',
+        controller: 'projectPartCtrl'
+      })
 
   });

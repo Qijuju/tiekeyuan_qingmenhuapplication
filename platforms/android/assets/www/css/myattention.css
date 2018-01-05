@@ -1,326 +1,104 @@
-/*.spinner svg {*/
-  /*width: 50px;*/
-  /*height: 50px;*/
-  /*border: 6px solid;*/
-  /*border-top-color: hsl(112, 100%, 88%);*/
-  /*border-left-color: hsl(142, 100%, 89%);*/
-  /*border-bottom-color: hsl(156, 100%, 86%);*/
-  /*border-right-color: hsl(200, 100%, 87%);*/
-  /*border-radius: 50%;*/
-  /*transform: rotate(45deg);*/
-  /*margin: 20px -10px -33px 8px;//上，右，下，左*/
-  /*!*color: #ffffff;*!*/
-  /*!*background-color: #ffffff;*!*/
-
-  /*display: inline-block;*/
-  /*!* The background is used to specify the border background *!*/
-  /*background: linear-gradient(90deg, hsla(212,67%,36%,0) 0%,*/
-  /*hsla(207,69%,51%,0) 76%,*/
-  /*hsla(0,0%,100%,1) 85%,*/
-  /*hsla(0,0%,100%,1) 100%); !* W3C *!*/
-  /*!* Background origin is the padding box by default.*/
-  /*Override to make the background cover the border as well. *!*/
-  /*-moz-background-origin: border;*/
-  /*background-origin: border-box;*/
-  /*!* A transparent border determines the width *!*/
-  /*box-shadow: inset -999px 0 0 #fff; !* The background color *!*/
-  /*animation: loading 1s linear infinite;*/
-/*}*/
-/*@keyframes loading {*/
-  /*0% { transform: translate(-9px, -25px) rotate(0deg); }*/
-  /*100% { transform: translate(-9px, -25px) rotate(360deg); }*/
-/*}*/
-
-.circle1 {
-  /*background: none repeat scroll 0 0 #02b5bb;*/
-  background-image:url(../img/circle1.png);
+.circle1,.circle1test, .circle2 ,.circle3,.circle4,.circle5,.circle6,.circle7,.circle8{
   border-radius: 50%;
   color: #FFFFFF;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
+  line-height:40px;
   text-align: center;
+
 }
-.circle1test {
-  /*background: none repeat scroll 0 0 #02b5bb;*/
+.circle1,.circle2,.circle3,.circle4,.circle5{
+  border:none;
+  font-size:12px;
+
+}
+.circle1test,.circle1 {
   background-image:url(../img/circle1.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
 }
 
 .circle2{
-  /*background: none repeat scroll 0 0 #9d55b8;*/
-  background-image:url(../img/circle2.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
+  background-image:url(../img/circle2.png) ;
 }
 
 .circle3{
-  /*background: none repeat scroll 0 0 #ea8010;*/
   background-image:url(../img/circle3.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 
 .circle4{
-  /*background: none repeat scroll 0 0 #84cd30;*/
   background-image:url(../img/circle4.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
+
 }
 
 .circle5{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/circle5.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 
 .circle6{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/circle6.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .circlered{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/circle_red.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 15px;
-  height: 15px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
   text-align: center;
 }
 
 .circle7{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
-  //background-image:url(../img/circle6.png);
+  background-image:url(../img/circle6.png);
   background-color: #56ABE4;
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 34px;
-  height: 34px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 
 .circle8{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   //background-image:url(../img/circle1.png);
   background-color: #00BB9C;
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 34px;
-  height: 34px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
+/*抽取后样式*/
+ .square1,.square2,.square3,.square4,.square5,.square6,.square7,.square8,.square9,.square10{
+   border-radius: 6px;
+   color: #FFFFFF;
+   width: 40px;
+   height: 40px;
+   line-height:40px;
+   background-position: 35% 35%;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   position: absolute;
+   text-align: center;
+
+ }
 .square1{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu1.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square2{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu2.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square3{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu3.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square4{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu4.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square5{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu5.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square6{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu6.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 38px;
-  height: 38px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square7{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/zuiji.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 35px;
-  height: 35px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square8{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/erji.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 35px;
-  height: 35px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 
 .square9{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/huangse.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 35px;
-  height: 35px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square10{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/quntu3.png);
-  border-radius: 30%;
-  color: #FFFFFF;
-  width: 35px;
-  height: 35px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 .square11{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/circle6.png);
   border-radius: 10%;
   color: #FFFFFF;
@@ -329,48 +107,33 @@
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /*padding: 9px 6px;*/
+  position: absolute;
+  text-align: center;
+}
+
+.circle11,.circle12{
+  background-image:url(../img/circle6.png);
+  border-radius: 50%;
+  color: #FFFFFF;
+  background-position: 35% 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   position: absolute;
   text-align: center;
 }
 
 .circle11{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
-  background-image:url(../img/circle6.png);
-  border-radius: 50%;
-  color: #FFFFFF;
-  width: 64px;
-  height: 64px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
+  width: 50px;
+  height: 50px;
 }
 
 .circle12{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
-  background-image:url(../img/circle6.png);
-  border-radius: 50%;
-  color: #FFFFFF;
   width: 56px;
   height: 56px;
-  background-position: 35% 35%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*padding: 9px 6px;*/
-  position: absolute;
-  text-align: center;
 }
 
 
-
-
-
-
 .squareliao1{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 30%;
   border: 2px solid;
   border-top-color: #848484;
@@ -425,9 +188,6 @@
 }
 .bar-footer {
   background-image: none;
-  /*height: 114px;
-  padding-top: 38px;*/
-  /*margin-bottom: 20px;*/
   position: absolute;
   z-index: 1;
 }
@@ -453,9 +213,6 @@
   margin-top: -10px;
   opacity: 1;
 }
-.baifenbai {
-  height: 100%;
-}
 .slider-pager {
   bottom: 35px;
   z-index: 3;
@@ -463,7 +220,6 @@
   margin-left: 30%;
 }
 .slider-pager .slider-pager-page i.ion-record:before {
-  /*color: #fff;*/
   color: #22c064;
 }
 .slider-pager .slider-pager-page.active i.ion-record:before {
@@ -478,21 +234,16 @@
   height: 400px;
 }
 .yuanjiao{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 5%;
 }
 
 .tongzhi1{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   background-image:url(../img/oa.png);
-  /*border-radius: 30%;*/
-  /*color: #FFFFFF;*/
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /*padding: 9px 6px;*/
   position: absolute;
   text-align: center;
 }
@@ -505,12 +256,10 @@
 }
 
 .yuanjiao1{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 50%;
 }
 
 .yuanjiao2{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 50%;
   width: 64px;
   height: 64px;
@@ -519,7 +268,6 @@
   top:1%;
 }
 .yuanjiao3{
-  /*background: none repeat scroll 0 0 #eb67bb;*/
   border-radius: 50%;
   width: 56px;
   height: 56px;
@@ -530,12 +278,11 @@
 
 .yuanjiao4{
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   background-position: 35% 35%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /*padding: 9px 6px;*/
   position: absolute;
 
 }
@@ -612,57 +359,29 @@
 
 .zhuan{
   width:300px;
-
   height:300px;
-
   border:3px solid green;
-  /*border-left-color: red;*/
-
-  /*border-right-color: black;*/
-
-  /*border-top-color: yellow;*/
-  /*border-bottom-width: 2px;*/
-  /*border-bottom-color: #0a9dc7;*/
   margin:40px;
-
   border-radius:50%;
-
   -webkit-animation:circle 1s infinite linear;/*匀速 循环*/
 
 }
 
 @-webkit-keyframes circle{
-
   0%{ transform:rotate(0deg); }
-
   100%{ transform:rotate(-360deg); }
 }
 
 .zhuan1{
   width:1px;
-
   height:150px;
-
   border:1px solid yellow;
   margin: 150px;
-  /*border-left-color: red;*/
-
-  /*border-right-color: black;*/
-
-  /*border-top-color: yellow;*/
-  /*border-bottom-width: 1px;*/
-  /*border-bottom-color: #0a9dc7;*/
-
-  /*border-radius:50%;*/
-
   -webkit-animation:circle 1s infinite linear;/*匀速 循环*/
-
 }
 
 @-webkit-keyframes circle{
-
   0%{ transform:rotate(0deg); }
-
   100%{ transform:rotate(-360deg); }
 }
 .father{

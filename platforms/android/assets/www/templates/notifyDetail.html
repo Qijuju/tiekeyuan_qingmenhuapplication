@@ -1,57 +1,114 @@
-<!--通知消息详情页面-->
+<ion-view  class="common-view-color" >
 
-<ion-view view-title={{levelName}} class="common-view-color">
+  <!--导航条-->
   <ion-nav-bar align-title="center" class="newbarhead">
     <ion-nav-buttons side="left">
-      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backNotify()">
+      <button class="button  button-icon icon ion-ios-arrow-left common-color-white" ng-click="backNotify(notifyObj)">
         返回
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content delegate-handle="scrollTop" overflow-scroll="false" style="background-color:#e5e5e5 " >
-      <ion-item class="item-remove-animate item-avatar rj-notify1-bg" style="max-height: 100%" >
-        <div ng-if="showlevel=='1'" class="center square9" style=" position: absolute;left: 3%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1;color: gray">通知</div>
-        <div ng-if="showlevel=='2'" class="center square8" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-        <div ng-if="showlevel=='3'" class="center square7" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-        <div ng-if="showlevel=='0'" class="center square10" style=" position: absolute;left: 3%;top: 15%;font-size: 14px;text-align: center;padding-top: 8px;z-index: 1">通知</div>
-        <h2 style="margin-left: -12px">{{notifyObj.FromName}}&nbsp;&nbsp;&nbsp;&nbsp;{{notifyObj.MsgDate | date:'MM-dd HH:mm'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: indianred;font-size: 14px">{{notifyObj.LevelName}}</span></h2>
-        <h3 style="margin-top: 6px;;margin-left: -12px">标题：{{notifyObj.Title}}</h3>
+  <!--内容-->
+  <ion-content id="notification" delegate-handle="scrollTop" overflow-scroll="false" >
 
-        <pre ng-click="!notifyObj.Link==''" style="margin-top: 3px;margin-left: -12px;max-height: 40px;overflow: hidden; margin-bottom: 10px"><a ng-click="gonetdetail(notifyObj.Link)">{{notifyObj.Link}}</a></pre>
-        <pre style=" margin-top: 8px;margin-left: -12px;font-size: 16px;margin-bottom: 40px">{{notifyObj.Msg}}</pre>
-
-        <img style="margin-top: 2px" class="rj-push-rightright2" ng-if="notifyObj.IsToped" src="img/dingding.png" width="18px" height="18px">
-
-        <img style="padding-right: 3px;position: absolute;right: 14px;top: 16px;"  ng-if="notifyObj.IsAttention" src="img/focus.png" width="18px" height="18px">
-
-        <div style="text-align: center;position: absolute;left: 0%;width: 100%;height: 40px;bottom: 0%">
-          <div style="border: rgba(116, 116, 116, 0.53) 1px dashed;overflow: hidden;height: 0.1px;width: 100%;margin-bottom: 8px"></div>
-          <span ng-click="confirmDetail(notifyObj.MsgId)" ng-if="!notifyObj.IsReaded" style="color: teal" >详情确认</span>
-          <span ng-if="notifyObj.IsReaded"style="color: #e98f36">已经确认</span>
-        </div>
-      </ion-item>
-
-    <div style="margin-left: 3px;margin-right: 3px;margin-bottom: 3px;padding-top: -10px;">
-      <ul>
-
-        <li>
-          <ion-toggle  ng-checked="notifyObj.IsToped ? true : false" ng-click="notifyTop(notifyObj.MsgId, (notifyObj.IsToped  ? 'F' : 'T'))">
-            {{notifyObj.IsToped ? "取消置顶" : "通知置顶"}}
-          </ion-toggle>
-        </li>
-        <li>
-          <ion-toggle  ng-checked="notifyObj.IsAttention ? true : false" ng-click="notifyFocus(notifyObj.MsgId, (notifyObj.IsAttention  ? 'F' : 'T'))">
-            {{notifyObj.IsAttention ? "取消关注" : "添加关注"}}
-          </ion-toggle>
-        </li>
-
-      </ul>
+    <div class="row myNetwork" ng-if=shownetstatus>
+      <div class="col" align="center"> <img src="img/nonet.png"/></div>
+      <div class="col col-80">网络连接不可用，请检查网络设置。</div>
     </div>
 
-    <button class="button button-block button-stable " ng-click="openconfirm(notifyObj.MsgId)" style="color: #1D95D4;font-size: 16px;height: 40px; margin-top: 32px">
+    <ion-item  class=" item-remove-animate item-avatar rj-notify-bg ionItemFirst">
+      <div>
+        <!--通知-->
+        <!--已经确认-->
+        <div class="row">
+          <div class="col clearfix" >
+            <!--通知显示相应的图片信息-->
+            <div class="notifyImgInfo">
+              <img src="{{notifyObj.appIcon}}"  ng-if="notifyObj.appIcon"  alt="通知logo">
+              <img src="img/notifyDefaultLogo.png"  ng-if="!notifyObj.appIcon"  alt="默认logo">
+            </div>
+
+            <!--通知的详细信息-->
+            <div class="notifyDetailInfo">
+
+              <div class="infoTop">
+                <!--名称-->
+                <div>
+                  <span class="FromName">{{notifyObj.fromName}}</span>
+                  <span ng-if="notifyObj.isRead" class="isReaded">已确认</span>
+                </div>
+                <!--时间-->
+                <pre class="preTitle preTime notifyTime">{{notifyObj.when | date:'yyyy/MM/dd HH:mm'}}</pre>
+                <!--报警等级-->
+                <!--<span class="levelName">{{notifyObj.LevelName}}</span>-->
+              </div>
+
+              <!--标题-->
+              <div>
+                <pre class="detailTitle">{{notifyObj.title}}</pre>
+              </div>
+
+              <!--&lt;!&ndash;附件&ndash;&gt;-->
+              <!--<div class="notify">-->
+                <!--&lt;!&ndash;<pre ng-click="!notifyObj.Link==''"><a ng-click="gonet(notifyObj.Link)">{{notifyObj.Link}}</a></pre>&ndash;&gt;-->
+                <!--<pre ng-click="!notifyObj.Link==''"><a href="{{notifyObj.Link}}">{{notifyObj.Link}}</a></pre>-->
+
+              <!--</div>-->
+            </div>
+            <pre class="notifyObjMsg">{{notifyObj.message}}</pre>
+          </div>
+        </div>
+
+        <div class="confirm notifyDetail" ng-click="goNotifyDetail(notifyObj)"  ng-if="!notifyObj.isRead">
+          <div></div>
+          <span class="detailConfirm" ng-click="confirmDetail(notifyObj.msgId)">详情确认</span>
+        </div>
+
+        <div  class="confirm notifyDetail"  ng-click="goNotifyDetail(item)" ng-if="notifyObj.isRead">
+          <div></div>
+          <span class="detailConfirm" ng-if="notifyObj.isRead">已经确认</span>
+        </div>
+
+        <!--置顶和关注-->
+          <div class="row topFocus" >
+            <div class="col">
+              <!--置顶-->
+              <img ng-if="notifyObj.isToped" src="img/toptp.png" >
+            </div>
+
+            <div class="col">
+              <!--关注-->
+              <img ng-if="notifyObj.isAttention" src="img/focuseye.png">
+            </div>
+          </div>
+      </div>
+
+      <!--添加或取消关注-->
+      <div class="row focus notifyDetailFocusTop">
+        <div class="col">
+
+          <!--<ion-toggle1  ng-checked="notifyObj.IsToped ? true : false" ng-click="notifyTop(notifyObj.msgId, (notifyObj.isToped  ? 'F' : 'T'))">-->
+            <!--{{notifyObj.isToped ? "取消置顶" : "通知置顶"}}-->
+          <!--</ion-toggle1>-->
+
+          <!--<ion-toggle1  ng-checked="notifyObj.IsAttention ? true : false" ng-click="notifyFocus(notifyObj.msgId, (notifyObj.isAttention  ? 'F' : 'T'))">-->
+            <!--{{notifyObj.isAttention ? "取消关注" : "添加关注"}}-->
+          <!--</ion-toggle1>-->
+          <ion-toggle1  ng-checked="notifyObj.isToped ? true : false" ng-click="notifyTop(notifyObj,0)">
+            {{notifyObj.isToped ? "取消置顶" : "通知置顶"}}
+          </ion-toggle1>
+
+          <ion-toggle1  ng-checked="notifyObj.isAttention ? true : false" ng-click="notifyFocus(notifyObj,1)">
+            {{notifyObj.isAttention ? "取消关注" : "添加关注"}}
+          </ion-toggle1>
+
+        </div>
+      </div>
+    </ion-item>
+
+    <button class="button button-block button-stable checkConfirmedDetails" ng-click="openconfirm(notifyObj)">
       查看确认详情
     </button>
-
   </ion-content>
-</ion-view>
 
+</ion-view>

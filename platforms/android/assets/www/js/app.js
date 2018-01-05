@@ -6,16 +6,16 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elastic',
-  'ngCordova','application.controllers','contacts.controllers','login.controllers','message.controllers',
+  'ngCordova','application.controllers','contacts.controllers','newlogin.controllers','message.controllers',
   'my.controllers','search.controllers','selectgroup.controllers','notification.controllers','common.services','contacts.services',
-  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers','newnotification.controllers','work.controllers','portal.services','portal.controllers','sendfile.controllers','fountion.controllers'])
+  'message.services','my.services','group.services','selectothergroup.controllers','localphone.controllers','localphone.services','fileandpicture.controllers','badge.controllers'
+  ,'newnotification.controllers','work.controllers','portal.services','portal.controllers','sendfile.controllers','fountion.controllers','msgcheck.controllers'])
 
 /*'im.controllers', 'starter.services',*/
-  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$ionicLoading,$ToastUtils) {
+  .run(function($ionicPlatform,$ionicPopup, $rootScope, $location,$mqtt,$state,$ionicHistory,$api,$pubionicloading,$ToastUtils,$greendao) {
     $ionicPlatform.ready(function() {
       $api.init();
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
+
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -25,7 +25,6 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
-
 
     });
     var backButtonPressedOnceToExit=false;
@@ -56,15 +55,16 @@ angular.module('starter', ['ionic', 'im.routes','im.directives','monospaced.elas
             backButtonPressedOnceToExit = false;
           }, 1500);
         }
-
       } else {
         $ionicHistory.goBack();
-        $ionicLoading.hide();
+        $pubionicloading.hide();
       }
       e.preventDefault();
       return false;
     }, 501);
 
 
-
   });
+
+
+

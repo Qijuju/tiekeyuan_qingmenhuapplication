@@ -7,44 +7,66 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-    <ion-scroll zooming="true" direction="x" style="width: 100%">
-      <div id="eighthscroll" class="div-a-style">
-        <a id="a1" class="a-style" href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}/{{functionTag}}" style="font-size: 15px" >联系人</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a2" class="a-style"  ng-click="fromEighthToSecond(firstidInEighth)" style="font-size: 15px">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
-        <a id="a3" class="a-style"   ng-click="fromEighthToThird(secondidInEighth,secondName)" style="font-size: 15px">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a4" class="a-style"   ng-click="fromEighthToForth(thirdidInEighth,secondName,thirdName)" style="font-size: 15px">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a5" class="a-style"   ng-click="fromEighthToFifth(forthidInEighth,secondName,thirdName,forthName)" style="font-size: 15px">{{fifthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a6" class="a-style"   ng-click="fromEighthToSixth(fifthidInEighth,secondName,thirdName,forthName,fifthName)" style="font-size: 15px">{{sixthName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a7" class="a-style"  ng-click="backSeventh()"style="font-size: 15px">{{seventhName}}</a><img src="img/arrow-right.png" class="i-style"/>
-        <a id="a8" class="a-style" style="color: #9e9e9e;font-size: 15px">{{deptinfo8}}</a>
+    <ion-scroll zooming="true" direction="x">
+      <div id="scrollDiv" class="div-a-style">
+        <a id="a1" class="a-style"  href="#/addnewpersonfirst/{{createType}}/{{gourpId}}/{{groupName}}/{{functionTag}}">联系人</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a2" class="a-style"  ng-click="fromEighthToSecond(firstidInEighth)">{{secondName}}</a><img src="img/arrow-right.png"  class="i-style"/>
+        <a id="a3" class="a-style"  ng-click="fromEighthToThird(secondidInEighth,secondName)">{{thirdName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a4" class="a-style"  ng-click="fromEighthToForth(thirdidInEighth,secondName,thirdName)">{{forthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a5" class="a-style"  ng-click="fromEighthToFifth(forthidInEighth,secondName,thirdName,forthName)">{{fifthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a6" class="a-style"  ng-click="fromEighthToSixth(fifthidInEighth,secondName,thirdName,forthName,fifthName)">{{sixthName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a7" class="a-style"  ng-click="backSeventh()">{{seventhName}}</a><img src="img/arrow-right.png" class="i-style"/>
+        <a id="a8" class="a-style">{{deptinfo8}}</a>
 
       </div>
     </ion-scroll>
     <div>
       <ion-list>
-        <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in eightDept" >
-          <div class="col-80" ng-if="functionTag=='groupchat'">
-            <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_org.png" class="common-add-img" >
+        <ion-item class="row" align="left" ng-repeat="item in eightDept" >
+          <!--复选框、图像、名称-->
+          <div class="col col-80">
+
+            <div ng-if="functionTag=='groupchat'">
+
+              <!--复选框-->
+              <div class="ionCheckbox">
+                <ion-checkbox ng-model="item.isSelected" class="checkbox-dark">
+                </ion-checkbox>
+              </div>
+
+              <!--图片和名称-->
+              <img src="img/icon_org.png" class="common-add-img" >
               <span class="common-add-span">{{item.DeptName}}</span>
-            </ion-checkbox>
+
+            </div>
+
+            <!--图片、名称-->
+            <div ng-if="functionTag=='file'" class="DeptName">
+              <img src="img/icon_org.png" class="common-add-img">
+              <span class="common-add-span">{{item.DeptName}}</span>
+            </div>
+
           </div>
-          <div class="col-80" ng-if="functionTag=='file'">
-            <img src="img/icon_org.png" class="common-add-img" style="margin-left: 10px" >
-            <span class="common-add-span" style="left: 20%">{{item.DeptName}}</span>
-          </div>
-          <div class="col">
+
+          <div class="col col-20">
             <button id="changecolor" class="button button-clear common-add-button" ><span class="common-add-button-span">下级</span></button>
           </div>
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item class="row" style="height: 65px" align="left" ng-repeat="item in eightUser">
-          <div class="col-80"  >
-            <ion-checkbox class="checkbox-dark common-add-check" ng-model="item.isSelected" ><img src="img/icon_friends.png" class="common-add-img">
-              <span class="common-add-span">{{item.UserName}}</span>
-            </ion-checkbox>
+        <ion-item class="row addNewPersonRow"  ng-repeat="item in eightUser">
+          <div class="col col-80">
+
+            <div class="ionCheckbox">
+              <ion-checkbox ng-model="item.isSelected" class="checkbox-dark">
+              </ion-checkbox>
+            </div>
+
+            <img src="img/icon_friends.png" class="common-add-img">
+            <span class="common-add-span">{{item.UserName}}</span>
+
           </div>
-          <div class="col">
+          <div class="col col-20">
             <button  class="button button-clear common-add-button" ng-click="goGroupEighthDetail(item.UserID)"><span class="common-add-button-span">详情</span></button>
           </div>
         </ion-item>
@@ -53,11 +75,11 @@
     <ion-infinite-scroll  ng-if="eighthStatus" on-infinite="loadEighthMore()" distance="1%" ></ion-infinite-scroll>
   </ion-content>
   <ion-footer-bar>
-    <div style="position: absolute;right: 5px;width: 50px">
-      <button ng-if="functionTag=='groupchat'" class="button button-balanced " ng-click="eighthConfirm()">
+    <div>
+      <button ng-if="functionTag=='groupchat'" class="button button-balanced btnCenter" ng-click="eighthConfirm()">
         确定
       </button>
-      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced " ng-click="goeightMesstexting()">
+      <button ng-if="functionTag=='file' && userlist.length!=0" class="button button-balanced btnCenter" ng-click="goeightMesstexting()">
         提交
       </button>
     </div>
