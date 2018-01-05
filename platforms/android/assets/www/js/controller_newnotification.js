@@ -566,6 +566,9 @@ angular.module('newnotification.controllers', [])
     };
 
     $scope.openconfirm = function (obj) {
+
+      console.log("查看确认详情按钮触发事件");
+      console.log("传递的参数为："+JSON.stringify(obj));
       $state.go("confirmornot", {
         obj: obj
       })
@@ -709,8 +712,12 @@ angular.module('newnotification.controllers', [])
 
   .controller('confirmornotCtrl', function ($scope,$state, $stateParams, $api, $ToastUtils, $ionicScrollDelegate, $timeout, $ionicSlideBoxDelegate, $ionicHistory,$http,$formalurlapi,$rootScope,$mqtt,NotifyApplicationData,$pubionicloading) {
 
+    console.log("确认详情页进来了");
+    console.log("确认详情页进来了，接收的参数为："+JSON.stringify($stateParams.obj));
     $scope.obj = $stateParams.obj;
     $scope.msgid = $stateParams.obj.msgId;
+
+
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 

@@ -12,9 +12,10 @@ angular.module('portal.controllers', [])
     // 存放所有的item对象
     $scope.allData=[];
     // 轻应用logo图片地址数组
-    $scope.appIcon = $rootScope.appIconPaths;
 
+    $scope.appIcon = $rootScope.appIconPaths;
     $scope.logoLength = $scope.appIcon.length;
+
 
     // 门户页面数据请求
     var userID; // userID = 232099
@@ -116,8 +117,7 @@ angular.module('portal.controllers', [])
             $pubionicloading.showloading('','正在加载...');
           });
           ref.addEventListener('loadstop', function () {
-            // $pubionicloading.hide();
-            window.plugins.spinnerDialog.hide();
+            $pubionicloading.hide();
           });
         } else {
           cordova.plugins.browsertab.openUrl(
@@ -167,6 +167,7 @@ angular.module('portal.controllers', [])
            * 先获取物资设备的访问的url
            * 再调用插件判断该应用是否存在，并进行相应的下载及跳转
            */
+          console.log("点击的item"+item.appName+item.appId);
           $http({
             method: 'post',
             timeout: 5000,
@@ -318,8 +319,7 @@ angular.module('portal.controllers', [])
               $pubionicloading.showloading('','正在加载...');
             });
             ref.addEventListener('loadstop', function () {
-              // $pubionicloading.hide();
-              window.plugins.spinnerDialog.hide();
+              $pubionicloading.hide();
             });
           } else {
             cordova.plugins.browsertab.openUrl(

@@ -421,6 +421,9 @@ angular.module('newnotification.controllers', [])
 
     // 跳转页面
     $scope.goApplicationDetail = function (obj) {
+
+      console.log("通知应用列表项点击事件触发了");
+      console.log("传递的参数为："+JSON.stringify(obj));
       $state.go("applicationDetail",{
         obj:obj
       })
@@ -631,8 +634,6 @@ angular.module('newnotification.controllers', [])
 
       var applicationList = NotifyApplicationData.applicationChild(); // 获取应用列表数据源
 
-      console.log("应用下的通知列表数据源："+ JSON.stringify(applicationList));
-
       applicationList.forEach(function (item) {
         // 追加logo地址
         item.appIcon =  $scope.appIcon;
@@ -711,6 +712,8 @@ angular.module('newnotification.controllers', [])
 
     $scope.obj = $stateParams.obj;
     $scope.msgid = $stateParams.obj.msgId;
+
+
 
     var viewScroll = $ionicScrollDelegate.$getByHandle('scrollTop');
 

@@ -725,6 +725,12 @@ public class InAppBrowser extends CordovaPlugin {
                 inAppWebView.setWebChromeClient(chromeClient);
                 WebViewClient client = new InAppBrowserClient(thatWebView, edittext);
                 inAppWebView.setWebViewClient(client);
+                inAppWebView.setWebViewClient(new WebViewClient(){
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        return super.shouldOverrideUrlLoading(view, url);
+                    }
+                });
                 WebSettings settings = inAppWebView.getSettings();
                 settings.setJavaScriptEnabled(true);
                 settings.setJavaScriptCanOpenWindowsAutomatically(true);

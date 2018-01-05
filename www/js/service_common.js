@@ -614,13 +614,12 @@ angular.module('common.services', [])
               url:$formalurlapi.getBaseUrl(),
               data: {"Action": "GetAppList", "id": userID, "mepId": imCode,"platform":"A"}
             }).success(function (data, status) {
+
               // 成功之后页面跳转
               $state.go('tab.contacts');
               // 门户页面对应的所有的数据源
               $rootScope.portalDataSource = JSON.parse(decodeURIComponent(data));
               sysmenu =  $rootScope.portalDataSource.sysmenu;
-
-
               // 遍历数据源,拿到所有图片的appIcon,调插件，获取所有图片的路径。(插件中判断图片是否在本地存储，若本地没有则下载)
               if(sysmenu != null || sysmenu != "" || sysmenu != undefined){
                 for(var i=0;i<sysmenu.length;i++){

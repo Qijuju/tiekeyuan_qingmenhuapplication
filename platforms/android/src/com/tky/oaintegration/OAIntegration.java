@@ -132,13 +132,11 @@ public class OAIntegration extends CordovaPlugin {
             }else{
                 if(name.equals("公文处理")){
                     startAppByAction(s1,name,url);
-                }else if(name.equals("物资设备")){
+                }else if(name.equals("物资设备") || name.equals("投资控制") || name.equals("转分包管理")){
                     startAppByAction(s2,name,url);
                 }else if(name.equals("视频监控")){
                     startAppByAction(s3,name,url);
                 }
-
-
             }
             setResult("success",PluginResult.Status.OK,callbackContext);
         } catch (JSONException e) {

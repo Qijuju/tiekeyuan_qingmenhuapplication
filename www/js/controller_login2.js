@@ -101,7 +101,7 @@
             $api.getWelcomePic("", varyname, function (suc) {//图片下载成功
             }, function (error) {
               //图片下载失败
-              $ToastUtils.showToast("欢迎页面下载失败")
+              $ToastUtils.showToast("欢迎页面下载失败");
             })
           }, function () {
           });
@@ -175,13 +175,11 @@
 
         //跳过登陆的方法
         var passLogin = function () {
-
           //先取出登陆成功保存的用户名和密码
           if(isClickGo == 'true'){//当满足该条件时，直接跳过登陆
             pubLogin.newlogin(passname,password,'true',pubLogin);
           }
         }
-
       });
 
     })
