@@ -11,636 +11,201 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313ca7f9-6aa2-4fdd-a532-4daa5fa4d3a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/aosp_dexutils_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/barcodescanner_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/bsdiff_util_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/dom4j_1_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/freemarker_2_3_20.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_1_3_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_generator_1_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/imApi2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jcore_android_v1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jpush_android_v3_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/libthrift_0_9_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/locSDK_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/log4j_1_2_14.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/nineoldandroids_2_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_2_6_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_3_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttputils_2_6_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/rxandroid_1_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/rxjava_1_1_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_api_1_7_12.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_log4j12_1_6_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_connector.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_anno_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_lib_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_android_loader_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tinker_commons_1_7_7.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/r93535/im/MainActivity.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/androidTest/debug/com/yixia/camera/test/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/buildConfig/debug/com/yixia/camera/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/androidTest/debug/com/yixia/camera/test/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/generated/source/r/debug/com/yixia/camera/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values-v14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/R.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/jni/armeabi-v7a/libutility.so" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-hdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-mdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values-v14/values-v14.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/debug/res/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/AudioRecorder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/FFMpegUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/IMediaRecorder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$EncodeHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$OnEncodeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$OnErrorListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase$OnPreparedListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderBase.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderCustom$YuvHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderCustom.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderNative.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderSystem$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/MediaRecorderSystem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/VCamera.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/model/MediaObject$MediaPart.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/model/MediaObject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/model/MediaThemeObject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/util/DeviceUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/util/FileUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/util/Log.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/camera/util/StringUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/videoeditor/adapter/UtilityAdapter$OnNativeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/classes/debug/com/yixia/videoeditor/adapter/UtilityAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental-safeguard/debug/tag.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/compileDebugAidl/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/jniLibs/debug/armeabi-v7a/libutility.so" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values-v14/values-v14.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/merged/androidTest/debug/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/symbols/androidTest/debug/R.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/3/main/lib/armeabi-v7a/libutility.so" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-debug.aar" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/debug/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/release/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/Badger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/BuildConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/ShortcutBadgeException.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/ShortcutBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/AdwHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/ApexHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/AsusHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/DefaultBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/EverythingMeHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/HuaweiHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/LGHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/NewHtcHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/NovaHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/OPPOHomeBader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/SamsungHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/SonyHomeBadger$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/SonyHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/VivoHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/XiaomiHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/ZTEHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/impl/ZukHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/util/BroadcastHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/debug/me/leolin/shortcutbadger/util/CloseHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/Badger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/BuildConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/ShortcutBadgeException.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/ShortcutBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/AdwHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/ApexHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/AsusHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/DefaultBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/EverythingMeHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/HuaweiHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/LGHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/NewHtcHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/NovaHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/OPPOHomeBader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/SamsungHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/SonyHomeBadger$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/SonyHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/VivoHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/XiaomiHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/ZTEHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/impl/ZukHomeBadger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/util/BroadcastHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/classes/release/me/leolin/shortcutbadger/util/CloseHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/exploded-aar/com.android.support/multidex-instrumentation/1.0.1/jars/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/compileDebugAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/compileReleaseAidl/dependency.store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/file1.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/1024.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/alert.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/alert1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/gckz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/gckzh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/xckz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/xckzh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/zhgl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app/zhglh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app1/gwcl.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app1/gwcl_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app1/xwtz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app1/xwtz_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app2/wtk.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app2/wtk_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/gcbw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/gcbw_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/gcyx.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/gcyx_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/spjk.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/app3/spjk_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/banner.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/bjjb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/cengji.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/confirmBtn.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/confirmBtnGray.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/focuseye.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/focuseye1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/fujian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/groupAnnouncement.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/groupChart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/groupMembers.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/images.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/lianjie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/modifyGroupName.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/notificationArrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/notify.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/notifyDefaultLogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/phoneVerify.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/qunl4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/san.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/sao.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/search.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/toptop1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/toptp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/tuijian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/tuijian_jjj.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/turnrightstatic.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/verify2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/web.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/img/weima.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/lib/._.DS_Store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/._.DS_Store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/._.DS_Store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/._.DS_Store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/generated/source/buildConfig/androidTest/debug/org/apache/cordova/test/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/generated/source/buildConfig/androidTest/debug/me/leolin/shortcutbadger/test/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/generated/source/buildConfig/debug/me/leolin/shortcutbadger/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/generated/source/buildConfig/release/me/leolin/shortcutbadger/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/debug/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/debug/proguard.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/release/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/bundles/release/proguard.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/exploded-aar/com.android.support/multidex-instrumentation/1.0.1/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental-safeguard/debug/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental-safeguard/release/tag.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeReleaseResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/packageDebugResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/incremental/packageReleaseResources/merger.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/outputs/aar/ShortcutBadger-debug.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ShortcutBadger/build/outputs/aar/ShortcutBadger-release.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/about.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/addNewPerson.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/contact-local.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/group-deptmember.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/group-member.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/historymessage.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/login.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/message-detail.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/person-detail.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/personal-setting.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/projectPart.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/search.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/tab-account.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/tab-contacts.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/tab-message.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/tab-notification.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/tab-portal.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/css/verify.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/Toast.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/bmap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/controller_login2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/controller_msgcheck.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/js/controller_portal2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/OAIntegration/www/o_a_integration.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-badge/www/badge.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-browsertab/www/browsertab.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-flashlight/www/Flashlight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-fullscreen/www/AndroidFullScreen.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-screen-orientation/www/screenorientation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-spinner-dialog/www/spinner.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-x-toast/test/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/cordova-plugin-x-toast/www/Toast.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/plugins/es6-promise-plugin/www/promise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/aboutPlatform.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/aboutRecommend.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/aboutour.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/applicationDetail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/projectPart.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/tab-portal2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/www/templates/verify.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_vitamioRecorderLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_wechatRecoderVideoLibrary_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.eot" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.ttf" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.woff" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/clgl.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/clgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/clgl_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/clgl_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/cxtx.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/cxtx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/cxtx_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/cxtx_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/hygl.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/hygl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/hygl_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/hygl_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/lwggzxt.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/lwggzxt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/lwggzxt_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/lwggzxt_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xmdt.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xmdt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xmdt_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xmdt_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xmxx.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xmxx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xmxx_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xmxx_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xxfb.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xxfb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/xxfb_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/xxfb_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/zlgl.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/zlgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app1/zlgl_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app1/zlgl_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/ddzh.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/ddzh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/ddzh_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/ddzh_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgrz.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgrz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgrz_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgrz_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgtsh.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgtsh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgtsh_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgtsh_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgzz.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgzz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/sgzz_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/sgzz_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/tzkz.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/tzkz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/tzkz_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/tzkz_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/wzsb.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/wzsb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/wzsb_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/wzsb_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/ygjj.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/ygjj.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/ygjj_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/ygjj_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/zdcq.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/zdcq.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app2/zdcq_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app2/zdcq_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/bc.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/bc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/bc_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/bc_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/bhz.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/bhz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/bhz_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/bhz_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/cjgc.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/cjgc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/cjgc_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/cjgc_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/jyp.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/jyp.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/jyp_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/jyp_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lc.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lc_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lc_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lxl.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lxl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lxl_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lxl_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lxys.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lxys.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/lxys_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/lxys_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/qljz.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/qljz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/qljz_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/qljz_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/qlxxh.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/qlxxh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/qlxxh_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/qlxxh_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sdjk.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sdjk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sdjk_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sdjk_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sdxxh.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sdxxh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sdxxh_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sdxxh_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sys.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sys.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/sys_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/sys_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/zdzl.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/zdzl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/zdzl_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/zdzl_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/zjjc.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/zjjc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/app3/zjjc_f.png" afterPath="$PROJECT_DIR$/assets/www/img/app3/zjjc_f.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/arrow-right.png" afterPath="$PROJECT_DIR$/assets/www/img/arrow-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/back.png" afterPath="$PROJECT_DIR$/assets/www/img/back.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/backbutton.png" afterPath="$PROJECT_DIR$/assets/www/img/backbutton.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/background111.png" afterPath="$PROJECT_DIR$/assets/www/img/background111.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/background222.png" afterPath="$PROJECT_DIR$/assets/www/img/background222.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/backmain.png" afterPath="$PROJECT_DIR$/assets/www/img/backmain.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/banb.png" afterPath="$PROJECT_DIR$/assets/www/img/banb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/banner.jpg" afterPath="$PROJECT_DIR$/assets/www/img/banner.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/banq.png" afterPath="$PROJECT_DIR$/assets/www/img/banq.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/bc.png" afterPath="$PROJECT_DIR$/assets/www/img/bc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/bg2.png" afterPath="$PROJECT_DIR$/assets/www/img/bg2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/bhz.png" afterPath="$PROJECT_DIR$/assets/www/img/bhz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/black.png" afterPath="$PROJECT_DIR$/assets/www/img/black.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/botbot.png" afterPath="$PROJECT_DIR$/assets/www/img/botbot.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chacha.png" afterPath="$PROJECT_DIR$/assets/www/img/chacha.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice1.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice2.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice3.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice4.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice5.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice6.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_icon_voice_short.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_icon_voice_short.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/chat_top_voice_bg.9.png" afterPath="$PROJECT_DIR$/assets/www/img/chat_top_voice_bg.9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/cheliang.png" afterPath="$PROJECT_DIR$/assets/www/img/cheliang.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle1.png" afterPath="$PROJECT_DIR$/assets/www/img/circle1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle2.png" afterPath="$PROJECT_DIR$/assets/www/img/circle2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle3.png" afterPath="$PROJECT_DIR$/assets/www/img/circle3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle4.png" afterPath="$PROJECT_DIR$/assets/www/img/circle4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle5.png" afterPath="$PROJECT_DIR$/assets/www/img/circle5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle6.png" afterPath="$PROJECT_DIR$/assets/www/img/circle6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/circle_red.png" afterPath="$PROJECT_DIR$/assets/www/img/circle_red.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/cjgc.png" afterPath="$PROJECT_DIR$/assets/www/img/cjgc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/common_lxr.png" afterPath="$PROJECT_DIR$/assets/www/img/common_lxr.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/company_tx.png" afterPath="$PROJECT_DIR$/assets/www/img/company_tx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/contact.png" afterPath="$PROJECT_DIR$/assets/www/img/contact.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/creategroupicon.png" afterPath="$PROJECT_DIR$/assets/www/img/creategroupicon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dddingwei.png" afterPath="$PROJECT_DIR$/assets/www/img/dddingwei.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ddpaizhao.png" afterPath="$PROJECT_DIR$/assets/www/img/ddpaizhao.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ddtupian.png" afterPath="$PROJECT_DIR$/assets/www/img/ddtupian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ddwenjian.png" afterPath="$PROJECT_DIR$/assets/www/img/ddwenjian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ddxiaoshipin.png" afterPath="$PROJECT_DIR$/assets/www/img/ddxiaoshipin.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/default_org_icon.png" afterPath="$PROJECT_DIR$/assets/www/img/default_org_icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/diaod.png" afterPath="$PROJECT_DIR$/assets/www/img/diaod.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dingding.png" afterPath="$PROJECT_DIR$/assets/www/img/dingding.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dingposition.png" afterPath="$PROJECT_DIR$/assets/www/img/dingposition.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dingw.png" afterPath="$PROJECT_DIR$/assets/www/img/dingw.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/downarrow.png" afterPath="$PROJECT_DIR$/assets/www/img/downarrow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dtx.png" afterPath="$PROJECT_DIR$/assets/www/img/dtx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/dzsgrz.png" afterPath="$PROJECT_DIR$/assets/www/img/dzsgrz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_apk.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_apk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_audio.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_audio.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_book.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_book.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_file.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_file.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_photo.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_photo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ems_video.png" afterPath="$PROJECT_DIR$/assets/www/img/ems_video.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/erji.png" afterPath="$PROJECT_DIR$/assets/www/img/erji.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_file_archive.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_file_archive.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_file_doc.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_file_doc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_html.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_html.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_pdf.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_pdf.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_ppt.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_ppt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_txt.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_txt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_word.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_word.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_xls.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_xls.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/explorer_xml.png" afterPath="$PROJECT_DIR$/assets/www/img/explorer_xml.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/focus.png" afterPath="$PROJECT_DIR$/assets/www/img/focus.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/focus1.png" afterPath="$PROJECT_DIR$/assets/www/img/focus1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/gdbjt.png" afterPath="$PROJECT_DIR$/assets/www/img/gdbjt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/gdbwx.png" afterPath="$PROJECT_DIR$/assets/www/img/gdbwx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/gengduo2.png" afterPath="$PROJECT_DIR$/assets/www/img/gengduo2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/gif.png" afterPath="$PROJECT_DIR$/assets/www/img/gif.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/grey_q.png" afterPath="$PROJECT_DIR$/assets/www/img/grey_q.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/group.png" afterPath="$PROJECT_DIR$/assets/www/img/group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/group_setting.png" afterPath="$PROJECT_DIR$/assets/www/img/group_setting.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/guany.png" afterPath="$PROJECT_DIR$/assets/www/img/guany.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/guanyu.png" afterPath="$PROJECT_DIR$/assets/www/img/guanyu.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/guanz.png" afterPath="$PROJECT_DIR$/assets/www/img/guanz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/huangse.png" afterPath="$PROJECT_DIR$/assets/www/img/huangse.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/huiyi.png" afterPath="$PROJECT_DIR$/assets/www/img/huiyi.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ic_actbar_more.png" afterPath="$PROJECT_DIR$/assets/www/img/ic_actbar_more.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon.png" afterPath="$PROJECT_DIR$/assets/www/img/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_concern.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_concern.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_contact_common.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_contact_common.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_contact_friends.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_contact_friends.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_contact_group.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_contact_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_contact_local.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_contact_local.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_db.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_db.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_friends.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_friends.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_group_conversation.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_group_conversation.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_local_contact.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_local_contact.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_message.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_message.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_money.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_money.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_new.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_new.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_org.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_org.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_progress.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_progress.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_question.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_question.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_status_andriod.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_status_andriod.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/icon_weekly.png" afterPath="$PROJECT_DIR$/assets/www/img/icon_weekly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im-new-file.png" afterPath="$PROJECT_DIR$/assets/www/img/im-new-file.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im1.png" afterPath="$PROJECT_DIR$/assets/www/img/im1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_chat_btn_announce.png" afterPath="$PROJECT_DIR$/assets/www/img/im_chat_btn_announce.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_chat_btn_file.png" afterPath="$PROJECT_DIR$/assets/www/img/im_chat_btn_file.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_chat_btn_photo.png" afterPath="$PROJECT_DIR$/assets/www/img/im_chat_btn_photo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_contact_con.png" afterPath="$PROJECT_DIR$/assets/www/img/im_contact_con.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_contact_zuzhi.png" afterPath="$PROJECT_DIR$/assets/www/img/im_contact_zuzhi.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_gray_message.png" afterPath="$PROJECT_DIR$/assets/www/img/im_gray_message.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_chat.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_chat.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_duanxin.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_duanxin.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_female.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_female.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_group.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_group.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_local.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_local.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_male.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_male.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_map.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_map.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_message.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_message.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/im_new_phone.png" afterPath="$PROJECT_DIR$/assets/www/img/im_new_phone.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/img.jpg" afterPath="$PROJECT_DIR$/assets/www/img/img.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ionic.png" afterPath="$PROJECT_DIR$/assets/www/img/ionic.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/jiantou.png" afterPath="$PROJECT_DIR$/assets/www/img/jiantou.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/jishu_cs.png" afterPath="$PROJECT_DIR$/assets/www/img/jishu_cs.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/jsgl.png" afterPath="$PROJECT_DIR$/assets/www/img/jsgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/jyp.png" afterPath="$PROJECT_DIR$/assets/www/img/jyp.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/keyborad.png" afterPath="$PROJECT_DIR$/assets/www/img/keyborad.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/keybroad.png" afterPath="$PROJECT_DIR$/assets/www/img/keybroad.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/khpb.png" afterPath="$PROJECT_DIR$/assets/www/img/khpb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/laba.png" afterPath="$PROJECT_DIR$/assets/www/img/laba.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/lc.png" afterPath="$PROJECT_DIR$/assets/www/img/lc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/leftjiantou.png" afterPath="$PROJECT_DIR$/assets/www/img/leftjiantou.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/leida.png" afterPath="$PROJECT_DIR$/assets/www/img/leida.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ljys.png" afterPath="$PROJECT_DIR$/assets/www/img/ljys.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/local_gray.png" afterPath="$PROJECT_DIR$/assets/www/img/local_gray.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/location.jpg" afterPath="$PROJECT_DIR$/assets/www/img/location.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/man.png" afterPath="$PROJECT_DIR$/assets/www/img/man.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/message.png" afterPath="$PROJECT_DIR$/assets/www/img/message.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/message_gray.png" afterPath="$PROJECT_DIR$/assets/www/img/message_gray.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/mima.png" afterPath="$PROJECT_DIR$/assets/www/img/mima.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/my.png" afterPath="$PROJECT_DIR$/assets/www/img/my.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/newjiantou.png" afterPath="$PROJECT_DIR$/assets/www/img/newjiantou.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/nonet.png" afterPath="$PROJECT_DIR$/assets/www/img/nonet.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/oa.png" afterPath="$PROJECT_DIR$/assets/www/img/oa.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/paizhao.png" afterPath="$PROJECT_DIR$/assets/www/img/paizhao.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/pdf11.pdf" afterPath="$PROJECT_DIR$/assets/www/img/pdf11.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/personal_phone.png" afterPath="$PROJECT_DIR$/assets/www/img/personal_phone.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/personal_setting.png" afterPath="$PROJECT_DIR$/assets/www/img/personal_setting.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/personsetting.png" afterPath="$PROJECT_DIR$/assets/www/img/personsetting.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/phone.png" afterPath="$PROJECT_DIR$/assets/www/img/phone.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/phone_gray.png" afterPath="$PROJECT_DIR$/assets/www/img/phone_gray.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/qljz.png" afterPath="$PROJECT_DIR$/assets/www/img/qljz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/qun.png" afterPath="$PROJECT_DIR$/assets/www/img/qun.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/qunl.png" afterPath="$PROJECT_DIR$/assets/www/img/qunl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntouxiang.png" afterPath="$PROJECT_DIR$/assets/www/img/quntouxiang.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu1.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu2.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu3.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu4.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu5.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quntu6.png" afterPath="$PROJECT_DIR$/assets/www/img/quntu6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/qutu3.png" afterPath="$PROJECT_DIR$/assets/www/img/qutu3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/quxian.png" afterPath="$PROJECT_DIR$/assets/www/img/quxian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/record.png" afterPath="$PROJECT_DIR$/assets/www/img/record.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/red.png" afterPath="$PROJECT_DIR$/assets/www/img/red.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/redpoint.png" afterPath="$PROJECT_DIR$/assets/www/img/redpoint.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sanji.png" afterPath="$PROJECT_DIR$/assets/www/img/sanji.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/saom.png" afterPath="$PROJECT_DIR$/assets/www/img/saom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/scan.png" afterPath="$PROJECT_DIR$/assets/www/img/scan.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sdjk.png" afterPath="$PROJECT_DIR$/assets/www/img/sdjk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sdjxhgl.png" afterPath="$PROJECT_DIR$/assets/www/img/sdjxhgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/setting_icon_female.png" afterPath="$PROJECT_DIR$/assets/www/img/setting_icon_female.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sgtsh.png" afterPath="$PROJECT_DIR$/assets/www/img/sgtsh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sgzz.png" afterPath="$PROJECT_DIR$/assets/www/img/sgzz.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/shez.png" afterPath="$PROJECT_DIR$/assets/www/img/shez.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/shipin.png" afterPath="$PROJECT_DIR$/assets/www/img/shipin.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sj.png" afterPath="$PROJECT_DIR$/assets/www/img/sj.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sky.png" afterPath="$PROJECT_DIR$/assets/www/img/sky.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/spjk.png" afterPath="$PROJECT_DIR$/assets/www/img/spjk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/splash-small.png" afterPath="$PROJECT_DIR$/assets/www/img/splash-small.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/sys.png" afterPath="$PROJECT_DIR$/assets/www/img/sys.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/tel.png" afterPath="$PROJECT_DIR$/assets/www/img/tel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/tingt.png" afterPath="$PROJECT_DIR$/assets/www/img/tingt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/top.jpg" afterPath="$PROJECT_DIR$/assets/www/img/top.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/toptop.png" afterPath="$PROJECT_DIR$/assets/www/img/toptop.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/tupian.png" afterPath="$PROJECT_DIR$/assets/www/img/tupian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/turnleft.gif" afterPath="$PROJECT_DIR$/assets/www/img/turnleft.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/turnleftstatic.png" afterPath="$PROJECT_DIR$/assets/www/img/turnleftstatic.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/turnright.gif" afterPath="$PROJECT_DIR$/assets/www/img/turnright.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/turnrightstatic.jpg" afterPath="$PROJECT_DIR$/assets/www/img/turnrightstatic.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/unfocus.png" afterPath="$PROJECT_DIR$/assets/www/img/unfocus.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/unfocus1.png" afterPath="$PROJECT_DIR$/assets/www/img/unfocus1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/upnotific.png" afterPath="$PROJECT_DIR$/assets/www/img/upnotific.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/upnotificgray.png" afterPath="$PROJECT_DIR$/assets/www/img/upnotificgray.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/video.gif" afterPath="$PROJECT_DIR$/assets/www/img/video.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_left.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_left1.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_left1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_left2.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_left2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_left3.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_left3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_right.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_right1.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_right1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_right2.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_right2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/voice_right3.png" afterPath="$PROJECT_DIR$/assets/www/img/voice_right3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/wenjian.png" afterPath="$PROJECT_DIR$/assets/www/img/wenjian.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/white_q.png" afterPath="$PROJECT_DIR$/assets/www/img/white_q.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/woman.png" afterPath="$PROJECT_DIR$/assets/www/img/woman.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/wtk.png" afterPath="$PROJECT_DIR$/assets/www/img/wtk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/wzgl.png" afterPath="$PROJECT_DIR$/assets/www/img/wzgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/x.png" afterPath="$PROJECT_DIR$/assets/www/img/x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/xmxx.png" afterPath="$PROJECT_DIR$/assets/www/img/xmxx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/xxjk.png" afterPath="$PROJECT_DIR$/assets/www/img/xxjk.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/yangshengqi.png" afterPath="$PROJECT_DIR$/assets/www/img/yangshengqi.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/ygjj.png" afterPath="$PROJECT_DIR$/assets/www/img/ygjj.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/yinpin.png" afterPath="$PROJECT_DIR$/assets/www/img/yinpin.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/yinping.png" afterPath="$PROJECT_DIR$/assets/www/img/yinping.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/yongh.png" afterPath="$PROJECT_DIR$/assets/www/img/yongh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zdcq.png" afterPath="$PROJECT_DIR$/assets/www/img/zdcq.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zdzl.png" afterPath="$PROJECT_DIR$/assets/www/img/zdzl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zhangh.png" afterPath="$PROJECT_DIR$/assets/www/img/zhangh.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zil.png" afterPath="$PROJECT_DIR$/assets/www/img/zil.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zlgl.png" afterPath="$PROJECT_DIR$/assets/www/img/zlgl.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zuiji.png" afterPath="$PROJECT_DIR$/assets/www/img/zuiji.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/img/zxpx.png" afterPath="$PROJECT_DIR$/assets/www/img/zxpx.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.eot" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.ttf" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.woff" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-hdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-ldpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-land-mdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-ldpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-hdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-ldpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-mdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-xhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-xhdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-port-xxhdpi/screen.png" afterPath="$PROJECT_DIR$/res/drawable-port-xxhdpi/screen.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxxhdpi/icon.png" afterPath="$PROJECT_DIR$/res/drawable-xxxhdpi/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/outputs/aar/vitamioRecorderLibrary-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/bundles/release/libs/nineoldandroids-2.4.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/intermediates/exploded-aar/android/vitamioRecorderLibrary/unspecified/jars/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/build/outputs/aar/wechatRecoderVideoLibrary-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/common.css" afterPath="$PROJECT_DIR$/assets/www/css/common.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/dash.css" afterPath="$PROJECT_DIR$/assets/www/css/dash.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/fonts/tky.svg" afterPath="$PROJECT_DIR$/assets/www/css/fonts/tky.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/localContact.css" afterPath="$PROJECT_DIR$/assets/www/css/localContact.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/myattention.css" afterPath="$PROJECT_DIR$/assets/www/css/myattention.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/personDetail.css" afterPath="$PROJECT_DIR$/assets/www/css/personDetail.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/portal.css" afterPath="$PROJECT_DIR$/assets/www/css/portal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/rj.css" afterPath="$PROJECT_DIR$/assets/www/css/rj.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/secondStyle.css" afterPath="$PROJECT_DIR$/assets/www/css/secondStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/style.css" afterPath="$PROJECT_DIR$/assets/www/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/title.css" afterPath="$PROJECT_DIR$/assets/www/css/title.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/css/tkystyle.css" afterPath="$PROJECT_DIR$/assets/www/css/tkystyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/index.html" afterPath="$PROJECT_DIR$/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/H5lock.js" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/H5lock.publish.js" afterPath="$PROJECT_DIR$/assets/www/js/H5lock.publish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.js" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.min.js" afterPath="$PROJECT_DIR$/assets/www/js/angular-openweathermap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_application.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_badge.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_badge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_fileandpicture.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_fileandpicture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_localphone.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_login.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_message.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_my.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_newnotification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_newnotification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_notification.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_portal.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_search.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_select_othergroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller_work.js" afterPath="$PROJECT_DIR$/assets/www/js/controller_work.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/directives.js" afterPath="$PROJECT_DIR$/assets/www/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/elastic.js" afterPath="$PROJECT_DIR$/assets/www/js/elastic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/exporting.js" afterPath="$PROJECT_DIR$/assets/www/js/exporting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-3d.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-3d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-more.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-more.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts-ng.min.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts-ng.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/highcharts.js" afterPath="$PROJECT_DIR$/assets/www/js/highcharts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ionic-datepicker.bundle.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/jquery-3.0.0.min.js" afterPath="$PROJECT_DIR$/assets/www/js/jquery-3.0.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ng-cordova.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ng-cordova.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/phonegap-nfc-blackberry.js" afterPath="$PROJECT_DIR$/assets/www/js/phonegap-nfc-blackberry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/phonegap-nfc.js" afterPath="$PROJECT_DIR$/assets/www/js/phonegap-nfc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/routes.js" afterPath="$PROJECT_DIR$/assets/www/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_common.js" afterPath="$PROJECT_DIR$/assets/www/js/service_common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_contacts.js" afterPath="$PROJECT_DIR$/assets/www/js/service_contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_localphone.js" afterPath="$PROJECT_DIR$/assets/www/js/service_localphone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_message.js" afterPath="$PROJECT_DIR$/assets/www/js/service_message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_my.js" afterPath="$PROJECT_DIR$/assets/www/js/service_my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/service_portal.js" afterPath="$PROJECT_DIR$/assets/www/js/service_portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/services_group.js" afterPath="$PROJECT_DIR$/assets/www/js/services_group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/ui-bootstrap-tpls-2.2.0.min.js" afterPath="$PROJECT_DIR$/assets/www/js/ui-bootstrap-tpls-2.2.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.min.css" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/css/ionic.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.svg" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/fonts/ionicons.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular-ui/angular-ui-router.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular-ui/angular-ui-router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular-ui/angular-ui-router.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular-ui/angular-ui-router.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-animate.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-animate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-animate.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-animate.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-resource.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-resource.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-resource.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-resource.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-sanitize.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-sanitize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-sanitize.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular-sanitize.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/angular/angular.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic-angular.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic-angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic-angular.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic-angular.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.bundle.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.bundle.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.bundle.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/js/ionic.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ionic/version.json" afterPath="$PROJECT_DIR$/assets/www/lib/ionic/version.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/.bower.json" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/CHANGELOG.md" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/LICENSE" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/README.md" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/bower.json" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova-mocks.js" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova-mocks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova-mocks.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova-mocks.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova.js" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova.min.js" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/dist/ng-cordova.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/lib/ngCordova/package.json" afterPath="$PROJECT_DIR$/assets/www/lib/ngCordova/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/aboutours.html" afterPath="$PROJECT_DIR$/assets/www/templates/aboutours.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/acount-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-first.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-first.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/addNewPerson-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/attentionDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/attentionDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/chat-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/chat-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-eighth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-fifth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-forth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-local.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-local.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-second.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-second.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-seventh.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-sixth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/contact-third.html" afterPath="$PROJECT_DIR$/assets/www/templates/contact-third.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/cxtx.html" afterPath="$PROJECT_DIR$/assets/www/templates/cxtx.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/datapicture.html" afterPath="$PROJECT_DIR$/assets/www/templates/datapicture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/emergencycall.html" afterPath="$PROJECT_DIR$/assets/www/templates/emergencycall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/gesturelogin.html" afterPath="$PROJECT_DIR$/assets/www/templates/gesturelogin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" afterPath="$PROJECT_DIR$/assets/www/templates/gesturepassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-createNotice.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-createNotice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-deptmember.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-file.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-location.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-member.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-member.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-modifyname.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-notice.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-notice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-picture.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/group-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/group-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/groupcall.html" afterPath="$PROJECT_DIR$/assets/www/templates/groupcall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/historymessagegroup.html" afterPath="$PROJECT_DIR$/assets/www/templates/historymessagegroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/local-details.html" afterPath="$PROJECT_DIR$/assets/www/templates/local-details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/login.html" afterPath="$PROJECT_DIR$/assets/www/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/mapdetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/mapdetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/message-group.html" afterPath="$PROJECT_DIR$/assets/www/templates/message-group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/my_attention.html" afterPath="$PROJECT_DIR$/assets/www/templates/my_attention.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/my_department.html" afterPath="$PROJECT_DIR$/assets/www/templates/my_department.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" afterPath="$PROJECT_DIR$/assets/www/templates/myinfomation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/newsPage.html" afterPath="$PROJECT_DIR$/assets/www/templates/newsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notificationDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/notificationDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notifyApplication.html" afterPath="$PROJECT_DIR$/assets/www/templates/notifyApplication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/notifyDetail.html" afterPath="$PROJECT_DIR$/assets/www/templates/notifyDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-detail.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-file.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-file.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-location.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/person-picture.html" afterPath="$PROJECT_DIR$/assets/www/templates/person-picture.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" afterPath="$PROJECT_DIR$/assets/www/templates/personal-setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/search.html" afterPath="$PROJECT_DIR$/assets/www/templates/search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchLocal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" afterPath="$PROJECT_DIR$/assets/www/templates/searchmessage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/sendGelocation.html" afterPath="$PROJECT_DIR$/assets/www/templates/sendGelocation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/switch_account.html" afterPath="$PROJECT_DIR$/assets/www/templates/switch_account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-account.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-chats.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-message.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-message.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notification.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notification.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-notifications.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-portal.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-portal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-webpage.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-webpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tab-work.html" afterPath="$PROJECT_DIR$/assets/www/templates/tab-work.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/tabs.html" afterPath="$PROJECT_DIR$/assets/www/templates/tabs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" afterPath="$PROJECT_DIR$/assets/www/templates/top_contacts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/twoDimensionPic.html" afterPath="$PROJECT_DIR$/assets/www/templates/twoDimensionPic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/updategespassword.html" afterPath="$PROJECT_DIR$/assets/www/templates/updategespassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/templates/welcome.html" afterPath="$PROJECT_DIR$/assets/www/templates/welcome.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/im/callback/IMMessageCallback.java" afterPath="$PROJECT_DIR$/src/com/tky/im/callback/IMMessageCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/im/utils/IMUtils.java" afterPath="$PROJECT_DIR$/src/com/tky/im/utils/IMUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/paho/MessageOper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" afterPath="$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tky/okhttpload/Okhttpload.java" afterPath="$PROJECT_DIR$/src/com/tky/okhttpload/Okhttpload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseAssets/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/mergeReleaseShaders/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/build/intermediates/incremental/packageReleaseResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" afterPath="$PROJECT_DIR$/vitamioRecorderLibrary/vitamioRecorderLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" afterPath="$PROJECT_DIR$/wechatRecoderVideoLibrary/wechatRecoderVideoLibrary.iml" />
     </list>
@@ -683,8 +248,8 @@
       <file leaf-file-name="IMMessageCallback.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tky/im/callback/IMMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="606" column="15" selection-start-line="606" selection-start-column="15" selection-end-line="606" selection-end-column="15" />
+            <state relative-caret-position="269">
+              <caret line="597" column="31" selection-start-line="597" selection-start-column="31" selection-end-line="597" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -695,7 +260,7 @@
       <file leaf-file-name="IMUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="870">
               <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
               <folding />
             </state>
@@ -705,7 +270,7 @@
       <file leaf-file-name="IMSwitchLocal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="1905">
               <caret line="161" column="11" selection-start-line="161" selection-start-column="11" selection-end-line="161" selection-end-column="11" />
               <folding />
             </state>
@@ -715,7 +280,7 @@
       <file leaf-file-name="IMService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/im/service/IMService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="3780">
               <caret line="296" column="14" selection-start-line="296" selection-start-column="14" selection-end-line="296" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -727,7 +292,7 @@
       <file leaf-file-name="MqttChat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="5985">
               <caret line="481" column="8" selection-start-line="481" selection-start-column="8" selection-end-line="481" selection-end-column="8" />
               <folding />
             </state>
@@ -737,7 +302,7 @@
       <file leaf-file-name="MqttMessageCallback.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
+            <state relative-caret-position="11175">
               <caret line="786" column="3" selection-start-line="786" selection-start-column="3" selection-end-line="786" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -762,7 +327,7 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="8355">
               <caret line="574" column="15" selection-start-line="574" selection-start-column="15" selection-end-line="574" selection-end-column="15" />
               <folding />
             </state>
@@ -772,7 +337,7 @@
       <file leaf-file-name="Okhttpload.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/okhttpload/Okhttpload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="510">
               <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -784,7 +349,7 @@
       <file leaf-file-name="ThriftApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
+            <state relative-caret-position="1980">
               <caret line="247" column="43" selection-start-line="247" selection-start-column="31" selection-end-line="247" selection-end-column="43" />
               <folding />
             </state>
@@ -3601,7 +3166,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="9003101994000" />
+        <entry key="$PROJECT_DIR$" value="9090804096000" />
         <entry key="D:\jst\IM\platforms\android" value="8978802260756" />
       </map>
     </option>
@@ -4338,10 +3903,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane />
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -4551,7 +4117,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4890,30 +4455,29 @@
     <frame x="0" y="23" width="1680" height="946" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23788546" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26987952" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24339207" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19277108" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19277108" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23788546" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26987952" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26024097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26024097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20818071" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24339207" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4921,6 +4485,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -5010,13 +4575,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/builder/PostFormBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/builder/PostFormBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/http/OKAsyncClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -5095,7 +4654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7224">
           <caret line="328" column="63" selection-start-line="328" selection-start-column="63" selection-end-line="328" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -5124,7 +4682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -5193,7 +4750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -5209,9 +4765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -5246,7 +4799,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="8355">
           <caret line="574" column="15" selection-start-line="574" selection-start-column="15" selection-end-line="574" selection-end-column="15" />
           <folding />
         </state>
@@ -5254,7 +4807,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/okhttpload/Okhttpload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="510">
           <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -5264,7 +4817,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/plugin/thrift/ThriftApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
+        <state relative-caret-position="1980">
           <caret line="247" column="43" selection-start-line="247" selection-start-column="31" selection-end-line="247" selection-end-column="43" />
           <folding />
         </state>
@@ -5272,7 +4825,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/chat/MqttChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="5985">
           <caret line="481" column="8" selection-start-line="481" selection-start-column="8" selection-end-line="481" selection-end-column="8" />
           <folding />
         </state>
@@ -5280,7 +4833,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/mqtt/paho/MqttMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
+        <state relative-caret-position="11175">
           <caret line="786" column="3" selection-start-line="786" selection-start-column="3" selection-end-line="786" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -5290,7 +4843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="870">
           <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
           <folding />
         </state>
@@ -5298,7 +4851,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/im/utils/IMSwitchLocal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="1905">
           <caret line="161" column="11" selection-start-line="161" selection-start-column="11" selection-end-line="161" selection-end-column="11" />
           <folding />
         </state>
@@ -5306,7 +4859,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/im/service/IMService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="3780">
           <caret line="296" column="14" selection-start-line="296" selection-start-column="14" selection-end-line="296" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -5316,8 +4869,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tky/im/callback/IMMessageCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="606" column="15" selection-start-line="606" selection-start-column="15" selection-end-line="606" selection-end-column="15" />
+        <state relative-caret-position="269">
+          <caret line="597" column="31" selection-start-line="597" selection-start-column="31" selection-end-line="597" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

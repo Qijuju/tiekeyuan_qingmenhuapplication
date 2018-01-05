@@ -1,0 +1,132 @@
+
+/* 关于我们*/
+/* logo */
+.aboutOurTop{
+  background: #1D95D4;height:150px;text-align: center;
+}
+.aboutOurLogo{
+  text-align: center;
+}
+.aboutOurLogo > img{
+  width:55px;height:55px;border-radius:50%;margin-top:22px;
+}
+.aboutOurLogoInfo{
+  height:20px;line-height:20px;color:#fff;
+}
+.aboutOurVersionInfo{
+  font-size:14px;
+}
+.aboutOurLogoTitle{
+  font-size:18px;font-weight:600;margin-top:10px;
+}
+
+div.aboutOurInfo{
+  margin-top:20px;
+
+}
+div.detailInfo{
+  padding-top:10px;
+}
+
+.detailInfo p{
+  color:#000;
+}
+.detailInfo p .key{
+  display: inline-block;
+  width:35%;
+  text-align: left;
+  padding-left:40px;
+}
+.detailInfo p .value{
+  text-align: left;
+}
+
+/* 详细信息 */
+.aboutOurTitle{
+  position: relative; height: 30px;line-height:30px;
+}
+.cl{
+  display: inline-block;width:10px;height:100%;background: #FF5722;
+}
+
+.aboutOurInfo .aboutOurTitle .titleName{
+  position: absolute;top:5px;left:20px;color:#1D95D4;font-size:18px;
+}
+
+/* 关于平台 */
+.weima{
+  position: relative;
+  height: 140px;
+  width:100%;
+}
+.weima > img{
+  position: absolute;
+  line-height: 140px;
+  top:0%;
+  bottom:0%;
+  left:50%;
+  width:140px;height:140px;
+  margin-left:-74px;
+}
+.weimaAction{
+  text-align: center;
+  height:30px;line-height:30px;
+  font-size:20px;
+  font-weight:600;
+  margin-top:10px;
+  color:#000;
+  padding-left:5px;
+}
+
+ion-content{
+  overflow-scroll: true;
+}
+
+.scroll-content {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+.platform{
+  color:#000;
+  padding-left:15px;
+  padding-right:15px;
+  line-height:30px;
+  font-size:16px;
+  margin-bottom: 0;
+}
+
+.selectable {
+  -webkit-user-select: auto;//控制网页内容选择范围
+}
+
+
+
+/* 关于推荐 */
+.recommendP1{
+  color:#000;
+  margin-top:20px;
+  padding-left:15px;
+  padding-right:15px;
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+}
+.recommendP2{
+  padding-left:15px;
+  padding-right:15px;
+  line-height:24px;
+  font-size:16px;
+  color:#FFC107;
+}
+.recommendImgBox{
+  width:100%;
+  margin-top:50px;
+  text-align: center;
+}
+.recommendImgBox > img{
+  width:140px;
+  height:140px;
+}
